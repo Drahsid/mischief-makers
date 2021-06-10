@@ -1,0 +1,5 @@
+glabel func_800AAD80
+/* AB980 800AAD80 03E00008 */  jr         $ra
+/* AB984 800AAD84 00000000 */   nop
+/* AB988 800AAD88 00000000 */  nop
+/* AB98C 800AAD8C 00000000 */  nop

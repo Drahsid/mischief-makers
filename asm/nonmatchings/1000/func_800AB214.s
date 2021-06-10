@@ -1,0 +1,4 @@
+glabel func_800AB214
+/* ABE14 800AB214 03E00008 */  jr         $ra
+/* ABE18 800AB218 00000000 */   nop
+/* ABE1C 800AB21C 00000000 */  nop

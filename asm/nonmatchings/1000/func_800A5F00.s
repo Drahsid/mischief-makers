@@ -1,0 +1,11 @@
+glabel func_800A5F00
+/* A6B00 800A5F00 AFBAFFF0 */  sw         $k0, -0x10($sp)
+/* A6B04 800A5F04 10000003 */  b          .L800A5F14
+/* A6B08 800A5F08 00000000 */   nop
+/* A6B0C 800A5F0C 00000000 */  nop
+/* A6B10 800A5F10 00000000 */  nop
+.L800A5F14:
+/* A6B14 800A5F14 3C1A800A */  lui        $k0, %hi(func_800A5F24)
+/* A6B18 800A5F18 275A5F24 */  addiu      $k0, $k0, %lo(func_800A5F24)
+/* A6B1C 800A5F1C 03400008 */  jr         $k0
+/* A6B20 800A5F20 00000000 */   nop
