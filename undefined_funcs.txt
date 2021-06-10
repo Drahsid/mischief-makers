@@ -1,0 +1,22 @@
+.L84001008 = 0x84001008;
+.L84001780 = 0x84001780;
+.L840010D4 = 0x840010D4;
+.L840010FC = 0x840010FC;
+.L84001064 = 0x84001064;
+
+mainproc = 0x800006BC;
+guLookAt = 0x800A55B4;
+osCreateMesgQueue = 0x8009A650;
+osCreateThread = 0x80099470;
+osCreateViManager = 0x800997C0;
+osInitialize = 0x80098F50;
+osSetThreadPri = 0x8009A460;
+osStartThread = 0x80099620;
+osViBlack = 0x80098DF0;
+osViSwapBuffer = 0x80098E70;
+Framebuffer_Clear = 0x80000450;
+
+
+
+
+
