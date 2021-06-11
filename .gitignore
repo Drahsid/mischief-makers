@@ -6,3 +6,4 @@ undefined_syms_auto.txt
 build
 assets
 tools/n64crc
+__pycache__

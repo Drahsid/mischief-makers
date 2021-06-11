@@ -2,6 +2,7 @@
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <ultra64.h>
+#include <actor.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80000400.s")
 
@@ -156,7 +157,7 @@ loop_1:
     osViBlack(0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1000/Framebuffer_Clear.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80000450.s")
 #endif
 
 void mainproc(int32_t arg0) {
@@ -236,7 +237,7 @@ loop_5:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80000A84.s")
 
-#if NON_MATCHING
+#ifdef NON_MATCHING
 void func_80000C20(int32_t arg0) {
     uint16_t temp_t9;
     UNK_POINTER phi_s2;
@@ -393,15 +394,11 @@ void func_80001670(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80001B38.s")
 
-#if 1
 void func_800020BC(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
     func_8009A6F0(4, &D_801377D0, 0);
     func_8009E2F0(&D_801377D0, 0, 1);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1000/func_800020BC.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80002114.s")
 
@@ -463,7 +460,15 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80003A10.s")
 
+#ifdef NON_MATCHING
+// instruction ordering is wrong, and for some reason this shifts code by 4 bytes?
+void func_80003A38(void) {
+    func_8009FF40(D_8016DFE4);
+    D_800EF4D0 = 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80003A38.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80003A64.s")
 
@@ -635,7 +640,28 @@ void func_80010898(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80012634.s")
 
+#ifdef NON_MATCHING
+void func_80012830(void) {
+    // It is lh then lw the same values ?
+    D_800BE560 = (int16_t)D_800BE558;
+    D_800BE560 = (int32_t)D_800BE558;
+    if (D_800BE62C != 0) {
+        func_800123AC();
+    } else {
+        func_80012438();
+    }
+    D_800BE564 = (int16_t)D_800BE55C;
+    D_800BE564 = (int32_t)D_800BE55C;
+    if (D_800BE630 != 0) {
+        func_80012418();
+        return;
+    }
+    func_80012634();
+}
+
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80012830.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_800128E0.s")
 
@@ -709,7 +735,36 @@ void func_80010898(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_800160EC.s")
 
+#ifdef NON_MATCHING
+/* Differences are regalloc and instruction order
+ * Additionally, my code is generating nops below lw?
+ * This function iterates over all of the actors, and updates the collision for active actors
+*/
+void func_80016CB4(void) {
+    Actor* actor;
+    int32_t index;
+
+    if ((D_80137458 & 0x10) == 0) {
+        index = 0;
+        // I am sure this is supposed to be a for loop, but my testing was unsuccessful
+        do {
+            actor = &gActors[index];
+            if (Actor_Active_Get(actor) != 0) {
+                func_800160EC(index); // update collision
+                actor->unk_0x98 &= 0xFFF7FFFF;
+            }
+
+            index = (index + 1) & 0xFFFF;
+        } while (index < ACTOR_COUNT1);
+
+        D_800BE5D8 = (int32_t)(PlayerActor.pos_x + D_800BE558);
+        D_800BE5DC = (int32_t)(PlayerActor.pos_y + D_800BE55C);
+    }
+}
+
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80016CB4.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80016D94.s")
 
@@ -887,7 +942,110 @@ void func_80010898(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_8001FFA8.s")
 
+#ifdef NON_MATCHING
+/* Update function for main gamestate when not paused
+ * A lot of regalloc differences
+ * Code relatively different
+*/
+uint16_t func_80020024(void) {
+    int16_t* temp_s1;
+    uint16_t temp_a0;
+    uint16_t temp_t2;
+    uint16_t temp_t5;
+    uint16_t temp_v0;
+    uint16_t temp_v0_2;
+    int32_t phi_v1;
+    uint8_t* phi_s2;
+    int32_t phi_s0;
+    uint16_t* phi_s3;
+    int32_t phi_s4;
+    int16_t* phi_s1;
+    uint16_t phi_return;
+
+    D_800BE4E0 = (uint16_t)(D_800BE4E0 + 1);
+    D_801782B8 = (uint16_t)(D_801782B8 + 1);
+    if (((int32_t) D_801781E0 < 0x8CA0) && ((int32_t)D_800D28E8 >= 2) && (func_8005DEFC() == 0) && ((int32_t)D_800D28E4 < 0x61)) {
+        D_801781E0 = (uint16_t)(D_801781E0 + 1);
+    }
+    func_800122B0();
+    if ((D_800BE6AC & 2) != 0) {
+        temp_a0 = D_800BE4FC;
+        if ((temp_a0 & D_800BE530) != 0) {
+            temp_v0_2 = D_800BE6B4;
+            if (temp_v0_2 != 1) {
+                D_800BE6B4 = (uint16_t)(temp_v0_2 - 1);
+                D_801781DC = (uint16_t)0U;
+            }
+        }
+        temp_v0 = D_800BE6B4;
+        phi_v1 = (int32_t)temp_v0;
+        if ((temp_a0 & D_800BE534) != 0) {
+            phi_v1 = (int32_t)temp_v0;
+            if (temp_v0 != 0x32) {
+                temp_t2 = temp_v0 + 1;
+                D_800BE6B4 = temp_t2;
+                D_801781DC = (uint16_t)0U;
+                phi_v1 = temp_t2 & 0xFFFF;
+            }
+        }
+        if (((int32_t)D_800BE4E4 % phi_v1) != 0) {
+            D_801781DC = (uint16_t) (D_801781DC | temp_a0);
+            return temp_v0;
+        }
+        temp_t5 = D_801781DC;
+        D_801781DC = (uint16_t)0U;
+        D_800BE4FC = (uint16_t) (temp_a0 | temp_t5);
+    }
+    func_800253B0();
+    func_8001F88C();
+    func_80014AF0();
+    func_80016CB4();
+    func_80012830();
+    func_80016D94();
+    func_8001EC1C();
+    func_8001107C();
+    if (D_800CA230 == 0) {
+        func_8004ED10(0);
+        func_8008C528(0x41);
+    }
+    func_8001FF30();
+    func_8001DE30();
+    func_8008CA90();
+    func_8001751C();
+    func_80014C44();
+    func_8005C8A4();
+    func_8001FF50();
+    func_8005F6D4();
+    func_80022470();
+    if (gGameState == 6) {
+        func_80047CCC();
+    }
+    phi_return = func_80047C98();
+    if ((D_800BE6AC & 0x4000) != 0) {
+        phi_s2 = &D_800EF4F0;
+        phi_s0 = 0x3C;
+        phi_s3 = &D_800EF508;
+        phi_s4 = 0x30;
+        phi_s1 = &D_800EF4F8;
+loop_21:
+        func_80083C54(*phi_s2, -0x90, phi_s0);
+        func_80083A74(*phi_s3 - 0x21, -0x90, phi_s4);
+        temp_s1 = phi_s1 + 2;
+        phi_s2 += 1;
+        phi_s0 += -0x20;
+        phi_s3 += 2;
+        phi_s4 += -0x20;
+        phi_s1 = temp_s1;
+        phi_return = func_80083C54((uint8_t)*phi_s1, -0x68, phi_s0);
+        if ((uint32_t)temp_s1 != (uint32_t)&D_800EF500) {
+            goto loop_21;
+        }
+    }
+    return phi_return;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80020024.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_8002034C.s")
 
@@ -905,7 +1063,24 @@ void func_80010898(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80020A90.s")
 
+#ifdef NON_MATCHING
+// The only difference here is regalloc
+void func_80021034(void) {
+    uint32_t sp1C;
+
+    sp1C = (uint32_t)func_800A5720(); // osGetTime?
+    func_800457C8();
+    D_801374DC = (int32_t)((uint32_t)func_800A5720() - sp1C); // time - lastTime ?
+    // if game paused ?
+    if (D_800BE4E8 != 0) {
+        func_80020A90();
+        return;
+    }
+    func_80020024();
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80021034.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80021098.s")
 
@@ -941,7 +1116,7 @@ void func_80022D10(void) {
     D_800BE700 = (uint16_t)0;
     D_800CA238 = (uint16_t)0;
     gGameState = (uint16_t)0; // nonmatching, instructions are in a flipped order?
-    D_800BE4F4 = (uint16_t)0;
+    gGameSubState = (uint16_t)0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80022D10.s")
@@ -951,17 +1126,18 @@ void func_80022D10(void) {
 
 #ifdef NON_MATCHING
 // I had this matching, but something I changed made it not match
+// This function is called when the user soft-resets the game
 uint16_t func_80022F48(void) {
     uint16_t temp_ret;
     uint16_t temp_v0;
 
-    temp_v0 = D_800BE4F4;
+    temp_v0 = gGameSubState;
     if (temp_v0 == 0) {
         // disables every actor
         func_800230B8();
         func_8002312C();
         temp_ret = func_80023168();
-        D_800BE4F4 = (uint16_t)(D_800BE4F4 + 1);
+        gGameSubState = (uint16_t)(gGameSubState + 1);
         return temp_ret;
     }
     if (temp_v0 != 1) {
@@ -993,7 +1169,7 @@ uint16_t func_80022F48(void) {
     D_800EF5F0 = (uint16_t)1000;
     D_80178136 = (uint16_t)0x1E;
     gGameState = 1;
-    D_800BE4F4 = (uint16_t)0U;
+    gGameSubState = (uint16_t)0U;
     return (uint16_t)1U;
 }
 #else
@@ -1230,9 +1406,49 @@ uint16_t func_80022F48(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_8002729C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80027370.s")
+#ifdef NON_MATCHING
+/* The Actor* version seems to produce closer to matching code
+ * Differences are regalloc, and instruction order
+*/
+void func_80027370(uint32_t actorIndex, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+    Actor* actor;
 
+    actorIndex &= 0xFFFF;
+
+    actor = &gActors[actorIndex];
+    actor->unk_0xD2 = (uint16_t)0;
+    func_8001E2D0(actorIndex);
+    actor->unk_0x94 = (uint16_t)(actor->unk_0x94 | 0x800);
+    actor->unk_0x188 = 0;
+    actor->pos_x = pos_x;
+    actor->pos_y = pos_y;
+    actor->pos_z = pos_z;
+    //return actor;
+
+    //gActors[index].unk_0xD2 = (uint16_t)0;
+    //func_8001E2D0(index);
+    //gActors[index].unk_0x94 = (uint16_t)(gActors[index].unk_0x94 | 0x800);
+    //gActors[index].unk_0x188 = 0;
+    //gActors[index].pos_x = pos_x;
+    //gActors[index].pos_y = pos_y;
+    //gActors[index].pos_z = pos_z;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80027370.s")
+#endif
+
+#ifdef NON_MATCHING
+/* need to match instruction ordering
+ * the jal to func_800273FC has a nop in the delay slot,
+ * does this impliy whatever file this is from was buit with optimizations off?
+*/
+void func_800273FC(uint16_t actorIndex, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+    func_80027370(actorIndex, pos_x, pos_y, pos_z);
+    gActors[actorIndex].unk_0x84 = arg1;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_800273FC.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1000/func_80027468.s")
 
