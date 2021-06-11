@@ -2,8 +2,8 @@ glabel func_8003510C
 /* 35D0C 8003510C 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 35D10 80035110 240A0198 */  addiu      $t2, $zero, 0x198
 /* 35D14 80035114 01CA0019 */  multu      $t6, $t2
-/* 35D18 80035118 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* 35D1C 8003511C 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 35D18 80035118 3C09800F */  lui        $t1, %hi(gActors)
+/* 35D1C 8003511C 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 35D20 80035120 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 35D24 80035124 AFA40020 */  sw         $a0, 0x20($sp)
 /* 35D28 80035128 01C02025 */  or         $a0, $t6, $zero

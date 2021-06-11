@@ -8,9 +8,9 @@ glabel func_80047958
 /* 48570 80047970 91EF28D0 */  lbu        $t7, %lo(D_800D28D0)($t7)
 /* 48574 80047974 3C01800C */  lui        $at, %hi(D_800BE5D0)
 /* 48578 80047978 A42FE5D0 */  sh         $t7, %lo(D_800BE5D0)($at)
-/* 4857C 8004797C 3C01800C */  lui        $at, %hi(gGameState)
+/* 4857C 8004797C 3C01800C */  lui        $at, %hi(D_800BE4F0)
 /* 48580 80047980 24180005 */  addiu      $t8, $zero, 5
-/* 48584 80047984 A438E4F0 */  sh         $t8, %lo(gGameState)($at)
+/* 48584 80047984 A438E4F0 */  sh         $t8, %lo(D_800BE4F0)($at)
 /* 48588 80047988 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 4858C 8004798C 03E00008 */  jr         $ra
 /* 48590 80047990 A420E4F4 */   sh        $zero, %lo(D_800BE4F4)($at)

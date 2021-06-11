@@ -50,9 +50,9 @@ glabel func_80018E00
 /* 19ABC 80018EBC 01E08025 */   or        $s0, $t7, $zero
 /* 19AC0 80018EC0 3C013F80 */  lui        $at, 0x3f80
 /* 19AC4 80018EC4 3C168018 */  lui        $s6, %hi(D_801781A0)
-/* 19AC8 80018EC8 3C15800F */  lui        $s5, %hi(D_800EF510)
+/* 19AC8 80018EC8 3C15800F */  lui        $s5, %hi(gActors)
 /* 19ACC 80018ECC 4481A000 */  mtc1       $at, $f20
-/* 19AD0 80018ED0 26B5F510 */  addiu      $s5, $s5, %lo(D_800EF510)
+/* 19AD0 80018ED0 26B5F510 */  addiu      $s5, $s5, %lo(gActors)
 /* 19AD4 80018ED4 26D681A0 */  addiu      $s6, $s6, %lo(D_801781A0)
 /* 19AD8 80018ED8 00008025 */  or         $s0, $zero, $zero
 /* 19ADC 80018EDC 00001025 */  or         $v0, $zero, $zero

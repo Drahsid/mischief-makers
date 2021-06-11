@@ -12,8 +12,8 @@ glabel func_80030A74
 /* 3169C 80030A9C 032EC821 */  addu       $t9, $t9, $t6
 /* 316A0 80030AA0 0019C880 */  sll        $t9, $t9, 2
 /* 316A4 80030AA4 032EC823 */  subu       $t9, $t9, $t6
-/* 316A8 80030AA8 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 316AC 80030AAC 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 316A8 80030AA8 3C08800F */  lui        $t0, %hi(gActors)
+/* 316AC 80030AAC 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 316B0 80030AB0 0019C8C0 */  sll        $t9, $t9, 3
 /* 316B4 80030AB4 2403007F */  addiu      $v1, $zero, 0x7f
 /* 316B8 80030AB8 03281021 */  addu       $v0, $t9, $t0
@@ -28,8 +28,8 @@ glabel func_80030A74
 /* 316D8 80030AD8 01244821 */  addu       $t1, $t1, $a0
 /* 316DC 80030ADC 00094880 */  sll        $t1, $t1, 2
 /* 316E0 80030AE0 01244823 */  subu       $t1, $t1, $a0
-/* 316E4 80030AE4 3C0A800F */  lui        $t2, %hi(D_800EF510)
-/* 316E8 80030AE8 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 316E4 80030AE4 3C0A800F */  lui        $t2, %hi(gActors)
+/* 316E8 80030AE8 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 316EC 80030AEC 000948C0 */  sll        $t1, $t1, 3
 /* 316F0 80030AF0 2403004F */  addiu      $v1, $zero, 0x4f
 /* 316F4 80030AF4 012A1021 */  addu       $v0, $t1, $t2

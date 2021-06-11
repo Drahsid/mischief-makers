@@ -19,8 +19,8 @@ glabel func_80045FA4
 /* 46BE8 80045FE8 240E0005 */  addiu      $t6, $zero, 5
 /* 46BEC 80045FEC AC2EE5F4 */  sw         $t6, %lo(D_800BE5F4)($at)
 /* 46BF0 80045FF0 944F0000 */  lhu        $t7, ($v0)
-/* 46BF4 80045FF4 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 46BF8 80045FF8 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 46BF4 80045FF4 3C03800F */  lui        $v1, %hi(gActors)
+/* 46BF8 80045FF8 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 46BFC 80045FFC A46F0088 */  sh         $t7, 0x88($v1)
 /* 46C00 80046000 94580002 */  lhu        $t8, 2($v0)
 /* 46C04 80046004 3C19800C */  lui        $t9, %hi(D_800BE558)

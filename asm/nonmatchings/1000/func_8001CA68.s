@@ -1,6 +1,6 @@
 glabel func_8001CA68
-/* 1D668 8001CA68 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 1D66C 8001CA6C 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 1D668 8001CA68 3C04800F */  lui        $a0, %hi(gActors)
+/* 1D66C 8001CA6C 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 1D670 8001CA70 00001025 */  or         $v0, $zero, $zero
 /* 1D674 8001CA74 00001825 */  or         $v1, $zero, $zero
 /* 1D678 8001CA78 24050198 */  addiu      $a1, $zero, 0x198

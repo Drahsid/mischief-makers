@@ -13,8 +13,8 @@ glabel func_80071A64
 /* 72690 80071A90 01D07021 */  addu       $t6, $t6, $s0
 /* 72694 80071A94 000E7080 */  sll        $t6, $t6, 2
 /* 72698 80071A98 01D07023 */  subu       $t6, $t6, $s0
-/* 7269C 80071A9C 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 726A0 80071AA0 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 7269C 80071A9C 3C0F800F */  lui        $t7, %hi(gActors)
+/* 726A0 80071AA0 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 726A4 80071AA4 000E70C0 */  sll        $t6, $t6, 3
 /* 726A8 80071AA8 01CF1821 */  addu       $v1, $t6, $t7
 /* 726AC 80071AAC 946200D0 */  lhu        $v0, 0xd0($v1)

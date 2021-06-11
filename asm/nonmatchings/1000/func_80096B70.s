@@ -1,10 +1,10 @@
 glabel func_80096B70
 /* 97770 80096B70 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 97774 80096B74 AFB00014 */  sw         $s0, 0x14($sp)
-/* 97778 80096B78 3C10800F */  lui        $s0, %hi(D_800EF510)
+/* 97778 80096B78 3C10800F */  lui        $s0, %hi(gActors)
 /* 9777C 80096B7C AFB10018 */  sw         $s1, 0x18($sp)
 /* 97780 80096B80 2411001D */  addiu      $s1, $zero, 0x1d
-/* 97784 80096B84 2610F510 */  addiu      $s0, $s0, %lo(D_800EF510)
+/* 97784 80096B84 2610F510 */  addiu      $s0, $s0, %lo(gActors)
 /* 97788 80096B88 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9778C 80096B8C A61166D2 */  sh         $s1, 0x66d2($s0)
 /* 97790 80096B90 0C0078B4 */  jal        func_8001E2D0

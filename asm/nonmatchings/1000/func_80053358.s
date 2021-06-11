@@ -4,8 +4,8 @@ glabel func_80053358
 /* 53F60 80053360 97AE002A */  lhu        $t6, 0x2a($sp)
 /* 53F64 80053364 24070198 */  addiu      $a3, $zero, 0x198
 /* 53F68 80053368 01C70019 */  multu      $t6, $a3
-/* 53F6C 8005336C 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 53F70 80053370 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 53F6C 8005336C 3C06800F */  lui        $a2, %hi(gActors)
+/* 53F70 80053370 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 53F74 80053374 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 53F78 80053378 AFA5002C */  sw         $a1, 0x2c($sp)
 /* 53F7C 8005337C 00007812 */  mflo       $t7

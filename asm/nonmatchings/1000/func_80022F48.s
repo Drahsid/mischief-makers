@@ -85,8 +85,8 @@ glabel func_80022F48
 /* 23C8C 8002308C 3C018018 */  lui        $at, %hi(D_80178136)
 /* 23C90 80023090 240A001E */  addiu      $t2, $zero, 0x1e
 /* 23C94 80023094 A42A8136 */  sh         $t2, %lo(D_80178136)($at)
-/* 23C98 80023098 3C01800C */  lui        $at, %hi(gGameState)
-/* 23C9C 8002309C A422E4F0 */  sh         $v0, %lo(gGameState)($at)
+/* 23C98 80023098 3C01800C */  lui        $at, %hi(D_800BE4F0)
+/* 23C9C 8002309C A422E4F0 */  sh         $v0, %lo(D_800BE4F0)($at)
 /* 23CA0 800230A0 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 23CA4 800230A4 A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
 .L800230A8:

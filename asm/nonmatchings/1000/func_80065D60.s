@@ -47,9 +47,9 @@ glabel func_80065D60
 /* 66A14 80065E14 01846021 */  addu       $t4, $t4, $a0
 /* 66A18 80065E18 000C6080 */  sll        $t4, $t4, 2
 /* 66A1C 80065E1C 01846023 */  subu       $t4, $t4, $a0
-/* 66A20 80065E20 3C0D800F */  lui        $t5, %hi(D_800EF510)
+/* 66A20 80065E20 3C0D800F */  lui        $t5, %hi(gActors)
 /* 66A24 80065E24 3C01800F */  lui        $at, %hi(D_800EC500)
-/* 66A28 80065E28 25ADF510 */  addiu      $t5, $t5, %lo(D_800EF510)
+/* 66A28 80065E28 25ADF510 */  addiu      $t5, $t5, %lo(gActors)
 /* 66A2C 80065E2C 000C60C0 */  sll        $t4, $t4, 3
 /* 66A30 80065E30 C420C500 */  lwc1       $f0, %lo(D_800EC500)($at)
 /* 66A34 80065E34 018D1821 */  addu       $v1, $t4, $t5

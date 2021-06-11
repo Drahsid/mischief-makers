@@ -141,8 +141,8 @@ glabel func_800801D8
 /* 80FE0 800803E0 01A36821 */  addu       $t5, $t5, $v1
 /* 80FE4 800803E4 000D6880 */  sll        $t5, $t5, 2
 /* 80FE8 800803E8 01A36823 */  subu       $t5, $t5, $v1
-/* 80FEC 800803EC 3C0E800F */  lui        $t6, %hi(D_800EF510)
-/* 80FF0 800803F0 25CEF510 */  addiu      $t6, $t6, %lo(D_800EF510)
+/* 80FEC 800803EC 3C0E800F */  lui        $t6, %hi(gActors)
+/* 80FF0 800803F0 25CEF510 */  addiu      $t6, $t6, %lo(gActors)
 /* 80FF4 800803F4 000D68C0 */  sll        $t5, $t5, 3
 /* 80FF8 800803F8 01AE9821 */  addu       $s3, $t5, $t6
 /* 80FFC 800803FC 96B00000 */  lhu        $s0, ($s5)

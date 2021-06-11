@@ -1,10 +1,10 @@
 glabel func_80023F5C
 /* 24B5C 80023F5C 3C0E800C */  lui        $t6, %hi(D_800BE6AC)
 /* 24B60 80023F60 95CEE6AC */  lhu        $t6, %lo(D_800BE6AC)($t6)
-/* 24B64 80023F64 3C02800F */  lui        $v0, %hi(D_800EF510)
+/* 24B64 80023F64 3C02800F */  lui        $v0, %hi(gActors)
 /* 24B68 80023F68 31CFA400 */  andi       $t7, $t6, 0xa400
 /* 24B6C 80023F6C 15E00023 */  bnez       $t7, .L80023FFC
-/* 24B70 80023F70 2442F510 */   addiu     $v0, $v0, %lo(D_800EF510)
+/* 24B70 80023F70 2442F510 */   addiu     $v0, $v0, %lo(gActors)
 /* 24B74 80023F74 34188000 */  ori        $t8, $zero, 0x8000
 /* 24B78 80023F78 3C01800C */  lui        $at, %hi(D_800BE544)
 /* 24B7C 80023F7C 3C19800C */  lui        $t9, %hi(D_800BE5D8)

@@ -27,8 +27,8 @@ glabel func_8008105C
 .L800810BC:
 /* 81CBC 800810BC 24170198 */  addiu      $s7, $zero, 0x198
 /* 81CC0 800810C0 00970019 */  multu      $a0, $s7
-/* 81CC4 800810C4 3C16800F */  lui        $s6, %hi(D_800EF510)
-/* 81CC8 800810C8 26D6F510 */  addiu      $s6, $s6, %lo(D_800EF510)
+/* 81CC4 800810C4 3C16800F */  lui        $s6, %hi(gActors)
+/* 81CC8 800810C8 26D6F510 */  addiu      $s6, $s6, %lo(gActors)
 /* 81CCC 800810CC 44842000 */  mtc1       $a0, $f4
 /* 81CD0 800810D0 241E7FFF */  addiu      $fp, $zero, 0x7fff
 /* 81CD4 800810D4 3C014F80 */  lui        $at, 0x4f80

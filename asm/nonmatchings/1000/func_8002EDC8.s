@@ -12,10 +12,10 @@ glabel func_8002EDC8
 /* 2F9F0 8002EDF0 10400078 */  beqz       $v0, .L8002EFD4
 /* 2F9F4 8002EDF4 A7A2003E */   sh        $v0, 0x3e($sp)
 /* 2F9F8 8002EDF8 97A30046 */  lhu        $v1, 0x46($sp)
-/* 2F9FC 8002EDFC 3C02800F */  lui        $v0, %hi(D_800EF510)
+/* 2F9FC 8002EDFC 3C02800F */  lui        $v0, %hi(gActors)
 /* 2FA00 8002EE00 306E1000 */  andi       $t6, $v1, 0x1000
 /* 2FA04 8002EE04 11C0000B */  beqz       $t6, .L8002EE34
-/* 2FA08 8002EE08 2442F510 */   addiu     $v0, $v0, %lo(D_800EF510)
+/* 2FA08 8002EE08 2442F510 */   addiu     $v0, $v0, %lo(gActors)
 /* 2FA0C 8002EE0C 8C4F0088 */  lw         $t7, 0x88($v0)
 /* 2FA10 8002EE10 8FB8004C */  lw         $t8, 0x4c($sp)
 /* 2FA14 8002EE14 8C59008C */  lw         $t9, 0x8c($v0)

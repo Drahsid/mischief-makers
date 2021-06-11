@@ -19,9 +19,9 @@ glabel func_80027B28
 /* 2876C 80027B6C 3092FFFF */  andi       $s2, $a0, 0xffff
 /* 28770 80027B70 12A20027 */  beq        $s5, $v0, .L80027C10
 /* 28774 80027B74 30F3FFFF */   andi      $s3, $a3, 0xffff
-/* 28778 80027B78 3C16800F */  lui        $s6, %hi(D_800EF510)
+/* 28778 80027B78 3C16800F */  lui        $s6, %hi(gActors)
 /* 2877C 80027B7C 97B4004A */  lhu        $s4, 0x4a($sp)
-/* 28780 80027B80 26D6F510 */  addiu      $s6, $s6, %lo(D_800EF510)
+/* 28780 80027B80 26D6F510 */  addiu      $s6, $s6, %lo(gActors)
 /* 28784 80027B84 24170198 */  addiu      $s7, $zero, 0x198
 .L80027B88:
 /* 28788 80027B88 1040001A */  beqz       $v0, .L80027BF4

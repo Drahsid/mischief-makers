@@ -3,8 +3,8 @@ glabel func_8005E56C
 /* 5F170 8005E570 24070198 */  addiu      $a3, $zero, 0x198
 /* 5F174 8005E574 00C70019 */  multu      $a2, $a3
 /* 5F178 8005E578 27BDFFD0 */  addiu      $sp, $sp, -0x30
-/* 5F17C 8005E57C 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 5F180 8005E580 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 5F17C 8005E57C 3C03800F */  lui        $v1, %hi(gActors)
+/* 5F180 8005E580 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 5F184 8005E584 AFB1001C */  sw         $s1, 0x1c($sp)
 /* 5F188 8005E588 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 5F18C 8005E58C AFB20020 */  sw         $s2, 0x20($sp)

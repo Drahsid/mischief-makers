@@ -6,8 +6,8 @@ glabel func_800038C8
 /* 44D8 800038D8 01EE7821 */  addu       $t7, $t7, $t6
 /* 44DC 800038DC 000F7880 */  sll        $t7, $t7, 2
 /* 44E0 800038E0 01EE7823 */  subu       $t7, $t7, $t6
-/* 44E4 800038E4 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 44E8 800038E8 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 44E4 800038E4 3C18800F */  lui        $t8, %hi(gActors)
+/* 44E8 800038E8 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 44EC 800038EC 000F78C0 */  sll        $t7, $t7, 3
 /* 44F0 800038F0 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 44F4 800038F4 01F81021 */  addu       $v0, $t7, $t8

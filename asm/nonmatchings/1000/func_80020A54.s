@@ -1,6 +1,6 @@
 glabel func_80020A54
-/* 21654 80020A54 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 21658 80020A58 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 21654 80020A54 3C03800F */  lui        $v1, %hi(gActors)
+/* 21658 80020A58 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 2165C 80020A5C 240200C8 */  addiu      $v0, $zero, 0xc8
 /* 21660 80020A60 24040198 */  addiu      $a0, $zero, 0x198
 .L80020A64:

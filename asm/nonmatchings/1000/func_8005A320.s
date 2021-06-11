@@ -50,8 +50,8 @@ glabel func_8005A320
 /* 5AFD0 8005A3D0 01655821 */  addu       $t3, $t3, $a1
 /* 5AFD4 8005A3D4 000B5880 */  sll        $t3, $t3, 2
 /* 5AFD8 8005A3D8 01655823 */  subu       $t3, $t3, $a1
-/* 5AFDC 8005A3DC 3C0C800F */  lui        $t4, %hi(D_800EF510)
-/* 5AFE0 8005A3E0 258CF510 */  addiu      $t4, $t4, %lo(D_800EF510)
+/* 5AFDC 8005A3DC 3C0C800F */  lui        $t4, %hi(gActors)
+/* 5AFE0 8005A3E0 258CF510 */  addiu      $t4, $t4, %lo(gActors)
 /* 5AFE4 8005A3E4 000B58C0 */  sll        $t3, $t3, 3
 /* 5AFE8 8005A3E8 016C1821 */  addu       $v1, $t3, $t4
 /* 5AFEC 8005A3EC 04810004 */  bgez       $a0, .L8005A400

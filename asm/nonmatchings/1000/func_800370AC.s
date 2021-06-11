@@ -8,9 +8,9 @@ glabel func_800370AC
 /* 37CC4 800370C4 000F7880 */  sll        $t7, $t7, 2
 /* 37CC8 800370C8 01EE7821 */  addu       $t7, $t7, $t6
 /* 37CCC 800370CC 000F7880 */  sll        $t7, $t7, 2
-/* 37CD0 800370D0 3C11800F */  lui        $s1, %hi(D_800EF510)
+/* 37CD0 800370D0 3C11800F */  lui        $s1, %hi(gActors)
 /* 37CD4 800370D4 01EE7823 */  subu       $t7, $t7, $t6
-/* 37CD8 800370D8 2631F510 */  addiu      $s1, $s1, %lo(D_800EF510)
+/* 37CD8 800370D8 2631F510 */  addiu      $s1, $s1, %lo(gActors)
 /* 37CDC 800370DC AFB00018 */  sw         $s0, 0x18($sp)
 /* 37CE0 800370E0 000F78C0 */  sll        $t7, $t7, 3
 /* 37CE4 800370E4 022F8021 */  addu       $s0, $s1, $t7

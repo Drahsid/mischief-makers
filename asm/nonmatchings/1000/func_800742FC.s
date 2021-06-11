@@ -3,8 +3,8 @@ glabel func_800742FC
 /* 74F00 80074300 24080198 */  addiu      $t0, $zero, 0x198
 /* 74F04 80074304 01C80019 */  multu      $t6, $t0
 /* 74F08 80074308 30AFFFFF */  andi       $t7, $a1, 0xffff
-/* 74F0C 8007430C 3C07800F */  lui        $a3, %hi(D_800EF510)
-/* 74F10 80074310 24E7F510 */  addiu      $a3, $a3, %lo(D_800EF510)
+/* 74F0C 8007430C 3C07800F */  lui        $a3, %hi(gActors)
+/* 74F10 80074310 24E7F510 */  addiu      $a3, $a3, %lo(gActors)
 /* 74F14 80074314 3C01800F */  lui        $at, 0x800f
 /* 74F18 80074318 AFA40000 */  sw         $a0, ($sp)
 /* 74F1C 8007431C AFA50004 */  sw         $a1, 4($sp)

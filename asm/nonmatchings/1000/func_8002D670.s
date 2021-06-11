@@ -17,11 +17,11 @@ glabel func_8002D670
 /* 2E2AC 8002D6AC 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 2E2B0 8002D6B0 0327C823 */  subu       $t9, $t9, $a3
 /* 2E2B4 8002D6B4 01074023 */  subu       $t0, $t0, $a3
-/* 2E2B8 8002D6B8 3C09800F */  lui        $t1, %hi(D_800EF510)
+/* 2E2B8 8002D6B8 3C09800F */  lui        $t1, %hi(gActors)
 /* 2E2BC 8002D6BC AFB00018 */  sw         $s0, 0x18($sp)
 /* 2E2C0 8002D6C0 0019C8C0 */  sll        $t9, $t9, 3
 /* 2E2C4 8002D6C4 3C01800F */  lui        $at, 0x800f
-/* 2E2C8 8002D6C8 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 2E2C8 8002D6C8 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 2E2CC 8002D6CC 000840C0 */  sll        $t0, $t0, 3
 /* 2E2D0 8002D6D0 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 2E2D4 8002D6D4 AFA40020 */  sw         $a0, 0x20($sp)

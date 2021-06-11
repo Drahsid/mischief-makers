@@ -1,6 +1,6 @@
 glabel func_80001670
-/* 2270 80001670 3C0E800C */  lui        $t6, %hi(gGameState)
-/* 2274 80001674 95CEE4F0 */  lhu        $t6, %lo(gGameState)($t6)
+/* 2270 80001670 3C0E800C */  lui        $t6, %hi(D_800BE4F0)
+/* 2274 80001674 95CEE4F0 */  lhu        $t6, %lo(D_800BE4F0)($t6)
 /* 2278 80001678 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 227C 8000167C 2DC1000F */  sltiu      $at, $t6, 0xf
 /* 2280 80001680 1020003E */  beqz       $at, .L8000177C

@@ -22,12 +22,12 @@ glabel func_8008F168
 /* 8FDB0 8008F1B0 0C023B6C */  jal        func_8008EDB0
 /* 8FDB4 8008F1B4 00000000 */   nop
 /* 8FDB8 8008F1B8 10400003 */  beqz       $v0, .L8008F1C8
-/* 8FDBC 8008F1BC 3C18800F */   lui       $t8, %hi(D_800EF510)
+/* 8FDBC 8008F1BC 3C18800F */   lui       $t8, %hi(gActors)
 /* 8FDC0 8008F1C0 10000013 */  b          .L8008F210
 /* 8FDC4 8008F1C4 24020002 */   addiu     $v0, $zero, 2
 .L8008F1C8:
 /* 8FDC8 8008F1C8 97AE001A */  lhu        $t6, 0x1a($sp)
-/* 8FDCC 8008F1CC 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 8FDCC 8008F1CC 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 8FDD0 8008F1D0 000E7880 */  sll        $t7, $t6, 2
 /* 8FDD4 8008F1D4 01EE7823 */  subu       $t7, $t7, $t6
 /* 8FDD8 8008F1D8 000F7880 */  sll        $t7, $t7, 2

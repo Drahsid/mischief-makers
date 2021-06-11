@@ -26,11 +26,11 @@ glabel func_8003F248
 /* 3FEA8 8003F2A8 000A5080 */  sll        $t2, $t2, 2
 /* 3FEAC 8003F2AC 01465021 */  addu       $t2, $t2, $a2
 /* 3FEB0 8003F2B0 000A5080 */  sll        $t2, $t2, 2
-/* 3FEB4 8003F2B4 3C0B800F */  lui        $t3, %hi(D_800EF510)
+/* 3FEB4 8003F2B4 3C0B800F */  lui        $t3, %hi(gActors)
 /* 3FEB8 8003F2B8 01465023 */  subu       $t2, $t2, $a2
 /* 3FEBC 8003F2BC C422BC38 */  lwc1       $f2, -0x43c8($at)
 /* 3FEC0 8003F2C0 000A50C0 */  sll        $t2, $t2, 3
-/* 3FEC4 8003F2C4 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 3FEC4 8003F2C4 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 3FEC8 8003F2C8 014B1821 */  addu       $v1, $t2, $t3
 /* 3FECC 8003F2CC 44800000 */  mtc1       $zero, $f0
 /* 3FED0 8003F2D0 3C0141F0 */  lui        $at, 0x41f0

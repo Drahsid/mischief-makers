@@ -109,9 +109,9 @@ glabel func_80055C2C
 /* 569C8 80055DC8 AE1900EC */  sw         $t9, 0xec($s0)
 .L80055DCC:
 /* 569CC 80055DCC 8E0800EC */  lw         $t0, 0xec($s0)
-/* 569D0 80055DD0 3C02800F */  lui        $v0, %hi(D_800EF510)
+/* 569D0 80055DD0 3C02800F */  lui        $v0, %hi(gActors)
 /* 569D4 80055DD4 44882000 */  mtc1       $t0, $f4
-/* 569D8 80055DD8 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 569D8 80055DD8 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 569DC 80055DDC 468021A0 */  cvt.s.w    $f6, $f4
 /* 569E0 80055DE0 C4480120 */  lwc1       $f8, 0x120($v0)
 /* 569E4 80055DE4 8E0B00F0 */  lw         $t3, 0xf0($s0)

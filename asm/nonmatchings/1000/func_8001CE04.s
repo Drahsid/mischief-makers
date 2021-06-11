@@ -54,8 +54,8 @@ glabel func_8001CE04
 /* 1DAC8 8001CEC8 960433D6 */  lhu        $a0, 0x33d6($s0)
 /* 1DACC 8001CECC 0C00734C */  jal        func_8001CD30
 /* 1DAD0 8001CED0 00000000 */   nop
-/* 1DAD4 8001CED4 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 1DAD8 8001CED8 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 1DAD4 8001CED4 3C02800F */  lui        $v0, %hi(gActors)
+/* 1DAD8 8001CED8 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 1DADC 8001CEDC 240E0020 */  addiu      $t6, $zero, 0x20
 /* 1DAE0 8001CEE0 240FFFE4 */  addiu      $t7, $zero, -0x1c
 /* 1DAE4 8001CEE4 A44E503C */  sh         $t6, 0x503c($v0)

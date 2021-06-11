@@ -22,10 +22,10 @@ glabel func_80006E60
 /* 7AB0 80006EB0 24080001 */  addiu      $t0, $zero, 1
 /* 7AB4 80006EB4 3C01800D */  lui        $at, %hi(D_800CBF40)
 /* 7AB8 80006EB8 A428BF40 */  sh         $t0, %lo(D_800CBF40)($at)
-/* 7ABC 80006EBC 3C01800C */  lui        $at, %hi(gGameState)
+/* 7ABC 80006EBC 3C01800C */  lui        $at, %hi(D_800BE4F0)
 /* 7AC0 80006EC0 2409000C */  addiu      $t1, $zero, 0xc
 /* 7AC4 80006EC4 8FBF0014 */  lw         $ra, 0x14($sp)
-/* 7AC8 80006EC8 A429E4F0 */  sh         $t1, %lo(gGameState)($at)
+/* 7AC8 80006EC8 A429E4F0 */  sh         $t1, %lo(D_800BE4F0)($at)
 /* 7ACC 80006ECC 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 7AD0 80006ED0 A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
 /* 7AD4 80006ED4 03E00008 */  jr         $ra

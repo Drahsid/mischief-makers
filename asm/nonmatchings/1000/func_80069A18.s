@@ -51,9 +51,9 @@ glabel func_80069A18
 /* 6A6DC 80069ADC 0324C821 */  addu       $t9, $t9, $a0
 /* 6A6E0 80069AE0 0019C880 */  sll        $t9, $t9, 2
 /* 6A6E4 80069AE4 0324C823 */  subu       $t9, $t9, $a0
-/* 6A6E8 80069AE8 3C09800F */  lui        $t1, %hi(D_800EF510)
+/* 6A6E8 80069AE8 3C09800F */  lui        $t1, %hi(gActors)
 /* 6A6EC 80069AEC 3C01800F */  lui        $at, %hi(D_800EC598)
-/* 6A6F0 80069AF0 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 6A6F0 80069AF0 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 6A6F4 80069AF4 0019C8C0 */  sll        $t9, $t9, 3
 /* 6A6F8 80069AF8 C420C598 */  lwc1       $f0, %lo(D_800EC598)($at)
 /* 6A6FC 80069AFC 03291021 */  addu       $v0, $t9, $t1

@@ -43,8 +43,8 @@ glabel func_80081D20
 /* 829C4 80081DC4 0310C021 */  addu       $t8, $t8, $s0
 /* 829C8 80081DC8 0018C080 */  sll        $t8, $t8, 2
 /* 829CC 80081DCC 0310C023 */  subu       $t8, $t8, $s0
-/* 829D0 80081DD0 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 829D4 80081DD4 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 829D0 80081DD0 3C19800F */  lui        $t9, %hi(gActors)
+/* 829D4 80081DD4 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 829D8 80081DD8 0018C0C0 */  sll        $t8, $t8, 3
 /* 829DC 80081DDC 03191021 */  addu       $v0, $t8, $t9
 /* 829E0 80081DE0 9448022C */  lhu        $t0, 0x22c($v0)

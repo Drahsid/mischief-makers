@@ -13,11 +13,11 @@ glabel func_80081584
 /* 821B0 800815B0 01EE7821 */  addu       $t7, $t7, $t6
 /* 821B4 800815B4 000F7880 */  sll        $t7, $t7, 2
 /* 821B8 800815B8 01EE7823 */  subu       $t7, $t7, $t6
-/* 821BC 800815BC 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 821C0 800815C0 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 821BC 800815BC 3C18800F */  lui        $t8, %hi(gActors)
+/* 821C0 800815C0 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 821C4 800815C4 000F78C0 */  sll        $t7, $t7, 3
-/* 821C8 800815C8 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* 821CC 800815CC 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 821C8 800815C8 3C09800F */  lui        $t1, %hi(gActors)
+/* 821CC 800815CC 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 821D0 800815D0 01F83821 */  addu       $a3, $t7, $t8
 /* 821D4 800815D4 01C03025 */  or         $a2, $t6, $zero
 /* 821D8 800815D8 240A0198 */  addiu      $t2, $zero, 0x198

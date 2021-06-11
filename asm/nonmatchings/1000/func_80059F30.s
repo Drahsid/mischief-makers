@@ -19,8 +19,8 @@ glabel func_80059F30
 .L80059F74:
 /* 5AB74 80059F74 24090198 */  addiu      $t1, $zero, 0x198
 /* 5AB78 80059F78 00490019 */  multu      $v0, $t1
-/* 5AB7C 80059F7C 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 5AB80 80059F80 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 5AB7C 80059F7C 3C08800F */  lui        $t0, %hi(gActors)
+/* 5AB80 80059F80 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 5AB84 80059F84 44872000 */  mtc1       $a3, $f4
 /* 5AB88 80059F88 00000000 */  nop
 /* 5AB8C 80059F8C 46802320 */  cvt.s.w    $f12, $f4

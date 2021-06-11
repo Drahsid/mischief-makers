@@ -14,8 +14,8 @@ glabel func_80030F94
 /* 31BC4 80030FC4 030FC021 */  addu       $t8, $t8, $t7
 /* 31BC8 80030FC8 0018C080 */  sll        $t8, $t8, 2
 /* 31BCC 80030FCC 030FC023 */  subu       $t8, $t8, $t7
-/* 31BD0 80030FD0 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 31BD4 80030FD4 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 31BD0 80030FD0 3C19800F */  lui        $t9, %hi(gActors)
+/* 31BD4 80030FD4 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 31BD8 80030FD8 0018C0C0 */  sll        $t8, $t8, 3
 /* 31BDC 80030FDC 03191021 */  addu       $v0, $t8, $t9
 /* 31BE0 80030FE0 24080009 */  addiu      $t0, $zero, 9

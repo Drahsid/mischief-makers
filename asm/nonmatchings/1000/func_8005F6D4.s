@@ -565,16 +565,16 @@ glabel func_8005F6D4
 /* 60B20 8005FF20 240F0003 */   addiu     $t7, $zero, 3
 /* 60B24 8005FF24 24050198 */  addiu      $a1, $zero, 0x198
 /* 60B28 8005FF28 00650019 */  multu      $v1, $a1
-/* 60B2C 8005FF2C 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 60B30 8005FF30 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 60B2C 8005FF2C 3C04800F */  lui        $a0, %hi(gActors)
+/* 60B30 8005FF30 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 60B34 8005FF34 24180002 */  addiu      $t8, $zero, 2
 /* 60B38 8005FF38 0000C812 */  mflo       $t9
 /* 60B3C 8005FF3C 00994021 */  addu       $t0, $a0, $t9
 /* 60B40 8005FF40 A51800D0 */  sh         $t8, 0xd0($t0)
 .L8005FF44:
 /* 60B44 8005FF44 9442843A */  lhu        $v0, -0x7bc6($v0)
-/* 60B48 8005FF48 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 60B4C 8005FF4C 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 60B48 8005FF48 3C04800F */  lui        $a0, %hi(gActors)
+/* 60B4C 8005FF4C 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 60B50 8005FF50 10400006 */  beqz       $v0, .L8005FF6C
 /* 60B54 8005FF54 24050198 */   addiu     $a1, $zero, 0x198
 /* 60B58 8005FF58 00450019 */  multu      $v0, $a1

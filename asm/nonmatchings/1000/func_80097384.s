@@ -7,8 +7,8 @@ glabel func_80097384
 /* 97F98 80097398 000F7880 */  sll        $t7, $t7, 2
 /* 97F9C 8009739C 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 97FA0 800973A0 01EE7823 */  subu       $t7, $t7, $t6
-/* 97FA4 800973A4 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 97FA8 800973A8 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 97FA4 800973A4 3C18800F */  lui        $t8, %hi(gActors)
+/* 97FA8 800973A8 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 97FAC 800973AC 000F78C0 */  sll        $t7, $t7, 3
 /* 97FB0 800973B0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 97FB4 800973B4 AFA40020 */  sw         $a0, 0x20($sp)

@@ -57,8 +57,8 @@ glabel func_8007FCA0
 /* 8096C 8007FD6C 258DFFE0 */  addiu      $t5, $t4, -0x20
 /* 80970 8007FD70 000D7400 */  sll        $t6, $t5, 0x10
 /* 80974 8007FD74 000E7C03 */  sra        $t7, $t6, 0x10
-/* 80978 8007FD78 3C13800F */  lui        $s3, %hi(D_800EF510)
-/* 8097C 8007FD7C 2673F510 */  addiu      $s3, $s3, %lo(D_800EF510)
+/* 80978 8007FD78 3C13800F */  lui        $s3, %hi(gActors)
+/* 8097C 8007FD7C 2673F510 */  addiu      $s3, $s3, %lo(gActors)
 /* 80980 8007FD80 AFAF0044 */  sw         $t7, 0x44($sp)
 /* 80984 8007FD84 24110080 */  addiu      $s1, $zero, 0x80
 /* 80988 8007FD88 24170E00 */  addiu      $s7, $zero, 0xe00

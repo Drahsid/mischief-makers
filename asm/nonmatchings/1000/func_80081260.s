@@ -22,10 +22,10 @@ glabel func_80081260
 /* 81EB0 800812B0 12C70061 */  beq        $s6, $a3, .L80081438
 /* 81EB4 800812B4 3094FFFF */   andi      $s4, $a0, 0xffff
 /* 81EB8 800812B8 3C013F80 */  lui        $at, 0x3f80
-/* 81EBC 800812BC 3C17800F */  lui        $s7, %hi(D_800EF510)
+/* 81EBC 800812BC 3C17800F */  lui        $s7, %hi(gActors)
 /* 81EC0 800812C0 4481A000 */  mtc1       $at, $f20
 /* 81EC4 800812C4 4480B000 */  mtc1       $zero, $f22
-/* 81EC8 800812C8 26F7F510 */  addiu      $s7, $s7, %lo(D_800EF510)
+/* 81EC8 800812C8 26F7F510 */  addiu      $s7, $s7, %lo(gActors)
 /* 81ECC 800812CC 0280A825 */  or         $s5, $s4, $zero
 /* 81ED0 800812D0 241E0198 */  addiu      $fp, $zero, 0x198
 .L800812D4:

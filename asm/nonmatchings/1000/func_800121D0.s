@@ -8,9 +8,9 @@ glabel func_800121D0
 /* 12DE8 800121E8 A7A3001E */   sh        $v1, 0x1e($sp)
 /* 12DEC 800121EC 97A3001E */  lhu        $v1, 0x1e($sp)
 /* 12DF0 800121F0 3C01800F */  lui        $at, %hi(D_800EF5F0)
-/* 12DF4 800121F4 3C02800F */  lui        $v0, %hi(D_800EF510)
+/* 12DF4 800121F4 3C02800F */  lui        $v0, %hi(gActors)
 /* 12DF8 800121F8 A423F5F0 */  sh         $v1, %lo(D_800EF5F0)($at)
-/* 12DFC 800121FC 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 12DFC 800121FC 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 12E00 80012200 240E0001 */  addiu      $t6, $zero, 1
 /* 12E04 80012204 A44E0090 */  sh         $t6, 0x90($v0)
 /* 12E08 80012208 3C01800C */  lui        $at, %hi(D_800BE5E8)

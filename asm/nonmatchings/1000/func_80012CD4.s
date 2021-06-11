@@ -1,6 +1,6 @@
 glabel func_80012CD4
-/* 138D4 80012CD4 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 138D8 80012CD8 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 138D4 80012CD4 3C04800F */  lui        $a0, %hi(gActors)
+/* 138D8 80012CD8 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 138DC 80012CDC 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 138E0 80012CE0 AFBF002C */  sw         $ra, 0x2c($sp)
 /* 138E4 80012CE4 AC805030 */  sw         $zero, 0x5030($a0)

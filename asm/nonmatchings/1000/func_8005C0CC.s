@@ -1,7 +1,7 @@
 glabel func_8005C0CC
 /* 5CCCC 8005C0CC 27BDFFE8 */  addiu      $sp, $sp, -0x18
-/* 5CCD0 8005C0D0 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 5CCD4 8005C0D4 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 5CCD0 8005C0D0 3C03800F */  lui        $v1, %hi(gActors)
+/* 5CCD4 8005C0D4 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 5CCD8 8005C0D8 2405002E */  addiu      $a1, $zero, 0x2e
 /* 5CCDC 8005C0DC AFBF0014 */  sw         $ra, 0x14($sp)
 /* 5CCE0 8005C0E0 AFA40018 */  sw         $a0, 0x18($sp)

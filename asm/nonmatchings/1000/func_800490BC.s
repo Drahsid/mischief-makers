@@ -5,9 +5,9 @@ glabel func_800490BC
 /* 49CC8 800490C8 0019C880 */  sll        $t9, $t9, 2
 /* 49CCC 800490CC 032EC821 */  addu       $t9, $t9, $t6
 /* 49CD0 800490D0 0019C880 */  sll        $t9, $t9, 2
-/* 49CD4 800490D4 3C03800F */  lui        $v1, %hi(D_800EF510)
+/* 49CD4 800490D4 3C03800F */  lui        $v1, %hi(gActors)
 /* 49CD8 800490D8 032EC823 */  subu       $t9, $t9, $t6
-/* 49CDC 800490DC 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 49CDC 800490DC 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 49CE0 800490E0 0019C8C0 */  sll        $t9, $t9, 3
 /* 49CE4 800490E4 00791021 */  addu       $v0, $v1, $t9
 /* 49CE8 800490E8 8C4800F0 */  lw         $t0, 0xf0($v0)

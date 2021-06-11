@@ -17,8 +17,8 @@ glabel func_80088164
 /* 88DA0 800881A0 01D07021 */  addu       $t6, $t6, $s0
 /* 88DA4 800881A4 000E7080 */  sll        $t6, $t6, 2
 /* 88DA8 800881A8 01D07023 */  subu       $t6, $t6, $s0
-/* 88DAC 800881AC 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 88DB0 800881B0 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 88DAC 800881AC 3C0F800F */  lui        $t7, %hi(gActors)
+/* 88DB0 800881B0 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 88DB4 800881B4 000E70C0 */  sll        $t6, $t6, 3
 /* 88DB8 800881B8 01CF1821 */  addu       $v1, $t6, $t7
 /* 88DBC 800881BC 946200D0 */  lhu        $v0, 0xd0($v1)

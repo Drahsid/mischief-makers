@@ -9,8 +9,8 @@ glabel func_800369A0
 /* 375BC 800369BC 030EC021 */  addu       $t8, $t8, $t6
 /* 375C0 800369C0 0018C080 */  sll        $t8, $t8, 2
 /* 375C4 800369C4 030EC023 */  subu       $t8, $t8, $t6
-/* 375C8 800369C8 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 375CC 800369CC 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 375C8 800369C8 3C19800F */  lui        $t9, %hi(gActors)
+/* 375CC 800369CC 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 375D0 800369D0 0018C0C0 */  sll        $t8, $t8, 3
 /* 375D4 800369D4 03191021 */  addu       $v0, $t8, $t9
 /* 375D8 800369D8 AFA40000 */  sw         $a0, ($sp)

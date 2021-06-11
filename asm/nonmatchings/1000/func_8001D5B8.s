@@ -1,9 +1,9 @@
 glabel func_8001D5B8
 /* 1E1B8 8001D5B8 AFA40000 */  sw         $a0, ($sp)
 /* 1E1BC 8001D5BC 00047400 */  sll        $t6, $a0, 0x10
-/* 1E1C0 8001D5C0 3C05800F */  lui        $a1, %hi(D_800EF510)
+/* 1E1C0 8001D5C0 3C05800F */  lui        $a1, %hi(gActors)
 /* 1E1C4 8001D5C4 000E2403 */  sra        $a0, $t6, 0x10
-/* 1E1C8 8001D5C8 24A5F510 */  addiu      $a1, $a1, %lo(D_800EF510)
+/* 1E1C8 8001D5C8 24A5F510 */  addiu      $a1, $a1, %lo(gActors)
 /* 1E1CC 8001D5CC 24020048 */  addiu      $v0, $zero, 0x48
 /* 1E1D0 8001D5D0 24060198 */  addiu      $a2, $zero, 0x198
 .L8001D5D4:

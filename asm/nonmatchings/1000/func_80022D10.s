@@ -22,9 +22,9 @@ glabel func_80022D10
 /* 23960 80022D60 A420E700 */  sh         $zero, %lo(D_800BE700)($at)
 /* 23964 80022D64 3C01800D */  lui        $at, %hi(D_800CA238)
 /* 23968 80022D68 A420A238 */  sh         $zero, %lo(D_800CA238)($at)
-/* 2396C 80022D6C 3C01800C */  lui        $at, %hi(gGameState)
+/* 2396C 80022D6C 3C01800C */  lui        $at, %hi(D_800BE4F0)
 /* 23970 80022D70 8FBF0014 */  lw         $ra, 0x14($sp)
-/* 23974 80022D74 A420E4F0 */  sh         $zero, %lo(gGameState)($at)
+/* 23974 80022D74 A420E4F0 */  sh         $zero, %lo(D_800BE4F0)($at)
 /* 23978 80022D78 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 2397C 80022D7C A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
 /* 23980 80022D80 03E00008 */  jr         $ra

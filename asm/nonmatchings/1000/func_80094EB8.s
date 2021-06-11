@@ -7,9 +7,9 @@ glabel func_80094EB8
 /* 95ACC 80094ECC 0C00A6C0 */  jal        func_80029B00
 /* 95AD0 80094ED0 2406FFC0 */   addiu     $a2, $zero, -0x40
 /* 95AD4 80094ED4 1040000F */  beqz       $v0, .L80094F14
-/* 95AD8 80094ED8 3C18800F */   lui       $t8, %hi(D_800EF510)
+/* 95AD8 80094ED8 3C18800F */   lui       $t8, %hi(gActors)
 /* 95ADC 80094EDC 97AE001A */  lhu        $t6, 0x1a($sp)
-/* 95AE0 80094EE0 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 95AE0 80094EE0 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 95AE4 80094EE4 000E7880 */  sll        $t7, $t6, 2
 /* 95AE8 80094EE8 01EE7823 */  subu       $t7, $t7, $t6
 /* 95AEC 80094EEC 000F7880 */  sll        $t7, $t7, 2

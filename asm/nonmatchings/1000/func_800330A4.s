@@ -3,8 +3,8 @@ glabel func_800330A4
 /* 33CA8 800330A8 24090198 */  addiu      $t1, $zero, 0x198
 /* 33CAC 800330AC 01C90019 */  multu      $t6, $t1
 /* 33CB0 800330B0 30AFFFFF */  andi       $t7, $a1, 0xffff
-/* 33CB4 800330B4 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 33CB8 800330B8 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 33CB4 800330B4 3C08800F */  lui        $t0, %hi(gActors)
+/* 33CB8 800330B8 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 33CBC 800330BC 3C01800F */  lui        $at, 0x800f
 /* 33CC0 800330C0 44876000 */  mtc1       $a3, $f12
 /* 33CC4 800330C4 AFA60008 */  sw         $a2, 8($sp)

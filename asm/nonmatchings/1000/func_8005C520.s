@@ -1,6 +1,6 @@
 glabel func_8005C520
-/* 5D120 8005C520 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 5D124 8005C524 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 5D120 8005C520 3C02800F */  lui        $v0, %hi(gActors)
+/* 5D124 8005C524 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 5D128 8005C528 904800DC */  lbu        $t0, 0xdc($v0)
 /* 5D12C 8005C52C 3C038013 */  lui        $v1, %hi(D_801373E0)
 /* 5D130 8005C530 246373E0 */  addiu      $v1, $v1, %lo(D_801373E0)

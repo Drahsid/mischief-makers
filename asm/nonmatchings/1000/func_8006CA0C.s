@@ -6,8 +6,8 @@ glabel func_8006CA0C
 /* 6D61C 8006CA1C 01EE7821 */  addu       $t7, $t7, $t6
 /* 6D620 8006CA20 000F7880 */  sll        $t7, $t7, 2
 /* 6D624 8006CA24 01EE7823 */  subu       $t7, $t7, $t6
-/* 6D628 8006CA28 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 6D62C 8006CA2C 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 6D628 8006CA28 3C18800F */  lui        $t8, %hi(gActors)
+/* 6D62C 8006CA2C 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 6D630 8006CA30 000F78C0 */  sll        $t7, $t7, 3
 /* 6D634 8006CA34 01F81021 */  addu       $v0, $t7, $t8
 /* 6D638 8006CA38 8C590098 */  lw         $t9, 0x98($v0)

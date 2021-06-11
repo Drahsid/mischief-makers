@@ -29,9 +29,9 @@ glabel func_8008A41C
 /* 8B088 8008A488 0019C880 */  sll        $t9, $t9, 2
 /* 8B08C 8008A48C 44810000 */  mtc1       $at, $f0
 /* 8B090 8008A490 0322C823 */  subu       $t9, $t9, $v0
-/* 8B094 8008A494 3C08800F */  lui        $t0, %hi(D_800EF510)
+/* 8B094 8008A494 3C08800F */  lui        $t0, %hi(gActors)
 /* 8B098 8008A498 3C01800F */  lui        $at, %hi(D_800ED238)
-/* 8B09C 8008A49C 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 8B09C 8008A49C 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 8B0A0 8008A4A0 0019C8C0 */  sll        $t9, $t9, 3
 /* 8B0A4 8008A4A4 C422D238 */  lwc1       $f2, %lo(D_800ED238)($at)
 /* 8B0A8 8008A4A8 03281821 */  addu       $v1, $t9, $t0

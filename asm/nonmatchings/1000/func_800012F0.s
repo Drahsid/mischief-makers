@@ -1,6 +1,6 @@
 glabel func_800012F0
-/* 1EF0 800012F0 3C0E800C */  lui        $t6, %hi(gGameState)
-/* 1EF4 800012F4 95CEE4F0 */  lhu        $t6, %lo(gGameState)($t6)
+/* 1EF0 800012F0 3C0E800C */  lui        $t6, %hi(D_800BE4F0)
+/* 1EF4 800012F4 95CEE4F0 */  lhu        $t6, %lo(D_800BE4F0)($t6)
 /* 1EF8 800012F8 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 1EFC 800012FC 24010006 */  addiu      $at, $zero, 6
 /* 1F00 80001300 15C10058 */  bne        $t6, $at, .L80001464

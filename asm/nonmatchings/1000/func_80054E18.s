@@ -6,8 +6,8 @@ glabel func_80054E18
 /* 55A28 80054E28 01C60019 */  multu      $t6, $a2
 /* 55A2C 80054E2C AFA50024 */  sw         $a1, 0x24($sp)
 /* 55A30 80054E30 97A80026 */  lhu        $t0, 0x26($sp)
-/* 55A34 80054E34 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 55A38 80054E38 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 55A34 80054E34 3C02800F */  lui        $v0, %hi(gActors)
+/* 55A38 80054E38 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 55A3C 80054E3C AFBF0014 */  sw         $ra, 0x14($sp)
 /* 55A40 80054E40 00007812 */  mflo       $t7
 /* 55A44 80054E44 004F1821 */  addu       $v1, $v0, $t7

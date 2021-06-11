@@ -14,8 +14,8 @@ glabel func_8001A15C
 /* 1AD8C 8001A18C 01C67021 */  addu       $t6, $t6, $a2
 /* 1AD90 8001A190 000E7080 */  sll        $t6, $t6, 2
 /* 1AD94 8001A194 01C67023 */  subu       $t6, $t6, $a2
-/* 1AD98 8001A198 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 1AD9C 8001A19C 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 1AD98 8001A198 3C0F800F */  lui        $t7, %hi(gActors)
+/* 1AD9C 8001A19C 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 1ADA0 8001A1A0 000E70C0 */  sll        $t6, $t6, 3
 /* 1ADA4 8001A1A4 01CF1021 */  addu       $v0, $t6, $t7
 /* 1ADA8 8001A1A8 3C014334 */  lui        $at, 0x4334

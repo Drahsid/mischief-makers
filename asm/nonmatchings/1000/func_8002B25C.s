@@ -7,9 +7,9 @@ glabel func_8002B25C
 /* 2BE70 8002B270 0018C080 */  sll        $t8, $t8, 2
 /* 2BE74 8002B274 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 2BE78 8002B278 030EC023 */  subu       $t8, $t8, $t6
-/* 2BE7C 8002B27C 3C19800F */  lui        $t9, %hi(D_800EF510)
+/* 2BE7C 8002B27C 3C19800F */  lui        $t9, %hi(gActors)
 /* 2BE80 8002B280 00053400 */  sll        $a2, $a1, 0x10
-/* 2BE84 8002B284 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 2BE84 8002B284 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 2BE88 8002B288 0018C0C0 */  sll        $t8, $t8, 3
 /* 2BE8C 8002B28C AFA50024 */  sw         $a1, 0x24($sp)
 /* 2BE90 8002B290 03191821 */  addu       $v1, $t8, $t9

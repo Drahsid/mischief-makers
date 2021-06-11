@@ -31,9 +31,9 @@ glabel func_800188CC
 /* 1953C 8001893C 44802000 */  mtc1       $zero, $f4
 /* 19540 80018940 A428421C */  sh         $t0, %lo(D_800F421C)($at)
 /* 19544 80018944 3C01800F */  lui        $at, %hi(D_800F42A0)
-/* 19548 80018948 3C10800F */  lui        $s0, %hi(D_800EF510)
+/* 19548 80018948 3C10800F */  lui        $s0, %hi(gActors)
 /* 1954C 8001894C E42442A0 */  swc1       $f4, %lo(D_800F42A0)($at)
-/* 19550 80018950 2610F510 */  addiu      $s0, $s0, %lo(D_800EF510)
+/* 19550 80018950 2610F510 */  addiu      $s0, $s0, %lo(gActors)
 /* 19554 80018954 3C01800F */  lui        $at, %hi(D_800F42E4)
 /* 19558 80018958 24090002 */  addiu      $t1, $zero, 2
 /* 1955C 8001895C AC2942E4 */  sw         $t1, %lo(D_800F42E4)($at)
@@ -71,10 +71,10 @@ glabel func_800188CC
 /* 195D8 800189D8 3C08800C */  lui        $t0, %hi(D_800BE508)
 /* 195DC 800189DC 9508E508 */  lhu        $t0, %lo(D_800BE508)($t0)
 /* 195E0 800189E0 9463E4FC */  lhu        $v1, %lo(D_800BE4FC)($v1)
-/* 195E4 800189E4 3C10800F */  lui        $s0, %hi(D_800EF510)
+/* 195E4 800189E4 3C10800F */  lui        $s0, %hi(gActors)
 /* 195E8 800189E8 00684824 */  and        $t1, $v1, $t0
 /* 195EC 800189EC 15200007 */  bnez       $t1, .L80018A0C
-/* 195F0 800189F0 2610F510 */   addiu     $s0, $s0, %lo(D_800EF510)
+/* 195F0 800189F0 2610F510 */   addiu     $s0, $s0, %lo(gActors)
 /* 195F4 800189F4 3C0A800C */  lui        $t2, %hi(D_800BE504)
 /* 195F8 800189F8 954AE504 */  lhu        $t2, %lo(D_800BE504)($t2)
 /* 195FC 800189FC 00000000 */  nop
@@ -341,8 +341,8 @@ glabel func_800188CC
 /* 199D4 80018DD4 15A10006 */  bne        $t5, $at, .L80018DF0
 /* 199D8 80018DD8 240E0002 */   addiu     $t6, $zero, 2
 /* 199DC 80018DDC A4400000 */  sh         $zero, ($v0)
-/* 199E0 80018DE0 3C01800C */  lui        $at, %hi(gGameState)
-/* 199E4 80018DE4 A42EE4F0 */  sh         $t6, %lo(gGameState)($at)
+/* 199E0 80018DE0 3C01800C */  lui        $at, %hi(D_800BE4F0)
+/* 199E4 80018DE4 A42EE4F0 */  sh         $t6, %lo(D_800BE4F0)($at)
 /* 199E8 80018DE8 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 199EC 80018DEC A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
 .L80018DF0:

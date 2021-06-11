@@ -2,8 +2,8 @@ glabel func_8003E640
 /* 3F240 8003E640 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 3F244 8003E644 24060198 */  addiu      $a2, $zero, 0x198
 /* 3F248 8003E648 01C60019 */  multu      $t6, $a2
-/* 3F24C 8003E64C 3C05800F */  lui        $a1, %hi(D_800EF510)
-/* 3F250 8003E650 24A5F510 */  addiu      $a1, $a1, %lo(D_800EF510)
+/* 3F24C 8003E64C 3C05800F */  lui        $a1, %hi(gActors)
+/* 3F250 8003E650 24A5F510 */  addiu      $a1, $a1, %lo(gActors)
 /* 3F254 8003E654 3C010020 */  lui        $at, 0x20
 /* 3F258 8003E658 AFA40000 */  sw         $a0, ($sp)
 /* 3F25C 8003E65C 00007812 */  mflo       $t7

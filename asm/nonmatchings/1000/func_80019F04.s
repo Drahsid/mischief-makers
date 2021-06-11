@@ -19,9 +19,9 @@ glabel func_80019F04
 /* 1AB48 80019F48 0338C821 */  addu       $t9, $t9, $t8
 /* 1AB4C 80019F4C 0019C880 */  sll        $t9, $t9, 2
 /* 1AB50 80019F50 0338C823 */  subu       $t9, $t9, $t8
-/* 1AB54 80019F54 3C08800F */  lui        $t0, %hi(D_800EF510)
+/* 1AB54 80019F54 3C08800F */  lui        $t0, %hi(gActors)
 /* 1AB58 80019F58 A42381E0 */  sh         $v1, -0x7e20($at)
-/* 1AB5C 80019F5C 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 1AB5C 80019F5C 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 1AB60 80019F60 0019C8C0 */  sll        $t9, $t9, 3
 /* 1AB64 80019F64 03281021 */  addu       $v0, $t9, $t0
 /* 1AB68 80019F68 44800000 */  mtc1       $zero, $f0

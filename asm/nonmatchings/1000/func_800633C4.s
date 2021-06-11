@@ -5,9 +5,9 @@ glabel func_800633C4
 /* 63FD0 800633D0 000F7880 */  sll        $t7, $t7, 2
 /* 63FD4 800633D4 01EE7821 */  addu       $t7, $t7, $t6
 /* 63FD8 800633D8 000F7880 */  sll        $t7, $t7, 2
-/* 63FDC 800633DC 3C03800F */  lui        $v1, %hi(D_800EF510)
+/* 63FDC 800633DC 3C03800F */  lui        $v1, %hi(gActors)
 /* 63FE0 800633E0 01EE7823 */  subu       $t7, $t7, $t6
-/* 63FE4 800633E4 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 63FE4 800633E4 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 63FE8 800633E8 000F78C0 */  sll        $t7, $t7, 3
 /* 63FEC 800633EC 006F1021 */  addu       $v0, $v1, $t7
 /* 63FF0 800633F0 8459008C */  lh         $t9, 0x8c($v0)

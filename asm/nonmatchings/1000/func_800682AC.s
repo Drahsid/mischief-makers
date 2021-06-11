@@ -22,8 +22,8 @@ glabel func_800682AC
 /* 68EFC 800682FC 954AE4DC */  lhu        $t2, %lo(D_800BE4DC)($t2)
 /* 68F00 80068300 24040198 */  addiu      $a0, $zero, 0x198
 /* 68F04 80068304 01440019 */  multu      $t2, $a0
-/* 68F08 80068308 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 68F0C 8006830C 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 68F08 80068308 3C03800F */  lui        $v1, %hi(gActors)
+/* 68F0C 8006830C 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 68F10 80068310 24010002 */  addiu      $at, $zero, 2
 /* 68F14 80068314 97AD001A */  lhu        $t5, 0x1a($sp)
 /* 68F18 80068318 00005812 */  mflo       $t3

@@ -1,6 +1,6 @@
 glabel func_8001D60C
-/* 1E20C 8001D60C 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 1E210 8001D610 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 1E20C 8001D60C 3C02800F */  lui        $v0, %hi(gActors)
+/* 1E210 8001D610 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 1E214 8001D614 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 1E218 8001D618 AFA40018 */  sw         $a0, 0x18($sp)
 /* 1E21C 8001D61C 00047400 */  sll        $t6, $a0, 0x10

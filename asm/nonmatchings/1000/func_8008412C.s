@@ -48,9 +48,9 @@ glabel func_8008412C
 /* 84DD0 800841D0 44874000 */  mtc1       $a3, $f8
 /* 84DD4 800841D4 3C014780 */  lui        $at, 0x4780
 /* 84DD8 800841D8 01044023 */  subu       $t0, $t0, $a0
-/* 84DDC 800841DC 3C09800F */  lui        $t1, %hi(D_800EF510)
+/* 84DDC 800841DC 3C09800F */  lui        $t1, %hi(gActors)
 /* 84DE0 800841E0 44818000 */  mtc1       $at, $f16
-/* 84DE4 800841E4 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 84DE4 800841E4 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 84DE8 800841E8 000840C0 */  sll        $t0, $t0, 3
 /* 84DEC 800841EC 01091821 */  addu       $v1, $t0, $t1
 /* 84DF0 800841F0 04E10005 */  bgez       $a3, .L80084208

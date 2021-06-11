@@ -21,8 +21,8 @@ glabel func_8003EF98
 /* 3FBE4 8003EFE4 01445021 */  addu       $t2, $t2, $a0
 /* 3FBE8 8003EFE8 000A5080 */  sll        $t2, $t2, 2
 /* 3FBEC 8003EFEC 01445023 */  subu       $t2, $t2, $a0
-/* 3FBF0 8003EFF0 3C0B800F */  lui        $t3, %hi(D_800EF510)
-/* 3FBF4 8003EFF4 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 3FBF0 8003EFF0 3C0B800F */  lui        $t3, %hi(gActors)
+/* 3FBF4 8003EFF4 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 3FBF8 8003EFF8 000A50C0 */  sll        $t2, $t2, 3
 /* 3FBFC 8003EFFC 014B1021 */  addu       $v0, $t2, $t3
 /* 3FC00 8003F000 240C0101 */  addiu      $t4, $zero, 0x101

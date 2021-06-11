@@ -11,10 +11,10 @@ glabel func_80036A60
 /* 37684 80036A84 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 37688 80036A88 14200029 */  bnez       $at, .L80036B30
 /* 3768C 80036A8C AFA40020 */   sw        $a0, 0x20($sp)
-/* 37690 80036A90 3C0A800F */  lui        $t2, %hi(D_800EF510)
+/* 37690 80036A90 3C0A800F */  lui        $t2, %hi(gActors)
 /* 37694 80036A94 3C07800D */  lui        $a3, %hi(D_800D22BC)
 /* 37698 80036A98 24E722BC */  addiu      $a3, $a3, %lo(D_800D22BC)
-/* 3769C 80036A9C 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 3769C 80036A9C 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 376A0 80036AA0 00003025 */  or         $a2, $zero, $zero
 /* 376A4 80036AA4 24050001 */  addiu      $a1, $zero, 1
 /* 376A8 80036AA8 24092601 */  addiu      $t1, $zero, 0x2601

@@ -89,10 +89,10 @@ glabel func_8008FD08
 /* 90A64 8008FE64 3C01800F */  lui        $at, %hi(D_800ED380)
 /* 90A68 8008FE68 000B5880 */  sll        $t3, $t3, 2
 /* 90A6C 8008FE6C 01715823 */  subu       $t3, $t3, $s1
-/* 90A70 8008FE70 3C0C800F */  lui        $t4, %hi(D_800EF510)
+/* 90A70 8008FE70 3C0C800F */  lui        $t4, %hi(gActors)
 /* 90A74 8008FE74 C42FD380 */  lwc1       $f15, %lo(D_800ED380)($at)
 /* 90A78 8008FE78 C42ED384 */  lwc1       $f14, -0x2c7c($at)
-/* 90A7C 8008FE7C 258CF510 */  addiu      $t4, $t4, %lo(D_800EF510)
+/* 90A7C 8008FE7C 258CF510 */  addiu      $t4, $t4, %lo(gActors)
 /* 90A80 8008FE80 000B58C0 */  sll        $t3, $t3, 3
 /* 90A84 8008FE84 016C8021 */  addu       $s0, $t3, $t4
 /* 90A88 8008FE88 3C01800F */  lui        $at, %hi(D_800ED388)

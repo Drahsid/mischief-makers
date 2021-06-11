@@ -69,9 +69,9 @@ glabel func_8001A254
 /* 1AF48 8001A348 18400080 */  blez       $v0, .L8001A54C
 /* 1AF4C 8001A34C AFA20050 */   sw        $v0, 0x50($sp)
 /* 1AF50 8001A350 3C013F40 */  lui        $at, 0x3f40
-/* 1AF54 8001A354 3C16800F */  lui        $s6, %hi(D_800EF510)
+/* 1AF54 8001A354 3C16800F */  lui        $s6, %hi(gActors)
 /* 1AF58 8001A358 4481A000 */  mtc1       $at, $f20
-/* 1AF5C 8001A35C 26D6F510 */  addiu      $s6, $s6, %lo(D_800EF510)
+/* 1AF5C 8001A35C 26D6F510 */  addiu      $s6, $s6, %lo(gActors)
 /* 1AF60 8001A360 00008825 */  or         $s1, $zero, $zero
 /* 1AF64 8001A364 341E8000 */  ori        $fp, $zero, 0x8000
 /* 1AF68 8001A368 24170198 */  addiu      $s7, $zero, 0x198

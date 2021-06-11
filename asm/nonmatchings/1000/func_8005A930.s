@@ -65,10 +65,10 @@ glabel func_8005A930
 /* 5B620 8005AA20 4481D000 */  mtc1       $at, $f26
 /* 5B624 8005AA24 3C014100 */  lui        $at, 0x4100
 /* 5B628 8005AA28 3C16800C */  lui        $s6, %hi(D_800BCCD0)
-/* 5B62C 8005AA2C 3C14800F */  lui        $s4, %hi(D_800EF510)
+/* 5B62C 8005AA2C 3C14800F */  lui        $s4, %hi(gActors)
 /* 5B630 8005AA30 4481C000 */  mtc1       $at, $f24
 /* 5B634 8005AA34 4480B000 */  mtc1       $zero, $f22
-/* 5B638 8005AA38 2694F510 */  addiu      $s4, $s4, %lo(D_800EF510)
+/* 5B638 8005AA38 2694F510 */  addiu      $s4, $s4, %lo(gActors)
 /* 5B63C 8005AA3C 26D6CCD0 */  addiu      $s6, $s6, %lo(D_800BCCD0)
 /* 5B640 8005AA40 00009025 */  or         $s2, $zero, $zero
 /* 5B644 8005AA44 26370008 */  addiu      $s7, $s1, 8

@@ -224,8 +224,8 @@ glabel func_8004B344
 /* 4C284 8004B684 01C27021 */  addu       $t6, $t6, $v0
 /* 4C288 8004B688 000E7080 */  sll        $t6, $t6, 2
 /* 4C28C 8004B68C 01C27023 */  subu       $t6, $t6, $v0
-/* 4C290 8004B690 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 4C294 8004B694 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 4C290 8004B690 3C0F800F */  lui        $t7, %hi(gActors)
+/* 4C294 8004B694 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 4C298 8004B698 000E70C0 */  sll        $t6, $t6, 3
 /* 4C29C 8004B69C 01CF2021 */  addu       $a0, $t6, $t7
 /* 4C2A0 8004B6A0 3C014000 */  lui        $at, 0x4000

@@ -6,9 +6,9 @@ glabel func_8002A320
 /* 2AF30 8002A330 01C77021 */  addu       $t6, $t6, $a3
 /* 2AF34 8002A334 000E7080 */  sll        $t6, $t6, 2
 /* 2AF38 8002A338 01C77023 */  subu       $t6, $t6, $a3
-/* 2AF3C 8002A33C 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 2AF3C 8002A33C 3C0F800F */  lui        $t7, %hi(gActors)
 /* 2AF40 8002A340 27BDFFE0 */  addiu      $sp, $sp, -0x20
-/* 2AF44 8002A344 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 2AF44 8002A344 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 2AF48 8002A348 000E70C0 */  sll        $t6, $t6, 3
 /* 2AF4C 8002A34C 01CF3021 */  addu       $a2, $t6, $t7
 /* 2AF50 8002A350 AFA40020 */  sw         $a0, 0x20($sp)

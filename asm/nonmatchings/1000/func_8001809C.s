@@ -1,6 +1,6 @@
 glabel func_8001809C
-/* 18C9C 8001809C 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 18CA0 800180A0 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 18C9C 8001809C 3C04800F */  lui        $a0, %hi(gActors)
+/* 18CA0 800180A0 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 18CA4 800180A4 848E5368 */  lh         $t6, 0x5368($a0)
 /* 18CA8 800180A8 2401FFE8 */  addiu      $at, $zero, -0x18
 /* 18CAC 800180AC 11C10011 */  beq        $t6, $at, .L800180F4

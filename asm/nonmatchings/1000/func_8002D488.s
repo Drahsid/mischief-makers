@@ -15,10 +15,10 @@ glabel func_8002D488
 /* 2E0BC 8002D4BC 44D9F800 */  ctc1       $t9, $31
 /* 2E0C0 8002D4C0 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 2E0C4 8002D4C4 01EE7823 */  subu       $t7, $t7, $t6
-/* 2E0C8 8002D4C8 3C18800F */  lui        $t8, %hi(D_800EF510)
+/* 2E0C8 8002D4C8 3C18800F */  lui        $t8, %hi(gActors)
 /* 2E0CC 8002D4CC 44083000 */  mfc1       $t0, $f6
 /* 2E0D0 8002D4D0 AFB00018 */  sw         $s0, 0x18($sp)
-/* 2E0D4 8002D4D4 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 2E0D4 8002D4D4 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 2E0D8 8002D4D8 000F78C0 */  sll        $t7, $t7, 3
 /* 2E0DC 8002D4DC 01F88021 */  addu       $s0, $t7, $t8
 /* 2E0E0 8002D4E0 4449F800 */  cfc1       $t1, $31

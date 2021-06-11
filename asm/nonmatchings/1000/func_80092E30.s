@@ -13,8 +13,8 @@ glabel func_80092E30
 /* 93A5C 80092E5C 01D07021 */  addu       $t6, $t6, $s0
 /* 93A60 80092E60 000E7080 */  sll        $t6, $t6, 2
 /* 93A64 80092E64 01D07023 */  subu       $t6, $t6, $s0
-/* 93A68 80092E68 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 93A6C 80092E6C 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 93A68 80092E68 3C0F800F */  lui        $t7, %hi(gActors)
+/* 93A6C 80092E6C 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 93A70 80092E70 000E70C0 */  sll        $t6, $t6, 3
 /* 93A74 80092E74 01CF1821 */  addu       $v1, $t6, $t7
 /* 93A78 80092E78 946600D0 */  lhu        $a2, 0xd0($v1)

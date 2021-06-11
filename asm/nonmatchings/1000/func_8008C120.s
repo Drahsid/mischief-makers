@@ -8,9 +8,9 @@ glabel func_8008C120
 /* 8CD38 8008C138 01D57021 */  addu       $t6, $t6, $s5
 /* 8CD3C 8008C13C 000E7080 */  sll        $t6, $t6, 2
 /* 8CD40 8008C140 01D57023 */  subu       $t6, $t6, $s5
-/* 8CD44 8008C144 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 8CD44 8008C144 3C0F800F */  lui        $t7, %hi(gActors)
 /* 8CD48 8008C148 AFB30024 */  sw         $s3, 0x24($sp)
-/* 8CD4C 8008C14C 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 8CD4C 8008C14C 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 8CD50 8008C150 000E70C0 */  sll        $t6, $t6, 3
 /* 8CD54 8008C154 01CF9821 */  addu       $s3, $t6, $t7
 /* 8CD58 8008C158 8E650178 */  lw         $a1, 0x178($s3)

@@ -7,9 +7,9 @@ glabel func_8006756C
 /* 68180 80067580 01EE7821 */  addu       $t7, $t7, $t6
 /* 68184 80067584 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 68188 80067588 000F7880 */  sll        $t7, $t7, 2
-/* 6818C 8006758C 3C1F800F */  lui        $ra, %hi(D_800EF510)
+/* 6818C 8006758C 3C1F800F */  lui        $ra, %hi(gActors)
 /* 68190 80067590 01EE7823 */  subu       $t7, $t7, $t6
-/* 68194 80067594 27FFF510 */  addiu      $ra, $ra, %lo(D_800EF510)
+/* 68194 80067594 27FFF510 */  addiu      $ra, $ra, %lo(gActors)
 /* 68198 80067598 000F78C0 */  sll        $t7, $t7, 3
 /* 6819C 8006759C 03EF4021 */  addu       $t0, $ra, $t7
 /* 681A0 800675A0 8D020160 */  lw         $v0, 0x160($t0)
@@ -227,9 +227,9 @@ glabel func_8006756C
 /* 684B4 800678B4 8FAB002C */  lw         $t3, 0x2c($sp)
 /* 684B8 800678B8 8FAC0038 */  lw         $t4, 0x38($sp)
 /* 684BC 800678BC 8FAD0028 */  lw         $t5, 0x28($sp)
-/* 684C0 800678C0 3C1F800F */  lui        $ra, %hi(D_800EF510)
+/* 684C0 800678C0 3C1F800F */  lui        $ra, %hi(gActors)
 /* 684C4 800678C4 10400041 */  beqz       $v0, .L800679CC
-/* 684C8 800678C8 27FFF510 */   addiu     $ra, $ra, %lo(D_800EF510)
+/* 684C8 800678C8 27FFF510 */   addiu     $ra, $ra, %lo(gActors)
 /* 684CC 800678CC 00027880 */  sll        $t7, $v0, 2
 /* 684D0 800678D0 01E27823 */  subu       $t7, $t7, $v0
 /* 684D4 800678D4 000F7880 */  sll        $t7, $t7, 2

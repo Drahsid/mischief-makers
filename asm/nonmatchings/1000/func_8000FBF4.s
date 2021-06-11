@@ -13,13 +13,13 @@ glabel func_8000FBF4
 /* 10820 8000FC20 24010002 */  addiu      $at, $zero, 2
 /* 10824 8000FC24 104100BF */  beq        $v0, $at, .L8000FF24
 /* 10828 8000FC28 3C0A800F */   lui       $t2, 0x800f
-/* 1082C 8000FC2C 3C0A800F */  lui        $t2, %hi(D_800EF510)
+/* 1082C 8000FC2C 3C0A800F */  lui        $t2, %hi(gActors)
 /* 10830 8000FC30 10000165 */  b          .L800101C8
-/* 10834 8000FC34 254AF510 */   addiu     $t2, $t2, %lo(D_800EF510)
+/* 10834 8000FC34 254AF510 */   addiu     $t2, $t2, %lo(gActors)
 .L8000FC38:
-/* 10838 8000FC38 3C0A800F */  lui        $t2, %hi(D_800EF510)
+/* 10838 8000FC38 3C0A800F */  lui        $t2, %hi(gActors)
 /* 1083C 8000FC3C 10000162 */  b          .L800101C8
-/* 10840 8000FC40 254AF510 */   addiu     $t2, $t2, %lo(D_800EF510)
+/* 10840 8000FC40 254AF510 */   addiu     $t2, $t2, %lo(gActors)
 .L8000FC44:
 /* 10844 8000FC44 254AF510 */  addiu      $t2, $t2, -0xaf0
 /* 10848 8000FC48 8542008C */  lh         $v0, 0x8c($t2)

@@ -2,8 +2,8 @@ glabel func_80077F58
 /* 78B58 80077F58 3087FFFF */  andi       $a3, $a0, 0xffff
 /* 78B5C 80077F5C 240A0198 */  addiu      $t2, $zero, 0x198
 /* 78B60 80077F60 00EA0019 */  multu      $a3, $t2
-/* 78B64 80077F64 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* 78B68 80077F68 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 78B64 80077F64 3C09800F */  lui        $t1, %hi(gActors)
+/* 78B68 80077F68 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 78B6C 80077F6C 444FF800 */  cfc1       $t7, $31
 /* 78B70 80077F70 24030001 */  addiu      $v1, $zero, 1
 /* 78B74 80077F74 44C3F800 */  ctc1       $v1, $31

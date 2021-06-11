@@ -60,10 +60,10 @@ glabel func_80021270
 /* 21F50 80021350 0C008CA9 */  jal        func_800232A4
 /* 21F54 80021354 A42DE5A4 */   sh        $t5, %lo(D_800BE5A4)($at)
 /* 21F58 80021358 240E000A */  addiu      $t6, $zero, 0xa
-/* 21F5C 8002135C 3C01800C */  lui        $at, %hi(gGameState)
+/* 21F5C 8002135C 3C01800C */  lui        $at, %hi(D_800BE4F0)
 /* 21F60 80021360 3C028010 */  lui        $v0, %hi(D_80104098)
 /* 21F64 80021364 3C07800C */  lui        $a3, %hi(D_800BE4F4)
-/* 21F68 80021368 A42EE4F0 */  sh         $t6, %lo(gGameState)($at)
+/* 21F68 80021368 A42EE4F0 */  sh         $t6, %lo(D_800BE4F0)($at)
 /* 21F6C 8002136C 24E7E4F4 */  addiu      $a3, $a3, %lo(D_800BE4F4)
 /* 21F70 80021370 24424098 */  addiu      $v0, $v0, %lo(D_80104098)
 /* 21F74 80021374 240F0001 */  addiu      $t7, $zero, 1
@@ -219,8 +219,8 @@ glabel func_80021270
 /* 221B4 800215B4 25F80001 */  addiu      $t8, $t7, 1
 /* 221B8 800215B8 A4980000 */  sh         $t8, ($a0)
 /* 221BC 800215BC A4207D90 */  sh         $zero, %lo(D_80137D90)($at)
-/* 221C0 800215C0 3C01800C */  lui        $at, %hi(gGameState)
-/* 221C4 800215C4 A420E4F0 */  sh         $zero, %lo(gGameState)($at)
+/* 221C0 800215C0 3C01800C */  lui        $at, %hi(D_800BE4F0)
+/* 221C4 800215C4 A420E4F0 */  sh         $zero, %lo(D_800BE4F0)($at)
 /* 221C8 800215C8 10000011 */  b          .L80021610
 /* 221CC 800215CC A4E00000 */   sh        $zero, ($a3)
 .L800215D0:

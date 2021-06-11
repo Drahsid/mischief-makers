@@ -14,12 +14,12 @@ glabel func_8001EC1C
 /* 1F84C 8001EC4C AFB1001C */  sw         $s1, 0x1c($sp)
 /* 1F850 8001EC50 15E00302 */  bnez       $t7, .L8001F85C
 /* 1F854 8001EC54 AFB00018 */   sw        $s0, 0x18($sp)
-/* 1F858 8001EC58 3C1E800C */  lui        $fp, %hi(gGameState)
-/* 1F85C 8001EC5C 97DEE4F0 */  lhu        $fp, %lo(gGameState)($fp)
+/* 1F858 8001EC58 3C1E800C */  lui        $fp, %hi(D_800BE4F0)
+/* 1F85C 8001EC5C 97DEE4F0 */  lhu        $fp, %lo(D_800BE4F0)($fp)
 /* 1F860 8001EC60 24010006 */  addiu      $at, $zero, 6
 /* 1F864 8001EC64 17C102FD */  bne        $fp, $at, .L8001F85C
-/* 1F868 8001EC68 3C16800F */   lui       $s6, %hi(D_800EF510)
-/* 1F86C 8001EC6C 26D6F510 */  addiu      $s6, $s6, %lo(D_800EF510)
+/* 1F868 8001EC68 3C16800F */   lui       $s6, %hi(gActors)
+/* 1F86C 8001EC6C 26D6F510 */  addiu      $s6, $s6, %lo(gActors)
 /* 1F870 8001EC70 86C3008C */  lh         $v1, 0x8c($s6)
 /* 1F874 8001EC74 86C20088 */  lh         $v0, 0x88($s6)
 /* 1F878 8001EC78 86D900AA */  lh         $t9, 0xaa($s6)
@@ -327,8 +327,8 @@ glabel func_8001EC1C
 /* 1FCD8 8001F0D8 01F8082A */  slt        $at, $t7, $t8
 /* 1FCDC 8001F0DC 1420FF50 */  bnez       $at, .L8001EE20
 /* 1FCE0 8001F0E0 01E0F025 */   or        $fp, $t7, $zero
-/* 1FCE4 8001F0E4 3C19800C */  lui        $t9, %hi(gGameState)
-/* 1FCE8 8001F0E8 9739E4F0 */  lhu        $t9, %lo(gGameState)($t9)
+/* 1FCE4 8001F0E4 3C19800C */  lui        $t9, %hi(D_800BE4F0)
+/* 1FCE8 8001F0E8 9739E4F0 */  lhu        $t9, %lo(D_800BE4F0)($t9)
 /* 1FCEC 8001F0EC 86CE00AC */  lh         $t6, 0xac($s6)
 /* 1FCF0 8001F0F0 86CF0088 */  lh         $t7, 0x88($s6)
 /* 1FCF4 8001F0F4 AFB9006C */  sw         $t9, 0x6c($sp)

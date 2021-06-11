@@ -12,9 +12,9 @@ glabel func_8005D450
 /* 5E078 8005D478 00000000 */   nop
 /* 5E07C 8005D47C 24011000 */  addiu      $at, $zero, 0x1000
 /* 5E080 8005D480 1441000E */  bne        $v0, $at, .L8005D4BC
-/* 5E084 8005D484 3C18800F */   lui       $t8, %hi(D_800EF510)
+/* 5E084 8005D484 3C18800F */   lui       $t8, %hi(gActors)
 /* 5E088 8005D488 97AE001A */  lhu        $t6, 0x1a($sp)
-/* 5E08C 8005D48C 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 5E08C 8005D48C 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 5E090 8005D490 000E7880 */  sll        $t7, $t6, 2
 /* 5E094 8005D494 01EE7823 */  subu       $t7, $t7, $t6
 /* 5E098 8005D498 000F7880 */  sll        $t7, $t7, 2

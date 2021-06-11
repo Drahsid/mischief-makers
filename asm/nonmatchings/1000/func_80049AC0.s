@@ -212,9 +212,9 @@ glabel func_80049AC0
 .L80049DC8:
 /* 4A9C8 80049DC8 24010004 */  addiu      $at, $zero, 4
 /* 4A9CC 80049DCC 1441004E */  bne        $v0, $at, .L80049F08
-/* 4A9D0 80049DD0 3C0A800F */   lui       $t2, %hi(D_800EF510)
+/* 4A9D0 80049DD0 3C0A800F */   lui       $t2, %hi(gActors)
 /* 4A9D4 80049DD4 950600D6 */  lhu        $a2, 0xd6($t0)
-/* 4A9D8 80049DD8 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 4A9D8 80049DD8 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 4A9DC 80049DDC 00067080 */  sll        $t6, $a2, 2
 /* 4A9E0 80049DE0 01C67023 */  subu       $t6, $t6, $a2
 /* 4A9E4 80049DE4 000E7080 */  sll        $t6, $t6, 2
@@ -394,9 +394,9 @@ glabel func_80049AC0
 /* 4AC50 8004A050 0C0166AF */  jal        func_80059ABC
 /* 4AC54 8004A054 AFA80028 */   sw        $t0, 0x28($sp)
 /* 4AC58 8004A058 8FA80028 */  lw         $t0, 0x28($sp)
-/* 4AC5C 8004A05C 3C0B800F */  lui        $t3, %hi(D_800EF510)
+/* 4AC5C 8004A05C 3C0B800F */  lui        $t3, %hi(gActors)
 /* 4AC60 8004A060 950600D6 */  lhu        $a2, 0xd6($t0)
-/* 4AC64 8004A064 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 4AC64 8004A064 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 4AC68 8004A068 00067080 */  sll        $t6, $a2, 2
 /* 4AC6C 8004A06C 01C67023 */  subu       $t6, $t6, $a2
 /* 4AC70 8004A070 000E7080 */  sll        $t6, $t6, 2
@@ -471,10 +471,10 @@ glabel func_80049AC0
 /* 4AD70 8004A170 0326C821 */  addu       $t9, $t9, $a2
 /* 4AD74 8004A174 0019C880 */  sll        $t9, $t9, 2
 /* 4AD78 8004A178 0326C823 */  subu       $t9, $t9, $a2
-/* 4AD7C 8004A17C 3C0D800F */  lui        $t5, %hi(D_800EF510)
+/* 4AD7C 8004A17C 3C0D800F */  lui        $t5, %hi(gActors)
 /* 4AD80 8004A180 3C0A8013 */  lui        $t2, %hi(D_801373DE)
 /* 4AD84 8004A184 954A73DE */  lhu        $t2, %lo(D_801373DE)($t2)
-/* 4AD88 8004A188 25ADF510 */  addiu      $t5, $t5, %lo(D_800EF510)
+/* 4AD88 8004A188 25ADF510 */  addiu      $t5, $t5, %lo(gActors)
 /* 4AD8C 8004A18C 0019C8C0 */  sll        $t9, $t9, 3
 /* 4AD90 8004A190 032D1821 */  addu       $v1, $t9, $t5
 /* 4AD94 8004A194 AFA30020 */  sw         $v1, 0x20($sp)

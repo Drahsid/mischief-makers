@@ -48,8 +48,8 @@ glabel func_80092114
 /* 92DC8 800921C8 3224FFFF */   andi      $a0, $s1, 0xffff
 /* 92DCC 800921CC 8E0900F8 */  lw         $t1, 0xf8($s0)
 /* 92DD0 800921D0 8E0A00FC */  lw         $t2, 0xfc($s0)
-/* 92DD4 800921D4 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 92DD8 800921D8 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 92DD4 800921D4 3C06800F */  lui        $a2, %hi(gActors)
+/* 92DD8 800921D8 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 92DDC 800921DC AE0900EC */  sw         $t1, 0xec($s0)
 /* 92DE0 800921E0 AE0A00F0 */  sw         $t2, 0xf0($s0)
 .L800921E4:

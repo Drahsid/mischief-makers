@@ -2,8 +2,8 @@ glabel func_8001EADC
 /* 1F6DC 8001EADC 30AFFFFF */  andi       $t7, $a1, 0xffff
 /* 1F6E0 8001EAE0 24070198 */  addiu      $a3, $zero, 0x198
 /* 1F6E4 8001EAE4 01E70019 */  multu      $t7, $a3
-/* 1F6E8 8001EAE8 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 1F6EC 8001EAEC 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 1F6E8 8001EAE8 3C06800F */  lui        $a2, %hi(gActors)
+/* 1F6EC 8001EAEC 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 1F6F0 8001EAF0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 1F6F4 8001EAF4 AFA40018 */  sw         $a0, 0x18($sp)
 /* 1F6F8 8001EAF8 AFA5001C */  sw         $a1, 0x1c($sp)

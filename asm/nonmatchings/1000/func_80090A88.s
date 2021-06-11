@@ -74,9 +74,9 @@ glabel func_80090A88
 /* 91798 80090B98 8FA60020 */  lw         $a2, 0x20($sp)
 /* 9179C 80090B9C 00000000 */  nop
 .L80090BA0:
-/* 917A0 80090BA0 3C07800F */  lui        $a3, %hi(D_800EF510)
+/* 917A0 80090BA0 3C07800F */  lui        $a3, %hi(gActors)
 /* 917A4 80090BA4 ACC004B0 */  sw         $zero, 0x4b0($a2)
-/* 917A8 80090BA8 24E7F510 */  addiu      $a3, $a3, %lo(D_800EF510)
+/* 917A8 80090BA8 24E7F510 */  addiu      $a3, $a3, %lo(gActors)
 /* 917AC 80090BAC 00104880 */  sll        $t1, $s0, 2
 .L80090BB0:
 /* 917B0 80090BB0 01304823 */  subu       $t1, $t1, $s0

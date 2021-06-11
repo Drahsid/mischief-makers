@@ -49,9 +49,9 @@ glabel func_80091D28
 /* 929DC 80091DDC 8C680170 */  lw         $t0, 0x170($v1)
 /* 929E0 80091DE0 8C640098 */  lw         $a0, 0x98($v1)
 /* 929E4 80091DE4 01505023 */  subu       $t2, $t2, $s0
-/* 929E8 80091DE8 3C0B800F */  lui        $t3, %hi(D_800EF510)
+/* 929E8 80091DE8 3C0B800F */  lui        $t3, %hi(gActors)
 /* 929EC 80091DEC 3C01FFD0 */  lui        $at, 0xffd0
-/* 929F0 80091DF0 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 929F0 80091DF0 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 929F4 80091DF4 000A50C0 */  sll        $t2, $t2, 3
 /* 929F8 80091DF8 014B6021 */  addu       $t4, $t2, $t3
 /* 929FC 80091DFC 01014821 */  addu       $t1, $t0, $at

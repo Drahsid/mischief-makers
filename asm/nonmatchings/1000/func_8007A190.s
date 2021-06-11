@@ -31,8 +31,8 @@ glabel func_8007A190
 /* 7AE04 8007A204 0331C821 */  addu       $t9, $t9, $s1
 /* 7AE08 8007A208 0019C880 */  sll        $t9, $t9, 2
 /* 7AE0C 8007A20C 0331C823 */  subu       $t9, $t9, $s1
-/* 7AE10 8007A210 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 7AE14 8007A214 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 7AE10 8007A210 3C08800F */  lui        $t0, %hi(gActors)
+/* 7AE14 8007A214 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 7AE18 8007A218 0019C8C0 */  sll        $t9, $t9, 3
 /* 7AE1C 8007A21C 03281821 */  addu       $v1, $t9, $t0
 /* 7AE20 8007A220 A46000D2 */  sh         $zero, 0xd2($v1)

@@ -2,8 +2,8 @@ glabel func_80055188
 /* 55D88 80055188 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 55D8C 8005518C 24030198 */  addiu      $v1, $zero, 0x198
 /* 55D90 80055190 01C30019 */  multu      $t6, $v1
-/* 55D94 80055194 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 55D98 80055198 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 55D94 80055194 3C02800F */  lui        $v0, %hi(gActors)
+/* 55D98 80055198 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 55D9C 8005519C 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 55DA0 800551A0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 55DA4 800551A4 AFA40018 */  sw         $a0, 0x18($sp)

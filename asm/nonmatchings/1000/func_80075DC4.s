@@ -8,9 +8,9 @@ glabel func_80075DC4
 /* 769DC 80075DDC 01D17021 */  addu       $t6, $t6, $s1
 /* 769E0 80075DE0 000E7080 */  sll        $t6, $t6, 2
 /* 769E4 80075DE4 01D17023 */  subu       $t6, $t6, $s1
-/* 769E8 80075DE8 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 769E8 80075DE8 3C0F800F */  lui        $t7, %hi(gActors)
 /* 769EC 80075DEC AFB00024 */  sw         $s0, 0x24($sp)
-/* 769F0 80075DF0 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 769F0 80075DF0 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 769F4 80075DF4 000E70C0 */  sll        $t6, $t6, 3
 /* 769F8 80075DF8 01CF8021 */  addu       $s0, $t6, $t7
 /* 769FC 80075DFC 8E180098 */  lw         $t8, 0x98($s0)

@@ -7,8 +7,8 @@ glabel func_800554AC
 /* 560C0 800554C0 AFA50004 */   sw        $a1, 4($sp)
 /* 560C4 800554C4 24080198 */  addiu      $t0, $zero, 0x198
 /* 560C8 800554C8 01C80019 */  multu      $t6, $t0
-/* 560CC 800554CC 3C07800F */  lui        $a3, %hi(D_800EF510)
-/* 560D0 800554D0 24E7F510 */  addiu      $a3, $a3, %lo(D_800EF510)
+/* 560CC 800554CC 3C07800F */  lui        $a3, %hi(gActors)
+/* 560D0 800554D0 24E7F510 */  addiu      $a3, $a3, %lo(gActors)
 /* 560D4 800554D4 0000C012 */  mflo       $t8
 /* 560D8 800554D8 00F8C821 */  addu       $t9, $a3, $t8
 /* 560DC 800554DC 93220140 */  lbu        $v0, 0x140($t9)

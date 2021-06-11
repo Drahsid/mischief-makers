@@ -1,4 +1,5 @@
 gGameState = 0x800BE4F0;
+gGameSubState = 0x800BE4F4;
 gAtX = 0x800BE5B4;
 gAtY = 0x800BE5B8;
 gAtZ = 0x800BE5BC;
@@ -8,3 +9,4 @@ gUpZ = 0x800BE5C8;
 gEyeY = 0x800BE5AC;
 gEyeZ = 0x800BE5B0;
 gEyeX = 0x800BE5A8;
+gActors = D_800EF510;

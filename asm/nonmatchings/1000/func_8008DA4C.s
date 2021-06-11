@@ -19,8 +19,8 @@ glabel func_8008DA4C
 /* 8E690 8008DA90 0324C821 */  addu       $t9, $t9, $a0
 /* 8E694 8008DA94 0019C880 */  sll        $t9, $t9, 2
 /* 8E698 8008DA98 0324C823 */  subu       $t9, $t9, $a0
-/* 8E69C 8008DA9C 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 8E6A0 8008DAA0 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 8E69C 8008DA9C 3C08800F */  lui        $t0, %hi(gActors)
+/* 8E6A0 8008DAA0 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 8E6A4 8008DAA4 0019C8C0 */  sll        $t9, $t9, 3
 /* 8E6A8 8008DAA8 03281821 */  addu       $v1, $t9, $t0
 /* 8E6AC 8008DAAC 8C6900EC */  lw         $t1, 0xec($v1)
@@ -42,8 +42,8 @@ glabel func_8008DA4C
 /* 8E6E8 8008DAE8 958CE50C */  lhu        $t4, %lo(D_800BE50C)($t4)
 /* 8E6EC 8008DAEC 000A5080 */  sll        $t2, $t2, 2
 /* 8E6F0 8008DAF0 01445023 */  subu       $t2, $t2, $a0
-/* 8E6F4 8008DAF4 3C0B800F */  lui        $t3, %hi(D_800EF510)
-/* 8E6F8 8008DAF8 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 8E6F4 8008DAF4 3C0B800F */  lui        $t3, %hi(gActors)
+/* 8E6F8 8008DAF8 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 8E6FC 8008DAFC 000A50C0 */  sll        $t2, $t2, 3
 /* 8E700 8008DB00 004C6824 */  and        $t5, $v0, $t4
 /* 8E704 8008DB04 11A0000B */  beqz       $t5, .L8008DB34

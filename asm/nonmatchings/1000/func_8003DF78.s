@@ -48,11 +48,11 @@ glabel func_8003DF78
 /* 3EC24 8003E024 24040020 */  addiu      $a0, $zero, 0x20
 /* 3EC28 8003E028 314B003F */  andi       $t3, $t2, 0x3f
 /* 3EC2C 8003E02C 008B6023 */  subu       $t4, $a0, $t3
-/* 3EC30 8003E030 3C09800F */  lui        $t1, %hi(D_800EF510)
+/* 3EC30 8003E030 3C09800F */  lui        $t1, %hi(gActors)
 /* 3EC34 8003E034 01194023 */  subu       $t0, $t0, $t9
 /* 3EC38 8003E038 448C2000 */  mtc1       $t4, $f4
 /* 3EC3C 8003E03C 000840C0 */  sll        $t0, $t0, 3
-/* 3EC40 8003E040 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 3EC40 8003E040 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 3EC44 8003E044 01091821 */  addu       $v1, $t0, $t1
 /* 3EC48 8003E048 468021A0 */  cvt.s.w    $f6, $f4
 /* 3EC4C 8003E04C 846D0088 */  lh         $t5, 0x88($v1)

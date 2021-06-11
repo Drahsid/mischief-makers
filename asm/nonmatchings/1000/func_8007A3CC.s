@@ -6,8 +6,8 @@ glabel func_8007A3CC
 /* 7AFDC 8007A3DC 01C67021 */  addu       $t6, $t6, $a2
 /* 7AFE0 8007A3E0 000E7080 */  sll        $t6, $t6, 2
 /* 7AFE4 8007A3E4 01C67023 */  subu       $t6, $t6, $a2
-/* 7AFE8 8007A3E8 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 7AFEC 8007A3EC 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 7AFE8 8007A3E8 3C0F800F */  lui        $t7, %hi(gActors)
+/* 7AFEC 8007A3EC 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 7AFF0 8007A3F0 000E70C0 */  sll        $t6, $t6, 3
 /* 7AFF4 8007A3F4 01CF1821 */  addu       $v1, $t6, $t7
 /* 7AFF8 8007A3F8 3C013F80 */  lui        $at, 0x3f80
@@ -31,8 +31,8 @@ glabel func_8007A3CC
 /* 7B040 8007A440 0304C021 */  addu       $t8, $t8, $a0
 /* 7B044 8007A444 0018C080 */  sll        $t8, $t8, 2
 /* 7B048 8007A448 0304C023 */  subu       $t8, $t8, $a0
-/* 7B04C 8007A44C 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 7B050 8007A450 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 7B04C 8007A44C 3C19800F */  lui        $t9, %hi(gActors)
+/* 7B050 8007A450 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 7B054 8007A454 0018C0C0 */  sll        $t8, $t8, 3
 /* 7B058 8007A458 03192821 */  addu       $a1, $t8, $t9
 /* 7B05C 8007A45C A4A000D2 */  sh         $zero, 0xd2($a1)

@@ -2,8 +2,8 @@ glabel func_80066BCC
 /* 677CC 80066BCC 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 677D0 80066BD0 24070198 */  addiu      $a3, $zero, 0x198
 /* 677D4 80066BD4 01C70019 */  multu      $t6, $a3
-/* 677D8 80066BD8 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 677DC 80066BDC 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 677D8 80066BD8 3C06800F */  lui        $a2, %hi(gActors)
+/* 677DC 80066BDC 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 677E0 80066BE0 4458F800 */  cfc1       $t8, $31
 /* 677E4 80066BE4 24050001 */  addiu      $a1, $zero, 1
 /* 677E8 80066BE8 44C5F800 */  ctc1       $a1, $31

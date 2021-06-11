@@ -5,8 +5,8 @@ glabel func_80034E10
 /* 35A1C 80034E1C 241E0198 */  addiu      $fp, $zero, 0x198
 /* 35A20 80034E20 01FE0019 */  multu      $t7, $fp
 /* 35A24 80034E24 AFB70044 */  sw         $s7, 0x44($sp)
-/* 35A28 80034E28 3C17800F */  lui        $s7, %hi(D_800EF510)
-/* 35A2C 80034E2C 26F7F510 */  addiu      $s7, $s7, %lo(D_800EF510)
+/* 35A28 80034E28 3C17800F */  lui        $s7, %hi(gActors)
+/* 35A2C 80034E2C 26F7F510 */  addiu      $s7, $s7, %lo(gActors)
 /* 35A30 80034E30 AFA50064 */  sw         $a1, 0x64($sp)
 /* 35A34 80034E34 30AEFFFF */  andi       $t6, $a1, 0xffff
 /* 35A38 80034E38 01C02825 */  or         $a1, $t6, $zero

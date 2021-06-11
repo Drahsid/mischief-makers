@@ -7,8 +7,8 @@ glabel func_80016D94
 /* 179A8 80016DA8 8DCEE560 */  lw         $t6, %lo(D_800BE560)($t6)
 /* 179AC 80016DAC 8F39E55C */  lw         $t9, %lo(D_800BE55C)($t9)
 /* 179B0 80016DB0 8F18E564 */  lw         $t8, %lo(D_800BE564)($t8)
-/* 179B4 80016DB4 3C07800F */  lui        $a3, %hi(D_800EF510)
-/* 179B8 80016DB8 24E7F510 */  addiu      $a3, $a3, %lo(D_800EF510)
+/* 179B4 80016DB4 3C07800F */  lui        $a3, %hi(gActors)
+/* 179B8 80016DB8 24E7F510 */  addiu      $a3, $a3, %lo(gActors)
 /* 179BC 80016DBC 24040001 */  addiu      $a0, $zero, 1
 /* 179C0 80016DC0 24080198 */  addiu      $t0, $zero, 0x198
 /* 179C4 80016DC4 01CF1023 */  subu       $v0, $t6, $t7

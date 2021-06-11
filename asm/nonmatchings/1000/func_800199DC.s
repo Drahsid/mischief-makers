@@ -1,9 +1,9 @@
 glabel func_800199DC
 /* 1A5DC 800199DC 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 1A5E0 800199E0 AFA40020 */  sw         $a0, 0x20($sp)
-/* 1A5E4 800199E4 3C03800F */  lui        $v1, %hi(D_800EF510)
+/* 1A5E4 800199E4 3C03800F */  lui        $v1, %hi(gActors)
 /* 1A5E8 800199E8 AFBF001C */  sw         $ra, 0x1c($sp)
-/* 1A5EC 800199EC 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 1A5EC 800199EC 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 1A5F0 800199F0 24040198 */  addiu      $a0, $zero, 0x198
 /* 1A5F4 800199F4 2402008C */  addiu      $v0, $zero, 0x8c
 .L800199F8:

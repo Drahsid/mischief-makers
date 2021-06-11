@@ -23,19 +23,19 @@ glabel func_8006605C
 /* 66CB0 800660B0 0018C080 */  sll        $t8, $t8, 2
 /* 66CB4 800660B4 000A5080 */  sll        $t2, $t2, 2
 /* 66CB8 800660B8 0302C023 */  subu       $t8, $t8, $v0
-/* 66CBC 800660BC 3C19800F */  lui        $t9, %hi(D_800EF510)
+/* 66CBC 800660BC 3C19800F */  lui        $t9, %hi(gActors)
 /* 66CC0 800660C0 01485021 */  addu       $t2, $t2, $t0
 /* 66CC4 800660C4 3C01800F */  lui        $at, %hi(D_800EC510)
-/* 66CC8 800660C8 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 66CC8 800660C8 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 66CCC 800660CC 0018C0C0 */  sll        $t8, $t8, 3
 /* 66CD0 800660D0 000A5080 */  sll        $t2, $t2, 2
 /* 66CD4 800660D4 C420C510 */  lwc1       $f0, %lo(D_800EC510)($at)
 /* 66CD8 800660D8 03191821 */  addu       $v1, $t8, $t9
 /* 66CDC 800660DC 24090201 */  addiu      $t1, $zero, 0x201
 /* 66CE0 800660E0 01485023 */  subu       $t2, $t2, $t0
-/* 66CE4 800660E4 3C0B800F */  lui        $t3, %hi(D_800EF510)
+/* 66CE4 800660E4 3C0B800F */  lui        $t3, %hi(gActors)
 /* 66CE8 800660E8 A4690094 */  sh         $t1, 0x94($v1)
-/* 66CEC 800660EC 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 66CEC 800660EC 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 66CF0 800660F0 000A50C0 */  sll        $t2, $t2, 3
 /* 66CF4 800660F4 014B2021 */  addu       $a0, $t2, $t3
 /* 66CF8 800660F8 3C01800F */  lui        $at, %hi(D_800EC518)
@@ -85,9 +85,9 @@ glabel func_8006605C
 /* 66D9C 8006619C 00003025 */  or         $a2, $zero, $zero
 /* 66DA0 800661A0 0C00C4A1 */  jal        func_80031284
 /* 66DA4 800661A4 00003825 */   or        $a3, $zero, $zero
-/* 66DA8 800661A8 3C05800F */  lui        $a1, %hi(D_800EF510)
+/* 66DA8 800661A8 3C05800F */  lui        $a1, %hi(gActors)
 /* 66DAC 800661AC 97A8001A */  lhu        $t0, 0x1a($sp)
-/* 66DB0 800661B0 24A5F510 */  addiu      $a1, $a1, %lo(D_800EF510)
+/* 66DB0 800661B0 24A5F510 */  addiu      $a1, $a1, %lo(gActors)
 /* 66DB4 800661B4 1040004A */  beqz       $v0, .L800662E0
 /* 66DB8 800661B8 24060198 */   addiu     $a2, $zero, 0x198
 /* 66DBC 800661BC 00460019 */  multu      $v0, $a2

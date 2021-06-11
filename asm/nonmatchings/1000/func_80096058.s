@@ -32,9 +32,9 @@ glabel func_80096058
 /* 96CD0 800960D0 000E7080 */  sll        $t6, $t6, 2
 /* 96CD4 800960D4 44810000 */  mtc1       $at, $f0
 /* 96CD8 800960D8 01D07023 */  subu       $t6, $t6, $s0
-/* 96CDC 800960DC 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 96CDC 800960DC 3C0F800F */  lui        $t7, %hi(gActors)
 /* 96CE0 800960E0 8FBF001C */  lw         $ra, 0x1c($sp)
-/* 96CE4 800960E4 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 96CE4 800960E4 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 96CE8 800960E8 000E70C0 */  sll        $t6, $t6, 3
 /* 96CEC 800960EC 01CF1021 */  addu       $v0, $t6, $t7
 /* 96CF0 800960F0 8FB00018 */  lw         $s0, 0x18($sp)

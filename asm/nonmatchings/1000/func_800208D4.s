@@ -1,6 +1,6 @@
 glabel func_800208D4
-/* 214D4 800208D4 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 214D8 800208D8 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 214D4 800208D4 3C03800F */  lui        $v1, %hi(gActors)
+/* 214D8 800208D8 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 214DC 800208DC 240200C8 */  addiu      $v0, $zero, 0xc8
 /* 214E0 800208E0 24040198 */  addiu      $a0, $zero, 0x198
 .L800208E4:

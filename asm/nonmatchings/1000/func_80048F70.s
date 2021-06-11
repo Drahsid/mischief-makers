@@ -6,9 +6,9 @@ glabel func_80048F70
 /* 49B80 80048F80 0C0123B7 */  jal        func_80048EDC
 /* 49B84 80048F84 00000000 */   nop
 /* 49B88 80048F88 10400028 */  beqz       $v0, .L8004902C
-/* 49B8C 80048F8C 3C18800F */   lui       $t8, %hi(D_800EF510)
+/* 49B8C 80048F8C 3C18800F */   lui       $t8, %hi(gActors)
 /* 49B90 80048F90 97AE001A */  lhu        $t6, 0x1a($sp)
-/* 49B94 80048F94 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 49B94 80048F94 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 49B98 80048F98 000E7880 */  sll        $t7, $t6, 2
 /* 49B9C 80048F9C 01EE7823 */  subu       $t7, $t7, $t6
 /* 49BA0 80048FA0 000F7880 */  sll        $t7, $t7, 2

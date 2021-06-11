@@ -6,9 +6,9 @@ glabel func_8006FAC0
 /* 706D0 8006FAD0 0C01B274 */  jal        func_8006C9D0
 /* 706D4 8006FAD4 00000000 */   nop
 /* 706D8 8006FAD8 14400017 */  bnez       $v0, .L8006FB38
-/* 706DC 8006FADC 3C0F800F */   lui       $t7, %hi(D_800EF510)
+/* 706DC 8006FADC 3C0F800F */   lui       $t7, %hi(gActors)
 /* 706E0 8006FAE0 97A40022 */  lhu        $a0, 0x22($sp)
-/* 706E4 8006FAE4 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 706E4 8006FAE4 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 706E8 8006FAE8 00047080 */  sll        $t6, $a0, 2
 /* 706EC 8006FAEC 01C47023 */  subu       $t6, $t6, $a0
 /* 706F0 8006FAF0 000E7080 */  sll        $t6, $t6, 2

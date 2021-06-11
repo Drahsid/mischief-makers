@@ -17,10 +17,10 @@ glabel func_80052A6C
 /* 536A4 80052AA4 97A40032 */  lhu        $a0, 0x32($sp)
 /* 536A8 80052AA8 24070198 */  addiu      $a3, $zero, 0x198
 /* 536AC 80052AAC 00870019 */  multu      $a0, $a3
-/* 536B0 80052AB0 3C06800F */  lui        $a2, %hi(D_800EF510)
+/* 536B0 80052AB0 3C06800F */  lui        $a2, %hi(gActors)
 /* 536B4 80052AB4 3C028013 */  lui        $v0, %hi(D_801373F0)
 /* 536B8 80052AB8 804273F0 */  lb         $v0, %lo(D_801373F0)($v0)
-/* 536BC 80052ABC 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 536BC 80052ABC 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 536C0 80052AC0 24010008 */  addiu      $at, $zero, 8
 /* 536C4 80052AC4 0000C012 */  mflo       $t8
 /* 536C8 80052AC8 00D82821 */  addu       $a1, $a2, $t8
@@ -106,8 +106,8 @@ glabel func_80052A6C
 /* 537E4 80052BE4 8FA5001C */  lw         $a1, 0x1c($sp)
 /* 537E8 80052BE8 00000000 */  nop
 .L80052BEC:
-/* 537EC 80052BEC 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 537F0 80052BF0 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 537EC 80052BEC 3C06800F */  lui        $a2, %hi(gActors)
+/* 537F0 80052BF0 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 537F4 80052BF4 24070198 */  addiu      $a3, $zero, 0x198
 /* 537F8 80052BF8 ACA30170 */  sw         $v1, 0x170($a1)
 /* 537FC 80052BFC 97A90036 */  lhu        $t1, 0x36($sp)

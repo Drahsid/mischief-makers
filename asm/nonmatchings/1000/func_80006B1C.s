@@ -9,8 +9,8 @@ glabel func_80006B1C
 /* 7738 80006B38 AFA40018 */  sw         $a0, 0x18($sp)
 /* 773C 80006B3C 1020000D */  beqz       $at, .L80006B74
 /* 7740 80006B40 30C2FFFF */   andi      $v0, $a2, 0xffff
-/* 7744 80006B44 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 7748 80006B48 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 7744 80006B44 3C03800F */  lui        $v1, %hi(gActors)
+/* 7748 80006B48 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 774C 80006B4C 24040198 */  addiu      $a0, $zero, 0x198
 .L80006B50:
 /* 7750 80006B50 00440019 */  multu      $v0, $a0

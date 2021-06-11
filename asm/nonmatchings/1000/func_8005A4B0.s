@@ -7,9 +7,9 @@ glabel func_8005A4B0
 /* 5B0C4 8005A4C4 01EE7821 */  addu       $t7, $t7, $t6
 /* 5B0C8 8005A4C8 000F7880 */  sll        $t7, $t7, 2
 /* 5B0CC 8005A4CC 01EE7823 */  subu       $t7, $t7, $t6
-/* 5B0D0 8005A4D0 3C18800F */  lui        $t8, %hi(D_800EF510)
+/* 5B0D0 8005A4D0 3C18800F */  lui        $t8, %hi(gActors)
 /* 5B0D4 8005A4D4 AFA50044 */  sw         $a1, 0x44($sp)
-/* 5B0D8 8005A4D8 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 5B0D8 8005A4D8 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 5B0DC 8005A4DC 000F78C0 */  sll        $t7, $t7, 3
 /* 5B0E0 8005A4E0 C7A40044 */  lwc1       $f4, 0x44($sp)
 /* 5B0E4 8005A4E4 01F81021 */  addu       $v0, $t7, $t8
@@ -49,8 +49,8 @@ glabel func_8005A4B0
 /* 5B168 8005A568 0308C021 */  addu       $t8, $t8, $t0
 /* 5B16C 8005A56C 0018C080 */  sll        $t8, $t8, 2
 /* 5B170 8005A570 0308C023 */  subu       $t8, $t8, $t0
-/* 5B174 8005A574 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 5B178 8005A578 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 5B174 8005A574 3C19800F */  lui        $t9, %hi(gActors)
+/* 5B178 8005A578 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 5B17C 8005A57C 0018C0C0 */  sll        $t8, $t8, 3
 /* 5B180 8005A580 03191821 */  addu       $v1, $t8, $t9
 /* 5B184 8005A584 8C6A0080 */  lw         $t2, 0x80($v1)
@@ -117,10 +117,10 @@ glabel func_8005A4B0
 /* 5B274 8005A674 460084A4 */  cvt.w.s    $f18, $f16
 /* 5B278 8005A678 0308C023 */  subu       $t8, $t8, $t0
 /* 5B27C 8005A67C 44049000 */  mfc1       $a0, $f18
-/* 5B280 8005A680 3C19800F */  lui        $t9, %hi(D_800EF510)
+/* 5B280 8005A680 3C19800F */  lui        $t9, %hi(gActors)
 /* 5B284 8005A684 00046823 */  negu       $t5, $a0
 /* 5B288 8005A688 01A1001A */  div        $zero, $t5, $at
-/* 5B28C 8005A68C 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 5B28C 8005A68C 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 5B290 8005A690 0018C0C0 */  sll        $t8, $t8, 3
 /* 5B294 8005A694 03191821 */  addu       $v1, $t8, $t9
 /* 5B298 8005A698 8C6A0080 */  lw         $t2, 0x80($v1)

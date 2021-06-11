@@ -1,6 +1,6 @@
 glabel func_800821B0
-/* 82DB0 800821B0 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 82DB4 800821B4 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 82DB0 800821B0 3C03800F */  lui        $v1, %hi(gActors)
+/* 82DB4 800821B4 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 82DB8 800821B8 8C6E0080 */  lw         $t6, 0x80($v1)
 /* 82DBC 800821BC 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* 82DC0 800821C0 31CF0001 */  andi       $t7, $t6, 1

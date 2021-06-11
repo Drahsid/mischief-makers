@@ -5,8 +5,8 @@ glabel func_800816AC
 /* 822B8 800816B8 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 822BC 800816BC 11020016 */  beq        $t0, $v0, .L80081718
 /* 822C0 800816C0 00C03825 */   or        $a3, $a2, $zero
-/* 822C4 800816C4 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* 822C8 800816C8 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 822C4 800816C4 3C09800F */  lui        $t1, %hi(gActors)
+/* 822C8 800816C8 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 822CC 800816CC 01C03025 */  or         $a2, $t6, $zero
 /* 822D0 800816D0 240BFFFE */  addiu      $t3, $zero, -2
 /* 822D4 800816D4 240A0198 */  addiu      $t2, $zero, 0x198

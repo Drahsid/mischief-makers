@@ -62,10 +62,10 @@ glabel func_80019688
 .L80019770:
 /* 1A370 80019770 3C01800C */  lui        $at, %hi(D_800BE4E8)
 /* 1A374 80019774 A420E4E8 */  sh         $zero, %lo(D_800BE4E8)($at)
-/* 1A378 80019778 3C01800C */  lui        $at, %hi(gGameState)
+/* 1A378 80019778 3C01800C */  lui        $at, %hi(D_800BE4F0)
 /* 1A37C 8001977C 240C000C */  addiu      $t4, $zero, 0xc
 /* 1A380 80019780 8FBF001C */  lw         $ra, 0x1c($sp)
-/* 1A384 80019784 A42CE4F0 */  sh         $t4, %lo(gGameState)($at)
+/* 1A384 80019784 A42CE4F0 */  sh         $t4, %lo(D_800BE4F0)($at)
 /* 1A388 80019788 3C01800C */  lui        $at, %hi(D_800BE4F4)
 /* 1A38C 8001978C 240D0008 */  addiu      $t5, $zero, 8
 /* 1A390 80019790 8FB00018 */  lw         $s0, 0x18($sp)

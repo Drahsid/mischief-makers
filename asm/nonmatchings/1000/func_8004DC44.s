@@ -4,8 +4,8 @@ glabel func_8004DC44
 /* 4E84C 8004DC4C 97AE002A */  lhu        $t6, 0x2a($sp)
 /* 4E850 8004DC50 24080198 */  addiu      $t0, $zero, 0x198
 /* 4E854 8004DC54 01C80019 */  multu      $t6, $t0
-/* 4E858 8004DC58 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 4E85C 8004DC5C 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 4E858 8004DC58 3C06800F */  lui        $a2, %hi(gActors)
+/* 4E85C 8004DC5C 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 4E860 8004DC60 AFB00018 */  sw         $s0, 0x18($sp)
 /* 4E864 8004DC64 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 4E868 8004DC68 24010001 */  addiu      $at, $zero, 1
@@ -41,9 +41,9 @@ glabel func_8004DC44
 /* 4E8DC 8004DCDC 97AB002A */  lhu        $t3, 0x2a($sp)
 /* 4E8E0 8004DCE0 00094880 */  sll        $t1, $t1, 2
 /* 4E8E4 8004DCE4 01224823 */  subu       $t1, $t1, $v0
-/* 4E8E8 8004DCE8 3C0A800F */  lui        $t2, %hi(D_800EF510)
+/* 4E8E8 8004DCE8 3C0A800F */  lui        $t2, %hi(gActors)
 /* 4E8EC 8004DCEC 448B3000 */  mtc1       $t3, $f6
-/* 4E8F0 8004DCF0 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 4E8F0 8004DCF0 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 4E8F4 8004DCF4 000948C0 */  sll        $t1, $t1, 3
 /* 4E8F8 8004DCF8 012A1821 */  addu       $v1, $t1, $t2
 /* 4E8FC 8004DCFC A46500D6 */  sh         $a1, 0xd6($v1)
@@ -67,8 +67,8 @@ glabel func_8004DC44
 /* 4E93C 8004DD3C E612014C */  swc1       $f18, 0x14c($s0)
 /* 4E940 8004DD40 A20C00D0 */  sb         $t4, 0xd0($s0)
 .L8004DD44:
-/* 4E944 8004DD44 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 4E948 8004DD48 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 4E944 8004DD44 3C06800F */  lui        $a2, %hi(gActors)
+/* 4E948 8004DD48 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 .L8004DD4C:
 /* 4E94C 8004DD4C 00A80019 */  multu      $a1, $t0
 /* 4E950 8004DD50 240D0087 */  addiu      $t5, $zero, 0x87
@@ -321,8 +321,8 @@ glabel func_8004DC44
 /* 4ECF4 8004E0F4 01C77021 */  addu       $t6, $t6, $a3
 /* 4ECF8 8004E0F8 000E7080 */  sll        $t6, $t6, 2
 /* 4ECFC 8004E0FC 01C77023 */  subu       $t6, $t6, $a3
-/* 4ED00 8004E100 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 4ED04 8004E104 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 4ED00 8004E100 3C0F800F */  lui        $t7, %hi(gActors)
+/* 4ED04 8004E104 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 4ED08 8004E108 000E70C0 */  sll        $t6, $t6, 3
 /* 4ED0C 8004E10C 01CF1021 */  addu       $v0, $t6, $t7
 /* 4ED10 8004E110 8C580098 */  lw         $t8, 0x98($v0)

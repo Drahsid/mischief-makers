@@ -30,8 +30,8 @@ glabel func_80065B78
 /* 667E8 80065BE8 0322C821 */  addu       $t9, $t9, $v0
 /* 667EC 80065BEC 0019C880 */  sll        $t9, $t9, 2
 /* 667F0 80065BF0 0322C823 */  subu       $t9, $t9, $v0
-/* 667F4 80065BF4 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* 667F8 80065BF8 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* 667F4 80065BF4 3C09800F */  lui        $t1, %hi(gActors)
+/* 667F8 80065BF8 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* 667FC 80065BFC 0019C8C0 */  sll        $t9, $t9, 3
 /* 66800 80065C00 03291821 */  addu       $v1, $t9, $t1
 /* 66804 80065C04 44811000 */  mtc1       $at, $f2

@@ -1,6 +1,6 @@
 glabel func_8002A658
-/* 2B258 8002A658 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 2B25C 8002A65C 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 2B258 8002A658 3C06800F */  lui        $a2, %hi(gActors)
+/* 2B25C 8002A65C 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 2B260 8002A660 90C30140 */  lbu        $v1, 0x140($a2)
 /* 2B264 8002A664 27BDFFF8 */  addiu      $sp, $sp, -8
 /* 2B268 8002A668 306F0080 */  andi       $t7, $v1, 0x80

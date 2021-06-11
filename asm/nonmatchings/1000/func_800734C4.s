@@ -7,8 +7,8 @@ glabel func_800734C4
 /* 740D8 800734D8 0018C080 */  sll        $t8, $t8, 2
 /* 740DC 800734DC 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 740E0 800734E0 030EC023 */  subu       $t8, $t8, $t6
-/* 740E4 800734E4 3C19800F */  lui        $t9, %hi(D_800EF510)
-/* 740E8 800734E8 2739F510 */  addiu      $t9, $t9, %lo(D_800EF510)
+/* 740E4 800734E4 3C19800F */  lui        $t9, %hi(gActors)
+/* 740E8 800734E8 2739F510 */  addiu      $t9, $t9, %lo(gActors)
 /* 740EC 800734EC 0018C0C0 */  sll        $t8, $t8, 3
 /* 740F0 800734F0 03191021 */  addu       $v0, $t8, $t9
 /* 740F4 800734F4 AFA50034 */  sw         $a1, 0x34($sp)

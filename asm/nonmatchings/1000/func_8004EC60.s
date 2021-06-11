@@ -6,8 +6,8 @@ glabel func_8004EC60
 /* 4F870 8004EC70 01EE7821 */  addu       $t7, $t7, $t6
 /* 4F874 8004EC74 000F7880 */  sll        $t7, $t7, 2
 /* 4F878 8004EC78 01EE7823 */  subu       $t7, $t7, $t6
-/* 4F87C 8004EC7C 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 4F880 8004EC80 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 4F87C 8004EC7C 3C18800F */  lui        $t8, %hi(gActors)
+/* 4F880 8004EC80 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 4F884 8004EC84 000F78C0 */  sll        $t7, $t7, 3
 /* 4F888 8004EC88 01F81021 */  addu       $v0, $t7, $t8
 /* 4F88C 8004EC8C 9059012E */  lbu        $t9, 0x12e($v0)

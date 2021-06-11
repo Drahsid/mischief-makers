@@ -94,8 +94,8 @@ glabel func_8007EA14
 /* 7F76C 8007EB6C 000B5880 */  sll        $t3, $t3, 2
 /* 7F770 8007EB70 8FA20094 */  lw         $v0, 0x94($sp)
 /* 7F774 8007EB74 01645823 */  subu       $t3, $t3, $a0
-/* 7F778 8007EB78 3C0C800F */  lui        $t4, %hi(D_800EF510)
-/* 7F77C 8007EB7C 258CF510 */  addiu      $t4, $t4, %lo(D_800EF510)
+/* 7F778 8007EB78 3C0C800F */  lui        $t4, %hi(gActors)
+/* 7F77C 8007EB7C 258CF510 */  addiu      $t4, $t4, %lo(gActors)
 /* 7F780 8007EB80 000B58C0 */  sll        $t3, $t3, 3
 /* 7F784 8007EB84 016C8021 */  addu       $s0, $t3, $t4
 /* 7F788 8007EB88 240D0034 */  addiu      $t5, $zero, 0x34

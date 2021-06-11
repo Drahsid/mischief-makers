@@ -20,9 +20,9 @@ glabel func_8002801C
 /* 28C64 80028064 3092FFFF */  andi       $s2, $a0, 0xffff
 /* 28C68 80028068 12C2002C */  beq        $s6, $v0, .L8002811C
 /* 28C6C 8002806C 30F4FFFF */   andi      $s4, $a3, 0xffff
-/* 28C70 80028070 3C17800F */  lui        $s7, %hi(D_800EF510)
+/* 28C70 80028070 3C17800F */  lui        $s7, %hi(gActors)
 /* 28C74 80028074 97B50052 */  lhu        $s5, 0x52($sp)
-/* 28C78 80028078 26F7F510 */  addiu      $s7, $s7, %lo(D_800EF510)
+/* 28C78 80028078 26F7F510 */  addiu      $s7, $s7, %lo(gActors)
 /* 28C7C 8002807C 241E0198 */  addiu      $fp, $zero, 0x198
 .L80028080:
 /* 28C80 80028080 1040001F */  beqz       $v0, .L80028100
