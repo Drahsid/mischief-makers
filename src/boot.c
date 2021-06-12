@@ -313,8 +313,6 @@ loop_1:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001098.s")
 
-#ifdef NON_MATCHING
-// Only difference is where lw a3, 0x48(sp) is placed (for the jal to func_8009B790)
 void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp30[6];
     uint32_t sp2C;
@@ -323,14 +321,9 @@ void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     func_8009B790(&sp30, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
     func_8009AD10(&D_8012ABA8, &sp2C, 1);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800011F0.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001264.s")
 
-#ifdef NON_MATCHING
-// Only difference is where lw a3, 0x40(sp) is placed (for the jal to func_8009B790)
 void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp2C[2];
     uint16_t sp28[8];
@@ -338,9 +331,6 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     func_8009B6E0(arg1, arg2);
     func_8009B790(&sp28, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001290.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")
 
@@ -407,7 +397,8 @@ void func_80001670(void) {
 
 #ifdef NON_MATCHING
 /* I think this is the pseudo-rng function
- * Differences are regalloc, missing nop following a lhu, and a mive in the place of an sra
+ * Differences are regalloc, and a move in the place of an sra
+ * Pretty sure its just >> 8 but I can't find closer instructions than with the code I currently have
 */
 int32_t func_8000178C(void) {
     D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;

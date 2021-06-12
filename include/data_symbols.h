@@ -157,7 +157,7 @@ extern UNK_TYPE D_800F42E4;
 extern UNK_TYPE D_8016DFE4;
 extern uint8_t D_800EF4D0;
 extern UNK_TYPE D_801374DC;
-extern UNK_TYPE D_800BE4E8;
+extern uint16_t D_800BE4E8;
 extern uint16_t D_800BE4E0;
 extern uint16_t D_801782B8;
 extern uint16_t D_801781E0;
