@@ -3,7 +3,6 @@
 
 #include "inttypes.h"
 
-extern void Framebuffer_Clear();
 extern void func_80000400();
 extern void Framebuffer_Clear();
 extern void mainproc();
@@ -15,11 +14,11 @@ extern void func_80000FE0();
 extern void func_80001098();
 extern void func_800011F0();
 extern void func_80001264();
-extern void func_80001290();
+extern void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2);
 extern void func_800012F0();
 extern void func_8000147C();
 extern void func_80001670();
-extern void func_8000178C();
+extern int32_t func_8000178C(void);
 extern void func_800017D0();
 extern void func_80001988();
 extern void func_80001A80();
@@ -102,7 +101,7 @@ extern void func_80007ABC();
 extern void func_80007BC0();
 extern void func_80007C8C();
 extern void func_80009940();
-extern void func_80009BE0();
+extern void func_80009BE0(void);
 extern void func_80009BE8();
 extern void func_8000DD6C();
 extern void func_8000EA88();
@@ -255,7 +254,7 @@ extern void func_8001FCA0();
 extern void func_8001FEB0();
 extern void func_8001FF28();
 extern void func_8001FF30();
-extern void func_8001FF50();
+extern int32_t func_8001FF50(void);
 extern void func_8001FFA0();
 extern void func_8001FFA8();
 extern uint16_t func_80020024(void);
@@ -865,7 +864,7 @@ extern void func_80047A54();
 extern void func_80047AC4();
 extern void func_80047B68();
 extern void func_80047C28();
-extern uint16_t func_80047C98();
+extern void func_80047C98(void);
 extern void func_80047CCC();
 extern void func_80047E30();
 extern void func_80047E38();
