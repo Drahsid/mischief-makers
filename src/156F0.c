@@ -2,6 +2,7 @@
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <ultra64.h>
+#include <actor.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014AF0.s")
 
