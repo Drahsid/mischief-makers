@@ -32,7 +32,7 @@ OBJCOPYFLAGS = -O binary
 CC := $(TOOLS_DIR)/ido_recomp/linux/7.1/cc
 
 OPT_FLAGS := -O2
-MIPSISET := -mips2 -o32
+MIPSISET := -mips1 -o32
 INCLUDE_CFLAGS := -I . -I include -I libreultra/include/2.0I
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 

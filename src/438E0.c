@@ -249,15 +249,10 @@ void func_80043478(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047C28.s")
 
-#ifdef NON_MATCHING
-// Only difference is when it stores RA, is this because of optimization ?
 void func_80047C98(void) {
     if ((D_800D28FC & 0x80) == 0) {
         func_800451E4(&D_800D2978);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047C98.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047CCC.s")

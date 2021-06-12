@@ -186,15 +186,16 @@ loop_21:
 void func_80021034(void) {
     uint32_t sp1C;
 
-    sp1C = (uint32_t)func_800A5720(); // osGetTime?
+    sp1C = func_800A5720(); // osGetTime?
     func_800457C8();
-    D_801374DC = (int32_t)((uint32_t)func_800A5720() - sp1C); // time - lastTime ?
+    D_801374DC = func_800A5720() - sp1C; // time - lastTime ?
     // if game paused ?
     if (D_800BE4E8 != 0) {
         func_80020A90();
-        return;
     }
-    func_80020024();
+    else {
+        func_80020024();
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021034.s")
