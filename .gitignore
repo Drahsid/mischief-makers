@@ -7,3 +7,4 @@ build
 assets
 tools/n64crc
 __pycache__
+.vscode

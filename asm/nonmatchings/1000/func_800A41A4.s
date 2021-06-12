@@ -1,4 +1,0 @@
-glabel func_800A41A4
-/* A4DA4 800A41A4 03E00008 */  jr         $ra
-/* A4DA8 800A41A8 00000000 */   nop
-/* A4DAC 800A41AC 00000000 */  nop

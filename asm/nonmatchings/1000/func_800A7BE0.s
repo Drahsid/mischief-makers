@@ -1,5 +1,0 @@
-glabel func_800A7BE0
-/* A87E0 800A7BE0 40024800 */  mfc0       $v0, $9
-/* A87E4 800A7BE4 03E00008 */  jr         $ra
-/* A87E8 800A7BE8 00000000 */   nop
-/* A87EC 800A7BEC 00000000 */  nop

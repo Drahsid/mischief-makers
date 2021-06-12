@@ -1,9 +1,0 @@
-glabel func_800A5EB0
-/* A6AB0 800A5EB0 40086000 */  mfc0       $t0, $12
-/* A6AB4 800A5EB4 01044025 */  or         $t0, $t0, $a0
-/* A6AB8 800A5EB8 40886000 */  mtc0       $t0, $12
-/* A6ABC 800A5EBC 00000000 */  nop
-/* A6AC0 800A5EC0 00000000 */  nop
-/* A6AC4 800A5EC4 03E00008 */  jr         $ra
-/* A6AC8 800A5EC8 00000000 */   nop
-/* A6ACC 800A5ECC 00000000 */  nop

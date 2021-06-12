@@ -1,9 +1,0 @@
-glabel func_800A97A4
-/* AA3A4 800A97A4 AFA40000 */  sw         $a0, ($sp)
-/* AA3A8 800A97A8 10000003 */  b          .L800A97B8
-/* AA3AC 800A97AC 2402FFFF */   addiu     $v0, $zero, -1
-/* AA3B0 800A97B0 10000001 */  b          .L800A97B8
-/* AA3B4 800A97B4 00000000 */   nop
-.L800A97B8:
-/* AA3B8 800A97B8 03E00008 */  jr         $ra
-/* AA3BC 800A97BC 00000000 */   nop

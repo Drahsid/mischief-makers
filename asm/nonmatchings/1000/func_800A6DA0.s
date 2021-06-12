@@ -1,5 +1,0 @@
-glabel func_800A6DA0
-/* A79A0 800A6DA0 40026000 */  mfc0       $v0, $12
-/* A79A4 800A6DA4 03E00008 */  jr         $ra
-/* A79A8 800A6DA8 00000000 */   nop
-/* A79AC 800A6DAC 00000000 */  nop

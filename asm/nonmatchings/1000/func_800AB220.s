@@ -1,5 +1,0 @@
-glabel func_800AB220
-/* ABE20 800AB220 0000000D */  break
-/* ABE24 800AB224 03E00008 */   jr        $ra
-/* ABE28 800AB228 00000000 */   nop
-/* ABE2C 800AB22C 00000000 */  nop

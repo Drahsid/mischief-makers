@@ -139,7 +139,7 @@ extern float gEyeY;
 extern float gEyeZ;
 extern float gAtX;
 extern float gAtY;
-extern float gAtZ;
+extern float gAtY;
 extern float gUpX;
 extern float gUpY;
 extern float gUpZ;
@@ -186,6 +186,11 @@ extern UNK_TYPE D_800BE560;
 extern uint16_t D_800BE62C;
 extern uint16_t D_800BE630;
 extern int32_t D_800BE564;
+extern int32_t D_800D28FC;
+extern int32_t D_800D2978;
+extern uint16_t D_800BE714;
+extern uint16_t D_80178460;
+extern uint16_t D_800BE5A4;
 
 #endif
 
