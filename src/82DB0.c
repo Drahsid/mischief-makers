@@ -2,6 +2,7 @@
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <ultra64.h>
+#include <actor.h>
 
 #ifdef NON_MATCHING
 void func_800821B0(void) {
