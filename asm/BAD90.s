@@ -80,7 +80,7 @@ glabel func_800BA264
 /* BAE88 800BA288 3C058019 */  lui        $a1, %hi(D_8018B798)
 /* BAE8C 800BA28C 24A5B798 */  addiu      $a1, $a1, %lo(D_8018B798)
 /* BAE90 800BA290 2484B780 */  addiu      $a0, $a0, %lo(D_8018B780)
-/* BAE94 800BA294 0C026994 */  jal        func_8009A650
+/* BAE94 800BA294 0C026994 */  jal        osCreateMesgQueue
 /* BAE98 800BA298 24060001 */   addiu     $a2, $zero, 1
 /* BAE9C 800BA29C 3C058019 */  lui        $a1, %hi(D_8018B780)
 /* BAEA0 800BA2A0 24A5B780 */  addiu      $a1, $a1, %lo(D_8018B780)

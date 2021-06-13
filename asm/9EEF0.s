@@ -101,7 +101,7 @@ glabel func_8009E2F0
 /* 9F03C 8009E43C 0C029AFA */  jal        func_800A6BE8
 /* 9F040 8009E440 8FA40038 */   lw        $a0, 0x38($sp)
 /* 9F044 8009E444 00409025 */  or         $s2, $v0, $zero
-/* 9F048 8009E448 0C026588 */  jal        func_80099620
+/* 9F048 8009E448 0C026588 */  jal        osStartThread
 /* 9F04C 8009E44C 02402025 */   or        $a0, $s2, $zero
 .L8009E450:
 /* 9F050 8009E450 0C0297AC */  jal        func_800A5EB0

@@ -5,7 +5,7 @@ glabel func_800020BC
 /* 2CC8 800020C8 3C058013 */  lui        $a1, %hi(D_801378C0)
 /* 2CCC 800020CC 24A578C0 */  addiu      $a1, $a1, %lo(D_801378C0)
 /* 2CD0 800020D0 248477D0 */  addiu      $a0, $a0, %lo(D_801377D0)
-/* 2CD4 800020D4 0C026994 */  jal        func_8009A650
+/* 2CD4 800020D4 0C026994 */  jal        osCreateMesgQueue
 /* 2CD8 800020D8 24060001 */   addiu     $a2, $zero, 1
 /* 2CDC 800020DC 3C058013 */  lui        $a1, %hi(D_801377D0)
 /* 2CE0 800020E0 24A577D0 */  addiu      $a1, $a1, %lo(D_801377D0)

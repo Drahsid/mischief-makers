@@ -16,14 +16,14 @@ glabel func_80000C20
 /* 1858 80000C58 3C058013 */  lui        $a1, %hi(D_8012AC68)
 /* 185C 80000C5C 24A5AC68 */  addiu      $a1, $a1, %lo(D_8012AC68)
 /* 1860 80000C60 2484ABA8 */  addiu      $a0, $a0, %lo(D_8012ABA8)
-/* 1864 80000C64 0C026994 */  jal        func_8009A650
+/* 1864 80000C64 0C026994 */  jal        osCreateMesgQueue
 /* 1868 80000C68 24060001 */   addiu     $a2, $zero, 1
 /* 186C 80000C6C 3C108013 */  lui        $s0, %hi(D_8012ABD8)
 /* 1870 80000C70 2610ABD8 */  addiu      $s0, $s0, %lo(D_8012ABD8)
 /* 1874 80000C74 3C058013 */  lui        $a1, %hi(D_8012AC70)
 /* 1878 80000C78 24A5AC70 */  addiu      $a1, $a1, %lo(D_8012AC70)
 /* 187C 80000C7C 02002025 */  or         $a0, $s0, $zero
-/* 1880 80000C80 0C026994 */  jal        func_8009A650
+/* 1880 80000C80 0C026994 */  jal        osCreateMesgQueue
 /* 1884 80000C84 24060001 */   addiu     $a2, $zero, 1
 /* 1888 80000C88 3C1E8013 */  lui        $fp, %hi(D_8012AC80)
 /* 188C 80000C8C 27DEAC80 */  addiu      $fp, $fp, %lo(D_8012AC80)
@@ -37,7 +37,7 @@ glabel func_80000C20
 /* 18AC 80000CAC 3C058013 */  lui        $a1, %hi(D_8012AC74)
 /* 18B0 80000CB0 24A5AC74 */  addiu      $a1, $a1, %lo(D_8012AC74)
 /* 18B4 80000CB4 2484ABF0 */  addiu      $a0, $a0, %lo(D_8012ABF0)
-/* 18B8 80000CB8 0C026994 */  jal        func_8009A650
+/* 18B8 80000CB8 0C026994 */  jal        osCreateMesgQueue
 /* 18BC 80000CBC 24060001 */   addiu     $a2, $zero, 1
 /* 18C0 80000CC0 3C058013 */  lui        $a1, %hi(D_8012ABF0)
 /* 18C4 80000CC4 8FC60000 */  lw         $a2, ($fp)
@@ -49,7 +49,7 @@ glabel func_80000C20
 /* 18DC 80000CDC 3C058013 */  lui        $a1, %hi(D_8012AC6C)
 /* 18E0 80000CE0 24A5AC6C */  addiu      $a1, $a1, %lo(D_8012AC6C)
 /* 18E4 80000CE4 02602025 */  or         $a0, $s3, $zero
-/* 18E8 80000CE8 0C026994 */  jal        func_8009A650
+/* 18E8 80000CE8 0C026994 */  jal        osCreateMesgQueue
 /* 18EC 80000CEC 24060001 */   addiu     $a2, $zero, 1
 /* 18F0 80000CF0 0C0269E4 */  jal        func_8009A790
 /* 18F4 80000CF4 2404000A */   addiu     $a0, $zero, 0xa
@@ -187,7 +187,7 @@ glabel func_80000C20
 /* 1AFC 80000EFC 24060001 */   addiu     $a2, $zero, 1
 /* 1B00 80000F00 0C000A7B */  jal        func_800029EC
 /* 1B04 80000F04 00000000 */   nop
-/* 1B08 80000F08 0C02639C */  jal        func_80098E70
+/* 1B08 80000F08 0C02639C */  jal        osViSwapBuffer
 /* 1B0C 80000F0C 02402025 */   or        $a0, $s2, $zero
 /* 1B10 80000F10 0C004226 */  jal        func_80010898
 /* 1B14 80000F14 00000000 */   nop

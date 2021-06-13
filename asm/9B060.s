@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009A460
+glabel osSetThreadPri
 /* 9B060 8009A460 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9B064 8009A464 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9B068 8009A468 AFA40028 */  sw         $a0, 0x28($sp)

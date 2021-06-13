@@ -349,7 +349,7 @@ glabel func_8009B2E0
 .L8009B398:
 /* 9BF98 8009B398 27A40038 */  addiu      $a0, $sp, 0x38
 /* 9BF9C 8009B39C 27A5007C */  addiu      $a1, $sp, 0x7c
-/* 9BFA0 8009B3A0 0C026994 */  jal        func_8009A650
+/* 9BFA0 8009B3A0 0C026994 */  jal        osCreateMesgQueue
 /* 9BFA4 8009B3A4 24060001 */   addiu     $a2, $zero, 1
 /* 9BFA8 8009B3A8 3C050007 */  lui        $a1, 7
 /* 9BFAC 8009B3AC 3C06800F */  lui        $a2, %hi(D_800E9770)
@@ -426,7 +426,7 @@ glabel func_8009B2E0
 /* 9C0C4 8009B4C4 3C058018 */  lui        $a1, %hi(D_801856B0)
 /* 9C0C8 8009B4C8 24A556B0 */  addiu      $a1, $a1, %lo(D_801856B0)
 /* 9C0CC 8009B4CC 24845698 */  addiu      $a0, $a0, %lo(D_80185698)
-/* 9C0D0 8009B4D0 0C026994 */  jal        func_8009A650
+/* 9C0D0 8009B4D0 0C026994 */  jal        osCreateMesgQueue
 /* 9C0D4 8009B4D4 24060001 */   addiu     $a2, $zero, 1
 /* 9C0D8 8009B4D8 10000003 */  b          .L8009B4E8
 /* 9C0DC 8009B4DC 8FA20078 */   lw        $v0, 0x78($sp)

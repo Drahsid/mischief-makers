@@ -283,7 +283,7 @@ glabel func_8009AD10
 /* 9BA58 8009AE58 0C029AFA */  jal        func_800A6BE8
 /* 9BA5C 8009AE5C 24840004 */   addiu     $a0, $a0, 4
 /* 9BA60 8009AE60 00408825 */  or         $s1, $v0, $zero
-/* 9BA64 8009AE64 0C026588 */  jal        func_80099620
+/* 9BA64 8009AE64 0C026588 */  jal        osStartThread
 /* 9BA68 8009AE68 02202025 */   or        $a0, $s1, $zero
 .L8009AE6C:
 /* 9BA6C 8009AE6C 0C0297AC */  jal        func_800A5EB0

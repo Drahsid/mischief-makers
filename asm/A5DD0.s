@@ -259,7 +259,7 @@ glabel func_800A51D0
 /* A61AC 800A55AC 03E00008 */  jr         $ra
 /* A61B0 800A55B0 00000000 */   nop
 
-glabel func_800A55B4
+glabel guLookAt
 /* A61B4 800A55B4 27BDFF90 */  addiu      $sp, $sp, -0x70
 /* A61B8 800A55B8 AFBF002C */  sw         $ra, 0x2c($sp)
 /* A61BC 800A55BC AFA40070 */  sw         $a0, 0x70($sp)

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_80098F50
+glabel osInitialize
 /* 99B50 80098F50 27BDFFA0 */  addiu      $sp, $sp, -0x60
 /* 99B54 80098F54 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 99B58 80098F58 AFB00018 */  sw         $s0, 0x18($sp)
@@ -355,7 +355,7 @@ glabel func_80099468
 /* 9A068 80099468 03E00008 */  jr         $ra
 /* 9A06C 8009946C 00000000 */   nop
 
-glabel func_80099470
+glabel osCreateThread
 /* 9A070 80099470 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9A074 80099474 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9A078 80099478 AFA40028 */  sw         $a0, 0x28($sp)
@@ -469,7 +469,7 @@ glabel func_80099470
 /* 9A218 80099618 03E00008 */  jr         $ra
 /* 9A21C 8009961C 00000000 */   nop
 
-glabel func_80099620
+glabel osStartThread
 /* 9A220 80099620 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9A224 80099624 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9A228 80099628 AFA40028 */  sw         $a0, 0x28($sp)

@@ -37,13 +37,13 @@ glabel func_80099CF0
 .L80099D50:
 /* 9A950 80099D50 8FA40034 */  lw         $a0, 0x34($sp)
 /* 9A954 80099D54 8FA50038 */  lw         $a1, 0x38($sp)
-/* 9A958 80099D58 0C026994 */  jal        func_8009A650
+/* 9A958 80099D58 0C026994 */  jal        osCreateMesgQueue
 /* 9A95C 80099D5C 8FA6003C */   lw        $a2, 0x3c($sp)
 /* 9A960 80099D60 3C048018 */  lui        $a0, %hi(D_80185090)
 /* 9A964 80099D64 3C058018 */  lui        $a1, %hi(D_801850A8)
 /* 9A968 80099D68 24A550A8 */  addiu      $a1, $a1, %lo(D_801850A8)
 /* 9A96C 80099D6C 24845090 */  addiu      $a0, $a0, %lo(D_80185090)
-/* 9A970 80099D70 0C026994 */  jal        func_8009A650
+/* 9A970 80099D70 0C026994 */  jal        osCreateMesgQueue
 /* 9A974 80099D74 24060001 */   addiu     $a2, $zero, 1
 /* 9A978 80099D78 3C18800F */  lui        $t8, %hi(D_800EA630)
 /* 9A97C 80099D7C 8F18A630 */  lw         $t8, %lo(D_800EA630)($t8)
@@ -71,7 +71,7 @@ glabel func_80099CF0
 /* 9A9D0 80099DD0 8FAA0024 */  lw         $t2, 0x24($sp)
 /* 9A9D4 80099DD4 AFAA0028 */  sw         $t2, 0x28($sp)
 /* 9A9D8 80099DD8 00002025 */  or         $a0, $zero, $zero
-/* 9A9DC 80099DDC 0C026918 */  jal        func_8009A460
+/* 9A9DC 80099DDC 0C026918 */  jal        osSetThreadPri
 /* 9A9E0 80099DE0 8FA50030 */   lw        $a1, 0x30($sp)
 .L80099DE4:
 /* 9A9E4 80099DE4 0C0297A4 */  jal        func_800A5E90
@@ -115,10 +115,10 @@ glabel func_80099CF0
 /* 9AA7C 80099E7C 248438F0 */  addiu      $a0, $a0, %lo(D_801838F0)
 /* 9AA80 80099E80 AFA90010 */  sw         $t1, 0x10($sp)
 /* 9AA84 80099E84 00002825 */  or         $a1, $zero, $zero
-/* 9AA88 80099E88 0C02651C */  jal        func_80099470
+/* 9AA88 80099E88 0C02651C */  jal        osCreateThread
 /* 9AA8C 80099E8C AFAA0014 */   sw        $t2, 0x14($sp)
 /* 9AA90 80099E90 3C048018 */  lui        $a0, %hi(D_801838F0)
-/* 9AA94 80099E94 0C026588 */  jal        func_80099620
+/* 9AA94 80099E94 0C026588 */  jal        osStartThread
 /* 9AA98 80099E98 248438F0 */   addiu     $a0, $a0, %lo(D_801838F0)
 /* 9AA9C 80099E9C 8FAD0030 */  lw         $t5, 0x30($sp)
 /* 9AAA0 80099EA0 3C0B8018 */  lui        $t3, %hi(D_80184C50)
@@ -132,10 +132,10 @@ glabel func_80099CF0
 /* 9AAC0 80099EC0 24844AA0 */  addiu      $a0, $a0, %lo(D_80184AA0)
 /* 9AAC4 80099EC4 AFAC0010 */  sw         $t4, 0x10($sp)
 /* 9AAC8 80099EC8 00002825 */  or         $a1, $zero, $zero
-/* 9AACC 80099ECC 0C02651C */  jal        func_80099470
+/* 9AACC 80099ECC 0C02651C */  jal        osCreateThread
 /* 9AAD0 80099ED0 00003825 */   or        $a3, $zero, $zero
 /* 9AAD4 80099ED4 3C048018 */  lui        $a0, %hi(D_80184AA0)
-/* 9AAD8 80099ED8 0C026588 */  jal        func_80099620
+/* 9AAD8 80099ED8 0C026588 */  jal        osStartThread
 /* 9AADC 80099EDC 24844AA0 */   addiu     $a0, $a0, %lo(D_80184AA0)
 /* 9AAE0 80099EE0 0C0297AC */  jal        func_800A5EB0
 /* 9AAE4 80099EE4 8FA4002C */   lw        $a0, 0x2c($sp)
@@ -144,7 +144,7 @@ glabel func_80099CF0
 /* 9AAF0 80099EF0 11E10004 */  beq        $t7, $at, .L80099F04
 /* 9AAF4 80099EF4 00000000 */   nop
 /* 9AAF8 80099EF8 00002025 */  or         $a0, $zero, $zero
-/* 9AAFC 80099EFC 0C026918 */  jal        func_8009A460
+/* 9AAFC 80099EFC 0C026918 */  jal        osSetThreadPri
 /* 9AB00 80099F00 8FA50028 */   lw        $a1, 0x28($sp)
 .L80099F04:
 /* 9AB04 80099F04 10000001 */  b          .L80099F0C
@@ -164,13 +164,13 @@ glabel func_80099F1C
 /* 9AB30 80099F30 3C058018 */  lui        $a1, %hi(D_80185068)
 /* 9AB34 80099F34 24A55068 */  addiu      $a1, $a1, %lo(D_80185068)
 /* 9AB38 80099F38 24845050 */  addiu      $a0, $a0, %lo(D_80185050)
-/* 9AB3C 80099F3C 0C026994 */  jal        func_8009A650
+/* 9AB3C 80099F3C 0C026994 */  jal        osCreateMesgQueue
 /* 9AB40 80099F40 24060001 */   addiu     $a2, $zero, 1
 /* 9AB44 80099F44 3C048018 */  lui        $a0, %hi(D_80185070)
 /* 9AB48 80099F48 3C058018 */  lui        $a1, %hi(D_80185088)
 /* 9AB4C 80099F4C 24A55088 */  addiu      $a1, $a1, %lo(D_80185088)
 /* 9AB50 80099F50 24845070 */  addiu      $a0, $a0, %lo(D_80185070)
-/* 9AB54 80099F54 0C026994 */  jal        func_8009A650
+/* 9AB54 80099F54 0C026994 */  jal        osCreateMesgQueue
 /* 9AB58 80099F58 24060001 */   addiu     $a2, $zero, 1
 /* 9AB5C 80099F5C 3C058018 */  lui        $a1, %hi(D_80185050)
 /* 9AB60 80099F60 24A55050 */  addiu      $a1, $a1, %lo(D_80185050)

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800997C0
+glabel osCreateViManager
 /* 9A3C0 800997C0 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 9A3C4 800997C4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9A3C8 800997C8 AFA40030 */  sw         $a0, 0x30($sp)
@@ -38,7 +38,7 @@ glabel func_800997C0
 /* 9A420 80099820 3C058018 */  lui        $a1, %hi(D_80183898)
 /* 9A424 80099824 24A53898 */  addiu      $a1, $a1, %lo(D_80183898)
 /* 9A428 80099828 24843880 */  addiu      $a0, $a0, %lo(D_80183880)
-/* 9A42C 8009982C 0C026994 */  jal        func_8009A650
+/* 9A42C 8009982C 0C026994 */  jal        osCreateMesgQueue
 /* 9A430 80099830 24060005 */   addiu     $a2, $zero, 5
 /* 9A434 80099834 2418000D */  addiu      $t8, $zero, 0xd
 /* 9A438 80099838 3C018018 */  lui        $at, %hi(D_801838B0)
@@ -79,7 +79,7 @@ glabel func_800997C0
 /* 9A4C4 800998C4 8FAB0024 */  lw         $t3, 0x24($sp)
 /* 9A4C8 800998C8 AFAB0028 */  sw         $t3, 0x28($sp)
 /* 9A4CC 800998CC 00002025 */  or         $a0, $zero, $zero
-/* 9A4D0 800998D0 0C026918 */  jal        func_8009A460
+/* 9A4D0 800998D0 0C026918 */  jal        osSetThreadPri
 /* 9A4D4 800998D4 8FA50030 */   lw        $a1, 0x30($sp)
 .L800998D8:
 /* 9A4D8 800998D8 0C0297A4 */  jal        func_800A5E90
@@ -118,12 +118,12 @@ glabel func_800997C0
 /* 9A55C 8009995C 248426D0 */  addiu      $a0, $a0, %lo(D_801826D0)
 /* 9A560 80099960 AFB90010 */  sw         $t9, 0x10($sp)
 /* 9A564 80099964 00002825 */  or         $a1, $zero, $zero
-/* 9A568 80099968 0C02651C */  jal        func_80099470
+/* 9A568 80099968 0C02651C */  jal        osCreateThread
 /* 9A56C 8009996C AFA80014 */   sw        $t0, 0x14($sp)
 /* 9A570 80099970 0C02974C */  jal        func_800A5D30
 /* 9A574 80099974 00000000 */   nop
 /* 9A578 80099978 3C048018 */  lui        $a0, %hi(D_801826D0)
-/* 9A57C 8009997C 0C026588 */  jal        func_80099620
+/* 9A57C 8009997C 0C026588 */  jal        osStartThread
 /* 9A580 80099980 248426D0 */   addiu     $a0, $a0, %lo(D_801826D0)
 /* 9A584 80099984 0C0297AC */  jal        func_800A5EB0
 /* 9A588 80099988 8FA4002C */   lw        $a0, 0x2c($sp)
@@ -132,7 +132,7 @@ glabel func_800997C0
 /* 9A594 80099994 11210004 */  beq        $t1, $at, .L800999A8
 /* 9A598 80099998 00000000 */   nop
 /* 9A59C 8009999C 00002025 */  or         $a0, $zero, $zero
-/* 9A5A0 800999A0 0C026918 */  jal        func_8009A460
+/* 9A5A0 800999A0 0C026918 */  jal        osSetThreadPri
 /* 9A5A4 800999A4 8FA50028 */   lw        $a1, 0x28($sp)
 .L800999A8:
 /* 9A5A8 800999A8 10000001 */  b          .L800999B0

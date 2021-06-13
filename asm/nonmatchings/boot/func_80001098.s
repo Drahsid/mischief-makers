@@ -5,7 +5,7 @@ glabel func_80001098
 /* 1CA4 800010A4 3C058013 */  lui        $a1, %hi(D_8012AC7C)
 /* 1CA8 800010A8 24A5AC7C */  addiu      $a1, $a1, %lo(D_8012AC7C)
 /* 1CAC 800010AC 2484AC20 */  addiu      $a0, $a0, %lo(D_8012AC20)
-/* 1CB0 800010B0 0C026994 */  jal        func_8009A650
+/* 1CB0 800010B0 0C026994 */  jal        osCreateMesgQueue
 /* 1CB4 800010B4 24060001 */   addiu     $a2, $zero, 1
 /* 1CB8 800010B8 3C058013 */  lui        $a1, %hi(D_8012AC20)
 /* 1CBC 800010BC 24A5AC20 */  addiu      $a1, $a1, %lo(D_8012AC20)
@@ -22,7 +22,7 @@ glabel func_80001098
 /* 1CE8 800010E8 3C058013 */  lui        $a1, %hi(D_8012AC78)
 /* 1CEC 800010EC 24A5AC78 */  addiu      $a1, $a1, %lo(D_8012AC78)
 /* 1CF0 800010F0 2484AC08 */  addiu      $a0, $a0, %lo(D_8012AC08)
-/* 1CF4 800010F4 0C026994 */  jal        func_8009A650
+/* 1CF4 800010F4 0C026994 */  jal        osCreateMesgQueue
 /* 1CF8 800010F8 24060001 */   addiu     $a2, $zero, 1
 /* 1CFC 800010FC 3C058013 */  lui        $a1, %hi(D_8012AC08)
 /* 1D00 80001100 24A5AC08 */  addiu      $a1, $a1, %lo(D_8012AC08)
@@ -33,7 +33,7 @@ glabel func_80001098
 /* 1D14 80001114 3C058013 */  lui        $a1, %hi(D_8012ADB8)
 /* 1D18 80001118 24A5ADB8 */  addiu      $a1, $a1, %lo(D_8012ADB8)
 /* 1D1C 8000111C 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
-/* 1D20 80001120 0C026994 */  jal        func_8009A650
+/* 1D20 80001120 0C026994 */  jal        osCreateMesgQueue
 /* 1D24 80001124 24060002 */   addiu     $a2, $zero, 2
 /* 1D28 80001128 3C058013 */  lui        $a1, %hi(D_8012ADA0)
 /* 1D2C 8000112C 24A5ADA0 */  addiu      $a1, $a1, %lo(D_8012ADA0)

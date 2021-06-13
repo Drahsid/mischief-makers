@@ -124,7 +124,7 @@ glabel func_800A8F88
 /* A9B98 800A8F98 3C058019 */  lui        $a1, %hi(D_80189A88)
 /* A9B9C 800A8F9C 24A59A88 */  addiu      $a1, $a1, %lo(D_80189A88)
 /* A9BA0 800A8FA0 24849A70 */  addiu      $a0, $a0, %lo(D_80189A70)
-/* A9BA4 800A8FA4 0C026994 */  jal        func_8009A650
+/* A9BA4 800A8FA4 0C026994 */  jal        osCreateMesgQueue
 /* A9BA8 800A8FA8 24060001 */   addiu     $a2, $zero, 1
 /* A9BAC 800A8FAC 3C058019 */  lui        $a1, %hi(D_80189A70)
 /* A9BB0 800A8FB0 24A59A70 */  addiu      $a1, $a1, %lo(D_80189A70)

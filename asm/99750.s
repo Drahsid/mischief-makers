@@ -190,7 +190,7 @@ glabel func_80098B50
 /* 999E8 80098DE8 03E00008 */  jr         $ra
 /* 999EC 80098DEC 00000000 */   nop
 
-glabel func_80098DF0
+glabel osViBlack
 /* 999F0 80098DF0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 999F4 80098DF4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 999F8 80098DF8 AFA40028 */  sw         $a0, 0x28($sp)

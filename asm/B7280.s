@@ -814,7 +814,7 @@ glabel func_800B6F20
 /* B7DB0 800B71B0 24060001 */   addiu     $a2, $zero, 1
 /* B7DB4 800B71B4 12200003 */  beqz       $s1, .L800B71C4
 /* B7DB8 800B71B8 00000000 */   nop
-/* B7DBC 800B71BC 0C026588 */  jal        func_80099620
+/* B7DBC 800B71BC 0C026588 */  jal        osStartThread
 /* B7DC0 800B71C0 02002025 */   or        $a0, $s0, $zero
 .L800B71C4:
 /* B7DC4 800B71C4 10000003 */  b          .L800B71D4

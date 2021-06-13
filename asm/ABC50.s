@@ -102,7 +102,7 @@ glabel func_800AB050
 /* ABDA0 800AB1A0 0C029AFA */  jal        func_800A6BE8
 /* ABDA4 800AB1A4 8FA40028 */   lw        $a0, 0x28($sp)
 /* ABDA8 800AB1A8 00408825 */  or         $s1, $v0, $zero
-/* ABDAC 800AB1AC 0C026588 */  jal        func_80099620
+/* ABDAC 800AB1AC 0C026588 */  jal        osStartThread
 /* ABDB0 800AB1B0 02202025 */   or        $a0, $s1, $zero
 .L800AB1B4:
 /* ABDB4 800AB1B4 0C0297AC */  jal        func_800A5EB0

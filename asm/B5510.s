@@ -22,7 +22,7 @@ glabel func_800B4910
 /* B553C 800B493C 3C058019 */  lui        $a1, %hi(D_8018A728)
 /* B5540 800B4940 24A5A728 */  addiu      $a1, $a1, %lo(D_8018A728)
 /* B5544 800B4944 2484A710 */  addiu      $a0, $a0, %lo(D_8018A710)
-/* B5548 800B4948 0C026994 */  jal        func_8009A650
+/* B5548 800B4948 0C026994 */  jal        osCreateMesgQueue
 /* B554C 800B494C 24060001 */   addiu     $a2, $zero, 1
 /* B5550 800B4950 3C058019 */  lui        $a1, %hi(D_8018A710)
 /* B5554 800B4954 24A5A710 */  addiu      $a1, $a1, %lo(D_8018A710)

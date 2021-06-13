@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009A650
+glabel osCreateMesgQueue
 /* 9B250 8009A650 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 9B254 8009A654 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9B258 8009A658 AFA40018 */  sw         $a0, 0x18($sp)

@@ -1,7 +1,7 @@
-glabel func_80000450
+glabel Framebuffer_Clear
 /* 1050 80000450 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 1054 80000454 AFBF0014 */  sw         $ra, 0x14($sp)
-/* 1058 80000458 0C02637C */  jal        func_80098DF0
+/* 1058 80000458 0C02637C */  jal        osViBlack
 /* 105C 8000045C 24040001 */   addiu     $a0, $zero, 1
 /* 1060 80000460 3C05803D */  lui        $a1, 0x803d
 /* 1064 80000464 34A5A800 */  ori        $a1, $a1, 0xa800
@@ -147,9 +147,9 @@ glabel func_80000450
 /* 1290 80000690 AC4FFE0C */  sw         $t7, -0x1f4($v0)
 /* 1294 80000694 1464FF77 */  bne        $v1, $a0, .L80000474
 /* 1298 80000698 AC4FFE04 */   sw        $t7, -0x1fc($v0)
-/* 129C 8000069C 0C02639C */  jal        func_80098E70
+/* 129C 8000069C 0C02639C */  jal        osViSwapBuffer
 /* 12A0 800006A0 00A02025 */   or        $a0, $a1, $zero
-/* 12A4 800006A4 0C02637C */  jal        func_80098DF0
+/* 12A4 800006A4 0C02637C */  jal        osViBlack
 /* 12A8 800006A8 00002025 */   or        $a0, $zero, $zero
 /* 12AC 800006AC 8FBF0014 */  lw         $ra, 0x14($sp)
 /* 12B0 800006B0 27BD0018 */  addiu      $sp, $sp, 0x18
