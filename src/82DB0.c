@@ -12,8 +12,8 @@ void func_800821B0(void) {
     uint16_t temp_v0;
     int32_t phi_a0;
 
-    if (((PlayerActor.flag & 1) != 0) || (D_800BE714 != 0)) {
-        temp_v0 = PlayerActor.unk_0x84;
+    if (((gPlayerActor.flag & 1) != 0) || (D_800BE714 != 0)) {
+        temp_v0 = gPlayerActor.unk_0x84;
         if ((temp_v0 & 0xF800) == 0x5800) {
             D_800BE714 = (uint16_t)0U;
             temp_t1 = ((int32_t) (temp_v0 & 0x7FF) % 0x322) & 0xFFFF;

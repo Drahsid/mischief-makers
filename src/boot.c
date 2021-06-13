@@ -309,7 +309,31 @@ loop_1:
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
 #endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_80000FE0(void) {
+    uint16_t temp_v0_2;
+    struct_func_80000FE0_temp_v0* temp_v0;
+
+    func_8009AB58(&D_8012AD88);
+    func_8009AB58(&D_8012AD70);
+    temp_v0 = &D_8012AD70[D_801370C0]; //(D_801370C0 * 6) + &D_8012AD70;
+    if (temp_v0->unk_0x04 == 0) {
+        D_801370C4 = temp_v0->unk_0x00;
+        D_800BE53C = temp_v0->unk_0x02;
+        D_800BE540 = temp_v0->unk_0x03;
+    }
+    else {
+        D_801370C4 = 0U;
+    }
+    temp_v0_2 = D_801370C4;
+    D_800BE4FC = (temp_v0_2 ^ D_800BE538) & temp_v0_2;
+    D_800BE4F8 = temp_v0_2;
+    D_800BE538 = temp_v0_2;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000FE0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001098.s")
 
@@ -322,7 +346,10 @@ void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     func_8009AD10(&D_8012ABA8, &sp2C, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001264.s")
+void func_80001264(void) {
+    uint32_t sp1C;
+    func_8009AD10(&D_8012ABA8, &sp1C, 1);
+}
 
 void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp2C[2];
@@ -438,7 +465,11 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002A2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002AE0.s")
+void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
+    func_8009AEA0();
+    func_8009B790(&D_801378C8, 0, 0, arg0, arg1, arg2, &D_801377B8);
+    func_8009AD10(&D_801377B8, 0, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002B50.s")
 
@@ -448,21 +479,67 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800032C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000334C.s")
+void func_8000334C(UNK_TYPE arg0) {
+    func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003380.s")
+void func_80003380(UNK_TYPE arg0) {
+    func_80003020(arg0, -1, -1, 0x91, 0xFF, 0);
+}
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_800033B4(UNK_TYPE arg0, int16_t arg1) {
+    func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033B4.s")
+#endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_800033F0(UNK_TYPE arg0, int8_t arg1) {
+    func_80003020(-1, arg1, -1, 0x81, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033F0.s")
+#endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_80003430(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    func_80003020(arg0, arg1, arg2, 0x81, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003430.s")
+#endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_80003474(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    func_80003020(arg0, arg1, arg2, 0x91, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003474.s")
+#endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_800034B8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    func_80003020(arg0, arg1, arg2, 0x92, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034B8.s")
+#endif
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_800034FC(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    func_80003020(arg0, arg1, arg2, 0x93, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034FC.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003540.s")
 
@@ -476,11 +553,21 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800038C8.s")
 
+#ifdef NON_MATCHING
+// Differences are regalloc
+void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
+    func_80003020(arg0, -1, -1, 0xC1, arg1, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003980.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800039B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A10.s")
+void func_80003A10(void) {
+    func_80003A38();
+    func_80003A64();
+}
 
 #ifdef NON_MATCHING
 // instruction ordering is wrong, and for some reason this shifts code by 4 bytes?
@@ -508,17 +595,48 @@ void func_80003A38(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004648.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800046FC.s")
+void func_800046FC(int32_t* arg0) {
+    int32_t sp1C;
+    int32_t* temp_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004738.s")
+    temp_a0 = &sp1C;
+    sp1C = *arg0;
+    func_800A4040(temp_a0);
+    *arg0 = (int32_t)(sp1C - 8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000474C.s")
+void func_80004738(int32_t arg0, UNK_TYPE arg1) {
+    D_800C4EC4 = arg0;
+    D_800C4EC8 = arg1;
+}
+
+void func_8000474C(int32_t arg0, UNK_TYPE arg1) {
+    D_800C4EBC = arg0;
+    D_800C4EC0 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004760.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000477C.s")
+void func_8000477C(int8_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
+    D_800C4EAC = arg0;
+    D_800C4EB0 = arg1;
+    D_800C4EB4 = arg2;
+    D_800C4EB8 = arg3;
+}
 
+#ifdef NON_MATCHING
+// start of this function produces way more code than intended, also regalloc
+void func_800047B0(int32_t arg0) {
+    func_800A4170(&D_800C4E5C, 0xFFFF);
+    if (arg0 != 0) {
+        func_800A4190(&D_800C4E5C, 1);
+        return;
+    }
+    func_800A4170(&D_800C4E5C, 1);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800047B0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004804.s")
 

@@ -68,8 +68,8 @@ void func_80016CB4(void) {
             index = (index + 1) & 0xFFFF;
         } while (index < ACTOR_COUNT1);
 
-        D_800BE5D8 = (int32_t)(PlayerActor.pos_x + D_800BE558);
-        D_800BE5DC = (int32_t)(PlayerActor.pos_y + D_800BE55C);
+        D_800BE5D8 = (int32_t)(gPlayerActor.pos_x + D_800BE558);
+        D_800BE5DC = (int32_t)(gPlayerActor.pos_y + D_800BE55C);
     }
 }
 #else

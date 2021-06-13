@@ -26,14 +26,30 @@ typedef struct {
     /* 0x09C */ uint8_t unk_0x9C[0x34];
     /* 0x0D0 */ uint16_t unk_0xD0;
     /* 0x0D2 */ uint16_t unk_0xD2;
-    /* 0x0D4 */ uint8_t unk_0xD4[0xB4];
+    /* 0x0D4 */ uint8_t unk_0xD4[0x4];
+    /* 0x0D8 */ uint8_t unk_0xD8;
+    /* 0x0D9 */ uint8_t unk_0xD9;
+    /* 0x0DA */ uint8_t unk_0xDA;
+    /* 0x0DB */ uint8_t unk_0xDB;
+    /* 0x0DC */ uint8_t unk_0xDC;
+    /* 0x0DD */ uint8_t unk_0xDD;
+    /* 0x0DE */ uint8_t unk_0xDE;
+    /* 0x0DF */ uint8_t unk_0xDF;
+    /* 0x0E0 */ uint8_t unk_0xE0[0x18];
+    /* 0x0F8 */ uint32_t unk_0xF8;
+    /* 0x0FC */ uint32_t unk_0xFC;
+    /* 0x100 */ uint8_t unk_0x100[0x88];
     /* 0x188 */ uint32_t unk_0x188;
     /* 0x18C */ uint8_t unk_0x18C[0xC];
 } Actor; /* sizeof = 0x198 */
 
-extern Actor gActors[];
+typedef void(*Actor_func_8001EB8Cfn)(int32_t, int32_t, Actor*, uint32_t);
 
-#define PlayerActor gActors[0]
+extern Actor gActors[];
+extern Actor_func_8001EB8Cfn D_800CA1C0[];
+
+#define gPlayerActorp (gActors)
+#define gPlayerActor gActors[0]
 #define ACTOR_COUNT0 0x90
 #define ACTOR_COUNT1 0xC0
 
