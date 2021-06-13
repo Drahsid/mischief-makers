@@ -27,6 +27,14 @@ typedef struct {
     int32_t unk44;
 } struct_D_8012AD10;
 
+typedef struct {
+    uint16_t unk_0x00;
+    int8_t unk_0x02;
+    int8_t unk_0x03;
+    uint8_t unk_0x04;
+    uint8_t pad;
+} struct_func_80000FE0_temp_v0;
+
 extern UNK_TYPE D_80000300;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
@@ -191,6 +199,37 @@ extern int32_t D_800D2978;
 extern uint16_t D_800BE714;
 extern uint16_t D_80178460;
 extern uint16_t D_800BE5A4;
-
+extern uint16_t D_800BE6B8;
+extern int16_t D_800EF4D2;
+extern int16_t D_800EF4D4;
+extern uint16_t D_800BE704;
+extern uint16_t D_800BE708;
+extern uint16_t D_800BE544;
+extern uint16_t D_800D2920;
+extern uint16_t D_800D2924;
+extern uint16_t D_800D2918;
+extern uint16_t D_800D291C;
+extern uint16_t D_801781C8;
+extern uint16_t D_801781CA;
+extern uint16_t D_801781CC;
+extern uint16_t D_801781CE;
+extern uint16_t D_801781D0;
+extern uint16_t D_801781D2;
+extern uint16_t D_801781D4;
+extern struct_func_80000FE0_temp_v0 D_8012AD70[];
+extern uint16_t D_801370C4;
+extern int8_t D_800BE53C;
+extern int8_t D_800BE540;
+extern uint16_t D_800BE538;
+extern UNK_TYPE D_801378C8;
+extern int32_t D_800C4EC4;
+extern UNK_TYPE D_800C4EC8;
+extern int32_t D_800C4EBC;
+extern UNK_TYPE D_800C4EC0;
+extern int8_t D_800C4EAC;
+extern int8_t D_800C4EB0;
+extern int8_t D_800C4EB4;
+extern int8_t D_800C4EB8;
+extern UNK_TYPE D_800C4E5C;
 #endif
 

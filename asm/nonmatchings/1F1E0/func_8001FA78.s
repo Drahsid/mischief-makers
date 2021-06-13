@@ -10,10 +10,10 @@ glabel func_8001FA78
 /* 20698 8001FA98 01E77821 */  addu       $t7, $t7, $a3
 /* 2069C 8001FA9C 00183403 */  sra        $a2, $t8, 0x10
 /* 206A0 8001FAA0 000F7880 */  sll        $t7, $t7, 2
-/* 206A4 8001FAA4 3C18800F */  lui        $t8, %hi(D_800EF510)
+/* 206A4 8001FAA4 3C18800F */  lui        $t8, %hi(gActors)
 /* 206A8 8001FAA8 01E77823 */  subu       $t7, $t7, $a3
 /* 206AC 8001FAAC 000F78C0 */  sll        $t7, $t7, 3
-/* 206B0 8001FAB0 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 206B0 8001FAB0 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 206B4 8001FAB4 01F81021 */  addu       $v0, $t7, $t8
 /* 206B8 8001FAB8 8C590080 */  lw         $t9, 0x80($v0)
 /* 206BC 8001FABC AFA50014 */  sw         $a1, 0x14($sp)

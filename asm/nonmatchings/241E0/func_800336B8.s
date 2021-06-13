@@ -2,8 +2,8 @@ glabel func_800336B8
 /* 342B8 800336B8 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 342BC 800336BC 24070198 */  addiu      $a3, $zero, 0x198
 /* 342C0 800336C0 01C70019 */  multu      $t6, $a3
-/* 342C4 800336C4 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 342C8 800336C8 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 342C4 800336C4 3C06800F */  lui        $a2, %hi(gActors)
+/* 342C8 800336C8 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 342CC 800336CC 3C014220 */  lui        $at, 0x4220
 /* 342D0 800336D0 44813000 */  mtc1       $at, $f6
 /* 342D4 800336D4 3C08800C */  lui        $t0, %hi(D_800BCCD0)

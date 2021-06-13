@@ -7,10 +7,10 @@ glabel func_8002B140
 /* 2BD54 8002B154 01EE7821 */  addu       $t7, $t7, $t6
 /* 2BD58 8002B158 000F7880 */  sll        $t7, $t7, 2
 /* 2BD5C 8002B15C 01EE7823 */  subu       $t7, $t7, $t6
-/* 2BD60 8002B160 3C18800F */  lui        $t8, %hi(D_800EF510)
+/* 2BD60 8002B160 3C18800F */  lui        $t8, %hi(gActors)
 /* 2BD64 8002B164 AFB00018 */  sw         $s0, 0x18($sp)
 /* 2BD68 8002B168 AFA50024 */  sw         $a1, 0x24($sp)
-/* 2BD6C 8002B16C 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 2BD6C 8002B16C 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 2BD70 8002B170 000F78C0 */  sll        $t7, $t7, 3
 /* 2BD74 8002B174 01F88021 */  addu       $s0, $t7, $t8
 /* 2BD78 8002B178 AFBF001C */  sw         $ra, 0x1c($sp)

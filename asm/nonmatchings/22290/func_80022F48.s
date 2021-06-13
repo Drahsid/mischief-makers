@@ -1,6 +1,6 @@
 glabel func_80022F48
-/* 23B48 80022F48 3C02800C */  lui        $v0, %hi(D_800BE4F4)
-/* 23B4C 80022F4C 9442E4F4 */  lhu        $v0, %lo(D_800BE4F4)($v0)
+/* 23B48 80022F48 3C02800C */  lui        $v0, %hi(gGameSubState)
+/* 23B4C 80022F4C 9442E4F4 */  lhu        $v0, %lo(gGameSubState)($v0)
 /* 23B50 80022F50 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 23B54 80022F54 10400006 */  beqz       $v0, .L80022F70
 /* 23B58 80022F58 AFBF0014 */   sw        $ra, 0x14($sp)
@@ -16,12 +16,12 @@ glabel func_80022F48
 /* 23B7C 80022F7C 00000000 */   nop
 /* 23B80 80022F80 0C008C5A */  jal        func_80023168
 /* 23B84 80022F84 00000000 */   nop
-/* 23B88 80022F88 3C0E800C */  lui        $t6, %hi(D_800BE4F4)
-/* 23B8C 80022F8C 95CEE4F4 */  lhu        $t6, %lo(D_800BE4F4)($t6)
-/* 23B90 80022F90 3C01800C */  lui        $at, %hi(D_800BE4F4)
+/* 23B88 80022F88 3C0E800C */  lui        $t6, %hi(gGameSubState)
+/* 23B8C 80022F8C 95CEE4F4 */  lhu        $t6, %lo(gGameSubState)($t6)
+/* 23B90 80022F90 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 23B94 80022F94 25CF0001 */  addiu      $t7, $t6, 1
 /* 23B98 80022F98 10000043 */  b          .L800230A8
-/* 23B9C 80022F9C A42FE4F4 */   sh        $t7, %lo(D_800BE4F4)($at)
+/* 23B9C 80022F9C A42FE4F4 */   sh        $t7, %lo(gGameSubState)($at)
 .L80022FA0:
 /* 23BA0 80022FA0 0C008B62 */  jal        func_80022D88
 /* 23BA4 80022FA4 00000000 */   nop
@@ -85,10 +85,10 @@ glabel func_80022F48
 /* 23C8C 8002308C 3C018018 */  lui        $at, %hi(D_80178136)
 /* 23C90 80023090 240A001E */  addiu      $t2, $zero, 0x1e
 /* 23C94 80023094 A42A8136 */  sh         $t2, %lo(D_80178136)($at)
-/* 23C98 80023098 3C01800C */  lui        $at, %hi(D_800BE4F0)
-/* 23C9C 8002309C A422E4F0 */  sh         $v0, %lo(D_800BE4F0)($at)
-/* 23CA0 800230A0 3C01800C */  lui        $at, %hi(D_800BE4F4)
-/* 23CA4 800230A4 A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
+/* 23C98 80023098 3C01800C */  lui        $at, %hi(gGameState)
+/* 23C9C 8002309C A422E4F0 */  sh         $v0, %lo(gGameState)($at)
+/* 23CA0 800230A0 3C01800C */  lui        $at, %hi(gGameSubState)
+/* 23CA4 800230A4 A420E4F4 */  sh         $zero, %lo(gGameSubState)($at)
 .L800230A8:
 /* 23CA8 800230A8 8FBF0014 */  lw         $ra, 0x14($sp)
 .L800230AC:

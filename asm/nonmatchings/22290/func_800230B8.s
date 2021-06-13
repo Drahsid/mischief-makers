@@ -1,6 +1,6 @@
 glabel func_800230B8
-/* 23CB8 800230B8 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 23CBC 800230BC 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 23CB8 800230B8 3C04800F */  lui        $a0, %hi(gActors)
+/* 23CBC 800230BC 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 23CC0 800230C0 00001025 */  or         $v0, $zero, $zero
 /* 23CC4 800230C4 24050198 */  addiu      $a1, $zero, 0x198
 .L800230C8:

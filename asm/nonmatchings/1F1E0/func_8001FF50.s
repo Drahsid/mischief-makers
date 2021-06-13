@@ -1,7 +1,7 @@
 glabel func_8001FF50
 /* 20B50 8001FF50 3C060038 */  lui        $a2, 0x38
-/* 20B54 8001FF54 3C04800F */  lui        $a0, %hi(D_800EF510)
-/* 20B58 8001FF58 2484F510 */  addiu      $a0, $a0, %lo(D_800EF510)
+/* 20B54 8001FF54 3C04800F */  lui        $a0, %hi(gActors)
+/* 20B58 8001FF58 2484F510 */  addiu      $a0, $a0, %lo(gActors)
 /* 20B5C 8001FF5C 34C60600 */  ori        $a2, $a2, 0x600
 /* 20B60 8001FF60 24020001 */  addiu      $v0, $zero, 1
 /* 20B64 8001FF64 24050198 */  addiu      $a1, $zero, 0x198

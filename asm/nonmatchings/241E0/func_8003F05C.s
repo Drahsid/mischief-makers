@@ -28,8 +28,8 @@ glabel func_8003F05C
 /* 3FCC4 8003F0C4 46260202 */  mul.d      $f8, $f0, $f6
 /* 3FCC8 8003F0C8 000A5080 */  sll        $t2, $t2, 2
 /* 3FCCC 8003F0CC 01425023 */  subu       $t2, $t2, $v0
-/* 3FCD0 8003F0D0 3C0B800F */  lui        $t3, %hi(D_800EF510)
-/* 3FCD4 8003F0D4 256BF510 */  addiu      $t3, $t3, %lo(D_800EF510)
+/* 3FCD0 8003F0D0 3C0B800F */  lui        $t3, %hi(gActors)
+/* 3FCD4 8003F0D4 256BF510 */  addiu      $t3, $t3, %lo(gActors)
 /* 3FCD8 8003F0D8 000A50C0 */  sll        $t2, $t2, 3
 /* 3FCDC 8003F0DC 014B1821 */  addu       $v1, $t2, $t3
 /* 3FCE0 8003F0E0 462040A0 */  cvt.s.d    $f2, $f8

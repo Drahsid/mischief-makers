@@ -19,8 +19,8 @@ glabel func_80043A68
 /* 446AC 80043AAC 00009025 */   or        $s2, $zero, $zero
 /* 446B0 80043AB0 3C17800D */  lui        $s7, %hi(D_800D361C)
 /* 446B4 80043AB4 3C16800D */  lui        $s6, %hi(D_800D357C)
-/* 446B8 80043AB8 3C14800F */  lui        $s4, %hi(D_800EF510)
-/* 446BC 80043ABC 2694F510 */  addiu      $s4, $s4, %lo(D_800EF510)
+/* 446B8 80043AB8 3C14800F */  lui        $s4, %hi(gActors)
+/* 446BC 80043ABC 2694F510 */  addiu      $s4, $s4, %lo(gActors)
 /* 446C0 80043AC0 26D6357C */  addiu      $s6, $s6, %lo(D_800D357C)
 /* 446C4 80043AC4 26F7361C */  addiu      $s7, $s7, %lo(D_800D361C)
 /* 446C8 80043AC8 24150198 */  addiu      $s5, $zero, 0x198

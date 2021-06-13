@@ -46,9 +46,9 @@ glabel func_80033E7C
 /* 34B24 80033F24 000D6880 */  sll        $t5, $t5, 2
 /* 34B28 80033F28 3C01800F */  lui        $at, %hi(D_800EB980)
 /* 34B2C 80033F2C 01A46823 */  subu       $t5, $t5, $a0
-/* 34B30 80033F30 3C0E800F */  lui        $t6, %hi(D_800EF510)
+/* 34B30 80033F30 3C0E800F */  lui        $t6, %hi(gActors)
 /* 34B34 80033F34 C422B980 */  lwc1       $f2, %lo(D_800EB980)($at)
-/* 34B38 80033F38 25CEF510 */  addiu      $t6, $t6, %lo(D_800EF510)
+/* 34B38 80033F38 25CEF510 */  addiu      $t6, $t6, %lo(gActors)
 /* 34B3C 80033F3C 000D68C0 */  sll        $t5, $t5, 3
 /* 34B40 80033F40 01AE1821 */  addu       $v1, $t5, $t6
 /* 34B44 80033F44 3C014180 */  lui        $at, 0x4180

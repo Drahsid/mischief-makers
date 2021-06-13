@@ -14,8 +14,8 @@ glabel func_80031CAC
 /* 328DC 80031CDC 01C47021 */  addu       $t6, $t6, $a0
 /* 328E0 80031CE0 000E7080 */  sll        $t6, $t6, 2
 /* 328E4 80031CE4 01C47023 */  subu       $t6, $t6, $a0
-/* 328E8 80031CE8 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 328EC 80031CEC 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 328E8 80031CE8 3C0F800F */  lui        $t7, %hi(gActors)
+/* 328EC 80031CEC 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 328F0 80031CF0 000E70C0 */  sll        $t6, $t6, 3
 /* 328F4 80031CF4 01CF1021 */  addu       $v0, $t6, $t7
 /* 328F8 80031CF8 24180034 */  addiu      $t8, $zero, 0x34

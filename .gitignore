@@ -8,3 +8,5 @@ assets
 tools/n64crc
 __pycache__
 .vscode
+ctx_includes.c
+ctx.c

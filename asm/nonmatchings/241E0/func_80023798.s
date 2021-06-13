@@ -13,8 +13,8 @@ glabel func_80023798
 /* 243C0 800237C0 A438E580 */  sh         $t8, %lo(D_800BE580)($at)
 /* 243C4 800237C4 3C014200 */  lui        $at, 0x4200
 /* 243C8 800237C8 44812000 */  mtc1       $at, $f4
-/* 243CC 800237CC 3C01800C */  lui        $at, %hi(D_800BE5AC)
-/* 243D0 800237D0 E424E5AC */  swc1       $f4, %lo(D_800BE5AC)($at)
+/* 243CC 800237CC 3C01800C */  lui        $at, %hi(gEyeY)
+/* 243D0 800237D0 E424E5AC */  swc1       $f4, %lo(gEyeY)($at)
 /* 243D4 800237D4 3C01800C */  lui        $at, %hi(D_800BE6A8)
 /* 243D8 800237D8 24190001 */  addiu      $t9, $zero, 1
 /* 243DC 800237DC A439E6A8 */  sh         $t9, %lo(D_800BE6A8)($at)

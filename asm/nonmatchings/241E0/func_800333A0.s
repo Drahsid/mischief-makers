@@ -19,8 +19,8 @@ glabel func_800333A0
 /* 33FE4 800333E4 01C27021 */  addu       $t6, $t6, $v0
 /* 33FE8 800333E8 000E7080 */  sll        $t6, $t6, 2
 /* 33FEC 800333EC 01C27023 */  subu       $t6, $t6, $v0
-/* 33FF0 800333F0 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 33FF4 800333F4 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 33FF0 800333F0 3C0F800F */  lui        $t7, %hi(gActors)
+/* 33FF4 800333F4 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 33FF8 800333F8 000E70C0 */  sll        $t6, $t6, 3
 /* 33FFC 800333FC 01CF1821 */  addu       $v1, $t6, $t7
 /* 34000 80033400 24180001 */  addiu      $t8, $zero, 1

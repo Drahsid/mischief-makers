@@ -16,8 +16,8 @@ glabel func_80042A0C
 /* 43644 80042A44 97AE002A */  lhu        $t6, 0x2a($sp)
 /* 43648 80042A48 24060198 */  addiu      $a2, $zero, 0x198
 /* 4364C 80042A4C 01C60019 */  multu      $t6, $a2
-/* 43650 80042A50 3C05800F */  lui        $a1, %hi(D_800EF510)
-/* 43654 80042A54 24A5F510 */  addiu      $a1, $a1, %lo(D_800EF510)
+/* 43650 80042A50 3C05800F */  lui        $a1, %hi(gActors)
+/* 43654 80042A54 24A5F510 */  addiu      $a1, $a1, %lo(gActors)
 /* 43658 80042A58 3C013F80 */  lui        $at, 0x3f80
 /* 4365C 80042A5C 44813000 */  mtc1       $at, $f6
 /* 43660 80042A60 2409000C */  addiu      $t1, $zero, 0xc

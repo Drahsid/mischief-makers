@@ -13,8 +13,8 @@ glabel func_8003929C
 /* 39EC8 800392C8 01D17021 */  addu       $t6, $t6, $s1
 /* 39ECC 800392CC 000E7080 */  sll        $t6, $t6, 2
 /* 39ED0 800392D0 01D17023 */  subu       $t6, $t6, $s1
-/* 39ED4 800392D4 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 39ED8 800392D8 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 39ED4 800392D4 3C0F800F */  lui        $t7, %hi(gActors)
+/* 39ED8 800392D8 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 39EDC 800392DC 000E70C0 */  sll        $t6, $t6, 3
 /* 39EE0 800392E0 01CF8021 */  addu       $s0, $t6, $t7
 /* 39EE4 800392E4 960200D0 */  lhu        $v0, 0xd0($s0)

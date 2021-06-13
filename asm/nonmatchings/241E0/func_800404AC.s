@@ -16,8 +16,8 @@ glabel func_800404AC
 /* 410E4 800404E4 01C47021 */  addu       $t6, $t6, $a0
 /* 410E8 800404E8 000E7080 */  sll        $t6, $t6, 2
 /* 410EC 800404EC 01C47023 */  subu       $t6, $t6, $a0
-/* 410F0 800404F0 3C0F800F */  lui        $t7, %hi(D_800EF510)
-/* 410F4 800404F4 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 410F0 800404F0 3C0F800F */  lui        $t7, %hi(gActors)
+/* 410F4 800404F4 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 410F8 800404F8 000E70C0 */  sll        $t6, $t6, 3
 /* 410FC 800404FC 01CF1021 */  addu       $v0, $t6, $t7
 /* 41100 80040500 2418003B */  addiu      $t8, $zero, 0x3b

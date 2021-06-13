@@ -3,13 +3,13 @@ glabel func_80021098
 /* 21C9C 8002109C 3C01800C */  lui        $at, %hi(D_800BE4EC)
 /* 21CA0 800210A0 A42EE4EC */  sh         $t6, %lo(D_800BE4EC)($at)
 /* 21CA4 800210A4 3C05800D */  lui        $a1, %hi(D_800CA244)
-/* 21CA8 800210A8 3C01800C */  lui        $at, %hi(D_800BE4F0)
+/* 21CA8 800210A8 3C01800C */  lui        $at, %hi(gGameState)
 /* 21CAC 800210AC 240F0006 */  addiu      $t7, $zero, 6
 /* 21CB0 800210B0 24A5A244 */  addiu      $a1, $a1, %lo(D_800CA244)
-/* 21CB4 800210B4 A42FE4F0 */  sh         $t7, %lo(D_800BE4F0)($at)
+/* 21CB4 800210B4 A42FE4F0 */  sh         $t7, %lo(gGameState)($at)
 /* 21CB8 800210B8 94B80000 */  lhu        $t8, ($a1)
-/* 21CBC 800210BC 3C08800C */  lui        $t0, %hi(D_800BE4F4)
-/* 21CC0 800210C0 2508E4F4 */  addiu      $t0, $t0, %lo(D_800BE4F4)
+/* 21CBC 800210BC 3C08800C */  lui        $t0, %hi(gGameSubState)
+/* 21CC0 800210C0 2508E4F4 */  addiu      $t0, $t0, %lo(gGameSubState)
 /* 21CC4 800210C4 2719FFFF */  addiu      $t9, $t8, -1
 /* 21CC8 800210C8 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 21CCC 800210CC 95070000 */  lhu        $a3, ($t0)
@@ -111,13 +111,13 @@ glabel func_80021098
 /* 21E3C 8002123C 24424098 */  addiu      $v0, $v0, %lo(D_80104098)
 /* 21E40 80021240 97A7001E */  lhu        $a3, 0x1e($sp)
 /* 21E44 80021244 8FBF0014 */  lw         $ra, 0x14($sp)
-/* 21E48 80021248 3C08800C */  lui        $t0, %hi(D_800BE4F4)
+/* 21E48 80021248 3C08800C */  lui        $t0, %hi(gGameSubState)
 /* 21E4C 8002124C A4402880 */  sh         $zero, 0x2880($v0)
 /* 21E50 80021250 A4402920 */  sh         $zero, 0x2920($v0)
 /* 21E54 80021254 240D000A */  addiu      $t5, $zero, 0xa
-/* 21E58 80021258 3C01800C */  lui        $at, %hi(D_800BE4F0)
-/* 21E5C 8002125C 2508E4F4 */  addiu      $t0, $t0, %lo(D_800BE4F4)
-/* 21E60 80021260 A42DE4F0 */  sh         $t5, %lo(D_800BE4F0)($at)
+/* 21E58 80021258 3C01800C */  lui        $at, %hi(gGameState)
+/* 21E5C 8002125C 2508E4F4 */  addiu      $t0, $t0, %lo(gGameSubState)
+/* 21E60 80021260 A42DE4F0 */  sh         $t5, %lo(gGameState)($at)
 /* 21E64 80021264 27BD0020 */  addiu      $sp, $sp, 0x20
 /* 21E68 80021268 03E00008 */  jr         $ra
 /* 21E6C 8002126C A5070000 */   sh        $a3, ($t0)

@@ -2,8 +2,8 @@ glabel func_8004151C
 /* 4211C 8004151C 30AFFFFF */  andi       $t7, $a1, 0xffff
 /* 42120 80041520 240B0198 */  addiu      $t3, $zero, 0x198
 /* 42124 80041524 01EB0019 */  multu      $t7, $t3
-/* 42128 80041528 3C0A800F */  lui        $t2, %hi(D_800EF510)
-/* 4212C 8004152C 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 42128 80041528 3C0A800F */  lui        $t2, %hi(gActors)
+/* 4212C 8004152C 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 42130 80041530 AFA50004 */  sw         $a1, 4($sp)
 /* 42134 80041534 24010003 */  addiu      $at, $zero, 3
 /* 42138 80041538 01E02825 */  or         $a1, $t7, $zero

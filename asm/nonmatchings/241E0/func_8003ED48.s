@@ -18,9 +18,9 @@ glabel func_8003ED48
 /* 3F988 8003ED88 01C27021 */  addu       $t6, $t6, $v0
 /* 3F98C 8003ED8C 000E7080 */  sll        $t6, $t6, 2
 /* 3F990 8003ED90 01C27023 */  subu       $t6, $t6, $v0
-/* 3F994 8003ED94 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 3F994 8003ED94 3C0F800F */  lui        $t7, %hi(gActors)
 /* 3F998 8003ED98 C422BC08 */  lwc1       $f2, -0x43f8($at)
-/* 3F99C 8003ED9C 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 3F99C 8003ED9C 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 3F9A0 8003EDA0 000E70C0 */  sll        $t6, $t6, 3
 /* 3F9A4 8003EDA4 01CF1821 */  addu       $v1, $t6, $t7
 /* 3F9A8 8003EDA8 44800000 */  mtc1       $zero, $f0

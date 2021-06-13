@@ -8,10 +8,10 @@ glabel func_80036CE4
 /* 378FC 80036CFC AFBF001C */  sw         $ra, 0x1c($sp)
 /* 37900 80036D00 1420002C */  bnez       $at, .L80036DB4
 /* 37904 80036D04 AFA40020 */   sw        $a0, 0x20($sp)
-/* 37908 80036D08 3C0A800F */  lui        $t2, %hi(D_800EF510)
+/* 37908 80036D08 3C0A800F */  lui        $t2, %hi(gActors)
 /* 3790C 80036D0C 3C07800D */  lui        $a3, %hi(D_800D22BC)
 /* 37910 80036D10 24E722BC */  addiu      $a3, $a3, %lo(D_800D22BC)
-/* 37914 80036D14 254AF510 */  addiu      $t2, $t2, %lo(D_800EF510)
+/* 37914 80036D14 254AF510 */  addiu      $t2, $t2, %lo(gActors)
 /* 37918 80036D18 00003025 */  or         $a2, $zero, $zero
 /* 3791C 80036D1C 24020001 */  addiu      $v0, $zero, 1
 /* 37920 80036D20 24090001 */  addiu      $t1, $zero, 1

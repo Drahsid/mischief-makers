@@ -9,10 +9,10 @@ glabel func_8004398C
 /* 445A8 800439A8 000E7080 */  sll        $t6, $t6, 2
 /* 445AC 800439AC 01C47021 */  addu       $t6, $t6, $a0
 /* 445B0 800439B0 000E7080 */  sll        $t6, $t6, 2
-/* 445B4 800439B4 3C0F800F */  lui        $t7, %hi(D_800EF510)
+/* 445B4 800439B4 3C0F800F */  lui        $t7, %hi(gActors)
 /* 445B8 800439B8 01C47023 */  subu       $t6, $t6, $a0
 /* 445BC 800439BC 000E70C0 */  sll        $t6, $t6, 3
-/* 445C0 800439C0 25EFF510 */  addiu      $t7, $t7, %lo(D_800EF510)
+/* 445C0 800439C0 25EFF510 */  addiu      $t7, $t7, %lo(gActors)
 /* 445C4 800439C4 01CF1821 */  addu       $v1, $t6, $t7
 /* 445C8 800439C8 AFA30018 */  sw         $v1, 0x18($sp)
 /* 445CC 800439CC AFA50020 */  sw         $a1, 0x20($sp)

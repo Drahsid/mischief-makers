@@ -26,9 +26,9 @@ glabel func_8003FF68
 /* 40BC8 8003FFC8 44815800 */  mtc1       $at, $f11
 /* 40BCC 8003FFCC 44805000 */  mtc1       $zero, $f10
 /* 40BD0 8003FFD0 00007012 */  mflo       $t6
-/* 40BD4 8003FFD4 3C05800F */  lui        $a1, %hi(D_800EF510)
+/* 40BD4 8003FFD4 3C05800F */  lui        $a1, %hi(gActors)
 /* 40BD8 8003FFD8 462A0482 */  mul.d      $f18, $f0, $f10
-/* 40BDC 8003FFDC 24A5F510 */  addiu      $a1, $a1, %lo(D_800EF510)
+/* 40BDC 8003FFDC 24A5F510 */  addiu      $a1, $a1, %lo(gActors)
 /* 40BE0 8003FFE0 01060019 */  multu      $t0, $a2
 /* 40BE4 8003FFE4 00AE1821 */  addu       $v1, $a1, $t6
 /* 40BE8 8003FFE8 240F0201 */  addiu      $t7, $zero, 0x201

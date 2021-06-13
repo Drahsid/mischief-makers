@@ -28,8 +28,8 @@ glabel func_80009940
 /* A5A8 800099A8 3C108017 */  lui        $s0, 0x8017
 /* A5AC 800099AC 3C0C8017 */  lui        $t4, %hi(D_80171B30)
 /* A5B0 800099B0 3C0B800C */  lui        $t3, %hi(D_800BE6D8)
-/* A5B4 800099B4 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* A5B8 800099B8 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* A5B4 800099B4 3C09800F */  lui        $t1, %hi(gActors)
+/* A5B8 800099B8 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* A5BC 800099BC 256BE6D8 */  addiu      $t3, $t3, %lo(D_800BE6D8)
 /* A5C0 800099C0 258C1B30 */  addiu      $t4, $t4, %lo(D_80171B30)
 /* A5C4 800099C4 26101D30 */  addiu      $s0, $s0, 0x1d30
@@ -92,8 +92,8 @@ glabel func_80009940
 /* A694 80009A94 3C0D8017 */  lui        $t5, 0x8017
 /* A698 80009A98 3C0C8017 */  lui        $t4, %hi(D_80171B30)
 /* A69C 80009A9C 3C0B800C */  lui        $t3, %hi(D_800BE6D8)
-/* A6A0 80009AA0 3C09800F */  lui        $t1, %hi(D_800EF510)
-/* A6A4 80009AA4 2529F510 */  addiu      $t1, $t1, %lo(D_800EF510)
+/* A6A0 80009AA0 3C09800F */  lui        $t1, %hi(gActors)
+/* A6A4 80009AA4 2529F510 */  addiu      $t1, $t1, %lo(gActors)
 /* A6A8 80009AA8 256BE6D8 */  addiu      $t3, $t3, %lo(D_800BE6D8)
 /* A6AC 80009AAC 258C1B30 */  addiu      $t4, $t4, %lo(D_80171B30)
 /* A6B0 80009AB0 25AD1C30 */  addiu      $t5, $t5, 0x1c30

@@ -11,8 +11,8 @@ glabel func_80032E60
 /* 33A84 80032E84 97AE0032 */  lhu        $t6, 0x32($sp)
 /* 33A88 80032E88 24080198 */  addiu      $t0, $zero, 0x198
 /* 33A8C 80032E8C 01C80019 */  multu      $t6, $t0
-/* 33A90 80032E90 3C06800F */  lui        $a2, %hi(D_800EF510)
-/* 33A94 80032E94 24C6F510 */  addiu      $a2, $a2, %lo(D_800EF510)
+/* 33A90 80032E90 3C06800F */  lui        $a2, %hi(gActors)
+/* 33A94 80032E94 24C6F510 */  addiu      $a2, $a2, %lo(gActors)
 /* 33A98 80032E98 3047FFFF */  andi       $a3, $v0, 0xffff
 /* 33A9C 80032E9C 00007812 */  mflo       $t7
 /* 33AA0 80032EA0 00CF2821 */  addu       $a1, $a2, $t7

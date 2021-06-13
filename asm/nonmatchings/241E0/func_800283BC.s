@@ -11,9 +11,9 @@ glabel func_800283BC
 /* 28FE0 800283E0 3C19800F */  lui        $t9, %hi(D_800EF598)
 /* 28FE4 800283E4 0338C821 */  addu       $t9, $t9, $t8
 /* 28FE8 800283E8 8739F598 */  lh         $t9, %lo(D_800EF598)($t9)
-/* 28FEC 800283EC 3C01800C */  lui        $at, %hi(D_800BE5B4)
+/* 28FEC 800283EC 3C01800C */  lui        $at, %hi(gAtX)
 /* 28FF0 800283F0 44992000 */  mtc1       $t9, $f4
-/* 28FF4 800283F4 C428E5B4 */  lwc1       $f8, %lo(D_800BE5B4)($at)
+/* 28FF4 800283F4 C428E5B4 */  lwc1       $f8, %lo(gAtX)($at)
 /* 28FF8 800283F8 468021A0 */  cvt.s.w    $f6, $f4
 /* 28FFC 800283FC 3C014000 */  lui        $at, 0x4000
 /* 29000 80028400 44818000 */  mtc1       $at, $f16

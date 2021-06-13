@@ -6,8 +6,8 @@ glabel func_8002AC30
 /* 2B840 8002AC40 032EC821 */  addu       $t9, $t9, $t6
 /* 2B844 8002AC44 0019C880 */  sll        $t9, $t9, 2
 /* 2B848 8002AC48 032EC823 */  subu       $t9, $t9, $t6
-/* 2B84C 8002AC4C 3C08800F */  lui        $t0, %hi(D_800EF510)
-/* 2B850 8002AC50 2508F510 */  addiu      $t0, $t0, %lo(D_800EF510)
+/* 2B84C 8002AC4C 3C08800F */  lui        $t0, %hi(gActors)
+/* 2B850 8002AC50 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 2B854 8002AC54 0019C8C0 */  sll        $t9, $t9, 3
 /* 2B858 8002AC58 03281021 */  addu       $v0, $t9, $t0
 /* 2B85C 8002AC5C 00051823 */  negu       $v1, $a1

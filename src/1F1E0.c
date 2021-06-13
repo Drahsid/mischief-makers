@@ -8,19 +8,108 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E808.s")
+// BUG: This function writes to unallocated stack space!
+void func_8001E808(int32_t arg0, int32_t arg1) {
+    return;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E8E4.s")
+#ifdef NON_MATCHING
+// Differences are regalloc, instruction order, and we are missing a sw anf move
+void func_8001E8E4(int32_t arg0, int32_t arg1) {
+    Actor* temp_v0;
+    Actor* temp_v1;
+    Actor* temp_v1_2;
+    int32_t temp_t7;
+    Actor* phi_v1;
 
+    temp_t7 = arg1 & 0xFFFF;
+    temp_v0 = &gActors[arg0 & 0xFFFF];
+    if ((temp_v0->flag & 0x20) == 0) {
+        temp_v1 = &gActors[temp_t7];
+        temp_v1->unk_0xF8 = temp_v0->unk_0xF8;
+        phi_v1 = temp_v1;
+    }
+    else {
+        temp_v1_2 = &gActors[temp_t7];
+        temp_v1_2->unk_0xF8 = (uint32_t) -(int32_t) temp_v0->unk_0xF8;
+        phi_v1 = temp_v1_2;
+    }
+    phi_v1->unk_0xFC = temp_v0->unk_0xFC;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E8E4.s")
+#endif
+
+#ifdef NON_MATCHING
+// Differences are regalloc and storing the two args forward on the stack
+void func_8001E964(int32_t arg0, int32_t arg1) {
+    int32_t index0 = arg1 & 0xFFFF;
+    int32_t index1 = arg0 & 0xFFFF;
+    Actor* temp_v0;
+    Actor* temp_v1;
+
+    temp_v0 = &gActors[index0];
+    temp_v1 = &gActors[index1];
+    if ((int16_t)temp_v0->pos_x < (int16_t)temp_v1->pos_x) {
+        temp_v0->unk_0xF8 = (int32_t)-temp_v1->unk_0xF8;
+    }
+    else {
+        temp_v0->unk_0xF8 = (int32_t)temp_v1->unk_0xF8;
+    }
+    temp_v0->unk_0xFC = (uint32_t)temp_v1->unk_0xFC;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E964.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E9DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EADC.s")
+#ifdef NON_MATCHING
+// Not close to matching yet
+Actor* func_8001EADC(int32_t arg0, int32_t arg1) {
+    int32_t index0 = arg0 & 0xFFFF;
+    int32_t index1 = arg1 & 0xFFFF;
+    uint8_t temp_v0_2;
+    Actor* temp_v0;
+    Actor* temp_v1;
 
+    temp_v1 = &gActors[index1];
+    temp_v0_2 = temp_v1->unk_0xDE;
+    if (temp_v0_2 == 0xB || temp_v0_2 == 0xE || temp_v0_2 == 0xF) {
+        temp_v1->unk_0x98 &= ~2;
+        temp_v0 = &gActors[index0];
+        temp_v0->unk_0x98 ^= 3;
+        temp_v0->unk_0xDC = temp_v0->unk_0xDA;
+        temp_v0->unk_0xDD = temp_v0->unk_0xDB;
+        return temp_v0;
+    }
+    return func_8001E9DC(index0, index1, &gActors, sizeof(Actor));
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EADC.s")
+#endif
+
+#ifdef NON_MATCHING
+/* This function is related to hit / kncokback effects?
+ * Differences are regalloc, and instruction order
+ * Function called from D_800CA1C0 seems to be bogus (the wrong effect triggers in-game)
+*/
+void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
+    int32_t index0 = actorIndexR & 0xFFFF;
+    int32_t index1 = actorIndexL & 0xFFFF;
+    Actor* actor0 = &gActors[index1];
+    Actor* actor1 = &gActors[index0];
+
+    actor1->unk_0xDC = actor0->unk_0xDA;
+    actor1->unk_0xDD = actor0->unk_0xDB;
+    //((actor0->unk_0xDB * 4) + 0x800D0000)->unk-5E40(index0, index1, &gActors, 0x198);
+    D_800CA1C0[actor0->unk_0xDB * 4](index0, index1, &gActors, sizeof(Actor));
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EB8C.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EC1C.s")
 
@@ -32,9 +121,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FEB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF28.s")
+void func_8001FF28(void) {
+    return;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF30.s")
+void func_8001FF30(void) {
+    gPlayerActorp->unk_0x98 &= 0x80600;
+}
 
 #ifdef NON_MATCHING
 /* Differences are regalloc and instruction order
@@ -56,9 +149,20 @@ int32_t func_8001FF50(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FFA0.s")
+void func_8001FFA0(void) {
+    return;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FFA8.s")
+void func_8001FFA8(void) {
+    D_800CA230 = 0;
+    D_800BE704 = D_801781C8;
+    D_800BE708 = D_801781CA;
+    D_800BE544 = D_801781CC;
+    D_800D2920 = D_801781CE;
+    D_800D2924 = D_801781D0;
+    D_800D2918 = D_801781D2;
+    D_800D291C = D_801781D4;
+}
 
 #ifdef NON_MATCHING
 /* Update function for main gamestate when not paused
@@ -173,7 +277,24 @@ loop_21:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
+#ifdef NON_MATCHING
+// primarily regally differences, and a missing move
+int32_t func_800208D4(void) {
+    int32_t index;
+    int32_t phi_return;
+
+    for (index = 0xC8; index < 0xCC; index = (index + 1) & 0xFFFF) {
+        gActors[index].flag = 0;
+        phi_return = index; // this should be a move v0, t8, and is inside of the loop
+    }
+    D_800EF4D2 = (int16_t)D_800EF4D4;
+    gGameSubState = (uint16_t)0;
+    D_800BE4E8 = (uint16_t)0;
+    return phi_return;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800208D4.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
@@ -205,13 +326,24 @@ void func_80021034(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021270.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021620.s")
+void func_80021620(void) {
+    if ((D_800BE4FC & D_800BE534) != 0) {
+        D_800BE6B8 ^= 0xFF;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021658.s")
+void func_80021658(void) {
+    return;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021660.s")
+void func_80021660(void) {
+    return;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021668.s")
+// BUG: This function writes to unallocated stack space!
+void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
+    return;
+}
 
 void func_8002167C(void) {
     return;

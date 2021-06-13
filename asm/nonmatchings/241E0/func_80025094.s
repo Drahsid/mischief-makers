@@ -19,12 +19,12 @@ glabel func_80025094
 /* 25CD8 800250D8 AFBF0014 */   sw        $ra, 0x14($sp)
 /* 25CDC 800250DC 3C01C300 */  lui        $at, 0xc300
 /* 25CE0 800250E0 44812000 */  mtc1       $at, $f4
-/* 25CE4 800250E4 3C01800C */  lui        $at, %hi(D_800BE5A8)
-/* 25CE8 800250E8 E424E5A8 */  swc1       $f4, %lo(D_800BE5A8)($at)
+/* 25CE4 800250E4 3C01800C */  lui        $at, %hi(gEyeX)
+/* 25CE8 800250E8 E424E5A8 */  swc1       $f4, %lo(gEyeX)($at)
 /* 25CEC 800250EC 3C014300 */  lui        $at, 0x4300
 /* 25CF0 800250F0 44813000 */  mtc1       $at, $f6
-/* 25CF4 800250F4 3C01800C */  lui        $at, %hi(D_800BE5AC)
-/* 25CF8 800250F8 E426E5AC */  swc1       $f6, %lo(D_800BE5AC)($at)
+/* 25CF4 800250F4 3C01800C */  lui        $at, %hi(gEyeY)
+/* 25CF8 800250F8 E426E5AC */  swc1       $f6, %lo(gEyeY)($at)
 .L800250FC:
 /* 25CFC 800250FC 0C008D78 */  jal        func_800235E0
 /* 25D00 80025100 00000000 */   nop

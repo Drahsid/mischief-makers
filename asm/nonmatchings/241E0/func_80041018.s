@@ -255,9 +255,9 @@ glabel func_80041018
 /* 41FC4 800413C4 01846021 */  addu       $t4, $t4, $a0
 /* 41FC8 800413C8 000C6080 */  sll        $t4, $t4, 2
 /* 41FCC 800413CC 01846023 */  subu       $t4, $t4, $a0
-/* 41FD0 800413D0 3C0D800F */  lui        $t5, %hi(D_800EF510)
+/* 41FD0 800413D0 3C0D800F */  lui        $t5, %hi(gActors)
 /* 41FD4 800413D4 960E0094 */  lhu        $t6, 0x94($s0)
-/* 41FD8 800413D8 25ADF510 */  addiu      $t5, $t5, %lo(D_800EF510)
+/* 41FD8 800413D8 25ADF510 */  addiu      $t5, $t5, %lo(gActors)
 /* 41FDC 800413DC 000C60C0 */  sll        $t4, $t4, 3
 /* 41FE0 800413E0 018D1021 */  addu       $v0, $t4, $t5
 /* 41FE4 800413E4 A44E0094 */  sh         $t6, 0x94($v0)

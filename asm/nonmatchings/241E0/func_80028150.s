@@ -19,9 +19,9 @@ glabel func_80028150
 /* 28D94 80028194 30D2FFFF */  andi       $s2, $a2, 0xffff
 /* 28D98 80028198 12E20025 */  beq        $s7, $v0, .L80028230
 /* 28D9C 8002819C 30F6FFFF */   andi      $s6, $a3, 0xffff
-/* 28DA0 800281A0 3C13800F */  lui        $s3, %hi(D_800EF510)
+/* 28DA0 800281A0 3C13800F */  lui        $s3, %hi(gActors)
 /* 28DA4 800281A4 97B5004A */  lhu        $s5, 0x4a($sp)
-/* 28DA8 800281A8 2673F510 */  addiu      $s3, $s3, %lo(D_800EF510)
+/* 28DA8 800281A8 2673F510 */  addiu      $s3, $s3, %lo(gActors)
 /* 28DAC 800281AC 24140198 */  addiu      $s4, $zero, 0x198
 .L800281B0:
 /* 28DB0 800281B0 10400012 */  beqz       $v0, .L800281FC

@@ -35,8 +35,8 @@ glabel func_8002EFE4
 /* 2FC5C 8002F05C 01E77821 */  addu       $t7, $t7, $a3
 /* 2FC60 8002F060 000F7880 */  sll        $t7, $t7, 2
 /* 2FC64 8002F064 01E77823 */  subu       $t7, $t7, $a3
-/* 2FC68 8002F068 3C18800F */  lui        $t8, %hi(D_800EF510)
-/* 2FC6C 8002F06C 2718F510 */  addiu      $t8, $t8, %lo(D_800EF510)
+/* 2FC68 8002F068 3C18800F */  lui        $t8, %hi(gActors)
+/* 2FC6C 8002F06C 2718F510 */  addiu      $t8, $t8, %lo(gActors)
 /* 2FC70 8002F070 000F78C0 */  sll        $t7, $t7, 3
 /* 2FC74 8002F074 01F81021 */  addu       $v0, $t7, $t8
 /* 2FC78 8002F078 24190008 */  addiu      $t9, $zero, 8

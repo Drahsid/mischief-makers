@@ -1,6 +1,6 @@
 glabel func_800208D4
-/* 214D4 800208D4 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 214D8 800208D8 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 214D4 800208D4 3C03800F */  lui        $v1, %hi(gActors)
+/* 214D8 800208D8 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 214DC 800208DC 240200C8 */  addiu      $v0, $zero, 0xc8
 /* 214E0 800208E0 24040198 */  addiu      $a0, $zero, 0x198
 .L800208E4:
@@ -17,8 +17,8 @@ glabel func_800208D4
 /* 2150C 8002090C 8739F4D4 */  lh         $t9, %lo(D_800EF4D4)($t9)
 /* 21510 80020910 3C01800F */  lui        $at, %hi(D_800EF4D2)
 /* 21514 80020914 A439F4D2 */  sh         $t9, %lo(D_800EF4D2)($at)
-/* 21518 80020918 3C01800C */  lui        $at, %hi(D_800BE4F4)
-/* 2151C 8002091C A420E4F4 */  sh         $zero, %lo(D_800BE4F4)($at)
+/* 21518 80020918 3C01800C */  lui        $at, %hi(gGameSubState)
+/* 2151C 8002091C A420E4F4 */  sh         $zero, %lo(gGameSubState)($at)
 /* 21520 80020920 3C01800C */  lui        $at, %hi(D_800BE4E8)
 /* 21524 80020924 03E00008 */  jr         $ra
 /* 21528 80020928 A420E4E8 */   sh        $zero, %lo(D_800BE4E8)($at)

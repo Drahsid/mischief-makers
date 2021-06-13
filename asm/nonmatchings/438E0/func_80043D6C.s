@@ -11,8 +11,8 @@ glabel func_80043D6C
 /* 44990 80043D90 00808025 */  or         $s0, $a0, $zero
 /* 44994 80043D94 12820027 */  beq        $s4, $v0, .L80043E34
 /* 44998 80043D98 00009825 */   or        $s3, $zero, $zero
-/* 4499C 80043D9C 3C11800F */  lui        $s1, %hi(D_800EF510)
-/* 449A0 80043DA0 2631F510 */  addiu      $s1, $s1, %lo(D_800EF510)
+/* 4499C 80043D9C 3C11800F */  lui        $s1, %hi(gActors)
+/* 449A0 80043DA0 2631F510 */  addiu      $s1, $s1, %lo(gActors)
 /* 449A4 80043DA4 24120198 */  addiu      $s2, $zero, 0x198
 /* 449A8 80043DA8 304E2000 */  andi       $t6, $v0, 0x2000
 .L80043DAC:

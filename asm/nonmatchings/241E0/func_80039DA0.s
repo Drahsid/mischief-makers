@@ -2,8 +2,8 @@ glabel func_80039DA0
 /* 3A9A0 80039DA0 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 3A9A4 80039DA4 24050198 */  addiu      $a1, $zero, 0x198
 /* 3A9A8 80039DA8 01C50019 */  multu      $t6, $a1
-/* 3A9AC 80039DAC 3C02800F */  lui        $v0, %hi(D_800EF510)
-/* 3A9B0 80039DB0 2442F510 */  addiu      $v0, $v0, %lo(D_800EF510)
+/* 3A9AC 80039DAC 3C02800F */  lui        $v0, %hi(gActors)
+/* 3A9B0 80039DB0 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 3A9B4 80039DB4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 3A9B8 80039DB8 AFA40018 */  sw         $a0, 0x18($sp)
 /* 3A9BC 80039DBC 01C02025 */  or         $a0, $t6, $zero

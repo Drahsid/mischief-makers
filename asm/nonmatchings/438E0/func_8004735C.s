@@ -25,8 +25,8 @@ glabel func_8004735C
 /* 47FB8 800473B8 00003825 */  or         $a3, $zero, $zero
 /* 47FBC 800473BC 0C01F3F8 */  jal        func_8007CFE0
 /* 47FC0 800473C0 AFA00010 */   sw        $zero, 0x10($sp)
-/* 47FC4 800473C4 3C03800F */  lui        $v1, %hi(D_800EF510)
-/* 47FC8 800473C8 2463F510 */  addiu      $v1, $v1, %lo(D_800EF510)
+/* 47FC4 800473C4 3C03800F */  lui        $v1, %hi(gActors)
+/* 47FC8 800473C8 2463F510 */  addiu      $v1, $v1, %lo(gActors)
 /* 47FCC 800473CC 8C6C0080 */  lw         $t4, 0x80($v1)
 /* 47FD0 800473D0 8FAD0024 */  lw         $t5, 0x24($sp)
 /* 47FD4 800473D4 240F0005 */  addiu      $t7, $zero, 5
