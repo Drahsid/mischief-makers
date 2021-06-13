@@ -6,153 +6,165 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000400.s")
 
 #ifdef NON_MATCHING
+/* I have no idea how this regalloc is produced
+ * It stores 0 in a bunch of registers, and uses about 10 at a time to write to the cfb
+ * However, obviously this should get get optimized to use $r0
+ * And that is what we see in this current code
+*/
 void Framebuffer_Clear(void) {
-    int32_t temp_v1;
-    uint32_t* temp_v0;
-    uint32_t* phi_v0;
-    int32_t phi_v1;
+    uint32_t* cfb;
+    int32_t index;
+    int32_t t8;
+    int32_t t7;
+    int32_t t6;
+    int32_t t4;
+    int32_t t2;
+    int32_t t0;
 
-    osViBlack(1);
-    phi_v0 = (void *)0x803DA800;
-    phi_v1 = 0;
-loop_1:
-    temp_v1 = phi_v1 + 4;
-    phi_v0[0x38] = 0;
-    phi_v0[0x2E] = 0;
-    phi_v0[0x24] = 0;
-    phi_v0[0x5A] = 0;
-    phi_v0[0x50] = 0;
-    phi_v0[0x46] = 0;
-    phi_v0[0x7C] = 0;
-    phi_v0[0x72] = 0;
-    phi_v0[0x68] = 0;
-    phi_v0[0x3A] = 0;
-    phi_v0[0x30] = 0;
-    phi_v0[0x26] = 0;
-    phi_v0[0x5C] = 0;
-    phi_v0[0x52] = 0;
-    phi_v0[0x48] = 0;
-    phi_v0[0x7E] = 0;
-    phi_v0[0x74] = 0;
-    phi_v0[0x6A] = 0;
-    phi_v0[0x60] = 0;
-    phi_v0[0x3C] = 0;
-    phi_v0[0x32] = 0;
-    phi_v0[0x28] = 0;
-    phi_v0[0x5E] = 0;
-    phi_v0[0x54] = 0;
-    phi_v0[0x4A] = 0;
-    phi_v0[0x40] = 0;
-    phi_v0[0x76] = 0;
-    phi_v0[0x6C] = 0;
-    phi_v0[0x62] = 0;
-    phi_v0[0x3E] = 0;
-    phi_v0[0x34] = 0;
-    phi_v0[0x2A] = 0;
-    phi_v0[0x20] = 0;
-    phi_v0[0x56] = 0;
-    phi_v0[0x4C] = 0;
-    phi_v0[0x42] = 0;
-    phi_v0[0x78] = 0;
-    phi_v0[0x6E] = 0;
-    phi_v0[0x64] = 0;
-    phi_v0[0x36] = 0;
-    phi_v0[0x2C] = 0;
-    phi_v0[0x22] = 0;
-    phi_v0[0x58] = 0;
-    phi_v0[0x4E] = 0;
-    phi_v0[0x44] = 0;
-    phi_v0[0x7A] = 0;
-    phi_v0[0x70] = 0;
-    phi_v0[0x66] = 0;
-    phi_v0[0x3F] = 0x10001;
-    phi_v0[0x3D] = 0x10001;
-    phi_v0[0x3B] = 0x10001;
-    phi_v0[0x39] = 0x10001;
-    phi_v0[0x37] = 0x10001;
-    phi_v0[0x35] = 0x10001;
-    phi_v0[0x33] = 0x10001;
-    phi_v0[0x31] = 0x10001;
-    phi_v0[0x2F] = 0x10001;
-    phi_v0[0x2D] = 0x10001;
-    phi_v0[0x2B] = 0x10001;
-    phi_v0[0x29] = 0x10001;
-    phi_v0[0x27] = 0x10001;
-    phi_v0[0x25] = 0x10001;
-    phi_v0[0x23] = 0x10001;
-    phi_v0[0x21] = 0x10001;
-    phi_v0[0x5F] = 0x10001;
-    phi_v0[0x5D] = 0x10001;
-    phi_v0[0x5B] = 0x10001;
-    phi_v0[0x59] = 0x10001;
-    phi_v0[0x57] = 0x10001;
-    phi_v0[0x55] = 0x10001;
-    phi_v0[0x53] = 0x10001;
-    phi_v0[0x51] = 0x10001;
-    phi_v0[0x4F] = 0x10001;
-    phi_v0[0x4D] = 0x10001;
-    phi_v0[0x4B] = 0x10001;
-    phi_v0[0x49] = 0x10001;
-    phi_v0[0x47] = 0x10001;
-    phi_v0[0x45] = 0x10001;
-    phi_v0[0x43] = 0x10001;
-    phi_v0[0x41] = 0x10001;
-    phi_v0[0x7F] = 0x10001;
-    phi_v0[0x7D] = 0x10001;
-    phi_v0[0x7B] = 0x10001;
-    phi_v0[0x79] = 0x10001;
-    phi_v0[0x77] = 0x10001;
-    phi_v0[0x75] = 0x10001;
-    phi_v0[0x73] = 0x10001;
-    phi_v0[0x71] = 0x10001;
-    phi_v0[0x6F] = 0x10001;
-    phi_v0[0x6D] = 0x10001;
-    phi_v0[0x6B] = 0x10001;
-    phi_v0[0x69] = 0x10001;
-    phi_v0[0x67] = 0x10001;
-    phi_v0[0x65] = 0x10001;
-    phi_v0[0x63] = 0x10001;
-    phi_v0[0x61] = 0x10001;
-    temp_v0 = phi_v0 + 0x200;
-    temp_v0[-0x6A] = 0;
-    temp_v0[-0x74] = 0;
-    temp_v0[-0x7E] = 0;
-    temp_v0[-0x68] = 0;
-    temp_v0[-0x72] = 0;
-    temp_v0[-0x7C] = 0;
-    temp_v0[-0x66] = 0;
-    temp_v0[-0x70] = 0;
-    temp_v0[-0x7A] = 0;
-    temp_v0[-0x64] = 0;
-    temp_v0[-0x6E] = 0;
-    temp_v0[-0x78] = 0;
-    temp_v0[-0x62] = 0;
-    temp_v0[-0x6C] = 0;
-    temp_v0[-0x76] = 0;
-    temp_v0[-0x80] = 0;
-    temp_v0[-0x61] = 0x10001;
-    temp_v0[-0x63] = 0x10001;
-    temp_v0[-0x65] = 0x10001;
-    temp_v0[-0x67] = 0x10001;
-    temp_v0[-0x69] = 0x10001;
-    temp_v0[-0x6B] = 0x10001;
-    temp_v0[-0x6D] = 0x10001;
-    temp_v0[-0x6F] = 0x10001;
-    temp_v0[-0x71] = 0x10001;
-    temp_v0[-0x73] = 0x10001;
-    temp_v0[-0x75] = 0x10001;
-    temp_v0[-0x77] = 0x10001;
-    temp_v0[-0x79] = 0x10001;
-    temp_v0[-0x7B] = 0x10001;
-    temp_v0[-0x7D] = 0x10001;
-    temp_v0[-0x7F] = 0x10001;
-    phi_v0 = temp_v0;
-    phi_v1 = temp_v1;
-    if (temp_v1 != 0x4B0) {
-        goto loop_1;
-    }
-    osViSwapBuffer((void*)0x803DA800);
-    osViBlack(0);
+    osViBlack((uint8_t)1U);
+    do { index = 0; cfb = (uint32_t*)0x803DA800; } while (0);
+    do {
+        t7 = 0x00010001;
+        t6 = 0;
+        t8 = 0;
+        t0 = 0;
+        t2 = 0;
+        t4 = 0;
+
+        index += 4;
+        cfb[0x38] = t4;
+        cfb[0x2e] = t4;
+        cfb[0x24] = t4;
+        cfb[0x5a] = t4;
+        cfb[0x50] = t4;
+        cfb[0x46] = t4;
+        cfb[0x7c] = t4;
+        cfb[0x72] = t4;
+        cfb[0x68] = t4;
+        cfb[0x3a] = t2;
+        cfb[0x30] = t2;
+        cfb[0x26] = t2;
+        cfb[0x5c] = t2;
+        cfb[0x52] = t2;
+        cfb[0x48] = t2;
+        cfb[0x7e] = t2;
+        cfb[0x74] = t2;
+        cfb[0x6a] = t2;
+        cfb[0x60] = t2;
+        cfb[0x3c] = t0;
+        cfb[0x32] = t0;
+        cfb[0x28] = t0;
+        cfb[0x5e] = t0;
+        cfb[0x54] = t0;
+        cfb[0x4a] = t0;
+        cfb[0x40] = t0;
+        cfb[0x76] = t0;
+        cfb[0x6c] = t0;
+        cfb[0x62] = t0;
+        cfb[0x3e] = t8;
+        cfb[0x34] = t8;
+        cfb[0x2a] = t8;
+        cfb[0x20] = t8;
+        cfb[0x56] = t8;
+        cfb[0x4c] = t8;
+        cfb[0x42] = t8;
+        cfb[0x78] = t8;
+        cfb[0x6e] = t8;
+        cfb[100] = t8;
+        cfb[0x36] = t6;
+        cfb[0x2c] = t6;
+        cfb[0x22] = t6;
+        cfb[0x58] = t6;
+        cfb[0x4e] = t6;
+        cfb[0x44] = t6;
+        cfb[0x7a] = t6;
+        cfb[0x70] = t6;
+        cfb[0x66] = t6;
+        cfb[0x3f] = t7;
+        cfb[0x3d] = t7;
+        cfb[0x3b] = t7;
+        cfb[0x39] = t7;
+        cfb[0x37] = t7;
+        cfb[0x35] = t7;
+        cfb[0x33] = t7;
+        cfb[0x31] = t7;
+        cfb[0x2f] = t7;
+        cfb[0x2d] = t7;
+        cfb[0x2b] = t7;
+        cfb[0x29] = t7;
+        cfb[0x27] = t7;
+        cfb[0x25] = t7;
+        cfb[0x23] = t7;
+        cfb[0x21] = t7;
+        cfb[0x5f] = t7;
+        cfb[0x5d] = t7;
+        cfb[0x5b] = t7;
+        cfb[0x59] = t7;
+        cfb[0x57] = t7;
+        cfb[0x55] = t7;
+        cfb[0x53] = t7;
+        cfb[0x51] = t7;
+        cfb[0x4f] = t7;
+        cfb[0x4d] = t7;
+        cfb[0x4b] = t7;
+        cfb[0x49] = t7;
+        cfb[0x47] = t7;
+        cfb[0x45] = t7;
+        cfb[0x43] = t7;
+        cfb[0x41] = t7;
+        cfb[0x7f] = t7;
+        cfb[0x7d] = t7;
+        cfb[0x7b] = t7;
+        cfb[0x79] = t7;
+        cfb[0x77] = t7;
+        cfb[0x75] = t7;
+        cfb[0x73] = t7;
+        cfb[0x71] = t7;
+        cfb[0x6f] = t7;
+        cfb[0x6d] = t7;
+        cfb[0x6b] = t7;
+        cfb[0x69] = t7;
+        cfb[0x67] = t7;
+        cfb[0x65] = t7;
+        cfb[99] = t7;
+        cfb[0x61] = t7;
+        cfb[0x16] = 0;
+        cfb[0xc] = 0;
+        cfb[2] = 0;
+        cfb[0x18] = 0;
+        cfb[0xe] = 0;
+        cfb[4] = 0;
+        cfb[0x1a] = 0;
+        cfb[0x10] = 0;
+        cfb[6] = 0;
+        cfb[0x1c] = 0;
+        cfb[0x12] = 0;
+        cfb[8] = 0;
+        cfb[0x1e] = 0;
+        cfb[0x14] = 0;
+        cfb[10] = 0;
+        cfb[0] = 0;
+        cfb[0x1f] = t7;
+        cfb[0x1d] = t7;
+        cfb[0x1b] = t7;
+        cfb[0x19] = t7;
+        cfb[0x17] = t7;
+        cfb[0x15] = t7;
+        cfb[0x13] = t7;
+        cfb[0x11] = t7;
+        cfb[0xf] = t7;
+        cfb[0xd] = t7;
+        cfb[0xb] = t7;
+        cfb[9] = t7;
+        cfb[7] = t7;
+        cfb[5] = t7;
+        cfb[3] = t7;
+        cfb += 0x80;
+    } while (index != 0x4B0);
+
+    cfb[1] = t7;
+    osViSwapBuffer((void *) 0x803DA800);
+    osViBlack((uint8_t) 0U);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Framebuffer_Clear.s")
@@ -236,104 +248,108 @@ loop_5:
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000A84.s")
 
 #ifdef NON_MATCHING
+// primary issue in matching is loading of data_ptr / data_size
 void func_80000C20(int32_t arg0) {
-    uint16_t temp_t9;
-    UNK_POINTER phi_s2;
+    OSMesgQueue* new_var3;
+    int new_var;
+    void* phi_s2;
 
     func_80001B38();
-    osCreateMesgQueue(&D_8012ABA8, &D_8012AC68, 1);
-    osCreateMesgQueue(&D_8012ABD8, &D_8012AC70, 1);
+    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABA8), (void **) (&D_8012AC68), 1);
+    new_var3 = &D_8012ABC0;
+    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABD8), (void **) (&D_8012AC70), 1);
     func_8009A6F0(4, &D_8012ABD8, D_8012AC80);
     func_800020BC();
-    osCreateMesgQueue(&D_8012ABF0, &D_8012AC74, 1);
+    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABF0), (void **) (&D_8012AC74), 1);
     func_8009A6F0(9, &D_8012ABF0, D_8012AC80);
-    osCreateMesgQueue(&D_8012ABC0, &D_8012AC6C, 1);
-    func_8009A790(0xA); // osViSetSpecialFeatures ?
-    func_8009A9B0(&D_8012ABC0, D_8012AC80, 1);
+    osCreateMesgQueue(new_var3, (void **) (&D_8012AC6C), 1);
+    func_8009A790(0xA);
+    func_8009A9B0(new_var3, D_8012AC80, 1);
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
-    *(uint32_t*)0x801370C0 = func_80001098();
-    phi_s2 = 0x803DA800;
-loop_1:
-    func_8009AA80(&D_8012ADA0);
-    func_8009AD10(&D_8012ADA0, 0, 1); // osRecvMesg ?
-    func_8009AB58(&D_8012AD88);
-    if (D_801370C0 != -1) {
-        func_8009AA80(&D_8012AC08);
-    }
-    // setting up microcode?
-    D_8012AC84->t.type = M_GFXTASK;
-    D_8012AC84->t.flags = 0;
-    D_8012AC84->t.ucode_boot = 0x800BA9E0;
-    D_8012AC84->t.ucode_boot_size = (int32_t) (&D_800BAAB0 - 0x800BA9E0);
-    D_8012AC84->t.ucode = &D_800BAAB0;
-    D_8012AC84->t.ucode_data = &D_800EEA10; // below this reads "RSP SW Version: 2.0H"
-    D_8012AC84->t.output_buff = 0;
-    D_8012AC84->t.output_buff_size = 0;
-    D_8012AC84->t.ucode_size = 0x1000;
-    D_8012AC84->t.ucode_data_size = 0x800;
-    D_8012AC84->t.dram_stack = &D_8011D970;
-    D_8012AC84->t.dram_stack_size = 0x400;
-    D_8012AC84->t.data_ptr = (int32_t) ((D_800BE700 * 0x6180) + 0x8012ADC0 + 0x180);
-    D_8012AC84->t.data_size = (int32_t) (((int32_t) (((*(uint32_t*)(0x8012A670 - 0x8012ADC0)) + -(int32_t) (D_800BE700 * 0x6180)) - 0x180) >> 3) * 8);
-    D_8012AC84->t.yield_data_ptr = &D_8011DDF0;
-    D_8012AC84->t.yield_data_size = 0xDA0;
-    func_8009AEA0(); // osWritebackDCacheAll ?
-    func_8009B014(D_8012AC84); // osSpTaskLoad ?
-    func_8009B294(D_8012AC84); // osSpTaskStartGo ?
-    func_80002114();
-    func_800028D0();
-    temp_t9 = 1 - D_800BE700;
-    D_800BE700 = temp_t9;
-    func_80000A84(temp_t9 & 0xFFFF);
-    func_8009AD10(&D_8012ABF0, 0, 1);
-    func_800029EC();
-    osViSwapBuffer(phi_s2);
-    func_80010898();
-    if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
-        func_80002114(&D_8012ABC0);
+    D_801370C0 = func_80001098();
+    phi_s2 = (void *) 0x803DA800;
+    while (1) {
+        func_8009AA80(&D_8012ADA0);
+        func_8009AD10(&D_8012ADA0, 0, 1);
+        func_8009AB58(&D_8012AD88);
+        if (D_801370C0 != -1) {
+            if (1) {
+                func_8009AA80(&D_8012AC08);
+            }
+        }
+
+        D_8012AC84->t.type = 1;
+        D_8012AC84->t.flags = 0;
+        D_8012AC84->t.ucode_boot = 0x800BA9E0;
+        D_8012AC84->t.ucode_boot_size = (&D_800BAAB0) - ((uint32_t *) 0x800BA9E0);
+        D_8012AC84->t.ucode = (uint64_t *) (&D_800BAAB0);
+        D_8012AC84->t.ucode_data = (uint64_t *) (&D_800EEA10);
+        D_8012AC84->t.output_buff = 0;
+        D_8012AC84->t.output_buff_size = 0;
+        D_8012AC84->t.ucode_size = 0x1000;
+        D_8012AC84->t.ucode_data_size = 0x800;
+        D_8012AC84->t.dram_stack = (uint64_t *) (&D_8011D970);
+        D_8012AC84->t.dram_stack_size = 0x400;
+        D_8012AC84->t.data_ptr = ((D_800BE700 * 0x6180) + 0x8012ADC0) + (new_var = 0x180);
+        D_8012AC84->t.data_size = (((int32_t) ((((*((uint32_t *) 0x8012A670)) - 0x8012ADC0) + ((-((int32_t) (D_800BE700 * 0x6180))) & 0xFFFFu)) - new_var)) >> 3) * 8;
+        D_8012AC84->t.yield_data_ptr = (uint64_t *) (&D_8011DDF0);
+        D_8012AC84->t.yield_data_size = 0xDA0;
+
+        func_8009AEA0();
+        func_8009B014(D_8012AC84);
+        func_8009B294(D_8012AC84);
+        func_80002114();
         func_800028D0();
-        func_8009AD10(&D_8012ABC0, &D_8012AC80, 1);
+        D_800BE700 = 1 - (D_800BE700 & 0xFFFF);
+        func_80000A84(D_800BE700 & 0xFFFF);
+        func_8009AD10(&D_8012ABF0, 0, 1);
         func_800029EC();
+        osViSwapBuffer(phi_s2);
+        func_80010898();
+        if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
+            D_8012AC84->t.ucode_boot = 0x800BA9E0;
+            func_800028D0();
+            func_8009AD10((uint32_t *) new_var3, &D_8012AC80, 1);
+            func_800029EC();
+        }
+
+        phi_s2 = &D_8012AC80;
+        func_8009AD10((uint32_t *) new_var3, phi_s2, 1);
+        phi_s2 = (void *) 0x803DA800;
+        if (D_800BE700 != 0) {
+            phi_s2 = (void *) 0x801DA800;
+        }
+
+        func_80000FE0();
     }
-    func_8009AD10(&D_8012ABC0, &D_8012AC80, 1);
-    phi_s2 = 0x803DA800;
-    if (D_800BE700 != 0) {
-        phi_s2 = 0x801DA800;
-    }
-    func_80000FE0();
-    goto loop_1;
+
+    func_80002114(new_var3);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
 #endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void func_80000FE0(void) {
-    uint16_t temp_v0_2;
-    struct_func_80000FE0_temp_v0* temp_v0;
-
     func_8009AB58(&D_8012AD88);
+    if (!D_8012AD70[D_801370C0].unk_0x04) {}
+
     func_8009AB58(&D_8012AD70);
-    temp_v0 = &D_8012AD70[D_801370C0]; //(D_801370C0 * 6) + &D_8012AD70;
-    if (temp_v0->unk_0x04 == 0) {
-        D_801370C4 = temp_v0->unk_0x00;
-        D_800BE53C = temp_v0->unk_0x02;
-        D_800BE540 = temp_v0->unk_0x03;
+
+    if (D_8012AD70[D_801370C0].unk_0x04 == 0) {
+        D_801370C4 = D_8012AD70[D_801370C0].unk_0x00;
+        D_800BE53C = D_8012AD70[D_801370C0].unk_0x02;
+        D_800BE540 = D_8012AD70[D_801370C0].unk_0x03;
     }
     else {
         D_801370C4 = 0U;
     }
-    temp_v0_2 = D_801370C4;
-    D_800BE4FC = (temp_v0_2 ^ D_800BE538) & temp_v0_2;
-    D_800BE4F8 = temp_v0_2;
-    D_800BE538 = temp_v0_2;
+
+    D_800BE4FC = (D_801370C4 ^ D_800BE538) & D_801370C4;
+    D_800BE4F8 = D_801370C4;
+    D_800BE538 = D_801370C4;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000FE0.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001098.s")
 
@@ -363,77 +379,86 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
 
-#ifdef NON_MATCHING
-// besides regalloc, I believe this is functionally the same
-// not sure how to put the rodata for the jump table at the right spot though
 void func_80001670(void) {
-    uint16_t temp_t6;
+    switch (gGameState) {
+        if (!gGameState) {}
 
-    temp_t6 = gGameState;
-    if ((uint32_t)temp_t6 < 0xF) {
-        // case for gamestate
-        switch(temp_t6) {
-            case 0:
-                func_80022F48(); // soft reset
-                break;
-            case 1:
-                func_80017800(); // intro update
-                break;
-            case 2:
-                func_8001817C(); // title screen update
-                break;
-            case 3:
-                func_800188CC(); // sound test update
-                break;
-            case 4:
-                func_800191B8(); // stage select (debug) update
-                break;
-            case 5:
-                func_800232A4(); // stage loading (?) update
-                break;
-            case 6:
-                func_80021034(); // normal (gameplay) update
-                break;
-            case 7:
-                func_80012F98(); // gameover update
-                break;
-            case 8:
-                func_80388000(); // unknown gamestate
-                break;
-            case 9:
-                func_80388008(); // unknown gamestate
-                break;
-            case 10:
-                func_80021270(); // gameplay demo update
-                break;
-            case 11:
-                func_80007C8C(); // file select update
-                break;
-            case 12:
-                func_8001B460(); // transition update
-                break;
-            case 13:
-                func_8001D654(); // stage select best times (?) update
-                break;
+        case 0: {
+            func_80022F48();
+            break;
+        }
+        case 1: {
+            func_80017800();
+            break;
+        }
+        case 2: {
+            func_8001817C();
+            break;
+        }
+        case 3: {
+            func_800188CC();
+            break;
+        }
+        case 4: {
+            func_800191B8();
+            break;
+        }
+        case 5: {
+            func_800232A4();
+            break;
+        }
+        case 6: {
+            func_80021034();
+            break;
+        }
+        case 7: {
+            func_80012F98();
+            break;
+        }
+        case 8: {
+            func_80388000();
+            break;
+        }
+        case 9: {
+            func_80388008();
+            break;
+        }
+        case 10: {
+            func_80021270();
+            break;
+        }
+        case 11: {
+            func_80007C8C();
+            break;
+        }
+        case 12: {
+            func_8001B460();
+            break;
+        }
+        case 13: {
+            func_8001D654();
+            break;
+        }
+        case 14: {
+            return;
+            break;
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001670.s")
-#endif
 
-#ifdef NON_MATCHING
-/* I think this is the pseudo-rng function
- * Differences are regalloc, and a move in the place of an sra
- * Pretty sure its just >> 8 but I can't find closer instructions than with the code I currently have
-*/
-int32_t func_8000178C(void) {
-    D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;
-    return ((D_800BE5A4 & 0xFFFF) / 0x100) & 0xFFFF;
+uint32_t func_8000178C(void) {
+    uint32_t new_var;
+    D_800BE5A4 = (0, (D_800BE5A4 * 0x85) + 1);
+
+    if (!D_800BE5A4) {}
+    new_var = (D_800BE5A4 / 0x100) & (0xFFFF & 0xFFFFFFFFFFFFFFFF);
+
+    if (D_800BE5A4) {}
+    if (1) {
+        return new_var;
+    }
+
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000178C.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800017D0.s")
 
@@ -453,15 +478,11 @@ void func_800020BC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800028D0.s")
 
-#ifdef NON_MATCHING
 void func_800029EC(void) {
     func_8009AEA0();
     func_8009B014(D_8016E6F0);
     func_8009B294(D_8016E6F0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800029EC.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002A2C.s")
 
@@ -569,15 +590,10 @@ void func_80003A10(void) {
     func_80003A64();
 }
 
-#ifdef NON_MATCHING
-// instruction ordering is wrong, and for some reason this shifts code by 4 bytes?
 void func_80003A38(void) {
     func_8009FF40(D_8016DFE4);
     D_800EF4D0 = 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A38.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A64.s")
 
@@ -617,26 +633,30 @@ void func_8000474C(int32_t arg0, UNK_TYPE arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004760.s")
 
-void func_8000477C(int8_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
-    D_800C4EAC = arg0;
-    D_800C4EB0 = arg1;
-    D_800C4EB4 = arg2;
-    D_800C4EB8 = arg3;
-}
-
 #ifdef NON_MATCHING
-// start of this function produces way more code than intended, also regalloc
-void func_800047B0(int32_t arg0) {
-    func_800A4170(&D_800C4E5C, 0xFFFF);
-    if (arg0 != 0) {
-        func_800A4190(&D_800C4E5C, 1);
-        return;
-    }
-    func_800A4170(&D_800C4E5C, 1);
+void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
+    int8_t new_var;
+    new_var = arg3;
+    D_800C4EAC = arg0;
+    D_800C4EB0 = (0, arg1);
+    D_800C4EB4 = arg2;
+    D_800C4EB8 = new_var;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800047B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000477C.s")
 #endif
+
+void func_800047B0(int32_t arg0) {
+    UNK_TYPE* new_var;
+    new_var = &D_800C4E5C;
+    func_800A4170(&D_800C4E5C, 0xFFFF);
+    if (arg0 != 0) {
+        func_800A4190(new_var, 1);
+    }
+    else {
+        func_800A4170(new_var, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004804.s")
 
