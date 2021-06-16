@@ -324,7 +324,95 @@ void func_80021034(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
 
+#ifdef NONMATCHING
+/* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
+ * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
+*/
+void func_80021270(void) {
+    if (gGameSubState != 0) {
+        if (gGameSubState == 1) {
+            if (D_801037AA == 0x90) {
+                D_80103918 = 0;
+                D_80103780 = 0;
+                D_801035E8 = 0;
+                D_80103450 = 0;
+            }
+            else {
+                D_80103480 += 2;
+                D_80103616 -= 2;
+                D_801037AA += 3;
+                D_80103944 -= 3;
+            }
+
+            func_80021098(&gGameSubState);
+            D_800CA234 -= -1;
+            if ((D_800CA234 == 0 || ((D_800BE4FC & D_800BE500) != 0)) && (D_80103450 == 0)) {
+                func_80003F24(1, 0x40, &D_800CA234);
+                gGameSubState += 1;
+                D_800CA234 = 0x40;
+            }
+        }
+        else if (gGameSubState == 2) {
+            func_80021098(&gGameSubState);
+            D_800CA234 += 1;
+            if (D_800CA234 == 0x30) {
+                D_80103918 = 0xB;
+                D_80103780 = 0xB;
+                D_801035E8 = 0xB;
+                D_80103450 = 0xB;
+                gGameSubState += 1;
+            }
+        }
+        else if (gGameSubState == 3) {
+            func_80021098(&gGameSubState);
+            if (D_801037AA == D_80103944) {
+                D_800CA238 += 1;
+                D_80137D90 = 0;
+                gGameState = 0;
+                gGameSubState = 0;
+            }
+            else {
+                D_80103480 -= 2;
+                D_80103616 += 2;
+                D_801037AA -= 3;
+                D_80103944 += 3;
+            }
+        }
+    }
+    else {
+        if (3 < D_800CA238) {
+            D_800CA238 = 0;
+        }
+
+        D_80178162 = (&D_800CA2B0)[D_800CA238];
+        D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)D_80178162 * 2);
+        D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)D_80178162 * 2);
+        D_800CA234 = 0xA00;
+        D_800D2908 = 1;
+        gPlayerActor.health = 1000;
+        D_800BE668 = 0x32;
+        D_800BE5A4 = 0x1234;
+        func_800232A4(&D_800CA238, &D_80178162, &D_800CA234, &gGameSubState);
+        gGameState = 10;
+        gGameSubState = 1;
+        D_80104098.unk_0x2920 = 0;
+        D_80104098.unk_0x2880 = 0;
+        func_8002092C();
+        D_80103944 = 0;
+        D_801037AA = 0;
+        D_80103616 = 0;
+        D_80103480 = 0;
+        D_800CA23C = 0;
+        D_800CA240 = 0;
+        D_800CA248 = 0;
+        D_800CA24C = 0;
+        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[D_800CA238];
+        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[D_800CA238];
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021270.s")
+#endif
 
 void func_80021620(void) {
     if ((D_800BE4FC & D_800BE534) != 0) {
