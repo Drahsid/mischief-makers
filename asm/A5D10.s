@@ -50,7 +50,7 @@ glabel func_800A517C
 /* A5DA0 800A51A0 0C029444 */  jal        func_800A5110
 /* A5DA4 800A51A4 8FA70064 */   lw        $a3, 0x64($sp)
 /* A5DA8 800A51A8 27A40018 */  addiu      $a0, $sp, 0x18
-/* A5DAC 800A51AC 0C02CA98 */  jal        func_800B2A60
+/* A5DAC 800A51AC 0C02CA98 */  jal        guMtxF2L
 /* A5DB0 800A51B0 8FA50058 */   lw        $a1, 0x58($sp)
 /* A5DB4 800A51B4 10000001 */  b          .L800A51BC
 /* A5DB8 800A51B8 00000000 */   nop

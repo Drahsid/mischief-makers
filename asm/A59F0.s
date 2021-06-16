@@ -46,7 +46,7 @@ glabel func_800A4E4C
 /* A5A70 800A4E70 0C02937C */  jal        func_800A4DF0
 /* A5A74 800A4E74 8FA70064 */   lw        $a3, 0x64($sp)
 /* A5A78 800A4E78 27A40018 */  addiu      $a0, $sp, 0x18
-/* A5A7C 800A4E7C 0C02CA98 */  jal        func_800B2A60
+/* A5A7C 800A4E7C 0C02CA98 */  jal        guMtxF2L
 /* A5A80 800A4E80 8FA50058 */   lw        $a1, 0x58($sp)
 /* A5A84 800A4E84 10000001 */  b          .L800A4E8C
 /* A5A88 800A4E88 00000000 */   nop

@@ -5,7 +5,6 @@
 
 typedef uint32_t UNK_TYPE;
 typedef uint32_t UNK_POINTER;
-//typedef uint16_t CFB[320][240];
 
 // this is totally bogus
 typedef struct {
@@ -175,6 +174,15 @@ typedef struct {
     uint8_t unk_0xBC7;
 } struct_func_800188CC_gActors;
 
+typedef struct {
+    uint8_t unk_0x00[0x2880];
+    uint16_t unk_0x2880;
+    uint16_t unk_0x2882;
+    uint8_t unk_0x2884[0x9C];
+    uint16_t unk_0x2920;
+    uint16_t unk_0x2922;
+} struct_func_80021270_D_80104098;
+
 extern UNK_TYPE D_80000300;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
@@ -217,7 +225,7 @@ extern UNK_TYPE D_8011D970;
 extern UNK_TYPE D_8011DDF0;
 extern UNK_TYPE D_801377D0;
 extern UNK_TYPE D_801378C0;
-extern uint16_t D_800BE668;
+extern int16_t D_800BE668;
 extern uint8_t D_800BE6E4;
 extern uint8_t D_800BE6E8;
 extern uint8_t D_800BE6EC;
@@ -276,7 +284,6 @@ extern uint16_t D_800BE530;
 extern uint16_t D_800BE534;
 extern uint16_t D_801781F8;
 extern uint16_t D_800CBF44;
-extern uint16_t D_800EF5F0;
 extern uint16_t D_80178136;
 extern UNK_TYPE D_801780F0;
 extern UNK_TYPE D_801780F4;
@@ -287,7 +294,7 @@ extern float gEyeY;
 extern float gEyeZ;
 extern float gAtX;
 extern float gAtY;
-extern float gAtY;
+extern float gAtZ;
 extern float gUpX;
 extern float gUpY;
 extern float gUpZ;
@@ -417,8 +424,72 @@ extern UNK_TYPE D_800F059E;
 extern uint8_t D_800C5008;
 extern int8_t D_80171B18;
 extern UNK_TYPE D_800BA9E0;
-
 extern CFB D_803DA800[2];
+extern UNK_POINTER D_80178104;
+extern UNK_POINTER D_80178108;
+extern UNK_POINTER D_8017810C;
+extern UNK_POINTER D_80178110;
+extern UNK_POINTER D_80178114;
+extern UNK_POINTER D_80178118;
+extern UNK_POINTER D_8017811C;
+extern UNK_POINTER D_80178120;
+extern UNK_POINTER D_80178124;
+extern UNK_POINTER D_80178128;
+extern UNK_TYPE D_802C9F70;
+extern int16_t D_80103944;
+extern int16_t D_801037AA;
+extern int16_t D_80103480;
+extern int16_t D_80103616;
+extern uint16_t D_800CA234;
+extern UNK_TYPE D_80103918;
+extern UNK_TYPE D_80103780;
+extern UNK_TYPE D_801035E8;
+extern UNK_TYPE D_80103450;
+extern UNK_TYPE D_800CA2B0;
+extern uint16_t D_800D2908;
+extern struct_func_80021270_D_80104098 D_80104098;
+extern uint16_t D_800CA23C;
+extern uint16_t D_800CA240;
+extern uint16_t D_800CA248;
+extern uint16_t D_800CA24C;
+extern uint16_t D_800CA244;
+extern uint16_t D_800CA250;
+extern uint16_t* D_800CBDFC;
+extern uint16_t* D_800CBE0C;
+extern uint16_t D_801069B8;
+extern uint16_t D_80106918;
+extern int8_t D_800BE6F0;
+extern int16_t D_800BE63C;
+extern int32_t D_800BE6C0;
+extern uint8_t D_801376BC;
+extern uint8_t D_801376B8;
+extern uint16_t D_80137480;
+extern int16_t D_800BE6FC;
+extern int16_t D_800BE58C;
+extern int16_t D_800BE588;
+extern UNK_TYPE D_800BE554;
+extern UNK_TYPE D_800BE550;
+extern UNK_TYPE D_800BE618;
+extern UNK_TYPE D_800BE614;
+extern UNK_TYPE D_800BE610;
+extern UNK_TYPE D_800BE73C;
+extern int16_t D_800BE5F0;
+extern int32_t D_800BE5EC;
+extern int32_t D_800BE5E8;
+extern uint16_t D_800BE6A4;
+extern uint16_t D_800BE590;
+extern uint16_t D_800BE594;
+extern uint16_t D_8013747C;
+extern uint16_t D_800BE674;
+extern uint16_t D_800BE66C;
+extern uint16_t D_800D294C;
+extern uint16_t D_800D5820;
+extern int32_t D_800BE5F4;
+extern uint8_t D_801376A8;
+extern CFB* D_801373E0; // FIXME: type is wrong, I am reusing this struct
+extern uint32_t D_801781F4;
+extern uint32_t D_80171B14;
+extern uint32_t D_80171B10;
 
 #endif
 

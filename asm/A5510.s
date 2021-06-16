@@ -199,7 +199,7 @@ glabel func_800A4B9C
 /* A57D8 800A4BD8 0C029244 */  jal        func_800A4910
 /* A57DC 800A4BDC E7A80018 */   swc1      $f8, 0x18($sp)
 /* A57E0 800A4BE0 27A40028 */  addiu      $a0, $sp, 0x28
-/* A57E4 800A4BE4 0C02CA98 */  jal        func_800B2A60
+/* A57E4 800A4BE4 0C02CA98 */  jal        guMtxF2L
 /* A57E8 800A4BE8 8FA50068 */   lw        $a1, 0x68($sp)
 /* A57EC 800A4BEC 10000001 */  b          .L800A4BF4
 /* A57F0 800A4BF0 00000000 */   nop

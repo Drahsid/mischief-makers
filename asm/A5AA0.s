@@ -158,7 +158,7 @@ glabel func_800A50B4
 /* A5CE0 800A50E0 0C0293A8 */  jal        func_800A4EA0
 /* A5CE4 800A50E4 E7A40010 */   swc1      $f4, 0x10($sp)
 /* A5CE8 800A50E8 27A40020 */  addiu      $a0, $sp, 0x20
-/* A5CEC 800A50EC 0C02CA98 */  jal        func_800B2A60
+/* A5CEC 800A50EC 0C02CA98 */  jal        guMtxF2L
 /* A5CF0 800A50F0 8FA50060 */   lw        $a1, 0x60($sp)
 /* A5CF4 800A50F4 10000001 */  b          .L800A50FC
 /* A5CF8 800A50F8 00000000 */   nop

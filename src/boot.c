@@ -384,59 +384,59 @@ void func_80001670(void) {
         if (!gGameState) {}
 
         case 0: {
-            func_80022F48();
+            func_80022F48(); // soft reset
             break;
         }
         case 1: {
-            func_80017800();
+            func_80017800(); // intro
             break;
         }
         case 2: {
-            func_8001817C();
+            func_8001817C(); // titlescreen
             break;
         }
         case 3: {
-            func_800188CC();
+            func_800188CC(); // sound test
             break;
         }
         case 4: {
-            func_800191B8();
+            func_800191B8(); // debug level select
             break;
         }
         case 5: {
-            func_800232A4();
+            func_800232A4(); // loading stage
             break;
         }
         case 6: {
-            func_80021034();
+            func_80021034(); // stage update
             break;
         }
         case 7: {
-            func_80012F98();
+            func_80012F98(); // game over
             break;
         }
         case 8: {
-            func_80388000();
+            func_80388000(); // unknown
             break;
         }
         case 9: {
-            func_80388008();
+            func_80388008(); // unknown
             break;
         }
         case 10: {
-            func_80021270();
+            func_80021270(); // demo mode
             break;
         }
         case 11: {
-            func_80007C8C();
+            func_80007C8C(); // fileselect
             break;
         }
         case 12: {
-            func_8001B460();
+            func_8001B460(); // transition
             break;
         }
         case 13: {
-            func_8001D654();
+            func_8001D654(); // level select (best times?)
             break;
         }
         case 14: {

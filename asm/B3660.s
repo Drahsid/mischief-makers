@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B2A60
+glabel guMtxF2L
 /* B3660 800B2A60 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B3664 800B2A64 AFA50004 */  sw         $a1, 4($sp)
 /* B3668 800B2A68 24AE0020 */  addiu      $t6, $a1, 0x20
@@ -224,7 +224,7 @@ glabel func_800B2D64
 /* B3970 800B2D70 0C02CB32 */  jal        func_800B2CC8
 /* B3974 800B2D74 27A40018 */   addiu     $a0, $sp, 0x18
 /* B3978 800B2D78 27A40018 */  addiu      $a0, $sp, 0x18
-/* B397C 800B2D7C 0C02CA98 */  jal        func_800B2A60
+/* B397C 800B2D7C 0C02CA98 */  jal        guMtxF2L
 /* B3980 800B2D80 8FA50058 */   lw        $a1, 0x58($sp)
 /* B3984 800B2D84 10000001 */  b          .L800B2D8C
 /* B3988 800B2D88 00000000 */   nop
