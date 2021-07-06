@@ -1,6 +1,6 @@
-#include <inttypes.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000400.s")
@@ -10,7 +10,7 @@
  * It stores 0 in a bunch of registers, and uses about 10 at a time to write to the cfb
  * However, obviously this should get get optimized to use $r0
  * And that is what we see in this current code
-*/
+ */
 void Framebuffer_Clear(void) {
     uint32_t* cfb;
     int32_t index;
@@ -22,7 +22,10 @@ void Framebuffer_Clear(void) {
     int32_t t0;
 
     osViBlack((uint8_t)1U);
-    do { index = 0; cfb = (uint32_t*)0x803DA800; } while (0);
+    do {
+        index = 0;
+        cfb = (uint32_t*)0x803DA800;
+    } while (0);
     do {
         t7 = 0x00010001;
         t6 = 0;
@@ -163,8 +166,8 @@ void Framebuffer_Clear(void) {
     } while (index != 0x4B0);
 
     cfb[1] = t7;
-    osViSwapBuffer((void *) 0x803DA800);
-    osViBlack((uint8_t) 0U);
+    osViSwapBuffer((void*)0x803DA800);
+    osViBlack((uint8_t)0U);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Framebuffer_Clear.s")
@@ -195,7 +198,7 @@ void func_80000718(int32_t arg0) {
         Framebuffer_Clear();
         phi_t0 = (uint32_t)&D_800EA110;
         phi_t7 = (uint32_t)&D_8012AD10;
-loop_2:
+    loop_2:
         temp_t0 = phi_t0 + 0xC;
         *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
         temp_t7 = phi_t7 + 0xC;
@@ -209,12 +212,13 @@ loop_2:
         *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
         *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
         phi_v0 = &D_800EA110;
-    } else {
+    }
+    else {
         func_80099C20(&D_800E9850);
         Framebuffer_Clear();
         phi_t5 = (uint32_t)&D_800E9850;
         phi_t1 = (uint32_t)&D_8012AD10;
-loop_5:
+    loop_5:
         temp_t5 = phi_t5 + 0xC;
         *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
         temp_t1 = phi_t1 + 0xC;
@@ -230,14 +234,15 @@ loop_5:
         phi_v0 = &D_800E9850;
     }
     D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
+    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
     osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA); // This is from libultra!
     osStartThread(&D_8012A9F8);
     osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
     osStartThread(&D_8012A848);
     osSetThreadPri(0, 0);
 
-    while (1) {}
+    while (1) {
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000718.s")
@@ -255,21 +260,21 @@ void func_80000C20(int32_t arg0) {
     void* phi_s2;
 
     func_80001B38();
-    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABA8), (void **) (&D_8012AC68), 1);
+    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABA8), (void**)(&D_8012AC68), 1);
     new_var3 = &D_8012ABC0;
-    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABD8), (void **) (&D_8012AC70), 1);
+    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
     func_8009A6F0(4, &D_8012ABD8, D_8012AC80);
     func_800020BC();
-    osCreateMesgQueue((OSMesgQueue *) (&D_8012ABF0), (void **) (&D_8012AC74), 1);
+    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
     func_8009A6F0(9, &D_8012ABF0, D_8012AC80);
-    osCreateMesgQueue(new_var3, (void **) (&D_8012AC6C), 1);
+    osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
     func_8009A790(0xA);
     func_8009A9B0(new_var3, D_8012AC80, 1);
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
     D_801370C0 = func_80001098();
-    phi_s2 = (void *) 0x803DA800;
+    phi_s2 = (void*)0x803DA800;
     while (1) {
         func_8009AA80(&D_8012ADA0);
         func_8009AD10(&D_8012ADA0, 0, 1);
@@ -283,18 +288,18 @@ void func_80000C20(int32_t arg0) {
         D_8012AC84->t.type = 1;
         D_8012AC84->t.flags = 0;
         D_8012AC84->t.ucode_boot = 0x800BA9E0;
-        D_8012AC84->t.ucode_boot_size = (&D_800BAAB0) - ((uint32_t *) 0x800BA9E0);
-        D_8012AC84->t.ucode = (uint64_t *) (&D_800BAAB0);
-        D_8012AC84->t.ucode_data = (uint64_t *) (&D_800EEA10);
+        D_8012AC84->t.ucode_boot_size = (&D_800BAAB0) - ((uint32_t*)0x800BA9E0);
+        D_8012AC84->t.ucode = (uint64_t*)(&D_800BAAB0);
+        D_8012AC84->t.ucode_data = (uint64_t*)(&D_800EEA10);
         D_8012AC84->t.output_buff = 0;
         D_8012AC84->t.output_buff_size = 0;
         D_8012AC84->t.ucode_size = 0x1000;
         D_8012AC84->t.ucode_data_size = 0x800;
-        D_8012AC84->t.dram_stack = (uint64_t *) (&D_8011D970);
+        D_8012AC84->t.dram_stack = (uint64_t*)(&D_8011D970);
         D_8012AC84->t.dram_stack_size = 0x400;
         D_8012AC84->t.data_ptr = ((D_800BE700 * 0x6180) + 0x8012ADC0) + (new_var = 0x180);
-        D_8012AC84->t.data_size = (((int32_t) ((((*((uint32_t *) 0x8012A670)) - 0x8012ADC0) + ((-((int32_t) (D_800BE700 * 0x6180))) & 0xFFFFu)) - new_var)) >> 3) * 8;
-        D_8012AC84->t.yield_data_ptr = (uint64_t *) (&D_8011DDF0);
+        D_8012AC84->t.data_size = (((int32_t)((((*((uint32_t*)0x8012A670)) - 0x8012ADC0) + ((-((int32_t)(D_800BE700 * 0x6180))) & 0xFFFFu)) - new_var)) >> 3) * 8;
+        D_8012AC84->t.yield_data_ptr = (uint64_t*)(&D_8011DDF0);
         D_8012AC84->t.yield_data_size = 0xDA0;
 
         func_8009AEA0();
@@ -311,15 +316,15 @@ void func_80000C20(int32_t arg0) {
         if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
             D_8012AC84->t.ucode_boot = 0x800BA9E0;
             func_800028D0();
-            func_8009AD10((uint32_t *) new_var3, &D_8012AC80, 1);
+            func_8009AD10((uint32_t*)new_var3, &D_8012AC80, 1);
             func_800029EC();
         }
 
         phi_s2 = &D_8012AC80;
-        func_8009AD10((uint32_t *) new_var3, phi_s2, 1);
-        phi_s2 = (void *) 0x803DA800;
+        func_8009AD10((uint32_t*)new_var3, phi_s2, 1);
+        phi_s2 = (void*)0x803DA800;
         if (D_800BE700 != 0) {
-            phi_s2 = (void *) 0x801DA800;
+            phi_s2 = (void*)0x801DA800;
         }
 
         func_80000FE0();
@@ -333,7 +338,8 @@ void func_80000C20(int32_t arg0) {
 
 void func_80000FE0(void) {
     func_8009AB58(&D_8012AD88);
-    if (!D_8012AD70[D_801370C0].unk_0x04) {}
+    if (!D_8012AD70[D_801370C0].unk_0x04) {
+    }
 
     func_8009AB58(&D_8012AD70);
 
@@ -381,7 +387,8 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 void func_80001670(void) {
     switch (gGameState) {
-        if (!gGameState) {}
+        if (!gGameState) {
+        }
 
         case 0: {
             func_80022F48(); // soft reset
@@ -446,18 +453,20 @@ void func_80001670(void) {
     }
 }
 
+// this is a linear congruential algorithm for prng
 uint32_t func_8000178C(void) {
     uint32_t new_var;
     D_800BE5A4 = (0, (D_800BE5A4 * 0x85) + 1);
 
-    if (!D_800BE5A4) {}
+    if (!D_800BE5A4) {
+    }
     new_var = (D_800BE5A4 / 0x100) & (0xFFFF & 0xFFFFFFFFFFFFFFFF);
 
-    if (D_800BE5A4) {}
+    if (D_800BE5A4) {
+    }
     if (1) {
         return new_var;
     }
-
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800017D0.s")

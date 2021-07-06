@@ -1,8 +1,8 @@
-#include <inttypes.h>
+#include <actor.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
-#include <actor.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
 
@@ -33,7 +33,7 @@ void func_8001E8E4(int32_t arg0, int32_t arg1) {
     }
     else {
         temp_v1_2 = &gActors[temp_t7];
-        temp_v1_2->unk_0xF8 = (uint32_t) -(int32_t) temp_v0->unk_0xF8;
+        temp_v1_2->unk_0xF8 = (uint32_t) - (int32_t)temp_v0->unk_0xF8;
         phi_v1 = temp_v1_2;
     }
     phi_v1->unk_0xFC = temp_v0->unk_0xFC;
@@ -95,7 +95,7 @@ Actor* func_8001EADC(int32_t arg0, int32_t arg1) {
 /* This function is related to hit / kncokback effects?
  * Differences are regalloc, and instruction order
  * Function called from D_800CA1C0 seems to be bogus (the wrong effect triggers in-game)
-*/
+ */
 void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
     int32_t index0 = actorIndexR & 0xFFFF;
     int32_t index1 = actorIndexL & 0xFFFF;
@@ -132,12 +132,12 @@ void func_8001FF30(void) {
 #ifdef NON_MATCHING
 /* Differences are regalloc and instruction order
  * Additionally, when it loads actor.unk_0x98, there should be a nop following it
-*/
+ */
 int32_t func_8001FF50(void) {
     int32_t index;
     int32_t temp;
 
-    for(index = 1; index < ACTOR_COUNT1; index = temp) {
+    for (index = 1; index < ACTOR_COUNT1; index = temp) {
         index++;
         temp = index & 0xFFFF;
         gActors[index].unk_0x98 &= 0x380600;
@@ -168,7 +168,7 @@ void func_8001FFA8(void) {
 /* Update function for main gamestate when not paused
  * A lot of regalloc differences
  * Code relatively different
-*/
+ */
 uint16_t func_80020024(void) {
     int16_t* temp_s1;
     uint16_t temp_a0;
@@ -186,7 +186,7 @@ uint16_t func_80020024(void) {
 
     D_800BE4E0 = (uint16_t)(D_800BE4E0 + 1);
     D_801782B8 = (uint16_t)(D_801782B8 + 1);
-    if (((int32_t) D_801781E0 < 0x8CA0) && ((int32_t)D_800D28E8 >= 2) && (func_8005DEFC() == 0) && ((int32_t)D_800D28E4 < 0x61)) {
+    if (((int32_t)D_801781E0 < 0x8CA0) && ((int32_t)D_800D28E8 >= 2) && (func_8005DEFC() == 0) && ((int32_t)D_800D28E4 < 0x61)) {
         D_801781E0 = (uint16_t)(D_801781E0 + 1);
     }
     func_800122B0();
@@ -211,12 +211,12 @@ uint16_t func_80020024(void) {
             }
         }
         if (((int32_t)D_800BE4E4 % phi_v1) != 0) {
-            D_801781DC = (uint16_t) (D_801781DC | temp_a0);
+            D_801781DC = (uint16_t)(D_801781DC | temp_a0);
             return temp_v0;
         }
         temp_t5 = D_801781DC;
         D_801781DC = (uint16_t)0U;
-        D_800BE4FC = (uint16_t) (temp_a0 | temp_t5);
+        D_800BE4FC = (uint16_t)(temp_a0 | temp_t5);
     }
     func_800253B0();
     func_8001F88C();
@@ -249,7 +249,7 @@ uint16_t func_80020024(void) {
         phi_s3 = &D_800EF508;
         phi_s4 = 0x30;
         phi_s1 = &D_800EF4F8;
-loop_21:
+    loop_21:
         func_80083C54(*phi_s2, -0x90, phi_s0);
         func_80083A74(*phi_s3 - 0x21, -0x90, phi_s4);
         temp_s1 = phi_s1 + 2;
@@ -327,7 +327,7 @@ void func_80021034(void) {
 #ifdef NONMATCHING
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
  * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
-*/
+ */
 void func_80021270(void) {
     if (gGameSubState != 0) {
         if (gGameSubState == 1) {
@@ -436,4 +436,3 @@ void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
 void func_8002167C(void) {
     return;
 }
-

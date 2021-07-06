@@ -1,6 +1,6 @@
-#include <inttypes.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80016E70.s")
@@ -38,9 +38,9 @@ void func_800191B8(void) {
     int32_t temp_t7;
     int32_t temp_t8_2;
     uint16_t temp_v0;
-    uint8_t *temp_v1;
-    uint8_t *temp_v1_2;
-    uint8_t *temp_v1_3;
+    uint8_t* temp_v1;
+    uint8_t* temp_v1_2;
+    uint8_t* temp_v1_3;
     uint8_t temp_a2;
     uint8_t temp_a2_2;
     uint8_t temp_t6;
@@ -71,7 +71,7 @@ void func_800191B8(void) {
                 temp_t6 = gActors.unk_0xBC6 - 1;
                 gActors.unk_0xBC6 = temp_t6;
                 if ((temp_t6 & 0xFF) == 0xFF) {
-                    gActors.unk_0xBC6 = (uint8_t) 0x15U;
+                    gActors.unk_0xBC6 = (uint8_t)0x15U;
                 }
                 func_80003380(0x22);
             }
@@ -127,7 +127,7 @@ void func_800191B8(void) {
     }
     else {
         phi_a2 = 0;
-        loop_5:
+    loop_5:
         temp_t7 = (phi_a2 + 1) & 0xFFFF;
         *((&D_80178170) + phi_a2) = (uint8_t)0;
         phi_a2 = temp_t7;
@@ -135,13 +135,13 @@ void func_800191B8(void) {
             goto loop_5;
         }
         phi_a2_2 = 0;
-        loop_7:
+    loop_7:
         temp_v1_3 = (&D_80178188) + phi_a2_2;
         phi_a0 = 0;
         *temp_v1_3 = (uint8_t)0U;
         phi_v0 = 0;
         if (phi_a0 > 0) {
-            loop_8:
+        loop_8:
             temp_t6_2 = (phi_v0 + 1) & 0xFFFF;
             *temp_v1_3 = (uint8_t)((*temp_v1_3) + (*((&D_800C823C) + (phi_v0 * 2))));
             phi_v0 = temp_t6_2;
@@ -153,7 +153,8 @@ void func_800191B8(void) {
         temp_a0 = (phi_a2_2 + 1) & 0xFFFF;
         phi_a2_2 = temp_a0;
         phi_a0 = temp_a0;
-        if (!(&gActors)) {}
+        if (!(&gActors)) {
+        }
         if (temp_a0 < 0x16) {
             goto loop_7;
         }

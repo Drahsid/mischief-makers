@@ -57,7 +57,7 @@ ASM_PROCESSOR_DIR := $(TOOLS_DIR)/asm-processor
 
 default: all
 
-all: dirs $(TARGET).z64 check
+all: dirs $(TARGET).z64
 
 check:
 	@md5sum $(TARGET).z64
@@ -100,6 +100,8 @@ $(TARGET).bin: $(TARGET).elf
 $(TARGET).z64: $(TARGET).bin
 	@cp $< $@
 	$(N64CRC) $@
+	@md5sum $(TARGET).z64
+	@md5sum -c checksum.md5
 
 ### Settings
 .SECONDARY:

@@ -42,4 +42,6 @@ CRC 2: 0x0691E430  Calculated: 0x0691E430 (Good)
 baserom.z64: OK
 ```
 
+## Contributing
+Contributions are welcome. If you would like to reserve a function, open a PR with the function name.
 

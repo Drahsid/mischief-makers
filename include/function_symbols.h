@@ -1,8 +1,8 @@
 #ifndef FUNCTION_SYMBOLS_H
 #define FUNCTION_SYMBOLS_H
 
-#include "inttypes.h"
 #include "actor.h"
+#include "inttypes.h"
 
 extern void func_80000400();
 extern void Framebuffer_Clear();
@@ -816,20 +816,20 @@ extern void func_800451E4();
 extern void func_80045500();
 extern void func_80045544();
 extern void func_80045610();
-extern void func_800456DC();
-extern void func_8004571C();
+extern int8_t func_800456DC();
+extern int16_t func_8004571C();
 extern void func_80045758();
 extern void func_800457C8();
 extern void func_8004586C();
 extern void func_80045D84();
 extern void func_80045D9C();
 extern void func_80045E58();
-extern void func_80045F08();
+extern int32_t func_80045F08();
 extern void func_80045F14();
 extern void func_80045FA4();
 extern void func_80046148();
 extern void func_80046188();
-extern void func_80046218();
+extern void func_80046218(int16_t arg0, int32_t arg1);
 extern void func_80046274();
 extern void func_80046280();
 extern void func_800462F0();
@@ -847,11 +847,11 @@ extern void func_80046A30();
 extern void func_80046A9C();
 extern void func_80046B4C();
 extern void func_80046D5C();
-extern void func_80046E6C();
+extern int32_t func_80046E6C();
 extern void func_80046EBC();
 extern void func_800472D4();
 extern void func_8004732C();
-extern void func_8004735C();
+extern void func_8004735C(uint16_t arg0, int32_t arg1);
 extern void func_80047410();
 extern void func_800475EC();
 extern void func_80047648();
@@ -2234,4 +2234,3 @@ extern void func_800BA9E0();
 extern void mainproc();
 
 #endif
-

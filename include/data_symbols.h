@@ -1,6 +1,7 @@
 #ifndef DATA_SYMBOLS_H
 #define DATA_SYMBOLS_H
 
+#include <inttypes.h>
 #include <ultra64.h>
 
 typedef uint32_t UNK_TYPE;
@@ -335,14 +336,14 @@ extern uint16_t D_800BE4D0;
 extern uint16_t D_800BE4D4;
 extern int32_t D_800BE5D8;
 extern int32_t D_800BE5DC;
-extern int32_t D_800BE558;
-extern int32_t D_800BE55C;
+extern int16_t D_800BE558;
+extern int16_t D_800BE55C;
 extern UNK_TYPE D_800BE560;
 extern uint16_t D_800BE62C;
 extern uint16_t D_800BE630;
 extern int32_t D_800BE564;
 extern int32_t D_800D28FC;
-extern int32_t D_800D2978;
+extern uint16_t D_800D2978;
 extern uint16_t D_800BE714;
 extern uint16_t D_80178460;
 extern uint16_t D_800BE5A4;
@@ -467,8 +468,8 @@ extern uint16_t D_80137480;
 extern int16_t D_800BE6FC;
 extern int16_t D_800BE58C;
 extern int16_t D_800BE588;
-extern UNK_TYPE D_800BE554;
-extern UNK_TYPE D_800BE550;
+extern uint32_t D_800BE554;
+extern uint32_t D_800BE550;
 extern UNK_TYPE D_800BE618;
 extern UNK_TYPE D_800BE614;
 extern UNK_TYPE D_800BE610;
@@ -490,6 +491,62 @@ extern CFB* D_801373E0; // FIXME: type is wrong, I am reusing this struct
 extern uint32_t D_801781F4;
 extern uint32_t D_80171B14;
 extern uint32_t D_80171B10;
-
+extern UNK_TYPE D_800DE348;
+extern UNK_TYPE D_800DE508;
+extern UNK_TYPE D_800DE6C8;
+extern UNK_TYPE D_800DE888;
+extern UNK_TYPE D_800DEA48;
+extern UNK_TYPE D_800DEF88;
+extern UNK_TYPE D_800DEC08;
+extern UNK_TYPE D_800DEDC8;
+extern UNK_TYPE D_800DF308;
+extern UNK_TYPE D_800DF4C8;
+extern UNK_TYPE D_800DF688;
+extern UNK_TYPE D_800DF148;
+extern UNK_TYPE D_800DDA88;
+extern UNK_TYPE D_800DDE08;
+extern UNK_TYPE D_800DDC48;
+extern UNK_TYPE D_800DDFC8;
+extern uint16_t D_800D2968;
+extern int16_t D_800D296C;
+extern int16_t D_800D2974;
+extern int16_t D_800D2970;
+extern int32_t D_800D28EC;
+extern uint16_t D_800D28F0;
+extern int16_t D_800D28F8;
+extern int16_t D_800D28F4;
+extern int32_t D_800D2938;
+extern uint16_t D_801782C0;
+extern uint8_t D_801069E0;
+extern uint16_t D_800D37A4;
+extern int16_t D_800BE568;
+extern int32_t D_800D2928;
+extern int16_t D_800D2914;
+extern int16_t D_800EF5F0;
+extern uint8_t D_800D28D0;
+extern int16_t D_800BE4EC;
+extern int16_t D_800D2900;
+extern int32_t D_800D2928;
+extern int32_t D_800BE72C;
+extern int32_t D_800BE730;
+extern int16_t D_800BE578;
+extern int16_t D_800BE584;
+extern int16_t D_800BE580;
+extern int16_t D_800BE6A8;
+extern int8_t D_800BE70C;
+extern int16_t D_800BE57C;
+extern int8_t D_800BE710;
+extern int32_t D_800BE71C;
+extern int32_t D_800BE720;
+extern int32_t D_800BE724;
+extern int32_t D_800BE728;
+extern int32_t D_800BE638;
+extern uint16_t D_800CBF58;
+extern int8_t D_800CC428;
+extern UNK_POINTER D_8013746C;
+extern UNK_TYPE D_800C71A0;
+extern uint8_t D_800CCFDC;
+extern int32_t D_801376E4;
+extern int32_t D_801376E8;
+extern int32_t D_800CEC0C;
 #endif
-

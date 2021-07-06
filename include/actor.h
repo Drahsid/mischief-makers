@@ -36,7 +36,7 @@ typedef struct {
     /* 0x0DE */ uint8_t unk_0xDE;
     /* 0x0DF */ uint8_t unk_0xDF;
     /* 0x0E0 */ uint16_t health;
-    /* 0x0E2 */ uint64_t unk_0xE2;
+    /* 0x0E2 */ uint16_t unk_0xE2;
     /* 0x0E4 */ uint8_t unk_0xE4[0x14];
     /* 0x0F8 */ uint32_t unk_0xF8;
     /* 0x0FC */ uint32_t unk_0xFC;
