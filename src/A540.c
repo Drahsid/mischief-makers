@@ -1,11 +1,11 @@
-#include <inttypes.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
 
 /* This file is related to graphics
  * Most of the functions are setting up Display Lists
-*/
+ */
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_80009940.s")
 

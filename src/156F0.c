@@ -1,8 +1,8 @@
-#include <inttypes.h>
+#include <actor.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
-#include <actor.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014AF0.s")
 
@@ -50,7 +50,7 @@
 /* Differences are regalloc and instruction order
  * Additionally, my code is generating nops below lw?
  * This function iterates over all of the actors, and updates the collision for active actors
-*/
+ */
 void func_80016CB4(void) {
     Actor* actor;
     int32_t index;

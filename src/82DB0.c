@@ -1,8 +1,8 @@
-#include <inttypes.h>
+#include <actor.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
-#include <actor.h>
 
 #ifdef NON_MATCHING
 void func_800821B0(void) {
@@ -16,7 +16,7 @@ void func_800821B0(void) {
         temp_v0 = gPlayerActor.unk_0x84;
         if ((temp_v0 & 0xF800) == 0x5800) {
             D_800BE714 = (uint16_t)0U;
-            temp_t1 = ((int32_t) (temp_v0 & 0x7FF) % 0x322) & 0xFFFF;
+            temp_t1 = ((int32_t)(temp_v0 & 0x7FF) % 0x322) & 0xFFFF;
             phi_a0 = 0x1004A0918;
             if (temp_t1 != 0) {
                 phi_a0 = (temp_t1 * 4) + 0x5095C98 + 0xFAFFFFFC + 0x40AC80;

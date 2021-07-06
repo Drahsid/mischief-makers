@@ -1,6 +1,6 @@
-#include <inttypes.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80021690.s")
@@ -35,7 +35,8 @@ volatile uint16_t func_80022F48(void) {
     if (gGameSubState == 0) {
         func_800230B8();
         func_8002312C();
-        if (!gGameSubState) {}
+        if (!gGameSubState) {
+        }
 
         temp_ret = func_80023168();
         gGameSubState++;
@@ -83,7 +84,7 @@ volatile uint16_t func_80022F48(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80023168.s")
 
-#if 1
+#ifdef NON_MATCHING
 // Needs regalloc fixes, and reordering related to a structure
 void func_800232A4(void) {
     int32_t temp_t6_2;
@@ -123,7 +124,7 @@ void func_800232A4(void) {
     gPlayerActorp->unk_0xD0 = (uint16_t)temp_t8_2;
     D_800BE564 = temp_t8_2 & 0xFFFF;
     temp_t6_2 = D_800BE564;
-    D_800BE560 = (uint32_t) temp_t6_2;
+    D_800BE560 = (uint32_t)temp_t6_2;
     D_800BE55C = temp_t6_2;
     D_800BE558 = temp_t6_2;
     D_800BE554 = temp_t6_2;
@@ -132,15 +133,15 @@ void func_800232A4(void) {
     D_800BE614 = temp_t6_2;
     D_800BE610 = temp_t6_2;
     D_800BE73C = temp_t6_2;
-    D_800BE5F0 = (int16_t) temp_t6_2;
-    D_800BE5EC = (int32_t) D_800BE5F0;
-    D_800BE5E8 = (int32_t) D_800BE5EC;
+    D_800BE5F0 = (int16_t)temp_t6_2;
+    D_800BE5EC = (int32_t)D_800BE5F0;
+    D_800BE5E8 = (int32_t)D_800BE5EC;
     D_800BE5DC = D_800BE5E8;
     D_800BE5D8 = D_800BE5DC;
     temp_v0 = D_800BE5D8;
     gPlayerActorp->pos_y = temp_v0;
     gPlayerActorp->pos_x = temp_v0;
-    D_800BE6A4 = (uint16_t) temp_v0;
+    D_800BE6A4 = (uint16_t)temp_v0;
     temp_t8_3 = D_800BE6A4;
     D_800BE590 = temp_t8_3;
     D_800BE594 = temp_t8_3;
@@ -151,7 +152,7 @@ void func_800232A4(void) {
     D_800BE674 = temp_t8_3;
     D_800BE66C = temp_t8_3;
     D_800BE4E8 = temp_t8_3;
-    func_80042D84(0, gActors, (void *)0x801373E0, (void *)0x800D5820);
+    func_80042D84(0, gActors, (void*)0x801373E0, (void*)0x800D5820);
     func_80010A10();
     func_800230B8();
     func_80023168();

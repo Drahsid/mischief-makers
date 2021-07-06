@@ -1,6 +1,6 @@
-#include <inttypes.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
+#include <inttypes.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")
@@ -21,7 +21,7 @@
 /* Differences come from when we read D_800BE558 and D_800BE55C
  * The code reads them as 16 bit, then 32 bit
  * I am not sure how to replicate, since what I have currently written gets optimized out
-*/
+ */
 void func_80012830(void) {
     // It is lh then lw the same values ?
     D_800BE560 = (int16_t)D_800BE558;
@@ -44,4 +44,3 @@ void func_80012830(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012830.s")
 #endif
-
