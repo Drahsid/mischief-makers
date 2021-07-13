@@ -16,7 +16,8 @@ void func_80042CF8(uint16_t* arg0) {
     uint32_t index;
     uint32_t new_var2;
     uint16_t* a0;
-    if (!index) {}
+    if (!index) {
+    }
 
     a0 = arg0;
     if (a0 != 0) {
@@ -215,7 +216,9 @@ void func_80043918(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D04.s")
 
 void func_80043D30(int32_t arg0) {
-    if (D_800D2908 == 0) { func_80043D04(); }
+    if (D_800D2908 == 0) {
+        func_80043D04();
+    }
     func_80043A68(arg0);
 }
 
@@ -320,7 +323,9 @@ void func_8004495C(void) {
 
 #ifdef NON_MATCHING
 int8_t func_800456DC(void) {
-    if ((D_801782B8 & 0x20) != 0) { return ((0xF - (D_801782B8 & 0x1F)) << 0x10) >> 0x10; }
+    if ((D_801782B8 & 0x20) != 0) {
+        return ((0xF - (D_801782B8 & 0x1F)) << 0x10) >> 0x10;
+    }
 
     return ((-0xF) << 0x10) >> 0x10;
 }
@@ -403,7 +408,9 @@ void func_80046188(int32_t arg0, int32_t arg1) {
 #ifdef NON_MATCHING
 // needs reordering
 void func_80046218(int16_t arg0, int32_t arg1) {
-    if ((arg1 & 0xFFFF) != 0) { D_800D28FC |= 1; }
+    if ((arg1 & 0xFFFF) != 0) {
+        D_800D28FC |= 1;
+    }
 
     D_800D28E4 = 0x64;
     D_800D28E8 = 0;
@@ -460,9 +467,12 @@ void func_80046A30(void) {
         new_var = index;
         actor = &gActors[new_var];
         index = (index + 1) & 0xFFFF;
-        if (!index) {}
+        if (!index) {
+        }
 
-        if ((actor->flag & 0x80000) != 0) { actor->flag = 0; }
+        if ((actor->flag & 0x80000) != 0) {
+            actor->flag = 0;
+        }
     } while (index < (ACTOR_COUNT1 + 7));
 }
 #else
@@ -533,7 +543,9 @@ void func_800475EC(void) {
     int32_t temp_a0;
 
     temp_v0 = D_800BE558 - D_800BE560;
-    if ((int32_t)temp_v0 >= 0) { D_800D2914 = (int16_t)(D_800D2914 - temp_v0); }
+    if ((int32_t)temp_v0 >= 0) {
+        D_800D2914 = (int16_t)(D_800D2914 - temp_v0);
+    }
 
     temp_v1 = D_800D2914;
     temp_a0 = temp_v1 << 0x10;
@@ -568,7 +580,9 @@ void func_80047958(void) {
 
 void func_80047A14(void) {
     func_80047994();
-    if (D_800D28E4 == D_800D28F0) { D_800D28E8 = 0x1000; }
+    if (D_800D28E4 == D_800D28F0) {
+        D_800D28E8 = 0x1000;
+    }
 }
 
 #ifdef NON_MATCHING
@@ -599,7 +613,9 @@ void func_80047A54(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047C28.s")
 
 void func_80047C98(void) {
-    if ((D_800D28FC & 0x80) == 0) { func_800451E4(&D_800D2978); }
+    if ((D_800D28FC & 0x80) == 0) {
+        func_800451E4(&D_800D2978);
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047CCC.s")

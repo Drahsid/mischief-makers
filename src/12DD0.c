@@ -3,15 +3,76 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")
+#ifdef NON_MATCHING
+// Only difference is index should get moved into t9 when masked, and back into v1 before the loop continues
+void func_800121D0(void) {
+    uint16_t sp1E;
+    uint16_t index;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012288.s")
+    sp1E = D_800EF5F0;
+    func_8001E2D0(0);
+
+    if (sp1E) {}
+
+    D_800EF5F0 = sp1E;
+
+    gActors->pos_z = 1;
+    D_800BE5E8 = 0;
+    D_800BE5EC = 0;
+    gActors->unk_0xCC = 0;
+    D_800BE5D4 = 0;
+    D_800BE5F0 = 0;
+
+    if (gActors) {}
+
+    D_800BE5F8 = 0;
+
+    for (index = 0; index < 0x40;  index++ /* = (index + 1) & 0xFFFF*/) {
+        (&D_8011DD70)[index] = 0;
+        (&D_801225F0)[index] = 0;
+    }
+
+    func_8004A960(0, &D_801225F0);
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")
+#endif
+
+void func_80012288(void) {
+    D_800EF5E2 = 0x16;
+    func_800121D0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800122B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800123AC.s")
+#ifdef NON_MATCHING
+// totally identical except for swapped regalloc on 2 instructions
+void func_800123AC(void) {
+    int32_t temp_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012418.s")
+    temp_a0 = D_800BE5D8 - D_800BE558;
+
+    if (temp_a0 < -0x90) {
+        D_800BE5D8 = D_800BE558 - 0x90;
+        D_800EF598 = -0x90;
+        return;
+    }
+
+    if ((D_800BE5D8 - D_800BE558) >= 0x91) {
+        D_800BE5D8 = D_800BE558 + 0x90;
+        D_800EF598 = 0x90;
+        return;
+    }
+
+    D_800EF598 = (int16_t)temp_a0;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800123AC.s")
+#endif
+
+void func_80012418(void) {
+    D_800EF59C = (int16_t)(*(int16_t*)(&D_800BE5DC) - D_800BE55C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
 

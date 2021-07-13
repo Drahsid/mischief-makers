@@ -70,7 +70,12 @@ clean:
 	rm -rf build
 
 setup:
-	$(PYTHON3) tools/splat/split.py --target baserom.z64 --basedir . mischiefmakers.yaml
+	$(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . mischiefmakers.yaml
+
+context:
+	rm -f ctx.c ctx_includes.c
+	find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
+	$(PYTHON) tools/m2ctx.py ctx_includes.c
 
 ### Recipes
 
