@@ -150,10 +150,10 @@ glabel func_800232A4
 /* 240EC 800234EC A438E674 */  sh         $t8, %lo(D_800BE674)($at)
 /* 240F0 800234F0 3C01800C */  lui        $at, %hi(D_800BE66C)
 /* 240F4 800234F4 A438E66C */  sh         $t8, %lo(D_800BE66C)($at)
-/* 240F8 800234F8 3C01800C */  lui        $at, %hi(D_800BE4E8)
+/* 240F8 800234F8 3C01800C */  lui        $at, %hi(gGamePaused)
 /* 240FC 800234FC 00002025 */  or         $a0, $zero, $zero
 /* 24100 80023500 0C010B61 */  jal        func_80042D84
-/* 24104 80023504 A438E4E8 */   sh        $t8, %lo(D_800BE4E8)($at)
+/* 24104 80023504 A438E4E8 */   sh        $t8, %lo(gGamePaused)($at)
 /* 24108 80023508 0C004284 */  jal        func_80010A10
 /* 2410C 8002350C 00000000 */   nop
 /* 24110 80023510 0C008C2E */  jal        func_800230B8

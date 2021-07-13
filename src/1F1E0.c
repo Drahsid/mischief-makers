@@ -166,104 +166,102 @@ void func_8001FFA8(void) {
 
 #ifdef NON_MATCHING
 /* Update function for main gamestate when not paused
- * A lot of regalloc differences
- * Code relatively different
+ * Functionally identical: very minor regalloc differences before the do while loop, probably fakematches in here
  */
-uint16_t func_80020024(void) {
-    int16_t* temp_s1;
-    uint16_t temp_a0;
-    uint16_t temp_t2;
+void func_80020024(void) {
     uint16_t temp_t5;
-    uint16_t temp_v0;
-    uint16_t temp_v0_2;
-    int32_t phi_v1;
-    uint8_t* phi_s2;
     int32_t phi_s0;
+    uint16_t new_var;
+    int16_t* phi_s1;
+    uint8_t* phi_s2;
     uint16_t* phi_s3;
     int32_t phi_s4;
-    int16_t* phi_s1;
-    uint16_t phi_return;
 
-    D_800BE4E0 = (uint16_t)(D_800BE4E0 + 1);
-    D_801782B8 = (uint16_t)(D_801782B8 + 1);
-    if (((int32_t)D_801781E0 < 0x8CA0) && ((int32_t)D_800D28E8 >= 2) && (func_8005DEFC() == 0) && ((int32_t)D_800D28E4 < 0x61)) {
-        D_801781E0 = (uint16_t)(D_801781E0 + 1);
+    D_800BE4E0++;
+    D_801782B8++;
+
+    if ((((D_801781E0 < 0x8CA0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
+        D_801781E0++;
     }
-    func_800122B0();
+
+    func_800122B0(); // input history
+
     if ((D_800BE6AC & 2) != 0) {
-        temp_a0 = D_800BE4FC;
-        if ((temp_a0 & D_800BE530) != 0) {
-            temp_v0_2 = D_800BE6B4;
-            if (temp_v0_2 != 1) {
-                D_800BE6B4 = (uint16_t)(temp_v0_2 - 1);
-                D_801781DC = (uint16_t)0U;
+        if ((D_800BE4FC & D_800BE530) != 0) {
+            if (D_800BE6B4 != 1) {
+                D_800BE6B4--;
+                D_801781DC = 0;
             }
         }
-        temp_v0 = D_800BE6B4;
-        phi_v1 = (int32_t)temp_v0;
-        if ((temp_a0 & D_800BE534) != 0) {
-            phi_v1 = (int32_t)temp_v0;
-            if (temp_v0 != 0x32) {
-                temp_t2 = temp_v0 + 1;
-                D_800BE6B4 = temp_t2;
-                D_801781DC = (uint16_t)0U;
-                phi_v1 = temp_t2 & 0xFFFF;
-            }
+
+        if (((D_800BE4FC & D_800BE534) != 0) && (D_800BE6B4 != 0x32)) {
+            D_800BE6B4++;
+            D_801781DC = 0;
         }
-        if (((int32_t)D_800BE4E4 % phi_v1) != 0) {
-            D_801781DC = (uint16_t)(D_801781DC | temp_a0);
-            return temp_v0;
+
+        phi_s2 = &D_800EF4F0;
+        phi_s3 = &D_800EF508;
+        if ((D_800BE4E4 % D_800BE6B4) == 0) {
+            new_var = D_801781DC;
+            phi_s0 = new_var;
+            temp_t5 = phi_s0;
+            D_801781DC = 0;
+            D_800BE4FC |= temp_t5;
         }
-        temp_t5 = D_801781DC;
-        D_801781DC = (uint16_t)0U;
-        D_800BE4FC = (uint16_t)(temp_a0 | temp_t5);
+        else {
+            D_801781DC |= D_800BE4FC;
+            return;
+        }
     }
-    func_800253B0();
-    func_8001F88C();
-    func_80014AF0();
-    func_80016CB4();
-    func_80012830();
-    func_80016D94();
-    func_8001EC1C();
-    func_8001107C();
+
+    func_800253B0(); // background
+    func_8001F88C(); // unknown, does something with actors
+    func_80014AF0(); // physics
+    func_80016CB4(); // collision
+    func_80012830(); // camera
+    func_80016D94(); // offsets objects from the camera so that they are in the correct relative position
+    func_8001EC1C(); // interaction with objects
+    func_8001107C(); // foreground layer of background?
+
     if (D_800CA230 == 0) {
-        func_8004ED10(0);
-        func_8008C528(0x41);
+        func_8004ED10(0); // spawns the player
+        func_8008C528(0x41); // unknown
     }
-    func_8001FF30();
-    func_8001DE30();
-    func_8008CA90();
-    func_8001751C();
-    func_80014C44();
-    func_8005C8A4();
-    func_8001FF50();
-    func_8005F6D4();
-    func_80022470();
+
+    func_8001FF30(); // sets a value in the player
+    func_8001DE30(); // unknown, does something with camera
+    func_8008CA90(); // unknown, does something with actors
+    func_8001751C(); // actors
+    func_80014C44(); // clamp to world bounds?
+    func_8005C8A4(); // camera quake
+    func_8001FF50(); // update actor flags
+    func_8005F6D4(); // text
+    func_80022470(); // ui (blinking, health bar)
+
     if (gGameState == 6) {
-        func_80047CCC();
+        func_80047CCC(); // scene init
     }
-    func_80047C98();
+
+    func_80047C98(); // level objects
+
     if ((D_800BE6AC & 0x4000) != 0) {
+        phi_s1 = &D_800EF4F8;
+        phi_s3 = &D_800EF508;
         phi_s2 = &D_800EF4F0;
         phi_s0 = 0x3C;
-        phi_s3 = &D_800EF508;
         phi_s4 = 0x30;
-        phi_s1 = &D_800EF4F8;
-    loop_21:
-        func_80083C54(*phi_s2, -0x90, phi_s0);
-        func_80083A74(*phi_s3 - 0x21, -0x90, phi_s4);
-        temp_s1 = phi_s1 + 2;
-        phi_s2 += 1;
-        phi_s0 += -0x20;
-        phi_s3 += 2;
-        phi_s4 += -0x20;
-        phi_s1 = temp_s1;
-        phi_return = func_80083C54((uint8_t)*phi_s1, -0x68, phi_s0);
-        if ((uint32_t)temp_s1 != (uint32_t)&D_800EF500) {
-            goto loop_21;
-        }
+        do {
+            func_80083C54(*phi_s2, -0x90, phi_s0);
+            func_80083A74((*phi_s3) - 0x21, -0x90, phi_s4);
+            func_80083C54(*phi_s1, -0x68, phi_s0);
+
+            phi_s2++;
+            phi_s0 += -0x20;
+            phi_s3++;
+            phi_s4 += -0x20;
+            phi_s1++;
+        } while (phi_s1 != (&D_800EF500));
     }
-    return phi_return;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020024.s")
@@ -278,7 +276,7 @@ uint16_t func_80020024(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
 #ifdef NON_MATCHING
-// primarily regally differences, and a missing move
+// primarily regalloc differences, and a missing move
 int32_t func_800208D4(void) {
     int32_t index;
     int32_t phi_return;
@@ -289,7 +287,7 @@ int32_t func_800208D4(void) {
     }
     D_800EF4D2 = (int16_t)D_800EF4D4;
     gGameSubState = (uint16_t)0;
-    D_800BE4E8 = (uint16_t)0;
+    gGamePaused = (uint16_t)0;
     return phi_return;
 }
 #else
@@ -302,25 +300,20 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
 
-#ifdef NON_MATCHING
-// The only difference here is regalloc
 void func_80021034(void) {
     uint32_t sp1C;
 
     sp1C = func_800A5720(); // osGetTime?
     func_800457C8();
     D_801374DC = func_800A5720() - sp1C; // time - lastTime ?
-    // if game paused ?
-    if (D_800BE4E8 != 0) {
+
+    if (gGamePaused != 0) {
         func_80020A90();
     }
     else {
         func_80020024();
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021034.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
 

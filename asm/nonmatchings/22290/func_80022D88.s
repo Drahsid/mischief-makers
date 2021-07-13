@@ -1,6 +1,6 @@
 glabel func_80022D88
-/* 23988 80022D88 3C01800C */  lui        $at, %hi(D_800BE4E8)
-/* 2398C 80022D8C A420E4E8 */  sh         $zero, %lo(D_800BE4E8)($at)
+/* 23988 80022D88 3C01800C */  lui        $at, %hi(gGamePaused)
+/* 2398C 80022D8C A420E4E8 */  sh         $zero, %lo(gGamePaused)($at)
 /* 23990 80022D90 3C018013 */  lui        $at, %hi(D_80137D90)
 /* 23994 80022D94 A4207D90 */  sh         $zero, %lo(D_80137D90)($at)
 /* 23998 80022D98 3C01800D */  lui        $at, %hi(D_800CBF40)

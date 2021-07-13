@@ -8,8 +8,8 @@ glabel func_80021034
 /* 21C4C 8002104C 0C0295C8 */  jal        func_800A5720
 /* 21C50 80021050 00000000 */   nop
 /* 21C54 80021054 8FAF001C */  lw         $t7, 0x1c($sp)
-/* 21C58 80021058 3C0B800C */  lui        $t3, %hi(D_800BE4E8)
-/* 21C5C 8002105C 956BE4E8 */  lhu        $t3, %lo(D_800BE4E8)($t3)
+/* 21C58 80021058 3C0B800C */  lui        $t3, %hi(gGamePaused)
+/* 21C5C 8002105C 956BE4E8 */  lhu        $t3, %lo(gGamePaused)($t3)
 /* 21C60 80021060 3C018013 */  lui        $at, %hi(D_801374DC)
 /* 21C64 80021064 006F4823 */  subu       $t1, $v1, $t7
 /* 21C68 80021068 11600005 */  beqz       $t3, .L80021080

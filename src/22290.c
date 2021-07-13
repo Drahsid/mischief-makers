@@ -151,7 +151,7 @@ void func_800232A4(void) {
     D_8013747C = temp_t8_3;
     D_800BE674 = temp_t8_3;
     D_800BE66C = temp_t8_3;
-    D_800BE4E8 = temp_t8_3;
+    gGamePaused = temp_t8_3;
     func_80042D84(0, gActors, (void*)0x801373E0, (void*)0x800D5820);
     func_80010A10();
     func_800230B8();

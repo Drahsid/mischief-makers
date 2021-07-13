@@ -19,6 +19,6 @@ glabel func_800208D4
 /* 21514 80020914 A439F4D2 */  sh         $t9, %lo(D_800EF4D2)($at)
 /* 21518 80020918 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 2151C 8002091C A420E4F4 */  sh         $zero, %lo(gGameSubState)($at)
-/* 21520 80020920 3C01800C */  lui        $at, %hi(D_800BE4E8)
+/* 21520 80020920 3C01800C */  lui        $at, %hi(gGamePaused)
 /* 21524 80020924 03E00008 */  jr         $ra
-/* 21528 80020928 A420E4E8 */   sh        $zero, %lo(D_800BE4E8)($at)
+/* 21528 80020928 A420E4E8 */   sh        $zero, %lo(gGamePaused)($at)

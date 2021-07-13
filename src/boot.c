@@ -387,9 +387,6 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 void func_80001670(void) {
     switch (gGameState) {
-        if (!gGameState) {
-        }
-
         case 0: {
             func_80022F48(); // soft reset
             break;
@@ -447,7 +444,6 @@ void func_80001670(void) {
             break;
         }
         case 14: {
-            return;
             break;
         }
     }

@@ -1,3 +1,4 @@
+gGamePaused = 0x800BE4E8;
 gGameState = 0x800BE4F0;
 gGameSubState = 0x800BE4F4;
 gAtX = 0x800BE5B4;
