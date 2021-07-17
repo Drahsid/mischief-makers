@@ -1,5 +1,8 @@
 # Mischief Makers
-A in-progress decompilation of Mischief Makers (or Yuke-Yuke!!Trouble Makers, ゆけゆけ!!トラブルメーカーズ, Yuke Yuke!!Toraburu Mēkāzu in Japanese.)
+[![Match Status](https://img.shields.io/badge/matched-DEADBEEF%-brightgreen.svg)]()
+[![Decomp Status](https://img.shields.io/badge/decompiled-DEADBEEF%-yellow.svg)]()
+
+A in-progress decompilation of Mischief Makers (or Yuke-Yuke!! Trouble Makers, ゆけゆけ!!トラブルメーカーズ, Yuke Yuke!! Toraburu Mēkāzu in Japanese.)
 
 This project currently supports the 1.1 release of the US version.
 
@@ -25,6 +28,9 @@ git clone https://github.com/Drahsid/mischief-makers.git --recursive
 cd mischief-makers
 git submodule init
 ```
+
+### Install Python3 requirements
+Navigate to `tools/splat/` and run `pip3 install requirements.txt`
 
 ### Prepare the base rom
 Copy over your copy of Mischief Makers 1.1 US into the root folder of this repository. Rename the rom to baserom.z64.
