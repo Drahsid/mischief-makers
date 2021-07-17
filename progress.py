@@ -103,7 +103,7 @@ if (args.update):
     index = filedata.find(tofind)
     if (not index == -1):
         index += len(tofind)
-        qndex = filedata.find("%-", index)
+        qndex = filedata.find("-", index)
         if (not qndex == -1):
             filedata = filedata.replace(filedata[index:qndex], '%.2f' % srcPct, 1)
 
