@@ -23,20 +23,13 @@ void func_80009BE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_8000FBF4.s")
 
-#ifdef NON_MATCHING
 void func_80010898(void) {
-    uint32_t addr0 = (uint32_t)(&D_8012ADC0);
-    uint32_t addr1 = (uint32_t)(&D_80130F40);
-    volatile unsigned int new_var;
-    D_801780F0 = addr0;
-    D_801780F4 = addr1;
-    new_var = addr0;
-    guLookAt((Mtx*)(new_var + 0x3000), gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
-    guLookAt((Mtx*)(addr1 + 0x3000), gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
+    D_801780F0 = D_8012ADC0;
+    D_801780F4 = D_80130F40;
+
+    guLookAt(D_801780F0 + 3, gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
+    guLookAt(D_801780F4 + 3, gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/A540/func_80010898.s")
-#endif
 
 void func_800109B0(void) {
     gEyeX = 0.0f;
@@ -51,12 +44,12 @@ void func_800109B0(void) {
 }
 
 void func_80010A10(void) {
-    D_801780F0 = (uint32_t)&D_8012ADC0;
-    D_801780F4 = (uint32_t)&D_80130F40;
+    D_801780F0 = D_8012ADC0;
+    D_801780F4 = D_80130F40;
     guOrtho(D_801780F0, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     guOrtho(D_801780F4, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
-    guOrtho(D_801780F0 + 0x80, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
-    guOrtho(D_801780F4 + 0x80, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
+    guOrtho(D_801780F0 + 2, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
+    guOrtho(D_801780F4 + 2, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     func_800109B0();
     func_80010898();
     D_80178104 = &D_802C9F70;

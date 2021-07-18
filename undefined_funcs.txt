@@ -3,26 +3,3 @@
 .L840010D4 = 0x840010D4;
 .L840010FC = 0x840010FC;
 .L84001064 = 0x84001064;
-
-/*
-mainproc = 0x800006BC;
-Framebuffer_Clear = 0x80000450;
-guLookAt = 0x800A55B4;
-guOrthoF = 0x800A4C10;
-guOrtho = 0x800A4D74;
-guMtxF2L = 0x800B2A60;
-osCreateMesgQueue = 0x8009A650;
-osCreateThread = 0x80099470;
-osCreateViManager = 0x800997C0;
-osInitialize = 0x80098F50;
-osSetThreadPri = 0x8009A460;
-osStartThread = 0x80099620;
-osViBlack = 0x80098DF0;
-osViSwapBuffer = 0x80098E70;
-*/
-
-
-
-
-
-
