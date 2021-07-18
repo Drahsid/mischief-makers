@@ -1,6 +1,6 @@
 name: Mischief Makers (North America)
-basename: mischiefmakers
 options:
+  basename: mischiefmakers
   find_file_boundaries: True
   compiler: IDO
   platform: n64
@@ -185,6 +185,30 @@ segments:
       - [0xBB810, bin]
       - [0xEB7F0, .rodata, boot]
 
-  - type: bin
+  - type: bin # more data
     start: 0xEB824
+  - [0xEF880, bin] # "RSP SW Version:" ...
+  # display lists / vtxs / etc
+  - [0x79EC60, bin]
+  - [0x79EE60, bin]
+  - [0x79EF58, bin]
+  - [0x79F050, bin]
+  - [0x79F148, bin]
+  - [0x79F240, bin]
+  - [0x79F338, bin]
+  - [0x79F430, bin]
+  - [0x79F578, bin]
+  - [0x79F6C0, bin]
+  - [0x79F808, bin]
+  - [0x79F950, bin]
+  - [0x79FA98, bin]
+  - [0x79FBE0, bin]
+  - [0x7A0790, bin]
+  - [0x7A08D8, bin]
+  - [0x7A0A20, bin]
+  - [0x7A0B68, bin]
+  - [0x7A0CB0, bin]
+  - [0x7A0DF8, bin]
+  - [0x7A0F40, bin]
+  - [0x7EAFD0, bin, trailer] # 0xff to end
   - [0x800000]

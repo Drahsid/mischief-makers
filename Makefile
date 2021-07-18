@@ -57,10 +57,11 @@ ASM_PROCESSOR_DIR := $(TOOLS_DIR)/asm-processor
 
 default: all
 
-all: dirs $(TARGET).z64
+all: dirs $(TARGET).z64 check
 
-check:
-	@md5sum $(TARGET).z64
+check: $(TARGET).z64 $(N64CRC)
+	$(N64CRC) $<
+	@md5sum $<
 	@md5sum -c checksum.md5
 
 dirs:
@@ -70,7 +71,7 @@ clean:
 	rm -rf build
 
 setup:
-	$(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . mischiefmakers.yaml
+	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
 
 context:
 	rm -f ctx.c ctx_includes.c
@@ -104,9 +105,9 @@ $(TARGET).bin: $(TARGET).elf
 
 $(TARGET).z64: $(TARGET).bin
 	@cp $< $@
-	$(N64CRC) $@
-	@md5sum $(TARGET).z64
-	@md5sum -c checksum.md5
+
+$(N64CRC): tools/n64crc.c
+	make -C tools
 
 ### Settings
 .SECONDARY:

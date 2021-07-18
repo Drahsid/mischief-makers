@@ -231,11 +231,8 @@ void func_80043D30(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800441F4.s")
 
 void func_80044360(void) {
-    uint8_t* temp_v0;
-
-    temp_v0 = (D_801782C0 * 0x90) + &D_801069E0;
-    *(uint16_t*)(temp_v0 + 0x80) = 0xA;
-    *(uint32_t*)(temp_v0 + 0x8C) = 0;
+    D_801069E0[D_801782C0].unk_0x80 = 10;
+    D_801069E0[D_801782C0].unk_0x8C = NULL;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044390.s")
@@ -252,18 +249,10 @@ void func_80044360(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044884.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, probably need this struct
 void func_8004495C(void) {
-    uint8_t* temp_v0;
-
-    temp_v0 = (D_801782C0 * 0x90) + &D_801069E0;
-    *(uint32_t*)(temp_v0 + 0x8C) = 0x80203440;
-    *(uint16_t*)(temp_v0 + 0x80) = *(uint16_t*)(((D_800D37A4 * 2) + 0x800D0000) + 0x3770);
+    D_801069E0[D_801782C0].unk_0x80 = D_800D3770[D_800D37A4];
+    D_801069E0[D_801782C0].unk_0x8C = 0x80203440;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004495C.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800449A8.s")
 
@@ -333,15 +322,10 @@ int8_t func_800456DC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800456DC.s")
 #endif
 
-#ifdef NON_MATCHING
-// v0 is unset, not sure how this code was produced
-int16_t func_8004571C(void) {
-    int16_t unk_v0;
-
-    func_800456DC();
-    func_8002B5A0(0x8001, 0, 0, (unk_v0 << 0x10) >> 0x10);
-
-    return unk_v0;
+#if NON_MATCHING
+// missing "move    a3,t6" temporary variable
+void func_8004571C(void) {
+    func_8002B5A0(0x8001, 0, 0, func_800456DC());
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004571C.s")
@@ -354,7 +338,7 @@ int16_t func_8004571C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004586C.s")
 
 void func_80045D84(int32_t arg0, int32_t arg1) {
-    D_800D28E4 = 0x64;
+    D_800D28E4 = 100;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045D9C.s")
