@@ -184,6 +184,13 @@ typedef struct {
     uint16_t unk_0x2922;
 } struct_func_80021270_D_80104098;
 
+typedef struct {
+    uint8_t unk_0x00[0x80];
+    uint16_t unk_0x80;
+    uint8_t  unk_0x82[0xA];
+    uint8_t *unk_0x8C;
+} struct_func_80044360_D_801069E0; // size 0x90
+
 extern uint16_t gGamePaused;
 extern uint16_t gGameState;
 extern uint16_t gGameSubState;
@@ -345,6 +352,7 @@ extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
 extern uint16_t D_800D2978;
+extern uint16_t D_800D3770[];
 extern uint16_t D_800D37A4;
 extern uint32_t D_800D4184;
 extern float D_800D5794;
@@ -452,7 +460,7 @@ extern int16_t D_80103944;
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
-extern uint8_t D_801069E0;
+extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern UNK_TYPE D_8011D970;
 extern int16_t D_8011DD70;
 extern UNK_TYPE D_8011DDF0;
@@ -481,8 +489,8 @@ extern struct_D_8012AD10 D_8012AD10;
 extern struct_func_80000FE0_temp_v0 D_8012AD70[];
 extern UNK_TYPE D_8012AD88;
 extern UNK_TYPE D_8012ADA0;
-extern UNK_TYPE D_8012ADC0;
-extern UNK_TYPE D_80130F40;
+extern Mtx D_8012ADC0[390]; // room for 390 Mtx...
+extern Mtx D_80130F40[390];
 extern UNK_TYPE D_801370C0;
 extern uint16_t D_801370C4;
 extern uint16_t D_801373D8;
@@ -515,8 +523,8 @@ extern UNK_TYPE D_8016E718;
 extern uint32_t D_80171B10;
 extern uint32_t D_80171B14;
 extern int8_t D_80171B18;
-extern UNK_TYPE D_801780F0;
-extern UNK_TYPE D_801780F4;
+extern Mtx *D_801780F0;
+extern Mtx *D_801780F4;
 extern UNK_POINTER D_80178104;
 extern UNK_POINTER D_80178108;
 extern UNK_POINTER D_8017810C;
