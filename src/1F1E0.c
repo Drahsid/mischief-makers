@@ -52,7 +52,7 @@ void func_8001E964(int32_t arg0, int32_t arg1) {
 
     temp_v0 = &gActors[index0];
     temp_v1 = &gActors[index1];
-    if ((int16_t)temp_v0->pos_x < (int16_t)temp_v1->pos_x) {
+    if ((int16_t)temp_v0->pos.x < (int16_t)temp_v1->pos.x) {
         temp_v0->unk_0xF8 = (int32_t)-temp_v1->unk_0xF8;
     }
     else {

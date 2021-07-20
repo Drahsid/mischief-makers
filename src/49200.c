@@ -71,7 +71,7 @@ void func_800491B8(int32_t arg0, uint32_t arg1, int16_t arg2) {
             if (arg1 >= 0) {
                 temp_v1->unk_0x17C = arg1;
                 if (arg2 < temp_v1->unk_0xB0) {
-                    temp_v1->pos_y = (temp_v1->pos_y + temp_v1->unk_0xB0) - arg2;
+                    temp_v1->pos.y = (temp_v1->pos.y + temp_v1->unk_0xB0) - arg2;
                 }
             }
         }
@@ -368,7 +368,7 @@ void func_8004EAE4(uint16_t index) {
         gActors[index & 0xFFFF].unk_0x84 = (uint16_t)gActors[index & 0xFFFF].unk_0x158;
     }
 
-    func_80083A04(gActors[index & 0xFFFF].unk_0x84 - gActors[index & 0xFFFF].unk_0x158, (int16_t)gActors[index & 0xFFFF].pos_x - 0x20, (int16_t)gActors[index & 0xFFFF].pos_y + 0x30, 0);
+    func_80083A04(gActors[index & 0xFFFF].unk_0x84 - gActors[index & 0xFFFF].unk_0x158, (int16_t)gActors[index & 0xFFFF].pos.x - 0x20, (int16_t)gActors[index & 0xFFFF].pos.y + 0x30, 0);
 
     phi_a3 = 0;
     if (((D_800BE4F8 & D_800BE510) != 0) && (((gActors[index & 0xFFFF].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index & 0xFFFF].unk_0x150 < 9) == 0)))) {

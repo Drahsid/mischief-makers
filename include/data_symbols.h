@@ -261,7 +261,7 @@ extern UNK_TYPE D_800BE614;
 extern UNK_TYPE D_800BE618;
 extern uint16_t D_800BE62C;
 extern uint16_t D_800BE630;
-extern int32_t D_800BE638;
+extern int16_t D_800BE638;
 extern int16_t D_800BE63C;
 extern int16_t D_800BE668;
 extern uint16_t D_800BE66C;
