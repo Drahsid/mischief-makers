@@ -19,4 +19,4 @@ tools/n64crc
 ctx_includes.c
 ctx.c
 
-program.csv
+progress.csv
