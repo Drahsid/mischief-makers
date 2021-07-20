@@ -1,7 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "inttypes.h"
+#include "common.h"
 
 enum {
     ACTOR_FLAG_UNK0,
@@ -14,10 +14,7 @@ typedef struct {
     /* 0x084 */ uint16_t unk_0x84; // current sprite?
     /* 0x086 */ uint8_t unk_0x86;
     /* 0x087 */ uint8_t unk_0x87;
-    /* 0x088 */ uint16_t pos_x;
-    /* 0x08A */ uint16_t unk_0x8A;
-    /* 0x08C */ uint16_t pos_y;
-    /* 0x08E */ uint16_t unk_0x8E;
+    /* 0x088 */ Vec2i_union pos;
     /* 0x090 */ uint16_t pos_z;
     /* 0x092 */ uint16_t unk_0x92;
     /* 0x094 */ uint16_t unk_0x94;

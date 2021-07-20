@@ -311,21 +311,31 @@ void func_8004495C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
 #ifdef NON_MATCHING
-int8_t func_800456DC(void) {
-    if ((D_801782B8 & 0x20) != 0) {
-        return ((0xF - (D_801782B8 & 0x1F)) << 0x10) >> 0x10;
+// Differences are regalloc for t1 and t9 during the int16 cast for return
+int16_t func_800456DC(void) {
+    uint32_t temp_v1;
+    int16_t temp_t1_t9;
+
+    temp_v1 = D_801782B8;
+    if ((temp_v1 & 0x20) != 0) {
+        temp_t1_t9 = 15 - (temp_v1 & 0x1F);
+        return temp_t1_t9;
     }
 
-    return ((-0xF) << 0x10) >> 0x10;
+    temp_t1_t9 = (temp_v1 & 0x1F) - 15;
+    return temp_t1_t9;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800456DC.s")
 #endif
 
-#if NON_MATCHING
+#ifdef NON_MATCHING
 // missing "move    a3,t6" temporary variable
 void func_8004571C(void) {
-    func_8002B5A0(0x8001, 0, 0, func_800456DC());
+    int16_t temp_t6;
+
+    temp_t6 = func_800456DC();
+    func_8002B5A0(0x8001, 0, 0, temp_t6);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004571C.s")

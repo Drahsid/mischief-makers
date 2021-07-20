@@ -47,29 +47,19 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800160EC.s")
 
 #ifdef NON_MATCHING
-/* Differences are regalloc and instruction order
- * Additionally, my code is generating nops below lw?
- * This function iterates over all of the actors, and updates the collision for active actors
- */
+// functionally matched, major regalloc differences, and pointer dereference for actor creates extra instructions
 void func_80016CB4(void) {
-    Actor* actor;
-    int32_t index;
+    uint16_t index;
 
     if ((D_80137458 & 0x10) == 0) {
-        index = 0;
-        // I am sure this is supposed to be a for loop, but my testing was unsuccessful
-        do {
-            actor = &gActors[index];
-            if (Actor_Active_Get(actor) != 0) {
-                func_800160EC(index); // update collision
-                actor->unk_0x98 &= 0xFFF7FFFF;
+        for (index = 0; index < ACTOR_COUNT1; index++) {
+            if ((gActors[index].flag & 2) != 0) {
+                func_800160EC(index);
+                gActors[index].unk_0x98 &= 0xFFF7FFFF;
             }
-
-            index = (index + 1) & 0xFFFF;
-        } while (index < ACTOR_COUNT1);
-
-        D_800BE5D8 = (int32_t)(gPlayerActor.pos_x + D_800BE558);
-        D_800BE5DC = (int32_t)(gPlayerActor.pos_y + D_800BE55C);
+        }
+        D_800BE5D8 = gActors[index].pos.x_w + *((int16_t*)(&D_800BE558));
+        D_800BE5DC = gActors[index].pos.y_w + *((int16_t*)(&D_800BE55C));
     }
 }
 #else

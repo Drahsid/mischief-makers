@@ -139,8 +139,8 @@ void func_800232A4(void) {
     D_800BE5DC = D_800BE5E8;
     D_800BE5D8 = D_800BE5DC;
     temp_v0 = D_800BE5D8;
-    gPlayerActorp->pos_y = temp_v0;
-    gPlayerActorp->pos_x = temp_v0;
+    gPlayerActorp->pos.y = temp_v0;
+    gPlayerActorp->pos.x = temp_v0;
     D_800BE6A4 = (uint16_t)temp_v0;
     temp_t8_3 = D_800BE6A4;
     D_800BE590 = temp_t8_3;
