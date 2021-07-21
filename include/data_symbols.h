@@ -1,7 +1,8 @@
 #ifndef DATA_SYMBOLS_H
 #define DATA_SYMBOLS_H
 
-#include <inttypes.h>
+#include "actor.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 typedef uint32_t UNK_TYPE;
@@ -265,6 +266,7 @@ extern int16_t D_800BE638;
 extern int16_t D_800BE63C;
 extern int16_t D_800BE668;
 extern uint16_t D_800BE66C;
+extern uint16_t D_800BE670;
 extern uint16_t D_800BE674;
 extern uint16_t D_800BE6A4;
 extern int16_t D_800BE6A8;
@@ -299,9 +301,9 @@ extern int8_t D_800C4EB0;
 extern int8_t D_800C4EB4;
 extern int8_t D_800C4EB8;
 extern int32_t D_800C4EBC;
-extern UNK_TYPE D_800C4EC0;
+extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
-extern UNK_TYPE D_800C4EC8;
+extern uint32_t D_800C4EC8;
 extern uint8_t D_800C5008;
 extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C823C;
@@ -355,7 +357,7 @@ extern uint16_t D_800D2978;
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D37A4;
 extern uint32_t D_800D4184;
-extern float D_800D5794;
+extern int32_t D_800D5794;
 extern uint16_t D_800D5820;
 extern UNK_TYPE D_800D9B7C;
 extern UNK_TYPE D_800D9C7C;
@@ -417,7 +419,7 @@ extern int16_t D_800EF598;
 extern int16_t D_800EF59C;
 extern int16_t D_800EF5E2;
 extern uint16_t D_800EF5F0;
-extern int32_t D_800EF630;
+extern float D_800EF630;
 extern uint16_t D_800EF794;
 extern uint16_t D_800EF92C;
 extern uint16_t D_800EFAC4;

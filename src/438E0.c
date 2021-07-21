@@ -564,8 +564,8 @@ void func_80047674(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047714.s")
 
 void func_80047958(void) {
-    uint16_t new_var;
-    D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + ((new_var = D_800D28F0 - 0x1F) & 0xFFFF)));
+    int new_var = D_800D28F0 - 0x1F;
+    D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + (new_var & 0xFFFF)));
     gGameState = 5;
     gGameSubState = 0;
 }

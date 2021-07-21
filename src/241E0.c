@@ -377,73 +377,7 @@ void func_80025B7C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002729C.s")
 
-#ifdef NON_MATCHING
-/* matching, except for regalloc. the start needs to use t6, and not a0
- * I have produced code that have the move, and use t6 before, though with various issues
- * Functions that call both this and func_8001E2D0 mask a0 with 0xFFFF beforehand
- * which implies that their a0 args are of type u16
- * with that in mind, we have to get a0 masked into t6,
- * and then moved back into a0 for the call to func_8001E2D0
- * After a0 is first masked into t6, it is used to compute v0
- * which is a pointer to gActors[index],
- * however, it is unlikely that the original code used a pointer,
- * since doing so shrinks the stack later in the function
- * though it otherwise doesn't seem to effect codegen
- * This one really has me stumped.
- * Below are a few of my attempts archived in comments
- */
-
-void func_80027370(int32_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
-    Actor* actor;
-
-    actor = &gActors[((index & 0xFFFFFFFF) & 0xFFFF)];
-    actor->unk_0xD2 = 0;
-    func_8001E2D0(((index & 0xFFFFFFFF) & 0xFFFF));
-    actor->unk_0x94 |= 0x800;
-    actor->unk_0x188 = 0;
-    actor->pos.x = pos_x;
-    actor->pos.y = pos_y;
-    actor->pos_z = pos_z;
-}
-
-// OK except for usage of v1 over t6, move is in delay slot of jal to func_8001E2D0 (creating an extra instruction) (func_80027370 and func_8001E2D0 using s32 a0)
-/*void func_80027370(int32_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
-    Actor* actor;
-
-    actor = &gActors[((index & 0xFFFFFFFF) & 0xFFFF)];
-    actor->unk_0xD2 = 0;
-    func_8001E2D0(((index & 0xFFFFFFFF) & 0xFFFF));
-    actor->unk_0x94 |= 0x800;
-    actor->unk_0x188 = 0;
-    actor->pos.x = pos_x;
-    actor->pos.y = pos_y;
-    actor->pos_z = pos_z;
-}*/
-
-// OK except for usage of v1 over t6, no stack spilling of a0, additional mask into a0 over move (func_80027370 a0 using s32 and func_8001E2D0 a0 using u16)
-/*void func_80027370(int32_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
-    gActors[index & 0xFFFF].unk_0xD2 = 0;
-    func_8001E2D0(index & 0xFFFF);
-    gActors[index & 0xFFFF].unk_0x94 |= 0x800;
-    gActors[index & 0xFFFF].unk_0x188 = 0;
-    gActors[index & 0xFFFF].pos.x = pos_x;
-    gActors[index & 0xFFFF].pos.y = pos_y;
-    gActors[index & 0xFFFF].pos_z = pos_z;
-}*/
-
-// OK except for usage of t7 over t6, no stack spilling of a0, lhu over move (func_80027370 a0 using s32 and func_8001E2D0 a0 using u16)
-/*void func_80027370(int32_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
-    gActors[index & 0xFFFF].unk_0xD2 = 0;
-    func_8001E2D0(index);
-    gActors[index & 0xFFFF].unk_0x94 |= 0x800;
-    gActors[index & 0xFFFF].unk_0x188 = 0;
-    gActors[index & 0xFFFF].pos.x = pos_x;
-    gActors[index & 0xFFFF].pos.y = pos_y;
-    gActors[index & 0xFFFF].pos_z = pos_z;
-}*/
-
-// OK except for usage of a0 over t6, no move (func_80027370 and func_8001E2D0 using u16 a0)
-/*void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     gActors[index].unk_0xD2 = 0;
     func_8001E2D0(index);
     gActors[index].unk_0x94 |= 0x800;
@@ -451,10 +385,7 @@ void func_80027370(int32_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z
     gActors[index].pos.x = pos_x;
     gActors[index].pos.y = pos_y;
     gActors[index].pos_z = pos_z;
-}*/
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027370.s")
-#endif
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800273FC.s")
 

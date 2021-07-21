@@ -626,12 +626,12 @@ void func_800046FC(int32_t* arg0) {
     *arg0 = (int32_t)(sp1C - 8);
 }
 
-void func_80004738(int32_t arg0, UNK_TYPE arg1) {
+void func_80004738(int32_t arg0, uint32_t arg1) {
     D_800C4EC4 = arg0;
     D_800C4EC8 = arg1;
 }
 
-void func_8000474C(int32_t arg0, UNK_TYPE arg1) {
+void func_8000474C(int32_t arg0, uint32_t arg1) {
     D_800C4EBC = arg0;
     D_800C4EC0 = arg1;
 }

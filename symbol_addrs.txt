@@ -25,3 +25,4 @@ gUpY = 0x800BE5C4;
 gUpZ = 0x800BE5C8;
 gGameState = 0x800BE4F0;
 gGamePaused = 0x800BE4E8;
+gActorFuncTable = 0x800C7FE0;

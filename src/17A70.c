@@ -5,7 +5,40 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80016E70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001751C.s")
+void func_8001751C(void) {
+    Actor* actor; // this is probably a fake match but I prefer this syntax over gActors[index]
+    uint16_t index;
+
+    // if actors are not supposed to process
+    if (D_800BE670 != 0) {
+        for (index = 1; index < ACTOR_COUNT2; index++) {
+            actor = gActors + index;
+
+            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0 && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
+                if (actor->unk_0xD2 < 0x100) {
+                    gActorFuncTable[actor->unk_0xD2](index);
+                }
+                else {
+                    func_80016E70(index);
+                }
+            }
+        }
+    }
+    else {
+        for (index = 1; index < ACTOR_COUNT2; index++) {
+            actor = gActors + index;
+
+            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0) {
+                if (actor->unk_0xD2 < 0x100) {
+                    gActorFuncTable[actor->unk_0xD2](index);
+                }
+                else {
+                    func_80016E70(index);
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017680.s")
 
