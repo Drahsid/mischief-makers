@@ -5,13 +5,103 @@
 
 enum {
     ACTOR_FLAG_UNK0,
-    ACTOR_FLAG_ACTIVE = (1 << 2)
+    ACTOR_FLAG_ACTIVE = (1 << 1), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
+    ACTOR_FLAG_UNK2 = (1 << 2),
+    ACTOR_FLAG_UNK3 = (1 << 3),
+    ACTOR_FLAG_UNK4 = (1 << 4),
+    ACTOR_FLAG_UNK5 = (1 << 5),
+    ACTOR_FLAG_UNK6 = (1 << 6),
+    ACTOR_FLAG_UNK7 = (1 << 7),
+    ACTOR_FLAG_UNK8 = (1 << 8),
+    ACTOR_FLAG_UNK9 = (1 << 9),
+    ACTOR_FLAG_UNK10 = (1 << 10),
+    ACTOR_FLAG_UNK11 = (1 << 11),
+    ACTOR_FLAG_UNK12 = (1 << 12),
+    ACTOR_FLAG_UNK13 = (1 << 13),
+    ACTOR_FLAG_UNK14 = (1 << 14),
+    ACTOR_FLAG_UNK15 = (1 << 15),
+    ACTOR_FLAG_UNK16 = (1 << 16),
+    ACTOR_FLAG_UNK17 = (1 << 17),
+    ACTOR_FLAG_UNK18 = (1 << 18),
+    ACTOR_FLAG_UNK19 = (1 << 19),
+    ACTOR_FLAG_UNK20 = (1 << 20),
+    ACTOR_FLAG_UNK21 = (1 << 21),
+    ACTOR_FLAG_UNK22 = (1 << 22),
+    ACTOR_FLAG_UNK23 = (1 << 23),
+    ACTOR_FLAG_UNK24 = (1 << 24),
+    ACTOR_FLAG_UNK25 = (1 << 25),
+    ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
+    ACTOR_FLAG_UNK27 = (1 << 27),
+    ACTOR_FLAG_UNK28 = (1 << 28),
+    ACTOR_FLAG_UNK29 = (1 << 29),
+    ACTOR_FLAG_UNK30 = (1 << 30),
+    ACTOR_FLAG_UNK31 = (1 << 31)
 };
+
+typedef void (*ActorFunc)(uint16_t index);
+
+/*
+    Struct notes from 1.0 (99% based on observation and not code)
+    Observation is primarily on Marina and Teran, so other actors are likely to be espescially different
+    However, all actors are 0x198 in size, probably uses a unioned structure
+    Larger entities (such as bosses) are generally made up of multiple actors
+    I am not using these names in the struct to avoid mislabeling stuff that is not really confirmed
+   offset, name,                    size
+    0x018: pos_x_0,                 16
+    0x01A: pos_y_0,                 16
+    0x01C: pos_z_0,                 32
+    0x058: pos_x_1,                 16
+    0x05A: pos_y_1,                 16
+    0x05C: pos_z_1,                 32
+    0x080: mode,                    32 // we call this flag here, since it is probably some sort of bitfield
+    0x084: current_sprite,          16 // not sure what this actually represents, but it is connected to the sprite
+    0x088: pos,                     64 // much like in our current struct, I was confused about the u16 values that are sometimes u32?
+    0x090: pos_z,                   16
+    0x094: render_flags             16 // not entirely accurate, might be a bitfield for some settings
+    0x098: flags,                   32 // probably the "state" a particular actor uses, instead of the generic "flag"
+    0x09C: rgba,                    32
+    0x0A0: impact                   08 // probably incorrect
+    0x0A2: effect                   16 // probably incorrect
+    0x0B4: scale_x                  32 // float
+    0x0B8: scale_y                  32 // float
+    0x0C8: pos_x_3                  16
+    0x0CA: pos_y_3                  16
+    0x0CC: pos_x_4                  16
+    0x0CE: pos_y_4                  16
+    0x0D0: status                   16 // hope code can describe this better than I can
+    0x0D2: type                     16 // effects the function of the actor, and what actor it is. Marina is 0x16; you can have multiple Marinas if you initialize more actors with this type (this is how I made Mischief Makers Online) I want to properly document these.
+    0x0D4: iframes                  16
+    0x0D6: last_held_sprite         16 // might actually be index, we will see
+    0x0D8: flags_2                  32 // unsure
+    0x0E0: hit_points               16
+    0x0E2: damage_queue             16 // probably incorrect
+    0x0E4: strength                 16 // probably incorrect
+    0x0E8: pointer                  32
+    0x0EC: vel                      64 // uses same union type as pos
+    0x0F4: vel_z                    32
+    0x120: scale_xy                 32 // float
+    0x124: scale_x_1                32 // float
+    0x128: scale_y_1                32 // float
+    0x12C: physics_state            16 // probably incorrect
+    0x13C: grab_flag                64 // probably incorrect
+    0x150: frames_idle              32
+    0x154: reg_gem_value            32 // probably incorrect
+    0x158: direction                08
+    0x158: deviation                08
+    0x16C: aim_angle                16
+    0x170: anim_state               08 // likely misinterpreted
+    0x171: anim_frame               08 // likely misinterpreted
+    0x173: anim_current             08 // likely misinterpreted
+    0x17C: flags_3                  32
+    0x180: anim_frame_attached      08 // likely misinterpreted
+    0x181: anim_current_attached    08 // likely misinterpreted
+    0x182: launch_type              08
+*/
 
 typedef struct {
     /* 0x000 */ uint8_t unk_0x04[0x80];
     /* 0x080 */ int32_t flag;
-    /* 0x084 */ uint16_t unk_0x84; // current sprite?
+    /* 0x084 */ uint16_t unk_0x84;
     /* 0x086 */ uint8_t unk_0x86;
     /* 0x087 */ uint8_t unk_0x87;
     /* 0x088 */ Vec2i_union pos;
@@ -103,12 +193,14 @@ typedef struct {
 typedef void(*Actor_func_8001EB8Cfn)(int32_t, int32_t, Actor*, uint32_t);
 
 extern Actor gActors[];
+extern ActorFunc gActorFuncTable[];
 extern Actor_func_8001EB8Cfn D_800CA1C0[];
 
 #define gPlayerActorp (gActors)
 #define gPlayerActor gActors[0]
 #define ACTOR_COUNT0 0x90
 #define ACTOR_COUNT1 0xC0
+#define ACTOR_COUNT2 0xD0
 
 #define Actor_Active_Set(ACTOR) ((ACTOR)->flag |= ACTOR_FLAG_ACTIVE)
 #define Actor_Active_Unset(ACTOR) ((ACTOR)->flag &= ~ACTOR_FLAG_ACTIVE)

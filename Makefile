@@ -29,7 +29,7 @@ N64CRC = tools/n64crc
 
 OBJCOPYFLAGS = -O binary
 
-CC := $(TOOLS_DIR)/ido_recomp/linux/7.1/cc
+CC := $(TOOLS_DIR)/ido_recomp/linux/5.3/cc
 
 OPT_FLAGS := -O2
 MIPSISET := -mips1 -o32
