@@ -91,8 +91,8 @@ glabel func_80003AD4
 /* 4818 80003C18 022A082A */  slt        $at, $s1, $t2
 /* 481C 80003C1C 10200045 */  beqz       $at, .L80003D34
 /* 4820 80003C20 00046080 */   sll       $t4, $a0, 2
-/* 4824 80003C24 3C0B8017 */  lui        $t3, %hi(D_8016E1D8)
-/* 4828 80003C28 256BE1D8 */  addiu      $t3, $t3, %lo(D_8016E1D8)
+/* 4824 80003C24 3C0B8017 */  lui        $t3, %hi(ptr_alSeqPlayers)
+/* 4828 80003C28 256BE1D8 */  addiu      $t3, $t3, %lo(ptr_alSeqPlayers)
 /* 482C 80003C2C 3C128017 */  lui        $s2, %hi(D_8016E6F8)
 /* 4830 80003C30 93B70047 */  lbu        $s7, 0x47($sp)
 /* 4834 80003C34 2652E6F8 */  addiu      $s2, $s2, %lo(D_8016E6F8)
@@ -147,11 +147,11 @@ glabel func_80003AD4
 /* 48E0 80003CE0 320500FF */  andi       $a1, $s0, 0xff
 /* 48E4 80003CE4 AC39E6FC */  sw         $t9, %lo(D_8016E6FC)($at)
 /* 48E8 80003CE8 8E840000 */  lw         $a0, ($s4)
-/* 48EC 80003CEC 0C027FE0 */  jal        func_8009FF80
+/* 48EC 80003CEC 0C027FE0 */  jal        alSeqpSetChlVol
 /* 48F0 80003CF0 32C600FF */   andi      $a2, $s6, 0xff
 /* 48F4 80003CF4 8E840000 */  lw         $a0, ($s4)
 /* 48F8 80003CF8 320500FF */  andi       $a1, $s0, 0xff
-/* 48FC 80003CFC 0C027FFC */  jal        func_8009FFF0
+/* 48FC 80003CFC 0C027FFC */  jal        alSeqpSetChlPan
 /* 4900 80003D00 32E600FF */   andi      $a2, $s7, 0xff
 /* 4904 80003D04 96AA0000 */  lhu        $t2, ($s5)
 /* 4908 80003D08 26310001 */  addiu      $s1, $s1, 1

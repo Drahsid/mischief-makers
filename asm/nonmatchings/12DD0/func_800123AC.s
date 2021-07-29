@@ -11,20 +11,20 @@ glabel func_800123AC
 /* 12FD0 800123D0 00801025 */   or        $v0, $a0, $zero
 /* 12FD4 800123D4 A4AF0000 */  sh         $t7, ($a1)
 /* 12FD8 800123D8 2418FF70 */  addiu      $t8, $zero, -0x90
-/* 12FDC 800123DC 3C01800F */  lui        $at, %hi(D_800EF598)
+/* 12FDC 800123DC 3C01800F */  lui        $at, %hi(FB_BGCOLOR)
 /* 12FE0 800123E0 03E00008 */  jr         $ra
-/* 12FE4 800123E4 A438F598 */   sh        $t8, %lo(D_800EF598)($at)
+/* 12FE4 800123E4 A438F598 */   sh        $t8, %lo(FB_BGCOLOR)($at)
 .L800123E8:
 /* 12FE8 800123E8 28410091 */  slti       $at, $v0, 0x91
 /* 12FEC 800123EC 14200006 */  bnez       $at, .L80012408
 /* 12FF0 800123F0 24790090 */   addiu     $t9, $v1, 0x90
 /* 12FF4 800123F4 A4B90000 */  sh         $t9, ($a1)
 /* 12FF8 800123F8 24080090 */  addiu      $t0, $zero, 0x90
-/* 12FFC 800123FC 3C01800F */  lui        $at, %hi(D_800EF598)
+/* 12FFC 800123FC 3C01800F */  lui        $at, %hi(FB_BGCOLOR)
 /* 13000 80012400 03E00008 */  jr         $ra
-/* 13004 80012404 A428F598 */   sh        $t0, %lo(D_800EF598)($at)
+/* 13004 80012404 A428F598 */   sh        $t0, %lo(FB_BGCOLOR)($at)
 .L80012408:
-/* 13008 80012408 3C01800F */  lui        $at, %hi(D_800EF598)
-/* 1300C 8001240C A424F598 */  sh         $a0, %lo(D_800EF598)($at)
+/* 13008 80012408 3C01800F */  lui        $at, %hi(FB_BGCOLOR)
+/* 1300C 8001240C A424F598 */  sh         $a0, %lo(FB_BGCOLOR)($at)
 /* 13010 80012410 03E00008 */  jr         $ra
 /* 13014 80012414 00000000 */   nop

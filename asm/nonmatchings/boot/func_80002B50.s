@@ -14,21 +14,21 @@ glabel func_80002B50
 /* 3780 80002B80 3C108017 */  lui        $s0, %hi(D_8016DFE4)
 /* 3784 80002B84 2610DFE4 */  addiu      $s0, $s0, %lo(D_8016DFE4)
 /* 3788 80002B88 8E040000 */  lw         $a0, ($s0)
-/* 378C 80002B8C 0C027B9C */  jal        func_8009EE70
+/* 378C 80002B8C 0C027B9C */  jal        alSeqpGetState
 /* 3790 80002B90 00000000 */   nop
 /* 3794 80002B94 10400005 */  beqz       $v0, .L80002BAC
 /* 3798 80002B98 8FAF0020 */   lw        $t7, 0x20($sp)
 /* 379C 80002B9C 8E040000 */  lw         $a0, ($s0)
-/* 37A0 80002BA0 0C027FD0 */  jal        func_8009FF40
+/* 37A0 80002BA0 0C027FD0 */  jal        alSeqpStop
 /* 37A4 80002BA4 00000000 */   nop
 /* 37A8 80002BA8 8FAF0020 */  lw         $t7, 0x20($sp)
 .L80002BAC:
 /* 37AC 80002BAC 3C06800F */  lui        $a2, %hi(D_800EF4D8)
 /* 37B0 80002BB0 24C6F4D8 */  addiu      $a2, $a2, %lo(D_800EF4D8)
 /* 37B4 80002BB4 24180081 */  addiu      $t8, $zero, 0x81
-/* 37B8 80002BB8 3C01800F */  lui        $at, %hi(D_800EF4D0)
+/* 37B8 80002BB8 3C01800F */  lui        $at, %hi(bssStart)
 /* 37BC 80002BBC ACCF0000 */  sw         $t7, ($a2)
-/* 37C0 80002BC0 A038F4D0 */  sb         $t8, %lo(D_800EF4D0)($at)
+/* 37C0 80002BC0 A038F4D0 */  sb         $t8, %lo(bssStart)($at)
 /* 37C4 80002BC4 8CD90000 */  lw         $t9, ($a2)
 /* 37C8 80002BC8 3C0F800C */  lui        $t7, %hi(D_800C0AD8)
 /* 37CC 80002BCC 001970C0 */  sll        $t6, $t9, 3

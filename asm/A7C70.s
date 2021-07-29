@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A7070
+glabel osPiRawReadIo
 /* A7C70 800A7070 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A7C74 800A7074 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A7C78 800A7078 AFA40028 */  sw         $a0, 0x28($sp)
@@ -19,7 +19,7 @@ glabel func_800A7070
 /* A7C90 800A7090 00000000 */   nop
 /* A7C94 800A7094 24040013 */  addiu      $a0, $zero, 0x13
 /* A7C98 800A7098 24050001 */  addiu      $a1, $zero, 1
-/* A7C9C 800A709C 0C0297B4 */  jal        func_800A5ED0
+/* A7C9C 800A709C 0C0297B4 */  jal        __osError
 /* A7CA0 800A70A0 8FA60028 */   lw        $a2, 0x28($sp)
 /* A7CA4 800A70A4 10000023 */  b          .L800A7134
 /* A7CA8 800A70A8 2402FFFF */   addiu     $v0, $zero, -1
@@ -30,27 +30,27 @@ glabel func_800A7070
 /* A7CB8 800A70B8 10000007 */  b          .L800A70D8
 /* A7CBC 800A70BC 00000000 */   nop
 .L800A70C0:
-/* A7CC0 800A70C0 3C04800F */  lui        $a0, %hi(D_800EDB70)
-/* A7CC4 800A70C4 3C05800F */  lui        $a1, %hi(D_800EDB80)
-/* A7CC8 800A70C8 24A5DB80 */  addiu      $a1, $a1, %lo(D_800EDB80)
-/* A7CCC 800A70CC 2484DB70 */  addiu      $a0, $a0, %lo(D_800EDB70)
-/* A7CD0 800A70D0 0C026E74 */  jal        func_8009B9D0
+/* A7CC0 800A70C0 3C04800F */  lui        $a0, %hi(pirawread_rodata_0000)
+/* A7CC4 800A70C4 3C05800F */  lui        $a1, %hi(pirawread_rodata_0010)
+/* A7CC8 800A70C8 24A5DB80 */  addiu      $a1, $a1, %lo(pirawread_rodata_0010)
+/* A7CCC 800A70CC 2484DB70 */  addiu      $a0, $a0, %lo(pirawread_rodata_0000)
+/* A7CD0 800A70D0 0C026E74 */  jal        __assert
 /* A7CD4 800A70D4 2406003D */   addiu     $a2, $zero, 0x3d
 .L800A70D8:
-/* A7CD8 800A70D8 3C19A460 */  lui        $t9, %hi(D_A4600010)
-/* A7CDC 800A70DC 8F300010 */  lw         $s0, %lo(D_A4600010)($t9)
+/* A7CD8 800A70D8 3C19A460 */  lui        $t9, %hi(PI_STATUS)
+/* A7CDC 800A70DC 8F300010 */  lw         $s0, %lo(PI_STATUS)($t9)
 /* A7CE0 800A70E0 32080003 */  andi       $t0, $s0, 3
 /* A7CE4 800A70E4 11000006 */  beqz       $t0, .L800A7100
 /* A7CE8 800A70E8 00000000 */   nop
 .L800A70EC:
-/* A7CEC 800A70EC 3C09A460 */  lui        $t1, %hi(D_A4600010)
-/* A7CF0 800A70F0 8D300010 */  lw         $s0, %lo(D_A4600010)($t1)
+/* A7CEC 800A70EC 3C09A460 */  lui        $t1, %hi(PI_STATUS)
+/* A7CF0 800A70F0 8D300010 */  lw         $s0, %lo(PI_STATUS)($t1)
 /* A7CF4 800A70F4 320A0003 */  andi       $t2, $s0, 3
 /* A7CF8 800A70F8 1540FFFC */  bnez       $t2, .L800A70EC
 /* A7CFC 800A70FC 00000000 */   nop
 .L800A7100:
-/* A7D00 800A7100 3C0B8000 */  lui        $t3, %hi(D_80000308)
-/* A7D04 800A7104 8D6B0308 */  lw         $t3, %lo(D_80000308)($t3)
+/* A7D00 800A7100 3C0B8000 */  lui        $t3, %hi(osRomBase)
+/* A7D04 800A7104 8D6B0308 */  lw         $t3, %lo(osRomBase)($t3)
 /* A7D08 800A7108 8FAC0028 */  lw         $t4, 0x28($sp)
 /* A7D0C 800A710C 3C01A000 */  lui        $at, 0xa000
 /* A7D10 800A7110 8FB8002C */  lw         $t8, 0x2c($sp)

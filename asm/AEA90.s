@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800ADE90
+glabel alSynSetPitch
 /* AEA90 800ADE90 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AEA94 800ADE94 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AEA98 800ADE98 AFA40020 */  sw         $a0, 0x20($sp)
@@ -17,14 +17,14 @@ glabel func_800ADE90
 /* AEAA8 800ADEA8 8DCF0008 */  lw         $t7, 8($t6)
 /* AEAAC 800ADEAC 11E00027 */  beqz       $t7, .L800ADF4C
 /* AEAB0 800ADEB0 00000000 */   nop
-/* AEAB4 800ADEB4 0C027AE8 */  jal        func_8009EBA0
+/* AEAB4 800ADEB4 0C027AE8 */  jal        __allocParam
 /* AEAB8 800ADEB8 00000000 */   nop
 /* AEABC 800ADEBC AFA2001C */  sw         $v0, 0x1c($sp)
 /* AEAC0 800ADEC0 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AEAC4 800ADEC4 17000006 */  bnez       $t8, .L800ADEE0
 /* AEAC8 800ADEC8 00000000 */   nop
 /* AEACC 800ADECC 2404006A */  addiu      $a0, $zero, 0x6a
-/* AEAD0 800ADED0 0C0297B4 */  jal        func_800A5ED0
+/* AEAD0 800ADED0 0C0297B4 */  jal        __osError
 /* AEAD4 800ADED4 00002825 */   or        $a1, $zero, $zero
 /* AEAD8 800ADED8 1000001E */  b          .L800ADF54
 /* AEADC 800ADEDC 00000000 */   nop

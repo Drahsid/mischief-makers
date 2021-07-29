@@ -19,7 +19,7 @@ glabel func_80002A2C
 .L80002A70:
 /* 3670 80002A70 8FA40034 */  lw         $a0, 0x34($sp)
 /* 3674 80002A74 00C02825 */  or         $a1, $a2, $zero
-/* 3678 80002A78 0C026DB8 */  jal        func_8009B6E0
+/* 3678 80002A78 0C026DB8 */  jal        osInvalDCache
 /* 367C 80002A7C AFA7002C */   sw        $a3, 0x2c($sp)
 /* 3680 80002A80 3C038017 */  lui        $v1, %hi(D_8016E714)
 /* 3684 80002A84 2463E714 */  addiu      $v1, $v1, %lo(D_8016E714)
@@ -34,12 +34,12 @@ glabel func_80002A2C
 /* 36A8 80002AA8 00002825 */  or         $a1, $zero, $zero
 /* 36AC 80002AAC 00003025 */  or         $a2, $zero, $zero
 /* 36B0 80002AB0 AFAA0014 */  sw         $t2, 0x14($sp)
-/* 36B4 80002AB4 0C026DE4 */  jal        func_8009B790
+/* 36B4 80002AB4 0C026DE4 */  jal        osPiStartDma
 /* 36B8 80002AB8 AFA90010 */   sw        $t1, 0x10($sp)
 /* 36BC 80002ABC 3C048017 */  lui        $a0, %hi(D_8016E728)
 /* 36C0 80002AC0 2484E728 */  addiu      $a0, $a0, %lo(D_8016E728)
 /* 36C4 80002AC4 00002825 */  or         $a1, $zero, $zero
-/* 36C8 80002AC8 0C026B44 */  jal        func_8009AD10
+/* 36C8 80002AC8 0C026B44 */  jal        osRecvMesg
 /* 36CC 80002ACC 24060001 */   addiu     $a2, $zero, 1
 /* 36D0 80002AD0 8FBF0024 */  lw         $ra, 0x24($sp)
 /* 36D4 80002AD4 27BD0030 */  addiu      $sp, $sp, 0x30

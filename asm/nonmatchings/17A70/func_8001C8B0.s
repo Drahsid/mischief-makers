@@ -37,10 +37,10 @@ glabel func_8001C8B0
 /* 1D53C 8001C93C 0C006B2A */  jal        func_8001ACA8
 /* 1D540 8001C940 24040005 */   addiu     $a0, $zero, 5
 /* 1D544 8001C944 97A70036 */  lhu        $a3, 0x36($sp)
-/* 1D548 8001C948 3C06800C */  lui        $a2, %hi(D_800C4F28)
+/* 1D548 8001C948 3C06800C */  lui        $a2, %hi(gTimeRecords)
 /* 1D54C 8001C94C 00074840 */  sll        $t1, $a3, 1
 /* 1D550 8001C950 00C93021 */  addu       $a2, $a2, $t1
-/* 1D554 8001C954 94C64F28 */  lhu        $a2, %lo(D_800C4F28)($a2)
+/* 1D554 8001C954 94C64F28 */  lhu        $a2, %lo(gTimeRecords)($a2)
 /* 1D558 8001C958 97A50032 */  lhu        $a1, 0x32($sp)
 /* 1D55C 8001C95C 240A0001 */  addiu      $t2, $zero, 1
 /* 1D560 8001C960 AFAA0010 */  sw         $t2, 0x10($sp)

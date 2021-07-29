@@ -7,10 +7,10 @@
 
 .section .text, "ax"
 
-glabel func_800BA660
+glabel __rmonRCPrunning
 /* BB260 800BA660 00001025 */  or         $v0, $zero, $zero
-/* BB264 800BA664 3C08A404 */  lui        $t0, %hi(D_A4040010)
-/* BB268 800BA668 8D080010 */  lw         $t0, %lo(D_A4040010)($t0)
+/* BB264 800BA664 3C08A404 */  lui        $t0, %hi(SP_STATUS)
+/* BB268 800BA668 8D080010 */  lw         $t0, %lo(SP_STATUS)($t0)
 /* BB26C 800BA66C 31080003 */  andi       $t0, $t0, 3
 /* BB270 800BA670 15000002 */  bnez       $t0, .L800BA67C
 /* BB274 800BA674 00000000 */   nop
@@ -19,7 +19,7 @@ glabel func_800BA660
 /* BB27C 800BA67C 03E00008 */  jr         $ra
 /* BB280 800BA680 00000000 */   nop
 
-glabel func_800BA684
+glabel __rmonIdleRCP
 /* BB284 800BA684 3C04A404 */  lui        $a0, 0xa404
 /* BB288 800BA688 34840018 */  ori        $a0, $a0, 0x18
 .L800BA68C:
@@ -40,7 +40,7 @@ glabel func_800BA684
 /* BB2C0 800BA6C0 03E00008 */  jr         $ra
 /* BB2C4 800BA6C4 00000000 */   nop
 
-glabel func_800BA6C8
+glabel __rmonStepRCP
 /* BB2C8 800BA6C8 3C04A404 */  lui        $a0, 0xa404
 /* BB2CC 800BA6CC 34840010 */  ori        $a0, $a0, 0x10
 /* BB2D0 800BA6D0 240500C5 */  addiu      $a1, $zero, 0xc5
@@ -48,7 +48,7 @@ glabel func_800BA6C8
 /* BB2D8 800BA6D8 1000FFF3 */  b          .L800BA6A8
 /* BB2DC 800BA6DC 00000000 */   nop
 
-glabel func_800BA6E0
+glabel __rmonRunRCP
 /* BB2E0 800BA6E0 3C04A430 */  lui        $a0, 0xa430
 /* BB2E4 800BA6E4 3484000C */  ori        $a0, $a0, 0xc
 /* BB2E8 800BA6E8 24050002 */  addiu      $a1, $zero, 2

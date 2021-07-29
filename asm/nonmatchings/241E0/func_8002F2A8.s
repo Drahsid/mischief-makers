@@ -66,8 +66,8 @@ glabel func_8002F2A8
 /* 2FF9C 8002F39C C428B90C */  lwc1       $f8, -0x46f4($at)
 /* 2FFA0 8002F3A0 30680100 */  andi       $t0, $v1, 0x100
 /* 2FFA4 8002F3A4 46283283 */  div.d      $f10, $f6, $f8
-/* 2FFA8 8002F3A8 3C038018 */  lui        $v1, %hi(D_80178136)
-/* 2FFAC 8002F3AC 24638136 */  addiu      $v1, $v1, %lo(D_80178136)
+/* 2FFA8 8002F3A8 3C038018 */  lui        $v1, %hi(gRedGems)
+/* 2FFAC 8002F3AC 24638136 */  addiu      $v1, $v1, %lo(gRedGems)
 /* 2FFB0 8002F3B0 AC48015C */  sw         $t0, 0x15c($v0)
 /* 2FFB4 8002F3B4 4459F800 */  cfc1       $t9, $31
 /* 2FFB8 8002F3B8 00000000 */  nop

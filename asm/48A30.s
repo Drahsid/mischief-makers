@@ -23,20 +23,20 @@ glabel func_80047E38
 /* 48A58 80047E58 246370CC */  addiu      $v1, $v1, %lo(D_801370CC)
 /* 48A5C 80047E5C A46E0000 */  sh         $t6, ($v1)
 /* 48A60 80047E60 A4AF0000 */  sh         $t7, ($a1)
-/* 48A64 80047E64 3C18800C */  lui        $t8, %hi(D_800BE50C)
-/* 48A68 80047E68 3C19800C */  lui        $t9, %hi(D_800BE510)
-/* 48A6C 80047E6C 9739E510 */  lhu        $t9, %lo(D_800BE510)($t9)
-/* 48A70 80047E70 9718E50C */  lhu        $t8, %lo(D_800BE50C)($t8)
-/* 48A74 80047E74 3C09800C */  lui        $t1, %hi(D_800BE504)
-/* 48A78 80047E78 9529E504 */  lhu        $t1, %lo(D_800BE504)($t1)
-/* 48A7C 80047E7C 3C0B800C */  lui        $t3, %hi(D_800BE508)
-/* 48A80 80047E80 956BE508 */  lhu        $t3, %lo(D_800BE508)($t3)
-/* 48A84 80047E84 3C0D800C */  lui        $t5, %hi(D_800BE514)
+/* 48A64 80047E64 3C18800C */  lui        $t8, %hi(gButton_DLeft)
+/* 48A68 80047E68 3C19800C */  lui        $t9, %hi(gButton_DRight)
+/* 48A6C 80047E6C 9739E510 */  lhu        $t9, %lo(gButton_DRight)($t9)
+/* 48A70 80047E70 9718E50C */  lhu        $t8, %lo(gButton_DLeft)($t8)
+/* 48A74 80047E74 3C09800C */  lui        $t1, %hi(gButton_DUp)
+/* 48A78 80047E78 9529E504 */  lhu        $t1, %lo(gButton_DUp)($t1)
+/* 48A7C 80047E7C 3C0B800C */  lui        $t3, %hi(gButton_DDown)
+/* 48A80 80047E80 956BE508 */  lhu        $t3, %lo(gButton_DDown)($t3)
+/* 48A84 80047E84 3C0D800C */  lui        $t5, %hi(gButton_B)
 /* 48A88 80047E88 03194021 */  addu       $t0, $t8, $t9
-/* 48A8C 80047E8C 95ADE514 */  lhu        $t5, %lo(D_800BE514)($t5)
-/* 48A90 80047E90 3C0F800C */  lui        $t7, %hi(D_800BE518)
+/* 48A8C 80047E8C 95ADE514 */  lhu        $t5, %lo(gButton_B)($t5)
+/* 48A90 80047E90 3C0F800C */  lui        $t7, %hi(gButton_A)
 /* 48A94 80047E94 01095021 */  addu       $t2, $t0, $t1
-/* 48A98 80047E98 95EFE518 */  lhu        $t7, %lo(D_800BE518)($t7)
+/* 48A98 80047E98 95EFE518 */  lhu        $t7, %lo(gButton_A)($t7)
 /* 48A9C 80047E9C 014B6021 */  addu       $t4, $t2, $t3
 /* 48AA0 80047EA0 94780000 */  lhu        $t8, ($v1)
 /* 48AA4 80047EA4 018D7021 */  addu       $t6, $t4, $t5
@@ -242,11 +242,11 @@ glabel func_800480B8
 /* 48D74 80048174 918CF5E1 */  lbu        $t4, %lo(D_800EF5E1)($t4)
 /* 48D78 80048178 24010003 */  addiu      $at, $zero, 3
 /* 48D7C 8004817C 1581002A */  bne        $t4, $at, .L80048228
-/* 48D80 80048180 3C0D800C */   lui       $t5, %hi(D_800BE508)
-/* 48D84 80048184 95ADE508 */  lhu        $t5, %lo(D_800BE508)($t5)
+/* 48D80 80048180 3C0D800C */   lui       $t5, %hi(gButton_DDown)
+/* 48D84 80048184 95ADE508 */  lhu        $t5, %lo(gButton_DDown)($t5)
 /* 48D88 80048188 3C018013 */  lui        $at, %hi(D_801370CC)
-/* 48D8C 8004818C 3C0E800C */  lui        $t6, %hi(D_800BE518)
-/* 48D90 80048190 95CEE518 */  lhu        $t6, %lo(D_800BE518)($t6)
+/* 48D8C 8004818C 3C0E800C */  lui        $t6, %hi(gButton_A)
+/* 48D90 80048190 95CEE518 */  lhu        $t6, %lo(gButton_A)($t6)
 /* 48D94 80048194 A42D70CC */  sh         $t5, %lo(D_801370CC)($at)
 /* 48D98 80048198 3C018013 */  lui        $at, %hi(D_801370CE)
 /* 48D9C 8004819C 240F000C */  addiu      $t7, $zero, 0xc

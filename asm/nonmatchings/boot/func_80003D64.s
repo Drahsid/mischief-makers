@@ -26,12 +26,12 @@ glabel func_80003D64
 /* 49C4 80003DC4 AFA40040 */  sw         $a0, 0x40($sp)
 /* 49C8 80003DC8 1020004A */  beqz       $at, .L80003EF4
 /* 49CC 80003DCC 00009825 */   or        $s3, $zero, $zero
-/* 49D0 80003DD0 3C0B8017 */  lui        $t3, %hi(D_8016E1D8)
+/* 49D0 80003DD0 3C0B8017 */  lui        $t3, %hi(ptr_alSeqPlayers)
 /* 49D4 80003DD4 3C0C8012 */  lui        $t4, %hi(D_8011CDF0)
 /* 49D8 80003DD8 3C0D8012 */  lui        $t5, %hi(D_8011CF18)
 /* 49DC 80003DDC 25ADCF18 */  addiu      $t5, $t5, %lo(D_8011CF18)
 /* 49E0 80003DE0 258CCDF0 */  addiu      $t4, $t4, %lo(D_8011CDF0)
-/* 49E4 80003DE4 256BE1D8 */  addiu      $t3, $t3, %lo(D_8016E1D8)
+/* 49E4 80003DE4 256BE1D8 */  addiu      $t3, $t3, %lo(ptr_alSeqPlayers)
 /* 49E8 80003DE8 000E5080 */  sll        $t2, $t6, 2
 /* 49EC 80003DEC 3C128017 */  lui        $s2, %hi(D_8016E6F8)
 /* 49F0 80003DF0 2652E6F8 */  addiu      $s2, $s2, %lo(D_8016E6F8)
@@ -87,11 +87,11 @@ glabel func_80003D64
 /* 4AA0 80003EA0 AC28E6FC */  sw         $t0, %lo(D_8016E6FC)($at)
 /* 4AA4 80003EA4 92C60000 */  lbu        $a2, ($s6)
 /* 4AA8 80003EA8 8E840000 */  lw         $a0, ($s4)
-/* 4AAC 80003EAC 0C027FE0 */  jal        func_8009FF80
+/* 4AAC 80003EAC 0C027FE0 */  jal        alSeqpSetChlVol
 /* 4AB0 80003EB0 320500FF */   andi      $a1, $s0, 0xff
 /* 4AB4 80003EB4 8E840000 */  lw         $a0, ($s4)
 /* 4AB8 80003EB8 92E60000 */  lbu        $a2, ($s7)
-/* 4ABC 80003EBC 0C027FFC */  jal        func_8009FFF0
+/* 4ABC 80003EBC 0C027FFC */  jal        alSeqpSetChlPan
 /* 4AC0 80003EC0 320500FF */   andi      $a1, $s0, 0xff
 /* 4AC4 80003EC4 96AB0000 */  lhu        $t3, ($s5)
 /* 4AC8 80003EC8 26310001 */  addiu      $s1, $s1, 1

@@ -20,7 +20,7 @@ glabel func_800B56A0
 /* B62C4 800B56C4 00000000 */   nop
 /* B62C8 800B56C8 24040013 */  addiu      $a0, $zero, 0x13
 /* B62CC 800B56CC 24050001 */  addiu      $a1, $zero, 1
-/* B62D0 800B56D0 0C0297B4 */  jal        func_800A5ED0
+/* B62D0 800B56D0 0C0297B4 */  jal        __osError
 /* B62D4 800B56D4 8FA6002C */   lw        $a2, 0x2c($sp)
 /* B62D8 800B56D8 10000023 */  b          .L800B5768
 /* B62DC 800B56DC 2402FFFF */   addiu     $v0, $zero, -1
@@ -35,17 +35,17 @@ glabel func_800B56A0
 /* B62F8 800B56F8 3C05800F */  lui        $a1, %hi(D_800EE7D0)
 /* B62FC 800B56FC 24A5E7D0 */  addiu      $a1, $a1, %lo(D_800EE7D0)
 /* B6300 800B5700 2484E7C0 */  addiu      $a0, $a0, %lo(D_800EE7C0)
-/* B6304 800B5704 0C026E74 */  jal        func_8009B9D0
+/* B6304 800B5704 0C026E74 */  jal        __assert
 /* B6308 800B5708 24060029 */   addiu     $a2, $zero, 0x29
 .L800B570C:
-/* B630C 800B570C 3C19A460 */  lui        $t9, %hi(D_A4600010)
-/* B6310 800B5710 8F300010 */  lw         $s0, %lo(D_A4600010)($t9)
+/* B630C 800B570C 3C19A460 */  lui        $t9, %hi(PI_STATUS)
+/* B6310 800B5710 8F300010 */  lw         $s0, %lo(PI_STATUS)($t9)
 /* B6314 800B5714 32080003 */  andi       $t0, $s0, 3
 /* B6318 800B5718 11000006 */  beqz       $t0, .L800B5734
 /* B631C 800B571C 00000000 */   nop
 .L800B5720:
-/* B6320 800B5720 3C09A460 */  lui        $t1, %hi(D_A4600010)
-/* B6324 800B5724 8D300010 */  lw         $s0, %lo(D_A4600010)($t1)
+/* B6320 800B5720 3C09A460 */  lui        $t1, %hi(PI_STATUS)
+/* B6324 800B5724 8D300010 */  lw         $s0, %lo(PI_STATUS)($t1)
 /* B6328 800B5728 320A0003 */  andi       $t2, $s0, 3
 /* B632C 800B572C 1540FFFC */  bnez       $t2, .L800B5720
 /* B6330 800B5730 00000000 */   nop

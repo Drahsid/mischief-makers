@@ -1,7 +1,7 @@
 BASENAME  = mischiefmakers
 
 BUILD_DIR = build
-ASM_DIRS  = asm asm/data
+ASM_DIRS  = asm asm/data asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp
 BIN_DIRS  = assets
 SRC_DIR   = src
 SRC_DIRS  = $(SRC_DIR)
@@ -68,8 +68,9 @@ dirs:
 	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(shell mkdir -p $(BUILD_DIR)/$(dir)))
 
 clean:
+	rm -rf assets
 	rm -rf build
-
+	rm -f *auto.txt
 setup:
 	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
 

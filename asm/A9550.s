@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A8950
+glabel __osRdbSend
 /* A9550 800A8950 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* A9554 800A8954 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A9558 800A8958 AFA40038 */  sw         $a0, 0x38($sp)
@@ -16,15 +16,15 @@ glabel func_800A8950
 /* A9564 800A8964 AFA00024 */  sw         $zero, 0x24($sp)
 /* A9568 800A8968 AFA00020 */  sw         $zero, 0x20($sp)
 /* A956C 800A896C AFA00018 */  sw         $zero, 0x18($sp)
-/* A9570 800A8970 0C0297A4 */  jal        func_800A5E90
+/* A9570 800A8970 0C0297A4 */  jal        __osDisableInt
 /* A9574 800A8974 00000000 */   nop
 /* A9578 800A8978 AFA2001C */  sw         $v0, 0x1c($sp)
-/* A957C 800A897C 3C0E800F */  lui        $t6, %hi(D_800EA640)
-/* A9580 800A8980 8DCEA640 */  lw         $t6, %lo(D_800EA640)($t6)
+/* A957C 800A897C 3C0E800F */  lui        $t6, %hi(__osRdb_IP6_Empty)
+/* A9580 800A8980 8DCEA640 */  lw         $t6, %lo(__osRdb_IP6_Empty)($t6)
 /* A9584 800A8984 11C0003A */  beqz       $t6, .L800A8A70
 /* A9588 800A8988 00000000 */   nop
-/* A958C 800A898C 3C01800F */  lui        $at, %hi(D_800EA640)
-/* A9590 800A8990 AC20A640 */  sw         $zero, %lo(D_800EA640)($at)
+/* A958C 800A898C 3C01800F */  lui        $at, %hi(__osRdb_IP6_Empty)
+/* A9590 800A8990 AC20A640 */  sw         $zero, %lo(__osRdb_IP6_Empty)($at)
 /* A9594 800A8994 8FAF0040 */  lw         $t7, 0x40($sp)
 /* A9598 800A8998 93A90030 */  lbu        $t1, 0x30($sp)
 /* A959C 800A899C 31F8003F */  andi       $t8, $t7, 0x3f
@@ -88,10 +88,10 @@ glabel func_800A8950
 /* A9670 800A8A70 8FA8003C */  lw         $t0, 0x3c($sp)
 /* A9674 800A8A74 11000066 */  beqz       $t0, .L800A8C10
 /* A9678 800A8A78 00000000 */   nop
-/* A967C 800A8A7C 3C0A8019 */  lui        $t2, %hi(D_8018A748)
-/* A9680 800A8A80 3C0B8019 */  lui        $t3, %hi(D_8018A744)
-/* A9684 800A8A84 8D6BA744 */  lw         $t3, %lo(D_8018A744)($t3)
-/* A9688 800A8A88 8D4AA748 */  lw         $t2, %lo(D_8018A748)($t2)
+/* A967C 800A8A7C 3C0A8019 */  lui        $t2, %hi(__osRdb_IP6_Ct)
+/* A9680 800A8A80 3C0B8019 */  lui        $t3, %hi(__osRdb_IP6_Size)
+/* A9684 800A8A84 8D6BA744 */  lw         $t3, %lo(__osRdb_IP6_Size)($t3)
+/* A9688 800A8A88 8D4AA748 */  lw         $t2, %lo(__osRdb_IP6_Ct)($t2)
 /* A968C 800A8A8C 014B082B */  sltu       $at, $t2, $t3
 /* A9690 800A8A90 1020005F */  beqz       $at, .L800A8C10
 /* A9694 800A8A94 00000000 */   nop
@@ -106,10 +106,10 @@ glabel func_800A8950
 /* A96B0 800A8AB0 240D0003 */  addiu      $t5, $zero, 3
 /* A96B4 800A8AB4 AFAD002C */  sw         $t5, 0x2c($sp)
 .L800A8AB8:
-/* A96B8 800A8AB8 3C0E8019 */  lui        $t6, %hi(D_8018A74C)
-/* A96BC 800A8ABC 8DCEA74C */  lw         $t6, %lo(D_8018A74C)($t6)
-/* A96C0 800A8AC0 3C198019 */  lui        $t9, %hi(D_8018A740)
-/* A96C4 800A8AC4 8F39A740 */  lw         $t9, %lo(D_8018A740)($t9)
+/* A96B8 800A8AB8 3C0E8019 */  lui        $t6, %hi(__osRdb_IP6_CurWrite)
+/* A96BC 800A8ABC 8DCEA74C */  lw         $t6, %lo(__osRdb_IP6_CurWrite)($t6)
+/* A96C0 800A8AC0 3C198019 */  lui        $t9, %hi(__osRdb_IP6_Data)
+/* A96C4 800A8AC4 8F39A740 */  lw         $t9, %lo(__osRdb_IP6_Data)($t9)
 /* A96C8 800A8AC8 000E7880 */  sll        $t7, $t6, 2
 /* A96CC 800A8ACC 01F9C021 */  addu       $t8, $t7, $t9
 /* A96D0 800A8AD0 AFB80034 */  sw         $t8, 0x34($sp)
@@ -157,26 +157,26 @@ glabel func_800A8950
 /* A9774 800A8B74 1420FFEE */  bnez       $at, .L800A8B30
 /* A9778 800A8B78 00000000 */   nop
 .L800A8B7C:
-/* A977C 800A8B7C 3C098019 */  lui        $t1, %hi(D_8018A74C)
-/* A9780 800A8B80 8D29A74C */  lw         $t1, %lo(D_8018A74C)($t1)
-/* A9784 800A8B84 3C018019 */  lui        $at, %hi(D_8018A74C)
+/* A977C 800A8B7C 3C098019 */  lui        $t1, %hi(__osRdb_IP6_CurWrite)
+/* A9780 800A8B80 8D29A74C */  lw         $t1, %lo(__osRdb_IP6_CurWrite)($t1)
+/* A9784 800A8B84 3C018019 */  lui        $at, %hi(__osRdb_IP6_CurWrite)
 /* A9788 800A8B88 252D0001 */  addiu      $t5, $t1, 1
-/* A978C 800A8B8C AC2DA74C */  sw         $t5, %lo(D_8018A74C)($at)
-/* A9790 800A8B90 3C0A8019 */  lui        $t2, %hi(D_8018A74C)
-/* A9794 800A8B94 3C0B8019 */  lui        $t3, %hi(D_8018A744)
-/* A9798 800A8B98 8D6BA744 */  lw         $t3, %lo(D_8018A744)($t3)
-/* A979C 800A8B9C 8D4AA74C */  lw         $t2, %lo(D_8018A74C)($t2)
+/* A978C 800A8B8C AC2DA74C */  sw         $t5, %lo(__osRdb_IP6_CurWrite)($at)
+/* A9790 800A8B90 3C0A8019 */  lui        $t2, %hi(__osRdb_IP6_CurWrite)
+/* A9794 800A8B94 3C0B8019 */  lui        $t3, %hi(__osRdb_IP6_Size)
+/* A9798 800A8B98 8D6BA744 */  lw         $t3, %lo(__osRdb_IP6_Size)($t3)
+/* A979C 800A8B9C 8D4AA74C */  lw         $t2, %lo(__osRdb_IP6_CurWrite)($t2)
 /* A97A0 800A8BA0 014B082B */  sltu       $at, $t2, $t3
 /* A97A4 800A8BA4 14200003 */  bnez       $at, .L800A8BB4
 /* A97A8 800A8BA8 00000000 */   nop
-/* A97AC 800A8BAC 3C018019 */  lui        $at, %hi(D_8018A74C)
-/* A97B0 800A8BB0 AC20A74C */  sw         $zero, %lo(D_8018A74C)($at)
+/* A97AC 800A8BAC 3C018019 */  lui        $at, %hi(__osRdb_IP6_CurWrite)
+/* A97B0 800A8BB0 AC20A74C */  sw         $zero, %lo(__osRdb_IP6_CurWrite)($at)
 .L800A8BB4:
-/* A97B4 800A8BB4 3C088019 */  lui        $t0, %hi(D_8018A748)
-/* A97B8 800A8BB8 8D08A748 */  lw         $t0, %lo(D_8018A748)($t0)
-/* A97BC 800A8BBC 3C018019 */  lui        $at, %hi(D_8018A748)
+/* A97B4 800A8BB4 3C088019 */  lui        $t0, %hi(__osRdb_IP6_Ct)
+/* A97B8 800A8BB8 8D08A748 */  lw         $t0, %lo(__osRdb_IP6_Ct)($t0)
+/* A97BC 800A8BBC 3C018019 */  lui        $at, %hi(__osRdb_IP6_Ct)
 /* A97C0 800A8BC0 250E0001 */  addiu      $t6, $t0, 1
-/* A97C4 800A8BC4 AC2EA748 */  sw         $t6, %lo(D_8018A748)($at)
+/* A97C4 800A8BC4 AC2EA748 */  sw         $t6, %lo(__osRdb_IP6_Ct)($at)
 /* A97C8 800A8BC8 8FAF003C */  lw         $t7, 0x3c($sp)
 /* A97CC 800A8BCC 8FAC002C */  lw         $t4, 0x2c($sp)
 /* A97D0 800A8BD0 01ECC823 */  subu       $t9, $t7, $t4
@@ -188,10 +188,10 @@ glabel func_800A8950
 /* A97E8 800A8BE8 8FAA003C */  lw         $t2, 0x3c($sp)
 /* A97EC 800A8BEC 11400008 */  beqz       $t2, .L800A8C10
 /* A97F0 800A8BF0 00000000 */   nop
-/* A97F4 800A8BF4 3C0B8019 */  lui        $t3, %hi(D_8018A748)
-/* A97F8 800A8BF8 3C088019 */  lui        $t0, %hi(D_8018A744)
-/* A97FC 800A8BFC 8D08A744 */  lw         $t0, %lo(D_8018A744)($t0)
-/* A9800 800A8C00 8D6BA748 */  lw         $t3, %lo(D_8018A748)($t3)
+/* A97F4 800A8BF4 3C0B8019 */  lui        $t3, %hi(__osRdb_IP6_Ct)
+/* A97F8 800A8BF8 3C088019 */  lui        $t0, %hi(__osRdb_IP6_Size)
+/* A97FC 800A8BFC 8D08A744 */  lw         $t0, %lo(__osRdb_IP6_Size)($t0)
+/* A9800 800A8C00 8D6BA748 */  lw         $t3, %lo(__osRdb_IP6_Ct)($t3)
 /* A9804 800A8C04 0168082B */  sltu       $at, $t3, $t0
 /* A9808 800A8C08 1420FFA3 */  bnez       $at, .L800A8A98
 /* A980C 800A8C0C 00000000 */   nop
@@ -204,7 +204,7 @@ glabel func_800A8950
 /* A9824 800A8C24 3C19C000 */  lui        $t9, 0xc000
 /* A9828 800A8C28 AF2C0000 */  sw         $t4, ($t9)
 .L800A8C2C:
-/* A982C 800A8C2C 0C0297AC */  jal        func_800A5EB0
+/* A982C 800A8C2C 0C0297AC */  jal        __osRestoreInt
 /* A9830 800A8C30 8FA4001C */   lw        $a0, 0x1c($sp)
 /* A9834 800A8C34 10000003 */  b          .L800A8C44
 /* A9838 800A8C38 8FA20018 */   lw        $v0, 0x18($sp)

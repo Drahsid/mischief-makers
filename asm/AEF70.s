@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AE370
+glabel alSynStartVoiceParams
 /* AEF70 800AE370 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AEF74 800AE374 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AEF78 800AE378 AFA40020 */  sw         $a0, 0x20($sp)
@@ -18,14 +18,14 @@ glabel func_800AE370
 /* AEF8C 800AE38C 8DCF0008 */  lw         $t7, 8($t6)
 /* AEF90 800AE390 11E00042 */  beqz       $t7, .L800AE49C
 /* AEF94 800AE394 00000000 */   nop
-/* AEF98 800AE398 0C027AE8 */  jal        func_8009EBA0
+/* AEF98 800AE398 0C027AE8 */  jal        __allocParam
 /* AEF9C 800AE39C 00000000 */   nop
 /* AEFA0 800AE3A0 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AEFA4 800AE3A4 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AEFA8 800AE3A8 17000006 */  bnez       $t8, .L800AE3C4
 /* AEFAC 800AE3AC 00000000 */   nop
 /* AEFB0 800AE3B0 2404006A */  addiu      $a0, $zero, 0x6a
-/* AEFB4 800AE3B4 0C0297B4 */  jal        func_800A5ED0
+/* AEFB4 800AE3B4 0C0297B4 */  jal        __osError
 /* AEFB8 800AE3B8 00002825 */   or        $a1, $zero, $zero
 /* AEFBC 800AE3BC 10000039 */  b          .L800AE4A4
 /* AEFC0 800AE3C0 00000000 */   nop
@@ -67,7 +67,7 @@ glabel func_800AE370
 /* AF048 800AE448 8FA9001C */  lw         $t1, 0x1c($sp)
 /* AF04C 800AE44C E524000C */  swc1       $f4, 0xc($t1)
 /* AF050 800AE450 8FA40020 */  lw         $a0, 0x20($sp)
-/* AF054 800AE454 0C027B50 */  jal        func_8009ED40
+/* AF054 800AE454 0C027B50 */  jal        _timeToSamples
 /* AF058 800AE458 8FA5003C */   lw        $a1, 0x3c($sp)
 /* AF05C 800AE45C 8FAA001C */  lw         $t2, 0x1c($sp)
 /* AF060 800AE460 AD420014 */  sw         $v0, 0x14($t2)

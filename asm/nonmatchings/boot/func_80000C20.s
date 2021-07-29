@@ -29,7 +29,7 @@ glabel func_80000C20
 /* 188C 80000C8C 27DEAC80 */  addiu      $fp, $fp, %lo(D_8012AC80)
 /* 1890 80000C90 8FC60000 */  lw         $a2, ($fp)
 /* 1894 80000C94 24040004 */  addiu      $a0, $zero, 4
-/* 1898 80000C98 0C0269BC */  jal        func_8009A6F0
+/* 1898 80000C98 0C0269BC */  jal        osSetEventMesg
 /* 189C 80000C9C 02002825 */   or        $a1, $s0, $zero
 /* 18A0 80000CA0 0C00082F */  jal        func_800020BC
 /* 18A4 80000CA4 00000000 */   nop
@@ -42,7 +42,7 @@ glabel func_80000C20
 /* 18C0 80000CC0 3C058013 */  lui        $a1, %hi(D_8012ABF0)
 /* 18C4 80000CC4 8FC60000 */  lw         $a2, ($fp)
 /* 18C8 80000CC8 24A5ABF0 */  addiu      $a1, $a1, %lo(D_8012ABF0)
-/* 18CC 80000CCC 0C0269BC */  jal        func_8009A6F0
+/* 18CC 80000CCC 0C0269BC */  jal        osSetEventMesg
 /* 18D0 80000CD0 24040009 */   addiu     $a0, $zero, 9
 /* 18D4 80000CD4 3C138013 */  lui        $s3, %hi(D_8012ABC0)
 /* 18D8 80000CD8 2673ABC0 */  addiu      $s3, $s3, %lo(D_8012ABC0)
@@ -51,11 +51,11 @@ glabel func_80000C20
 /* 18E4 80000CE4 02602025 */  or         $a0, $s3, $zero
 /* 18E8 80000CE8 0C026994 */  jal        osCreateMesgQueue
 /* 18EC 80000CEC 24060001 */   addiu     $a2, $zero, 1
-/* 18F0 80000CF0 0C0269E4 */  jal        func_8009A790
+/* 18F0 80000CF0 0C0269E4 */  jal        osViSetSpecialFeatures
 /* 18F4 80000CF4 2404000A */   addiu     $a0, $zero, 0xa
 /* 18F8 80000CF8 8FC50000 */  lw         $a1, ($fp)
 /* 18FC 80000CFC 02602025 */  or         $a0, $s3, $zero
-/* 1900 80000D00 0C026A6C */  jal        func_8009A9B0
+/* 1900 80000D00 0C026A6C */  jal        osViSetEvent
 /* 1904 80000D04 24060001 */   addiu     $a2, $zero, 1
 /* 1908 80000D08 0C000238 */  jal        func_800008E0
 /* 190C 80000D0C 00000000 */   nop
@@ -66,7 +66,7 @@ glabel func_80000C20
 /* 1920 80000D20 96240000 */  lhu        $a0, ($s1)
 /* 1924 80000D24 0C0002A1 */  jal        func_80000A84
 /* 1928 80000D28 00000000 */   nop
-/* 192C 80000D2C 0C000426 */  jal        func_80001098
+/* 192C 80000D2C 0C000426 */  jal        get_first_active_controller
 /* 1930 80000D30 00000000 */   nop
 /* 1934 80000D34 3C018013 */  lui        $at, 0x8013
 /* 1938 80000D38 3C12803D */  lui        $s2, 0x803d
@@ -82,38 +82,38 @@ glabel func_80000C20
 /* 1960 80000D60 26D6ADC0 */  addiu      $s6, $s6, -0x5240
 /* 1964 80000D64 24176180 */  addiu      $s7, $zero, 0x6180
 .L80000D68:
-/* 1968 80000D68 0C026AA0 */  jal        func_8009AA80
+/* 1968 80000D68 0C026AA0 */  jal        osContStartReadData
 /* 196C 80000D6C 02802025 */   or        $a0, $s4, $zero
 /* 1970 80000D70 02802025 */  or         $a0, $s4, $zero
 /* 1974 80000D74 00002825 */  or         $a1, $zero, $zero
-/* 1978 80000D78 0C026B44 */  jal        func_8009AD10
+/* 1978 80000D78 0C026B44 */  jal        osRecvMesg
 /* 197C 80000D7C 24060001 */   addiu     $a2, $zero, 1
-/* 1980 80000D80 3C048013 */  lui        $a0, %hi(D_8012AD88)
-/* 1984 80000D84 0C026AD6 */  jal        func_8009AB58
-/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(D_8012AD88)
-/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(D_801370C0)
-/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(D_801370C0)($t6)
+/* 1980 80000D80 3C048013 */  lui        $a0, %hi(ConpadArrayB)
+/* 1984 80000D84 0C026AD6 */  jal        osContGetReadData
+/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(ConpadArrayB)
+/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(PlayerPort)
+/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(PlayerPort)($t6)
 /* 1994 80000D94 2401FFFF */  addiu      $at, $zero, -1
 /* 1998 80000D98 11C10003 */  beq        $t6, $at, .L80000DA8
 /* 199C 80000D9C 3C048013 */   lui       $a0, %hi(D_8012AC08)
-/* 19A0 80000DA0 0C026AA0 */  jal        func_8009AA80
+/* 19A0 80000DA0 0C026AA0 */  jal        osContStartReadData
 /* 19A4 80000DA4 2484AC08 */   addiu     $a0, $a0, %lo(D_8012AC08)
 .L80000DA8:
 /* 19A8 80000DA8 8E180000 */  lw         $t8, ($s0)
 /* 19AC 80000DAC 240F0001 */  addiu      $t7, $zero, 1
 /* 19B0 80000DB0 AF0F0000 */  sw         $t7, ($t8)
 /* 19B4 80000DB4 8E190000 */  lw         $t9, ($s0)
-/* 19B8 80000DB8 3C09800C */  lui        $t1, %hi(D_800BAAB0)
+/* 19B8 80000DB8 3C09800C */  lui        $t1, %hi(gspFast3DTextStart)
 /* 19BC 80000DBC AF200004 */  sw         $zero, 4($t9)
 /* 19C0 80000DC0 8E080000 */  lw         $t0, ($s0)
-/* 19C4 80000DC4 2529AAB0 */  addiu      $t1, $t1, %lo(D_800BAAB0)
+/* 19C4 80000DC4 2529AAB0 */  addiu      $t1, $t1, %lo(gspFast3DTextStart)
 /* 19C8 80000DC8 AD150008 */  sw         $s5, 8($t0)
 /* 19CC 80000DCC 8E0B0000 */  lw         $t3, ($s0)
 /* 19D0 80000DD0 01355023 */  subu       $t2, $t1, $s5
 /* 19D4 80000DD4 AD6A000C */  sw         $t2, 0xc($t3)
 /* 19D8 80000DD8 8E0D0000 */  lw         $t5, ($s0)
-/* 19DC 80000DDC 3C0C800C */  lui        $t4, %hi(D_800BAAB0)
-/* 19E0 80000DE0 258CAAB0 */  addiu      $t4, $t4, %lo(D_800BAAB0)
+/* 19DC 80000DDC 3C0C800C */  lui        $t4, %hi(gspFast3DTextStart)
+/* 19E0 80000DE0 258CAAB0 */  addiu      $t4, $t4, %lo(gspFast3DTextStart)
 /* 19E4 80000DE4 ADAC0010 */  sw         $t4, 0x10($t5)
 /* 19E8 80000DE8 8E0F0000 */  lw         $t7, ($s0)
 /* 19EC 80000DEC 3C0E800F */  lui        $t6, %hi(D_800EEA10)
@@ -162,13 +162,13 @@ glabel func_80000C20
 /* 1A98 80000E98 240E0DA0 */  addiu      $t6, $zero, 0xda0
 /* 1A9C 80000E9C ADAB0038 */  sw         $t3, 0x38($t5)
 /* 1AA0 80000EA0 8E0C0000 */  lw         $t4, ($s0)
-/* 1AA4 80000EA4 0C026BA8 */  jal        func_8009AEA0
+/* 1AA4 80000EA4 0C026BA8 */  jal        osWritebackDCacheAll
 /* 1AA8 80000EA8 AD8E003C */   sw        $t6, 0x3c($t4)
 /* 1AAC 80000EAC 8E040000 */  lw         $a0, ($s0)
-/* 1AB0 80000EB0 0C026C05 */  jal        func_8009B014
+/* 1AB0 80000EB0 0C026C05 */  jal        osSpTaskLoad
 /* 1AB4 80000EB4 00000000 */   nop
 /* 1AB8 80000EB8 8E040000 */  lw         $a0, ($s0)
-/* 1ABC 80000EBC 0C026CA5 */  jal        func_8009B294
+/* 1ABC 80000EBC 0C026CA5 */  jal        osSpTaskStartGo
 /* 1AC0 80000EC0 00000000 */   nop
 /* 1AC4 80000EC4 0C000845 */  jal        func_80002114
 /* 1AC8 80000EC8 00000000 */   nop
@@ -183,7 +183,7 @@ glabel func_80000C20
 /* 1AEC 80000EEC 3C048013 */  lui        $a0, %hi(D_8012ABF0)
 /* 1AF0 80000EF0 2484ABF0 */  addiu      $a0, $a0, %lo(D_8012ABF0)
 /* 1AF4 80000EF4 00002825 */  or         $a1, $zero, $zero
-/* 1AF8 80000EF8 0C026B44 */  jal        func_8009AD10
+/* 1AF8 80000EF8 0C026B44 */  jal        osRecvMesg
 /* 1AFC 80000EFC 24060001 */   addiu     $a2, $zero, 1
 /* 1B00 80000F00 0C000A7B */  jal        func_800029EC
 /* 1B04 80000F04 00000000 */   nop
@@ -203,14 +203,14 @@ glabel func_80000C20
 /* 1B3C 80000F3C 00000000 */   nop
 /* 1B40 80000F40 02602025 */  or         $a0, $s3, $zero
 /* 1B44 80000F44 03C02825 */  or         $a1, $fp, $zero
-/* 1B48 80000F48 0C026B44 */  jal        func_8009AD10
+/* 1B48 80000F48 0C026B44 */  jal        osRecvMesg
 /* 1B4C 80000F4C 24060001 */   addiu     $a2, $zero, 1
 /* 1B50 80000F50 0C000A7B */  jal        func_800029EC
 /* 1B54 80000F54 00000000 */   nop
 /* 1B58 80000F58 02602025 */  or         $a0, $s3, $zero
 .L80000F5C:
 /* 1B5C 80000F5C 03C02825 */  or         $a1, $fp, $zero
-/* 1B60 80000F60 0C026B44 */  jal        func_8009AD10
+/* 1B60 80000F60 0C026B44 */  jal        osRecvMesg
 /* 1B64 80000F64 24060001 */   addiu     $a2, $zero, 1
 /* 1B68 80000F68 962A0000 */  lhu        $t2, ($s1)
 /* 1B6C 80000F6C 3C12803D */  lui        $s2, 0x803d
@@ -220,7 +220,7 @@ glabel func_80000C20
 /* 1B7C 80000F7C 10000001 */  b          .L80000F84
 /* 1B80 80000F80 3652A800 */   ori       $s2, $s2, 0xa800
 .L80000F84:
-/* 1B84 80000F84 0C0003F8 */  jal        func_80000FE0
+/* 1B84 80000F84 0C0003F8 */  jal        getControllerInput
 /* 1B88 80000F88 00000000 */   nop
 /* 1B8C 80000F8C 1000FF76 */  b          .L80000D68
 /* 1B90 80000F90 00000000 */   nop

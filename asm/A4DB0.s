@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A41B0
+glabel spColor
 /* A4DB0 800A41B0 30A500FF */  andi       $a1, $a1, 0xff
 /* A4DB4 800A41B4 30C600FF */  andi       $a2, $a2, 0xff
 /* A4DB8 800A41B8 30E700FF */  andi       $a3, $a3, 0xff
@@ -23,7 +23,7 @@ glabel func_800A41D8
 /* A4DD8 800A41D8 03E00008 */  jr         $ra
 /* A4DDC 800A41DC 00000000 */   nop
 
-glabel func_800A41E0
+glabel spScale
 /* A4DE0 800A41E0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A4DE4 800A41E4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A4DE8 800A41E8 AFA40018 */  sw         $a0, 0x18($sp)
@@ -50,13 +50,13 @@ glabel func_800A41E0
 /* A4E3C 800A423C 45000006 */  bc1f       .L800A4258
 /* A4E40 800A4240 00000000 */   nop
 /* A4E44 800A4244 8FA40018 */  lw         $a0, 0x18($sp)
-/* A4E48 800A4248 0C02905C */  jal        func_800A4170
+/* A4E48 800A4248 0C02905C */  jal        spClearAttribute
 /* A4E4C 800A424C 24050010 */   addiu     $a1, $zero, 0x10
 /* A4E50 800A4250 10000004 */  b          .L800A4264
 /* A4E54 800A4254 00000000 */   nop
 .L800A4258:
 /* A4E58 800A4258 8FA40018 */  lw         $a0, 0x18($sp)
-/* A4E5C 800A425C 0C029064 */  jal        func_800A4190
+/* A4E5C 800A425C 0C029064 */  jal        spSetAttribute
 /* A4E60 800A4260 24050010 */   addiu     $a1, $zero, 0x10
 .L800A4264:
 /* A4E64 800A4264 10000001 */  b          .L800A426C

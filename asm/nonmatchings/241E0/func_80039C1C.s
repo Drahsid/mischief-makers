@@ -29,10 +29,10 @@ glabel func_80039C1C
 /* 3A888 80039C88 94CD0000 */  lhu        $t5, ($a2)
 /* 3A88C 80039C8C 24010032 */  addiu      $at, $zero, 0x32
 /* 3A890 80039C90 15A1000D */  bne        $t5, $at, .L80039CC8
-/* 3A894 80039C94 3C048018 */   lui       $a0, %hi(D_80178162)
-/* 3A898 80039C98 94848162 */  lhu        $a0, %lo(D_80178162)($a0)
+/* 3A894 80039C94 3C048018 */   lui       $a0, %hi(gCurrentStage)
+/* 3A898 80039C98 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
 /* 3A89C 80039C9C AFA60024 */  sw         $a2, 0x24($sp)
-/* 3A8A0 80039CA0 0C0071FC */  jal        func_8001C7F0
+/* 3A8A0 80039CA0 0C0071FC */  jal        YellowGem_getFlag
 /* 3A8A4 80039CA4 AFA70020 */   sw        $a3, 0x20($sp)
 /* 3A8A8 80039CA8 8FA60024 */  lw         $a2, 0x24($sp)
 /* 3A8AC 80039CAC 8FA70020 */  lw         $a3, 0x20($sp)

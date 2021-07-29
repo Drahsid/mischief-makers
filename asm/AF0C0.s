@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AE4C0
+glabel alSynSetPan
 /* AF0C0 800AE4C0 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AF0C4 800AE4C4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AF0C8 800AE4C8 AFA40020 */  sw         $a0, 0x20($sp)
@@ -17,14 +17,14 @@ glabel func_800AE4C0
 /* AF0D8 800AE4D8 8DCF0008 */  lw         $t7, 8($t6)
 /* AF0DC 800AE4DC 11E00027 */  beqz       $t7, .L800AE57C
 /* AF0E0 800AE4E0 00000000 */   nop
-/* AF0E4 800AE4E4 0C027AE8 */  jal        func_8009EBA0
+/* AF0E4 800AE4E4 0C027AE8 */  jal        __allocParam
 /* AF0E8 800AE4E8 00000000 */   nop
 /* AF0EC 800AE4EC AFA2001C */  sw         $v0, 0x1c($sp)
 /* AF0F0 800AE4F0 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AF0F4 800AE4F4 17000006 */  bnez       $t8, .L800AE510
 /* AF0F8 800AE4F8 00000000 */   nop
 /* AF0FC 800AE4FC 2404006A */  addiu      $a0, $zero, 0x6a
-/* AF100 800AE500 0C0297B4 */  jal        func_800A5ED0
+/* AF100 800AE500 0C0297B4 */  jal        __osError
 /* AF104 800AE504 00002825 */   or        $a1, $zero, $zero
 /* AF108 800AE508 1000001E */  b          .L800AE584
 /* AF10C 800AE50C 00000000 */   nop

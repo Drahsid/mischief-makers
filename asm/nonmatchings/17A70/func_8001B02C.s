@@ -1,8 +1,8 @@
 glabel func_8001B02C
-/* 1BC2C 8001B02C 3C048018 */  lui        $a0, %hi(D_80178162)
-/* 1BC30 8001B030 3C058017 */  lui        $a1, %hi(D_80171B18)
-/* 1BC34 8001B034 24A51B18 */  addiu      $a1, $a1, %lo(D_80171B18)
-/* 1BC38 8001B038 24848162 */  addiu      $a0, $a0, %lo(D_80178162)
+/* 1BC2C 8001B02C 3C048018 */  lui        $a0, %hi(gCurrentStage)
+/* 1BC30 8001B030 3C058017 */  lui        $a1, %hi(gWorldProgress)
+/* 1BC34 8001B034 24A51B18 */  addiu      $a1, $a1, %lo(gWorldProgress)
+/* 1BC38 8001B038 24848162 */  addiu      $a0, $a0, %lo(gCurrentStage)
 /* 1BC3C 8001B03C 94820000 */  lhu        $v0, ($a0)
 /* 1BC40 8001B040 90A30000 */  lbu        $v1, ($a1)
 /* 1BC44 8001B044 00000000 */  nop

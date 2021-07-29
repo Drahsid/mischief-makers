@@ -17,22 +17,22 @@ glabel func_800A9B00
 /* AA718 800A9B18 00000000 */   nop
 .L800A9B1C:
 /* AA71C 800A9B1C 8FAF0018 */  lw         $t7, 0x18($sp)
-/* AA720 800A9B20 3C198019 */  lui        $t9, %hi(D_8018A398)
-/* AA724 800A9B24 2739A398 */  addiu      $t9, $t9, %lo(D_8018A398)
+/* AA720 800A9B20 3C198019 */  lui        $t9, %hi(rmonbrk_bss_0008)
+/* AA724 800A9B24 2739A398 */  addiu      $t9, $t9, %lo(rmonbrk_bss_0008)
 /* AA728 800A9B28 8DF80000 */  lw         $t8, ($t7)
 /* AA72C 800A9B2C AF380004 */  sw         $t8, 4($t9)
 /* AA730 800A9B30 8FA90018 */  lw         $t1, 0x18($sp)
 /* AA734 800A9B34 2408040D */  addiu      $t0, $zero, 0x40d
 /* AA738 800A9B38 AD280000 */  sw         $t0, ($t1)
 /* AA73C 800A9B3C 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA740 800A9B40 0C029BC4 */  jal        func_800A6F10
+/* AA740 800A9B40 0C029BC4 */  jal        osWritebackDCache
 /* AA744 800A9B44 24050004 */   addiu     $a1, $zero, 4
 /* AA748 800A9B48 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA74C 800A9B4C 0C029BE4 */  jal        func_800A6F90
+/* AA74C 800A9B4C 0C029BE4 */  jal        osInvalICache
 /* AA750 800A9B50 24050004 */   addiu     $a1, $zero, 4
 /* AA754 800A9B54 8FAA0018 */  lw         $t2, 0x18($sp)
-/* AA758 800A9B58 3C0B8019 */  lui        $t3, %hi(D_8018A398)
-/* AA75C 800A9B5C 256BA398 */  addiu      $t3, $t3, %lo(D_8018A398)
+/* AA758 800A9B58 3C0B8019 */  lui        $t3, %hi(rmonbrk_bss_0008)
+/* AA75C 800A9B5C 256BA398 */  addiu      $t3, $t3, %lo(rmonbrk_bss_0008)
 /* AA760 800A9B60 AD6A0000 */  sw         $t2, ($t3)
 /* AA764 800A9B64 8FAC001C */  lw         $t4, 0x1c($sp)
 /* AA768 800A9B68 11800011 */  beqz       $t4, .L800A9BB0
@@ -45,10 +45,10 @@ glabel func_800A9B00
 /* AA784 800A9B84 240F040D */  addiu      $t7, $zero, 0x40d
 /* AA788 800A9B88 AF0F0000 */  sw         $t7, ($t8)
 /* AA78C 800A9B8C 8FA4001C */  lw         $a0, 0x1c($sp)
-/* AA790 800A9B90 0C029BC4 */  jal        func_800A6F10
+/* AA790 800A9B90 0C029BC4 */  jal        osWritebackDCache
 /* AA794 800A9B94 24050004 */   addiu     $a1, $zero, 4
 /* AA798 800A9B98 8FA4001C */  lw         $a0, 0x1c($sp)
-/* AA79C 800A9B9C 0C029BE4 */  jal        func_800A6F90
+/* AA79C 800A9B9C 0C029BE4 */  jal        osInvalICache
 /* AA7A0 800A9BA0 24050004 */   addiu     $a1, $zero, 4
 /* AA7A4 800A9BA4 8FB9001C */  lw         $t9, 0x1c($sp)
 /* AA7A8 800A9BA8 3C018019 */  lui        $at, %hi(D_8018A418)
@@ -65,13 +65,13 @@ glabel func_800A9B00
 glabel func_800A9BC8
 /* AA7C8 800A9BC8 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AA7CC 800A9BCC AFBF0014 */  sw         $ra, 0x14($sp)
-/* AA7D0 800A9BD0 3C0E8019 */  lui        $t6, %hi(D_8018A398)
-/* AA7D4 800A9BD4 25CEA398 */  addiu      $t6, $t6, %lo(D_8018A398)
+/* AA7D0 800A9BD0 3C0E8019 */  lui        $t6, %hi(rmonbrk_bss_0008)
+/* AA7D4 800A9BD4 25CEA398 */  addiu      $t6, $t6, %lo(rmonbrk_bss_0008)
 /* AA7D8 800A9BD8 8DCF0000 */  lw         $t7, ($t6)
 /* AA7DC 800A9BDC 11E0001F */  beqz       $t7, .L800A9C5C
 /* AA7E0 800A9BE0 00000000 */   nop
-/* AA7E4 800A9BE4 3C188019 */  lui        $t8, %hi(D_8018A398)
-/* AA7E8 800A9BE8 2718A398 */  addiu      $t8, $t8, %lo(D_8018A398)
+/* AA7E4 800A9BE4 3C188019 */  lui        $t8, %hi(rmonbrk_bss_0008)
+/* AA7E8 800A9BE8 2718A398 */  addiu      $t8, $t8, %lo(rmonbrk_bss_0008)
 /* AA7EC 800A9BEC 8F190000 */  lw         $t9, ($t8)
 /* AA7F0 800A9BF0 8F280000 */  lw         $t0, ($t9)
 /* AA7F4 800A9BF4 AFA8001C */  sw         $t0, 0x1c($sp)
@@ -82,24 +82,24 @@ glabel func_800A9BC8
 /* AA808 800A9C08 2401000D */  addiu      $at, $zero, 0xd
 /* AA80C 800A9C0C 15410010 */  bne        $t2, $at, .L800A9C50
 /* AA810 800A9C10 00000000 */   nop
-/* AA814 800A9C14 3C0B8019 */  lui        $t3, %hi(D_8018A398)
-/* AA818 800A9C18 256BA398 */  addiu      $t3, $t3, %lo(D_8018A398)
+/* AA814 800A9C14 3C0B8019 */  lui        $t3, %hi(rmonbrk_bss_0008)
+/* AA818 800A9C18 256BA398 */  addiu      $t3, $t3, %lo(rmonbrk_bss_0008)
 /* AA81C 800A9C1C 8D6C0004 */  lw         $t4, 4($t3)
 /* AA820 800A9C20 8D6D0000 */  lw         $t5, ($t3)
 /* AA824 800A9C24 ADAC0000 */  sw         $t4, ($t5)
-/* AA828 800A9C28 3C0E8019 */  lui        $t6, %hi(D_8018A398)
-/* AA82C 800A9C2C 25CEA398 */  addiu      $t6, $t6, %lo(D_8018A398)
+/* AA828 800A9C28 3C0E8019 */  lui        $t6, %hi(rmonbrk_bss_0008)
+/* AA82C 800A9C2C 25CEA398 */  addiu      $t6, $t6, %lo(rmonbrk_bss_0008)
 /* AA830 800A9C30 8DC40000 */  lw         $a0, ($t6)
-/* AA834 800A9C34 0C029BC4 */  jal        func_800A6F10
+/* AA834 800A9C34 0C029BC4 */  jal        osWritebackDCache
 /* AA838 800A9C38 24050004 */   addiu     $a1, $zero, 4
-/* AA83C 800A9C3C 3C0F8019 */  lui        $t7, %hi(D_8018A398)
-/* AA840 800A9C40 25EFA398 */  addiu      $t7, $t7, %lo(D_8018A398)
+/* AA83C 800A9C3C 3C0F8019 */  lui        $t7, %hi(rmonbrk_bss_0008)
+/* AA840 800A9C40 25EFA398 */  addiu      $t7, $t7, %lo(rmonbrk_bss_0008)
 /* AA844 800A9C44 8DE40000 */  lw         $a0, ($t7)
-/* AA848 800A9C48 0C029BE4 */  jal        func_800A6F90
+/* AA848 800A9C48 0C029BE4 */  jal        osInvalICache
 /* AA84C 800A9C4C 24050004 */   addiu     $a1, $zero, 4
 .L800A9C50:
-/* AA850 800A9C50 3C188019 */  lui        $t8, %hi(D_8018A398)
-/* AA854 800A9C54 2718A398 */  addiu      $t8, $t8, %lo(D_8018A398)
+/* AA850 800A9C50 3C188019 */  lui        $t8, %hi(rmonbrk_bss_0008)
+/* AA854 800A9C54 2718A398 */  addiu      $t8, $t8, %lo(rmonbrk_bss_0008)
 /* AA858 800A9C58 AF000000 */  sw         $zero, ($t8)
 .L800A9C5C:
 /* AA85C 800A9C5C 3C198019 */  lui        $t9, %hi(D_8018A418)
@@ -124,11 +124,11 @@ glabel func_800A9BC8
 /* AA8A8 800A9CA8 ADAC0000 */  sw         $t4, ($t5)
 /* AA8AC 800A9CAC 3C048019 */  lui        $a0, %hi(D_8018A418)
 /* AA8B0 800A9CB0 8C84A418 */  lw         $a0, %lo(D_8018A418)($a0)
-/* AA8B4 800A9CB4 0C029BC4 */  jal        func_800A6F10
+/* AA8B4 800A9CB4 0C029BC4 */  jal        osWritebackDCache
 /* AA8B8 800A9CB8 24050004 */   addiu     $a1, $zero, 4
 /* AA8BC 800A9CBC 3C048019 */  lui        $a0, %hi(D_8018A418)
 /* AA8C0 800A9CC0 8C84A418 */  lw         $a0, %lo(D_8018A418)($a0)
-/* AA8C4 800A9CC4 0C029BE4 */  jal        func_800A6F90
+/* AA8C4 800A9CC4 0C029BE4 */  jal        osInvalICache
 /* AA8C8 800A9CC8 24050004 */   addiu     $a1, $zero, 4
 .L800A9CCC:
 /* AA8CC 800A9CCC 3C018019 */  lui        $at, %hi(D_8018A418)
@@ -142,7 +142,7 @@ glabel func_800A9BC8
 /* AA8E4 800A9CE4 03E00008 */  jr         $ra
 /* AA8E8 800A9CE8 00000000 */   nop
 
-glabel func_800A9CEC
+glabel __rmonSetBreak
 /* AA8EC 800A9CEC 27BDFFB0 */  addiu      $sp, $sp, -0x50
 /* AA8F0 800A9CF0 AFBF0024 */  sw         $ra, 0x24($sp)
 /* AA8F4 800A9CF4 AFA40050 */  sw         $a0, 0x50($sp)
@@ -156,23 +156,23 @@ glabel func_800A9CEC
 /* AA914 800A9D14 91CF0009 */  lbu        $t7, 9($t6)
 /* AA918 800A9D18 15E1000A */  bne        $t7, $at, .L800A9D44
 /* AA91C 800A9D1C 00000000 */   nop
-/* AA920 800A9D20 3C118019 */  lui        $s1, %hi(D_8018A420)
-/* AA924 800A9D24 2631A420 */  addiu      $s1, $s1, %lo(D_8018A420)
-/* AA928 800A9D28 3C128019 */  lui        $s2, %hi(D_8018A420)
-/* AA92C 800A9D2C 2652A420 */  addiu      $s2, $s2, %lo(D_8018A420)
+/* AA920 800A9D20 3C118019 */  lui        $s1, %hi(rmonbrk_bss_0090)
+/* AA924 800A9D24 2631A420 */  addiu      $s1, $s1, %lo(rmonbrk_bss_0090)
+/* AA928 800A9D28 3C128019 */  lui        $s2, %hi(rmonbrk_bss_0090)
+/* AA92C 800A9D2C 2652A420 */  addiu      $s2, $s2, %lo(rmonbrk_bss_0090)
 /* AA930 800A9D30 26520008 */  addiu      $s2, $s2, 8
-/* AA934 800A9D34 3C138019 */  lui        $s3, %hi(D_8018A420)
-/* AA938 800A9D38 2673A420 */  addiu      $s3, $s3, %lo(D_8018A420)
+/* AA934 800A9D34 3C138019 */  lui        $s3, %hi(rmonbrk_bss_0090)
+/* AA938 800A9D38 2673A420 */  addiu      $s3, $s3, %lo(rmonbrk_bss_0090)
 /* AA93C 800A9D3C 10000009 */  b          .L800A9D64
 /* AA940 800A9D40 26730080 */   addiu     $s3, $s3, 0x80
 .L800A9D44:
-/* AA944 800A9D44 3C118019 */  lui        $s1, %hi(D_8018A398)
-/* AA948 800A9D48 2631A398 */  addiu      $s1, $s1, %lo(D_8018A398)
-/* AA94C 800A9D4C 3C128019 */  lui        $s2, %hi(D_8018A398)
-/* AA950 800A9D50 2652A398 */  addiu      $s2, $s2, %lo(D_8018A398)
+/* AA944 800A9D44 3C118019 */  lui        $s1, %hi(rmonbrk_bss_0008)
+/* AA948 800A9D48 2631A398 */  addiu      $s1, $s1, %lo(rmonbrk_bss_0008)
+/* AA94C 800A9D4C 3C128019 */  lui        $s2, %hi(rmonbrk_bss_0008)
+/* AA950 800A9D50 2652A398 */  addiu      $s2, $s2, %lo(rmonbrk_bss_0008)
 /* AA954 800A9D54 26520008 */  addiu      $s2, $s2, 8
-/* AA958 800A9D58 3C138019 */  lui        $s3, %hi(D_8018A398)
-/* AA95C 800A9D5C 2673A398 */  addiu      $s3, $s3, %lo(D_8018A398)
+/* AA958 800A9D58 3C138019 */  lui        $s3, %hi(rmonbrk_bss_0008)
+/* AA95C 800A9D5C 2673A398 */  addiu      $s3, $s3, %lo(rmonbrk_bss_0008)
 /* AA960 800A9D60 26730080 */  addiu      $s3, $s3, 0x80
 .L800A9D64:
 /* AA964 800A9D64 0253082B */  sltu       $at, $s2, $s3
@@ -215,7 +215,7 @@ glabel func_800A9CEC
 /* AA9E0 800A9DE0 914B0009 */  lbu        $t3, 9($t2)
 /* AA9E4 800A9DE4 15610014 */  bne        $t3, $at, .L800A9E38
 /* AA9E8 800A9DE8 00000000 */   nop
-/* AA9EC 800A9DEC 0C02A45C */  jal        func_800A9170
+/* AA9EC 800A9DEC 0C02A45C */  jal        __rmonReadWordAt
 /* AA9F0 800A9DF0 8E040010 */   lw        $a0, 0x10($s0)
 /* AA9F4 800A9DF4 AE420004 */  sw         $v0, 4($s2)
 /* AA9F8 800A9DF8 02512823 */  subu       $a1, $s2, $s1
@@ -230,7 +230,7 @@ glabel func_800A9CEC
 /* AAA1C 800A9E1C 01C02825 */  or         $a1, $t6, $zero
 /* AAA20 800A9E20 34AF000D */  ori        $t7, $a1, 0xd
 /* AAA24 800A9E24 01E02825 */  or         $a1, $t7, $zero
-/* AAA28 800A9E28 0C02A448 */  jal        func_800A9120
+/* AAA28 800A9E28 0C02A448 */  jal        __rmonWriteWordTo
 /* AAA2C 800A9E2C 8E040010 */   lw        $a0, 0x10($s0)
 /* AAA30 800A9E30 10000014 */  b          .L800A9E84
 /* AAA34 800A9E34 00000000 */   nop
@@ -249,10 +249,10 @@ glabel func_800A9CEC
 /* AAA64 800A9E64 358D000D */  ori        $t5, $t4, 0xd
 /* AAA68 800A9E68 ADCD0000 */  sw         $t5, ($t6)
 /* AAA6C 800A9E6C 8E040010 */  lw         $a0, 0x10($s0)
-/* AAA70 800A9E70 0C029BC4 */  jal        func_800A6F10
+/* AAA70 800A9E70 0C029BC4 */  jal        osWritebackDCache
 /* AAA74 800A9E74 24050004 */   addiu     $a1, $zero, 4
 /* AAA78 800A9E78 8E040010 */  lw         $a0, 0x10($s0)
-/* AAA7C 800A9E7C 0C029BE4 */  jal        func_800A6F90
+/* AAA7C 800A9E7C 0C029BE4 */  jal        osInvalICache
 /* AAA80 800A9E80 24050004 */   addiu     $a1, $zero, 4
 .L800A9E84:
 /* AAA84 800A9E84 8E0F0010 */  lw         $t7, 0x10($s0)
@@ -270,7 +270,7 @@ glabel func_800A9CEC
 /* AAAB0 800A9EB0 AFAA003C */  sw         $t2, 0x3c($sp)
 /* AAAB4 800A9EB4 27A40028 */  addiu      $a0, $sp, 0x28
 /* AAAB8 800A9EB8 24050018 */  addiu      $a1, $zero, 0x18
-/* AAABC 800A9EBC 0C026833 */  jal        func_8009A0CC
+/* AAABC 800A9EBC 0C026833 */  jal        __rmonSendReply
 /* AAAC0 800A9EC0 24060001 */   addiu     $a2, $zero, 1
 /* AAAC4 800A9EC4 10000003 */  b          .L800A9ED4
 /* AAAC8 800A9EC8 00001025 */   or        $v0, $zero, $zero
@@ -295,7 +295,7 @@ glabel func_800A9EF0
 /* AAB04 800A9F04 03E00008 */  jr         $ra
 /* AAB08 800A9F08 00000000 */   nop
 
-glabel func_800A9F0C
+glabel __rmonClearBreak
 /* AAB0C 800A9F0C 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* AAB10 800A9F10 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AAB14 800A9F14 AFA40048 */  sw         $a0, 0x48($sp)
@@ -315,8 +315,8 @@ glabel func_800A9F0C
 /* AAB48 800A9F48 1701001A */  bne        $t8, $at, .L800A9FB4
 /* AAB4C 800A9F4C 00000000 */   nop
 /* AAB50 800A9F50 8E190010 */  lw         $t9, 0x10($s0)
-/* AAB54 800A9F54 3C098019 */  lui        $t1, %hi(D_8018A420)
-/* AAB58 800A9F58 2529A420 */  addiu      $t1, $t1, %lo(D_8018A420)
+/* AAB54 800A9F54 3C098019 */  lui        $t1, %hi(rmonbrk_bss_0090)
+/* AAB58 800A9F58 2529A420 */  addiu      $t1, $t1, %lo(rmonbrk_bss_0090)
 /* AAB5C 800A9F5C 001940C0 */  sll        $t0, $t9, 3
 /* AAB60 800A9F60 01098821 */  addu       $s1, $t0, $t1
 /* AAB64 800A9F64 8E2A0000 */  lw         $t2, ($s1)
@@ -325,7 +325,7 @@ glabel func_800A9F0C
 /* AAB70 800A9F70 1000003D */  b          .L800AA068
 /* AAB74 800A9F74 2402FFFE */   addiu     $v0, $zero, -2
 .L800A9F78:
-/* AAB78 800A9F78 0C02A45C */  jal        func_800A9170
+/* AAB78 800A9F78 0C02A45C */  jal        __rmonReadWordAt
 /* AAB7C 800A9F7C 8E240000 */   lw        $a0, ($s1)
 /* AAB80 800A9F80 AFA20024 */  sw         $v0, 0x24($sp)
 /* AAB84 800A9F84 8FAB0024 */  lw         $t3, 0x24($sp)
@@ -336,15 +336,15 @@ glabel func_800A9F0C
 /* AAB98 800A9F98 15810004 */  bne        $t4, $at, .L800A9FAC
 /* AAB9C 800A9F9C 00000000 */   nop
 /* AABA0 800A9FA0 8E240000 */  lw         $a0, ($s1)
-/* AABA4 800A9FA4 0C02A448 */  jal        func_800A9120
+/* AABA4 800A9FA4 0C02A448 */  jal        __rmonWriteWordTo
 /* AABA8 800A9FA8 8E250004 */   lw        $a1, 4($s1)
 .L800A9FAC:
 /* AABAC 800A9FAC 1000001E */  b          .L800AA028
 /* AABB0 800A9FB0 00000000 */   nop
 .L800A9FB4:
 /* AABB4 800A9FB4 8E0D0010 */  lw         $t5, 0x10($s0)
-/* AABB8 800A9FB8 3C0F8019 */  lui        $t7, %hi(D_8018A398)
-/* AABBC 800A9FBC 25EFA398 */  addiu      $t7, $t7, %lo(D_8018A398)
+/* AABB8 800A9FB8 3C0F8019 */  lui        $t7, %hi(rmonbrk_bss_0008)
+/* AABBC 800A9FBC 25EFA398 */  addiu      $t7, $t7, %lo(rmonbrk_bss_0008)
 /* AABC0 800A9FC0 000D70C0 */  sll        $t6, $t5, 3
 /* AABC4 800A9FC4 01CF8821 */  addu       $s1, $t6, $t7
 /* AABC8 800A9FC8 8E380000 */  lw         $t8, ($s1)
@@ -367,10 +367,10 @@ glabel func_800A9F0C
 /* AAC08 800AA008 8E2C0000 */  lw         $t4, ($s1)
 /* AAC0C 800AA00C AD8B0000 */  sw         $t3, ($t4)
 /* AAC10 800AA010 8E240000 */  lw         $a0, ($s1)
-/* AAC14 800AA014 0C029BC4 */  jal        func_800A6F10
+/* AAC14 800AA014 0C029BC4 */  jal        osWritebackDCache
 /* AAC18 800AA018 24050004 */   addiu     $a1, $zero, 4
 /* AAC1C 800AA01C 8E240000 */  lw         $a0, ($s1)
-/* AAC20 800AA020 0C029BE4 */  jal        func_800A6F90
+/* AAC20 800AA020 0C029BE4 */  jal        osInvalICache
 /* AAC24 800AA024 24050004 */   addiu     $a1, $zero, 4
 .L800AA028:
 /* AAC28 800AA028 AE200000 */  sw         $zero, ($s1)
@@ -383,7 +383,7 @@ glabel func_800A9F0C
 /* AAC44 800AA044 AFAF0038 */  sw         $t7, 0x38($sp)
 /* AAC48 800AA048 27A40028 */  addiu      $a0, $sp, 0x28
 /* AAC4C 800AA04C 24050018 */  addiu      $a1, $zero, 0x18
-/* AAC50 800AA050 0C026833 */  jal        func_8009A0CC
+/* AAC50 800AA050 0C026833 */  jal        __rmonSendReply
 /* AAC54 800AA054 24060001 */   addiu     $a2, $zero, 1
 /* AAC58 800AA058 10000003 */  b          .L800AA068
 /* AAC5C 800AA05C 00001025 */   or        $v0, $zero, $zero
@@ -396,7 +396,7 @@ glabel func_800A9F0C
 /* AAC74 800AA074 03E00008 */  jr         $ra
 /* AAC78 800AA078 27BD0048 */   addiu     $sp, $sp, 0x48
 
-glabel func_800AA07C
+glabel __rmonGetBranchTarget
 /* AAC7C 800AA07C 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AAC80 800AA080 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AAC84 800AA084 AFA40028 */  sw         $a0, 0x28($sp)
@@ -407,7 +407,7 @@ glabel func_800AA07C
 /* AAC98 800AA098 24010001 */  addiu      $at, $zero, 1
 /* AAC9C 800AA09C 15C10005 */  bne        $t6, $at, .L800AA0B4
 /* AACA0 800AA0A0 00000000 */   nop
-/* AACA4 800AA0A4 0C02A45C */  jal        func_800A9170
+/* AACA4 800AA0A4 0C02A45C */  jal        __rmonReadWordAt
 /* AACA8 800AA0A8 8FA40030 */   lw        $a0, 0x30($sp)
 /* AACAC 800AA0AC 10000004 */  b          .L800AA0C0
 /* AACB0 800AA0B0 AFA20024 */   sw        $v0, 0x24($sp)
@@ -423,9 +423,9 @@ glabel func_800AA07C
 /* AACD0 800AA0D0 10200083 */  beqz       $at, .L800AA2E0
 /* AACD4 800AA0D4 00000000 */   nop
 /* AACD8 800AA0D8 00094880 */  sll        $t1, $t1, 2
-/* AACDC 800AA0DC 3C01800F */  lui        $at, %hi(D_800EDE30)
+/* AACDC 800AA0DC 3C01800F */  lui        $at, %hi(rmonbrk_rodata_0120)
 /* AACE0 800AA0E0 00290821 */  addu       $at, $at, $t1
-/* AACE4 800AA0E4 8C29DE30 */  lw         $t1, %lo(D_800EDE30)($at)
+/* AACE4 800AA0E4 8C29DE30 */  lw         $t1, %lo(rmonbrk_rodata_0120)($at)
 /* AACE8 800AA0E8 01200008 */  jr         $t1
 /* AACEC 800AA0EC 00000000 */   nop
 /* AACF0 800AA0F0 8FAA0024 */  lw         $t2, 0x24($sp)
@@ -443,7 +443,7 @@ glabel func_800AA07C
 /* AAD20 800AA120 00067543 */  sra        $t6, $a2, 0x15
 /* AAD24 800AA124 01C03025 */  or         $a2, $t6, $zero
 /* AAD28 800AA128 30CF001F */  andi       $t7, $a2, 0x1f
-/* AAD2C 800AA12C 0C02D95F */  jal        func_800B657C
+/* AAD2C 800AA12C 0C02D95F */  jal        __rmonGetRegisterContents
 /* AAD30 800AA130 01E03025 */   or        $a2, $t7, $zero
 /* AAD34 800AA134 1000006E */  b          .L800AA2F0
 /* AAD38 800AA138 00000000 */   nop
@@ -463,7 +463,7 @@ glabel func_800AA07C
 /* AAD6C 800AA16C 00065D43 */  sra        $t3, $a2, 0x15
 /* AAD70 800AA170 01603025 */  or         $a2, $t3, $zero
 /* AAD74 800AA174 30CC001F */  andi       $t4, $a2, 0x1f
-/* AAD78 800AA178 0C02D95F */  jal        func_800B657C
+/* AAD78 800AA178 0C02D95F */  jal        __rmonGetRegisterContents
 /* AAD7C 800AA17C 01803025 */   or        $a2, $t4, $zero
 /* AAD80 800AA180 1000005B */  b          .L800AA2F0
 /* AAD84 800AA184 00000000 */   nop
@@ -477,9 +477,9 @@ glabel func_800AA07C
 /* AADA0 800AA1A0 1020000E */  beqz       $at, .L800AA1DC
 /* AADA4 800AA1A4 00000000 */   nop
 /* AADA8 800AA1A8 000E7080 */  sll        $t6, $t6, 2
-/* AADAC 800AA1AC 3C01800F */  lui        $at, %hi(D_800EDE90)
+/* AADAC 800AA1AC 3C01800F */  lui        $at, %hi(rmonbrk_rodata_0180)
 /* AADB0 800AA1B0 002E0821 */  addu       $at, $at, $t6
-/* AADB4 800AA1B4 8C2EDE90 */  lw         $t6, %lo(D_800EDE90)($at)
+/* AADB4 800AA1B4 8C2EDE90 */  lw         $t6, %lo(rmonbrk_rodata_0180)($at)
 /* AADB8 800AA1B8 01C00008 */  jr         $t6
 /* AADBC 800AA1BC 00000000 */   nop
 /* AADC0 800AA1C0 8FAF0024 */  lw         $t7, 0x24($sp)
@@ -622,14 +622,14 @@ glabel func_800AA304
 /* AAFAC 800AA3AC 03E00008 */  jr         $ra
 /* AAFB0 800AA3B0 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800AA3B4
+glabel __rmonSetSingleStep
 /* AAFB4 800AA3B4 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AAFB8 800AA3B8 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AAFBC 800AA3BC AFA40020 */  sw         $a0, 0x20($sp)
 /* AAFC0 800AA3C0 AFA50024 */  sw         $a1, 0x24($sp)
 /* AAFC4 800AA3C4 00002025 */  or         $a0, $zero, $zero
 /* AAFC8 800AA3C8 8FA50020 */  lw         $a1, 0x20($sp)
-/* AAFCC 800AA3CC 0C02A81F */  jal        func_800AA07C
+/* AAFCC 800AA3CC 0C02A81F */  jal        __rmonGetBranchTarget
 /* AAFD0 800AA3D0 8FA60024 */   lw        $a2, 0x24($sp)
 /* AAFD4 800AA3D4 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AAFD8 800AA3D8 8FAE001C */  lw         $t6, 0x1c($sp)
@@ -684,7 +684,7 @@ glabel func_800AA3B4
 /* AB084 800AA484 03E00008 */  jr         $ra
 /* AB088 800AA488 00000000 */   nop
 
-glabel func_800AA48C
+glabel __rmonGetExceptionStatus
 /* AB08C 800AA48C 240E0001 */  addiu      $t6, $zero, 1
 /* AB090 800AA490 AC8E000C */  sw         $t6, 0xc($a0)
 /* AB094 800AA494 240F0002 */  addiu      $t7, $zero, 2
@@ -723,9 +723,9 @@ glabel func_800AA4D8
 .L800AA504:
 /* AB104 800AA504 00002025 */  or         $a0, $zero, $zero
 /* AB108 800AA508 02002825 */  or         $a1, $s0, $zero
-/* AB10C 800AA50C 0C02DA89 */  jal        func_800B6A24
+/* AB10C 800AA50C 0C02DA89 */  jal        __rmonGetThreadStatus
 /* AB110 800AA510 27A60024 */   addiu     $a2, $sp, 0x24
-/* AB114 800AA514 0C02A923 */  jal        func_800AA48C
+/* AB114 800AA514 0C02A923 */  jal        __rmonGetExceptionStatus
 /* AB118 800AA518 27A40024 */   addiu     $a0, $sp, 0x24
 /* AB11C 800AA51C 8FAF0074 */  lw         $t7, 0x74($sp)
 /* AB120 800AA520 2401000F */  addiu      $at, $zero, 0xf
@@ -755,7 +755,7 @@ glabel func_800AA4D8
 .L800AA574:
 /* AB174 800AA574 27A40024 */  addiu      $a0, $sp, 0x24
 /* AB178 800AA578 2405004C */  addiu      $a1, $zero, 0x4c
-/* AB17C 800AA57C 0C026833 */  jal        func_8009A0CC
+/* AB17C 800AA57C 0C026833 */  jal        __rmonSendReply
 /* AB180 800AA580 24060002 */   addiu     $a2, $zero, 2
 /* AB184 800AA584 10000001 */  b          .L800AA58C
 /* AB188 800AA588 00000000 */   nop
@@ -766,12 +766,12 @@ glabel func_800AA4D8
 /* AB198 800AA598 03E00008 */  jr         $ra
 /* AB19C 800AA59C 00000000 */   nop
 
-glabel func_800AA5A0
+glabel __rmonHitBreak
 /* AB1A0 800AA5A0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AB1A4 800AA5A4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AB1A8 800AA5A8 0C02A6F2 */  jal        func_800A9BC8
 /* AB1AC 800AA5AC 00000000 */   nop
-/* AB1B0 800AA5B0 0C02D9E7 */  jal        func_800B679C
+/* AB1B0 800AA5B0 0C02D9E7 */  jal        __rmonStopUserThreads
 /* AB1B4 800AA5B4 00002025 */   or        $a0, $zero, $zero
 /* AB1B8 800AA5B8 0C02A9A1 */  jal        func_800AA684
 /* AB1BC 800AA5BC 00000000 */   nop
@@ -783,29 +783,29 @@ glabel func_800AA5A0
 /* AB1D0 800AA5D0 03E00008 */  jr         $ra
 /* AB1D4 800AA5D4 00000000 */   nop
 
-glabel func_800AA5D8
+glabel __rmonHitSpBreak
 /* AB1D8 800AA5D8 27BDFF90 */  addiu      $sp, $sp, -0x70
 /* AB1DC 800AA5DC AFBF001C */  sw         $ra, 0x1c($sp)
 /* AB1E0 800AA5E0 AFB00018 */  sw         $s0, 0x18($sp)
-/* AB1E4 800AA5E4 0C02A45C */  jal        func_800A9170
+/* AB1E4 800AA5E4 0C02A45C */  jal        __rmonReadWordAt
 /* AB1E8 800AA5E8 3C040408 */   lui       $a0, 0x408
 /* AB1EC 800AA5EC 00408025 */  or         $s0, $v0, $zero
 /* AB1F0 800AA5F0 2605FFFC */  addiu      $a1, $s0, -4
-/* AB1F4 800AA5F4 0C02A448 */  jal        func_800A9120
+/* AB1F4 800AA5F4 0C02A448 */  jal        __rmonWriteWordTo
 /* AB1F8 800AA5F8 3C040408 */   lui       $a0, 0x408
 /* AB1FC 800AA5FC 24040001 */  addiu      $a0, $zero, 1
 /* AB200 800AA600 240503E8 */  addiu      $a1, $zero, 0x3e8
-/* AB204 800AA604 0C02DA89 */  jal        func_800B6A24
+/* AB204 800AA604 0C02DA89 */  jal        __rmonGetThreadStatus
 /* AB208 800AA608 27A60024 */   addiu     $a2, $sp, 0x24
-/* AB20C 800AA60C 0C02A923 */  jal        func_800AA48C
+/* AB20C 800AA60C 0C02A923 */  jal        __rmonGetExceptionStatus
 /* AB210 800AA610 27A40024 */   addiu     $a0, $sp, 0x24
 /* AB214 800AA614 27A40024 */  addiu      $a0, $sp, 0x24
 /* AB218 800AA618 2405004C */  addiu      $a1, $zero, 0x4c
-/* AB21C 800AA61C 0C026833 */  jal        func_8009A0CC
+/* AB21C 800AA61C 0C026833 */  jal        __rmonSendReply
 /* AB220 800AA620 24060002 */   addiu     $a2, $zero, 2
 /* AB224 800AA624 240E0001 */  addiu      $t6, $zero, 1
-/* AB228 800AA628 3C018019 */  lui        $at, %hi(D_8018A390)
-/* AB22C 800AA62C A02EA390 */  sb         $t6, %lo(D_8018A390)($at)
+/* AB228 800AA628 3C018019 */  lui        $at, %hi(__rmonRcpAtBreak)
+/* AB22C 800AA62C A02EA390 */  sb         $t6, %lo(__rmonRcpAtBreak)($at)
 /* AB230 800AA630 10000001 */  b          .L800AA638
 /* AB234 800AA634 00000000 */   nop
 .L800AA638:
@@ -818,9 +818,9 @@ glabel func_800AA5D8
 glabel func_800AA64C
 /* AB24C 800AA64C 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AB250 800AA650 AFBF0014 */  sw         $ra, 0x14($sp)
-/* AB254 800AA654 0C02D9A0 */  jal        func_800B6680
+/* AB254 800AA654 0C02D9A0 */  jal        __rmonMaskIdleThreadInts
 /* AB258 800AA658 00000000 */   nop
-/* AB25C 800AA65C 0C02D9E7 */  jal        func_800B679C
+/* AB25C 800AA65C 0C02D9E7 */  jal        __rmonStopUserThreads
 /* AB260 800AA660 00002025 */   or        $a0, $zero, $zero
 /* AB264 800AA664 0C02A9A1 */  jal        func_800AA684
 /* AB268 800AA668 00000000 */   nop
@@ -881,7 +881,7 @@ glabel func_800AA684
 /* AB32C 800AA72C 31CF0002 */  andi       $t7, $t6, 2
 /* AB330 800AA730 11E00006 */  beqz       $t7, .L800AA74C
 /* AB334 800AA734 00000000 */   nop
-/* AB338 800AA738 0C02A384 */  jal        func_800A8E10
+/* AB338 800AA738 0C02A384 */  jal        __rmonSendFault
 /* AB33C 800AA73C 02002025 */   or        $a0, $s0, $zero
 /* AB340 800AA740 8E040014 */  lw         $a0, 0x14($s0)
 /* AB344 800AA744 0C02A936 */  jal        func_800AA4D8

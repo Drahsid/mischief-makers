@@ -14,7 +14,7 @@ glabel guOrthoF
 /* A581C 800A4C1C AFA50024 */  sw         $a1, 0x24($sp)
 /* A5820 800A4C20 AFA60028 */  sw         $a2, 0x28($sp)
 /* A5824 800A4C24 AFA7002C */  sw         $a3, 0x2c($sp)
-/* A5828 800A4C28 0C02CB32 */  jal        func_800B2CC8
+/* A5828 800A4C28 0C02CB32 */  jal        guMtxIdentF
 /* A582C 800A4C2C 8FA40020 */   lw        $a0, 0x20($sp)
 /* A5830 800A4C30 C7A40028 */  lwc1       $f4, 0x28($sp)
 /* A5834 800A4C34 C7A60024 */  lwc1       $f6, 0x24($sp)

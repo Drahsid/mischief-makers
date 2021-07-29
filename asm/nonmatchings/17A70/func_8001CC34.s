@@ -1,6 +1,6 @@
 glabel func_8001CC34
-/* 1D834 8001CC34 3C038017 */  lui        $v1, %hi(D_80171B18)
-/* 1D838 8001CC38 90631B18 */  lbu        $v1, %lo(D_80171B18)($v1)
+/* 1D834 8001CC34 3C038017 */  lui        $v1, %hi(gWorldProgress)
+/* 1D838 8001CC38 90631B18 */  lbu        $v1, %lo(gWorldProgress)($v1)
 /* 1D83C 8001CC3C 24010018 */  addiu      $at, $zero, 0x18
 /* 1D840 8001CC40 10610008 */  beq        $v1, $at, .L8001CC64
 /* 1D844 8001CC44 00601025 */   or        $v0, $v1, $zero

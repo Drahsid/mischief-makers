@@ -17,9 +17,9 @@ glabel func_8001ACA8
 /* 1B8E4 8001ACE4 2401003C */   addiu     $at, $zero, 0x3c
 .L8001ACE8:
 /* 1B8E8 8001ACE8 00067840 */  sll        $t7, $a2, 1
-/* 1B8EC 8001ACEC 3C02800C */  lui        $v0, %hi(D_800C4F28)
+/* 1B8EC 8001ACEC 3C02800C */  lui        $v0, %hi(gTimeRecords)
 /* 1B8F0 8001ACF0 004F1021 */  addu       $v0, $v0, $t7
-/* 1B8F4 8001ACF4 94424F28 */  lhu        $v0, %lo(D_800C4F28)($v0)
+/* 1B8F4 8001ACF4 94424F28 */  lhu        $v0, %lo(gTimeRecords)($v0)
 /* 1B8F8 8001ACF8 00000000 */  nop
 /* 1B8FC 8001ACFC 2401003C */  addiu      $at, $zero, 0x3c
 .L8001AD00:

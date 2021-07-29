@@ -51,7 +51,7 @@ glabel func_800A47C0
 /* A5454 800A4854 8CE79774 */  lw         $a3, %lo(D_800E9774)($a3)
 /* A5458 800A4858 8CC69770 */  lw         $a2, %lo(D_800E9770)($a2)
 /* A545C 800A485C 24040000 */  addiu      $a0, $zero, 0
-/* A5460 800A4860 0C029112 */  jal        func_800A4448
+/* A5460 800A4860 0C029112 */  jal        __ll_mul
 /* A5464 800A4864 24052EE0 */   addiu     $a1, $zero, 0x2ee0
 /* A5468 800A4868 AFA20028 */  sw         $v0, 0x28($sp)
 /* A546C 800A486C AFA3002C */  sw         $v1, 0x2c($sp)
@@ -59,7 +59,7 @@ glabel func_800A47C0
 /* A5474 800A4874 34E74240 */  ori        $a3, $a3, 0x4240
 /* A5478 800A4878 8FA5002C */  lw         $a1, 0x2c($sp)
 /* A547C 800A487C 8FA40028 */  lw         $a0, 0x28($sp)
-/* A5480 800A4880 0C0290C2 */  jal        func_800A4308
+/* A5480 800A4880 0C0290C2 */  jal        __ull_div
 /* A5484 800A4884 24060000 */   addiu     $a2, $zero, 0
 /* A5488 800A4888 3C0D8018 */  lui        $t5, %hi(D_80185698)
 /* A548C 800A488C 3C188018 */  lui        $t8, %hi(D_801856B0)
@@ -76,12 +76,12 @@ glabel func_800A47C0
 /* A54B8 800A48B8 8FA70034 */  lw         $a3, 0x34($sp)
 /* A54BC 800A48BC 8FA60030 */  lw         $a2, 0x30($sp)
 /* A54C0 800A48C0 AFAD0018 */  sw         $t5, 0x18($sp)
-/* A54C4 800A48C4 0C02ABD0 */  jal        func_800AAF40
+/* A54C4 800A48C4 0C02ABD0 */  jal        osSetTimer
 /* A54C8 800A48C8 AFB8001C */   sw        $t8, 0x1c($sp)
 /* A54CC 800A48CC 3C048018 */  lui        $a0, %hi(D_80185698)
 /* A54D0 800A48D0 24845698 */  addiu      $a0, $a0, %lo(D_80185698)
 /* A54D4 800A48D4 00002825 */  or         $a1, $zero, $zero
-/* A54D8 800A48D8 0C026B44 */  jal        func_8009AD10
+/* A54D8 800A48D8 0C026B44 */  jal        osRecvMesg
 /* A54DC 800A48DC 24060001 */   addiu     $a2, $zero, 1
 /* A54E0 800A48E0 8FB9004C */  lw         $t9, 0x4c($sp)
 /* A54E4 800A48E4 1F20FFC6 */  bgtz       $t9, .L800A4800

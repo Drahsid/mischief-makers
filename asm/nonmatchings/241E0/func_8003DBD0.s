@@ -162,8 +162,8 @@ glabel func_8003DBD0
 /* 3EA44 8003DE44 34068000 */   ori       $a2, $zero, 0x8000
 /* 3EA48 8003DE48 3C013F80 */  lui        $at, 0x3f80
 /* 3EA4C 8003DE4C 44813000 */  mtc1       $at, $f6
-/* 3EA50 8003DE50 3C0D800E */  lui        $t5, %hi(D_800D9AE4)
-/* 3EA54 8003DE54 25AD9AE4 */  addiu      $t5, $t5, %lo(D_800D9AE4)
+/* 3EA50 8003DE50 3C0D800E */  lui        $t5, %hi(initialize_emu_text_0000)
+/* 3EA54 8003DE54 25AD9AE4 */  addiu      $t5, $t5, %lo(initialize_emu_text_0000)
 /* 3EA58 8003DE58 3C04800D */  lui        $a0, %hi(D_800D27B0)
 /* 3EA5C 8003DE5C 3C0C0080 */  lui        $t4, 0x80
 /* 3EA60 8003DE60 AE020154 */  sw         $v0, 0x154($s0)

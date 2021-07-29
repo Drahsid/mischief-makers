@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800BA190
+glabel osCreateLog
 /* BAD90 800BA190 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* BAD94 800BA194 AFBF0014 */  sw         $ra, 0x14($sp)
 /* BAD98 800BA198 AFA40018 */  sw         $a0, 0x18($sp)
@@ -23,7 +23,7 @@ glabel func_800BA190
 /* BADC0 800BA1C0 8FA80020 */  lw         $t0, 0x20($sp)
 /* BADC4 800BA1C4 8FA90018 */  lw         $t1, 0x18($sp)
 /* BADC8 800BA1C8 AD280004 */  sw         $t0, 4($t1)
-/* BADCC 800BA1CC 0C029EF8 */  jal        func_800A7BE0
+/* BADCC 800BA1CC 0C029EF8 */  jal        osGetCount
 /* BADD0 800BA1D0 00000000 */   nop
 /* BADD4 800BA1D4 8FAA0018 */  lw         $t2, 0x18($sp)
 /* BADD8 800BA1D8 AD42000C */  sw         $v0, 0xc($t2)
@@ -37,7 +37,7 @@ glabel func_800BA190
 /* BADF4 800BA1F4 03E00008 */  jr         $ra
 /* BADF8 800BA1F8 00000000 */   nop
 
-glabel func_800BA1FC
+glabel osLogEvent
 /* BADFC 800BA1FC 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* BAE00 800BA200 AFBF0014 */  sw         $ra, 0x14($sp)
 /* BAE04 800BA204 AFA40020 */  sw         $a0, 0x20($sp)
@@ -57,7 +57,7 @@ glabel func_800BA1FC
 /* BAE38 800BA238 8FA40020 */  lw         $a0, 0x20($sp)
 /* BAE3C 800BA23C 87A50026 */  lh         $a1, 0x26($sp)
 /* BAE40 800BA240 87A6002A */  lh         $a2, 0x2a($sp)
-/* BAE44 800BA244 0C02E923 */  jal        func_800BA48C
+/* BAE44 800BA244 0C02E923 */  jal        __osLogWrite
 /* BAE48 800BA248 8FA7001C */   lw        $a3, 0x1c($sp)
 /* BAE4C 800BA24C 10000001 */  b          .L800BA254
 /* BAE50 800BA250 00000000 */   nop
@@ -67,35 +67,35 @@ glabel func_800BA1FC
 /* BAE5C 800BA25C 03E00008 */  jr         $ra
 /* BAE60 800BA260 00000000 */   nop
 
-glabel func_800BA264
+glabel osFlushLog
 /* BAE64 800BA264 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* BAE68 800BA268 AFBF001C */  sw         $ra, 0x1c($sp)
 /* BAE6C 800BA26C AFA40040 */  sw         $a0, 0x40($sp)
 /* BAE70 800BA270 AFB00018 */  sw         $s0, 0x18($sp)
-/* BAE74 800BA274 3C0E800F */  lui        $t6, %hi(D_800EABE4)
-/* BAE78 800BA278 8DCEABE4 */  lw         $t6, %lo(D_800EABE4)($t6)
+/* BAE74 800BA274 3C0E800F */  lui        $t6, %hi(log_data_0004)
+/* BAE78 800BA278 8DCEABE4 */  lw         $t6, %lo(log_data_0004)($t6)
 /* BAE7C 800BA27C 15C0000F */  bnez       $t6, .L800BA2BC
 /* BAE80 800BA280 00000000 */   nop
-/* BAE84 800BA284 3C048019 */  lui        $a0, %hi(D_8018B780)
-/* BAE88 800BA288 3C058019 */  lui        $a1, %hi(D_8018B798)
-/* BAE8C 800BA28C 24A5B798 */  addiu      $a1, $a1, %lo(D_8018B798)
-/* BAE90 800BA290 2484B780 */  addiu      $a0, $a0, %lo(D_8018B780)
+/* BAE84 800BA284 3C048019 */  lui        $a0, %hi(log_bss_0000)
+/* BAE88 800BA288 3C058019 */  lui        $a1, %hi(log_bss_0018)
+/* BAE8C 800BA28C 24A5B798 */  addiu      $a1, $a1, %lo(log_bss_0018)
+/* BAE90 800BA290 2484B780 */  addiu      $a0, $a0, %lo(log_bss_0000)
 /* BAE94 800BA294 0C026994 */  jal        osCreateMesgQueue
 /* BAE98 800BA298 24060001 */   addiu     $a2, $zero, 1
-/* BAE9C 800BA29C 3C058019 */  lui        $a1, %hi(D_8018B780)
-/* BAEA0 800BA2A0 24A5B780 */  addiu      $a1, $a1, %lo(D_8018B780)
+/* BAE9C 800BA29C 3C058019 */  lui        $a1, %hi(log_bss_0000)
+/* BAEA0 800BA2A0 24A5B780 */  addiu      $a1, $a1, %lo(log_bss_0000)
 /* BAEA4 800BA2A4 24040010 */  addiu      $a0, $zero, 0x10
-/* BAEA8 800BA2A8 0C0269BC */  jal        func_8009A6F0
+/* BAEA8 800BA2A8 0C0269BC */  jal        osSetEventMesg
 /* BAEAC 800BA2AC 00003025 */   or        $a2, $zero, $zero
 /* BAEB0 800BA2B0 240F0001 */  addiu      $t7, $zero, 1
-/* BAEB4 800BA2B4 3C01800F */  lui        $at, %hi(D_800EABE4)
-/* BAEB8 800BA2B8 AC2FABE4 */  sw         $t7, %lo(D_800EABE4)($at)
+/* BAEB4 800BA2B4 3C01800F */  lui        $at, %hi(log_data_0004)
+/* BAEB8 800BA2B8 AC2FABE4 */  sw         $t7, %lo(log_data_0004)($at)
 .L800BA2BC:
-/* BAEBC 800BA2BC 0C0297A4 */  jal        func_800A5E90
+/* BAEBC 800BA2BC 0C0297A4 */  jal        __osDisableInt
 /* BAEC0 800BA2C0 00000000 */   nop
 /* BAEC4 800BA2C4 AFA2003C */  sw         $v0, 0x3c($sp)
-/* BAEC8 800BA2C8 3C01800F */  lui        $at, %hi(D_800EABE0)
-/* BAECC 800BA2CC AC20ABE0 */  sw         $zero, %lo(D_800EABE0)($at)
+/* BAEC8 800BA2C8 3C01800F */  lui        $at, %hi(log_data_0000)
+/* BAECC 800BA2CC AC20ABE0 */  sw         $zero, %lo(log_data_0000)($at)
 /* BAED0 800BA2D0 8FB80040 */  lw         $t8, 0x40($sp)
 /* BAED4 800BA2D4 8F190008 */  lw         $t9, 8($t8)
 /* BAED8 800BA2D8 AFB9002C */  sw         $t9, 0x2c($sp)
@@ -103,7 +103,7 @@ glabel func_800BA264
 /* BAEE0 800BA2E0 8D090010 */  lw         $t1, 0x10($t0)
 /* BAEE4 800BA2E4 00095080 */  sll        $t2, $t1, 2
 /* BAEE8 800BA2E8 AFAA0034 */  sw         $t2, 0x34($sp)
-/* BAEEC 800BA2EC 0C0297AC */  jal        func_800A5EB0
+/* BAEEC 800BA2EC 0C0297AC */  jal        __osRestoreInt
 /* BAEF0 800BA2F0 8FA4003C */   lw        $a0, 0x3c($sp)
 /* BAEF4 800BA2F4 8FAB0034 */  lw         $t3, 0x34($sp)
 /* BAEF8 800BA2F8 11600053 */  beqz       $t3, .L800BA448
@@ -146,7 +146,7 @@ glabel func_800BA264
 /* BAF7C 800BA37C 24080003 */  addiu      $t0, $zero, 3
 /* BAF80 800BA380 24060003 */  addiu      $a2, $zero, 3
 /* BAF84 800BA384 01182823 */  subu       $a1, $t0, $t8
-/* BAF88 800BA388 0C02A254 */  jal        func_800A8950
+/* BAF88 800BA388 0C02A254 */  jal        __osRdbSend
 /* BAF8C 800BA38C 03192021 */   addu      $a0, $t8, $t9
 /* BAF90 800BA390 8FA90038 */  lw         $t1, 0x38($sp)
 /* BAF94 800BA394 00408025 */  or         $s0, $v0, $zero
@@ -169,7 +169,7 @@ glabel func_800BA264
 /* BAFD0 800BA3D0 8FB90030 */  lw         $t9, 0x30($sp)
 /* BAFD4 800BA3D4 24060004 */  addiu      $a2, $zero, 4
 /* BAFD8 800BA3D8 01CF2021 */  addu       $a0, $t6, $t7
-/* BAFDC 800BA3DC 0C02A254 */  jal        func_800A8950
+/* BAFDC 800BA3DC 0C02A254 */  jal        __osRdbSend
 /* BAFE0 800BA3E0 032F2823 */   subu      $a1, $t9, $t7
 /* BAFE4 800BA3E4 8FA80038 */  lw         $t0, 0x38($sp)
 /* BAFE8 800BA3E8 00408025 */  or         $s0, $v0, $zero
@@ -189,24 +189,24 @@ glabel func_800BA264
 /* BB01C 800BA41C 8FB90030 */  lw         $t9, 0x30($sp)
 /* BB020 800BA420 01D97821 */  addu       $t7, $t6, $t9
 /* BB024 800BA424 AFAF002C */  sw         $t7, 0x2c($sp)
-/* BB028 800BA428 3C048019 */  lui        $a0, %hi(D_8018B780)
-/* BB02C 800BA42C 2484B780 */  addiu      $a0, $a0, %lo(D_8018B780)
+/* BB028 800BA428 3C048019 */  lui        $a0, %hi(log_bss_0000)
+/* BB02C 800BA42C 2484B780 */  addiu      $a0, $a0, %lo(log_bss_0000)
 /* BB030 800BA430 00002825 */  or         $a1, $zero, $zero
-/* BB034 800BA434 0C026B44 */  jal        func_8009AD10
+/* BB034 800BA434 0C026B44 */  jal        osRecvMesg
 /* BB038 800BA438 24060001 */   addiu     $a2, $zero, 1
 /* BB03C 800BA43C 8FA80034 */  lw         $t0, 0x34($sp)
 /* BB040 800BA440 1500FFAF */  bnez       $t0, .L800BA300
 /* BB044 800BA444 00000000 */   nop
 .L800BA448:
-/* BB048 800BA448 0C0297A4 */  jal        func_800A5E90
+/* BB048 800BA448 0C0297A4 */  jal        __osDisableInt
 /* BB04C 800BA44C 00000000 */   nop
 /* BB050 800BA450 AFA2003C */  sw         $v0, 0x3c($sp)
 /* BB054 800BA454 8FB80040 */  lw         $t8, 0x40($sp)
 /* BB058 800BA458 AF000010 */  sw         $zero, 0x10($t8)
 /* BB05C 800BA45C 24090001 */  addiu      $t1, $zero, 1
-/* BB060 800BA460 3C01800F */  lui        $at, %hi(D_800EABE0)
-/* BB064 800BA464 AC29ABE0 */  sw         $t1, %lo(D_800EABE0)($at)
-/* BB068 800BA468 0C0297AC */  jal        func_800A5EB0
+/* BB060 800BA460 3C01800F */  lui        $at, %hi(log_data_0000)
+/* BB064 800BA464 AC29ABE0 */  sw         $t1, %lo(log_data_0000)($at)
+/* BB068 800BA468 0C0297AC */  jal        __osRestoreInt
 /* BB06C 800BA46C 8FA4003C */   lw        $a0, 0x3c($sp)
 /* BB070 800BA470 10000001 */  b          .L800BA478
 /* BB074 800BA474 00000000 */   nop
@@ -217,7 +217,7 @@ glabel func_800BA264
 /* BB084 800BA484 03E00008 */  jr         $ra
 /* BB088 800BA488 00000000 */   nop
 
-glabel func_800BA48C
+glabel __osLogWrite
 /* BB08C 800BA48C 27BDFF80 */  addiu      $sp, $sp, -0x80
 /* BB090 800BA490 AFBF0014 */  sw         $ra, 0x14($sp)
 /* BB094 800BA494 AFA40080 */  sw         $a0, 0x80($sp)
@@ -234,14 +234,14 @@ glabel func_800BA48C
 /* BB0C0 800BA4C0 87A8008A */  lh         $t0, 0x8a($sp)
 /* BB0C4 800BA4C4 25090003 */  addiu      $t1, $t0, 3
 /* BB0C8 800BA4C8 AFA90018 */  sw         $t1, 0x18($sp)
-/* BB0CC 800BA4CC 0C0297A4 */  jal        func_800A5E90
+/* BB0CC 800BA4CC 0C0297A4 */  jal        __osDisableInt
 /* BB0D0 800BA4D0 00000000 */   nop
 /* BB0D4 800BA4D4 AFA20078 */  sw         $v0, 0x78($sp)
 /* BB0D8 800BA4D8 8FAA0080 */  lw         $t2, 0x80($sp)
 /* BB0DC 800BA4DC 8FAC0024 */  lw         $t4, 0x24($sp)
 /* BB0E0 800BA4E0 8D4B0000 */  lw         $t3, ($t2)
 /* BB0E4 800BA4E4 AD8B0000 */  sw         $t3, ($t4)
-/* BB0E8 800BA4E8 0C029EF8 */  jal        func_800A7BE0
+/* BB0E8 800BA4E8 0C029EF8 */  jal        osGetCount
 /* BB0EC 800BA4EC 00000000 */   nop
 /* BB0F0 800BA4F0 8FAD0080 */  lw         $t5, 0x80($sp)
 /* BB0F4 800BA4F4 8FB80024 */  lw         $t8, 0x24($sp)
@@ -278,8 +278,8 @@ glabel func_800BA48C
 /* BB16C 800BA56C 1420FFEF */  bnez       $at, .L800BA52C
 /* BB170 800BA570 AFAB007C */   sw        $t3, 0x7c($sp)
 .L800BA574:
-/* BB174 800BA574 3C0D800F */  lui        $t5, %hi(D_800EABE0)
-/* BB178 800BA578 8DADABE0 */  lw         $t5, %lo(D_800EABE0)($t5)
+/* BB174 800BA574 3C0D800F */  lui        $t5, %hi(log_data_0000)
+/* BB178 800BA578 8DADABE0 */  lw         $t5, %lo(log_data_0000)($t5)
 /* BB17C 800BA57C 11A0002C */  beqz       $t5, .L800BA630
 /* BB180 800BA580 00000000 */   nop
 /* BB184 800BA584 8FAF0080 */  lw         $t7, 0x80($sp)
@@ -326,10 +326,10 @@ glabel func_800BA48C
 /* BB220 800BA620 10000003 */  b          .L800BA630
 /* BB224 800BA624 ADE90010 */   sw        $t1, 0x10($t7)
 .L800BA628:
-/* BB228 800BA628 3C01800F */  lui        $at, %hi(D_800EABE0)
-/* BB22C 800BA62C AC20ABE0 */  sw         $zero, %lo(D_800EABE0)($at)
+/* BB228 800BA628 3C01800F */  lui        $at, %hi(log_data_0000)
+/* BB22C 800BA62C AC20ABE0 */  sw         $zero, %lo(log_data_0000)($at)
 .L800BA630:
-/* BB230 800BA630 0C0297AC */  jal        func_800A5EB0
+/* BB230 800BA630 0C0297AC */  jal        __osRestoreInt
 /* BB234 800BA634 8FA40078 */   lw        $a0, 0x78($sp)
 /* BB238 800BA638 10000001 */  b          .L800BA640
 /* BB23C 800BA63C 00000000 */   nop
@@ -339,7 +339,7 @@ glabel func_800BA48C
 /* BB248 800BA648 03E00008 */  jr         $ra
 /* BB24C 800BA64C 00000000 */   nop
 
-glabel func_800BA650
+glabel __osGetCause
 /* BB250 800BA650 40026800 */  mfc0       $v0, $13
 /* BB254 800BA654 03E00008 */  jr         $ra
 /* BB258 800BA658 00000000 */   nop

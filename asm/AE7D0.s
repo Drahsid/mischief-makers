@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800ADBD0
+glabel alSynStopVoice
 /* AE7D0 800ADBD0 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AE7D4 800ADBD4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE7D8 800ADBD8 AFA40020 */  sw         $a0, 0x20($sp)
@@ -16,14 +16,14 @@ glabel func_800ADBD0
 /* AE7E4 800ADBE4 8DCF0008 */  lw         $t7, 8($t6)
 /* AE7E8 800ADBE8 11E00024 */  beqz       $t7, .L800ADC7C
 /* AE7EC 800ADBEC 00000000 */   nop
-/* AE7F0 800ADBF0 0C027AE8 */  jal        func_8009EBA0
+/* AE7F0 800ADBF0 0C027AE8 */  jal        __allocParam
 /* AE7F4 800ADBF4 00000000 */   nop
 /* AE7F8 800ADBF8 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE7FC 800ADBFC 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AE800 800ADC00 17000006 */  bnez       $t8, .L800ADC1C
 /* AE804 800ADC04 00000000 */   nop
 /* AE808 800ADC08 2404006A */  addiu      $a0, $zero, 0x6a
-/* AE80C 800ADC0C 0C0297B4 */  jal        func_800A5ED0
+/* AE80C 800ADC0C 0C0297B4 */  jal        __osError
 /* AE810 800ADC10 00002825 */   or        $a1, $zero, $zero
 /* AE814 800ADC14 1000001B */  b          .L800ADC84
 /* AE818 800ADC18 00000000 */   nop

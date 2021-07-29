@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A4910
+glabel guPerspectiveF
 /* A5510 800A4910 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* A5514 800A4914 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A5518 800A4918 AFA40030 */  sw         $a0, 0x30($sp)
@@ -15,11 +15,11 @@ glabel func_800A4910
 /* A5520 800A4920 AFA60038 */  sw         $a2, 0x38($sp)
 /* A5524 800A4924 AFA7003C */  sw         $a3, 0x3c($sp)
 /* A5528 800A4928 F7B40010 */  sdc1       $f20, 0x10($sp)
-/* A552C 800A492C 0C02CB32 */  jal        func_800B2CC8
+/* A552C 800A492C 0C02CB32 */  jal        guMtxIdentF
 /* A5530 800A4930 8FA40030 */   lw        $a0, 0x30($sp)
 /* A5534 800A4934 C7A40038 */  lwc1       $f4, 0x38($sp)
-/* A5538 800A4938 3C01800F */  lui        $at, %hi(D_800EDA70)
-/* A553C 800A493C D428DA70 */  ldc1       $f8, %lo(D_800EDA70)($at)
+/* A5538 800A4938 3C01800F */  lui        $at, %hi(perspective_rodata_0000)
+/* A553C 800A493C D428DA70 */  ldc1       $f8, %lo(perspective_rodata_0000)($at)
 /* A5540 800A4940 460021A1 */  cvt.d.s    $f6, $f4
 /* A5544 800A4944 46283282 */  mul.d      $f10, $f6, $f8
 /* A5548 800A4948 46205420 */  cvt.s.d    $f16, $f10
@@ -27,13 +27,13 @@ glabel func_800A4910
 /* A5550 800A4950 3C014000 */  lui        $at, 0x4000
 /* A5554 800A4954 44812000 */  mtc1       $at, $f4
 /* A5558 800A4958 C7B20038 */  lwc1       $f18, 0x38($sp)
-/* A555C 800A495C 0C02CB68 */  jal        func_800B2DA0
+/* A555C 800A495C 0C02CB68 */  jal        __cosf
 /* A5560 800A4960 46049303 */   div.s     $f12, $f18, $f4
 /* A5564 800A4964 3C014000 */  lui        $at, 0x4000
 /* A5568 800A4968 44814000 */  mtc1       $at, $f8
 /* A556C 800A496C C7A60038 */  lwc1       $f6, 0x38($sp)
 /* A5570 800A4970 46000506 */  mov.s      $f20, $f0
-/* A5574 800A4974 0C02CBF8 */  jal        func_800B2FE0
+/* A5574 800A4974 0C02CBF8 */  jal        __sinf
 /* A5578 800A4978 46083303 */   div.s     $f12, $f6, $f8
 /* A557C 800A497C 4600A283 */  div.s      $f10, $f20, $f0
 /* A5580 800A4980 E7AA002C */  swc1       $f10, 0x2c($sp)
@@ -180,7 +180,7 @@ glabel func_800A4910
 /* A5794 800A4B94 03E00008 */  jr         $ra
 /* A5798 800A4B98 00000000 */   nop
 
-glabel func_800A4B9C
+glabel guPerspective
 /* A579C 800A4B9C 27BDFF98 */  addiu      $sp, $sp, -0x68
 /* A57A0 800A4BA0 AFBF0024 */  sw         $ra, 0x24($sp)
 /* A57A4 800A4BA4 AFA40068 */  sw         $a0, 0x68($sp)
@@ -196,7 +196,7 @@ glabel func_800A4B9C
 /* A57CC 800A4BCC 8FA70074 */  lw         $a3, 0x74($sp)
 /* A57D0 800A4BD0 E7A40010 */  swc1       $f4, 0x10($sp)
 /* A57D4 800A4BD4 E7A60014 */  swc1       $f6, 0x14($sp)
-/* A57D8 800A4BD8 0C029244 */  jal        func_800A4910
+/* A57D8 800A4BD8 0C029244 */  jal        guPerspectiveF
 /* A57DC 800A4BDC E7A80018 */   swc1      $f8, 0x18($sp)
 /* A57E0 800A4BE0 27A40028 */  addiu      $a0, $sp, 0x28
 /* A57E4 800A4BE4 0C02CA98 */  jal        guMtxF2L

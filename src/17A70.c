@@ -46,7 +46,7 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017800.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/SplashScreen_tick.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
 
@@ -56,15 +56,15 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001817C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_tick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800188CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_tick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80018E00.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/StageSelect_Print.s")
 
 #ifdef NON_MATCHING
 // Needs a lot of work
-void func_800191B8(void) {
+void StageSelect_tick(void) {
     int16_t temp_t3;
     int32_t temp_a0;
     int32_t temp_t6_2;
@@ -98,7 +98,7 @@ void func_800191B8(void) {
         }
         else {
             func_80017770();
-            func_80017680(D_800BE504, &D_800F026E);
+            func_80017680(gButton_DUp, &D_800F026E);
 
             if (temp_v0 != 0) {
                 temp_t6 = gActors.unk_0xBC6 - 1;
@@ -109,7 +109,7 @@ void func_800191B8(void) {
                 func_80003380(0x22);
             }
 
-            func_80017680(D_800BE508, &D_800F0406);
+            func_80017680(gButton_DDown, &D_800F0406);
 
             if (temp_v0 != 0) {
                 temp_t8 = gActors.unk_0xBC6 + 1;
@@ -120,7 +120,7 @@ void func_800191B8(void) {
                 func_80003380(0x22);
             }
 
-            func_80017680(D_800BE50C, &D_800F059E);
+            func_80017680(gButton_DLeft, &D_800F059E);
 
             if (temp_v0 != 0) {
                 temp_v1 = (&D_80178170) + gActors.unk_0xBC6;
@@ -131,7 +131,7 @@ void func_800191B8(void) {
                 }
             }
 
-            func_80017680(D_800BE510, &D_800F0736);
+            func_80017680(gButton_DRight, &D_800F0736);
 
             if (temp_v0 != 0) {
                 temp_v0_2 = gActors.unk_0xBC6;
@@ -149,8 +149,8 @@ void func_800191B8(void) {
             D_80178162 = temp_t3;
             D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
-            func_80018E00(&D_80178162);
-            if ((D_800BE4FC & D_800BE500) != 0) {
+            StageSelect_Print(&D_80178162);
+            if ((gButtonPress & gButton_Start) != 0) {
                 func_80003A38();
                 func_80043918();
                 gGameSubState = (uint16_t)(gGameSubState + 1);
@@ -194,7 +194,7 @@ void func_800191B8(void) {
 
         gActors.unk_0xBC6 = (uint8_t)0U;
         D_800BE5D0 = 0;
-        func_80018E00((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
+        StageSelect_Print((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
         D_801376BD = (uint8_t)0;
         D_801376B9 = (uint8_t)1;
         D_801376A9 = (uint8_t)0xC0;
@@ -206,7 +206,7 @@ void func_800191B8(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800191B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/StageSelect_tick.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
@@ -269,9 +269,9 @@ void func_800191B8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 
@@ -301,7 +301,7 @@ void func_800191B8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D0A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D240.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D5B8.s")
 

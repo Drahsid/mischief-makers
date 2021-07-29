@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AF2E0
+glabel alMainBusPull
 /* AFEE0 800AF2E0 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* AFEE4 800AF2E4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AFEE8 800AF2E8 AFA40048 */  sw         $a0, 0x48($sp)
@@ -120,7 +120,7 @@ glabel func_800AF2E0
 /* B0088 800AF488 03E00008 */  jr         $ra
 /* B008C 800AF48C 00000000 */   nop
 
-glabel func_800AF490
+glabel alAuxBusParam
 /* B0090 800AF490 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B0094 800AF494 AFA40004 */  sw         $a0, 4($sp)
 /* B0098 800AF498 8FAE0004 */  lw         $t6, 4($sp)

@@ -331,19 +331,19 @@ glabel func_8003A120
 .L8003A614:
 /* 3B214 8003A614 8E0E0150 */  lw         $t6, 0x150($s0)
 .L8003A618:
-/* 3B218 8003A618 3C0D800C */  lui        $t5, %hi(D_800BE50C)
+/* 3B218 8003A618 3C0D800C */  lui        $t5, %hi(gButton_DLeft)
 /* 3B21C 8003A61C 31CC1000 */  andi       $t4, $t6, 0x1000
 /* 3B220 8003A620 11800086 */  beqz       $t4, .L8003A83C
-/* 3B224 8003A624 3C0F800C */   lui       $t7, %hi(D_800BE510)
-/* 3B228 8003A628 95ADE50C */  lhu        $t5, %lo(D_800BE50C)($t5)
-/* 3B22C 8003A62C 95EFE510 */  lhu        $t7, %lo(D_800BE510)($t7)
-/* 3B230 8003A630 3C0A800C */  lui        $t2, %hi(D_800BE504)
-/* 3B234 8003A634 954AE504 */  lhu        $t2, %lo(D_800BE504)($t2)
-/* 3B238 8003A638 3C18800C */  lui        $t8, %hi(D_800BE508)
-/* 3B23C 8003A63C 9718E508 */  lhu        $t8, %lo(D_800BE508)($t8)
-/* 3B240 8003A640 3C0C800C */  lui        $t4, %hi(D_800BE4F8)
+/* 3B224 8003A624 3C0F800C */   lui       $t7, %hi(gButton_DRight)
+/* 3B228 8003A628 95ADE50C */  lhu        $t5, %lo(gButton_DLeft)($t5)
+/* 3B22C 8003A62C 95EFE510 */  lhu        $t7, %lo(gButton_DRight)($t7)
+/* 3B230 8003A630 3C0A800C */  lui        $t2, %hi(gButton_DUp)
+/* 3B234 8003A634 954AE504 */  lhu        $t2, %lo(gButton_DUp)($t2)
+/* 3B238 8003A638 3C18800C */  lui        $t8, %hi(gButton_DDown)
+/* 3B23C 8003A63C 9718E508 */  lhu        $t8, %lo(gButton_DDown)($t8)
+/* 3B240 8003A640 3C0C800C */  lui        $t4, %hi(gButtonHold)
 /* 3B244 8003A644 01AFC821 */  addu       $t9, $t5, $t7
-/* 3B248 8003A648 958CE4F8 */  lhu        $t4, %lo(D_800BE4F8)($t4)
+/* 3B248 8003A648 958CE4F8 */  lhu        $t4, %lo(gButtonHold)($t4)
 /* 3B24C 8003A64C 032A5821 */  addu       $t3, $t9, $t2
 /* 3B250 8003A650 01787021 */  addu       $t6, $t3, $t8
 /* 3B254 8003A654 24010100 */  addiu      $at, $zero, 0x100

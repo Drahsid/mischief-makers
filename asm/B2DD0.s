@@ -7,10 +7,10 @@
 
 .section .text, "ax"
 
-glabel func_800B21D0
+glabel __osAiDeviceBusy
 /* B2DD0 800B21D0 27BDFFF8 */  addiu      $sp, $sp, -8
-/* B2DD4 800B21D4 3C0EA450 */  lui        $t6, %hi(D_A450000C)
-/* B2DD8 800B21D8 8DC4000C */  lw         $a0, %lo(D_A450000C)($t6)
+/* B2DD4 800B21D4 3C0EA450 */  lui        $t6, %hi(AI_STATUS)
+/* B2DD8 800B21D8 8DC4000C */  lw         $a0, %lo(AI_STATUS)($t6)
 /* B2DDC 800B21DC 3C018000 */  lui        $at, 0x8000
 /* B2DE0 800B21E0 00817824 */  and        $t7, $a0, $at
 /* B2DE4 800B21E4 11E00005 */  beqz       $t7, .L800B21FC

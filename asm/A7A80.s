@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A6E80
+glabel __osSiRawWriteIo
 /* A7A80 800A6E80 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A7A84 800A6E84 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A7A88 800A6E88 AFA40018 */  sw         $a0, 0x18($sp)
@@ -19,14 +19,14 @@ glabel func_800A6E80
 /* A7AA0 800A6EA0 10000007 */  b          .L800A6EC0
 /* A7AA4 800A6EA4 00000000 */   nop
 .L800A6EA8:
-/* A7AA8 800A6EA8 3C04800F */  lui        $a0, %hi(D_800EDB40)
-/* A7AAC 800A6EAC 3C05800F */  lui        $a1, %hi(D_800EDB58)
-/* A7AB0 800A6EB0 24A5DB58 */  addiu      $a1, $a1, %lo(D_800EDB58)
-/* A7AB4 800A6EB4 2484DB40 */  addiu      $a0, $a0, %lo(D_800EDB40)
-/* A7AB8 800A6EB8 0C026E74 */  jal        func_8009B9D0
+/* A7AA8 800A6EA8 3C04800F */  lui        $a0, %hi(sirawwrite_rodata_0000)
+/* A7AAC 800A6EAC 3C05800F */  lui        $a1, %hi(sirawwrite_rodata_0018)
+/* A7AB0 800A6EB0 24A5DB58 */  addiu      $a1, $a1, %lo(sirawwrite_rodata_0018)
+/* A7AB4 800A6EB4 2484DB40 */  addiu      $a0, $a0, %lo(sirawwrite_rodata_0000)
+/* A7AB8 800A6EB8 0C026E74 */  jal        __assert
 /* A7ABC 800A6EBC 24060034 */   addiu     $a2, $zero, 0x34
 .L800A6EC0:
-/* A7AC0 800A6EC0 0C02D54C */  jal        func_800B5530
+/* A7AC0 800A6EC0 0C02D54C */  jal        __osSiDeviceBusy
 /* A7AC4 800A6EC4 00000000 */   nop
 /* A7AC8 800A6EC8 10400003 */  beqz       $v0, .L800A6ED8
 /* A7ACC 800A6ECC 00000000 */   nop

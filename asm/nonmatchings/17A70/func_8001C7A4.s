@@ -5,7 +5,7 @@ glabel func_8001C7A4
 /* 1D3B0 8001C7B0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 1D3B4 8001C7B4 24040000 */  addiu      $a0, $zero, 0
 /* 1D3B8 8001C7B8 24050001 */  addiu      $a1, $zero, 1
-/* 1D3BC 8001C7BC 0C0290D5 */  jal        func_800A4354
+/* 1D3BC 8001C7BC 0C0290D5 */  jal        __ll_lshift
 /* 1D3C0 8001C7C0 000737C3 */   sra       $a2, $a3, 0x1f
 /* 1D3C4 8001C7C4 3C048017 */  lui        $a0, %hi(D_80171B10)
 /* 1D3C8 8001C7C8 24841B10 */  addiu      $a0, $a0, %lo(D_80171B10)

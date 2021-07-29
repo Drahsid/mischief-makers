@@ -145,8 +145,8 @@ glabel func_8004D140
 /* 4DF54 8004D354 240C0002 */   addiu     $t4, $zero, 2
 /* 4DF58 8004D358 1B000007 */  blez       $t8, .L8004D378
 /* 4DF5C 8004D35C 3C098013 */   lui       $t1, %hi(D_801370CC)
-/* 4DF60 8004D360 3C0A800C */  lui        $t2, %hi(D_800BE518)
-/* 4DF64 8004D364 954AE518 */  lhu        $t2, %lo(D_800BE518)($t2)
+/* 4DF60 8004D360 3C0A800C */  lui        $t2, %hi(gButton_A)
+/* 4DF64 8004D364 954AE518 */  lhu        $t2, %lo(gButton_A)($t2)
 /* 4DF68 8004D368 952970CC */  lhu        $t1, %lo(D_801370CC)($t1)
 /* 4DF6C 8004D36C 00000000 */  nop
 /* 4DF70 8004D370 012A5824 */  and        $t3, $t1, $t2

@@ -1,13 +1,13 @@
 glabel func_8001B2F4
-/* 1BEF4 8001B2F4 3C048018 */  lui        $a0, %hi(D_80178162)
-/* 1BEF8 8001B2F8 94848162 */  lhu        $a0, %lo(D_80178162)($a0)
-/* 1BEFC 8001B2FC 3C0F800C */  lui        $t7, %hi(D_800C4F28)
-/* 1BF00 8001B300 25EF4F28 */  addiu      $t7, $t7, %lo(D_800C4F28)
+/* 1BEF4 8001B2F4 3C048018 */  lui        $a0, %hi(gCurrentStage)
+/* 1BEF8 8001B2F8 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
+/* 1BEFC 8001B2FC 3C0F800C */  lui        $t7, %hi(gTimeRecords)
+/* 1BF00 8001B300 25EF4F28 */  addiu      $t7, $t7, %lo(gTimeRecords)
 /* 1BF04 8001B304 00047040 */  sll        $t6, $a0, 1
-/* 1BF08 8001B308 3C078017 */  lui        $a3, %hi(D_80171B18)
+/* 1BF08 8001B308 3C078017 */  lui        $a3, %hi(gWorldProgress)
 /* 1BF0C 8001B30C 01CF2821 */  addu       $a1, $t6, $t7
 /* 1BF10 8001B310 94A20000 */  lhu        $v0, ($a1)
-/* 1BF14 8001B314 24E71B18 */  addiu      $a3, $a3, %lo(D_80171B18)
+/* 1BF14 8001B314 24E71B18 */  addiu      $a3, $a3, %lo(gWorldProgress)
 /* 1BF18 8001B318 3C068018 */  lui        $a2, %hi(D_801781E0)
 /* 1BF1C 8001B31C 90E30000 */  lbu        $v1, ($a3)
 /* 1BF20 8001B320 94C681E0 */  lhu        $a2, %lo(D_801781E0)($a2)
@@ -21,13 +21,13 @@ glabel func_8001B2F4
 /* 1BF40 8001B340 A4A60000 */  sh         $a2, ($a1)
 .L8001B344:
 /* 1BF44 8001B344 14640003 */  bne        $v1, $a0, .L8001B354
-/* 1BF48 8001B348 3C198018 */   lui       $t9, %hi(D_80178136)
+/* 1BF48 8001B348 3C198018 */   lui       $t9, %hi(gRedGems)
 /* 1BF4C 8001B34C 24980001 */  addiu      $t8, $a0, 1
 /* 1BF50 8001B350 A0F80000 */  sb         $t8, ($a3)
 .L8001B354:
 /* 1BF54 8001B354 3C08800C */  lui        $t0, %hi(D_800C5008)
 /* 1BF58 8001B358 91085008 */  lbu        $t0, %lo(D_800C5008)($t0)
-/* 1BF5C 8001B35C 97398136 */  lhu        $t9, %lo(D_80178136)($t9)
+/* 1BF5C 8001B35C 97398136 */  lhu        $t9, %lo(gRedGems)($t9)
 /* 1BF60 8001B360 3C018017 */  lui        $at, %hi(D_80171AD0)
 /* 1BF64 8001B364 00084840 */  sll        $t1, $t0, 1
 /* 1BF68 8001B368 00290821 */  addu       $at, $at, $t1
@@ -52,7 +52,7 @@ glabel func_8001B2F4
 /* 1BFB4 8001B3B4 AC2B1ADC */   sw        $t3, %lo(D_80171ADC)($at)
 /* 1BFB8 8001B3B8 87AF001E */  lh         $t7, 0x1e($sp)
 /* 1BFBC 8001B3BC 8FBF0014 */  lw         $ra, 0x14($sp)
-/* 1BFC0 8001B3C0 3C018017 */  lui        $at, %hi(D_80171B18)
+/* 1BFC0 8001B3C0 3C018017 */  lui        $at, %hi(gWorldProgress)
 /* 1BFC4 8001B3C4 27BD0020 */  addiu      $sp, $sp, 0x20
 /* 1BFC8 8001B3C8 03E00008 */  jr         $ra
-/* 1BFCC 8001B3CC A02F1B18 */   sb        $t7, %lo(D_80171B18)($at)
+/* 1BFCC 8001B3CC A02F1B18 */   sb        $t7, %lo(gWorldProgress)($at)

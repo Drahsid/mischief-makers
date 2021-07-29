@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A5C30
+glabel strchr
 /* A6830 800A5C30 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A6834 800A5C34 A3A50007 */  sb         $a1, 7($sp)
 /* A6838 800A5C38 908E0000 */  lbu        $t6, ($a0)
@@ -35,7 +35,7 @@ glabel func_800A5C30
 /* A6880 800A5C80 03E00008 */  jr         $ra
 /* A6884 800A5C84 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800A5C88
+glabel strlen
 /* A6888 800A5C88 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A688C 800A5C8C AFA40004 */  sw         $a0, 4($sp)
 /* A6890 800A5C90 8FAE0004 */  lw         $t6, 4($sp)
@@ -59,7 +59,7 @@ glabel func_800A5C88
 /* A68CC 800A5CCC 03E00008 */  jr         $ra
 /* A68D0 800A5CD0 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800A5CD4
+glabel memcpy
 /* A68D4 800A5CD4 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A68D8 800A5CD8 AFA40004 */  sw         $a0, 4($sp)
 /* A68DC 800A5CDC 10C0000D */  beqz       $a2, .L800A5D14

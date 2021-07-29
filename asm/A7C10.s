@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A7010
+glabel osMapTLBRdb
 /* A7C10 800A7010 40085000 */  mfc0       $t0, $10
 /* A7C14 800A7014 2409001F */  addiu      $t1, $zero, 0x1f
 /* A7C18 800A7018 40890000 */  mtc0       $t1, $0

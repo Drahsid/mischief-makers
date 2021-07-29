@@ -27,15 +27,15 @@ glabel func_800012F0
 /* 1F50 80001350 94A80000 */  lhu        $t0, ($a1)
 /* 1F54 80001354 24010010 */  addiu      $at, $zero, 0x10
 /* 1F58 80001358 15010019 */  bne        $t0, $at, .L800013C0
-/* 1F5C 8000135C 3C09800C */   lui       $t1, %hi(D_800BE500)
-/* 1F60 80001360 3C02800C */  lui        $v0, %hi(D_800BE4FC)
-/* 1F64 80001364 9442E4FC */  lhu        $v0, %lo(D_800BE4FC)($v0)
-/* 1F68 80001368 9529E500 */  lhu        $t1, %lo(D_800BE500)($t1)
-/* 1F6C 8000136C 3C0B800C */  lui        $t3, %hi(D_800BE518)
+/* 1F5C 8000135C 3C09800C */   lui       $t1, %hi(gButton_Start)
+/* 1F60 80001360 3C02800C */  lui        $v0, %hi(gButtonPress)
+/* 1F64 80001364 9442E4FC */  lhu        $v0, %lo(gButtonPress)($v0)
+/* 1F68 80001368 9529E500 */  lhu        $t1, %lo(gButton_Start)($t1)
+/* 1F6C 8000136C 3C0B800C */  lui        $t3, %hi(gButton_A)
 /* 1F70 80001370 00495024 */  and        $t2, $v0, $t1
 /* 1F74 80001374 15400006 */  bnez       $t2, .L80001390
 /* 1F78 80001378 308D0100 */   andi      $t5, $a0, 0x100
-/* 1F7C 8000137C 956BE518 */  lhu        $t3, %lo(D_800BE518)($t3)
+/* 1F7C 8000137C 956BE518 */  lhu        $t3, %lo(gButton_A)($t3)
 /* 1F80 80001380 00000000 */  nop
 /* 1F84 80001384 004B6024 */  and        $t4, $v0, $t3
 /* 1F88 80001388 11800030 */  beqz       $t4, .L8000144C
@@ -55,10 +55,10 @@ glabel func_800012F0
 /* 1FB8 800013B8 10000024 */  b          .L8000144C
 /* 1FBC 800013BC A4AE0000 */   sh        $t6, ($a1)
 .L800013C0:
-/* 1FC0 800013C0 3C0F800C */  lui        $t7, %hi(D_800BE4FC)
-/* 1FC4 800013C4 3C18800C */  lui        $t8, %hi(D_800BE500)
-/* 1FC8 800013C8 9718E500 */  lhu        $t8, %lo(D_800BE500)($t8)
-/* 1FCC 800013CC 95EFE4FC */  lhu        $t7, %lo(D_800BE4FC)($t7)
+/* 1FC0 800013C0 3C0F800C */  lui        $t7, %hi(gButtonPress)
+/* 1FC4 800013C4 3C18800C */  lui        $t8, %hi(gButton_Start)
+/* 1FC8 800013C8 9718E500 */  lhu        $t8, %lo(gButton_Start)($t8)
+/* 1FCC 800013CC 95EFE4FC */  lhu        $t7, %lo(gButtonPress)($t7)
 /* 1FD0 800013D0 3C05800C */  lui        $a1, %hi(gGameSubState)
 /* 1FD4 800013D4 01F8C824 */  and        $t9, $t7, $t8
 /* 1FD8 800013D8 1320001C */  beqz       $t9, .L8000144C

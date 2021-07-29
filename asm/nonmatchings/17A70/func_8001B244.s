@@ -5,12 +5,12 @@ glabel func_8001B244
 /* 1BE50 8001B250 AFB00018 */  sw         $s0, 0x18($sp)
 /* 1BE54 8001B254 240E0000 */  addiu      $t6, $zero, 0
 /* 1BE58 8001B258 240F0001 */  addiu      $t7, $zero, 1
-/* 1BE5C 8001B25C 3C128017 */  lui        $s2, %hi(D_80171B10)
+/* 1BE5C 8001B25C 3C128017 */  lui        $s2, %hi(gYellowGemBitfeild)
 /* 1BE60 8001B260 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 1BE64 8001B264 AFAF002C */  sw         $t7, 0x2c($sp)
 /* 1BE68 8001B268 AFAE0028 */  sw         $t6, 0x28($sp)
 /* 1BE6C 8001B26C 00008825 */  or         $s1, $zero, $zero
-/* 1BE70 8001B270 26521B10 */  addiu      $s2, $s2, %lo(D_80171B10)
+/* 1BE70 8001B270 26521B10 */  addiu      $s2, $s2, %lo(gYellowGemBitfeild)
 /* 1BE74 8001B274 00008025 */  or         $s0, $zero, $zero
 .L8001B278:
 /* 1BE78 8001B278 8E580000 */  lw         $t8, ($s2)
@@ -30,7 +30,7 @@ glabel func_8001B244
 .L8001B2AC:
 /* 1BEAC 8001B2AC 8FA5002C */  lw         $a1, 0x2c($sp)
 /* 1BEB0 8001B2B0 24060000 */  addiu      $a2, $zero, 0
-/* 1BEB4 8001B2B4 0C0290D5 */  jal        func_800A4354
+/* 1BEB4 8001B2B4 0C0290D5 */  jal        __ll_lshift
 /* 1BEB8 8001B2B8 24070001 */   addiu     $a3, $zero, 1
 /* 1BEBC 8001B2BC 26100001 */  addiu      $s0, $s0, 1
 /* 1BEC0 8001B2C0 320DFFFF */  andi       $t5, $s0, 0xffff

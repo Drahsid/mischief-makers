@@ -3,17 +3,17 @@ glabel func_80003A64
 /* 4668 80003A68 AFB20020 */  sw         $s2, 0x20($sp)
 /* 466C 80003A6C AFB1001C */  sw         $s1, 0x1c($sp)
 /* 4670 80003A70 AFB00018 */  sw         $s0, 0x18($sp)
-/* 4674 80003A74 3C118017 */  lui        $s1, %hi(D_8016E1D8)
+/* 4674 80003A74 3C118017 */  lui        $s1, %hi(ptr_alSeqPlayers)
 /* 4678 80003A78 3C12800F */  lui        $s2, %hi(D_800EF4F0)
 /* 467C 80003A7C AFBF0024 */  sw         $ra, 0x24($sp)
 /* 4680 80003A80 2652F4F0 */  addiu      $s2, $s2, %lo(D_800EF4F0)
-/* 4684 80003A84 2631E1D8 */  addiu      $s1, $s1, %lo(D_8016E1D8)
+/* 4684 80003A84 2631E1D8 */  addiu      $s1, $s1, %lo(ptr_alSeqPlayers)
 /* 4688 80003A88 00008025 */  or         $s0, $zero, $zero
 .L80003A8C:
 /* 468C 80003A8C 00107080 */  sll        $t6, $s0, 2
 /* 4690 80003A90 022E7821 */  addu       $t7, $s1, $t6
 /* 4694 80003A94 8DE40000 */  lw         $a0, ($t7)
-/* 4698 80003A98 0C027FD0 */  jal        func_8009FF40
+/* 4698 80003A98 0C027FD0 */  jal        alSeqpStop
 /* 469C 80003A9C 00000000 */   nop
 /* 46A0 80003AA0 0250C021 */  addu       $t8, $s2, $s0
 /* 46A4 80003AA4 26100001 */  addiu      $s0, $s0, 1

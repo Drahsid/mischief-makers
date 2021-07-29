@@ -2,9 +2,9 @@ glabel func_80049300
 /* 49F00 80049300 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 49F04 80049304 AFA40028 */  sw         $a0, 0x28($sp)
 /* 49F08 80049308 3087FFFF */  andi       $a3, $a0, 0xffff
-/* 49F0C 8004930C 3C03800C */  lui        $v1, %hi(D_800BE514)
+/* 49F0C 8004930C 3C03800C */  lui        $v1, %hi(gButton_B)
 /* 49F10 80049310 3C048012 */  lui        $a0, %hi(D_801225F0)
-/* 49F14 80049314 9463E514 */  lhu        $v1, %lo(D_800BE514)($v1)
+/* 49F14 80049314 9463E514 */  lhu        $v1, %lo(gButton_B)($v1)
 /* 49F18 80049318 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 49F1C 8004931C 248425F0 */  addiu      $a0, $a0, %lo(D_801225F0)
 /* 49F20 80049320 24020001 */  addiu      $v0, $zero, 1
