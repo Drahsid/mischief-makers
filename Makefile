@@ -68,8 +68,9 @@ dirs:
 	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(shell mkdir -p $(BUILD_DIR)/$(dir)))
 
 clean:
+	rm -rf assets
 	rm -rf build
-
+	rm -f *auto.txt
 setup:
 	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
 

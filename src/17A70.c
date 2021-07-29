@@ -46,7 +46,7 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017800.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/show_splash_screens.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
 
@@ -56,15 +56,15 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001817C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/show_title_screen.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800188CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/sound_test.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80018E00.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_stage_select.s")
 
 #ifdef NON_MATCHING
 // Needs a lot of work
-void func_800191B8(void) {
+void stage_select(void) {
     int16_t temp_t3;
     int32_t temp_a0;
     int32_t temp_t6_2;
@@ -149,7 +149,7 @@ void func_800191B8(void) {
             D_80178162 = temp_t3;
             D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
-            func_80018E00(&D_80178162);
+            print_stage_select(&D_80178162);
             if ((D_800BE4FC & D_800BE500) != 0) {
                 func_80003A38();
                 func_80043918();
@@ -194,7 +194,7 @@ void func_800191B8(void) {
 
         gActors.unk_0xBC6 = (uint8_t)0U;
         D_800BE5D0 = 0;
-        func_80018E00((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
+        print_stage_select((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
         D_801376BD = (uint8_t)0;
         D_801376B9 = (uint8_t)1;
         D_801376A9 = (uint8_t)0xC0;
@@ -206,7 +206,7 @@ void func_800191B8(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800191B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/stage_select.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
