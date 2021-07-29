@@ -67,10 +67,14 @@ check: $(TARGET).z64 $(N64CRC)
 dirs:
 	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(shell mkdir -p $(BUILD_DIR)/$(dir)))
 
-clean:
+nuke:
 	rm -rf assets
 	rm -rf build
 	rm -f *auto.txt
+
+clean:
+	rm -rf build
+
 setup:
 	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
 
