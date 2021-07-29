@@ -7,10 +7,10 @@ glabel func_8001C7F0
 /* 1D404 8001C804 24050001 */  addiu      $a1, $zero, 1
 /* 1D408 8001C808 0C0290D5 */  jal        __ll_lshift
 /* 1D40C 8001C80C 000737C3 */   sra       $a2, $a3, 0x1f
-/* 1D410 8001C810 3C188017 */  lui        $t8, %hi(D_80171B10)
-/* 1D414 8001C814 3C198017 */  lui        $t9, %hi(D_80171B14)
-/* 1D418 8001C818 8F391B14 */  lw         $t9, %lo(D_80171B14)($t9)
-/* 1D41C 8001C81C 8F181B10 */  lw         $t8, %lo(D_80171B10)($t8)
+/* 1D410 8001C810 3C188017 */  lui        $t8, %hi(gYellowGemBitfeild)
+/* 1D414 8001C814 3C198017 */  lui        $t9, %hi(gYellowGemBitfeild+0x4)
+/* 1D418 8001C818 8F391B14 */  lw         $t9, %lo(gYellowGemBitfeild+0x4)($t9)
+/* 1D41C 8001C81C 8F181B10 */  lw         $t8, %lo(gYellowGemBitfeild)($t8)
 /* 1D420 8001C820 8FBF0014 */  lw         $ra, 0x14($sp)
 /* 1D424 8001C824 27BD0018 */  addiu      $sp, $sp, 0x18
 /* 1D428 8001C828 03231824 */  and        $v1, $t9, $v1

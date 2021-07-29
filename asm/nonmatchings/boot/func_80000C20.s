@@ -66,7 +66,7 @@ glabel func_80000C20
 /* 1920 80000D20 96240000 */  lhu        $a0, ($s1)
 /* 1924 80000D24 0C0002A1 */  jal        func_80000A84
 /* 1928 80000D28 00000000 */   nop
-/* 192C 80000D2C 0C000426 */  jal        get_first_active_controller
+/* 192C 80000D2C 0C000426 */  jal        Input_GetFirstController
 /* 1930 80000D30 00000000 */   nop
 /* 1934 80000D34 3C018013 */  lui        $at, 0x8013
 /* 1938 80000D38 3C12803D */  lui        $s2, 0x803d
@@ -88,11 +88,11 @@ glabel func_80000C20
 /* 1974 80000D74 00002825 */  or         $a1, $zero, $zero
 /* 1978 80000D78 0C026B44 */  jal        osRecvMesg
 /* 197C 80000D7C 24060001 */   addiu     $a2, $zero, 1
-/* 1980 80000D80 3C048013 */  lui        $a0, %hi(ConpadArrayB)
+/* 1980 80000D80 3C048013 */  lui        $a0, %hi(gConpadArrayB)
 /* 1984 80000D84 0C026AD6 */  jal        osContGetReadData
-/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(ConpadArrayB)
-/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(PlayerPort)
-/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(PlayerPort)($t6)
+/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(gConpadArrayB)
+/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(gPlayerControllerIndex)
+/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(gPlayerControllerIndex)($t6)
 /* 1994 80000D94 2401FFFF */  addiu      $at, $zero, -1
 /* 1998 80000D98 11C10003 */  beq        $t6, $at, .L80000DA8
 /* 199C 80000D9C 3C048013 */   lui       $a0, %hi(D_8012AC08)

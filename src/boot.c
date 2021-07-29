@@ -3,7 +3,8 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/romMain.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/entrypoint.s")
+
 
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
@@ -175,78 +176,78 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&D_8012A698, 1, &initproc, 0, &D_80126670, 0xA);
+    osCreateThread(&D_8012A698, 1, &Thread_IdleProc, 0, &D_80126670, 0xA);
     osStartThread(&D_8012A698);
 }
 
-#ifdef NON_MATCHING
-// Need to figure out the structures in the loop
-void initproc(int32_t arg0) {
-    uint32_t temp_t0;
-    uint32_t temp_t1;
-    uint32_t temp_t5;
-    uint32_t temp_t7;
-    uint32_t phi_t0;
-    uint32_t phi_t7;
-    uint32_t phi_t5;
-    uint32_t phi_t1;
-    uint32_t phi_v0;
-
-    osCreateViManager(0xFE);
-    if (osTvType == 2) {
-        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
-        Framebuffer_Clear();
-        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
-        phi_t7 = (uint32_t)&D_8012AD10;
-    loop_2:
-        temp_t0 = phi_t0 + 0xC;
-        *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
-        temp_t7 = phi_t7 + 0xC;
-        *((uint32_t*)temp_t7 - 8) = *((uint32_t*)temp_t0 - 8);
-        *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
-        phi_t0 = temp_t0;
-        phi_t7 = temp_t7;
-        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
-            goto loop_2;
-        }
-        *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
-        *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
-        phi_v0 = &osViModeTable + 0x1e;
-    }
-    else {
-        osViSetMode(osViModeTable + 2);
-        Framebuffer_Clear();
-        phi_t5 = (uint32_t)osViModeTable + 2;
-        phi_t1 = (uint32_t)&D_8012AD10;
-    loop_5:
-        temp_t5 = phi_t5 + 0xC;
-        *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
-        temp_t1 = phi_t1 + 0xC;
-        *((uint32_t*)temp_t1 - 8) = *((uint32_t*)temp_t5 - 8);
-        *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
-        phi_t5 = temp_t5;
-        phi_t1 = temp_t1;
-        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
-            goto loop_5;
-        }
-        *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
-        *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
-        phi_v0 = &osViModeTable + 2;
-    }
-    D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
-    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA); // This is from libultra!
-    osStartThread(&D_8012A9F8);
-    osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
-    osStartThread(&D_8012A848);
-    osSetThreadPri(0, 0);
-
-    while (1) {
-    }
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/initproc.s")
-#endif
+// SPLAT BUG
+//#ifdef NON_MATCHING
+//void Thread_IdleProc(int32_t arg0) {
+//    uint32_t temp_t0;
+//    uint32_t temp_t1;
+//    uint32_t temp_t5;
+//    uint32_t temp_t7;
+//    uint32_t phi_t0;
+//    uint32_t phi_t7;
+//    uint32_t phi_t5;
+//    uint32_t phi_t1;
+//    uint32_t phi_v0;
+//
+//    osCreateViManager(0xFE);
+//    if (osTvType == 2) {
+//        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
+//        Framebuffer_Clear();
+//        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
+//        phi_t7 = (uint32_t)&D_8012AD10;
+//    loop_2:
+//        temp_t0 = phi_t0 + 0xC;
+//        *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
+//        temp_t7 = phi_t7 + 0xC;
+//        *((uint32_t*)temp_t7 - 8) = *((uint32_t*)temp_t0 - 8);
+//        *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
+//        phi_t0 = temp_t0;
+//        phi_t7 = temp_t7;
+//        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
+//            goto loop_2;
+//        }
+//        *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
+//        *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
+//        phi_v0 = &osViModeTable + 0x1e;
+//    }
+//    else {
+//        osViSetMode(osViModeTable + 2);
+//        Framebuffer_Clear();
+//        phi_t5 = (uint32_t)osViModeTable + 2;
+//        phi_t1 = (uint32_t)&D_8012AD10;
+//    loop_5:
+//        temp_t5 = phi_t5 + 0xC;
+//        *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
+//        temp_t1 = phi_t1 + 0xC;
+//        *((uint32_t*)temp_t1 - 8) = *((uint32_t*)temp_t5 - 8);
+//        *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
+//        phi_t5 = temp_t5;
+//        phi_t1 = temp_t1;
+//        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
+//            goto loop_5;
+//        }
+//        *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
+//        *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
+//        phi_v0 = &osViModeTable + 2;
+//    }
+//    D_8012AD08 = phi_v0;
+//    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
+//    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA); // This is from libultra!
+//    osStartThread(&D_8012A9F8);
+//    osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
+//    osStartThread(&D_8012A848);
+//    osSetThreadPri(0, 0);
+//
+//    while (1) {
+//    }
+//}
+//#else
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
+//#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
@@ -273,13 +274,13 @@ void func_80000C20(int32_t arg0) {
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
-    PlayerPort = get_first_active_controller();
+    gPlayerControllerIndex = Input_GetFirstController();
     phi_s2 = (void*)0x803DA800;
     while (1) {
         func_8009AA80(&D_8012ADA0);
         osRecvMesg(&D_8012ADA0, 0, 1);
         osContGetReadData(&D_8012AD88);
-        if (PlayerPort != -1) {
+        if (gPlayerControllerIndex != -1) {
             if (1) {
                 func_8009AA80(&D_8012AC08);
             }
@@ -327,7 +328,7 @@ void func_80000C20(int32_t arg0) {
             phi_s2 = (void*)0x801DA800;
         }
 
-        getControllerInput();
+        Input_Update();
     }
 
     func_80002114(new_var3);
@@ -336,28 +337,28 @@ void func_80000C20(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
 #endif
 
-void getControllerInput(void) {
-    osContGetReadData(ConpadArrayB);
-    if (!ConpadArrayA[PlayerPort].errno) {
+void Input_Update(void) {
+    osContGetReadData(gConpadArrayB);
+    if (!gConpadArrayA[gPlayerControllerIndex].errno) {
     }
 
-    osContGetReadData(ConpadArrayA);
+    osContGetReadData(gConpadArrayA);
 
-    if (ConpadArrayA[PlayerPort].errno == 0) {
-        ButtonRaw = ConpadArrayA[PlayerPort].button;
-        gJoyX = ConpadArrayA[PlayerPort].stick_x;
-        gJoyY = ConpadArrayA[PlayerPort].stick_y;
+    if (gConpadArrayA[gPlayerControllerIndex].errno == 0) {
+        gButtonCur = gConpadArrayA[gPlayerControllerIndex].button;
+        gJoyX = gConpadArrayA[gPlayerControllerIndex].stick_x;
+        gJoyY = gConpadArrayA[gPlayerControllerIndex].stick_y;
     }
     else {
-        ButtonRaw = 0U;
+        gButtonCur = 0U;
     }
 
-    gButtonPress = (ButtonRaw ^ D_800BE538) & ButtonRaw;
-    gButtonHold = ButtonRaw;
-    D_800BE538 = ButtonRaw;
+    gButtonPress = (gButtonCur ^ D_800BE538) & gButtonCur;
+    gButtonHold = gButtonCur;
+    D_800BE538 = gButtonCur;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/get_first_active_controller.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
 void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp30[6];
@@ -385,26 +386,27 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
 
-void GameMode_tick(void) {
+
+void GameState_Tick(void) {
     switch (gGameState) {
         case 0: {
             func_80022F48(); // soft reset
             break;
         }
         case 1: {
-            SplashScreen_tick(); // intro
+            Intro_Tick(); // intro
             break;
         }
         case 2: {
-            TitleScreen_tick(); // titlescreen
+            TitleScreen_Tick(); // titlescreen
             break;
         }
         case 3: {
-            SoundTest_tick(); // sound test
+            SoundTest_Tick(); // sound test
             break;
         }
         case 4: {
-            StageSelect_tick(); // debug level select
+            StageSelect_Tick(); // debug level select
             break;
         }
         case 5: {
@@ -412,11 +414,11 @@ void GameMode_tick(void) {
             break;
         }
         case 6: {
-            GamePlay_tick(); // stage update
+            GamePlay_Tick(); // stage update
             break;
         }
         case 7: {
-            continue_screen(); // game over
+            GamePlay_Tick_Continue(); // game over
             break;
         }
         case 8: {
@@ -428,7 +430,7 @@ void GameMode_tick(void) {
             break;
         }
         case 10: {
-            AttrectMode_tick(); // demo mode
+            AttractMode_Tick(); // demo mode
             break;
         }
         case 11: {
@@ -503,14 +505,15 @@ void func_80003380(UNK_TYPE arg0) {
     func_80003020(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_800033B4(UNK_TYPE arg0, int16_t arg1) {
-    func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
-}
-#else
+// SPLAT BUG
+//#ifdef NON_MATCHING
+//// Differences are regalloc
+//void func_800033B4(UNK_TYPE arg0, int16_t arg1) {
+//    func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
+//}
+//#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033B4.s")
-#endif
+//#endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc

@@ -1,8 +1,8 @@
 glabel func_800207DC
 /* 213DC 800207DC 27BDFFE8 */  addiu      $sp, $sp, -0x18
-/* 213E0 800207E0 3C048018 */  lui        $a0, %hi(D_80178162)
+/* 213E0 800207E0 3C048018 */  lui        $a0, %hi(gCurrentStage)
 /* 213E4 800207E4 AFBF0014 */  sw         $ra, 0x14($sp)
-/* 213E8 800207E8 94848162 */  lhu        $a0, %lo(D_80178162)($a0)
+/* 213E8 800207E8 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
 /* 213EC 800207EC 0C0071FC */  jal        func_8001C7F0
 /* 213F0 800207F0 00000000 */   nop
 /* 213F4 800207F4 14400003 */  bnez       $v0, .L80020804

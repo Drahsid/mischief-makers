@@ -178,6 +178,8 @@ glabel __osLeoInterrupt
 /* B5920 800B4D20 240F0002 */  addiu      $t7, $zero, 2
 /* B5924 800B4D24 3C19A460 */  lui        $t9, %hi(PI_STATUS)
 /* B5928 800B4D28 AF2F0010 */  sw         $t7, %lo(PI_STATUS)($t9)
+/* B5924 800B4D24 3C19A460 */  lui        $t9, %hi(PI_STATUS)
+/* B5928 800B4D28 AF2F0010 */  sw         $t7, %lo(PI_STATUS)($t9)
 /* B592C 800B4D2C 3C18800F */  lui        $t8, %hi(__OSGlobalIntMask)
 /* B5930 800B4D30 8F189780 */  lw         $t8, %lo(__OSGlobalIntMask)($t8)
 /* B5934 800B4D34 3C010010 */  lui        $at, 0x10
@@ -368,6 +370,8 @@ glabel __osLeoInterrupt
 /* B5BDC 800B4FDC ADAA0000 */   sw        $t2, ($t5)
 .L800B4FE0:
 /* B5BE0 800B4FE0 24080002 */  addiu      $t0, $zero, 2
+/* B5BE4 800B4FE4 3C19A460 */  lui        $t9, %hi(PI_STATUS)
+/* B5BE8 800B4FE8 AF280010 */  sw         $t0, %lo(PI_STATUS)($t9)
 /* B5BE4 800B4FE4 3C19A460 */  lui        $t9, %hi(PI_STATUS)
 /* B5BE8 800B4FE8 AF280010 */  sw         $t0, %lo(PI_STATUS)($t9)
 /* B5BEC 800B4FEC 3C0E800F */  lui        $t6, %hi(__OSGlobalIntMask)

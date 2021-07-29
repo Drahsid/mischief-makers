@@ -229,7 +229,7 @@ glabel func_80012DF0
 /* 13B90 80012F90 03E00008 */  jr         $ra
 /* 13B94 80012F94 27BD0048 */   addiu     $sp, $sp, 0x48
 
-glabel continue_screen
+glabel GamePlay_Tick_Continue
 /* 13B98 80012F98 27BDFFA0 */  addiu      $sp, $sp, -0x60
 /* 13B9C 80012F9C 3C03800C */  lui        $v1, %hi(gButtonPress)
 /* 13BA0 80012FA0 2463E4FC */  addiu      $v1, $v1, %lo(gButtonPress)
@@ -292,7 +292,7 @@ glabel L8001303C_13C3C
 /* 13C7C 8001307C 27190001 */  addiu      $t9, $t8, 1
 /* 13C80 80013080 A4590000 */  sh         $t9, ($v0)
 glabel L80013084_13C84
-/* 13C84 80013084 0C00840D */  jal        GamePlay_tick
+/* 13C84 80013084 0C00840D */  jal        GamePlay_Tick
 /* 13C88 80013088 00000000 */   nop
 /* 13C8C 8001308C 3C028010 */  lui        $v0, %hi(D_801033D0)
 /* 13C90 80013090 244233D0 */  addiu      $v0, $v0, %lo(D_801033D0)

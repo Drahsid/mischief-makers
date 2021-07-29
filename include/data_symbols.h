@@ -309,13 +309,13 @@ extern UNK_TYPE D_8012AC80;
 extern OSTask* D_8012AC84;
 extern struct_D_8012AD10* D_8012AD08;
 extern struct_D_8012AD10 D_8012AD10;
-extern OSContPad ConpadArrayA[4];
-extern OSContPad ConpadArrayB[4];
+extern OSContPad gConpadArrayA[4];
+extern OSContPad gConpadArrayB[4];
 extern UNK_TYPE D_8012ADA0;
 extern Mtx D_8012ADC0[390]; // room for 390 Mtx...
 extern Mtx D_80130F40[390];
-extern UNK_TYPE PlayerPort;
-extern uint16_t ButtonRaw;
+extern UNK_TYPE gPlayerControllerIndex;
+extern uint16_t gButtonCur;
 extern uint16_t D_801370CC;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;

@@ -18,7 +18,7 @@ glabel func_8000147C
 .L800014BC:
 /* 20BC 800014BC 0C0004BC */  jal        func_800012F0
 /* 20C0 800014C0 00000000 */   nop
-/* 20C4 800014C4 0C00059C */  jal        GameMode_tick
+/* 20C4 800014C4 0C00059C */  jal        GameState_Tick
 /* 20C8 800014C8 00000000 */   nop
 /* 20CC 800014CC 0C02086C */  jal        func_800821B0
 /* 20D0 800014D0 00000000 */   nop

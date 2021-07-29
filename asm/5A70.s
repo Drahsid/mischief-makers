@@ -171,7 +171,7 @@ glabel func_80004FFC
 /* 5CAC 800050AC 03E00008 */  jr         $ra
 /* 5CB0 800050B0 AC2C1AD8 */   sw        $t4, 0x1ad8($at)
 
-glabel clearGameProgress
+glabel GameSave_Reset
 /* 5CB4 800050B4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 5CB8 800050B8 3C05800C */  lui        $a1, %hi(D_800C4FC0)
 /* 5CBC 800050BC 3C038017 */  lui        $v1, %hi(D_80171AE8)
@@ -274,7 +274,7 @@ glabel func_80005188
 /* 5E28 80005228 24050002 */  addiu      $a1, $zero, 2
 /* 5E2C 8000522C 0C0291F0 */  jal        func_800A47C0
 /* 5E30 80005230 24070048 */   addiu     $a3, $zero, 0x48
-/* 5E34 80005234 0C00142D */  jal        clearGameProgress
+/* 5E34 80005234 0C00142D */  jal        GameSave_Reset
 /* 5E38 80005238 00000000 */   nop
 /* 5E3C 8000523C 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E40 80005240 3C068017 */  lui        $a2, %hi(D_80171AE8)
@@ -424,7 +424,7 @@ glabel func_80005188
 /* 605C 8000545C 02003025 */  or         $a2, $s0, $zero
 /* 6060 80005460 0C0291F0 */  jal        func_800A47C0
 /* 6064 80005464 24070048 */   addiu     $a3, $zero, 0x48
-/* 6068 80005468 0C00142D */  jal        clearGameProgress
+/* 6068 80005468 0C00142D */  jal        GameSave_Reset
 /* 606C 8000546C 00000000 */   nop
 /* 6070 80005470 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6074 80005474 3C068017 */  lui        $a2, %hi(D_80171AE8)
@@ -544,7 +544,7 @@ glabel func_80005188
 /* 621C 8000561C 02003025 */  or         $a2, $s0, $zero
 /* 6220 80005620 0C0291F0 */  jal        func_800A47C0
 /* 6224 80005624 24070048 */   addiu     $a3, $zero, 0x48
-/* 6228 80005628 0C00142D */  jal        clearGameProgress
+/* 6228 80005628 0C00142D */  jal        GameSave_Reset
 /* 622C 8000562C 00000000 */   nop
 /* 6230 80005630 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6234 80005634 3C068017 */  lui        $a2, %hi(D_80171AE8)
@@ -692,7 +692,7 @@ glabel func_80005828
 /* 6434 80005834 90845008 */  lbu        $a0, %lo(D_800C5008)($a0)
 /* 6438 80005838 0C0013FF */  jal        func_80004FFC
 /* 643C 8000583C 00000000 */   nop
-/* 6440 80005840 0C00142D */  jal        clearGameProgress
+/* 6440 80005840 0C00142D */  jal        GameSave_Reset
 /* 6444 80005844 00000000 */   nop
 /* 6448 80005848 0C0015DC */  jal        func_80005770
 /* 644C 8000584C 00000000 */   nop
