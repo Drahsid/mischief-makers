@@ -183,10 +183,10 @@ glabel L8001D848_1E448
 /* 1E4F8 8001D8F8 100000A3 */  b          .L8001DB88
 /* 1E4FC 8001D8FC 8FBF001C */   lw        $ra, 0x1c($sp)
 glabel L8001D900_1E500
-/* 1E500 8001D900 3C0C800C */  lui        $t4, %hi(D_800BE4F8)
+/* 1E500 8001D900 3C0C800C */  lui        $t4, %hi(buttonHold)
 /* 1E504 8001D904 3C0D800C */  lui        $t5, %hi(D_800BE508)
 /* 1E508 8001D908 95ADE508 */  lhu        $t5, %lo(D_800BE508)($t5)
-/* 1E50C 8001D90C 958CE4F8 */  lhu        $t4, %lo(D_800BE4F8)($t4)
+/* 1E50C 8001D90C 958CE4F8 */  lhu        $t4, %lo(buttonHold)($t4)
 /* 1E510 8001D910 00000000 */  nop
 /* 1E514 8001D914 018D7024 */  and        $t6, $t4, $t5
 /* 1E518 8001D918 11C00012 */  beqz       $t6, .L8001D964
@@ -209,10 +209,10 @@ glabel L8001D900_1E500
 /* 1E55C 8001D95C 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 1E560 8001D960 A42FE4F4 */  sh         $t7, %lo(gGameSubState)($at)
 .L8001D964:
-/* 1E564 8001D964 3C18800C */  lui        $t8, %hi(D_800BE4F8)
+/* 1E564 8001D964 3C18800C */  lui        $t8, %hi(buttonHold)
 /* 1E568 8001D968 3C19800C */  lui        $t9, %hi(D_800BE504)
 /* 1E56C 8001D96C 9739E504 */  lhu        $t9, %lo(D_800BE504)($t9)
-/* 1E570 8001D970 9718E4F8 */  lhu        $t8, %lo(D_800BE4F8)($t8)
+/* 1E570 8001D970 9718E4F8 */  lhu        $t8, %lo(buttonHold)($t8)
 /* 1E574 8001D974 3C0A8010 */  lui        $t2, %hi(D_800FA8E4)
 /* 1E578 8001D978 03194824 */  and        $t1, $t8, $t9
 /* 1E57C 8001D97C 11200013 */  beqz       $t1, .L8001D9CC
@@ -236,10 +236,10 @@ glabel L8001D900_1E500
 /* 1E5C4 8001D9C4 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 1E5C8 8001D9C8 A42BE4F4 */  sh         $t3, %lo(gGameSubState)($at)
 .L8001D9CC:
-/* 1E5CC 8001D9CC 3C02800C */  lui        $v0, %hi(D_800BE4FC)
+/* 1E5CC 8001D9CC 3C02800C */  lui        $v0, %hi(buttonPress)
 /* 1E5D0 8001D9D0 3C0C800C */  lui        $t4, %hi(D_800BE514)
 /* 1E5D4 8001D9D4 958CE514 */  lhu        $t4, %lo(D_800BE514)($t4)
-/* 1E5D8 8001D9D8 9442E4FC */  lhu        $v0, %lo(D_800BE4FC)($v0)
+/* 1E5D8 8001D9D8 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
 /* 1E5DC 8001D9DC 3C0E800C */  lui        $t6, %hi(D_800BE518)
 /* 1E5E0 8001D9E0 004C6824 */  and        $t5, $v0, $t4
 /* 1E5E4 8001D9E4 15A0000B */  bnez       $t5, .L8001DA14

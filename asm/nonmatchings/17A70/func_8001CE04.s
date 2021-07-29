@@ -7,10 +7,10 @@ glabel func_8001CE04
 /* 1DA18 8001CE18 AFB10018 */  sw         $s1, 0x18($sp)
 /* 1DA1C 8001CE1C 14200038 */  bnez       $at, .L8001CF00
 /* 1DA20 8001CE20 AFB00014 */   sw        $s0, 0x14($sp)
-/* 1DA24 8001CE24 3C02800C */  lui        $v0, %hi(D_800BE4FC)
+/* 1DA24 8001CE24 3C02800C */  lui        $v0, %hi(buttonPress)
 /* 1DA28 8001CE28 3C0F800C */  lui        $t7, %hi(D_800BE500)
 /* 1DA2C 8001CE2C 95EFE500 */  lhu        $t7, %lo(D_800BE500)($t7)
-/* 1DA30 8001CE30 9442E4FC */  lhu        $v0, %lo(D_800BE4FC)($v0)
+/* 1DA30 8001CE30 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
 /* 1DA34 8001CE34 3C19800C */  lui        $t9, %hi(D_800BE518)
 /* 1DA38 8001CE38 004FC024 */  and        $t8, $v0, $t7
 /* 1DA3C 8001CE3C 1700000B */  bnez       $t8, .L8001CE6C

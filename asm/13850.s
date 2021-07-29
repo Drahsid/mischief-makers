@@ -231,19 +231,19 @@ glabel func_80012DF0
 
 glabel continue_screen
 /* 13B98 80012F98 27BDFFA0 */  addiu      $sp, $sp, -0x60
-/* 13B9C 80012F9C 3C03800C */  lui        $v1, %hi(D_800BE4FC)
-/* 13BA0 80012FA0 2463E4FC */  addiu      $v1, $v1, %lo(D_800BE4FC)
+/* 13B9C 80012F9C 3C03800C */  lui        $v1, %hi(buttonPress)
+/* 13BA0 80012FA0 2463E4FC */  addiu      $v1, $v1, %lo(buttonPress)
 /* 13BA4 80012FA4 AFB60050 */  sw         $s6, 0x50($sp)
 /* 13BA8 80012FA8 94760000 */  lhu        $s6, ($v1)
-/* 13BAC 80012FAC 3C01800C */  lui        $at, %hi(D_800BE4F8)
-/* 13BB0 80012FB0 A420E4F8 */  sh         $zero, %lo(D_800BE4F8)($at)
+/* 13BAC 80012FAC 3C01800C */  lui        $at, %hi(buttonHold)
+/* 13BB0 80012FB0 A420E4F8 */  sh         $zero, %lo(buttonHold)($at)
 /* 13BB4 80012FB4 A4600000 */  sh         $zero, ($v1)
-/* 13BB8 80012FB8 3C01800C */  lui        $at, %hi(D_800BE53C)
-/* 13BBC 80012FBC A020E53C */  sb         $zero, %lo(D_800BE53C)($at)
+/* 13BB8 80012FB8 3C01800C */  lui        $at, %hi(joyX)
+/* 13BBC 80012FBC A020E53C */  sb         $zero, %lo(joyX)($at)
 /* 13BC0 80012FC0 3C02800C */  lui        $v0, %hi(gGameSubState)
 /* 13BC4 80012FC4 9442E4F4 */  lhu        $v0, %lo(gGameSubState)($v0)
-/* 13BC8 80012FC8 3C01800C */  lui        $at, %hi(D_800BE540)
-/* 13BCC 80012FCC A020E540 */  sb         $zero, %lo(D_800BE540)($at)
+/* 13BC8 80012FC8 3C01800C */  lui        $at, %hi(joyY)
+/* 13BCC 80012FCC A020E540 */  sb         $zero, %lo(joyY)($at)
 /* 13BD0 80012FD0 28410002 */  slti       $at, $v0, 2
 /* 13BD4 80012FD4 AFBF005C */  sw         $ra, 0x5c($sp)
 /* 13BD8 80012FD8 AFBE0058 */  sw         $fp, 0x58($sp)

@@ -300,10 +300,10 @@ glabel L80020EF0_21AF0
 /* 21B00 80020F00 25F80001 */  addiu      $t8, $t7, 1
 /* 21B04 80020F04 0C0080D3 */  jal        func_8002034C
 /* 21B08 80020F08 A4580000 */   sh        $t8, ($v0)
-/* 21B0C 80020F0C 3C02800C */  lui        $v0, %hi(D_800BE4FC)
+/* 21B0C 80020F0C 3C02800C */  lui        $v0, %hi(buttonPress)
 /* 21B10 80020F10 3C19800C */  lui        $t9, %hi(D_800BE504)
 /* 21B14 80020F14 9739E504 */  lhu        $t9, %lo(D_800BE504)($t9)
-/* 21B18 80020F18 9442E4FC */  lhu        $v0, %lo(D_800BE4FC)($v0)
+/* 21B18 80020F18 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
 /* 21B1C 80020F1C 3C098010 */  lui        $t1, %hi(D_80103F84)
 /* 21B20 80020F20 00594024 */  and        $t0, $v0, $t9
 /* 21B24 80020F24 1100000C */  beqz       $t0, .L80020F58
@@ -314,10 +314,10 @@ glabel L80020EF0_21AF0
 /* 21B38 80020F38 00000000 */   nop
 /* 21B3C 80020F3C 0C000CD3 */  jal        func_8000334C
 /* 21B40 80020F40 24040022 */   addiu     $a0, $zero, 0x22
-/* 21B44 80020F44 3C02800C */  lui        $v0, %hi(D_800BE4FC)
+/* 21B44 80020F44 3C02800C */  lui        $v0, %hi(buttonPress)
 /* 21B48 80020F48 240AFFF8 */  addiu      $t2, $zero, -8
 /* 21B4C 80020F4C 3C018010 */  lui        $at, %hi(D_80103F84)
-/* 21B50 80020F50 9442E4FC */  lhu        $v0, %lo(D_800BE4FC)($v0)
+/* 21B50 80020F50 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
 /* 21B54 80020F54 A42A3F84 */  sh         $t2, %lo(D_80103F84)($at)
 .L80020F58:
 /* 21B58 80020F58 3C0B800C */  lui        $t3, %hi(D_800BE508)

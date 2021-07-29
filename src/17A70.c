@@ -150,7 +150,7 @@ void stage_select(void) {
             D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             print_stage_select(&D_80178162);
-            if ((D_800BE4FC & D_800BE500) != 0) {
+            if ((buttonPress & D_800BE500) != 0) {
                 func_80003A38();
                 func_80043918();
                 gGameSubState = (uint16_t)(gGameSubState + 1);

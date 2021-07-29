@@ -273,13 +273,13 @@ void func_80000C20(int32_t arg0) {
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
-    D_801370C0 = func_80001098();
+    PlayerPort = func_80001098();
     phi_s2 = (void*)0x803DA800;
     while (1) {
         func_8009AA80(&D_8012ADA0);
         osRecvMesg(&D_8012ADA0, 0, 1);
         osContGetReadData(&D_8012AD88);
-        if (D_801370C0 != -1) {
+        if (PlayerPort != -1) {
             if (1) {
                 func_8009AA80(&D_8012AC08);
             }
@@ -327,7 +327,7 @@ void func_80000C20(int32_t arg0) {
             phi_s2 = (void*)0x801DA800;
         }
 
-        func_80000FE0();
+        getControllerInput();
     }
 
     func_80002114(new_var3);
@@ -336,25 +336,25 @@ void func_80000C20(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
 #endif
 
-void func_80000FE0(void) {
-    osContGetReadData(&D_8012AD88);
-    if (!D_8012AD70[D_801370C0].unk_0x04) {
+void getControllerInput(void) {
+    osContGetReadData(ConpadArrayB);
+    if (!ConpadArrayA[PlayerPort].errno) {
     }
 
-    osContGetReadData(&D_8012AD70);
+    osContGetReadData(ConpadArrayA);
 
-    if (D_8012AD70[D_801370C0].unk_0x04 == 0) {
-        D_801370C4 = D_8012AD70[D_801370C0].unk_0x00;
-        D_800BE53C = D_8012AD70[D_801370C0].unk_0x02;
-        D_800BE540 = D_8012AD70[D_801370C0].unk_0x03;
+    if (ConpadArrayA[PlayerPort].errno == 0) {
+        ButtonRaw = ConpadArrayA[PlayerPort].button;
+        joyX = ConpadArrayA[PlayerPort].stick_x;
+        joyY = ConpadArrayA[PlayerPort].stick_y;
     }
     else {
-        D_801370C4 = 0U;
+        ButtonRaw = 0U;
     }
 
-    D_800BE4FC = (D_801370C4 ^ D_800BE538) & D_801370C4;
-    D_800BE4F8 = D_801370C4;
-    D_800BE538 = D_801370C4;
+    buttonPress = (ButtonRaw ^ D_800BE538) & ButtonRaw;
+    buttonHold = ButtonRaw;
+    D_800BE538 = ButtonRaw;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001098.s")
@@ -653,6 +653,6 @@ void func_800047B0(int32_t arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004804.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/sprite_func.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004910.s")

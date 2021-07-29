@@ -33,8 +33,8 @@ glabel func_80021098
 /* 21D14 80021114 00037040 */  sll        $t6, $v1, 1
 /* 21D18 80021118 008E7821 */  addu       $t7, $a0, $t6
 /* 21D1C 8002111C 95F90000 */  lhu        $t9, ($t7)
-/* 21D20 80021120 3C06800C */  lui        $a2, %hi(D_800BE4F8)
-/* 21D24 80021124 24C6E4F8 */  addiu      $a2, $a2, %lo(D_800BE4F8)
+/* 21D20 80021120 3C06800C */  lui        $a2, %hi(buttonHold)
+/* 21D24 80021124 24C6E4F8 */  addiu      $a2, $a2, %lo(buttonHold)
 /* 21D28 80021128 24690001 */  addiu      $t1, $v1, 1
 /* 21D2C 8002112C 3C01800D */  lui        $at, %hi(D_800CA240)
 /* 21D30 80021130 312AFFFF */  andi       $t2, $t1, 0xffff
@@ -49,8 +49,8 @@ glabel func_80021098
 .L80021154:
 /* 21D54 80021154 3C0E800D */  lui        $t6, %hi(D_800CA240)
 /* 21D58 80021158 95CEA240 */  lhu        $t6, %lo(D_800CA240)($t6)
-/* 21D5C 8002115C 3C06800C */  lui        $a2, %hi(D_800BE4F8)
-/* 21D60 80021160 24C6E4F8 */  addiu      $a2, $a2, %lo(D_800BE4F8)
+/* 21D5C 8002115C 3C06800C */  lui        $a2, %hi(buttonHold)
+/* 21D60 80021160 24C6E4F8 */  addiu      $a2, $a2, %lo(buttonHold)
 /* 21D64 80021164 A4CE0000 */  sh         $t6, ($a2)
 .L80021168:
 /* 21D68 80021168 3C05800D */  lui        $a1, %hi(D_800CA250)
@@ -71,9 +71,9 @@ glabel func_80021098
 /* 21DA4 800211A4 000B6080 */  sll        $t4, $t3, 2
 /* 21DA8 800211A8 008C2021 */  addu       $a0, $a0, $t4
 /* 21DAC 800211AC 8C84BE0C */  lw         $a0, %lo(D_800CBE0C)($a0)
-/* 21DB0 800211B0 3C06800C */  lui        $a2, %hi(D_800BE4FC)
+/* 21DB0 800211B0 3C06800C */  lui        $a2, %hi(buttonPress)
 /* 21DB4 800211B4 3143FFFF */  andi       $v1, $t2, 0xffff
-/* 21DB8 800211B8 24C6E4FC */  addiu      $a2, $a2, %lo(D_800BE4FC)
+/* 21DB8 800211B8 24C6E4FC */  addiu      $a2, $a2, %lo(buttonPress)
 /* 21DBC 800211BC 0003C040 */  sll        $t8, $v1, 1
 /* 21DC0 800211C0 3C0E800C */  lui        $t6, %hi(D_800BE500)
 /* 21DC4 800211C4 95CEE500 */  lhu        $t6, %lo(D_800BE500)($t6)
@@ -94,8 +94,8 @@ glabel func_80021098
 /* 21E00 80021200 1000000B */  b          .L80021230
 /* 21E04 80021204 A4B90000 */   sh        $t9, ($a1)
 .L80021208:
-/* 21E08 80021208 3C06800C */  lui        $a2, %hi(D_800BE4FC)
-/* 21E0C 8002120C 24C6E4FC */  addiu      $a2, $a2, %lo(D_800BE4FC)
+/* 21E08 80021208 3C06800C */  lui        $a2, %hi(buttonPress)
+/* 21E0C 8002120C 24C6E4FC */  addiu      $a2, $a2, %lo(buttonPress)
 /* 21E10 80021210 3C0F800C */  lui        $t7, %hi(D_800BE500)
 /* 21E14 80021214 95EFE500 */  lhu        $t7, %lo(D_800BE500)($t7)
 /* 21E18 80021218 94C90000 */  lhu        $t1, ($a2)

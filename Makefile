@@ -1,7 +1,7 @@
 BASENAME  = mischiefmakers
 
 BUILD_DIR = build
-ASM_DIRS  = asm asm/data
+ASM_DIRS  = asm asm/data asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp
 BIN_DIRS  = assets
 SRC_DIR   = src
 SRC_DIRS  = $(SRC_DIR)

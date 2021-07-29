@@ -1,8 +1,8 @@
 glabel func_80046E6C
-/* 47A6C 80046E6C 3C0E800C */  lui        $t6, %hi(D_800BE4FC)
+/* 47A6C 80046E6C 3C0E800C */  lui        $t6, %hi(buttonPress)
 /* 47A70 80046E70 3C0F800C */  lui        $t7, %hi(D_800BE52C)
 /* 47A74 80046E74 95EFE52C */  lhu        $t7, %lo(D_800BE52C)($t7)
-/* 47A78 80046E78 95CEE4FC */  lhu        $t6, %lo(D_800BE4FC)($t6)
+/* 47A78 80046E78 95CEE4FC */  lhu        $t6, %lo(buttonPress)($t6)
 /* 47A7C 80046E7C 3C03800D */  lui        $v1, %hi(D_800D28E4)
 /* 47A80 80046E80 01CFC024 */  and        $t8, $t6, $t7
 /* 47A84 80046E84 1300000A */  beqz       $t8, .L80046EB0

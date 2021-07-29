@@ -88,11 +88,11 @@ glabel func_80000C20
 /* 1974 80000D74 00002825 */  or         $a1, $zero, $zero
 /* 1978 80000D78 0C026B44 */  jal        osRecvMesg
 /* 197C 80000D7C 24060001 */   addiu     $a2, $zero, 1
-/* 1980 80000D80 3C048013 */  lui        $a0, %hi(D_8012AD88)
+/* 1980 80000D80 3C048013 */  lui        $a0, %hi(ConpadArrayB)
 /* 1984 80000D84 0C026AD6 */  jal        osContGetReadData
-/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(D_8012AD88)
-/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(D_801370C0)
-/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(D_801370C0)($t6)
+/* 1988 80000D88 2484AD88 */   addiu     $a0, $a0, %lo(ConpadArrayB)
+/* 198C 80000D8C 3C0E8013 */  lui        $t6, %hi(PlayerPort)
+/* 1990 80000D90 8DCE70C0 */  lw         $t6, %lo(PlayerPort)($t6)
 /* 1994 80000D94 2401FFFF */  addiu      $at, $zero, -1
 /* 1998 80000D98 11C10003 */  beq        $t6, $at, .L80000DA8
 /* 199C 80000D9C 3C048013 */   lui       $a0, %hi(D_8012AC08)
@@ -220,7 +220,7 @@ glabel func_80000C20
 /* 1B7C 80000F7C 10000001 */  b          .L80000F84
 /* 1B80 80000F80 3652A800 */   ori       $s2, $s2, 0xa800
 .L80000F84:
-/* 1B84 80000F84 0C0003F8 */  jal        func_80000FE0
+/* 1B84 80000F84 0C0003F8 */  jal        getControllerInput
 /* 1B88 80000F88 00000000 */   nop
 /* 1B8C 80000F8C 1000FF76 */  b          .L80000D68
 /* 1B90 80000F90 00000000 */   nop

@@ -341,9 +341,9 @@ glabel func_8003A120
 /* 3B234 8003A634 954AE504 */  lhu        $t2, %lo(D_800BE504)($t2)
 /* 3B238 8003A638 3C18800C */  lui        $t8, %hi(D_800BE508)
 /* 3B23C 8003A63C 9718E508 */  lhu        $t8, %lo(D_800BE508)($t8)
-/* 3B240 8003A640 3C0C800C */  lui        $t4, %hi(D_800BE4F8)
+/* 3B240 8003A640 3C0C800C */  lui        $t4, %hi(buttonHold)
 /* 3B244 8003A644 01AFC821 */  addu       $t9, $t5, $t7
-/* 3B248 8003A648 958CE4F8 */  lhu        $t4, %lo(D_800BE4F8)($t4)
+/* 3B248 8003A648 958CE4F8 */  lhu        $t4, %lo(buttonHold)($t4)
 /* 3B24C 8003A64C 032A5821 */  addu       $t3, $t9, $t2
 /* 3B250 8003A650 01787021 */  addu       $t6, $t3, $t8
 /* 3B254 8003A654 24010100 */  addiu      $at, $zero, 0x100

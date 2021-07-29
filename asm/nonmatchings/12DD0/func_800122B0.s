@@ -4,12 +4,12 @@ glabel func_800122B0
 /* 12EB8 800122B8 2404003F */  addiu      $a0, $zero, 0x3f
 /* 12EBC 800122BC 11C0000D */  beqz       $t6, .L800122F4
 /* 12EC0 800122C0 3C098012 */   lui       $t1, 0x8012
-/* 12EC4 800122C4 3C06800C */  lui        $a2, %hi(D_800BE4F8)
-/* 12EC8 800122C8 3C07800C */  lui        $a3, %hi(D_800BE4FC)
+/* 12EC4 800122C4 3C06800C */  lui        $a2, %hi(buttonHold)
+/* 12EC8 800122C8 3C07800C */  lui        $a3, %hi(buttonPress)
 /* 12ECC 800122CC 3C02800C */  lui        $v0, %hi(D_800BE500)
 /* 12ED0 800122D0 9442E500 */  lhu        $v0, %lo(D_800BE500)($v0)
-/* 12ED4 800122D4 24E7E4FC */  addiu      $a3, $a3, %lo(D_800BE4FC)
-/* 12ED8 800122D8 24C6E4F8 */  addiu      $a2, $a2, %lo(D_800BE4F8)
+/* 12ED4 800122D4 24E7E4FC */  addiu      $a3, $a3, %lo(buttonPress)
+/* 12ED8 800122D8 24C6E4F8 */  addiu      $a2, $a2, %lo(buttonHold)
 /* 12EDC 800122DC 94CF0000 */  lhu        $t7, ($a2)
 /* 12EE0 800122E0 94F90000 */  lhu        $t9, ($a3)
 /* 12EE4 800122E4 01E2C024 */  and        $t8, $t7, $v0
@@ -17,11 +17,11 @@ glabel func_800122B0
 /* 12EEC 800122EC A4D80000 */  sh         $t8, ($a2)
 /* 12EF0 800122F0 A4EA0000 */  sh         $t2, ($a3)
 .L800122F4:
-/* 12EF4 800122F4 3C06800C */  lui        $a2, %hi(D_800BE4F8)
-/* 12EF8 800122F8 3C07800C */  lui        $a3, %hi(D_800BE4FC)
+/* 12EF4 800122F4 3C06800C */  lui        $a2, %hi(buttonHold)
+/* 12EF8 800122F8 3C07800C */  lui        $a3, %hi(buttonPress)
 /* 12EFC 800122FC 3C088012 */  lui        $t0, %hi(D_801225F0)
-/* 12F00 80012300 24E7E4FC */  addiu      $a3, $a3, %lo(D_800BE4FC)
-/* 12F04 80012304 24C6E4F8 */  addiu      $a2, $a2, %lo(D_800BE4F8)
+/* 12F00 80012300 24E7E4FC */  addiu      $a3, $a3, %lo(buttonPress)
+/* 12F04 80012304 24C6E4F8 */  addiu      $a2, $a2, %lo(buttonHold)
 /* 12F08 80012308 250825F0 */  addiu      $t0, $t0, %lo(D_801225F0)
 /* 12F0C 8001230C 2402003F */  addiu      $v0, $zero, 0x3f
 /* 12F10 80012310 2529DD70 */  addiu      $t1, $t1, -0x2290

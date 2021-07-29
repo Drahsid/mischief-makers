@@ -202,9 +202,9 @@ glabel func_8004AB3C
 /* 4BA28 8004AE28 3C0D800C */  lui        $t5, %hi(D_800BE534)
 /* 4BA2C 8004AE2C 03194025 */  or         $t0, $t8, $t9
 /* 4BA30 8004AE30 95ADE534 */  lhu        $t5, %lo(D_800BE534)($t5)
-/* 4BA34 8004AE34 3C0F800C */  lui        $t7, %hi(D_800BE4F8)
+/* 4BA34 8004AE34 3C0F800C */  lui        $t7, %hi(buttonHold)
 /* 4BA38 8004AE38 01095025 */  or         $t2, $t0, $t1
-/* 4BA3C 8004AE3C 95EFE4F8 */  lhu        $t7, %lo(D_800BE4F8)($t7)
+/* 4BA3C 8004AE3C 95EFE4F8 */  lhu        $t7, %lo(buttonHold)($t7)
 /* 4BA40 8004AE40 014B6025 */  or         $t4, $t2, $t3
 /* 4BA44 8004AE44 018D7025 */  or         $t6, $t4, $t5
 /* 4BA48 8004AE48 01EEC024 */  and        $t8, $t7, $t6

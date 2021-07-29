@@ -20,10 +20,10 @@ glabel func_800423A0
 /* 42FE8 800423E8 2401FFFE */  addiu      $at, $zero, -2
 /* 42FEC 800423EC 0061C824 */  and        $t9, $v1, $at
 /* 42FF0 800423F0 AD590160 */  sw         $t9, 0x160($t2)
-/* 42FF4 800423F4 3C02800C */  lui        $v0, %hi(D_800BE4F8)
+/* 42FF4 800423F4 3C02800C */  lui        $v0, %hi(buttonHold)
 /* 42FF8 800423F8 3C0E800C */  lui        $t6, %hi(D_800BE510)
 /* 42FFC 800423FC 95CEE510 */  lhu        $t6, %lo(D_800BE510)($t6)
-/* 43000 80042400 9442E4F8 */  lhu        $v0, %lo(D_800BE4F8)($v0)
+/* 43000 80042400 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
 /* 43004 80042404 3C18800C */  lui        $t8, 0x800c
 /* 43008 80042408 004E7824 */  and        $t7, $v0, $t6
 /* 4300C 8004240C 11E00003 */  beqz       $t7, .L8004241C
