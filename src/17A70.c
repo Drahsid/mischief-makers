@@ -269,9 +269,9 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001c7a4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001c7f0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 
