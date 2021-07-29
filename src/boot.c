@@ -3,7 +3,7 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000400.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/romMain.s")
 
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
@@ -175,13 +175,13 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&D_8012A698, 1, &func_80000718, 0, &D_80126670, 0xA);
+    osCreateThread(&D_8012A698, 1, &initproc, 0, &D_80126670, 0xA);
     osStartThread(&D_8012A698);
 }
 
 #ifdef NON_MATCHING
 // Need to figure out the structures in the loop
-void func_80000718(int32_t arg0) {
+void initproc(int32_t arg0) {
     uint32_t temp_t0;
     uint32_t temp_t1;
     uint32_t temp_t5;
@@ -193,10 +193,10 @@ void func_80000718(int32_t arg0) {
     uint32_t phi_v0;
 
     osCreateViManager(0xFE);
-    if (D_80000300 == 2) {
-        func_80099C20(&D_800EA110); // osViSetMode ?
+    if (osTvType == 2) {
+        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
         Framebuffer_Clear();
-        phi_t0 = (uint32_t)&D_800EA110;
+        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
         phi_t7 = (uint32_t)&D_8012AD10;
     loop_2:
         temp_t0 = phi_t0 + 0xC;
@@ -206,17 +206,17 @@ void func_80000718(int32_t arg0) {
         *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
         phi_t0 = temp_t0;
         phi_t7 = temp_t7;
-        if (temp_t0 != (&D_800EA110 + 0x48)) {
+        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
             goto loop_2;
         }
         *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
         *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
-        phi_v0 = &D_800EA110;
+        phi_v0 = &osViModeTable + 0x1e;
     }
     else {
-        func_80099C20(&D_800E9850);
+        osViSetMode(osViModeTable + 2);
         Framebuffer_Clear();
-        phi_t5 = (uint32_t)&D_800E9850;
+        phi_t5 = (uint32_t)osViModeTable + 2;
         phi_t1 = (uint32_t)&D_8012AD10;
     loop_5:
         temp_t5 = phi_t5 + 0xC;
@@ -226,12 +226,12 @@ void func_80000718(int32_t arg0) {
         *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
         phi_t5 = temp_t5;
         phi_t1 = temp_t1;
-        if (temp_t5 != (uint32_t)(&D_800E9850 + 0x48)) {
+        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
             goto loop_5;
         }
         *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
         *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
-        phi_v0 = &D_800E9850;
+        phi_v0 = &osViModeTable + 2;
     }
     D_8012AD08 = phi_v0;
     func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
@@ -245,7 +245,7 @@ void func_80000718(int32_t arg0) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000718.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/initproc.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
@@ -263,10 +263,10 @@ void func_80000C20(int32_t arg0) {
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABA8), (void**)(&D_8012AC68), 1);
     new_var3 = &D_8012ABC0;
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
-    func_8009A6F0(4, &D_8012ABD8, D_8012AC80);
+    osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
     func_800020BC();
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
-    func_8009A6F0(9, &D_8012ABF0, D_8012AC80);
+    osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
     func_8009A790(0xA);
     func_8009A9B0(new_var3, D_8012AC80, 1);
@@ -277,8 +277,8 @@ void func_80000C20(int32_t arg0) {
     phi_s2 = (void*)0x803DA800;
     while (1) {
         func_8009AA80(&D_8012ADA0);
-        func_8009AD10(&D_8012ADA0, 0, 1);
-        func_8009AB58(&D_8012AD88);
+        osRecvMesg(&D_8012ADA0, 0, 1);
+        osContGetReadData(&D_8012AD88);
         if (D_801370C0 != -1) {
             if (1) {
                 func_8009AA80(&D_8012AC08);
@@ -302,26 +302,26 @@ void func_80000C20(int32_t arg0) {
         D_8012AC84->t.yield_data_ptr = (uint64_t*)(&D_8011DDF0);
         D_8012AC84->t.yield_data_size = 0xDA0;
 
-        func_8009AEA0();
-        func_8009B014(D_8012AC84);
-        func_8009B294(D_8012AC84);
+        osWritebackDCacheAll();
+        osSpTaskLoad(D_8012AC84);
+        osSpTaskStartGo(D_8012AC84);
         func_80002114();
         func_800028D0();
         D_800BE700 = 1 - (D_800BE700 & 0xFFFF);
         func_80000A84(D_800BE700 & 0xFFFF);
-        func_8009AD10(&D_8012ABF0, 0, 1);
+        osRecvMesg(&D_8012ABF0, 0, 1);
         func_800029EC();
         osViSwapBuffer(phi_s2);
         func_80010898();
         if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
             D_8012AC84->t.ucode_boot = 0x800BA9E0;
             func_800028D0();
-            func_8009AD10((uint32_t*)new_var3, &D_8012AC80, 1);
+            osRecvMesg((uint32_t*)new_var3, &D_8012AC80, 1);
             func_800029EC();
         }
 
         phi_s2 = &D_8012AC80;
-        func_8009AD10((uint32_t*)new_var3, phi_s2, 1);
+        osRecvMesg((uint32_t*)new_var3, phi_s2, 1);
         phi_s2 = (void*)0x803DA800;
         if (D_800BE700 != 0) {
             phi_s2 = (void*)0x801DA800;
@@ -337,11 +337,11 @@ void func_80000C20(int32_t arg0) {
 #endif
 
 void func_80000FE0(void) {
-    func_8009AB58(&D_8012AD88);
+    osContGetReadData(&D_8012AD88);
     if (!D_8012AD70[D_801370C0].unk_0x04) {
     }
 
-    func_8009AB58(&D_8012AD70);
+    osContGetReadData(&D_8012AD70);
 
     if (D_8012AD70[D_801370C0].unk_0x04 == 0) {
         D_801370C4 = D_8012AD70[D_801370C0].unk_0x00;
@@ -363,48 +363,48 @@ void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp30[6];
     uint32_t sp2C;
 
-    func_8009B6E0(arg1, arg2);
-    func_8009B790(&sp30, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
-    func_8009AD10(&D_8012ABA8, &sp2C, 1);
+    osInvalDCache(arg1, arg2);
+    osPiStartDma(&sp30, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
+    osRecvMesg(&D_8012ABA8, &sp2C, 1);
 }
 
 void func_80001264(void) {
     uint32_t sp1C;
-    func_8009AD10(&D_8012ABA8, &sp1C, 1);
+    osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
 void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp2C[2];
     uint16_t sp28[8];
 
-    func_8009B6E0(arg1, arg2);
-    func_8009B790(&sp28, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
+    osInvalDCache(arg1, arg2);
+    osPiStartDma(&sp28, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
 
-void func_80001670(void) {
+void SwitchGameMode(void) {
     switch (gGameState) {
         case 0: {
             func_80022F48(); // soft reset
             break;
         }
         case 1: {
-            func_80017800(); // intro
+            show_splash_screens(); // intro
             break;
         }
         case 2: {
-            func_8001817C(); // titlescreen
+            show_title_screen(); // titlescreen
             break;
         }
         case 3: {
-            func_800188CC(); // sound test
+            sound_test(); // sound test
             break;
         }
         case 4: {
-            func_800191B8(); // debug level select
+            stage_select(); // debug level select
             break;
         }
         case 5: {
@@ -412,11 +412,11 @@ void func_80001670(void) {
             break;
         }
         case 6: {
-            func_80021034(); // stage update
+            gameplay_func(); // stage update
             break;
         }
         case 7: {
-            func_80012F98(); // game over
+            continue_screen(); // game over
             break;
         }
         case 8: {
@@ -428,7 +428,7 @@ void func_80001670(void) {
             break;
         }
         case 10: {
-            func_80021270(); // demo mode
+            arract_mode(); // demo mode
             break;
         }
         case 11: {
@@ -465,8 +465,8 @@ uint16_t func_8000178C(void) {
 
 void func_800020BC(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
-    func_8009A6F0(4, &D_801377D0, 0);
-    func_8009E2F0(&D_801377D0, 0, 1);
+    osSetEventMesg(4, &D_801377D0, 0);
+    osSendMesg(&D_801377D0, 0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002114.s")
@@ -474,17 +474,17 @@ void func_800020BC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800028D0.s")
 
 void func_800029EC(void) {
-    func_8009AEA0();
-    func_8009B014(D_8016E6F0);
-    func_8009B294(D_8016E6F0);
+    osWritebackDCacheAll();
+    osSpTaskLoad(D_8016E6F0);
+    osSpTaskStartGo(D_8016E6F0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002A2C.s")
 
 void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    func_8009AEA0();
-    func_8009B790(&D_801378C8, 0, 0, arg0, arg1, arg2, &D_801377B8);
-    func_8009AD10(&D_801377B8, 0, 1);
+    osWritebackDCacheAll();
+    osPiStartDma(&D_801378C8, 0, 0, arg0, arg1, arg2, &D_801377B8);
+    osRecvMesg(&D_801377B8, 0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002B50.s")
@@ -586,8 +586,8 @@ void func_80003A10(void) {
 }
 
 void func_80003A38(void) {
-    func_8009FF40(D_8016DFE4);
-    D_800EF4D0 = 0;
+    alSeqpStop(D_8016DFE4);
+    bssStart = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A64.s")
@@ -612,11 +612,11 @@ void func_800046FC(int32_t* arg0) {
 
     temp_a0 = &sp1C;
     sp1C = *arg0;
-    func_800A4040(temp_a0);
+    spFinish(temp_a0);
     *arg0 = (int32_t)(sp1C - 8);
 }
 
-void func_80004738(int32_t arg0, uint32_t arg1) {
+void NOTosSetTime(int32_t arg0, uint32_t arg1) {
     D_800C4EC4 = arg0;
     D_800C4EC8 = arg1;
 }
@@ -644,12 +644,12 @@ void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
 void func_800047B0(int32_t arg0) {
     UNK_TYPE* new_var;
     new_var = &D_800C4E5C;
-    func_800A4170(&D_800C4E5C, 0xFFFF);
+    spClearAttribute(&D_800C4E5C, 0xFFFF);
     if (arg0 != 0) {
-        func_800A4190(new_var, 1);
+        spSetAttribute(new_var, 1);
     }
     else {
-        func_800A4170(new_var, 1);
+        spClearAttribute(new_var, 1);
     }
 }
 

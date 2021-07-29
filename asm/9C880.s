@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009BC80
+glabel alHeapInit
 /* 9C880 8009BC80 27BDFFF8 */  addiu      $sp, $sp, -8
 /* 9C884 8009BC84 30AE000F */  andi       $t6, $a1, 0xf
 /* 9C888 8009BC88 240F0010 */  addiu      $t7, $zero, 0x10

@@ -18,18 +18,18 @@ glabel osCreateMesgQueue
 /* 9B26C 8009A66C 00000000 */   nop
 /* 9B270 8009A670 24040005 */  addiu      $a0, $zero, 5
 /* 9B274 8009A674 24050001 */  addiu      $a1, $zero, 1
-/* 9B278 8009A678 0C0297B4 */  jal        func_800A5ED0
+/* 9B278 8009A678 0C0297B4 */  jal        __osError
 /* 9B27C 8009A67C 8FA60020 */   lw        $a2, 0x20($sp)
 /* 9B280 8009A680 10000015 */  b          .L8009A6D8
 /* 9B284 8009A684 00000000 */   nop
 .L8009A688:
 /* 9B288 8009A688 8FB80018 */  lw         $t8, 0x18($sp)
-/* 9B28C 8009A68C 3C0F800F */  lui        $t7, %hi(D_800EA600)
-/* 9B290 8009A690 25EFA600 */  addiu      $t7, $t7, %lo(D_800EA600)
+/* 9B28C 8009A68C 3C0F800F */  lui        $t7, %hi(__osThreadTail)
+/* 9B290 8009A690 25EFA600 */  addiu      $t7, $t7, %lo(__osThreadTail)
 /* 9B294 8009A694 AF0F0000 */  sw         $t7, ($t8)
 /* 9B298 8009A698 8FA80018 */  lw         $t0, 0x18($sp)
-/* 9B29C 8009A69C 3C19800F */  lui        $t9, %hi(D_800EA600)
-/* 9B2A0 8009A6A0 2739A600 */  addiu      $t9, $t9, %lo(D_800EA600)
+/* 9B29C 8009A69C 3C19800F */  lui        $t9, %hi(__osThreadTail)
+/* 9B2A0 8009A6A0 2739A600 */  addiu      $t9, $t9, %lo(__osThreadTail)
 /* 9B2A4 8009A6A4 AD190004 */  sw         $t9, 4($t0)
 /* 9B2A8 8009A6A8 8FA90018 */  lw         $t1, 0x18($sp)
 /* 9B2AC 8009A6AC AD200008 */  sw         $zero, 8($t1)

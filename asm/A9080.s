@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A8480
+glabel __osDevMgrMain
 /* A9080 800A8480 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* A9084 800A8484 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9088 800A8488 AFA40048 */  sw         $a0, 0x48($sp)
@@ -20,7 +20,7 @@ glabel func_800A8480
 /* A90A0 800A84A0 8FAF0034 */  lw         $t7, 0x34($sp)
 /* A90A4 800A84A4 27A50044 */  addiu      $a1, $sp, 0x44
 /* A90A8 800A84A8 24060001 */  addiu      $a2, $zero, 1
-/* A90AC 800A84AC 0C026B44 */  jal        func_8009AD10
+/* A90AC 800A84AC 0C026B44 */  jal        osRecvMesg
 /* A90B0 800A84B0 8DE40008 */   lw        $a0, 8($t7)
 /* A90B4 800A84B4 8FB80044 */  lw         $t8, 0x44($sp)
 /* A90B8 800A84B8 8F190014 */  lw         $t9, 0x14($t8)
@@ -82,10 +82,10 @@ glabel func_800A8480
 /* A9188 800A8588 8FAE0034 */  lw         $t6, 0x34($sp)
 /* A918C 800A858C 27A5003C */  addiu      $a1, $sp, 0x3c
 /* A9190 800A8590 24060001 */  addiu      $a2, $zero, 1
-/* A9194 800A8594 0C026B44 */  jal        func_8009AD10
+/* A9194 800A8594 0C026B44 */  jal        osRecvMesg
 /* A9198 800A8598 8DC40010 */   lw        $a0, 0x10($t6)
 /* A919C 800A859C 3C040010 */  lui        $a0, 0x10
-/* A91A0 800A85A0 0C02D560 */  jal        func_800B5580
+/* A91A0 800A85A0 0C02D560 */  jal        __osResetGlobalIntMask
 /* A91A4 800A85A4 34840401 */   ori       $a0, $a0, 0x401
 /* A91A8 800A85A8 8FAF0028 */  lw         $t7, 0x28($sp)
 /* A91AC 800A85AC 8FAD0044 */  lw         $t5, 0x44($sp)
@@ -101,7 +101,7 @@ glabel func_800A8480
 /* A91D0 800A85D0 8FB80034 */  lw         $t8, 0x34($sp)
 /* A91D4 800A85D4 27A50040 */  addiu      $a1, $sp, 0x40
 /* A91D8 800A85D8 24060001 */  addiu      $a2, $zero, 1
-/* A91DC 800A85DC 0C026B44 */  jal        func_8009AD10
+/* A91DC 800A85DC 0C026B44 */  jal        osRecvMesg
 /* A91E0 800A85E0 8F04000C */   lw        $a0, 0xc($t8)
 /* A91E4 800A85E4 8FA80044 */  lw         $t0, 0x44($sp)
 /* A91E8 800A85E8 8D190014 */  lw         $t9, 0x14($t0)
@@ -163,16 +163,16 @@ glabel func_800A8480
 /* A92C4 800A86C4 24190004 */  addiu      $t9, $zero, 4
 /* A92C8 800A86C8 AD390000 */  sw         $t9, ($t1)
 /* A92CC 800A86CC 240B0002 */  addiu      $t3, $zero, 2
-/* A92D0 800A86D0 3C0AA460 */  lui        $t2, %hi(D_A4600010)
-/* A92D4 800A86D4 AD4B0010 */  sw         $t3, %lo(D_A4600010)($t2)
+/* A92D0 800A86D0 3C0AA460 */  lui        $t2, %hi(PI_STATUS)
+/* A92D4 800A86D4 AD4B0010 */  sw         $t3, %lo(PI_STATUS)($t2)
 /* A92D8 800A86D8 3C040010 */  lui        $a0, 0x10
-/* A92DC 800A86DC 0C02D5E0 */  jal        func_800B5780
+/* A92DC 800A86DC 0C02D5E0 */  jal        __osSetGlobalIntMask
 /* A92E0 800A86E0 34840C01 */   ori       $a0, $a0, 0xc01
 .L800A86E4:
 /* A92E4 800A86E4 8FAE0044 */  lw         $t6, 0x44($sp)
 /* A92E8 800A86E8 00003025 */  or         $a2, $zero, $zero
 /* A92EC 800A86EC 8DC40004 */  lw         $a0, 4($t6)
-/* A92F0 800A86F0 0C0278BC */  jal        func_8009E2F0
+/* A92F0 800A86F0 0C0278BC */  jal        osSendMesg
 /* A92F4 800A86F4 01C02825 */   or        $a1, $t6, $zero
 /* A92F8 800A86F8 8FAD0030 */  lw         $t5, 0x30($sp)
 /* A92FC 800A86FC 24010001 */  addiu      $at, $zero, 1
@@ -190,7 +190,7 @@ glabel func_800A8480
 /* A9328 800A8728 8FA80034 */  lw         $t0, 0x34($sp)
 /* A932C 800A872C 00002825 */  or         $a1, $zero, $zero
 /* A9330 800A8730 00003025 */  or         $a2, $zero, $zero
-/* A9334 800A8734 0C0278BC */  jal        func_8009E2F0
+/* A9334 800A8734 0C0278BC */  jal        osSendMesg
 /* A9338 800A8738 8D040010 */   lw        $a0, 0x10($t0)
 /* A933C 800A873C 8FB90044 */  lw         $t9, 0x44($sp)
 /* A9340 800A8740 24010001 */  addiu      $at, $zero, 1
@@ -198,7 +198,7 @@ glabel func_800A8480
 /* A9348 800A8748 952B001A */  lhu        $t3, 0x1a($t1)
 /* A934C 800A874C 15610003 */  bne        $t3, $at, .L800A875C
 /* A9350 800A8750 00000000 */   nop
-/* A9354 800A8754 0C02D5F8 */  jal        func_800B57E0
+/* A9354 800A8754 0C02D5F8 */  jal        osYieldThread
 /* A9358 800A8758 00000000 */   nop
 .L800A875C:
 /* A935C 800A875C 10000072 */  b          .L800A8928
@@ -211,15 +211,15 @@ glabel func_800A8480
 /* A9374 800A8774 10200056 */  beqz       $at, .L800A88D0
 /* A9378 800A8778 00000000 */   nop
 /* A937C 800A877C 000D6880 */  sll        $t5, $t5, 2
-/* A9380 800A8780 3C01800F */  lui        $at, %hi(D_800EDBA0)
+/* A9380 800A8780 3C01800F */  lui        $at, %hi(devmgr_rodata_0000)
 /* A9384 800A8784 002D0821 */  addu       $at, $at, $t5
-/* A9388 800A8788 8C2DDBA0 */  lw         $t5, %lo(D_800EDBA0)($at)
+/* A9388 800A8788 8C2DDBA0 */  lw         $t5, %lo(devmgr_rodata_0000)($at)
 /* A938C 800A878C 01A00008 */  jr         $t5
 /* A9390 800A8790 00000000 */   nop
 /* A9394 800A8794 8FAF0034 */  lw         $t7, 0x34($sp)
 /* A9398 800A8798 27A5003C */  addiu      $a1, $sp, 0x3c
 /* A939C 800A879C 24060001 */  addiu      $a2, $zero, 1
-/* A93A0 800A87A0 0C026B44 */  jal        func_8009AD10
+/* A93A0 800A87A0 0C026B44 */  jal        osRecvMesg
 /* A93A4 800A87A4 8DE40010 */   lw        $a0, 0x10($t7)
 /* A93A8 800A87A8 8FB80034 */  lw         $t8, 0x34($sp)
 /* A93AC 800A87AC 8FAC0044 */  lw         $t4, 0x44($sp)
@@ -235,7 +235,7 @@ glabel func_800A8480
 /* A93D4 800A87D4 8FA80034 */  lw         $t0, 0x34($sp)
 /* A93D8 800A87D8 27A5003C */  addiu      $a1, $sp, 0x3c
 /* A93DC 800A87DC 24060001 */  addiu      $a2, $zero, 1
-/* A93E0 800A87E0 0C026B44 */  jal        func_8009AD10
+/* A93E0 800A87E0 0C026B44 */  jal        osRecvMesg
 /* A93E4 800A87E4 8D040010 */   lw        $a0, 0x10($t0)
 /* A93E8 800A87E8 8FAB0034 */  lw         $t3, 0x34($sp)
 /* A93EC 800A87EC 8FA90044 */  lw         $t1, 0x44($sp)
@@ -251,7 +251,7 @@ glabel func_800A8480
 /* A9414 800A8814 8FAA0034 */  lw         $t2, 0x34($sp)
 /* A9418 800A8818 27A5003C */  addiu      $a1, $sp, 0x3c
 /* A941C 800A881C 24060001 */  addiu      $a2, $zero, 1
-/* A9420 800A8820 0C026B44 */  jal        func_8009AD10
+/* A9420 800A8820 0C026B44 */  jal        osRecvMesg
 /* A9424 800A8824 8D440010 */   lw        $a0, 0x10($t2)
 /* A9428 800A8828 8FAE0044 */  lw         $t6, 0x44($sp)
 /* A942C 800A882C 8FAF0034 */  lw         $t7, 0x34($sp)
@@ -270,7 +270,7 @@ glabel func_800A8480
 /* A9460 800A8860 8FAC0034 */  lw         $t4, 0x34($sp)
 /* A9464 800A8864 27A5003C */  addiu      $a1, $sp, 0x3c
 /* A9468 800A8868 24060001 */  addiu      $a2, $zero, 1
-/* A946C 800A886C 0C026B44 */  jal        func_8009AD10
+/* A946C 800A886C 0C026B44 */  jal        osRecvMesg
 /* A9470 800A8870 8D840010 */   lw        $a0, 0x10($t4)
 /* A9474 800A8874 8FB80044 */  lw         $t8, 0x44($sp)
 /* A9478 800A8878 8FA90034 */  lw         $t1, 0x34($sp)
@@ -289,7 +289,7 @@ glabel func_800A8480
 /* A94AC 800A88AC 8FAB0044 */  lw         $t3, 0x44($sp)
 /* A94B0 800A88B0 00003025 */  or         $a2, $zero, $zero
 /* A94B4 800A88B4 8D640004 */  lw         $a0, 4($t3)
-/* A94B8 800A88B8 0C0278BC */  jal        func_8009E2F0
+/* A94B8 800A88B8 0C0278BC */  jal        osSendMesg
 /* A94BC 800A88BC 01602825 */   or        $a1, $t3, $zero
 /* A94C0 800A88C0 240AFFFF */  addiu      $t2, $zero, -1
 /* A94C4 800A88C4 AFAA0038 */  sw         $t2, 0x38($sp)
@@ -307,17 +307,17 @@ glabel func_800A8480
 /* A94EC 800A88EC 8FAF0034 */  lw         $t7, 0x34($sp)
 /* A94F0 800A88F0 27A50040 */  addiu      $a1, $sp, 0x40
 /* A94F4 800A88F4 24060001 */  addiu      $a2, $zero, 1
-/* A94F8 800A88F8 0C026B44 */  jal        func_8009AD10
+/* A94F8 800A88F8 0C026B44 */  jal        osRecvMesg
 /* A94FC 800A88FC 8DE4000C */   lw        $a0, 0xc($t7)
 /* A9500 800A8900 8FAC0044 */  lw         $t4, 0x44($sp)
 /* A9504 800A8904 00003025 */  or         $a2, $zero, $zero
 /* A9508 800A8908 8D840004 */  lw         $a0, 4($t4)
-/* A950C 800A890C 0C0278BC */  jal        func_8009E2F0
+/* A950C 800A890C 0C0278BC */  jal        osSendMesg
 /* A9510 800A8910 01802825 */   or        $a1, $t4, $zero
 /* A9514 800A8914 8FB80034 */  lw         $t8, 0x34($sp)
 /* A9518 800A8918 00002825 */  or         $a1, $zero, $zero
 /* A951C 800A891C 00003025 */  or         $a2, $zero, $zero
-/* A9520 800A8920 0C0278BC */  jal        func_8009E2F0
+/* A9520 800A8920 0C0278BC */  jal        osSendMesg
 /* A9524 800A8924 8F040010 */   lw        $a0, 0x10($t8)
 .L800A8928:
 /* A9528 800A8928 1000FEDD */  b          .L800A84A0

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B4A00
+glabel osInitRdb
 /* B5600 800B4A00 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* B5604 800B4A04 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B5608 800B4A08 AFA40020 */  sw         $a0, 0x20($sp)
@@ -27,22 +27,22 @@ glabel func_800B4A00
 /* B5640 800B4A40 256CFFFF */  addiu      $t4, $t3, -1
 /* B5644 800B4A44 AFAC0024 */  sw         $t4, 0x24($sp)
 .L800B4A48:
-/* B5648 800B4A48 0C0297A4 */  jal        func_800A5E90
+/* B5648 800B4A48 0C0297A4 */  jal        __osDisableInt
 /* B564C 800B4A4C 00000000 */   nop
 /* B5650 800B4A50 AFA2001C */  sw         $v0, 0x1c($sp)
 /* B5654 800B4A54 8FAD0020 */  lw         $t5, 0x20($sp)
-/* B5658 800B4A58 3C018019 */  lui        $at, %hi(D_8018A740)
-/* B565C 800B4A5C AC2DA740 */  sw         $t5, %lo(D_8018A740)($at)
+/* B5658 800B4A58 3C018019 */  lui        $at, %hi(__osRdb_IP6_Data)
+/* B565C 800B4A5C AC2DA740 */  sw         $t5, %lo(__osRdb_IP6_Data)($at)
 /* B5660 800B4A60 8FAE0024 */  lw         $t6, 0x24($sp)
-/* B5664 800B4A64 3C018019 */  lui        $at, %hi(D_8018A744)
-/* B5668 800B4A68 AC2EA744 */  sw         $t6, %lo(D_8018A744)($at)
-/* B566C 800B4A6C 3C018019 */  lui        $at, %hi(D_8018A748)
-/* B5670 800B4A70 AC20A748 */  sw         $zero, %lo(D_8018A748)($at)
-/* B5674 800B4A74 3C018019 */  lui        $at, %hi(D_8018A74C)
-/* B5678 800B4A78 AC20A74C */  sw         $zero, %lo(D_8018A74C)($at)
-/* B567C 800B4A7C 3C018019 */  lui        $at, %hi(D_8018A750)
-/* B5680 800B4A80 AC20A750 */  sw         $zero, %lo(D_8018A750)($at)
-/* B5684 800B4A84 0C0297AC */  jal        func_800A5EB0
+/* B5664 800B4A64 3C018019 */  lui        $at, %hi(__osRdb_IP6_Size)
+/* B5668 800B4A68 AC2EA744 */  sw         $t6, %lo(__osRdb_IP6_Size)($at)
+/* B566C 800B4A6C 3C018019 */  lui        $at, %hi(__osRdb_IP6_Ct)
+/* B5670 800B4A70 AC20A748 */  sw         $zero, %lo(__osRdb_IP6_Ct)($at)
+/* B5674 800B4A74 3C018019 */  lui        $at, %hi(__osRdb_IP6_CurWrite)
+/* B5678 800B4A78 AC20A74C */  sw         $zero, %lo(__osRdb_IP6_CurWrite)($at)
+/* B567C 800B4A7C 3C018019 */  lui        $at, %hi(__osRdb_IP6_CurSend)
+/* B5680 800B4A80 AC20A750 */  sw         $zero, %lo(__osRdb_IP6_CurSend)($at)
+/* B5684 800B4A84 0C0297AC */  jal        __osRestoreInt
 /* B5688 800B4A88 8FA4001C */   lw        $a0, 0x1c($sp)
 /* B568C 800B4A8C 10000001 */  b          .L800B4A94
 /* B5690 800B4A90 00000000 */   nop

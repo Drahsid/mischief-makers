@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009E2A0
+glabel alSeqpSetBank
 /* 9EEA0 8009E2A0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9EEA4 8009E2A4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9EEA8 8009E2A8 AFA40028 */  sw         $a0, 0x28($sp)
@@ -19,7 +19,7 @@ glabel func_8009E2A0
 /* 9EEC0 8009E2C0 8FA40028 */  lw         $a0, 0x28($sp)
 /* 9EEC4 8009E2C4 27A50018 */  addiu      $a1, $sp, 0x18
 /* 9EEC8 8009E2C8 00003025 */  or         $a2, $zero, $zero
-/* 9EECC 8009E2CC 0C02B620 */  jal        func_800AD880
+/* 9EECC 8009E2CC 0C02B620 */  jal        alEvtqPostEvent
 /* 9EED0 8009E2D0 24840048 */   addiu     $a0, $a0, 0x48
 /* 9EED4 8009E2D4 10000001 */  b          .L8009E2DC
 /* 9EED8 8009E2D8 00000000 */   nop

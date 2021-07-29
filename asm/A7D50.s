@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A7150
+glabel _bzero
 /* A7D50 800A7150 00041823 */  negu       $v1, $a0
 /* A7D54 800A7154 28A1000C */  slti       $at, $a1, 0xc
 /* A7D58 800A7158 14200022 */  bnez       $at, .L800A71E4

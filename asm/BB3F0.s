@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800BA7F0
+glabel ldiv
 /* BB3F0 800BA7F0 27BDFFF8 */  addiu      $sp, $sp, -8
 /* BB3F4 800BA7F4 00A6001A */  div        $zero, $a1, $a2
 /* BB3F8 800BA7F8 00007012 */  mflo       $t6
@@ -54,7 +54,7 @@ glabel func_800BA7F0
 /* BB48C 800BA88C 03E00008 */  jr         $ra
 /* BB490 800BA890 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800BA894
+glabel lldiv
 /* BB494 800BA894 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* BB498 800BA898 AFBF0014 */  sw         $ra, 0x14($sp)
 /* BB49C 800BA89C AFA40030 */  sw         $a0, 0x30($sp)
@@ -63,14 +63,14 @@ glabel func_800BA894
 /* BB4A8 800BA8A8 8FA40038 */  lw         $a0, 0x38($sp)
 /* BB4AC 800BA8AC 8FA5003C */  lw         $a1, 0x3c($sp)
 /* BB4B0 800BA8B0 8FA60040 */  lw         $a2, 0x40($sp)
-/* BB4B4 800BA8B4 0C0290F7 */  jal        func_800A43DC
+/* BB4B4 800BA8B4 0C0290F7 */  jal        __ll_div
 /* BB4B8 800BA8B8 8FA70044 */   lw        $a3, 0x44($sp)
 /* BB4BC 800BA8BC AFA20020 */  sw         $v0, 0x20($sp)
 /* BB4C0 800BA8C0 AFA30024 */  sw         $v1, 0x24($sp)
 /* BB4C4 800BA8C4 8FA40040 */  lw         $a0, 0x40($sp)
 /* BB4C8 800BA8C8 8FA50044 */  lw         $a1, 0x44($sp)
 /* BB4CC 800BA8CC 8FA60020 */  lw         $a2, 0x20($sp)
-/* BB4D0 800BA8D0 0C029112 */  jal        func_800A4448
+/* BB4D0 800BA8D0 0C029112 */  jal        __ll_mul
 /* BB4D4 800BA8D4 8FA70024 */   lw        $a3, 0x24($sp)
 /* BB4D8 800BA8D8 8FAE0038 */  lw         $t6, 0x38($sp)
 /* BB4DC 800BA8DC 8FAF003C */  lw         $t7, 0x3c($sp)

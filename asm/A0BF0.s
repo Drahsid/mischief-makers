@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009FFF0
+glabel alSeqpSetChlPan
 /* A0BF0 8009FFF0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A0BF4 8009FFF4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A0BF8 8009FFF8 AFA40028 */  sw         $a0, 0x28($sp)
@@ -26,7 +26,7 @@ glabel func_8009FFF0
 /* A0C2C 800A002C 8FA40028 */  lw         $a0, 0x28($sp)
 /* A0C30 800A0030 27A50018 */  addiu      $a1, $sp, 0x18
 /* A0C34 800A0034 00003025 */  or         $a2, $zero, $zero
-/* A0C38 800A0038 0C02B620 */  jal        func_800AD880
+/* A0C38 800A0038 0C02B620 */  jal        alEvtqPostEvent
 /* A0C3C 800A003C 24840048 */   addiu     $a0, $a0, 0x48
 /* A0C40 800A0040 10000001 */  b          .L800A0048
 /* A0C44 800A0044 00000000 */   nop

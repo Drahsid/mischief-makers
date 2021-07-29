@@ -26,7 +26,7 @@ glabel func_800A7BF0
 /* A8828 800A7C28 3C018018 */  lui        $at, %hi(D_8018573C)
 /* A882C 800A7C2C AC2F573C */  sw         $t7, %lo(D_8018573C)($at)
 /* A8830 800A7C30 00002025 */  or         $a0, $zero, $zero
-/* A8834 800A7C34 0C029C1C */  jal        func_800A7070
+/* A8834 800A7C34 0C029C1C */  jal        osPiRawReadIo
 /* A8838 800A7C38 27A5001C */   addiu     $a1, $sp, 0x1c
 /* A883C 800A7C3C 8FB8001C */  lw         $t8, 0x1c($sp)
 /* A8840 800A7C40 3C018018 */  lui        $at, %hi(D_80185735)
@@ -52,9 +52,9 @@ glabel func_800A7BF0
 /* A8890 800A7C90 3C048018 */  lui        $a0, %hi(D_80185730)
 /* A8894 800A7C94 24845730 */  addiu      $a0, $a0, %lo(D_80185730)
 /* A8898 800A7C98 24840014 */  addiu      $a0, $a0, 0x14
-/* A889C 800A7C9C 0C029C54 */  jal        func_800A7150
+/* A889C 800A7C9C 0C029C54 */  jal        _bzero
 /* A88A0 800A7CA0 24050060 */   addiu     $a1, $zero, 0x60
-/* A88A4 800A7CA4 0C0297A4 */  jal        func_800A5E90
+/* A88A4 800A7CA4 0C0297A4 */  jal        __osDisableInt
 /* A88A8 800A7CA8 00000000 */   nop
 /* A88AC 800A7CAC AFA20018 */  sw         $v0, 0x18($sp)
 /* A88B0 800A7CB0 3C19800F */  lui        $t9, %hi(D_800EA4EC)
@@ -65,7 +65,7 @@ glabel func_800A7BF0
 /* A88C4 800A7CC4 25085730 */  addiu      $t0, $t0, %lo(D_80185730)
 /* A88C8 800A7CC8 3C01800F */  lui        $at, %hi(D_800EA4EC)
 /* A88CC 800A7CCC AC28A4EC */  sw         $t0, %lo(D_800EA4EC)($at)
-/* A88D0 800A7CD0 0C0297AC */  jal        func_800A5EB0
+/* A88D0 800A7CD0 0C0297AC */  jal        __osRestoreInt
 /* A88D4 800A7CD4 8FA40018 */   lw        $a0, 0x18($sp)
 /* A88D8 800A7CD8 3C028018 */  lui        $v0, %hi(D_80185730)
 /* A88DC 800A7CDC 10000003 */  b          .L800A7CEC

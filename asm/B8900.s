@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B7D00
+glabel alFxPull
 /* B8900 800B7D00 27BDFF88 */  addiu      $sp, $sp, -0x78
 /* B8904 800B7D04 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B8908 800B7D08 AFA40078 */  sw         $a0, 0x78($sp)
@@ -28,11 +28,11 @@ glabel func_800B7D00
 /* B8944 800B7D44 10000007 */  b          .L800B7D64
 /* B8948 800B7D48 00000000 */   nop
 .L800B7D4C:
-/* B894C 800B7D4C 3C04800F */  lui        $a0, %hi(D_800EE950)
-/* B8950 800B7D50 3C05800F */  lui        $a1, %hi(D_800EE958)
-/* B8954 800B7D54 24A5E958 */  addiu      $a1, $a1, %lo(D_800EE958)
-/* B8958 800B7D58 2484E950 */  addiu      $a0, $a0, %lo(D_800EE950)
-/* B895C 800B7D5C 0C026E74 */  jal        func_8009B9D0
+/* B894C 800B7D4C 3C04800F */  lui        $a0, %hi(reverb_rodata_0000)
+/* B8950 800B7D50 3C05800F */  lui        $a1, %hi(reverb_rodata_0008)
+/* B8954 800B7D54 24A5E958 */  addiu      $a1, $a1, %lo(reverb_rodata_0008)
+/* B8958 800B7D58 2484E950 */  addiu      $a0, $a0, %lo(reverb_rodata_0000)
+/* B895C 800B7D5C 0C026E74 */  jal        __assert
 /* B8960 800B7D60 2406004C */   addiu     $a2, $zero, 0x4c
 .L800B7D64:
 /* B8964 800B7D64 8FAA0088 */  lw         $t2, 0x88($sp)
@@ -98,7 +98,7 @@ glabel func_800B7D00
 /* B8A54 800B7E54 8D450018 */  lw         $a1, 0x18($t2)
 /* B8A58 800B7E58 8FA70080 */  lw         $a3, 0x80($sp)
 /* B8A5C 800B7E5C 01402025 */  or         $a0, $t2, $zero
-/* B8A60 800B7E60 0C02E2C7 */  jal        func_800B8B1C
+/* B8A60 800B7E60 0C02E2C7 */  jal        _saveBuffer
 /* B8A64 800B7E64 AFA90010 */   sw        $t1, 0x10($sp)
 /* B8A68 800B7E68 AFA20074 */  sw         $v0, 0x74($sp)
 /* B8A6C 800B7E6C 8FB90074 */  lw         $t9, 0x74($sp)
@@ -165,7 +165,7 @@ glabel func_800B7D00
 /* B8B58 800B7F58 8FA5005C */  lw         $a1, 0x5c($sp)
 /* B8B5C 800B7F5C 87A60068 */  lh         $a2, 0x68($sp)
 /* B8B60 800B7F60 8FA70080 */  lw         $a3, 0x80($sp)
-/* B8B64 800B7F64 0C02E224 */  jal        func_800B8890
+/* B8B64 800B7F64 0C02E224 */  jal        _loadBuffer
 /* B8B68 800B7F68 AFB80010 */   sw        $t8, 0x10($sp)
 /* B8B6C 800B7F6C AFA20074 */  sw         $v0, 0x74($sp)
 .L800B7F70:
@@ -174,7 +174,7 @@ glabel func_800B7D00
 /* B8B78 800B7F78 8FA5004C */  lw         $a1, 0x4c($sp)
 /* B8B7C 800B7F7C 87A60066 */  lh         $a2, 0x66($sp)
 /* B8B80 800B7F80 8FA70080 */  lw         $a3, 0x80($sp)
-/* B8B84 800B7F84 0C02E165 */  jal        func_800B8594
+/* B8B84 800B7F84 0C02E165 */  jal        _loadOutputBuffer
 /* B8B88 800B7F88 AFAA0010 */   sw        $t2, 0x10($sp)
 /* B8B8C 800B7F8C AFA20074 */  sw         $v0, 0x74($sp)
 /* B8B90 800B7F90 8FAE004C */  lw         $t6, 0x4c($sp)
@@ -212,7 +212,7 @@ glabel func_800B7D00
 /* B8C10 800B8010 8FA50058 */  lw         $a1, 0x58($sp)
 /* B8C14 800B8014 87A60066 */  lh         $a2, 0x66($sp)
 /* B8C18 800B8018 8FA70080 */  lw         $a3, 0x80($sp)
-/* B8C1C 800B801C 0C02E2C7 */  jal        func_800B8B1C
+/* B8C1C 800B801C 0C02E2C7 */  jal        _saveBuffer
 /* B8C20 800B8020 AFAA0010 */   sw        $t2, 0x10($sp)
 /* B8C24 800B8024 AFA20074 */  sw         $v0, 0x74($sp)
 .L800B8028:
@@ -244,7 +244,7 @@ glabel func_800B7D00
 /* B8C8C 800B808C 8FA5005C */  lw         $a1, 0x5c($sp)
 /* B8C90 800B8090 87A60068 */  lh         $a2, 0x68($sp)
 /* B8C94 800B8094 8FA70080 */  lw         $a3, 0x80($sp)
-/* B8C98 800B8098 0C02E2C7 */  jal        func_800B8B1C
+/* B8C98 800B8098 0C02E2C7 */  jal        _saveBuffer
 /* B8C9C 800B809C AFAF0010 */   sw        $t7, 0x10($sp)
 /* B8CA0 800B80A0 AFA20074 */  sw         $v0, 0x74($sp)
 .L800B80A4:
@@ -256,7 +256,7 @@ glabel func_800B7D00
 /* B8CB8 800B80B8 87A50066 */  lh         $a1, 0x66($sp)
 /* B8CBC 800B80BC 8FA60080 */  lw         $a2, 0x80($sp)
 /* B8CC0 800B80C0 8FA70074 */  lw         $a3, 0x74($sp)
-/* B8CC4 800B80C4 0C02E360 */  jal        func_800B8D80
+/* B8CC4 800B80C4 0C02E360 */  jal        _filterBuffer
 /* B8CC8 800B80C8 8D440020 */   lw        $a0, 0x20($t2)
 /* B8CCC 800B80CC AFA20074 */  sw         $v0, 0x74($sp)
 .L800B80D0:
@@ -269,7 +269,7 @@ glabel func_800B7D00
 /* B8CE8 800B80E8 8FA50058 */  lw         $a1, 0x58($sp)
 /* B8CEC 800B80EC 87A60066 */  lh         $a2, 0x66($sp)
 /* B8CF0 800B80F0 8FA70080 */  lw         $a3, 0x80($sp)
-/* B8CF4 800B80F4 0C02E2C7 */  jal        func_800B8B1C
+/* B8CF4 800B80F4 0C02E2C7 */  jal        _saveBuffer
 /* B8CF8 800B80F8 AFB90010 */   sw        $t9, 0x10($sp)
 /* B8CFC 800B80FC AFA20074 */  sw         $v0, 0x74($sp)
 .L800B8100:
@@ -366,7 +366,7 @@ glabel func_800B7D00
 /* B8E58 800B8258 03E00008 */  jr         $ra
 /* B8E5C 800B825C 00000000 */   nop
 
-glabel func_800B8260
+glabel alFxParam
 /* B8E60 800B8260 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B8E64 800B8264 24010001 */  addiu      $at, $zero, 1
 /* B8E68 800B8268 14A10004 */  bne        $a1, $at, .L800B827C
@@ -383,7 +383,7 @@ glabel func_800B8260
 /* B8E8C 800B828C 03E00008 */  jr         $ra
 /* B8E90 800B8290 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800B8294
+glabel alFxParamHdl
 /* B8E94 800B8294 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B8E98 800B8298 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B8E9C 800B829C AFA40028 */  sw         $a0, 0x28($sp)
@@ -416,9 +416,9 @@ glabel func_800B8294
 /* B8F00 800B8300 1020009C */  beqz       $at, .L800B8574
 /* B8F04 800B8304 00000000 */   nop
 /* B8F08 800B8308 000D6880 */  sll        $t5, $t5, 2
-/* B8F0C 800B830C 3C01800F */  lui        $at, %hi(D_800EE96C)
+/* B8F0C 800B830C 3C01800F */  lui        $at, %hi(reverb_rodata_001C)
 /* B8F10 800B8310 002D0821 */  addu       $at, $at, $t5
-/* B8F14 800B8314 8C2DE96C */  lw         $t5, %lo(D_800EE96C)($at)
+/* B8F14 800B8314 8C2DE96C */  lw         $t5, %lo(reverb_rodata_001C)($at)
 /* B8F18 800B8318 01A00008 */  jr         $t5
 /* B8F1C 800B831C 00000000 */   nop
 /* B8F20 800B8320 8FB80024 */  lw         $t8, 0x24($sp)
@@ -484,8 +484,8 @@ glabel func_800B8294
 /* B9010 800B8410 3C01447A */  lui        $at, 0x447a
 /* B9014 800B8414 44814000 */  mtc1       $at, $f8
 /* B9018 800B8418 448C2000 */  mtc1       $t4, $f4
-/* B901C 800B841C 3C0F800F */  lui        $t7, %hi(D_800EA520)
-/* B9020 800B8420 8DEFA520 */  lw         $t7, %lo(D_800EA520)($t7)
+/* B901C 800B841C 3C0F800F */  lui        $t7, %hi(alGlobals)
+/* B9020 800B8420 8DEFA520 */  lw         $t7, %lo(alGlobals)($t7)
 /* B9024 800B8424 468021A0 */  cvt.s.w    $f6, $f4
 /* B9028 800B8428 3C014000 */  lui        $at, 0x4000
 /* B902C 800B842C 44819800 */  mtc1       $at, $f19
@@ -528,8 +528,8 @@ glabel func_800B8294
 /* B90C0 800B84C0 46243180 */  add.d      $f6, $f6, $f4
 .L800B84C4:
 /* B90C4 800B84C4 8FA90018 */  lw         $t1, 0x18($sp)
-/* B90C8 800B84C8 3C01800F */  lui        $at, %hi(D_800EE990)
-/* B90CC 800B84CC D432E990 */  ldc1       $f18, %lo(D_800EE990)($at)
+/* B90C8 800B84C8 3C01800F */  lui        $at, %hi(reverb_rodata_0040)
+/* B90CC 800B84CC D432E990 */  ldc1       $f18, %lo(reverb_rodata_0040)($at)
 /* B90D0 800B84D0 44894000 */  mtc1       $t1, $f8
 /* B90D4 800B84D4 00000000 */  nop
 /* B90D8 800B84D8 468042A0 */  cvt.s.w    $f10, $f8
@@ -567,7 +567,7 @@ glabel func_800B8294
 /* B9158 800B8558 01AB6821 */  addu       $t5, $t5, $t3
 /* B915C 800B855C 000D68C0 */  sll        $t5, $t5, 3
 /* B9160 800B8560 01ED7021 */  addu       $t6, $t7, $t5
-/* B9164 800B8564 0C02B9D0 */  jal        func_800AE740
+/* B9164 800B8564 0C02B9D0 */  jal        init_lpfilter
 /* B9168 800B8568 8DC40020 */   lw        $a0, 0x20($t6)
 .L800B856C:
 /* B916C 800B856C 10000001 */  b          .L800B8574
@@ -583,7 +583,7 @@ glabel func_800B8294
 /* B918C 800B858C 03E00008 */  jr         $ra
 /* B9190 800B8590 00000000 */   nop
 
-glabel func_800B8594
+glabel _loadOutputBuffer
 /* B9194 800B8594 27BDFFB0 */  addiu      $sp, $sp, -0x50
 /* B9198 800B8598 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B919C 800B859C AFA40050 */  sw         $a0, 0x50($sp)
@@ -605,7 +605,7 @@ glabel func_800B8594
 /* B91DC 800B85DC 012A5823 */  subu       $t3, $t1, $t2
 /* B91E0 800B85E0 AFAB0028 */  sw         $t3, 0x28($sp)
 /* B91E4 800B85E4 8FA40054 */  lw         $a0, 0x54($sp)
-/* B91E8 800B85E8 0C02E3A6 */  jal        func_800B8E98
+/* B91E8 800B85E8 0C02E3A6 */  jal        _doModFunc
 /* B91EC 800B85EC 8FA5005C */   lw        $a1, 0x5c($sp)
 /* B91F0 800B85F0 E7A00030 */  swc1       $f0, 0x30($sp)
 /* B91F4 800B85F4 8FAC0028 */  lw         $t4, 0x28($sp)
@@ -685,7 +685,7 @@ glabel func_800B8594
 /* B931C 800B871C 8FA60040 */  lw         $a2, 0x40($sp)
 /* B9320 800B8720 01F92823 */  subu       $a1, $t7, $t9
 /* B9324 800B8724 01383821 */  addu       $a3, $t1, $t8
-/* B9328 800B8728 0C02E224 */  jal        func_800B8890
+/* B9328 800B8728 0C02E224 */  jal        _loadBuffer
 /* B932C 800B872C AFAA0010 */   sw        $t2, 0x10($sp)
 /* B9330 800B8730 AFA2004C */  sw         $v0, 0x4c($sp)
 /* B9334 800B8734 3C014700 */  lui        $at, 0x4700
@@ -736,7 +736,7 @@ glabel func_800B8594
 /* B93E8 800B87E8 AD0A0000 */  sw         $t2, ($t0)
 /* B93EC 800B87EC 8FAB0054 */  lw         $t3, 0x54($sp)
 /* B93F0 800B87F0 8D6C0024 */  lw         $t4, 0x24($t3)
-/* B93F4 800B87F4 0C026964 */  jal        func_8009A590
+/* B93F4 800B87F4 0C026964 */  jal        osVirtualToPhysical
 /* B93F8 800B87F8 8D840014 */   lw        $a0, 0x14($t4)
 /* B93FC 800B87FC 8FAE0020 */  lw         $t6, 0x20($sp)
 /* B9400 800B8800 ADC20004 */  sw         $v0, 4($t6)
@@ -765,7 +765,7 @@ glabel func_800B8594
 /* B9458 800B8858 8FA5003C */  lw         $a1, 0x3c($sp)
 /* B945C 800B885C 8FA60058 */  lw         $a2, 0x58($sp)
 /* B9460 800B8860 8FA7005C */  lw         $a3, 0x5c($sp)
-/* B9464 800B8864 0C02E224 */  jal        func_800B8890
+/* B9464 800B8864 0C02E224 */  jal        _loadBuffer
 /* B9468 800B8868 AFB80010 */   sw        $t8, 0x10($sp)
 /* B946C 800B886C AFA2004C */  sw         $v0, 0x4c($sp)
 .L800B8870:
@@ -779,7 +779,7 @@ glabel func_800B8594
 /* B9488 800B8888 03E00008 */  jr         $ra
 /* B948C 800B888C 00000000 */   nop
 
-glabel func_800B8890
+glabel _loadBuffer
 /* B9490 800B8890 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* B9494 800B8894 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B9498 800B8898 AFA40048 */  sw         $a0, 0x48($sp)
@@ -805,7 +805,7 @@ glabel func_800B8890
 /* B94E8 800B88E8 24050001 */  addiu      $a1, $zero, 1
 /* B94EC 800B88EC 018D3023 */  subu       $a2, $t4, $t5
 /* B94F0 800B88F0 00067043 */  sra        $t6, $a2, 1
-/* B94F4 800B88F4 0C0297B4 */  jal        func_800A5ED0
+/* B94F4 800B88F4 0C0297B4 */  jal        __osError
 /* B94F8 800B88F8 01C03025 */   or        $a2, $t6, $zero
 .L800B88FC:
 /* B94FC 800B88FC 8FB90048 */  lw         $t9, 0x48($sp)
@@ -863,7 +863,7 @@ glabel func_800B8890
 /* B95C8 800B89C8 8FA8002C */  lw         $t0, 0x2c($sp)
 /* B95CC 800B89CC 3C0A0400 */  lui        $t2, 0x400
 /* B95D0 800B89D0 AD0A0000 */  sw         $t2, ($t0)
-/* B95D4 800B89D4 0C026964 */  jal        func_8009A590
+/* B95D4 800B89D4 0C026964 */  jal        osVirtualToPhysical
 /* B95D8 800B89D8 8FA4004C */   lw        $a0, 0x4c($sp)
 /* B95DC 800B89DC 8FAB002C */  lw         $t3, 0x2c($sp)
 /* B95E0 800B89E0 AD620004 */  sw         $v0, 4($t3)
@@ -893,7 +893,7 @@ glabel func_800B8890
 /* B9640 800B8A40 3C180400 */  lui        $t8, 0x400
 /* B9644 800B8A44 AD380000 */  sw         $t8, ($t1)
 /* B9648 800B8A48 8FAA0048 */  lw         $t2, 0x48($sp)
-/* B964C 800B8A4C 0C026964 */  jal        func_8009A590
+/* B964C 800B8A4C 0C026964 */  jal        osVirtualToPhysical
 /* B9650 800B8A50 8D440014 */   lw        $a0, 0x14($t2)
 /* B9654 800B8A54 8FA80024 */  lw         $t0, 0x24($sp)
 /* B9658 800B8A58 AD020004 */  sw         $v0, 4($t0)
@@ -922,7 +922,7 @@ glabel func_800B8890
 /* B96B0 800B8AB0 8FAE001C */  lw         $t6, 0x1c($sp)
 /* B96B4 800B8AB4 3C0D0400 */  lui        $t5, 0x400
 /* B96B8 800B8AB8 ADCD0000 */  sw         $t5, ($t6)
-/* B96BC 800B8ABC 0C026964 */  jal        func_8009A590
+/* B96BC 800B8ABC 0C026964 */  jal        osVirtualToPhysical
 /* B96C0 800B8AC0 8FA4004C */   lw        $a0, 0x4c($sp)
 /* B96C4 800B8AC4 8FB9001C */  lw         $t9, 0x1c($sp)
 /* B96C8 800B8AC8 AF220004 */  sw         $v0, 4($t9)
@@ -949,7 +949,7 @@ glabel func_800B8890
 /* B9714 800B8B14 03E00008 */  jr         $ra
 /* B9718 800B8B18 00000000 */   nop
 
-glabel func_800B8B1C
+glabel _saveBuffer
 /* B971C 800B8B1C 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* B9720 800B8B20 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B9724 800B8B24 AFA40048 */  sw         $a0, 0x48($sp)
@@ -1020,7 +1020,7 @@ glabel func_800B8B1C
 /* B9824 800B8C24 8FB8002C */  lw         $t8, 0x2c($sp)
 /* B9828 800B8C28 3C190600 */  lui        $t9, 0x600
 /* B982C 800B8C2C AF190000 */  sw         $t9, ($t8)
-/* B9830 800B8C30 0C026964 */  jal        func_8009A590
+/* B9830 800B8C30 0C026964 */  jal        osVirtualToPhysical
 /* B9834 800B8C34 8FA4004C */   lw        $a0, 0x4c($sp)
 /* B9838 800B8C38 8FA9002C */  lw         $t1, 0x2c($sp)
 /* B983C 800B8C3C AD220004 */  sw         $v0, 4($t1)
@@ -1051,7 +1051,7 @@ glabel func_800B8B1C
 /* B98A0 800B8CA0 3C190600 */  lui        $t9, 0x600
 /* B98A4 800B8CA4 AF190000 */  sw         $t9, ($t8)
 /* B98A8 800B8CA8 8FAB0048 */  lw         $t3, 0x48($sp)
-/* B98AC 800B8CAC 0C026964 */  jal        func_8009A590
+/* B98AC 800B8CAC 0C026964 */  jal        osVirtualToPhysical
 /* B98B0 800B8CB0 8D640014 */   lw        $a0, 0x14($t3)
 /* B98B4 800B8CB4 8FA80024 */  lw         $t0, 0x24($sp)
 /* B98B8 800B8CB8 AD020004 */  sw         $v0, 4($t0)
@@ -1093,7 +1093,7 @@ glabel func_800B8B1C
 /* B9944 800B8D44 8FAE0018 */  lw         $t6, 0x18($sp)
 /* B9948 800B8D48 3C0C0600 */  lui        $t4, 0x600
 /* B994C 800B8D4C ADCC0000 */  sw         $t4, ($t6)
-/* B9950 800B8D50 0C026964 */  jal        func_8009A590
+/* B9950 800B8D50 0C026964 */  jal        osVirtualToPhysical
 /* B9954 800B8D54 8FA4004C */   lw        $a0, 0x4c($sp)
 /* B9958 800B8D58 8FAD0018 */  lw         $t5, 0x18($sp)
 /* B995C 800B8D5C ADA20004 */  sw         $v0, 4($t5)
@@ -1108,7 +1108,7 @@ glabel func_800B8B1C
 /* B9978 800B8D78 03E00008 */  jr         $ra
 /* B997C 800B8D7C 00000000 */   nop
 
-glabel func_800B8D80
+glabel _filterBuffer
 /* B9980 800B8D80 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B9984 800B8D84 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B9988 800B8D88 AFA40028 */  sw         $a0, 0x28($sp)
@@ -1145,7 +1145,7 @@ glabel func_800B8D80
 /* B9A04 800B8E04 356B0020 */  ori        $t3, $t3, 0x20
 /* B9A08 800B8E08 AD8B0000 */  sw         $t3, ($t4)
 /* B9A0C 800B8E0C 8FA40028 */  lw         $a0, 0x28($sp)
-/* B9A10 800B8E10 0C026964 */  jal        func_8009A590
+/* B9A10 800B8E10 0C026964 */  jal        osVirtualToPhysical
 /* B9A14 800B8E14 24840008 */   addiu     $a0, $a0, 8
 /* B9A18 800B8E18 8FAE001C */  lw         $t6, 0x1c($sp)
 /* B9A1C 800B8E1C ADC20004 */  sw         $v0, 4($t6)
@@ -1165,7 +1165,7 @@ glabel func_800B8D80
 /* B9A54 800B8E54 014C7025 */  or         $t6, $t2, $t4
 /* B9A58 800B8E58 ADEE0000 */  sw         $t6, ($t7)
 /* B9A5C 800B8E5C 8FAD0028 */  lw         $t5, 0x28($sp)
-/* B9A60 800B8E60 0C026964 */  jal        func_8009A590
+/* B9A60 800B8E60 0C026964 */  jal        osVirtualToPhysical
 /* B9A64 800B8E64 8DA40028 */   lw        $a0, 0x28($t5)
 /* B9A68 800B8E68 8FB90018 */  lw         $t9, 0x18($sp)
 /* B9A6C 800B8E6C AF220004 */  sw         $v0, 4($t9)
@@ -1181,7 +1181,7 @@ glabel func_800B8D80
 /* B9A90 800B8E90 03E00008 */  jr         $ra
 /* B9A94 800B8E94 00000000 */   nop
 
-glabel func_800B8E98
+glabel _doModFunc
 /* B9A98 800B8E98 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B9A9C 800B8E9C 44853000 */  mtc1       $a1, $f6
 /* B9AA0 800B8EA0 C4840010 */  lwc1       $f4, 0x10($a0)

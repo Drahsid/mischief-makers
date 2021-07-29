@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A6F90
+glabel osInvalICache
 /* A7B90 800A6F90 18A00011 */  blez       $a1, .L800A6FD8
 /* A7B94 800A6F94 00000000 */   nop
 /* A7B98 800A6F98 240B4000 */  addiu      $t3, $zero, 0x4000

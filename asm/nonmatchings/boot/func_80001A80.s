@@ -25,13 +25,13 @@ glabel func_80001A80
 /* 26D8 80001AD8 00000000 */   nop
 /* 26DC 80001ADC AE420004 */  sw         $v0, 4($s2)
 .L80001AE0:
-/* 26E0 80001AE0 0C026EBB */  jal        func_8009BAEC
+/* 26E0 80001AE0 0C026EBB */  jal        alUnlink
 /* 26E4 80001AE4 02002025 */   or        $a0, $s0, $zero
 /* 26E8 80001AE8 8E450008 */  lw         $a1, 8($s2)
 /* 26EC 80001AEC 00000000 */  nop
 /* 26F0 80001AF0 10A00005 */  beqz       $a1, .L80001B08
 /* 26F4 80001AF4 00000000 */   nop
-/* 26F8 80001AF8 0C026EAE */  jal        func_8009BAB8
+/* 26F8 80001AF8 0C026EAE */  jal        alLink
 /* 26FC 80001AFC 02002025 */   or        $a0, $s0, $zero
 /* 2700 80001B00 10000004 */  b          .L80001B14
 /* 2704 80001B04 00000000 */   nop

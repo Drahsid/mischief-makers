@@ -7,10 +7,10 @@
 
 .section .text, "ax"
 
-glabel func_800AAF00
+glabel __osSpDeviceBusy
 /* ABB00 800AAF00 27BDFFF8 */  addiu      $sp, $sp, -8
-/* ABB04 800AAF04 3C0EA404 */  lui        $t6, %hi(D_A4040010)
-/* ABB08 800AAF08 8DC40010 */  lw         $a0, %lo(D_A4040010)($t6)
+/* ABB04 800AAF04 3C0EA404 */  lui        $t6, %hi(SP_STATUS)
+/* ABB08 800AAF08 8DC40010 */  lw         $a0, %lo(SP_STATUS)($t6)
 /* ABB0C 800AAF0C 308F001C */  andi       $t7, $a0, 0x1c
 /* ABB10 800AAF10 11E00005 */  beqz       $t7, .L800AAF28
 /* ABB14 800AAF14 00000000 */   nop
@@ -28,18 +28,18 @@ glabel func_800AAF00
 /* ABB38 800AAF38 03E00008 */  jr         $ra
 /* ABB3C 800AAF3C 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800AAF40
+glabel osSetTimer
 /* ABB40 800AAF40 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* ABB44 800AAF44 AFBF0014 */  sw         $ra, 0x14($sp)
 /* ABB48 800AAF48 AFA40020 */  sw         $a0, 0x20($sp)
 /* ABB4C 800AAF4C AFA60028 */  sw         $a2, 0x28($sp)
 /* ABB50 800AAF50 AFA7002C */  sw         $a3, 0x2c($sp)
-/* ABB54 800AAF54 3C0E800F */  lui        $t6, %hi(D_800E9790)
-/* ABB58 800AAF58 8DCE9790 */  lw         $t6, %lo(D_800E9790)($t6)
+/* ABB54 800AAF54 3C0E800F */  lui        $t6, %hi(__osViDevMgr)
+/* ABB58 800AAF58 8DCE9790 */  lw         $t6, %lo(__osViDevMgr)($t6)
 /* ABB5C 800AAF5C 15C00006 */  bnez       $t6, .L800AAF78
 /* ABB60 800AAF60 00000000 */   nop
 /* ABB64 800AAF64 2404004C */  addiu      $a0, $zero, 0x4c
-/* ABB68 800AAF68 0C0297B4 */  jal        func_800A5ED0
+/* ABB68 800AAF68 0C0297B4 */  jal        __osError
 /* ABB6C 800AAF6C 00002825 */   or        $a1, $zero, $zero
 /* ABB70 800AAF70 10000030 */  b          .L800AB034
 /* ABB74 800AAF74 00001025 */   or        $v0, $zero, $zero
@@ -77,18 +77,18 @@ glabel func_800AAF40
 /* ABBE4 800AAFE4 8FA9003C */  lw         $t1, 0x3c($sp)
 /* ABBE8 800AAFE8 8FB90020 */  lw         $t9, 0x20($sp)
 /* ABBEC 800AAFEC AF29001C */  sw         $t1, 0x1c($t9)
-/* ABBF0 800AAFF0 0C029D8F */  jal        func_800A763C
+/* ABBF0 800AAFF0 0C029D8F */  jal        __osInsertTimer
 /* ABBF4 800AAFF4 8FA40020 */   lw        $a0, 0x20($sp)
 /* ABBF8 800AAFF8 AFA20018 */  sw         $v0, 0x18($sp)
 /* ABBFC 800AAFFC AFA3001C */  sw         $v1, 0x1c($sp)
-/* ABC00 800AB000 3C0A800F */  lui        $t2, %hi(D_800EA620)
-/* ABC04 800AB004 8D4AA620 */  lw         $t2, %lo(D_800EA620)($t2)
+/* ABC00 800AB000 3C0A800F */  lui        $t2, %hi(__osTimerList)
+/* ABC04 800AB004 8D4AA620 */  lw         $t2, %lo(__osTimerList)($t2)
 /* ABC08 800AB008 8FAC0020 */  lw         $t4, 0x20($sp)
 /* ABC0C 800AB00C 8D4B0000 */  lw         $t3, ($t2)
 /* ABC10 800AB010 156C0004 */  bne        $t3, $t4, .L800AB024
 /* ABC14 800AB014 00000000 */   nop
 /* ABC18 800AB018 8FA40018 */  lw         $a0, 0x18($sp)
-/* ABC1C 800AB01C 0C029D6C */  jal        func_800A75B0
+/* ABC1C 800AB01C 0C029D6C */  jal        __osSetTimerIntr
 /* ABC20 800AB020 8FA5001C */   lw        $a1, 0x1c($sp)
 .L800AB024:
 /* ABC24 800AB024 10000003 */  b          .L800AB034

@@ -393,8 +393,8 @@ glabel func_8007D1E8
 /* 7DE6C 8007D26C 10000004 */  b          .L8007D280
 /* 7DE70 8007D270 AC65018C */   sw        $a1, 0x18c($v1)
 .L8007D274:
-/* 7DE74 8007D274 3C18800E */  lui        $t8, %hi(D_800D9AE4)
-/* 7DE78 8007D278 27189AE4 */  addiu      $t8, $t8, %lo(D_800D9AE4)
+/* 7DE74 8007D274 3C18800E */  lui        $t8, %hi(initialize_emu_text_0000)
+/* 7DE78 8007D278 27189AE4 */  addiu      $t8, $t8, %lo(initialize_emu_text_0000)
 /* 7DE7C 8007D27C AC78018C */  sw         $t8, 0x18c($v1)
 .L8007D280:
 /* 7DE80 8007D280 8FBF001C */  lw         $ra, 0x1c($sp)

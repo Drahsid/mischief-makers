@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009AEA0
+glabel osWritebackDCacheAll
 /* 9BAA0 8009AEA0 3C088000 */  lui        $t0, 0x8000
 /* 9BAA4 8009AEA4 240A2000 */  addiu      $t2, $zero, 0x2000
 /* 9BAA8 8009AEA8 010A4821 */  addu       $t1, $t0, $t2

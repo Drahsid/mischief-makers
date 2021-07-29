@@ -25,7 +25,7 @@ glabel func_800A4280
 /* A4EB4 800A42B4 03E00008 */  jr         $ra
 /* A4EB8 800A42B8 00000000 */   nop
 
-glabel func_800A42BC
+glabel __ull_rem
 /* A4EBC 800A42BC AFA40000 */  sw         $a0, ($sp)
 /* A4EC0 800A42C0 AFA50004 */  sw         $a1, 4($sp)
 /* A4EC4 800A42C4 AFA60008 */  sw         $a2, 8($sp)
@@ -48,7 +48,7 @@ glabel func_800A42BC
 /* A4F00 800A4300 03E00008 */  jr         $ra
 /* A4F04 800A4304 00000000 */   nop
 
-glabel func_800A4308
+glabel __ull_div
 /* A4F08 800A4308 AFA40000 */  sw         $a0, ($sp)
 /* A4F0C 800A430C AFA50004 */  sw         $a1, 4($sp)
 /* A4F10 800A4310 AFA60008 */  sw         $a2, 8($sp)
@@ -71,7 +71,7 @@ glabel func_800A4308
 /* A4F4C 800A434C 03E00008 */  jr         $ra
 /* A4F50 800A4350 00000000 */   nop
 
-glabel func_800A4354
+glabel __ll_lshift
 /* A4F54 800A4354 AFA40000 */  sw         $a0, ($sp)
 /* A4F58 800A4358 AFA50004 */  sw         $a1, 4($sp)
 /* A4F5C 800A435C AFA60008 */  sw         $a2, 8($sp)
@@ -112,7 +112,7 @@ glabel func_800A4390
 /* A4FD4 800A43D4 03E00008 */  jr         $ra
 /* A4FD8 800A43D8 00000000 */   nop
 
-glabel func_800A43DC
+glabel __ll_div
 /* A4FDC 800A43DC AFA40000 */  sw         $a0, ($sp)
 /* A4FE0 800A43E0 AFA50004 */  sw         $a1, 4($sp)
 /* A4FE4 800A43E4 AFA60008 */  sw         $a2, 8($sp)
@@ -144,7 +144,7 @@ glabel func_800A43DC
 /* A5040 800A4440 03E00008 */  jr         $ra
 /* A5044 800A4444 00000000 */   nop
 
-glabel func_800A4448
+glabel __ll_mul
 /* A5048 800A4448 AFA40000 */  sw         $a0, ($sp)
 /* A504C 800A444C AFA50004 */  sw         $a1, 4($sp)
 /* A5050 800A4450 AFA60008 */  sw         $a2, 8($sp)
@@ -196,7 +196,7 @@ glabel func_800A4488
 /* A50F0 800A44F0 03E00008 */  jr         $ra
 /* A50F4 800A44F4 00000000 */   nop
 
-glabel func_800A44F8
+glabel __ll_mod
 /* A50F8 800A44F8 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A50FC 800A44FC AFA40008 */  sw         $a0, 8($sp)
 /* A5100 800A4500 AFA5000C */  sw         $a1, 0xc($sp)

@@ -7,14 +7,14 @@
 
 .section .text, "ax"
 
-glabel func_800A4DF0
+glabel guTranslateF
 /* A59F0 800A4DF0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A59F4 800A4DF4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A59F8 800A4DF8 AFA40018 */  sw         $a0, 0x18($sp)
 /* A59FC 800A4DFC AFA5001C */  sw         $a1, 0x1c($sp)
 /* A5A00 800A4E00 AFA60020 */  sw         $a2, 0x20($sp)
 /* A5A04 800A4E04 AFA70024 */  sw         $a3, 0x24($sp)
-/* A5A08 800A4E08 0C02CB32 */  jal        func_800B2CC8
+/* A5A08 800A4E08 0C02CB32 */  jal        guMtxIdentF
 /* A5A0C 800A4E0C 8FA40018 */   lw        $a0, 0x18($sp)
 /* A5A10 800A4E10 C7A4001C */  lwc1       $f4, 0x1c($sp)
 /* A5A14 800A4E14 8FAE0018 */  lw         $t6, 0x18($sp)
@@ -33,7 +33,7 @@ glabel func_800A4DF0
 /* A5A44 800A4E44 03E00008 */  jr         $ra
 /* A5A48 800A4E48 00000000 */   nop
 
-glabel func_800A4E4C
+glabel guRotateRPY
 /* A5A4C 800A4E4C 27BDFFA8 */  addiu      $sp, $sp, -0x58
 /* A5A50 800A4E50 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A5A54 800A4E54 AFA40058 */  sw         $a0, 0x58($sp)
@@ -43,7 +43,7 @@ glabel func_800A4E4C
 /* A5A64 800A4E64 27A40018 */  addiu      $a0, $sp, 0x18
 /* A5A68 800A4E68 8FA5005C */  lw         $a1, 0x5c($sp)
 /* A5A6C 800A4E6C 8FA60060 */  lw         $a2, 0x60($sp)
-/* A5A70 800A4E70 0C02937C */  jal        func_800A4DF0
+/* A5A70 800A4E70 0C02937C */  jal        guTranslateF
 /* A5A74 800A4E74 8FA70064 */   lw        $a3, 0x64($sp)
 /* A5A78 800A4E78 27A40018 */  addiu      $a0, $sp, 0x18
 /* A5A7C 800A4E7C 0C02CA98 */  jal        guMtxF2L

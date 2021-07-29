@@ -7,19 +7,19 @@
 
 .section .text, "ax"
 
-glabel func_800A9120
+glabel __rmonWriteWordTo
 /* A9D20 800A9120 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A9D24 800A9124 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A9D28 800A9128 AFA40018 */  sw         $a0, 0x18($sp)
 /* A9D2C 800A912C AFA5001C */  sw         $a1, 0x1c($sp)
 /* A9D30 800A9130 8FA40018 */  lw         $a0, 0x18($sp)
-/* A9D34 800A9134 0C02D640 */  jal        func_800B5900
+/* A9D34 800A9134 0C02D640 */  jal        __osSpRawWriteIo
 /* A9D38 800A9138 8FA5001C */   lw        $a1, 0x1c($sp)
 /* A9D3C 800A913C 10400006 */  beqz       $v0, .L800A9158
 /* A9D40 800A9140 00000000 */   nop
 .L800A9144:
 /* A9D44 800A9144 8FA40018 */  lw         $a0, 0x18($sp)
-/* A9D48 800A9148 0C02D640 */  jal        func_800B5900
+/* A9D48 800A9148 0C02D640 */  jal        __osSpRawWriteIo
 /* A9D4C 800A914C 8FA5001C */   lw        $a1, 0x1c($sp)
 /* A9D50 800A9150 1440FFFC */  bnez       $v0, .L800A9144
 /* A9D54 800A9154 00000000 */   nop
@@ -32,7 +32,7 @@ glabel func_800A9120
 /* A9D68 800A9168 03E00008 */  jr         $ra
 /* A9D6C 800A916C 00000000 */   nop
 
-glabel func_800A9170
+glabel __rmonReadWordAt
 /* A9D70 800A9170 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A9D74 800A9174 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A9D78 800A9178 AFA40020 */  sw         $a0, 0x20($sp)
@@ -61,7 +61,7 @@ glabel func_800A9170
 /* A9DCC 800A91CC 03E00008 */  jr         $ra
 /* A9DD0 800A91D0 00000000 */   nop
 
-glabel func_800A91D4
+glabel __rmonMemcpy
 /* A9DD4 800A91D4 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A9DD8 800A91D8 00C03825 */  or         $a3, $a2, $zero
 /* A9DDC 800A91DC 10E00008 */  beqz       $a3, .L800A9200
@@ -81,7 +81,7 @@ glabel func_800A91D4
 /* A9E08 800A9208 03E00008 */  jr         $ra
 /* A9E0C 800A920C 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800A9210
+glabel __rmonCopyWords
 /* A9E10 800A9210 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A9E14 800A9214 00C03825 */  or         $a3, $a2, $zero
 /* A9E18 800A9218 10E00008 */  beqz       $a3, .L800A923C
@@ -123,7 +123,7 @@ glabel func_800A924C
 /* A9E88 800A9288 03E00008 */  jr         $ra
 /* A9E8C 800A928C 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800A9290
+glabel __rmonReadMem
 /* A9E90 800A9290 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* A9E94 800A9294 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9E98 800A9298 AFA40040 */  sw         $a0, 0x40($sp)
@@ -131,8 +131,8 @@ glabel func_800A9290
 /* A9EA0 800A92A0 AFB00014 */  sw         $s0, 0x14($sp)
 /* A9EA4 800A92A4 8FAE0040 */  lw         $t6, 0x40($sp)
 /* A9EA8 800A92A8 AFAE0030 */  sw         $t6, 0x30($sp)
-/* A9EAC 800A92AC 3C0F8019 */  lui        $t7, %hi(D_8018A290)
-/* A9EB0 800A92B0 25EFA290 */  addiu      $t7, $t7, %lo(D_8018A290)
+/* A9EAC 800A92AC 3C0F8019 */  lui        $t7, %hi(__rmonUtilityBuffer)
+/* A9EB0 800A92B0 25EFA290 */  addiu      $t7, $t7, %lo(__rmonUtilityBuffer)
 /* A9EB4 800A92B4 AFAF002C */  sw         $t7, 0x2c($sp)
 /* A9EB8 800A92B8 8FB80030 */  lw         $t8, 0x30($sp)
 /* A9EBC 800A92BC 8FA8002C */  lw         $t0, 0x2c($sp)
@@ -215,7 +215,7 @@ glabel func_800A9290
 /* A9FCC 800A93CC 00000000 */   nop
 .L800A93D0:
 /* A9FD0 800A93D0 8FB90030 */  lw         $t9, 0x30($sp)
-/* A9FD4 800A93D4 0C026964 */  jal        func_8009A590
+/* A9FD4 800A93D4 0C026964 */  jal        osVirtualToPhysical
 /* A9FD8 800A93D8 8F240010 */   lw        $a0, 0x10($t9)
 /* A9FDC 800A93DC 2401FFFF */  addiu      $at, $zero, -1
 /* A9FE0 800A93E0 14410003 */  bne        $v0, $at, .L800A93F0
@@ -248,7 +248,7 @@ glabel func_800A9290
 /* AA044 800A9444 240B0004 */  addiu      $t3, $zero, 4
 /* AA048 800A9448 24060008 */  addiu      $a2, $zero, 8
 /* AA04C 800A944C 016A2823 */  subu       $a1, $t3, $t2
-/* AA050 800A9450 0C02A254 */  jal        func_800A8950
+/* AA050 800A9450 0C02A254 */  jal        __osRdbSend
 /* AA054 800A9454 012A2021 */   addu      $a0, $t1, $t2
 /* AA058 800A9458 8FAC0038 */  lw         $t4, 0x38($sp)
 /* AA05C 800A945C 00408025 */  or         $s0, $v0, $zero
@@ -261,11 +261,11 @@ glabel func_800A9290
 .L800A9478:
 /* AA078 800A9478 8FA4002C */  lw         $a0, 0x2c($sp)
 /* AA07C 800A947C 24050010 */  addiu      $a1, $zero, 0x10
-/* AA080 800A9480 0C026808 */  jal        func_8009A020
+/* AA080 800A9480 0C026808 */  jal        __rmonSendHeader
 /* AA084 800A9484 24060001 */   addiu     $a2, $zero, 1
 /* AA088 800A9488 8FAF0030 */  lw         $t7, 0x30($sp)
 /* AA08C 800A948C 8FA40028 */  lw         $a0, 0x28($sp)
-/* AA090 800A9490 0C02685F */  jal        func_8009A17C
+/* AA090 800A9490 0C02685F */  jal        __rmonSendData
 /* AA094 800A9494 8DE50014 */   lw        $a1, 0x14($t7)
 /* AA098 800A9498 10000003 */  b          .L800A94A8
 /* AA09C 800A949C 00001025 */   or        $v0, $zero, $zero
@@ -278,7 +278,7 @@ glabel func_800A9290
 /* AA0B4 800A94B4 03E00008 */  jr         $ra
 /* AA0B8 800A94B8 27BD0040 */   addiu     $sp, $sp, 0x40
 
-glabel func_800A94BC
+glabel __rmonWriteMem
 /* AA0BC 800A94BC 27BDFFB8 */  addiu      $sp, $sp, -0x48
 /* AA0C0 800A94C0 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AA0C4 800A94C4 AFA40048 */  sw         $a0, 0x48($sp)
@@ -289,7 +289,7 @@ glabel func_800A94BC
 /* AA0D8 800A94D8 91CF0009 */  lbu        $t7, 9($t6)
 /* AA0DC 800A94DC 15E00008 */  bnez       $t7, .L800A9500
 /* AA0E0 800A94E0 00000000 */   nop
-/* AA0E4 800A94E4 0C026964 */  jal        func_8009A590
+/* AA0E4 800A94E4 0C026964 */  jal        osVirtualToPhysical
 /* AA0E8 800A94E8 8E040010 */   lw        $a0, 0x10($s0)
 /* AA0EC 800A94EC 2401FFFF */  addiu      $at, $zero, -1
 /* AA0F0 800A94F0 14410003 */  bne        $v0, $at, .L800A9500
@@ -338,7 +338,7 @@ glabel func_800A94BC
 /* AA184 800A9584 8E040010 */  lw         $a0, 0x10($s0)
 /* AA188 800A9588 2401FFFC */  addiu      $at, $zero, -4
 /* AA18C 800A958C 00817024 */  and        $t6, $a0, $at
-/* AA190 800A9590 0C02A45C */  jal        func_800A9170
+/* AA190 800A9590 0C02A45C */  jal        __rmonReadWordAt
 /* AA194 800A9594 01C02025 */   or        $a0, $t6, $zero
 /* AA198 800A9598 AFA2002C */  sw         $v0, 0x2c($sp)
 /* AA19C 800A959C 8FAF0030 */  lw         $t7, 0x30($sp)
@@ -380,7 +380,7 @@ glabel func_800A94BC
 /* AA220 800A9620 2401FFFC */  addiu      $at, $zero, -4
 /* AA224 800A9624 8FA5002C */  lw         $a1, 0x2c($sp)
 /* AA228 800A9628 00815824 */  and        $t3, $a0, $at
-/* AA22C 800A962C 0C02A448 */  jal        func_800A9120
+/* AA22C 800A962C 0C02A448 */  jal        __rmonWriteWordTo
 /* AA230 800A9630 01602025 */   or        $a0, $t3, $zero
 /* AA234 800A9634 1000001F */  b          .L800A96B4
 /* AA238 800A9638 00000000 */   nop
@@ -407,7 +407,7 @@ glabel func_800A94BC
 /* AA280 800A9680 8E040010 */  lw         $a0, 0x10($s0)
 /* AA284 800A9684 8D250000 */  lw         $a1, ($t1)
 /* AA288 800A9688 252A0004 */  addiu      $t2, $t1, 4
-/* AA28C 800A968C 0C02A448 */  jal        func_800A9120
+/* AA28C 800A968C 0C02A448 */  jal        __rmonWriteWordTo
 /* AA290 800A9690 AFAA0024 */   sw        $t2, 0x24($sp)
 /* AA294 800A9694 8E0B0010 */  lw         $t3, 0x10($s0)
 /* AA298 800A9698 256C0004 */  addiu      $t4, $t3, 4
@@ -423,7 +423,7 @@ glabel func_800A94BC
 .L800A96BC:
 /* AA2BC 800A96BC 8E040010 */  lw         $a0, 0x10($s0)
 /* AA2C0 800A96C0 26050018 */  addiu      $a1, $s0, 0x18
-/* AA2C4 800A96C4 0C02A475 */  jal        func_800A91D4
+/* AA2C4 800A96C4 0C02A475 */  jal        __rmonMemcpy
 /* AA2C8 800A96C8 8E060014 */   lw        $a2, 0x14($s0)
 .L800A96CC:
 /* AA2CC 800A96CC 920F0004 */  lbu        $t7, 4($s0)
@@ -433,7 +433,7 @@ glabel func_800A94BC
 /* AA2DC 800A96DC AFB80040 */  sw         $t8, 0x40($sp)
 /* AA2E0 800A96E0 27A40034 */  addiu      $a0, $sp, 0x34
 /* AA2E4 800A96E4 24050010 */  addiu      $a1, $zero, 0x10
-/* AA2E8 800A96E8 0C026833 */  jal        func_8009A0CC
+/* AA2E8 800A96E8 0C026833 */  jal        __rmonSendReply
 /* AA2EC 800A96EC 24060001 */   addiu     $a2, $zero, 1
 /* AA2F0 800A96F0 10000003 */  b          .L800A9700
 /* AA2F4 800A96F4 00001025 */   or        $v0, $zero, $zero
@@ -446,7 +446,7 @@ glabel func_800A94BC
 /* AA30C 800A970C 03E00008 */  jr         $ra
 /* AA310 800A9710 27BD0048 */   addiu     $sp, $sp, 0x48
 
-glabel func_800A9714
+glabel __rmonListProcesses
 /* AA314 800A9714 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* AA318 800A9718 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA31C 800A971C AFA40038 */  sw         $a0, 0x38($sp)
@@ -475,7 +475,7 @@ glabel func_800A9714
 /* AA370 800A9770 A7A00022 */  sh         $zero, 0x22($sp)
 /* AA374 800A9774 27A4001C */  addiu      $a0, $sp, 0x1c
 /* AA378 800A9778 24050018 */  addiu      $a1, $zero, 0x18
-/* AA37C 800A977C 0C026833 */  jal        func_8009A0CC
+/* AA37C 800A977C 0C026833 */  jal        __rmonSendReply
 /* AA380 800A9780 24060001 */   addiu     $a2, $zero, 1
 /* AA384 800A9784 10000003 */  b          .L800A9794
 /* AA388 800A9788 00001025 */   or        $v0, $zero, $zero
@@ -497,14 +497,14 @@ glabel func_800A97A4
 /* AA3B8 800A97B8 03E00008 */  jr         $ra
 /* AA3BC 800A97BC 00000000 */   nop
 
-glabel func_800A97C0
+glabel __rmonGetExeName
 /* AA3C0 800A97C0 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AA3C4 800A97C4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA3C8 800A97C8 AFA40020 */  sw         $a0, 0x20($sp)
 /* AA3CC 800A97CC 8FAE0020 */  lw         $t6, 0x20($sp)
 /* AA3D0 800A97D0 AFAE001C */  sw         $t6, 0x1c($sp)
-/* AA3D4 800A97D4 3C0F8019 */  lui        $t7, %hi(D_8018A290)
-/* AA3D8 800A97D8 25EFA290 */  addiu      $t7, $t7, %lo(D_8018A290)
+/* AA3D4 800A97D4 3C0F8019 */  lui        $t7, %hi(__rmonUtilityBuffer)
+/* AA3D8 800A97D8 25EFA290 */  addiu      $t7, $t7, %lo(__rmonUtilityBuffer)
 /* AA3DC 800A97DC AFAF0018 */  sw         $t7, 0x18($sp)
 /* AA3E0 800A97E0 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AA3E4 800A97E4 8FA80018 */  lw         $t0, 0x18($sp)
@@ -522,22 +522,22 @@ glabel func_800A97C0
 /* AA414 800A9814 15C10008 */  bne        $t6, $at, .L800A9838
 /* AA418 800A9818 00000000 */   nop
 /* AA41C 800A981C 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA420 800A9820 3C05800F */  lui        $a1, %hi(D_800EDCD8)
-/* AA424 800A9824 24A5DCD8 */  addiu      $a1, $a1, %lo(D_800EDCD8)
+/* AA420 800A9820 3C05800F */  lui        $a1, %hi(rmonmem_rodata_0098)
+/* AA424 800A9824 24A5DCD8 */  addiu      $a1, $a1, %lo(rmonmem_rodata_0098)
 /* AA428 800A9828 0C02A493 */  jal        func_800A924C
 /* AA42C 800A982C 24840010 */   addiu     $a0, $a0, 0x10
 /* AA430 800A9830 10000006 */  b          .L800A984C
 /* AA434 800A9834 00000000 */   nop
 .L800A9838:
 /* AA438 800A9838 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA43C 800A983C 3C05800F */  lui        $a1, %hi(D_800EDCE0)
-/* AA440 800A9840 24A5DCE0 */  addiu      $a1, $a1, %lo(D_800EDCE0)
+/* AA43C 800A983C 3C05800F */  lui        $a1, %hi(rmonmem_rodata_00A0)
+/* AA440 800A9840 24A5DCE0 */  addiu      $a1, $a1, %lo(rmonmem_rodata_00A0)
 /* AA444 800A9844 0C02A493 */  jal        func_800A924C
 /* AA448 800A9848 24840010 */   addiu     $a0, $a0, 0x10
 .L800A984C:
 /* AA44C 800A984C 8FA40018 */  lw         $a0, 0x18($sp)
 /* AA450 800A9850 24050018 */  addiu      $a1, $zero, 0x18
-/* AA454 800A9854 0C026833 */  jal        func_8009A0CC
+/* AA454 800A9854 0C026833 */  jal        __rmonSendReply
 /* AA458 800A9858 24060001 */   addiu     $a2, $zero, 1
 /* AA45C 800A985C 10000003 */  b          .L800A986C
 /* AA460 800A9860 00001025 */   or        $v0, $zero, $zero
@@ -549,7 +549,7 @@ glabel func_800A97C0
 /* AA474 800A9874 03E00008 */  jr         $ra
 /* AA478 800A9878 00000000 */   nop
 
-glabel func_800A987C
+glabel __rmonGetRegionCount
 /* AA47C 800A987C 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* AA480 800A9880 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA484 800A9884 AFA40030 */  sw         $a0, 0x30($sp)
@@ -576,7 +576,7 @@ glabel func_800A987C
 .L800A98D4:
 /* AA4D4 800A98D4 27A40018 */  addiu      $a0, $sp, 0x18
 /* AA4D8 800A98D8 24050014 */  addiu      $a1, $zero, 0x14
-/* AA4DC 800A98DC 0C026833 */  jal        func_8009A0CC
+/* AA4DC 800A98DC 0C026833 */  jal        __rmonSendReply
 /* AA4E0 800A98E0 24060001 */   addiu     $a2, $zero, 1
 /* AA4E4 800A98E4 10000003 */  b          .L800A98F4
 /* AA4E8 800A98E8 00001025 */   or        $v0, $zero, $zero
@@ -588,14 +588,14 @@ glabel func_800A987C
 /* AA4FC 800A98FC 03E00008 */  jr         $ra
 /* AA500 800A9900 00000000 */   nop
 
-glabel func_800A9904
+glabel __rmonGetRegions
 /* AA504 800A9904 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AA508 800A9908 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA50C 800A990C AFA40028 */  sw         $a0, 0x28($sp)
 /* AA510 800A9910 8FAE0028 */  lw         $t6, 0x28($sp)
 /* AA514 800A9914 AFAE0024 */  sw         $t6, 0x24($sp)
-/* AA518 800A9918 3C0F8019 */  lui        $t7, %hi(D_8018A290)
-/* AA51C 800A991C 25EFA290 */  addiu      $t7, $t7, %lo(D_8018A290)
+/* AA518 800A9918 3C0F8019 */  lui        $t7, %hi(__rmonUtilityBuffer)
+/* AA51C 800A991C 25EFA290 */  addiu      $t7, $t7, %lo(__rmonUtilityBuffer)
 /* AA520 800A9920 AFAF0020 */  sw         $t7, 0x20($sp)
 /* AA524 800A9924 8FB80028 */  lw         $t8, 0x28($sp)
 /* AA528 800A9928 24010001 */  addiu      $at, $zero, 1
@@ -707,7 +707,7 @@ glabel func_800A9904
 /* AA6C4 800A9AC4 8FA80020 */  lw         $t0, 0x20($sp)
 /* AA6C8 800A9AC8 24060001 */  addiu      $a2, $zero, 1
 /* AA6CC 800A9ACC 01002025 */  or         $a0, $t0, $zero
-/* AA6D0 800A9AD0 0C026833 */  jal        func_8009A0CC
+/* AA6D0 800A9AD0 0C026833 */  jal        __rmonSendReply
 /* AA6D4 800A9AD4 8D050000 */   lw        $a1, ($t0)
 /* AA6D8 800A9AD8 10000003 */  b          .L800A9AE8
 /* AA6DC 800A9ADC 00001025 */   or        $v0, $zero, $zero

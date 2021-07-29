@@ -7,14 +7,14 @@
 
 .section .text, "ax"
 
-glabel func_800A5110
+glabel guScaleF
 /* A5D10 800A5110 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A5D14 800A5114 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A5D18 800A5118 AFA40018 */  sw         $a0, 0x18($sp)
 /* A5D1C 800A511C AFA5001C */  sw         $a1, 0x1c($sp)
 /* A5D20 800A5120 AFA60020 */  sw         $a2, 0x20($sp)
 /* A5D24 800A5124 AFA70024 */  sw         $a3, 0x24($sp)
-/* A5D28 800A5128 0C02CB32 */  jal        func_800B2CC8
+/* A5D28 800A5128 0C02CB32 */  jal        guMtxIdentF
 /* A5D2C 800A512C 8FA40018 */   lw        $a0, 0x18($sp)
 /* A5D30 800A5130 C7A4001C */  lwc1       $f4, 0x1c($sp)
 /* A5D34 800A5134 8FAE0018 */  lw         $t6, 0x18($sp)
@@ -47,7 +47,7 @@ glabel func_800A517C
 /* A5D94 800A5194 27A40018 */  addiu      $a0, $sp, 0x18
 /* A5D98 800A5198 8FA5005C */  lw         $a1, 0x5c($sp)
 /* A5D9C 800A519C 8FA60060 */  lw         $a2, 0x60($sp)
-/* A5DA0 800A51A0 0C029444 */  jal        func_800A5110
+/* A5DA0 800A51A0 0C029444 */  jal        guScaleF
 /* A5DA4 800A51A4 8FA70064 */   lw        $a3, 0x64($sp)
 /* A5DA8 800A51A8 27A40018 */  addiu      $a0, $sp, 0x18
 /* A5DAC 800A51AC 0C02CA98 */  jal        guMtxF2L

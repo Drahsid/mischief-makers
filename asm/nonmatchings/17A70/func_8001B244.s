@@ -30,7 +30,7 @@ glabel func_8001B244
 .L8001B2AC:
 /* 1BEAC 8001B2AC 8FA5002C */  lw         $a1, 0x2c($sp)
 /* 1BEB0 8001B2B0 24060000 */  addiu      $a2, $zero, 0
-/* 1BEB4 8001B2B4 0C0290D5 */  jal        func_800A4354
+/* 1BEB4 8001B2B4 0C0290D5 */  jal        __ll_lshift
 /* 1BEB8 8001B2B8 24070001 */   addiu     $a3, $zero, 1
 /* 1BEBC 8001B2BC 26100001 */  addiu      $s0, $s0, 1
 /* 1BEC0 8001B2C0 320DFFFF */  andi       $t5, $s0, 0xffff

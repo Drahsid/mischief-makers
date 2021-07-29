@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AAA10
+glabel _bcopy
 /* AB610 800AAA10 00A03825 */  or         $a3, $a1, $zero
 /* AB614 800AAA14 10C0001C */  beqz       $a2, .L800AAA88
 /* AB618 800AAA18 00000000 */   nop
@@ -244,9 +244,9 @@ glabel func_800AAA10
 /* AB968 800AAD68 00000000 */  nop
 /* AB96C 800AAD6C 00000000 */  nop
 
-glabel func_800AAD70
-/* AB970 800AAD70 3C0EA404 */  lui        $t6, %hi(D_A4040010)
-/* AB974 800AAD74 ADC40010 */  sw         $a0, %lo(D_A4040010)($t6)
+glabel __osSpSetStatus
+/* AB970 800AAD70 3C0EA404 */  lui        $t6, %hi(SP_STATUS)
+/* AB974 800AAD74 ADC40010 */  sw         $a0, %lo(SP_STATUS)($t6)
 /* AB978 800AAD78 03E00008 */  jr         $ra
 /* AB97C 800AAD7C 00000000 */   nop
 

@@ -7,11 +7,11 @@
 
 .section .text, "ax"
 
-glabel func_800A7810
+glabel osGetThreadPri
 /* A8410 800A7810 14800003 */  bnez       $a0, .L800A7820
 /* A8414 800A7814 00000000 */   nop
-/* A8418 800A7818 3C04800F */  lui        $a0, %hi(D_800EA610)
-/* A841C 800A781C 8C84A610 */  lw         $a0, %lo(D_800EA610)($a0)
+/* A8418 800A7818 3C04800F */  lui        $a0, %hi(__osRunningThread)
+/* A841C 800A781C 8C84A610 */  lw         $a0, %lo(__osRunningThread)($a0)
 .L800A7820:
 /* A8420 800A7820 03E00008 */  jr         $ra
 /* A8424 800A7824 8C820004 */   lw        $v0, 4($a0)

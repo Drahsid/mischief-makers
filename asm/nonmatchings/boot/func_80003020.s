@@ -32,10 +32,10 @@ glabel func_80003020
 .L80003098:
 /* 3C98 80003098 14720007 */  bne        $v1, $s2, .L800030B8
 /* 3C9C 8000309C 24010092 */   addiu     $at, $zero, 0x92
-/* 3CA0 800030A0 3C168017 */  lui        $s6, %hi(D_8016E1D8)
+/* 3CA0 800030A0 3C168017 */  lui        $s6, %hi(ptr_alSeqPlayers)
 /* 3CA4 800030A4 3C13800F */  lui        $s3, %hi(D_800EF4F0)
 /* 3CA8 800030A8 2673F4F0 */  addiu      $s3, $s3, %lo(D_800EF4F0)
-/* 3CAC 800030AC 26D6E1D8 */  addiu      $s6, $s6, %lo(D_8016E1D8)
+/* 3CAC 800030AC 26D6E1D8 */  addiu      $s6, $s6, %lo(ptr_alSeqPlayers)
 /* 3CB0 800030B0 10000031 */  b          .L80003178
 /* 3CB4 800030B4 24170091 */   addiu     $s7, $zero, 0x91
 .L800030B8:
@@ -43,12 +43,12 @@ glabel func_80003020
 /* 3CBC 800030BC 00008025 */   or        $s0, $zero, $zero
 /* 3CC0 800030C0 24170091 */  addiu      $s7, $zero, 0x91
 .L800030C4:
-/* 3CC4 800030C4 3C168017 */  lui        $s6, %hi(D_8016E1D8)
+/* 3CC4 800030C4 3C168017 */  lui        $s6, %hi(ptr_alSeqPlayers)
 /* 3CC8 800030C8 3C14800F */  lui        $s4, %hi(D_800EF508)
 /* 3CCC 800030CC 3C13800F */  lui        $s3, %hi(D_800EF4F0)
 /* 3CD0 800030D0 2673F4F0 */  addiu      $s3, $s3, %lo(D_800EF4F0)
 /* 3CD4 800030D4 2694F508 */  addiu      $s4, $s4, %lo(D_800EF508)
-/* 3CD8 800030D8 26D6E1D8 */  addiu      $s6, $s6, %lo(D_8016E1D8)
+/* 3CD8 800030D8 26D6E1D8 */  addiu      $s6, $s6, %lo(ptr_alSeqPlayers)
 /* 3CDC 800030DC 24150091 */  addiu      $s5, $zero, 0x91
 .L800030E0:
 /* 3CE0 800030E0 02707021 */  addu       $t6, $s3, $s0
@@ -66,7 +66,7 @@ glabel func_80003020
 /* 3D10 80003110 2402FFFF */   addiu     $v0, $zero, -1
 .L80003114:
 /* 3D14 80003114 8E240000 */  lw         $a0, ($s1)
-/* 3D18 80003118 0C027FD0 */  jal        func_8009FF40
+/* 3D18 80003118 0C027FD0 */  jal        alSeqpStop
 /* 3D1C 8000311C 02E09025 */   or        $s2, $s7, $zero
 /* 3D20 80003120 12B20010 */  beq        $s5, $s2, .L80003164
 /* 3D24 80003124 00000000 */   nop
@@ -151,7 +151,7 @@ glabel func_80003020
 /* 3E48 80003248 2402FFFF */   addiu     $v0, $zero, -1
 /* 3E4C 8000324C 02D88021 */  addu       $s0, $s6, $t8
 /* 3E50 80003250 8E040000 */  lw         $a0, ($s0)
-/* 3E54 80003254 0C027FD0 */  jal        func_8009FF40
+/* 3E54 80003254 0C027FD0 */  jal        alSeqpStop
 /* 3E58 80003258 00000000 */   nop
 /* 3E5C 8000325C 83B9005B */  lb         $t9, 0x5b($sp)
 /* 3E60 80003260 97A80062 */  lhu        $t0, 0x62($sp)

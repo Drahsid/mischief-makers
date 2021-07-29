@@ -71,7 +71,7 @@ glabel func_8000EA88
 /* F798 8000EB98 0018C980 */  sll        $t9, $t8, 6
 /* F79C 8000EB9C 44063000 */  mfc1       $a2, $f6
 /* F7A0 8000EBA0 02392021 */  addu       $a0, $s1, $t9
-/* F7A4 8000EBA4 0C029393 */  jal        func_800A4E4C
+/* F7A4 8000EBA4 0C029393 */  jal        guRotateRPY
 /* F7A8 8000EBA8 A7AC0052 */   sh        $t4, 0x52($sp)
 /* F7AC 8000EBAC 8E020000 */  lw         $v0, ($s0)
 /* F7B0 8000EBB0 3C190103 */  lui        $t9, 0x103

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A8E10
+glabel __rmonSendFault
 /* A9A10 800A8E10 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* A9A14 800A8E14 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9A18 800A8E18 AFA40030 */  sw         $a0, 0x30($sp)
@@ -28,7 +28,7 @@ glabel func_800A8E10
 /* A9A50 800A8E50 240801B0 */  addiu      $t0, $zero, 0x1b0
 /* A9A54 800A8E54 24060002 */  addiu      $a2, $zero, 2
 /* A9A58 800A8E58 01192823 */  subu       $a1, $t0, $t9
-/* A9A5C 800A8E5C 0C02A254 */  jal        func_800A8950
+/* A9A5C 800A8E5C 0C02A254 */  jal        __osRdbSend
 /* A9A60 800A8E60 03192021 */   addu      $a0, $t8, $t9
 /* A9A64 800A8E64 8FA90024 */  lw         $t1, 0x24($sp)
 /* A9A68 800A8E68 00408025 */  or         $s0, $v0, $zero
@@ -48,7 +48,7 @@ glabel func_800A8E10
 /* A9A98 800A8E98 03E00008 */  jr         $ra
 /* A9A9C 800A8E9C 00000000 */   nop
 
-glabel func_800A8EA0
+glabel __rmonIOflush
 /* A9AA0 800A8EA0 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* A9AA4 800A8EA4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9AA8 800A8EA8 AFB00018 */  sw         $s0, 0x18($sp)
@@ -59,7 +59,7 @@ glabel func_800A8EA0
 .L800A8EBC:
 /* A9ABC 800A8EBC 27A40028 */  addiu      $a0, $sp, 0x28
 /* A9AC0 800A8EC0 24050001 */  addiu      $a1, $zero, 1
-/* A9AC4 800A8EC4 0C02A254 */  jal        func_800A8950
+/* A9AC4 800A8EC4 0C02A254 */  jal        __osRdbSend
 /* A9AC8 800A8EC8 2406000A */   addiu     $a2, $zero, 0xa
 /* A9ACC 800A8ECC 8FAF002C */  lw         $t7, 0x2c($sp)
 /* A9AD0 800A8ED0 00408025 */  or         $s0, $v0, $zero
@@ -78,7 +78,7 @@ glabel func_800A8EA0
 /* A9AFC 800A8EFC 03E00008 */  jr         $ra
 /* A9B00 800A8F00 00000000 */   nop
 
-glabel func_800A8F04
+glabel __rmonIOputw
 /* A9B04 800A8F04 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* A9B08 800A8F08 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9B0C 800A8F0C AFA40030 */  sw         $a0, 0x30($sp)
@@ -96,7 +96,7 @@ glabel func_800A8F04
 /* A9B38 800A8F38 24080004 */  addiu      $t0, $zero, 4
 /* A9B3C 800A8F3C 24060008 */  addiu      $a2, $zero, 8
 /* A9B40 800A8F40 01192823 */  subu       $a1, $t0, $t9
-/* A9B44 800A8F44 0C02A254 */  jal        func_800A8950
+/* A9B44 800A8F44 0C02A254 */  jal        __osRdbSend
 /* A9B48 800A8F48 03192021 */   addu      $a0, $t8, $t9
 /* A9B4C 800A8F4C 8FA9002C */  lw         $t1, 0x2c($sp)
 /* A9B50 800A8F50 00408025 */  or         $s0, $v0, $zero
@@ -116,38 +116,38 @@ glabel func_800A8F04
 /* A9B80 800A8F80 03E00008 */  jr         $ra
 /* A9B84 800A8F84 00000000 */   nop
 
-glabel func_800A8F88
+glabel __rmonIOhandler
 /* A9B88 800A8F88 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* A9B8C 800A8F8C AFBF001C */  sw         $ra, 0x1c($sp)
 /* A9B90 800A8F90 AFB00018 */  sw         $s0, 0x18($sp)
-/* A9B94 800A8F94 3C048019 */  lui        $a0, %hi(D_80189A70)
-/* A9B98 800A8F98 3C058019 */  lui        $a1, %hi(D_80189A88)
-/* A9B9C 800A8F9C 24A59A88 */  addiu      $a1, $a1, %lo(D_80189A88)
-/* A9BA0 800A8FA0 24849A70 */  addiu      $a0, $a0, %lo(D_80189A70)
+/* A9B94 800A8F94 3C048019 */  lui        $a0, %hi(rmonsio_bss_0000)
+/* A9B98 800A8F98 3C058019 */  lui        $a1, %hi(rmonsio_bss_0018)
+/* A9B9C 800A8F9C 24A59A88 */  addiu      $a1, $a1, %lo(rmonsio_bss_0018)
+/* A9BA0 800A8FA0 24849A70 */  addiu      $a0, $a0, %lo(rmonsio_bss_0000)
 /* A9BA4 800A8FA4 0C026994 */  jal        osCreateMesgQueue
 /* A9BA8 800A8FA8 24060001 */   addiu     $a2, $zero, 1
-/* A9BAC 800A8FAC 3C058019 */  lui        $a1, %hi(D_80189A70)
-/* A9BB0 800A8FB0 24A59A70 */  addiu      $a1, $a1, %lo(D_80189A70)
+/* A9BAC 800A8FAC 3C058019 */  lui        $a1, %hi(rmonsio_bss_0000)
+/* A9BB0 800A8FB0 24A59A70 */  addiu      $a1, $a1, %lo(rmonsio_bss_0000)
 /* A9BB4 800A8FB4 24040014 */  addiu      $a0, $zero, 0x14
-/* A9BB8 800A8FB8 0C0269BC */  jal        func_8009A6F0
+/* A9BB8 800A8FB8 0C0269BC */  jal        osSetEventMesg
 /* A9BBC 800A8FBC 00003025 */   or        $a2, $zero, $zero
-/* A9BC0 800A8FC0 3C0E8019 */  lui        $t6, %hi(D_80189A90)
-/* A9BC4 800A8FC4 25CE9A90 */  addiu      $t6, $t6, %lo(D_80189A90)
-/* A9BC8 800A8FC8 3C018019 */  lui        $at, %hi(D_80189A8C)
-/* A9BCC 800A8FCC AC2E9A8C */  sw         $t6, %lo(D_80189A8C)($at)
+/* A9BC0 800A8FC0 3C0E8019 */  lui        $t6, %hi(rmonRdbReadBuf)
+/* A9BC4 800A8FC4 25CE9A90 */  addiu      $t6, $t6, %lo(rmonRdbReadBuf)
+/* A9BC8 800A8FC8 3C018019 */  lui        $at, %hi(__osRdb_DbgRead_Buf)
+/* A9BCC 800A8FCC AC2E9A8C */  sw         $t6, %lo(__osRdb_DbgRead_Buf)($at)
 .L800A8FD0:
-/* A9BD0 800A8FD0 3C048019 */  lui        $a0, %hi(D_80189A70)
-/* A9BD4 800A8FD4 24849A70 */  addiu      $a0, $a0, %lo(D_80189A70)
+/* A9BD0 800A8FD0 3C048019 */  lui        $a0, %hi(rmonsio_bss_0000)
+/* A9BD4 800A8FD4 24849A70 */  addiu      $a0, $a0, %lo(rmonsio_bss_0000)
 /* A9BD8 800A8FD8 00002825 */  or         $a1, $zero, $zero
-/* A9BDC 800A8FDC 0C026B44 */  jal        func_8009AD10
+/* A9BDC 800A8FDC 0C026B44 */  jal        osRecvMesg
 /* A9BE0 800A8FE0 24060001 */   addiu     $a2, $zero, 1
-/* A9BE4 800A8FE4 3C048019 */  lui        $a0, %hi(D_80189A90)
-/* A9BE8 800A8FE8 0C02D617 */  jal        func_800B585C
-/* A9BEC 800A8FEC 24849A90 */   addiu     $a0, $a0, %lo(D_80189A90)
-/* A9BF0 800A8FF0 3C0F8019 */  lui        $t7, %hi(D_80189A90)
-/* A9BF4 800A8FF4 25EF9A90 */  addiu      $t7, $t7, %lo(D_80189A90)
-/* A9BF8 800A8FF8 3C018019 */  lui        $at, %hi(D_80189A8C)
-/* A9BFC 800A8FFC AC2F9A8C */  sw         $t7, %lo(D_80189A8C)($at)
+/* A9BE4 800A8FE4 3C048019 */  lui        $a0, %hi(rmonRdbReadBuf)
+/* A9BE8 800A8FE8 0C02D617 */  jal        __rmonExecute
+/* A9BEC 800A8FEC 24849A90 */   addiu     $a0, $a0, %lo(rmonRdbReadBuf)
+/* A9BF0 800A8FF0 3C0F8019 */  lui        $t7, %hi(rmonRdbReadBuf)
+/* A9BF4 800A8FF4 25EF9A90 */  addiu      $t7, $t7, %lo(rmonRdbReadBuf)
+/* A9BF8 800A8FF8 3C018019 */  lui        $at, %hi(__osRdb_DbgRead_Buf)
+/* A9BFC 800A8FFC AC2F9A8C */  sw         $t7, %lo(__osRdb_DbgRead_Buf)($at)
 /* A9C00 800A9000 AFA0002C */  sw         $zero, 0x2c($sp)
 /* A9C04 800A9004 8FB8002C */  lw         $t8, 0x2c($sp)
 /* A9C08 800A9008 1F00000C */  bgtz       $t8, .L800A903C
@@ -155,7 +155,7 @@ glabel func_800A8F88
 .L800A9010:
 /* A9C10 800A9010 27A40028 */  addiu      $a0, $sp, 0x28
 /* A9C14 800A9014 24050001 */  addiu      $a1, $zero, 1
-/* A9C18 800A9018 0C02A254 */  jal        func_800A8950
+/* A9C18 800A9018 0C02A254 */  jal        __osRdbSend
 /* A9C1C 800A901C 2406000B */   addiu     $a2, $zero, 0xb
 /* A9C20 800A9020 8FB9002C */  lw         $t9, 0x2c($sp)
 /* A9C24 800A9024 00408025 */  or         $s0, $v0, $zero
@@ -192,7 +192,7 @@ glabel func_800A9060
 /* A9C8C 800A908C 3C05800F */  lui        $a1, %hi(D_800EDC08)
 /* A9C90 800A9090 24A5DC08 */  addiu      $a1, $a1, %lo(D_800EDC08)
 /* A9C94 800A9094 2484DBF0 */  addiu      $a0, $a0, %lo(D_800EDBF0)
-/* A9C98 800A9098 0C026E74 */  jal        func_8009B9D0
+/* A9C98 800A9098 0C026E74 */  jal        __assert
 /* A9C9C 800A909C 24060033 */   addiu     $a2, $zero, 0x33
 .L800A90A0:
 /* A9CA0 800A90A0 8FB8001C */  lw         $t8, 0x1c($sp)
@@ -205,10 +205,10 @@ glabel func_800A9060
 /* A9CB8 800A90B8 3C05800F */  lui        $a1, %hi(D_800EDC2C)
 /* A9CBC 800A90BC 24A5DC2C */  addiu      $a1, $a1, %lo(D_800EDC2C)
 /* A9CC0 800A90C0 2484DC1C */  addiu      $a0, $a0, %lo(D_800EDC1C)
-/* A9CC4 800A90C4 0C026E74 */  jal        func_8009B9D0
+/* A9CC4 800A90C4 0C026E74 */  jal        __assert
 /* A9CC8 800A90C8 24060034 */   addiu     $a2, $zero, 0x34
 .L800A90CC:
-/* A9CCC 800A90CC 0C02ABC0 */  jal        func_800AAF00
+/* A9CCC 800A90CC 0C02ABC0 */  jal        __osSpDeviceBusy
 /* A9CD0 800A90D0 00000000 */   nop
 /* A9CD4 800A90D4 10400003 */  beqz       $v0, .L800A90E4
 /* A9CD8 800A90D8 00000000 */   nop

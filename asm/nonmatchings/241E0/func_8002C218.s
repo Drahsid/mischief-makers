@@ -36,7 +36,7 @@ glabel func_8002C218
 /* 2CE98 8002C298 00005012 */  mflo       $t2
 /* 2CE9C 8002C29C 012A5821 */  addu       $t3, $t1, $t2
 /* 2CEA0 8002C2A0 448B2000 */  mtc1       $t3, $f4
-/* 2CEA4 8002C2A4 0C0295C4 */  jal        func_800A5710
+/* 2CEA4 8002C2A4 0C0295C4 */  jal        sqrtf
 /* 2CEA8 8002C2A8 46802320 */   cvt.s.w   $f12, $f4
 /* 2CEAC 8002C2AC 8FA20018 */  lw         $v0, 0x18($sp)
 /* 2CEB0 8002C2B0 00000000 */  nop

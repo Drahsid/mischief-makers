@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AA780
+glabel __osProbeTLB
 /* AB380 800AA780 40085000 */  mfc0       $t0, $10
 /* AB384 800AA784 310900FF */  andi       $t1, $t0, 0xff
 /* AB388 800AA788 2401E000 */  addiu      $at, $zero, -0x2000

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AB050
+glabel osJamMesg
 /* ABC50 800AB050 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* ABC54 800AB054 AFBF001C */  sw         $ra, 0x1c($sp)
 /* ABC58 800AB058 AFA40028 */  sw         $a0, 0x28($sp)
@@ -23,12 +23,12 @@ glabel func_800AB050
 /* ABC80 800AB080 00000000 */   nop
 /* ABC84 800AB084 24040007 */  addiu      $a0, $zero, 7
 /* ABC88 800AB088 24050001 */  addiu      $a1, $zero, 1
-/* ABC8C 800AB08C 0C0297B4 */  jal        func_800A5ED0
+/* ABC8C 800AB08C 0C0297B4 */  jal        __osError
 /* ABC90 800AB090 8FA60030 */   lw        $a2, 0x30($sp)
 /* ABC94 800AB094 1000004D */  b          .L800AB1CC
 /* ABC98 800AB098 2402FFFF */   addiu     $v0, $zero, -1
 .L800AB09C:
-/* ABC9C 800AB09C 0C0297A4 */  jal        func_800A5E90
+/* ABC9C 800AB09C 0C0297A4 */  jal        __osDisableInt
 /* ABCA0 800AB0A0 00000000 */   nop
 /* ABCA4 800AB0A4 00408025 */  or         $s0, $v0, $zero
 /* ABCA8 800AB0A8 8FAF0028 */  lw         $t7, 0x28($sp)
@@ -42,17 +42,17 @@ glabel func_800AB050
 /* ABCC4 800AB0C4 24010001 */  addiu      $at, $zero, 1
 /* ABCC8 800AB0C8 1501000A */  bne        $t0, $at, .L800AB0F4
 /* ABCCC 800AB0CC 00000000 */   nop
-/* ABCD0 800AB0D0 3C0A800F */  lui        $t2, %hi(D_800EA610)
-/* ABCD4 800AB0D4 8D4AA610 */  lw         $t2, %lo(D_800EA610)($t2)
+/* ABCD0 800AB0D0 3C0A800F */  lui        $t2, %hi(__osRunningThread)
+/* ABCD4 800AB0D4 8D4AA610 */  lw         $t2, %lo(__osRunningThread)($t2)
 /* ABCD8 800AB0D8 24090008 */  addiu      $t1, $zero, 8
 /* ABCDC 800AB0DC A5490010 */  sh         $t1, 0x10($t2)
 /* ABCE0 800AB0E0 8FA40028 */  lw         $a0, 0x28($sp)
-/* ABCE4 800AB0E4 0C029AA4 */  jal        func_800A6A90
+/* ABCE4 800AB0E4 0C029AA4 */  jal        __osEnqueueAndYield
 /* ABCE8 800AB0E8 24840004 */   addiu     $a0, $a0, 4
 /* ABCEC 800AB0EC 10000005 */  b          .L800AB104
 /* ABCF0 800AB0F0 00000000 */   nop
 .L800AB0F4:
-/* ABCF4 800AB0F4 0C0297AC */  jal        func_800A5EB0
+/* ABCF4 800AB0F4 0C0297AC */  jal        __osRestoreInt
 /* ABCF8 800AB0F8 02002025 */   or        $a0, $s0, $zero
 /* ABCFC 800AB0FC 10000033 */  b          .L800AB1CC
 /* ABD00 800AB100 2402FFFF */   addiu     $v0, $zero, -1
@@ -99,13 +99,13 @@ glabel func_800AB050
 /* ABD94 800AB194 8D6D0000 */  lw         $t5, ($t3)
 /* ABD98 800AB198 11A00006 */  beqz       $t5, .L800AB1B4
 /* ABD9C 800AB19C 00000000 */   nop
-/* ABDA0 800AB1A0 0C029AFA */  jal        func_800A6BE8
+/* ABDA0 800AB1A0 0C029AFA */  jal        __osPopThread
 /* ABDA4 800AB1A4 8FA40028 */   lw        $a0, 0x28($sp)
 /* ABDA8 800AB1A8 00408825 */  or         $s1, $v0, $zero
 /* ABDAC 800AB1AC 0C026588 */  jal        osStartThread
 /* ABDB0 800AB1B0 02202025 */   or        $a0, $s1, $zero
 .L800AB1B4:
-/* ABDB4 800AB1B4 0C0297AC */  jal        func_800A5EB0
+/* ABDB4 800AB1B4 0C0297AC */  jal        __osRestoreInt
 /* ABDB8 800AB1B8 02002025 */   or        $a0, $s0, $zero
 /* ABDBC 800AB1BC 10000003 */  b          .L800AB1CC
 /* ABDC0 800AB1C0 00001025 */   or        $v0, $zero, $zero
@@ -118,9 +118,9 @@ glabel func_800AB050
 /* ABDD8 800AB1D8 03E00008 */  jr         $ra
 /* ABDDC 800AB1DC 27BD0028 */   addiu     $sp, $sp, 0x28
 
-glabel func_800AB1E0
-/* ABDE0 800AB1E0 3C0E800F */  lui        $t6, %hi(D_800EA4D0)
-/* ABDE4 800AB1E4 8DCEA4D0 */  lw         $t6, %lo(D_800EA4D0)($t6)
+glabel osPiGetCmdQueue
+/* ABDE0 800AB1E0 3C0E800F */  lui        $t6, %hi(__osPiDevMgr)
+/* ABDE4 800AB1E4 8DCEA4D0 */  lw         $t6, %lo(__osPiDevMgr)($t6)
 /* ABDE8 800AB1E8 15C00005 */  bnez       $t6, .L800AB200
 /* ABDEC 800AB1EC 00000000 */   nop
 /* ABDF0 800AB1F0 03E00008 */  jr         $ra
@@ -128,9 +128,9 @@ glabel func_800AB1E0
 /* ABDF8 800AB1F8 10000004 */  b          .L800AB20C
 /* ABDFC 800AB1FC 00000000 */   nop
 .L800AB200:
-/* ABE00 800AB200 3C02800F */  lui        $v0, %hi(D_800EA4D8)
+/* ABE00 800AB200 3C02800F */  lui        $v0, %hi(__osPiDevMgr+0x8)
 /* ABE04 800AB204 03E00008 */  jr         $ra
-/* ABE08 800AB208 8C42A4D8 */   lw        $v0, %lo(D_800EA4D8)($v0)
+/* ABE08 800AB208 8C42A4D8 */   lw        $v0, %lo(__osPiDevMgr+0x8)($v0)
 .L800AB20C:
 /* ABE0C 800AB20C 03E00008 */  jr         $ra
 /* ABE10 800AB210 00000000 */   nop

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B5900
+glabel __osSpRawWriteIo
 /* B6500 800B5900 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B6504 800B5904 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B6508 800B5908 AFA40018 */  sw         $a0, 0x18($sp)
@@ -19,14 +19,14 @@ glabel func_800B5900
 /* B6520 800B5920 10000007 */  b          .L800B5940
 /* B6524 800B5924 00000000 */   nop
 .L800B5928:
-/* B6528 800B5928 3C04800F */  lui        $a0, %hi(D_800EE7F0)
-/* B652C 800B592C 3C05800F */  lui        $a1, %hi(D_800EE808)
-/* B6530 800B5930 24A5E808 */  addiu      $a1, $a1, %lo(D_800EE808)
-/* B6534 800B5934 2484E7F0 */  addiu      $a0, $a0, %lo(D_800EE7F0)
-/* B6538 800B5938 0C026E74 */  jal        func_8009B9D0
+/* B6528 800B5928 3C04800F */  lui        $a0, %hi(sprawwrite_rodata_0000)
+/* B652C 800B592C 3C05800F */  lui        $a1, %hi(sprawwrite_rodata_0018)
+/* B6530 800B5930 24A5E808 */  addiu      $a1, $a1, %lo(sprawwrite_rodata_0018)
+/* B6534 800B5934 2484E7F0 */  addiu      $a0, $a0, %lo(sprawwrite_rodata_0000)
+/* B6538 800B5938 0C026E74 */  jal        __assert
 /* B653C 800B593C 24060033 */   addiu     $a2, $zero, 0x33
 .L800B5940:
-/* B6540 800B5940 0C02ABC0 */  jal        func_800AAF00
+/* B6540 800B5940 0C02ABC0 */  jal        __osSpDeviceBusy
 /* B6544 800B5944 00000000 */   nop
 /* B6548 800B5948 10400003 */  beqz       $v0, .L800B5958
 /* B654C 800B594C 00000000 */   nop

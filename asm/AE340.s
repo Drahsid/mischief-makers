@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AD740
+glabel alEvtqNew
 /* AE340 800AD740 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AE344 800AD744 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE348 800AD748 AFA40020 */  sw         $a0, 0x20($sp)
@@ -34,7 +34,7 @@ glabel func_800AD740
 /* AE398 800AD798 000A58C0 */  sll        $t3, $t2, 3
 /* AE39C 800AD79C 016A5823 */  subu       $t3, $t3, $t2
 /* AE3A0 800AD7A0 000B5880 */  sll        $t3, $t3, 2
-/* AE3A4 800AD7A4 0C026EAE */  jal        func_8009BAB8
+/* AE3A4 800AD7A4 0C026EAE */  jal        alLink
 /* AE3A8 800AD7A8 016C2021 */   addu      $a0, $t3, $t4
 /* AE3AC 800AD7AC 8FAD001C */  lw         $t5, 0x1c($sp)
 /* AE3B0 800AD7B0 8FAF0028 */  lw         $t7, 0x28($sp)
@@ -51,12 +51,12 @@ glabel func_800AD740
 /* AE3D4 800AD7D4 03E00008 */  jr         $ra
 /* AE3D8 800AD7D8 00000000 */   nop
 
-glabel func_800AD7DC
+glabel alEvtqNextEvent
 /* AE3DC 800AD7DC 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AE3E0 800AD7E0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE3E4 800AD7E4 AFA40028 */  sw         $a0, 0x28($sp)
 /* AE3E8 800AD7E8 AFA5002C */  sw         $a1, 0x2c($sp)
-/* AE3EC 800AD7EC 0C02B9A8 */  jal        func_800AE6A0
+/* AE3EC 800AD7EC 0C02B9A8 */  jal        osSetIntMask
 /* AE3F0 800AD7F0 24040001 */   addiu     $a0, $zero, 1
 /* AE3F4 800AD7F4 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE3F8 800AD7F8 8FAE0028 */  lw         $t6, 0x28($sp)
@@ -65,15 +65,15 @@ glabel func_800AD7DC
 /* AE404 800AD804 8FB80024 */  lw         $t8, 0x24($sp)
 /* AE408 800AD808 1300000F */  beqz       $t8, .L800AD848
 /* AE40C 800AD80C 00000000 */   nop
-/* AE410 800AD810 0C026EBB */  jal        func_8009BAEC
+/* AE410 800AD810 0C026EBB */  jal        alUnlink
 /* AE414 800AD814 8FA40024 */   lw        $a0, 0x24($sp)
 /* AE418 800AD818 8FA40024 */  lw         $a0, 0x24($sp)
 /* AE41C 800AD81C 8FA5002C */  lw         $a1, 0x2c($sp)
 /* AE420 800AD820 24060010 */  addiu      $a2, $zero, 0x10
-/* AE424 800AD824 0C02DF1C */  jal        func_800B7C70
+/* AE424 800AD824 0C02DF1C */  jal        alCopy
 /* AE428 800AD828 2484000C */   addiu     $a0, $a0, 0xc
 /* AE42C 800AD82C 8FA40024 */  lw         $a0, 0x24($sp)
-/* AE430 800AD830 0C026EAE */  jal        func_8009BAB8
+/* AE430 800AD830 0C026EAE */  jal        alLink
 /* AE434 800AD834 8FA50028 */   lw        $a1, 0x28($sp)
 /* AE438 800AD838 8FB90024 */  lw         $t9, 0x24($sp)
 /* AE43C 800AD83C 8F280008 */  lw         $t0, 8($t9)
@@ -85,7 +85,7 @@ glabel func_800AD7DC
 /* AE450 800AD850 A5490000 */  sh         $t1, ($t2)
 /* AE454 800AD854 AFA00020 */  sw         $zero, 0x20($sp)
 .L800AD858:
-/* AE458 800AD858 0C02B9A8 */  jal        func_800AE6A0
+/* AE458 800AD858 0C02B9A8 */  jal        osSetIntMask
 /* AE45C 800AD85C 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE460 800AD860 10000003 */  b          .L800AD870
 /* AE464 800AD864 8FA20020 */   lw        $v0, 0x20($sp)
@@ -97,14 +97,14 @@ glabel func_800AD7DC
 /* AE478 800AD878 03E00008 */  jr         $ra
 /* AE47C 800AD87C 00000000 */   nop
 
-glabel func_800AD880
+glabel alEvtqPostEvent
 /* AE480 800AD880 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* AE484 800AD884 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE488 800AD888 AFA40030 */  sw         $a0, 0x30($sp)
 /* AE48C 800AD88C AFA50034 */  sw         $a1, 0x34($sp)
 /* AE490 800AD890 AFA60038 */  sw         $a2, 0x38($sp)
 /* AE494 800AD894 AFA00020 */  sw         $zero, 0x20($sp)
-/* AE498 800AD898 0C02B9A8 */  jal        func_800AE6A0
+/* AE498 800AD898 0C02B9A8 */  jal        osSetIntMask
 /* AE49C 800AD89C 24040001 */   addiu     $a0, $zero, 1
 /* AE4A0 800AD8A0 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE4A4 800AD8A4 8FAE0030 */  lw         $t6, 0x30($sp)
@@ -113,20 +113,20 @@ glabel func_800AD880
 /* AE4B0 800AD8B0 8FB8002C */  lw         $t8, 0x2c($sp)
 /* AE4B4 800AD8B4 17000008 */  bnez       $t8, .L800AD8D8
 /* AE4B8 800AD8B8 00000000 */   nop
-/* AE4BC 800AD8BC 0C02B9A8 */  jal        func_800AE6A0
+/* AE4BC 800AD8BC 0C02B9A8 */  jal        osSetIntMask
 /* AE4C0 800AD8C0 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE4C4 800AD8C4 2404007C */  addiu      $a0, $zero, 0x7c
-/* AE4C8 800AD8C8 0C0297B4 */  jal        func_800A5ED0
+/* AE4C8 800AD8C8 0C0297B4 */  jal        __osError
 /* AE4CC 800AD8CC 00002825 */   or        $a1, $zero, $zero
 /* AE4D0 800AD8D0 1000004A */  b          .L800AD9FC
 /* AE4D4 800AD8D4 00000000 */   nop
 .L800AD8D8:
-/* AE4D8 800AD8D8 0C026EBB */  jal        func_8009BAEC
+/* AE4D8 800AD8D8 0C026EBB */  jal        alUnlink
 /* AE4DC 800AD8DC 8FA4002C */   lw        $a0, 0x2c($sp)
 /* AE4E0 800AD8E0 8FA5002C */  lw         $a1, 0x2c($sp)
 /* AE4E4 800AD8E4 8FA40034 */  lw         $a0, 0x34($sp)
 /* AE4E8 800AD8E8 24060010 */  addiu      $a2, $zero, 0x10
-/* AE4EC 800AD8EC 0C02DF1C */  jal        func_800B7C70
+/* AE4EC 800AD8EC 0C02DF1C */  jal        alCopy
 /* AE4F0 800AD8F0 24A5000C */   addiu     $a1, $a1, 0xc
 /* AE4F4 800AD8F4 8FB90038 */  lw         $t9, 0x38($sp)
 /* AE4F8 800AD8F8 3C017FFF */  lui        $at, 0x7fff
@@ -157,7 +157,7 @@ glabel func_800AD880
 /* AE550 800AD950 AF0F0008 */  sw         $t7, 8($t8)
 .L800AD954:
 /* AE554 800AD954 8FA4002C */  lw         $a0, 0x2c($sp)
-/* AE558 800AD958 0C026EAE */  jal        func_8009BAB8
+/* AE558 800AD958 0C026EAE */  jal        alLink
 /* AE55C 800AD95C 8FA50024 */   lw        $a1, 0x24($sp)
 /* AE560 800AD960 10000022 */  b          .L800AD9EC
 /* AE564 800AD964 00000000 */   nop
@@ -182,7 +182,7 @@ glabel func_800AD880
 /* AE5AC 800AD9AC 01F8C823 */  subu       $t9, $t7, $t8
 /* AE5B0 800AD9B0 ADD90008 */  sw         $t9, 8($t6)
 /* AE5B4 800AD9B4 8FA4002C */  lw         $a0, 0x2c($sp)
-/* AE5B8 800AD9B8 0C026EAE */  jal        func_8009BAB8
+/* AE5B8 800AD9B8 0C026EAE */  jal        alLink
 /* AE5BC 800AD9BC 8FA50024 */   lw        $a1, 0x24($sp)
 /* AE5C0 800AD9C0 1000000A */  b          .L800AD9EC
 /* AE5C4 800AD9C4 00000000 */   nop
@@ -198,7 +198,7 @@ glabel func_800AD880
 /* AE5E4 800AD9E4 15A0FFCE */  bnez       $t5, .L800AD920
 /* AE5E8 800AD9E8 AFAD0024 */   sw        $t5, 0x24($sp)
 .L800AD9EC:
-/* AE5EC 800AD9EC 0C02B9A8 */  jal        func_800AE6A0
+/* AE5EC 800AD9EC 0C02B9A8 */  jal        osSetIntMask
 /* AE5F0 800AD9F0 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE5F4 800AD9F4 10000001 */  b          .L800AD9FC
 /* AE5F8 800AD9F8 00000000 */   nop
@@ -208,11 +208,11 @@ glabel func_800AD880
 /* AE604 800ADA04 03E00008 */  jr         $ra
 /* AE608 800ADA08 00000000 */   nop
 
-glabel func_800ADA0C
+glabel alEvtqFlush
 /* AE60C 800ADA0C 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AE610 800ADA10 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE614 800ADA14 AFA40028 */  sw         $a0, 0x28($sp)
-/* AE618 800ADA18 0C02B9A8 */  jal        func_800AE6A0
+/* AE618 800ADA18 0C02B9A8 */  jal        osSetIntMask
 /* AE61C 800ADA1C 24040001 */   addiu     $a0, $zero, 1
 /* AE620 800ADA20 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE624 800ADA24 8FAE0028 */  lw         $t6, 0x28($sp)
@@ -225,10 +225,10 @@ glabel func_800ADA0C
 /* AE63C 800ADA3C 8FB90024 */  lw         $t9, 0x24($sp)
 /* AE640 800ADA40 8F280000 */  lw         $t0, ($t9)
 /* AE644 800ADA44 AFA80020 */  sw         $t0, 0x20($sp)
-/* AE648 800ADA48 0C026EBB */  jal        func_8009BAEC
+/* AE648 800ADA48 0C026EBB */  jal        alUnlink
 /* AE64C 800ADA4C 8FA40024 */   lw        $a0, 0x24($sp)
 /* AE650 800ADA50 8FA40024 */  lw         $a0, 0x24($sp)
-/* AE654 800ADA54 0C026EAE */  jal        func_8009BAB8
+/* AE654 800ADA54 0C026EAE */  jal        alLink
 /* AE658 800ADA58 8FA50028 */   lw        $a1, 0x28($sp)
 /* AE65C 800ADA5C 8FA90020 */  lw         $t1, 0x20($sp)
 /* AE660 800ADA60 AFA90024 */  sw         $t1, 0x24($sp)
@@ -236,7 +236,7 @@ glabel func_800ADA0C
 /* AE668 800ADA68 1540FFF4 */  bnez       $t2, .L800ADA3C
 /* AE66C 800ADA6C 00000000 */   nop
 .L800ADA70:
-/* AE670 800ADA70 0C02B9A8 */  jal        func_800AE6A0
+/* AE670 800ADA70 0C02B9A8 */  jal        osSetIntMask
 /* AE674 800ADA74 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE678 800ADA78 10000001 */  b          .L800ADA80
 /* AE67C 800ADA7C 00000000 */   nop
@@ -246,12 +246,12 @@ glabel func_800ADA0C
 /* AE688 800ADA88 03E00008 */  jr         $ra
 /* AE68C 800ADA8C 00000000 */   nop
 
-glabel func_800ADA90
+glabel alEvtqFlushType
 /* AE690 800ADA90 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* AE694 800ADA94 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE698 800ADA98 AFA40030 */  sw         $a0, 0x30($sp)
 /* AE69C 800ADA9C AFA50034 */  sw         $a1, 0x34($sp)
-/* AE6A0 800ADAA0 0C02B9A8 */  jal        func_800AE6A0
+/* AE6A0 800ADAA0 0C02B9A8 */  jal        osSetIntMask
 /* AE6A4 800ADAA4 24040001 */   addiu     $a0, $zero, 1
 /* AE6A8 800ADAA8 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE6AC 800ADAAC 8FAE0030 */  lw         $t6, 0x30($sp)
@@ -283,10 +283,10 @@ glabel func_800ADA90
 /* AE710 800ADB10 03084821 */  addu       $t1, $t8, $t0
 /* AE714 800ADB14 ADE90008 */  sw         $t1, 8($t7)
 .L800ADB18:
-/* AE718 800ADB18 0C026EBB */  jal        func_8009BAEC
+/* AE718 800ADB18 0C026EBB */  jal        alUnlink
 /* AE71C 800ADB1C 8FA4002C */   lw        $a0, 0x2c($sp)
 /* AE720 800ADB20 8FA4002C */  lw         $a0, 0x2c($sp)
-/* AE724 800ADB24 0C026EAE */  jal        func_8009BAB8
+/* AE724 800ADB24 0C026EAE */  jal        alLink
 /* AE728 800ADB28 8FA50030 */   lw        $a1, 0x30($sp)
 .L800ADB2C:
 /* AE72C 800ADB2C 8FAA0028 */  lw         $t2, 0x28($sp)
@@ -295,7 +295,7 @@ glabel func_800ADA90
 /* AE738 800ADB38 1560FFE2 */  bnez       $t3, .L800ADAC4
 /* AE73C 800ADB3C 00000000 */   nop
 .L800ADB40:
-/* AE740 800ADB40 0C02B9A8 */  jal        func_800AE6A0
+/* AE740 800ADB40 0C02B9A8 */  jal        osSetIntMask
 /* AE744 800ADB44 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE748 800ADB48 10000001 */  b          .L800ADB50
 /* AE74C 800ADB4C 00000000 */   nop
@@ -305,12 +305,12 @@ glabel func_800ADA90
 /* AE758 800ADB58 03E00008 */  jr         $ra
 /* AE75C 800ADB5C 00000000 */   nop
 
-glabel func_800ADB60
+glabel alSynAddPlayer
 /* AE760 800ADB60 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AE764 800ADB64 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE768 800ADB68 AFA40020 */  sw         $a0, 0x20($sp)
 /* AE76C 800ADB6C AFA50024 */  sw         $a1, 0x24($sp)
-/* AE770 800ADB70 0C02B9A8 */  jal        func_800AE6A0
+/* AE770 800ADB70 0C02B9A8 */  jal        osSetIntMask
 /* AE774 800ADB74 24040001 */   addiu     $a0, $zero, 1
 /* AE778 800ADB78 AFA2001C */  sw         $v0, 0x1c($sp)
 /* AE77C 800ADB7C 8FAE0020 */  lw         $t6, 0x20($sp)
@@ -324,7 +324,7 @@ glabel func_800ADB60
 /* AE79C 800ADB9C 8FAA0024 */  lw         $t2, 0x24($sp)
 /* AE7A0 800ADBA0 8FAB0020 */  lw         $t3, 0x20($sp)
 /* AE7A4 800ADBA4 AD6A0000 */  sw         $t2, ($t3)
-/* AE7A8 800ADBA8 0C02B9A8 */  jal        func_800AE6A0
+/* AE7A8 800ADBA8 0C02B9A8 */  jal        osSetIntMask
 /* AE7AC 800ADBAC 8FA4001C */   lw        $a0, 0x1c($sp)
 /* AE7B0 800ADBB0 10000001 */  b          .L800ADBB8
 /* AE7B4 800ADBB4 00000000 */   nop

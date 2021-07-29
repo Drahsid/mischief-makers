@@ -25,14 +25,14 @@ glabel func_80001988
 /* 25E4 800019E4 2631D9B8 */  addiu      $s1, $s1, -0x2648
 .L800019E8:
 /* 25E8 800019E8 02002025 */  or         $a0, $s0, $zero
-/* 25EC 800019EC 0C026EAE */  jal        func_8009BAB8
+/* 25EC 800019EC 0C026EAE */  jal        alLink
 /* 25F0 800019F0 02202825 */   or        $a1, $s1, $zero
 /* 25F4 800019F4 240F0270 */  addiu      $t7, $zero, 0x270
 /* 25F8 800019F8 AFAF0010 */  sw         $t7, 0x10($sp)
 /* 25FC 800019FC 00002025 */  or         $a0, $zero, $zero
 /* 2600 80001A00 00002825 */  or         $a1, $zero, $zero
 /* 2604 80001A04 02403025 */  or         $a2, $s2, $zero
-/* 2608 80001A08 0C026ECC */  jal        func_8009BB30
+/* 2608 80001A08 0C026ECC */  jal        alHeapDBAlloc
 /* 260C 80001A0C 24070001 */   addiu     $a3, $zero, 1
 /* 2610 80001A10 26100014 */  addiu      $s0, $s0, 0x14
 /* 2614 80001A14 26310014 */  addiu      $s1, $s1, 0x14
@@ -43,7 +43,7 @@ glabel func_80001988
 /* 2628 80001A28 00002025 */  or         $a0, $zero, $zero
 /* 262C 80001A2C 00002825 */  or         $a1, $zero, $zero
 /* 2630 80001A30 02403025 */  or         $a2, $s2, $zero
-/* 2634 80001A34 0C026ECC */  jal        func_8009BB30
+/* 2634 80001A34 0C026ECC */  jal        alHeapDBAlloc
 /* 2638 80001A38 24070001 */   addiu     $a3, $zero, 1
 /* 263C 80001A3C AE220010 */  sw         $v0, 0x10($s1)
 /* 2640 80001A40 24190001 */  addiu      $t9, $zero, 1

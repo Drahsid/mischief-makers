@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009FF40
+glabel alSeqpStop
 /* A0B40 8009FF40 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A0B44 8009FF44 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A0B48 8009FF48 AFA40028 */  sw         $a0, 0x28($sp)
@@ -16,7 +16,7 @@ glabel func_8009FF40
 /* A0B54 8009FF54 8FA40028 */  lw         $a0, 0x28($sp)
 /* A0B58 8009FF58 27A50018 */  addiu      $a1, $sp, 0x18
 /* A0B5C 8009FF5C 00003025 */  or         $a2, $zero, $zero
-/* A0B60 8009FF60 0C02B620 */  jal        func_800AD880
+/* A0B60 8009FF60 0C02B620 */  jal        alEvtqPostEvent
 /* A0B64 8009FF64 24840048 */   addiu     $a0, $a0, 0x48
 /* A0B68 8009FF68 10000001 */  b          .L8009FF70
 /* A0B6C 8009FF6C 00000000 */   nop
@@ -26,7 +26,7 @@ glabel func_8009FF40
 /* A0B78 8009FF78 03E00008 */  jr         $ra
 /* A0B7C 8009FF7C 00000000 */   nop
 
-glabel func_8009FF80
+glabel alSeqpSetChlVol
 /* A0B80 8009FF80 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A0B84 8009FF84 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A0B88 8009FF88 AFA40028 */  sw         $a0, 0x28($sp)
@@ -45,7 +45,7 @@ glabel func_8009FF80
 /* A0BBC 8009FFBC 8FA40028 */  lw         $a0, 0x28($sp)
 /* A0BC0 8009FFC0 27A50018 */  addiu      $a1, $sp, 0x18
 /* A0BC4 8009FFC4 00003025 */  or         $a2, $zero, $zero
-/* A0BC8 8009FFC8 0C02B620 */  jal        func_800AD880
+/* A0BC8 8009FFC8 0C02B620 */  jal        alEvtqPostEvent
 /* A0BCC 8009FFCC 24840048 */   addiu     $a0, $a0, 0x48
 /* A0BD0 8009FFD0 10000001 */  b          .L8009FFD8
 /* A0BD4 8009FFD4 00000000 */   nop

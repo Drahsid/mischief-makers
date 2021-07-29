@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A57F0
+glabel syncprintf_text_0000
 /* A63F0 800A57F0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A63F4 800A57F4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A63F8 800A57F8 AFA40028 */  sw         $a0, 0x28($sp)
@@ -26,7 +26,7 @@ glabel func_800A57F0
 /* A6428 800A5828 8FA80030 */  lw         $t0, 0x30($sp)
 /* A642C 800A582C 24060001 */  addiu      $a2, $zero, 1
 /* A6430 800A5830 03192021 */  addu       $a0, $t8, $t9
-/* A6434 800A5834 0C02A254 */  jal        func_800A8950
+/* A6434 800A5834 0C02A254 */  jal        __osRdbSend
 /* A6438 800A5838 01192823 */   subu      $a1, $t0, $t9
 /* A643C 800A583C 8FA90024 */  lw         $t1, 0x24($sp)
 /* A6440 800A5840 00408025 */  or         $s0, $v0, $zero
@@ -89,7 +89,7 @@ glabel func_800A58FC
 /* A64FC 800A58FC 03E00008 */  jr         $ra
 /* A6500 800A5900 00000000 */   nop
 
-glabel func_800A5904
+glabel syncprintf_text_0114
 /* A6504 800A5904 27BDFF48 */  addiu      $sp, $sp, -0xb8
 /* A6508 800A5908 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A650C 800A590C AFA400B8 */  sw         $a0, 0xb8($sp)
@@ -245,7 +245,7 @@ glabel func_800A5904
 /* A672C 800A5B2C 03E00008 */  jr         $ra
 /* A6730 800A5B30 00000000 */   nop
 
-glabel func_800A5B34
+glabel osSyncPrintf
 /* A6734 800A5B34 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A6738 800A5B38 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A673C 800A5B3C AFA40020 */  sw         $a0, 0x20($sp)
@@ -255,24 +255,24 @@ glabel func_800A5B34
 /* A674C 800A5B4C 27AE0020 */  addiu      $t6, $sp, 0x20
 /* A6750 800A5B50 25CF0004 */  addiu      $t7, $t6, 4
 /* A6754 800A5B54 AFAF0018 */  sw         $t7, 0x18($sp)
-/* A6758 800A5B58 3C188018 */  lui        $t8, %hi(D_801826C0)
-/* A675C 800A5B5C 8F1826C0 */  lw         $t8, %lo(D_801826C0)($t8)
+/* A6758 800A5B58 3C188018 */  lui        $t8, %hi(__kmc_pt_mode)
+/* A675C 800A5B5C 8F1826C0 */  lw         $t8, %lo(__kmc_pt_mode)($t8)
 /* A6760 800A5B60 13000009 */  beqz       $t8, .L800A5B88
 /* A6764 800A5B64 00000000 */   nop
-/* A6768 800A5B68 3C04800A */  lui        $a0, %hi(func_800A5904)
-/* A676C 800A5B6C 24845904 */  addiu      $a0, $a0, %lo(func_800A5904)
+/* A6768 800A5B68 3C04800A */  lui        $a0, %hi(syncprintf_text_0114)
+/* A676C 800A5B6C 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
 /* A6770 800A5B70 00002825 */  or         $a1, $zero, $zero
 /* A6774 800A5B74 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6778 800A5B78 0C02CCC4 */  jal        func_800B3310
+/* A6778 800A5B78 0C02CCC4 */  jal        _Printf
 /* A677C 800A5B7C 8FA70018 */   lw        $a3, 0x18($sp)
 /* A6780 800A5B80 10000008 */  b          .L800A5BA4
 /* A6784 800A5B84 AFA2001C */   sw        $v0, 0x1c($sp)
 .L800A5B88:
-/* A6788 800A5B88 3C04800A */  lui        $a0, %hi(func_800A57F0)
-/* A678C 800A5B8C 248457F0 */  addiu      $a0, $a0, %lo(func_800A57F0)
+/* A6788 800A5B88 3C04800A */  lui        $a0, %hi(syncprintf_text_0000)
+/* A678C 800A5B8C 248457F0 */  addiu      $a0, $a0, %lo(syncprintf_text_0000)
 /* A6790 800A5B90 00002825 */  or         $a1, $zero, $zero
 /* A6794 800A5B94 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6798 800A5B98 0C02CCC4 */  jal        func_800B3310
+/* A6798 800A5B98 0C02CCC4 */  jal        _Printf
 /* A679C 800A5B9C 8FA70018 */   lw        $a3, 0x18($sp)
 /* A67A0 800A5BA0 AFA2001C */  sw         $v0, 0x1c($sp)
 .L800A5BA4:
@@ -284,7 +284,7 @@ glabel func_800A5B34
 /* A67B4 800A5BB4 03E00008 */  jr         $ra
 /* A67B8 800A5BB8 00000000 */   nop
 
-glabel func_800A5BBC
+glabel rmonPrintf
 /* A67BC 800A5BBC 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A67C0 800A5BC0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A67C4 800A5BC4 AFA40020 */  sw         $a0, 0x20($sp)
@@ -294,15 +294,15 @@ glabel func_800A5BBC
 /* A67D4 800A5BD4 27AE0020 */  addiu      $t6, $sp, 0x20
 /* A67D8 800A5BD8 25CF0004 */  addiu      $t7, $t6, 4
 /* A67DC 800A5BDC AFAF0018 */  sw         $t7, 0x18($sp)
-/* A67E0 800A5BE0 3C188018 */  lui        $t8, %hi(D_801826C0)
-/* A67E4 800A5BE4 8F1826C0 */  lw         $t8, %lo(D_801826C0)($t8)
+/* A67E0 800A5BE0 3C188018 */  lui        $t8, %hi(__kmc_pt_mode)
+/* A67E4 800A5BE4 8F1826C0 */  lw         $t8, %lo(__kmc_pt_mode)($t8)
 /* A67E8 800A5BE8 13000008 */  beqz       $t8, .L800A5C0C
 /* A67EC 800A5BEC 00000000 */   nop
-/* A67F0 800A5BF0 3C04800A */  lui        $a0, %hi(func_800A5904)
-/* A67F4 800A5BF4 24845904 */  addiu      $a0, $a0, %lo(func_800A5904)
+/* A67F0 800A5BF0 3C04800A */  lui        $a0, %hi(syncprintf_text_0114)
+/* A67F4 800A5BF4 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
 /* A67F8 800A5BF8 00002825 */  or         $a1, $zero, $zero
 /* A67FC 800A5BFC 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6800 800A5C00 0C02CCC4 */  jal        func_800B3310
+/* A6800 800A5C00 0C02CCC4 */  jal        _Printf
 /* A6804 800A5C04 8FA70018 */   lw        $a3, 0x18($sp)
 /* A6808 800A5C08 AFA2001C */  sw         $v0, 0x1c($sp)
 .L800A5C0C:

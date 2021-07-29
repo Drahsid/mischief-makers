@@ -7,10 +7,10 @@
 
 .section .text, "ax"
 
-glabel func_800AAD90
+glabel __osSpSetPc
 /* AB990 800AAD90 27BDFFF8 */  addiu      $sp, $sp, -8
-/* AB994 800AAD94 3C0EA404 */  lui        $t6, %hi(D_A4040010)
-/* AB998 800AAD98 8DC50010 */  lw         $a1, %lo(D_A4040010)($t6)
+/* AB994 800AAD94 3C0EA404 */  lui        $t6, %hi(SP_STATUS)
+/* AB998 800AAD98 8DC50010 */  lw         $a1, %lo(SP_STATUS)($t6)
 /* AB99C 800AAD9C 30AF0001 */  andi       $t7, $a1, 1
 /* AB9A0 800AADA0 15E00003 */  bnez       $t7, .L800AADB0
 /* AB9A4 800AADA4 00000000 */   nop
@@ -27,7 +27,7 @@ glabel func_800AAD90
 /* AB9C8 800AADC8 03E00008 */  jr         $ra
 /* AB9CC 800AADCC 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800AADD0
+glabel __osSpRawStartDma
 /* AB9D0 800AADD0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AB9D4 800AADD4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AB9D8 800AADD8 AFA40018 */  sw         $a0, 0x18($sp)
@@ -41,11 +41,11 @@ glabel func_800AADD0
 /* AB9F8 800AADF8 10000007 */  b          .L800AAE18
 /* AB9FC 800AADFC 00000000 */   nop
 .L800AAE00:
-/* ABA00 800AAE00 3C04800F */  lui        $a0, %hi(D_800EDF10)
-/* ABA04 800AAE04 3C05800F */  lui        $a1, %hi(D_800EDF28)
-/* ABA08 800AAE08 24A5DF28 */  addiu      $a1, $a1, %lo(D_800EDF28)
-/* ABA0C 800AAE0C 2484DF10 */  addiu      $a0, $a0, %lo(D_800EDF10)
-/* ABA10 800AAE10 0C026E74 */  jal        func_8009B9D0
+/* ABA00 800AAE00 3C04800F */  lui        $a0, %hi(sprawdma_rodata_0000)
+/* ABA04 800AAE04 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0018)
+/* ABA08 800AAE08 24A5DF28 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0018)
+/* ABA0C 800AAE0C 2484DF10 */  addiu      $a0, $a0, %lo(sprawdma_rodata_0000)
+/* ABA10 800AAE10 0C026E74 */  jal        __assert
 /* ABA14 800AAE14 2406003A */   addiu     $a2, $zero, 0x3a
 .L800AAE18:
 /* ABA18 800AAE18 8FB80020 */  lw         $t8, 0x20($sp)
@@ -55,11 +55,11 @@ glabel func_800AADD0
 /* ABA28 800AAE28 10000007 */  b          .L800AAE48
 /* ABA2C 800AAE2C 00000000 */   nop
 .L800AAE30:
-/* ABA30 800AAE30 3C04800F */  lui        $a0, %hi(D_800EDF3C)
-/* ABA34 800AAE34 3C05800F */  lui        $a1, %hi(D_800EDF58)
-/* ABA38 800AAE38 24A5DF58 */  addiu      $a1, $a1, %lo(D_800EDF58)
-/* ABA3C 800AAE3C 2484DF3C */  addiu      $a0, $a0, %lo(D_800EDF3C)
-/* ABA40 800AAE40 0C026E74 */  jal        func_8009B9D0
+/* ABA30 800AAE30 3C04800F */  lui        $a0, %hi(sprawdma_rodata_002C)
+/* ABA34 800AAE34 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0048)
+/* ABA38 800AAE38 24A5DF58 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0048)
+/* ABA3C 800AAE3C 2484DF3C */  addiu      $a0, $a0, %lo(sprawdma_rodata_002C)
+/* ABA40 800AAE40 0C026E74 */  jal        __assert
 /* ABA44 800AAE44 2406003B */   addiu     $a2, $zero, 0x3b
 .L800AAE48:
 /* ABA48 800AAE48 8FA80024 */  lw         $t0, 0x24($sp)
@@ -69,14 +69,14 @@ glabel func_800AADD0
 /* ABA58 800AAE58 10000007 */  b          .L800AAE78
 /* ABA5C 800AAE5C 00000000 */   nop
 .L800AAE60:
-/* ABA60 800AAE60 3C04800F */  lui        $a0, %hi(D_800EDF6C)
-/* ABA64 800AAE64 3C05800F */  lui        $a1, %hi(D_800EDF80)
-/* ABA68 800AAE68 24A5DF80 */  addiu      $a1, $a1, %lo(D_800EDF80)
-/* ABA6C 800AAE6C 2484DF6C */  addiu      $a0, $a0, %lo(D_800EDF6C)
-/* ABA70 800AAE70 0C026E74 */  jal        func_8009B9D0
+/* ABA60 800AAE60 3C04800F */  lui        $a0, %hi(sprawdma_rodata_005C)
+/* ABA64 800AAE64 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0070)
+/* ABA68 800AAE68 24A5DF80 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0070)
+/* ABA6C 800AAE6C 2484DF6C */  addiu      $a0, $a0, %lo(sprawdma_rodata_005C)
+/* ABA70 800AAE70 0C026E74 */  jal        __assert
 /* ABA74 800AAE74 2406003C */   addiu     $a2, $zero, 0x3c
 .L800AAE78:
-/* ABA78 800AAE78 0C02ABC0 */  jal        func_800AAF00
+/* ABA78 800AAE78 0C02ABC0 */  jal        __osSpDeviceBusy
 /* ABA7C 800AAE7C 00000000 */   nop
 /* ABA80 800AAE80 10400003 */  beqz       $v0, .L800AAE90
 /* ABA84 800AAE84 00000000 */   nop
@@ -86,23 +86,23 @@ glabel func_800AADD0
 /* ABA90 800AAE90 8FAA001C */  lw         $t2, 0x1c($sp)
 /* ABA94 800AAE94 3C0BA404 */  lui        $t3, 0xa404
 /* ABA98 800AAE98 AD6A0000 */  sw         $t2, ($t3)
-/* ABA9C 800AAE9C 0C026964 */  jal        func_8009A590
+/* ABA9C 800AAE9C 0C026964 */  jal        osVirtualToPhysical
 /* ABAA0 800AAEA0 8FA40020 */   lw        $a0, 0x20($sp)
-/* ABAA4 800AAEA4 3C0CA404 */  lui        $t4, %hi(D_A4040004)
-/* ABAA8 800AAEA8 AD820004 */  sw         $v0, %lo(D_A4040004)($t4)
+/* ABAA4 800AAEA4 3C0CA404 */  lui        $t4, %hi(SP_DRAM_ADDR)
+/* ABAA8 800AAEA8 AD820004 */  sw         $v0, %lo(SP_DRAM_ADDR)($t4)
 /* ABAAC 800AAEAC 8FAD0018 */  lw         $t5, 0x18($sp)
 /* ABAB0 800AAEB0 15A00006 */  bnez       $t5, .L800AAECC
 /* ABAB4 800AAEB4 00000000 */   nop
 /* ABAB8 800AAEB8 8FAE0024 */  lw         $t6, 0x24($sp)
-/* ABABC 800AAEBC 3C18A404 */  lui        $t8, %hi(D_A404000C)
+/* ABABC 800AAEBC 3C18A404 */  lui        $t8, %hi(SP_WR_LEN)
 /* ABAC0 800AAEC0 25CFFFFF */  addiu      $t7, $t6, -1
 /* ABAC4 800AAEC4 10000005 */  b          .L800AAEDC
-/* ABAC8 800AAEC8 AF0F000C */   sw        $t7, %lo(D_A404000C)($t8)
+/* ABAC8 800AAEC8 AF0F000C */   sw        $t7, %lo(SP_WR_LEN)($t8)
 .L800AAECC:
 /* ABACC 800AAECC 8FB90024 */  lw         $t9, 0x24($sp)
-/* ABAD0 800AAED0 3C09A404 */  lui        $t1, %hi(D_A4040008)
+/* ABAD0 800AAED0 3C09A404 */  lui        $t1, %hi(SP_RD_LEN)
 /* ABAD4 800AAED4 2728FFFF */  addiu      $t0, $t9, -1
-/* ABAD8 800AAED8 AD280008 */  sw         $t0, %lo(D_A4040008)($t1)
+/* ABAD8 800AAED8 AD280008 */  sw         $t0, %lo(SP_RD_LEN)($t1)
 .L800AAEDC:
 /* ABADC 800AAEDC 10000003 */  b          .L800AAEEC
 /* ABAE0 800AAEE0 00001025 */   or        $v0, $zero, $zero

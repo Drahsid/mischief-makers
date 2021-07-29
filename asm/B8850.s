@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B7C50
+glabel alSynSetPriority
 /* B8850 800B7C50 00063400 */  sll        $a2, $a2, 0x10
 /* B8854 800B7C54 00063403 */  sra        $a2, $a2, 0x10
 /* B8858 800B7C58 AFA40000 */  sw         $a0, ($sp)
@@ -18,7 +18,7 @@ glabel func_800B7C50
 /* B8868 800B7C68 03E00008 */  jr         $ra
 /* B886C 800B7C6C 00000000 */   nop
 
-glabel func_800B7C70
+glabel alCopy
 /* B8870 800B7C70 27BDFFF0 */  addiu      $sp, $sp, -0x10
 /* B8874 800B7C74 AFA40008 */  sw         $a0, 8($sp)
 /* B8878 800B7C78 AFA50004 */  sw         $a1, 4($sp)
@@ -47,7 +47,7 @@ glabel func_800B7C70
 /* B88C8 800B7CC8 03E00008 */  jr         $ra
 /* B88CC 800B7CCC 27BD0010 */   addiu     $sp, $sp, 0x10
 
-glabel func_800B7CD0
+glabel alFilterNew
 /* B88D0 800B7CD0 AC800000 */  sw         $zero, ($a0)
 /* B88D4 800B7CD4 AC850004 */  sw         $a1, 4($a0)
 /* B88D8 800B7CD8 AC860008 */  sw         $a2, 8($a0)

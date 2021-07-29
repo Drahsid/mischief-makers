@@ -7,14 +7,14 @@
 
 .section .text, "ax"
 
-glabel func_800BA710
+glabel osStopThread
 /* BB310 800BA710 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* BB314 800BA714 AFBF0024 */  sw         $ra, 0x24($sp)
 /* BB318 800BA718 AFA40038 */  sw         $a0, 0x38($sp)
 /* BB31C 800BA71C AFB20020 */  sw         $s2, 0x20($sp)
 /* BB320 800BA720 AFB1001C */  sw         $s1, 0x1c($sp)
 /* BB324 800BA724 AFB00018 */  sw         $s0, 0x18($sp)
-/* BB328 800BA728 0C0297A4 */  jal        func_800A5E90
+/* BB328 800BA728 0C0297A4 */  jal        __osDisableInt
 /* BB32C 800BA72C 00000000 */   nop
 /* BB330 800BA730 00408025 */  or         $s0, $v0, $zero
 /* BB334 800BA734 8FAE0038 */  lw         $t6, 0x38($sp)
@@ -39,11 +39,11 @@ glabel func_800BA710
 /* BB378 800BA778 10000012 */  b          .L800BA7C4
 /* BB37C 800BA77C 00000000 */   nop
 .L800BA780:
-/* BB380 800BA780 3C19800F */  lui        $t9, %hi(D_800EA610)
-/* BB384 800BA784 8F39A610 */  lw         $t9, %lo(D_800EA610)($t9)
+/* BB380 800BA780 3C19800F */  lui        $t9, %hi(__osRunningThread)
+/* BB384 800BA784 8F39A610 */  lw         $t9, %lo(__osRunningThread)($t9)
 /* BB388 800BA788 24180001 */  addiu      $t8, $zero, 1
 /* BB38C 800BA78C A7380010 */  sh         $t8, 0x10($t9)
-/* BB390 800BA790 0C029AA4 */  jal        func_800A6A90
+/* BB390 800BA790 0C029AA4 */  jal        __osEnqueueAndYield
 /* BB394 800BA794 00002025 */   or        $a0, $zero, $zero
 /* BB398 800BA798 1000000A */  b          .L800BA7C4
 /* BB39C 800BA79C 00000000 */   nop
@@ -53,12 +53,12 @@ glabel func_800BA710
 /* BB3A8 800BA7A8 A5280010 */  sh         $t0, 0x10($t1)
 /* BB3AC 800BA7AC 8FAA0038 */  lw         $t2, 0x38($sp)
 /* BB3B0 800BA7B0 8D440008 */  lw         $a0, 8($t2)
-/* BB3B4 800BA7B4 0C029C84 */  jal        func_800A7210
+/* BB3B4 800BA7B4 0C029C84 */  jal        __osDequeueThread
 /* BB3B8 800BA7B8 01402825 */   or        $a1, $t2, $zero
 /* BB3BC 800BA7BC 10000001 */  b          .L800BA7C4
 /* BB3C0 800BA7C0 00000000 */   nop
 .L800BA7C4:
-/* BB3C4 800BA7C4 0C0297AC */  jal        func_800A5EB0
+/* BB3C4 800BA7C4 0C0297AC */  jal        __osRestoreInt
 /* BB3C8 800BA7C8 02002025 */   or        $a0, $s0, $zero
 /* BB3CC 800BA7CC 10000001 */  b          .L800BA7D4
 /* BB3D0 800BA7D0 00000000 */   nop

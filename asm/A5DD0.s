@@ -7,14 +7,14 @@
 
 .section .text, "ax"
 
-glabel func_800A51D0
+glabel guLookAtF
 /* A5DD0 800A51D0 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* A5DD4 800A51D4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A5DD8 800A51D8 AFA40038 */  sw         $a0, 0x38($sp)
 /* A5DDC 800A51DC AFA5003C */  sw         $a1, 0x3c($sp)
 /* A5DE0 800A51E0 AFA60040 */  sw         $a2, 0x40($sp)
 /* A5DE4 800A51E4 AFA70044 */  sw         $a3, 0x44($sp)
-/* A5DE8 800A51E8 0C02CB32 */  jal        func_800B2CC8
+/* A5DE8 800A51E8 0C02CB32 */  jal        guMtxIdentF
 /* A5DEC 800A51EC 8FA40038 */   lw        $a0, 0x38($sp)
 /* A5DF0 800A51F0 C7A40048 */  lwc1       $f4, 0x48($sp)
 /* A5DF4 800A51F4 C7A6003C */  lwc1       $f6, 0x3c($sp)
@@ -36,7 +36,7 @@ glabel func_800A51D0
 /* A5E34 800A5234 46129102 */  mul.s      $f4, $f18, $f18
 /* A5E38 800A5238 46048180 */  add.s      $f6, $f16, $f4
 /* A5E3C 800A523C 46084282 */  mul.s      $f10, $f8, $f8
-/* A5E40 800A5240 0C0295C4 */  jal        func_800A5710
+/* A5E40 800A5240 0C0295C4 */  jal        sqrtf
 /* A5E44 800A5244 460A3300 */   add.s     $f12, $f6, $f10
 /* A5E48 800A5248 3C01BFF0 */  lui        $at, 0xbff0
 /* A5E4C 800A524C 44819800 */  mtc1       $at, $f19
@@ -92,7 +92,7 @@ glabel func_800A51D0
 /* A5F14 800A5314 46108482 */  mul.s      $f18, $f16, $f16
 /* A5F18 800A5318 46125100 */  add.s      $f4, $f10, $f18
 /* A5F1C 800A531C 46063202 */  mul.s      $f8, $f6, $f6
-/* A5F20 800A5320 0C0295C4 */  jal        func_800A5710
+/* A5F20 800A5320 0C0295C4 */  jal        sqrtf
 /* A5F24 800A5324 46082300 */   add.s     $f12, $f4, $f8
 /* A5F28 800A5328 3C013FF0 */  lui        $at, 0x3ff0
 /* A5F2C 800A532C 44818800 */  mtc1       $at, $f17
@@ -148,7 +148,7 @@ glabel func_800A51D0
 /* A5FF4 800A53F4 460A5402 */  mul.s      $f16, $f10, $f10
 /* A5FF8 800A53F8 46104480 */  add.s      $f18, $f8, $f16
 /* A5FFC 800A53FC 46042182 */  mul.s      $f6, $f4, $f4
-/* A6000 800A5400 0C0295C4 */  jal        func_800A5710
+/* A6000 800A5400 0C0295C4 */  jal        sqrtf
 /* A6004 800A5404 46069300 */   add.s     $f12, $f18, $f6
 /* A6008 800A5408 3C013FF0 */  lui        $at, 0x3ff0
 /* A600C 800A540C 44815800 */  mtc1       $at, $f11
@@ -281,7 +281,7 @@ glabel guLookAt
 /* A61FC 800A55FC E7A80018 */  swc1       $f8, 0x18($sp)
 /* A6200 800A5600 E7AA001C */  swc1       $f10, 0x1c($sp)
 /* A6204 800A5604 E7B00020 */  swc1       $f16, 0x20($sp)
-/* A6208 800A5608 0C029474 */  jal        func_800A51D0
+/* A6208 800A5608 0C029474 */  jal        guLookAtF
 /* A620C 800A560C E7B20024 */   swc1      $f18, 0x24($sp)
 /* A6210 800A5610 27A40030 */  addiu      $a0, $sp, 0x30
 /* A6214 800A5614 0C02CA98 */  jal        guMtxF2L

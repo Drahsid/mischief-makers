@@ -10,7 +10,7 @@ glabel func_80001098
 /* 1CB8 800010B8 3C058013 */  lui        $a1, %hi(D_8012AC20)
 /* 1CBC 800010BC 24A5AC20 */  addiu      $a1, $a1, %lo(D_8012AC20)
 /* 1CC0 800010C0 24040005 */  addiu      $a0, $zero, 5
-/* 1CC4 800010C4 0C0269BC */  jal        func_8009A6F0
+/* 1CC4 800010C4 0C0269BC */  jal        osSetEventMesg
 /* 1CC8 800010C8 24060001 */   addiu     $a2, $zero, 1
 /* 1CCC 800010CC 3C048013 */  lui        $a0, %hi(D_8012AC20)
 /* 1CD0 800010D0 3C068013 */  lui        $a2, %hi(D_8012AD60)
@@ -27,7 +27,7 @@ glabel func_80001098
 /* 1CFC 800010FC 3C058013 */  lui        $a1, %hi(D_8012AC08)
 /* 1D00 80001100 24A5AC08 */  addiu      $a1, $a1, %lo(D_8012AC08)
 /* 1D04 80001104 24040005 */  addiu      $a0, $zero, 5
-/* 1D08 80001108 0C0269BC */  jal        func_8009A6F0
+/* 1D08 80001108 0C0269BC */  jal        osSetEventMesg
 /* 1D0C 8000110C 00003025 */   or        $a2, $zero, $zero
 /* 1D10 80001110 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 1D14 80001114 3C058013 */  lui        $a1, %hi(D_8012ADB8)
@@ -38,7 +38,7 @@ glabel func_80001098
 /* 1D28 80001128 3C058013 */  lui        $a1, %hi(D_8012ADA0)
 /* 1D2C 8000112C 24A5ADA0 */  addiu      $a1, $a1, %lo(D_8012ADA0)
 /* 1D30 80001130 24040005 */  addiu      $a0, $zero, 5
-/* 1D34 80001134 0C0269BC */  jal        func_8009A6F0
+/* 1D34 80001134 0C0269BC */  jal        osSetEventMesg
 /* 1D38 80001138 24060002 */   addiu     $a2, $zero, 2
 /* 1D3C 8000113C 93A20023 */  lbu        $v0, 0x23($sp)
 /* 1D40 80001140 8FBF0014 */  lw         $ra, 0x14($sp)

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009BB30
+glabel alHeapDBAlloc
 /* 9C730 8009BB30 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 9C734 8009BB34 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9C738 8009BB38 AFA40020 */  sw         $a0, 0x20($sp)
@@ -71,8 +71,8 @@ glabel func_8009BB30
 /* 9C820 8009BC20 AD48000C */   sw        $t0, 0xc($t2)
 .L8009BC24:
 /* 9C824 8009BC24 8FAB0018 */  lw         $t3, 0x18($sp)
-/* 9C828 8009BC28 3C19800F */  lui        $t9, %hi(D_800ED6E0)
-/* 9C82C 8009BC2C 2739D6E0 */  addiu      $t9, $t9, %lo(D_800ED6E0)
+/* 9C828 8009BC28 3C19800F */  lui        $t9, %hi(heapalloc_rodata_0000)
+/* 9C82C 8009BC2C 2739D6E0 */  addiu      $t9, $t9, %lo(heapalloc_rodata_0000)
 /* 9C830 8009BC30 AD790008 */  sw         $t9, 8($t3)
 /* 9C834 8009BC34 8FA90018 */  lw         $t1, 0x18($sp)
 /* 9C838 8009BC38 AD20000C */  sw         $zero, 0xc($t1)
@@ -84,7 +84,7 @@ glabel func_8009BB30
 .L8009BC4C:
 /* 9C84C 8009BC4C 2404007D */  addiu      $a0, $zero, 0x7d
 /* 9C850 8009BC50 24050001 */  addiu      $a1, $zero, 1
-/* 9C854 8009BC54 0C0297B4 */  jal        func_800A5ED0
+/* 9C854 8009BC54 0C0297B4 */  jal        __osError
 /* 9C858 8009BC58 8FA60030 */   lw        $a2, 0x30($sp)
 .L8009BC5C:
 /* 9C85C 8009BC5C 10000003 */  b          .L8009BC6C

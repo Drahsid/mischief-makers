@@ -16,14 +16,14 @@ glabel func_8009AED0
 /* 9BAE4 8009AEE4 AFAE001C */  sw         $t6, 0x1c($sp)
 /* 9BAE8 8009AEE8 8FA40020 */  lw         $a0, 0x20($sp)
 /* 9BAEC 8009AEEC 8FA5001C */  lw         $a1, 0x1c($sp)
-/* 9BAF0 8009AEF0 0C02AA84 */  jal        func_800AAA10
+/* 9BAF0 8009AEF0 0C02AA84 */  jal        _bcopy
 /* 9BAF4 8009AEF4 24060040 */   addiu     $a2, $zero, 0x40
 /* 9BAF8 8009AEF8 8FAF001C */  lw         $t7, 0x1c($sp)
 /* 9BAFC 8009AEFC 8DF80010 */  lw         $t8, 0x10($t7)
 /* 9BB00 8009AF00 13000006 */  beqz       $t8, .L8009AF1C
 /* 9BB04 8009AF04 00000000 */   nop
 /* 9BB08 8009AF08 8FB9001C */  lw         $t9, 0x1c($sp)
-/* 9BB0C 8009AF0C 0C026964 */  jal        func_8009A590
+/* 9BB0C 8009AF0C 0C026964 */  jal        osVirtualToPhysical
 /* 9BB10 8009AF10 8F240010 */   lw        $a0, 0x10($t9)
 /* 9BB14 8009AF14 8FA8001C */  lw         $t0, 0x1c($sp)
 /* 9BB18 8009AF18 AD020010 */  sw         $v0, 0x10($t0)
@@ -33,7 +33,7 @@ glabel func_8009AED0
 /* 9BB24 8009AF24 11400006 */  beqz       $t2, .L8009AF40
 /* 9BB28 8009AF28 00000000 */   nop
 /* 9BB2C 8009AF2C 8FAB001C */  lw         $t3, 0x1c($sp)
-/* 9BB30 8009AF30 0C026964 */  jal        func_8009A590
+/* 9BB30 8009AF30 0C026964 */  jal        osVirtualToPhysical
 /* 9BB34 8009AF34 8D640018 */   lw        $a0, 0x18($t3)
 /* 9BB38 8009AF38 8FAC001C */  lw         $t4, 0x1c($sp)
 /* 9BB3C 8009AF3C AD820018 */  sw         $v0, 0x18($t4)
@@ -43,7 +43,7 @@ glabel func_8009AED0
 /* 9BB48 8009AF48 11C00006 */  beqz       $t6, .L8009AF64
 /* 9BB4C 8009AF4C 00000000 */   nop
 /* 9BB50 8009AF50 8FAF001C */  lw         $t7, 0x1c($sp)
-/* 9BB54 8009AF54 0C026964 */  jal        func_8009A590
+/* 9BB54 8009AF54 0C026964 */  jal        osVirtualToPhysical
 /* 9BB58 8009AF58 8DE40020 */   lw        $a0, 0x20($t7)
 /* 9BB5C 8009AF5C 8FB8001C */  lw         $t8, 0x1c($sp)
 /* 9BB60 8009AF60 AF020020 */  sw         $v0, 0x20($t8)
@@ -53,7 +53,7 @@ glabel func_8009AED0
 /* 9BB6C 8009AF6C 11000006 */  beqz       $t0, .L8009AF88
 /* 9BB70 8009AF70 00000000 */   nop
 /* 9BB74 8009AF74 8FA9001C */  lw         $t1, 0x1c($sp)
-/* 9BB78 8009AF78 0C026964 */  jal        func_8009A590
+/* 9BB78 8009AF78 0C026964 */  jal        osVirtualToPhysical
 /* 9BB7C 8009AF7C 8D240028 */   lw        $a0, 0x28($t1)
 /* 9BB80 8009AF80 8FAA001C */  lw         $t2, 0x1c($sp)
 /* 9BB84 8009AF84 AD420028 */  sw         $v0, 0x28($t2)
@@ -63,7 +63,7 @@ glabel func_8009AED0
 /* 9BB90 8009AF90 11800006 */  beqz       $t4, .L8009AFAC
 /* 9BB94 8009AF94 00000000 */   nop
 /* 9BB98 8009AF98 8FAD001C */  lw         $t5, 0x1c($sp)
-/* 9BB9C 8009AF9C 0C026964 */  jal        func_8009A590
+/* 9BB9C 8009AF9C 0C026964 */  jal        osVirtualToPhysical
 /* 9BBA0 8009AFA0 8DA4002C */   lw        $a0, 0x2c($t5)
 /* 9BBA4 8009AFA4 8FAE001C */  lw         $t6, 0x1c($sp)
 /* 9BBA8 8009AFA8 ADC2002C */  sw         $v0, 0x2c($t6)
@@ -73,7 +73,7 @@ glabel func_8009AED0
 /* 9BBB4 8009AFB4 13000006 */  beqz       $t8, .L8009AFD0
 /* 9BBB8 8009AFB8 00000000 */   nop
 /* 9BBBC 8009AFBC 8FB9001C */  lw         $t9, 0x1c($sp)
-/* 9BBC0 8009AFC0 0C026964 */  jal        func_8009A590
+/* 9BBC0 8009AFC0 0C026964 */  jal        osVirtualToPhysical
 /* 9BBC4 8009AFC4 8F240030 */   lw        $a0, 0x30($t9)
 /* 9BBC8 8009AFC8 8FA8001C */  lw         $t0, 0x1c($sp)
 /* 9BBCC 8009AFCC AD020030 */  sw         $v0, 0x30($t0)
@@ -83,7 +83,7 @@ glabel func_8009AED0
 /* 9BBD8 8009AFD8 11400006 */  beqz       $t2, .L8009AFF4
 /* 9BBDC 8009AFDC 00000000 */   nop
 /* 9BBE0 8009AFE0 8FAB001C */  lw         $t3, 0x1c($sp)
-/* 9BBE4 8009AFE4 0C026964 */  jal        func_8009A590
+/* 9BBE4 8009AFE4 0C026964 */  jal        osVirtualToPhysical
 /* 9BBE8 8009AFE8 8D640038 */   lw        $a0, 0x38($t3)
 /* 9BBEC 8009AFEC 8FAC001C */  lw         $t4, 0x1c($sp)
 /* 9BBF0 8009AFF0 AD820038 */  sw         $v0, 0x38($t4)
@@ -98,7 +98,7 @@ glabel func_8009AED0
 /* 9BC0C 8009B00C 03E00008 */  jr         $ra
 /* 9BC10 8009B010 00000000 */   nop
 
-glabel func_8009B014
+glabel osSpTaskLoad
 /* 9BC14 8009B014 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 9BC18 8009B018 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9BC1C 8009B01C AFA40020 */  sw         $a0, 0x20($sp)
@@ -112,7 +112,7 @@ glabel func_8009B014
 /* 9BC3C 8009B03C 8FB90020 */  lw         $t9, 0x20($sp)
 /* 9BC40 8009B040 24040039 */  addiu      $a0, $zero, 0x39
 /* 9BC44 8009B044 24050001 */  addiu      $a1, $zero, 1
-/* 9BC48 8009B048 0C0297B4 */  jal        func_800A5ED0
+/* 9BC48 8009B048 0C0297B4 */  jal        __osError
 /* 9BC4C 8009B04C 8F260020 */   lw        $a2, 0x20($t9)
 /* 9BC50 8009B050 1000008C */  b          .L8009B284
 /* 9BC54 8009B054 00000000 */   nop
@@ -127,7 +127,7 @@ glabel func_8009B014
 /* 9BC74 8009B074 8FAB0020 */  lw         $t3, 0x20($sp)
 /* 9BC78 8009B078 2404003A */  addiu      $a0, $zero, 0x3a
 /* 9BC7C 8009B07C 24050001 */  addiu      $a1, $zero, 1
-/* 9BC80 8009B080 0C0297B4 */  jal        func_800A5ED0
+/* 9BC80 8009B080 0C0297B4 */  jal        __osError
 /* 9BC84 8009B084 8D660028 */   lw        $a2, 0x28($t3)
 /* 9BC88 8009B088 1000007E */  b          .L8009B284
 /* 9BC8C 8009B08C 00000000 */   nop
@@ -142,7 +142,7 @@ glabel func_8009B014
 /* 9BCAC 8009B0AC 8FAF0020 */  lw         $t7, 0x20($sp)
 /* 9BCB0 8009B0B0 2404003B */  addiu      $a0, $zero, 0x3b
 /* 9BCB4 8009B0B4 24050001 */  addiu      $a1, $zero, 1
-/* 9BCB8 8009B0B8 0C0297B4 */  jal        func_800A5ED0
+/* 9BCB8 8009B0B8 0C0297B4 */  jal        __osError
 /* 9BCBC 8009B0BC 8DE6002C */   lw        $a2, 0x2c($t7)
 /* 9BCC0 8009B0C0 10000070 */  b          .L8009B284
 /* 9BCC4 8009B0C4 00000000 */   nop
@@ -157,7 +157,7 @@ glabel func_8009B014
 /* 9BCE4 8009B0E4 8FA90020 */  lw         $t1, 0x20($sp)
 /* 9BCE8 8009B0E8 2404003C */  addiu      $a0, $zero, 0x3c
 /* 9BCEC 8009B0EC 24050001 */  addiu      $a1, $zero, 1
-/* 9BCF0 8009B0F0 0C0297B4 */  jal        func_800A5ED0
+/* 9BCF0 8009B0F0 0C0297B4 */  jal        __osError
 /* 9BCF4 8009B0F4 8D260038 */   lw        $a2, 0x38($t1)
 /* 9BCF8 8009B0F8 10000062 */  b          .L8009B284
 /* 9BCFC 8009B0FC 00000000 */   nop
@@ -196,19 +196,19 @@ glabel func_8009B014
 /* 9BD7C 8009B17C AD280010 */  sw         $t0, 0x10($t1)
 .L8009B180:
 /* 9BD80 8009B180 8FA4001C */  lw         $a0, 0x1c($sp)
-/* 9BD84 8009B184 0C029BC4 */  jal        func_800A6F10
+/* 9BD84 8009B184 0C029BC4 */  jal        osWritebackDCache
 /* 9BD88 8009B188 24050040 */   addiu     $a1, $zero, 0x40
-/* 9BD8C 8009B18C 0C02AB5C */  jal        func_800AAD70
+/* 9BD8C 8009B18C 0C02AB5C */  jal        __osSpSetStatus
 /* 9BD90 8009B190 24042B00 */   addiu     $a0, $zero, 0x2b00
 /* 9BD94 8009B194 3C040400 */  lui        $a0, 0x400
-/* 9BD98 8009B198 0C02AB64 */  jal        func_800AAD90
+/* 9BD98 8009B198 0C02AB64 */  jal        __osSpSetPc
 /* 9BD9C 8009B19C 34841000 */   ori       $a0, $a0, 0x1000
 /* 9BDA0 8009B1A0 2401FFFF */  addiu      $at, $zero, -1
 /* 9BDA4 8009B1A4 14410007 */  bne        $v0, $at, .L8009B1C4
 /* 9BDA8 8009B1A8 00000000 */   nop
 .L8009B1AC:
 /* 9BDAC 8009B1AC 3C040400 */  lui        $a0, 0x400
-/* 9BDB0 8009B1B0 0C02AB64 */  jal        func_800AAD90
+/* 9BDB0 8009B1B0 0C02AB64 */  jal        __osSpSetPc
 /* 9BDB4 8009B1B4 34841000 */   ori       $a0, $a0, 0x1000
 /* 9BDB8 8009B1B8 2401FFFF */  addiu      $at, $zero, -1
 /* 9BDBC 8009B1BC 1041FFFB */  beq        $v0, $at, .L8009B1AC
@@ -218,7 +218,7 @@ glabel func_8009B014
 /* 9BDC8 8009B1C8 34A50FC0 */  ori        $a1, $a1, 0xfc0
 /* 9BDCC 8009B1CC 24040001 */  addiu      $a0, $zero, 1
 /* 9BDD0 8009B1D0 8FA6001C */  lw         $a2, 0x1c($sp)
-/* 9BDD4 8009B1D4 0C02AB74 */  jal        func_800AADD0
+/* 9BDD4 8009B1D4 0C02AB74 */  jal        __osSpRawStartDma
 /* 9BDD8 8009B1D8 24070040 */   addiu     $a3, $zero, 0x40
 /* 9BDDC 8009B1DC 2401FFFF */  addiu      $at, $zero, -1
 /* 9BDE0 8009B1E0 1441000A */  bne        $v0, $at, .L8009B20C
@@ -228,18 +228,18 @@ glabel func_8009B014
 /* 9BDEC 8009B1EC 34A50FC0 */  ori        $a1, $a1, 0xfc0
 /* 9BDF0 8009B1F0 24040001 */  addiu      $a0, $zero, 1
 /* 9BDF4 8009B1F4 8FA6001C */  lw         $a2, 0x1c($sp)
-/* 9BDF8 8009B1F8 0C02AB74 */  jal        func_800AADD0
+/* 9BDF8 8009B1F8 0C02AB74 */  jal        __osSpRawStartDma
 /* 9BDFC 8009B1FC 24070040 */   addiu     $a3, $zero, 0x40
 /* 9BE00 8009B200 2401FFFF */  addiu      $at, $zero, -1
 /* 9BE04 8009B204 1041FFF8 */  beq        $v0, $at, .L8009B1E8
 /* 9BE08 8009B208 00000000 */   nop
 .L8009B20C:
-/* 9BE0C 8009B20C 0C02ABC0 */  jal        func_800AAF00
+/* 9BE0C 8009B20C 0C02ABC0 */  jal        __osSpDeviceBusy
 /* 9BE10 8009B210 00000000 */   nop
 /* 9BE14 8009B214 10400005 */  beqz       $v0, .L8009B22C
 /* 9BE18 8009B218 00000000 */   nop
 .L8009B21C:
-/* 9BE1C 8009B21C 0C02ABC0 */  jal        func_800AAF00
+/* 9BE1C 8009B21C 0C02ABC0 */  jal        __osSpDeviceBusy
 /* 9BE20 8009B220 00000000 */   nop
 /* 9BE24 8009B224 1440FFFD */  bnez       $v0, .L8009B21C
 /* 9BE28 8009B228 00000000 */   nop
@@ -249,7 +249,7 @@ glabel func_8009B014
 /* 9BE34 8009B234 34A51000 */  ori        $a1, $a1, 0x1000
 /* 9BE38 8009B238 24040001 */  addiu      $a0, $zero, 1
 /* 9BE3C 8009B23C 8F260008 */  lw         $a2, 8($t9)
-/* 9BE40 8009B240 0C02AB74 */  jal        func_800AADD0
+/* 9BE40 8009B240 0C02AB74 */  jal        __osSpRawStartDma
 /* 9BE44 8009B244 8F27000C */   lw        $a3, 0xc($t9)
 /* 9BE48 8009B248 2401FFFF */  addiu      $at, $zero, -1
 /* 9BE4C 8009B24C 1441000B */  bne        $v0, $at, .L8009B27C
@@ -260,7 +260,7 @@ glabel func_8009B014
 /* 9BE5C 8009B25C 34A51000 */  ori        $a1, $a1, 0x1000
 /* 9BE60 8009B260 24040001 */  addiu      $a0, $zero, 1
 /* 9BE64 8009B264 8D460008 */  lw         $a2, 8($t2)
-/* 9BE68 8009B268 0C02AB74 */  jal        func_800AADD0
+/* 9BE68 8009B268 0C02AB74 */  jal        __osSpRawStartDma
 /* 9BE6C 8009B26C 8D47000C */   lw        $a3, 0xc($t2)
 /* 9BE70 8009B270 2401FFFF */  addiu      $at, $zero, -1
 /* 9BE74 8009B274 1041FFF7 */  beq        $v0, $at, .L8009B254
@@ -274,21 +274,21 @@ glabel func_8009B014
 /* 9BE8C 8009B28C 03E00008 */  jr         $ra
 /* 9BE90 8009B290 00000000 */   nop
 
-glabel func_8009B294
+glabel osSpTaskStartGo
 /* 9BE94 8009B294 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 9BE98 8009B298 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9BE9C 8009B29C AFA40018 */  sw         $a0, 0x18($sp)
-/* 9BEA0 8009B2A0 0C02ABC0 */  jal        func_800AAF00
+/* 9BEA0 8009B2A0 0C02ABC0 */  jal        __osSpDeviceBusy
 /* 9BEA4 8009B2A4 00000000 */   nop
 /* 9BEA8 8009B2A8 10400005 */  beqz       $v0, .L8009B2C0
 /* 9BEAC 8009B2AC 00000000 */   nop
 .L8009B2B0:
-/* 9BEB0 8009B2B0 0C02ABC0 */  jal        func_800AAF00
+/* 9BEB0 8009B2B0 0C02ABC0 */  jal        __osSpDeviceBusy
 /* 9BEB4 8009B2B4 00000000 */   nop
 /* 9BEB8 8009B2B8 1440FFFD */  bnez       $v0, .L8009B2B0
 /* 9BEBC 8009B2BC 00000000 */   nop
 .L8009B2C0:
-/* 9BEC0 8009B2C0 0C02AB5C */  jal        func_800AAD70
+/* 9BEC0 8009B2C0 0C02AB5C */  jal        __osSpSetStatus
 /* 9BEC4 8009B2C4 24040125 */   addiu     $a0, $zero, 0x125
 /* 9BEC8 8009B2C8 10000001 */  b          .L8009B2D0
 /* 9BECC 8009B2CC 00000000 */   nop
@@ -315,7 +315,7 @@ glabel func_8009B2E0
 /* 9BF10 8009B310 240F0001 */  addiu      $t7, $zero, 1
 /* 9BF14 8009B314 3C01800F */  lui        $at, %hi(D_800EA510)
 /* 9BF18 8009B318 AC2FA510 */  sw         $t7, %lo(D_800EA510)($at)
-/* 9BF1C 8009B31C 0C0295C8 */  jal        func_800A5720
+/* 9BF1C 8009B31C 0C0295C8 */  jal        osGetTime
 /* 9BF20 8009B320 00000000 */   nop
 /* 9BF24 8009B324 AFA20070 */  sw         $v0, 0x70($sp)
 /* 9BF28 8009B328 AFA30074 */  sw         $v1, 0x74($sp)
@@ -325,7 +325,7 @@ glabel func_8009B2E0
 /* 9BF38 8009B338 8CE79774 */  lw         $a3, %lo(D_800E9774)($a3)
 /* 9BF3C 8009B33C 8CC69770 */  lw         $a2, %lo(D_800E9770)($a2)
 /* 9BF40 8009B340 34A5A120 */  ori        $a1, $a1, 0xa120
-/* 9BF44 8009B344 0C029112 */  jal        func_800A4448
+/* 9BF44 8009B344 0C029112 */  jal        __ll_mul
 /* 9BF48 8009B348 24040000 */   addiu     $a0, $zero, 0
 /* 9BF4C 8009B34C AFA20030 */  sw         $v0, 0x30($sp)
 /* 9BF50 8009B350 AFA30034 */  sw         $v1, 0x34($sp)
@@ -333,7 +333,7 @@ glabel func_8009B2E0
 /* 9BF58 8009B358 34E74240 */  ori        $a3, $a3, 0x4240
 /* 9BF5C 8009B35C 8FA50034 */  lw         $a1, 0x34($sp)
 /* 9BF60 8009B360 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9BF64 8009B364 0C0290C2 */  jal        func_800A4308
+/* 9BF64 8009B364 0C0290C2 */  jal        __ull_div
 /* 9BF68 8009B368 24060000 */   addiu     $a2, $zero, 0
 /* 9BF6C 8009B36C 8FB80070 */  lw         $t8, 0x70($sp)
 /* 9BF70 8009B370 8FB90074 */  lw         $t9, 0x74($sp)
@@ -357,7 +357,7 @@ glabel func_8009B2E0
 /* 9BFB4 8009B3B4 8CE79774 */  lw         $a3, %lo(D_800E9774)($a3)
 /* 9BFB8 8009B3B8 8CC69770 */  lw         $a2, %lo(D_800E9770)($a2)
 /* 9BFBC 8009B3BC 34A5A120 */  ori        $a1, $a1, 0xa120
-/* 9BFC0 8009B3C0 0C029112 */  jal        func_800A4448
+/* 9BFC0 8009B3C0 0C029112 */  jal        __ll_mul
 /* 9BFC4 8009B3C4 24040000 */   addiu     $a0, $zero, 0
 /* 9BFC8 8009B3C8 AFA20028 */  sw         $v0, 0x28($sp)
 /* 9BFCC 8009B3CC AFA3002C */  sw         $v1, 0x2c($sp)
@@ -365,7 +365,7 @@ glabel func_8009B2E0
 /* 9BFD4 8009B3D4 34E74240 */  ori        $a3, $a3, 0x4240
 /* 9BFD8 8009B3D8 8FA5002C */  lw         $a1, 0x2c($sp)
 /* 9BFDC 8009B3DC 8FA40028 */  lw         $a0, 0x28($sp)
-/* 9BFE0 8009B3E0 0C0290C2 */  jal        func_800A4308
+/* 9BFE0 8009B3E0 0C0290C2 */  jal        __ull_div
 /* 9BFE4 8009B3E4 24060000 */   addiu     $a2, $zero, 0
 /* 9BFE8 8009B3E8 AFA20030 */  sw         $v0, 0x30($sp)
 /* 9BFEC 8009B3EC AFA30034 */  sw         $v1, 0x34($sp)
@@ -385,41 +385,41 @@ glabel func_8009B2E0
 /* 9C024 8009B424 AFAD0014 */  sw         $t5, 0x14($sp)
 /* 9C028 8009B428 AFAC0010 */  sw         $t4, 0x10($sp)
 /* 9C02C 8009B42C 27A40050 */  addiu      $a0, $sp, 0x50
-/* 9C030 8009B430 0C02ABD0 */  jal        func_800AAF40
+/* 9C030 8009B430 0C02ABD0 */  jal        osSetTimer
 /* 9C034 8009B434 012B3823 */   subu      $a3, $t1, $t3
 /* 9C038 8009B438 27A40038 */  addiu      $a0, $sp, 0x38
 /* 9C03C 8009B43C 27A5007C */  addiu      $a1, $sp, 0x7c
-/* 9C040 8009B440 0C026B44 */  jal        func_8009AD10
+/* 9C040 8009B440 0C026B44 */  jal        osRecvMesg
 /* 9C044 8009B444 24060001 */   addiu     $a2, $zero, 1
 .L8009B448:
 /* 9C048 8009B448 24180004 */  addiu      $t8, $zero, 4
-/* 9C04C 8009B44C 3C018018 */  lui        $at, %hi(D_80185671)
-/* 9C050 8009B450 A0385671 */  sb         $t8, %lo(D_80185671)($at)
+/* 9C04C 8009B44C 3C018018 */  lui        $at, %hi(__osMaxControllers)
+/* 9C050 8009B450 A0385671 */  sb         $t8, %lo(__osMaxControllers)($at)
 /* 9C054 8009B454 0C026D77 */  jal        func_8009B5DC
 /* 9C058 8009B458 00002025 */   or        $a0, $zero, $zero
-/* 9C05C 8009B45C 3C058018 */  lui        $a1, %hi(D_80185630)
-/* 9C060 8009B460 24A55630 */  addiu      $a1, $a1, %lo(D_80185630)
-/* 9C064 8009B464 0C02AA48 */  jal        func_800AA920
+/* 9C05C 8009B45C 3C058018 */  lui        $a1, %hi(__osContPifRam)
+/* 9C060 8009B460 24A55630 */  addiu      $a1, $a1, %lo(__osContPifRam)
+/* 9C064 8009B464 0C02AA48 */  jal        __osSiRawStartDma
 /* 9C068 8009B468 24040001 */   addiu     $a0, $zero, 1
 /* 9C06C 8009B46C AFA20078 */  sw         $v0, 0x78($sp)
 /* 9C070 8009B470 8FA40080 */  lw         $a0, 0x80($sp)
 /* 9C074 8009B474 27A5007C */  addiu      $a1, $sp, 0x7c
-/* 9C078 8009B478 0C026B44 */  jal        func_8009AD10
+/* 9C078 8009B478 0C026B44 */  jal        osRecvMesg
 /* 9C07C 8009B47C 24060001 */   addiu     $a2, $zero, 1
-/* 9C080 8009B480 3C058018 */  lui        $a1, %hi(D_80185630)
-/* 9C084 8009B484 24A55630 */  addiu      $a1, $a1, %lo(D_80185630)
-/* 9C088 8009B488 0C02AA48 */  jal        func_800AA920
+/* 9C080 8009B480 3C058018 */  lui        $a1, %hi(__osContPifRam)
+/* 9C084 8009B484 24A55630 */  addiu      $a1, $a1, %lo(__osContPifRam)
+/* 9C088 8009B488 0C02AA48 */  jal        __osSiRawStartDma
 /* 9C08C 8009B48C 00002025 */   or        $a0, $zero, $zero
 /* 9C090 8009B490 AFA20078 */  sw         $v0, 0x78($sp)
 /* 9C094 8009B494 8FA40080 */  lw         $a0, 0x80($sp)
 /* 9C098 8009B498 27A5007C */  addiu      $a1, $sp, 0x7c
-/* 9C09C 8009B49C 0C026B44 */  jal        func_8009AD10
+/* 9C09C 8009B49C 0C026B44 */  jal        osRecvMesg
 /* 9C0A0 8009B4A0 24060001 */   addiu     $a2, $zero, 1
 /* 9C0A4 8009B4A4 8FA40084 */  lw         $a0, 0x84($sp)
-/* 9C0A8 8009B4A8 0C026D3E */  jal        func_8009B4F8
+/* 9C0A8 8009B4A8 0C026D3E */  jal        __osContGetInitData
 /* 9C0AC 8009B4AC 8FA50088 */   lw        $a1, 0x88($sp)
-/* 9C0B0 8009B4B0 3C018018 */  lui        $at, %hi(D_80185670)
-/* 9C0B4 8009B4B4 A0205670 */  sb         $zero, %lo(D_80185670)($at)
+/* 9C0B0 8009B4B0 3C018018 */  lui        $at, %hi(__osContLastCmd)
+/* 9C0B4 8009B4B4 A0205670 */  sb         $zero, %lo(__osContLastCmd)($at)
 /* 9C0B8 8009B4B8 0C02AA10 */  jal        func_800AA840
 /* 9C0BC 8009B4BC 00000000 */   nop
 /* 9C0C0 8009B4C0 3C048018 */  lui        $a0, %hi(D_80185698)
@@ -438,14 +438,14 @@ glabel func_8009B2E0
 /* 9C0F0 8009B4F0 03E00008 */  jr         $ra
 /* 9C0F4 8009B4F4 00000000 */   nop
 
-glabel func_8009B4F8
+glabel __osContGetInitData
 /* 9C0F8 8009B4F8 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 9C0FC 8009B4FC A3A00007 */  sb         $zero, 7($sp)
-/* 9C100 8009B500 3C0E8018 */  lui        $t6, %hi(D_80185630)
-/* 9C104 8009B504 25CE5630 */  addiu      $t6, $t6, %lo(D_80185630)
+/* 9C100 8009B500 3C0E8018 */  lui        $t6, %hi(__osContPifRam)
+/* 9C104 8009B504 25CE5630 */  addiu      $t6, $t6, %lo(__osContPifRam)
 /* 9C108 8009B508 AFAE0014 */  sw         $t6, 0x14($sp)
-/* 9C10C 8009B50C 3C0F8018 */  lui        $t7, %hi(D_80185671)
-/* 9C110 8009B510 91EF5671 */  lbu        $t7, %lo(D_80185671)($t7)
+/* 9C10C 8009B50C 3C0F8018 */  lui        $t7, %hi(__osMaxControllers)
+/* 9C110 8009B510 91EF5671 */  lbu        $t7, %lo(__osMaxControllers)($t7)
 /* 9C114 8009B514 AFA00008 */  sw         $zero, 8($sp)
 /* 9C118 8009B518 19E0002A */  blez       $t7, .L8009B5C4
 /* 9C11C 8009B51C 00000000 */   nop
@@ -483,8 +483,8 @@ glabel func_8009B4F8
 /* 9C194 8009B594 A3AD0007 */  sb         $t5, 7($sp)
 .L8009B598:
 /* 9C198 8009B598 8FAE0008 */  lw         $t6, 8($sp)
-/* 9C19C 8009B59C 3C198018 */  lui        $t9, %hi(D_80185671)
-/* 9C1A0 8009B5A0 93395671 */  lbu        $t9, %lo(D_80185671)($t9)
+/* 9C19C 8009B59C 3C198018 */  lui        $t9, %hi(__osMaxControllers)
+/* 9C1A0 8009B5A0 93395671 */  lbu        $t9, %lo(__osMaxControllers)($t9)
 /* 9C1A4 8009B5A4 8FA80014 */  lw         $t0, 0x14($sp)
 /* 9C1A8 8009B5A8 25CF0001 */  addiu      $t7, $t6, 1
 /* 9C1AC 8009B5AC 01F9082A */  slt        $at, $t7, $t9
@@ -508,20 +508,20 @@ glabel func_8009B5DC
 /* 9C1E4 8009B5E4 AFA00000 */  sw         $zero, ($sp)
 .L8009B5E8:
 /* 9C1E8 8009B5E8 8FAE0000 */  lw         $t6, ($sp)
-/* 9C1EC 8009B5EC 3C018018 */  lui        $at, %hi(D_80185630)
+/* 9C1EC 8009B5EC 3C018018 */  lui        $at, %hi(__osContPifRam)
 /* 9C1F0 8009B5F0 000E7880 */  sll        $t7, $t6, 2
 /* 9C1F4 8009B5F4 002F0821 */  addu       $at, $at, $t7
-/* 9C1F8 8009B5F8 AC205630 */  sw         $zero, %lo(D_80185630)($at)
+/* 9C1F8 8009B5F8 AC205630 */  sw         $zero, %lo(__osContPifRam)($at)
 /* 9C1FC 8009B5FC 8FB80000 */  lw         $t8, ($sp)
 /* 9C200 8009B600 27190001 */  addiu      $t9, $t8, 1
 /* 9C204 8009B604 2B210010 */  slti       $at, $t9, 0x10
 /* 9C208 8009B608 1420FFF7 */  bnez       $at, .L8009B5E8
 /* 9C20C 8009B60C AFB90000 */   sw        $t9, ($sp)
 /* 9C210 8009B610 24080001 */  addiu      $t0, $zero, 1
-/* 9C214 8009B614 3C018018 */  lui        $at, %hi(D_8018566C)
-/* 9C218 8009B618 AC28566C */  sw         $t0, %lo(D_8018566C)($at)
-/* 9C21C 8009B61C 3C098018 */  lui        $t1, %hi(D_80185630)
-/* 9C220 8009B620 25295630 */  addiu      $t1, $t1, %lo(D_80185630)
+/* 9C214 8009B614 3C018018 */  lui        $at, %hi(__osContPifRam+0x3C)
+/* 9C218 8009B618 AC28566C */  sw         $t0, %lo(__osContPifRam+0x3C)($at)
+/* 9C21C 8009B61C 3C098018 */  lui        $t1, %hi(__osContPifRam)
+/* 9C220 8009B620 25295630 */  addiu      $t1, $t1, %lo(__osContPifRam)
 /* 9C224 8009B624 AFA9000C */  sw         $t1, 0xc($sp)
 /* 9C228 8009B628 240A00FF */  addiu      $t2, $zero, 0xff
 /* 9C22C 8009B62C A3AA0004 */  sb         $t2, 4($sp)
@@ -538,8 +538,8 @@ glabel func_8009B5DC
 /* 9C258 8009B658 A3AF000A */  sb         $t7, 0xa($sp)
 /* 9C25C 8009B65C 241800FF */  addiu      $t8, $zero, 0xff
 /* 9C260 8009B660 A3B8000B */  sb         $t8, 0xb($sp)
-/* 9C264 8009B664 3C198018 */  lui        $t9, %hi(D_80185671)
-/* 9C268 8009B668 93395671 */  lbu        $t9, %lo(D_80185671)($t9)
+/* 9C264 8009B664 3C198018 */  lui        $t9, %hi(__osMaxControllers)
+/* 9C268 8009B668 93395671 */  lbu        $t9, %lo(__osMaxControllers)($t9)
 /* 9C26C 8009B66C AFA00000 */  sw         $zero, ($sp)
 /* 9C270 8009B670 1B200014 */  blez       $t9, .L8009B6C4
 /* 9C274 8009B674 00000000 */   nop
@@ -556,8 +556,8 @@ glabel func_8009B5DC
 /* 9C29C 8009B69C 258D0008 */  addiu      $t5, $t4, 8
 /* 9C2A0 8009B6A0 AFAD000C */  sw         $t5, 0xc($sp)
 /* 9C2A4 8009B6A4 8FAE0000 */  lw         $t6, ($sp)
-/* 9C2A8 8009B6A8 3C188018 */  lui        $t8, %hi(D_80185671)
-/* 9C2AC 8009B6AC 93185671 */  lbu        $t8, %lo(D_80185671)($t8)
+/* 9C2A8 8009B6A8 3C188018 */  lui        $t8, %hi(__osMaxControllers)
+/* 9C2AC 8009B6AC 93185671 */  lbu        $t8, %lo(__osMaxControllers)($t8)
 /* 9C2B0 8009B6B0 25CF0001 */  addiu      $t7, $t6, 1
 /* 9C2B4 8009B6B4 AFAF0000 */  sw         $t7, ($sp)
 /* 9C2B8 8009B6B8 01F8082A */  slt        $at, $t7, $t8
@@ -573,7 +573,7 @@ glabel func_8009B5DC
 /* 9C2D8 8009B6D8 03E00008 */  jr         $ra
 /* 9C2DC 8009B6DC 27BD0010 */   addiu     $sp, $sp, 0x10
 
-glabel func_8009B6E0
+glabel osInvalDCache
 /* 9C2E0 8009B6E0 18A00020 */  blez       $a1, .L8009B764
 /* 9C2E4 8009B6E4 00000000 */   nop
 /* 9C2E8 8009B6E8 240B2000 */  addiu      $t3, $zero, 0x2000
@@ -624,7 +624,7 @@ glabel func_8009B6E0
 /* 9C388 8009B788 03E00008 */  jr         $ra
 /* 9C38C 8009B78C 00000000 */   nop
 
-glabel func_8009B790
+glabel osPiStartDma
 /* 9C390 8009B790 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9C394 8009B794 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9C398 8009B798 AFA40028 */  sw         $a0, 0x28($sp)
@@ -633,12 +633,12 @@ glabel func_8009B790
 /* 9C3A4 8009B7A4 AFA70034 */  sw         $a3, 0x34($sp)
 /* 9C3A8 8009B7A8 AFB10018 */  sw         $s1, 0x18($sp)
 /* 9C3AC 8009B7AC AFB00014 */  sw         $s0, 0x14($sp)
-/* 9C3B0 8009B7B0 3C0E800F */  lui        $t6, %hi(D_800EA4D0)
-/* 9C3B4 8009B7B4 8DCEA4D0 */  lw         $t6, %lo(D_800EA4D0)($t6)
+/* 9C3B0 8009B7B0 3C0E800F */  lui        $t6, %hi(__osPiDevMgr)
+/* 9C3B4 8009B7B4 8DCEA4D0 */  lw         $t6, %lo(__osPiDevMgr)($t6)
 /* 9C3B8 8009B7B8 15C00006 */  bnez       $t6, .L8009B7D4
 /* 9C3BC 8009B7BC 00000000 */   nop
 /* 9C3C0 8009B7C0 2404001C */  addiu      $a0, $zero, 0x1c
-/* 9C3C4 8009B7C4 0C0297B4 */  jal        func_800A5ED0
+/* 9C3C4 8009B7C4 0C0297B4 */  jal        __osError
 /* 9C3C8 8009B7C8 00002825 */   or        $a1, $zero, $zero
 /* 9C3CC 8009B7CC 10000079 */  b          .L8009B9B4
 /* 9C3D0 8009B7D0 2402FFFF */   addiu     $v0, $zero, -1
@@ -651,7 +651,7 @@ glabel func_8009B790
 /* 9C3E8 8009B7E8 00000000 */   nop
 /* 9C3EC 8009B7EC 2404001D */  addiu      $a0, $zero, 0x1d
 /* 9C3F0 8009B7F0 24050001 */  addiu      $a1, $zero, 1
-/* 9C3F4 8009B7F4 0C0297B4 */  jal        func_800A5ED0
+/* 9C3F4 8009B7F4 0C0297B4 */  jal        __osError
 /* 9C3F8 8009B7F8 8FA6002C */   lw        $a2, 0x2c($sp)
 /* 9C3FC 8009B7FC 1000006D */  b          .L8009B9B4
 /* 9C400 8009B800 2402FFFF */   addiu     $v0, $zero, -1
@@ -664,7 +664,7 @@ glabel func_8009B790
 /* 9C418 8009B818 00000000 */   nop
 /* 9C41C 8009B81C 2404001E */  addiu      $a0, $zero, 0x1e
 /* 9C420 8009B820 24050001 */  addiu      $a1, $zero, 1
-/* 9C424 8009B824 0C0297B4 */  jal        func_800A5ED0
+/* 9C424 8009B824 0C0297B4 */  jal        __osError
 /* 9C428 8009B828 8FA60030 */   lw        $a2, 0x30($sp)
 /* 9C42C 8009B82C 10000061 */  b          .L8009B9B4
 /* 9C430 8009B830 2402FFFF */   addiu     $v0, $zero, -1
@@ -675,7 +675,7 @@ glabel func_8009B790
 /* 9C440 8009B840 00000000 */   nop
 /* 9C444 8009B844 2404001F */  addiu      $a0, $zero, 0x1f
 /* 9C448 8009B848 24050001 */  addiu      $a1, $zero, 1
-/* 9C44C 8009B84C 0C0297B4 */  jal        func_800A5ED0
+/* 9C44C 8009B84C 0C0297B4 */  jal        __osError
 /* 9C450 8009B850 8FA60034 */   lw        $a2, 0x34($sp)
 /* 9C454 8009B854 10000057 */  b          .L8009B9B4
 /* 9C458 8009B858 2402FFFF */   addiu     $v0, $zero, -1
@@ -686,7 +686,7 @@ glabel func_8009B790
 /* 9C468 8009B868 00000000 */   nop
 /* 9C46C 8009B86C 24040020 */  addiu      $a0, $zero, 0x20
 /* 9C470 8009B870 24050001 */  addiu      $a1, $zero, 1
-/* 9C474 8009B874 0C0297B4 */  jal        func_800A5ED0
+/* 9C474 8009B874 0C0297B4 */  jal        __osError
 /* 9C478 8009B878 8FA60038 */   lw        $a2, 0x38($sp)
 /* 9C47C 8009B87C 1000004D */  b          .L8009B9B4
 /* 9C480 8009B880 2402FFFF */   addiu     $v0, $zero, -1
@@ -697,7 +697,7 @@ glabel func_8009B790
 /* 9C490 8009B890 00000000 */   nop
 /* 9C494 8009B894 24040021 */  addiu      $a0, $zero, 0x21
 /* 9C498 8009B898 24050001 */  addiu      $a1, $zero, 1
-/* 9C49C 8009B89C 0C0297B4 */  jal        func_800A5ED0
+/* 9C49C 8009B89C 0C0297B4 */  jal        __osError
 /* 9C4A0 8009B8A0 8FA6003C */   lw        $a2, 0x3c($sp)
 /* 9C4A4 8009B8A4 10000043 */  b          .L8009B9B4
 /* 9C4A8 8009B8A8 2402FFFF */   addiu     $v0, $zero, -1
@@ -713,7 +713,7 @@ glabel func_8009B790
 .L8009B8CC:
 /* 9C4CC 8009B8CC 24040022 */  addiu      $a0, $zero, 0x22
 /* 9C4D0 8009B8D0 24050001 */  addiu      $a1, $zero, 1
-/* 9C4D4 8009B8D4 0C0297B4 */  jal        func_800A5ED0
+/* 9C4D4 8009B8D4 0C0297B4 */  jal        __osError
 /* 9C4D8 8009B8D8 8FA6003C */   lw        $a2, 0x3c($sp)
 /* 9C4DC 8009B8DC 10000035 */  b          .L8009B9B4
 /* 9C4E0 8009B8E0 2402FFFF */   addiu     $v0, $zero, -1
@@ -751,22 +751,22 @@ glabel func_8009B790
 /* 9C554 8009B954 24010001 */  addiu      $at, $zero, 1
 /* 9C558 8009B958 1541000A */  bne        $t2, $at, .L8009B984
 /* 9C55C 8009B95C 00000000 */   nop
-/* 9C560 8009B960 0C02AC78 */  jal        func_800AB1E0
+/* 9C560 8009B960 0C02AC78 */  jal        osPiGetCmdQueue
 /* 9C564 8009B964 00000000 */   nop
 /* 9C568 8009B968 00408825 */  or         $s1, $v0, $zero
 /* 9C56C 8009B96C 02202025 */  or         $a0, $s1, $zero
 /* 9C570 8009B970 8FA50028 */  lw         $a1, 0x28($sp)
-/* 9C574 8009B974 0C02AC14 */  jal        func_800AB050
+/* 9C574 8009B974 0C02AC14 */  jal        osJamMesg
 /* 9C578 8009B978 00003025 */   or        $a2, $zero, $zero
 /* 9C57C 8009B97C 10000009 */  b          .L8009B9A4
 /* 9C580 8009B980 00408025 */   or        $s0, $v0, $zero
 .L8009B984:
-/* 9C584 8009B984 0C02AC78 */  jal        func_800AB1E0
+/* 9C584 8009B984 0C02AC78 */  jal        osPiGetCmdQueue
 /* 9C588 8009B988 00000000 */   nop
 /* 9C58C 8009B98C 00408825 */  or         $s1, $v0, $zero
 /* 9C590 8009B990 02202025 */  or         $a0, $s1, $zero
 /* 9C594 8009B994 8FA50028 */  lw         $a1, 0x28($sp)
-/* 9C598 8009B998 0C0278BC */  jal        func_8009E2F0
+/* 9C598 8009B998 0C0278BC */  jal        osSendMesg
 /* 9C59C 8009B99C 00003025 */   or        $a2, $zero, $zero
 /* 9C5A0 8009B9A0 00408025 */  or         $s0, $v0, $zero
 .L8009B9A4:

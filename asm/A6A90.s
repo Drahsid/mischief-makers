@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A5E90
+glabel __osDisableInt
 /* A6A90 800A5E90 40086000 */  mfc0       $t0, $12
 /* A6A94 800A5E94 2401FFFE */  addiu      $at, $zero, -2
 /* A6A98 800A5E98 01014824 */  and        $t1, $t0, $at
@@ -17,7 +17,7 @@ glabel func_800A5E90
 /* A6AA8 800A5EA8 03E00008 */  jr         $ra
 /* A6AAC 800A5EAC 00000000 */   nop
 
-glabel func_800A5EB0
+glabel __osRestoreInt
 /* A6AB0 800A5EB0 40086000 */  mfc0       $t0, $12
 /* A6AB4 800A5EB4 01044025 */  or         $t0, $t0, $a0
 /* A6AB8 800A5EB8 40886000 */  mtc0       $t0, $12

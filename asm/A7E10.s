@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A7210
+glabel __osDequeueThread
 /* A7E10 800A7210 27BDFFF8 */  addiu      $sp, $sp, -8
 /* A7E14 800A7214 00803025 */  or         $a2, $a0, $zero
 /* A7E18 800A7218 8CC70000 */  lw         $a3, ($a2)
@@ -33,40 +33,40 @@ glabel func_800A7210
 /* A7E58 800A7258 03E00008 */  jr         $ra
 /* A7E5C 800A725C 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800A7260
+glabel __osTimerServicesInit
 /* A7E60 800A7260 3C018018 */  lui        $at, %hi(D_801856F4)
 /* A7E64 800A7264 240E0000 */  addiu      $t6, $zero, 0
 /* A7E68 800A7268 240F0000 */  addiu      $t7, $zero, 0
 /* A7E6C 800A726C AC2F56F4 */  sw         $t7, %lo(D_801856F4)($at)
 /* A7E70 800A7270 AC2E56F0 */  sw         $t6, 0x56f0($at)
-/* A7E74 800A7274 3C018018 */  lui        $at, %hi(D_801856F8)
-/* A7E78 800A7278 AC2056F8 */  sw         $zero, %lo(D_801856F8)($at)
-/* A7E7C 800A727C 3C018018 */  lui        $at, %hi(D_801856FC)
-/* A7E80 800A7280 AC2056FC */  sw         $zero, %lo(D_801856FC)($at)
-/* A7E84 800A7284 3C18800F */  lui        $t8, %hi(D_800EA620)
-/* A7E88 800A7288 8F18A620 */  lw         $t8, %lo(D_800EA620)($t8)
-/* A7E8C 800A728C 3C19800F */  lui        $t9, %hi(D_800EA620)
+/* A7E74 800A7274 3C018018 */  lui        $at, %hi(__osBaseCounter)
+/* A7E78 800A7278 AC2056F8 */  sw         $zero, %lo(__osBaseCounter)($at)
+/* A7E7C 800A727C 3C018018 */  lui        $at, %hi(__osViIntrCount)
+/* A7E80 800A7280 AC2056FC */  sw         $zero, %lo(__osViIntrCount)($at)
+/* A7E84 800A7284 3C18800F */  lui        $t8, %hi(__osTimerList)
+/* A7E88 800A7288 8F18A620 */  lw         $t8, %lo(__osTimerList)($t8)
+/* A7E8C 800A728C 3C19800F */  lui        $t9, %hi(__osTimerList)
 /* A7E90 800A7290 AF180004 */  sw         $t8, 4($t8)
-/* A7E94 800A7294 8F39A620 */  lw         $t9, %lo(D_800EA620)($t9)
+/* A7E94 800A7294 8F39A620 */  lw         $t9, %lo(__osTimerList)($t9)
 /* A7E98 800A7298 8F280004 */  lw         $t0, 4($t9)
 /* A7E9C 800A729C AF280000 */  sw         $t0, ($t9)
-/* A7EA0 800A72A0 3C09800F */  lui        $t1, %hi(D_800EA620)
-/* A7EA4 800A72A4 8D29A620 */  lw         $t1, %lo(D_800EA620)($t1)
+/* A7EA0 800A72A0 3C09800F */  lui        $t1, %hi(__osTimerList)
+/* A7EA4 800A72A4 8D29A620 */  lw         $t1, %lo(__osTimerList)($t1)
 /* A7EA8 800A72A8 240A0000 */  addiu      $t2, $zero, 0
 /* A7EAC 800A72AC 240B0000 */  addiu      $t3, $zero, 0
-/* A7EB0 800A72B0 3C0C800F */  lui        $t4, %hi(D_800EA620)
+/* A7EB0 800A72B0 3C0C800F */  lui        $t4, %hi(__osTimerList)
 /* A7EB4 800A72B4 AD2B0014 */  sw         $t3, 0x14($t1)
 /* A7EB8 800A72B8 AD2A0010 */  sw         $t2, 0x10($t1)
-/* A7EBC 800A72BC 8D8CA620 */  lw         $t4, %lo(D_800EA620)($t4)
+/* A7EBC 800A72BC 8D8CA620 */  lw         $t4, %lo(__osTimerList)($t4)
 /* A7EC0 800A72C0 8D8E0010 */  lw         $t6, 0x10($t4)
 /* A7EC4 800A72C4 8D8F0014 */  lw         $t7, 0x14($t4)
 /* A7EC8 800A72C8 AD8E0008 */  sw         $t6, 8($t4)
 /* A7ECC 800A72CC AD8F000C */  sw         $t7, 0xc($t4)
-/* A7ED0 800A72D0 3C0D800F */  lui        $t5, %hi(D_800EA620)
-/* A7ED4 800A72D4 8DADA620 */  lw         $t5, %lo(D_800EA620)($t5)
+/* A7ED0 800A72D0 3C0D800F */  lui        $t5, %hi(__osTimerList)
+/* A7ED4 800A72D4 8DADA620 */  lw         $t5, %lo(__osTimerList)($t5)
 /* A7ED8 800A72D8 ADA00018 */  sw         $zero, 0x18($t5)
-/* A7EDC 800A72DC 3C18800F */  lui        $t8, %hi(D_800EA620)
-/* A7EE0 800A72E0 8F18A620 */  lw         $t8, %lo(D_800EA620)($t8)
+/* A7EDC 800A72DC 3C18800F */  lui        $t8, %hi(__osTimerList)
+/* A7EE0 800A72E0 8F18A620 */  lw         $t8, %lo(__osTimerList)($t8)
 /* A7EE4 800A72E4 AF00001C */  sw         $zero, 0x1c($t8)
 /* A7EE8 800A72E8 03E00008 */  jr         $ra
 /* A7EEC 800A72EC 00000000 */   nop
@@ -75,47 +75,47 @@ glabel func_800A72F0
 /* A7EF0 800A72F0 03E00008 */  jr         $ra
 /* A7EF4 800A72F4 00000000 */   nop
 
-glabel func_800A72F8
+glabel __osTimerInterrupt
 /* A7EF8 800A72F8 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* A7EFC 800A72FC AFBF0014 */  sw         $ra, 0x14($sp)
-/* A7F00 800A7300 3C0E8018 */  lui        $t6, %hi(D_80185704)
-/* A7F04 800A7304 8DCE5704 */  lw         $t6, %lo(D_80185704)($t6)
+/* A7F00 800A7300 3C0E8018 */  lui        $t6, %hi(__osProfileList)
+/* A7F04 800A7304 8DCE5704 */  lw         $t6, %lo(__osProfileList)($t6)
 /* A7F08 800A7308 AFAE0020 */  sw         $t6, 0x20($sp)
-/* A7F0C 800A730C 3C0F800F */  lui        $t7, %hi(D_800EA620)
-/* A7F10 800A7310 8DEFA620 */  lw         $t7, %lo(D_800EA620)($t7)
+/* A7F0C 800A730C 3C0F800F */  lui        $t7, %hi(__osTimerList)
+/* A7F10 800A7310 8DEFA620 */  lw         $t7, %lo(__osTimerList)($t7)
 /* A7F14 800A7314 8DF80000 */  lw         $t8, ($t7)
 /* A7F18 800A7318 170F0003 */  bne        $t8, $t7, .L800A7328
 /* A7F1C 800A731C 00000000 */   nop
 /* A7F20 800A7320 1000009F */  b          .L800A75A0
 /* A7F24 800A7324 00000000 */   nop
 .L800A7328:
-/* A7F28 800A7328 3C19800F */  lui        $t9, %hi(D_800EA620)
-/* A7F2C 800A732C 8F39A620 */  lw         $t9, %lo(D_800EA620)($t9)
+/* A7F28 800A7328 3C19800F */  lui        $t9, %hi(__osTimerList)
+/* A7F2C 800A732C 8F39A620 */  lw         $t9, %lo(__osTimerList)($t9)
 /* A7F30 800A7330 8F280000 */  lw         $t0, ($t9)
 /* A7F34 800A7334 AFA80034 */  sw         $t0, 0x34($sp)
-/* A7F38 800A7338 3C0A800F */  lui        $t2, %hi(D_800EA620)
-/* A7F3C 800A733C 8D4AA620 */  lw         $t2, %lo(D_800EA620)($t2)
+/* A7F38 800A7338 3C0A800F */  lui        $t2, %hi(__osTimerList)
+/* A7F3C 800A733C 8D4AA620 */  lw         $t2, %lo(__osTimerList)($t2)
 /* A7F40 800A7340 8FA90034 */  lw         $t1, 0x34($sp)
 /* A7F44 800A7344 152A0007 */  bne        $t1, $t2, .L800A7364
 /* A7F48 800A7348 00000000 */   nop
-/* A7F4C 800A734C 0C02D55C */  jal        func_800B5570
+/* A7F4C 800A734C 0C02D55C */  jal        __osSetCompare
 /* A7F50 800A7350 00002025 */   or        $a0, $zero, $zero
-/* A7F54 800A7354 3C018018 */  lui        $at, %hi(D_80185700)
-/* A7F58 800A7358 AC205700 */  sw         $zero, %lo(D_80185700)($at)
+/* A7F54 800A7354 3C018018 */  lui        $at, %hi(__osTimerCounter)
+/* A7F58 800A7358 AC205700 */  sw         $zero, %lo(__osTimerCounter)($at)
 /* A7F5C 800A735C 1000008E */  b          .L800A7598
 /* A7F60 800A7360 00000000 */   nop
 .L800A7364:
-/* A7F64 800A7364 0C029EF8 */  jal        func_800A7BE0
+/* A7F64 800A7364 0C029EF8 */  jal        osGetCount
 /* A7F68 800A7368 00000000 */   nop
 /* A7F6C 800A736C AFA20030 */  sw         $v0, 0x30($sp)
-/* A7F70 800A7370 3C0C8018 */  lui        $t4, %hi(D_80185700)
-/* A7F74 800A7374 8D8C5700 */  lw         $t4, %lo(D_80185700)($t4)
+/* A7F70 800A7370 3C0C8018 */  lui        $t4, %hi(__osTimerCounter)
+/* A7F74 800A7374 8D8C5700 */  lw         $t4, %lo(__osTimerCounter)($t4)
 /* A7F78 800A7378 8FAB0030 */  lw         $t3, 0x30($sp)
 /* A7F7C 800A737C 016C6823 */  subu       $t5, $t3, $t4
 /* A7F80 800A7380 AFAD002C */  sw         $t5, 0x2c($sp)
 /* A7F84 800A7384 8FAE0030 */  lw         $t6, 0x30($sp)
-/* A7F88 800A7388 3C018018 */  lui        $at, %hi(D_80185700)
-/* A7F8C 800A738C AC2E5700 */  sw         $t6, %lo(D_80185700)($at)
+/* A7F88 800A7388 3C018018 */  lui        $at, %hi(__osTimerCounter)
+/* A7F8C 800A738C AC2E5700 */  sw         $t6, %lo(__osTimerCounter)($at)
 /* A7F90 800A7390 8FAF0034 */  lw         $t7, 0x34($sp)
 /* A7F94 800A7394 8FB8002C */  lw         $t8, 0x2c($sp)
 /* A7F98 800A7398 24080000 */  addiu      $t0, $zero, 0
@@ -149,7 +149,7 @@ glabel func_800A72F8
 /* A8004 800A7404 AD0A0010 */  sw         $t2, 0x10($t0)
 /* A8008 800A7408 8FA90034 */  lw         $t1, 0x34($sp)
 /* A800C 800A740C 8D240010 */  lw         $a0, 0x10($t1)
-/* A8010 800A7410 0C029D6C */  jal        func_800A75B0
+/* A8010 800A7410 0C029D6C */  jal        __osSetTimerIntr
 /* A8014 800A7414 8D250014 */   lw        $a1, 0x14($t1)
 /* A8018 800A7418 1000005F */  b          .L800A7598
 /* A801C 800A741C 00000000 */   nop
@@ -171,27 +171,27 @@ glabel func_800A72F8
 /* A8058 800A7458 1120003F */  beqz       $t1, .L800A7558
 /* A805C 800A745C 00000000 */   nop
 /* A8060 800A7460 8FAC0034 */  lw         $t4, 0x34($sp)
-/* A8064 800A7464 3C0E8018 */  lui        $t6, %hi(D_80185710)
-/* A8068 800A7468 25CE5710 */  addiu      $t6, $t6, %lo(D_80185710)
+/* A8064 800A7464 3C0E8018 */  lui        $t6, %hi(__osProfTimerQ)
+/* A8068 800A7468 25CE5710 */  addiu      $t6, $t6, %lo(__osProfTimerQ)
 /* A806C 800A746C 8D8D0018 */  lw         $t5, 0x18($t4)
 /* A8070 800A7470 11AE0008 */  beq        $t5, $t6, .L800A7494
 /* A8074 800A7474 00000000 */   nop
 /* A8078 800A7478 8FAF0034 */  lw         $t7, 0x34($sp)
 /* A807C 800A747C 00003025 */  or         $a2, $zero, $zero
 /* A8080 800A7480 8DE40018 */  lw         $a0, 0x18($t7)
-/* A8084 800A7484 0C0278BC */  jal        func_8009E2F0
+/* A8084 800A7484 0C0278BC */  jal        osSendMesg
 /* A8088 800A7488 8DE5001C */   lw        $a1, 0x1c($t7)
 /* A808C 800A748C 10000032 */  b          .L800A7558
 /* A8090 800A7490 00000000 */   nop
 .L800A7494:
-/* A8094 800A7494 3C18800F */  lui        $t8, %hi(D_800EA608)
-/* A8098 800A7498 8F18A608 */  lw         $t8, %lo(D_800EA608)($t8)
+/* A8094 800A7494 3C18800F */  lui        $t8, %hi(__osRunQueue)
+/* A8098 800A7498 8F18A608 */  lw         $t8, %lo(__osRunQueue)($t8)
 /* A809C 800A749C 8F19011C */  lw         $t9, 0x11c($t8)
 /* A80A0 800A74A0 AFB90028 */  sw         $t9, 0x28($sp)
-/* A80A4 800A74A4 3C0A8018 */  lui        $t2, %hi(D_80185704)
-/* A80A8 800A74A8 3C0B8018 */  lui        $t3, %hi(D_80185708)
-/* A80AC 800A74AC 8D6B5708 */  lw         $t3, %lo(D_80185708)($t3)
-/* A80B0 800A74B0 8D4A5704 */  lw         $t2, %lo(D_80185704)($t2)
+/* A80A4 800A74A4 3C0A8018 */  lui        $t2, %hi(__osProfileList)
+/* A80A8 800A74A8 3C0B8018 */  lui        $t3, %hi(__osProfileListEnd)
+/* A80AC 800A74AC 8D6B5708 */  lw         $t3, %lo(__osProfileListEnd)($t3)
+/* A80B0 800A74B0 8D4A5704 */  lw         $t2, %lo(__osProfileList)($t2)
 /* A80B4 800A74B4 014B082B */  sltu       $at, $t2, $t3
 /* A80B8 800A74B8 10200022 */  beqz       $at, .L800A7544
 /* A80BC 800A74BC AFAA0020 */   sw        $t2, 0x20($sp)
@@ -223,19 +223,19 @@ glabel func_800A72F8
 /* A8120 800A7520 00000000 */   nop
 .L800A7524:
 /* A8124 800A7524 8FB90020 */  lw         $t9, 0x20($sp)
-/* A8128 800A7528 3C0B8018 */  lui        $t3, %hi(D_80185708)
-/* A812C 800A752C 8D6B5708 */  lw         $t3, %lo(D_80185708)($t3)
+/* A8128 800A7528 3C0B8018 */  lui        $t3, %hi(__osProfileListEnd)
+/* A812C 800A752C 8D6B5708 */  lw         $t3, %lo(__osProfileListEnd)($t3)
 /* A8130 800A7530 272A0010 */  addiu      $t2, $t9, 0x10
 /* A8134 800A7534 AFAA0020 */  sw         $t2, 0x20($sp)
 /* A8138 800A7538 014B082B */  sltu       $at, $t2, $t3
 /* A813C 800A753C 1420FFE0 */  bnez       $at, .L800A74C0
 /* A8140 800A7540 00000000 */   nop
 .L800A7544:
-/* A8144 800A7544 3C098018 */  lui        $t1, %hi(D_8018570C)
-/* A8148 800A7548 8D29570C */  lw         $t1, %lo(D_8018570C)($t1)
-/* A814C 800A754C 3C018018 */  lui        $at, %hi(D_8018570C)
+/* A8144 800A7544 3C098018 */  lui        $t1, %hi(__osProfileOverflowBin)
+/* A8148 800A7548 8D29570C */  lw         $t1, %lo(__osProfileOverflowBin)($t1)
+/* A814C 800A754C 3C018018 */  lui        $at, %hi(__osProfileOverflowBin)
 /* A8150 800A7550 252C0001 */  addiu      $t4, $t1, 1
-/* A8154 800A7554 AC2C570C */  sw         $t4, %lo(D_8018570C)($at)
+/* A8154 800A7554 AC2C570C */  sw         $t4, %lo(__osProfileOverflowBin)($at)
 .L800A7558:
 /* A8158 800A7558 8FA80034 */  lw         $t0, 0x34($sp)
 /* A815C 800A755C 8D180008 */  lw         $t8, 8($t0)
@@ -250,7 +250,7 @@ glabel func_800A72F8
 /* A817C 800A757C 8DAF000C */  lw         $t7, 0xc($t5)
 /* A8180 800A7580 ADAE0010 */  sw         $t6, 0x10($t5)
 /* A8184 800A7584 ADAF0014 */  sw         $t7, 0x14($t5)
-/* A8188 800A7588 0C029D8F */  jal        func_800A763C
+/* A8188 800A7588 0C029D8F */  jal        __osInsertTimer
 /* A818C 800A758C 8FA40034 */   lw        $a0, 0x34($sp)
 .L800A7590:
 /* A8190 800A7590 1000FF65 */  b          .L800A7328
@@ -264,20 +264,20 @@ glabel func_800A72F8
 /* A81A8 800A75A8 03E00008 */  jr         $ra
 /* A81AC 800A75AC 00000000 */   nop
 
-glabel func_800A75B0
+glabel __osSetTimerIntr
 /* A81B0 800A75B0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A81B4 800A75B4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A81B8 800A75B8 AFA40028 */  sw         $a0, 0x28($sp)
 /* A81BC 800A75BC AFA5002C */  sw         $a1, 0x2c($sp)
-/* A81C0 800A75C0 0C0297A4 */  jal        func_800A5E90
+/* A81C0 800A75C0 0C0297A4 */  jal        __osDisableInt
 /* A81C4 800A75C4 00000000 */   nop
 /* A81C8 800A75C8 AFA2001C */  sw         $v0, 0x1c($sp)
-/* A81CC 800A75CC 0C029EF8 */  jal        func_800A7BE0
+/* A81CC 800A75CC 0C029EF8 */  jal        osGetCount
 /* A81D0 800A75D0 00000000 */   nop
-/* A81D4 800A75D4 3C018018 */  lui        $at, %hi(D_80185700)
-/* A81D8 800A75D8 AC225700 */  sw         $v0, %lo(D_80185700)($at)
-/* A81DC 800A75DC 3C0E8018 */  lui        $t6, %hi(D_80185700)
-/* A81E0 800A75E0 8DCE5700 */  lw         $t6, %lo(D_80185700)($t6)
+/* A81D4 800A75D4 3C018018 */  lui        $at, %hi(__osTimerCounter)
+/* A81D8 800A75D8 AC225700 */  sw         $v0, %lo(__osTimerCounter)($at)
+/* A81DC 800A75DC 3C0E8018 */  lui        $t6, %hi(__osTimerCounter)
+/* A81E0 800A75E0 8DCE5700 */  lw         $t6, %lo(__osTimerCounter)($t6)
 /* A81E4 800A75E4 8FA9002C */  lw         $t1, 0x2c($sp)
 /* A81E8 800A75E8 8FA80028 */  lw         $t0, 0x28($sp)
 /* A81EC 800A75EC 01C0C825 */  or         $t9, $t6, $zero
@@ -290,9 +290,9 @@ glabel func_800A75B0
 /* A8208 800A7608 AFAB0024 */  sw         $t3, 0x24($sp)
 /* A820C 800A760C 8FAD0024 */  lw         $t5, 0x24($sp)
 /* A8210 800A7610 8FAC0020 */  lw         $t4, 0x20($sp)
-/* A8214 800A7614 0C02D55C */  jal        func_800B5570
+/* A8214 800A7614 0C02D55C */  jal        __osSetCompare
 /* A8218 800A7618 01A02025 */   or        $a0, $t5, $zero
-/* A821C 800A761C 0C0297AC */  jal        func_800A5EB0
+/* A821C 800A761C 0C0297AC */  jal        __osRestoreInt
 /* A8220 800A7620 8FA4001C */   lw        $a0, 0x1c($sp)
 /* A8224 800A7624 10000001 */  b          .L800A762C
 /* A8228 800A7628 00000000 */   nop
@@ -302,15 +302,15 @@ glabel func_800A75B0
 /* A8234 800A7634 03E00008 */  jr         $ra
 /* A8238 800A7638 00000000 */   nop
 
-glabel func_800A763C
+glabel __osInsertTimer
 /* A823C 800A763C 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* A8240 800A7640 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A8244 800A7644 AFA40038 */  sw         $a0, 0x38($sp)
-/* A8248 800A7648 0C0297A4 */  jal        func_800A5E90
+/* A8248 800A7648 0C0297A4 */  jal        __osDisableInt
 /* A824C 800A764C 00000000 */   nop
 /* A8250 800A7650 AFA20024 */  sw         $v0, 0x24($sp)
-/* A8254 800A7654 3C0E800F */  lui        $t6, %hi(D_800EA620)
-/* A8258 800A7658 8DCEA620 */  lw         $t6, %lo(D_800EA620)($t6)
+/* A8254 800A7654 3C0E800F */  lui        $t6, %hi(__osTimerList)
+/* A8258 800A7658 8DCEA620 */  lw         $t6, %lo(__osTimerList)($t6)
 /* A825C 800A765C 8DCF0000 */  lw         $t7, ($t6)
 /* A8260 800A7660 AFAF0034 */  sw         $t7, 0x34($sp)
 /* A8264 800A7664 8FB80038 */  lw         $t8, 0x38($sp)
@@ -318,8 +318,8 @@ glabel func_800A763C
 /* A826C 800A766C 8F090014 */  lw         $t1, 0x14($t8)
 /* A8270 800A7670 AFA80028 */  sw         $t0, 0x28($sp)
 /* A8274 800A7674 AFA9002C */  sw         $t1, 0x2c($sp)
-/* A8278 800A7678 3C0A800F */  lui        $t2, %hi(D_800EA620)
-/* A827C 800A767C 8D4AA620 */  lw         $t2, %lo(D_800EA620)($t2)
+/* A8278 800A7678 3C0A800F */  lui        $t2, %hi(__osTimerList)
+/* A827C 800A767C 8D4AA620 */  lw         $t2, %lo(__osTimerList)($t2)
 /* A8280 800A7680 8FB90034 */  lw         $t9, 0x34($sp)
 /* A8284 800A7684 132A002F */  beq        $t9, $t2, .L800A7744
 /* A8288 800A7688 00000000 */   nop
@@ -352,8 +352,8 @@ glabel func_800A763C
 /* A82F0 800A76F0 AD2D0004 */  sw         $t5, 4($t1)
 /* A82F4 800A76F4 AD2C0000 */  sw         $t4, ($t1)
 /* A82F8 800A76F8 8FAE0034 */  lw         $t6, 0x34($sp)
-/* A82FC 800A76FC 3C08800F */  lui        $t0, %hi(D_800EA620)
-/* A8300 800A7700 8D08A620 */  lw         $t0, %lo(D_800EA620)($t0)
+/* A82FC 800A76FC 3C08800F */  lui        $t0, %hi(__osTimerList)
+/* A8300 800A7700 8D08A620 */  lw         $t0, %lo(__osTimerList)($t0)
 /* A8304 800A7704 8DCF0000 */  lw         $t7, ($t6)
 /* A8308 800A7708 11E8000E */  beq        $t7, $t0, .L800A7744
 /* A830C 800A770C AFAF0034 */   sw        $t7, 0x34($sp)
@@ -376,8 +376,8 @@ glabel func_800A763C
 /* A834C 800A774C 8FAD002C */  lw         $t5, 0x2c($sp)
 /* A8350 800A7750 AD2C0010 */  sw         $t4, 0x10($t1)
 /* A8354 800A7754 AD2D0014 */  sw         $t5, 0x14($t1)
-/* A8358 800A7758 3C08800F */  lui        $t0, %hi(D_800EA620)
-/* A835C 800A775C 8D08A620 */  lw         $t0, %lo(D_800EA620)($t0)
+/* A8358 800A7758 3C08800F */  lui        $t0, %hi(__osTimerList)
+/* A835C 800A775C 8D08A620 */  lw         $t0, %lo(__osTimerList)($t0)
 /* A8360 800A7760 8FAE0034 */  lw         $t6, 0x34($sp)
 /* A8364 800A7764 11C8000F */  beq        $t6, $t0, .L800A77A4
 /* A8368 800A7768 00000000 */   nop
@@ -410,7 +410,7 @@ glabel func_800A763C
 /* A83D0 800A77D0 8FAF0038 */  lw         $t7, 0x38($sp)
 /* A83D4 800A77D4 8FB90034 */  lw         $t9, 0x34($sp)
 /* A83D8 800A77D8 AF2F0004 */  sw         $t7, 4($t9)
-/* A83DC 800A77DC 0C0297AC */  jal        func_800A5EB0
+/* A83DC 800A77DC 0C0297AC */  jal        __osRestoreInt
 /* A83E0 800A77E0 8FA40024 */   lw        $a0, 0x24($sp)
 /* A83E4 800A77E4 8FA20028 */  lw         $v0, 0x28($sp)
 /* A83E8 800A77E8 10000003 */  b          .L800A77F8

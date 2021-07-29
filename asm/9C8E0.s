@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009BCE0
+glabel alSeqFileNew
 /* 9C8E0 8009BCE0 27BDFFF8 */  addiu      $sp, $sp, -8
 /* 9C8E4 8009BCE4 AFA50004 */  sw         $a1, 4($sp)
 /* 9C8E8 8009BCE8 AFA00000 */  sw         $zero, ($sp)
@@ -37,7 +37,7 @@ glabel func_8009BCE0
 /* 9C93C 8009BD3C 03E00008 */  jr         $ra
 /* 9C940 8009BD40 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_8009BD44
+glabel alBnkfNew
 /* 9C944 8009BD44 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 9C948 8009BD48 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9C94C 8009BD4C AFA40028 */  sw         $a0, 0x28($sp)
@@ -52,7 +52,7 @@ glabel func_8009BD44
 /* 9C970 8009BD70 13210006 */  beq        $t9, $at, .L8009BD8C
 /* 9C974 8009BD74 00000000 */   nop
 /* 9C978 8009BD78 24040071 */  addiu      $a0, $zero, 0x71
-/* 9C97C 8009BD7C 0C0297B4 */  jal        func_800A5ED0
+/* 9C97C 8009BD7C 0C0297B4 */  jal        __osError
 /* 9C980 8009BD80 00002825 */   or        $a1, $zero, $zero
 /* 9C984 8009BD84 10000027 */  b          .L8009BE24
 /* 9C988 8009BD88 00000000 */   nop

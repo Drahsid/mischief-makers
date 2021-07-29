@@ -168,7 +168,7 @@ void func_800232A4(void) {
     D_801781E0 = 0;
     D_800D294C = (uint16_t)0;
     func_80010C20(D_800BE5D0);
-    func_80021034();
+    gameplay_func();
     func_80047CCC();
     func_80047C98();
     func_8001DC60();

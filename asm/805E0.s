@@ -213,7 +213,7 @@ glabel func_8007FCA0
 /* 808D8 8007FCD8 AFB30024 */  sw         $s3, 0x24($sp)
 /* 808DC 8007FCDC AFB00018 */  sw         $s0, 0x18($sp)
 /* 808E0 8007FCE0 24A5D010 */  addiu      $a1, $a1, -0x2ff0
-/* 808E4 8007FCE4 0C029590 */  jal        func_800A5640
+/* 808E4 8007FCE4 0C029590 */  jal        sprintf
 /* 808E8 8007FCE8 27A4004C */   addiu     $a0, $sp, 0x4c
 /* 808EC 8007FCEC 240E0007 */  addiu      $t6, $zero, 7
 /* 808F0 8007FCF0 A7AE005C */  sh         $t6, 0x5c($sp)
@@ -385,7 +385,7 @@ glabel func_8007FF28
 /* 80B60 8007FF60 AFB1001C */  sw         $s1, 0x1c($sp)
 /* 80B64 8007FF64 AFB00018 */  sw         $s0, 0x18($sp)
 /* 80B68 8007FF68 24A5D018 */  addiu      $a1, $a1, -0x2fe8
-/* 80B6C 8007FF6C 0C029590 */  jal        func_800A5640
+/* 80B6C 8007FF6C 0C029590 */  jal        sprintf
 /* 80B70 8007FF70 27A40048 */   addiu     $a0, $sp, 0x48
 /* 80B74 8007FF74 3C17800F */  lui        $s7, %hi(gActors)
 /* 80B78 8007FF78 26F7F510 */  addiu      $s7, $s7, %lo(gActors)

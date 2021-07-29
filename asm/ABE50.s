@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800AB250
+glabel alSeqpNew
 /* ABE50 800AB250 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* ABE54 800AB254 AFBF001C */  sw         $ra, 0x1c($sp)
 /* ABE58 800AB258 AFA40038 */  sw         $a0, 0x38($sp)
@@ -19,8 +19,8 @@ glabel func_800AB250
 /* ABE70 800AB270 AF000020 */  sw         $zero, 0x20($t8)
 /* ABE74 800AB274 8FB90038 */  lw         $t9, 0x38($sp)
 /* ABE78 800AB278 AF200018 */  sw         $zero, 0x18($t9)
-/* ABE7C 800AB27C 3C08800F */  lui        $t0, %hi(D_800EA520)
-/* ABE80 800AB280 8D08A520 */  lw         $t0, %lo(D_800EA520)($t0)
+/* ABE7C 800AB27C 3C08800F */  lui        $t0, %hi(alGlobals)
+/* ABE80 800AB280 8D08A520 */  lw         $t0, %lo(alGlobals)($t0)
 /* ABE84 800AB284 8FA90038 */  lw         $t1, 0x38($sp)
 /* ABE88 800AB288 AD280014 */  sw         $t0, 0x14($t1)
 /* ABE8C 800AB28C 8FAB0038 */  lw         $t3, 0x38($sp)
@@ -71,26 +71,26 @@ glabel func_800AB250
 /* ABF40 800AB340 91090008 */  lbu        $t1, 8($t0)
 /* ABF44 800AB344 A1490034 */  sb         $t1, 0x34($t2)
 /* ABF48 800AB348 8FAB003C */  lw         $t3, 0x3c($sp)
-/* ABF4C 800AB34C 3C04800F */  lui        $a0, %hi(D_800EDFA0)
+/* ABF4C 800AB34C 3C04800F */  lui        $a0, %hi(seqplayer_rodata_0000)
 /* ABF50 800AB350 240C0010 */  addiu      $t4, $zero, 0x10
 /* ABF54 800AB354 91670008 */  lbu        $a3, 8($t3)
 /* ABF58 800AB358 AFAC0010 */  sw         $t4, 0x10($sp)
-/* ABF5C 800AB35C 2484DFA0 */  addiu      $a0, $a0, %lo(D_800EDFA0)
+/* ABF5C 800AB35C 2484DFA0 */  addiu      $a0, $a0, %lo(seqplayer_rodata_0000)
 /* ABF60 800AB360 2405005B */  addiu      $a1, $zero, 0x5b
-/* ABF64 800AB364 0C026ECC */  jal        func_8009BB30
+/* ABF64 800AB364 0C026ECC */  jal        alHeapDBAlloc
 /* ABF68 800AB368 8FA60024 */   lw        $a2, 0x24($sp)
 /* ABF6C 800AB36C 8FAD0038 */  lw         $t5, 0x38($sp)
 /* ABF70 800AB370 ADA20060 */  sw         $v0, 0x60($t5)
-/* ABF74 800AB374 0C02B54F */  jal        func_800AD53C
+/* ABF74 800AB374 0C02B54F */  jal        __initChanState
 /* ABF78 800AB378 8FA40038 */   lw        $a0, 0x38($sp)
 /* ABF7C 800AB37C 8FAE003C */  lw         $t6, 0x3c($sp)
-/* ABF80 800AB380 3C04800F */  lui        $a0, %hi(D_800EDFB8)
+/* ABF80 800AB380 3C04800F */  lui        $a0, %hi(seqplayer_rodata_0018)
 /* ABF84 800AB384 240F0038 */  addiu      $t7, $zero, 0x38
 /* ABF88 800AB388 8DC70000 */  lw         $a3, ($t6)
 /* ABF8C 800AB38C AFAF0010 */  sw         $t7, 0x10($sp)
-/* ABF90 800AB390 2484DFB8 */  addiu      $a0, $a0, %lo(D_800EDFB8)
+/* ABF90 800AB390 2484DFB8 */  addiu      $a0, $a0, %lo(seqplayer_rodata_0018)
 /* ABF94 800AB394 24050061 */  addiu      $a1, $zero, 0x61
-/* ABF98 800AB398 0C026ECC */  jal        func_8009BB30
+/* ABF98 800AB398 0C026ECC */  jal        alHeapDBAlloc
 /* ABF9C 800AB39C 8FA60024 */   lw        $a2, 0x24($sp)
 /* ABFA0 800AB3A0 AFA20028 */  sw         $v0, 0x28($sp)
 /* ABFA4 800AB3A4 8FB80038 */  lw         $t8, 0x38($sp)
@@ -129,32 +129,32 @@ glabel func_800AB250
 /* AC020 800AB420 8FAD0038 */  lw         $t5, 0x38($sp)
 /* AC024 800AB424 ADA00068 */  sw         $zero, 0x68($t5)
 /* AC028 800AB428 8FAE003C */  lw         $t6, 0x3c($sp)
-/* AC02C 800AB42C 3C04800F */  lui        $a0, %hi(D_800EDFD0)
+/* AC02C 800AB42C 3C04800F */  lui        $a0, %hi(seqplayer_rodata_0030)
 /* AC030 800AB430 240F001C */  addiu      $t7, $zero, 0x1c
 /* AC034 800AB434 8DC70004 */  lw         $a3, 4($t6)
 /* AC038 800AB438 AFAF0010 */  sw         $t7, 0x10($sp)
-/* AC03C 800AB43C 2484DFD0 */  addiu      $a0, $a0, %lo(D_800EDFD0)
+/* AC03C 800AB43C 2484DFD0 */  addiu      $a0, $a0, %lo(seqplayer_rodata_0030)
 /* AC040 800AB440 2405006F */  addiu      $a1, $zero, 0x6f
-/* AC044 800AB444 0C026ECC */  jal        func_8009BB30
+/* AC044 800AB444 0C026ECC */  jal        alHeapDBAlloc
 /* AC048 800AB448 8FA60024 */   lw        $a2, 0x24($sp)
 /* AC04C 800AB44C AFA20030 */  sw         $v0, 0x30($sp)
 /* AC050 800AB450 8FA40038 */  lw         $a0, 0x38($sp)
 /* AC054 800AB454 8FB8003C */  lw         $t8, 0x3c($sp)
 /* AC058 800AB458 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC05C 800AB45C 24840048 */  addiu      $a0, $a0, 0x48
-/* AC060 800AB460 0C02B5D0 */  jal        func_800AD740
+/* AC060 800AB460 0C02B5D0 */  jal        alEvtqNew
 /* AC064 800AB464 8F060004 */   lw        $a2, 4($t8)
 /* AC068 800AB468 8FB90038 */  lw         $t9, 0x38($sp)
 /* AC06C 800AB46C AF200000 */  sw         $zero, ($t9)
 /* AC070 800AB470 8FAA0038 */  lw         $t2, 0x38($sp)
-/* AC074 800AB474 3C08800B */  lui        $t0, %hi(func_800AB4B0)
-/* AC078 800AB478 2508B4B0 */  addiu      $t0, $t0, %lo(func_800AB4B0)
+/* AC074 800AB474 3C08800B */  lui        $t0, %hi(seqplayer_text_0260)
+/* AC078 800AB478 2508B4B0 */  addiu      $t0, $t0, %lo(seqplayer_text_0260)
 /* AC07C 800AB47C AD480008 */  sw         $t0, 8($t2)
 /* AC080 800AB480 8FA90038 */  lw         $t1, 0x38($sp)
 /* AC084 800AB484 AD290004 */  sw         $t1, 4($t1)
-/* AC088 800AB488 3C04800F */  lui        $a0, %hi(D_800EA520)
-/* AC08C 800AB48C 8C84A520 */  lw         $a0, %lo(D_800EA520)($a0)
-/* AC090 800AB490 0C02B6D8 */  jal        func_800ADB60
+/* AC088 800AB488 3C04800F */  lui        $a0, %hi(alGlobals)
+/* AC08C 800AB48C 8C84A520 */  lw         $a0, %lo(alGlobals)($a0)
+/* AC090 800AB490 0C02B6D8 */  jal        alSynAddPlayer
 /* AC094 800AB494 8FA50038 */   lw        $a1, 0x38($sp)
 /* AC098 800AB498 10000001 */  b          .L800AB4A0
 /* AC09C 800AB49C 00000000 */   nop
@@ -164,7 +164,7 @@ glabel func_800AB250
 /* AC0A8 800AB4A8 03E00008 */  jr         $ra
 /* AC0AC 800AB4AC 00000000 */   nop
 
-glabel func_800AB4B0
+glabel seqplayer_text_0260
 /* AC0B0 800AB4B0 27BDFFB0 */  addiu      $sp, $sp, -0x50
 /* AC0B4 800AB4B4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AC0B8 800AB4B8 AFA40050 */  sw         $a0, 0x50($sp)
@@ -193,7 +193,7 @@ glabel func_800AB4B0
 /* AC110 800AB510 8FA8004C */  lw         $t0, 0x4c($sp)
 /* AC114 800AB514 27A5003C */  addiu      $a1, $sp, 0x3c
 /* AC118 800AB518 25040048 */  addiu      $a0, $t0, 0x48
-/* AC11C 800AB51C 0C02B620 */  jal        func_800AD880
+/* AC11C 800AB51C 0C02B620 */  jal        alEvtqPostEvent
 /* AC120 800AB520 8D06005C */   lw        $a2, 0x5c($t0)
 /* AC124 800AB524 100001A6 */  b          .L800ABBC0
 /* AC128 800AB528 00000000 */   nop
@@ -202,11 +202,11 @@ glabel func_800AB4B0
 /* AC134 800AB534 AFAA0038 */  sw         $t2, 0x38($sp)
 /* AC138 800AB538 8FAB004C */  lw         $t3, 0x4c($sp)
 /* AC13C 800AB53C 8FA50038 */  lw         $a1, 0x38($sp)
-/* AC140 800AB540 0C02B6F4 */  jal        func_800ADBD0
+/* AC140 800AB540 0C02B6F4 */  jal        alSynStopVoice
 /* AC144 800AB544 8D640014 */   lw        $a0, 0x14($t3)
 /* AC148 800AB548 8FAC004C */  lw         $t4, 0x4c($sp)
 /* AC14C 800AB54C 8FA50038 */  lw         $a1, 0x38($sp)
-/* AC150 800AB550 0C02B728 */  jal        func_800ADCA0
+/* AC150 800AB550 0C02B728 */  jal        alSynFreeVoice
 /* AC154 800AB554 8D840014 */   lw        $a0, 0x14($t4)
 /* AC158 800AB558 8FAD0038 */  lw         $t5, 0x38($sp)
 /* AC15C 800AB55C 8DAE0010 */  lw         $t6, 0x10($t5)
@@ -216,11 +216,11 @@ glabel func_800AB4B0
 /* AC16C 800AB56C 13000004 */  beqz       $t8, .L800AB580
 /* AC170 800AB570 00000000 */   nop
 /* AC174 800AB574 8FA4004C */  lw         $a0, 0x4c($sp)
-/* AC178 800AB578 0C02B56E */  jal        func_800AD5B8
+/* AC178 800AB578 0C02B56E */  jal        __seqpStopOsc
 /* AC17C 800AB57C 8FA50030 */   lw        $a1, 0x30($sp)
 .L800AB580:
 /* AC180 800AB580 8FA4004C */  lw         $a0, 0x4c($sp)
-/* AC184 800AB584 0C02B302 */  jal        func_800ACC08
+/* AC184 800AB584 0C02B302 */  jal        __unmapVoice
 /* AC188 800AB588 8FA50038 */   lw        $a1, 0x38($sp)
 /* AC18C 800AB58C 1000018C */  b          .L800ABBC0
 /* AC190 800AB590 00000000 */   nop
@@ -252,7 +252,7 @@ glabel func_800AB4B0
 /* AC1F4 800AB5F4 016C6821 */  addu       $t5, $t3, $t4
 /* AC1F8 800AB5F8 ADCD0024 */  sw         $t5, 0x24($t6)
 /* AC1FC 800AB5FC 8FA40030 */  lw         $a0, 0x30($sp)
-/* AC200 800AB600 0C02B3CE */  jal        func_800ACF38
+/* AC200 800AB600 0C02B3CE */  jal        __vsVol
 /* AC204 800AB604 8FA5004C */   lw        $a1, 0x4c($sp)
 /* AC208 800AB608 00028400 */  sll        $s0, $v0, 0x10
 /* AC20C 800AB60C 8FB8004C */  lw         $t8, 0x4c($sp)
@@ -261,7 +261,7 @@ glabel func_800AB4B0
 /* AC218 800AB618 02003025 */  or         $a2, $s0, $zero
 /* AC21C 800AB61C 8FA50038 */  lw         $a1, 0x38($sp)
 /* AC220 800AB620 8FA70034 */  lw         $a3, 0x34($sp)
-/* AC224 800AB624 0C02B768 */  jal        func_800ADDA0
+/* AC224 800AB624 0C02B768 */  jal        alSynSetVol
 /* AC228 800AB628 8F040014 */   lw        $a0, 0x14($t8)
 /* AC22C 800AB62C 10000164 */  b          .L800ABBC0
 /* AC230 800AB630 00000000 */   nop
@@ -320,14 +320,14 @@ glabel func_800AB4B0
 /* AC2F8 800AB6F8 A1CD0036 */  sb         $t5, 0x36($t6)
 /* AC2FC 800AB6FC 00000000 */  nop
 /* AC300 800AB700 8FA40030 */  lw         $a0, 0x30($sp)
-/* AC304 800AB704 0C02B3CE */  jal        func_800ACF38
+/* AC304 800AB704 0C02B3CE */  jal        __vsVol
 /* AC308 800AB708 8FA5004C */   lw        $a1, 0x4c($sp)
 /* AC30C 800AB70C 8FB8004C */  lw         $t8, 0x4c($sp)
 /* AC310 800AB710 00028400 */  sll        $s0, $v0, 0x10
 /* AC314 800AB714 00107C03 */  sra        $t7, $s0, 0x10
 /* AC318 800AB718 01E08025 */  or         $s0, $t7, $zero
 /* AC31C 800AB71C 8FA40030 */  lw         $a0, 0x30($sp)
-/* AC320 800AB720 0C02B3F9 */  jal        func_800ACFE4
+/* AC320 800AB720 0C02B3F9 */  jal        __vsDelta
 /* AC324 800AB724 8F05001C */   lw        $a1, 0x1c($t8)
 /* AC328 800AB728 8FA8004C */  lw         $t0, 0x4c($sp)
 /* AC32C 800AB72C 8FA50030 */  lw         $a1, 0x30($sp)
@@ -335,7 +335,7 @@ glabel func_800AB4B0
 /* AC334 800AB734 02203825 */  or         $a3, $s1, $zero
 /* AC338 800AB738 02003025 */  or         $a2, $s0, $zero
 /* AC33C 800AB73C 8D040014 */  lw         $a0, 0x14($t0)
-/* AC340 800AB740 0C02B768 */  jal        func_800ADDA0
+/* AC340 800AB740 0C02B768 */  jal        alSynSetVol
 /* AC344 800AB744 24A50004 */   addiu     $a1, $a1, 4
 /* AC348 800AB748 24090016 */  addiu      $t1, $zero, 0x16
 /* AC34C 800AB74C A7A9003C */  sh         $t1, 0x3c($sp)
@@ -346,7 +346,7 @@ glabel func_800AB4B0
 /* AC360 800AB760 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC364 800AB764 27A5003C */  addiu      $a1, $sp, 0x3c
 /* AC368 800AB768 8FA60034 */  lw         $a2, 0x34($sp)
-/* AC36C 800AB76C 0C02B620 */  jal        func_800AD880
+/* AC36C 800AB76C 0C02B620 */  jal        alEvtqPostEvent
 /* AC370 800AB770 24840048 */   addiu     $a0, $a0, 0x48
 /* AC374 800AB774 10000112 */  b          .L800ABBC0
 /* AC378 800AB778 00000000 */   nop
@@ -383,7 +383,7 @@ glabel func_800AB4B0
 /* AC3F4 800AB7F4 8D440014 */  lw         $a0, 0x14($t2)
 /* AC3F8 800AB7F8 46045182 */  mul.s      $f6, $f10, $f4
 /* AC3FC 800AB7FC 44063000 */  mfc1       $a2, $f6
-/* AC400 800AB800 0C02B7A4 */  jal        func_800ADE90
+/* AC400 800AB800 0C02B7A4 */  jal        alSynSetPitch
 /* AC404 800AB804 00000000 */   nop
 /* AC408 800AB808 24180017 */  addiu      $t8, $zero, 0x17
 /* AC40C 800AB80C A7B8003C */  sh         $t8, 0x3c($sp)
@@ -396,7 +396,7 @@ glabel func_800AB4B0
 /* AC428 800AB828 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC42C 800AB82C 27A5003C */  addiu      $a1, $sp, 0x3c
 /* AC430 800AB830 8FA60034 */  lw         $a2, 0x34($sp)
-/* AC434 800AB834 0C02B620 */  jal        func_800AD880
+/* AC434 800AB834 0C02B620 */  jal        alEvtqPostEvent
 /* AC438 800AB838 24840048 */   addiu     $a0, $a0, 0x48
 /* AC43C 800AB83C 100000E0 */  b          .L800ABBC0
 /* AC440 800AB840 00000000 */   nop
@@ -420,7 +420,7 @@ glabel func_800AB4B0
 /* AC488 800AB888 8FAB004C */  lw         $t3, 0x4c($sp)
 /* AC48C 800AB88C 240F0001 */  addiu      $t7, $zero, 1
 /* AC490 800AB890 AD6F002C */  sw         $t7, 0x2c($t3)
-/* AC494 800AB894 0C02AF09 */  jal        func_800ABC24
+/* AC494 800AB894 0C02AF09 */  jal        __postNextSeqEvent
 /* AC498 800AB898 8FA4004C */   lw        $a0, 0x4c($sp)
 .L800AB89C:
 /* AC49C 800AB89C 100000C8 */  b          .L800ABBC0
@@ -438,24 +438,24 @@ glabel func_800AB4B0
 /* AC4C8 800AB8C8 8FAA004C */  lw         $t2, 0x4c($sp)
 /* AC4CC 800AB8CC 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC4D0 800AB8D0 8D440014 */  lw         $a0, 0x14($t2)
-/* AC4D4 800AB8D4 0C02B6F4 */  jal        func_800ADBD0
+/* AC4D4 800AB8D4 0C02B6F4 */  jal        alSynStopVoice
 /* AC4D8 800AB8D8 24A50004 */   addiu     $a1, $a1, 4
 /* AC4DC 800AB8DC 8FAD004C */  lw         $t5, 0x4c($sp)
 /* AC4E0 800AB8E0 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC4E4 800AB8E4 8DA40014 */  lw         $a0, 0x14($t5)
-/* AC4E8 800AB8E8 0C02B728 */  jal        func_800ADCA0
+/* AC4E8 800AB8E8 0C02B728 */  jal        alSynFreeVoice
 /* AC4EC 800AB8EC 24A50004 */   addiu     $a1, $a1, 4
 /* AC4F0 800AB8F0 8FAC0030 */  lw         $t4, 0x30($sp)
 /* AC4F4 800AB8F4 918E0037 */  lbu        $t6, 0x37($t4)
 /* AC4F8 800AB8F8 11C00004 */  beqz       $t6, .L800AB90C
 /* AC4FC 800AB8FC 00000000 */   nop
 /* AC500 800AB900 8FA4004C */  lw         $a0, 0x4c($sp)
-/* AC504 800AB904 0C02B56E */  jal        func_800AD5B8
+/* AC504 800AB904 0C02B56E */  jal        __seqpStopOsc
 /* AC508 800AB908 8FA50030 */   lw        $a1, 0x30($sp)
 .L800AB90C:
 /* AC50C 800AB90C 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC510 800AB910 8FA4004C */  lw         $a0, 0x4c($sp)
-/* AC514 800AB914 0C02B302 */  jal        func_800ACC08
+/* AC514 800AB914 0C02B302 */  jal        __unmapVoice
 /* AC518 800AB918 24A50004 */   addiu     $a1, $a1, 4
 /* AC51C 800AB91C 8FAF004C */  lw         $t7, 0x4c($sp)
 /* AC520 800AB920 8DEB0064 */  lw         $t3, 0x64($t7)
@@ -476,11 +476,11 @@ glabel func_800AB4B0
 /* AC554 800AB954 00000000 */   nop
 /* AC558 800AB958 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC55C 800AB95C 00002825 */  or         $a1, $zero, $zero
-/* AC560 800AB960 0C02B6A4 */  jal        func_800ADA90
+/* AC560 800AB960 0C02B6A4 */  jal        alEvtqFlushType
 /* AC564 800AB964 24840048 */   addiu     $a0, $a0, 0x48
 /* AC568 800AB968 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC56C 800AB96C 24050002 */  addiu      $a1, $zero, 2
-/* AC570 800AB970 0C02B6A4 */  jal        func_800ADA90
+/* AC570 800AB970 0C02B6A4 */  jal        alEvtqFlushType
 /* AC574 800AB974 24840048 */   addiu     $a0, $a0, 0x48
 /* AC578 800AB978 8FAA004C */  lw         $t2, 0x4c($sp)
 /* AC57C 800AB97C 8D4D0064 */  lw         $t5, 0x64($t2)
@@ -490,14 +490,14 @@ glabel func_800AB4B0
 /* AC588 800AB988 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC58C 800AB98C 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC590 800AB990 3406C350 */  ori        $a2, $zero, 0xc350
-/* AC594 800AB994 0C02B487 */  jal        func_800AD21C
+/* AC594 800AB994 0C02B487 */  jal        __voiceNeedsNoteKill
 /* AC598 800AB998 24A50004 */   addiu     $a1, $a1, 4
 /* AC59C 800AB99C 10400006 */  beqz       $v0, .L800AB9B8
 /* AC5A0 800AB9A0 00000000 */   nop
 /* AC5A4 800AB9A4 8FA50030 */  lw         $a1, 0x30($sp)
 /* AC5A8 800AB9A8 8FA4004C */  lw         $a0, 0x4c($sp)
 /* AC5AC 800AB9AC 3406C350 */  ori        $a2, $zero, 0xc350
-/* AC5B0 800AB9B0 0C02B429 */  jal        func_800AD0A4
+/* AC5B0 800AB9B0 0C02B429 */  jal        __seqpReleaseVoice
 /* AC5B4 800AB9B4 24A50004 */   addiu     $a1, $a1, 4
 .L800AB9B8:
 /* AC5B8 800AB9B8 8FAC0030 */  lw         $t4, 0x30($sp)
@@ -514,7 +514,7 @@ glabel func_800AB4B0
 /* AC5E0 800AB9E0 3C067FFF */  lui        $a2, 0x7fff
 /* AC5E4 800AB9E4 34C6FFFF */  ori        $a2, $a2, 0xffff
 /* AC5E8 800AB9E8 27A5003C */  addiu      $a1, $sp, 0x3c
-/* AC5EC 800AB9EC 0C02B620 */  jal        func_800AD880
+/* AC5EC 800AB9EC 0C02B620 */  jal        alEvtqPostEvent
 /* AC5F0 800AB9F0 24840048 */   addiu     $a0, $a0, 0x48
 .L800AB9F4:
 /* AC5F4 800AB9F4 10000072 */  b          .L800ABBC0
@@ -528,14 +528,14 @@ glabel func_800AB4B0
 /* AC614 800ABA14 AFAA0030 */   sw        $t2, 0x30($sp)
 .L800ABA18:
 /* AC618 800ABA18 8FA40030 */  lw         $a0, 0x30($sp)
-/* AC61C 800ABA1C 0C02B3CE */  jal        func_800ACF38
+/* AC61C 800ABA1C 0C02B3CE */  jal        __vsVol
 /* AC620 800ABA20 8FA5004C */   lw        $a1, 0x4c($sp)
 /* AC624 800ABA24 8FAC004C */  lw         $t4, 0x4c($sp)
 /* AC628 800ABA28 00028400 */  sll        $s0, $v0, 0x10
 /* AC62C 800ABA2C 00106C03 */  sra        $t5, $s0, 0x10
 /* AC630 800ABA30 01A08025 */  or         $s0, $t5, $zero
 /* AC634 800ABA34 8FA40030 */  lw         $a0, 0x30($sp)
-/* AC638 800ABA38 0C02B3F9 */  jal        func_800ACFE4
+/* AC638 800ABA38 0C02B3F9 */  jal        __vsDelta
 /* AC63C 800ABA3C 8D85001C */   lw        $a1, 0x1c($t4)
 /* AC640 800ABA40 8FAE004C */  lw         $t6, 0x4c($sp)
 /* AC644 800ABA44 8FA50030 */  lw         $a1, 0x30($sp)
@@ -543,7 +543,7 @@ glabel func_800AB4B0
 /* AC64C 800ABA4C 02203825 */  or         $a3, $s1, $zero
 /* AC650 800ABA50 02003025 */  or         $a2, $s0, $zero
 /* AC654 800ABA54 8DC40014 */  lw         $a0, 0x14($t6)
-/* AC658 800ABA58 0C02B768 */  jal        func_800ADDA0
+/* AC658 800ABA58 0C02B768 */  jal        alSynSetVol
 /* AC65C 800ABA5C 24A50004 */   addiu     $a1, $a1, 4
 /* AC660 800ABA60 8FAF0030 */  lw         $t7, 0x30($sp)
 /* AC664 800ABA64 8DEB0000 */  lw         $t3, ($t7)
@@ -587,7 +587,7 @@ glabel func_800AB4B0
 /* AC6F4 800ABAF4 3C05800F */  lui        $a1, %hi(D_800EE004)
 /* AC6F8 800ABAF8 24A5E004 */  addiu      $a1, $a1, %lo(D_800EE004)
 /* AC6FC 800ABAFC 2484DFE8 */  addiu      $a0, $a0, %lo(D_800EDFE8)
-/* AC700 800ABB00 0C026E74 */  jal        func_8009B9D0
+/* AC700 800ABB00 0C026E74 */  jal        __assert
 /* AC704 800ABB04 24060128 */   addiu     $a2, $zero, 0x128
 .L800ABB08:
 /* AC708 800ABB08 8FAC004C */  lw         $t4, 0x4c($sp)
@@ -603,7 +603,7 @@ glabel func_800AB4B0
 /* AC730 800ABB30 00000000 */   nop
 /* AC734 800ABB34 8FB9004C */  lw         $t9, 0x4c($sp)
 /* AC738 800ABB38 03202025 */  or         $a0, $t9, $zero
-/* AC73C 800ABB3C 0C02B4CF */  jal        func_800AD33C
+/* AC73C 800ABB3C 0C02B4CF */  jal        __initFromBank
 /* AC740 800ABB40 8F250020 */   lw        $a1, 0x20($t9)
 .L800ABB44:
 /* AC744 800ABB44 1000001E */  b          .L800ABBC0
@@ -619,7 +619,7 @@ glabel func_800AB4B0
 /* AC768 800ABB68 3C05800F */  lui        $a1, %hi(D_800EE038)
 /* AC76C 800ABB6C 24A5E038 */  addiu      $a1, $a1, %lo(D_800EE038)
 /* AC770 800ABB70 2484E01C */  addiu      $a0, $a0, %lo(D_800EE01C)
-/* AC774 800ABB74 0C026E74 */  jal        func_8009B9D0
+/* AC774 800ABB74 0C026E74 */  jal        __assert
 /* AC778 800ABB78 24060131 */   addiu     $a2, $zero, 0x131
 .L800ABB7C:
 /* AC77C 800ABB7C 8FA8004C */  lw         $t0, 0x4c($sp)
@@ -627,7 +627,7 @@ glabel func_800AB4B0
 /* AC784 800ABB84 AD0D0020 */  sw         $t5, 0x20($t0)
 /* AC788 800ABB88 8FAA004C */  lw         $t2, 0x4c($sp)
 /* AC78C 800ABB8C 01402025 */  or         $a0, $t2, $zero
-/* AC790 800ABB90 0C02B4CF */  jal        func_800AD33C
+/* AC790 800ABB90 0C02B4CF */  jal        __initFromBank
 /* AC794 800ABB94 8D450020 */   lw        $a1, 0x20($t2)
 /* AC798 800ABB98 10000009 */  b          .L800ABBC0
 /* AC79C 800ABB9C 00000000 */   nop
@@ -635,14 +635,14 @@ glabel func_800AB4B0
 /* AC7A4 800ABBA4 3C05800F */  lui        $a1, %hi(D_800EE058)
 /* AC7A8 800ABBA8 24A5E058 */  addiu      $a1, $a1, %lo(D_800EE058)
 /* AC7AC 800ABBAC 2484E050 */  addiu      $a0, $a0, %lo(D_800EE050)
-/* AC7B0 800ABBB0 0C026E74 */  jal        func_8009B9D0
+/* AC7B0 800ABBB0 0C026E74 */  jal        __assert
 /* AC7B4 800ABBB4 2406013B */   addiu     $a2, $zero, 0x13b
 /* AC7B8 800ABBB8 10000001 */  b          .L800ABBC0
 /* AC7BC 800ABBBC 00000000 */   nop
 .L800ABBC0:
 /* AC7C0 800ABBC0 8FAE004C */  lw         $t6, 0x4c($sp)
 /* AC7C4 800ABBC4 25C40048 */  addiu      $a0, $t6, 0x48
-/* AC7C8 800ABBC8 0C02B5F7 */  jal        func_800AD7DC
+/* AC7C8 800ABBC8 0C02B5F7 */  jal        alEvtqNextEvent
 /* AC7CC 800ABBCC 25C50038 */   addiu     $a1, $t6, 0x38
 /* AC7D0 800ABBD0 8FAC004C */  lw         $t4, 0x4c($sp)
 /* AC7D4 800ABBD4 AD820028 */  sw         $v0, 0x28($t4)
@@ -667,7 +667,7 @@ glabel func_800AB4B0
 /* AC81C 800ABC1C 03E00008 */  jr         $ra
 /* AC820 800ABC20 27BD0050 */   addiu     $sp, $sp, 0x50
 
-glabel func_800ABC24
+glabel __postNextSeqEvent
 /* AC824 800ABC24 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* AC828 800ABC28 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AC82C 800ABC2C AFA40030 */  sw         $a0, 0x30($sp)
@@ -687,7 +687,7 @@ glabel func_800ABC24
 /* AC860 800ABC60 00000000 */   nop
 .L800ABC64:
 /* AC864 800ABC64 8FA40018 */  lw         $a0, 0x18($sp)
-/* AC868 800ABC68 0C02DDAE */  jal        func_800B76B8
+/* AC868 800ABC68 0C02DDAE */  jal        __alSeqNextDelta
 /* AC86C 800ABC6C 27A5001C */   addiu     $a1, $sp, 0x1c
 /* AC870 800ABC70 14400003 */  bnez       $v0, .L800ABC80
 /* AC874 800ABC74 00000000 */   nop
@@ -710,7 +710,7 @@ glabel func_800ABC24
 /* AC8B4 800ABCB4 00000000 */   nop
 /* AC8B8 800ABCB8 8FB80030 */  lw         $t8, 0x30($sp)
 /* AC8BC 800ABCBC 8FA40018 */  lw         $a0, 0x18($sp)
-/* AC8C0 800ABCC0 0C02DE8E */  jal        func_800B7A38
+/* AC8C0 800ABCC0 0C02DE8E */  jal        alSeqSetLoc
 /* AC8C4 800ABCC4 8F05007C */   lw        $a1, 0x7c($t8)
 /* AC8C8 800ABCC8 8FB90030 */  lw         $t9, 0x30($sp)
 /* AC8CC 800ABCCC 2401FFFF */  addiu      $at, $zero, -1
@@ -730,7 +730,7 @@ glabel func_800ABC24
 /* AC900 800ABD00 25A40048 */  addiu      $a0, $t5, 0x48
 /* AC904 800ABD04 01CC0019 */  multu      $t6, $t4
 /* AC908 800ABD08 00003012 */  mflo       $a2
-/* AC90C 800ABD0C 0C02B620 */  jal        func_800AD880
+/* AC90C 800ABD0C 0C02B620 */  jal        alEvtqPostEvent
 /* AC910 800ABD10 00000000 */   nop
 /* AC914 800ABD14 10000001 */  b          .L800ABD1C
 /* AC918 800ABD18 00000000 */   nop
@@ -754,7 +754,7 @@ glabel func_800ABD2C
 .L800ABD54:
 /* AC954 800ABD54 8FB80038 */  lw         $t8, 0x38($sp)
 /* AC958 800ABD58 27A50028 */  addiu      $a1, $sp, 0x28
-/* AC95C 800ABD5C 0C02DCEB */  jal        func_800B73AC
+/* AC95C 800ABD5C 0C02DCEB */  jal        alSeqNextEvent
 /* AC960 800ABD60 8F040018 */   lw        $a0, 0x18($t8)
 /* AC964 800ABD64 87B00028 */  lh         $s0, 0x28($sp)
 /* AC968 800ABD68 24010001 */  addiu      $at, $zero, 1
@@ -772,7 +772,7 @@ glabel func_800ABD2C
 /* AC994 800ABD94 8FA40038 */  lw         $a0, 0x38($sp)
 /* AC998 800ABD98 0C02AF8D */  jal        func_800ABE34
 /* AC99C 800ABD9C 27A50028 */   addiu     $a1, $sp, 0x28
-/* AC9A0 800ABDA0 0C02AF09 */  jal        func_800ABC24
+/* AC9A0 800ABDA0 0C02AF09 */  jal        __postNextSeqEvent
 /* AC9A4 800ABDA4 8FA40038 */   lw        $a0, 0x38($sp)
 /* AC9A8 800ABDA8 1000001B */  b          .L800ABE18
 /* AC9AC 800ABDAC 00000000 */   nop
@@ -780,7 +780,7 @@ glabel func_800ABD2C
 /* AC9B0 800ABDB0 8FA40038 */  lw         $a0, 0x38($sp)
 /* AC9B4 800ABDB4 0C02B2B3 */  jal        func_800ACACC
 /* AC9B8 800ABDB8 27A50028 */   addiu     $a1, $sp, 0x28
-/* AC9BC 800ABDBC 0C02AF09 */  jal        func_800ABC24
+/* AC9BC 800ABDBC 0C02AF09 */  jal        __postNextSeqEvent
 /* AC9C0 800ABDC0 8FA40038 */   lw        $a0, 0x38($sp)
 /* AC9C4 800ABDC4 10000014 */  b          .L800ABE18
 /* AC9C8 800ABDC8 00000000 */   nop
@@ -794,7 +794,7 @@ glabel func_800ABD2C
 /* AC9E4 800ABDE4 3C067FFF */  lui        $a2, 0x7fff
 /* AC9E8 800ABDE8 34C6FFFF */  ori        $a2, $a2, 0xffff
 /* AC9EC 800ABDEC 27A50028 */  addiu      $a1, $sp, 0x28
-/* AC9F0 800ABDF0 0C02B620 */  jal        func_800AD880
+/* AC9F0 800ABDF0 0C02B620 */  jal        alEvtqPostEvent
 /* AC9F4 800ABDF4 24840048 */   addiu     $a0, $a0, 0x48
 /* AC9F8 800ABDF8 10000007 */  b          .L800ABE18
 /* AC9FC 800ABDFC 00000000 */   nop
@@ -803,7 +803,7 @@ glabel func_800ABD2C
 /* ACA04 800ABE04 3C05800F */  lui        $a1, %hi(D_800EE078)
 /* ACA08 800ABE08 24A5E078 */  addiu      $a1, $a1, %lo(D_800EE078)
 /* ACA0C 800ABE0C 2484E070 */  addiu      $a0, $a0, %lo(D_800EE070)
-/* ACA10 800ABE10 0C026E74 */  jal        func_8009B9D0
+/* ACA10 800ABE10 0C026E74 */  jal        __assert
 /* ACA14 800ABE14 2406019C */   addiu     $a2, $zero, 0x19c
 .L800ABE18:
 /* ACA18 800ABE18 10000001 */  b          .L800ABE20
@@ -841,7 +841,7 @@ glabel func_800ABE34
 /* ACA84 800ABE84 3C05800F */  lui        $a1, %hi(D_800EE0D4)
 /* ACA88 800ABE88 24A5E0D4 */  addiu      $a1, $a1, %lo(D_800EE0D4)
 /* ACA8C 800ABE8C 2484E090 */  addiu      $a0, $a0, %lo(D_800EE090)
-/* ACA90 800ABE90 0C026E74 */  jal        func_8009B9D0
+/* ACA90 800ABE90 0C026E74 */  jal        __assert
 /* ACA94 800ABE94 240601B4 */   addiu     $a2, $zero, 0x1b4
 .L800ABE98:
 /* ACA98 800ABE98 8FA80090 */  lw         $t0, 0x90($sp)
@@ -885,7 +885,7 @@ glabel func_800ABE34
 /* ACB2C 800ABF2C 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* ACB30 800ABF30 93A5009A */  lbu        $a1, 0x9a($sp)
 /* ACB34 800ABF34 93A60099 */  lbu        $a2, 0x99($sp)
-/* ACB38 800ABF38 0C02B35F */  jal        func_800ACD7C
+/* ACB38 800ABF38 0C02B35F */  jal        __lookupSoundQuick
 /* ACB3C 800ABF3C 93A7009B */   lbu       $a3, 0x9b($sp)
 /* ACB40 800ABF40 AFA20060 */  sw         $v0, 0x60($sp)
 /* ACB44 800ABF44 8FAD0060 */  lw         $t5, 0x60($sp)
@@ -897,7 +897,7 @@ glabel func_800ABE34
 /* ACB5C 800ABF5C 13000004 */  beqz       $t8, .L800ABF70
 /* ACB60 800ABF60 00000000 */   nop
 /* ACB64 800ABF64 24040064 */  addiu      $a0, $zero, 0x64
-/* ACB68 800ABF68 0C0297B4 */  jal        func_800A5ED0
+/* ACB68 800ABF68 0C0297B4 */  jal        __osError
 /* ACB6C 800ABF6C 00002825 */   or        $a1, $zero, $zero
 .L800ABF70:
 /* ACB70 800ABF70 100002D1 */  b          .L800ACAB8
@@ -915,7 +915,7 @@ glabel func_800ABE34
 /* ACB9C 800ABF9C 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* ACBA0 800ABFA0 93A5009A */  lbu        $a1, 0x9a($sp)
 /* ACBA4 800ABFA4 93A60099 */  lbu        $a2, 0x99($sp)
-/* ACBA8 800ABFA8 0C02B2DB */  jal        func_800ACB6C
+/* ACBA8 800ABFA8 0C02B2DB */  jal        __mapVoice
 /* ACBAC 800ABFAC 93A7009B */   lbu       $a3, 0x9b($sp)
 /* ACBB0 800ABFB0 AFA20074 */  sw         $v0, 0x74($sp)
 /* ACBB4 800ABFB4 8FAD0074 */  lw         $t5, 0x74($sp)
@@ -927,7 +927,7 @@ glabel func_800ABE34
 /* ACBCC 800ABFCC 13000004 */  beqz       $t8, .L800ABFE0
 /* ACBD0 800ABFD0 00000000 */   nop
 /* ACBD4 800ABFD4 24040065 */  addiu      $a0, $zero, 0x65
-/* ACBD8 800ABFD8 0C0297B4 */  jal        func_800A5ED0
+/* ACBD8 800ABFD8 0C0297B4 */  jal        __osError
 /* ACBDC 800ABFDC 00002825 */   or        $a1, $zero, $zero
 .L800ABFE0:
 /* ACBE0 800ABFE0 100002B5 */  b          .L800ACAB8
@@ -939,7 +939,7 @@ glabel func_800ABE34
 /* ACBF4 800ABFF4 8FA800A8 */  lw         $t0, 0xa8($sp)
 /* ACBF8 800ABFF8 8FA500A4 */  lw         $a1, 0xa4($sp)
 /* ACBFC 800ABFFC 27A60064 */  addiu      $a2, $sp, 0x64
-/* ACC00 800AC000 0C02B7DC */  jal        func_800ADF70
+/* ACC00 800AC000 0C02B7DC */  jal        alSynAllocVoice
 /* ACC04 800AC004 8D040014 */   lw        $a0, 0x14($t0)
 /* ACC08 800AC008 8FAA0060 */  lw         $t2, 0x60($sp)
 /* ACC0C 800AC00C 8FAB0074 */  lw         $t3, 0x74($sp)
@@ -976,7 +976,7 @@ glabel func_800ABE34
 /* ACC80 800AC080 0019C880 */  sll        $t9, $t9, 2
 /* ACC84 800AC084 03294021 */  addu       $t0, $t9, $t1
 /* ACC88 800AC088 A7A8005E */  sh         $t0, 0x5e($sp)
-/* ACC8C 800AC08C 0C02B8B4 */  jal        func_800AE2D0
+/* ACC8C 800AC08C 0C02B8B4 */  jal        alCents2Ratio
 /* ACC90 800AC090 87A4005E */   lh        $a0, 0x5e($sp)
 /* ACC94 800AC094 8FAA0074 */  lw         $t2, 0x74($sp)
 /* ACC98 800AC098 E5400028 */  swc1       $f0, 0x28($t2)
@@ -1040,7 +1040,7 @@ glabel func_800ABE34
 /* ACD80 800AC180 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* ACD84 800AC184 27A5007C */  addiu      $a1, $sp, 0x7c
 /* ACD88 800AC188 8FA60078 */  lw         $a2, 0x78($sp)
-/* ACD8C 800AC18C 0C02B620 */  jal        func_800AD880
+/* ACD8C 800AC18C 0C02B620 */  jal        alEvtqPostEvent
 /* ACD90 800AC190 24840048 */   addiu     $a0, $a0, 0x48
 /* ACD94 800AC194 8FAB0074 */  lw         $t3, 0x74($sp)
 /* ACD98 800AC198 916D0037 */  lbu        $t5, 0x37($t3)
@@ -1128,7 +1128,7 @@ glabel func_800ABE34
 /* ACED0 800AC2D0 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* ACED4 800AC2D4 27A5007C */  addiu      $a1, $sp, 0x7c
 /* ACED8 800AC2D8 8FA60078 */  lw         $a2, 0x78($sp)
-/* ACEDC 800AC2DC 0C02B620 */  jal        func_800AD880
+/* ACEDC 800AC2DC 0C02B620 */  jal        alEvtqPostEvent
 /* ACEE0 800AC2E0 24840048 */   addiu     $a0, $a0, 0x48
 /* ACEE4 800AC2E4 8FB80074 */  lw         $t8, 0x74($sp)
 /* ACEE8 800AC2E8 930D0037 */  lbu        $t5, 0x37($t8)
@@ -1159,11 +1159,11 @@ glabel func_800ABE34
 /* ACF48 800AC348 9329000A */  lbu        $t1, 0xa($t9)
 /* ACF4C 800AC34C A3A90053 */  sb         $t1, 0x53($sp)
 /* ACF50 800AC350 8FA40074 */  lw         $a0, 0x74($sp)
-/* ACF54 800AC354 0C02B40A */  jal        func_800AD028
+/* ACF54 800AC354 0C02B40A */  jal        __vsPan
 /* ACF58 800AC358 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* ACF5C 800AC35C A3A20073 */  sb         $v0, 0x73($sp)
 /* ACF60 800AC360 8FA40074 */  lw         $a0, 0x74($sp)
-/* ACF64 800AC364 0C02B3CE */  jal        func_800ACF38
+/* ACF64 800AC364 0C02B3CE */  jal        __vsVol
 /* ACF68 800AC368 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* ACF6C 800AC36C A7A2008E */  sh         $v0, 0x8e($sp)
 /* ACF70 800AC370 8FAE0060 */  lw         $t6, 0x60($sp)
@@ -1183,7 +1183,7 @@ glabel func_800ABE34
 /* ACFA8 800AC3A8 AFB80010 */  sw         $t8, 0x10($sp)
 /* ACFAC 800AC3AC AFAB0014 */  sw         $t3, 0x14($sp)
 /* ACFB0 800AC3B0 AFAC0018 */  sw         $t4, 0x18($sp)
-/* ACFB4 800AC3B4 0C02B8DC */  jal        func_800AE370
+/* ACFB4 800AC3B4 0C02B8DC */  jal        alSynStartVoiceParams
 /* ACFB8 800AC3B8 AFB9001C */   sw        $t9, 0x1c($sp)
 /* ACFBC 800AC3BC 24090006 */  addiu      $t1, $zero, 6
 /* ACFC0 800AC3C0 A7A9007C */  sh         $t1, 0x7c($sp)
@@ -1204,14 +1204,14 @@ glabel func_800ABE34
 /* ACFFC 800AC3FC 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* AD000 800AC400 27A5007C */  addiu      $a1, $sp, 0x7c
 /* AD004 800AC404 8FA60078 */  lw         $a2, 0x78($sp)
-/* AD008 800AC408 0C02B620 */  jal        func_800AD880
+/* AD008 800AC408 0C02B620 */  jal        alEvtqPostEvent
 /* AD00C 800AC40C 24840048 */   addiu     $a0, $a0, 0x48
 /* AD010 800AC410 100001A7 */  b          .L800ACAB0
 /* AD014 800AC414 00000000 */   nop
 .L800AC418:
 /* AD018 800AC418 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* AD01C 800AC41C 93A5009A */  lbu        $a1, 0x9a($sp)
-/* AD020 800AC420 0C02B33D */  jal        func_800ACCF4
+/* AD020 800AC420 0C02B33D */  jal        __lookupVoice
 /* AD024 800AC424 93A6009B */   lbu       $a2, 0x9b($sp)
 /* AD028 800AC428 AFA20074 */  sw         $v0, 0x74($sp)
 /* AD02C 800AC42C 8FAE0074 */  lw         $t6, 0x74($sp)
@@ -1223,7 +1223,7 @@ glabel func_800ABE34
 /* AD044 800AC444 11400004 */  beqz       $t2, .L800AC458
 /* AD048 800AC448 00000000 */   nop
 /* AD04C 800AC44C 24040067 */  addiu      $a0, $zero, 0x67
-/* AD050 800AC450 0C0297B4 */  jal        func_800A5ED0
+/* AD050 800AC450 0C0297B4 */  jal        __osError
 /* AD054 800AC454 00002825 */   or        $a1, $zero, $zero
 .L800AC458:
 /* AD058 800AC458 10000197 */  b          .L800ACAB8
@@ -1247,21 +1247,21 @@ glabel func_800ABE34
 /* AD098 800AC498 8DCF0020 */  lw         $t7, 0x20($t6)
 /* AD09C 800AC49C 25C50004 */  addiu      $a1, $t6, 4
 /* AD0A0 800AC4A0 8DE80000 */  lw         $t0, ($t7)
-/* AD0A4 800AC4A4 0C02B429 */  jal        func_800AD0A4
+/* AD0A4 800AC4A4 0C02B429 */  jal        __seqpReleaseVoice
 /* AD0A8 800AC4A8 8D060008 */   lw        $a2, 8($t0)
 .L800AC4AC:
 /* AD0AC 800AC4AC 10000180 */  b          .L800ACAB0
 /* AD0B0 800AC4B0 00000000 */   nop
 /* AD0B4 800AC4B4 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* AD0B8 800AC4B8 93A5009A */  lbu        $a1, 0x9a($sp)
-/* AD0BC 800AC4BC 0C02B33D */  jal        func_800ACCF4
+/* AD0BC 800AC4BC 0C02B33D */  jal        __lookupVoice
 /* AD0C0 800AC4C0 93A6009B */   lbu       $a2, 0x9b($sp)
 /* AD0C4 800AC4C4 AFA20074 */  sw         $v0, 0x74($sp)
 /* AD0C8 800AC4C8 8FAA0074 */  lw         $t2, 0x74($sp)
 /* AD0CC 800AC4CC 15400006 */  bnez       $t2, .L800AC4E8
 /* AD0D0 800AC4D0 00000000 */   nop
 /* AD0D4 800AC4D4 24040068 */  addiu      $a0, $zero, 0x68
-/* AD0D8 800AC4D8 0C0297B4 */  jal        func_800A5ED0
+/* AD0D8 800AC4D8 0C0297B4 */  jal        __osError
 /* AD0DC 800AC4DC 00002825 */   or        $a1, $zero, $zero
 /* AD0E0 800AC4E0 10000175 */  b          .L800ACAB8
 /* AD0E4 800AC4E4 00000000 */   nop
@@ -1270,14 +1270,14 @@ glabel func_800ABE34
 /* AD0EC 800AC4EC 8FB80074 */  lw         $t8, 0x74($sp)
 /* AD0F0 800AC4F0 A30D0033 */  sb         $t5, 0x33($t8)
 /* AD0F4 800AC4F4 8FA40074 */  lw         $a0, 0x74($sp)
-/* AD0F8 800AC4F8 0C02B3CE */  jal        func_800ACF38
+/* AD0F8 800AC4F8 0C02B3CE */  jal        __vsVol
 /* AD0FC 800AC4FC 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* AD100 800AC500 8FAC00A8 */  lw         $t4, 0xa8($sp)
 /* AD104 800AC504 00028C00 */  sll        $s1, $v0, 0x10
 /* AD108 800AC508 00115C03 */  sra        $t3, $s1, 0x10
 /* AD10C 800AC50C 01608825 */  or         $s1, $t3, $zero
 /* AD110 800AC510 8FA40074 */  lw         $a0, 0x74($sp)
-/* AD114 800AC514 0C02B3F9 */  jal        func_800ACFE4
+/* AD114 800AC514 0C02B3F9 */  jal        __vsDelta
 /* AD118 800AC518 8D85001C */   lw        $a1, 0x1c($t4)
 /* AD11C 800AC51C 8FB900A8 */  lw         $t9, 0xa8($sp)
 /* AD120 800AC520 8FA50074 */  lw         $a1, 0x74($sp)
@@ -1285,7 +1285,7 @@ glabel func_800ABE34
 /* AD128 800AC528 02003825 */  or         $a3, $s0, $zero
 /* AD12C 800AC52C 02203025 */  or         $a2, $s1, $zero
 /* AD130 800AC530 8F240014 */  lw         $a0, 0x14($t9)
-/* AD134 800AC534 0C02B768 */  jal        func_800ADDA0
+/* AD134 800AC534 0C02B768 */  jal        alSynSetVol
 /* AD138 800AC538 24A50004 */   addiu     $a1, $a1, 4
 /* AD13C 800AC53C 1000015C */  b          .L800ACAB0
 /* AD140 800AC540 00000000 */   nop
@@ -1303,14 +1303,14 @@ glabel func_800ABE34
 /* AD16C 800AC56C 8FB800A0 */  lw         $t8, 0xa0($sp)
 /* AD170 800AC570 A30D0033 */  sb         $t5, 0x33($t8)
 /* AD174 800AC574 8FA400A0 */  lw         $a0, 0xa0($sp)
-/* AD178 800AC578 0C02B3CE */  jal        func_800ACF38
+/* AD178 800AC578 0C02B3CE */  jal        __vsVol
 /* AD17C 800AC57C 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* AD180 800AC580 8FAC00A8 */  lw         $t4, 0xa8($sp)
 /* AD184 800AC584 00028C00 */  sll        $s1, $v0, 0x10
 /* AD188 800AC588 00115C03 */  sra        $t3, $s1, 0x10
 /* AD18C 800AC58C 01608825 */  or         $s1, $t3, $zero
 /* AD190 800AC590 8FA400A0 */  lw         $a0, 0xa0($sp)
-/* AD194 800AC594 0C02B3F9 */  jal        func_800ACFE4
+/* AD194 800AC594 0C02B3F9 */  jal        __vsDelta
 /* AD198 800AC598 8D85001C */   lw        $a1, 0x1c($t4)
 /* AD19C 800AC59C 8FB900A8 */  lw         $t9, 0xa8($sp)
 /* AD1A0 800AC5A0 8FA500A0 */  lw         $a1, 0xa0($sp)
@@ -1318,7 +1318,7 @@ glabel func_800ABE34
 /* AD1A8 800AC5A8 02003825 */  or         $a3, $s0, $zero
 /* AD1AC 800AC5AC 02203025 */  or         $a2, $s1, $zero
 /* AD1B0 800AC5B0 8F240014 */  lw         $a0, 0x14($t9)
-/* AD1B4 800AC5B4 0C02B768 */  jal        func_800ADDA0
+/* AD1B4 800AC5B4 0C02B768 */  jal        alSynSetVol
 /* AD1B8 800AC5B8 24A50004 */   addiu     $a1, $a1, 4
 .L800AC5BC:
 /* AD1BC 800AC5BC 8FA900A0 */  lw         $t1, 0xa0($sp)
@@ -1378,14 +1378,14 @@ glabel func_800ABE34
 /* AD284 800AC684 15EA000B */  bne        $t7, $t2, .L800AC6B4
 /* AD288 800AC688 00000000 */   nop
 /* AD28C 800AC68C 8FA400A0 */  lw         $a0, 0xa0($sp)
-/* AD290 800AC690 0C02B40A */  jal        func_800AD028
+/* AD290 800AC690 0C02B40A */  jal        __vsPan
 /* AD294 800AC694 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* AD298 800AC698 A3A20073 */  sb         $v0, 0x73($sp)
 /* AD29C 800AC69C 8FB800A8 */  lw         $t8, 0xa8($sp)
 /* AD2A0 800AC6A0 8FA500A0 */  lw         $a1, 0xa0($sp)
 /* AD2A4 800AC6A4 93A60073 */  lbu        $a2, 0x73($sp)
 /* AD2A8 800AC6A8 8F040014 */  lw         $a0, 0x14($t8)
-/* AD2AC 800AC6AC 0C02B930 */  jal        func_800AE4C0
+/* AD2AC 800AC6AC 0C02B930 */  jal        alSynSetPan
 /* AD2B0 800AC6B0 24A50004 */   addiu     $a1, $a1, 4
 .L800AC6B4:
 /* AD2B4 800AC6B4 8FAD00A0 */  lw         $t5, 0xa0($sp)
@@ -1417,12 +1417,12 @@ glabel func_800ABE34
 /* AD314 800AC714 11210011 */  beq        $t1, $at, .L800AC75C
 /* AD318 800AC718 00000000 */   nop
 /* AD31C 800AC71C 8FA400A0 */  lw         $a0, 0xa0($sp)
-/* AD320 800AC720 0C02B3CE */  jal        func_800ACF38
+/* AD320 800AC720 0C02B3CE */  jal        __vsVol
 /* AD324 800AC724 8FA500A8 */   lw        $a1, 0xa8($sp)
 /* AD328 800AC728 A7A2008E */  sh         $v0, 0x8e($sp)
 /* AD32C 800AC72C 8FB900A8 */  lw         $t9, 0xa8($sp)
 /* AD330 800AC730 8FA400A0 */  lw         $a0, 0xa0($sp)
-/* AD334 800AC734 0C02B3F9 */  jal        func_800ACFE4
+/* AD334 800AC734 0C02B3F9 */  jal        __vsDelta
 /* AD338 800AC738 8F25001C */   lw        $a1, 0x1c($t9)
 /* AD33C 800AC73C 8FAE00A8 */  lw         $t6, 0xa8($sp)
 /* AD340 800AC740 8FA500A0 */  lw         $a1, 0xa0($sp)
@@ -1430,7 +1430,7 @@ glabel func_800ABE34
 /* AD348 800AC748 02003825 */  or         $a3, $s0, $zero
 /* AD34C 800AC74C 87A6008E */  lh         $a2, 0x8e($sp)
 /* AD350 800AC750 8DC40014 */  lw         $a0, 0x14($t6)
-/* AD354 800AC754 0C02B768 */  jal        func_800ADDA0
+/* AD354 800AC754 0C02B768 */  jal        alSynSetVol
 /* AD358 800AC758 24A50004 */   addiu     $a1, $a1, 4
 .L800AC75C:
 /* AD35C 800AC75C 8FA800A0 */  lw         $t0, 0xa0($sp)
@@ -1508,7 +1508,7 @@ glabel func_800ABE34
 /* AD464 800AC864 8F2C0020 */  lw         $t4, 0x20($t9)
 /* AD468 800AC868 27250004 */  addiu      $a1, $t9, 4
 /* AD46C 800AC86C 8D8B0000 */  lw         $t3, ($t4)
-/* AD470 800AC870 0C02B429 */  jal        func_800AD0A4
+/* AD470 800AC870 0C02B429 */  jal        __seqpReleaseVoice
 /* AD474 800AC874 8D660008 */   lw        $a2, 8($t3)
 .L800AC878:
 /* AD478 800AC878 8FAD00A0 */  lw         $t5, 0xa0($sp)
@@ -1540,7 +1540,7 @@ glabel func_800ABE34
 /* AD4D4 800AC8D4 8FA500A0 */  lw         $a1, 0xa0($sp)
 /* AD4D8 800AC8D8 93A60097 */  lbu        $a2, 0x97($sp)
 /* AD4DC 800AC8DC 8D040014 */  lw         $a0, 0x14($t0)
-/* AD4E0 800AC8E0 0C02B968 */  jal        func_800AE5A0
+/* AD4E0 800AC8E0 0C02B968 */  jal        alSynSetFXMix
 /* AD4E4 800AC8E4 24A50004 */   addiu     $a1, $a1, 4
 .L800AC8E8:
 /* AD4E8 800AC8E8 8FAF00A0 */  lw         $t7, 0xa0($sp)
@@ -1567,7 +1567,7 @@ glabel func_800ABE34
 /* AD52C 800AC92C 3C05800F */  lui        $a1, %hi(D_800EE100)
 /* AD530 800AC930 24A5E100 */  addiu      $a1, $a1, %lo(D_800EE100)
 /* AD534 800AC934 2484E0EC */  addiu      $a0, $a0, %lo(D_800EE0EC)
-/* AD538 800AC938 0C026E74 */  jal        func_8009B9D0
+/* AD538 800AC938 0C026E74 */  jal        __assert
 /* AD53C 800AC93C 240602CA */   addiu     $a2, $zero, 0x2ca
 .L800AC940:
 /* AD540 800AC940 8FAB00A8 */  lw         $t3, 0xa8($sp)
@@ -1586,7 +1586,7 @@ glabel func_800ABE34
 /* AD574 800AC974 AFB90044 */  sw         $t9, 0x44($sp)
 /* AD578 800AC978 8FA400A8 */  lw         $a0, 0xa8($sp)
 /* AD57C 800AC97C 8FA50044 */  lw         $a1, 0x44($sp)
-/* AD580 800AC980 0C02B509 */  jal        func_800AD424
+/* AD580 800AC980 0C02B509 */  jal        __setInstChanState
 /* AD584 800AC984 93A6009B */   lbu       $a2, 0x9b($sp)
 /* AD588 800AC988 10000008 */  b          .L800AC9AC
 /* AD58C 800AC98C 00000000 */   nop
@@ -1596,7 +1596,7 @@ glabel func_800ABE34
 /* AD598 800AC998 24050002 */  addiu      $a1, $zero, 2
 /* AD59C 800AC99C 8D6D0020 */  lw         $t5, 0x20($t3)
 /* AD5A0 800AC9A0 93A6009A */  lbu        $a2, 0x9a($sp)
-/* AD5A4 800AC9A4 0C0297B4 */  jal        func_800A5ED0
+/* AD5A4 800AC9A4 0C0297B4 */  jal        __osError
 /* AD5A8 800AC9A8 85A70000 */   lh        $a3, ($t5)
 .L800AC9AC:
 /* AD5AC 800AC9AC 10000040 */  b          .L800ACAB0
@@ -1622,7 +1622,7 @@ glabel func_800ABE34
 /* AD5FC 800AC9FC 00017B43 */  sra        $t7, $at, 0xd
 .L800ACA00:
 /* AD600 800ACA00 AFAF0038 */  sw         $t7, 0x38($sp)
-/* AD604 800ACA04 0C02B8B4 */  jal        func_800AE2D0
+/* AD604 800ACA04 0C02B8B4 */  jal        alCents2Ratio
 /* AD608 800ACA08 8FA40038 */   lw        $a0, 0x38($sp)
 /* AD60C 800ACA0C E7A0003C */  swc1       $f0, 0x3c($sp)
 /* AD610 800ACA10 8FA800A8 */  lw         $t0, 0xa8($sp)
@@ -1652,7 +1652,7 @@ glabel func_800ABE34
 /* AD66C 800ACA6C 8D040014 */  lw         $a0, 0x14($t0)
 /* AD670 800ACA70 46083282 */  mul.s      $f10, $f6, $f8
 /* AD674 800ACA74 44065000 */  mfc1       $a2, $f10
-/* AD678 800ACA78 0C02B7A4 */  jal        func_800ADE90
+/* AD678 800ACA78 0C02B7A4 */  jal        alSynSetPitch
 /* AD67C 800ACA7C 00000000 */   nop
 .L800ACA80:
 /* AD680 800ACA80 8FB800A0 */  lw         $t8, 0xa0($sp)
@@ -1665,7 +1665,7 @@ glabel func_800ABE34
 .L800ACA98:
 /* AD698 800ACA98 2404007A */  addiu      $a0, $zero, 0x7a
 /* AD69C 800ACA9C 24050001 */  addiu      $a1, $zero, 1
-/* AD6A0 800ACAA0 0C0297B4 */  jal        func_800A5ED0
+/* AD6A0 800ACAA0 0C0297B4 */  jal        __osError
 /* AD6A4 800ACAA4 8FA6009C */   lw        $a2, 0x9c($sp)
 /* AD6A8 800ACAA8 10000001 */  b          .L800ACAB0
 /* AD6AC 800ACAAC 00000000 */   nop
@@ -1723,7 +1723,7 @@ glabel func_800ACACC
 /* AD764 800ACB64 03E00008 */  jr         $ra
 /* AD768 800ACB68 00000000 */   nop
 
-glabel func_800ACB6C
+glabel __mapVoice
 /* AD76C 800ACB6C 27BDFFF8 */  addiu      $sp, $sp, -8
 /* AD770 800ACB70 30A500FF */  andi       $a1, $a1, 0xff
 /* AD774 800ACB74 30C600FF */  andi       $a2, $a2, 0xff
@@ -1768,7 +1768,7 @@ glabel func_800ACB6C
 /* AD800 800ACC00 03E00008 */  jr         $ra
 /* AD804 800ACC04 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800ACC08
+glabel __unmapVoice
 /* AD808 800ACC08 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AD80C 800ACC0C AFBF0014 */  sw         $ra, 0x14($sp)
 /* AD810 800ACC10 AFA40020 */  sw         $a0, 0x20($sp)
@@ -1826,7 +1826,7 @@ glabel func_800ACC08
 .L800ACCCC:
 /* AD8CC 800ACCCC 2404007B */  addiu      $a0, $zero, 0x7b
 /* AD8D0 800ACCD0 24050001 */  addiu      $a1, $zero, 1
-/* AD8D4 800ACCD4 0C0297B4 */  jal        func_800A5ED0
+/* AD8D4 800ACCD4 0C0297B4 */  jal        __osError
 /* AD8D8 800ACCD8 8FA60024 */   lw        $a2, 0x24($sp)
 /* AD8DC 800ACCDC 10000001 */  b          .L800ACCE4
 /* AD8E0 800ACCE0 00000000 */   nop
@@ -1836,7 +1836,7 @@ glabel func_800ACC08
 /* AD8EC 800ACCEC 03E00008 */  jr         $ra
 /* AD8F0 800ACCF0 00000000 */   nop
 
-glabel func_800ACCF4
+glabel __lookupVoice
 /* AD8F4 800ACCF4 27BDFFF8 */  addiu      $sp, $sp, -8
 /* AD8F8 800ACCF8 30A500FF */  andi       $a1, $a1, 0xff
 /* AD8FC 800ACCFC 30C600FF */  andi       $a2, $a2, 0xff
@@ -1876,7 +1876,7 @@ glabel func_800ACCF4
 /* AD974 800ACD74 03E00008 */  jr         $ra
 /* AD978 800ACD78 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800ACD7C
+glabel __lookupSoundQuick
 /* AD97C 800ACD7C 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* AD980 800ACD80 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AD984 800ACD84 AFA40030 */  sw         $a0, 0x30($sp)
@@ -1901,11 +1901,11 @@ glabel func_800ACD7C
 /* AD9D0 800ACDD0 10000007 */  b          .L800ACDF0
 /* AD9D4 800ACDD4 00000000 */   nop
 .L800ACDD8:
-/* AD9D8 800ACDD8 3C04800F */  lui        $a0, %hi(D_800EE118)
-/* AD9DC 800ACDDC 3C05800F */  lui        $a1, %hi(D_800EE128)
-/* AD9E0 800ACDE0 24A5E128 */  addiu      $a1, $a1, %lo(D_800EE128)
-/* AD9E4 800ACDE4 2484E118 */  addiu      $a0, $a0, %lo(D_800EE118)
-/* AD9E8 800ACDE8 0C026E74 */  jal        func_8009B9D0
+/* AD9D8 800ACDD8 3C04800F */  lui        $a0, %hi(seqplayer_rodata_0178)
+/* AD9DC 800ACDDC 3C05800F */  lui        $a1, %hi(seqplayer_rodata_0188)
+/* AD9E0 800ACDE0 24A5E128 */  addiu      $a1, $a1, %lo(seqplayer_rodata_0188)
+/* AD9E4 800ACDE4 2484E118 */  addiu      $a0, $a0, %lo(seqplayer_rodata_0178)
+/* AD9E8 800ACDE8 0C026E74 */  jal        __assert
 /* AD9EC 800ACDEC 24060376 */   addiu     $a2, $zero, 0x376
 .L800ACDF0:
 /* AD9F0 800ACDF0 8FAE0024 */  lw         $t6, 0x24($sp)
@@ -1999,7 +1999,7 @@ glabel func_800ACD7C
 /* ADB30 800ACF30 03E00008 */  jr         $ra
 /* ADB34 800ACF34 00000000 */   nop
 
-glabel func_800ACF38
+glabel __vsVol
 /* ADB38 800ACF38 27BDFFF8 */  addiu      $sp, $sp, -8
 /* ADB3C 800ACF3C 908E0036 */  lbu        $t6, 0x36($a0)
 /* ADB40 800ACF40 908F0033 */  lbu        $t7, 0x33($a0)
@@ -2045,7 +2045,7 @@ glabel func_800ACF38
 /* ADBDC 800ACFDC 03E00008 */  jr         $ra
 /* ADBE0 800ACFE0 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800ACFE4
+glabel __vsDelta
 /* ADBE4 800ACFE4 27BDFFF8 */  addiu      $sp, $sp, -8
 /* ADBE8 800ACFE8 8C8E0024 */  lw         $t6, 0x24($a0)
 /* ADBEC 800ACFEC 01C57823 */  subu       $t7, $t6, $a1
@@ -2067,7 +2067,7 @@ glabel func_800ACFE4
 /* ADC20 800AD020 03E00008 */  jr         $ra
 /* ADC24 800AD024 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800AD028
+glabel __vsPan
 /* ADC28 800AD028 27BDFFF8 */  addiu      $sp, $sp, -8
 /* ADC2C 800AD02C 908F0031 */  lbu        $t7, 0x31($a0)
 /* ADC30 800AD030 8CAE0060 */  lw         $t6, 0x60($a1)
@@ -2105,7 +2105,7 @@ glabel func_800AD028
 /* ADC9C 800AD09C 03E00008 */  jr         $ra
 /* ADCA0 800AD0A0 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800AD0A4
+glabel __seqpReleaseVoice
 /* ADCA4 800AD0A4 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* ADCA8 800AD0A8 AFBF0014 */  sw         $ra, 0x14($sp)
 /* ADCAC 800AD0AC AFA40040 */  sw         $a0, 0x40($sp)
@@ -2152,11 +2152,11 @@ glabel func_800AD0A4
 /* ADD4C 800AD14C 018E7821 */  addu       $t7, $t4, $t6
 /* ADD50 800AD150 AD6F0008 */  sw         $t7, 8($t3)
 .L800AD154:
-/* ADD54 800AD154 0C026EBB */  jal        func_8009BAEC
+/* ADD54 800AD154 0C026EBB */  jal        alUnlink
 /* ADD58 800AD158 8FA40028 */   lw        $a0, 0x28($sp)
 /* ADD5C 800AD15C 8FA50040 */  lw         $a1, 0x40($sp)
 /* ADD60 800AD160 8FA40028 */  lw         $a0, 0x28($sp)
-/* ADD64 800AD164 0C026EAE */  jal        func_8009BAB8
+/* ADD64 800AD164 0C026EAE */  jal        alLink
 /* ADD68 800AD168 24A50048 */   addiu     $a1, $a1, 0x48
 .L800AD16C:
 /* ADD6C 800AD16C 8FB80024 */  lw         $t8, 0x24($sp)
@@ -2181,13 +2181,13 @@ glabel func_800AD0A4
 /* ADDB4 800AD1B4 8FB90040 */  lw         $t9, 0x40($sp)
 /* ADDB8 800AD1B8 8FA50044 */  lw         $a1, 0x44($sp)
 /* ADDBC 800AD1BC 00003025 */  or         $a2, $zero, $zero
-/* ADDC0 800AD1C0 0C02DF14 */  jal        func_800B7C50
+/* ADDC0 800AD1C0 0C02DF14 */  jal        alSynSetPriority
 /* ADDC4 800AD1C4 8F240014 */   lw        $a0, 0x14($t9)
 /* ADDC8 800AD1C8 8FA80040 */  lw         $t0, 0x40($sp)
 /* ADDCC 800AD1CC 8FA50044 */  lw         $a1, 0x44($sp)
 /* ADDD0 800AD1D0 00003025 */  or         $a2, $zero, $zero
 /* ADDD4 800AD1D4 8FA70048 */  lw         $a3, 0x48($sp)
-/* ADDD8 800AD1D8 0C02B768 */  jal        func_800ADDA0
+/* ADDD8 800AD1D8 0C02B768 */  jal        alSynSetVol
 /* ADDDC 800AD1DC 8D040014 */   lw        $a0, 0x14($t0)
 /* ADDE0 800AD1E0 24090005 */  addiu      $t1, $zero, 5
 /* ADDE4 800AD1E4 A7A90030 */  sh         $t1, 0x30($sp)
@@ -2196,7 +2196,7 @@ glabel func_800AD0A4
 /* ADDF0 800AD1F0 8FA40040 */  lw         $a0, 0x40($sp)
 /* ADDF4 800AD1F4 27A50030 */  addiu      $a1, $sp, 0x30
 /* ADDF8 800AD1F8 8FA60048 */  lw         $a2, 0x48($sp)
-/* ADDFC 800AD1FC 0C02B620 */  jal        func_800AD880
+/* ADDFC 800AD1FC 0C02B620 */  jal        alEvtqPostEvent
 /* ADE00 800AD200 24840048 */   addiu     $a0, $a0, 0x48
 /* ADE04 800AD204 10000001 */  b          .L800AD20C
 /* ADE08 800AD208 00000000 */   nop
@@ -2206,7 +2206,7 @@ glabel func_800AD0A4
 /* ADE14 800AD214 03E00008 */  jr         $ra
 /* ADE18 800AD218 00000000 */   nop
 
-glabel func_800AD21C
+glabel __voiceNeedsNoteKill
 /* ADE1C 800AD21C 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* ADE20 800AD220 AFBF0014 */  sw         $ra, 0x14($sp)
 /* ADE24 800AD224 AFA40030 */  sw         $a0, 0x30($sp)
@@ -2257,11 +2257,11 @@ glabel func_800AD21C
 /* ADED4 800AD2D4 01D8C821 */  addu       $t9, $t6, $t8
 /* ADED8 800AD2D8 ADB90008 */  sw         $t9, 8($t5)
 .L800AD2DC:
-/* ADEDC 800AD2DC 0C026EBB */  jal        func_8009BAEC
+/* ADEDC 800AD2DC 0C026EBB */  jal        alUnlink
 /* ADEE0 800AD2E0 8FA4002C */   lw        $a0, 0x2c($sp)
 /* ADEE4 800AD2E4 8FA50030 */  lw         $a1, 0x30($sp)
 /* ADEE8 800AD2E8 8FA4002C */  lw         $a0, 0x2c($sp)
-/* ADEEC 800AD2EC 0C026EAE */  jal        func_8009BAB8
+/* ADEEC 800AD2EC 0C026EAE */  jal        alLink
 /* ADEF0 800AD2F0 24A50048 */   addiu     $a1, $a1, 0x48
 /* ADEF4 800AD2F4 10000002 */  b          .L800AD300
 /* ADEF8 800AD2F8 00000000 */   nop
@@ -2287,7 +2287,7 @@ glabel func_800AD21C
 /* ADF34 800AD334 03E00008 */  jr         $ra
 /* ADF38 800AD338 00000000 */   nop
 
-glabel func_800AD33C
+glabel __initFromBank
 /* ADF3C 800AD33C 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* ADF40 800AD340 AFBF0014 */  sw         $ra, 0x14($sp)
 /* ADF44 800AD344 AFA40020 */  sw         $a0, 0x20($sp)
@@ -2317,11 +2317,11 @@ glabel func_800AD33C
 /* ADF9C 800AD39C 00000000 */   nop
 .L800AD3A0:
 /* ADFA0 800AD3A0 8FA40020 */  lw         $a0, 0x20($sp)
-/* ADFA4 800AD3A4 0C02B525 */  jal        func_800AD494
+/* ADFA4 800AD3A4 0C02B525 */  jal        __resetPerfChanState
 /* ADFA8 800AD3A8 8FA5001C */   lw        $a1, 0x1c($sp)
 /* ADFAC 800AD3AC 8FA40020 */  lw         $a0, 0x20($sp)
 /* ADFB0 800AD3B0 8FA50018 */  lw         $a1, 0x18($sp)
-/* ADFB4 800AD3B4 0C02B509 */  jal        func_800AD424
+/* ADFB4 800AD3B4 0C02B509 */  jal        __setInstChanState
 /* ADFB8 800AD3B8 8FA6001C */   lw        $a2, 0x1c($sp)
 /* ADFBC 800AD3BC 8FB8001C */  lw         $t8, 0x1c($sp)
 /* ADFC0 800AD3C0 8FB90020 */  lw         $t9, 0x20($sp)
@@ -2337,12 +2337,12 @@ glabel func_800AD33C
 /* ADFE4 800AD3E4 11400009 */  beqz       $t2, .L800AD40C
 /* ADFE8 800AD3E8 00000000 */   nop
 /* ADFEC 800AD3EC 8FA40020 */  lw         $a0, 0x20($sp)
-/* ADFF0 800AD3F0 0C02B525 */  jal        func_800AD494
+/* ADFF0 800AD3F0 0C02B525 */  jal        __resetPerfChanState
 /* ADFF4 800AD3F4 8FA5001C */   lw        $a1, 0x1c($sp)
 /* ADFF8 800AD3F8 8FAB0024 */  lw         $t3, 0x24($sp)
 /* ADFFC 800AD3FC 8FA40020 */  lw         $a0, 0x20($sp)
 /* AE000 800AD400 24060009 */  addiu      $a2, $zero, 9
-/* AE004 800AD404 0C02B509 */  jal        func_800AD424
+/* AE004 800AD404 0C02B509 */  jal        __setInstChanState
 /* AE008 800AD408 8D650008 */   lw        $a1, 8($t3)
 .L800AD40C:
 /* AE00C 800AD40C 10000001 */  b          .L800AD414
@@ -2353,7 +2353,7 @@ glabel func_800AD33C
 /* AE01C 800AD41C 03E00008 */  jr         $ra
 /* AE020 800AD420 00000000 */   nop
 
-glabel func_800AD424
+glabel __setInstChanState
 /* AE024 800AD424 8C8E0060 */  lw         $t6, 0x60($a0)
 /* AE028 800AD428 00067900 */  sll        $t7, $a2, 4
 /* AE02C 800AD42C 01CFC021 */  addu       $t8, $t6, $t7
@@ -2385,7 +2385,7 @@ glabel func_800AD48C
 /* AE08C 800AD48C 03E00008 */  jr         $ra
 /* AE090 800AD490 00000000 */   nop
 
-glabel func_800AD494
+glabel __resetPerfChanState
 /* AE094 800AD494 8C8E0060 */  lw         $t6, 0x60($a0)
 /* AE098 800AD498 00057900 */  sll        $t7, $a1, 4
 /* AE09C 800AD49C 01CFC021 */  addu       $t8, $t6, $t7
@@ -2431,7 +2431,7 @@ glabel func_800AD534
 /* AE134 800AD534 03E00008 */  jr         $ra
 /* AE138 800AD538 00000000 */   nop
 
-glabel func_800AD53C
+glabel __initChanState
 /* AE13C 800AD53C 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AE140 800AD540 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE144 800AD544 AFA40020 */  sw         $a0, 0x20($sp)
@@ -2448,7 +2448,7 @@ glabel func_800AD53C
 /* AE16C 800AD56C 03295021 */  addu       $t2, $t9, $t1
 /* AE170 800AD570 AD400000 */  sw         $zero, ($t2)
 /* AE174 800AD574 8FA40020 */  lw         $a0, 0x20($sp)
-/* AE178 800AD578 0C02B525 */  jal        func_800AD494
+/* AE178 800AD578 0C02B525 */  jal        __resetPerfChanState
 /* AE17C 800AD57C 8FA5001C */   lw        $a1, 0x1c($sp)
 /* AE180 800AD580 8FAB001C */  lw         $t3, 0x1c($sp)
 /* AE184 800AD584 8FAD0020 */  lw         $t5, 0x20($sp)
@@ -2467,7 +2467,7 @@ glabel func_800AD53C
 /* AE1B0 800AD5B0 03E00008 */  jr         $ra
 /* AE1B4 800AD5B4 00000000 */   nop
 
-glabel func_800AD5B8
+glabel __seqpStopOsc
 /* AE1B8 800AD5B8 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AE1BC 800AD5BC AFBF0014 */  sw         $ra, 0x14($sp)
 /* AE1C0 800AD5C0 AFA40028 */  sw         $a0, 0x28($sp)
@@ -2504,7 +2504,7 @@ glabel func_800AD5B8
 /* AE234 800AD634 8DE40014 */  lw         $a0, 0x14($t7)
 /* AE238 800AD638 0320F809 */  jalr       $t9
 /* AE23C 800AD63C 00000000 */   nop
-/* AE240 800AD640 0C026EBB */  jal        func_8009BAEC
+/* AE240 800AD640 0C026EBB */  jal        alUnlink
 /* AE244 800AD644 8FA40024 */   lw        $a0, 0x24($sp)
 /* AE248 800AD648 8FA80020 */  lw         $t0, 0x20($sp)
 /* AE24C 800AD64C 11000007 */  beqz       $t0, .L800AD66C
@@ -2518,7 +2518,7 @@ glabel func_800AD5B8
 .L800AD66C:
 /* AE26C 800AD66C 8FA50028 */  lw         $a1, 0x28($sp)
 /* AE270 800AD670 8FA40024 */  lw         $a0, 0x24($sp)
-/* AE274 800AD674 0C026EAE */  jal        func_8009BAB8
+/* AE274 800AD674 0C026EAE */  jal        alLink
 /* AE278 800AD678 24A50048 */   addiu     $a1, $a1, 0x48
 /* AE27C 800AD67C 87AE001E */  lh         $t6, 0x1e($sp)
 /* AE280 800AD680 24010016 */  addiu      $at, $zero, 0x16

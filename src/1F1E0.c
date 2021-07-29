@@ -285,12 +285,12 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
 
-void func_80021034(void) {
+void gameplay_func(void) {
     uint32_t sp1C;
 
-    sp1C = func_800A5720(); // osGetTime?
+    sp1C = osGetTime(); // osGetTime?
     func_800457C8();
-    D_801374DC = func_800A5720() - sp1C; // time - lastTime ?
+    D_801374DC = osGetTime() - sp1C; // time - lastTime ?
 
     if (gGamePaused != 0) {
         func_80020A90();
@@ -306,7 +306,7 @@ void func_80021034(void) {
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
  * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
  */
-void func_80021270(void) {
+void arract_mode(void) {
     if (gGameSubState != 0) {
         if (gGameSubState == 1) {
             if (D_801037AA == 0x90) {
@@ -389,7 +389,7 @@ void func_80021270(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021270.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/arract_mode.s")
 #endif
 
 void func_80021620(void) {
@@ -398,7 +398,7 @@ void func_80021620(void) {
     }
 }
 
-void func_80021658(void) {
+void ptstart(void) {
     return;
 }
 

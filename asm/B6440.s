@@ -17,7 +17,7 @@ glabel func_800B5840
 /* B6454 800B5854 03E00008 */  jr         $ra
 /* B6458 800B5858 00000000 */   nop
 
-glabel func_800B585C
+glabel __rmonExecute
 /* B645C 800B585C 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B6460 800B5860 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B6464 800B5864 AFA40028 */  sw         $a0, 0x28($sp)
@@ -33,9 +33,9 @@ glabel func_800B585C
 /* B6488 800B5888 93190004 */  lbu        $t9, 4($t8)
 /* B648C 800B588C 03002025 */  or         $a0, $t8, $zero
 /* B6490 800B5890 00194080 */  sll        $t0, $t9, 2
-/* B6494 800B5894 3C19800F */  lui        $t9, %hi(D_800EAAB0)
+/* B6494 800B5894 3C19800F */  lui        $t9, %hi(rmoncmds_data_0000)
 /* B6498 800B5898 0328C821 */  addu       $t9, $t9, $t0
-/* B649C 800B589C 8F39AAB0 */  lw         $t9, %lo(D_800EAAB0)($t9)
+/* B649C 800B589C 8F39AAB0 */  lw         $t9, %lo(rmoncmds_data_0000)($t9)
 /* B64A0 800B58A0 0320F809 */  jalr       $t9
 /* B64A4 800B58A4 00000000 */   nop
 /* B64A8 800B58A8 AFA20024 */  sw         $v0, 0x24($sp)
@@ -49,7 +49,7 @@ glabel func_800B585C
 /* B64C8 800B58C8 A7AC001E */  sh         $t4, 0x1e($sp)
 /* B64CC 800B58CC 27A40018 */  addiu      $a0, $sp, 0x18
 /* B64D0 800B58D0 2405000C */  addiu      $a1, $zero, 0xc
-/* B64D4 800B58D4 0C026833 */  jal        func_8009A0CC
+/* B64D4 800B58D4 0C026833 */  jal        __rmonSendReply
 /* B64D8 800B58D8 24060001 */   addiu     $a2, $zero, 1
 .L800B58DC:
 /* B64DC 800B58DC 10000003 */  b          .L800B58EC

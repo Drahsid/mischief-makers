@@ -8,9 +8,9 @@ glabel func_800283BC
 /* 28FD4 800283D4 0018C080 */  sll        $t8, $t8, 2
 /* 28FD8 800283D8 030FC023 */  subu       $t8, $t8, $t7
 /* 28FDC 800283DC 0018C0C0 */  sll        $t8, $t8, 3
-/* 28FE0 800283E0 3C19800F */  lui        $t9, %hi(D_800EF598)
+/* 28FE0 800283E0 3C19800F */  lui        $t9, %hi(FB_BGCOLOR)
 /* 28FE4 800283E4 0338C821 */  addu       $t9, $t9, $t8
-/* 28FE8 800283E8 8739F598 */  lh         $t9, %lo(D_800EF598)($t9)
+/* 28FE8 800283E8 8739F598 */  lh         $t9, %lo(FB_BGCOLOR)($t9)
 /* 28FEC 800283EC 3C01800C */  lui        $at, %hi(gAtX)
 /* 28FF0 800283F0 44992000 */  mtc1       $t9, $f4
 /* 28FF4 800283F4 C428E5B4 */  lwc1       $f8, %lo(gAtX)($at)

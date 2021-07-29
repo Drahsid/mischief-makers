@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B1FF0
+glabel alSavePull
 /* B2BF0 800B1FF0 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* B2BF4 800B1FF4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B2BF8 800B1FF8 AFA40040 */  sw         $a0, 0x40($sp)
@@ -28,11 +28,11 @@ glabel func_800B1FF0
 /* B2C34 800B2034 10000007 */  b          .L800B2054
 /* B2C38 800B2038 00000000 */   nop
 .L800B203C:
-/* B2C3C 800B203C 3C04800F */  lui        $a0, %hi(D_800EE5F0)
-/* B2C40 800B2040 3C05800F */  lui        $a1, %hi(D_800EE604)
-/* B2C44 800B2044 24A5E604 */  addiu      $a1, $a1, %lo(D_800EE604)
-/* B2C48 800B2048 2484E5F0 */  addiu      $a0, $a0, %lo(D_800EE5F0)
-/* B2C4C 800B204C 0C026E74 */  jal        func_8009B9D0
+/* B2C3C 800B203C 3C04800F */  lui        $a0, %hi(save_rodata_0000)
+/* B2C40 800B2040 3C05800F */  lui        $a1, %hi(save_rodata_0014)
+/* B2C44 800B2044 24A5E604 */  addiu      $a1, $a1, %lo(save_rodata_0014)
+/* B2C48 800B2048 2484E5F0 */  addiu      $a0, $a0, %lo(save_rodata_0000)
+/* B2C4C 800B204C 0C026E74 */  jal        __assert
 /* B2C50 800B2050 24060023 */   addiu     $a2, $zero, 0x23
 .L800B2054:
 /* B2C54 800B2054 8FAB003C */  lw         $t3, 0x3c($sp)
@@ -101,7 +101,7 @@ glabel func_800B1FF0
 /* B2D4C 800B214C 03E00008 */  jr         $ra
 /* B2D50 800B2150 00000000 */   nop
 
-glabel func_800B2154
+glabel alSaveParam
 /* B2D54 800B2154 27BDFFF0 */  addiu      $sp, $sp, -0x10
 /* B2D58 800B2158 AFA4000C */  sw         $a0, 0xc($sp)
 /* B2D5C 800B215C AFA40008 */  sw         $a0, 8($sp)

@@ -233,7 +233,7 @@ glabel func_8003BE3C
 /* 3CD98 8003C198 3C014180 */  lui        $at, 0x4180
 /* 3CD9C 8003C19C 46002182 */  mul.s      $f6, $f4, $f0
 /* 3CDA0 8003C1A0 44814000 */  mtc1       $at, $f8
-/* 3CDA4 8003C1A4 0C0295C4 */  jal        func_800A5710
+/* 3CDA4 8003C1A4 0C0295C4 */  jal        sqrtf
 /* 3CDA8 8003C1A8 46083300 */   add.s     $f12, $f6, $f8
 /* 3CDAC 8003C1AC 3C014080 */  lui        $at, 0x4080
 /* 3CDB0 8003C1B0 44815000 */  mtc1       $at, $f10
@@ -257,8 +257,8 @@ glabel func_8003BE3C
 /* 3CDF8 8003C1F8 AE1900F0 */  sw         $t9, 0xf0($s0)
 /* 3CDFC 8003C1FC 00000000 */  nop
 .L8003C200:
-/* 3CE00 8003C200 3C02800F */  lui        $v0, %hi(D_800EF598)
-/* 3CE04 8003C204 8442F598 */  lh         $v0, %lo(D_800EF598)($v0)
+/* 3CE00 8003C200 3C02800F */  lui        $v0, %hi(FB_BGCOLOR)
+/* 3CE04 8003C204 8442F598 */  lh         $v0, %lo(FB_BGCOLOR)($v0)
 /* 3CE08 8003C208 86030088 */  lh         $v1, 0x88($s0)
 /* 3CE0C 8003C20C 3C060001 */  lui        $a2, 1
 /* 3CE10 8003C210 00433823 */  subu       $a3, $v0, $v1

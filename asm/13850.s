@@ -229,7 +229,7 @@ glabel func_80012DF0
 /* 13B90 80012F90 03E00008 */  jr         $ra
 /* 13B94 80012F94 27BD0048 */   addiu     $sp, $sp, 0x48
 
-glabel func_80012F98
+glabel continue_screen
 /* 13B98 80012F98 27BDFFA0 */  addiu      $sp, $sp, -0x60
 /* 13B9C 80012F9C 3C03800C */  lui        $v1, %hi(D_800BE4FC)
 /* 13BA0 80012FA0 2463E4FC */  addiu      $v1, $v1, %lo(D_800BE4FC)
@@ -292,7 +292,7 @@ glabel L8001303C_13C3C
 /* 13C7C 8001307C 27190001 */  addiu      $t9, $t8, 1
 /* 13C80 80013080 A4590000 */  sh         $t9, ($v0)
 glabel L80013084_13C84
-/* 13C84 80013084 0C00840D */  jal        func_80021034
+/* 13C84 80013084 0C00840D */  jal        gameplay_func
 /* 13C88 80013088 00000000 */   nop
 /* 13C8C 8001308C 3C028010 */  lui        $v0, %hi(D_801033D0)
 /* 13C90 80013090 244233D0 */  addiu      $v0, $v0, %lo(D_801033D0)
@@ -585,9 +585,9 @@ glabel L800132A0_13EA0
 /* 140D4 800134D4 3C01800F */  lui        $at, %hi(D_800EF590)
 /* 140D8 800134D8 370B0001 */  ori        $t3, $t8, 1
 /* 140DC 800134DC AC2BF590 */  sw         $t3, %lo(D_800EF590)($at)
-/* 140E0 800134E0 3C01800F */  lui        $at, %hi(D_800EF598)
+/* 140E0 800134E0 3C01800F */  lui        $at, %hi(FB_BGCOLOR)
 /* 140E4 800134E4 240CFFFC */  addiu      $t4, $zero, -4
-/* 140E8 800134E8 A42CF598 */  sh         $t4, %lo(D_800EF598)($at)
+/* 140E8 800134E8 A42CF598 */  sh         $t4, %lo(FB_BGCOLOR)($at)
 /* 140EC 800134EC 3C01800F */  lui        $at, %hi(D_800EF59C)
 /* 140F0 800134F0 240D0014 */  addiu      $t5, $zero, 0x14
 /* 140F4 800134F4 A42DF59C */  sh         $t5, %lo(D_800EF59C)($at)

@@ -88,7 +88,7 @@ glabel guMtxF2L
 /* B3788 800B2B88 03E00008 */  jr         $ra
 /* B378C 800B2B8C 27BD0018 */   addiu     $sp, $sp, 0x18
 
-glabel func_800B2B90
+glabel guMtxL2F
 /* B3790 800B2B90 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* B3794 800B2B94 AFA5000C */  sw         $a1, 0xc($sp)
 /* B3798 800B2B98 24AE0020 */  addiu      $t6, $a1, 0x20
@@ -171,7 +171,7 @@ glabel func_800B2B90
 /* B38C0 800B2CC0 03E00008 */  jr         $ra
 /* B38C4 800B2CC4 27BD0020 */   addiu     $sp, $sp, 0x20
 
-glabel func_800B2CC8
+glabel guMtxIdentF
 /* B38C8 800B2CC8 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B38CC 800B2CCC AFA00004 */  sw         $zero, 4($sp)
 .L800B2CD0:
@@ -217,11 +217,11 @@ glabel func_800B2CC8
 /* B395C 800B2D5C 03E00008 */  jr         $ra
 /* B3960 800B2D60 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800B2D64
+glabel guMtxIdent
 /* B3964 800B2D64 27BDFFA8 */  addiu      $sp, $sp, -0x58
 /* B3968 800B2D68 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B396C 800B2D6C AFA40058 */  sw         $a0, 0x58($sp)
-/* B3970 800B2D70 0C02CB32 */  jal        func_800B2CC8
+/* B3970 800B2D70 0C02CB32 */  jal        guMtxIdentF
 /* B3974 800B2D74 27A40018 */   addiu     $a0, $sp, 0x18
 /* B3978 800B2D78 27A40018 */  addiu      $a0, $sp, 0x18
 /* B397C 800B2D7C 0C02CA98 */  jal        guMtxF2L

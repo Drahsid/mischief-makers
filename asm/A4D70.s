@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A4170
+glabel spClearAttribute
 /* A4D70 800A4170 948E0014 */  lhu        $t6, 0x14($a0)
 /* A4D74 800A4174 00A07827 */  not        $t7, $a1
 /* A4D78 800A4178 01CFC024 */  and        $t8, $t6, $t7
@@ -19,7 +19,7 @@ glabel func_800A4188
 /* A4D88 800A4188 03E00008 */  jr         $ra
 /* A4D8C 800A418C 00000000 */   nop
 
-glabel func_800A4190
+glabel spSetAttribute
 /* A4D90 800A4190 948E0014 */  lhu        $t6, 0x14($a0)
 /* A4D94 800A4194 01C57825 */  or         $t7, $t6, $a1
 /* A4D98 800A4198 A48F0014 */  sh         $t7, 0x14($a0)

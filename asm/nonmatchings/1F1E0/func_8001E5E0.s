@@ -18,7 +18,7 @@ glabel func_8001E5E0
 /* 1F220 8001E620 AFA5002C */  sw         $a1, 0x2c($sp)
 /* 1F224 8001E624 AFA60030 */  sw         $a2, 0x30($sp)
 /* 1F228 8001E628 AFA3001C */  sw         $v1, 0x1c($sp)
-/* 1F22C 8001E62C 0C0295C4 */  jal        func_800A5710
+/* 1F22C 8001E62C 0C0295C4 */  jal        sqrtf
 /* 1F230 8001E630 46802320 */   cvt.s.w   $f12, $f4
 /* 1F234 8001E634 97A8002E */  lhu        $t0, 0x2e($sp)
 /* 1F238 8001E638 3C0A800F */  lui        $t2, 0x800f

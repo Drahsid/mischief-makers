@@ -33,26 +33,26 @@ glabel func_800A7D00
 /* A8958 800A7D58 A02A57C1 */  sb         $t2, %lo(D_801857C1)($at)
 /* A895C 800A7D5C 3C0B8018 */  lui        $t3, %hi(D_801857BD)
 /* A8960 800A7D60 916B57BD */  lbu        $t3, %lo(D_801857BD)($t3)
-/* A8964 800A7D64 3C0CA460 */  lui        $t4, %hi(D_A4600024)
-/* A8968 800A7D68 AD8B0024 */  sw         $t3, %lo(D_A4600024)($t4)
+/* A8964 800A7D64 3C0CA460 */  lui        $t4, %hi(PI_BSD_DOM2_LAT)
+/* A8968 800A7D68 AD8B0024 */  sw         $t3, %lo(PI_BSD_DOM2_LAT)($t4)
 /* A896C 800A7D6C 3C0D8018 */  lui        $t5, %hi(D_801857C0)
 /* A8970 800A7D70 91AD57C0 */  lbu        $t5, %lo(D_801857C0)($t5)
-/* A8974 800A7D74 3C0EA460 */  lui        $t6, %hi(D_A4600028)
-/* A8978 800A7D78 ADCD0028 */  sw         $t5, %lo(D_A4600028)($t6)
+/* A8974 800A7D74 3C0EA460 */  lui        $t6, %hi(PI_BSD_DOM2_PWD)
+/* A8978 800A7D78 ADCD0028 */  sw         $t5, %lo(PI_BSD_DOM2_PWD)($t6)
 /* A897C 800A7D7C 3C0F8018 */  lui        $t7, %hi(D_801857BE)
 /* A8980 800A7D80 91EF57BE */  lbu        $t7, %lo(D_801857BE)($t7)
-/* A8984 800A7D84 3C18A460 */  lui        $t8, %hi(D_A460002C)
-/* A8988 800A7D88 AF0F002C */  sw         $t7, %lo(D_A460002C)($t8)
+/* A8984 800A7D84 3C18A460 */  lui        $t8, %hi(PI_BSD_DOM2_PGS)
+/* A8988 800A7D88 AF0F002C */  sw         $t7, %lo(PI_BSD_DOM2_PGS)($t8)
 /* A898C 800A7D8C 3C198018 */  lui        $t9, %hi(D_801857BF)
 /* A8990 800A7D90 933957BF */  lbu        $t9, %lo(D_801857BF)($t9)
-/* A8994 800A7D94 3C08A460 */  lui        $t0, %hi(D_A4600030)
-/* A8998 800A7D98 AD190030 */  sw         $t9, %lo(D_A4600030)($t0)
+/* A8994 800A7D94 3C08A460 */  lui        $t0, %hi(PI_BSD_DOM2_RLS)
+/* A8998 800A7D98 AD190030 */  sw         $t9, %lo(PI_BSD_DOM2_RLS)($t0)
 /* A899C 800A7D9C 3C048018 */  lui        $a0, %hi(D_801857B8)
 /* A89A0 800A7DA0 248457B8 */  addiu      $a0, $a0, %lo(D_801857B8)
 /* A89A4 800A7DA4 24840014 */  addiu      $a0, $a0, 0x14
-/* A89A8 800A7DA8 0C029C54 */  jal        func_800A7150
+/* A89A8 800A7DA8 0C029C54 */  jal        _bzero
 /* A89AC 800A7DAC 24050060 */   addiu     $a1, $zero, 0x60
-/* A89B0 800A7DB0 0C0297A4 */  jal        func_800A5E90
+/* A89B0 800A7DB0 0C0297A4 */  jal        __osDisableInt
 /* A89B4 800A7DB4 00000000 */   nop
 /* A89B8 800A7DB8 AFA2001C */  sw         $v0, 0x1c($sp)
 /* A89BC 800A7DBC 3C09800F */  lui        $t1, %hi(D_800EA4EC)
@@ -65,9 +65,9 @@ glabel func_800A7D00
 /* A89D8 800A7DD8 AC2AA4EC */  sw         $t2, %lo(D_800EA4EC)($at)
 /* A89DC 800A7DDC 3C0B8018 */  lui        $t3, %hi(D_801857B8)
 /* A89E0 800A7DE0 256B57B8 */  addiu      $t3, $t3, %lo(D_801857B8)
-/* A89E4 800A7DE4 3C018018 */  lui        $at, %hi(D_801857B0)
-/* A89E8 800A7DE8 AC2B57B0 */  sw         $t3, %lo(D_801857B0)($at)
-/* A89EC 800A7DEC 0C0297AC */  jal        func_800A5EB0
+/* A89E4 800A7DE4 3C018018 */  lui        $at, %hi(__osDiskHandle)
+/* A89E8 800A7DE8 AC2B57B0 */  sw         $t3, %lo(__osDiskHandle)($at)
+/* A89EC 800A7DEC 0C0297AC */  jal        __osRestoreInt
 /* A89F0 800A7DF0 8FA4001C */   lw        $a0, 0x1c($sp)
 /* A89F4 800A7DF4 3C028018 */  lui        $v0, %hi(D_801857B8)
 /* A89F8 800A7DF8 10000003 */  b          .L800A7E08

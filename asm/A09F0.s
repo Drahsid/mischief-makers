@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_8009FDF0
+glabel alSeqpPlay
 /* A09F0 8009FDF0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A09F4 8009FDF4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A09F8 8009FDF8 AFA40028 */  sw         $a0, 0x28($sp)
@@ -16,7 +16,7 @@ glabel func_8009FDF0
 /* A0A04 8009FE04 8FA40028 */  lw         $a0, 0x28($sp)
 /* A0A08 8009FE08 27A50018 */  addiu      $a1, $sp, 0x18
 /* A0A0C 8009FE0C 00003025 */  or         $a2, $zero, $zero
-/* A0A10 8009FE10 0C02B620 */  jal        func_800AD880
+/* A0A10 8009FE10 0C02B620 */  jal        alEvtqPostEvent
 /* A0A14 8009FE14 24840048 */   addiu     $a0, $a0, 0x48
 /* A0A18 8009FE18 10000001 */  b          .L8009FE20
 /* A0A1C 8009FE1C 00000000 */   nop
@@ -37,7 +37,7 @@ glabel func_8009FE30
 /* A0A4C 8009FE4C 00000000 */   nop
 /* A0A50 8009FE50 2404000F */  addiu      $a0, $zero, 0xf
 /* A0A54 8009FE54 24050001 */  addiu      $a1, $zero, 1
-/* A0A58 8009FE58 0C0297B4 */  jal        func_800A5ED0
+/* A0A58 8009FE58 0C0297B4 */  jal        __osError
 /* A0A5C 8009FE5C 8FA60020 */   lw        $a2, 0x20($sp)
 /* A0A60 8009FE60 10000032 */  b          .L8009FF2C
 /* A0A64 8009FE64 2402FFFF */   addiu     $v0, $zero, -1
@@ -48,7 +48,7 @@ glabel func_8009FE30
 /* A0A74 8009FE74 00000000 */   nop
 /* A0A78 8009FE78 24040010 */  addiu      $a0, $zero, 0x10
 /* A0A7C 8009FE7C 24050001 */  addiu      $a1, $zero, 1
-/* A0A80 8009FE80 0C0297B4 */  jal        func_800A5ED0
+/* A0A80 8009FE80 0C0297B4 */  jal        __osError
 /* A0A84 8009FE84 8FA60024 */   lw        $a2, 0x24($sp)
 /* A0A88 8009FE88 10000028 */  b          .L8009FF2C
 /* A0A8C 8009FE8C 2402FFFF */   addiu     $v0, $zero, -1
@@ -78,20 +78,20 @@ glabel func_8009FE30
 /* A0AE0 8009FEE0 3C01800F */  lui        $at, %hi(D_800EA530)
 /* A0AE4 8009FEE4 A020A530 */  sb         $zero, %lo(D_800EA530)($at)
 .L8009FEE8:
-/* A0AE8 8009FEE8 0C02C874 */  jal        func_800B21D0
+/* A0AE8 8009FEE8 0C02C874 */  jal        __osAiDeviceBusy
 /* A0AEC 8009FEEC 00000000 */   nop
 /* A0AF0 8009FEF0 10400003 */  beqz       $v0, .L8009FF00
 /* A0AF4 8009FEF4 00000000 */   nop
 /* A0AF8 8009FEF8 1000000C */  b          .L8009FF2C
 /* A0AFC 8009FEFC 2402FFFF */   addiu     $v0, $zero, -1
 .L8009FF00:
-/* A0B00 8009FF00 0C026964 */  jal        func_8009A590
+/* A0B00 8009FF00 0C026964 */  jal        osVirtualToPhysical
 /* A0B04 8009FF04 8FA4001C */   lw        $a0, 0x1c($sp)
 /* A0B08 8009FF08 3C19A450 */  lui        $t9, 0xa450
 /* A0B0C 8009FF0C AF220000 */  sw         $v0, ($t9)
 /* A0B10 8009FF10 8FA80024 */  lw         $t0, 0x24($sp)
-/* A0B14 8009FF14 3C09A450 */  lui        $t1, %hi(D_A4500004)
-/* A0B18 8009FF18 AD280004 */  sw         $t0, %lo(D_A4500004)($t1)
+/* A0B14 8009FF14 3C09A450 */  lui        $t1, %hi(AI_LEN)
+/* A0B18 8009FF18 AD280004 */  sw         $t0, %lo(AI_LEN)($t1)
 /* A0B1C 8009FF1C 10000003 */  b          .L8009FF2C
 /* A0B20 8009FF20 00001025 */   or        $v0, $zero, $zero
 /* A0B24 8009FF24 10000001 */  b          .L8009FF2C
