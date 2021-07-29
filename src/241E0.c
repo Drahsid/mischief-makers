@@ -384,7 +384,7 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
     gActors[index].unk_0x188 = 0;
     gActors[index].pos.x = pos_x;
     gActors[index].pos.y = pos_y;
-    gActors[index].pos_z = pos_z;
+    gActors[index].pos.z = pos_z;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800273FC.s")

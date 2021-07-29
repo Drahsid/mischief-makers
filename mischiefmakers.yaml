@@ -182,11 +182,14 @@ segments:
       - [0xBB310, asm]
       - [0xBB3F0, asm]
       - [0xBB5E0, asm]
-      - [0xBB810, bin]
-      - [0xEB7F0, .rodata, boot]
+      # I dunno how to correctly find data/rodata, so these splits are very bad
+      - [0xBB810, bin] # .data, possibly some rodata from boot
+      - [0xEB7E8, .rodata, boot] # end at 0xEB824
+      - [0xEB830, rodata]
+      - [0xEC5C0, .rodata, 241E0] # start for the jtbl at 0xEC6AC
 
   - type: bin # more data
-    start: 0xEB824
+    start: 0xEC6C0
   - [0xEF880, bin] # "RSP SW Version:" ...
   # display lists / vtxs / etc
   - [0x79EC60, bin]

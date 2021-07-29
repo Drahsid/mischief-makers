@@ -11,6 +11,7 @@ build/
 expected/
 nonmatchings/
 __pycache__/
+expected/
 
 .vscode
 

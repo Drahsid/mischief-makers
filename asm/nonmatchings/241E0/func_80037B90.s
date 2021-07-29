@@ -1,3 +1,10 @@
+.section .rodata
+
+glabel jtbl_800EBAAC
+.word L80037D48_38948, L80037DC4_389C4, L80037E4C_38A4C, L800380E4_38CE4, L80037E4C_38A4C
+
+.section .text
+
 glabel func_80037B90
 /* 38790 80037B90 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 38794 80037B94 AFA40028 */  sw         $a0, 0x28($sp)
@@ -109,12 +116,13 @@ glabel func_80037B90
 .L80037D28:
 /* 38928 80037D28 10200171 */  beqz       $at, .L800382F0
 /* 3892C 80037D2C 00044880 */   sll       $t1, $a0, 2
-/* 38930 80037D30 3C01800F */  lui        $at, %hi(D_800EBAAC)
+/* 38930 80037D30 3C01800F */  lui        $at, %hi(jtbl_800EBAAC)
 /* 38934 80037D34 00290821 */  addu       $at, $at, $t1
-/* 38938 80037D38 8C29BAAC */  lw         $t1, %lo(D_800EBAAC)($at)
+/* 38938 80037D38 8C29BAAC */  lw         $t1, %lo(jtbl_800EBAAC)($at)
 /* 3893C 80037D3C 00000000 */  nop
 /* 38940 80037D40 01200008 */  jr         $t1
 /* 38944 80037D44 00000000 */   nop
+glabel L80037D48_38948
 /* 38948 80037D48 2402000A */  addiu      $v0, $zero, 0xa
 /* 3894C 80037D4C 3C0C0001 */  lui        $t4, 1
 /* 38950 80037D50 3C0D800E */  lui        $t5, %hi(D_800E2514)
@@ -147,6 +155,7 @@ glabel func_80037B90
 /* 389B8 80037DB8 30E4FFFF */   andi      $a0, $a3, 0xffff
 /* 389BC 80037DBC 240B0004 */  addiu      $t3, $zero, 4
 /* 389C0 80037DC0 AE0B0160 */  sw         $t3, 0x160($s0)
+glabel L80037DC4_389C4
 /* 389C4 80037DC4 8E0400EC */  lw         $a0, 0xec($s0)
 /* 389C8 80037DC8 00002825 */  or         $a1, $zero, $zero
 /* 389CC 80037DCC 0C00A607 */  jal        func_8002981C
@@ -182,6 +191,7 @@ glabel func_80037B90
 /* 38A40 80037E40 AE0F00EC */  sw         $t7, 0xec($s0)
 /* 38A44 80037E44 1000012A */  b          .L800382F0
 /* 38A48 80037E48 AE1800F0 */   sw        $t8, 0xf0($s0)
+glabel L80037E4C_38A4C
 /* 38A4C 80037E4C 8E190080 */  lw         $t9, 0x80($s0)
 /* 38A50 80037E50 24010004 */  addiu      $at, $zero, 4
 /* 38A54 80037E54 37292000 */  ori        $t1, $t9, 0x2000
@@ -359,6 +369,7 @@ glabel func_80037B90
 /* 38CD8 800380D8 AE0A0080 */  sw         $t2, 0x80($s0)
 /* 38CDC 800380DC 10000084 */  b          .L800382F0
 /* 38CE0 800380E0 AE0000F0 */   sw        $zero, 0xf0($s0)
+glabel L800380E4_38CE4
 /* 38CE4 800380E4 0C010216 */  jal        func_80040858
 /* 38CE8 800380E8 30E4FFFF */   andi      $a0, $a3, 0xffff
 /* 38CEC 800380EC 8E0B0080 */  lw         $t3, 0x80($s0)

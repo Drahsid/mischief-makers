@@ -3697,12 +3697,13 @@ glabel func_80009BE8
 /* DE1C 8000D21C 1020005A */  beqz       $at, .L8000D388
 /* DE20 8000D220 24A53A50 */   addiu     $a1, $a1, %lo(D_800E3A50)
 /* DE24 8000D224 0018C080 */  sll        $t8, $t8, 2
-/* DE28 8000D228 3C01800F */  lui        $at, %hi(D_800EAFC0)
+/* DE28 8000D228 3C01800F */  lui        $at, %hi(jtbl_800EAFC0)
 /* DE2C 8000D22C 00380821 */  addu       $at, $at, $t8
-/* DE30 8000D230 8C38AFC0 */  lw         $t8, %lo(D_800EAFC0)($at)
+/* DE30 8000D230 8C38AFC0 */  lw         $t8, %lo(jtbl_800EAFC0)($at)
 /* DE34 8000D234 00000000 */  nop
 /* DE38 8000D238 03000008 */  jr         $t8
 /* DE3C 8000D23C 00000000 */   nop
+glabel L8000D240_DE40
 /* DE40 8000D240 8E460000 */  lw         $a2, ($s2)
 /* DE44 8000D244 3C0F800E */  lui        $t7, %hi(D_800E3AC8)
 /* DE48 8000D248 24CE0008 */  addiu      $t6, $a2, 8
@@ -3712,6 +3713,7 @@ glabel func_80009BE8
 /* DE58 8000D258 ACCF0004 */  sw         $t7, 4($a2)
 /* DE5C 8000D25C 1000004A */  b          .L8000D388
 /* DE60 8000D260 ACC40000 */   sw        $a0, ($a2)
+glabel L8000D264_DE64
 /* DE64 8000D264 8E460000 */  lw         $a2, ($s2)
 /* DE68 8000D268 3C0E800E */  lui        $t6, %hi(D_800E3B60)
 /* DE6C 8000D26C 24D90008 */  addiu      $t9, $a2, 8
@@ -3721,6 +3723,7 @@ glabel func_80009BE8
 /* DE7C 8000D27C ACD80000 */  sw         $t8, ($a2)
 /* DE80 8000D280 10000041 */  b          .L8000D388
 /* DE84 8000D284 ACCE0004 */   sw        $t6, 4($a2)
+glabel L8000D288_DE88
 /* DE88 8000D288 8E460000 */  lw         $a2, ($s2)
 /* DE8C 8000D28C 3C18800E */  lui        $t8, %hi(D_800E3BF0)
 /* DE90 8000D290 24CF0008 */  addiu      $t7, $a2, 8
@@ -3730,6 +3733,7 @@ glabel func_80009BE8
 /* DEA0 8000D2A0 ACD90000 */  sw         $t9, ($a2)
 /* DEA4 8000D2A4 10000038 */  b          .L8000D388
 /* DEA8 8000D2A8 ACD80004 */   sw        $t8, 4($a2)
+glabel L8000D2AC_DEAC
 /* DEAC 8000D2AC 968E00D2 */  lhu        $t6, 0xd2($s4)
 /* DEB0 8000D2B0 24010508 */  addiu      $at, $zero, 0x508
 /* DEB4 8000D2B4 15C1000F */  bne        $t6, $at, .L8000D2F4
@@ -3758,6 +3762,7 @@ glabel func_80009BE8
 /* DF0C 8000D30C ACD90000 */  sw         $t9, ($a2)
 /* DF10 8000D310 1000001D */  b          .L8000D388
 /* DF14 8000D314 ACD80004 */   sw        $t8, 4($a2)
+glabel L8000D318_DF18
 /* DF18 8000D318 06C1000A */  bgez       $s6, .L8000D344
 /* DF1C 8000D31C 00000000 */   nop
 /* DF20 8000D320 8E460000 */  lw         $a2, ($s2)
@@ -3779,6 +3784,7 @@ glabel func_80009BE8
 /* DF5C 8000D35C ACCE0000 */  sw         $t6, ($a2)
 /* DF60 8000D360 10000009 */  b          .L8000D388
 /* DF64 8000D364 ACCF0004 */   sw        $t7, 4($a2)
+glabel L8000D368_DF68
 /* DF68 8000D368 8E460000 */  lw         $a2, ($s2)
 /* DF6C 8000D36C 3C0E800E */  lui        $t6, %hi(D_800E3CC8)
 /* DF70 8000D370 24D90008 */  addiu      $t9, $a2, 8

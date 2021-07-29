@@ -1,3 +1,10 @@
+.section .rodata
+
+glabel D_800EB9E0
+.float 1.8, 2.720083e23
+
+.section .text
+
 glabel func_800358DC
 /* 364DC 800358DC 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 364E0 800358E0 000E7880 */  sll        $t7, $t6, 2

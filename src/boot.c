@@ -439,30 +439,20 @@ void func_80001670(void) {
             func_8001B460(); // transition
             break;
         }
-        case 13: {
+        case 14: {
             func_8001D654(); // level select (best times?)
             break;
         }
-        case 14: {
-            break;
+        default: {
+            break; // applies for case 13?
         }
     }
 }
 
 // this is a linear congruential algorithm for prng
-uint32_t func_8000178C(void) {
-    uint32_t new_var;
-    D_800BE5A4 = (0, (D_800BE5A4 * 0x85) + 1);
-
-    if (!D_800BE5A4) {
-    }
-    new_var = (D_800BE5A4 / 0x100) & (0xFFFF & 0xFFFFFFFFFFFFFFFF);
-
-    if (D_800BE5A4) {
-    }
-    if (1) {
-        return new_var;
-    }
+uint16_t func_8000178C(void) {
+    D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;
+    return D_800BE5A4 / 0x100;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800017D0.s")
@@ -505,8 +495,8 @@ void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800032C4.s")
 
-void func_8000334C(UNK_TYPE arg0) {
-    func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
+int32_t func_8000334C(UNK_TYPE arg0) {
+    return func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
 }
 
 void func_80003380(UNK_TYPE arg0) {

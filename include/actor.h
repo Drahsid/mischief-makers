@@ -29,7 +29,7 @@ enum {
     ACTOR_FLAG_UNK22 = (1 << 22),
     ACTOR_FLAG_UNK23 = (1 << 23),
     ACTOR_FLAG_UNK24 = (1 << 24),
-    ACTOR_FLAG_UNK25 = (1 << 25),
+    ACTOR_FLAG_ATTACHED = (1 << 25), // might be holding, or held. This bit is on for Marina when she is holding an actor (see func_8004ED10)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
     ACTOR_FLAG_UNK27 = (1 << 27),
     ACTOR_FLAG_UNK28 = (1 << 28),
@@ -104,16 +104,17 @@ typedef struct {
     /* 0x084 */ uint16_t unk_0x84;
     /* 0x086 */ uint8_t unk_0x86;
     /* 0x087 */ uint8_t unk_0x87;
-    /* 0x088 */ Vec2i_union pos;
-    /* 0x090 */ uint16_t pos_z;
-    /* 0x092 */ uint16_t unk_0x92;
+    /* 0x088 */ Vec3i_union pos;
     /* 0x094 */ uint16_t unk_0x94;
     /* 0x096 */ uint16_t unk_0x96;
     /* 0x098 */ int32_t unk_0x98;
-    /* 0x09C */ uint8_t unk_0x9C[0x14];
+    /* 0x09C */ RGBA32 rgba;
+    /* 0x0A0 */ uint8_t unk_0x9C[0x10];
     /* 0x0B0 */ int16_t unk_0xB0;
     /* 0x0B2 */ int16_t unk_0xB2;
-    /* 0x0B4 */ uint8_t unk_0xB4[0x18];
+    /* 0x0B4 */ float unk_0xB4;
+    /* 0x0B8 */ float unk_0xB8;
+    /* 0x0BC */ uint8_t unk_0xBC[0x10];
     /* 0x0CC */ uint16_t unk_0xCC;
     /* 0x0CE */ uint8_t unk_0xCE;
     /* 0x0CF */ uint8_t unk_0xCF;
@@ -125,7 +126,8 @@ typedef struct {
         /* 0x0D0 */ uint16_t unk_0xD0_h;
     };
     /* 0x0D2 */ uint16_t unk_0xD2;
-    /* 0x0D4 */ uint8_t unk_0xD4[0x4];
+    /* 0x0D4 */ uint16_t unk_0xD4;
+    /* 0x0D6 */ uint16_t unk_0xD6;
     /* 0x0D8 */ uint8_t unk_0xD8;
     /* 0x0D9 */ uint8_t unk_0xD9;
     /* 0x0DA */ uint8_t unk_0xDA;
@@ -146,14 +148,21 @@ typedef struct {
     /* 0x0F6 */ uint16_t unk_0xF6;
     /* 0x0F8 */ uint32_t unk_0xF8;
     /* 0x0FC */ uint32_t unk_0xFC;
-    /* 0x100 */ uint8_t unk_0x100[0x20];
+    /* 0x100 */ uint8_t unk_0x100;
+    /* 0x101 */ uint8_t unk_0x101;
+    /* 0x102 */ uint8_t unk_0x102;
+    /* 0x103 */ uint8_t unk_0x103;
+    /* 0x104 */ int32_t unk_0x104;
+    /* 0x108 */ int32_t unk_0x108;
+    /* 0x10C */ uint8_t unk_0x10C[0x14];
     /* 0x120 */ float unk_0x120;
     /* 0x124 */ float unk_0x124;
     /* 0x128 */ float unk_0x128;
     /* 0x12C */ uint16_t unk_0x12C;
     /* 0x12E */ uint8_t unk_0x12E;
     /* 0x12F */ uint8_t unk_0x12F;
-    /* 0x130 */ uint8_t unk_0x130[0x10];
+    /* 0x130 */ uint8_t unk_0x130[0xC];
+    /* 0x13C */ int32_t unk_0x13C;
     /* 0x140 */ uint8_t unk_0x140;
     /* 0x141 */ uint8_t unk_0x141;
     /* 0x142 */ uint16_t unk_0x142;
