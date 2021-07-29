@@ -182,24 +182,24 @@ void func_80020024(void) {
     func_800122B0(); // input history
 
     if ((D_800BE6AC & 2) != 0) {
-        if ((D_800BE4FC & D_800BE530) != 0) {
+        if ((buttonPress & D_800BE530) != 0) {
             if (D_800BE6B4 != 1) {
                 D_800BE6B4--;
                 D_801781DC = 0;
             }
         }
 
-        if (((D_800BE4FC & D_800BE534) != 0) && (D_800BE6B4 != 0x32)) {
+        if (((buttonPress & D_800BE534) != 0) && (D_800BE6B4 != 0x32)) {
             D_800BE6B4++;
             D_801781DC = 0;
         }
 
         if ((D_800BE4E4 % D_800BE6B4) == 0) {
-            D_800BE4FC |= D_801781DC;
+            buttonPress |= D_801781DC;
             D_801781DC = 0;
         }
         else {
-            D_801781DC |= D_800BE4FC;
+            D_801781DC |= buttonPress;
             return;
         }
     }
@@ -324,7 +324,7 @@ void arract_mode(void) {
 
             func_80021098(&gGameSubState);
             D_800CA234 -= -1;
-            if ((D_800CA234 == 0 || ((D_800BE4FC & D_800BE500) != 0)) && (D_80103450 == 0)) {
+            if ((D_800CA234 == 0 || ((buttonPress & D_800BE500) != 0)) && (D_80103450 == 0)) {
                 func_80003F24(1, 0x40, &D_800CA234);
                 gGameSubState += 1;
                 D_800CA234 = 0x40;
@@ -393,7 +393,7 @@ void arract_mode(void) {
 #endif
 
 void func_80021620(void) {
-    if ((D_800BE4FC & D_800BE534) != 0) {
+    if ((buttonPress & D_800BE534) != 0) {
         D_800BE6B8 ^= 0xFF;
     }
 }
