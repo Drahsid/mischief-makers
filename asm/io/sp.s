@@ -9,8 +9,8 @@
 
 glabel __osSpDeviceBusy
 /* ABB00 800AAF00 27BDFFF8 */  addiu      $sp, $sp, -8
-/* ABB04 800AAF04 3C0EA404 */  lui        $t6, %hi(SP_STATUS)
-/* ABB08 800AAF08 8DC40010 */  lw         $a0, %lo(SP_STATUS)($t6)
+/* ABB04 800AAF04 3C0EA404 */  lui        $t6, %hi(D_A4040010)
+/* ABB08 800AAF08 8DC40010 */  lw         $a0, %lo(D_A4040010)($t6)
 /* ABB0C 800AAF0C 308F001C */  andi       $t7, $a0, 0x1c
 /* ABB10 800AAF10 11E00005 */  beqz       $t7, .L800AAF28
 /* ABB14 800AAF14 00000000 */   nop

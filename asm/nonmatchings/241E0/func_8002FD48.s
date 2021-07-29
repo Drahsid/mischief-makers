@@ -63,7 +63,7 @@ glabel func_8002FD48
 /* 30A34 8002FE34 8D26008C */  lw         $a2, 0x8c($t1)
 /* 30A38 8002FE38 03202025 */  or         $a0, $t9, $zero
 /* 30A3C 8002FE3C 24050001 */  addiu      $a1, $zero, 1
-/* 30A40 8002FE40 0C00BE4F */  jal        gem_collision
+/* 30A40 8002FE40 0C00BE4F */  jal        func_8002F93C
 /* 30A44 8002FE44 AFA80010 */   sw        $t0, 0x10($sp)
 /* 30A48 8002FE48 10000027 */  b          .L8002FEE8
 /* 30A4C 8002FE4C 24020001 */   addiu     $v0, $zero, 1
@@ -101,7 +101,7 @@ glabel func_8002FD48
 /* 30AC8 8002FEC8 24050001 */   addiu     $a1, $zero, 1
 /* 30ACC 8002FECC 97A40022 */  lhu        $a0, 0x22($sp)
 /* 30AD0 8002FED0 8D26008C */  lw         $a2, 0x8c($t1)
-/* 30AD4 8002FED4 0C00BE4F */  jal        gem_collision
+/* 30AD4 8002FED4 0C00BE4F */  jal        func_8002F93C
 /* 30AD8 8002FED8 AFA80010 */   sw        $t0, 0x10($sp)
 /* 30ADC 8002FEDC 10000002 */  b          .L8002FEE8
 /* 30AE0 8002FEE0 24020002 */   addiu     $v0, $zero, 2

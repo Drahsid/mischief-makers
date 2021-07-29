@@ -125,10 +125,10 @@ glabel osCreatePiManager
 /* 9AAA4 80099EA4 256B4C50 */  addiu      $t3, $t3, %lo(pimgr_bss_1360)
 /* 9AAA8 80099EA8 256C0400 */  addiu      $t4, $t3, 0x400
 /* 9AAAC 80099EAC 3C048018 */  lui        $a0, %hi(pimgr_bss_11B0)
-/* 9AAB0 80099EB0 3C06800A */  lui        $a2, %hi(pimgr_text_022C)
+/* 9AAB0 80099EB0 3C06800A */  lui        $a2, %hi(func_80099F1C)
 /* 9AAB4 80099EB4 25AEFFFF */  addiu      $t6, $t5, -1
 /* 9AAB8 80099EB8 AFAE0014 */  sw         $t6, 0x14($sp)
-/* 9AABC 80099EBC 24C69F1C */  addiu      $a2, $a2, %lo(pimgr_text_022C)
+/* 9AABC 80099EBC 24C69F1C */  addiu      $a2, $a2, %lo(func_80099F1C)
 /* 9AAC0 80099EC0 24844AA0 */  addiu      $a0, $a0, %lo(pimgr_bss_11B0)
 /* 9AAC4 80099EC4 AFAC0010 */  sw         $t4, 0x10($sp)
 /* 9AAC8 80099EC8 00002825 */  or         $a1, $zero, $zero
@@ -155,7 +155,7 @@ glabel osCreatePiManager
 /* 9AB14 80099F14 03E00008 */  jr         $ra
 /* 9AB18 80099F18 00000000 */   nop
 
-glabel pimgr_text_022C
+glabel func_80099F1C
 /* 9AB1C 80099F1C 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 9AB20 80099F20 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 9AB24 80099F24 AFA40030 */  sw         $a0, 0x30($sp)

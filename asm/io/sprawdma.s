@@ -68,21 +68,21 @@ glabel __osSpRawStartDma
 /* ABA98 800AAE98 AD6A0000 */  sw         $t2, ($t3)
 /* ABA9C 800AAE9C 0C026964 */  jal        osVirtualToPhysical
 /* ABAA0 800AAEA0 8FA40020 */   lw        $a0, 0x20($sp)
-/* ABAA4 800AAEA4 3C0CA404 */  lui        $t4, %hi(SP_DRAM_ADDR)
-/* ABAA8 800AAEA8 AD820004 */  sw         $v0, %lo(SP_DRAM_ADDR)($t4)
+/* ABAA4 800AAEA4 3C0CA404 */  lui        $t4, %hi(D_A4040004)
+/* ABAA8 800AAEA8 AD820004 */  sw         $v0, %lo(D_A4040004)($t4)
 /* ABAAC 800AAEAC 8FAD0018 */  lw         $t5, 0x18($sp)
 /* ABAB0 800AAEB0 15A00006 */  bnez       $t5, .L800AAECC
 /* ABAB4 800AAEB4 00000000 */   nop
 /* ABAB8 800AAEB8 8FAE0024 */  lw         $t6, 0x24($sp)
-/* ABABC 800AAEBC 3C18A404 */  lui        $t8, %hi(SP_WR_LEN)
+/* ABABC 800AAEBC 3C18A404 */  lui        $t8, %hi(D_A404000C)
 /* ABAC0 800AAEC0 25CFFFFF */  addiu      $t7, $t6, -1
 /* ABAC4 800AAEC4 10000005 */  b          .L800AAEDC
-/* ABAC8 800AAEC8 AF0F000C */   sw        $t7, %lo(SP_WR_LEN)($t8)
+/* ABAC8 800AAEC8 AF0F000C */   sw        $t7, %lo(D_A404000C)($t8)
 .L800AAECC:
 /* ABACC 800AAECC 8FB90024 */  lw         $t9, 0x24($sp)
-/* ABAD0 800AAED0 3C09A404 */  lui        $t1, %hi(SP_RD_LEN)
+/* ABAD0 800AAED0 3C09A404 */  lui        $t1, %hi(D_A4040008)
 /* ABAD4 800AAED4 2728FFFF */  addiu      $t0, $t9, -1
-/* ABAD8 800AAED8 AD280008 */  sw         $t0, %lo(SP_RD_LEN)($t1)
+/* ABAD8 800AAED8 AD280008 */  sw         $t0, %lo(D_A4040008)($t1)
 .L800AAEDC:
 /* ABADC 800AAEDC 10000003 */  b          .L800AAEEC
 /* ABAE0 800AAEE0 00001025 */   or        $v0, $zero, $zero

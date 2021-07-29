@@ -9,8 +9,8 @@
 
 glabel __osSpSetPc
 /* AB990 800AAD90 27BDFFF8 */  addiu      $sp, $sp, -8
-/* AB994 800AAD94 3C0EA404 */  lui        $t6, %hi(SP_STATUS)
-/* AB998 800AAD98 8DC50010 */  lw         $a1, %lo(SP_STATUS)($t6)
+/* AB994 800AAD94 3C0EA404 */  lui        $t6, %hi(D_A4040010)
+/* AB998 800AAD98 8DC50010 */  lw         $a1, %lo(D_A4040010)($t6)
 /* AB99C 800AAD9C 30AF0001 */  andi       $t7, $a1, 1
 /* AB9A0 800AADA0 15E00003 */  bnez       $t7, .L800AADB0
 /* AB9A4 800AADA4 00000000 */   nop

@@ -31,7 +31,7 @@ glabel func_80022F48
 /* 23BB4 80022FB4 00002025 */   or        $a0, $zero, $zero
 /* 23BB8 80022FB8 0C0013FF */  jal        func_80004FFC
 /* 23BBC 80022FBC 24040001 */   addiu     $a0, $zero, 1
-/* 23BC0 80022FC0 0C00142D */  jal        clearGameProgress
+/* 23BC0 80022FC0 0C00142D */  jal        GameSave_Reset
 /* 23BC4 80022FC4 00000000 */   nop
 /* 23BC8 80022FC8 24181000 */  addiu      $t8, $zero, 0x1000
 /* 23BCC 80022FCC 3C01800C */  lui        $at, %hi(gButton_Start)

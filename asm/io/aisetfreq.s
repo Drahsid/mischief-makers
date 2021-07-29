@@ -170,14 +170,14 @@ glabel osAiSetFrequency
 /* 9CF98 8009C398 24110010 */  addiu      $s1, $zero, 0x10
 .L8009C39C:
 /* 9CF9C 8009C39C 2618FFFF */  addiu      $t8, $s0, -1
-/* 9CFA0 8009C3A0 3C19A450 */  lui        $t9, %hi(AI_DACRATE)
-/* 9CFA4 8009C3A4 AF380010 */  sw         $t8, %lo(AI_DACRATE)($t9)
+/* 9CFA0 8009C3A0 3C19A450 */  lui        $t9, %hi(D_A4500010)
+/* 9CFA4 8009C3A4 AF380010 */  sw         $t8, %lo(D_A4500010)($t9)
 /* 9CFA8 8009C3A8 2628FFFF */  addiu      $t0, $s1, -1
-/* 9CFAC 8009C3AC 3C09A450 */  lui        $t1, %hi(AI_BITRATE)
-/* 9CFB0 8009C3B0 AD280014 */  sw         $t0, %lo(AI_BITRATE)($t1)
+/* 9CFAC 8009C3AC 3C09A450 */  lui        $t1, %hi(D_A4500014)
+/* 9CFB0 8009C3B0 AD280014 */  sw         $t0, %lo(D_A4500014)($t1)
 /* 9CFB4 8009C3B4 240A0001 */  addiu      $t2, $zero, 1
-/* 9CFB8 8009C3B8 3C0BA450 */  lui        $t3, %hi(AI_CONTROL)
-/* 9CFBC 8009C3BC AD6A0008 */  sw         $t2, %lo(AI_CONTROL)($t3)
+/* 9CFB8 8009C3B8 3C0BA450 */  lui        $t3, %hi(D_A4500008)
+/* 9CFBC 8009C3BC AD6A0008 */  sw         $t2, %lo(D_A4500008)($t3)
 /* 9CFC0 8009C3C0 3C0C800F */  lui        $t4, %hi(osViClock)
 /* 9CFC4 8009C3C4 8D8C9778 */  lw         $t4, %lo(osViClock)($t4)
 /* 9CFC8 8009C3C8 0190001A */  div        $zero, $t4, $s0

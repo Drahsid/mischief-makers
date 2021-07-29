@@ -9,8 +9,8 @@
 
 glabel __osSiDeviceBusy
 /* B6130 800B5530 27BDFFF8 */  addiu      $sp, $sp, -8
-/* B6134 800B5534 3C0EA480 */  lui        $t6, %hi(SI_STATUS)
-/* B6138 800B5538 8DC40018 */  lw         $a0, %lo(SI_STATUS)($t6)
+/* B6134 800B5534 3C0EA480 */  lui        $t6, %hi(D_A4800018)
+/* B6138 800B5538 8DC40018 */  lw         $a0, %lo(D_A4800018)($t6)
 /* B613C 800B553C 308F0003 */  andi       $t7, $a0, 3
 /* B6140 800B5540 11E00005 */  beqz       $t7, .L800B5558
 /* B6144 800B5544 00000000 */   nop

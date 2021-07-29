@@ -17,8 +17,8 @@ glabel osSetIntMask
 /* AF2B8 800AE6B8 01614026 */  xor        $t0, $t3, $at
 /* AF2BC 800AE6BC 3108FF00 */  andi       $t0, $t0, 0xff00
 /* AF2C0 800AE6C0 00481025 */  or         $v0, $v0, $t0
-/* AF2C4 800AE6C4 3C0AA430 */  lui        $t2, %hi(MI_INTR_MASK)
-/* AF2C8 800AE6C8 8D4A000C */  lw         $t2, %lo(MI_INTR_MASK)($t2)
+/* AF2C4 800AE6C4 3C0AA430 */  lui        $t2, %hi(D_A430000C)
+/* AF2C8 800AE6C8 8D4A000C */  lw         $t2, %lo(D_A430000C)($t2)
 /* AF2CC 800AE6CC 11400005 */  beqz       $t2, .L800AE6E4
 /* AF2D0 800AE6D0 000B4C02 */   srl       $t1, $t3, 0x10
 /* AF2D4 800AE6D4 2401FFFF */  addiu      $at, $zero, -1
@@ -35,8 +35,8 @@ glabel osSetIntMask
 /* AF2FC 800AE6FC 3C0A800F */  lui        $t2, %hi(__osRcpImTable)
 /* AF300 800AE700 01485021 */  addu       $t2, $t2, $t0
 /* AF304 800AE704 954AE390 */  lhu        $t2, %lo(__osRcpImTable)($t2)
-/* AF308 800AE708 3C01A430 */  lui        $at, %hi(MI_INTR_MASK)
-/* AF30C 800AE70C AC2A000C */  sw         $t2, %lo(MI_INTR_MASK)($at)
+/* AF308 800AE708 3C01A430 */  lui        $at, %hi(D_A430000C)
+/* AF30C 800AE70C AC2A000C */  sw         $t2, %lo(D_A430000C)($at)
 /* AF310 800AE710 3088FF01 */  andi       $t0, $a0, 0xff01
 /* AF314 800AE714 3169FF00 */  andi       $t1, $t3, 0xff00
 /* AF318 800AE718 01094024 */  and        $t0, $t0, $t1

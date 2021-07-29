@@ -163,8 +163,8 @@ glabel __osDevMgrMain
 /* A92C4 800A86C4 24190004 */  addiu      $t9, $zero, 4
 /* A92C8 800A86C8 AD390000 */  sw         $t9, ($t1)
 /* A92CC 800A86CC 240B0002 */  addiu      $t3, $zero, 2
-/* A92D0 800A86D0 3C0AA460 */  lui        $t2, %hi(PI_STATUS)
-/* A92D4 800A86D4 AD4B0010 */  sw         $t3, %lo(PI_STATUS)($t2)
+/* A92D0 800A86D0 3C0AA460 */  lui        $t2, %hi(D_A4600010)
+/* A92D4 800A86D4 AD4B0010 */  sw         $t3, %lo(D_A4600010)($t2)
 /* A92D8 800A86D8 3C040010 */  lui        $a0, 0x10
 /* A92DC 800A86DC 0C02D5E0 */  jal        __osSetGlobalIntMask
 /* A92E0 800A86E0 34840C01 */   ori       $a0, $a0, 0xc01

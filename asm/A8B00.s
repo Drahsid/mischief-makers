@@ -78,14 +78,14 @@ glabel osPiRawStartDma
 /* A8BF8 800A7FF8 10000032 */  b          .L800A80C4
 /* A8BFC 800A7FFC 2402FFFF */   addiu     $v0, $zero, -1
 .L800A8000:
-/* A8C00 800A8000 3C0CA460 */  lui        $t4, %hi(PI_STATUS)
-/* A8C04 800A8004 8D900010 */  lw         $s0, %lo(PI_STATUS)($t4)
+/* A8C00 800A8000 3C0CA460 */  lui        $t4, %hi(D_A4600010)
+/* A8C04 800A8004 8D900010 */  lw         $s0, %lo(D_A4600010)($t4)
 /* A8C08 800A8008 320D0003 */  andi       $t5, $s0, 3
 /* A8C0C 800A800C 11A00006 */  beqz       $t5, .L800A8028
 /* A8C10 800A8010 00000000 */   nop
 .L800A8014:
-/* A8C14 800A8014 3C0EA460 */  lui        $t6, %hi(PI_STATUS)
-/* A8C18 800A8018 8DD00010 */  lw         $s0, %lo(PI_STATUS)($t6)
+/* A8C14 800A8014 3C0EA460 */  lui        $t6, %hi(D_A4600010)
+/* A8C18 800A8018 8DD00010 */  lw         $s0, %lo(D_A4600010)($t6)
 /* A8C1C 800A801C 320F0003 */  andi       $t7, $s0, 3
 /* A8C20 800A8020 15E0FFFC */  bnez       $t7, .L800A8014
 /* A8C24 800A8024 00000000 */   nop
@@ -101,8 +101,8 @@ glabel osPiRawStartDma
 /* A8C48 800A8048 3421FFFF */  ori        $at, $at, 0xffff
 /* A8C4C 800A804C 03284825 */  or         $t1, $t9, $t0
 /* A8C50 800A8050 01215024 */  and        $t2, $t1, $at
-/* A8C54 800A8054 3C0BA460 */  lui        $t3, %hi(PI_CART_ADDR)
-/* A8C58 800A8058 AD6A0004 */  sw         $t2, %lo(PI_CART_ADDR)($t3)
+/* A8C54 800A8054 3C0BA460 */  lui        $t3, %hi(D_A4600004)
+/* A8C58 800A8058 AD6A0004 */  sw         $t2, %lo(D_A4600004)($t3)
 /* A8C5C 800A805C 8FB10028 */  lw         $s1, 0x28($sp)
 /* A8C60 800A8060 12200006 */  beqz       $s1, .L800A807C
 /* A8C64 800A8064 00000000 */   nop
@@ -113,16 +113,16 @@ glabel osPiRawStartDma
 /* A8C78 800A8078 00000000 */   nop
 .L800A807C:
 /* A8C7C 800A807C 8FAC0034 */  lw         $t4, 0x34($sp)
-/* A8C80 800A8080 3C0EA460 */  lui        $t6, %hi(PI_WR_LEN)
+/* A8C80 800A8080 3C0EA460 */  lui        $t6, %hi(D_A460000C)
 /* A8C84 800A8084 258DFFFF */  addiu      $t5, $t4, -1
-/* A8C88 800A8088 ADCD000C */  sw         $t5, %lo(PI_WR_LEN)($t6)
+/* A8C88 800A8088 ADCD000C */  sw         $t5, %lo(D_A460000C)($t6)
 /* A8C8C 800A808C 10000009 */  b          .L800A80B4
 /* A8C90 800A8090 00000000 */   nop
 .L800A8094:
 /* A8C94 800A8094 8FAF0034 */  lw         $t7, 0x34($sp)
-/* A8C98 800A8098 3C19A460 */  lui        $t9, %hi(PI_RD_LEN)
+/* A8C98 800A8098 3C19A460 */  lui        $t9, %hi(D_A4600008)
 /* A8C9C 800A809C 25F8FFFF */  addiu      $t8, $t7, -1
-/* A8CA0 800A80A0 AF380008 */  sw         $t8, %lo(PI_RD_LEN)($t9)
+/* A8CA0 800A80A0 AF380008 */  sw         $t8, %lo(D_A4600008)($t9)
 /* A8CA4 800A80A4 10000003 */  b          .L800A80B4
 /* A8CA8 800A80A8 00000000 */   nop
 .L800A80AC:

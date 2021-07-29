@@ -77,14 +77,14 @@ glabel __osViInit
 /* A6A2C 800A5E2C 8DF80008 */  lw         $t8, 8($t7)
 /* A6A30 800A5E30 8F190004 */  lw         $t9, 4($t8)
 /* A6A34 800A5E34 ADF9000C */  sw         $t9, 0xc($t7)
-/* A6A38 800A5E38 3C08A440 */  lui        $t0, %hi(VI_CURRENT)
-/* A6A3C 800A5E3C 8D090010 */  lw         $t1, %lo(VI_CURRENT)($t0)
+/* A6A38 800A5E38 3C08A440 */  lui        $t0, %hi(D_A4400010)
+/* A6A3C 800A5E3C 8D090010 */  lw         $t1, %lo(D_A4400010)($t0)
 /* A6A40 800A5E40 2D21000B */  sltiu      $at, $t1, 0xb
 /* A6A44 800A5E44 14200006 */  bnez       $at, .L800A5E60
 /* A6A48 800A5E48 00000000 */   nop
 .L800A5E4C:
-/* A6A4C 800A5E4C 3C0AA440 */  lui        $t2, %hi(VI_CURRENT)
-/* A6A50 800A5E50 8D4B0010 */  lw         $t3, %lo(VI_CURRENT)($t2)
+/* A6A4C 800A5E4C 3C0AA440 */  lui        $t2, %hi(D_A4400010)
+/* A6A50 800A5E50 8D4B0010 */  lw         $t3, %lo(D_A4400010)($t2)
 /* A6A54 800A5E54 2D61000B */  sltiu      $at, $t3, 0xb
 /* A6A58 800A5E58 1020FFFC */  beqz       $at, .L800A5E4C
 /* A6A5C 800A5E5C 00000000 */   nop

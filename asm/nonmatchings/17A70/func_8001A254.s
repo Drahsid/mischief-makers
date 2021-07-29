@@ -89,7 +89,7 @@ glabel func_8001A254
 /* 1AF94 8001A394 3212FFFF */  andi       $s2, $s0, 0xffff
 /* 1AF98 8001A398 02408025 */  or         $s0, $s2, $zero
 .L8001A39C:
-/* 1AF9C 8001A39C 0C0071FC */  jal        YellowGem_getFlag
+/* 1AF9C 8001A39C 0C0071FC */  jal        func_8001C7F0
 /* 1AFA0 8001A3A0 3204FFFF */   andi      $a0, $s0, 0xffff
 /* 1AFA4 8001A3A4 14400002 */  bnez       $v0, .L8001A3B0
 /* 1AFA8 8001A3A8 2624009C */   addiu     $a0, $s1, 0x9c

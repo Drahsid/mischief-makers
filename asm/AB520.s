@@ -50,14 +50,14 @@ glabel __osSiRawStartDma
 /* AB5AC 800AA9AC 00000000 */   nop
 /* AB5B0 800AA9B0 3C091FC0 */  lui        $t1, 0x1fc0
 /* AB5B4 800AA9B4 352907C0 */  ori        $t1, $t1, 0x7c0
-/* AB5B8 800AA9B8 3C0AA480 */  lui        $t2, %hi(SI_PIF_ADDR_RD64B_REG)
+/* AB5B8 800AA9B8 3C0AA480 */  lui        $t2, %hi(D_A4800004)
 /* AB5BC 800AA9BC 10000005 */  b          .L800AA9D4
-/* AB5C0 800AA9C0 AD490004 */   sw        $t1, %lo(SI_PIF_ADDR_RD64B_REG)($t2)
+/* AB5C0 800AA9C0 AD490004 */   sw        $t1, %lo(D_A4800004)($t2)
 .L800AA9C4:
 /* AB5C4 800AA9C4 3C0B1FC0 */  lui        $t3, 0x1fc0
 /* AB5C8 800AA9C8 356B07C0 */  ori        $t3, $t3, 0x7c0
-/* AB5CC 800AA9CC 3C0CA480 */  lui        $t4, %hi(SI_PIF_ADDR_WR64B_REG)
-/* AB5D0 800AA9D0 AD8B0010 */  sw         $t3, %lo(SI_PIF_ADDR_WR64B_REG)($t4)
+/* AB5CC 800AA9CC 3C0CA480 */  lui        $t4, %hi(D_A4800010)
+/* AB5D0 800AA9D0 AD8B0010 */  sw         $t3, %lo(D_A4800010)($t4)
 .L800AA9D4:
 /* AB5D4 800AA9D4 8FAD0018 */  lw         $t5, 0x18($sp)
 /* AB5D8 800AA9D8 15A00004 */  bnez       $t5, .L800AA9EC

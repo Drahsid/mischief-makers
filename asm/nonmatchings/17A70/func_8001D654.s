@@ -71,12 +71,12 @@ glabel L8001D6F0_1E2F0
 /* 1E358 8001D758 850951D0 */  lh         $t1, 0x51d0($t0)
 /* 1E35C 8001D75C 240A0020 */  addiu      $t2, $zero, 0x20
 /* 1E360 8001D760 240BFFE4 */  addiu      $t3, $zero, -0x1c
-/* 1E364 8001D764 3C05800D */  lui        $a1, %hi(Alphabet_record)
+/* 1E364 8001D764 3C05800D */  lui        $a1, %hi(D_800C96B4)
 /* 1E368 8001D768 240C0002 */  addiu      $t4, $zero, 2
 /* 1E36C 8001D76C A50A503C */  sh         $t2, 0x503c($t0)
 /* 1E370 8001D770 A50B51D4 */  sh         $t3, 0x51d4($t0)
 /* 1E374 8001D774 AFAC0010 */  sw         $t4, 0x10($sp)
-/* 1E378 8001D778 24A596B4 */  addiu      $a1, $a1, %lo(Alphabet_record)
+/* 1E378 8001D778 24A596B4 */  addiu      $a1, $a1, %lo(D_800C96B4)
 /* 1E37C 8001D77C 24040034 */  addiu      $a0, $zero, 0x34
 /* 1E380 8001D780 3406FFE8 */  ori        $a2, $zero, 0xffe8
 /* 1E384 8001D784 2407004B */  addiu      $a3, $zero, 0x4b
@@ -103,7 +103,7 @@ glabel L8001D6F0_1E2F0
 /* 1E3D4 8001D7D4 1420FFF8 */  bnez       $at, .L8001D7B8
 /* 1E3D8 8001D7D8 ADC2018C */   sw        $v0, 0x18c($t6)
 .L8001D7DC:
-/* 1E3DC 8001D7DC 0C007490 */  jal        print_record_entry
+/* 1E3DC 8001D7DC 0C007490 */  jal        func_8001D240
 /* 1E3E0 8001D7E0 00000000 */   nop
 /* 1E3E4 8001D7E4 24180002 */  addiu      $t8, $zero, 2
 /* 1E3E8 8001D7E8 3C018010 */  lui        $at, %hi(D_800FA8E4)

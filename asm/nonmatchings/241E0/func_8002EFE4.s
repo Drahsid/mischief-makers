@@ -10,7 +10,7 @@ glabel func_8002EFE4
 /* 2FC04 8002F004 AFA40028 */   sw        $a0, 0x28($sp)
 /* 2FC08 8002F008 3C048018 */  lui        $a0, %hi(gCurrentStage)
 /* 2FC0C 8002F00C 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
-/* 2FC10 8002F010 0C0071FC */  jal        YellowGem_getFlag
+/* 2FC10 8002F010 0C0071FC */  jal        func_8001C7F0
 /* 2FC14 8002F014 AFA60020 */   sw        $a2, 0x20($sp)
 /* 2FC18 8002F018 8FA60020 */  lw         $a2, 0x20($sp)
 /* 2FC1C 8002F01C 14400003 */  bnez       $v0, .L8002F02C

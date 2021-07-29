@@ -9,8 +9,8 @@
 
 glabel __rmonRCPrunning
 /* BB260 800BA660 00001025 */  or         $v0, $zero, $zero
-/* BB264 800BA664 3C08A404 */  lui        $t0, %hi(SP_STATUS)
-/* BB268 800BA668 8D080010 */  lw         $t0, %lo(SP_STATUS)($t0)
+/* BB264 800BA664 3C08A404 */  lui        $t0, %hi(D_A4040010)
+/* BB268 800BA668 8D080010 */  lw         $t0, %lo(D_A4040010)($t0)
 /* BB26C 800BA66C 31080003 */  andi       $t0, $t0, 3
 /* BB270 800BA670 15000002 */  bnez       $t0, .L800BA67C
 /* BB274 800BA674 00000000 */   nop

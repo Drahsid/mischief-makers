@@ -37,14 +37,14 @@ glabel osPiRawReadIo
 /* A7CD0 800A70D0 0C026E74 */  jal        __assert
 /* A7CD4 800A70D4 2406003D */   addiu     $a2, $zero, 0x3d
 .L800A70D8:
-/* A7CD8 800A70D8 3C19A460 */  lui        $t9, %hi(PI_STATUS)
-/* A7CDC 800A70DC 8F300010 */  lw         $s0, %lo(PI_STATUS)($t9)
+/* A7CD8 800A70D8 3C19A460 */  lui        $t9, %hi(D_A4600010)
+/* A7CDC 800A70DC 8F300010 */  lw         $s0, %lo(D_A4600010)($t9)
 /* A7CE0 800A70E0 32080003 */  andi       $t0, $s0, 3
 /* A7CE4 800A70E4 11000006 */  beqz       $t0, .L800A7100
 /* A7CE8 800A70E8 00000000 */   nop
 .L800A70EC:
-/* A7CEC 800A70EC 3C09A460 */  lui        $t1, %hi(PI_STATUS)
-/* A7CF0 800A70F0 8D300010 */  lw         $s0, %lo(PI_STATUS)($t1)
+/* A7CEC 800A70EC 3C09A460 */  lui        $t1, %hi(D_A4600010)
+/* A7CF0 800A70F0 8D300010 */  lw         $s0, %lo(D_A4600010)($t1)
 /* A7CF4 800A70F4 320A0003 */  andi       $t2, $s0, 3
 /* A7CF8 800A70F8 1540FFFC */  bnez       $t2, .L800A70EC
 /* A7CFC 800A70FC 00000000 */   nop

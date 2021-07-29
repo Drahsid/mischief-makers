@@ -186,9 +186,9 @@ glabel func_80002114
 /* 2FDC 800023DC 030B6023 */  subu       $t4, $t8, $t3
 /* 2FE0 800023E0 000C68C3 */  sra        $t5, $t4, 3
 /* 2FE4 800023E4 000D70C0 */  sll        $t6, $t5, 3
-/* 2FE8 800023E8 3C19A450 */  lui        $t9, %hi(AI_LEN)
+/* 2FE8 800023E8 3C19A450 */  lui        $t9, %hi(D_A4500004)
 /* 2FEC 800023EC ADEE0034 */  sw         $t6, 0x34($t7)
-/* 2FF0 800023F0 8F290004 */  lw         $t1, %lo(AI_LEN)($t9)
+/* 2FF0 800023F0 8F290004 */  lw         $t1, %lo(D_A4500004)($t9)
 /* 2FF4 800023F4 8E240000 */  lw         $a0, ($s1)
 /* 2FF8 800023F8 00095082 */  srl        $t2, $t1, 2
 /* 2FFC 800023FC 0C027B9C */  jal        alSeqpGetState

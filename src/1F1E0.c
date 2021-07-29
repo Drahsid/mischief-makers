@@ -129,25 +129,26 @@ void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
 }
 
-#ifdef NON_MATCHING
-/* Differences are regalloc and instruction order
- * Additionally, when it loads actor.unk_0x98, there should be a nop following it
- */
-int32_t func_8001FF50(void) {
-    int32_t index;
-    int32_t temp;
-
-    for (index = 1; index < ACTOR_COUNT1; index = temp) {
-        index++;
-        temp = index & 0xFFFF;
-        gActors[index].unk_0x98 &= 0x380600;
-    }
-
-    return temp;
-}
-#else
+// SPLAT BUG
+//#ifdef NON_MATCHING
+///* Differences are regalloc and instruction order
+// * Additionally, when it loads actor.unk_0x98, there should be a nop following it
+// */
+//int32_t func_8001FF50(void) {
+//    int32_t index;
+//    int32_t temp;
+//
+//    for (index = 1; index < ACTOR_COUNT1; index = temp) {
+//        index++;
+//        temp = index & 0xFFFF;
+//        gActors[index].unk_0x98 &= 0x380600;
+//    }
+//
+//    return temp;
+//}
+//#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
-#endif
+//#endif
 
 void func_8001FFA0(void) {
     return;
@@ -256,7 +257,7 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800205DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/YellowGem_printProgress.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800207DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
@@ -285,7 +286,7 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
 
-void GamePlay_tick(void) {
+void GamePlay_Tick(void) {
     uint32_t sp1C;
 
     sp1C = osGetTime(); // osGetTime?
@@ -302,11 +303,12 @@ void GamePlay_tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
 
+// SPLAT BUG
 #ifdef NON_MATCHING
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
  * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
  */
-void AttrectMode_tick(void) {
+void AttractMode_Tick(void) {
     if (gGameSubState != 0) {
         if (gGameSubState == 1) {
             if (D_801037AA == 0x90) {
@@ -389,7 +391,7 @@ void AttrectMode_tick(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/AttrectMode_tick.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/AttractMode_Tick.s")
 #endif
 
 void func_80021620(void) {
@@ -398,7 +400,7 @@ void func_80021620(void) {
     }
 }
 
-void ptstart(void) {
+void func_80021658(void) {
     return;
 }
 

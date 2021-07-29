@@ -46,7 +46,7 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/SplashScreen_tick.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Intro_Tick.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
 
@@ -56,15 +56,15 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_tick.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_tick.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_Tick.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/StageSelect_Print.s")
 
 #ifdef NON_MATCHING
 // Needs a lot of work
-void StageSelect_tick(void) {
+void StageSelect_Tick(void) {
     int16_t temp_t3;
     int32_t temp_a0;
     int32_t temp_t6_2;
@@ -206,7 +206,7 @@ void StageSelect_tick(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/StageSelect_tick.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/StageSelect_Tick.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
@@ -269,9 +269,9 @@ void StageSelect_tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001c7a4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001c7f0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 
@@ -301,7 +301,7 @@ void StageSelect_tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D0A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D240.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D5B8.s")
 

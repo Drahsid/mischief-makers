@@ -51,7 +51,7 @@ glabel func_8002FC30
 /* 308F0 8002FCF0 AC400080 */  sw         $zero, 0x80($v0)
 /* 308F4 8002FCF4 00002825 */  or         $a1, $zero, $zero
 /* 308F8 8002FCF8 A7A40022 */  sh         $a0, 0x22($sp)
-/* 308FC 8002FCFC 0C00BE4F */  jal        gem_collision
+/* 308FC 8002FCFC 0C00BE4F */  jal        func_8002F93C
 /* 30900 8002FD00 AFAD0010 */   sw        $t5, 0x10($sp)
 /* 30904 8002FD04 97A40022 */  lhu        $a0, 0x22($sp)
 /* 30908 8002FD08 00000000 */  nop

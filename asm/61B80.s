@@ -4299,7 +4299,7 @@ glabel func_80064CB4
 /* 659D0 80064DD0 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
 /* 659D4 80064DD4 AFA50028 */  sw         $a1, 0x28($sp)
 /* 659D8 80064DD8 AFA6001C */  sw         $a2, 0x1c($sp)
-/* 659DC 80064DDC 0C0071FC */  jal        YellowGem_getFlag
+/* 659DC 80064DDC 0C0071FC */  jal        func_8001C7F0
 /* 659E0 80064DE0 AFA70018 */   sw        $a3, 0x18($sp)
 /* 659E4 80064DE4 8FA50028 */  lw         $a1, 0x28($sp)
 /* 659E8 80064DE8 8FA6001C */  lw         $a2, 0x1c($sp)

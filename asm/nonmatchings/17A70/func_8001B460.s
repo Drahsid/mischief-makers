@@ -246,7 +246,7 @@ glabel L8001B6C0_1C2C0
 /* 1C3F0 8001B7F0 3407FFEF */   ori       $a3, $zero, 0xffef
 /* 1C3F4 8001B7F4 3C048018 */  lui        $a0, %hi(gCurrentStage)
 /* 1C3F8 8001B7F8 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
-/* 1C3FC 8001B7FC 0C0071FC */  jal        YellowGem_getFlag
+/* 1C3FC 8001B7FC 0C0071FC */  jal        func_8001C7F0
 /* 1C400 8001B800 00000000 */   nop
 /* 1C404 8001B804 14400002 */  bnez       $v0, .L8001B810
 /* 1C408 8001B808 24040051 */   addiu     $a0, $zero, 0x51

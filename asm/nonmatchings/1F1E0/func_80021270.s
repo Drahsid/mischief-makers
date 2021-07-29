@@ -15,13 +15,13 @@ glabel func_80021270
 /* 21EA4 800212A4 100000DB */  b          .L80021614
 /* 21EA8 800212A8 8FBF0014 */   lw        $ra, 0x14($sp)
 .L800212AC:
-/* 21EAC 800212AC 3C04800D */  lui        $a0, %hi(D_800CA238)
-/* 21EB0 800212B0 2484A238 */  addiu      $a0, $a0, %lo(D_800CA238)
+/* 21EAC 800212AC 3C04800D */  lui        $a0, %hi(AttractModeIndex)
+/* 21EB0 800212B0 2484A238 */  addiu      $a0, $a0, %lo(AttractModeIndex)
 /* 21EB4 800212B4 94830000 */  lhu        $v1, ($a0)
-/* 21EB8 800212B8 3C058018 */  lui        $a1, %hi(D_80178162)
+/* 21EB8 800212B8 3C058018 */  lui        $a1, %hi(gCurrentStage)
 /* 21EBC 800212BC 28610004 */  slti       $at, $v1, 4
 /* 21EC0 800212C0 14200003 */  bnez       $at, .L800212D0
-/* 21EC4 800212C4 24A58162 */   addiu     $a1, $a1, %lo(D_80178162)
+/* 21EC4 800212C4 24A58162 */   addiu     $a1, $a1, %lo(gCurrentStage)
 /* 21EC8 800212C8 A4800000 */  sh         $zero, ($a0)
 /* 21ECC 800212CC 3003FFFF */  andi       $v1, $zero, 0xffff
 .L800212D0:
@@ -85,9 +85,9 @@ glabel func_80021270
 /* 21FB4 800213B4 A420A240 */  sh         $zero, %lo(D_800CA240)($at)
 /* 21FB8 800213B8 3C01800D */  lui        $at, %hi(D_800CA248)
 /* 21FBC 800213BC A420A248 */  sh         $zero, %lo(D_800CA248)($at)
-/* 21FC0 800213C0 3C04800D */  lui        $a0, %hi(D_800CA238)
+/* 21FC0 800213C0 3C04800D */  lui        $a0, %hi(AttractModeIndex)
 /* 21FC4 800213C4 3C01800D */  lui        $at, %hi(D_800CA24C)
-/* 21FC8 800213C8 2484A238 */  addiu      $a0, $a0, %lo(D_800CA238)
+/* 21FC8 800213C8 2484A238 */  addiu      $a0, $a0, %lo(AttractModeIndex)
 /* 21FCC 800213CC A420A24C */  sh         $zero, %lo(D_800CA24C)($at)
 /* 21FD0 800213D0 94830000 */  lhu        $v1, ($a0)
 /* 21FD4 800213D4 3C08800D */  lui        $t0, %hi(D_800CBDFC)
@@ -148,10 +148,10 @@ glabel func_80021270
 /* 220A4 800214A4 246AFFFF */  addiu      $t2, $v1, -1
 /* 220A8 800214A8 14400008 */  bnez       $v0, .L800214CC
 /* 220AC 800214AC A4CA0000 */   sh        $t2, ($a2)
-/* 220B0 800214B0 3C0B800C */  lui        $t3, %hi(D_800BE4FC)
-/* 220B4 800214B4 3C0C800C */  lui        $t4, %hi(D_800BE500)
-/* 220B8 800214B8 958CE500 */  lhu        $t4, %lo(D_800BE500)($t4)
-/* 220BC 800214BC 956BE4FC */  lhu        $t3, %lo(D_800BE4FC)($t3)
+/* 220B0 800214B0 3C0B800C */  lui        $t3, %hi(gButtonPress)
+/* 220B4 800214B4 3C0C800C */  lui        $t4, %hi(gButton_Start)
+/* 220B8 800214B8 958CE500 */  lhu        $t4, %lo(gButton_Start)($t4)
+/* 220BC 800214BC 956BE4FC */  lhu        $t3, %lo(gButtonPress)($t3)
 /* 220C0 800214C0 00000000 */  nop
 /* 220C4 800214C4 016C6824 */  and        $t5, $t3, $t4
 /* 220C8 800214C8 11A00051 */  beqz       $t5, .L80021610
@@ -212,8 +212,8 @@ glabel func_80021270
 /* 22198 80021598 3C07800C */  lui        $a3, %hi(gGameSubState)
 /* 2219C 8002159C 1443000C */  bne        $v0, $v1, .L800215D0
 /* 221A0 800215A0 24E7E4F4 */   addiu     $a3, $a3, %lo(gGameSubState)
-/* 221A4 800215A4 3C04800D */  lui        $a0, %hi(D_800CA238)
-/* 221A8 800215A8 2484A238 */  addiu      $a0, $a0, %lo(D_800CA238)
+/* 221A4 800215A4 3C04800D */  lui        $a0, %hi(AttractModeIndex)
+/* 221A8 800215A8 2484A238 */  addiu      $a0, $a0, %lo(AttractModeIndex)
 /* 221AC 800215AC 948F0000 */  lhu        $t7, ($a0)
 /* 221B0 800215B0 3C018013 */  lui        $at, %hi(D_80137D90)
 /* 221B4 800215B4 25F80001 */  addiu      $t8, $t7, 1

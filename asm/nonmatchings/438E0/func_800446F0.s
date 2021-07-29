@@ -24,7 +24,7 @@ glabel func_800446F0
 /* 45348 80044748 AC49008C */   sw        $t1, 0x8c($v0)
 /* 4534C 8004474C 3C048018 */  lui        $a0, %hi(gCurrentStage)
 /* 45350 80044750 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
-/* 45354 80044754 0C0071FC */  jal        YellowGem_getFlag
+/* 45354 80044754 0C0071FC */  jal        func_8001C7F0
 /* 45358 80044758 00000000 */   nop
 /* 4535C 8004475C 14400008 */  bnez       $v0, .L80044780
 /* 45360 80044760 00000000 */   nop

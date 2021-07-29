@@ -90,8 +90,8 @@ glabel func_8009FE30
 /* A0B08 8009FF08 3C19A450 */  lui        $t9, 0xa450
 /* A0B0C 8009FF0C AF220000 */  sw         $v0, ($t9)
 /* A0B10 8009FF10 8FA80024 */  lw         $t0, 0x24($sp)
-/* A0B14 8009FF14 3C09A450 */  lui        $t1, %hi(AI_LEN)
-/* A0B18 8009FF18 AD280004 */  sw         $t0, %lo(AI_LEN)($t1)
+/* A0B14 8009FF14 3C09A450 */  lui        $t1, %hi(D_A4500004)
+/* A0B18 8009FF18 AD280004 */  sw         $t0, %lo(D_A4500004)($t1)
 /* A0B1C 8009FF1C 10000003 */  b          .L8009FF2C
 /* A0B20 8009FF20 00001025 */   or        $v0, $zero, $zero
 /* A0B24 8009FF24 10000001 */  b          .L8009FF2C

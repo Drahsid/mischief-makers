@@ -49,7 +49,7 @@ glabel func_8002F6D4
 /* 3038C 8002F78C 8E090154 */  lw         $t1, 0x154($s0)
 /* 30390 8002F790 AE000080 */  sw         $zero, 0x80($s0)
 /* 30394 8002F794 01095021 */  addu       $t2, $t0, $t1
-/* 30398 8002F798 0C00BDAB */  jal        RedGem_Cap
+/* 30398 8002F798 0C00BDAB */  jal        func_8002F6AC
 /* 3039C 8002F79C A44A0000 */   sh        $t2, ($v0)
 /* 303A0 8002F7A0 860B008C */  lh         $t3, 0x8c($s0)
 /* 303A4 8002F7A4 97A4002A */  lhu        $a0, 0x2a($sp)
