@@ -182,24 +182,24 @@ void func_80020024(void) {
     func_800122B0(); // input history
 
     if ((D_800BE6AC & 2) != 0) {
-        if ((D_800BE4FC & D_800BE530) != 0) {
+        if ((gButtonPress & gButton_LTrig) != 0) {
             if (D_800BE6B4 != 1) {
                 D_800BE6B4--;
                 D_801781DC = 0;
             }
         }
 
-        if (((D_800BE4FC & D_800BE534) != 0) && (D_800BE6B4 != 0x32)) {
+        if (((gButtonPress & gButton_RTrig) != 0) && (D_800BE6B4 != 0x32)) {
             D_800BE6B4++;
             D_801781DC = 0;
         }
 
         if ((D_800BE4E4 % D_800BE6B4) == 0) {
-            D_800BE4FC |= D_801781DC;
+            gButtonPress |= D_801781DC;
             D_801781DC = 0;
         }
         else {
-            D_801781DC |= D_800BE4FC;
+            D_801781DC |= gButtonPress;
             return;
         }
     }
@@ -256,7 +256,7 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800205DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800207DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/YellowGem_printProgress.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
@@ -285,12 +285,12 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
 
-void func_80021034(void) {
+void GamePlay_tick(void) {
     uint32_t sp1C;
 
-    sp1C = func_800A5720(); // osGetTime?
+    sp1C = osGetTime(); // osGetTime?
     func_800457C8();
-    D_801374DC = func_800A5720() - sp1C; // time - lastTime ?
+    D_801374DC = osGetTime() - sp1C; // time - lastTime ?
 
     if (gGamePaused != 0) {
         func_80020A90();
@@ -306,7 +306,7 @@ void func_80021034(void) {
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
  * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
  */
-void func_80021270(void) {
+void AttrectMode_tick(void) {
     if (gGameSubState != 0) {
         if (gGameSubState == 1) {
             if (D_801037AA == 0x90) {
@@ -324,7 +324,7 @@ void func_80021270(void) {
 
             func_80021098(&gGameSubState);
             D_800CA234 -= -1;
-            if ((D_800CA234 == 0 || ((D_800BE4FC & D_800BE500) != 0)) && (D_80103450 == 0)) {
+            if ((D_800CA234 == 0 || ((gButtonPress & gButton_Start) != 0)) && (D_80103450 == 0)) {
                 func_80003F24(1, 0x40, &D_800CA234);
                 gGameSubState += 1;
                 D_800CA234 = 0x40;
@@ -344,7 +344,7 @@ void func_80021270(void) {
         else if (gGameSubState == 3) {
             func_80021098(&gGameSubState);
             if (D_801037AA == D_80103944) {
-                D_800CA238 += 1;
+                AttractModeIndex += 1;
                 D_80137D90 = 0;
                 gGameState = 0;
                 gGameSubState = 0;
@@ -358,11 +358,11 @@ void func_80021270(void) {
         }
     }
     else {
-        if (3 < D_800CA238) {
-            D_800CA238 = 0;
+        if (3 < AttractModeIndex) {
+            AttractModeIndex = 0;
         }
 
-        D_80178162 = (&D_800CA2B0)[D_800CA238];
+        D_80178162 = (&D_800CA2B0)[AttractModeIndex];
         D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)D_80178162 * 2);
         D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)D_80178162 * 2);
         D_800CA234 = 0xA00;
@@ -370,7 +370,7 @@ void func_80021270(void) {
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&D_800CA238, &D_80178162, &D_800CA234, &gGameSubState);
+        func_800232A4(&AttractModeIndex, &D_80178162, &D_800CA234, &gGameSubState);
         gGameState = 10;
         gGameSubState = 1;
         D_80104098.unk_0x2920 = 0;
@@ -384,21 +384,21 @@ void func_80021270(void) {
         D_800CA240 = 0;
         D_800CA248 = 0;
         D_800CA24C = 0;
-        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[D_800CA238];
-        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[D_800CA238];
+        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[AttractModeIndex];
+        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[AttractModeIndex];
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021270.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/AttrectMode_tick.s")
 #endif
 
 void func_80021620(void) {
-    if ((D_800BE4FC & D_800BE534) != 0) {
+    if ((gButtonPress & gButton_RTrig) != 0) {
         D_800BE6B8 ^= 0xFF;
     }
 }
 
-void func_80021658(void) {
+void ptstart(void) {
     return;
 }
 

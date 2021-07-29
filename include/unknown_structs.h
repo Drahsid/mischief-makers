@@ -157,13 +157,7 @@ typedef struct {
     /* 0x44 */ int32_t unk_0x44;
 } struct_D_8012AD10;
 
-typedef struct {
-    uint16_t unk_0x00;
-    int8_t unk_0x02;
-    int8_t unk_0x03;
-    uint8_t unk_0x04;
-    uint8_t pad;
-} struct_func_80000FE0_temp_v0;
+
 
 typedef struct {
     uint8_t unk_0x000[0xBC6];

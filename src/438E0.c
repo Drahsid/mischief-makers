@@ -482,7 +482,7 @@ void func_80046A30(void) {
 #ifdef NON_MATCHING
 // Differences are regalloc, and what seems to be a (void) {return 0; } at the bottom
 int32_t func_80046E6C(void) {
-    if ((D_800BE4FC & D_800BE52C) != 0) {
+    if ((gButtonPress & gButton_ZTrig) != 0) {
         D_800D28F0 = (uint16_t)D_800D28E4;
         D_800D28E4 = 0x63;
         D_800D2938 = 0;
