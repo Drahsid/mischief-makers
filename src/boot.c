@@ -273,7 +273,7 @@ void func_80000C20(int32_t arg0) {
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
-    PlayerPort = func_80001098();
+    PlayerPort = get_first_active_controller();
     phi_s2 = (void*)0x803DA800;
     while (1) {
         func_8009AA80(&D_8012ADA0);
@@ -345,19 +345,19 @@ void getControllerInput(void) {
 
     if (ConpadArrayA[PlayerPort].errno == 0) {
         ButtonRaw = ConpadArrayA[PlayerPort].button;
-        joyX = ConpadArrayA[PlayerPort].stick_x;
-        joyY = ConpadArrayA[PlayerPort].stick_y;
+        gJoyX = ConpadArrayA[PlayerPort].stick_x;
+        gJoyY = ConpadArrayA[PlayerPort].stick_y;
     }
     else {
         ButtonRaw = 0U;
     }
 
-    buttonPress = (ButtonRaw ^ D_800BE538) & ButtonRaw;
-    buttonHold = ButtonRaw;
+    gButtonPress = (ButtonRaw ^ D_800BE538) & ButtonRaw;
+    gButtonHold = ButtonRaw;
     D_800BE538 = ButtonRaw;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001098.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/get_first_active_controller.s")
 
 void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     uint32_t sp30[6];
@@ -385,26 +385,26 @@ void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
 
-void SwitchGameMode(void) {
+void GameMode_tick(void) {
     switch (gGameState) {
         case 0: {
             func_80022F48(); // soft reset
             break;
         }
         case 1: {
-            show_splash_screens(); // intro
+            SplashScreen_tick(); // intro
             break;
         }
         case 2: {
-            show_title_screen(); // titlescreen
+            TitleScreen_tick(); // titlescreen
             break;
         }
         case 3: {
-            sound_test(); // sound test
+            SoundTest_tick(); // sound test
             break;
         }
         case 4: {
-            stage_select(); // debug level select
+            StageSelect_tick(); // debug level select
             break;
         }
         case 5: {
@@ -412,7 +412,7 @@ void SwitchGameMode(void) {
             break;
         }
         case 6: {
-            gameplay_func(); // stage update
+            GamePlay_tick(); // stage update
             break;
         }
         case 7: {
@@ -428,7 +428,7 @@ void SwitchGameMode(void) {
             break;
         }
         case 10: {
-            arract_mode(); // demo mode
+            AttrectMode_tick(); // demo mode
             break;
         }
         case 11: {
