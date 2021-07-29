@@ -51,7 +51,7 @@ volatile uint16_t func_80022F48(void) {
     func_80025E6C();
     func_80004FFC(0);
     func_80004FFC(1);
-    clearGameProgress();
+    GameSave_Reset();
     gButton_Start = ((uint16_t)0x1000) & 0xFFFFu;
     gButton_DUp = (uint16_t)0x800;
     gButton_DDown = (uint16_t)0x400;
@@ -168,7 +168,7 @@ void func_800232A4(void) {
     D_801781E0 = 0;
     D_800D294C = (uint16_t)0;
     func_80010C20(D_800BE5D0);
-    GamePlay_tick();
+    GamePlay_Tick();
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
