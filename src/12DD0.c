@@ -16,7 +16,7 @@ void func_800121D0(void) {
 
     D_800EF5F0 = sp1E;
 
-    gActors->pos_z = 1;
+    gActors->pos.z = 1;
     D_800BE5E8 = 0;
     D_800BE5EC = 0;
     gActors->unk_0xCC = 0;

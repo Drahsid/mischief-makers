@@ -164,11 +164,6 @@ void func_8001FFA8(void) {
     D_800D291C = D_801781D4;
 }
 
-#ifdef NON_MATCHING
-/* Update function for main gamestate when not paused
- * Functionally identical: very minor regalloc differences
- * OK up to do while loop
- */
 void func_80020024(void) {
     int32_t phi_s0;
     int16_t* phi_s1;
@@ -179,7 +174,8 @@ void func_80020024(void) {
     D_800BE4E0++;
     D_801782B8++;
 
-    if ((((D_801781E0 < 0x8CA0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
+    phi_s0 = 0x8CA0; // probably a fake match, but it is obvious that s0 or s4 is reused somewhere before the loop at the bottom
+    if ((((D_801781E0 < phi_s0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
         D_801781E0++;
     }
 
@@ -218,7 +214,7 @@ void func_80020024(void) {
     func_8001107C(); // foreground layer of background?
 
     if (D_800CA230 == 0) {
-        func_8004ED10(0); // spawns the player
+        func_8004ED10(0); // spawns/updates the player
         func_8008C528(0x41); // unknown
     }
 
@@ -238,15 +234,8 @@ void func_80020024(void) {
 
     func_80047C98(); // level objects
 
-    // I have had some very close fakematches here
-    // not sure  how to produce the 2,3,1 1,3,2 order
-    // for the lui->addiu instructions when loaded addresses in to s1->s3
-    // the closest I can get is a fakemarch where s2 and s1 are backward
-    // needs some more investigation
     if ((D_800BE6AC & 0x4000) != 0) {
-        phi_s1 = &D_800EF4F8;
-        phi_s3 = &D_800EF508;
-        phi_s2 = &D_800EF4F0;
+        phi_s2 = &D_800EF4F0, phi_s3 = &D_800EF508, phi_s1 = &D_800EF4F8; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -260,17 +249,8 @@ void func_80020024(void) {
             phi_s4 -= 0x20;
             phi_s1++;
         } while (phi_s1 != &D_800EF500);
-
-        /*for (i = 0; i < 4; i++) {
-            func_80083C54((&D_800EF4F0)[i], -0x90, 0x3C - (0x20 * i));
-            func_80083A74((&D_800EF508)[i] - 0x21, -0x90, 0x30 - (0x20 * i));
-            func_80083C54((&D_800EF4F8)[i], -0x68, 0x3C - (0x20 * i));
-        }*/
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020024.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
 
