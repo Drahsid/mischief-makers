@@ -57,8 +57,8 @@ glabel func_8004D7BC
 /* 4E48C 8004D88C AC6D0150 */   sw        $t5, 0x150($v1)
 /* 4E490 8004D890 19A00008 */  blez       $t5, .L8004D8B4
 /* 4E494 8004D894 3C188013 */   lui       $t8, %hi(D_801370CC)
-/* 4E498 8004D898 3C19800C */  lui        $t9, %hi(D_800BE518)
-/* 4E49C 8004D89C 9739E518 */  lhu        $t9, %lo(D_800BE518)($t9)
+/* 4E498 8004D898 3C19800C */  lui        $t9, %hi(gButton_A)
+/* 4E49C 8004D89C 9739E518 */  lhu        $t9, %lo(gButton_A)($t9)
 /* 4E4A0 8004D8A0 971870CC */  lhu        $t8, %lo(D_801370CC)($t8)
 /* 4E4A4 8004D8A4 00000000 */  nop
 /* 4E4A8 8004D8A8 03194024 */  and        $t0, $t8, $t9

@@ -20,8 +20,8 @@ glabel func_8001D0A4
 /* 1DCEC 8001D0EC 00009825 */  or         $s3, $zero, $zero
 /* 1DCF0 8001D0F0 1420001F */  bnez       $at, .L8001D170
 /* 1DCF4 8001D0F4 00009025 */   or        $s2, $zero, $zero
-/* 1DCF8 8001D0F8 3C1E800C */  lui        $fp, %hi(D_800C4F28)
-/* 1DCFC 8001D0FC 27DE4F28 */  addiu      $fp, $fp, %lo(D_800C4F28)
+/* 1DCF8 8001D0F8 3C1E800C */  lui        $fp, %hi(gTimeRecords)
+/* 1DCFC 8001D0FC 27DE4F28 */  addiu      $fp, $fp, %lo(gTimeRecords)
 /* 1DD00 8001D100 0060A025 */  or         $s4, $v1, $zero
 /* 1DD04 8001D104 27B70048 */  addiu      $s7, $sp, 0x48
 /* 1DD08 8001D108 27B6004A */  addiu      $s6, $sp, 0x4a

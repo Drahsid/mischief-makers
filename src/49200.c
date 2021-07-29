@@ -332,7 +332,7 @@ void func_8004EAE4(uint16_t index) {
     func_80083A04(gActors[index].unk_0x84 - gActors[index].unk_0x158, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
 
     phi_a3 = 0;
-    if (((buttonHold & D_800BE510) != 0) && (((gActors[index].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150 < 9) == 0)))) {
+    if (((gButtonHold & gButton_DRight) != 0) && (((gActors[index].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150 < 9) == 0)))) {
         gActors[index].unk_0x84++;
         phi_a3 = 1;
         if (gActors[index].unk_0x15C < (gActors[index].unk_0x84 & 0xFFFF)) {
@@ -342,7 +342,7 @@ void func_8004EAE4(uint16_t index) {
     }
 
     phi_a3++;
-    if (((buttonHold & D_800BE50C) != 0) && (((gActors[index].unk_0x150 == 0)) || (((gActors[index].unk_0x150 < 9) == 0)))) {
+    if (((gButtonHold & gButton_DLeft) != 0) && (((gActors[index].unk_0x150 == 0)) || (((gActors[index].unk_0x150 < 9) == 0)))) {
         gActors[index].unk_0x84--;
         if ((gActors[index].unk_0x84 & 0xFFFF) < gActors[index].unk_0x158) {
             gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x15C;
@@ -413,8 +413,8 @@ void func_8004ED10(uint16_t index) {
             gActors[index].unk_0x12F++;
         }
 
-        D_801370CC = buttonHold;
-        D_801370CE = buttonPress;
+        D_801370CC = gButtonHold;
+        D_801370CE = gButtonPress;
 
         if (D_800BE5F4 != 0) {
             if ((uint8_t)D_800BE5F4 == 2) {

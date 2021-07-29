@@ -3,7 +3,7 @@ glabel func_8001C97C
 /* 1D580 8001C980 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 1D584 8001C984 AFA40028 */  sw         $a0, 0x28($sp)
 /* 1D588 8001C988 AFA5002C */  sw         $a1, 0x2c($sp)
-/* 1D58C 8001C98C 0C0071FC */  jal        func_8001C7F0
+/* 1D58C 8001C98C 0C0071FC */  jal        YellowGem_getFlag
 /* 1D590 8001C990 30A4FFFF */   andi      $a0, $a1, 0xffff
 /* 1D594 8001C994 97A8002A */  lhu        $t0, 0x2a($sp)
 /* 1D598 8001C998 14400002 */  bnez       $v0, .L8001C9A4

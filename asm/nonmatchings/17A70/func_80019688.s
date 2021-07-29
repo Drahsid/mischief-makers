@@ -1,6 +1,6 @@
 glabel func_80019688
-/* 1A288 80019688 3C0E8018 */  lui        $t6, %hi(D_80178162)
-/* 1A28C 8001968C 95CE8162 */  lhu        $t6, %lo(D_80178162)($t6)
+/* 1A288 80019688 3C0E8018 */  lui        $t6, %hi(gCurrentStage)
+/* 1A28C 8001968C 95CE8162 */  lhu        $t6, %lo(gCurrentStage)($t6)
 /* 1A290 80019690 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 1A294 80019694 24010021 */  addiu      $at, $zero, 0x21
 /* 1A298 80019698 AFBF001C */  sw         $ra, 0x1c($sp)

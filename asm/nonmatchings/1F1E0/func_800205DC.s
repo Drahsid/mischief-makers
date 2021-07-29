@@ -1,8 +1,8 @@
 glabel func_800205DC
 /* 211DC 800205DC 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 211E0 800205E0 AFB1001C */  sw         $s1, 0x1c($sp)
-/* 211E4 800205E4 3C118018 */  lui        $s1, %hi(D_80178136)
-/* 211E8 800205E8 96318136 */  lhu        $s1, %lo(D_80178136)($s1)
+/* 211E4 800205E4 3C118018 */  lui        $s1, %hi(gRedGems)
+/* 211E8 800205E8 96318136 */  lhu        $s1, %lo(gRedGems)($s1)
 /* 211EC 800205EC AFB20020 */  sw         $s2, 0x20($sp)
 /* 211F0 800205F0 2412000A */  addiu      $s2, $zero, 0xa
 /* 211F4 800205F4 0232001A */  div        $zero, $s1, $s2

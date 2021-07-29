@@ -6,9 +6,9 @@ glabel func_8002F1C8
 /* 2FDD8 8002F1D8 AFA40020 */  sw         $a0, 0x20($sp)
 /* 2FDDC 8002F1DC 05C0002E */  bltz       $t6, .L8002F298
 /* 2FDE0 8002F1E0 00002825 */   or        $a1, $zero, $zero
-/* 2FDE4 8002F1E4 3C048018 */  lui        $a0, %hi(D_80178162)
-/* 2FDE8 8002F1E8 94848162 */  lhu        $a0, %lo(D_80178162)($a0)
-/* 2FDEC 8002F1EC 0C0071FC */  jal        func_8001C7F0
+/* 2FDE4 8002F1E4 3C048018 */  lui        $a0, %hi(gCurrentStage)
+/* 2FDE8 8002F1E8 94848162 */  lhu        $a0, %lo(gCurrentStage)($a0)
+/* 2FDEC 8002F1EC 0C0071FC */  jal        YellowGem_getFlag
 /* 2FDF0 8002F1F0 A7A0001E */   sh        $zero, 0x1e($sp)
 /* 2FDF4 8002F1F4 97A5001E */  lhu        $a1, 0x1e($sp)
 /* 2FDF8 8002F1F8 14400028 */  bnez       $v0, .L8002F29C

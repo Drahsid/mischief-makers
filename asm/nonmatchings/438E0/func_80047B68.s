@@ -34,12 +34,12 @@ glabel func_80047B68
 /* 487DC 80047BDC 3C02800D */  lui        $v0, %hi(D_800D28FC)
 /* 487E0 80047BE0 244228FC */  addiu      $v0, $v0, %lo(D_800D28FC)
 /* 487E4 80047BE4 8C480000 */  lw         $t0, ($v0)
-/* 487E8 80047BE8 3C0A800C */  lui        $t2, %hi(buttonPress)
+/* 487E8 80047BE8 3C0A800C */  lui        $t2, %hi(gButtonPress)
 /* 487EC 80047BEC 35090080 */  ori        $t1, $t0, 0x80
 /* 487F0 80047BF0 AC490000 */  sw         $t1, ($v0)
-/* 487F4 80047BF4 3C0B800C */  lui        $t3, %hi(D_800BE514)
-/* 487F8 80047BF8 956BE514 */  lhu        $t3, %lo(D_800BE514)($t3)
-/* 487FC 80047BFC 954AE4FC */  lhu        $t2, %lo(buttonPress)($t2)
+/* 487F4 80047BF4 3C0B800C */  lui        $t3, %hi(gButton_B)
+/* 487F8 80047BF8 956BE514 */  lhu        $t3, %lo(gButton_B)($t3)
+/* 487FC 80047BFC 954AE4FC */  lhu        $t2, %lo(gButtonPress)($t2)
 /* 48800 80047C00 00000000 */  nop
 /* 48804 80047C04 014B6024 */  and        $t4, $t2, $t3
 /* 48808 80047C08 11800004 */  beqz       $t4, .L80047C1C

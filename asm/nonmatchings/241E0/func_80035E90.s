@@ -147,15 +147,15 @@ glabel L80036040_36C40
 /* 36CA0 800360A0 10000145 */  b          .L800365B8
 /* 36CA4 800360A4 860400AE */   lh        $a0, 0xae($s0)
 glabel L800360A8_36CA8
-/* 36CA8 800360A8 3C02800C */  lui        $v0, %hi(buttonPress)
-/* 36CAC 800360AC 3C19800C */  lui        $t9, %hi(D_800BE530)
-/* 36CB0 800360B0 9739E530 */  lhu        $t9, %lo(D_800BE530)($t9)
-/* 36CB4 800360B4 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
+/* 36CA8 800360A8 3C02800C */  lui        $v0, %hi(gButtonPress)
+/* 36CAC 800360AC 3C19800C */  lui        $t9, %hi(gButton_LTrig)
+/* 36CB0 800360B0 9739E530 */  lhu        $t9, %lo(gButton_LTrig)($t9)
+/* 36CB4 800360B4 9442E4FC */  lhu        $v0, %lo(gButtonPress)($v0)
 /* 36CB8 800360B8 00003825 */  or         $a3, $zero, $zero
 /* 36CBC 800360BC 00594024 */  and        $t0, $v0, $t9
 /* 36CC0 800360C0 15000006 */  bnez       $t0, .L800360DC
-/* 36CC4 800360C4 3C09800C */   lui       $t1, %hi(D_800BE534)
-/* 36CC8 800360C8 9529E534 */  lhu        $t1, %lo(D_800BE534)($t1)
+/* 36CC4 800360C4 3C09800C */   lui       $t1, %hi(gButton_RTrig)
+/* 36CC8 800360C8 9529E534 */  lhu        $t1, %lo(gButton_RTrig)($t1)
 /* 36CCC 800360CC 3C013F80 */  lui        $at, 0x3f80
 /* 36CD0 800360D0 00495024 */  and        $t2, $v0, $t1
 /* 36CD4 800360D4 11400012 */  beqz       $t2, .L80036120
@@ -217,16 +217,16 @@ glabel L8003619C_36D9C
 /* 36D9C 8003619C 97A70056 */  lhu        $a3, 0x56($sp)
 /* 36DA0 800361A0 24010020 */  addiu      $at, $zero, 0x20
 /* 36DA4 800361A4 14410064 */  bne        $v0, $at, .L80036338
-/* 36DA8 800361A8 3C03800C */   lui       $v1, %hi(buttonHold)
-/* 36DAC 800361AC 3C04800C */  lui        $a0, %hi(D_800BE530)
-/* 36DB0 800361B0 9484E530 */  lhu        $a0, %lo(D_800BE530)($a0)
-/* 36DB4 800361B4 9463E4F8 */  lhu        $v1, %lo(buttonHold)($v1)
+/* 36DA8 800361A8 3C03800C */   lui       $v1, %hi(gButtonHold)
+/* 36DAC 800361AC 3C04800C */  lui        $a0, %hi(gButton_LTrig)
+/* 36DB0 800361B0 9484E530 */  lhu        $a0, %lo(gButton_LTrig)($a0)
+/* 36DB4 800361B4 9463E4F8 */  lhu        $v1, %lo(gButtonHold)($v1)
 /* 36DB8 800361B8 00003825 */  or         $a3, $zero, $zero
 /* 36DBC 800361BC 00644824 */  and        $t1, $v1, $a0
 /* 36DC0 800361C0 15200006 */  bnez       $t1, .L800361DC
 /* 36DC4 800361C4 00601025 */   or        $v0, $v1, $zero
-/* 36DC8 800361C8 3C0A800C */  lui        $t2, %hi(D_800BE534)
-/* 36DCC 800361CC 954AE534 */  lhu        $t2, %lo(D_800BE534)($t2)
+/* 36DC8 800361C8 3C0A800C */  lui        $t2, %hi(gButton_RTrig)
+/* 36DCC 800361CC 954AE534 */  lhu        $t2, %lo(gButton_RTrig)($t2)
 /* 36DD0 800361D0 00000000 */  nop
 /* 36DD4 800361D4 004A5824 */  and        $t3, $v0, $t2
 /* 36DD8 800361D8 11600011 */  beqz       $t3, .L80036220
@@ -260,20 +260,20 @@ glabel L8003619C_36D9C
 /* 36E38 80036238 44818000 */  mtc1       $at, $f16
 /* 36E3C 8003623C 44809000 */  mtc1       $zero, $f18
 /* 36E40 80036240 4600803E */  c.le.s     $f16, $f0
-/* 36E44 80036244 3C02800C */  lui        $v0, %hi(buttonPress)
+/* 36E44 80036244 3C02800C */  lui        $v0, %hi(gButtonPress)
 /* 36E48 80036248 45000003 */  bc1f       .L80036258
 /* 36E4C 8003624C 3C013F80 */   lui       $at, 0x3f80
 /* 36E50 80036250 10000003 */  b          .L80036260
 /* 36E54 80036254 3062FFFF */   andi      $v0, $v1, 0xffff
 .L80036258:
-/* 36E58 80036258 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
+/* 36E58 80036258 9442E4FC */  lhu        $v0, %lo(gButtonPress)($v0)
 /* 36E5C 8003625C 00000000 */  nop
 .L80036260:
 /* 36E60 80036260 4612103C */  c.lt.s     $f2, $f18
-/* 36E64 80036264 3C0C800C */  lui        $t4, %hi(D_800BE534)
+/* 36E64 80036264 3C0C800C */  lui        $t4, %hi(gButton_RTrig)
 /* 36E68 80036268 4500002F */  bc1f       .L80036328
 /* 36E6C 8003626C 00000000 */   nop
-/* 36E70 80036270 958CE534 */  lhu        $t4, %lo(D_800BE534)($t4)
+/* 36E70 80036270 958CE534 */  lhu        $t4, %lo(gButton_RTrig)($t4)
 /* 36E74 80036274 00401825 */  or         $v1, $v0, $zero
 /* 36E78 80036278 004C6824 */  and        $t5, $v0, $t4
 /* 36E7C 8003627C 11A0000E */  beqz       $t5, .L800362B8

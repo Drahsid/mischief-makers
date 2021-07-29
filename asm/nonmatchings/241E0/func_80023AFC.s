@@ -1,8 +1,8 @@
 glabel func_80023AFC
-/* 246FC 80023AFC 3C02800C */  lui        $v0, %hi(buttonHold)
-/* 24700 80023B00 3C0E800C */  lui        $t6, %hi(D_800BE50C)
-/* 24704 80023B04 95CEE50C */  lhu        $t6, %lo(D_800BE50C)($t6)
-/* 24708 80023B08 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
+/* 246FC 80023AFC 3C02800C */  lui        $v0, %hi(gButtonHold)
+/* 24700 80023B00 3C0E800C */  lui        $t6, %hi(gButton_DLeft)
+/* 24704 80023B04 95CEE50C */  lhu        $t6, %lo(gButton_DLeft)($t6)
+/* 24708 80023B08 9442E4F8 */  lhu        $v0, %lo(gButtonHold)($v0)
 /* 2470C 80023B0C 3C08800C */  lui        $t0, 0x800c
 /* 24710 80023B10 004E7824 */  and        $t7, $v0, $t6
 /* 24714 80023B14 11E00009 */  beqz       $t7, .L80023B3C
@@ -10,10 +10,10 @@ glabel func_80023AFC
 /* 2471C 80023B1C 3C038020 */  lui        $v1, 0x8020
 /* 24720 80023B20 34631B48 */  ori        $v1, $v1, 0x1b48
 /* 24724 80023B24 84780000 */  lh         $t8, ($v1)
-/* 24728 80023B28 3C02800C */  lui        $v0, %hi(buttonHold)
+/* 24728 80023B28 3C02800C */  lui        $v0, %hi(gButtonHold)
 /* 2472C 80023B2C 2719FFFF */  addiu      $t9, $t8, -1
 /* 24730 80023B30 A4790000 */  sh         $t9, ($v1)
-/* 24734 80023B34 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
+/* 24734 80023B34 9442E4F8 */  lhu        $v0, %lo(gButtonHold)($v0)
 /* 24738 80023B38 00000000 */  nop
 .L80023B3C:
 /* 2473C 80023B3C 9508E510 */  lhu        $t0, -0x1af0($t0)
@@ -22,10 +22,10 @@ glabel func_80023AFC
 /* 24748 80023B48 11200007 */  beqz       $t1, .L80023B68
 /* 2474C 80023B4C 34631B48 */   ori       $v1, $v1, 0x1b48
 /* 24750 80023B50 846A0000 */  lh         $t2, ($v1)
-/* 24754 80023B54 3C02800C */  lui        $v0, %hi(buttonHold)
+/* 24754 80023B54 3C02800C */  lui        $v0, %hi(gButtonHold)
 /* 24758 80023B58 254B0001 */  addiu      $t3, $t2, 1
 /* 2475C 80023B5C A46B0000 */  sh         $t3, ($v1)
-/* 24760 80023B60 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
+/* 24760 80023B60 9442E4F8 */  lhu        $v0, %lo(gButtonHold)($v0)
 /* 24764 80023B64 00000000 */  nop
 .L80023B68:
 /* 24768 80023B68 958CE508 */  lhu        $t4, -0x1af8($t4)
@@ -34,10 +34,10 @@ glabel func_80023AFC
 /* 24774 80023B74 11A00007 */  beqz       $t5, .L80023B94
 /* 24778 80023B78 00000000 */   nop
 /* 2477C 80023B7C 846E0002 */  lh         $t6, 2($v1)
-/* 24780 80023B80 3C02800C */  lui        $v0, %hi(buttonHold)
+/* 24780 80023B80 3C02800C */  lui        $v0, %hi(gButtonHold)
 /* 24784 80023B84 25CFFFFF */  addiu      $t7, $t6, -1
 /* 24788 80023B88 A46F0002 */  sh         $t7, 2($v1)
-/* 2478C 80023B8C 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
+/* 2478C 80023B8C 9442E4F8 */  lhu        $v0, %lo(gButtonHold)($v0)
 /* 24790 80023B90 00000000 */  nop
 .L80023B94:
 /* 24794 80023B94 9718E504 */  lhu        $t8, -0x1afc($t8)

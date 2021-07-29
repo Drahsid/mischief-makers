@@ -1,6 +1,6 @@
-glabel func_8002F6AC
-/* 302AC 8002F6AC 3C028018 */  lui        $v0, %hi(D_80178136)
-/* 302B0 8002F6B0 24428136 */  addiu      $v0, $v0, %lo(D_80178136)
+glabel RedGem_Cap
+/* 302AC 8002F6AC 3C028018 */  lui        $v0, %hi(gRedGems)
+/* 302B0 8002F6B0 24428136 */  addiu      $v0, $v0, %lo(gRedGems)
 /* 302B4 8002F6B4 944E0000 */  lhu        $t6, ($v0)
 /* 302B8 8002F6B8 240F270F */  addiu      $t7, $zero, 0x270f
 /* 302BC 8002F6BC 29C1270F */  slti       $at, $t6, 0x270f

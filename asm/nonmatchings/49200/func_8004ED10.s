@@ -57,13 +57,13 @@ glabel func_8004ED10
 /* 4F9E8 8004EDE8 246D0001 */  addiu      $t5, $v1, 1
 /* 4F9EC 8004EDEC A20D012F */  sb         $t5, 0x12f($s0)
 .L8004EDF0:
-/* 4F9F0 8004EDF0 3C0E800C */  lui        $t6, %hi(buttonHold)
-/* 4F9F4 8004EDF4 95CEE4F8 */  lhu        $t6, %lo(buttonHold)($t6)
+/* 4F9F0 8004EDF0 3C0E800C */  lui        $t6, %hi(gButtonHold)
+/* 4F9F4 8004EDF4 95CEE4F8 */  lhu        $t6, %lo(gButtonHold)($t6)
 /* 4F9F8 8004EDF8 3C068013 */  lui        $a2, %hi(D_801370CC)
 /* 4F9FC 8004EDFC 24C670CC */  addiu      $a2, $a2, %lo(D_801370CC)
-/* 4FA00 8004EE00 3C0F800C */  lui        $t7, %hi(buttonPress)
+/* 4FA00 8004EE00 3C0F800C */  lui        $t7, %hi(gButtonPress)
 /* 4FA04 8004EE04 A4CE0000 */  sh         $t6, ($a2)
-/* 4FA08 8004EE08 95EFE4FC */  lhu        $t7, %lo(buttonPress)($t7)
+/* 4FA08 8004EE08 95EFE4FC */  lhu        $t7, %lo(gButtonPress)($t7)
 /* 4FA0C 8004EE0C 3C02800C */  lui        $v0, %hi(D_800BE5F4)
 /* 4FA10 8004EE10 A4AF0000 */  sh         $t7, ($a1)
 /* 4FA14 8004EE14 8C42E5F4 */  lw         $v0, %lo(D_800BE5F4)($v0)

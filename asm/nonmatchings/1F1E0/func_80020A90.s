@@ -100,7 +100,7 @@ glabel L80020B60_21760
 /* 21804 80020C04 00000000 */   nop
 /* 21808 80020C08 0C008177 */  jal        func_800205DC
 /* 2180C 80020C0C 00000000 */   nop
-/* 21810 80020C10 0C0081F7 */  jal        func_800207DC
+/* 21810 80020C10 0C0081F7 */  jal        YellowGem_printProgress
 /* 21814 80020C14 00000000 */   nop
 /* 21818 80020C18 3C05800E */  lui        $a1, %hi(D_800E13DC)
 /* 2181C 80020C1C 24180401 */  addiu      $t8, $zero, 0x401
@@ -215,22 +215,22 @@ glabel L80020D6C_2196C
 /* 219C4 80020DC4 A420E590 */  sh         $zero, %lo(D_800BE590)($at)
 /* 219C8 80020DC8 3C01800D */  lui        $at, 0x800d
 /* 219CC 80020DCC 24190001 */  addiu      $t9, $zero, 1
-/* 219D0 80020DD0 3C088018 */  lui        $t0, %hi(D_801781F0)
+/* 219D0 80020DD0 3C088018 */  lui        $t0, %hi(YellowGemBitfeildTemp)
 /* 219D4 80020DD4 3C04800D */  lui        $a0, %hi(D_800D28E4)
-/* 219D8 80020DD8 8D0881F0 */  lw         $t0, %lo(D_801781F0)($t0)
+/* 219D8 80020DD8 8D0881F0 */  lw         $t0, %lo(YellowGemBitfeildTemp)($t0)
 /* 219DC 80020DDC 948428E4 */  lhu        $a0, %lo(D_800D28E4)($a0)
 /* 219E0 80020DE0 A439BF40 */  sh         $t9, -0x40c0($at)
-/* 219E4 80020DE4 3C018017 */  lui        $at, %hi(D_80171B10)
-/* 219E8 80020DE8 3C098018 */  lui        $t1, %hi(D_801781F4)
-/* 219EC 80020DEC 8D2981F4 */  lw         $t1, %lo(D_801781F4)($t1)
-/* 219F0 80020DF0 AC281B10 */  sw         $t0, %lo(D_80171B10)($at)
+/* 219E4 80020DE4 3C018017 */  lui        $at, %hi(gYellowGemBitfeild)
+/* 219E8 80020DE8 3C098018 */  lui        $t1, %hi(YellowGemBitfeildTemp+0x4)
+/* 219EC 80020DEC 8D2981F4 */  lw         $t1, %lo(YellowGemBitfeildTemp+0x4)($t1)
+/* 219F0 80020DF0 AC281B10 */  sw         $t0, %lo(gYellowGemBitfeild)($at)
 /* 219F4 80020DF4 2484FFFF */  addiu      $a0, $a0, -1
-/* 219F8 80020DF8 3C018017 */  lui        $at, %hi(D_80171B14)
+/* 219F8 80020DF8 3C018017 */  lui        $at, %hi(gYellowGemBitfeild+0x4)
 /* 219FC 80020DFC 308AFFFF */  andi       $t2, $a0, 0xffff
 /* 21A00 80020E00 01402025 */  or         $a0, $t2, $zero
 /* 21A04 80020E04 00002825 */  or         $a1, $zero, $zero
 /* 21A08 80020E08 0C011886 */  jal        func_80046218
-/* 21A0C 80020E0C AC291B14 */   sw        $t1, %lo(D_80171B14)($at)
+/* 21A0C 80020E0C AC291B14 */   sw        $t1, %lo(gYellowGemBitfeild+0x4)($at)
 /* 21A10 80020E10 240B0023 */  addiu      $t3, $zero, 0x23
 /* 21A14 80020E14 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 21A18 80020E18 1000005E */  b          L80020F94_21B94
@@ -300,10 +300,10 @@ glabel L80020EF0_21AF0
 /* 21B00 80020F00 25F80001 */  addiu      $t8, $t7, 1
 /* 21B04 80020F04 0C0080D3 */  jal        func_8002034C
 /* 21B08 80020F08 A4580000 */   sh        $t8, ($v0)
-/* 21B0C 80020F0C 3C02800C */  lui        $v0, %hi(buttonPress)
-/* 21B10 80020F10 3C19800C */  lui        $t9, %hi(D_800BE504)
-/* 21B14 80020F14 9739E504 */  lhu        $t9, %lo(D_800BE504)($t9)
-/* 21B18 80020F18 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
+/* 21B0C 80020F0C 3C02800C */  lui        $v0, %hi(gButtonPress)
+/* 21B10 80020F10 3C19800C */  lui        $t9, %hi(gButton_DUp)
+/* 21B14 80020F14 9739E504 */  lhu        $t9, %lo(gButton_DUp)($t9)
+/* 21B18 80020F18 9442E4FC */  lhu        $v0, %lo(gButtonPress)($v0)
 /* 21B1C 80020F1C 3C098010 */  lui        $t1, %hi(D_80103F84)
 /* 21B20 80020F20 00594024 */  and        $t0, $v0, $t9
 /* 21B24 80020F24 1100000C */  beqz       $t0, .L80020F58
@@ -314,14 +314,14 @@ glabel L80020EF0_21AF0
 /* 21B38 80020F38 00000000 */   nop
 /* 21B3C 80020F3C 0C000CD3 */  jal        func_8000334C
 /* 21B40 80020F40 24040022 */   addiu     $a0, $zero, 0x22
-/* 21B44 80020F44 3C02800C */  lui        $v0, %hi(buttonPress)
+/* 21B44 80020F44 3C02800C */  lui        $v0, %hi(gButtonPress)
 /* 21B48 80020F48 240AFFF8 */  addiu      $t2, $zero, -8
 /* 21B4C 80020F4C 3C018010 */  lui        $at, %hi(D_80103F84)
-/* 21B50 80020F50 9442E4FC */  lhu        $v0, %lo(buttonPress)($v0)
+/* 21B50 80020F50 9442E4FC */  lhu        $v0, %lo(gButtonPress)($v0)
 /* 21B54 80020F54 A42A3F84 */  sh         $t2, %lo(D_80103F84)($at)
 .L80020F58:
-/* 21B58 80020F58 3C0B800C */  lui        $t3, %hi(D_800BE508)
-/* 21B5C 80020F5C 956BE508 */  lhu        $t3, %lo(D_800BE508)($t3)
+/* 21B58 80020F58 3C0B800C */  lui        $t3, %hi(gButton_DDown)
+/* 21B5C 80020F5C 956BE508 */  lhu        $t3, %lo(gButton_DDown)($t3)
 /* 21B60 80020F60 3C0D8010 */  lui        $t5, %hi(D_80103F84)
 /* 21B64 80020F64 004B6024 */  and        $t4, $v0, $t3
 /* 21B68 80020F68 1180000A */  beqz       $t4, L80020F94_21B94

@@ -31,50 +31,50 @@ glabel func_80022F48
 /* 23BB4 80022FB4 00002025 */   or        $a0, $zero, $zero
 /* 23BB8 80022FB8 0C0013FF */  jal        func_80004FFC
 /* 23BBC 80022FBC 24040001 */   addiu     $a0, $zero, 1
-/* 23BC0 80022FC0 0C00142D */  jal        func_800050B4
+/* 23BC0 80022FC0 0C00142D */  jal        clearGameProgress
 /* 23BC4 80022FC4 00000000 */   nop
 /* 23BC8 80022FC8 24181000 */  addiu      $t8, $zero, 0x1000
-/* 23BCC 80022FCC 3C01800C */  lui        $at, %hi(D_800BE500)
-/* 23BD0 80022FD0 A438E500 */  sh         $t8, %lo(D_800BE500)($at)
-/* 23BD4 80022FD4 3C01800C */  lui        $at, %hi(D_800BE504)
+/* 23BCC 80022FCC 3C01800C */  lui        $at, %hi(gButton_Start)
+/* 23BD0 80022FD0 A438E500 */  sh         $t8, %lo(gButton_Start)($at)
+/* 23BD4 80022FD4 3C01800C */  lui        $at, %hi(gButton_DUp)
 /* 23BD8 80022FD8 24190800 */  addiu      $t9, $zero, 0x800
-/* 23BDC 80022FDC A439E504 */  sh         $t9, %lo(D_800BE504)($at)
-/* 23BE0 80022FE0 3C01800C */  lui        $at, %hi(D_800BE508)
+/* 23BDC 80022FDC A439E504 */  sh         $t9, %lo(gButton_DUp)($at)
+/* 23BE0 80022FE0 3C01800C */  lui        $at, %hi(gButton_DDown)
 /* 23BE4 80022FE4 24080400 */  addiu      $t0, $zero, 0x400
-/* 23BE8 80022FE8 A428E508 */  sh         $t0, %lo(D_800BE508)($at)
-/* 23BEC 80022FEC 3C01800C */  lui        $at, %hi(D_800BE50C)
+/* 23BE8 80022FE8 A428E508 */  sh         $t0, %lo(gButton_DDown)($at)
+/* 23BEC 80022FEC 3C01800C */  lui        $at, %hi(gButton_DLeft)
 /* 23BF0 80022FF0 24090200 */  addiu      $t1, $zero, 0x200
-/* 23BF4 80022FF4 A429E50C */  sh         $t1, %lo(D_800BE50C)($at)
-/* 23BF8 80022FF8 3C01800C */  lui        $at, %hi(D_800BE510)
+/* 23BF4 80022FF4 A429E50C */  sh         $t1, %lo(gButton_DLeft)($at)
+/* 23BF8 80022FF8 3C01800C */  lui        $at, %hi(gButton_DRight)
 /* 23BFC 80022FFC 240A0100 */  addiu      $t2, $zero, 0x100
-/* 23C00 80023000 A42AE510 */  sh         $t2, %lo(D_800BE510)($at)
-/* 23C04 80023004 3C01800C */  lui        $at, %hi(D_800BE514)
+/* 23C00 80023000 A42AE510 */  sh         $t2, %lo(gButton_DRight)($at)
+/* 23C04 80023004 3C01800C */  lui        $at, %hi(gButton_B)
 /* 23C08 80023008 240B4000 */  addiu      $t3, $zero, 0x4000
-/* 23C0C 8002300C A42BE514 */  sh         $t3, %lo(D_800BE514)($at)
-/* 23C10 80023010 3C01800C */  lui        $at, %hi(D_800BE518)
+/* 23C0C 8002300C A42BE514 */  sh         $t3, %lo(gButton_B)($at)
+/* 23C10 80023010 3C01800C */  lui        $at, %hi(gButton_A)
 /* 23C14 80023014 340C8000 */  ori        $t4, $zero, 0x8000
-/* 23C18 80023018 A42CE518 */  sh         $t4, %lo(D_800BE518)($at)
-/* 23C1C 8002301C 3C01800C */  lui        $at, %hi(D_800BE51C)
+/* 23C18 80023018 A42CE518 */  sh         $t4, %lo(gButton_A)($at)
+/* 23C1C 8002301C 3C01800C */  lui        $at, %hi(gButton_CLeft)
 /* 23C20 80023020 240D0002 */  addiu      $t5, $zero, 2
-/* 23C24 80023024 A42DE51C */  sh         $t5, %lo(D_800BE51C)($at)
-/* 23C28 80023028 3C01800C */  lui        $at, %hi(D_800BE520)
+/* 23C24 80023024 A42DE51C */  sh         $t5, %lo(gButton_CLeft)($at)
+/* 23C28 80023028 3C01800C */  lui        $at, %hi(gButton_CDown)
 /* 23C2C 8002302C 240E0004 */  addiu      $t6, $zero, 4
-/* 23C30 80023030 A42EE520 */  sh         $t6, %lo(D_800BE520)($at)
-/* 23C34 80023034 3C01800C */  lui        $at, %hi(D_800BE524)
+/* 23C30 80023030 A42EE520 */  sh         $t6, %lo(gButton_CDown)($at)
+/* 23C34 80023034 3C01800C */  lui        $at, %hi(gButton_CUp)
 /* 23C38 80023038 240F0008 */  addiu      $t7, $zero, 8
-/* 23C3C 8002303C A42FE524 */  sh         $t7, %lo(D_800BE524)($at)
+/* 23C3C 8002303C A42FE524 */  sh         $t7, %lo(gButton_CUp)($at)
 /* 23C40 80023040 24020001 */  addiu      $v0, $zero, 1
-/* 23C44 80023044 3C01800C */  lui        $at, %hi(D_800BE528)
-/* 23C48 80023048 A422E528 */  sh         $v0, %lo(D_800BE528)($at)
-/* 23C4C 8002304C 3C01800C */  lui        $at, %hi(D_800BE52C)
+/* 23C44 80023044 3C01800C */  lui        $at, %hi(gButton_CRight)
+/* 23C48 80023048 A422E528 */  sh         $v0, %lo(gButton_CRight)($at)
+/* 23C4C 8002304C 3C01800C */  lui        $at, %hi(gButton_ZTrig)
 /* 23C50 80023050 24182000 */  addiu      $t8, $zero, 0x2000
-/* 23C54 80023054 A438E52C */  sh         $t8, %lo(D_800BE52C)($at)
-/* 23C58 80023058 3C01800C */  lui        $at, %hi(D_800BE530)
+/* 23C54 80023054 A438E52C */  sh         $t8, %lo(gButton_ZTrig)($at)
+/* 23C58 80023058 3C01800C */  lui        $at, %hi(gButton_LTrig)
 /* 23C5C 8002305C 24190020 */  addiu      $t9, $zero, 0x20
-/* 23C60 80023060 A439E530 */  sh         $t9, %lo(D_800BE530)($at)
-/* 23C64 80023064 3C01800C */  lui        $at, %hi(D_800BE534)
+/* 23C60 80023060 A439E530 */  sh         $t9, %lo(gButton_LTrig)($at)
+/* 23C64 80023064 3C01800C */  lui        $at, %hi(gButton_RTrig)
 /* 23C68 80023068 24080010 */  addiu      $t0, $zero, 0x10
-/* 23C6C 8002306C A428E534 */  sh         $t0, %lo(D_800BE534)($at)
+/* 23C6C 8002306C A428E534 */  sh         $t0, %lo(gButton_RTrig)($at)
 /* 23C70 80023070 3C018018 */  lui        $at, %hi(D_801781F8)
 /* 23C74 80023074 A42081F8 */  sh         $zero, %lo(D_801781F8)($at)
 /* 23C78 80023078 3C01800D */  lui        $at, %hi(D_800CBF44)
@@ -82,9 +82,9 @@ glabel func_80022F48
 /* 23C80 80023080 3C01800F */  lui        $at, %hi(D_800EF5F0)
 /* 23C84 80023084 240903E8 */  addiu      $t1, $zero, 0x3e8
 /* 23C88 80023088 A429F5F0 */  sh         $t1, %lo(D_800EF5F0)($at)
-/* 23C8C 8002308C 3C018018 */  lui        $at, %hi(D_80178136)
+/* 23C8C 8002308C 3C018018 */  lui        $at, %hi(gRedGems)
 /* 23C90 80023090 240A001E */  addiu      $t2, $zero, 0x1e
-/* 23C94 80023094 A42A8136 */  sh         $t2, %lo(D_80178136)($at)
+/* 23C94 80023094 A42A8136 */  sh         $t2, %lo(gRedGems)($at)
 /* 23C98 80023098 3C01800C */  lui        $at, %hi(gGameState)
 /* 23C9C 8002309C A422E4F0 */  sh         $v0, %lo(gGameState)($at)
 /* 23CA0 800230A0 3C01800C */  lui        $at, %hi(gGameSubState)

@@ -185,7 +185,7 @@ glabel func_800232A4
 /* 24174 80023574 9484E5D0 */  lhu        $a0, %lo(D_800BE5D0)($a0)
 /* 24178 80023578 0C004308 */  jal        func_80010C20
 /* 2417C 8002357C A420294C */   sh        $zero, %lo(D_800D294C)($at)
-/* 24180 80023580 0C00840D */  jal        gameplay_func
+/* 24180 80023580 0C00840D */  jal        GamePlay_tick
 /* 24184 80023584 00000000 */   nop
 /* 24188 80023588 0C011F33 */  jal        func_80047CCC
 /* 2418C 8002358C 00000000 */   nop
@@ -193,12 +193,12 @@ glabel func_800232A4
 /* 24194 80023594 00000000 */   nop
 /* 24198 80023598 0C007718 */  jal        func_8001DC60
 /* 2419C 8002359C 00000000 */   nop
-/* 241A0 800235A0 3C188017 */  lui        $t8, %hi(D_80171B10)
-/* 241A4 800235A4 3C198017 */  lui        $t9, %hi(D_80171B14)
-/* 241A8 800235A8 8F391B14 */  lw         $t9, %lo(D_80171B14)($t9)
-/* 241AC 800235AC 8F181B10 */  lw         $t8, %lo(D_80171B10)($t8)
-/* 241B0 800235B0 3C018018 */  lui        $at, %hi(D_801781F4)
-/* 241B4 800235B4 AC3981F4 */  sw         $t9, %lo(D_801781F4)($at)
+/* 241A0 800235A0 3C188017 */  lui        $t8, %hi(gYellowGemBitfeild)
+/* 241A4 800235A4 3C198017 */  lui        $t9, %hi(gYellowGemBitfeild+0x4)
+/* 241A8 800235A8 8F391B14 */  lw         $t9, %lo(gYellowGemBitfeild+0x4)($t9)
+/* 241AC 800235AC 8F181B10 */  lw         $t8, %lo(gYellowGemBitfeild)($t8)
+/* 241B0 800235B0 3C018018 */  lui        $at, %hi(YellowGemBitfeildTemp+0x4)
+/* 241B4 800235B4 AC3981F4 */  sw         $t9, %lo(YellowGemBitfeildTemp+0x4)($at)
 /* 241B8 800235B8 AC3881F0 */  sw         $t8, -0x7e10($at)
 /* 241BC 800235BC 3C01800C */  lui        $at, %hi(gGameState)
 /* 241C0 800235C0 240F0006 */  addiu      $t7, $zero, 6

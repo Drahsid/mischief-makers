@@ -24,8 +24,8 @@ glabel func_8001A254
 .L8001A2AC:
 /* 1AEAC 8001A2AC 1443001E */  bne        $v0, $v1, .L8001A328
 /* 1AEB0 8001A2B0 00044840 */   sll       $t1, $a0, 1
-/* 1AEB4 8001A2B4 3C038017 */  lui        $v1, %hi(D_80171B18)
-/* 1AEB8 8001A2B8 90631B18 */  lbu        $v1, %lo(D_80171B18)($v1)
+/* 1AEB4 8001A2B4 3C038017 */  lui        $v1, %hi(gWorldProgress)
+/* 1AEB8 8001A2B8 90631B18 */  lbu        $v1, %lo(gWorldProgress)($v1)
 /* 1AEBC 8001A2BC 3C028018 */  lui        $v0, 0x8018
 /* 1AEC0 8001A2C0 2861003B */  slti       $at, $v1, 0x3b
 /* 1AEC4 8001A2C4 14200003 */  bnez       $at, .L8001A2D4
@@ -89,7 +89,7 @@ glabel func_8001A254
 /* 1AF94 8001A394 3212FFFF */  andi       $s2, $s0, 0xffff
 /* 1AF98 8001A398 02408025 */  or         $s0, $s2, $zero
 .L8001A39C:
-/* 1AF9C 8001A39C 0C0071FC */  jal        func_8001C7F0
+/* 1AF9C 8001A39C 0C0071FC */  jal        YellowGem_getFlag
 /* 1AFA0 8001A3A0 3204FFFF */   andi      $a0, $s0, 0xffff
 /* 1AFA4 8001A3A4 14400002 */  bnez       $v0, .L8001A3B0
 /* 1AFA8 8001A3A8 2624009C */   addiu     $a0, $s1, 0x9c

@@ -35,10 +35,10 @@ glabel func_8004EAE4
 /* 4F764 8004EB64 24A5FFE0 */  addiu      $a1, $a1, -0x20
 /* 4F768 8004EB68 0C020E81 */  jal        func_80083A04
 /* 4F76C 8004EB6C 24C60030 */   addiu     $a2, $a2, 0x30
-/* 4F770 8004EB70 3C04800C */  lui        $a0, %hi(buttonHold)
-/* 4F774 8004EB74 3C0D800C */  lui        $t5, %hi(D_800BE510)
-/* 4F778 8004EB78 95ADE510 */  lhu        $t5, %lo(D_800BE510)($t5)
-/* 4F77C 8004EB7C 9484E4F8 */  lhu        $a0, %lo(buttonHold)($a0)
+/* 4F770 8004EB70 3C04800C */  lui        $a0, %hi(gButtonHold)
+/* 4F774 8004EB74 3C0D800C */  lui        $t5, %hi(gButton_DRight)
+/* 4F778 8004EB78 95ADE510 */  lhu        $t5, %lo(gButton_DRight)($t5)
+/* 4F77C 8004EB7C 9484E4F8 */  lhu        $a0, %lo(gButtonHold)($a0)
 /* 4F780 8004EB80 8FA20018 */  lw         $v0, 0x18($sp)
 /* 4F784 8004EB84 87A7001E */  lh         $a3, 0x1e($sp)
 /* 4F788 8004EB88 008D7024 */  and        $t6, $a0, $t5

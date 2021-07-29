@@ -1547,10 +1547,10 @@ glabel func_8008DA4C
 /* 8E65C 8008DA5C 01C02025 */  or         $a0, $t6, $zero
 /* 8E660 8008DA60 0C0234E7 */  jal        func_8008D39C
 /* 8E664 8008DA64 A7AE002A */   sh        $t6, 0x2a($sp)
-/* 8E668 8008DA68 3C02800C */  lui        $v0, %hi(buttonHold)
-/* 8E66C 8008DA6C 3C0F800C */  lui        $t7, %hi(D_800BE510)
-/* 8E670 8008DA70 95EFE510 */  lhu        $t7, %lo(D_800BE510)($t7)
-/* 8E674 8008DA74 9442E4F8 */  lhu        $v0, %lo(buttonHold)($v0)
+/* 8E668 8008DA68 3C02800C */  lui        $v0, %hi(gButtonHold)
+/* 8E66C 8008DA6C 3C0F800C */  lui        $t7, %hi(gButton_DRight)
+/* 8E670 8008DA70 95EFE510 */  lhu        $t7, %lo(gButton_DRight)($t7)
+/* 8E674 8008DA74 9442E4F8 */  lhu        $v0, %lo(gButtonHold)($v0)
 /* 8E678 8008DA78 97A4002A */  lhu        $a0, 0x2a($sp)
 /* 8E67C 8008DA7C 004FC024 */  and        $t8, $v0, $t7
 /* 8E680 8008DA80 13000014 */  beqz       $t8, .L8008DAD4
@@ -1579,8 +1579,8 @@ glabel func_8008DA4C
 /* 8E6D8 8008DAD8 01445023 */  subu       $t2, $t2, $a0
 /* 8E6DC 8008DADC 000A5080 */  sll        $t2, $t2, 2
 /* 8E6E0 8008DAE0 01445021 */  addu       $t2, $t2, $a0
-/* 8E6E4 8008DAE4 3C0C800C */  lui        $t4, %hi(D_800BE50C)
-/* 8E6E8 8008DAE8 958CE50C */  lhu        $t4, %lo(D_800BE50C)($t4)
+/* 8E6E4 8008DAE4 3C0C800C */  lui        $t4, %hi(gButton_DLeft)
+/* 8E6E8 8008DAE8 958CE50C */  lhu        $t4, %lo(gButton_DLeft)($t4)
 /* 8E6EC 8008DAEC 000A5080 */  sll        $t2, $t2, 2
 /* 8E6F0 8008DAF0 01445023 */  subu       $t2, $t2, $a0
 /* 8E6F4 8008DAF4 3C0B800F */  lui        $t3, %hi(gActors)
@@ -2122,28 +2122,28 @@ glabel func_8008E1A0
 /* 8EE80 8008E280 0C00A607 */  jal        func_8002981C
 /* 8EE84 8008E284 A7A70022 */   sh        $a3, 0x22($sp)
 /* 8EE88 8008E288 8FA30018 */  lw         $v1, 0x18($sp)
-/* 8EE8C 8008E28C 3C04800C */  lui        $a0, %hi(buttonHold)
+/* 8EE8C 8008E28C 3C04800C */  lui        $a0, %hi(gButtonHold)
 /* 8EE90 8008E290 AC620184 */  sw         $v0, 0x184($v1)
-/* 8EE94 8008E294 3C18800C */  lui        $t8, %hi(D_800BE50C)
-/* 8EE98 8008E298 9718E50C */  lhu        $t8, %lo(D_800BE50C)($t8)
-/* 8EE9C 8008E29C 9484E4F8 */  lhu        $a0, %lo(buttonHold)($a0)
+/* 8EE94 8008E294 3C18800C */  lui        $t8, %hi(gButton_DLeft)
+/* 8EE98 8008E298 9718E50C */  lhu        $t8, %lo(gButton_DLeft)($t8)
+/* 8EE9C 8008E29C 9484E4F8 */  lhu        $a0, %lo(gButtonHold)($a0)
 /* 8EEA0 8008E2A0 97A70022 */  lhu        $a3, 0x22($sp)
 /* 8EEA4 8008E2A4 0098C824 */  and        $t9, $a0, $t8
 /* 8EEA8 8008E2A8 13200003 */  beqz       $t9, .L8008E2B8
-/* 8EEAC 8008E2AC 3C09800C */   lui       $t1, %hi(D_800BE510)
+/* 8EEAC 8008E2AC 3C09800C */   lui       $t1, %hi(gButton_DRight)
 /* 8EEB0 8008E2B0 3C08FFFE */  lui        $t0, 0xfffe
 /* 8EEB4 8008E2B4 AC680184 */  sw         $t0, 0x184($v1)
 .L8008E2B8:
-/* 8EEB8 8008E2B8 9529E510 */  lhu        $t1, %lo(D_800BE510)($t1)
+/* 8EEB8 8008E2B8 9529E510 */  lhu        $t1, %lo(gButton_DRight)($t1)
 /* 8EEBC 8008E2BC 3C0C800C */  lui        $t4, 0x800c
 /* 8EEC0 8008E2C0 00895024 */  and        $t2, $a0, $t1
 /* 8EEC4 8008E2C4 11400003 */  beqz       $t2, .L8008E2D4
-/* 8EEC8 8008E2C8 3C0D800C */   lui       $t5, %hi(D_800BE518)
+/* 8EEC8 8008E2C8 3C0D800C */   lui       $t5, %hi(gButton_A)
 /* 8EECC 8008E2CC 3C0B0002 */  lui        $t3, 2
 /* 8EED0 8008E2D0 AC6B0184 */  sw         $t3, 0x184($v1)
 .L8008E2D4:
 /* 8EED4 8008E2D4 958CE4FC */  lhu        $t4, -0x1b04($t4)
-/* 8EED8 8008E2D8 95ADE518 */  lhu        $t5, %lo(D_800BE518)($t5)
+/* 8EED8 8008E2D8 95ADE518 */  lhu        $t5, %lo(gButton_A)($t5)
 /* 8EEDC 8008E2DC 30E4FFFF */  andi       $a0, $a3, 0xffff
 /* 8EEE0 8008E2E0 018D7024 */  and        $t6, $t4, $t5
 /* 8EEE4 8008E2E4 11C00007 */  beqz       $t6, .L8008E304

@@ -943,10 +943,10 @@ glabel func_800977B8
 /* 98564 80097964 27BD0068 */   addiu     $sp, $sp, 0x68
 
 glabel func_80097968
-/* 98568 80097968 3C0E800C */  lui        $t6, %hi(buttonPress)
-/* 9856C 8009796C 3C0F800C */  lui        $t7, %hi(D_800BE52C)
-/* 98570 80097970 95EFE52C */  lhu        $t7, %lo(D_800BE52C)($t7)
-/* 98574 80097974 95CEE4FC */  lhu        $t6, %lo(buttonPress)($t6)
+/* 98568 80097968 3C0E800C */  lui        $t6, %hi(gButtonPress)
+/* 9856C 8009796C 3C0F800C */  lui        $t7, %hi(gButton_ZTrig)
+/* 98570 80097970 95EFE52C */  lhu        $t7, %lo(gButton_ZTrig)($t7)
+/* 98574 80097974 95CEE4FC */  lhu        $t6, %lo(gButtonPress)($t6)
 /* 98578 80097978 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 9857C 8009797C 01CFC024 */  and        $t8, $t6, $t7
 /* 98580 80097980 13000038 */  beqz       $t8, .L80097A64
