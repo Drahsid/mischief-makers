@@ -280,7 +280,7 @@ extern void func_800218FC();
 extern void func_80022470();
 extern void func_80022D10(void);
 extern void func_80022D88();
-extern uint16_t func_80022F48(void);
+extern void func_80022F48(void);
 extern void func_800230B8();
 extern void func_8002312C();
 extern uint16_t func_80023168();

@@ -27,24 +27,20 @@ void func_80022D10(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022D88.s")
 
-#ifdef NON_MATCHING
-// I had this matching, but something I changed made it not match
 // This function is called when the user soft-resets the game
-volatile uint16_t func_80022F48(void) {
-    uint16_t temp_ret;
-    if (gGameSubState == 0) {
+void func_80022F48(void) {
+    if (gGameSubState != 0) {
+        if (gGameSubState != 1) {
+            return;
+        }
+    }
+    else {
         func_800230B8();
         func_8002312C();
-        if (!gGameSubState) {
-        }
+        func_80023168();
 
-        temp_ret = func_80023168();
         gGameSubState++;
-        return temp_ret;
-    }
-
-    if (gGameSubState != 1) {
-        return gGameSubState;
+        return;
     }
 
     func_80022D88();
@@ -52,31 +48,29 @@ volatile uint16_t func_80022F48(void) {
     func_80004FFC(0);
     func_80004FFC(1);
     GameSave_Reset();
-    gButton_Start = ((uint16_t)0x1000) & 0xFFFFu;
-    gButton_DUp = (uint16_t)0x800;
-    gButton_DDown = (uint16_t)0x400;
-    gButton_DLeft = (uint16_t)0x200;
-    gButton_DRight = (uint16_t)0x100;
-    gButton_B = (uint16_t)0x4000;
-    gButton_A = (uint16_t)0x8000;
-    gButton_CLeft = (uint16_t)2;
-    gButton_CDown = (uint16_t)4;
-    gButton_CUp = (uint16_t)8;
-    gButton_CRight = (uint16_t)1U;
-    gButton_ZTrig = (uint16_t)0x2000;
-    gButton_LTrig = (uint16_t)0x20;
-    gButton_RTrig = (uint16_t)0x10;
-    D_801781F8 = (uint16_t)0;
-    D_800CBF44 = (uint16_t)0;
-    gPlayerActor.health = (uint16_t)0x3E8;
-    gRedGems = (uint16_t)0x1E;
-    gGameState = (uint16_t)1U;
-    gGameSubState = (uint16_t)0U;
-    return (uint16_t)1U;
+
+    gButton_Start   = START_BUTTON;
+    gButton_DUp     = U_JPAD;
+    gButton_DDown   = D_JPAD;
+    gButton_DLeft   = L_JPAD;
+    gButton_DRight  = R_JPAD;
+    gButton_B       = B_BUTTON;
+    gButton_A       = A_BUTTON;
+    gButton_CLeft   = L_CBUTTONS;
+    gButton_CDown   = D_CBUTTONS;
+    gButton_CUp     = U_CBUTTONS;
+    gButton_CRight  = R_CBUTTONS;
+    gButton_ZTrig   = Z_TRIG;
+    gButton_LTrig   = L_TRIG;
+    gButton_RTrig   = R_TRIG;
+    D_801781F8      = 0;
+    D_800CBF44      = 0;
+    gPlayerActor.health = 1000;
+    gRedGems        = 30;
+    gGameState      = 1;
+    gGameSubState   = 0;
+    return;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022F48.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
 
