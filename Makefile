@@ -76,7 +76,7 @@ clean:
 	rm -rf build
 
 setup:
-	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
+	$(PYTHON) tools/splat/split.py $(BASENAME).yaml
 
 context:
 	rm -f ctx.c ctx_includes.c
