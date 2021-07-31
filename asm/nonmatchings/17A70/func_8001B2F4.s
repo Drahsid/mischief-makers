@@ -8,9 +8,9 @@ glabel func_8001B2F4
 /* 1BF0C 8001B30C 01CF2821 */  addu       $a1, $t6, $t7
 /* 1BF10 8001B310 94A20000 */  lhu        $v0, ($a1)
 /* 1BF14 8001B314 24E71B18 */  addiu      $a3, $a3, %lo(gWorldProgress)
-/* 1BF18 8001B318 3C068018 */  lui        $a2, %hi(D_801781E0)
+/* 1BF18 8001B318 3C068018 */  lui        $a2, %hi(gStageTime)
 /* 1BF1C 8001B31C 90E30000 */  lbu        $v1, ($a3)
-/* 1BF20 8001B320 94C681E0 */  lhu        $a2, %lo(D_801781E0)($a2)
+/* 1BF20 8001B320 94C681E0 */  lhu        $a2, %lo(gStageTime)($a2)
 /* 1BF24 8001B324 3C018018 */  lui        $at, %hi(D_80178150)
 /* 1BF28 8001B328 A4228150 */  sh         $v0, %lo(D_80178150)($at)
 /* 1BF2C 8001B32C 27BDFFE0 */  addiu      $sp, $sp, -0x20
@@ -44,8 +44,8 @@ glabel func_8001B2F4
 /* 1BF94 8001B394 002E0821 */  addu       $at, $at, $t6
 /* 1BF98 8001B398 240C0000 */  addiu      $t4, $zero, 0
 /* 1BF9C 8001B39C AC2C1AD8 */  sw         $t4, %lo(D_80171AD8)($at)
-/* 1BFA0 8001B3A0 3C0B8013 */  lui        $t3, %hi(D_801370C8)
-/* 1BFA4 8001B3A4 8D6B70C8 */  lw         $t3, %lo(D_801370C8)($t3)
+/* 1BFA0 8001B3A0 3C0B8013 */  lui        $t3, %hi(gPlayTime)
+/* 1BFA4 8001B3A4 8D6B70C8 */  lw         $t3, %lo(gPlayTime)($t3)
 /* 1BFA8 8001B3A8 3C018017 */  lui        $at, %hi(D_80171ADC)
 /* 1BFAC 8001B3AC 002E0821 */  addu       $at, $at, $t6
 /* 1BFB0 8001B3B0 0C0015DC */  jal        func_80005770

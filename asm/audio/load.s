@@ -1430,9 +1430,9 @@ glabel alResampleParam
 /* B15F0 800B09F0 10200041 */  beqz       $at, .L800B0AF8
 /* B15F4 800B09F4 00000000 */   nop
 /* B15F8 800B09F8 0019C880 */  sll        $t9, $t9, 2
-/* B15FC 800B09FC 3C01800F */  lui        $at, %hi(resample_rodata_000C)
+/* B15FC 800B09FC 3C01800F */  lui        $at, %hi(D_800EE50C)
 /* B1600 800B0A00 00390821 */  addu       $at, $at, $t9
-/* B1604 800B0A04 8C39E50C */  lw         $t9, %lo(resample_rodata_000C)($at)
+/* B1604 800B0A04 8C39E50C */  lw         $t9, %lo(D_800EE50C)($at)
 /* B1608 800B0A08 03200008 */  jr         $t9
 /* B160C 800B0A0C 00000000 */   nop
 /* B1610 800B0A10 8FA80030 */  lw         $t0, 0x30($sp)
@@ -1594,9 +1594,9 @@ glabel alEnvmixerPull
 /* B1848 800B0C48 10200158 */  beqz       $at, .L800B11AC
 /* B184C 800B0C4C 00000000 */   nop
 /* B1850 800B0C50 000C6080 */  sll        $t4, $t4, 2
-/* B1854 800B0C54 3C01800F */  lui        $at, %hi(env_rodata_0080)
+/* B1854 800B0C54 3C01800F */  lui        $at, %hi(D_800EE598)
 /* B1858 800B0C58 002C0821 */  addu       $at, $at, $t4
-/* B185C 800B0C5C 8C2CE598 */  lw         $t4, %lo(env_rodata_0080)($at)
+/* B185C 800B0C5C 8C2CE598 */  lw         $t4, %lo(D_800EE598)($at)
 /* B1860 800B0C60 01800008 */  jr         $t4
 /* B1864 800B0C64 00000000 */   nop
 /* B1868 800B0C68 8FAD0058 */  lw         $t5, 0x58($sp)

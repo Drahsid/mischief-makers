@@ -39,8 +39,8 @@ glabel func_8001C97C
 /* 1D60C 8001CA0C 258CF510 */  addiu      $t4, $t4, -0xaf0
 /* 1D610 8001CA10 016C1021 */  addu       $v0, $t3, $t4
 /* 1D614 8001CA14 944D7354 */  lhu        $t5, 0x7354($v0)
-/* 1D618 8001CA18 3C0F800E */  lui        $t7, %hi(D_800D8C78)
-/* 1D61C 8001CA1C 25EF8C78 */  addiu      $t7, $t7, %lo(D_800D8C78)
+/* 1D618 8001CA18 3C0F800E */  lui        $t7, %hi(Data_YellowGem)
+/* 1D61C 8001CA1C 25EF8C78 */  addiu      $t7, $t7, %lo(Data_YellowGem)
 /* 1D620 8001CA20 35AE0240 */  ori        $t6, $t5, 0x240
 /* 1D624 8001CA24 A44E7354 */  sh         $t6, 0x7354($v0)
 /* 1D628 8001CA28 1000000B */  b          .L8001CA58

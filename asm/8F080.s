@@ -5177,9 +5177,9 @@ glabel func_80092FD4
 /* 93BF0 80092FF0 AFB20020 */  sw         $s2, 0x20($sp)
 /* 93BF4 80092FF4 01EE7823 */  subu       $t7, $t7, $t6
 /* 93BF8 80092FF8 000F78C0 */  sll        $t7, $t7, 3
-/* 93BFC 80092FFC 3C12800F */  lui        $s2, %hi(gActors+0x4B0)
+/* 93BFC 80092FFC 3C12800F */  lui        $s2, %hi(D_800EF9C0)
 /* 93C00 80093000 024F9021 */  addu       $s2, $s2, $t7
-/* 93C04 80093004 8E52F9C0 */  lw         $s2, %lo(gActors+0x4B0)($s2)
+/* 93C04 80093004 8E52F9C0 */  lw         $s2, %lo(D_800EF9C0)($s2)
 /* 93C08 80093008 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 93C0C 8009300C AFB1001C */  sw         $s1, 0x1c($sp)
 /* 93C10 80093010 AFB00018 */  sw         $s0, 0x18($sp)

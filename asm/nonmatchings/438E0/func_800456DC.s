@@ -1,6 +1,6 @@
 glabel func_800456DC
-/* 462DC 800456DC 3C038018 */  lui        $v1, %hi(D_801782B8)
-/* 462E0 800456E0 946382B8 */  lhu        $v1, %lo(D_801782B8)($v1)
+/* 462DC 800456DC 3C038018 */  lui        $v1, %hi(gStageTimeReal)
+/* 462E0 800456E0 946382B8 */  lhu        $v1, %lo(gStageTimeReal)($v1)
 /* 462E4 800456E4 2418000F */  addiu      $t8, $zero, 0xf
 /* 462E8 800456E8 306E0020 */  andi       $t6, $v1, 0x20
 /* 462EC 800456EC 11C00006 */  beqz       $t6, .L80045708

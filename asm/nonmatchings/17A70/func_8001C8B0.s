@@ -34,7 +34,7 @@ glabel func_8001C8B0
 /* 1D530 8001C930 24070002 */   addiu     $a3, $zero, 2
 /* 1D534 8001C934 97A50032 */  lhu        $a1, 0x32($sp)
 /* 1D538 8001C938 97A60036 */  lhu        $a2, 0x36($sp)
-/* 1D53C 8001C93C 0C006B2A */  jal        func_8001ACA8
+/* 1D53C 8001C93C 0C006B2A */  jal        Record_PrintTime
 /* 1D540 8001C940 24040005 */   addiu     $a0, $zero, 5
 /* 1D544 8001C944 97A70036 */  lhu        $a3, 0x36($sp)
 /* 1D548 8001C948 3C06800C */  lui        $a2, %hi(gTimeRecords)

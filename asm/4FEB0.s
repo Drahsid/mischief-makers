@@ -8933,7 +8933,7 @@ glabel func_80057268
 /* 57F18 80057318 03E00008 */  jr         $ra
 /* 57F1C 8005731C 00000000 */   nop
 
-glabel func_80057320
+glabel Actor_AddHP
 /* 57F20 80057320 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 57F24 80057324 000EC880 */  sll        $t9, $t6, 2
 /* 57F28 80057328 032EC823 */  subu       $t9, $t9, $t6

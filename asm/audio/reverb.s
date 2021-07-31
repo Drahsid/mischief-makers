@@ -416,9 +416,9 @@ glabel alFxParamHdl
 /* B8F00 800B8300 1020009C */  beqz       $at, .L800B8574
 /* B8F04 800B8304 00000000 */   nop
 /* B8F08 800B8308 000D6880 */  sll        $t5, $t5, 2
-/* B8F0C 800B830C 3C01800F */  lui        $at, %hi(reverb_rodata_001C)
+/* B8F0C 800B830C 3C01800F */  lui        $at, %hi(D_800EE96C)
 /* B8F10 800B8310 002D0821 */  addu       $at, $at, $t5
-/* B8F14 800B8314 8C2DE96C */  lw         $t5, %lo(reverb_rodata_001C)($at)
+/* B8F14 800B8314 8C2DE96C */  lw         $t5, %lo(D_800EE96C)($at)
 /* B8F18 800B8318 01A00008 */  jr         $t5
 /* B8F1C 800B831C 00000000 */   nop
 /* B8F20 800B8320 8FB80024 */  lw         $t8, 0x24($sp)

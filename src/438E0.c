@@ -317,7 +317,7 @@ int16_t func_800456DC(void) {
     uint32_t temp_v1;
     int16_t temp_t1_t9;
 
-    temp_v1 = D_801782B8;
+    temp_v1 = gStageTimeReal;
     if ((temp_v1 & 0x20) != 0) {
         temp_t1_t9 = 15 - (temp_v1 & 0x1F);
         return temp_t1_t9;
@@ -397,8 +397,8 @@ void func_80046188(int32_t arg0, int32_t arg1) {
     D_800BE6EC = 0;
     func_80043A68(arg1);
     func_80046A9C();
-    func_80003A64();
-    func_80003A38();
+    SFX_StopAll();
+    BGM_Stop();
 }
 
 // SPLAT BUG

@@ -28,7 +28,7 @@ glabel func_80047B68
 /* 487C8 80047BC8 94B80000 */  lhu        $t8, ($a1)
 /* 487CC 80047BCC 24040018 */  addiu      $a0, $zero, 0x18
 /* 487D0 80047BD0 27190001 */  addiu      $t9, $t8, 1
-/* 487D4 80047BD4 0C000AD4 */  jal        func_80002B50
+/* 487D4 80047BD4 0C000AD4 */  jal        BGM_Play
 /* 487D8 80047BD8 A4B90000 */   sh        $t9, ($a1)
 .L80047BDC:
 /* 487DC 80047BDC 3C02800D */  lui        $v0, %hi(D_800D28FC)
@@ -44,7 +44,7 @@ glabel func_80047B68
 /* 48804 80047C04 014B6024 */  and        $t4, $t2, $t3
 /* 48808 80047C08 11800004 */  beqz       $t4, .L80047C1C
 /* 4880C 80047C0C 8FBF0014 */   lw        $ra, 0x14($sp)
-/* 48810 80047C10 0C000AD4 */  jal        func_80002B50
+/* 48810 80047C10 0C000AD4 */  jal        BGM_Play
 /* 48814 80047C14 24040018 */   addiu     $a0, $zero, 0x18
 /* 48818 80047C18 8FBF0014 */  lw         $ra, 0x14($sp)
 .L80047C1C:

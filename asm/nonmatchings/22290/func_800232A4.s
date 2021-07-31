@@ -138,8 +138,8 @@ glabel func_800232A4
 /* 240BC 800234BC A438E590 */  sh         $t8, %lo(D_800BE590)($at)
 /* 240C0 800234C0 3C01800C */  lui        $at, %hi(D_800BE594)
 /* 240C4 800234C4 A438E594 */  sh         $t8, %lo(D_800BE594)($at)
-/* 240C8 800234C8 3C018018 */  lui        $at, %hi(D_801782B8)
-/* 240CC 800234CC A43882B8 */  sh         $t8, %lo(D_801782B8)($at)
+/* 240C8 800234C8 3C018018 */  lui        $at, %hi(gStageTimeReal)
+/* 240CC 800234CC A43882B8 */  sh         $t8, %lo(gStageTimeReal)($at)
 /* 240D0 800234D0 3C01800C */  lui        $at, %hi(D_800BE4E0)
 /* 240D4 800234D4 A438E4E0 */  sh         $t8, %lo(D_800BE4E0)($at)
 /* 240D8 800234D8 3C01800C */  lui        $at, %hi(D_800BE4E4)
@@ -178,8 +178,8 @@ glabel func_800232A4
 .L8002355C:
 /* 2415C 8002355C 0C00970E */  jal        func_80025C38
 /* 24160 80023560 00000000 */   nop
-/* 24164 80023564 3C018018 */  lui        $at, %hi(D_801781E0)
-/* 24168 80023568 A42081E0 */  sh         $zero, %lo(D_801781E0)($at)
+/* 24164 80023564 3C018018 */  lui        $at, %hi(gStageTime)
+/* 24168 80023568 A42081E0 */  sh         $zero, %lo(gStageTime)($at)
 /* 2416C 8002356C 3C04800C */  lui        $a0, %hi(D_800BE5D0)
 /* 24170 80023570 3C01800D */  lui        $at, %hi(D_800D294C)
 /* 24174 80023574 9484E5D0 */  lhu        $a0, %lo(D_800BE5D0)($a0)

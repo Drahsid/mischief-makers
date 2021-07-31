@@ -294,12 +294,12 @@ void func_800253A8(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
 
-void func_80025578(void) {
-    if (*(&D_800CCFDC + D_800BE5D0) != 0xFF) {
-        func_80002B50(*(&D_800CCFDC + D_800BE5D0));
+
+void func_80025578(void) { //mismatches when D_800CCFDC declared Array
+    if (*(&D_800CCFDC + D_800BE5D0) != 255) {
+        BGM_Play(*(&D_800CCFDC + D_800BE5D0));
     }
 }
-
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s")
 
 void func_80025B7C(void) {
@@ -703,11 +703,7 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F420.s")
 
-void RedGem_Cap(void){
-  if (gRedGems >= 9999) {gRedGems = 9999;}
-  }
-
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/RedGem_Cap.s")
+void RedGem_Cap(void){if (gRedGems >= 9999) {gRedGems = 9999;}}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F6D4.s")
 
@@ -1011,7 +1007,7 @@ void RedGem_Cap(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003F8B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003F9CC.s")
+void func_8003F9CC(float f,u16 a,u16 b,u32 c){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003F9E0.s")
 
@@ -1046,7 +1042,18 @@ void RedGem_Cap(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80040858.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004089C.s")
-
+/*
+s32 func_800409E0(u32 Index){
+  u32 uVar1;
+  
+  uVar1 = Index & 0xffff;
+  if ((0 < gActors[uVar1].health) && (gActors[uVar1].unk_0xD4 == 0) &&
+      ((gActors[uVar1].flag & 3) == 3) && (0x50 < gActors[uVar1].unk_0xD0_h)) {
+    return 0;
+  }
+  return 1;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800409E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80040A64.s")

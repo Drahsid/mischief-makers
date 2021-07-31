@@ -25,9 +25,9 @@ glabel func_80019688
 /* 1A2E4 800196E4 8FA90024 */  lw         $t1, 0x24($sp)
 /* 1A2E8 800196E8 8E04000C */  lw         $a0, 0xc($s0)
 /* 1A2EC 800196EC 004FC021 */  addu       $t8, $v0, $t7
-/* 1A2F0 800196F0 3C038018 */  lui        $v1, %hi(D_801781E0)
+/* 1A2F0 800196F0 3C038018 */  lui        $v1, %hi(gStageTime)
 /* 1A2F4 800196F4 03194021 */  addu       $t0, $t8, $t9
-/* 1A2F8 800196F8 246381E0 */  addiu      $v1, $v1, %lo(D_801781E0)
+/* 1A2F8 800196F8 246381E0 */  addiu      $v1, $v1, %lo(gStageTime)
 /* 1A2FC 800196FC 01095021 */  addu       $t2, $t0, $t1
 /* 1A300 80019700 2C810708 */  sltiu      $at, $a0, 0x708
 /* 1A304 80019704 10200004 */  beqz       $at, .L80019718

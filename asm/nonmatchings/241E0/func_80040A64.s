@@ -1,6 +1,6 @@
 glabel func_80040A64
-/* 41664 80040A64 3C04800D */  lui        $a0, %hi(D_800D2950)
-/* 41668 80040A68 94842950 */  lhu        $a0, %lo(D_800D2950)($a0)
+/* 41664 80040A64 3C04800D */  lui        $a0, %hi(gPlayerActorIndex)
+/* 41668 80040A68 94842950 */  lhu        $a0, %lo(gPlayerActorIndex)($a0)
 /* 4166C 80040A6C 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 41670 80040A70 14800005 */  bnez       $a0, .L80040A88
 /* 41674 80040A74 AFBF0014 */   sw        $ra, 0x14($sp)

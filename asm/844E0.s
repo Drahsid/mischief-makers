@@ -402,7 +402,7 @@ glabel func_80083E74
 /* 84A90 80083E90 AFB10018 */  sw         $s1, 0x18($sp)
 /* 84A94 80083E94 AFB00014 */  sw         $s0, 0x14($sp)
 /* 84A98 80083E98 02602025 */  or         $a0, $s3, $zero
-/* 84A9C 80083E9C 0C001192 */  jal        func_80004648
+/* 84A9C 80083E9C 0C001192 */  jal        Sprite_Init
 /* 84AA0 80083EA0 AFAE008C */   sw        $t6, 0x8c($sp)
 /* 84AA4 80083EA4 0C0011EC */  jal        func_800047B0
 /* 84AA8 80083EA8 00002025 */   or        $a0, $zero, $zero
@@ -410,7 +410,7 @@ glabel func_80083E74
 /* 84AB0 80083EB0 9084E6B9 */  lbu        $a0, %lo(D_800BE6B9)($a0)
 /* 84AB4 80083EB4 240700FF */  addiu      $a3, $zero, 0xff
 /* 84AB8 80083EB8 00802825 */  or         $a1, $a0, $zero
-/* 84ABC 80083EBC 0C0011DF */  jal        func_8000477C
+/* 84ABC 80083EBC 0C0011DF */  jal        Sprite_SetColor
 /* 84AC0 80083EC0 308600FF */   andi      $a2, $a0, 0xff
 /* 84AC4 80083EC4 3C013FF0 */  lui        $at, 0x3ff0
 /* 84AC8 80083EC8 44816800 */  mtc1       $at, $f13
@@ -443,7 +443,7 @@ glabel func_80083E74
 /* 84B30 80083F30 9205005D */  lbu        $a1, 0x5d($s0)
 /* 84B34 80083F34 9206005E */  lbu        $a2, 0x5e($s0)
 /* 84B38 80083F38 9207005F */  lbu        $a3, 0x5f($s0)
-/* 84B3C 80083F3C 0C0011DF */  jal        func_8000477C
+/* 84B3C 80083F3C 0C0011DF */  jal        Sprite_SetColor
 /* 84B40 80083F40 00000000 */   nop
 /* 84B44 80083F44 C6040060 */  lwc1       $f4, 0x60($s0)
 /* 84B48 80083F48 C6060064 */  lwc1       $f6, 0x64($s0)

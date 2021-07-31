@@ -14,7 +14,7 @@ glabel func_80047994
 /* 485C4 800479C4 0C0177F2 */  jal        func_8005DFC8
 /* 485C8 800479C8 00002025 */   or        $a0, $zero, $zero
 /* 485CC 800479CC 3C01800D */  lui        $at, %hi(D_800D16C4)
-/* 485D0 800479D0 0C000E99 */  jal        func_80003A64
+/* 485D0 800479D0 0C000E99 */  jal        SFX_StopAll
 /* 485D4 800479D4 A42016C4 */   sh        $zero, %lo(D_800D16C4)($at)
 /* 485D8 800479D8 3C0F800D */  lui        $t7, %hi(D_800D28E4)
 /* 485DC 800479DC 95EF28E4 */  lhu        $t7, %lo(D_800D28E4)($t7)

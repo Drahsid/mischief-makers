@@ -25,8 +25,8 @@ glabel func_8001B3D0
 /* 1C02C 8001B42C 002C0821 */  addu       $at, $at, $t4
 /* 1C030 8001B430 240A0000 */  addiu      $t2, $zero, 0
 /* 1C034 8001B434 AC2A1AD8 */  sw         $t2, %lo(D_80171AD8)($at)
-/* 1C038 8001B438 3C098013 */  lui        $t1, %hi(D_801370C8)
-/* 1C03C 8001B43C 8D2970C8 */  lw         $t1, %lo(D_801370C8)($t1)
+/* 1C038 8001B438 3C098013 */  lui        $t1, %hi(gPlayTime)
+/* 1C03C 8001B43C 8D2970C8 */  lw         $t1, %lo(gPlayTime)($t1)
 /* 1C040 8001B440 3C018017 */  lui        $at, %hi(D_80171ADC)
 /* 1C044 8001B444 002C0821 */  addu       $at, $at, $t4
 /* 1C048 8001B448 0C0015DC */  jal        func_80005770

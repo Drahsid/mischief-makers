@@ -1,8 +1,8 @@
 glabel func_8001A890
-/* 1B490 8001A890 3C0E8018 */  lui        $t6, %hi(D_801781E0)
+/* 1B490 8001A890 3C0E8018 */  lui        $t6, %hi(gStageTime)
 /* 1B494 8001A894 3C0F8018 */  lui        $t7, %hi(D_80178150)
 /* 1B498 8001A898 95EF8150 */  lhu        $t7, %lo(D_80178150)($t7)
-/* 1B49C 8001A89C 95CE81E0 */  lhu        $t6, %lo(D_801781E0)($t6)
+/* 1B49C 8001A89C 95CE81E0 */  lhu        $t6, %lo(gStageTime)($t6)
 /* 1B4A0 8001A8A0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 1B4A4 8001A8A4 01CF082A */  slt        $at, $t6, $t7
 /* 1B4A8 8001A8A8 10200010 */  beqz       $at, .L8001A8EC
@@ -37,19 +37,19 @@ glabel func_8001A890
 /* 1B50C 8001A90C 0C020E04 */  jal        func_80083810
 /* 1B510 8001A910 A7A20026 */   sh        $v0, 0x26($sp)
 /* 1B514 8001A914 97A20026 */  lhu        $v0, 0x26($sp)
-/* 1B518 8001A918 3C068018 */  lui        $a2, %hi(D_801781E0)
+/* 1B518 8001A918 3C068018 */  lui        $a2, %hi(gStageTime)
 /* 1B51C 8001A91C 3C078018 */  lui        $a3, %hi(gCurrentStage)
 /* 1B520 8001A920 94E78162 */  lhu        $a3, %lo(gCurrentStage)($a3)
-/* 1B524 8001A924 94C681E0 */  lhu        $a2, %lo(D_801781E0)($a2)
+/* 1B524 8001A924 94C681E0 */  lhu        $a2, %lo(gStageTime)($a2)
 /* 1B528 8001A928 24040006 */  addiu      $a0, $zero, 6
 /* 1B52C 8001A92C 24050004 */  addiu      $a1, $zero, 4
 /* 1B530 8001A930 0C0069F8 */  jal        func_8001A7E0
 /* 1B534 8001A934 AFA20010 */   sw        $v0, 0x10($sp)
 /* 1B538 8001A938 97A20026 */  lhu        $v0, 0x26($sp)
-/* 1B53C 8001A93C 3C068018 */  lui        $a2, %hi(D_801781E0)
+/* 1B53C 8001A93C 3C068018 */  lui        $a2, %hi(gStageTime)
 /* 1B540 8001A940 3C078018 */  lui        $a3, %hi(gCurrentStage)
 /* 1B544 8001A944 94E78162 */  lhu        $a3, %lo(gCurrentStage)($a3)
-/* 1B548 8001A948 94C681E0 */  lhu        $a2, %lo(D_801781E0)($a2)
+/* 1B548 8001A948 94C681E0 */  lhu        $a2, %lo(gStageTime)($a2)
 /* 1B54C 8001A94C 24040009 */  addiu      $a0, $zero, 9
 /* 1B550 8001A950 24050004 */  addiu      $a1, $zero, 4
 /* 1B554 8001A954 0C006A0E */  jal        func_8001A838

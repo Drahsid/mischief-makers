@@ -13,8 +13,8 @@ glabel func_80045FA4
 /* 46BD0 80045FD0 E4242904 */   swc1      $f4, %lo(D_800D2904)($at)
 /* 46BD4 80045FD4 3C01800D */  lui        $at, %hi(D_800D294C)
 /* 46BD8 80045FD8 A420294C */  sh         $zero, %lo(D_800D294C)($at)
-/* 46BDC 80045FDC 3C01800D */  lui        $at, %hi(D_800D2950)
-/* 46BE0 80045FE0 A4202950 */  sh         $zero, %lo(D_800D2950)($at)
+/* 46BDC 80045FDC 3C01800D */  lui        $at, %hi(gPlayerActorIndex)
+/* 46BE0 80045FE0 A4202950 */  sh         $zero, %lo(gPlayerActorIndex)($at)
 /* 46BE4 80045FE4 3C01800C */  lui        $at, %hi(D_800BE5F4)
 /* 46BE8 80045FE8 240E0005 */  addiu      $t6, $zero, 5
 /* 46BEC 80045FEC AC2EE5F4 */  sw         $t6, %lo(D_800BE5F4)($at)

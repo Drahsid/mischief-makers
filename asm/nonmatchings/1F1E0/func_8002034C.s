@@ -1,6 +1,6 @@
 glabel func_8002034C
-/* 20F4C 8002034C 3C038013 */  lui        $v1, %hi(D_801370C8)
-/* 20F50 80020350 246370C8 */  addiu      $v1, $v1, %lo(D_801370C8)
+/* 20F4C 8002034C 3C038013 */  lui        $v1, %hi(gPlayTime)
+/* 20F50 80020350 246370C8 */  addiu      $v1, $v1, %lo(gPlayTime)
 /* 20F54 80020354 8C620000 */  lw         $v0, ($v1)
 /* 20F58 80020358 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 20F5C 8002035C 3C011EE6 */  lui        $at, 0x1ee6

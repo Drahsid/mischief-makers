@@ -1,6 +1,6 @@
 glabel func_8002FC30
-/* 30830 8002FC30 3C02800D */  lui        $v0, %hi(D_800D2950)
-/* 30834 8002FC34 94422950 */  lhu        $v0, %lo(D_800D2950)($v0)
+/* 30830 8002FC30 3C02800D */  lui        $v0, %hi(gPlayerActorIndex)
+/* 30834 8002FC34 94422950 */  lhu        $v0, %lo(gPlayerActorIndex)($v0)
 /* 30838 8002FC38 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 3083C 8002FC3C AFA40020 */  sw         $a0, 0x20($sp)
 /* 30840 8002FC40 308EFFFF */  andi       $t6, $a0, 0xffff

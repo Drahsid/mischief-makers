@@ -98,7 +98,7 @@ glabel L80020B60_21760
 /* 217FC 80020BFC 00003825 */   or        $a3, $zero, $zero
 /* 21800 80020C00 0C0080D3 */  jal        func_8002034C
 /* 21804 80020C04 00000000 */   nop
-/* 21808 80020C08 0C008177 */  jal        func_800205DC
+/* 21808 80020C08 0C008177 */  jal        RedGem_PrintPause
 /* 2180C 80020C0C 00000000 */   nop
 /* 21810 80020C10 0C0081F7 */  jal        YellowGem_printProgress
 /* 21814 80020C14 00000000 */   nop
@@ -120,8 +120,8 @@ glabel L80020B60_21760
 /* 21854 80020C54 3C018010 */  lui        $at, %hi(D_80103C5C)
 /* 21858 80020C58 352A0240 */  ori        $t2, $t1, 0x240
 /* 2185C 80020C5C A42A3C5C */  sh         $t2, %lo(D_80103C5C)($at)
-/* 21860 80020C60 3C0B800E */  lui        $t3, %hi(D_800D88B8)
-/* 21864 80020C64 256B88B8 */  addiu      $t3, $t3, %lo(D_800D88B8)
+/* 21860 80020C60 3C0B800E */  lui        $t3, %hi(Data_RedGem)
+/* 21864 80020C64 256B88B8 */  addiu      $t3, $t3, %lo(Data_RedGem)
 /* 21868 80020C68 3C018010 */  lui        $at, %hi(D_80103D54)
 /* 2186C 80020C6C 3C05800E */  lui        $a1, %hi(D_800E13DC)
 /* 21870 80020C70 240C0401 */  addiu      $t4, $zero, 0x401
@@ -142,8 +142,8 @@ glabel L80020B60_21760
 /* 218AC 80020CAC 3C018010 */  lui        $at, %hi(D_80103DF4)
 /* 218B0 80020CB0 35F80240 */  ori        $t8, $t7, 0x240
 /* 218B4 80020CB4 A4383DF4 */  sh         $t8, %lo(D_80103DF4)($at)
-/* 218B8 80020CB8 3C19800E */  lui        $t9, %hi(D_800D8C78)
-/* 218BC 80020CBC 27398C78 */  addiu      $t9, $t9, %lo(D_800D8C78)
+/* 218B8 80020CB8 3C19800E */  lui        $t9, %hi(Data_YellowGem)
+/* 218BC 80020CBC 27398C78 */  addiu      $t9, $t9, %lo(Data_YellowGem)
 /* 218C0 80020CC0 3C018010 */  lui        $at, %hi(D_80103EEC)
 /* 218C4 80020CC4 3C05800E */  lui        $a1, %hi(D_800E13FC)
 /* 218C8 80020CC8 24080401 */  addiu      $t0, $zero, 0x401
@@ -293,8 +293,8 @@ glabel L80020ECC_21ACC
 /* 21AE8 80020EE8 1000002A */  b          L80020F94_21B94
 /* 21AEC 80020EEC 00000000 */   nop
 glabel L80020EF0_21AF0
-/* 21AF0 80020EF0 3C028018 */  lui        $v0, %hi(D_801782B8)
-/* 21AF4 80020EF4 244282B8 */  addiu      $v0, $v0, %lo(D_801782B8)
+/* 21AF0 80020EF0 3C028018 */  lui        $v0, %hi(gStageTimeReal)
+/* 21AF4 80020EF4 244282B8 */  addiu      $v0, $v0, %lo(gStageTimeReal)
 /* 21AF8 80020EF8 944F0000 */  lhu        $t7, ($v0)
 /* 21AFC 80020EFC 00000000 */  nop
 /* 21B00 80020F00 25F80001 */  addiu      $t8, $t7, 1

@@ -211,9 +211,9 @@ glabel __osDevMgrMain
 /* A9374 800A8774 10200056 */  beqz       $at, .L800A88D0
 /* A9378 800A8778 00000000 */   nop
 /* A937C 800A877C 000D6880 */  sll        $t5, $t5, 2
-/* A9380 800A8780 3C01800F */  lui        $at, %hi(devmgr_rodata_0000)
+/* A9380 800A8780 3C01800F */  lui        $at, %hi(D_800EDBA0)
 /* A9384 800A8784 002D0821 */  addu       $at, $at, $t5
-/* A9388 800A8788 8C2DDBA0 */  lw         $t5, %lo(devmgr_rodata_0000)($at)
+/* A9388 800A8788 8C2DDBA0 */  lw         $t5, %lo(D_800EDBA0)($at)
 /* A938C 800A878C 01A00008 */  jr         $t5
 /* A9390 800A8790 00000000 */   nop
 /* A9394 800A8794 8FAF0034 */  lw         $t7, 0x34($sp)

@@ -1,8 +1,8 @@
 glabel func_8001A96C
-/* 1B56C 8001A96C 3C048018 */  lui        $a0, %hi(D_801781E0)
+/* 1B56C 8001A96C 3C048018 */  lui        $a0, %hi(gStageTime)
 /* 1B570 8001A970 3C0E8018 */  lui        $t6, %hi(D_80178150)
 /* 1B574 8001A974 95CE8150 */  lhu        $t6, %lo(D_80178150)($t6)
-/* 1B578 8001A978 948481E0 */  lhu        $a0, %lo(D_801781E0)($a0)
+/* 1B578 8001A978 948481E0 */  lhu        $a0, %lo(gStageTime)($a0)
 /* 1B57C 8001A97C 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 1B580 8001A980 008E082A */  slt        $at, $a0, $t6
 /* 1B584 8001A984 AFBF001C */  sw         $ra, 0x1c($sp)

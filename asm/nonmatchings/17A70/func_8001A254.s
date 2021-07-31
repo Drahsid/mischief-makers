@@ -106,8 +106,8 @@ glabel func_8001A254
 /* 1AFD0 8001A3D0 30CFFFFF */  andi       $t7, $a2, 0xffff
 /* 1AFD4 8001A3D4 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 1AFD8 8001A3D8 3C05800E */  lui        $a1, %hi(D_800E13DC)
-/* 1AFDC 8001A3DC 3C14800E */  lui        $s4, %hi(D_800D8C78)
-/* 1AFE0 8001A3E0 26948C78 */  addiu      $s4, $s4, %lo(D_800D8C78)
+/* 1AFDC 8001A3DC 3C14800E */  lui        $s4, %hi(Data_YellowGem)
+/* 1AFE0 8001A3E0 26948C78 */  addiu      $s4, $s4, %lo(Data_YellowGem)
 /* 1AFE4 8001A3E4 24A513DC */  addiu      $a1, $a1, %lo(D_800E13DC)
 /* 1AFE8 8001A3E8 01C02025 */  or         $a0, $t6, $zero
 /* 1AFEC 8001A3EC 01E03025 */  or         $a2, $t7, $zero

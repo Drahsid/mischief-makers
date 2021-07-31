@@ -44,9 +44,9 @@ glabel func_80022D88
 /* 23A30 80022E30 A030E6F0 */  sb         $s0, %lo(D_800BE6F0)($at)
 /* 23A34 80022E34 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 23A38 80022E38 3C01800C */  lui        $at, %hi(D_800BE63C)
-/* 23A3C 80022E3C 0C000E8E */  jal        func_80003A38
+/* 23A3C 80022E3C 0C000E8E */  jal        BGM_Stop
 /* 23A40 80022E40 A438E63C */   sh        $t8, %lo(D_800BE63C)($at)
-/* 23A44 80022E44 0C000E99 */  jal        func_80003A64
+/* 23A44 80022E44 0C000E99 */  jal        SFX_StopAll
 /* 23A48 80022E48 00000000 */   nop
 /* 23A4C 80022E4C 0C008C2E */  jal        func_800230B8
 /* 23A50 80022E50 00000000 */   nop

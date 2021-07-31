@@ -262,8 +262,8 @@ glabel L8001B6C0_1C2C0
 /* 1C42C 8001B82C 3C06800F */  lui        $a2, %hi(D_800F7510)
 /* 1C430 8001B830 24C67510 */  addiu      $a2, $a2, %lo(D_800F7510)
 /* 1C434 8001B834 94D801AC */  lhu        $t8, 0x1ac($a2)
-/* 1C438 8001B838 3C0A800E */  lui        $t2, %hi(D_800D8C78)
-/* 1C43C 8001B83C 254A8C78 */  addiu      $t2, $t2, %lo(D_800D8C78)
+/* 1C438 8001B838 3C0A800E */  lui        $t2, %hi(Data_YellowGem)
+/* 1C43C 8001B83C 254A8C78 */  addiu      $t2, $t2, %lo(Data_YellowGem)
 /* 1C440 8001B840 37190240 */  ori        $t9, $t8, 0x240
 /* 1C444 8001B844 A4D901AC */  sh         $t9, 0x1ac($a2)
 /* 1C448 8001B848 ACCA02A4 */  sw         $t2, 0x2a4($a2)
@@ -575,7 +575,7 @@ glabel L8001BC5C_1C85C
 /* 1C8B8 8001BCB8 156102B6 */  bne        $t3, $at, L8001C794_1D394
 /* 1C8BC 8001BCBC 24040010 */   addiu     $a0, $zero, 0x10
 /* 1C8C0 8001BCC0 3C018013 */  lui        $at, %hi(D_80137D90)
-/* 1C8C4 8001BCC4 0C000AD4 */  jal        func_80002B50
+/* 1C8C4 8001BCC4 0C000AD4 */  jal        BGM_Play
 /* 1C8C8 8001BCC8 A4207D90 */   sh        $zero, %lo(D_80137D90)($at)
 /* 1C8CC 8001BCCC 3C02800C */  lui        $v0, %hi(gGameSubState)
 /* 1C8D0 8001BCD0 340CFFFF */  ori        $t4, $zero, 0xffff
@@ -708,8 +708,8 @@ glabel L8001BE88_1CA88
 /* 1CAB4 8001BEB4 97188156 */  lhu        $t8, %lo(D_80178156)($t8)
 /* 1CAB8 8001BEB8 3C04800C */  lui        $a0, %hi(gButton_DLeft)
 /* 1CABC 8001BEBC 9484E50C */  lhu        $a0, %lo(gButton_DLeft)($a0)
-/* 1CAC0 8001BEC0 3C05800F */  lui        $a1, %hi(gActors+0x108E)
-/* 1CAC4 8001BEC4 24A5059E */  addiu      $a1, $a1, %lo(gActors+0x108E)
+/* 1CAC0 8001BEC0 3C05800F */  lui        $a1, %hi(D_800F059E)
+/* 1CAC4 8001BEC4 24A5059E */  addiu      $a1, $a1, %lo(D_800F059E)
 /* 1CAC8 8001BEC8 0C005DA0 */  jal        func_80017680
 /* 1CACC 8001BECC A7B80026 */   sh        $t8, 0x26($sp)
 /* 1CAD0 8001BED0 3C06800F */  lui        $a2, %hi(D_800F7510)
@@ -723,9 +723,9 @@ glabel L8001BE88_1CA88
 .L8001BEF0:
 /* 1CAF0 8001BEF0 3C04800C */  lui        $a0, %hi(gButton_DRight)
 /* 1CAF4 8001BEF4 9484E510 */  lhu        $a0, %lo(gButton_DRight)($a0)
-/* 1CAF8 8001BEF8 3C05800F */  lui        $a1, %hi(gActors+0x1226)
+/* 1CAF8 8001BEF8 3C05800F */  lui        $a1, %hi(D_800F0736)
 /* 1CAFC 8001BEFC 0C005DA0 */  jal        func_80017680
-/* 1CB00 8001BF00 24A50736 */   addiu     $a1, $a1, %lo(gActors+0x1226)
+/* 1CB00 8001BF00 24A50736 */   addiu     $a1, $a1, %lo(D_800F0736)
 /* 1CB04 8001BF04 3C06800F */  lui        $a2, %hi(D_800F7510)
 /* 1CB08 8001BF08 10400005 */  beqz       $v0, .L8001BF20
 /* 1CB0C 8001BF0C 24C67510 */   addiu     $a2, $a2, %lo(D_800F7510)
