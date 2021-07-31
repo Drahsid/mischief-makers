@@ -71,8 +71,6 @@ void func_80022F48(void) {
     gGameSubState   = 0;
     return;
 }
-
-
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002312C.s")

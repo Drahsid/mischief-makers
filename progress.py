@@ -6,6 +6,7 @@ import csv
 import git
 import os
 import re
+import math
 
 parser = argparse.ArgumentParser(description="Computes current decompilation progress")
 parser.add_argument("-s", "--silent", dest='silent', action='store_true', help="Run silently")
@@ -108,7 +109,80 @@ asmPct = 100 * asmSize / total
 nonMatchingSrcPct = 100 * nonMatchingSrcSize / total
 nonMatchingAsmPct = 100 * nonMatchingAsmSize / total
 
-hexformat = '0x%06x'
+hexformat = '%06x'
+
+levelNames = [
+    [
+        "Meet Marina!!",
+        "Meet Calina!!",
+        "Clanball Land",
+        "Spike Land",
+        "3 Clancer Kids",
+        "Blockman Rises",
+        "Wormin\' Up!!",
+        "Crisis: Nepton",
+        "Western World",
+        "Volcano!!"
+    ],
+    [
+        "Sea of Lava",
+        "Vertigo!!",
+        "Sink or Float!",
+        "Hot Rush",
+        "Searin\' Swing!",
+        "Flambéé!!",
+        "Tightrope Ride",
+        "Freefall!!",
+        "Magma Rafts!!",
+        "Seasick Climb",
+        "Migen Brawl!!"
+    ],
+    [
+        "Clanpot Shake",
+        "Clance War",
+        "Missile Surf!!",
+        "Clanball Lift!",
+        "Go Marzen 64",
+        "Chilly Dog!!",
+        "Snowstorm Maze",
+        "LUNAR!!",
+        "The Day Before",
+        "The Day Of",
+        "Cat-astrophe!!",
+        "CERBERUS α"
+    ],
+    [
+        "Rolling Rock!!",
+        "Toadly Raw!!",
+        "7 Clancer Kids",
+        "Rescue! Act 1",
+        "Rescue! Act 2",
+        "TARUS!!",
+        "Ghost Catcher!",
+        "Aster\'s Tryke!",
+        "Moley Cow!!",
+        "Aster\'s Maze!",
+        "SASQUATCH β"
+    ],
+    [
+        "Clance War II",
+        "Counterattack",
+        "Bee\'s the One!",
+        "MERCO!!",
+        "Trapped!?",
+        "PHOENIX γ",
+        "Inner Struggle",
+        "Final Battle",
+        "Ending"
+    ]
+]
+
+chapters = len(levelNames)
+totalLevels = 0
+for levels in levelNames:
+    totalLevels += len(levels)
+
+
 
 if (args.dumpcsv):
     git_object = git.Repo().head.object
@@ -132,10 +206,24 @@ if (args.dumpcsv):
         file.write("\n" + ",".join(data))
 
 if (not args.silent):
-    print((hexformat % total).upper() + " total bytes of decompilable code")
-    print("\033[0;32m" + (hexformat % srcSize).upper() + " / " + (hexformat % total).upper() + " matching   (" + str(srcPct) + "%)\033[0;0m")
-    print("\033[0;33m" + (hexformat % nonMatchingSrcSize).upper() + " / " + (hexformat % total).upper() + " decompiled (" + str(nonMatchingSrcPct) + "%)\033[0;0m")
+    levelIndex = math.floor((nonMatchingSrcSize / total) * totalLevels)
+    chapter = math.floor((nonMatchingSrcSize / total) * chapters)
+    levelCounter = levelIndex
+
+    # Super laziness
+    for levels in levelNames:
+        if (len(levels) > levelCounter): break
+        else: levelCounter -= len(levels)
+
+    levelName = levelNames[chapter][levelIndex]
+    goldGems = math.floor((srcSize / total) * totalLevels)
+
+    print("0x" + (hexformat % total).upper() + " total bytes of decompilable code")
+    print("\033[0;32m0x" + (hexformat % srcSize).upper() + " / 0x" + (hexformat % total).upper() + " matching   (" + str(srcPct) + "%)\033[0;0m")
+    print("\033[0;33m0x" + (hexformat % nonMatchingSrcSize).upper() + " / 0x" + (hexformat % total).upper() + " decompiled (" + str(nonMatchingSrcPct) + "%)\033[0;0m")
     print("------------------------------------")
+    print("You are on " + str(chapter + 1) + "-" + str(levelIndex + 1) + ": " + levelName)
+    print("You have collected " + str(goldGems) + " / " + str(totalLevels) + " gold gems!")
 
 if (args.update):
     UpdateReadme("/matched-", srcPct)
