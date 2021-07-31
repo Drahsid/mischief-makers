@@ -22,7 +22,7 @@ void Framebuffer_Clear(void) {
     int32_t t2;
     int32_t t0;
 
-    osViBlack((uint8_t)1U);
+    osViBlack(1);
     do {
         index = 0;
         cfb = (uint32_t*)0x803DA800;
@@ -176,7 +176,7 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&D_8012A698, 1, &Thread_IdleProc, 0, &D_80126670, 0xA);
+    osCreateThread(&D_8012A698, 1, Thread_IdleProc, 0, &D_80126670, 0xA);
     osStartThread(&D_8012A698);
 }
 
@@ -361,7 +361,7 @@ void Input_Update(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
 void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    uint32_t sp30[6];
+    OSIoMesg sp30;
     uint32_t sp2C;
 
     osInvalDCache(arg1, arg2);
@@ -374,12 +374,13 @@ void func_80001264(void) {
     osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
-void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    uint32_t sp2C[2];
-    uint16_t sp28[8];
+s32 func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
+    s32 sp2C[2];
+    uint16_t sp28[8]; //rewrite so this is OSIoMesg and matches
 
-    osInvalDCache(arg1, arg2);
-    osPiStartDma(&sp28, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
+    osInvalDCache(Vaddr, nBytes);
+    sp2C[0]=osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
+    return sp2C[0];
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")
@@ -493,71 +494,71 @@ void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003020.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_func.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800032C4.s")
 
-int32_t func_8000334C(UNK_TYPE arg0) {
-    return func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
+int32_t SFX_Play_1(UNK_TYPE ID) { //main SFX playing wrapper
+    return SFX_func(ID, -1, -1, 0x81, 0xFF, 0);
 }
 
-void func_80003380(UNK_TYPE arg0) {
-    func_80003020(arg0, -1, -1, 0x91, 0xFF, 0);
+void SFX_Play_2(UNK_TYPE arg0) {
+    SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
 // SPLAT BUG
 //#ifdef NON_MATCHING
 //// Differences are regalloc
-//void func_800033B4(UNK_TYPE arg0, int16_t arg1) {
-//    func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
+//void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
+//    SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
 //}
 //#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033B4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_3.s")
 //#endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_800033F0(UNK_TYPE arg0, int8_t arg1) {
-    func_80003020(-1, arg1, -1, 0x81, 0xFF, 0);
+void SFX_Play_4(UNK_TYPE arg0, int8_t arg1) {
+    SFX_func(-1, arg1, -1, 0x81, 0xFF, 0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_4.s")
 #endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_80003430(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x81, 0xFF, 0);
+void SFX_Play_5(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    SFX_func(arg0, arg1, arg2, 0x81, 0xFF, 0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003430.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_5.s")
 #endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_80003474(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x91, 0xFF, 0);
+void SFX_Play_6(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    SFX_func(arg0, arg1, arg2, 0x91, 0xFF, 0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003474.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_6.s")
 #endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_800034B8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x92, 0xFF, 0);
+void SFX_Play_7(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    SFX_func(arg0, arg1, arg2, 0x92, 0xFF, 0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_7.s")
 #endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_800034FC(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x93, 0xFF, 0);
+void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
+    SFX_func(arg0, arg1, arg2, 0x93, 0xFF, 0);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034FC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_8.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003540.s")
@@ -575,7 +576,7 @@ void func_800034FC(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
 #ifdef NON_MATCHING
 // Differences are regalloc
 void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
-    func_80003020(arg0, -1, -1, 0xC1, arg1, 0);
+    SFX_func(arg0, -1, -1, 0xC1, arg1, 0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003980.s")
@@ -645,8 +646,7 @@ void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
 #endif
 
 void func_800047B0(int32_t arg0) {
-    UNK_TYPE* new_var;
-    new_var = &D_800C4E5C;
+    Sprite* new_var = &D_800C4E5C;
     spClearAttribute(&D_800C4E5C, 0xFFFF);
     if (arg0 != 0) {
         spSetAttribute(new_var, 1);

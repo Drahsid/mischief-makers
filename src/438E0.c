@@ -554,7 +554,7 @@ void func_800475EC(void) {
 
 #ifdef NON_MATCHING
 void func_80047648(int32_t arg0) {
-    D_800D2914 = (arg0 - (D_800EF5F0 / 0xA)) + 0x64;
+    D_800D2914 = (arg0 - (gPlayerActor.health / 0xA)) + 0x64;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047648.s")

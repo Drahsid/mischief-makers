@@ -92,7 +92,7 @@ void StageSelect_Tick(void) {
         if (temp_v0 != 1) {
             if (temp_v0 == 2) {
                 D_800C5008 = (uint8_t)0;
-                D_80171B18 = (int8_t)D_80178162;
+                D_80171B18 = (int8_t)gCurrentStage;
                 gGameState = (uint16_t)0xC;
                 gGameSubState = (uint16_t)0x41U;
             }
@@ -107,7 +107,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t6 & 0xFF) == 0xFF) {
                     gActors.unk_0xBC6 = (uint8_t)0x15U;
                 }
-                func_80003380(0x22);
+                SFX_Play_2(0x22);
             }
 
             func_80017680(gButton_DDown, &D_800F0406);
@@ -118,7 +118,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t8 & 0xFF) == 0x16) {
                     gActors.unk_0xBC6 = (uint8_t)0U;
                 }
-                func_80003380(0x22);
+                SFX_Play_2(0x22);
             }
 
             func_80017680(gButton_DLeft, &D_800F059E);
@@ -128,7 +128,7 @@ void StageSelect_Tick(void) {
                 temp_a2 = *temp_v1;
                 if (((int32_t)temp_a2) > 0) {
                     *temp_v1 = (uint8_t)(temp_a2 - 1);
-                    func_80003380(0x22);
+                    SFX_Play_2(0x22);
                 }
             }
 
@@ -140,17 +140,17 @@ void StageSelect_Tick(void) {
                 temp_a2_2 = *temp_v1_2;
                 if (((int32_t)(temp_a2_2 & 0xFF)) < ((*((&D_800C823C) + (temp_v0_2 * 2))) - 1)) {
                     *temp_v1_2 = (uint8_t)(temp_a2_2 + 1);
-                    func_80003380(0x22, &D_800C823C, temp_a2_2);
+                    SFX_Play_2(0x22, &D_800C823C, temp_a2_2);
                 }
             }
 
             temp_v0_3 = gActors.unk_0xBC6;
             temp_t3 = (*((&D_80178170) + temp_v0_3)) + (*((&D_80178188) + temp_v0_3));
             temp_t8_2 = (temp_t3 & 0xFFFF) * 2;
-            D_80178162 = temp_t3;
+            gCurrentStage = temp_t3;
             D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
-            StageSelect_Print(&D_80178162);
+            StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {
                 func_80003A38();
                 func_80043918();
@@ -269,9 +269,17 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B3D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
-
+/*
+void YellowGem_setFlag(void){  
+  gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
-
+/*
+u64 YellowGem_getFlag(u16 arg0) {
+    return gYellowGemBitfeild & __ll_lshift(1,(u64)arg0);
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")

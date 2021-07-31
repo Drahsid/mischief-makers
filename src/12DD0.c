@@ -10,12 +10,12 @@
 //    uint16_t sp1E;
 //    uint16_t index;
 //
-//    sp1E = D_800EF5F0;
+//    sp1E = gPlayerActor.health;
 //    func_8001E2D0(0);
 //
 //    if (sp1E) {}
 //
-//    D_800EF5F0 = sp1E;
+//    gPlayerActor.health = sp1E;
 //
 //    gActors->pos.z = 1;
 //    D_800BE5E8 = 0;
@@ -40,7 +40,7 @@
 //#endif
 
 void func_80012288(void) {
-    D_800EF5E2 = 0x16;
+    gPlayerActor.unk_0xD2 = 0x16;
     func_800121D0();
 }
 
@@ -72,7 +72,7 @@ void func_800123AC(void) {
 #endif
 
 void func_80012418(void) {
-    D_800EF59C = (int16_t)(*(int16_t*)(&D_800BE5DC) - D_800BE55C);
+    gPlayerActor.pos.y = (int16_t)(*(int16_t*)(&D_800BE5DC) - D_800BE55C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
