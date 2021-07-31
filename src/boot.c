@@ -490,7 +490,7 @@ void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
     osRecvMesg(&D_801377B8, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002B50.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/BGM_Play.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002F48.s")
 
@@ -585,16 +585,16 @@ void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800039B8.s")
 
 void func_80003A10(void) {
-    func_80003A38();
-    func_80003A64();
+    BGM_Stop();
+    SFX_StopAll();
 }
 
-void func_80003A38(void) {
+void BGM_Stop(void) {
     alSeqpStop(D_8016DFE4);
     bssStart = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A64.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_StopAll.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003AD4.s")
 
@@ -608,7 +608,7 @@ void func_80003A38(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800045F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004648.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Sprite_init.s")
 
 void func_800046FC(int32_t* arg0) {
     int32_t sp1C;
@@ -633,7 +633,7 @@ void func_8000474C(int32_t arg0, uint32_t arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004760.s")
 
 #ifdef NON_MATCHING
-void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
+void Sprite_SetColor(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
     int8_t new_var;
     new_var = arg3;
     D_800C4EAC = arg0;
@@ -642,7 +642,7 @@ void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
     D_800C4EB8 = new_var;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000477C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Sprite_SetColor.s")
 #endif
 
 void func_800047B0(int32_t arg0) {

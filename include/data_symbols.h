@@ -140,13 +140,15 @@ extern uint16_t D_800CA244;
 extern uint16_t D_800CA248;
 extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
+extern u16 Alpha_NotYet[]; //"Not Yet"
+extern u16 Alpha_GotIt[]; //"Got it"
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
 extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
-extern uint8_t D_800CCFDC;
+extern uint8_t D_800CCFDC; //does not like being declared an array. Which it is.
 extern int32_t D_800CEC0C;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
@@ -233,7 +235,7 @@ extern u8 bssStart;
 extern int16_t D_800EF4D2;
 extern int16_t D_800EF4D4;
 extern uint8_t D_800EF4F0;
-extern uint16_t D_800EF4F8;
+extern uint16_t D_800EF4F8[];
 extern int16_t D_800EF500;
 extern uint16_t D_800EF508;
 extern int16_t D_800EF598;
@@ -361,6 +363,7 @@ extern UNK_TYPE D_80178170;
 extern UNK_TYPE D_80178188;
 extern int32_t D_801781A0;
 extern int32_t D_801781A1;
+extern s16 D_801781C0[];
 extern uint16_t D_801781C8;
 extern uint16_t D_801781CA;
 extern uint16_t D_801781CC;
@@ -369,10 +372,10 @@ extern uint16_t D_801781D0;
 extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
-extern uint16_t D_801781E0;
+extern uint16_t gStageTime; //pauses for cutscene, loading
 extern u64 YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
-extern uint16_t D_801782B8;
+extern uint16_t gStageTimeReal;
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
 extern UNK_TYPE D_801850B0;

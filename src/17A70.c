@@ -152,7 +152,7 @@ void StageSelect_Tick(void) {
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {
-                func_80003A38();
+                BGM_Stop();
                 func_80043918();
                 gGameSubState = (uint16_t)(gGameSubState + 1);
                 return;
@@ -248,7 +248,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A96C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001ACA8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Record_PrintTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B004.s")
 

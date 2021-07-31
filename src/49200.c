@@ -3,7 +3,9 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048600.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_800486F4.s")
 
@@ -18,7 +20,13 @@ int32_t func_80048C94(int32_t arg0) {
     return (int32_t)((D_800D5794)[arg0] * (*new_var));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048CE4.s")
+s32 func_80048CE4(void){
+  if (gPlayerActor.unk_0xD1 == 1) return 1;
+  if (gPlayerActor.unk_0xD1 < 46) return 0;
+  if (gPlayerActor.unk_0xD1 < 55) return 2;
+  return 3;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048D30.s")
 

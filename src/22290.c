@@ -138,7 +138,7 @@ void func_800232A4(void) {
     temp_t8_3 = D_800BE6A4;
     D_800BE590 = temp_t8_3;
     D_800BE594 = temp_t8_3;
-    D_801782B8 = temp_t8_3;
+    gStageTimeReal = temp_t8_3;
     D_800BE4E0 = temp_t8_3;
     D_800BE4E4 = temp_t8_3;
     D_8013747C = temp_t8_3;
@@ -158,7 +158,7 @@ void func_800232A4(void) {
     }
 
     func_80025C38();
-    D_801781E0 = 0;
+    gStageTime = 0;
     D_800D294C = (uint16_t)0;
     func_80010C20(D_800BE5D0);
     GamePlay_Tick();

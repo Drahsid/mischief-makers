@@ -9,9 +9,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
 // BUG: This function writes to unallocated stack space!
-void func_8001E808(int32_t arg0, int32_t arg1) {
-    return;
-}
+void func_8001E808(int32_t arg0, int32_t arg1) {return;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
@@ -173,11 +171,11 @@ void func_80020024(void) {
     int32_t phi_s4;
 
     D_800BE4E0++;
-    D_801782B8++;
+    gStageTimeReal++;
 
     phi_s0 = 0x8CA0; // probably a fake match, but it is obvious that s0 or s4 is reused somewhere before the loop at the bottom
-    if ((((D_801781E0 < phi_s0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
-        D_801781E0++;
+    if ((((gStageTime < phi_s0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
+        gStageTime++;
     }
 
     func_800122B0(); // input history
@@ -255,9 +253,15 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800205DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/YellowGem_printProgress.s")
+void YellowGem_printProgress(void) { //Print "Got it" or "Not Yet"
+    if (YellowGem_getFlag(gCurrentStage))
+      {func_800836A0(9, 1, &Alpha_GotIt, 0);}
+    else
+      {func_800836A0(9, 1, &Alpha_NotYet, 0);}
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
