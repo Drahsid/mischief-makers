@@ -17,14 +17,14 @@ glabel func_8003DF78
 /* 3EBB4 8003DFB4 304F0003 */  andi       $t7, $v0, 3
 /* 3EBB8 8003DFB8 11E00007 */  beqz       $t7, .L8003DFD8
 /* 3EBBC 8003DFBC 00000000 */   nop
-/* 3EBC0 8003DFC0 0C000CD3 */  jal        func_8000334C
+/* 3EBC0 8003DFC0 0C000CD3 */  jal        SFX_Play_1
 /* 3EBC4 8003DFC4 24040043 */   addiu     $a0, $zero, 0x43
 /* 3EBC8 8003DFC8 3C03800C */  lui        $v1, %hi(D_800BE4E0)
 /* 3EBCC 8003DFCC 9463E4E0 */  lhu        $v1, %lo(D_800BE4E0)($v1)
 /* 3EBD0 8003DFD0 10000007 */  b          .L8003DFF0
 /* 3EBD4 8003DFD4 30780007 */   andi      $t8, $v1, 7
 .L8003DFD8:
-/* 3EBD8 8003DFD8 0C000CD3 */  jal        func_8000334C
+/* 3EBD8 8003DFD8 0C000CD3 */  jal        SFX_Play_1
 /* 3EBDC 8003DFDC 24040045 */   addiu     $a0, $zero, 0x45
 /* 3EBE0 8003DFE0 3C03800C */  lui        $v1, %hi(D_800BE4E0)
 /* 3EBE4 8003DFE4 9463E4E0 */  lhu        $v1, %lo(D_800BE4E0)($v1)

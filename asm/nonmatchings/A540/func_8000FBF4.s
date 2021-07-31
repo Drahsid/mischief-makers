@@ -28,8 +28,8 @@ glabel func_8000FBF4
 /* 10854 8000FC54 85430088 */  lh         $v1, 0x88($t2)
 /* 10858 8000FC58 24067FF0 */  addiu      $a2, $zero, 0x7ff0
 /* 1085C 8000FC5C 85420090 */  lh         $v0, 0x90($t2)
-/* 10860 8000FC60 3C04800F */  lui        $a0, %hi(D_800EFB70)
-/* 10864 8000FC64 2484FB70 */  addiu      $a0, $a0, %lo(D_800EFB70)
+/* 10860 8000FC60 3C04800F */  lui        $a0, %hi(gActors+0x660)
+/* 10864 8000FC64 2484FB70 */  addiu      $a0, $a0, %lo(gActors+0x660)
 /* 10868 8000FC68 24070004 */  addiu      $a3, $zero, 4
 /* 1086C 8000FC6C 27A50058 */  addiu      $a1, $sp, 0x58
 /* 10870 8000FC70 240B7FF8 */  addiu      $t3, $zero, 0x7ff8
@@ -49,16 +49,16 @@ glabel func_8000FBF4
 /* 108A8 8000FCA8 2721003F */  addiu      $at, $t9, 0x3f
 /* 108AC 8000FCAC 00017183 */  sra        $t6, $at, 6
 .L8000FCB0:
-/* 108B0 8000FCB0 3C19800F */  lui        $t9, %hi(D_800EF738)
-/* 108B4 8000FCB4 8739F738 */  lh         $t9, %lo(D_800EF738)($t9)
+/* 108B0 8000FCB0 3C19800F */  lui        $t9, %hi(gActors+0x228)
+/* 108B4 8000FCB4 8739F738 */  lh         $t9, %lo(gActors+0x228)($t9)
 /* 108B8 8000FCB8 00CE4023 */  subu       $t0, $a2, $t6
 /* 108BC 8000FCBC 01197021 */  addu       $t6, $t0, $t9
-/* 108C0 8000FCC0 3C18800F */  lui        $t8, %hi(D_800EF8D0)
+/* 108C0 8000FCC0 3C18800F */  lui        $t8, %hi(gActors+0x3C0)
 /* 108C4 8000FCC4 01C27823 */  subu       $t7, $t6, $v0
-/* 108C8 8000FCC8 8718F8D0 */  lh         $t8, %lo(D_800EF8D0)($t8)
+/* 108C8 8000FCC8 8718F8D0 */  lh         $t8, %lo(gActors+0x3C0)($t8)
 /* 108CC 8000FCCC A7AF0052 */  sh         $t7, 0x52($sp)
-/* 108D0 8000FCD0 3C0F800F */  lui        $t7, %hi(D_800EFA68)
-/* 108D4 8000FCD4 85EFFA68 */  lh         $t7, %lo(D_800EFA68)($t7)
+/* 108D0 8000FCD0 3C0F800F */  lui        $t7, %hi(gActors+0x558)
+/* 108D4 8000FCD4 85EFFA68 */  lh         $t7, %lo(gActors+0x558)($t7)
 /* 108D8 8000FCD8 0118C821 */  addu       $t9, $t0, $t8
 /* 108DC 8000FCDC 03227023 */  subu       $t6, $t9, $v0
 /* 108E0 8000FCE0 010FC021 */  addu       $t8, $t0, $t7
@@ -228,8 +228,8 @@ glabel func_8000FBF4
 /* 10B30 8000FF30 00420019 */  multu      $v0, $v0
 /* 10B34 8000FF34 85430088 */  lh         $v1, 0x88($t2)
 /* 10B38 8000FF38 24067FF0 */  addiu      $a2, $zero, 0x7ff0
-/* 10B3C 8000FF3C 3C04800F */  lui        $a0, %hi(D_800EF6A8)
-/* 10B40 8000FF40 2484F6A8 */  addiu      $a0, $a0, %lo(D_800EF6A8)
+/* 10B3C 8000FF3C 3C04800F */  lui        $a0, %hi(gActors+0x198)
+/* 10B40 8000FF40 2484F6A8 */  addiu      $a0, $a0, %lo(gActors+0x198)
 /* 10B44 8000FF44 24070001 */  addiu      $a3, $zero, 1
 /* 10B48 8000FF48 340DA400 */  ori        $t5, $zero, 0xa400
 /* 10B4C 8000FF4C 240C050B */  addiu      $t4, $zero, 0x50b

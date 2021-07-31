@@ -29,11 +29,11 @@ glabel func_80081D20
 /* 82968 80081D68 01F07823 */  subu       $t7, $t7, $s0
 /* 8296C 80081D6C 000F78C0 */  sll        $t7, $t7, 3
 /* 82970 80081D70 3C0E800E */  lui        $t6, %hi(D_800E31EC)
-/* 82974 80081D74 3C01800F */  lui        $at, %hi(D_800EF688)
+/* 82974 80081D74 3C01800F */  lui        $at, %hi(gActors+0x178)
 /* 82978 80081D78 002F0821 */  addu       $at, $at, $t7
 /* 8297C 80081D7C 25CE31EC */  addiu      $t6, $t6, %lo(D_800E31EC)
 /* 82980 80081D80 3C05800E */  lui        $a1, %hi(D_800E2600)
-/* 82984 80081D84 AC2EF688 */  sw         $t6, %lo(D_800EF688)($at)
+/* 82984 80081D84 AC2EF688 */  sw         $t6, %lo(gActors+0x178)($at)
 /* 82988 80081D88 24A52600 */  addiu      $a1, $a1, %lo(D_800E2600)
 /* 8298C 80081D8C 3204FFFF */  andi       $a0, $s0, 0xffff
 /* 82990 80081D90 0C02051E */  jal        func_80081478
@@ -190,9 +190,9 @@ glabel func_80081FC8
 /* 82BDC 80081FDC 000F7880 */  sll        $t7, $t7, 2
 /* 82BE0 80081FE0 01EE7823 */  subu       $t7, $t7, $t6
 /* 82BE4 80081FE4 000F78C0 */  sll        $t7, $t7, 3
-/* 82BE8 80081FE8 3C18800F */  lui        $t8, %hi(D_800EF5E0)
+/* 82BE8 80081FE8 3C18800F */  lui        $t8, %hi(gActors+0xD0)
 /* 82BEC 80081FEC 030FC021 */  addu       $t8, $t8, $t7
-/* 82BF0 80081FF0 9718F5E0 */  lhu        $t8, %lo(D_800EF5E0)($t8)
+/* 82BF0 80081FF0 9718F5E0 */  lhu        $t8, %lo(gActors+0xD0)($t8)
 /* 82BF4 80081FF4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 82BF8 80081FF8 AFA40018 */  sw         $a0, 0x18($sp)
 /* 82BFC 80081FFC 01C02025 */  or         $a0, $t6, $zero
@@ -250,10 +250,10 @@ glabel func_80082088
 /* 82CB8 800820B8 0018C080 */  sll        $t8, $t8, 2
 /* 82CBC 800820BC 030EC023 */  subu       $t8, $t8, $t6
 /* 82CC0 800820C0 0018C0C0 */  sll        $t8, $t8, 3
-/* 82CC4 800820C4 3C01800F */  lui        $at, %hi(D_800EF5A0)
+/* 82CC4 800820C4 3C01800F */  lui        $at, %hi(gActors+0x90)
 /* 82CC8 800820C8 00380821 */  addu       $at, $at, $t8
 /* 82CCC 800820CC 240F0010 */  addiu      $t7, $zero, 0x10
-/* 82CD0 800820D0 A42FF5A0 */  sh         $t7, %lo(D_800EF5A0)($at)
+/* 82CD0 800820D0 A42FF5A0 */  sh         $t7, %lo(gActors+0x90)($at)
 .L800820D4:
 /* 82CD4 800820D4 0004C880 */  sll        $t9, $a0, 2
 /* 82CD8 800820D8 0324C823 */  subu       $t9, $t9, $a0

@@ -112,9 +112,9 @@ glabel func_80031E38
 /* 32BD8 80031FD8 0018C080 */  sll        $t8, $t8, 2
 /* 32BDC 80031FDC 0305C023 */  subu       $t8, $t8, $a1
 /* 32BE0 80031FE0 0018C0C0 */  sll        $t8, $t8, 3
-/* 32BE4 80031FE4 3C19800F */  lui        $t9, %hi(D_800EF590)
+/* 32BE4 80031FE4 3C19800F */  lui        $t9, %hi(gActors+0x80)
 /* 32BE8 80031FE8 0338C821 */  addu       $t9, $t9, $t8
-/* 32BEC 80031FEC 8F39F590 */  lw         $t9, %lo(D_800EF590)($t9)
+/* 32BEC 80031FEC 8F39F590 */  lw         $t9, %lo(gActors+0x80)($t9)
 /* 32BF0 80031FF0 87A90046 */  lh         $t1, 0x46($sp)
 /* 32BF4 80031FF4 33280020 */  andi       $t0, $t9, 0x20
 /* 32BF8 80031FF8 11000015 */  beqz       $t0, .L80032050

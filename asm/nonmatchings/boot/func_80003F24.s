@@ -37,10 +37,10 @@ glabel func_80003F24
 /* 4BA8 80003FA8 1580003B */  bnez       $t4, .L80004098
 /* 4BAC 80003FAC A42B7D96 */   sh        $t3, %lo(D_80137D96)($at)
 /* 4BB0 80003FB0 3C06800F */  lui        $a2, %hi(D_800EF508)
-/* 4BB4 80003FB4 3C05800C */  lui        $a1, %hi(D_800C2968)
+/* 4BB4 80003FB4 3C05800C */  lui        $a1, %hi(SFX2ByteArray+0x42)
 /* 4BB8 80003FB8 3C048013 */  lui        $a0, %hi(D_80137D98)
 /* 4BBC 80003FBC 24847D98 */  addiu      $a0, $a0, %lo(D_80137D98)
-/* 4BC0 80003FC0 24A52968 */  addiu      $a1, $a1, %lo(D_800C2968)
+/* 4BC0 80003FC0 24A52968 */  addiu      $a1, $a1, %lo(SFX2ByteArray+0x42)
 /* 4BC4 80003FC4 24C6F508 */  addiu      $a2, $a2, %lo(D_800EF508)
 /* 4BC8 80003FC8 00001025 */  or         $v0, $zero, $zero
 .L80003FCC:
@@ -76,10 +76,10 @@ glabel func_80003F24
 /* 4C3C 8000403C 15E00016 */  bnez       $t7, .L80004098
 /* 4C40 80004040 A42E7D96 */   sh        $t6, %lo(D_80137D96)($at)
 /* 4C44 80004044 3C06800F */  lui        $a2, %hi(D_800EF508)
-/* 4C48 80004048 3C05800C */  lui        $a1, %hi(D_800C2968)
+/* 4C48 80004048 3C05800C */  lui        $a1, %hi(SFX2ByteArray+0x42)
 /* 4C4C 8000404C 3C048013 */  lui        $a0, %hi(D_80137D98)
 /* 4C50 80004050 24847D98 */  addiu      $a0, $a0, %lo(D_80137D98)
-/* 4C54 80004054 24A52968 */  addiu      $a1, $a1, %lo(D_800C2968)
+/* 4C54 80004054 24A52968 */  addiu      $a1, $a1, %lo(SFX2ByteArray+0x42)
 /* 4C58 80004058 24C6F508 */  addiu      $a2, $a2, %lo(D_800EF508)
 /* 4C5C 8000405C 00001025 */  or         $v0, $zero, $zero
 .L80004060:

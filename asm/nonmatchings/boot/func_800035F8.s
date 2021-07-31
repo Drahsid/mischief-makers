@@ -50,7 +50,7 @@ glabel func_800035F8
 /* 42A4 800036A4 83A6002F */  lb         $a2, 0x2f($sp)
 /* 42A8 800036A8 240900FF */  addiu      $t1, $zero, 0xff
 /* 42AC 800036AC AFA90010 */  sw         $t1, 0x10($sp)
-/* 42B0 800036B0 0C000C08 */  jal        func_80003020
+/* 42B0 800036B0 0C000C08 */  jal        SFX_func
 /* 42B4 800036B4 AFA00014 */   sw        $zero, 0x14($sp)
 .L800036B8:
 /* 42B8 800036B8 8FBF001C */  lw         $ra, 0x1c($sp)

@@ -32,9 +32,9 @@ glabel func_8004BB08
 /* 4C77C 8004BB7C 8E0B0080 */  lw         $t3, 0x80($s0)
 /* 4C780 8004BB80 240400AE */  addiu      $a0, $zero, 0xae
 /* 4C784 8004BB84 01616024 */  and        $t4, $t3, $at
-/* 4C788 8004BB88 0C000CD3 */  jal        func_8000334C
+/* 4C788 8004BB88 0C000CD3 */  jal        SFX_Play_1
 /* 4C78C 8004BB8C AE0C0080 */   sw        $t4, 0x80($s0)
-/* 4C790 8004BB90 0C000CD3 */  jal        func_8000334C
+/* 4C790 8004BB90 0C000CD3 */  jal        SFX_Play_1
 /* 4C794 8004BB94 240400B4 */   addiu     $a0, $zero, 0xb4
 /* 4C798 8004BB98 97A40022 */  lhu        $a0, 0x22($sp)
 /* 4C79C 8004BB9C 0C017026 */  jal        func_8005C098

@@ -309,8 +309,8 @@ glabel func_8004ED10
 /* 4FD9C 8004F19C AE220064 */  sw         $v0, 0x64($s1)
 /* 4FDA0 8004F1A0 AE190098 */  sw         $t9, 0x98($s0)
 /* 4FDA4 8004F1A4 AE2A007C */  sw         $t2, 0x7c($s1)
-/* 4FDA8 8004F1A8 3C01800F */  lui        $at, %hi(D_800EF630)
-/* 4FDAC 8004F1AC C424F630 */  lwc1       $f4, %lo(D_800EF630)($at)
+/* 4FDA8 8004F1A8 3C01800F */  lui        $at, %hi(gActors+0x120)
+/* 4FDAC 8004F1AC C424F630 */  lwc1       $f4, %lo(gActors+0x120)($at)
 /* 4FDB0 8004F1B0 C6060124 */  lwc1       $f6, 0x124($s0)
 /* 4FDB4 8004F1B4 C6100128 */  lwc1       $f16, 0x128($s0)
 /* 4FDB8 8004F1B8 46062202 */  mul.s      $f8, $f4, $f6
@@ -355,7 +355,7 @@ glabel func_8004ED10
 /* 4FE54 8004F254 00000000 */  nop
 /* 4FE58 8004F258 1700000F */  bnez       $t8, .L8004F298
 /* 4FE5C 8004F25C 8FBF001C */   lw        $ra, 0x1c($sp)
-/* 4FE60 8004F260 0C000CD3 */  jal        func_8000334C
+/* 4FE60 8004F260 0C000CD3 */  jal        SFX_Play_1
 /* 4FE64 8004F264 2404003E */   addiu     $a0, $zero, 0x3e
 /* 4FE68 8004F268 0440000A */  bltz       $v0, .L8004F294
 /* 4FE6C 8004F26C 240A0001 */   addiu     $t2, $zero, 1

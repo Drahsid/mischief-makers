@@ -287,7 +287,7 @@ glabel func_8004C5FC
 /* 4D628 8004CA28 AE0C00EC */  sw         $t4, 0xec($s0)
 /* 4D62C 8004CA2C AE0D00F0 */  sw         $t5, 0xf0($s0)
 .L8004CA30:
-/* 4D630 8004CA30 0C000CD3 */  jal        func_8000334C
+/* 4D630 8004CA30 0C000CD3 */  jal        SFX_Play_1
 /* 4D634 8004CA34 24040081 */   addiu     $a0, $zero, 0x81
 /* 4D638 8004CA38 100000E0 */  b          .L8004CDBC
 /* 4D63C 8004CA3C 97A40032 */   lhu       $a0, 0x32($sp)

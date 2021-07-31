@@ -7,11 +7,11 @@ glabel func_80046890
 /* 474A4 800468A4 000F7880 */  sll        $t7, $t7, 2
 /* 474A8 800468A8 01EE7823 */  subu       $t7, $t7, $t6
 /* 474AC 800468AC 000F78C0 */  sll        $t7, $t7, 3
-/* 474B0 800468B0 3C18800F */  lui        $t8, %hi(D_800EF59C)
+/* 474B0 800468B0 3C18800F */  lui        $t8, %hi(gActors+0x8C)
 /* 474B4 800468B4 030FC021 */  addu       $t8, $t8, $t7
 /* 474B8 800468B8 3C19800C */  lui        $t9, %hi(D_800BE55C)
 /* 474BC 800468BC 8F39E55C */  lw         $t9, %lo(D_800BE55C)($t9)
-/* 474C0 800468C0 8F18F59C */  lw         $t8, %lo(D_800EF59C)($t8)
+/* 474C0 800468C0 8F18F59C */  lw         $t8, %lo(gActors+0x8C)($t8)
 /* 474C4 800468C4 3C02800C */  lui        $v0, %hi(D_800BE5DC)
 /* 474C8 800468C8 8C42E5DC */  lw         $v0, %lo(D_800BE5DC)($v0)
 /* 474CC 800468CC 03194021 */  addu       $t0, $t8, $t9

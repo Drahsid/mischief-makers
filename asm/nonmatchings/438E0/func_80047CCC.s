@@ -78,8 +78,8 @@ glabel func_80047CCC
 /* 489E8 80047DE8 84A30000 */  lh         $v1, ($a1)
 /* 489EC 80047DEC 00000000 */  nop
 /* 489F0 80047DF0 04600009 */  bltz       $v1, .L80047E18
-/* 489F4 80047DF4 3C02800F */   lui       $v0, %hi(D_800EF5F0)
-/* 489F8 80047DF8 8442F5F0 */  lh         $v0, %lo(D_800EF5F0)($v0)
+/* 489F4 80047DF4 3C02800F */   lui       $v0, %hi(gActors+0xE0)
+/* 489F8 80047DF8 8442F5F0 */  lh         $v0, %lo(gActors+0xE0)($v0)
 /* 489FC 80047DFC 240CFFFF */  addiu      $t4, $zero, -1
 /* 48A00 80047E00 0043082A */  slt        $at, $v0, $v1
 /* 48A04 80047E04 14200003 */  bnez       $at, .L80047E14

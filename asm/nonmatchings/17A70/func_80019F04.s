@@ -6,7 +6,7 @@ glabel func_80019F04
 /* 1AB14 80019F14 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 1AB18 80019F18 15C10022 */  bne        $t6, $at, .L80019FA4
 /* 1AB1C 80019F1C AFA40018 */   sw        $a0, 0x18($sp)
-/* 1AB20 80019F20 0C000CE0 */  jal        func_80003380
+/* 1AB20 80019F20 0C000CE0 */  jal        SFX_Play_2
 /* 1AB24 80019F24 240400A9 */   addiu     $a0, $zero, 0xa9
 /* 1AB28 80019F28 97A3001A */  lhu        $v1, 0x1a($sp)
 /* 1AB2C 80019F2C 3C01800D */  lui        $at, 0x800d

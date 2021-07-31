@@ -27,8 +27,8 @@ glabel func_80039644
 /* 3A2A8 800396A8 24040090 */  addiu      $a0, $zero, 0x90
 /* 3A2AC 800396AC 0C000DB2 */  jal        func_800036C8
 /* 3A2B0 800396B0 AFA3001C */   sw        $v1, 0x1c($sp)
-/* 3A2B4 800396B4 3C0B800F */  lui        $t3, %hi(D_800EF590)
-/* 3A2B8 800396B8 8D6BF590 */  lw         $t3, %lo(D_800EF590)($t3)
+/* 3A2B4 800396B4 3C0B800F */  lui        $t3, %hi(gActors+0x80)
+/* 3A2B8 800396B8 8D6BF590 */  lw         $t3, %lo(gActors+0x80)($t3)
 /* 3A2BC 800396BC 8FA3001C */  lw         $v1, 0x1c($sp)
 /* 3A2C0 800396C0 316C0020 */  andi       $t4, $t3, 0x20
 /* 3A2C4 800396C4 11800007 */  beqz       $t4, .L800396E4

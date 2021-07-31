@@ -162,13 +162,13 @@ glabel func_8003A120
 /* 3AF88 8003A388 000E6080 */  sll        $t4, $t6, 2
 /* 3AF8C 8003A38C 0581000F */  bgez       $t4, .L8003A3CC
 /* 3AF90 8003A390 AE180090 */   sw        $t8, 0x90($s0)
-/* 3AF94 8003A394 3C0D800F */  lui        $t5, %hi(D_800EF590)
-/* 3AF98 8003A398 8DADF590 */  lw         $t5, %lo(D_800EF590)($t5)
+/* 3AF94 8003A394 3C0D800F */  lui        $t5, %hi(gActors+0x80)
+/* 3AF98 8003A398 8DADF590 */  lw         $t5, %lo(gActors+0x80)($t5)
 /* 3AF9C 8003A39C 00000000 */  nop
 /* 3AFA0 8003A3A0 31AF0020 */  andi       $t7, $t5, 0x20
 /* 3AFA4 8003A3A4 15E00015 */  bnez       $t7, .L8003A3FC
 /* 3AFA8 8003A3A8 00000000 */   nop
-/* 3AFAC 8003A3AC 0C000CD3 */  jal        func_8000334C
+/* 3AFAC 8003A3AC 0C000CD3 */  jal        SFX_Play_1
 /* 3AFB0 8003A3B0 24040117 */   addiu     $a0, $zero, 0x117
 /* 3AFB4 8003A3B4 8E190150 */  lw         $t9, 0x150($s0)
 /* 3AFB8 8003A3B8 3C01DFFF */  lui        $at, 0xdfff
@@ -177,13 +177,13 @@ glabel func_8003A120
 /* 3AFC4 8003A3C4 1000000D */  b          .L8003A3FC
 /* 3AFC8 8003A3C8 AE0A0150 */   sw        $t2, 0x150($s0)
 .L8003A3CC:
-/* 3AFCC 8003A3CC 3C0B800F */  lui        $t3, %hi(D_800EF590)
-/* 3AFD0 8003A3D0 8D6BF590 */  lw         $t3, %lo(D_800EF590)($t3)
+/* 3AFCC 8003A3CC 3C0B800F */  lui        $t3, %hi(gActors+0x80)
+/* 3AFD0 8003A3D0 8D6BF590 */  lw         $t3, %lo(gActors+0x80)($t3)
 /* 3AFD4 8003A3D4 00000000 */  nop
 /* 3AFD8 8003A3D8 31780020 */  andi       $t8, $t3, 0x20
 /* 3AFDC 8003A3DC 13000007 */  beqz       $t8, .L8003A3FC
 /* 3AFE0 8003A3E0 00000000 */   nop
-/* 3AFE4 8003A3E4 0C000CD3 */  jal        func_8000334C
+/* 3AFE4 8003A3E4 0C000CD3 */  jal        SFX_Play_1
 /* 3AFE8 8003A3E8 24040117 */   addiu     $a0, $zero, 0x117
 /* 3AFEC 8003A3EC 8E0E0150 */  lw         $t6, 0x150($s0)
 /* 3AFF0 8003A3F0 3C012000 */  lui        $at, 0x2000
@@ -430,8 +430,8 @@ glabel func_8003A120
 /* 3B370 8003A770 00000000 */   nop
 /* 3B374 8003A774 10600031 */  beqz       $v1, .L8003A83C
 /* 3B378 8003A778 3C04800E */   lui       $a0, 0x800e
-/* 3B37C 8003A77C 3C07800F */  lui        $a3, %hi(D_800EF5A0)
-/* 3B380 8003A780 84E7F5A0 */  lh         $a3, %lo(D_800EF5A0)($a3)
+/* 3B37C 8003A77C 3C07800F */  lui        $a3, %hi(gActors+0x90)
+/* 3B380 8003A780 84E7F5A0 */  lh         $a3, %lo(gActors+0x90)($a3)
 /* 3B384 8003A784 860B0088 */  lh         $t3, 0x88($s0)
 /* 3B388 8003A788 8618008C */  lh         $t8, 0x8c($s0)
 /* 3B38C 8003A78C 8FAC0024 */  lw         $t4, 0x24($sp)

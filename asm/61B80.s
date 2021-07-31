@@ -1219,10 +1219,10 @@ glabel func_80061E98
 /* 62D48 80062148 3C01FFF8 */  lui        $at, 0xfff8
 /* 62D4C 8006214C 01E27823 */  subu       $t7, $t7, $v0
 /* 62D50 80062150 01A17021 */  addu       $t6, $t5, $at
-/* 62D54 80062154 3C01800F */  lui        $at, %hi(D_800EF698)
+/* 62D54 80062154 3C01800F */  lui        $at, %hi(gActors+0x188)
 /* 62D58 80062158 000F78C0 */  sll        $t7, $t7, 3
 /* 62D5C 8006215C 002F0821 */  addu       $at, $at, $t7
-/* 62D60 80062160 AC2EF698 */  sw         $t6, %lo(D_800EF698)($at)
+/* 62D60 80062160 AC2EF698 */  sw         $t6, %lo(gActors+0x188)($at)
 .L80062164:
 /* 62D64 80062164 8FBF0014 */  lw         $ra, 0x14($sp)
 .L80062168:
@@ -1279,7 +1279,7 @@ glabel func_80062174
 /* 62E24 80062224 AFA20018 */  sw         $v0, 0x18($sp)
 /* 62E28 80062228 E44000B4 */  swc1       $f0, 0xb4($v0)
 /* 62E2C 8006222C E440012C */  swc1       $f0, 0x12c($v0)
-/* 62E30 80062230 0C000CD3 */  jal        func_8000334C
+/* 62E30 80062230 0C000CD3 */  jal        SFX_Play_1
 /* 62E34 80062234 E44400BC */   swc1      $f4, 0xbc($v0)
 /* 62E38 80062238 8FA20018 */  lw         $v0, 0x18($sp)
 /* 62E3C 8006223C 24190003 */  addiu      $t9, $zero, 3
@@ -1396,9 +1396,9 @@ glabel func_800623C0
 /* 62FD4 800623D4 000F7880 */  sll        $t7, $t7, 2
 /* 62FD8 800623D8 01EE7823 */  subu       $t7, $t7, $t6
 /* 62FDC 800623DC 000F78C0 */  sll        $t7, $t7, 3
-/* 62FE0 800623E0 3C18800F */  lui        $t8, %hi(D_800EF5E0)
+/* 62FE0 800623E0 3C18800F */  lui        $t8, %hi(gActors+0xD0)
 /* 62FE4 800623E4 030FC021 */  addu       $t8, $t8, $t7
-/* 62FE8 800623E8 9718F5E0 */  lhu        $t8, %lo(D_800EF5E0)($t8)
+/* 62FE8 800623E8 9718F5E0 */  lhu        $t8, %lo(gActors+0xD0)($t8)
 /* 62FEC 800623EC 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 62FF0 800623F0 AFA40018 */  sw         $a0, 0x18($sp)
 /* 62FF4 800623F4 2B010065 */  slti       $at, $t8, 0x65
@@ -4211,7 +4211,7 @@ glabel func_80064B60
 /* 65890 80064C90 2401015E */  addiu      $at, $zero, 0x15e
 /* 65894 80064C94 17210004 */  bne        $t9, $at, .L80064CA8
 /* 65898 80064C98 8FBF0014 */   lw        $ra, 0x14($sp)
-/* 6589C 80064C9C 0C000CD3 */  jal        func_8000334C
+/* 6589C 80064C9C 0C000CD3 */  jal        SFX_Play_1
 /* 658A0 80064CA0 24040136 */   addiu     $a0, $zero, 0x136
 .L80064CA4:
 /* 658A4 80064CA4 8FBF0014 */  lw         $ra, 0x14($sp)

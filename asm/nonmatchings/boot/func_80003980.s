@@ -7,7 +7,7 @@ glabel func_80003980
 /* 4594 80003994 AFA00014 */  sw         $zero, 0x14($sp)
 /* 4598 80003998 2406FFFF */  addiu      $a2, $zero, -1
 /* 459C 8000399C 240700C1 */  addiu      $a3, $zero, 0xc1
-/* 45A0 800039A0 0C000C08 */  jal        func_80003020
+/* 45A0 800039A0 0C000C08 */  jal        SFX_func
 /* 45A4 800039A4 AFAE0010 */   sw        $t6, 0x10($sp)
 /* 45A8 800039A8 8FBF001C */  lw         $ra, 0x1c($sp)
 /* 45AC 800039AC 27BD0020 */  addiu      $sp, $sp, 0x20

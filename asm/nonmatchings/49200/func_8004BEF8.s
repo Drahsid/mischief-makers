@@ -436,7 +436,7 @@ glabel func_8004BEF8
 /* 4D170 8004C570 0C0174DC */  jal        func_8005D370
 /* 4D174 8004C574 00000000 */   nop
 /* 4D178 8004C578 AE000150 */  sw         $zero, 0x150($s0)
-/* 4D17C 8004C57C 0C000CD3 */  jal        func_8000334C
+/* 4D17C 8004C57C 0C000CD3 */  jal        SFX_Play_1
 /* 4D180 8004C580 24040087 */   addiu     $a0, $zero, 0x87
 /* 4D184 8004C584 24180002 */  addiu      $t8, $zero, 2
 /* 4D188 8004C588 A21800D0 */  sb         $t8, 0xd0($s0)

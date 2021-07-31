@@ -26,7 +26,7 @@ glabel func_8004DA6C
 /* 4E6CC 8004DACC 1000005A */  b          .L8004DC38
 /* 4E6D0 8004DAD0 8FBF001C */   lw        $ra, 0x1c($sp)
 .L8004DAD4:
-/* 4E6D4 8004DAD4 0C000CD3 */  jal        func_8000334C
+/* 4E6D4 8004DAD4 0C000CD3 */  jal        SFX_Play_1
 /* 4E6D8 8004DAD8 240400CB */   addiu     $a0, $zero, 0xcb
 /* 4E6DC 8004DADC 8E0B00EC */  lw         $t3, 0xec($s0)
 /* 4E6E0 8004DAE0 8E0C00F8 */  lw         $t4, 0xf8($s0)

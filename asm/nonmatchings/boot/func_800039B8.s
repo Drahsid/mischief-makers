@@ -8,7 +8,7 @@ glabel func_800039B8
 /* 45D0 800039D0 2406FFFF */  addiu      $a2, $zero, -1
 /* 45D4 800039D4 2405FFFF */  addiu      $a1, $zero, -1
 /* 45D8 800039D8 AFA00014 */  sw         $zero, 0x14($sp)
-/* 45DC 800039DC 0C000C08 */  jal        func_80003020
+/* 45DC 800039DC 0C000C08 */  jal        SFX_func
 /* 45E0 800039E0 24070089 */   addiu     $a3, $zero, 0x89
 /* 45E4 800039E4 3C018012 */  lui        $at, %hi(D_8011CDF0)
 /* 45E8 800039E8 00220821 */  addu       $at, $at, $v0

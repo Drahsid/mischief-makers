@@ -39,8 +39,8 @@ glabel func_80022D88
 /* 23A1C 80022E1C A420E678 */  sh         $zero, %lo(D_800BE678)($at)
 /* 23A20 80022E20 241000FF */  addiu      $s0, $zero, 0xff
 /* 23A24 80022E24 3C01800C */  lui        $at, %hi(D_800BE6F0)
-/* 23A28 80022E28 3C18800F */  lui        $t8, %hi(D_800EF5F0)
-/* 23A2C 80022E2C 8718F5F0 */  lh         $t8, %lo(D_800EF5F0)($t8)
+/* 23A28 80022E28 3C18800F */  lui        $t8, %hi(gActors+0xE0)
+/* 23A2C 80022E2C 8718F5F0 */  lh         $t8, %lo(gActors+0xE0)($t8)
 /* 23A30 80022E30 A030E6F0 */  sb         $s0, %lo(D_800BE6F0)($at)
 /* 23A34 80022E34 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 23A38 80022E38 3C01800C */  lui        $at, %hi(D_800BE63C)

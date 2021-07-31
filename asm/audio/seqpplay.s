@@ -26,7 +26,7 @@ glabel alSeqpPlay
 /* A0A28 8009FE28 03E00008 */  jr         $ra
 /* A0A2C 8009FE2C 00000000 */   nop
 
-glabel func_8009FE30
+glabel osAiSetNextBuffer
 /* A0A30 8009FE30 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A0A34 8009FE34 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A0A38 8009FE38 AFA40020 */  sw         $a0, 0x20($sp)

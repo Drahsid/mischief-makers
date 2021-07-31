@@ -56,12 +56,12 @@ glabel func_8004A960
 /* 4B634 8004AA34 A04400DE */  sb         $a0, 0xde($v0)
 /* 4B638 8004AA38 A04400DF */  sb         $a0, 0xdf($v0)
 /* 4B63C 8004AA3C AC40017C */  sw         $zero, 0x17c($v0)
-/* 4B640 8004AA40 3C01800F */  lui        $at, %hi(D_800EF630)
+/* 4B640 8004AA40 3C01800F */  lui        $at, %hi(gActors+0x120)
 /* 4B644 8004AA44 E4400124 */  swc1       $f0, 0x124($v0)
 /* 4B648 8004AA48 E4400128 */  swc1       $f0, 0x128($v0)
 /* 4B64C 8004AA4C 24190001 */  addiu      $t9, $zero, 1
 /* 4B650 8004AA50 24080003 */  addiu      $t0, $zero, 3
-/* 4B654 8004AA54 E420F630 */  swc1       $f0, %lo(D_800EF630)($at)
+/* 4B654 8004AA54 E420F630 */  swc1       $f0, %lo(gActors+0x120)($at)
 /* 4B658 8004AA58 AC590170 */  sw         $t9, 0x170($v0)
 /* 4B65C 8004AA5C 03E00008 */  jr         $ra
 /* 4B660 8004AA60 A44800D0 */   sh        $t0, 0xd0($v0)

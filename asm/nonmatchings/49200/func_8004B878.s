@@ -32,7 +32,7 @@ glabel func_8004B878
 /* 4C4EC 8004B8EC 8C6C00F8 */  lw         $t4, 0xf8($v1)
 /* 4C4F0 8004B8F0 240400A9 */  addiu      $a0, $zero, 0xa9
 /* 4C4F4 8004B8F4 AFA30018 */  sw         $v1, 0x18($sp)
-/* 4C4F8 8004B8F8 0C000CD3 */  jal        func_8000334C
+/* 4C4F8 8004B8F8 0C000CD3 */  jal        SFX_Play_1
 /* 4C4FC 8004B8FC AC6C00EC */   sw        $t4, 0xec($v1)
 /* 4C500 8004B900 8FA30018 */  lw         $v1, 0x18($sp)
 /* 4C504 8004B904 00000000 */  nop

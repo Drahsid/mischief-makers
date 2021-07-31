@@ -46,7 +46,7 @@ glabel L80020AC4_216C4
 /* 21730 80020B30 01002825 */  or         $a1, $t0, $zero
 /* 21734 80020B34 1420FFF2 */  bnez       $at, .L80020B00
 /* 21738 80020B38 A4790000 */   sh        $t9, ($v1)
-/* 2173C 80020B3C 0C000CD3 */  jal        func_8000334C
+/* 2173C 80020B3C 0C000CD3 */  jal        SFX_Play_1
 /* 21740 80020B40 240400CA */   addiu     $a0, $zero, 0xca
 /* 21744 80020B44 0C00824B */  jal        func_8002092C
 /* 21748 80020B48 00000000 */   nop
@@ -312,7 +312,7 @@ glabel L80020EF0_21AF0
 /* 21B30 80020F30 2401FFF8 */  addiu      $at, $zero, -8
 /* 21B34 80020F34 11210008 */  beq        $t1, $at, .L80020F58
 /* 21B38 80020F38 00000000 */   nop
-/* 21B3C 80020F3C 0C000CD3 */  jal        func_8000334C
+/* 21B3C 80020F3C 0C000CD3 */  jal        SFX_Play_1
 /* 21B40 80020F40 24040022 */   addiu     $a0, $zero, 0x22
 /* 21B44 80020F44 3C02800C */  lui        $v0, %hi(gButtonPress)
 /* 21B48 80020F48 240AFFF8 */  addiu      $t2, $zero, -8
@@ -330,7 +330,7 @@ glabel L80020EF0_21AF0
 /* 21B74 80020F74 2401FFE4 */  addiu      $at, $zero, -0x1c
 /* 21B78 80020F78 11A10006 */  beq        $t5, $at, L80020F94_21B94
 /* 21B7C 80020F7C 00000000 */   nop
-/* 21B80 80020F80 0C000CD3 */  jal        func_8000334C
+/* 21B80 80020F80 0C000CD3 */  jal        SFX_Play_1
 /* 21B84 80020F84 24040022 */   addiu     $a0, $zero, 0x22
 /* 21B88 80020F88 240EFFE4 */  addiu      $t6, $zero, -0x1c
 /* 21B8C 80020F8C 3C018010 */  lui        $at, %hi(D_80103F84)

@@ -14,8 +14,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
 int32_t func_80048C94(int32_t arg0) {
-    float* new_var = &D_800EF630;
-    return (int32_t)((&D_800D5794)[arg0] * (*new_var));
+    float* new_var = &gPlayerActor.unk_0x120;
+    return (int32_t)((D_800D5794)[arg0] * (*new_var));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048CE4.s")
@@ -216,7 +216,7 @@ void func_8004B0A0(uint16_t index) {
 
     if (actor->unk_0xD0 == 0) {
         func_8005A4B0(index, 1.0f);
-        func_8000334C(0x25U);
+        SFX_Play_1(0x25U);
         actor->unk_0x170_w = 0x2A;
         actor->unk_0xD0++;
     }
@@ -254,7 +254,7 @@ void func_8004B18C(uint16_t index) {
     func_8005D370(index, 0x1D);
 
     if (actor->unk_0x170 == 0 && (actor->unk_0x171 == 2 || actor->unk_0x171 == 8)) {
-        func_8000334C(0x53U);
+        SFX_Play_1(0x53U);
     }
 
     if (((D_801373D8 & 3) == 0) || ((D_801373D8 & 0x80) != 0)) {
@@ -559,7 +559,7 @@ void func_8004EC60(uint16_t index) {
 //        if (D_800BE5D0 == 0x46) {
 //            if (gActors[index].unk_0xF0 <= -294912.0) {
 //                if (D_801373E0.unk_0x44 == 0) {
-//                    if (func_8000334C(0x3E) >= 0) {
+//                    if (SFX_Play_1(0x3E) >= 0) {
 //                        D_801373E0.unk_0x44 = 1;
 //                    }
 //

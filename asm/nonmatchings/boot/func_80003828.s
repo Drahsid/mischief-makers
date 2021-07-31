@@ -36,7 +36,7 @@ glabel func_80003828
 /* 44A4 800038A4 83A6002F */  lb         $a2, 0x2f($sp)
 /* 44A8 800038A8 240900FF */  addiu      $t1, $zero, 0xff
 /* 44AC 800038AC AFA90010 */  sw         $t1, 0x10($sp)
-/* 44B0 800038B0 0C000C08 */  jal        func_80003020
+/* 44B0 800038B0 0C000C08 */  jal        SFX_func
 /* 44B4 800038B4 AFA00014 */   sw        $zero, 0x14($sp)
 .L800038B8:
 /* 44B8 800038B8 8FBF001C */  lw         $ra, 0x1c($sp)

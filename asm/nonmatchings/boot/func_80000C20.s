@@ -220,7 +220,7 @@ glabel func_80000C20
 /* 1B7C 80000F7C 10000001 */  b          .L80000F84
 /* 1B80 80000F80 3652A800 */   ori       $s2, $s2, 0xa800
 .L80000F84:
-/* 1B84 80000F84 0C0003F8 */  jal        getControllerInput
+/* 1B84 80000F84 0C0003F8 */  jal        Input_Update
 /* 1B88 80000F88 00000000 */   nop
 /* 1B8C 80000F8C 1000FF76 */  b          .L80000D68
 /* 1B90 80000F90 00000000 */   nop

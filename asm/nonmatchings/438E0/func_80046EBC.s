@@ -94,7 +94,7 @@ glabel func_80046EBC
 /* 47C28 80047028 31F80004 */  andi       $t8, $t7, 4
 /* 47C2C 8004702C 1700009F */  bnez       $t8, .L800472AC
 /* 47C30 80047030 00001025 */   or        $v0, $zero, $zero
-/* 47C34 80047034 0C000CD3 */  jal        func_8000334C
+/* 47C34 80047034 0C000CD3 */  jal        SFX_Play_1
 /* 47C38 80047038 240400BB */   addiu     $a0, $zero, 0xbb
 /* 47C3C 8004703C 3C19800D */  lui        $t9, %hi(D_800CBF40)
 /* 47C40 80047040 9739BF40 */  lhu        $t9, %lo(D_800CBF40)($t9)

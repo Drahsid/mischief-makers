@@ -73,9 +73,7 @@ nuke:
 	rm -f *auto.txt
 
 clean:
-	rm -rf assets
 	rm -rf build
-	rm -f *auto.txt
 setup:
 	$(PYTHON) tools/splat/split.py mischiefmakers.yaml
 
@@ -83,6 +81,9 @@ context:
 	rm -f ctx.c ctx_includes.c
 	find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
 	$(PYTHON) tools/m2ctx.py ctx_includes.c
+
+compare:
+	cmp -l -i 65 ./baserom.z64 $(TARGET).z64 | gawk '{printf "%08X %02X %02X\n", $1+0x7ffff440, strtonum(0$2), strtonum(0$3)}'
 
 ### Recipes
 

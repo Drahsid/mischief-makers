@@ -60,7 +60,7 @@ glabel func_8001CE04
 /* 1DAE0 8001CEE0 240FFFE4 */  addiu      $t7, $zero, -0x1c
 /* 1DAE4 8001CEE4 A44E503C */  sh         $t6, 0x503c($v0)
 /* 1DAE8 8001CEE8 A44F51D4 */  sh         $t7, 0x51d4($v0)
-/* 1DAEC 8001CEEC 0C000CD3 */  jal        func_8000334C
+/* 1DAEC 8001CEEC 0C000CD3 */  jal        SFX_Play_1
 /* 1DAF0 8001CEF0 24040023 */   addiu     $a0, $zero, 0x23
 /* 1DAF4 8001CEF4 24180010 */  addiu      $t8, $zero, 0x10
 /* 1DAF8 8001CEF8 3C01800C */  lui        $at, %hi(gGameSubState)

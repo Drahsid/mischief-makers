@@ -4,8 +4,8 @@ glabel func_80023EDC
 /* 24AE4 80023EE4 34188000 */  ori        $t8, $zero, 0x8000
 /* 24AE8 80023EE8 31CFA400 */  andi       $t7, $t6, 0xa400
 /* 24AEC 80023EEC 15E00019 */  bnez       $t7, .L80023F54
-/* 24AF0 80023EF0 3C19800F */   lui       $t9, %hi(D_800EF590)
-/* 24AF4 80023EF4 8F39F590 */  lw         $t9, %lo(D_800EF590)($t9)
+/* 24AF0 80023EF0 3C19800F */   lui       $t9, %hi(gActors+0x80)
+/* 24AF4 80023EF4 8F39F590 */  lw         $t9, %lo(gActors+0x80)($t9)
 /* 24AF8 80023EF8 3C01800C */  lui        $at, %hi(D_800BE544)
 /* 24AFC 80023EFC 33280020 */  andi       $t0, $t9, 0x20
 /* 24B00 80023F00 11000008 */  beqz       $t0, .L80023F24

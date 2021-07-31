@@ -60,8 +60,8 @@ glabel __osLeoInterrupt
 /* B576C 800B4B6C 1720FFFA */  bnez       $t9, .L800B4B58
 /* B5770 800B4B70 00000000 */   nop
 .L800B4B74:
-/* B5774 800B4B74 3C18A500 */  lui        $t8, %hi(D_A5000508)
-/* B5778 800B4B78 8F080508 */  lw         $t0, %lo(D_A5000508)($t8)
+/* B5774 800B4B74 3C18A500 */  lui        $t8, %hi(ASIC_STATUS)
+/* B5778 800B4B78 8F080508 */  lw         $t0, %lo(ASIC_STATUS)($t8)
 /* B577C 800B4B7C AFA8003C */  sw         $t0, 0x3c($sp)
 /* B5780 800B4B80 8FA9003C */  lw         $t1, 0x3c($sp)
 /* B5784 800B4B84 3C010200 */  lui        $at, 0x200
@@ -86,10 +86,10 @@ glabel __osLeoInterrupt
 .L800B4BCC:
 /* B57CC 800B4BCC 8FA90030 */  lw         $t1, 0x30($sp)
 /* B57D0 800B4BD0 3C010100 */  lui        $at, 0x100
-/* B57D4 800B4BD4 3C0CA500 */  lui        $t4, %hi(D_A5000510)
+/* B57D4 800B4BD4 3C0CA500 */  lui        $t4, %hi(ASIC_BMSTATUS)
 /* B57D8 800B4BD8 8D2A0010 */  lw         $t2, 0x10($t1)
 /* B57DC 800B4BDC 01415825 */  or         $t3, $t2, $at
-/* B57E0 800B4BE0 AD8B0510 */  sw         $t3, %lo(D_A5000510)($t4)
+/* B57E0 800B4BE0 AD8B0510 */  sw         $t3, %lo(ASIC_BMSTATUS)($t4)
 /* B57E4 800B4BE4 8FAD002C */  lw         $t5, 0x2c($sp)
 /* B57E8 800B4BE8 ADA00000 */  sw         $zero, ($t5)
 /* B57EC 800B4BEC 1000017F */  b          .L800B51EC
@@ -124,8 +124,8 @@ glabel __osLeoInterrupt
 /* B5854 800B4C54 15E0FFFA */  bnez       $t7, .L800B4C40
 /* B5858 800B4C58 00000000 */   nop
 .L800B4C5C:
-/* B585C 800B4C5C 3C19A500 */  lui        $t9, %hi(D_A5000508)
-/* B5860 800B4C60 8F380508 */  lw         $t8, %lo(D_A5000508)($t9)
+/* B585C 800B4C5C 3C19A500 */  lui        $t9, %hi(ASIC_STATUS)
+/* B5860 800B4C60 8F380508 */  lw         $t8, %lo(ASIC_STATUS)($t9)
 /* B5864 800B4C64 AFB8003C */  sw         $t8, 0x3c($sp)
 /* B5868 800B4C68 8FA9002C */  lw         $t1, 0x2c($sp)
 /* B586C 800B4C6C 24080016 */  addiu      $t0, $zero, 0x16
@@ -176,8 +176,6 @@ glabel __osLeoInterrupt
 /* B591C 800B4D1C 24020001 */   addiu     $v0, $zero, 1
 .L800B4D20:
 /* B5920 800B4D20 240F0002 */  addiu      $t7, $zero, 2
-/* B5924 800B4D24 3C19A460 */  lui        $t9, %hi(PI_STATUS)
-/* B5928 800B4D28 AF2F0010 */  sw         $t7, %lo(PI_STATUS)($t9)
 /* B5924 800B4D24 3C19A460 */  lui        $t9, %hi(PI_STATUS)
 /* B5928 800B4D28 AF2F0010 */  sw         $t7, %lo(PI_STATUS)($t9)
 /* B592C 800B4D2C 3C18800F */  lui        $t8, %hi(__OSGlobalIntMask)
@@ -267,8 +265,8 @@ glabel __osLeoInterrupt
 /* B5A64 800B4E64 032E7821 */  addu       $t7, $t9, $t6
 /* B5A68 800B4E68 AD6F0004 */  sw         $t7, 4($t3)
 .L800B4E6C:
-/* B5A6C 800B4E6C 3C18A500 */  lui        $t8, %hi(D_A5000510)
-/* B5A70 800B4E70 8F090510 */  lw         $t1, %lo(D_A5000510)($t8)
+/* B5A6C 800B4E6C 3C18A500 */  lui        $t8, %hi(ASIC_BMSTATUS)
+/* B5A70 800B4E70 8F090510 */  lw         $t1, %lo(ASIC_BMSTATUS)($t8)
 /* B5A74 800B4E74 AFA90034 */  sw         $t1, 0x34($sp)
 /* B5A78 800B4E78 8FA80034 */  lw         $t0, 0x34($sp)
 /* B5A7C 800B4E7C 3C010020 */  lui        $at, 0x20
@@ -370,8 +368,6 @@ glabel __osLeoInterrupt
 /* B5BDC 800B4FDC ADAA0000 */   sw        $t2, ($t5)
 .L800B4FE0:
 /* B5BE0 800B4FE0 24080002 */  addiu      $t0, $zero, 2
-/* B5BE4 800B4FE4 3C19A460 */  lui        $t9, %hi(PI_STATUS)
-/* B5BE8 800B4FE8 AF280010 */  sw         $t0, %lo(PI_STATUS)($t9)
 /* B5BE4 800B4FE4 3C19A460 */  lui        $t9, %hi(PI_STATUS)
 /* B5BE8 800B4FE8 AF280010 */  sw         $t0, %lo(PI_STATUS)($t9)
 /* B5BEC 800B4FEC 3C0E800F */  lui        $t6, %hi(__OSGlobalIntMask)
@@ -542,10 +538,10 @@ glabel func_800B51FC
 .L800B524C:
 /* B5E4C 800B524C 8FAE001C */  lw         $t6, 0x1c($sp)
 /* B5E50 800B5250 3C011000 */  lui        $at, 0x1000
-/* B5E54 800B5254 3C19A500 */  lui        $t9, %hi(D_A5000510)
+/* B5E54 800B5254 3C19A500 */  lui        $t9, %hi(ASIC_BMSTATUS)
 /* B5E58 800B5258 8DCF0010 */  lw         $t7, 0x10($t6)
 /* B5E5C 800B525C 01E1C025 */  or         $t8, $t7, $at
-/* B5E60 800B5260 AF380510 */  sw         $t8, %lo(D_A5000510)($t9)
+/* B5E60 800B5260 AF380510 */  sw         $t8, %lo(ASIC_BMSTATUS)($t9)
 /* B5E64 800B5264 3C08A460 */  lui        $t0, %hi(PI_STATUS)
 /* B5E68 800B5268 8D090010 */  lw         $t1, %lo(PI_STATUS)($t0)
 /* B5E6C 800B526C AFA90018 */  sw         $t1, 0x18($sp)
@@ -563,9 +559,9 @@ glabel func_800B51FC
 /* B5E98 800B5298 00000000 */   nop
 .L800B529C:
 /* B5E9C 800B529C 8FB8001C */  lw         $t8, 0x1c($sp)
-/* B5EA0 800B52A0 3C08A500 */  lui        $t0, %hi(D_A5000510)
+/* B5EA0 800B52A0 3C08A500 */  lui        $t0, %hi(ASIC_BMSTATUS)
 /* B5EA4 800B52A4 8F190010 */  lw         $t9, 0x10($t8)
-/* B5EA8 800B52A8 AD190510 */  sw         $t9, %lo(D_A5000510)($t0)
+/* B5EA8 800B52A8 AD190510 */  sw         $t9, %lo(ASIC_BMSTATUS)($t0)
 /* B5EAC 800B52AC 0C02D4BD */  jal        func_800B52F4
 /* B5EB0 800B52B0 00000000 */   nop
 /* B5EB4 800B52B4 24090002 */  addiu      $t1, $zero, 2

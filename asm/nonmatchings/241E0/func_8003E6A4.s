@@ -5,7 +5,7 @@ glabel func_8003E6A4
 /* 3F2B0 8003E6B0 00803025 */  or         $a2, $a0, $zero
 /* 3F2B4 8003E6B4 AFA50024 */  sw         $a1, 0x24($sp)
 /* 3F2B8 8003E6B8 A7A60022 */  sh         $a2, 0x22($sp)
-/* 3F2BC 8003E6BC 0C000CD3 */  jal        func_8000334C
+/* 3F2BC 8003E6BC 0C000CD3 */  jal        SFX_Play_1
 /* 3F2C0 8003E6C0 240400C7 */   addiu     $a0, $zero, 0xc7
 /* 3F2C4 8003E6C4 97A60022 */  lhu        $a2, 0x22($sp)
 /* 3F2C8 8003E6C8 3C018010 */  lui        $at, 0x8010

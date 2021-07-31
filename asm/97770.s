@@ -1299,7 +1299,7 @@ glabel func_80097A74
 /* 98AAC 80097EAC 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 /* 98AB0 80097EB0 3C0BFF70 */  lui        $t3, 0xff70
 /* 98AB4 80097EB4 AD0B69BC */  sw         $t3, 0x69bc($t0)
-/* 98AB8 80097EB8 0C000CD3 */  jal        func_8000334C
+/* 98AB8 80097EB8 0C000CD3 */  jal        SFX_Play_1
 /* 98ABC 80097EBC 240400E0 */   addiu     $a0, $zero, 0xe0
 .L80097EC0:
 /* 98AC0 80097EC0 0C025E5A */  jal        func_80097968
@@ -1399,7 +1399,7 @@ glabel func_80097A74
 /* 98C28 80098028 A6000088 */  sh         $zero, 0x88($s0)
 /* 98C2C 8009802C A600008C */  sh         $zero, 0x8c($s0)
 /* 98C30 80098030 A60A0090 */  sh         $t2, 0x90($s0)
-/* 98C34 80098034 0C000CD3 */  jal        func_8000334C
+/* 98C34 80098034 0C000CD3 */  jal        SFX_Play_1
 /* 98C38 80098038 240400B4 */   addiu     $a0, $zero, 0xb4
 /* 98C3C 8009803C 0C025C8F */  jal        func_8009723C
 /* 98C40 80098040 24040040 */   addiu     $a0, $zero, 0x40
@@ -1414,7 +1414,7 @@ glabel func_80097A74
 /* 98C60 80098060 A6000088 */  sh         $zero, 0x88($s0)
 /* 98C64 80098064 A60C008C */  sh         $t4, 0x8c($s0)
 /* 98C68 80098068 A60D0090 */  sh         $t5, 0x90($s0)
-/* 98C6C 8009806C 0C000CD3 */  jal        func_8000334C
+/* 98C6C 8009806C 0C000CD3 */  jal        SFX_Play_1
 /* 98C70 80098070 240400CA */   addiu     $a0, $zero, 0xca
 /* 98C74 80098074 0C025C8F */  jal        func_8009723C
 /* 98C78 80098078 24040040 */   addiu     $a0, $zero, 0x40
@@ -1428,7 +1428,7 @@ glabel func_80097A74
 /* 98C94 80098094 A6000088 */  sh         $zero, 0x88($s0)
 /* 98C98 80098098 A600008C */  sh         $zero, 0x8c($s0)
 /* 98C9C 8009809C A60F0090 */  sh         $t7, 0x90($s0)
-/* 98CA0 800980A0 0C000CD3 */  jal        func_8000334C
+/* 98CA0 800980A0 0C000CD3 */  jal        SFX_Play_1
 /* 98CA4 800980A4 240400B9 */   addiu     $a0, $zero, 0xb9
 /* 98CA8 800980A8 0C025C8F */  jal        func_8009723C
 /* 98CAC 800980AC 24040040 */   addiu     $a0, $zero, 0x40
@@ -1875,7 +1875,7 @@ glabel func_80097A74
 /* 99334 80098734 A60D0088 */  sh         $t5, 0x88($s0)
 /* 99338 80098738 A600008C */  sh         $zero, 0x8c($s0)
 /* 9933C 8009873C A60E0090 */  sh         $t6, 0x90($s0)
-/* 99340 80098740 0C000CD3 */  jal        func_8000334C
+/* 99340 80098740 0C000CD3 */  jal        SFX_Play_1
 /* 99344 80098744 240400D3 */   addiu     $a0, $zero, 0xd3
 /* 99348 80098748 86040088 */  lh         $a0, 0x88($s0)
 /* 9934C 8009874C 00002825 */  or         $a1, $zero, $zero
@@ -1958,7 +1958,7 @@ glabel func_80097A74
 .L80098880:
 /* 99480 80098880 0C000CB1 */  jal        func_800032C4
 /* 99484 80098884 240400E0 */   addiu     $a0, $zero, 0xe0
-/* 99488 80098888 0C000CD3 */  jal        func_8000334C
+/* 99488 80098888 0C000CD3 */  jal        SFX_Play_1
 /* 9948C 8009888C 240400DE */   addiu     $a0, $zero, 0xde
 /* 99490 80098890 3C08800F */  lui        $t0, %hi(gActors)
 /* 99494 80098894 24190010 */  addiu      $t9, $zero, 0x10
@@ -1988,7 +1988,7 @@ glabel func_80097A74
 /* 994EC 800988EC AE0F00F0 */  sw         $t7, 0xf0($s0)
 /* 994F0 800988F0 A6180090 */  sh         $t8, 0x90($s0)
 /* 994F4 800988F4 AE0000F4 */  sw         $zero, 0xf4($s0)
-/* 994F8 800988F8 0C000CD3 */  jal        func_8000334C
+/* 994F8 800988F8 0C000CD3 */  jal        SFX_Play_1
 /* 994FC 800988FC 240400DC */   addiu     $a0, $zero, 0xdc
 /* 99500 80098900 3C08800F */  lui        $t0, %hi(gActors)
 /* 99504 80098904 960300D0 */  lhu        $v1, 0xd0($s0)
@@ -2037,7 +2037,7 @@ glabel func_80097A74
 /* 995A0 800989A0 258DFFFF */  addiu      $t5, $t4, -1
 /* 995A4 800989A4 15A00003 */  bnez       $t5, .L800989B4
 /* 995A8 800989A8 AE0D0150 */   sw        $t5, 0x150($s0)
-/* 995AC 800989AC 0C000CED */  jal        func_800033B4
+/* 995AC 800989AC 0C000CED */  jal        SFX_Play_3
 /* 995B0 800989B0 24050050 */   addiu     $a1, $zero, 0x50
 .L800989B4:
 /* 995B4 800989B4 8E0F00F0 */  lw         $t7, 0xf0($s0)
@@ -2050,7 +2050,7 @@ glabel func_80097A74
 /* 995D0 800989D0 0C000CB1 */  jal        func_800032C4
 /* 995D4 800989D4 2404003E */   addiu     $a0, $zero, 0x3e
 /* 995D8 800989D8 240400DE */  addiu      $a0, $zero, 0xde
-/* 995DC 800989DC 0C000CED */  jal        func_800033B4
+/* 995DC 800989DC 0C000CED */  jal        SFX_Play_3
 /* 995E0 800989E0 24050050 */   addiu     $a1, $zero, 0x50
 /* 995E4 800989E4 10000055 */  b          .L80098B3C
 /* 995E8 800989E8 8FBF001C */   lw        $ra, 0x1c($sp)

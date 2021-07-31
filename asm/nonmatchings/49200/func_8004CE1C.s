@@ -204,7 +204,7 @@ glabel func_8004CE1C
 /* 4DD14 8004D114 AE19017C */  sw         $t9, 0x17c($s0)
 /* 4DD18 8004D118 A609008C */  sh         $t1, 0x8c($s0)
 /* 4DD1C 8004D11C AE0D0080 */  sw         $t5, 0x80($s0)
-/* 4DD20 8004D120 0C000CD3 */  jal        func_8000334C
+/* 4DD20 8004D120 0C000CD3 */  jal        SFX_Play_1
 /* 4DD24 8004D124 24040024 */   addiu     $a0, $zero, 0x24
 /* 4DD28 8004D128 240E0016 */  addiu      $t6, $zero, 0x16
 /* 4DD2C 8004D12C A60E00D0 */  sh         $t6, 0xd0($s0)

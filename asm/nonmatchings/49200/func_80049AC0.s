@@ -597,7 +597,7 @@ glabel func_80049AC0
 .L8004A334:
 /* 4AF34 8004A334 A50D00D6 */  sh         $t5, 0xd6($t0)
 /* 4AF38 8004A338 24040089 */  addiu      $a0, $zero, 0x89
-/* 4AF3C 8004A33C 0C000CD3 */  jal        func_8000334C
+/* 4AF3C 8004A33C 0C000CD3 */  jal        SFX_Play_1
 /* 4AF40 8004A340 AFA80028 */   sw        $t0, 0x28($sp)
 /* 4AF44 8004A344 97A40052 */  lhu        $a0, 0x52($sp)
 /* 4AF48 8004A348 0C0166AF */  jal        func_80059ABC
@@ -823,7 +823,7 @@ glabel func_80049AC0
 /* 4B278 8004A678 A51900B0 */  sh         $t9, 0xb0($t0)
 /* 4B27C 8004A67C AD180080 */  sw         $t8, 0x80($t0)
 /* 4B280 8004A680 24040024 */  addiu      $a0, $zero, 0x24
-/* 4B284 8004A684 0C000CD3 */  jal        func_8000334C
+/* 4B284 8004A684 0C000CD3 */  jal        SFX_Play_1
 /* 4B288 8004A688 AFA80028 */   sw        $t0, 0x28($sp)
 /* 4B28C 8004A68C 8FA80028 */  lw         $t0, 0x28($sp)
 /* 4B290 8004A690 2404000F */  addiu      $a0, $zero, 0xf

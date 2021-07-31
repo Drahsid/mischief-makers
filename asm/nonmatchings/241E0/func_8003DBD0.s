@@ -52,7 +52,7 @@ glabel func_8003DBD0
 /* 3E894 8003DC94 AE0D016C */  sw         $t5, 0x16c($s0)
 /* 3E898 8003DC98 AE0E0170 */  sw         $t6, 0x170($s0)
 /* 3E89C 8003DC9C 24040137 */  addiu      $a0, $zero, 0x137
-/* 3E8A0 8003DCA0 0C000CD3 */  jal        func_8000334C
+/* 3E8A0 8003DCA0 0C000CD3 */  jal        SFX_Play_1
 /* 3E8A4 8003DCA4 E6080110 */   swc1      $f8, 0x110($s0)
 /* 3E8A8 8003DCA8 100000AB */  b          .L8003DF58
 /* 3E8AC 8003DCAC 3C013F80 */   lui       $at, 0x3f80
@@ -141,7 +141,7 @@ glabel func_8003DBD0
 /* 3E9F4 8003DDF4 AE09016C */  sw         $t1, 0x16c($s0)
 /* 3E9F8 8003DDF8 AE0A0170 */  sw         $t2, 0x170($s0)
 /* 3E9FC 8003DDFC 24040137 */  addiu      $a0, $zero, 0x137
-/* 3EA00 8003DE00 0C000CD3 */  jal        func_8000334C
+/* 3EA00 8003DE00 0C000CD3 */  jal        SFX_Play_1
 /* 3EA04 8003DE04 E60A0110 */   swc1      $f10, 0x110($s0)
 /* 3EA08 8003DE08 10000053 */  b          .L8003DF58
 /* 3EA0C 8003DE0C 3C013F80 */   lui       $at, 0x3f80

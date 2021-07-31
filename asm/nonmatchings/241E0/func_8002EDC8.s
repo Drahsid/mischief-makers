@@ -76,9 +76,9 @@ glabel func_8002EDC8
 /* 2FAD8 8002EED8 44812000 */  mtc1       $at, $f4
 /* 2FADC 8002EEDC 01EE7823 */  subu       $t7, $t7, $t6
 /* 2FAE0 8002EEE0 000F78C0 */  sll        $t7, $t7, 3
-/* 2FAE4 8002EEE4 3C01800F */  lui        $at, %hi(D_800EF5C4)
+/* 2FAE4 8002EEE4 3C01800F */  lui        $at, %hi(gActors+0xB4)
 /* 2FAE8 8002EEE8 002F0821 */  addu       $at, $at, $t7
-/* 2FAEC 8002EEEC C426F5C4 */  lwc1       $f6, %lo(D_800EF5C4)($at)
+/* 2FAEC 8002EEEC C426F5C4 */  lwc1       $f6, %lo(gActors+0xB4)($at)
 /* 2FAF0 8002EEF0 321903FF */  andi       $t9, $s0, 0x3ff
 /* 2FAF4 8002EEF4 46062002 */  mul.s      $f0, $f4, $f6
 /* 2FAF8 8002EEF8 2442CCD0 */  addiu      $v0, $v0, -0x3330

@@ -116,7 +116,7 @@ glabel func_8004E1E4
 /* 4EFA0 8004E3A0 AE180154 */   sw        $t8, 0x154($s0)
 /* 4EFA4 8004E3A4 2408000A */  addiu      $t0, $zero, 0xa
 /* 4EFA8 8004E3A8 AE080154 */  sw         $t0, 0x154($s0)
-/* 4EFAC 8004E3AC 0C000CD3 */  jal        func_8000334C
+/* 4EFAC 8004E3AC 0C000CD3 */  jal        SFX_Play_1
 /* 4EFB0 8004E3B0 24040085 */   addiu     $a0, $zero, 0x85
 /* 4EFB4 8004E3B4 24090002 */  addiu      $t1, $zero, 2
 /* 4EFB8 8004E3B8 A20900D0 */  sb         $t1, 0xd0($s0)

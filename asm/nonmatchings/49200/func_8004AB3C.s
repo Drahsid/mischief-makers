@@ -363,7 +363,7 @@ glabel func_8004AB3C
 /* 4BC7C 8004B07C 24010006 */  addiu      $at, $zero, 6
 /* 4BC80 8004B080 14C10004 */  bne        $a2, $at, .L8004B094
 /* 4BC84 8004B084 8FBF0014 */   lw        $ra, 0x14($sp)
-/* 4BC88 8004B088 0C000CD3 */  jal        func_8000334C
+/* 4BC88 8004B088 0C000CD3 */  jal        SFX_Play_1
 /* 4BC8C 8004B08C 240400D1 */   addiu     $a0, $zero, 0xd1
 .L8004B090:
 /* 4BC90 8004B090 8FBF0014 */  lw         $ra, 0x14($sp)

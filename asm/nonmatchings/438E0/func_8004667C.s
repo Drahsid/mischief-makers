@@ -1,6 +1,6 @@
 glabel func_8004667C
-/* 4727C 8004667C 3C02800F */  lui        $v0, %hi(D_800EF600)
-/* 47280 80046680 8C42F600 */  lw         $v0, %lo(D_800EF600)($v0)
+/* 4727C 8004667C 3C02800F */  lui        $v0, %hi(gActors+0xF0)
+/* 47280 80046680 8C42F600 */  lw         $v0, %lo(gActors+0xF0)($v0)
 /* 47284 80046684 3C01FFFD */  lui        $at, 0xfffd
 /* 47288 80046688 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 4728C 8004668C 0041082A */  slt        $at, $v0, $at

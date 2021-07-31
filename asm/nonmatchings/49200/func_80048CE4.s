@@ -1,6 +1,6 @@
 glabel func_80048CE4
-/* 498E4 80048CE4 3C02800F */  lui        $v0, %hi(D_800EF5E1)
-/* 498E8 80048CE8 9042F5E1 */  lbu        $v0, %lo(D_800EF5E1)($v0)
+/* 498E4 80048CE4 3C02800F */  lui        $v0, %hi(gActors+0xD1)
+/* 498E8 80048CE8 9042F5E1 */  lbu        $v0, %lo(gActors+0xD1)($v0)
 /* 498EC 80048CEC 24010001 */  addiu      $at, $zero, 1
 /* 498F0 80048CF0 14410004 */  bne        $v0, $at, .L80048D04
 /* 498F4 80048CF4 2841002E */   slti      $at, $v0, 0x2e

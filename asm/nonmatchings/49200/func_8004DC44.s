@@ -25,7 +25,7 @@ glabel func_8004DC44
 /* 4E8A0 8004DCA0 10000149 */  b          .L8004E1C8
 /* 4E8A4 8004DCA4 8FBF001C */   lw        $ra, 0x1c($sp)
 .L8004DCA8:
-/* 4E8A8 8004DCA8 0C000CD3 */  jal        func_8000334C
+/* 4E8A8 8004DCA8 0C000CD3 */  jal        SFX_Play_1
 /* 4E8AC 8004DCAC A7A50026 */   sh        $a1, 0x26($sp)
 /* 4E8B0 8004DCB0 44802000 */  mtc1       $zero, $f4
 /* 4E8B4 8004DCB4 97A4002A */  lhu        $a0, 0x2a($sp)

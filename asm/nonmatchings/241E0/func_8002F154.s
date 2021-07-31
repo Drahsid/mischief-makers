@@ -20,10 +20,10 @@ glabel func_8002F154
 /* 2FD9C 8002F19C 00084080 */  sll        $t0, $t0, 2
 /* 2FDA0 8002F1A0 01024023 */  subu       $t0, $t0, $v0
 /* 2FDA4 8002F1A4 000840C0 */  sll        $t0, $t0, 3
-/* 2FDA8 8002F1A8 3C01800F */  lui        $at, %hi(D_800EF5E2)
+/* 2FDA8 8002F1A8 3C01800F */  lui        $at, %hi(gActors+0xD2)
 /* 2FDAC 8002F1AC 00280821 */  addu       $at, $at, $t0
 /* 2FDB0 8002F1B0 2419003D */  addiu      $t9, $zero, 0x3d
-/* 2FDB4 8002F1B4 A439F5E2 */  sh         $t9, %lo(D_800EF5E2)($at)
+/* 2FDB4 8002F1B4 A439F5E2 */  sh         $t9, %lo(gActors+0xD2)($at)
 .L8002F1B8:
 /* 2FDB8 8002F1B8 8FBF0014 */  lw         $ra, 0x14($sp)
 /* 2FDBC 8002F1BC 27BD0018 */  addiu      $sp, $sp, 0x18
