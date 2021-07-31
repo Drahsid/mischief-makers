@@ -30,10 +30,10 @@ glabel osPiRawReadIo
 /* A7CB8 800A70B8 10000007 */  b          .L800A70D8
 /* A7CBC 800A70BC 00000000 */   nop
 .L800A70C0:
-/* A7CC0 800A70C0 3C04800F */  lui        $a0, %hi(pirawread_rodata_0000)
-/* A7CC4 800A70C4 3C05800F */  lui        $a1, %hi(pirawread_rodata_0010)
-/* A7CC8 800A70C8 24A5DB80 */  addiu      $a1, $a1, %lo(pirawread_rodata_0010)
-/* A7CCC 800A70CC 2484DB70 */  addiu      $a0, $a0, %lo(pirawread_rodata_0000)
+/* A7CC0 800A70C0 3C04800F */  lui        $a0, %hi(D_800EDB70)
+/* A7CC4 800A70C4 3C05800F */  lui        $a1, %hi(D_800EDB80)
+/* A7CC8 800A70C8 24A5DB80 */  addiu      $a1, $a1, %lo(D_800EDB80)
+/* A7CCC 800A70CC 2484DB70 */  addiu      $a0, $a0, %lo(D_800EDB70)
 /* A7CD0 800A70D0 0C026E74 */  jal        __assert
 /* A7CD4 800A70D4 2406003D */   addiu     $a2, $zero, 0x3d
 .L800A70D8:

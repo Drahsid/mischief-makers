@@ -423,9 +423,9 @@ glabel __rmonGetBranchTarget
 /* AACD0 800AA0D0 10200083 */  beqz       $at, .L800AA2E0
 /* AACD4 800AA0D4 00000000 */   nop
 /* AACD8 800AA0D8 00094880 */  sll        $t1, $t1, 2
-/* AACDC 800AA0DC 3C01800F */  lui        $at, %hi(rmonbrk_rodata_0120)
+/* AACDC 800AA0DC 3C01800F */  lui        $at, %hi(D_800EDE30)
 /* AACE0 800AA0E0 00290821 */  addu       $at, $at, $t1
-/* AACE4 800AA0E4 8C29DE30 */  lw         $t1, %lo(rmonbrk_rodata_0120)($at)
+/* AACE4 800AA0E4 8C29DE30 */  lw         $t1, %lo(D_800EDE30)($at)
 /* AACE8 800AA0E8 01200008 */  jr         $t1
 /* AACEC 800AA0EC 00000000 */   nop
 /* AACF0 800AA0F0 8FAA0024 */  lw         $t2, 0x24($sp)
@@ -477,9 +477,9 @@ glabel __rmonGetBranchTarget
 /* AADA0 800AA1A0 1020000E */  beqz       $at, .L800AA1DC
 /* AADA4 800AA1A4 00000000 */   nop
 /* AADA8 800AA1A8 000E7080 */  sll        $t6, $t6, 2
-/* AADAC 800AA1AC 3C01800F */  lui        $at, %hi(rmonbrk_rodata_0180)
+/* AADAC 800AA1AC 3C01800F */  lui        $at, %hi(D_800EDE90)
 /* AADB0 800AA1B0 002E0821 */  addu       $at, $at, $t6
-/* AADB4 800AA1B4 8C2EDE90 */  lw         $t6, %lo(rmonbrk_rodata_0180)($at)
+/* AADB4 800AA1B4 8C2EDE90 */  lw         $t6, %lo(D_800EDE90)($at)
 /* AADB8 800AA1B8 01C00008 */  jr         $t6
 /* AADBC 800AA1BC 00000000 */   nop
 /* AADC0 800AA1C0 8FAF0024 */  lw         $t7, 0x24($sp)

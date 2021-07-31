@@ -30,10 +30,10 @@ glabel osViSetEvent
 /* 9B5F8 8009A9F8 10000007 */  b          .L8009AA18
 /* 9B5FC 8009A9FC 00000000 */   nop
 .L8009AA00:
-/* 9B600 8009AA00 3C04800F */  lui        $a0, %hi(visetevent_rodata_0000)
-/* 9B604 8009AA04 3C05800F */  lui        $a1, %hi(visetevent_rodata_000C)
-/* 9B608 8009AA08 24A5D6AC */  addiu      $a1, $a1, %lo(visetevent_rodata_000C)
-/* 9B60C 8009AA0C 2484D6A0 */  addiu      $a0, $a0, %lo(visetevent_rodata_0000)
+/* 9B600 8009AA00 3C04800F */  lui        $a0, %hi(D_800ED6A0)
+/* 9B604 8009AA04 3C05800F */  lui        $a1, %hi(D_800ED6AC)
+/* 9B608 8009AA08 24A5D6AC */  addiu      $a1, $a1, %lo(D_800ED6AC)
+/* 9B60C 8009AA0C 2484D6A0 */  addiu      $a0, $a0, %lo(D_800ED6A0)
 /* 9B610 8009AA10 0C026E74 */  jal        __assert
 /* 9B614 8009AA14 2406003D */   addiu     $a2, $zero, 0x3d
 .L8009AA18:

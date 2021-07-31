@@ -1289,16 +1289,16 @@ glabel alResamplePull
 /* B13D4 800B07D4 00000000 */   nop
 .L800B07D8:
 /* B13D8 800B07D8 8FAA0044 */  lw         $t2, 0x44($sp)
-/* B13DC 800B07DC 3C01800F */  lui        $at, %hi(resample_rodata_0000)
-/* B13E0 800B07E0 D428E500 */  ldc1       $f8, %lo(resample_rodata_0000)($at)
+/* B13DC 800B07DC 3C01800F */  lui        $at, %hi(D_800EE500)
+/* B13E0 800B07E0 D428E500 */  ldc1       $f8, %lo(D_800EE500)($at)
 /* B13E4 800B07E4 C5440018 */  lwc1       $f4, 0x18($t2)
 /* B13E8 800B07E8 460021A1 */  cvt.d.s    $f6, $f4
 /* B13EC 800B07EC 4626403C */  c.lt.d     $f8, $f6
 /* B13F0 800B07F0 00000000 */  nop
 /* B13F4 800B07F4 45000005 */  bc1f       .L800B080C
 /* B13F8 800B07F8 00000000 */   nop
-/* B13FC 800B07FC 3C01800F */  lui        $at, %hi(resample_rodata_0008)
-/* B1400 800B0800 C42AE508 */  lwc1       $f10, %lo(resample_rodata_0008)($at)
+/* B13FC 800B07FC 3C01800F */  lui        $at, %hi(D_800EE508)
+/* B1400 800B0800 C42AE508 */  lwc1       $f10, %lo(D_800EE508)($at)
 /* B1404 800B0804 8FAB0044 */  lw         $t3, 0x44($sp)
 /* B1408 800B0808 E56A0018 */  swc1       $f10, 0x18($t3)
 .L800B080C:
@@ -1430,9 +1430,9 @@ glabel alResampleParam
 /* B15F0 800B09F0 10200041 */  beqz       $at, .L800B0AF8
 /* B15F4 800B09F4 00000000 */   nop
 /* B15F8 800B09F8 0019C880 */  sll        $t9, $t9, 2
-/* B15FC 800B09FC 3C01800F */  lui        $at, %hi(resample_rodata_000C)
+/* B15FC 800B09FC 3C01800F */  lui        $at, %hi(D_800EE50C)
 /* B1600 800B0A00 00390821 */  addu       $at, $at, $t9
-/* B1604 800B0A04 8C39E50C */  lw         $t9, %lo(resample_rodata_000C)($at)
+/* B1604 800B0A04 8C39E50C */  lw         $t9, %lo(D_800EE50C)($at)
 /* B1608 800B0A08 03200008 */  jr         $t9
 /* B160C 800B0A0C 00000000 */   nop
 /* B1610 800B0A10 8FA80030 */  lw         $t0, 0x30($sp)
@@ -1566,10 +1566,10 @@ glabel alEnvmixerPull
 /* B17E8 800B0BE8 10000007 */  b          .L800B0C08
 /* B17EC 800B0BEC 00000000 */   nop
 .L800B0BF0:
-/* B17F0 800B0BF0 3C04800F */  lui        $a0, %hi(env_rodata_0000)
-/* B17F4 800B0BF4 3C05800F */  lui        $a1, %hi(env_rodata_0010)
-/* B17F8 800B0BF8 24A5E540 */  addiu      $a1, $a1, %lo(env_rodata_0010)
-/* B17FC 800B0BFC 2484E530 */  addiu      $a0, $a0, %lo(env_rodata_0000)
+/* B17F0 800B0BF0 3C04800F */  lui        $a0, %hi(D_800EE530)
+/* B17F4 800B0BF4 3C05800F */  lui        $a1, %hi(D_800EE540)
+/* B17F8 800B0BF8 24A5E540 */  addiu      $a1, $a1, %lo(D_800EE540)
+/* B17FC 800B0BFC 2484E530 */  addiu      $a0, $a0, %lo(D_800EE530)
 /* B1800 800B0C00 0C026E74 */  jal        __assert
 /* B1804 800B0C04 24060069 */   addiu     $a2, $zero, 0x69
 .L800B0C08:
@@ -1580,10 +1580,10 @@ glabel alEnvmixerPull
 /* B1818 800B0C18 10000007 */  b          .L800B0C38
 /* B181C 800B0C1C 00000000 */   nop
 .L800B0C20:
-/* B1820 800B0C20 3C04800F */  lui        $a0, %hi(env_rodata_0028)
-/* B1824 800B0C24 3C05800F */  lui        $a1, %hi(env_rodata_0048)
-/* B1828 800B0C28 24A5E570 */  addiu      $a1, $a1, %lo(env_rodata_0048)
-/* B182C 800B0C2C 2484E550 */  addiu      $a0, $a0, %lo(env_rodata_0028)
+/* B1820 800B0C20 3C04800F */  lui        $a0, %hi(D_800EE550)
+/* B1824 800B0C24 3C05800F */  lui        $a1, %hi(D_800EE570)
+/* B1828 800B0C28 24A5E570 */  addiu      $a1, $a1, %lo(D_800EE570)
+/* B182C 800B0C2C 2484E550 */  addiu      $a0, $a0, %lo(D_800EE550)
 /* B1830 800B0C30 0C026E74 */  jal        __assert
 /* B1834 800B0C34 2406006A */   addiu     $a2, $zero, 0x6a
 .L800B0C38:
@@ -1594,9 +1594,9 @@ glabel alEnvmixerPull
 /* B1848 800B0C48 10200158 */  beqz       $at, .L800B11AC
 /* B184C 800B0C4C 00000000 */   nop
 /* B1850 800B0C50 000C6080 */  sll        $t4, $t4, 2
-/* B1854 800B0C54 3C01800F */  lui        $at, %hi(env_rodata_0080)
+/* B1854 800B0C54 3C01800F */  lui        $at, %hi(D_800EE598)
 /* B1858 800B0C58 002C0821 */  addu       $at, $at, $t4
-/* B185C 800B0C5C 8C2CE598 */  lw         $t4, %lo(env_rodata_0080)($at)
+/* B185C 800B0C5C 8C2CE598 */  lw         $t4, %lo(D_800EE598)($at)
 /* B1860 800B0C60 01800008 */  jr         $t4
 /* B1864 800B0C64 00000000 */   nop
 /* B1868 800B0C68 8FAD0058 */  lw         $t5, 0x58($sp)

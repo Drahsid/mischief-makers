@@ -174,7 +174,7 @@ extern int16_t D_800D2974;
 extern uint16_t D_800D2978;
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D37A4;
-extern ActorFunc D_800D3DB0[]; // TODO: Investigate
+extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern UNK_TYPE D_800D4000;
 extern uint32_t D_800D4184;
 extern int32_t D_800D5794;
@@ -225,6 +225,7 @@ extern UNK_TYPE D_800DFE48;
 extern UNK_TYPE D_800E0048;
 extern UNK_TYPE D_800E0248;
 extern UNK_TYPE D_800E0448;
+extern ActorFunc gActorFuncTable_800E5AC0[];
 extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
@@ -386,6 +387,10 @@ extern uint8_t D_80185519;
 extern UNK_TYPE D_8018551C;
 extern UNK_POINTER D_80185520;
 extern UNK_TYPE D_80189A58;
+extern ActorFunc gActorFuncTable_80192000[];
+extern ActorFunc gActorFuncTable_8019B000[];
+extern ActorFunc gActorFuncTable_801A6800[];
+extern ActorFunc gActorFuncTable_801B0800[];
 extern UNK_TYPE D_802C9F70;
 extern CFB D_803DA800[2];
 #endif
