@@ -50,4 +50,5 @@ baserom.z64: OK
 
 ## Contributing
 Contributions are welcome. If you would like to reserve a function, open a PR with the function name.
+If you plan to contribute, be sure to take a look at the [style guide](https://github.com/Drahsid/mischief-makers/wiki/Style-Guide).
 
