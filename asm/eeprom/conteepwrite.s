@@ -7,15 +7,15 @@
 
 .section .text, "ax"
 
-glabel func_800B2220
+glabel osEepromWrite
 /* B2E20 800B2220 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* B2E24 800B2224 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B2E28 800B2228 AFA40038 */  sw         $a0, 0x38($sp)
 /* B2E2C 800B222C AFA5003C */  sw         $a1, 0x3c($sp)
 /* B2E30 800B2230 AFA60040 */  sw         $a2, 0x40($sp)
 /* B2E34 800B2234 AFA00034 */  sw         $zero, 0x34($sp)
-/* B2E38 800B2238 3C0E8019 */  lui        $t6, %hi(D_8018A4C0)
-/* B2E3C 800B223C 25CEA4C0 */  addiu      $t6, $t6, %lo(D_8018A4C0)
+/* B2E38 800B2238 3C0E8019 */  lui        $t6, %hi(__osEepPifRam)
+/* B2E3C 800B223C 25CEA4C0 */  addiu      $t6, $t6, %lo(__osEepPifRam)
 /* B2E40 800B2240 AFAE002C */  sw         $t6, 0x2c($sp)
 /* B2E44 800B2244 93AF003F */  lbu        $t7, 0x3f($sp)
 /* B2E48 800B2248 29E10041 */  slti       $at, $t7, 0x41
@@ -24,10 +24,10 @@ glabel func_800B2220
 /* B2E54 800B2254 1000005F */  b          .L800B23D4
 /* B2E58 800B2258 2402FFFF */   addiu     $v0, $zero, -1
 .L800B225C:
-/* B2E5C 800B225C 0C02AA26 */  jal        func_800AA898
+/* B2E5C 800B225C 0C02AA26 */  jal        __osSiGetAccess
 /* B2E60 800B2260 00000000 */   nop
 /* B2E64 800B2264 8FA40038 */  lw         $a0, 0x38($sp)
-/* B2E68 800B2268 0C02C93F */  jal        func_800B24FC
+/* B2E68 800B2268 0C02C93F */  jal        __osEepStatus
 /* B2E6C 800B226C 27A5001C */   addiu     $a1, $sp, 0x1c
 /* B2E70 800B2270 AFA20034 */  sw         $v0, 0x34($sp)
 /* B2E74 800B2274 8FB80034 */  lw         $t8, 0x34($sp)
@@ -47,7 +47,7 @@ glabel func_800B2220
 /* B2EA4 800B22A4 00000000 */   nop
 .L800B22A8:
 /* B2EA8 800B22A8 8FA40038 */  lw         $a0, 0x38($sp)
-/* B2EAC 800B22AC 0C02C93F */  jal        func_800B24FC
+/* B2EAC 800B22AC 0C02C93F */  jal        __osEepStatus
 /* B2EB0 800B22B0 27A5001C */   addiu     $a1, $sp, 0x1c
 /* B2EB4 800B22B4 93AA001E */  lbu        $t2, 0x1e($sp)
 /* B2EB8 800B22B8 314B0080 */  andi       $t3, $t2, 0x80
@@ -55,10 +55,10 @@ glabel func_800B2220
 /* B2EC0 800B22C0 00000000 */   nop
 .L800B22C4:
 /* B2EC4 800B22C4 93A4003F */  lbu        $a0, 0x3f($sp)
-/* B2EC8 800B22C8 0C02C8F9 */  jal        func_800B23E4
+/* B2EC8 800B22C8 0C02C8F9 */  jal        __osPackEepWriteData
 /* B2ECC 800B22CC 8FA50040 */   lw        $a1, 0x40($sp)
-/* B2ED0 800B22D0 3C058019 */  lui        $a1, %hi(D_8018A4C0)
-/* B2ED4 800B22D4 24A5A4C0 */  addiu      $a1, $a1, %lo(D_8018A4C0)
+/* B2ED0 800B22D0 3C058019 */  lui        $a1, %hi(__osEepPifRam)
+/* B2ED4 800B22D4 24A5A4C0 */  addiu      $a1, $a1, %lo(__osEepPifRam)
 /* B2ED8 800B22D8 0C02AA48 */  jal        __osSiRawStartDma
 /* B2EDC 800B22DC 24040001 */   addiu     $a0, $zero, 1
 /* B2EE0 800B22E0 AFA20034 */  sw         $v0, 0x34($sp)
@@ -69,20 +69,20 @@ glabel func_800B2220
 /* B2EF4 800B22F4 AFA00030 */  sw         $zero, 0x30($sp)
 .L800B22F8:
 /* B2EF8 800B22F8 8FAD0030 */  lw         $t5, 0x30($sp)
-/* B2EFC 800B22FC 3C018019 */  lui        $at, %hi(D_8018A4C0)
+/* B2EFC 800B22FC 3C018019 */  lui        $at, %hi(__osEepPifRam)
 /* B2F00 800B2300 240C00FF */  addiu      $t4, $zero, 0xff
 /* B2F04 800B2304 000D7080 */  sll        $t6, $t5, 2
 /* B2F08 800B2308 002E0821 */  addu       $at, $at, $t6
-/* B2F0C 800B230C AC2CA4C0 */  sw         $t4, %lo(D_8018A4C0)($at)
+/* B2F0C 800B230C AC2CA4C0 */  sw         $t4, %lo(__osEepPifRam)($at)
 /* B2F10 800B2310 8FAF0030 */  lw         $t7, 0x30($sp)
 /* B2F14 800B2314 25F80001 */  addiu      $t8, $t7, 1
 /* B2F18 800B2318 2B010010 */  slti       $at, $t8, 0x10
 /* B2F1C 800B231C 1420FFF6 */  bnez       $at, .L800B22F8
 /* B2F20 800B2320 AFB80030 */   sw        $t8, 0x30($sp)
-/* B2F24 800B2324 3C018019 */  lui        $at, %hi(D_8018A4FC)
-/* B2F28 800B2328 AC20A4FC */  sw         $zero, %lo(D_8018A4FC)($at)
-/* B2F2C 800B232C 3C058019 */  lui        $a1, %hi(D_8018A4C0)
-/* B2F30 800B2330 24A5A4C0 */  addiu      $a1, $a1, %lo(D_8018A4C0)
+/* B2F24 800B2324 3C018019 */  lui        $at, %hi(__osEepPifRam+0x3C)
+/* B2F28 800B2328 AC20A4FC */  sw         $zero, %lo(__osEepPifRam+0x3C)($at)
+/* B2F2C 800B232C 3C058019 */  lui        $a1, %hi(__osEepPifRam)
+/* B2F30 800B2330 24A5A4C0 */  addiu      $a1, $a1, %lo(__osEepPifRam)
 /* B2F34 800B2334 0C02AA48 */  jal        __osSiRawStartDma
 /* B2F38 800B2338 00002025 */   or        $a0, $zero, $zero
 /* B2F3C 800B233C AFA20034 */  sw         $v0, 0x34($sp)
@@ -118,7 +118,7 @@ glabel func_800B2220
 /* B2FB0 800B23B0 331900C0 */  andi       $t9, $t8, 0xc0
 /* B2FB4 800B23B4 00194103 */  sra        $t0, $t9, 4
 /* B2FB8 800B23B8 AFA80034 */  sw         $t0, 0x34($sp)
-/* B2FBC 800B23BC 0C02AA39 */  jal        func_800AA8E4
+/* B2FBC 800B23BC 0C02AA39 */  jal        __osSiRelAccess
 /* B2FC0 800B23C0 00000000 */   nop
 /* B2FC4 800B23C4 10000003 */  b          .L800B23D4
 /* B2FC8 800B23C8 8FA20034 */   lw        $v0, 0x34($sp)
@@ -130,28 +130,28 @@ glabel func_800B2220
 /* B2FDC 800B23DC 03E00008 */  jr         $ra
 /* B2FE0 800B23E0 00000000 */   nop
 
-glabel func_800B23E4
+glabel __osPackEepWriteData
 /* B2FE4 800B23E4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B2FE8 800B23E8 308400FF */  andi       $a0, $a0, 0xff
-/* B2FEC 800B23EC 3C0E8019 */  lui        $t6, %hi(D_8018A4C0)
-/* B2FF0 800B23F0 25CEA4C0 */  addiu      $t6, $t6, %lo(D_8018A4C0)
+/* B2FEC 800B23EC 3C0E8019 */  lui        $t6, %hi(__osEepPifRam)
+/* B2FF0 800B23F0 25CEA4C0 */  addiu      $t6, $t6, %lo(__osEepPifRam)
 /* B2FF4 800B23F4 AFAE0014 */  sw         $t6, 0x14($sp)
 /* B2FF8 800B23F8 AFA00004 */  sw         $zero, 4($sp)
 .L800B23FC:
 /* B2FFC 800B23FC 8FB80004 */  lw         $t8, 4($sp)
-/* B3000 800B2400 3C018019 */  lui        $at, %hi(D_8018A4C0)
+/* B3000 800B2400 3C018019 */  lui        $at, %hi(__osEepPifRam)
 /* B3004 800B2404 240F00FF */  addiu      $t7, $zero, 0xff
 /* B3008 800B2408 0018C880 */  sll        $t9, $t8, 2
 /* B300C 800B240C 00390821 */  addu       $at, $at, $t9
-/* B3010 800B2410 AC2FA4C0 */  sw         $t7, %lo(D_8018A4C0)($at)
+/* B3010 800B2410 AC2FA4C0 */  sw         $t7, %lo(__osEepPifRam)($at)
 /* B3014 800B2414 8FA80004 */  lw         $t0, 4($sp)
 /* B3018 800B2418 25090001 */  addiu      $t1, $t0, 1
 /* B301C 800B241C 29210010 */  slti       $at, $t1, 0x10
 /* B3020 800B2420 1420FFF6 */  bnez       $at, .L800B23FC
 /* B3024 800B2424 AFA90004 */   sw        $t1, 4($sp)
 /* B3028 800B2428 240A0001 */  addiu      $t2, $zero, 1
-/* B302C 800B242C 3C018019 */  lui        $at, %hi(D_8018A4FC)
-/* B3030 800B2430 AC2AA4FC */  sw         $t2, %lo(D_8018A4FC)($at)
+/* B302C 800B242C 3C018019 */  lui        $at, %hi(__osEepPifRam+0x3C)
+/* B3030 800B2430 AC2AA4FC */  sw         $t2, %lo(__osEepPifRam+0x3C)($at)
 /* B3034 800B2434 240B000A */  addiu      $t3, $zero, 0xa
 /* B3038 800B2438 A3AB0008 */  sb         $t3, 8($sp)
 /* B303C 800B243C 240C0001 */  addiu      $t4, $zero, 1
@@ -206,32 +206,32 @@ glabel func_800B23E4
 /* B30F4 800B24F4 03E00008 */  jr         $ra
 /* B30F8 800B24F8 27BD0018 */   addiu     $sp, $sp, 0x18
 
-glabel func_800B24FC
+glabel __osEepStatus
 /* B30FC 800B24FC 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* B3100 800B2500 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B3104 800B2504 AFA40030 */  sw         $a0, 0x30($sp)
 /* B3108 800B2508 AFA50034 */  sw         $a1, 0x34($sp)
 /* B310C 800B250C AFA0002C */  sw         $zero, 0x2c($sp)
-/* B3110 800B2510 3C0E8019 */  lui        $t6, %hi(D_8018A4C0)
-/* B3114 800B2514 25CEA4C0 */  addiu      $t6, $t6, %lo(D_8018A4C0)
+/* B3110 800B2510 3C0E8019 */  lui        $t6, %hi(__osEepPifRam)
+/* B3114 800B2514 25CEA4C0 */  addiu      $t6, $t6, %lo(__osEepPifRam)
 /* B3118 800B2518 AFAE0024 */  sw         $t6, 0x24($sp)
 /* B311C 800B251C AFA00028 */  sw         $zero, 0x28($sp)
 .L800B2520:
 /* B3120 800B2520 8FAF0028 */  lw         $t7, 0x28($sp)
-/* B3124 800B2524 3C018019 */  lui        $at, %hi(D_8018A4C0)
+/* B3124 800B2524 3C018019 */  lui        $at, %hi(__osEepPifRam)
 /* B3128 800B2528 000FC080 */  sll        $t8, $t7, 2
 /* B312C 800B252C 00380821 */  addu       $at, $at, $t8
-/* B3130 800B2530 AC20A4C0 */  sw         $zero, %lo(D_8018A4C0)($at)
+/* B3130 800B2530 AC20A4C0 */  sw         $zero, %lo(__osEepPifRam)($at)
 /* B3134 800B2534 8FB90028 */  lw         $t9, 0x28($sp)
 /* B3138 800B2538 27280001 */  addiu      $t0, $t9, 1
 /* B313C 800B253C 29010010 */  slti       $at, $t0, 0x10
 /* B3140 800B2540 1420FFF7 */  bnez       $at, .L800B2520
 /* B3144 800B2544 AFA80028 */   sw        $t0, 0x28($sp)
 /* B3148 800B2548 24090001 */  addiu      $t1, $zero, 1
-/* B314C 800B254C 3C018019 */  lui        $at, %hi(D_8018A4FC)
-/* B3150 800B2550 AC29A4FC */  sw         $t1, %lo(D_8018A4FC)($at)
-/* B3154 800B2554 3C0A8019 */  lui        $t2, %hi(D_8018A4C0)
-/* B3158 800B2558 254AA4C0 */  addiu      $t2, $t2, %lo(D_8018A4C0)
+/* B314C 800B254C 3C018019 */  lui        $at, %hi(__osEepPifRam+0x3C)
+/* B3150 800B2550 AC29A4FC */  sw         $t1, %lo(__osEepPifRam+0x3C)($at)
+/* B3154 800B2554 3C0A8019 */  lui        $t2, %hi(__osEepPifRam)
+/* B3158 800B2558 254AA4C0 */  addiu      $t2, $t2, %lo(__osEepPifRam)
 /* B315C 800B255C AFAA0024 */  sw         $t2, 0x24($sp)
 /* B3160 800B2560 AFA00028 */  sw         $zero, 0x28($sp)
 .L800B2564:
@@ -274,8 +274,8 @@ glabel func_800B24FC
 /* B31F4 800B25F4 8FAB0024 */  lw         $t3, 0x24($sp)
 /* B31F8 800B25F8 240A00FE */  addiu      $t2, $zero, 0xfe
 /* B31FC 800B25FC A16A0000 */  sb         $t2, ($t3)
-/* B3200 800B2600 3C058019 */  lui        $a1, %hi(D_8018A4C0)
-/* B3204 800B2604 24A5A4C0 */  addiu      $a1, $a1, %lo(D_8018A4C0)
+/* B3200 800B2600 3C058019 */  lui        $a1, %hi(__osEepPifRam)
+/* B3204 800B2604 24A5A4C0 */  addiu      $a1, $a1, %lo(__osEepPifRam)
 /* B3208 800B2608 0C02AA48 */  jal        __osSiRawStartDma
 /* B320C 800B260C 24040001 */   addiu     $a0, $zero, 1
 /* B3210 800B2610 AFA2002C */  sw         $v0, 0x2c($sp)
@@ -286,8 +286,8 @@ glabel func_800B24FC
 /* B3224 800B2624 240C0005 */  addiu      $t4, $zero, 5
 /* B3228 800B2628 3C018018 */  lui        $at, %hi(__osContLastCmd)
 /* B322C 800B262C A02C5670 */  sb         $t4, %lo(__osContLastCmd)($at)
-/* B3230 800B2630 3C058019 */  lui        $a1, %hi(D_8018A4C0)
-/* B3234 800B2634 24A5A4C0 */  addiu      $a1, $a1, %lo(D_8018A4C0)
+/* B3230 800B2630 3C058019 */  lui        $a1, %hi(__osEepPifRam)
+/* B3234 800B2634 24A5A4C0 */  addiu      $a1, $a1, %lo(__osEepPifRam)
 /* B3238 800B2638 0C02AA48 */  jal        __osSiRawStartDma
 /* B323C 800B263C 00002025 */   or        $a0, $zero, $zero
 /* B3240 800B2640 AFA2002C */  sw         $v0, 0x2c($sp)
@@ -301,8 +301,8 @@ glabel func_800B24FC
 /* B3260 800B2660 10000030 */  b          .L800B2724
 /* B3264 800B2664 8FA2002C */   lw        $v0, 0x2c($sp)
 .L800B2668:
-/* B3268 800B2668 3C0F8019 */  lui        $t7, %hi(D_8018A4C0)
-/* B326C 800B266C 25EFA4C0 */  addiu      $t7, $t7, %lo(D_8018A4C0)
+/* B3268 800B2668 3C0F8019 */  lui        $t7, %hi(__osEepPifRam)
+/* B326C 800B266C 25EFA4C0 */  addiu      $t7, $t7, %lo(__osEepPifRam)
 /* B3270 800B2670 AFAF0024 */  sw         $t7, 0x24($sp)
 /* B3274 800B2674 AFA00028 */  sw         $zero, 0x28($sp)
 .L800B2678:

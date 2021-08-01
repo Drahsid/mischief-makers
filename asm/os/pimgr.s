@@ -49,7 +49,7 @@ glabel osCreatePiManager
 /* 9A97C 80099D7C 8F18A630 */  lw         $t8, %lo(__osPiAccessQueueEnabled)($t8)
 /* 9A980 80099D80 17000003 */  bnez       $t8, .L80099D90
 /* 9A984 80099D84 00000000 */   nop
-/* 9A988 80099D88 0C029F88 */  jal        __osSiCreateAccessQueue
+/* 9A988 80099D88 0C029F88 */  jal        __osPiCreateAccessQueue
 /* 9A98C 80099D8C 00000000 */   nop
 .L80099D90:
 /* 9A990 80099D90 3C058018 */  lui        $a1, %hi(pimgr_bss_17A0)
@@ -188,7 +188,7 @@ glabel pimgr_text_022C
 /* 9AB8C 80099F8C 00002825 */  or         $a1, $zero, $zero
 /* 9AB90 80099F90 0C026B44 */  jal        osRecvMesg
 /* 9AB94 80099F94 24060001 */   addiu     $a2, $zero, 1
-/* 9AB98 80099F98 0C029F9E */  jal        __osSiGetAccess
+/* 9AB98 80099F98 0C029F9E */  jal        __osPiGetAccess
 /* 9AB9C 80099F9C 00000000 */   nop
 /* 9ABA0 80099FA0 AFA0002C */  sw         $zero, 0x2c($sp)
 /* 9ABA4 80099FA4 8FAE002C */  lw         $t6, 0x2c($sp)
@@ -212,7 +212,7 @@ glabel pimgr_text_022C
 /* 9ABE4 80099FE4 00002825 */  or         $a1, $zero, $zero
 /* 9ABE8 80099FE8 0C026B44 */  jal        osRecvMesg
 /* 9ABEC 80099FEC 24060001 */   addiu     $a2, $zero, 1
-/* 9ABF0 80099FF0 0C029FB1 */  jal        __osSiRelAccess
+/* 9ABF0 80099FF0 0C029FB1 */  jal        __osPiRelAccess
 /* 9ABF4 80099FF4 00000000 */   nop
 /* 9ABF8 80099FF8 1000FFE2 */  b          .L80099F84
 /* 9ABFC 80099FFC 00000000 */   nop

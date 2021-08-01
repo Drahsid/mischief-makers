@@ -231,12 +231,12 @@ extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern UNK_TYPE D_800EEA10;
-extern u8 bssStart;
-extern int16_t D_800EF4D2;
+extern u8 bssStart; //also deals with sound state.
+extern int16_t Bgm_vol;
 extern int16_t D_800EF4D4;
-extern uint8_t D_800EF4F0;
-extern uint16_t D_800EF4F8[];
-extern int16_t D_800EF500;
+extern uint8_t SFX_ChannelStates[];
+extern s16 SFX_Volumes[];
+extern s16 D_800EF500[];
 extern uint16_t D_800EF508;
 extern int16_t D_800EF598;
 extern uint16_t D_800EF794;
@@ -291,7 +291,7 @@ extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;
 extern UNK_TYPE D_8012A678;
 extern OSThread D_8012A698; // idle
-extern OSThread D_8012A848;
+extern OSThread D_8012A848; // video, controller
 extern OSThread D_8012A9F8; //rmon
 extern OSMesgQueue D_8012ABA8;
 extern OSMesgQueue D_8012ABC0;
@@ -322,7 +322,7 @@ extern UNK_TYPE D_80137458;
 extern UNK_POINTER D_8013746C;
 extern uint16_t D_8013747C;
 extern uint16_t D_80137480;
-extern UNK_TYPE D_801374DC;
+extern UNK_TYPE gTickDelta;
 extern uint8_t D_801376A8;
 extern uint8_t D_801376A9;
 extern uint8_t D_801376AD;
@@ -340,7 +340,7 @@ extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
 extern uint16_t D_80137D90;
 extern UNK_TYPE D_8016DEB8;
-extern ALSeqPlayer* D_8016DFE4;
+extern ALCSPlayer* BGM_pALCPlayer;
 extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
 extern u64 gYellowGemBitfeild;

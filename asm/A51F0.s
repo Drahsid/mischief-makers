@@ -12,10 +12,10 @@ glabel func_800A45F0
 /* A51F4 800A45F4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A51F8 800A45F8 AFA40020 */  sw         $a0, 0x20($sp)
 /* A51FC 800A45FC AFA0001C */  sw         $zero, 0x1c($sp)
-/* A5200 800A4600 0C02AA26 */  jal        func_800AA898
+/* A5200 800A4600 0C02AA26 */  jal        __osSiGetAccess
 /* A5204 800A4604 00000000 */   nop
 /* A5208 800A4608 8FA40020 */  lw         $a0, 0x20($sp)
-/* A520C 800A460C 0C02C93F */  jal        func_800B24FC
+/* A520C 800A460C 0C02C93F */  jal        __osEepStatus
 /* A5210 800A4610 27A50018 */   addiu     $a1, $sp, 0x18
 /* A5214 800A4614 AFA2001C */  sw         $v0, 0x1c($sp)
 /* A5218 800A4618 8FAE001C */  lw         $t6, 0x1c($sp)
@@ -31,7 +31,7 @@ glabel func_800A45F0
 .L800A4640:
 /* A5240 800A4640 AFA0001C */  sw         $zero, 0x1c($sp)
 .L800A4644:
-/* A5244 800A4644 0C02AA39 */  jal        func_800AA8E4
+/* A5244 800A4644 0C02AA39 */  jal        __osSiRelAccess
 /* A5248 800A4648 00000000 */   nop
 /* A524C 800A464C 10000003 */  b          .L800A465C
 /* A5250 800A4650 8FA2001C */   lw        $v0, 0x1c($sp)

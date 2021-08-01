@@ -52,7 +52,7 @@ glabel func_80004E90
 /* 5B00 80004F00 03E00008 */  jr         $ra
 /* 5B04 80004F04 27BD0028 */   addiu     $sp, $sp, 0x28
 
-glabel func_80004F08
+glabel IsOver999
 /* 5B08 80004F08 2C8103E8 */  sltiu      $at, $a0, 0x3e8
 /* 5B0C 80004F0C 14200003 */  bnez       $at, .L80004F1C
 /* 5B10 80004F10 00001025 */   or        $v0, $zero, $zero
@@ -89,7 +89,7 @@ glabel func_80004F24
 /* 5B7C 80004F7C 00108880 */  sll        $s1, $s0, 2
 /* 5B80 80004F80 02719021 */  addu       $s2, $s3, $s1
 /* 5B84 80004F84 8E440000 */  lw         $a0, ($s2)
-/* 5B88 80004F88 0C0013C2 */  jal        func_80004F08
+/* 5B88 80004F88 0C0013C2 */  jal        IsOver999
 /* 5B8C 80004F8C 00000000 */   nop
 /* 5B90 80004F90 10000005 */  b          .L80004FA8
 /* 5B94 80004F94 3058FFFF */   andi      $t8, $v0, 0xffff
@@ -122,15 +122,15 @@ glabel func_80004F24
 /* 5BF4 80004FF4 03E00008 */  jr         $ra
 /* 5BF8 80004FF8 27BD0038 */   addiu     $sp, $sp, 0x38
 
-glabel func_80004FFC
+glabel GameSave_ClearCard
 /* 5BFC 80004FFC 308E00FF */  andi       $t6, $a0, 0xff
 /* 5C00 80005000 000E7880 */  sll        $t7, $t6, 2
 /* 5C04 80005004 01EE7823 */  subu       $t7, $t7, $t6
 /* 5C08 80005008 000F7880 */  sll        $t7, $t7, 2
 /* 5C0C 8000500C 01EE7823 */  subu       $t7, $t7, $t6
-/* 5C10 80005010 3C188017 */  lui        $t8, %hi(D_80171AA0)
+/* 5C10 80005010 3C188017 */  lui        $t8, %hi(GameSave_Names)
 /* 5C14 80005014 AFA40000 */  sw         $a0, ($sp)
-/* 5C18 80005018 27181AA0 */  addiu      $t8, $t8, %lo(D_80171AA0)
+/* 5C18 80005018 27181AA0 */  addiu      $t8, $t8, %lo(GameSave_Names)
 /* 5C1C 8000501C 000F7840 */  sll        $t7, $t7, 1
 /* 5C20 80005020 3C06800C */  lui        $a2, %hi(D_800C4FA8)
 /* 5C24 80005024 01C02025 */  or         $a0, $t6, $zero
@@ -148,20 +148,20 @@ glabel func_80004FFC
 /* 5C50 80005050 01401025 */  or         $v0, $t2, $zero
 /* 5C54 80005054 1420FFF7 */  bnez       $at, .L80005034
 /* 5C58 80005058 A5280000 */   sh        $t0, ($t1)
-/* 5C5C 8000505C 3C018017 */  lui        $at, %hi(D_80171ACC)
+/* 5C5C 8000505C 3C018017 */  lui        $at, %hi(GameSave_Age)
 /* 5C60 80005060 00240821 */  addu       $at, $at, $a0
-/* 5C64 80005064 A0201ACC */  sb         $zero, %lo(D_80171ACC)($at)
-/* 5C68 80005068 3C018017 */  lui        $at, %hi(D_80171ACE)
+/* 5C64 80005064 A0201ACC */  sb         $zero, %lo(GameSave_Age)($at)
+/* 5C68 80005068 3C018017 */  lui        $at, %hi(GameSave_Sex)
 /* 5C6C 8000506C 00240821 */  addu       $at, $at, $a0
-/* 5C70 80005070 A0201ACE */  sb         $zero, %lo(D_80171ACE)($at)
-/* 5C74 80005074 3C018017 */  lui        $at, %hi(D_80171AD0)
+/* 5C70 80005070 A0201ACE */  sb         $zero, %lo(GameSave_Sex)($at)
+/* 5C74 80005074 3C018017 */  lui        $at, %hi(GameSave_RedGems)
 /* 5C78 80005078 00041040 */  sll        $v0, $a0, 1
 /* 5C7C 8000507C 00220821 */  addu       $at, $at, $v0
 /* 5C80 80005080 240B001E */  addiu      $t3, $zero, 0x1e
-/* 5C84 80005084 A42B1AD0 */  sh         $t3, %lo(D_80171AD0)($at)
-/* 5C88 80005088 3C018017 */  lui        $at, %hi(D_80171AD4)
+/* 5C84 80005084 A42B1AD0 */  sh         $t3, %lo(GameSave_RedGems)($at)
+/* 5C88 80005088 3C018017 */  lui        $at, %hi(GameSave_YellowGems)
 /* 5C8C 8000508C 00220821 */  addu       $at, $at, $v0
-/* 5C90 80005090 A4201AD4 */  sh         $zero, %lo(D_80171AD4)($at)
+/* 5C90 80005090 A4201AD4 */  sh         $zero, %lo(GameSave_YellowGems)($at)
 /* 5C94 80005094 3C018017 */  lui        $at, %hi(D_80171ADC)
 /* 5C98 80005098 000470C0 */  sll        $t6, $a0, 3
 /* 5C9C 8000509C 002E0821 */  addu       $at, $at, $t6
@@ -228,7 +228,7 @@ glabel GameSave_Reset
 /* 5D80 80005180 03E00008 */  jr         $ra
 /* 5D84 80005184 00000000 */   nop
 
-glabel func_80005188
+glabel GameSave_CheckAndWipe
 /* 5D88 80005188 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* 5D8C 8000518C AFBF001C */  sw         $ra, 0x1c($sp)
 /* 5D90 80005190 3C048013 */  lui        $a0, %hi(D_8012ADA0)
@@ -263,16 +263,16 @@ glabel func_80005188
 /* 5DFC 800051FC 01801825 */   or        $v1, $t4, $zero
 /* 5E00 80005200 11200033 */  beqz       $t1, .L800052D0
 /* 5E04 80005204 3C108017 */   lui       $s0, 0x8017
-/* 5E08 80005208 0C0013FF */  jal        func_80004FFC
+/* 5E08 80005208 0C0013FF */  jal        GameSave_ClearCard
 /* 5E0C 8000520C 00002025 */   or        $a0, $zero, $zero
-/* 5E10 80005210 0C0013FF */  jal        func_80004FFC
+/* 5E10 80005210 0C0013FF */  jal        GameSave_ClearCard
 /* 5E14 80005214 24040001 */   addiu     $a0, $zero, 1
-/* 5E18 80005218 3C108017 */  lui        $s0, %hi(D_80171AA0)
+/* 5E18 80005218 3C108017 */  lui        $s0, %hi(GameSave_Names)
 /* 5E1C 8000521C 3C048013 */  lui        $a0, %hi(D_8012ADA0)
-/* 5E20 80005220 26061AA0 */  addiu      $a2, $s0, %lo(D_80171AA0)
+/* 5E20 80005220 26061AA0 */  addiu      $a2, $s0, %lo(GameSave_Names)
 /* 5E24 80005224 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E28 80005228 24050002 */  addiu      $a1, $zero, 2
-/* 5E2C 8000522C 0C0291F0 */  jal        func_800A47C0
+/* 5E2C 8000522C 0C0291F0 */  jal        GameSave_Write
 /* 5E30 80005230 24070048 */   addiu     $a3, $zero, 0x48
 /* 5E34 80005234 0C00142D */  jal        GameSave_Reset
 /* 5E38 80005238 00000000 */   nop
@@ -281,7 +281,7 @@ glabel func_80005188
 /* 5E44 80005244 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 5E48 80005248 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E4C 8000524C 2405000C */  addiu      $a1, $zero, 0xc
-/* 5E50 80005250 0C0291F0 */  jal        func_800A47C0
+/* 5E50 80005250 0C0291F0 */  jal        GameSave_Write
 /* 5E54 80005254 24070032 */   addiu     $a3, $zero, 0x32
 /* 5E58 80005258 3C10800C */  lui        $s0, %hi(gTimeRecords)
 /* 5E5C 8000525C 26104F28 */  addiu      $s0, $s0, %lo(gTimeRecords)
@@ -289,27 +289,27 @@ glabel func_80005188
 /* 5E64 80005264 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E68 80005268 02003025 */  or         $a2, $s0, $zero
 /* 5E6C 8000526C 24050014 */  addiu      $a1, $zero, 0x14
-/* 5E70 80005270 0C0291F0 */  jal        func_800A47C0
+/* 5E70 80005270 0C0291F0 */  jal        GameSave_Write
 /* 5E74 80005274 24070080 */   addiu     $a3, $zero, 0x80
 /* 5E78 80005278 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E7C 8000527C 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 5E80 80005280 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 5E84 80005284 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E88 80005288 24050024 */  addiu      $a1, $zero, 0x24
-/* 5E8C 8000528C 0C0291F0 */  jal        func_800A47C0
+/* 5E8C 8000528C 0C0291F0 */  jal        GameSave_Write
 /* 5E90 80005290 24070032 */   addiu     $a3, $zero, 0x32
 /* 5E94 80005294 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E98 80005298 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E9C 8000529C 2405002C */  addiu      $a1, $zero, 0x2c
 /* 5EA0 800052A0 02003025 */  or         $a2, $s0, $zero
-/* 5EA4 800052A4 0C0291F0 */  jal        func_800A47C0
+/* 5EA4 800052A4 0C0291F0 */  jal        GameSave_Write
 /* 5EA8 800052A8 24070080 */   addiu     $a3, $zero, 0x80
 /* 5EAC 800052AC 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5EB0 800052B0 3C06800C */  lui        $a2, %hi(D_800C4F20)
 /* 5EB4 800052B4 24C64F20 */  addiu      $a2, $a2, %lo(D_800C4F20)
 /* 5EB8 800052B8 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5EBC 800052BC 00002825 */  or         $a1, $zero, $zero
-/* 5EC0 800052C0 0C0291F0 */  jal        func_800A47C0
+/* 5EC0 800052C0 0C0291F0 */  jal        GameSave_Write
 /* 5EC4 800052C4 24070008 */   addiu     $a3, $zero, 8
 /* 5EC8 800052C8 100000E1 */  b          .L80005650
 /* 5ECC 800052CC 8FBF001C */   lw        $ra, 0x1c($sp)
@@ -372,31 +372,31 @@ glabel func_80005188
 /* 5F94 80005394 1040002B */  beqz       $v0, .L80005444
 /* 5F98 80005398 00004825 */   or        $t1, $zero, $zero
 /* 5F9C 8000539C 11400029 */  beqz       $t2, .L80005444
-/* 5FA0 800053A0 3C0D8017 */   lui       $t5, %hi(D_80171ACC)
-/* 5FA4 800053A4 91AD1ACC */  lbu        $t5, %lo(D_80171ACC)($t5)
-/* 5FA8 800053A8 3C0E8017 */  lui        $t6, %hi(D_80171ACE)
+/* 5FA0 800053A0 3C0D8017 */   lui       $t5, %hi(GameSave_Age)
+/* 5FA4 800053A4 91AD1ACC */  lbu        $t5, %lo(GameSave_Age)($t5)
+/* 5FA8 800053A8 3C0E8017 */  lui        $t6, %hi(GameSave_Sex)
 /* 5FAC 800053AC 29A10064 */  slti       $at, $t5, 0x64
 /* 5FB0 800053B0 10200025 */  beqz       $at, .L80005448
 /* 5FB4 800053B4 00002025 */   or        $a0, $zero, $zero
-/* 5FB8 800053B8 91CE1ACE */  lbu        $t6, %lo(D_80171ACE)($t6)
-/* 5FBC 800053BC 3C188017 */  lui        $t8, %hi(D_80171AD0)
+/* 5FB8 800053B8 91CE1ACE */  lbu        $t6, %lo(GameSave_Sex)($t6)
+/* 5FBC 800053BC 3C188017 */  lui        $t8, %hi(GameSave_RedGems)
 /* 5FC0 800053C0 29C10002 */  slti       $at, $t6, 2
 /* 5FC4 800053C4 10200020 */  beqz       $at, .L80005448
 /* 5FC8 800053C8 00002025 */   or        $a0, $zero, $zero
-/* 5FCC 800053CC 97181AD0 */  lhu        $t8, %lo(D_80171AD0)($t8)
-/* 5FD0 800053D0 3C0F8017 */  lui        $t7, %hi(D_80171AD4)
+/* 5FCC 800053CC 97181AD0 */  lhu        $t8, %lo(GameSave_RedGems)($t8)
+/* 5FD0 800053D0 3C0F8017 */  lui        $t7, %hi(GameSave_YellowGems)
 /* 5FD4 800053D4 2B012710 */  slti       $at, $t8, 0x2710
 /* 5FD8 800053D8 1020001B */  beqz       $at, .L80005448
 /* 5FDC 800053DC 00002025 */   or        $a0, $zero, $zero
-/* 5FE0 800053E0 95EF1AD4 */  lhu        $t7, %lo(D_80171AD4)($t7)
+/* 5FE0 800053E0 95EF1AD4 */  lhu        $t7, %lo(GameSave_YellowGems)($t7)
 /* 5FE4 800053E4 00000000 */  nop
 /* 5FE8 800053E8 29E10036 */  slti       $at, $t7, 0x36
 /* 5FEC 800053EC 10200016 */  beqz       $at, .L80005448
 /* 5FF0 800053F0 00002025 */   or        $a0, $zero, $zero
-/* 5FF4 800053F4 0C006C91 */  jal        func_8001B244
+/* 5FF4 800053F4 0C006C91 */  jal        YellowGem_Count
 /* 5FF8 800053F8 A3A0002B */   sb        $zero, 0x2b($sp)
-/* 5FFC 800053FC 3C198017 */  lui        $t9, %hi(D_80171AD4)
-/* 6000 80005400 97391AD4 */  lhu        $t9, %lo(D_80171AD4)($t9)
+/* 5FFC 800053FC 3C198017 */  lui        $t9, %hi(GameSave_YellowGems)
+/* 6000 80005400 97391AD4 */  lhu        $t9, %lo(GameSave_YellowGems)($t9)
 /* 6004 80005404 93A9002B */  lbu        $t1, 0x2b($sp)
 /* 6008 80005408 1459000E */  bne        $v0, $t9, .L80005444
 /* 600C 8000540C 3C0C8017 */   lui       $t4, %hi(D_80171AD8)
@@ -416,13 +416,13 @@ glabel func_80005188
 .L80005444:
 /* 6044 80005444 00002025 */   or        $a0, $zero, $zero
 .L80005448:
-/* 6048 80005448 0C0013FF */  jal        func_80004FFC
+/* 6048 80005448 0C0013FF */  jal        GameSave_ClearCard
 /* 604C 8000544C A3A9002B */   sb        $t1, 0x2b($sp)
 /* 6050 80005450 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6054 80005454 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6058 80005458 24050002 */  addiu      $a1, $zero, 2
 /* 605C 8000545C 02003025 */  or         $a2, $s0, $zero
-/* 6060 80005460 0C0291F0 */  jal        func_800A47C0
+/* 6060 80005460 0C0291F0 */  jal        GameSave_Write
 /* 6064 80005464 24070048 */   addiu     $a3, $zero, 0x48
 /* 6068 80005468 0C00142D */  jal        GameSave_Reset
 /* 606C 8000546C 00000000 */   nop
@@ -431,7 +431,7 @@ glabel func_80005188
 /* 6078 80005478 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 607C 8000547C 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6080 80005480 2405000C */  addiu      $a1, $zero, 0xc
-/* 6084 80005484 0C0291F0 */  jal        func_800A47C0
+/* 6084 80005484 0C0291F0 */  jal        GameSave_Write
 /* 6088 80005488 24070032 */   addiu     $a3, $zero, 0x32
 /* 608C 8000548C 93A9002B */  lbu        $t1, 0x2b($sp)
 /* 6090 80005490 00000000 */  nop
@@ -515,7 +515,7 @@ glabel func_80005188
 /* 61AC 800055AC 2B210036 */  slti       $at, $t9, 0x36
 /* 61B0 800055B0 10200015 */  beqz       $at, .L80005608
 /* 61B4 800055B4 00000000 */   nop
-/* 61B8 800055B8 0C006C91 */  jal        func_8001B244
+/* 61B8 800055B8 0C006C91 */  jal        YellowGem_Count
 /* 61BC 800055BC 00000000 */   nop
 /* 61C0 800055C0 3C0C8017 */  lui        $t4, %hi(D_80171AD6)
 /* 61C4 800055C4 958C1AD6 */  lhu        $t4, %lo(D_80171AD6)($t4)
@@ -536,13 +536,13 @@ glabel func_80005188
 /* 6200 80005600 14200013 */  bnez       $at, .L80005650
 /* 6204 80005604 8FBF001C */   lw        $ra, 0x1c($sp)
 .L80005608:
-/* 6208 80005608 0C0013FF */  jal        func_80004FFC
+/* 6208 80005608 0C0013FF */  jal        GameSave_ClearCard
 /* 620C 8000560C 24040001 */   addiu     $a0, $zero, 1
 /* 6210 80005610 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6214 80005614 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6218 80005618 24050002 */  addiu      $a1, $zero, 2
 /* 621C 8000561C 02003025 */  or         $a2, $s0, $zero
-/* 6220 80005620 0C0291F0 */  jal        func_800A47C0
+/* 6220 80005620 0C0291F0 */  jal        GameSave_Write
 /* 6224 80005624 24070048 */   addiu     $a3, $zero, 0x48
 /* 6228 80005628 0C00142D */  jal        GameSave_Reset
 /* 622C 8000562C 00000000 */   nop
@@ -551,7 +551,7 @@ glabel func_80005188
 /* 6238 80005638 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 623C 8000563C 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6240 80005640 24050024 */  addiu      $a1, $zero, 0x24
-/* 6244 80005644 0C0291F0 */  jal        func_800A47C0
+/* 6244 80005644 0C0291F0 */  jal        GameSave_Write
 /* 6248 80005648 24070032 */   addiu     $a3, $zero, 0x32
 /* 624C 8000564C 8FBF001C */  lw         $ra, 0x1c($sp)
 .L80005650:
@@ -566,8 +566,8 @@ glabel func_8000565C
 /* 6268 80005668 AFB00018 */  sw         $s0, 0x18($sp)
 /* 626C 8000566C 0C02917C */  jal        func_800A45F0
 /* 6270 80005670 2484ADA0 */   addiu     $a0, $a0, %lo(D_8012ADA0)
-/* 6274 80005674 3C0E800C */  lui        $t6, %hi(D_800C5008)
-/* 6278 80005678 91CE5008 */  lbu        $t6, %lo(D_800C5008)($t6)
+/* 6274 80005674 3C0E800C */  lui        $t6, %hi(gSaveSlotIndex)
+/* 6278 80005678 91CE5008 */  lbu        $t6, %lo(gSaveSlotIndex)($t6)
 /* 627C 8000567C 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6280 80005680 11C00012 */  beqz       $t6, .L800056CC
 /* 6284 80005684 2484ADA0 */   addiu     $a0, $a0, %lo(D_8012ADA0)
@@ -643,14 +643,14 @@ glabel func_80005770
 /* 6380 80005780 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 6384 80005784 0C02917C */  jal        func_800A45F0
 /* 6388 80005788 02002025 */   or        $a0, $s0, $zero
-/* 638C 8000578C 3C068017 */  lui        $a2, %hi(D_80171AA0)
-/* 6390 80005790 24C61AA0 */  addiu      $a2, $a2, %lo(D_80171AA0)
+/* 638C 8000578C 3C068017 */  lui        $a2, %hi(GameSave_Names)
+/* 6390 80005790 24C61AA0 */  addiu      $a2, $a2, %lo(GameSave_Names)
 /* 6394 80005794 02002025 */  or         $a0, $s0, $zero
 /* 6398 80005798 24050002 */  addiu      $a1, $zero, 2
-/* 639C 8000579C 0C0291F0 */  jal        func_800A47C0
+/* 639C 8000579C 0C0291F0 */  jal        GameSave_Write
 /* 63A0 800057A0 24070048 */   addiu     $a3, $zero, 0x48
-/* 63A4 800057A4 3C0E800C */  lui        $t6, %hi(D_800C5008)
-/* 63A8 800057A8 91CE5008 */  lbu        $t6, %lo(D_800C5008)($t6)
+/* 63A4 800057A4 3C0E800C */  lui        $t6, %hi(gSaveSlotIndex)
+/* 63A8 800057A8 91CE5008 */  lbu        $t6, %lo(gSaveSlotIndex)($t6)
 /* 63AC 800057AC 02002025 */  or         $a0, $s0, $zero
 /* 63B0 800057B0 11C0000F */  beqz       $t6, .L800057F0
 /* 63B4 800057B4 2405000C */   addiu     $a1, $zero, 0xc
@@ -658,26 +658,26 @@ glabel func_80005770
 /* 63BC 800057BC 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 63C0 800057C0 02002025 */  or         $a0, $s0, $zero
 /* 63C4 800057C4 24050024 */  addiu      $a1, $zero, 0x24
-/* 63C8 800057C8 0C0291F0 */  jal        func_800A47C0
+/* 63C8 800057C8 0C0291F0 */  jal        GameSave_Write
 /* 63CC 800057CC 24070032 */   addiu     $a3, $zero, 0x32
 /* 63D0 800057D0 3C06800C */  lui        $a2, %hi(gTimeRecords)
 /* 63D4 800057D4 24C64F28 */  addiu      $a2, $a2, %lo(gTimeRecords)
 /* 63D8 800057D8 02002025 */  or         $a0, $s0, $zero
 /* 63DC 800057DC 2405002C */  addiu      $a1, $zero, 0x2c
-/* 63E0 800057E0 0C0291F0 */  jal        func_800A47C0
+/* 63E0 800057E0 0C0291F0 */  jal        GameSave_Write
 /* 63E4 800057E4 24070080 */   addiu     $a3, $zero, 0x80
 /* 63E8 800057E8 1000000C */  b          .L8000581C
 /* 63EC 800057EC 8FBF001C */   lw        $ra, 0x1c($sp)
 .L800057F0:
 /* 63F0 800057F0 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 63F4 800057F4 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
-/* 63F8 800057F8 0C0291F0 */  jal        func_800A47C0
+/* 63F8 800057F8 0C0291F0 */  jal        GameSave_Write
 /* 63FC 800057FC 24070032 */   addiu     $a3, $zero, 0x32
 /* 6400 80005800 3C06800C */  lui        $a2, %hi(gTimeRecords)
 /* 6404 80005804 24C64F28 */  addiu      $a2, $a2, %lo(gTimeRecords)
 /* 6408 80005808 02002025 */  or         $a0, $s0, $zero
 /* 640C 8000580C 24050014 */  addiu      $a1, $zero, 0x14
-/* 6410 80005810 0C0291F0 */  jal        func_800A47C0
+/* 6410 80005810 0C0291F0 */  jal        GameSave_Write
 /* 6414 80005814 24070080 */   addiu     $a3, $zero, 0x80
 /* 6418 80005818 8FBF001C */  lw         $ra, 0x1c($sp)
 .L8000581C:
@@ -685,12 +685,12 @@ glabel func_80005770
 /* 6420 80005820 03E00008 */  jr         $ra
 /* 6424 80005824 27BD0020 */   addiu     $sp, $sp, 0x20
 
-glabel func_80005828
+glabel GameSave_Erase
 /* 6428 80005828 27BDFFE8 */  addiu      $sp, $sp, -0x18
-/* 642C 8000582C 3C04800C */  lui        $a0, %hi(D_800C5008)
+/* 642C 8000582C 3C04800C */  lui        $a0, %hi(gSaveSlotIndex)
 /* 6430 80005830 AFBF0014 */  sw         $ra, 0x14($sp)
-/* 6434 80005834 90845008 */  lbu        $a0, %lo(D_800C5008)($a0)
-/* 6438 80005838 0C0013FF */  jal        func_80004FFC
+/* 6434 80005834 90845008 */  lbu        $a0, %lo(gSaveSlotIndex)($a0)
+/* 6438 80005838 0C0013FF */  jal        GameSave_ClearCard
 /* 643C 8000583C 00000000 */   nop
 /* 6440 80005840 0C00142D */  jal        GameSave_Reset
 /* 6444 80005844 00000000 */   nop
@@ -739,8 +739,8 @@ glabel func_800058E0
 /* 64E0 800058E0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* 64E4 800058E4 AFA70034 */  sw         $a3, 0x34($sp)
 /* 64E8 800058E8 97AE0036 */  lhu        $t6, 0x36($sp)
-/* 64EC 800058EC 3C188017 */  lui        $t8, %hi(D_80171AD0)
-/* 64F0 800058F0 27181AD0 */  addiu      $t8, $t8, %lo(D_80171AD0)
+/* 64EC 800058EC 3C188017 */  lui        $t8, %hi(GameSave_RedGems)
+/* 64F0 800058F0 27181AD0 */  addiu      $t8, $t8, %lo(GameSave_RedGems)
 /* 64F4 800058F4 000E7840 */  sll        $t7, $t6, 1
 /* 64F8 800058F8 AFA5002C */  sw         $a1, 0x2c($sp)
 /* 64FC 800058FC 01F81021 */  addu       $v0, $t7, $t8
@@ -1585,10 +1585,10 @@ glabel func_80006360
 /* 71A0 800065A0 AFA00018 */  sw         $zero, 0x18($sp)
 /* 71A4 800065A4 0C009F10 */  jal        func_80027C40
 /* 71A8 800065A8 AFA0001C */   sw        $zero, 0x1c($sp)
-/* 71AC 800065AC 3C108017 */  lui        $s0, %hi(D_80171AA0)
+/* 71AC 800065AC 3C108017 */  lui        $s0, %hi(GameSave_Names)
 /* 71B0 800065B0 3C09800C */  lui        $t1, %hi(D_800C4FA8)
 /* 71B4 800065B4 25294FA8 */  addiu      $t1, $t1, %lo(D_800C4FA8)
-/* 71B8 800065B8 26101AA0 */  addiu      $s0, $s0, %lo(D_80171AA0)
+/* 71B8 800065B8 26101AA0 */  addiu      $s0, $s0, %lo(GameSave_Names)
 /* 71BC 800065BC 00001825 */  or         $v1, $zero, $zero
 /* 71C0 800065C0 00004025 */  or         $t0, $zero, $zero
 .L800065C4:
@@ -1619,8 +1619,8 @@ glabel func_80006360
 /* 7220 80006620 00003825 */  or         $a3, $zero, $zero
 /* 7224 80006624 0C020CD6 */  jal        func_80083358
 /* 7228 80006628 A7A0004C */   sh        $zero, 0x4c($sp)
-/* 722C 8000662C 3C198017 */  lui        $t9, %hi(D_80171ACE)
-/* 7230 80006630 93391ACE */  lbu        $t9, %lo(D_80171ACE)($t9)
+/* 722C 8000662C 3C198017 */  lui        $t9, %hi(GameSave_Sex)
+/* 7230 80006630 93391ACE */  lbu        $t9, %lo(GameSave_Sex)($t9)
 /* 7234 80006634 97A8004C */  lhu        $t0, 0x4c($sp)
 /* 7238 80006638 13200003 */  beqz       $t9, .L80006648
 /* 723C 8000663C 24040003 */   addiu     $a0, $zero, 3
@@ -1667,10 +1667,10 @@ glabel func_80006360
 /* 72D8 800066D8 0C020CD6 */  jal        func_80083358
 /* 72DC 800066DC 24070002 */   addiu     $a3, $zero, 2
 /* 72E0 800066E0 262400A2 */  addiu      $a0, $s1, 0xa2
-/* 72E4 800066E4 3C058017 */  lui        $a1, %hi(D_80171ACC)
+/* 72E4 800066E4 3C058017 */  lui        $a1, %hi(GameSave_Age)
 /* 72E8 800066E8 3C0B800D */  lui        $t3, %hi(D_800D17B8)
 /* 72EC 800066EC 256B17B8 */  addiu      $t3, $t3, %lo(D_800D17B8)
-/* 72F0 800066F0 90A51ACC */  lbu        $a1, %lo(D_80171ACC)($a1)
+/* 72F0 800066F0 90A51ACC */  lbu        $a1, %lo(GameSave_Age)($a1)
 /* 72F4 800066F4 308CFFFF */  andi       $t4, $a0, 0xffff
 /* 72F8 800066F8 01802025 */  or         $a0, $t4, $zero
 /* 72FC 800066FC AFAB0014 */  sw         $t3, 0x14($sp)
@@ -1705,10 +1705,10 @@ glabel func_80006360
 /* 7370 80006770 0C001618 */  jal        func_80005860
 /* 7374 80006774 24060029 */   addiu     $a2, $zero, 0x29
 /* 7378 80006778 26240026 */  addiu      $a0, $s1, 0x26
-/* 737C 8000677C 3C058017 */  lui        $a1, %hi(D_80171AD4)
+/* 737C 8000677C 3C058017 */  lui        $a1, %hi(GameSave_YellowGems)
 /* 7380 80006780 3C0A800D */  lui        $t2, %hi(D_800D17B8)
 /* 7384 80006784 254A17B8 */  addiu      $t2, $t2, %lo(D_800D17B8)
-/* 7388 80006788 94A51AD4 */  lhu        $a1, %lo(D_80171AD4)($a1)
+/* 7388 80006788 94A51AD4 */  lhu        $a1, %lo(GameSave_YellowGems)($a1)
 /* 738C 8000678C 3099FFFF */  andi       $t9, $a0, 0xffff
 /* 7390 80006790 03202025 */  or         $a0, $t9, $zero
 /* 7394 80006794 AFAA0014 */  sw         $t2, 0x14($sp)
@@ -1786,11 +1786,11 @@ glabel func_80006360
 /* 74A4 800068A4 240B0001 */  addiu      $t3, $zero, 1
 /* 74A8 800068A8 3C018010 */  lui        $at, %hi(D_801022E8)
 /* 74AC 800068AC 25AD8C78 */  addiu      $t5, $t5, %lo(Data_YellowGem)
-/* 74B0 800068B0 3C068017 */  lui        $a2, %hi(D_80171AB6)
+/* 74B0 800068B0 3C068017 */  lui        $a2, %hi(GameSave_Names+0x16)
 /* 74B4 800068B4 3C10800E */  lui        $s0, %hi(Data_RedGem)
 /* 74B8 800068B8 A02B22E8 */  sb         $t3, %lo(D_801022E8)($at)
 /* 74BC 800068BC 261088B8 */  addiu      $s0, $s0, %lo(Data_RedGem)
-/* 74C0 800068C0 24C61AB6 */  addiu      $a2, $a2, %lo(D_80171AB6)
+/* 74C0 800068C0 24C61AB6 */  addiu      $a2, $a2, %lo(GameSave_Names+0x16)
 /* 74C4 800068C4 AFAD0034 */  sw         $t5, 0x34($sp)
 /* 74C8 800068C8 24040003 */  addiu      $a0, $zero, 3
 /* 74CC 800068CC 00002825 */  or         $a1, $zero, $zero
@@ -1899,9 +1899,9 @@ glabel func_80006360
 /* 7660 80006A60 10000009 */  b          .L80006A88
 /* 7664 80006A64 262400AA */   addiu     $a0, $s1, 0xaa
 .L80006A68:
-/* 7668 80006A68 3C068017 */  lui        $a2, %hi(D_80171AB6)
+/* 7668 80006A68 3C068017 */  lui        $a2, %hi(GameSave_Names+0x16)
 /* 766C 80006A6C A02022E8 */  sb         $zero, 0x22e8($at)
-/* 7670 80006A70 24C61AB6 */  addiu      $a2, $a2, %lo(D_80171AB6)
+/* 7670 80006A70 24C61AB6 */  addiu      $a2, $a2, %lo(GameSave_Names+0x16)
 /* 7674 80006A74 24040003 */  addiu      $a0, $zero, 3
 /* 7678 80006A78 24050001 */  addiu      $a1, $zero, 1
 /* 767C 80006A7C 0C020DA8 */  jal        func_800836A0
@@ -1973,9 +1973,9 @@ glabel func_80006B1C
 .L80006B74:
 /* 7774 80006B74 0C0018D8 */  jal        func_80006360
 /* 7778 80006B78 30E4FFFF */   andi      $a0, $a3, 0xffff
-/* 777C 80006B7C 3C01800C */  lui        $at, %hi(D_800C5008)
+/* 777C 80006B7C 3C01800C */  lui        $at, %hi(gSaveSlotIndex)
 /* 7780 80006B80 8FBF0014 */  lw         $ra, 0x14($sp)
-/* 7784 80006B84 A0205008 */  sb         $zero, %lo(D_800C5008)($at)
+/* 7784 80006B84 A0205008 */  sb         $zero, %lo(gSaveSlotIndex)($at)
 /* 7788 80006B88 3C01800C */  lui        $at, %hi(gGameSubState)
 /* 778C 80006B8C 24080001 */  addiu      $t0, $zero, 1
 /* 7790 80006B90 A428E4F4 */  sh         $t0, %lo(gGameSubState)($at)
@@ -2225,8 +2225,8 @@ glabel func_80006EDC
 /* 7B28 80006F28 AD0A0488 */  sw         $t2, 0x488($t0)
 .L80006F2C:
 /* 7B2C 80006F2C 3C04800C */  lui        $a0, %hi(D_800C500C)
-/* 7B30 80006F30 3C03800C */  lui        $v1, %hi(D_800C5008)
-/* 7B34 80006F34 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7B30 80006F30 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
+/* 7B34 80006F34 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7B38 80006F38 9084500C */  lbu        $a0, %lo(D_800C500C)($a0)
 /* 7B3C 80006F3C 00000000 */  nop
 /* 7B40 80006F40 1083009F */  beq        $a0, $v1, .L800071C0
@@ -2264,9 +2264,9 @@ glabel func_80006EDC
 /* 7BBC 80006FBC 2407002B */  addiu      $a3, $zero, 0x2b
 /* 7BC0 80006FC0 0C009CFF */  jal        func_800273FC
 /* 7BC4 80006FC4 AFA00010 */   sw        $zero, 0x10($sp)
-/* 7BC8 80006FC8 3C03800C */  lui        $v1, %hi(D_800C5008)
+/* 7BC8 80006FC8 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
 /* 7BCC 80006FCC 3C08800F */  lui        $t0, %hi(gActors)
-/* 7BD0 80006FD0 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7BD0 80006FD0 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7BD4 80006FD4 1000002C */  b          .L80007088
 /* 7BD8 80006FD8 2508F510 */   addiu     $t0, $t0, %lo(gActors)
 .L80006FDC:
@@ -2292,9 +2292,9 @@ glabel func_80006EDC
 /* 7C28 80007028 3407FFE0 */  ori        $a3, $zero, 0xffe0
 /* 7C2C 8000702C 0C009CFF */  jal        func_800273FC
 /* 7C30 80007030 AFA00010 */   sw        $zero, 0x10($sp)
-/* 7C34 80007034 3C03800C */  lui        $v1, %hi(D_800C5008)
+/* 7C34 80007034 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
 /* 7C38 80007038 3C08800F */  lui        $t0, %hi(gActors)
-/* 7C3C 8000703C 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7C3C 8000703C 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7C40 80007040 10000011 */  b          .L80007088
 /* 7C44 80007044 2508F510 */   addiu     $t0, $t0, %lo(gActors)
 .L80007048:
@@ -2310,9 +2310,9 @@ glabel func_80006EDC
 /* 7C6C 8000706C AFA00018 */  sw         $zero, 0x18($sp)
 /* 7C70 80007070 0C009F10 */  jal        func_80027C40
 /* 7C74 80007074 AFA0001C */   sw        $zero, 0x1c($sp)
-/* 7C78 80007078 3C03800C */  lui        $v1, %hi(D_800C5008)
+/* 7C78 80007078 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
 /* 7C7C 8000707C 3C08800F */  lui        $t0, %hi(gActors)
-/* 7C80 80007080 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7C80 80007080 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7C84 80007084 2508F510 */  addiu      $t0, $t0, %lo(gActors)
 .L80007088:
 /* 7C88 80007088 10600009 */  beqz       $v1, .L800070B0
@@ -2348,9 +2348,9 @@ glabel func_80006EDC
 /* 7CFC 800070FC AFA00010 */  sw         $zero, 0x10($sp)
 /* 7D00 80007100 0C009D44 */  jal        func_80027510
 /* 7D04 80007104 E44443A8 */   swc1      $f4, 0x43a8($v0)
-/* 7D08 80007108 3C03800C */  lui        $v1, %hi(D_800C5008)
+/* 7D08 80007108 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
 /* 7D0C 8000710C 3C08800F */  lui        $t0, %hi(gActors)
-/* 7D10 80007110 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7D10 80007110 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7D14 80007114 1000002A */  b          .L800071C0
 /* 7D18 80007118 2508F510 */   addiu     $t0, $t0, %lo(gActors)
 .L8000711C:
@@ -2376,9 +2376,9 @@ glabel func_80006EDC
 /* 7D68 80007168 AFA00010 */  sw         $zero, 0x10($sp)
 /* 7D6C 8000716C 0C009D44 */  jal        func_80027510
 /* 7D70 80007170 E44643A8 */   swc1      $f6, 0x43a8($v0)
-/* 7D74 80007174 3C03800C */  lui        $v1, %hi(D_800C5008)
+/* 7D74 80007174 3C03800C */  lui        $v1, %hi(gSaveSlotIndex)
 /* 7D78 80007178 3C08800F */  lui        $t0, %hi(gActors)
-/* 7D7C 8000717C 90635008 */  lbu        $v1, %lo(D_800C5008)($v1)
+/* 7D7C 8000717C 90635008 */  lbu        $v1, %lo(gSaveSlotIndex)($v1)
 /* 7D80 80007180 1000000F */  b          .L800071C0
 /* 7D84 80007184 2508F510 */   addiu     $t0, $t0, %lo(gActors)
 .L80007188:
@@ -3138,7 +3138,7 @@ glabel func_80007C8C
 /* 88BC 80007CBC 01C00008 */  jr         $t6
 /* 88C0 80007CC0 00000000 */   nop
 glabel L80007CC4_88C4
-/* 88C4 80007CC4 0C001462 */  jal        func_80005188
+/* 88C4 80007CC4 0C001462 */  jal        GameSave_CheckAndWipe
 /* 88C8 80007CC8 00000000 */   nop
 /* 88CC 80007CCC 0C0018D8 */  jal        func_80006360
 /* 88D0 80007CD0 24040001 */   addiu     $a0, $zero, 1
@@ -3158,9 +3158,9 @@ glabel L80007CC4_88C4
 /* 8908 80007D08 241800FF */  addiu      $t8, $zero, 0xff
 /* 890C 80007D0C A03876B5 */  sb         $t8, %lo(D_801376B5)($at)
 /* 8910 80007D10 3C08800F */  lui        $t0, %hi(gActors)
-/* 8914 80007D14 3C01800C */  lui        $at, %hi(D_800C5008)
+/* 8914 80007D14 3C01800C */  lui        $at, %hi(gSaveSlotIndex)
 /* 8918 80007D18 2508F510 */  addiu      $t0, $t0, %lo(gActors)
-/* 891C 80007D1C A0205008 */  sb         $zero, %lo(D_800C5008)($at)
+/* 891C 80007D1C A0205008 */  sb         $zero, %lo(gSaveSlotIndex)($at)
 /* 8920 80007D20 AD000488 */  sw         $zero, 0x488($t0)
 /* 8924 80007D24 3C19800C */  lui        $t9, %hi(gGameSubState)
 /* 8928 80007D28 9739E4F4 */  lhu        $t9, %lo(gGameSubState)($t9)
@@ -3169,8 +3169,8 @@ glabel L80007CC4_88C4
 /* 8934 80007D34 100006FD */  b          L8000992C_A52C
 /* 8938 80007D38 A42BE4F4 */   sh        $t3, %lo(gGameSubState)($at)
 glabel L80007D3C_893C
-/* 893C 80007D3C 3C05800C */  lui        $a1, %hi(D_800C5008)
-/* 8940 80007D40 24A55008 */  addiu      $a1, $a1, %lo(D_800C5008)
+/* 893C 80007D3C 3C05800C */  lui        $a1, %hi(gSaveSlotIndex)
+/* 8940 80007D40 24A55008 */  addiu      $a1, $a1, %lo(gSaveSlotIndex)
 /* 8944 80007D44 90A60000 */  lbu        $a2, ($a1)
 /* 8948 80007D48 3C07800C */  lui        $a3, %hi(D_800C500C)
 /* 894C 80007D4C 24E7500C */  addiu      $a3, $a3, %lo(D_800C500C)
@@ -3270,8 +3270,8 @@ glabel L80007D3C_893C
 /* 8AAC 80007EAC 24010007 */  addiu      $at, $zero, 7
 /* 8AB0 80007EB0 15610081 */  bne        $t3, $at, .L800080B8
 /* 8AB4 80007EB4 3C06800C */   lui       $a2, 0x800c
-/* 8AB8 80007EB8 3C0C800C */  lui        $t4, %hi(D_800C5008)
-/* 8ABC 80007EBC 918C5008 */  lbu        $t4, %lo(D_800C5008)($t4)
+/* 8AB8 80007EB8 3C0C800C */  lui        $t4, %hi(gSaveSlotIndex)
+/* 8ABC 80007EBC 918C5008 */  lbu        $t4, %lo(gSaveSlotIndex)($t4)
 /* 8AC0 80007EC0 3C0E8017 */  lui        $t6, 0x8017
 /* 8AC4 80007EC4 000C6880 */  sll        $t5, $t4, 2
 /* 8AC8 80007EC8 01AC6823 */  subu       $t5, $t5, $t4
@@ -3323,10 +3323,10 @@ glabel L80007D3C_893C
 /* 8B78 80007F78 A478FD5C */  sh         $t8, -0x2a4($v1)
 /* 8B7C 80007F7C 8479FD58 */  lh         $t9, -0x2a8($v1)
 /* 8B80 80007F80 846BFD5C */  lh         $t3, -0x2a4($v1)
-/* 8B84 80007F84 3C04800C */  lui        $a0, %hi(D_800C5008)
+/* 8B84 80007F84 3C04800C */  lui        $a0, %hi(gSaveSlotIndex)
 /* 8B88 80007F88 A479FEF0 */  sh         $t9, -0x110($v1)
 /* 8B8C 80007F8C A46BFEF4 */  sh         $t3, -0x10c($v1)
-/* 8B90 80007F90 90845008 */  lbu        $a0, %lo(D_800C5008)($a0)
+/* 8B90 80007F90 90845008 */  lbu        $a0, %lo(gSaveSlotIndex)($a0)
 /* 8B94 80007F94 3050FFFF */  andi       $s0, $v0, 0xffff
 /* 8B98 80007F98 10800006 */  beqz       $a0, .L80007FB4
 /* 8B9C 80007F9C 3C05800C */   lui       $a1, 0x800c
@@ -3437,8 +3437,8 @@ glabel L80007D3C_893C
 /* 8D2C 8000812C AFA00010 */  sw         $zero, 0x10($sp)
 /* 8D30 80008130 0C009F10 */  jal        func_80027C40
 /* 8D34 80008134 AFA00014 */   sw        $zero, 0x14($sp)
-/* 8D38 80008138 3C01800C */  lui        $at, %hi(D_800C5008)
-/* 8D3C 8000813C A0205008 */  sb         $zero, %lo(D_800C5008)($at)
+/* 8D38 80008138 3C01800C */  lui        $at, %hi(gSaveSlotIndex)
+/* 8D3C 8000813C A0205008 */  sb         $zero, %lo(gSaveSlotIndex)($at)
 /* 8D40 80008140 0C001BB7 */  jal        func_80006EDC
 /* 8D44 80008144 24040001 */   addiu     $a0, $zero, 1
 /* 8D48 80008148 240B0007 */  addiu      $t3, $zero, 7
@@ -3450,8 +3450,8 @@ glabel L80007D3C_893C
 /* 8D5C 8000815C 01866023 */  subu       $t4, $t4, $a2
 /* 8D60 80008160 000C6080 */  sll        $t4, $t4, 2
 /* 8D64 80008164 01866023 */  subu       $t4, $t4, $a2
-/* 8D68 80008168 3C0D8017 */  lui        $t5, %hi(D_80171AA0)
-/* 8D6C 8000816C 25AD1AA0 */  addiu      $t5, $t5, %lo(D_80171AA0)
+/* 8D68 80008168 3C0D8017 */  lui        $t5, %hi(GameSave_Names)
+/* 8D6C 8000816C 25AD1AA0 */  addiu      $t5, $t5, %lo(GameSave_Names)
 /* 8D70 80008170 000C6040 */  sll        $t4, $t4, 1
 /* 8D74 80008174 3C06800C */  lui        $a2, %hi(D_800C4FA8)
 /* 8D78 80008178 24C64FA8 */  addiu      $a2, $a2, %lo(D_800C4FA8)
@@ -3692,7 +3692,7 @@ glabel L80008498_9098
 /* 90EC 800084EC 24CFFFFF */  addiu      $t7, $a2, -1
 /* 90F0 800084F0 1080050E */  beqz       $a0, L8000992C_A52C
 /* 90F4 800084F4 A52F0000 */   sh        $t7, ($t1)
-/* 90F8 800084F8 0C00160A */  jal        func_80005828
+/* 90F8 800084F8 0C00160A */  jal        GameSave_Erase
 /* 90FC 800084FC 00000000 */   nop
 /* 9100 80008500 0C001AC7 */  jal        func_80006B1C
 /* 9104 80008504 24040001 */   addiu     $a0, $zero, 1
@@ -4988,8 +4988,8 @@ glabel L8000966C_A26C
 /* A3B0 800097B0 24CEFFFF */  addiu      $t6, $a2, -1
 /* A3B4 800097B4 1480005D */  bnez       $a0, L8000992C_A52C
 /* A3B8 800097B8 A52E0000 */   sh        $t6, ($t1)
-/* A3BC 800097BC 3C06800C */  lui        $a2, %hi(D_800C5008)
-/* A3C0 800097C0 90C65008 */  lbu        $a2, %lo(D_800C5008)($a2)
+/* A3BC 800097BC 3C06800C */  lui        $a2, %hi(gSaveSlotIndex)
+/* A3C0 800097C0 90C65008 */  lbu        $a2, %lo(gSaveSlotIndex)($a2)
 /* A3C4 800097C4 3C0F8017 */  lui        $t7, 0x8017
 /* A3C8 800097C8 00066880 */  sll        $t5, $a2, 2
 /* A3CC 800097CC 01A66823 */  subu       $t5, $t5, $a2
@@ -5017,20 +5017,20 @@ glabel L8000966C_A26C
 /* A420 80009820 3C03800C */  lui        $v1, %hi(D_800C5004)
 /* A424 80009824 24635004 */  addiu      $v1, $v1, %lo(D_800C5004)
 /* A428 80009828 906E0000 */  lbu        $t6, ($v1)
-/* A42C 8000982C 3C018017 */  lui        $at, %hi(D_80171ACC)
+/* A42C 8000982C 3C018017 */  lui        $at, %hi(GameSave_Age)
 /* A430 80009830 00260821 */  addu       $at, $at, $a2
-/* A434 80009834 A02E1ACC */  sb         $t6, %lo(D_80171ACC)($at)
-/* A438 80009838 3C018017 */  lui        $at, %hi(D_80171ACE)
+/* A434 80009834 A02E1ACC */  sb         $t6, %lo(GameSave_Age)($at)
+/* A438 80009838 3C018017 */  lui        $at, %hi(GameSave_Sex)
 /* A43C 8000983C 00260821 */  addu       $at, $at, $a2
-/* A440 80009840 A0241ACE */  sb         $a0, %lo(D_80171ACE)($at)
-/* A444 80009844 3C018017 */  lui        $at, %hi(D_80171AD0)
+/* A440 80009840 A0241ACE */  sb         $a0, %lo(GameSave_Sex)($at)
+/* A444 80009844 3C018017 */  lui        $at, %hi(GameSave_RedGems)
 /* A448 80009848 00061040 */  sll        $v0, $a2, 1
 /* A44C 8000984C 2410001E */  addiu      $s0, $zero, 0x1e
 /* A450 80009850 00220821 */  addu       $at, $at, $v0
-/* A454 80009854 A4301AD0 */  sh         $s0, %lo(D_80171AD0)($at)
-/* A458 80009858 3C018017 */  lui        $at, %hi(D_80171AD4)
+/* A454 80009854 A4301AD0 */  sh         $s0, %lo(GameSave_RedGems)($at)
+/* A458 80009858 3C018017 */  lui        $at, %hi(GameSave_YellowGems)
 /* A45C 8000985C 00220821 */  addu       $at, $at, $v0
-/* A460 80009860 A4201AD4 */  sh         $zero, %lo(D_80171AD4)($at)
+/* A460 80009860 A4201AD4 */  sh         $zero, %lo(GameSave_YellowGems)($at)
 /* A464 80009864 3C018017 */  lui        $at, %hi(D_80171ADC)
 /* A468 80009868 000678C0 */  sll        $t7, $a2, 3
 /* A46C 8000986C 002F0821 */  addu       $at, $at, $t7
@@ -5068,12 +5068,12 @@ glabel L800098A8_A4A8
 /* A4E4 800098E4 A52E0000 */   sh        $t6, ($t1)
 /* A4E8 800098E8 0C001597 */  jal        func_8000565C
 /* A4EC 800098EC 00000000 */   nop
-/* A4F0 800098F0 3C06800C */  lui        $a2, %hi(D_800C5008)
-/* A4F4 800098F4 90C65008 */  lbu        $a2, %lo(D_800C5008)($a2)
-/* A4F8 800098F8 3C0D8017 */  lui        $t5, %hi(D_80171AD0)
+/* A4F0 800098F0 3C06800C */  lui        $a2, %hi(gSaveSlotIndex)
+/* A4F4 800098F4 90C65008 */  lbu        $a2, %lo(gSaveSlotIndex)($a2)
+/* A4F8 800098F8 3C0D8017 */  lui        $t5, %hi(GameSave_RedGems)
 /* A4FC 800098FC 00066040 */  sll        $t4, $a2, 1
 /* A500 80009900 01AC6821 */  addu       $t5, $t5, $t4
-/* A504 80009904 95AD1AD0 */  lhu        $t5, %lo(D_80171AD0)($t5)
+/* A504 80009904 95AD1AD0 */  lhu        $t5, %lo(GameSave_RedGems)($t5)
 /* A508 80009908 3C198017 */  lui        $t9, %hi(D_80171ADC)
 /* A50C 8000990C 000678C0 */  sll        $t7, $a2, 3
 /* A510 80009910 3C018018 */  lui        $at, %hi(gRedGems)

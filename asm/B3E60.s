@@ -54,7 +54,7 @@ glabel guNormalize
 /* B3F08 800B3308 03E00008 */  jr         $ra
 /* B3F0C 800B330C 00000000 */   nop
 
-glabel _Printf
+glabel _Putfld
 /* B3F10 800B3310 27BDFF58 */  addiu      $sp, $sp, -0xa8
 /* B3F14 800B3314 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B3F18 800B3318 AFA400A8 */  sw         $a0, 0xa8($sp)
@@ -1322,7 +1322,7 @@ glabel func_800B3BA4
 /* B5148 800B4548 03E00008 */  jr         $ra
 /* B514C 800B454C 27BD0038 */   addiu     $sp, $sp, 0x38
 
-glabel func_800B4550
+glabel __osDefaultHandler
 /* B5150 800B4550 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* B5154 800B4554 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B5158 800B4558 AFA40020 */  sw         $a0, 0x20($sp)
@@ -1349,7 +1349,7 @@ glabel func_800B4550
 /* B51A8 800B45A8 03E00008 */  jr         $ra
 /* B51AC 800B45AC 00000000 */   nop
 
-glabel func_800B45B0
+glabel string_to_u32
 /* B51B0 800B45B0 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B51B4 800B45B4 908E0000 */  lbu        $t6, ($a0)
 /* B51B8 800B45B8 31CF00FF */  andi       $t7, $t6, 0xff
@@ -1380,7 +1380,7 @@ glabel func_800B45B0
 /* B5218 800B4618 03E00008 */  jr         $ra
 /* B521C 800B461C 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800B4620
+glabel send_packet
 /* B5220 800B4620 27BDFFF8 */  addiu      $sp, $sp, -8
 /* B5224 800B4624 93AE0004 */  lbu        $t6, 4($sp)
 /* B5228 800B4628 31CFFF03 */  andi       $t7, $t6, 0xff03
@@ -1416,7 +1416,7 @@ glabel func_800B4620
 /* B5294 800B4694 03E00008 */  jr         $ra
 /* B5298 800B4698 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_800B469C
+glabel clear_IP6
 /* B529C 800B469C 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B52A0 800B46A0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B52A4 800B46A4 0C02E994 */  jal        __osGetCause
@@ -1453,7 +1453,7 @@ glabel func_800B469C
 /* B530C 800B470C 03E00008 */  jr         $ra
 /* B5310 800B4710 00000000 */   nop
 
-glabel func_800B4714
+glabel send
 /* B5314 800B4714 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B5318 800B4718 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B531C 800B471C AFA40028 */  sw         $a0, 0x28($sp)
@@ -1463,7 +1463,7 @@ glabel func_800B4714
 /* B532C 800B472C 8DCEA640 */  lw         $t6, %lo(__osRdb_IP6_Empty)($t6)
 /* B5330 800B4730 15C00005 */  bnez       $t6, .L800B4748
 /* B5334 800B4734 00000000 */   nop
-/* B5338 800B4738 0C02D1A7 */  jal        func_800B469C
+/* B5338 800B4738 0C02D1A7 */  jal        clear_IP6
 /* B533C 800B473C 00000000 */   nop
 /* B5340 800B4740 10000003 */  b          .L800B4750
 /* B5344 800B4744 AFA0001C */   sw        $zero, 0x1c($sp)
@@ -1488,7 +1488,7 @@ glabel func_800B4714
 /* B537C 800B477C 8FA90028 */  lw         $t1, 0x28($sp)
 /* B5380 800B4780 8FAA0020 */  lw         $t2, 0x20($sp)
 /* B5384 800B4784 8FA50024 */  lw         $a1, 0x24($sp)
-/* B5388 800B4788 0C02D188 */  jal        func_800B4620
+/* B5388 800B4788 0C02D188 */  jal        send_packet
 /* B538C 800B478C 012A2021 */   addu      $a0, $t1, $t2
 /* B5390 800B4790 8FAB002C */  lw         $t3, 0x2c($sp)
 /* B5394 800B4794 8FAC0024 */  lw         $t4, 0x24($sp)
@@ -1501,7 +1501,7 @@ glabel func_800B4714
 /* B53B0 800B47B0 8FB9002C */  lw         $t9, 0x2c($sp)
 /* B53B4 800B47B4 13200003 */  beqz       $t9, .L800B47C4
 /* B53B8 800B47B8 00000000 */   nop
-/* B53BC 800B47BC 0C02D1A7 */  jal        func_800B469C
+/* B53BC 800B47BC 0C02D1A7 */  jal        clear_IP6
 /* B53C0 800B47C0 00000000 */   nop
 .L800B47C4:
 /* B53C4 800B47C4 8FA8002C */  lw         $t0, 0x2c($sp)
@@ -1511,7 +1511,7 @@ glabel func_800B4714
 /* B53D0 800B47D0 8FA9001C */  lw         $t1, 0x1c($sp)
 /* B53D4 800B47D4 11200003 */  beqz       $t1, .L800B47E4
 /* B53D8 800B47D8 00000000 */   nop
-/* B53DC 800B47DC 0C02D1A7 */  jal        func_800B469C
+/* B53DC 800B47DC 0C02D1A7 */  jal        clear_IP6
 /* B53E0 800B47E0 00000000 */   nop
 .L800B47E4:
 /* B53E4 800B47E4 10000001 */  b          .L800B47EC
@@ -1529,25 +1529,25 @@ glabel kdebugserver
 /* B5408 800B4808 AFA00024 */  sw         $zero, 0x24($sp)
 .L800B480C:
 /* B540C 800B480C 8FAE0024 */  lw         $t6, 0x24($sp)
-/* B5410 800B4810 3C18800F */  lui        $t8, %hi(kdebugserver_data_0000)
-/* B5414 800B4814 8F18AA90 */  lw         $t8, %lo(kdebugserver_data_0000)($t8)
+/* B5410 800B4810 3C18800F */  lui        $t8, %hi(numChars)
+/* B5414 800B4814 8F18AA90 */  lw         $t8, %lo(numChars)($t8)
 /* B5418 800B4818 03AE7821 */  addu       $t7, $sp, $t6
 /* B541C 800B481C 91EF0029 */  lbu        $t7, 0x29($t7)
-/* B5420 800B4820 3C19800F */  lui        $t9, %hi(kdebugserver_data_0000)
-/* B5424 800B4824 8F39AA90 */  lw         $t9, %lo(kdebugserver_data_0000)($t9)
-/* B5428 800B4828 3C018019 */  lui        $at, %hi(kdebugserver_bss_01B0)
+/* B5420 800B4820 3C19800F */  lui        $t9, %hi(numChars)
+/* B5424 800B4824 8F39AA90 */  lw         $t9, %lo(numChars)($t9)
+/* B5428 800B4828 3C018019 */  lui        $at, %hi(buffer)
 /* B542C 800B482C 00380821 */  addu       $at, $at, $t8
-/* B5430 800B4830 A02FA700 */  sb         $t7, %lo(kdebugserver_bss_01B0)($at)
-/* B5434 800B4834 3C01800F */  lui        $at, %hi(kdebugserver_data_0000)
+/* B5430 800B4830 A02FA700 */  sb         $t7, %lo(buffer)($at)
+/* B5434 800B4834 3C01800F */  lui        $at, %hi(numChars)
 /* B5438 800B4838 27280001 */  addiu      $t0, $t9, 1
-/* B543C 800B483C AC28AA90 */  sw         $t0, %lo(kdebugserver_data_0000)($at)
+/* B543C 800B483C AC28AA90 */  sw         $t0, %lo(numChars)($at)
 /* B5440 800B4840 8FA90024 */  lw         $t1, 0x24($sp)
 /* B5444 800B4844 252A0001 */  addiu      $t2, $t1, 1
 /* B5448 800B4848 2D410003 */  sltiu      $at, $t2, 3
 /* B544C 800B484C 1420FFEF */  bnez       $at, .L800B480C
 /* B5450 800B4850 AFAA0024 */   sw        $t2, 0x24($sp)
-/* B5454 800B4854 3C0B8019 */  lui        $t3, %hi(kdebugserver_bss_01B0)
-/* B5458 800B4858 256BA700 */  addiu      $t3, $t3, %lo(kdebugserver_bss_01B0)
+/* B5454 800B4854 3C0B8019 */  lui        $t3, %hi(buffer)
+/* B5458 800B4858 256BA700 */  addiu      $t3, $t3, %lo(buffer)
 /* B545C 800B485C 916C0000 */  lbu        $t4, ($t3)
 /* B5460 800B4860 24010002 */  addiu      $at, $zero, 2
 /* B5464 800B4864 15810009 */  bne        $t4, $at, .L800B488C
@@ -1555,38 +1555,38 @@ glabel kdebugserver
 /* B546C 800B486C 3C04800F */  lui        $a0, %hi(__osRunningThread)
 /* B5470 800B4870 8C84A610 */  lw         $a0, %lo(__osRunningThread)($a0)
 /* B5474 800B4874 24050190 */  addiu      $a1, $zero, 0x190
-/* B5478 800B4878 0C02D1C5 */  jal        func_800B4714
+/* B5478 800B4878 0C02D1C5 */  jal        send
 /* B547C 800B487C 24840020 */   addiu     $a0, $a0, 0x20
-/* B5480 800B4880 3C01800F */  lui        $at, %hi(kdebugserver_data_0000)
+/* B5480 800B4880 3C01800F */  lui        $at, %hi(numChars)
 /* B5484 800B4884 1000001B */  b          .L800B48F4
-/* B5488 800B4888 AC20AA90 */   sw        $zero, %lo(kdebugserver_data_0000)($at)
+/* B5488 800B4888 AC20AA90 */   sw        $zero, %lo(numChars)($at)
 .L800B488C:
-/* B548C 800B488C 3C0D800F */  lui        $t5, %hi(kdebugserver_data_0000)
-/* B5490 800B4890 8DADAA90 */  lw         $t5, %lo(kdebugserver_data_0000)($t5)
+/* B548C 800B488C 3C0D800F */  lui        $t5, %hi(numChars)
+/* B5490 800B4890 8DADAA90 */  lw         $t5, %lo(numChars)($t5)
 /* B5494 800B4894 2DA10009 */  sltiu      $at, $t5, 9
 /* B5498 800B4898 14200016 */  bnez       $at, .L800B48F4
 /* B549C 800B489C 00000000 */   nop
-/* B54A0 800B48A0 3C0E8019 */  lui        $t6, %hi(kdebugserver_bss_01B0)
-/* B54A4 800B48A4 25CEA700 */  addiu      $t6, $t6, %lo(kdebugserver_bss_01B0)
+/* B54A0 800B48A0 3C0E8019 */  lui        $t6, %hi(buffer)
+/* B54A4 800B48A4 25CEA700 */  addiu      $t6, $t6, %lo(buffer)
 /* B54A8 800B48A8 91CF0000 */  lbu        $t7, ($t6)
 /* B54AC 800B48AC 24010001 */  addiu      $at, $zero, 1
 /* B54B0 800B48B0 15E10010 */  bne        $t7, $at, .L800B48F4
 /* B54B4 800B48B4 00000000 */   nop
-/* B54B8 800B48B8 3C048019 */  lui        $a0, %hi(kdebugserver_bss_01B0)
-/* B54BC 800B48BC 2484A700 */  addiu      $a0, $a0, %lo(kdebugserver_bss_01B0)
-/* B54C0 800B48C0 0C02D16C */  jal        func_800B45B0
+/* B54B8 800B48B8 3C048019 */  lui        $a0, %hi(buffer)
+/* B54BC 800B48BC 2484A700 */  addiu      $a0, $a0, %lo(buffer)
+/* B54C0 800B48C0 0C02D16C */  jal        string_to_u32
 /* B54C4 800B48C4 24840001 */   addiu     $a0, $a0, 1
 /* B54C8 800B48C8 AFA2001C */  sw         $v0, 0x1c($sp)
-/* B54CC 800B48CC 3C048019 */  lui        $a0, %hi(kdebugserver_bss_01B0)
-/* B54D0 800B48D0 2484A700 */  addiu      $a0, $a0, %lo(kdebugserver_bss_01B0)
-/* B54D4 800B48D4 0C02D16C */  jal        func_800B45B0
+/* B54CC 800B48CC 3C048019 */  lui        $a0, %hi(buffer)
+/* B54D0 800B48D0 2484A700 */  addiu      $a0, $a0, %lo(buffer)
+/* B54D4 800B48D4 0C02D16C */  jal        string_to_u32
 /* B54D8 800B48D8 24840005 */   addiu     $a0, $a0, 5
 /* B54DC 800B48DC AFA20020 */  sw         $v0, 0x20($sp)
 /* B54E0 800B48E0 8FA4001C */  lw         $a0, 0x1c($sp)
-/* B54E4 800B48E4 0C02D1C5 */  jal        func_800B4714
+/* B54E4 800B48E4 0C02D1C5 */  jal        send
 /* B54E8 800B48E8 8FA50020 */   lw        $a1, 0x20($sp)
-/* B54EC 800B48EC 3C01800F */  lui        $at, %hi(kdebugserver_data_0000)
-/* B54F0 800B48F0 AC20AA90 */  sw         $zero, %lo(kdebugserver_data_0000)($at)
+/* B54EC 800B48EC 3C01800F */  lui        $at, %hi(numChars)
+/* B54F0 800B48F0 AC20AA90 */  sw         $zero, %lo(numChars)($at)
 .L800B48F4:
 /* B54F4 800B48F4 10000001 */  b          .L800B48FC
 /* B54F8 800B48F8 00000000 */   nop

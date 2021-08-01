@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B5990
+glabel LoadStoreSU
 /* B6590 800B5990 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* B6594 800B5994 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B6598 800B5998 AFA40020 */  sw         $a0, 0x20($sp)
@@ -45,7 +45,7 @@ glabel func_800B5990
 /* B6614 800B5A14 03E00008 */  jr         $ra
 /* B6618 800B5A18 00000000 */   nop
 
-glabel func_800B5A1C
+glabel LoadStoreVU
 /* B661C 800B5A1C 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* B6620 800B5A20 AFBF0014 */  sw         $ra, 0x14($sp)
 /* B6624 800B5A24 AFA40020 */  sw         $a0, 0x20($sp)
@@ -87,23 +87,23 @@ glabel func_800B5A1C
 /* B66B0 800B5AB0 03E00008 */  jr         $ra
 /* B66B4 800B5AB4 00000000 */   nop
 
-glabel func_800B5AB8
+glabel SetUpForRCPop
 /* B66B8 800B5AB8 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B66BC 800B5ABC AFBF0014 */  sw         $ra, 0x14($sp)
 /* B66C0 800B5AC0 AFA40018 */  sw         $a0, 0x18($sp)
 /* B66C4 800B5AC4 0C02A45C */  jal        __rmonReadWordAt
 /* B66C8 800B5AC8 3C040408 */   lui       $a0, 0x408
-/* B66CC 800B5ACC 3C018019 */  lui        $at, %hi(D_8018B760)
-/* B66D0 800B5AD0 AC22B760 */  sw         $v0, %lo(D_8018B760)($at)
+/* B66CC 800B5ACC 3C018019 */  lui        $at, %hi(RCPpc)
+/* B66D0 800B5AD0 AC22B760 */  sw         $v0, %lo(RCPpc)($at)
 /* B66D4 800B5AD4 3C040400 */  lui        $a0, 0x400
 /* B66D8 800B5AD8 0C02A45C */  jal        __rmonReadWordAt
 /* B66DC 800B5ADC 34841000 */   ori       $a0, $a0, 0x1000
-/* B66E0 800B5AE0 3C018019 */  lui        $at, %hi(D_8018B764)
-/* B66E4 800B5AE4 AC22B764 */  sw         $v0, %lo(D_8018B764)($at)
+/* B66E0 800B5AE0 3C018019 */  lui        $at, %hi(oldIMEMvalue)
+/* B66E4 800B5AE4 AC22B764 */  sw         $v0, %lo(oldIMEMvalue)($at)
 /* B66E8 800B5AE8 0C02A45C */  jal        __rmonReadWordAt
 /* B66EC 800B5AEC 3C040400 */   lui       $a0, 0x400
-/* B66F0 800B5AF0 3C0E8019 */  lui        $t6, %hi(D_8018B768)
-/* B66F4 800B5AF4 25CEB768 */  addiu      $t6, $t6, %lo(D_8018B768)
+/* B66F0 800B5AF0 3C0E8019 */  lui        $t6, %hi(DMEMbuffer)
+/* B66F4 800B5AF4 25CEB768 */  addiu      $t6, $t6, %lo(DMEMbuffer)
 /* B66F8 800B5AF8 ADC20000 */  sw         $v0, ($t6)
 /* B66FC 800B5AFC 8FAF0018 */  lw         $t7, 0x18($sp)
 /* B6700 800B5B00 11E00013 */  beqz       $t7, .L800B5B50
@@ -111,20 +111,20 @@ glabel func_800B5AB8
 /* B6708 800B5B08 3C040400 */  lui        $a0, 0x400
 /* B670C 800B5B0C 0C02A45C */  jal        __rmonReadWordAt
 /* B6710 800B5B10 34840004 */   ori       $a0, $a0, 4
-/* B6714 800B5B14 3C188019 */  lui        $t8, %hi(D_8018B768)
-/* B6718 800B5B18 2718B768 */  addiu      $t8, $t8, %lo(D_8018B768)
+/* B6714 800B5B14 3C188019 */  lui        $t8, %hi(DMEMbuffer)
+/* B6718 800B5B18 2718B768 */  addiu      $t8, $t8, %lo(DMEMbuffer)
 /* B671C 800B5B1C AF020004 */  sw         $v0, 4($t8)
 /* B6720 800B5B20 3C040400 */  lui        $a0, 0x400
 /* B6724 800B5B24 0C02A45C */  jal        __rmonReadWordAt
 /* B6728 800B5B28 34840008 */   ori       $a0, $a0, 8
-/* B672C 800B5B2C 3C198019 */  lui        $t9, %hi(D_8018B768)
-/* B6730 800B5B30 2739B768 */  addiu      $t9, $t9, %lo(D_8018B768)
+/* B672C 800B5B2C 3C198019 */  lui        $t9, %hi(DMEMbuffer)
+/* B6730 800B5B30 2739B768 */  addiu      $t9, $t9, %lo(DMEMbuffer)
 /* B6734 800B5B34 AF220008 */  sw         $v0, 8($t9)
 /* B6738 800B5B38 3C040400 */  lui        $a0, 0x400
 /* B673C 800B5B3C 0C02A45C */  jal        __rmonReadWordAt
 /* B6740 800B5B40 3484000C */   ori       $a0, $a0, 0xc
-/* B6744 800B5B44 3C088019 */  lui        $t0, %hi(D_8018B768)
-/* B6748 800B5B48 2508B768 */  addiu      $t0, $t0, %lo(D_8018B768)
+/* B6744 800B5B44 3C088019 */  lui        $t0, %hi(DMEMbuffer)
+/* B6748 800B5B48 2508B768 */  addiu      $t0, $t0, %lo(DMEMbuffer)
 /* B674C 800B5B4C AD02000C */  sw         $v0, 0xc($t0)
 .L800B5B50:
 /* B6750 800B5B50 10000001 */  b          .L800B5B58
@@ -135,44 +135,44 @@ glabel func_800B5AB8
 /* B6760 800B5B60 03E00008 */  jr         $ra
 /* B6764 800B5B64 00000000 */   nop
 
-glabel func_800B5B68
+glabel CleanupFromRCPop
 /* B6768 800B5B68 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* B676C 800B5B6C AFBF0014 */  sw         $ra, 0x14($sp)
 /* B6770 800B5B70 AFA40018 */  sw         $a0, 0x18($sp)
-/* B6774 800B5B74 3C0E8019 */  lui        $t6, %hi(D_8018B768)
-/* B6778 800B5B78 25CEB768 */  addiu      $t6, $t6, %lo(D_8018B768)
+/* B6774 800B5B74 3C0E8019 */  lui        $t6, %hi(DMEMbuffer)
+/* B6778 800B5B78 25CEB768 */  addiu      $t6, $t6, %lo(DMEMbuffer)
 /* B677C 800B5B7C 8DC50000 */  lw         $a1, ($t6)
 /* B6780 800B5B80 0C02A448 */  jal        __rmonWriteWordTo
 /* B6784 800B5B84 3C040400 */   lui       $a0, 0x400
 /* B6788 800B5B88 8FAF0018 */  lw         $t7, 0x18($sp)
 /* B678C 800B5B8C 11E00013 */  beqz       $t7, .L800B5BDC
 /* B6790 800B5B90 00000000 */   nop
-/* B6794 800B5B94 3C188019 */  lui        $t8, %hi(D_8018B768)
-/* B6798 800B5B98 2718B768 */  addiu      $t8, $t8, %lo(D_8018B768)
+/* B6794 800B5B94 3C188019 */  lui        $t8, %hi(DMEMbuffer)
+/* B6798 800B5B98 2718B768 */  addiu      $t8, $t8, %lo(DMEMbuffer)
 /* B679C 800B5B9C 3C040400 */  lui        $a0, 0x400
 /* B67A0 800B5BA0 34840004 */  ori        $a0, $a0, 4
 /* B67A4 800B5BA4 0C02A448 */  jal        __rmonWriteWordTo
 /* B67A8 800B5BA8 8F050004 */   lw        $a1, 4($t8)
-/* B67AC 800B5BAC 3C198019 */  lui        $t9, %hi(D_8018B768)
-/* B67B0 800B5BB0 2739B768 */  addiu      $t9, $t9, %lo(D_8018B768)
+/* B67AC 800B5BAC 3C198019 */  lui        $t9, %hi(DMEMbuffer)
+/* B67B0 800B5BB0 2739B768 */  addiu      $t9, $t9, %lo(DMEMbuffer)
 /* B67B4 800B5BB4 3C040400 */  lui        $a0, 0x400
 /* B67B8 800B5BB8 34840008 */  ori        $a0, $a0, 8
 /* B67BC 800B5BBC 0C02A448 */  jal        __rmonWriteWordTo
 /* B67C0 800B5BC0 8F250008 */   lw        $a1, 8($t9)
-/* B67C4 800B5BC4 3C088019 */  lui        $t0, %hi(D_8018B768)
-/* B67C8 800B5BC8 2508B768 */  addiu      $t0, $t0, %lo(D_8018B768)
+/* B67C4 800B5BC4 3C088019 */  lui        $t0, %hi(DMEMbuffer)
+/* B67C8 800B5BC8 2508B768 */  addiu      $t0, $t0, %lo(DMEMbuffer)
 /* B67CC 800B5BCC 3C040400 */  lui        $a0, 0x400
 /* B67D0 800B5BD0 3484000C */  ori        $a0, $a0, 0xc
 /* B67D4 800B5BD4 0C02A448 */  jal        __rmonWriteWordTo
 /* B67D8 800B5BD8 8D050008 */   lw        $a1, 8($t0)
 .L800B5BDC:
 /* B67DC 800B5BDC 3C040400 */  lui        $a0, 0x400
-/* B67E0 800B5BE0 3C058019 */  lui        $a1, %hi(D_8018B764)
-/* B67E4 800B5BE4 8CA5B764 */  lw         $a1, %lo(D_8018B764)($a1)
+/* B67E0 800B5BE0 3C058019 */  lui        $a1, %hi(oldIMEMvalue)
+/* B67E4 800B5BE4 8CA5B764 */  lw         $a1, %lo(oldIMEMvalue)($a1)
 /* B67E8 800B5BE8 0C02A448 */  jal        __rmonWriteWordTo
 /* B67EC 800B5BEC 34841000 */   ori       $a0, $a0, 0x1000
-/* B67F0 800B5BF0 3C058019 */  lui        $a1, %hi(D_8018B760)
-/* B67F4 800B5BF4 8CA5B760 */  lw         $a1, %lo(D_8018B760)($a1)
+/* B67F0 800B5BF0 3C058019 */  lui        $a1, %hi(RCPpc)
+/* B67F4 800B5BF4 8CA5B760 */  lw         $a1, %lo(RCPpc)($a1)
 /* B67F8 800B5BF8 0C02A448 */  jal        __rmonWriteWordTo
 /* B67FC 800B5BFC 3C040408 */   lui       $a0, 0x408
 /* B6800 800B5C00 10000001 */  b          .L800B5C08
@@ -500,17 +500,17 @@ glabel func_800B6068
 /* B6C84 800B6084 10000011 */  b          .L800B60CC
 /* B6C88 800B6088 00001025 */   or        $v0, $zero, $zero
 .L800B608C:
-/* B6C8C 800B608C 0C02D6AE */  jal        func_800B5AB8
+/* B6C8C 800B608C 0C02D6AE */  jal        SetUpForRCPop
 /* B6C90 800B6090 00002025 */   or        $a0, $zero, $zero
 /* B6C94 800B6094 2404002B */  addiu      $a0, $zero, 0x2b
-/* B6C98 800B6098 0C02D664 */  jal        func_800B5990
+/* B6C98 800B6098 0C02D664 */  jal        LoadStoreSU
 /* B6C9C 800B609C 8FA50020 */   lw        $a1, 0x20($sp)
 /* B6CA0 800B60A0 0C02E9B2 */  jal        __rmonStepRCP
 /* B6CA4 800B60A4 00000000 */   nop
 /* B6CA8 800B60A8 0C02A45C */  jal        __rmonReadWordAt
 /* B6CAC 800B60AC 3C040400 */   lui       $a0, 0x400
 /* B6CB0 800B60B0 AFA2001C */  sw         $v0, 0x1c($sp)
-/* B6CB4 800B60B4 0C02D6DA */  jal        func_800B5B68
+/* B6CB4 800B60B4 0C02D6DA */  jal        CleanupFromRCPop
 /* B6CB8 800B60B8 00002025 */   or        $a0, $zero, $zero
 /* B6CBC 800B60BC 10000003 */  b          .L800B60CC
 /* B6CC0 800B60C0 8FA2001C */   lw        $v0, 0x1c($sp)
@@ -541,7 +541,7 @@ glabel __rmonGetSRegs
 /* B6D14 800B6114 920F0004 */  lbu        $t7, 4($s0)
 /* B6D18 800B6118 A3AF0028 */  sb         $t7, 0x28($sp)
 /* B6D1C 800B611C A7A0002A */  sh         $zero, 0x2a($sp)
-/* B6D20 800B6120 0C02D6AE */  jal        func_800B5AB8
+/* B6D20 800B6120 0C02D6AE */  jal        SetUpForRCPop
 /* B6D24 800B6124 00002025 */   or        $a0, $zero, $zero
 /* B6D28 800B6128 00008825 */  or         $s1, $zero, $zero
 /* B6D2C 800B612C 2A210020 */  slti       $at, $s1, 0x20
@@ -549,7 +549,7 @@ glabel __rmonGetSRegs
 /* B6D34 800B6134 00000000 */   nop
 .L800B6138:
 /* B6D38 800B6138 2404002B */  addiu      $a0, $zero, 0x2b
-/* B6D3C 800B613C 0C02D664 */  jal        func_800B5990
+/* B6D3C 800B613C 0C02D664 */  jal        LoadStoreSU
 /* B6D40 800B6140 02202825 */   or        $a1, $s1, $zero
 /* B6D44 800B6144 0C02E9B2 */  jal        __rmonStepRCP
 /* B6D48 800B6148 00000000 */   nop
@@ -563,7 +563,7 @@ glabel __rmonGetSRegs
 /* B6D68 800B6168 1420FFF3 */  bnez       $at, .L800B6138
 /* B6D6C 800B616C 00000000 */   nop
 .L800B6170:
-/* B6D70 800B6170 0C02D6DA */  jal        func_800B5B68
+/* B6D70 800B6170 0C02D6DA */  jal        CleanupFromRCPop
 /* B6D74 800B6174 00002025 */   or        $a0, $zero, $zero
 /* B6D78 800B6178 3C040404 */  lui        $a0, 0x404
 /* B6D7C 800B617C 0C02A45C */  jal        __rmonReadWordAt
@@ -635,7 +635,7 @@ glabel __rmonSetSRegs
 /* B6E78 800B6278 10000038 */  b          .L800B635C
 /* B6E7C 800B627C 2402FFFC */   addiu     $v0, $zero, -4
 .L800B6280:
-/* B6E80 800B6280 0C02D6AE */  jal        func_800B5AB8
+/* B6E80 800B6280 0C02D6AE */  jal        SetUpForRCPop
 /* B6E84 800B6284 00002025 */   or        $a0, $zero, $zero
 /* B6E88 800B6288 00008825 */  or         $s1, $zero, $zero
 /* B6E8C 800B628C 2A210020 */  slti       $at, $s1, 0x20
@@ -648,7 +648,7 @@ glabel __rmonSetSRegs
 /* B6EA4 800B62A4 0C02A448 */  jal        __rmonWriteWordTo
 /* B6EA8 800B62A8 3C040400 */   lui       $a0, 0x400
 /* B6EAC 800B62AC 24040023 */  addiu      $a0, $zero, 0x23
-/* B6EB0 800B62B0 0C02D664 */  jal        func_800B5990
+/* B6EB0 800B62B0 0C02D664 */  jal        LoadStoreSU
 /* B6EB4 800B62B4 02202825 */   or        $a1, $s1, $zero
 /* B6EB8 800B62B8 0C02E9B2 */  jal        __rmonStepRCP
 /* B6EBC 800B62BC 00000000 */   nop
@@ -657,7 +657,7 @@ glabel __rmonSetSRegs
 /* B6EC8 800B62C8 1420FFF3 */  bnez       $at, .L800B6298
 /* B6ECC 800B62CC 00000000 */   nop
 .L800B62D0:
-/* B6ED0 800B62D0 0C02D6DA */  jal        func_800B5B68
+/* B6ED0 800B62D0 0C02D6DA */  jal        CleanupFromRCPop
 /* B6ED4 800B62D4 00002025 */   or        $a0, $zero, $zero
 /* B6ED8 800B62D8 3C040404 */  lui        $a0, 0x404
 /* B6EDC 800B62DC 34840004 */  ori        $a0, $a0, 4
@@ -751,7 +751,7 @@ glabel __rmonGetVRegs
 /* B7024 800B6424 24050010 */  addiu      $a1, $zero, 0x10
 /* B7028 800B6428 0C026808 */  jal        __rmonSendHeader
 /* B702C 800B642C 24060001 */   addiu     $a2, $zero, 1
-/* B7030 800B6430 0C02D6AE */  jal        func_800B5AB8
+/* B7030 800B6430 0C02D6AE */  jal        SetUpForRCPop
 /* B7034 800B6434 24040001 */   addiu     $a0, $zero, 1
 /* B7038 800B6438 00008825 */  or         $s1, $zero, $zero
 /* B703C 800B643C 2A210020 */  slti       $at, $s1, 0x20
@@ -759,7 +759,7 @@ glabel __rmonGetVRegs
 /* B7044 800B6444 00000000 */   nop
 .L800B6448:
 /* B7048 800B6448 2404003A */  addiu      $a0, $zero, 0x3a
-/* B704C 800B644C 0C02D687 */  jal        func_800B5A1C
+/* B704C 800B644C 0C02D687 */  jal        LoadStoreVU
 /* B7050 800B6450 02202825 */   or        $a1, $s1, $zero
 /* B7054 800B6454 0C02E9B2 */  jal        __rmonStepRCP
 /* B7058 800B6458 00000000 */   nop
@@ -771,7 +771,7 @@ glabel __rmonGetVRegs
 /* B7070 800B6470 1420FFF5 */  bnez       $at, .L800B6448
 /* B7074 800B6474 00000000 */   nop
 .L800B6478:
-/* B7078 800B6478 0C02D6DA */  jal        func_800B5B68
+/* B7078 800B6478 0C02D6DA */  jal        CleanupFromRCPop
 /* B707C 800B647C 24040001 */   addiu     $a0, $zero, 1
 /* B7080 800B6480 10000003 */  b          .L800B6490
 /* B7084 800B6484 00001025 */   or        $v0, $zero, $zero
@@ -799,7 +799,7 @@ glabel __rmonSetVRegs
 /* B70D0 800B64D0 10000025 */  b          .L800B6568
 /* B70D4 800B64D4 2402FFFC */   addiu     $v0, $zero, -4
 .L800B64D8:
-/* B70D8 800B64D8 0C02D6AE */  jal        func_800B5AB8
+/* B70D8 800B64D8 0C02D6AE */  jal        SetUpForRCPop
 /* B70DC 800B64DC 24040001 */   addiu     $a0, $zero, 1
 /* B70E0 800B64E0 00008825 */  or         $s1, $zero, $zero
 /* B70E4 800B64E4 2A210020 */  slti       $at, $s1, 0x20
@@ -813,7 +813,7 @@ glabel __rmonSetVRegs
 /* B7100 800B6500 0C02A484 */  jal        __rmonCopyWords
 /* B7104 800B6504 24060004 */   addiu     $a2, $zero, 4
 /* B7108 800B6508 24040032 */  addiu      $a0, $zero, 0x32
-/* B710C 800B650C 0C02D687 */  jal        func_800B5A1C
+/* B710C 800B650C 0C02D687 */  jal        LoadStoreVU
 /* B7110 800B6510 02202825 */   or        $a1, $s1, $zero
 /* B7114 800B6514 0C02E9B2 */  jal        __rmonStepRCP
 /* B7118 800B6518 00000000 */   nop
@@ -822,7 +822,7 @@ glabel __rmonSetVRegs
 /* B7124 800B6524 1420FFF2 */  bnez       $at, .L800B64F0
 /* B7128 800B6528 00000000 */   nop
 .L800B652C:
-/* B712C 800B652C 0C02D6DA */  jal        func_800B5B68
+/* B712C 800B652C 0C02D6DA */  jal        CleanupFromRCPop
 /* B7130 800B6530 24040001 */   addiu     $a0, $zero, 1
 /* B7134 800B6534 8E0F000C */  lw         $t7, 0xc($s0)
 /* B7138 800B6538 AFAF0030 */  sw         $t7, 0x30($sp)

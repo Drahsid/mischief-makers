@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800B56A0
+glabel __osEPiRawReadIo
 /* B62A0 800B56A0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B62A4 800B56A4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B62A8 800B56A8 AFA40028 */  sw         $a0, 0x28($sp)

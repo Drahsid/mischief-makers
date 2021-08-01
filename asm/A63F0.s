@@ -263,7 +263,7 @@ glabel osSyncPrintf
 /* A676C 800A5B6C 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
 /* A6770 800A5B70 00002825 */  or         $a1, $zero, $zero
 /* A6774 800A5B74 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6778 800A5B78 0C02CCC4 */  jal        _Printf
+/* A6778 800A5B78 0C02CCC4 */  jal        _Putfld
 /* A677C 800A5B7C 8FA70018 */   lw        $a3, 0x18($sp)
 /* A6780 800A5B80 10000008 */  b          .L800A5BA4
 /* A6784 800A5B84 AFA2001C */   sw        $v0, 0x1c($sp)
@@ -272,7 +272,7 @@ glabel osSyncPrintf
 /* A678C 800A5B8C 248457F0 */  addiu      $a0, $a0, %lo(syncprintf_text_0000)
 /* A6790 800A5B90 00002825 */  or         $a1, $zero, $zero
 /* A6794 800A5B94 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6798 800A5B98 0C02CCC4 */  jal        _Printf
+/* A6798 800A5B98 0C02CCC4 */  jal        _Putfld
 /* A679C 800A5B9C 8FA70018 */   lw        $a3, 0x18($sp)
 /* A67A0 800A5BA0 AFA2001C */  sw         $v0, 0x1c($sp)
 .L800A5BA4:
@@ -302,7 +302,7 @@ glabel rmonPrintf
 /* A67F4 800A5BF4 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
 /* A67F8 800A5BF8 00002825 */  or         $a1, $zero, $zero
 /* A67FC 800A5BFC 8FA60020 */  lw         $a2, 0x20($sp)
-/* A6800 800A5C00 0C02CCC4 */  jal        _Printf
+/* A6800 800A5C00 0C02CCC4 */  jal        _Putfld
 /* A6804 800A5C04 8FA70018 */   lw        $a3, 0x18($sp)
 /* A6808 800A5C08 AFA2001C */  sw         $v0, 0x1c($sp)
 .L800A5C0C:

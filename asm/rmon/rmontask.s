@@ -11,7 +11,7 @@ glabel __rmonMaskIdleThreadInts
 /* B7280 800B6680 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* B7284 800B6684 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B7288 800B6688 AFB00018 */  sw         $s0, 0x18($sp)
-/* B728C 800B668C 0C02DC7C */  jal        func_800B71F0
+/* B728C 800B668C 0C02DC7C */  jal        __osGetActiveQueue
 /* B7290 800B6690 00000000 */   nop
 /* B7294 800B6694 00408025 */  or         $s0, $v0, $zero
 /* B7298 800B6698 8E0E0004 */  lw         $t6, 4($s0)
@@ -53,7 +53,7 @@ glabel __rmonGetTCB
 /* B7310 800B6710 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B7314 800B6714 AFA40028 */  sw         $a0, 0x28($sp)
 /* B7318 800B6718 AFB00018 */  sw         $s0, 0x18($sp)
-/* B731C 800B671C 0C02DC7C */  jal        func_800B71F0
+/* B731C 800B671C 0C02DC7C */  jal        __osGetActiveQueue
 /* B7320 800B6720 00000000 */   nop
 /* B7324 800B6724 00408025 */  or         $s0, $v0, $zero
 /* B7328 800B6728 8FAE0028 */  lw         $t6, 0x28($sp)
@@ -98,7 +98,7 @@ glabel __rmonStopUserThreads
 /* B73A8 800B67A8 AFB10018 */  sw         $s1, 0x18($sp)
 /* B73AC 800B67AC AFB00014 */  sw         $s0, 0x14($sp)
 /* B73B0 800B67B0 00008025 */  or         $s0, $zero, $zero
-/* B73B4 800B67B4 0C02DC7C */  jal        func_800B71F0
+/* B73B4 800B67B4 0C02DC7C */  jal        __osGetActiveQueue
 /* B73B8 800B67B8 00000000 */   nop
 /* B73BC 800B67BC 00408825 */  or         $s1, $v0, $zero
 /* B73C0 800B67C0 8FAE0028 */  lw         $t6, 0x28($sp)
@@ -222,7 +222,7 @@ glabel __rmonListThreads
 /* B7558 800B6958 1000001C */  b          .L800B69CC
 /* B755C 800B695C ADEE0014 */   sw        $t6, 0x14($t7)
 .L800B6960:
-/* B7560 800B6960 0C02DC7C */  jal        func_800B71F0
+/* B7560 800B6960 0C02DC7C */  jal        __osGetActiveQueue
 /* B7564 800B6964 00000000 */   nop
 /* B7568 800B6968 00408825 */  or         $s1, $v0, $zero
 /* B756C 800B696C 8FB80028 */  lw         $t8, 0x28($sp)
@@ -378,7 +378,7 @@ glabel __rmonGetThreadStatus
 /* B7794 800B6B94 10000061 */  b          .L800B6D1C
 /* B7798 800B6B98 00000000 */   nop
 .L800B6B9C:
-/* B779C 800B6B9C 0C02DC7C */  jal        func_800B71F0
+/* B779C 800B6B9C 0C02DC7C */  jal        __osGetActiveQueue
 /* B77A0 800B6BA0 00000000 */   nop
 /* B77A4 800B6BA4 AFA20018 */  sw         $v0, 0x18($sp)
 /* B77A8 800B6BA8 8FAD0018 */  lw         $t5, 0x18($sp)
@@ -649,7 +649,7 @@ glabel __rmonRunThread
 /* B7B60 800B6F60 10000087 */  b          .L800B7180
 /* B7B64 800B6F64 00000000 */   nop
 .L800B6F68:
-/* B7B68 800B6F68 0C02DC7C */  jal        func_800B71F0
+/* B7B68 800B6F68 0C02DC7C */  jal        __osGetActiveQueue
 /* B7B6C 800B6F6C 00000000 */   nop
 /* B7B70 800B6F70 00408025 */  or         $s0, $v0, $zero
 /* B7B74 800B6F74 8E180004 */  lw         $t8, 4($s0)

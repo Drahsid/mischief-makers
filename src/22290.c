@@ -45,8 +45,8 @@ void func_80022F48(void) {
 
     func_80022D88();
     func_80025E6C();
-    func_80004FFC(0);
-    func_80004FFC(1);
+    GameSave_ClearCard(0);
+    GameSave_ClearCard(1);
     GameSave_Reset();
 
     gButton_Start   = START_BUTTON;

@@ -95,7 +95,7 @@ glabel __osDevMgrMain
 /* A91BC 800A85BC 34A50510 */  ori        $a1, $a1, 0x510
 /* A91C0 800A85C0 00C16025 */  or         $t4, $a2, $at
 /* A91C4 800A85C4 01803025 */  or         $a2, $t4, $zero
-/* A91C8 800A85C8 0C02D57C */  jal        func_800B55F0
+/* A91C8 800A85C8 0C02D57C */  jal        __osEPiRawWriteIo
 /* A91CC 800A85CC 8DA40014 */   lw        $a0, 0x14($t5)
 .L800A85D0:
 /* A91D0 800A85D0 8FB80034 */  lw         $t8, 0x34($sp)
@@ -128,20 +128,20 @@ glabel __osDevMgrMain
 /* A923C 800A863C 34A50510 */  ori        $a1, $a1, 0x510
 /* A9240 800A8640 00C14825 */  or         $t1, $a2, $at
 /* A9244 800A8644 01203025 */  or         $a2, $t1, $zero
-/* A9248 800A8648 0C02D57C */  jal        func_800B55F0
+/* A9248 800A8648 0C02D57C */  jal        __osEPiRawWriteIo
 /* A924C 800A864C 8D040014 */   lw        $a0, 0x14($t0)
 /* A9250 800A8650 8FAB0044 */  lw         $t3, 0x44($sp)
 /* A9254 800A8654 8FAA0028 */  lw         $t2, 0x28($sp)
 /* A9258 800A8658 3C050500 */  lui        $a1, 0x500
 /* A925C 800A865C 34A50510 */  ori        $a1, $a1, 0x510
 /* A9260 800A8660 8D640014 */  lw         $a0, 0x14($t3)
-/* A9264 800A8664 0C02D57C */  jal        func_800B55F0
+/* A9264 800A8664 0C02D57C */  jal        __osEPiRawWriteIo
 /* A9268 800A8668 8D460010 */   lw        $a2, 0x10($t2)
 /* A926C 800A866C 8FAE0044 */  lw         $t6, 0x44($sp)
 /* A9270 800A8670 3C050500 */  lui        $a1, 0x500
 /* A9274 800A8674 34A50508 */  ori        $a1, $a1, 0x508
 /* A9278 800A8678 27A60024 */  addiu      $a2, $sp, 0x24
-/* A927C 800A867C 0C02D5A8 */  jal        func_800B56A0
+/* A927C 800A867C 0C02D5A8 */  jal        __osEPiRawReadIo
 /* A9280 800A8680 8DC40014 */   lw        $a0, 0x14($t6)
 /* A9284 800A8684 8FAD0024 */  lw         $t5, 0x24($sp)
 /* A9288 800A8688 3C010200 */  lui        $at, 0x200
@@ -156,7 +156,7 @@ glabel __osDevMgrMain
 /* A92AC 800A86AC 34A50510 */  ori        $a1, $a1, 0x510
 /* A92B0 800A86B0 00C14025 */  or         $t0, $a2, $at
 /* A92B4 800A86B4 01003025 */  or         $a2, $t0, $zero
-/* A92B8 800A86B8 0C02D57C */  jal        func_800B55F0
+/* A92B8 800A86B8 0C02D57C */  jal        __osEPiRawWriteIo
 /* A92BC 800A86BC 8D840014 */   lw        $a0, 0x14($t4)
 .L800A86C0:
 /* A92C0 800A86C0 8FA9002C */  lw         $t1, 0x2c($sp)

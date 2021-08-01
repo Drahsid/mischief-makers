@@ -298,7 +298,7 @@ glabel osSpTaskStartGo
 /* 9BED8 8009B2D8 03E00008 */  jr         $ra
 /* 9BEDC 8009B2DC 00000000 */   nop
 
-glabel func_8009B2E0
+glabel osContReset
 /* 9BEE0 8009B2E0 27BDFF80 */  addiu      $sp, $sp, -0x80
 /* 9BEE4 8009B2E4 AFBF0024 */  sw         $ra, 0x24($sp)
 /* 9BEE8 8009B2E8 AFA40080 */  sw         $a0, 0x80($sp)
@@ -395,7 +395,7 @@ glabel func_8009B2E0
 /* 9C048 8009B448 24180004 */  addiu      $t8, $zero, 4
 /* 9C04C 8009B44C 3C018018 */  lui        $at, %hi(__osMaxControllers)
 /* 9C050 8009B450 A0385671 */  sb         $t8, %lo(__osMaxControllers)($at)
-/* 9C054 8009B454 0C026D77 */  jal        func_8009B5DC
+/* 9C054 8009B454 0C026D77 */  jal        __osPackRequestData
 /* 9C058 8009B458 00002025 */   or        $a0, $zero, $zero
 /* 9C05C 8009B45C 3C058018 */  lui        $a1, %hi(__osContPifRam)
 /* 9C060 8009B460 24A55630 */  addiu      $a1, $a1, %lo(__osContPifRam)
@@ -420,7 +420,7 @@ glabel func_8009B2E0
 /* 9C0AC 8009B4AC 8FA50088 */   lw        $a1, 0x88($sp)
 /* 9C0B0 8009B4B0 3C018018 */  lui        $at, %hi(__osContLastCmd)
 /* 9C0B4 8009B4B4 A0205670 */  sb         $zero, %lo(__osContLastCmd)($at)
-/* 9C0B8 8009B4B8 0C02AA10 */  jal        func_800AA840
+/* 9C0B8 8009B4B8 0C02AA10 */  jal        __osSiCreateAccessQueue
 /* 9C0BC 8009B4BC 00000000 */   nop
 /* 9C0C0 8009B4C0 3C048018 */  lui        $a0, %hi(D_80185698)
 /* 9C0C4 8009B4C4 3C058018 */  lui        $a1, %hi(D_801856B0)
@@ -502,7 +502,7 @@ glabel __osContGetInitData
 /* 9C1D4 8009B5D4 03E00008 */  jr         $ra
 /* 9C1D8 8009B5D8 27BD0018 */   addiu     $sp, $sp, 0x18
 
-glabel func_8009B5DC
+glabel __osPackRequestData
 /* 9C1DC 8009B5DC 27BDFFF0 */  addiu      $sp, $sp, -0x10
 /* 9C1E0 8009B5E0 308400FF */  andi       $a0, $a0, 0xff
 /* 9C1E4 8009B5E4 AFA00000 */  sw         $zero, ($sp)

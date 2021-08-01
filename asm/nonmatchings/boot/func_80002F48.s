@@ -1,9 +1,9 @@
 glabel func_80002F48
 /* 3B48 80002F48 93B90017 */  lbu        $t9, 0x17($sp)
 /* 3B4C 80002F4C 308E00FF */  andi       $t6, $a0, 0xff
-/* 3B50 80002F50 3C01800F */  lui        $at, %hi(D_800EF4F0)
+/* 3B50 80002F50 3C01800F */  lui        $at, %hi(SFX_ChannelStates)
 /* 3B54 80002F54 002E0821 */  addu       $at, $at, $t6
-/* 3B58 80002F58 A039F4F0 */  sb         $t9, %lo(D_800EF4F0)($at)
+/* 3B58 80002F58 A039F4F0 */  sb         $t9, %lo(SFX_ChannelStates)($at)
 /* 3B5C 80002F5C 97A8001A */  lhu        $t0, 0x1a($sp)
 /* 3B60 80002F60 3C018011 */  lui        $at, %hi(D_80108DE0)
 /* 3B64 80002F64 000E1040 */  sll        $v0, $t6, 1
@@ -40,18 +40,18 @@ glabel func_80002F48
 /* 3BE0 80002FE0 00000000 */   nop
 .L80002FE4:
 /* 3BE4 80002FE4 906EFFBE */  lbu        $t6, -0x42($v1)
-/* 3BE8 80002FE8 3C01800F */  lui        $at, %hi(D_800EF4F8)
+/* 3BE8 80002FE8 3C01800F */  lui        $at, %hi(SFX_Volumes)
 /* 3BEC 80002FEC 00220821 */  addu       $at, $at, $v0
 /* 3BF0 80002FF0 000E7A00 */  sll        $t7, $t6, 8
 /* 3BF4 80002FF4 03E00008 */  jr         $ra
-/* 3BF8 80002FF8 A42FF4F8 */   sh        $t7, %lo(D_800EF4F8)($at)
+/* 3BF8 80002FF8 A42FF4F8 */   sh        $t7, %lo(SFX_Volumes)($at)
 .L80002FFC:
 /* 3BFC 80002FFC 9078FFBE */  lbu        $t8, -0x42($v1)
-/* 3C00 80003000 3C01800F */  lui        $at, %hi(D_800EF4F8)
+/* 3C00 80003000 3C01800F */  lui        $at, %hi(SFX_Volumes)
 /* 3C04 80003004 03070019 */  multu      $t8, $a3
 /* 3C08 80003008 00220821 */  addu       $at, $at, $v0
 /* 3C0C 8000300C 0000C812 */  mflo       $t9
-/* 3C10 80003010 A439F4F8 */  sh         $t9, %lo(D_800EF4F8)($at)
+/* 3C10 80003010 A439F4F8 */  sh         $t9, %lo(SFX_Volumes)($at)
 /* 3C14 80003014 00000000 */  nop
 /* 3C18 80003018 03E00008 */  jr         $ra
 /* 3C1C 8000301C 00000000 */   nop

@@ -404,7 +404,7 @@ glabel func_80083E74
 /* 84A98 80083E98 02602025 */  or         $a0, $s3, $zero
 /* 84A9C 80083E9C 0C001192 */  jal        Sprite_Init
 /* 84AA0 80083EA0 AFAE008C */   sw        $t6, 0x8c($sp)
-/* 84AA4 80083EA4 0C0011EC */  jal        func_800047B0
+/* 84AA4 80083EA4 0C0011EC */  jal        Sprite_SetTransparent
 /* 84AA8 80083EA8 00002025 */   or        $a0, $zero, $zero
 /* 84AAC 80083EAC 3C04800C */  lui        $a0, %hi(D_800BE6B9)
 /* 84AB0 80083EB0 9084E6B9 */  lbu        $a0, %lo(D_800BE6B9)($a0)
@@ -415,9 +415,9 @@ glabel func_80083E74
 /* 84AC4 80083EC4 3C013FF0 */  lui        $at, 0x3ff0
 /* 84AC8 80083EC8 44816800 */  mtc1       $at, $f13
 /* 84ACC 80083ECC 44806000 */  mtc1       $zero, $f12
-/* 84AD0 80083ED0 0C0011D8 */  jal        func_80004760
+/* 84AD0 80083ED0 0C0011D8 */  jal        Sprite_setScale
 /* 84AD4 80083ED4 46206386 */   mov.d     $f14, $f12
-/* 84AD8 80083ED8 0C0011EC */  jal        func_800047B0
+/* 84AD8 80083ED8 0C0011EC */  jal        Sprite_SetTransparent
 /* 84ADC 80083EDC 24040001 */   addiu     $a0, $zero, 1
 /* 84AE0 80083EE0 3C108018 */  lui        $s0, %hi(D_80180FD8)
 /* 84AE4 80083EE4 3C128018 */  lui        $s2, %hi(D_80182018)
@@ -448,7 +448,7 @@ glabel func_80083E74
 /* 84B44 80083F44 C6040060 */  lwc1       $f4, 0x60($s0)
 /* 84B48 80083F48 C6060064 */  lwc1       $f6, 0x64($s0)
 /* 84B4C 80083F4C 46002321 */  cvt.d.s    $f12, $f4
-/* 84B50 80083F50 0C0011D8 */  jal        func_80004760
+/* 84B50 80083F50 0C0011D8 */  jal        Sprite_setScale
 /* 84B54 80083F54 460033A1 */   cvt.d.s   $f14, $f6
 /* 84B58 80083F58 02602025 */  or         $a0, $s3, $zero
 /* 84B5C 80083F5C 0C001201 */  jal        sprite_func
@@ -459,7 +459,7 @@ glabel func_80083E74
 /* 84B6C 80083F6C 00000000 */   nop
 /* 84B70 80083F70 3C018018 */  lui        $at, %hi(D_80180FD0)
 /* 84B74 80083F74 AC200FD0 */  sw         $zero, %lo(D_80180FD0)($at)
-/* 84B78 80083F78 0C0011BF */  jal        func_800046FC
+/* 84B78 80083F78 0C0011BF */  jal        Sprite_Finish
 /* 84B7C 80083F7C 02602025 */   or        $a0, $s3, $zero
 /* 84B80 80083F80 8FA8008C */  lw         $t0, 0x8c($sp)
 /* 84B84 80083F84 8FBF0024 */  lw         $ra, 0x24($sp)

@@ -12,7 +12,7 @@ glabel osContStartReadData
 /* 9B684 8009AA84 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9B688 8009AA88 AFA40020 */  sw         $a0, 0x20($sp)
 /* 9B68C 8009AA8C AFA0001C */  sw         $zero, 0x1c($sp)
-/* 9B690 8009AA90 0C02AA26 */  jal        func_800AA898
+/* 9B690 8009AA90 0C02AA26 */  jal        __osSiGetAccess
 /* 9B694 8009AA94 00000000 */   nop
 /* 9B698 8009AA98 3C0E8018 */  lui        $t6, %hi(__osContLastCmd)
 /* 9B69C 8009AA9C 91CE5670 */  lbu        $t6, %lo(__osContLastCmd)($t6)
@@ -54,7 +54,7 @@ glabel osContStartReadData
 /* 9B724 8009AB24 240A0001 */  addiu      $t2, $zero, 1
 /* 9B728 8009AB28 3C018018 */  lui        $at, %hi(__osContLastCmd)
 /* 9B72C 8009AB2C A02A5670 */  sb         $t2, %lo(__osContLastCmd)($at)
-/* 9B730 8009AB30 0C02AA39 */  jal        func_800AA8E4
+/* 9B730 8009AB30 0C02AA39 */  jal        __osSiRelAccess
 /* 9B734 8009AB34 00000000 */   nop
 /* 9B738 8009AB38 10000003 */  b          .L8009AB48
 /* 9B73C 8009AB3C 8FA2001C */   lw        $v0, 0x1c($sp)

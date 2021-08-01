@@ -62,7 +62,7 @@ glabel func_800A9B00
 /* AA7C0 800A9BC0 03E00008 */  jr         $ra
 /* AA7C4 800A9BC4 00000000 */   nop
 
-glabel func_800A9BC8
+glabel ClearTempBreakpoint
 /* AA7C8 800A9BC8 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AA7CC 800A9BCC AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA7D0 800A9BD0 3C0E8019 */  lui        $t6, %hi(rmonbrk_bss_0008)
@@ -707,7 +707,7 @@ glabel func_800AA4D0
 /* AB0D0 800AA4D0 03E00008 */  jr         $ra
 /* AB0D4 800AA4D4 00000000 */   nop
 
-glabel func_800AA4D8
+glabel rmonSendBreakMessage
 /* AB0D8 800AA4D8 27BDFF90 */  addiu      $sp, $sp, -0x70
 /* AB0DC 800AA4DC AFBF001C */  sw         $ra, 0x1c($sp)
 /* AB0E0 800AA4E0 AFA40070 */  sw         $a0, 0x70($sp)
@@ -769,11 +769,11 @@ glabel func_800AA4D8
 glabel __rmonHitBreak
 /* AB1A0 800AA5A0 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AB1A4 800AA5A4 AFBF0014 */  sw         $ra, 0x14($sp)
-/* AB1A8 800AA5A8 0C02A6F2 */  jal        func_800A9BC8
+/* AB1A8 800AA5A8 0C02A6F2 */  jal        ClearTempBreakpoint
 /* AB1AC 800AA5AC 00000000 */   nop
 /* AB1B0 800AA5B0 0C02D9E7 */  jal        __rmonStopUserThreads
 /* AB1B4 800AA5B4 00002025 */   or        $a0, $zero, $zero
-/* AB1B8 800AA5B8 0C02A9A1 */  jal        func_800AA684
+/* AB1B8 800AA5B8 0C02A9A1 */  jal        rmonFindFaultedThreads
 /* AB1BC 800AA5BC 00000000 */   nop
 /* AB1C0 800AA5C0 10000001 */  b          .L800AA5C8
 /* AB1C4 800AA5C4 00000000 */   nop
@@ -815,14 +815,14 @@ glabel __rmonHitSpBreak
 /* AB244 800AA644 03E00008 */  jr         $ra
 /* AB248 800AA648 00000000 */   nop
 
-glabel func_800AA64C
+glabel __rmonHitCpuFault
 /* AB24C 800AA64C 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AB250 800AA650 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AB254 800AA654 0C02D9A0 */  jal        __rmonMaskIdleThreadInts
 /* AB258 800AA658 00000000 */   nop
 /* AB25C 800AA65C 0C02D9E7 */  jal        __rmonStopUserThreads
 /* AB260 800AA660 00002025 */   or        $a0, $zero, $zero
-/* AB264 800AA664 0C02A9A1 */  jal        func_800AA684
+/* AB264 800AA664 0C02A9A1 */  jal        rmonFindFaultedThreads
 /* AB268 800AA668 00000000 */   nop
 /* AB26C 800AA66C 10000001 */  b          .L800AA674
 /* AB270 800AA670 00000000 */   nop
@@ -832,11 +832,11 @@ glabel func_800AA64C
 /* AB27C 800AA67C 03E00008 */  jr         $ra
 /* AB280 800AA680 00000000 */   nop
 
-glabel func_800AA684
+glabel rmonFindFaultedThreads
 /* AB284 800AA684 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AB288 800AA688 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AB28C 800AA68C AFB00018 */  sw         $s0, 0x18($sp)
-/* AB290 800AA690 0C02DC7C */  jal        func_800B71F0
+/* AB290 800AA690 0C02DC7C */  jal        __osGetActiveQueue
 /* AB294 800AA694 00000000 */   nop
 /* AB298 800AA698 00408025 */  or         $s0, $v0, $zero
 /* AB29C 800AA69C 8E0E0004 */  lw         $t6, 4($s0)
@@ -868,13 +868,13 @@ glabel func_800AA684
 /* AB300 800AA700 8FA50020 */  lw         $a1, 0x20($sp)
 /* AB304 800AA704 8E040014 */  lw         $a0, 0x14($s0)
 /* AB308 800AA708 00056983 */  sra        $t5, $a1, 6
-/* AB30C 800AA70C 0C02A936 */  jal        func_800AA4D8
+/* AB30C 800AA70C 0C02A936 */  jal        rmonSendBreakMessage
 /* AB310 800AA710 01A02825 */   or        $a1, $t5, $zero
 /* AB314 800AA714 10000004 */  b          .L800AA728
 /* AB318 800AA718 00000000 */   nop
 .L800AA71C:
 /* AB31C 800AA71C 8E040014 */  lw         $a0, 0x14($s0)
-/* AB320 800AA720 0C02A936 */  jal        func_800AA4D8
+/* AB320 800AA720 0C02A936 */  jal        rmonSendBreakMessage
 /* AB324 800AA724 00002825 */   or        $a1, $zero, $zero
 .L800AA728:
 /* AB328 800AA728 960E0012 */  lhu        $t6, 0x12($s0)
@@ -884,7 +884,7 @@ glabel func_800AA684
 /* AB338 800AA738 0C02A384 */  jal        __rmonSendFault
 /* AB33C 800AA73C 02002025 */   or        $a0, $s0, $zero
 /* AB340 800AA740 8E040014 */  lw         $a0, 0x14($s0)
-/* AB344 800AA744 0C02A936 */  jal        func_800AA4D8
+/* AB344 800AA744 0C02A936 */  jal        rmonSendBreakMessage
 /* AB348 800AA748 2405000F */   addiu     $a1, $zero, 0xf
 .L800AA74C:
 /* AB34C 800AA74C 8E10000C */  lw         $s0, 0xc($s0)

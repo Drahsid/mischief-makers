@@ -28,7 +28,7 @@ glabel func_800A4670
 .L800A46B0:
 /* A52B0 800A46B0 8FA40040 */  lw         $a0, 0x40($sp)
 /* A52B4 800A46B4 93A50047 */  lbu        $a1, 0x47($sp)
-/* A52B8 800A46B8 0C02C9D0 */  jal        func_800B2740
+/* A52B8 800A46B8 0C02C9D0 */  jal        osEepromRead
 /* A52BC 800A46BC 8FA60048 */   lw        $a2, 0x48($sp)
 /* A52C0 800A46C0 AFA2003C */  sw         $v0, 0x3c($sp)
 /* A52C4 800A46C4 8FB8003C */  lw         $t8, 0x3c($sp)

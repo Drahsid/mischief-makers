@@ -266,7 +266,7 @@ glabel rmonMain
 /* 9AFC0 8009A3C0 01215024 */  and        $t2, $t1, $at
 /* 9AFC4 8009A3C4 3C018018 */  lui        $at, %hi(rmonmain_bss_0000)
 /* 9AFC8 8009A3C8 AC2A50B0 */  sw         $t2, %lo(rmonmain_bss_0000)($at)
-/* 9AFCC 8009A3CC 0C02A993 */  jal        func_800AA64C
+/* 9AFCC 8009A3CC 0C02A993 */  jal        __rmonHitCpuFault
 /* 9AFD0 8009A3D0 00000000 */   nop
 .L8009A3D4:
 /* 9AFD4 8009A3D4 3C0B8018 */  lui        $t3, %hi(rmonmain_bss_0000)

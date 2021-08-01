@@ -45,7 +45,7 @@ glabel _Ldtob
 /* B9F40 800B9340 ADCD0024 */  sw         $t5, 0x24($t6)
 .L800B9344:
 /* B9F44 800B9344 27A40062 */  addiu      $a0, $sp, 0x62
-/* B9F48 800B9348 0C02E641 */  jal        func_800B9904
+/* B9F48 800B9348 0C02E641 */  jal        _ldunscale
 /* B9F4C 800B934C 8FA50098 */   lw        $a1, 0x98($sp)
 /* B9F50 800B9350 A7A20066 */  sh         $v0, 0x66($sp)
 /* B9F54 800B9354 87AF0066 */  lh         $t7, 0x66($sp)
@@ -440,7 +440,7 @@ glabel _Ldtob
 /* BA4D4 800B98D4 93A5009F */  lbu        $a1, 0x9f($sp)
 /* BA4D8 800B98D8 8FA60074 */  lw         $a2, 0x74($sp)
 /* BA4DC 800B98DC 87A70064 */  lh         $a3, 0x64($sp)
-/* BA4E0 800B98E0 0C02E682 */  jal        func_800B9A08
+/* BA4E0 800B98E0 0C02E682 */  jal        _Genld
 /* BA4E4 800B98E4 AFAC0010 */   sw        $t4, 0x10($sp)
 /* BA4E8 800B98E8 10000001 */  b          .L800B98F0
 /* BA4EC 800B98EC 00000000 */   nop
@@ -451,7 +451,7 @@ glabel _Ldtob
 /* BA4FC 800B98FC 03E00008 */  jr         $ra
 /* BA500 800B9900 27BD0098 */   addiu     $sp, $sp, 0x98
 
-glabel func_800B9904
+glabel _ldunscale
 /* BA504 800B9904 27BDFFF0 */  addiu      $sp, $sp, -0x10
 /* BA508 800B9908 AFA5000C */  sw         $a1, 0xc($sp)
 /* BA50C 800B990C 8FAE000C */  lw         $t6, 0xc($sp)
@@ -526,7 +526,7 @@ glabel func_800B9904
 /* BA600 800B9A00 03E00008 */  jr         $ra
 /* BA604 800B9A04 27BD0010 */   addiu     $sp, $sp, 0x10
 
-glabel func_800B9A08
+glabel _Genld
 /* BA608 800B9A08 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* BA60C 800B9A0C AFBF001C */  sw         $ra, 0x1c($sp)
 /* BA610 800B9A10 AFA40030 */  sw         $a0, 0x30($sp)

@@ -73,7 +73,7 @@ glabel func_8000DD6C
 /* EA84 8000DE84 46802120 */  cvt.s.w    $f4, $f4
 /* EA88 8000DE88 44063000 */  mfc1       $a2, $f6
 /* EA8C 8000DE8C 44052000 */  mfc1       $a1, $f4
-/* EA90 8000DE90 0C029393 */  jal        guRotateRPY
+/* EA90 8000DE90 0C029393 */  jal        guTranslate
 /* EA94 8000DE94 00000000 */   nop
 /* EA98 8000DE98 3C088013 */  lui        $t0, %hi(D_8012A670)
 /* EA9C 8000DE9C 2508A670 */  addiu      $t0, $t0, %lo(D_8012A670)

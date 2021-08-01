@@ -21,7 +21,7 @@ glabel sprintf
 /* A6268 800A5668 248456BC */  addiu      $a0, $a0, %lo(sprintf_text_007C)
 /* A626C 800A566C 8FA50020 */  lw         $a1, 0x20($sp)
 /* A6270 800A5670 8FA60024 */  lw         $a2, 0x24($sp)
-/* A6274 800A5674 0C02CCC4 */  jal        _Printf
+/* A6274 800A5674 0C02CCC4 */  jal        _Putfld
 /* A6278 800A5678 8FA70018 */   lw        $a3, 0x18($sp)
 /* A627C 800A567C AFA2001C */  sw         $v0, 0x1c($sp)
 /* A6280 800A5680 8FB8001C */  lw         $t8, 0x1c($sp)

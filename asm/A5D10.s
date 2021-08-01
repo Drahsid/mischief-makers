@@ -37,7 +37,7 @@ glabel guScaleF
 /* A5D74 800A5174 03E00008 */  jr         $ra
 /* A5D78 800A5178 00000000 */   nop
 
-glabel func_800A517C
+glabel guScale
 /* A5D7C 800A517C 27BDFFA8 */  addiu      $sp, $sp, -0x58
 /* A5D80 800A5180 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A5D84 800A5184 AFA40058 */  sw         $a0, 0x58($sp)

@@ -67,7 +67,7 @@ glabel alCSeqNew
 /* 9FB6C 8009EF6C 012A6821 */  addu       $t5, $t1, $t2
 /* 9FB70 8009EF70 ADB90018 */  sw         $t9, 0x18($t5)
 /* 9FB74 8009EF74 8FA40028 */  lw         $a0, 0x28($sp)
-/* 9FB78 8009EF78 0C027F42 */  jal        func_8009FD08
+/* 9FB78 8009EF78 0C027F42 */  jal        __readVarLen
 /* 9FB7C 8009EF7C 8FA50024 */   lw        $a1, 0x24($sp)
 /* 9FB80 8009EF80 8FAF0024 */  lw         $t7, 0x24($sp)
 /* 9FB84 8009EF84 8FAC0028 */  lw         $t4, 0x28($sp)
@@ -179,7 +179,7 @@ glabel alCSeqNextEvent
 /* 9FD04 8009F104 AFB90034 */   sw        $t9, 0x34($sp)
 /* 9FD08 8009F108 8FA40038 */  lw         $a0, 0x38($sp)
 /* 9FD0C 8009F10C 8FA5002C */  lw         $a1, 0x2c($sp)
-/* 9FD10 8009F110 0C027CA2 */  jal        func_8009F288
+/* 9FD10 8009F110 0C027CA2 */  jal        __alCSeqGetTrackEvent
 /* 9FD14 8009F114 8FA6003C */   lw        $a2, 0x3c($sp)
 /* 9FD18 8009F118 8FB80030 */  lw         $t8, 0x30($sp)
 /* 9FD1C 8009F11C 8FA8003C */  lw         $t0, 0x3c($sp)
@@ -198,7 +198,7 @@ glabel alCSeqNextEvent
 /* 9FD50 8009F150 1321000C */  beq        $t9, $at, .L8009F184
 /* 9FD54 8009F154 00000000 */   nop
 /* 9FD58 8009F158 8FA40038 */  lw         $a0, 0x38($sp)
-/* 9FD5C 8009F15C 0C027F42 */  jal        func_8009FD08
+/* 9FD5C 8009F15C 0C027F42 */  jal        __readVarLen
 /* 9FD60 8009F160 8FA5002C */   lw        $a1, 0x2c($sp)
 /* 9FD64 8009F164 8FA8002C */  lw         $t0, 0x2c($sp)
 /* 9FD68 8009F168 8FB80038 */  lw         $t8, 0x38($sp)
@@ -283,14 +283,14 @@ glabel __alCSeqNextDelta
 /* 9FE80 8009F280 03E00008 */  jr         $ra
 /* 9FE84 8009F284 27BD0010 */   addiu     $sp, $sp, 0x10
 
-glabel func_8009F288
+glabel __alCSeqGetTrackEvent
 /* 9FE88 8009F288 27BDFFD0 */  addiu      $sp, $sp, -0x30
 /* 9FE8C 8009F28C AFBF0014 */  sw         $ra, 0x14($sp)
 /* 9FE90 8009F290 AFA40030 */  sw         $a0, 0x30($sp)
 /* 9FE94 8009F294 AFA50034 */  sw         $a1, 0x34($sp)
 /* 9FE98 8009F298 AFA60038 */  sw         $a2, 0x38($sp)
 /* 9FE9C 8009F29C 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FEA0 8009F2A0 0C027EC5 */  jal        func_8009FB14
+/* 9FEA0 8009F2A0 0C027EC5 */  jal        __getTrackByte
 /* 9FEA4 8009F2A4 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FEA8 8009F2A8 A3A2002B */  sb         $v0, 0x2b($sp)
 /* 9FEAC 8009F2AC 93AE002B */  lbu        $t6, 0x2b($sp)
@@ -298,7 +298,7 @@ glabel func_8009F288
 /* 9FEB4 8009F2B4 15C100B2 */  bne        $t6, $at, .L8009F580
 /* 9FEB8 8009F2B8 00000000 */   nop
 /* 9FEBC 8009F2BC 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FEC0 8009F2C0 0C027EC5 */  jal        func_8009FB14
+/* 9FEC0 8009F2C0 0C027EC5 */  jal        __getTrackByte
 /* 9FEC4 8009F2C4 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FEC8 8009F2C8 A3A20023 */  sb         $v0, 0x23($sp)
 /* 9FECC 8009F2CC 93AF0023 */  lbu        $t7, 0x23($sp)
@@ -315,17 +315,17 @@ glabel func_8009F288
 /* 9FEF8 8009F2F8 8FAB0038 */  lw         $t3, 0x38($sp)
 /* 9FEFC 8009F2FC A16A0009 */  sb         $t2, 9($t3)
 /* 9FF00 8009F300 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FF04 8009F304 0C027EC5 */  jal        func_8009FB14
+/* 9FF04 8009F304 0C027EC5 */  jal        __getTrackByte
 /* 9FF08 8009F308 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FF0C 8009F30C 8FAC0038 */  lw         $t4, 0x38($sp)
 /* 9FF10 8009F310 A182000B */  sb         $v0, 0xb($t4)
 /* 9FF14 8009F314 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FF18 8009F318 0C027EC5 */  jal        func_8009FB14
+/* 9FF18 8009F318 0C027EC5 */  jal        __getTrackByte
 /* 9FF1C 8009F31C 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FF20 8009F320 8FAD0038 */  lw         $t5, 0x38($sp)
 /* 9FF24 8009F324 A1A2000C */  sb         $v0, 0xc($t5)
 /* 9FF28 8009F328 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FF2C 8009F32C 0C027EC5 */  jal        func_8009FB14
+/* 9FF2C 8009F32C 0C027EC5 */  jal        __getTrackByte
 /* 9FF30 8009F330 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FF34 8009F334 8FAE0038 */  lw         $t6, 0x38($sp)
 /* 9FF38 8009F338 A1C2000D */  sb         $v0, 0xd($t6)
@@ -369,11 +369,11 @@ glabel func_8009F288
 /* 9FFC0 8009F3C0 15A10011 */  bne        $t5, $at, .L8009F408
 /* 9FFC4 8009F3C4 00000000 */   nop
 /* 9FFC8 8009F3C8 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FFCC 8009F3CC 0C027EC5 */  jal        func_8009FB14
+/* 9FFCC 8009F3CC 0C027EC5 */  jal        __getTrackByte
 /* 9FFD0 8009F3D0 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FFD4 8009F3D4 A3A2002B */  sb         $v0, 0x2b($sp)
 /* 9FFD8 8009F3D8 8FA40030 */  lw         $a0, 0x30($sp)
-/* 9FFDC 8009F3DC 0C027EC5 */  jal        func_8009FB14
+/* 9FFDC 8009F3DC 0C027EC5 */  jal        __getTrackByte
 /* 9FFE0 8009F3E0 8FA50034 */   lw        $a1, 0x34($sp)
 /* 9FFE4 8009F3E4 A3A2002B */  sb         $v0, 0x2b($sp)
 /* 9FFE8 8009F3E8 8FAE0030 */  lw         $t6, 0x30($sp)
@@ -496,7 +496,7 @@ glabel func_8009F288
 /* A01A0 8009F5A0 8FAF0038 */  lw         $t7, 0x38($sp)
 /* A01A4 8009F5A4 A1E90008 */  sb         $t1, 8($t7)
 /* A01A8 8009F5A8 8FA40030 */  lw         $a0, 0x30($sp)
-/* A01AC 8009F5AC 0C027EC5 */  jal        func_8009FB14
+/* A01AC 8009F5AC 0C027EC5 */  jal        __getTrackByte
 /* A01B0 8009F5B0 8FA50034 */   lw        $a1, 0x34($sp)
 /* A01B4 8009F5B4 8FAD0038 */  lw         $t5, 0x38($sp)
 /* A01B8 8009F5B8 A1A20009 */  sb         $v0, 9($t5)
@@ -538,7 +538,7 @@ glabel func_8009F288
 /* A023C 8009F63C 1121001B */  beq        $t1, $at, .L8009F6AC
 /* A0240 8009F640 00000000 */   nop
 /* A0244 8009F644 8FA40030 */  lw         $a0, 0x30($sp)
-/* A0248 8009F648 0C027EC5 */  jal        func_8009FB14
+/* A0248 8009F648 0C027EC5 */  jal        __getTrackByte
 /* A024C 8009F64C 8FA50034 */   lw        $a1, 0x34($sp)
 /* A0250 8009F650 8FAF0038 */  lw         $t7, 0x38($sp)
 /* A0254 8009F654 A1E2000A */  sb         $v0, 0xa($t7)
@@ -549,7 +549,7 @@ glabel func_8009F288
 /* A0268 8009F668 1721000E */  bne        $t9, $at, .L8009F6A4
 /* A026C 8009F66C 00000000 */   nop
 /* A0270 8009F670 8FA40030 */  lw         $a0, 0x30($sp)
-/* A0274 8009F674 0C027F42 */  jal        func_8009FD08
+/* A0274 8009F674 0C027F42 */  jal        __readVarLen
 /* A0278 8009F678 8FA50034 */   lw        $a1, 0x34($sp)
 /* A027C 8009F67C 8FAC0038 */  lw         $t4, 0x38($sp)
 /* A0280 8009F680 AD82000C */  sw         $v0, 0xc($t4)
@@ -887,7 +887,7 @@ glabel alCSeqGetLoc
 /* A070C 8009FB0C 03E00008 */  jr         $ra
 /* A0710 8009FB10 27BD0008 */   addiu     $sp, $sp, 8
 
-glabel func_8009FB14
+glabel __getTrackByte
 /* A0714 8009FB14 27BDFFF0 */  addiu      $sp, $sp, -0x10
 /* A0718 8009FB18 00857021 */  addu       $t6, $a0, $a1
 /* A071C 8009FB1C 91CF0098 */  lbu        $t7, 0x98($t6)
@@ -1017,13 +1017,13 @@ glabel func_8009FB14
 /* A0900 8009FD00 03E00008 */  jr         $ra
 /* A0904 8009FD04 27BD0010 */   addiu     $sp, $sp, 0x10
 
-glabel func_8009FD08
+glabel __readVarLen
 /* A0908 8009FD08 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A090C 8009FD0C AFBF0014 */  sw         $ra, 0x14($sp)
 /* A0910 8009FD10 AFA40020 */  sw         $a0, 0x20($sp)
 /* A0914 8009FD14 AFA50024 */  sw         $a1, 0x24($sp)
 /* A0918 8009FD18 8FA40020 */  lw         $a0, 0x20($sp)
-/* A091C 8009FD1C 0C027EC5 */  jal        func_8009FB14
+/* A091C 8009FD1C 0C027EC5 */  jal        __getTrackByte
 /* A0920 8009FD20 8FA50024 */   lw        $a1, 0x24($sp)
 /* A0924 8009FD24 AFA2001C */  sw         $v0, 0x1c($sp)
 /* A0928 8009FD28 8FAE001C */  lw         $t6, 0x1c($sp)
@@ -1035,7 +1035,7 @@ glabel func_8009FD08
 /* A0940 8009FD40 AFB9001C */  sw         $t9, 0x1c($sp)
 .L8009FD44:
 /* A0944 8009FD44 8FA40020 */  lw         $a0, 0x20($sp)
-/* A0948 8009FD48 0C027EC5 */  jal        func_8009FB14
+/* A0948 8009FD48 0C027EC5 */  jal        __getTrackByte
 /* A094C 8009FD4C 8FA50024 */   lw        $a1, 0x24($sp)
 /* A0950 8009FD50 AFA20018 */  sw         $v0, 0x18($sp)
 /* A0954 8009FD54 8FA8001C */  lw         $t0, 0x1c($sp)

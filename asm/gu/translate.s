@@ -33,7 +33,7 @@ glabel guTranslateF
 /* A5A44 800A4E44 03E00008 */  jr         $ra
 /* A5A48 800A4E48 00000000 */   nop
 
-glabel guRotateRPY
+glabel guTranslate
 /* A5A4C 800A4E4C 27BDFFA8 */  addiu      $sp, $sp, -0x58
 /* A5A50 800A4E50 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A5A54 800A4E54 AFA40058 */  sw         $a0, 0x58($sp)

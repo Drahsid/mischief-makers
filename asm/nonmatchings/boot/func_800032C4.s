@@ -1,9 +1,9 @@
 glabel func_800032C4
 /* 3EC4 800032C4 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 3EC8 800032C8 3C05800F */  lui        $a1, %hi(D_800EF508)
-/* 3ECC 800032CC 3C03800F */  lui        $v1, %hi(D_800EF4F0)
+/* 3ECC 800032CC 3C03800F */  lui        $v1, %hi(SFX_ChannelStates)
 /* 3ED0 800032D0 AFBF0014 */  sw         $ra, 0x14($sp)
-/* 3ED4 800032D4 2463F4F0 */  addiu      $v1, $v1, %lo(D_800EF4F0)
+/* 3ED4 800032D4 2463F4F0 */  addiu      $v1, $v1, %lo(SFX_ChannelStates)
 /* 3ED8 800032D8 24A5F508 */  addiu      $a1, $a1, %lo(D_800EF508)
 /* 3EDC 800032DC 00001025 */  or         $v0, $zero, $zero
 .L800032E0:
@@ -16,9 +16,9 @@ glabel func_800032C4
 /* 3EF8 800032F8 00000000 */  nop
 /* 3EFC 800032FC 14880009 */  bne        $a0, $t0, .L80003324
 /* 3F00 80003300 00024880 */   sll       $t1, $v0, 2
-/* 3F04 80003304 3C048017 */  lui        $a0, %hi(ptr_alSeqPlayers)
+/* 3F04 80003304 3C048017 */  lui        $a0, %hi(SFX_pALCPlayers)
 /* 3F08 80003308 00892021 */  addu       $a0, $a0, $t1
-/* 3F0C 8000330C 8C84E1D8 */  lw         $a0, %lo(ptr_alSeqPlayers)($a0)
+/* 3F0C 8000330C 8C84E1D8 */  lw         $a0, %lo(SFX_pALCPlayers)($a0)
 /* 3F10 80003310 0C027FD0 */  jal        alSeqpStop
 /* 3F14 80003314 AFA20018 */   sw        $v0, 0x18($sp)
 /* 3F18 80003318 8FA20018 */  lw         $v0, 0x18($sp)

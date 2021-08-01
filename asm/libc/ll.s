@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A4280
+glabel __ull_rshift
 /* A4E80 800A4280 AFA40000 */  sw         $a0, ($sp)
 /* A4E84 800A4284 AFA50004 */  sw         $a1, 4($sp)
 /* A4E88 800A4288 AFA60008 */  sw         $a2, 8($sp)

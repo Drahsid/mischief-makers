@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A47C0
+glabel GameSave_Write
 /* A53C0 800A47C0 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* A53C4 800A47C4 AFBF0024 */  sw         $ra, 0x24($sp)
 /* A53C8 800A47C8 AFA40040 */  sw         $a0, 0x40($sp)
@@ -28,7 +28,7 @@ glabel func_800A47C0
 .L800A4800:
 /* A5400 800A4800 8FA40040 */  lw         $a0, 0x40($sp)
 /* A5404 800A4804 93A50047 */  lbu        $a1, 0x47($sp)
-/* A5408 800A4808 0C02C888 */  jal        func_800B2220
+/* A5408 800A4808 0C02C888 */  jal        osEepromWrite
 /* A540C 800A480C 8FA60048 */   lw        $a2, 0x48($sp)
 /* A5410 800A4810 AFA2003C */  sw         $v0, 0x3c($sp)
 /* A5414 800A4814 8FB8003C */  lw         $t8, 0x3c($sp)

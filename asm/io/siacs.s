@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel __osSiCreateAccessQueue
+glabel __osPiCreateAccessQueue
 /* A8A20 800A7E20 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A8A24 800A7E24 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A8A28 800A7E28 240E0001 */  addiu      $t6, $zero, 1
@@ -32,14 +32,14 @@ glabel __osSiCreateAccessQueue
 /* A8A70 800A7E70 03E00008 */  jr         $ra
 /* A8A74 800A7E74 00000000 */   nop
 
-glabel __osSiGetAccess
+glabel __osPiGetAccess
 /* A8A78 800A7E78 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A8A7C 800A7E7C AFBF0014 */  sw         $ra, 0x14($sp)
 /* A8A80 800A7E80 3C0E800F */  lui        $t6, %hi(__osPiAccessQueueEnabled)
 /* A8A84 800A7E84 8DCEA630 */  lw         $t6, %lo(__osPiAccessQueueEnabled)($t6)
 /* A8A88 800A7E88 15C00003 */  bnez       $t6, .L800A7E98
 /* A8A8C 800A7E8C 00000000 */   nop
-/* A8A90 800A7E90 0C029F88 */  jal        __osSiCreateAccessQueue
+/* A8A90 800A7E90 0C029F88 */  jal        __osPiCreateAccessQueue
 /* A8A94 800A7E94 00000000 */   nop
 .L800A7E98:
 /* A8A98 800A7E98 3C048018 */  lui        $a0, %hi(__osPiAccessQueue)
@@ -55,7 +55,7 @@ glabel __osSiGetAccess
 /* A8ABC 800A7EBC 03E00008 */  jr         $ra
 /* A8AC0 800A7EC0 00000000 */   nop
 
-glabel __osSiRelAccess
+glabel __osPiRelAccess
 /* A8AC4 800A7EC4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A8AC8 800A7EC8 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A8ACC 800A7ECC 3C048018 */  lui        $a0, %hi(__osPiAccessQueue)
