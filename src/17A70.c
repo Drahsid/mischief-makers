@@ -262,9 +262,9 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B23C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B244.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_Count.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B2F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameSave_Update.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B3D0.s")
 

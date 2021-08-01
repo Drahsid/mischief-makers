@@ -194,7 +194,7 @@ void mainproc(int32_t arg0) {
 //    uint32_t phi_v0;
 //
 //    osCreateViManager(0xFE);
-//    if (osTvType == 2) {
+//    if (osTvType == OS_TV_MPAL) {
 //        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
 //        Framebuffer_Clear();
 //        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
@@ -238,7 +238,7 @@ void mainproc(int32_t arg0) {
 //    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
 //    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA); // This is from libultra!
 //    osStartThread(&D_8012A9F8);
-//    osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
+//    osCreateThread(&D_8012A848, 3, &Thread_IOProc, arg0, &D_80128670, 0xA);
 //    osStartThread(&D_8012A848);
 //    osSetThreadPri(0, 0);
 //
@@ -255,12 +255,12 @@ void mainproc(int32_t arg0) {
 
 #ifdef NON_MATCHING
 // primary issue in matching is loading of data_ptr / data_size
-void func_80000C20(int32_t arg0) {
+void Thread_IOProc(int32_t arg0) {
     OSMesgQueue* new_var3;
     int new_var;
     void* phi_s2;
 
-    func_80001B38();
+    Sound_InitPlayers();
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABA8), (void**)(&D_8012AC68), 1);
     new_var3 = &D_8012ABC0;
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
@@ -269,8 +269,8 @@ void func_80000C20(int32_t arg0) {
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
     osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
-    func_8009A790(0xA);
-    func_8009A9B0(new_var3, D_8012AC80, 1);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_DITHER_OFF);
+    osViSetEvent(new_var3, D_8012AC80, 1);
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
@@ -306,7 +306,7 @@ void func_80000C20(int32_t arg0) {
         osWritebackDCacheAll();
         osSpTaskLoad(D_8012AC84);
         osSpTaskStartGo(D_8012AC84);
-        func_80002114();
+        Sound_Tick();
         func_800028D0();
         D_800BE700 = 1 - (D_800BE700 & 0xFFFF);
         func_80000A84(D_800BE700 & 0xFFFF);
@@ -331,10 +331,10 @@ void func_80000C20(int32_t arg0) {
         Input_Update();
     }
 
-    func_80002114(new_var3);
+    Sound_Tick(new_var3);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IOProc.s")
 #endif
 
 void Input_Update(void) {
@@ -464,7 +464,7 @@ uint16_t func_8000178C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001A80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001B38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Sound_InitPlayers.s")
 
 void func_800020BC(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
@@ -472,7 +472,7 @@ void func_800020BC(void) {
     osSendMesg(&D_801377D0, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002114.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Sound_Tick.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800028D0.s")
 
@@ -584,21 +584,21 @@ void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800039B8.s")
 
-void func_80003A10(void) {
+void BGM_SFX_Stop(void) {
     BGM_Stop();
     SFX_StopAll();
 }
 
 void BGM_Stop(void) {
-    alSeqpStop(D_8016DFE4);
+    alSeqpStop(BGM_pALCPlayer);
     bssStart = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_StopAll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003AD4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_SetPan.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003D64.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_SetPan_2.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003F24.s")
 
@@ -610,7 +610,7 @@ void BGM_Stop(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Sprite_init.s")
 
-void func_800046FC(int32_t* arg0) {
+void Sprite_Finish(int32_t* arg0) {
     int32_t sp1C;
     int32_t* temp_a0;
 
@@ -630,7 +630,7 @@ void func_8000474C(int32_t arg0, uint32_t arg1) {
     D_800C4EC0 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004760.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Sprite_setScale.s")
 
 #ifdef NON_MATCHING
 void Sprite_SetColor(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
@@ -645,14 +645,14 @@ void Sprite_SetColor(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Sprite_SetColor.s")
 #endif
 
-void func_800047B0(int32_t arg0) {
+void Sprite_SetTransparent(int32_t arg0) {
     Sprite* new_var = &D_800C4E5C;
     spClearAttribute(&D_800C4E5C, 0xFFFF);
     if (arg0 != 0) {
-        spSetAttribute(new_var, 1);
+        spSetAttribute(new_var, SP_TRANSPARENT);
     }
     else {
-        spClearAttribute(new_var, 1);
+        spClearAttribute(new_var, SP_TRANSPARENT);
     }
 }
 
