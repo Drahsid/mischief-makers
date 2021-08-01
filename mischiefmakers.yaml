@@ -200,8 +200,8 @@ segments:
       - [0xEB7E8, .rodata, boot] # end at 0xEB824
       - [0xEB830, rodata]
       - [0xEBC50, .rodata, 17A70]
-      - [0xEBD00, bin]
-      - [0xEBE60, bin]
+      - [0xEBD00, rodata, 17A70]
+      - [0xEC190, bin]
       - [0xEC5C0, .rodata, 241E0] # start for the jtbl at 0xEC6AC
 
       # libultra
