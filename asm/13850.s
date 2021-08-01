@@ -1693,8 +1693,8 @@ glabel L80014278_14E78
 /* 15134 80014534 24040095 */   addiu     $a0, $zero, 0x95
 /* 15138 80014538 3C108018 */  lui        $s0, %hi(gRedGems)
 /* 1513C 8001453C 26108136 */  addiu      $s0, $s0, %lo(gRedGems)
-/* 15140 80014540 3C0F8018 */  lui        $t7, %hi(conTinueChoice)
-/* 15144 80014544 95EF8138 */  lhu        $t7, %lo(conTinueChoice)($t7)
+/* 15140 80014540 3C0F8018 */  lui        $t7, %hi(continueChoice)
+/* 15144 80014544 95EF8138 */  lhu        $t7, %lo(continueChoice)($t7)
 /* 15148 80014548 960E0000 */  lhu        $t6, ($s0)
 /* 1514C 8001454C 24120064 */  addiu      $s2, $zero, 0x64
 /* 15150 80014550 01CFC823 */  subu       $t9, $t6, $t7
@@ -1987,8 +1987,8 @@ glabel L800146F8_152F8
 /* 15560 80014960 A54B0000 */  sh         $t3, ($t2)
 /* 15564 80014964 3C01800D */  lui        $at, %hi(D_800D28E4)
 /* 15568 80014968 240C0061 */  addiu      $t4, $zero, 0x61
-/* 1556C 8001496C 3C028018 */  lui        $v0, %hi(conTinueChoice)
-/* 15570 80014970 94428138 */  lhu        $v0, %lo(conTinueChoice)($v0)
+/* 1556C 8001496C 3C028018 */  lui        $v0, %hi(continueChoice)
+/* 15570 80014970 94428138 */  lhu        $v0, %lo(continueChoice)($v0)
 /* 15574 80014974 A42C28E4 */  sh         $t4, %lo(D_800D28E4)($at)
 /* 15578 80014978 24100001 */  addiu      $s0, $zero, 1
 /* 1557C 8001497C 24130001 */  addiu      $s3, $zero, 1
