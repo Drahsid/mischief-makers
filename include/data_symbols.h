@@ -284,7 +284,7 @@ extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern UNK_TYPE D_8011D970;
-extern int16_t D_8011DD70;
+extern int16_t D_8011DD70[64]; //buffer of controller inputs
 extern UNK_TYPE D_8011DDF0;
 extern int16_t D_801225F0;
 extern uint32_t D_80126670; // initial thread stack head
@@ -306,11 +306,13 @@ extern UNK_TYPE D_8012AC70;
 extern UNK_TYPE D_8012AC74;
 extern UNK_TYPE D_8012AC80;
 extern OSTask* D_8012AC84;
-extern struct_D_8012AD10* D_8012AD08;
-extern struct_D_8012AD10 D_8012AD10;
+extern OSTask D_8012AC88[2];
+extern OSViMode* D_8012AD08;
+extern OSViMode D_8012AD10;
+extern OSContStatus OSContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
-extern UNK_TYPE D_8012ADA0;
+extern OSMesgQueue D_8012ADA0;
 extern Mtx D_8012ADC0[390]; // room for 390 Mtx...
 extern Mtx D_80130F40[390];
 extern UNK_TYPE gPlayerControllerIndex;
