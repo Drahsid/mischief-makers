@@ -28,10 +28,10 @@ glabel osViSetMode
 /* 9A860 80099C60 10000007 */  b          .L80099C80
 /* 9A864 80099C64 00000000 */   nop
 .L80099C68:
-/* 9A868 80099C68 3C04800F */  lui        $a0, %hi(visetmode_rodata_0000)
-/* 9A86C 80099C6C 3C05800F */  lui        $a1, %hi(visetmode_rodata_0010)
-/* 9A870 80099C70 24A5D640 */  addiu      $a1, $a1, %lo(visetmode_rodata_0010)
-/* 9A874 80099C74 2484D630 */  addiu      $a0, $a0, %lo(visetmode_rodata_0000)
+/* 9A868 80099C68 3C04800F */  lui        $a0, %hi(D_800ED630)
+/* 9A86C 80099C6C 3C05800F */  lui        $a1, %hi(D_800ED640)
+/* 9A870 80099C70 24A5D640 */  addiu      $a1, $a1, %lo(D_800ED640)
+/* 9A874 80099C74 2484D630 */  addiu      $a0, $a0, %lo(D_800ED630)
 /* 9A878 80099C78 0C026E74 */  jal        __assert
 /* 9A87C 80099C7C 2406003A */   addiu     $a2, $zero, 0x3a
 .L80099C80:

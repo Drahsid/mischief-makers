@@ -27,10 +27,10 @@ glabel osViSwapBuffer
 /* 99AAC 80098EAC 10000007 */  b          .L80098ECC
 /* 99AB0 80098EB0 00000000 */   nop
 .L80098EB4:
-/* 99AB4 80098EB4 3C04800F */  lui        $a0, %hi(viswapbuf_rodata_0000)
-/* 99AB8 80098EB8 3C05800F */  lui        $a1, %hi(viswapbuf_rodata_0014)
-/* 99ABC 80098EBC 24A5D614 */  addiu      $a1, $a1, %lo(viswapbuf_rodata_0014)
-/* 99AC0 80098EC0 2484D600 */  addiu      $a0, $a0, %lo(viswapbuf_rodata_0000)
+/* 99AB4 80098EB4 3C04800F */  lui        $a0, %hi(D_800ED600)
+/* 99AB8 80098EB8 3C05800F */  lui        $a1, %hi(D_800ED614)
+/* 99ABC 80098EBC 24A5D614 */  addiu      $a1, $a1, %lo(D_800ED614)
+/* 99AC0 80098EC0 2484D600 */  addiu      $a0, $a0, %lo(D_800ED600)
 /* 99AC4 80098EC4 0C026E74 */  jal        __assert
 /* 99AC8 80098EC8 2406003E */   addiu     $a2, $zero, 0x3e
 .L80098ECC:

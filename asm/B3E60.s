@@ -124,8 +124,8 @@ glabel _Putfld
 /* B4000 800B3400 AFAE00B0 */  sw         $t6, 0xb0($sp)
 /* B4004 800B3404 8FB9006C */  lw         $t9, 0x6c($sp)
 /* B4008 800B3408 AFA000A0 */  sw         $zero, 0xa0($sp)
-/* B400C 800B340C 3C04800F */  lui        $a0, %hi(xprintf_rodata_0004)
-/* B4010 800B3410 2484E6C4 */  addiu      $a0, $a0, %lo(xprintf_rodata_0004)
+/* B400C 800B340C 3C04800F */  lui        $a0, %hi(D_800EE6C4)
+/* B4010 800B3410 2484E6C4 */  addiu      $a0, $a0, %lo(D_800EE6C4)
 /* B4014 800B3414 0C02970C */  jal        strchr
 /* B4018 800B3418 93250000 */   lbu       $a1, ($t9)
 /* B401C 800B341C AFA20064 */  sw         $v0, 0x64($sp)
@@ -134,19 +134,19 @@ glabel _Putfld
 /* B4028 800B3428 00000000 */   nop
 .L800B342C:
 /* B402C 800B342C 8FA90064 */  lw         $t1, 0x64($sp)
-/* B4030 800B3430 3C0B800F */  lui        $t3, %hi(xprintf_rodata_0004)
-/* B4034 800B3434 256BE6C4 */  addiu      $t3, $t3, %lo(xprintf_rodata_0004)
+/* B4030 800B3430 3C0B800F */  lui        $t3, %hi(D_800EE6C4)
+/* B4034 800B3434 256BE6C4 */  addiu      $t3, $t3, %lo(D_800EE6C4)
 /* B4038 800B3438 012B5023 */  subu       $t2, $t1, $t3
 /* B403C 800B343C 000A6080 */  sll        $t4, $t2, 2
-/* B4040 800B3440 3C0D800F */  lui        $t5, %hi(xprintf_rodata_000C)
+/* B4040 800B3440 3C0D800F */  lui        $t5, %hi(D_800EE6CC)
 /* B4044 800B3444 01AC6821 */  addu       $t5, $t5, $t4
-/* B4048 800B3448 8DADE6CC */  lw         $t5, %lo(xprintf_rodata_000C)($t5)
+/* B4048 800B3448 8DADE6CC */  lw         $t5, %lo(D_800EE6CC)($t5)
 /* B404C 800B344C 8FA800A0 */  lw         $t0, 0xa0($sp)
 /* B4050 800B3450 010D7825 */  or         $t7, $t0, $t5
 /* B4054 800B3454 AFAF00A0 */  sw         $t7, 0xa0($sp)
 /* B4058 800B3458 8FAE006C */  lw         $t6, 0x6c($sp)
-/* B405C 800B345C 3C04800F */  lui        $a0, %hi(xprintf_rodata_0004)
-/* B4060 800B3460 2484E6C4 */  addiu      $a0, $a0, %lo(xprintf_rodata_0004)
+/* B405C 800B345C 3C04800F */  lui        $a0, %hi(D_800EE6C4)
+/* B4060 800B3460 2484E6C4 */  addiu      $a0, $a0, %lo(D_800EE6C4)
 /* B4064 800B3464 25D90001 */  addiu      $t9, $t6, 1
 /* B4068 800B3468 AFB9006C */  sw         $t9, 0x6c($sp)
 /* B406C 800B346C 0C02970C */  jal        strchr
@@ -284,8 +284,8 @@ glabel _Putfld
 /* B4254 800B3654 00000000 */   nop
 .L800B3658:
 /* B4258 800B3658 8FAB006C */  lw         $t3, 0x6c($sp)
-/* B425C 800B365C 3C04800F */  lui        $a0, %hi(xprintf_rodata_0000)
-/* B4260 800B3660 2484E6C0 */  addiu      $a0, $a0, %lo(xprintf_rodata_0000)
+/* B425C 800B365C 3C04800F */  lui        $a0, %hi(D_800EE6C0)
+/* B4260 800B3660 2484E6C0 */  addiu      $a0, $a0, %lo(D_800EE6C0)
 /* B4264 800B3664 0C02970C */  jal        strchr
 /* B4268 800B3668 91650000 */   lbu       $a1, ($t3)
 /* B426C 800B366C 10400007 */  beqz       $v0, .L800B368C

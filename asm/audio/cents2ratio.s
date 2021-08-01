@@ -15,13 +15,13 @@ glabel alCents2Ratio
 /* AEEE0 800AE2E0 E7A40000 */  swc1       $f4, ($sp)
 /* AEEE4 800AE2E4 04800005 */  bltz       $a0, .L800AE2FC
 /* AEEE8 800AE2E8 00000000 */   nop
-/* AEEEC 800AE2EC 3C01800F */  lui        $at, %hi(cents2ratio_rodata_0000)
-/* AEEF0 800AE2F0 C426E380 */  lwc1       $f6, %lo(cents2ratio_rodata_0000)($at)
+/* AEEEC 800AE2EC 3C01800F */  lui        $at, %hi(D_800EE380)
+/* AEEF0 800AE2F0 C426E380 */  lwc1       $f6, %lo(D_800EE380)($at)
 /* AEEF4 800AE2F4 10000005 */  b          .L800AE30C
 /* AEEF8 800AE2F8 E7A60004 */   swc1      $f6, 4($sp)
 .L800AE2FC:
-/* AEEFC 800AE2FC 3C01800F */  lui        $at, %hi(cents2ratio_rodata_0004)
-/* AEF00 800AE300 C428E384 */  lwc1       $f8, %lo(cents2ratio_rodata_0004)($at)
+/* AEEFC 800AE2FC 3C01800F */  lui        $at, %hi(D_800EE384)
+/* AEF00 800AE300 C428E384 */  lwc1       $f8, %lo(D_800EE384)($at)
 /* AEF04 800AE304 E7A80004 */  swc1       $f8, 4($sp)
 /* AEF08 800AE308 00042023 */  negu       $a0, $a0
 .L800AE30C:
