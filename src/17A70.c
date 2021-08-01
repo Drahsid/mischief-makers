@@ -229,7 +229,178 @@ void func_8001751C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
 
+#ifdef NON_MATCHING
+// behavioraly equal, differences are regalloc  and some of the load/stores are out of order
+void Intro_Tick(void) {
+    switch (gGameSubState) {
+        case 0: {
+            func_80003A38();
+
+            D_800BE5D0 = 0x15;
+
+            func_80025C38();
+            func_80010C20(D_800BE5D0);
+
+            (&D_80380200)[2] = 1; // volatile?
+            (&D_80380200)[1] = 1; // volatile?
+
+            func_800273FC(0x30, 0x2000, 0, 4, 0);
+
+            D_800F4224 |= 0x200;
+            D_800F4210 |= 0x30000000;
+            D_800F423A = 0x80;
+            D_800F423C = 1;
+            D_800F423E = 0x10;
+            D_800F4240 = 8;
+            D_800F430C = 0x8034E4C8;
+            D_800F4310 = &D_800C9080;
+            *(&D_800F42E4) = -0x1F; // volatile?
+
+            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, -0x1F, -0x1F, -0x1F);
+
+            gGameSubState++;
+            break;
+        }
+        case 1: {
+            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if (D_800F42E4++ == 0) {
+                    gGameSubState++;
+                    D_800F42E8 = 0x80;
+                }
+            }
+            break;
+        }
+        case 2: {
+            if (D_800F42E8-- == 0) {
+                gGameSubState++;
+            }
+            break;
+        }
+        case 3: {
+            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if ((D_800F42E4-- + 0x1F) == 0) {
+                    func_800273FC(0x30U, 0x2000U, 0U, 4U, (uint16_t)0);
+
+                    D_800F4224 = D_800F4224 | 0x200;
+                    D_800F4210 = D_800F4210 | 0x30000000;
+                    D_800F423A = 0x50;
+                    D_800F423C = 1;
+                    D_800F423E = 0x18;
+                    D_800F4240 = 4;
+                    D_800F430C = 0x80340240;
+                    D_800F4310 = (uint32_t)&D_800C8FA0;
+                    D_800F42E4 = -0x1F;
+
+                    func_8002B82C(0x80342040, &D_800C8FA0, 0xF, -0x1F, -0x1F, -0x1F);
+
+                    gGameSubState = 10;
+                }
+            }
+            break;
+        }
+        case 10: {
+            func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if (D_800F42E4++ == 0) {
+                    gGameSubState++;
+                    D_800F42E8 = 0x80;
+                }
+            }
+            break;
+        }
+        case 11: {
+            if (D_800F42E8-- == 0) {
+                gGameSubState++;
+            }
+            break;
+        }
+        case 12: {
+            func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if (D_800F42E4-- + 0x1F) {
+                    D_800F4210 = 0;
+
+                    func_800273FC(0x31U, 0x2002U, 0U, 8U, (uint16_t)0);
+
+                    D_800F43BC |= 0x200;
+                    D_800F43A8 |= 0x30000000;
+                    D_800F43D2 = 0x48;
+                    D_800F43D4 = 1;
+                    D_800F43D6 = 0x18;
+                    D_800F43D8 = 4;
+                    D_800F44A4 = 0x80342068;
+                    D_800F44A8 = &D_800C8FC0;
+                    *(&D_800F447C) = -0x1F;
+
+                    func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, -0x1F, -0x1F, -0x1F);
+
+                    gGameSubState++;
+                }
+            }
+            break;
+        }
+        case 13: {
+            func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if (D_800F447C++ == 0) {
+                    gGameSubState++;
+                    D_800F4480 = 0x80;
+                }
+            }
+            break;
+        }
+        case 14: {
+            if (D_800F4480-- == 0) {
+                gGameSubState++;
+            }
+            break;
+        }
+        case 15: {
+            func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
+
+            if ((D_800BE4E4 & 1) != 0) {
+                if ((D_800F447C-- + 0x1F) == 0) {
+                    D_800F43A8 = 0;
+                    gGameSubState++;
+                }
+            }
+            break;
+        }
+        case 16: {
+            D_8012A670 = (uint32_t*)((uint8_t*)D_8012A670 + 8);
+            D_8012A670[0] = 0x6000000;
+            D_8012A670[1] = &D_800C8EF0;
+
+            D_800F4210 = 0;
+            D_800F43A8 = 0;
+            gCurrentStage = 0;
+            gWorldProgress = 0;
+            D_800BE5D0 = 0xB;
+            D_800D28E4 = 0x59;
+            D_800C5008 = 0;
+            gGameState = 0xC;
+            gGameSubState = 65;
+            break;
+        }
+    }
+
+    if ((gButtonPress & gButton_Start) != 0) {
+        if (gGameSubState > 0) {
+            gGameState = 2;
+            gGameSubState = 0;
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Intro_Tick.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
 
@@ -275,7 +446,7 @@ void StageSelect_Tick(void) {
         if (temp_v0 != 1) {
             if (temp_v0 == 2) {
                 D_800C5008 = (uint8_t)0;
-                D_80171B18 = (int8_t)gCurrentStage;
+                gWorldProgress = (int8_t)gCurrentStage;
                 gGameState = (uint16_t)0xC;
                 gGameSubState = (uint16_t)0x41U;
             }
