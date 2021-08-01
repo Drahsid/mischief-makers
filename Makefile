@@ -1,7 +1,8 @@
 BASENAME  = mischiefmakers
 
 BUILD_DIR = build
-ASM_DIRS  = asm asm/data asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp asm/eeprom asm/pi
+ASM_DIRS  = asm asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp asm/eeprom asm/pi\
+			asm/data asm/data/os asm/data/io asm/data/audio asm/data/rmon asm/data/libc asm/data/host asm/data/logger asm/data/gu asm/data/sp
 BIN_DIRS  = assets
 SRC_DIR   = src
 SRC_DIRS  = $(SRC_DIR)
@@ -83,7 +84,7 @@ context:
 	$(PYTHON) tools/m2ctx.py ctx_includes.c
 
 compare:
-	cmp -l -i 65 ./baserom.z64 $(TARGET).z64 | gawk '{printf "%08X %02X %02X\n", $1+0x7ffff440, strtonum(0$2), strtonum(0$3)}'
+	$(PYTHON) first_diff.py
 
 ### Recipes
 

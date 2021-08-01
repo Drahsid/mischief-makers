@@ -3,7 +3,190 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80016E70.s")
+void func_80016E70(uint16_t index) {
+    uint8_t temp_t8 = gActors[index].unk_0xD2 & 0xFFFF;
+
+    switch (gActors[index].unk_0xD2 >> 8) {
+        case 1: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 2: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 3: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 4: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 5: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 6: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 7: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 8: {
+            gActorFuncTable_800E5AC0[temp_t8](index);
+            break;
+        }
+        case 9: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 10: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 11: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 12: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 13: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 14: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 15: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 16: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 17: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 18: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 19: {
+            gActorFuncTable_8019B000[temp_t8](index);
+            break;
+        }
+        case 20: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 21: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 22: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 23: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 24: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 25: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 26: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 27: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 28: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 29: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 30: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 31: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 32: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 33: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 34: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 35: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 36: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 37: {
+            gActorFuncTable_801A6800[temp_t8](index);
+            break;
+        }
+        case 38: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 39: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 40: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 41: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 42: {
+            gActorFuncTable_801B0800[temp_t8](index);
+            break;
+        }
+        case 43: {
+            gActorFuncTable_80192000[temp_t8](index);
+            break;
+        }
+        case 44: {
+            gActorFuncTable_80192000[temp_t8](index);
+        }
+        default: {
+            break;
+        }
+    }
+}
 
 void func_8001751C(void) {
     Actor* actor; // this is probably a fake match but I prefer this syntax over gActors[index]

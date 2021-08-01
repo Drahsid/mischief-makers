@@ -1,6 +1,6 @@
 # Mischief Makers
-[![Match Status](https://img.shields.io/badge/matched-0.47-brightgreen.svg)]()
-[![Decomp Status](https://img.shields.io/badge/decompiled-2.01-yellow.svg)]()
+[![Match Status](https://img.shields.io/badge/matched-0.74-brightgreen.svg)]()
+[![Decomp Status](https://img.shields.io/badge/decompiled-2.28-yellow.svg)]()
 
 A in-progress decompilation of Mischief Makers (or Yuke-Yuke!! Trouble Makers, ゆけゆけ!!トラブルメーカーズ, Yuke Yuke!! Toraburu Mēkāzu in Japanese.)
 
@@ -50,4 +50,5 @@ baserom.z64: OK
 
 ## Contributing
 Contributions are welcome. If you would like to reserve a function, open a PR with the function name.
+If you plan to contribute, be sure to take a look at the [style guide](https://github.com/Drahsid/mischief-makers/wiki/Style-Guide).
 

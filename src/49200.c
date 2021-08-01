@@ -512,7 +512,7 @@ void func_8004EC60(uint16_t index) {
 //        gActors[index].unk_0x12E = 0;
 //
 //        //(((gActors[index].unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
-//        D_800D3DB0[gActors[index].unk_0xD0_h](index);
+//        gActorFuncTable_800D3DB0[gActors[index].unk_0xD0_h](index);
 //
 //        func_80048BB0(index);
 //
