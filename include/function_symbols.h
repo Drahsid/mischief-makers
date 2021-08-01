@@ -511,7 +511,7 @@ extern int32_t func_8002B5A0(int32_t, int32_t, int16_t, int16_t);
 extern void func_8002B6E8();
 extern void func_8002B7B8();
 extern void func_8002B7F4();
-extern void func_8002B82C();
+extern void func_8002B82C(uint16_t*, UNK_POINTER, int16_t, int16_t, int16_t, int16_t);
 extern void func_8002B8F0();
 extern void func_8002B954();
 extern void func_8002B9D8();

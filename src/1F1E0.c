@@ -364,15 +364,15 @@ void AttractMode_Tick(void) {
             AttractModeIndex = 0;
         }
 
-        D_80178162 = (&D_800CA2B0)[AttractModeIndex];
-        D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)D_80178162 * 2);
-        D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)D_80178162 * 2);
+        gCurrentStage = (&D_800CA2B0)[AttractModeIndex];
+        D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
+        D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)gCurrentStage * 2);
         D_800CA234 = 0xA00;
         D_800D2908 = 1;
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&AttractModeIndex, &D_80178162, &D_800CA234, &gGameSubState);
+        func_800232A4(&AttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
         gGameState = 10;
         gGameSubState = 1;
         D_80104098.unk_0x2920 = 0;
