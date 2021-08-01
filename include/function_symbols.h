@@ -234,7 +234,7 @@ extern void func_8001D240();
 extern void func_8001D5B8();
 extern void func_8001D60C();
 extern void func_8001D654();
-extern void func_8001DBA0();
+extern void func_8001DBA0(uint16_t* arg0, uint16_t index);
 extern void func_8001DC60();
 extern void func_8001DE30();
 extern void func_8001E2D0(uint16_t arg0);
