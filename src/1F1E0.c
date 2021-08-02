@@ -173,11 +173,11 @@ void func_80020024(void) {
     int32_t phi_s4;
 
     D_800BE4E0++;
-    D_801782B8++;
+    gStageTimeReal++;
 
-    phi_s0 = 0x8CA0; // probably a fake match, but it is obvious that s0 or s4 is reused somewhere before the loop at the bottom
-    if ((((D_801781E0 < phi_s0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
-        D_801781E0++;
+    phi_s0 = 36000; // probably a fake match, but it is obvious that s0 or s4 is reused somewhere before the loop at the bottom
+    if ((((gStageTime < phi_s0) && (D_800D28E8 >= 2)) && (func_8005DEFC() == 0)) && (D_800D28E4 < 0x61)) {
+        gStageTime++;
     }
 
     func_800122B0(); // input history
@@ -215,7 +215,7 @@ void func_80020024(void) {
     func_8001107C(); // foreground layer of background?
 
     if (D_800CA230 == 0) {
-        func_8004ED10(0); // spawns/updates the player
+        func_8004ED10(0);    // spawns/updates the player
         func_8008C528(0x41); // unknown
     }
 
@@ -236,7 +236,7 @@ void func_80020024(void) {
     func_80047C98(); // level objects
 
     if ((D_800BE6AC & 0x4000) != 0) {
-        phi_s2 = &D_800EF4F0, phi_s3 = &D_800EF508, phi_s1 = &D_800EF4F8; // Whitespace memes
+        phi_s2 = SFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = SFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -249,15 +249,22 @@ void func_80020024(void) {
             phi_s3++;
             phi_s4 -= 0x20;
             phi_s1++;
-        } while (phi_s1 != &D_800EF500);
+        } while (phi_s1 != D_800EF500);
+    }
+}
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
+
+void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
+    if (YellowGem_getFlag(gCurrentStage)) {
+        func_800836A0(9, 1, &Alpha_GotIt, 0);
+    }
+    else {
+        func_800836A0(9, 1, &Alpha_NotYet, 0);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800205DC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800207DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
@@ -284,17 +291,17 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 
 void GamePlay_Tick(void) {
     uint32_t sp1C;
 
-    sp1C = osGetTime(); // osGetTime?
+    sp1C = osGetTime();
     func_800457C8();
-    D_801374DC = osGetTime() - sp1C; // time - lastTime ?
+    gTickDelta = osGetTime() - sp1C;
 
     if (gGamePaused != 0) {
-        func_80020A90();
+        PauseGame_Tick();
     }
     else {
         func_80020024();
@@ -400,7 +407,7 @@ void func_80021620(void) {
     }
 }
 
-void func_80021658(void) {
+void ptstart(void) {
     return;
 }
 

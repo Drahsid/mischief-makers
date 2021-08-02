@@ -384,7 +384,7 @@ void Intro_Tick(void) {
             gWorldProgress = 0;
             D_800BE5D0 = 0xB;
             D_800D28E4 = 0x59;
-            D_800C5008 = 0;
+            gSaveSlotIndex = 0;
             gGameState = 0xC;
             gGameSubState = 65;
             break;
@@ -409,6 +409,7 @@ void Intro_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001809C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
 
@@ -444,7 +445,7 @@ void StageSelect_Tick(void) {
     if (temp_v0 != 0) {
         if (temp_v0 != 1) {
             if (temp_v0 == 2) {
-                D_800C5008 = (uint8_t)0;
+                gSaveSlotIndex = (uint8_t)0;
                 gWorldProgress = (int8_t)gCurrentStage;
                 gGameState = (uint16_t)0xC;
                 gGameSubState = (uint16_t)0x41U;
@@ -460,7 +461,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t6 & 0xFF) == 0xFF) {
                     gActors.unk_0xBC6 = (uint8_t)0x15U;
                 }
-                func_80003380(0x22);
+                SFX_Play_2(0x22);
             }
 
             func_80017680(gButton_DDown, &D_800F0406);
@@ -471,7 +472,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t8 & 0xFF) == 0x16) {
                     gActors.unk_0xBC6 = (uint8_t)0U;
                 }
-                func_80003380(0x22);
+                SFX_Play_2(0x22);
             }
 
             func_80017680(gButton_DLeft, &D_800F059E);
@@ -481,7 +482,7 @@ void StageSelect_Tick(void) {
                 temp_a2 = *temp_v1;
                 if (((int32_t)temp_a2) > 0) {
                     *temp_v1 = (uint8_t)(temp_a2 - 1);
-                    func_80003380(0x22);
+                    SFX_Play_2(0x22);
                 }
             }
 
@@ -493,7 +494,7 @@ void StageSelect_Tick(void) {
                 temp_a2_2 = *temp_v1_2;
                 if (((int32_t)(temp_a2_2 & 0xFF)) < ((*((&D_800C823C) + (temp_v0_2 * 2))) - 1)) {
                     *temp_v1_2 = (uint8_t)(temp_a2_2 + 1);
-                    func_80003380(0x22, &D_800C823C, temp_a2_2);
+                    SFX_Play_2(0x22, &D_800C823C, temp_a2_2);
                 }
             }
 
@@ -505,7 +506,7 @@ void StageSelect_Tick(void) {
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {
-                func_80003A38();
+                BGM_Stop();
                 func_80043918();
                 gGameSubState = (uint16_t)(gGameSubState + 1);
                 return;
@@ -565,7 +566,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019688.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/calculateFestivalTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 
@@ -601,7 +602,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A96C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001ACA8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Record_PrintTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B004.s")
 
@@ -615,17 +616,25 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B23C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B244.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_Count.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B2F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameSave_Update.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B3D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7A4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C7F0.s")
+/*
+void YellowGem_setFlag(void){
+  gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
+}
+*/
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
+/*
+u64 YellowGem_getFlag(u16 arg0) {
+    return gYellowGemBitfeild & __ll_lshift(1,(u64)arg0);
+}
+*/
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 
@@ -655,7 +664,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D0A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D240.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D5B8.s")
 

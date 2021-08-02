@@ -3,7 +3,6 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-
 #ifdef NON_MATCHING
 // Only difference is index should get moved into t9 when masked, and back into v1 before the loop continues
 void func_800121D0(void) {
@@ -13,7 +12,8 @@ void func_800121D0(void) {
     sp1E = D_800EF5F0;
     func_8001E2D0(0);
 
-    if (sp1E) {}
+    if (sp1E) {
+    }
 
     D_800EF5F0 = sp1E;
 
@@ -24,11 +24,12 @@ void func_800121D0(void) {
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
 
-    if (gActors) {}
+    if (gActors) {
+    }
 
     D_800BE5F8 = 0;
 
-    for (index = 0; index < 0x40;  index++ /* = (index + 1) & 0xFFFF*/) {
+    for (index = 0; index < 0x40; index++ /* = (index + 1) & 0xFFFF*/) {
         (&D_8011DD70)[index] = 0;
         (&D_801225F0)[index] = 0;
     }
@@ -40,7 +41,7 @@ void func_800121D0(void) {
 #endif
 
 void func_80012288(void) {
-    D_800EF5E2 = 0x16;
+    gPlayerActor.unk_0xD2 = 0x16;
     func_800121D0();
 }
 
@@ -51,16 +52,16 @@ void func_80012288(void) {
 void func_800123AC(void) {
     int32_t temp_a0;
 
-    temp_a0 = D_800BE5D8 - D_800BE558;
+    temp_a0 = gPlayerPosXMirror - D_800BE558;
 
     if (temp_a0 < -0x90) {
-        D_800BE5D8 = D_800BE558 - 0x90;
+        gPlayerPosXMirror = D_800BE558 - 0x90;
         D_800EF598 = -0x90;
         return;
     }
 
-    if ((D_800BE5D8 - D_800BE558) >= 0x91) {
-        D_800BE5D8 = D_800BE558 + 0x90;
+    if ((gPlayerPosXMirror - D_800BE558) >= 0x91) {
+        gPlayerPosXMirror = D_800BE558 + 0x90;
         D_800EF598 = 0x90;
         return;
     }
@@ -72,7 +73,7 @@ void func_800123AC(void) {
 #endif
 
 void func_80012418(void) {
-    D_800EF59C = (int16_t)(*(int16_t*)(&D_800BE5DC) - D_800BE55C);
+    gPlayerActor.pos.y = (int16_t)(*(int16_t*)(&gPlayerPosYMirror) - D_800BE55C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")

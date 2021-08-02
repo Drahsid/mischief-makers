@@ -45,33 +45,32 @@ void func_80022F48(void) {
 
     func_80022D88();
     func_80025E6C();
-    func_80004FFC(0);
-    func_80004FFC(1);
-    GameSave_Reset();
+    GameSave_Initialize(0);
+    GameSave_Initialize(1);
+    GameSave_SetDefaults();
 
-    gButton_Start   = START_BUTTON;
-    gButton_DUp     = U_JPAD;
-    gButton_DDown   = D_JPAD;
-    gButton_DLeft   = L_JPAD;
-    gButton_DRight  = R_JPAD;
-    gButton_B       = B_BUTTON;
-    gButton_A       = A_BUTTON;
-    gButton_CLeft   = L_CBUTTONS;
-    gButton_CDown   = D_CBUTTONS;
-    gButton_CUp     = U_CBUTTONS;
-    gButton_CRight  = R_CBUTTONS;
-    gButton_ZTrig   = Z_TRIG;
-    gButton_LTrig   = L_TRIG;
-    gButton_RTrig   = R_TRIG;
-    D_801781F8      = 0;
-    D_800CBF44      = 0;
+    gButton_Start = START_BUTTON;
+    gButton_DUp = U_JPAD;
+    gButton_DDown = D_JPAD;
+    gButton_DLeft = L_JPAD;
+    gButton_DRight = R_JPAD;
+    gButton_B = B_BUTTON;
+    gButton_A = A_BUTTON;
+    gButton_CLeft = L_CBUTTONS;
+    gButton_CDown = D_CBUTTONS;
+    gButton_CUp = U_CBUTTONS;
+    gButton_CRight = R_CBUTTONS;
+    gButton_ZTrig = Z_TRIG;
+    gButton_LTrig = L_TRIG;
+    gButton_RTrig = R_TRIG;
+    D_801781F8 = 0;
+    D_800CBF44 = 0;
     gPlayerActor.health = 1000;
-    gRedGems        = 30;
-    gGameState      = 1;
-    gGameSubState   = 0;
+    gRedGems = 30;
+    gGameState = 1;
+    gGameSubState = 0;
     return;
 }
-
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002312C.s")
@@ -128,25 +127,25 @@ void func_800232A4(void) {
     D_800BE610 = temp_t6_2;
     D_800BE73C = temp_t6_2;
     D_800BE5F0 = (int16_t)temp_t6_2;
-    D_800BE5EC = (int32_t)D_800BE5F0;
-    D_800BE5E8 = (int32_t)D_800BE5EC;
-    D_800BE5DC = D_800BE5E8;
-    D_800BE5D8 = D_800BE5DC;
-    temp_v0 = D_800BE5D8;
+    gPlayerVelYMirror = (int32_t)D_800BE5F0;
+    gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;
+    gPlayerPosYMirror = gPlayerVelXMirror;
+    gPlayerPosXMirror = gPlayerPosYMirror;
+    temp_v0 = gPlayerPosXMirror;
     gPlayerActorp->pos.y = temp_v0;
     gPlayerActorp->pos.x = temp_v0;
     D_800BE6A4 = (uint16_t)temp_v0;
     temp_t8_3 = D_800BE6A4;
     D_800BE590 = temp_t8_3;
     D_800BE594 = temp_t8_3;
-    D_801782B8 = temp_t8_3;
+    gStageTimeReal = temp_t8_3;
     D_800BE4E0 = temp_t8_3;
     D_800BE4E4 = temp_t8_3;
     D_8013747C = temp_t8_3;
     D_800BE674 = temp_t8_3;
     D_800BE66C = temp_t8_3;
     gGamePaused = temp_t8_3;
-    func_80042D84(0, gActors, (void*)0x801373E0, (void*)0x800D5820);
+    func_80042D84(0);
     func_80010A10();
     func_800230B8();
     func_80023168();
@@ -159,7 +158,7 @@ void func_800232A4(void) {
     }
 
     func_80025C38();
-    D_801781E0 = 0;
+    gStageTime = 0;
     D_800D294C = (uint16_t)0;
     func_80010C20(D_800BE5D0);
     GamePlay_Tick();

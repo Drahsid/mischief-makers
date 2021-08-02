@@ -49,19 +49,11 @@ void func_80042CF8(uint16_t* arg0) {
 
 #ifdef NON_MATCHING
 // Differences are minor regalloc and instruction order (functionally identical)
-void func_80042D84(int32_t arg0) {
-    uint16_t* new_var;
-    int32_t phi_v0;
-    int32_t* new_var2;
-    new_var2 = &arg0;
-    phi_v0 = (*new_var2) & 0xFFFF;
-    if (phi_v0 != 0x600) {
-        do {
-            new_var = (&D_800D2978) + phi_v0;
-            phi_v0 = (phi_v0 + 3) & 0xFFFF;
-            *new_var = 0;
-        } while (phi_v0 != 0x600);
-    }
+void func_80042D84(int16_t x) {
+    int16_t uVar1;
+
+    for (uVar1 = x; uVar1 != 0x600; uVar1 += 3)
+        (&D_800D2978)[uVar1] = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")
@@ -108,7 +100,7 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
             } while (temp_a1_2 != 0);
         }
     }
-    func_80042D84(phi_a3_2 & 0xFFFF, phi_a1_2, phi_a2, phi_a3_2);
+    func_80042D84(phi_a3_2 & 0xFFFF);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042DBC.s")
@@ -317,7 +309,7 @@ int16_t func_800456DC(void) {
     uint32_t temp_v1;
     int16_t temp_t1_t9;
 
-    temp_v1 = D_801782B8;
+    temp_v1 = gStageTimeReal;
     if ((temp_v1 & 0x20) != 0) {
         temp_t1_t9 = 15 - (temp_v1 & 0x1F);
         return temp_t1_t9;
@@ -397,8 +389,8 @@ void func_80046188(int32_t arg0, int32_t arg1) {
     D_800BE6EC = 0;
     func_80043A68(arg1);
     func_80046A9C();
-    func_80003A64();
-    func_80003A38();
+    SFX_StopAll();
+    BGM_Stop();
 }
 
 
@@ -554,7 +546,7 @@ void func_800475EC(void) {
 
 #ifdef NON_MATCHING
 void func_80047648(int32_t arg0) {
-    D_800D2914 = (arg0 - (D_800EF5F0 / 0xA)) + 0x64;
+    D_800D2914 = (arg0 - (gPlayerActor.health / 0xA)) + 0x64;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047648.s")

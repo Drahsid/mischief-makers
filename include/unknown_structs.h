@@ -158,7 +158,6 @@ typedef struct {
 } struct_D_8012AD10;
 
 
-
 typedef struct {
     uint8_t unk_0x000[0xBC6];
     uint8_t unk_0xBC6;
@@ -177,8 +176,8 @@ typedef struct {
 typedef struct {
     uint8_t unk_0x00[0x80];
     uint16_t unk_0x80;
-    uint8_t  unk_0x82[0xA];
-    uint8_t *unk_0x8C;
+    uint8_t unk_0x82[0xA];
+    uint8_t* unk_0x8C;
 } struct_func_80044360_D_801069E0; /* sizeof 0x90 */
 
 typedef struct {
@@ -205,4 +204,3 @@ typedef struct {
 } struct_D_801373E0; /* sizeof = unk */
 
 #endif
-

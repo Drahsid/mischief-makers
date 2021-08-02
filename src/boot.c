@@ -5,6 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/entrypoint.s")
 
+
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
  * It stores 0 in a bunch of registers, and uses about 10 at a time to write to the cfb
@@ -21,7 +22,7 @@ void Framebuffer_Clear(void) {
     int32_t t2;
     int32_t t0;
 
-    osViBlack((uint8_t)1U);
+    osViBlack(1);
     do {
         index = 0;
         cfb = (uint32_t*)0x803DA800;
@@ -175,7 +176,7 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&D_8012A698, 1, &Thread_IdleProc, 0, &D_80126670, 0xA);
+    osCreateThread(&D_8012A698, 1, Thread_IdleProc, 0, &D_80126670, 0xA);
     osStartThread(&D_8012A698);
 }
 
@@ -234,7 +235,7 @@ void Thread_IdleProc(int32_t arg0) {
         phi_v0 = &osViModeTable + 2;
     }
     D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
+    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
     osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA);
     osStartThread(&D_8012A9F8);
     osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
@@ -245,31 +246,32 @@ void Thread_IdleProc(int32_t arg0) {
     }
 }
 #else
+
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000A84.s")
-
+/* Splat bug.
 #ifdef NON_MATCHING
 // primary issue in matching is loading of data_ptr / data_size
-void func_80000C20(int32_t arg0) {
+void Thread_IOProc(int32_t arg0) {
     OSMesgQueue* new_var3;
     int new_var;
     void* phi_s2;
 
-    func_80001B38();
+    Sound_InitPlayers();
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABA8), (void**)(&D_8012AC68), 1);
     new_var3 = &D_8012ABC0;
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
     osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
-    func_800020BC();
+    Sound_SetEventMesg();
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
     osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
-    func_8009A790(0xA);
-    func_8009A9B0(new_var3, D_8012AC80, 1);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_DITHER_OFF);
+    osViSetEvent(new_var3, D_8012AC80, 1);
     func_800008E0();
     func_80022D10();
     func_80000A84(D_800BE700);
@@ -305,7 +307,7 @@ void func_80000C20(int32_t arg0) {
         osWritebackDCacheAll();
         osSpTaskLoad(D_8012AC84);
         osSpTaskStartGo(D_8012AC84);
-        func_80002114();
+        Sound_Tick();
         func_800028D0();
         D_800BE700 = 1 - (D_800BE700 & 0xFFFF);
         func_80000A84(D_800BE700 & 0xFFFF);
@@ -330,11 +332,11 @@ void func_80000C20(int32_t arg0) {
         Input_Update();
     }
 
-    func_80002114(new_var3);
+    Sound_Tick(new_var3);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000C20.s")
-#endif
+#else*/
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IOProc.s")
+//#endif
 
 void Input_Update(void) {
     osContGetReadData(gConpadArrayB);
@@ -360,7 +362,7 @@ void Input_Update(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
 void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    uint32_t sp30[6];
+    OSIoMesg sp30;
     uint32_t sp2C;
 
     osInvalDCache(arg1, arg2);
@@ -373,17 +375,19 @@ void func_80001264(void) {
     osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
-void func_80001290(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    uint32_t sp2C[2];
-    uint16_t sp28[8];
+int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
+    int32_t sp2C[2];
+    uint16_t sp28[8]; // rewrite so this is OSIoMesg and matches
 
-    osInvalDCache(arg1, arg2);
-    osPiStartDma(&sp28, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
+    osInvalDCache(Vaddr, nBytes);
+    sp2C[0] = osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
+    return sp2C[0];
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
+
 
 void GameState_Tick(void) {
     switch (gGameState) {
@@ -454,206 +458,3 @@ uint16_t func_8000178C(void) {
     D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;
     return D_800BE5A4 / 0x100;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800017D0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001988.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001A80.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001B38.s")
-
-void func_800020BC(void) {
-    osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
-    osSetEventMesg(4, &D_801377D0, 0);
-    osSendMesg(&D_801377D0, 0, 1);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002114.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800028D0.s")
-
-void func_800029EC(void) {
-    osWritebackDCacheAll();
-    osSpTaskLoad(D_8016E6F0);
-    osSpTaskStartGo(D_8016E6F0);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002A2C.s")
-
-void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    osWritebackDCacheAll();
-    osPiStartDma(&D_801378C8, 0, 0, arg0, arg1, arg2, &D_801377B8);
-    osRecvMesg(&D_801377B8, 0, 1);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002B50.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002F48.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003020.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800032C4.s")
-
-int32_t func_8000334C(UNK_TYPE arg0) {
-    return func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
-}
-
-void func_80003380(UNK_TYPE arg0) {
-    func_80003020(arg0, -1, -1, 0x91, 0xFF, 0);
-}
-
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_800033B4(UNK_TYPE arg0, int16_t arg1) {
-    func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033B4.s")
-#endif
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_800033F0(UNK_TYPE arg0, int8_t arg1) {
-    func_80003020(-1, arg1, -1, 0x81, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800033F0.s")
-#endif
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_80003430(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x81, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003430.s")
-#endif
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_80003474(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x91, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003474.s")
-#endif
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_800034B8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x92, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034B8.s")
-#endif
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_800034FC(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    func_80003020(arg0, arg1, arg2, 0x93, 0xFF, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800034FC.s")
-#endif
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003540.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800035F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800036C8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003778.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003828.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800038C8.s")
-
-#ifdef NON_MATCHING
-// Differences are regalloc
-void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
-    func_80003020(arg0, -1, -1, 0xC1, arg1, 0);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003980.s")
-#endif
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800039B8.s")
-
-void func_80003A10(void) {
-    func_80003A38();
-    func_80003A64();
-}
-
-void func_80003A38(void) {
-    alSeqpStop(D_8016DFE4);
-    bssStart = 0;
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003A64.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003AD4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003D64.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003F24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800040A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004380.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800045F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004648.s")
-
-void func_800046FC(int32_t* arg0) {
-    int32_t sp1C;
-    int32_t* temp_a0;
-
-    temp_a0 = &sp1C;
-    sp1C = *arg0;
-    spFinish(temp_a0);
-    *arg0 = (int32_t)(sp1C - 8);
-}
-
-void func_80004738(int32_t arg0, uint32_t arg1) {
-    D_800C4EC4 = arg0;
-    D_800C4EC8 = arg1;
-}
-
-void func_8000474C(int32_t arg0, uint32_t arg1) {
-    D_800C4EBC = arg0;
-    D_800C4EC0 = arg1;
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004760.s")
-
-#ifdef NON_MATCHING
-void func_8000477C(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3) {
-    int8_t new_var;
-    new_var = arg3;
-    D_800C4EAC = arg0;
-    D_800C4EB0 = (0, arg1);
-    D_800C4EB4 = arg2;
-    D_800C4EB8 = new_var;
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000477C.s")
-#endif
-
-void func_800047B0(int32_t arg0) {
-    UNK_TYPE* new_var;
-    new_var = &D_800C4E5C;
-    spClearAttribute(&D_800C4E5C, 0xFFFF);
-    if (arg0 != 0) {
-        spSetAttribute(new_var, 1);
-    }
-    else {
-        spClearAttribute(new_var, 1);
-    }
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004804.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004910.s")
