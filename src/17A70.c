@@ -384,7 +384,7 @@ void Intro_Tick(void) {
             gWorldProgress = 0;
             D_800BE5D0 = 0xB;
             D_800D28E4 = 0x59;
-            D_800C5008 = 0;
+            gSaveSlotIndex = 0;
             gGameState = 0xC;
             gGameSubState = 65;
             break;
@@ -445,7 +445,7 @@ void StageSelect_Tick(void) {
     if (temp_v0 != 0) {
         if (temp_v0 != 1) {
             if (temp_v0 == 2) {
-                D_800C5008 = (uint8_t)0;
+                gSaveSlotIndex = (uint8_t)0;
                 gWorldProgress = (int8_t)gCurrentStage;
                 gGameState = (uint16_t)0xC;
                 gGameSubState = (uint16_t)0x41U;

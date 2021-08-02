@@ -122,11 +122,14 @@ extern int32_t D_800C4EBC;
 extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
-extern uint8_t D_800C5008;
+extern u16 gTimeRecords[64];//records for stage times.
+extern u16 D_800C4FA8[11]; //contains default "Start" filename
+extern u16 nameEntrySpace[11];
+extern uint8_t gSaveSlotIndex;
 extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C823C;
-extern UNK_TYPE D_800C8378;
-extern UNK_TYPE D_800C83F8;
+extern u16 D_800C8378[64];
+extern u16 D_800C83F8[64];
 extern UNK_TYPE D_800C8EF0;
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
@@ -148,6 +151,7 @@ extern u16 Alpha_GotIt[]; //"Got it"
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
+extern s16 D_800CBF40;
 extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
@@ -395,6 +399,7 @@ extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
+extern u8 D_80171B19;
 extern UNK_TYPE D_801850B0;
 extern UNK_TYPE D_801850B8;
 extern uint8_t D_80185518;
@@ -406,7 +411,12 @@ extern ActorFunc gActorFuncTable_80192000[];
 extern ActorFunc gActorFuncTable_8019B000[];
 extern ActorFunc gActorFuncTable_801A6800[];
 extern ActorFunc gActorFuncTable_801B0800[];
+extern u8 nameEntryLanguage;
+extern u8 nameEntrySelectedColumn;
+extern u8 nameEntrySelectedRow;
+extern u8 NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
+
 #endif
