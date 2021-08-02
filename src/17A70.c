@@ -385,7 +385,7 @@ void Intro_Tick(void) {
             D_800BE5D0 = 0xB;
             D_800D28E4 = 0x59;
             gSaveSlotIndex = 0;
-            gGameState = 0xC;
+            gGameState = GAMESTATE_TRANSITION;
             gGameSubState = 65;
             break;
         }
@@ -393,7 +393,7 @@ void Intro_Tick(void) {
 
     if ((gButtonPress & gButton_Start) != 0) {
         if (gGameSubState > 0) {
-            gGameState = 2;
+            gGameState = GAMESTATE_TITLESCREEN;
             gGameSubState = 0;
         }
     }
@@ -446,7 +446,7 @@ void StageSelect_Tick(void) {
         if (temp_v0 != 1) {
             if (temp_v0 == 2) {
                 gSaveSlotIndex = (uint8_t)0;
-                gWorldProgress = (int8_t)gCurrentStage;
+                gWorldProgress = gCurrentStage;
                 gGameState = (uint16_t)0xC;
                 gGameSubState = (uint16_t)0x41U;
             }

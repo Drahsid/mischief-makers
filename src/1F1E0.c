@@ -229,7 +229,7 @@ void func_80020024(void) {
     func_8005F6D4(); // text
     func_80022470(); // ui (blinking, health bar)
 
-    if (gGameState == 6) {
+    if (gGameState == GAMESTATE_GAMEPLAY) {
         func_80047CCC(); // scene init
     }
 
@@ -355,7 +355,7 @@ void AttractMode_Tick(void) {
             if (D_801037AA == D_80103944) {
                 AttractModeIndex += 1;
                 D_80137D90 = 0;
-                gGameState = 0;
+                gGameState = GAMESTATE_SOFTRESET;
                 gGameSubState = 0;
             }
             else {
@@ -380,7 +380,7 @@ void AttractMode_Tick(void) {
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
         func_800232A4(&AttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
-        gGameState = 10;
+        gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
         D_80104098.unk_0x2920 = 0;
         D_80104098.unk_0x2880 = 0;

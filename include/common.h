@@ -3,6 +3,24 @@
 
 #include "inttypes.h"
 
+enum {
+    GAMESTATE_SOFTRESET,
+    GAMESTATE_INTRO,
+    GAMESTATE_TITLESCREEN,
+    GAMESTATE_DEBUG_SOUNDTEST,
+    GAMESTATE_DEBUG_STAGESELECT,
+    GAMESTATE_LOADING,
+    GAMESTATE_GAMEPLAY,
+    GAMESTATE_CONTINUE, // game over
+    GAMESTATE_UNKNOWN0,
+    GAMESTATE_UNKNOWN1,
+    GAMESTATE_ATTRACT,
+    GAMESTATE_FILESELECT,
+    GAMESTATE_TRANSITION,
+    GAMESTATE_NONE,
+    GAMESTATE_UNKNOWN2 // level select (best times?)
+};
+
 // this struct seems weird, name will be weird until I understand it
 typedef struct {
     union {

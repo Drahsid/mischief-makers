@@ -561,7 +561,7 @@ void func_80047674(void) {}
 void func_80047958(void) {
     int new_var = D_800D28F0 - 0x1F;
     D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + (new_var & 0xFFFF)));
-    gGameState = 5;
+    gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }
 

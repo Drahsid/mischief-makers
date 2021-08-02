@@ -21,7 +21,7 @@ void func_80022D10(void) {
     gButton_A = 0x8000;
     D_800BE700 = 0;
     AttractModeIndex = 0;
-    gGameState = 0;
+    gGameState = GAMESTATE_SOFTRESET;
     gGameSubState = 0;
 }
 
@@ -67,7 +67,7 @@ void func_80022F48(void) {
     D_800CBF44 = 0;
     gPlayerActor.health = 1000;
     gRedGems = 30;
-    gGameState = 1;
+    gGameState = GAMESTATE_INTRO;
     gGameSubState = 0;
     return;
 }
@@ -153,7 +153,7 @@ void func_800232A4(void) {
     D_800BE5D4 = 1;
     func_8008C4E0(0x41);
     func_80043918();
-    if (gGameState == 5) {
+    if (gGameState == GAMESTATE_LOADING) {
         D_800D2908 = (uint16_t)0;
     }
 
@@ -166,7 +166,7 @@ void func_800232A4(void) {
     func_80047C98();
     func_8001DC60();
     YelloGemBitfeildTemp = gYellowGemBitfeild;
-    gGameState = 6;
+    gGameState = GAMESTATE_GAMEPLAY;
     gGameSubState = 0;
 }
 #else
