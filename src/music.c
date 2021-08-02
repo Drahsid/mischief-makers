@@ -3,6 +3,9 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+ALCSPlayer SFX_ALCPlayers[4];
+ALCSPlayer* SFX_pALCPlayers[4];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800017D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001988.s")
@@ -11,7 +14,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_InitPlayers.s")
 
-void func_800020BC(void) {
+void Sound_SetEventMesg(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
     osSetEventMesg(4, &D_801377D0, 0);
     osSendMesg(&D_801377D0, 0, 1);
@@ -139,8 +142,14 @@ void BGM_Stop(void) {
     bssStart = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_StopAll.s")
+void SFX_StopAll(void) {
+    u8 i;
+    for(i = 0; i<4; i++){
+        alSeqpStop(SFX_pALCPlayers[i]);
+        SFX_ChannelStates[i] = 0;
+        }
 
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_SetPan.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_SetPan_2.s")

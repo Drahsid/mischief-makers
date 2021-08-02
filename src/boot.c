@@ -266,7 +266,7 @@ void Thread_IOProc(int32_t arg0) {
     new_var3 = &D_8012ABC0;
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
     osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
-    func_800020BC();
+    Sound_SetEventMesg();
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
     osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
@@ -375,8 +375,8 @@ void func_80001264(void) {
     osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
-s32 func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
-    s32 sp2C[2];
+int32_t  func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
+    int32_t  sp2C[2];
     uint16_t sp28[8]; //rewrite so this is OSIoMesg and matches
 
     osInvalDCache(Vaddr, nBytes);

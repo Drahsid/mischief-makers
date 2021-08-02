@@ -566,7 +566,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019688.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/calculateFestivalTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 

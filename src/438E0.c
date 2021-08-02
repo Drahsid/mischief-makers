@@ -48,20 +48,13 @@ void func_80042CF8(uint16_t* arg0) {
 #endif
 
 #ifdef NON_MATCHING
-// Differences are minor regalloc and instruction order (functionally identical)
-void func_80042D84(int32_t arg0) {
-    uint16_t* new_var;
-    int32_t phi_v0;
-    int32_t* new_var2;
-    new_var2 = &arg0;
-    phi_v0 = (*new_var2) & 0xFFFF;
-    if (phi_v0 != 0x600) {
-        do {
-            new_var = (&D_800D2978) + phi_v0;
-            phi_v0 = (phi_v0 + 3) & 0xFFFF;
-            *new_var = 0;
-        } while (phi_v0 != 0x600);
-    }
+//Differences are minor regalloc and instruction order (functionally identical)
+void func_80042D84(int16_t x) {
+  int16_t uVar1;
+  
+  for (uVar1 = x; uVar1 != 0x600; uVar1+=3) 
+    (&D_800D2978)[uVar1] = 0;
+
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")
@@ -108,7 +101,7 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
             } while (temp_a1_2 != 0);
         }
     }
-    func_80042D84(phi_a3_2 & 0xFFFF, phi_a1_2, phi_a2, phi_a3_2);
+    func_80042D84(phi_a3_2 & 0xFFFF);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042DBC.s")

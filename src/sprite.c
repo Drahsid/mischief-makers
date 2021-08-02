@@ -52,7 +52,7 @@ void func_8000474C(int32_t arg0, uint32_t arg1) {
     D_800C4EC0 = arg1;
 }
 
-void Sprite_setScale(double x,double y){
+void Sprite_SetScale(double x,double y){
   gSprtieScaleXA = x;
   gSprtieScaleYA = y;
 }
@@ -79,7 +79,7 @@ void Sprite_SetTransparent(int32_t arg0) {
     }
 }
 #ifdef NON_MATCHING
-void sprite_func(void **arg0) {
+void Sprite_Update(void **arg0) {
     s32 temp_a3;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -101,6 +101,6 @@ void sprite_func(void **arg0) {
 }
 
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/sprite_func.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004910.s")

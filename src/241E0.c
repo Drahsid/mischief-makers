@@ -1007,7 +1007,7 @@ void RedGem_Cap(void){if (gRedGems >= 9999) {gRedGems = 9999;}}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003F8B0.s")
 
-void func_8003F9CC(float f,u16 a,u16 b,u32 c){}
+void func_8003F9CC(float f,uint16_t a,uint16_t b,uint32_t c){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003F9E0.s")
 
@@ -1043,7 +1043,7 @@ void func_8003F9CC(float f,u16 a,u16 b,u32 c){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004089C.s")
 /*
-s32 func_800409E0(u32 Index){
+int32_t  func_800409E0(u32 Index){
   u32 uVar1;
   
   uVar1 = Index & 0xffff;

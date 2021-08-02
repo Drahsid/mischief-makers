@@ -20,7 +20,7 @@ int32_t func_80048C94(int32_t arg0) {
     return (int32_t)((D_800D5794)[arg0] * (*new_var));
 }
 
-s32 func_80048CE4(void){
+int32_t func_80048CE4(){
   if (gPlayerActor.unk_0xD1 == 1) return 1;
   if (gPlayerActor.unk_0xD1 < 46) return 0;
   if (gPlayerActor.unk_0xD1 < 55) return 2;
