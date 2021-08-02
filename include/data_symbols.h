@@ -132,7 +132,11 @@ extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C823C;
 extern uint16_t D_800C8378[64];
 extern uint16_t D_800C83F8[64];
+extern uint16_t gTimesToBeat[58];
 extern UNK_TYPE D_800C8EF0;
+extern char D_800C8F68[];//PRESS START
+extern char D_800C8F74[];//@1997 TREASURE/ENIX
+extern char D_800C8F88[];//LICENCED TO NINTENDO
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
 extern UNK_TYPE D_800C9080;
@@ -151,6 +155,7 @@ extern uint16_t D_800CA250;
 extern uint16_t Alpha_NotYet[]; //"Not Yet"
 extern uint16_t Alpha_GotIt[];  //"Got it"
 extern UNK_TYPE D_800CA2B0;
+extern uint16_t* D_800C96A0[5]; //"perfect","excellent","very good","   good   ","try harder"
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
 extern int16_t D_800CBF40;
@@ -289,7 +294,9 @@ extern uint16_t D_800F447C;
 extern int32_t D_800F4480;
 extern UNK_POINTER D_800F44A4;
 extern UNK_POINTER D_800F44A8;
+extern int32_t D_800F4540;
 extern uint8_t D_800F46F7;
+extern int32_t D_800F46D8;
 extern UNK_TYPE D_80103450;
 extern int16_t D_80103480;
 extern UNK_TYPE D_801035E8;
@@ -337,6 +344,7 @@ extern Mtx D_8012ADC0[390]; // room for 390 Mtx...
 extern Mtx D_80130F40[390];
 extern UNK_TYPE gPlayerControllerIndex;
 extern uint16_t gButtonCur;
+extern uint32_t gPlayTime;
 extern uint16_t D_801370CC;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;
@@ -381,10 +389,10 @@ extern UNK_POINTER D_80178120;
 extern UNK_POINTER D_80178124;
 extern UNK_POINTER D_80178128;
 extern uint16_t gRedGems;
-extern int16_t gCurrentStage;
+extern uint16_t gCurrentStage;
 extern UNK_TYPE D_80178170;
 extern UNK_TYPE D_80178188;
-extern int32_t D_801781A0;
+extern uint8_t D_801781A0;
 extern int32_t D_801781A1;
 extern int16_t D_801781C0[];
 extern uint16_t D_801781C8;
@@ -420,5 +428,11 @@ extern uint8_t NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
-
+extern u16 GameSave_Names[2][11];
+extern u8 GameSave_Age[2];
+extern u8 GameSave_Sex[2];
+extern u16 GameSave_RedGems[2];
+extern u16 GameSave_YellowGems[2];
+extern u64 GameSave_PlayTime[2]; // contains total play time
+extern u32 gFestivalRecords[7];
 #endif

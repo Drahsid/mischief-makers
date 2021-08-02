@@ -235,7 +235,7 @@ void Thread_IdleProc(int32_t arg0) {
         phi_v0 = &osViModeTable + 2;
     }
     D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
+    osCreatePiManager(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
     osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA);
     osStartThread(&D_8012A9F8);
     osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);

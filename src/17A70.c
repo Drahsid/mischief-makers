@@ -401,9 +401,18 @@ void Intro_Tick(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Intro_Tick.s")
 #endif
-
+#ifdef NON_MATCHING
+void func_80017F08(void) {//prints "Press start" and copyright info
+    u8 temp_t9;
+    func_80017770();
+    temp_t9 = (0x1F - D_801781A0 / 4);
+    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, temp_t9, temp_t9, 0x1FU));
+    func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
+    func_800276DC(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001809C.s")
@@ -591,12 +600,27 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
+#ifdef NON_MATCHING
+int32_t get_time_rank(uint16_t t, uint16_t s) {
+    s32 temp_v0;
+    u16 temp_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A758.s")
-
+    temp_v1 = gTimesToBeat[s];
+    temp_v0 = t;
+    if (temp_v0 < (s32) temp_v1) return 0;
+    if (temp_v0 < (temp_v1 + 1800)) return 1;
+    if (temp_v0 < (temp_v1 + 7200)) return 2;
+    if ((temp_v0 < (temp_v1 + 18000)) && (temp_v0 < 36000)) return 3;
+    return 4;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/get_time_rank.s")
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A7E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A838.s")
+void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
+    func_80083810(arg0, arg1, D_800C96A0[get_time_rank(time, stage)], arg4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A890.s")
 
@@ -604,9 +628,9 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Record_PrintTime.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B004.s")
+void func_8001B004(void){Record_PrintTime(9,6,0xffff);}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B02C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/World_IncrementProgress.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B078.s")
 
@@ -614,13 +638,40 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B1F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B23C.s")
+void func_8001B23C(){}
 
+#ifdef NON_MATCHING
+int16_t YellowGem_Count(void){
+  u16 i;
+  s16 count;
+  u64 flag;
+  
+  flag = 1;
+  count = 0;
+  for(i = 0; i < 0x3f; i++) {
+    if (gYellowGemBitfeild & flag)
+      count++;
+    flag = __ll_lshift(flag,1);
+  }
+  return count;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_Count.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameSave_Update.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B3D0.s")
+void func_8001B3D0(void){
+  u16 uVar1;
+  u32 uVar2;
+  
+  gWorldProgress = (u8)gCurrentStage;
+  GameSave_RedGems[gSaveSlotIndex] = gRedGems;
+  uVar1 = YellowGem_Count();
+  uVar2 = (u32)gSaveSlotIndex;
+  GameSave_YellowGems[uVar2] = uVar1;
+  GameSave_PlayTime[uVar2] = (u64)gPlayTime;
+  func_80005770();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 /*
@@ -636,8 +687,16 @@ u64 YellowGem_getFlag(u16 arg0) {
 */
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
+#ifdef NON_MATCHING
+void func_8001C834(void) {
+    func_800273FC(0x32, 0, 0xFFFC, 0x33, 1);
+    D_800F4540 |= 0x50000000;
+    func_800273FC(0x33, 0, 0xFFFC, 0xFFF7, 1);
+    D_800F46D8 |= 0x70000000;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C8B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C97C.s")
@@ -662,7 +721,7 @@ u64 YellowGem_getFlag(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D040.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D0A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/calculate_time_record_total.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
 

@@ -3,13 +3,7 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-u16 GameSave_Names[2][11];
-u8 GameSave_Age[2];
-u8 GameSave_Sex[2];
-u16 GameSave_RedGems[2];
-u16 GameSave_YellowGems[2];
-u64 D_80171AD8[2]; // contains total play time
-u32 gFestivalRecords[7];
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 
@@ -123,12 +117,19 @@ void func_80006E60(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_printKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_setup.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
+void isNameEntryMaxed(void){
+  if (NameEntryCurrentChar == 10) {
+    nameEntrySelectedColumn = 2;
+    nameEntrySelectedRow = 5;
+  }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
+#endif
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
+#ifdef NON_MATCHING
 void nameEntry_enter_char(u16* lang1, u16* lang2, u16* Eng) {
     if (NameEntryCurrentChar < 10) {
         if (nameEntryLanguage == 0) nameEntrySpace[NameEntryCurrentChar] = lang1[nameEntrySelectedColumn];
