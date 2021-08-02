@@ -703,14 +703,62 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F420.s")
 
-void RedGem_Cap(void) {
-    if (gRedGems >= 9999) {
-        gRedGems = 9999;
-    }
-}
+void RedGem_Cap(void) {if (gRedGems >= 9999) gRedGems = 9999;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F6D4.s")
+/*
+void gem_collision(u16 arg0, u16 arg1, s32 arg2, s16 arg3, s16 arg4) {
+    u16 temp_v1;
+    u16 temp_v1_2;
+    u16 temp_v1_3;
 
+    if (arg2 == &Data_RedGem) {
+        gRedGems++;
+        RedGem_Cap();
+        func_8003FB20(arg0, 0, 1.0, arg3, (s32) arg4, (s32) ((gPlayerActorIndex * 0x198) + 0x800F0000)->unk-A60);
+        if (arg1 != 0) {
+            func_80003828(0x57, arg0);
+            return;
+        }
+        func_800036C8(0x57, arg0);
+        return;
+    }
+    if (arg2 == &Data_BlueGem) {
+        temp_v1 = gPlayerActorIndex;
+        if (temp_v1) gActors[temp_v1_2].health += 0x1E;
+        else Actor_AddHP(0, 0x1E);
+        func_800337F4(arg3, arg4, 4, 0x132);
+        if (arg1 != 0) {
+            func_80003828(0x95, arg0);
+            return;
+        }
+        func_800036C8(0x95, arg0);
+        return;
+    }
+    if (arg2 == &Data_YellowGem) {
+        YellowGem_setFlag();
+        temp_v1_2 = gPlayerActorIndex;
+        if (temp_v1_2) gActors[temp_v1_2].health+=0x1f4;
+        else Actor_AddHP(0, 0x1F4);
+        func_8003F9CC(2.5, arg3, arg4, 0);
+        if (arg1 != 0) {
+            func_80003828(0x3B, arg0);
+            return;
+        }
+        func_800036C8(0x3B, arg0);
+        return;
+    }
+    func_8003F8B0(1.0, arg3, arg4, ((gPlayerActorIndex * 0x198) + 0x800F0000)->unk-A60);
+    temp_v1_3 = gPlayerActorIndex;
+    if (temp_v1_3) gActors[temp_v1_3].health+=0x12c;
+    else Actor_AddHP(0, 0x12C);
+    if (arg1 != 0) {
+        func_80003828(0x125, arg0);
+        return;
+    }
+    func_800036C8(0x125, arg0);
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/gem_collision.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002FC30.s")

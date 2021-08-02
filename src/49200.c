@@ -560,8 +560,8 @@ void func_8004ED10(uint16_t index) {
 
          D_800BE5D8 = gActors[index].pos.x_w + D_800BE558;
          D_800BE5DC = gActors[index].pos.y_w + D_800BE55C;
-         D_800BE5E8 = gActors[index].unk_0xEC;
-         D_800BE5EC = gActors[index].unk_0xF0;
+         gPlayerVelXMirror = gActors[index].unk_0xEC;
+         gPlayerVelYMirror = gActors[index].unk_0xF0;
 
          if (D_800BE5D0 == 0x46) {
              if (gActors[index].unk_0xF0 <= -294912.0) {

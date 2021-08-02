@@ -6,35 +6,25 @@
 #ifdef NON_MATCHING
 // Only difference is index should get moved into t9 when masked, and back into v1 before the loop continues
 void func_800121D0(void) {
-    uint16_t sp1E;
     uint16_t index;
+    uint16_t sp1E = gPlayerActor.health;
 
-    sp1E = D_800EF5F0;
     func_8001E2D0(0);
-
-    if (sp1E) {
-    }
-
-    D_800EF5F0 = sp1E;
-
+    if (sp1E) {}
+    gPlayerActor.health = (s16)sp1E;
     gActors->pos.z = 1;
-    D_800BE5E8 = 0;
-    D_800BE5EC = 0;
+    gPlayerVelXMirror = 0;
+    gPlayerVelYMirror = 0;
     gActors->unk_0xCC = 0;
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
-
-    if (gActors) {
-    }
-
+    if (gActors) {}
     D_800BE5F8 = 0;
-
-    for (index = 0; index < 0x40; index++ /* = (index + 1) & 0xFFFF*/) {
-        (&D_8011DD70)[index] = 0;
-        (&D_801225F0)[index] = 0;
+    for (index = 0; index < 0x40; index++) {
+        gInputBuffer[index] = 0;
+        D_801225F0[index] = 0;
     }
-
-    func_8004A960(0, &D_801225F0);
+    func_8004A960(0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")

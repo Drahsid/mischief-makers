@@ -130,7 +130,7 @@ typedef struct {
     /* 0x0DD */ uint8_t unk_0xDD;
     /* 0x0DE */ uint8_t unk_0xDE;
     /* 0x0DF */ uint8_t unk_0xDF;
-    /* 0x0E0 */ uint16_t health;
+    /* 0x0E0 */ int16_t health;
     /* 0x0E2 */ uint16_t unk_0xE2;
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;

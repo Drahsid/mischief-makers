@@ -253,43 +253,64 @@ void func_80020024(void) {
     }
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
+#ifdef NON_MATCHING
+void RedGem_PrintPause(void) {
+    s32 temp_t1;
+    s32 temp_t8;
+    u16 temp_s0;
+    u16 temp_s1;
 
+    temp_s1 = gRedGems;
+    temp_s0 = temp_s1;
+    func_80083518(6, 1, (s16) (((s32) temp_s1 % 10) + 0x51), 0);
+    temp_t8 = ((s32) temp_s0 / 10) & 0xFFFF;
+    func_80083518(5, 1, (s16) ((temp_t8 % 10) + 0x51), 0);
+    temp_t1 = (temp_t8 / 10) & 0xFFFF;
+    func_80083518(4, 1, (s16) ((temp_t1 % 10) + 0x51), 0);
+    func_80083518(3, 1, (s16) (((s32) ((temp_t1 / 10) & 0xFFFF) % 10) + 0x51), 0);
+}
+
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
+#endif
 
 void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
-    if (YellowGem_getFlag(gCurrentStage)) {
-        func_800836A0(9, 1, &Alpha_GotIt, 0);
-    }
-    else {
-        func_800836A0(9, 1, &Alpha_NotYet, 0);
-    }
+    if (YellowGem_getFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
+    else func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
-
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
-
 #ifdef NON_MATCHING
-// primarily regalloc differences, and a missing move
-int32_t func_800208D4(void) {
-    int32_t index;
-    int32_t phi_return;
-
-    for (index = 0xC8; index < 0xCC; index = (index + 1) & 0xFFFF) {
-        gActors[index].flag = 0;
-        phi_return = index; // this should be a move v0, t8, and is inside of the loop
-    }
-    D_800EF4D2 = (int16_t)D_800EF4D4;
-    gGameSubState = (uint16_t)0;
-    gGamePaused = (uint16_t)0;
-    return phi_return;
+void func_80020844(void) {
+    u16 i;
+    for(i = 0; i < 4; i++)
+      {SFX_Volumes[i] = D_801781C0[i];}
+    SFX_Play_1(0xCBU);
+    for(i = 204;i < 208;i++)
+      {gActors[i].flag = 0;}
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800208D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 #endif
+
+void func_800208D4(void) {
+    uint16_t index;
+
+    for (index = 0xC8; index < 0xCC; index++) gActors[index].flag = 0;
+    Bgm_vol = (int16_t)D_800EF4D4;
+    gGameSubState = 0;
+    gGamePaused = 0;
+}
+
+
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
+void func_80020A54(void){
+  u16 i;
+  for(i = 200;i < 204;i++) gActors[i].flag = 0;
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 

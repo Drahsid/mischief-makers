@@ -322,17 +322,7 @@ int16_t func_800456DC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800456DC.s")
 #endif
 
-#ifdef NON_MATCHING
-// missing "move    a3,t6" temporary variable
-void func_8004571C(void) {
-    int16_t temp_t6;
-
-    temp_t6 = func_800456DC();
-    func_8002B5A0(0x8001, 0, 0, temp_t6);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004571C.s")
-#endif
+int32_t func_8004571C(void) {return func_8002B5A0(0x8001, 0, 0, func_800456DC());}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
@@ -379,7 +369,7 @@ void func_80046148(void) {
 }
 
 void func_80046188(int32_t arg0, int32_t arg1) {
-    D_800D28E8 += 1;
+    D_800D28E8++;
     func_80028744();
     func_80045FA4(arg0, 0);
     func_80028380();
@@ -494,12 +484,14 @@ int32_t func_80046E6C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")
 
 void func_800472D4(void) {
-    D_800D28E8 += 1;
+    D_800D28E8++;
     D_800D2928 = 0xA0;
-    func_8007CFE0(0xC7, 5, -0x28, 0, 0, 0x78);
+    func_8007CFE0(199, 5, -0x28, 0, 0, 0x78);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004732C.s")
+void func_8004732C(void) {
+    if (func_80046D5C()) func_800472D4();
+}
 
 #ifdef NON_MATCHING
 void func_8004735C(uint16_t arg0, int32_t arg1) {
@@ -544,13 +536,10 @@ void func_800475EC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800475EC.s")
 #endif
 
-#ifdef NON_MATCHING
-void func_80047648(int32_t arg0) {
-    D_800D2914 = (arg0 - (gPlayerActor.health / 0xA)) + 0x64;
+
+void func_80047648(int16_t arg0) {
+    D_800D2914 = (arg0 - (gPlayerActor.health / 10)) + 100;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047648.s")
-#endif
 
 void func_80047674(void) {}
 

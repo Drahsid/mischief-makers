@@ -25,7 +25,7 @@ segments:
       - [0x0A540, c] #player control?
       - [0x11820, asm]
       - [0x12DD0, c]
-      - [0x134E0, asm]
+      - [0x134E0, c]
       - [0x13850, asm]
       - [0x156F0, c]
       - [0x17A70, c]
@@ -46,7 +46,7 @@ segments:
       - [0x7D8E0, asm]
       - [0x805E0, asm]
       - [0x80D90, asm]
-      - [0x82920, asm]
+      - [0x82920, c]
       - [0x82DB0, c]
       - [0x82F80, asm]
       - [0x844E0, asm]

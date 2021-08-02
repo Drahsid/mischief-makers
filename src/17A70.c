@@ -636,21 +636,23 @@ void func_8001B004(void){Record_PrintTime(9,6,0xffff);}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B1A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B1F8.s")
+void func_8001B1F8(void) {
+    World_IncrementProgress();
+    func_8001B1A0();
+    D_80178160 = (u16) D_8017815C;
+    D_8017815A = (s16)D_80178156;
+}
 
 void func_8001B23C(){}
 
 #ifdef NON_MATCHING
 int16_t YellowGem_Count(void){
   u16 i;
-  s16 count;
-  u64 flag;
+  u64 flag = 1;
+  s16 count=0;
   
-  flag = 1;
-  count = 0;
-  for(i = 0; i < 0x3f; i++) {
-    if (gYellowGemBitfeild & flag)
-      count++;
+  for(i = 0; i < 63; i++) {
+    if (gYellowGemBitfeild & flag) count++;
     flag = __ll_lshift(flag,1);
   }
   return count;
@@ -658,8 +660,29 @@ int16_t YellowGem_Count(void){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_Count.s")
 #endif
+#ifdef NON_MATCHING
+void GameSave_Update(void){
+  u8 bVar1;
+  u16 uVar2;
+  u16 uVar4;
+  
+  uVar2 = gCurrentStage;
+  bVar1 = gWorldProgress;
+  D_80178150 = gTimeRecords[gCurrentStage];
+  uVar4 = (u16)gWorldProgress;
+  if (gStageTime < D_80178150) {
+    gTimeRecords[gCurrentStage] = gStageTime;
+  }
+  if (uVar4 == uVar2) {gWorldProgress = (char)uVar2 + 1;}
+    GameSave_RedGems[gSaveSlotIndex] = gRedGems;
+    GameSave_YellowGems[gSaveSlotIndex] = YellowGem_Count();
+    GameSave_PlayTime[gSaveSlotIndex]= (u64)gPlayTime;
+    func_80005770();
+    gWorldProgress = bVar1;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameSave_Update.s")
-
+#endif
 void func_8001B3D0(void){
   u16 uVar1;
   u32 uVar2;
