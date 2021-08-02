@@ -45,9 +45,9 @@ void func_80022F48(void) {
 
     func_80022D88();
     func_80025E6C();
-    GameSave_ClearCard(0);
-    GameSave_ClearCard(1);
-    GameSave_Reset();
+    GameSave_Initialize(0);
+    GameSave_Initialize(1);
+    GameSave_SetDefaults();
 
     gButton_Start   = START_BUTTON;
     gButton_DUp     = U_JPAD;
@@ -127,11 +127,11 @@ void func_800232A4(void) {
     D_800BE610 = temp_t6_2;
     D_800BE73C = temp_t6_2;
     D_800BE5F0 = (int16_t)temp_t6_2;
-    D_800BE5EC = (int32_t)D_800BE5F0;
-    D_800BE5E8 = (int32_t)D_800BE5EC;
-    D_800BE5DC = D_800BE5E8;
-    D_800BE5D8 = D_800BE5DC;
-    temp_v0 = D_800BE5D8;
+    gPlayerVelYMirror = (int32_t)D_800BE5F0;
+    gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;
+    gPlayerPosYMirror = gPlayerVelXMirror;
+    gPlayerPosXMirror = gPlayerPosYMirror;
+    temp_v0 = gPlayerPosXMirror;
     gPlayerActorp->pos.y = temp_v0;
     gPlayerActorp->pos.x = temp_v0;
     D_800BE6A4 = (uint16_t)temp_v0;

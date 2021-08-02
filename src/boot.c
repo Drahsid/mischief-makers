@@ -458,6 +458,7 @@ uint16_t func_8000178C(void) {
     return D_800BE5A4 / 0x100;
 }
 
+//file split here: next func has assert referring to "DmaPtr" in "music.c"
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800017D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80001988.s")
@@ -484,9 +485,9 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80002A2C.s")
 
-void func_80002AE0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
+void Sound_DMA(int32_t Addr, void* Vaddr, uint32_t Len) {
     osWritebackDCacheAll();
-    osPiStartDma(&D_801378C8, 0, 0, arg0, arg1, arg2, &D_801377B8);
+    osPiStartDma(&D_801378C8, 0, 0, Addr, Vaddr, Len, &D_801377B8);
     osRecvMesg(&D_801377B8, 0, 1);
 }
 
@@ -603,7 +604,7 @@ void BGM_Stop(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80003F24.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800040A0.s")
-
+//Possible file split: first Sprite function in this file.
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80004380.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800045F8.s")

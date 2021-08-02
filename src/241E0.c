@@ -53,8 +53,8 @@ void func_80023A34(void) {
     func_800237F0();
     if ((D_800BE6AC & 0xA400) == 0) {
         D_800BE544 = 0x8000;
-        D_800BE550 = (int32_t)(D_800BE5D8 + 0x200000);
-        D_800BE554 = (int32_t)D_800BE5DC;
+        D_800BE550 = (int32_t)(gPlayerPosXMirror + 0x200000);
+        D_800BE554 = (int32_t)gPlayerPosYMirror;
         D_800BE704 = 1;
     }
 }

@@ -18,8 +18,8 @@
 //    gPlayerActor.health = sp1E;
 //
 //    gActors->pos.z = 1;
-//    D_800BE5E8 = 0;
-//    D_800BE5EC = 0;
+//    gPlayerVelXMirror = 0;
+//    gPlayerVelYMirror = 0;
 //    gActors->unk_0xCC = 0;
 //    D_800BE5D4 = 0;
 //    D_800BE5F0 = 0;
@@ -29,7 +29,7 @@
 //    D_800BE5F8 = 0;
 //
 //    for (index = 0; index < 0x40;  index++ /* = (index + 1) & 0xFFFF*/) {
-//        (&D_8011DD70)[index] = 0;
+//        (&gInputBuffer)[index] = 0;
 //        (&D_801225F0)[index] = 0;
 //    }
 //
@@ -51,16 +51,16 @@ void func_80012288(void) {
 void func_800123AC(void) {
     int32_t temp_a0;
 
-    temp_a0 = D_800BE5D8 - D_800BE558;
+    temp_a0 = gPlayerPosXMirror - D_800BE558;
 
     if (temp_a0 < -0x90) {
-        D_800BE5D8 = D_800BE558 - 0x90;
+        gPlayerPosXMirror = D_800BE558 - 0x90;
         D_800EF598 = -0x90;
         return;
     }
 
-    if ((D_800BE5D8 - D_800BE558) >= 0x91) {
-        D_800BE5D8 = D_800BE558 + 0x90;
+    if ((gPlayerPosXMirror - D_800BE558) >= 0x91) {
+        gPlayerPosXMirror = D_800BE558 + 0x90;
         D_800EF598 = 0x90;
         return;
     }
@@ -72,7 +72,7 @@ void func_800123AC(void) {
 #endif
 
 void func_80012418(void) {
-    gPlayerActor.pos.y = (int16_t)(*(int16_t*)(&D_800BE5DC) - D_800BE55C);
+    gPlayerActor.pos.y = (int16_t)(*(int16_t*)(&gPlayerPosYMirror) - D_800BE55C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
