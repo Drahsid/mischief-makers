@@ -149,6 +149,7 @@ void SFX_StopAll(void) {
         SFX_ChannelStates[i] = 0;
     }
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_SetPan.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_SetPan_2.s")

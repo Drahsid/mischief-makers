@@ -3,13 +3,13 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-u16 GameSave_Names[2][11];
-u8 GameSave_Age[2];
-u8 GameSave_Sex[2];
-u16 GameSave_RedGems[2];
-u16 GameSave_YellowGems[2];
-u64 D_80171AD8[2]; // contains total play time
-u32 gFestivalRecords[7];
+uint16_t GameSave_Names[2][11];
+uint8_t GameSave_Age[2];
+uint8_t GameSave_Sex[2];
+uint16_t GameSave_RedGems[2];
+uint16_t GameSave_YellowGems[2];
+uint64_t D_80171AD8[2]; // contains total play time
+uint32_t gFestivalRecords[7];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 
@@ -27,9 +27,10 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_SetDefaults.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_CheckAndWipe.s")
+
 #ifdef NON_MATCHING
 void GameSave_LoadRecords(void) {
-    u16* temp_v1;
+    uint16_t* temp_v1;
     int32_t phi_v0;
 
     osEepromProbe(&D_8012ADA0);
@@ -55,9 +56,11 @@ void GameSave_LoadRecords(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_LoadRecords.s")
 #endif
+
 void func_80005770(void) {
     osEepromProbe(&D_8012ADA0);
     osEepromLongWrite(&D_8012ADA0, 2, GameSave_Names, 0x48);
+
     if (gSaveSlotIndex) {
         osEepromLongWrite(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
         osEepromLongWrite(&D_8012ADA0, 0x2C, &gTimeRecords, 0x80);
@@ -95,13 +98,14 @@ void GameSave_Erase(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006DF4.s")
+
 #ifdef NON_MATCHING
 void func_80006E60(void) {
-    u8 temp_t6 = gWorldProgress;
+    uint8_t temp_t6 = gWorldProgress;
     int32_t temp_v0 = temp_t6 & 0xFFFF;
     gCurrentStage = (s16)temp_t6;
-    D_800BE5D0 = (u16)D_800C8378[temp_v0];
-    D_800D28E4 = (u16)D_800C83F8[temp_v0];
+    D_800BE5D0 = (uint16_t)D_800C8378[temp_v0];
+    D_800D28E4 = (uint16_t)D_800C83F8[temp_v0];
     func_80043918();
     D_800CBF40 = 1;
     gGameState = 0xC;
@@ -110,6 +114,7 @@ void func_80006E60(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006E60.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006EDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800072A4.s")
@@ -122,14 +127,15 @@ void func_80006E60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_printKeyboard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_setup.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
+
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
-void nameEntry_enter_char(u16* lang1, u16* lang2, u16* Eng) {
+void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng) {
     if (NameEntryCurrentChar < 10) {
         if (nameEntryLanguage == 0) nameEntrySpace[NameEntryCurrentChar] = lang1[nameEntrySelectedColumn];
         else if (nameEntryLanguage == 1)
@@ -142,6 +148,7 @@ void nameEntry_enter_char(u16* lang1, u16* lang2, u16* Eng) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/nameEntry_enter_char.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_EnterChar.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007C8C.s")

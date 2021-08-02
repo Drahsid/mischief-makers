@@ -114,7 +114,7 @@ extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
 extern Sprite D_800C4E5C;
-extern uint64_t gSpriteColR;
+extern int8_t gSpriteColR;
 extern int8_t gSpriteColG;
 extern int8_t gSpriteColB;
 extern int8_t gSpriteColA;

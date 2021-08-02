@@ -6,10 +6,11 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_800045F8.s")
+
 #ifdef NON_MATCHING
-void Sprite_Init(s32* arg0) {
-    s32 sp1C;
-    s32* temp_a0;
+void Sprite_Init(int32_t* arg0) {
+    int32_t sp1C;
+    int32_t* temp_a0;
 
     temp_a0 = &sp1C;
     sp1C = *arg0;
@@ -27,11 +28,10 @@ void Sprite_Init(s32* arg0) {
     gSpriteScaleX = (double)1.0;
     gSpriteScaleY = (double)1.0;
 }
-
-
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Init.s")
 #endif
+
 void Sprite_Finish(int32_t* arg0) {
     int32_t sp1C;
     int32_t* temp_a0;
@@ -57,16 +57,13 @@ void Sprite_SetScale(double x, double y) {
     gSpriteScaleY = y;
 }
 
-#ifdef NON_MATCHING
-void Sprite_SetColor(s8 r, s8 g, s8 b, s8 a) {
+void Sprite_SetColor(int8_t r, int8_t g, int8_t b, int8_t a) {
     gSpriteColR = r;
     gSpriteColG = g;
     gSpriteColB = b;
     gSpriteColA = a;
+
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_SetColor.s")
-#endif
 
 void Sprite_SetTransparent(int32_t arg0) {
     Sprite* new_var = &D_800C4E5C;
@@ -78,11 +75,12 @@ void Sprite_SetTransparent(int32_t arg0) {
         spClearAttribute(new_var, SP_TRANSPARENT);
     }
 }
+
 #ifdef NON_MATCHING
 void Sprite_Update(void** arg0) {
-    s32 temp_a3;
-    s32 temp_v0;
-    s32 temp_v0_2;
+    int32_t temp_a3;
+    int32_t temp_v0;
+    int32_t temp_v0_2;
     void* temp_s1;
 
     temp_a3 = D_800C4EC4;
@@ -92,15 +90,15 @@ void Sprite_Update(void** arg0) {
     D_800C4E5C.height = (s16)((temp_v0 * 0x10) + 8);
     func_80004380(&D_800C4E5C, &D_800C4EA0, temp_a3, temp_v0);
     spMove(&D_800C4E5C, D_800C4EBC, D_800C4EC0);
-    spColor(&D_800C4E5C, gSpriteColR, gSpriteColG, gSpriteColB, (s32)gSpriteColA);
+    spColor(&D_800C4E5C, gSpriteColR, gSpriteColG, gSpriteColB, (int32_t)gSpriteColA);
     spScale(&D_800C4E5C, (f32)gSpriteScaleX, (f32)gSpriteScaleY);
     temp_v0_2 = spDraw(&D_800C4E5C);
     temp_s1->unk0 = 0x6000000;
     temp_s1->unk4 = temp_v0_2;
     *arg0 = (void*)(temp_s1 + 8);
 }
-
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004910.s")
