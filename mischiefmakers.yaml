@@ -18,7 +18,9 @@ segments:
     start: 0x1000
     vram: 0x80000400
     subsegments:
-      - [0x01000, c, boot] #3 files in this chunk: will need broken up
+      - [0x01000, c, boot]
+      - [0x023D0, c, music]
+      - [0x04F80, c, sprite]
       - [0x05A70, c,GameSave]
       - [0x0A540, c] #player control?
       - [0x11820, asm]

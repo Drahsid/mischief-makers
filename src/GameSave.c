@@ -8,7 +8,7 @@ u8 GameSave_Age[2];
 u8 GameSave_Sex[2];
 u16 GameSave_RedGems[2];
 u16 GameSave_YellowGems[2];
-u64 D_80171AD8[2]; //may be 64-bit? contains total play time
+u64 D_80171AD8[2]; // contains total play time
 u32 D_80171AE8[6];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
@@ -27,7 +27,7 @@ s32 IsOver999(u32 x){ //{Vegeta Joke}
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_SetDefaults.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_CheckAndWipe.s")
-/*
+#ifdef NON_MATCHING
 void GameSave_LoadRecords(void) {
     u16 *temp_v1;
     s32 phi_v0;
@@ -50,10 +50,9 @@ void GameSave_LoadRecords(void) {
             *temp_v1 = 36000;}
     }
 }
-*/
-
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_LoadRecords.s")
-
+#endif
 void func_80005770(void) {
     osEepromProbe(&D_8012ADA0);
     osEepromLongWrite(&D_8012ADA0, 2, GameSave_Names, 0x48);
@@ -94,7 +93,7 @@ void GameSave_Erase(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006DF4.s")
-/*
+#ifdef NON_MATCHING
 void func_80006E60(void) {
     u8 temp_t6 = gWorldProgress;
     s32 temp_v0 = temp_t6 & 0xFFFF;
@@ -106,9 +105,9 @@ void func_80006E60(void) {
     gGameState = 0xC;
     gGameSubState = 0;
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006E60.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006EDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800072A4.s")
@@ -126,7 +125,8 @@ void func_80006E60(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
-/* compiler refuses to recognize symbols
+#ifdef NON_MATCHING
+// compiler refuses to recognize symbols
 void nameEntry_enter_char(u16 *lang1,u16 *lang2,u16 *Eng){
   if (NameEntryCurrentChar < 10) {
     if (nameEntryLanguage == 0)
@@ -140,7 +140,7 @@ void nameEntry_enter_char(u16 *lang1,u16 *lang2,u16 *Eng){
     func_80007ABC();
   }
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/nameEntry_enter_char.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007C8C.s")

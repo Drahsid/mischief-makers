@@ -122,14 +122,14 @@ extern int32_t D_800C4EBC;
 extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
-extern u16 gTimeRecords[64];//records for stage times.
-extern u16 D_800C4FA8[11]; //contains default "Start" filename
-extern u16 nameEntrySpace[11];
+extern uint16_t gTimeRecords[64];//records for stage times.
+extern uint16_t D_800C4FA8[11]; //contains default "Start" filename
+extern uint16_t nameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C823C;
-extern u16 D_800C8378[64];
-extern u16 D_800C83F8[64];
+extern uint16_t D_800C8378[64];
+extern uint16_t D_800C83F8[64];
 extern UNK_TYPE D_800C8EF0;
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
@@ -146,12 +146,12 @@ extern uint16_t D_800CA244;
 extern uint16_t D_800CA248;
 extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
-extern u16 Alpha_NotYet[]; //"Not Yet"
-extern u16 Alpha_GotIt[]; //"Got it"
+extern uint16_t Alpha_NotYet[]; //"Not Yet"
+extern uint16_t Alpha_GotIt[]; //"Got it"
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
-extern s16 D_800CBF40;
+extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
@@ -239,12 +239,12 @@ extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern UNK_TYPE D_800EEA10;
-extern u8 bssStart; //also deals with sound state.
+extern uint8_t bssStart; //also deals with sound state.
 extern int16_t Bgm_vol;
 extern int16_t D_800EF4D4;
 extern uint8_t SFX_ChannelStates[];
-extern s16 SFX_Volumes[];
-extern s16 D_800EF500[];
+extern int16_t SFX_Volumes[];
+extern int16_t D_800EF500[];
 extern uint16_t D_800EF508;
 extern int16_t D_800EF598;
 extern uint16_t D_800EF794;
@@ -364,7 +364,7 @@ extern UNK_TYPE D_8016DEB8;
 extern ALCSPlayer* BGM_pALCPlayer;
 extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
-extern u64 gYellowGemBitfeild;
+extern int64_t gYellowGemBitfeild;
 extern int8_t gWorldProgress;
 extern Mtx *D_801780F0;
 extern Mtx *D_801780F4;
@@ -384,7 +384,7 @@ extern UNK_TYPE D_80178170;
 extern UNK_TYPE D_80178188;
 extern int32_t D_801781A0;
 extern int32_t D_801781A1;
-extern s16 D_801781C0[];
+extern int16_t D_801781C0[];
 extern uint16_t D_801781C8;
 extern uint16_t D_801781CA;
 extern uint16_t D_801781CC;
@@ -394,12 +394,12 @@ extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
 extern uint16_t gStageTime; //pauses for cutscene, loading
-extern u64 YelloGemBitfeildTemp;
+extern int64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
-extern u8 D_80171B19;
+extern uint8_t D_80171B19;
 extern UNK_TYPE D_801850B0;
 extern UNK_TYPE D_801850B8;
 extern uint8_t D_80185518;
@@ -411,10 +411,10 @@ extern ActorFunc gActorFuncTable_80192000[];
 extern ActorFunc gActorFuncTable_8019B000[];
 extern ActorFunc gActorFuncTable_801A6800[];
 extern ActorFunc gActorFuncTable_801B0800[];
-extern u8 nameEntryLanguage;
-extern u8 nameEntrySelectedColumn;
-extern u8 nameEntrySelectedRow;
-extern u8 NameEntryCurrentChar;
+extern uint8_t nameEntryLanguage;
+extern uint8_t nameEntrySelectedColumn;
+extern uint8_t nameEntrySelectedRow;
+extern uint8_t NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
