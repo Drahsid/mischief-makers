@@ -114,14 +114,16 @@ extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
 extern Sprite D_800C4E5C;
-extern uint64_t D_800C4EAC;
-extern int8_t D_800C4EB0;
-extern int8_t D_800C4EB4;
-extern int8_t D_800C4EB8;
+extern uint64_t gSpriteColR;
+extern int8_t gSpriteColG;
+extern int8_t gSpriteColB;
+extern int8_t gSpriteColA;
 extern int32_t D_800C4EBC;
 extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
+extern double gSprtieScaleXA;
+extern double gSprtieScaleYA;
 extern uint16_t gTimeRecords[64];//records for stage times.
 extern uint16_t D_800C4FA8[11]; //contains default "Start" filename
 extern uint16_t nameEntrySpace[11];

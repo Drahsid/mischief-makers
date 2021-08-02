@@ -62,10 +62,10 @@ extern void func_800045F8();
 extern void Sprite_init();
 extern void Sprite_Finish(int32_t* arg0);
 extern void func_8000474C(int32_t arg0, UNK_TYPE arg1);
-extern void Sprite_setScale();
-extern void Sprite_SetColor(uint64_t arg0, int8_t arg1, int8_t arg2, int8_t arg3);
+extern void Sprite_setScale(double x, double y);
+extern void Sprite_SetColor(s8 r,s8 g,s8 b,s8 a);
 extern void Sprite_SetTransparent(int32_t arg0);
-extern void sprite_func();
+extern void sprite_func(void** x); //Gfx** ?
 extern void func_80004910();
 extern uint16_t func_80004E70(u32 x, s32 y);
 extern void func_80004E90();
