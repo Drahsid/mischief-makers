@@ -180,74 +180,75 @@ void mainproc(int32_t arg0) {
     osStartThread(&D_8012A698);
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//void Thread_IdleProc(int32_t arg0) {
-//    uint32_t temp_t0;
-//    uint32_t temp_t1;
-//    uint32_t temp_t5;
-//    uint32_t temp_t7;
-//    uint32_t phi_t0;
-//    uint32_t phi_t7;
-//    uint32_t phi_t5;
-//    uint32_t phi_t1;
-//    uint32_t phi_v0;
-//
-//    osCreateViManager(0xFE);
-//    if (osTvType == OS_TV_MPAL) {
-//        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
-//        Framebuffer_Clear();
-//        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
-//        phi_t7 = (uint32_t)&D_8012AD10;
-//    loop_2:
-//        temp_t0 = phi_t0 + 0xC;
-//        *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
-//        temp_t7 = phi_t7 + 0xC;
-//        *((uint32_t*)temp_t7 - 8) = *((uint32_t*)temp_t0 - 8);
-//        *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
-//        phi_t0 = temp_t0;
-//        phi_t7 = temp_t7;
-//        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
-//            goto loop_2;
-//        }
-//        *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
-//        *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
-//        phi_v0 = &osViModeTable + 0x1e;
-//    }
-//    else {
-//        osViSetMode(osViModeTable + 2);
-//        Framebuffer_Clear();
-//        phi_t5 = (uint32_t)osViModeTable + 2;
-//        phi_t1 = (uint32_t)&D_8012AD10;
-//    loop_5:
-//        temp_t5 = phi_t5 + 0xC;
-//        *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
-//        temp_t1 = phi_t1 + 0xC;
-//        *((uint32_t*)temp_t1 - 8) = *((uint32_t*)temp_t5 - 8);
-//        *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
-//        phi_t5 = temp_t5;
-//        phi_t1 = temp_t1;
-//        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
-//            goto loop_5;
-//        }
-//        *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
-//        *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
-//        phi_v0 = &osViModeTable + 2;
-//    }
-//    D_8012AD08 = phi_v0;
-//    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
-//    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA); // This is from libultra!
-//    osStartThread(&D_8012A9F8);
-//    osCreateThread(&D_8012A848, 3, &Thread_IOProc, arg0, &D_80128670, 0xA);
-//    osStartThread(&D_8012A848);
-//    osSetThreadPri(0, 0);
-//
-//    while (1) {
-//    }
-//}
-//#else
+
+#ifdef NON_MATCHING
+void Thread_IdleProc(int32_t arg0) {
+    uint32_t temp_t0;
+    uint32_t temp_t1;
+    uint32_t temp_t5;
+    uint32_t temp_t7;
+    uint32_t phi_t0;
+    uint32_t phi_t7;
+    uint32_t phi_t5;
+    uint32_t phi_t1;
+    uint32_t phi_v0;
+
+    osCreateViManager(0xFE);
+    if (osTvType == 2) {
+        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
+        Framebuffer_Clear();
+        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
+        phi_t7 = (uint32_t)&D_8012AD10;
+    loop_2:
+        temp_t0 = phi_t0 + 0xC;
+        *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
+        temp_t7 = phi_t7 + 0xC;
+        *((uint32_t*)temp_t7 - 8) = *((uint32_t*)temp_t0 - 8);
+        *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
+        phi_t0 = temp_t0;
+        phi_t7 = temp_t7;
+        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
+            goto loop_2;
+        }
+        *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
+        *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
+        phi_v0 = &osViModeTable + 0x1e;
+    }
+    else {
+        osViSetMode(osViModeTable + 2);
+        Framebuffer_Clear();
+        phi_t5 = (uint32_t)osViModeTable + 2;
+        phi_t1 = (uint32_t)&D_8012AD10;
+    loop_5:
+        temp_t5 = phi_t5 + 0xC;
+        *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
+        temp_t1 = phi_t1 + 0xC;
+        *((uint32_t*)temp_t1 - 8) = *((uint32_t*)temp_t5 - 8);
+        *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
+        phi_t5 = temp_t5;
+        phi_t1 = temp_t1;
+        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
+            goto loop_5;
+        }
+        *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
+        *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
+        phi_v0 = &osViModeTable + 2;
+    }
+    D_8012AD08 = phi_v0;
+    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
+    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA);
+    osStartThread(&D_8012A9F8);
+    osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
+    osStartThread(&D_8012A848);
+    osSetThreadPri(0, 0);
+
+    while (1) {
+    }
+}
+#else
+
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
-//#endif
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
@@ -507,15 +508,14 @@ void SFX_Play_2(UNK_TYPE arg0) {
     SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//// Differences are regalloc
-//void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
-//    SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
-//}
-//#else
+#ifdef NON_MATCHING
+// Differences are regalloc
+void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
+    SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/SFX_Play_3.s")
-//#endif
+#endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc

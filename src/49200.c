@@ -399,190 +399,189 @@ void func_8004EC60(uint16_t index) {
 }
 
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-// ActorFunc for Marina
-//void func_8004ED10(uint16_t index) {
-//    int16_t* phi_v0;
-//    int16_t* phi_v1;
-//
-//    if ((D_801373E0.unk_0x78 & 8) == 0) {
-//        if (gActors[index].unk_0xD0_h == 0) {
-//            func_8004A960(index);
-//        }
-//
-//        D_800BE5E4 = 0;
-//        gActors[index].unk_0x94 &= 0xF781;
-//        gActors[index].rgba.r = gActors[index].rgba.g = gActors[index].rgba.b = 0; // whitespace memes
-//        D_800BE5E0 = D_800BE5E4;
-//        D_801373E0.unk_0x70 = 0;
-//        gActors[index].pos.z_w = 0;
-//
-//        D_800D57E0 = func_8002981C(D_800D57E0, 0x6000, 0x400);
-//
-//        if (gActors[index].unk_0x12F < 4) {
-//            gActors[index].unk_0x12F++;
-//        }
-//
-//        D_801370CC = gButtonHold;
-//        D_801370CE = gButtonPress;
-//
-//        if (D_800BE5F4 != 0) {
-//            if ((uint8_t)D_800BE5F4 == 2) {
-//                func_800485AC(index, &D_801370CE, &D_801370CC);
-//            }
-//            else {
-//                phi_v0 = &D_801225F0;
-//                phi_v1 = &gInputBuffer;
-//                do {
-//                    phi_v0[1] = 0;
-//                    phi_v1[-3] = 0;
-//                    phi_v0[2] = 0;
-//                    phi_v1[-2] = 0;
-//                    phi_v0[3] = 0;
-//                    phi_v1[-1] = 0;
-//                    phi_v0[0] = 0;
-//                    phi_v1[0] = 0;
-//
-//                    phi_v0 += 4;
-//                    phi_v1 += 4;
-//                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&D_8011DDF0);
-//
-//                D_801370CE = 0;
-//                D_801370CC = 0;
-//
-//                gActors[index].unk_0x12F = 0;
-//
-//                D_801373E0.unk_0x12 = 0x64;
-//                D_801373E0.unk_0x13 = 0;
-//
-//                func_800485AC(index, &D_801370CE, &D_801370CC);
-//            }
-//        }
-//
-//        D_801373D8 = func_80048600(index);
-//
-//        if (D_801373E0.unk_0x50 != 0) {
-//            func_80083A04(D_801373E0.unk_0x50, -0x20, 0x40);
-//            if ((D_800BE4E0 & 0x7F) == 0) {
-//                D_801373E0.unk_0x50 = 0;
-//            }
-//        }
-//
-//        if (D_801373E0.unk_0x54 != 0) {
-//            func_80083A04(D_801373E0.unk_0x54, -0x20, 0x30);
-//            if ((D_800BE4E0 & 0x7F) == 0) {
-//                D_801373E0.unk_0x54 = 0;
-//            }
-//        }
-//
-//        if (D_801373E0.unk_0x58 != 0) {
-//            func_80083A04(D_801373E0.unk_0x58, -0x20, 0x20);
-//            if ((D_800BE4E0 & 0x7F) == 0) {
-//                D_801373E0.unk_0x58 = 0;
-//            }
-//        }
-//
-//        if (D_801373E0.unk_0x5C != 0) {
-//            func_80083A04(D_801373E0.unk_0x5C, -0x20, 0x10);
-//            if ((D_800BE4E0 & 0x7F) == 0) {
-//                D_801373E0.unk_0x5C = 0;
-//            }
-//        }
-//
-//        // when these two flags are set, marina looks like she's holding blockman,
-//        // however, blockman himself doesn't effect these
-//        // maybe it's the tricycle?
-//        gActors[index].flag &= ~8;
-//        if (D_801373E0.unk_0x78 & 0x10000) {
-//            gActors[index].flag |= 8;
-//            gActors[index].unk_0x12C &= 0xFFF8;
-//            gActors[index].unk_0xDC &= 0xFFFE;
-//            gActors[index].pos.x_w += D_801373E0.unk_0x60;
-//        }
-//
-//        func_80048740(index);
-//
-//        if (func_80058F9C(index) == 0) {
-//            func_80049AC0(index);
-//        }
-//
-//        gActors[index].flag &= ~0xA80;
-//        gActors[index].unk_0x12C = 0;
-//        gActors[index].unk_0x12E = 0;
-//
-//        //(((gActors[index].unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
-//        gActorFuncTable_800D3DB0[gActors[index].unk_0xD0_h](index);
-//
-//        func_80048BB0(index);
-//
-//        if (gActors[index].flag & ACTOR_FLAG_ATTACHED) {
-//            D_801373E0.unk_0x70 = gActors[index].unk_0xD6;
-//
-//            if (func_8005D338(index) < 0x66) {
-//                gActors[gActors[index].unk_0xD6].unk_0x108 += func_80049A04(index); // return size
-//            }
-//
-//            // ((((((d6 * 4) - d6) * 4) + d6) * 4) - d6) * 8
-//            /* ((((((1 * 4) - 1) * 4) + 1) * 4) - 1) * 8
-//             * (((((4 - 1) * 4) + 1) * 4) - 1) * 8
-//             * ((((3 * 4) + 1) * 4) - 1) * 8
-//             * (((12 + 1) * 4) - 1) * 8
-//             * ((13 * 4) - 1) * 8
-//             * (52 - 1) * 8
-//             * 51 * 8
-//             * = 408 == 0x198
-//             * bruh
-//            */
-//            //held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) - gActors[index].unk_0xD6) * 8) + gActors;
-//            gActors[gActors[index].unk_0xD6].unk_0x104 += gActors[index].unk_0xEC;
-//            gActors[gActors[index].unk_0xD6].unk_0x108 += gActors[index].unk_0xF0;
-//        }
-//
-//        func_8005D450(index);
-//        func_8005CAA8(index, &D_800D4000);
-//        func_8005BFA4(index);
-//
-//        if (func_8005C5E0(index) == 1 && gActors[index].unk_0x13C >= 0x1F) {
-//            gActors[index].unk_0x183 = 6;
-//        }
-//
-//        if ((gActors[index].unk_0x98 & 2) != 0) {
-//            D_801373E0.unk_0x68 = gActors[index].unk_0xF8;
-//            D_801373E0.unk_0x6C = gActors[index].unk_0xFC;
-//        }
-//
-//        D_801373E0.unk_0x64 = gActors[index].unk_0x98;
-//        gActors[index].unk_0x98 &= 0xFFDFF9FF;
-//        D_801373E0.unk_0x7C++;
-//
-//        gActors[index].unk_0xB4 = D_800EF630 * gActors[index].unk_0x124;
-//        gActors[index].unk_0xB8 = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
-//
-//        gPlayerPosXMirror = gActors[index].pos.x_w + D_800BE558;
-//        gPlayerPosYMirror = gActors[index].pos.y_w + D_800BE55C;
-//        gPlayerVelXMirror = gActors[index].unk_0xEC;
-//        gPlayerVelYMirror = gActors[index].unk_0xF0;
-//
-//        if (D_800BE5D0 == 0x46) {
-//            if (gActors[index].unk_0xF0 <= -294912.0) {
-//                if (D_801373E0.unk_0x44 == 0) {
-//                    if (SFX_Play_1(0x3E) >= 0) {
-//                        D_801373E0.unk_0x44 = 1;
-//                    }
-//
-//                    return;
-//                }
-//            }
-//            else if (D_801373E0.unk_0x44 != 0) {
-//                func_800032C4(0x3E);
-//                D_801373E0.unk_0x44 = 0;
-//
-//                return;
-//            }
-//        }
-//    }
-//}
-//#else
+#ifdef NON_MATCHING
+ ActorFunc for Marina
+void func_8004ED10(uint16_t index) {
+    int16_t* phi_v0;
+    int16_t* phi_v1;
+
+    if ((D_801373E0.unk_0x78 & 8) == 0) {
+        if (gActors[index].unk_0xD0_h == 0) {
+            func_8004A960(index);
+        }
+
+        D_800BE5E4 = 0;
+        gActors[index].unk_0x94 &= 0xF781;
+        gActors[index].rgba.r = gActors[index].rgba.g = gActors[index].rgba.b = 0; // whitespace memes
+        D_800BE5E0 = D_800BE5E4;
+        D_801373E0.unk_0x70 = 0;
+        gActors[index].pos.z_w = 0;
+
+        D_800D57E0 = func_8002981C(D_800D57E0, 0x6000, 0x400);
+
+        if (gActors[index].unk_0x12F < 4) {
+            gActors[index].unk_0x12F++;
+        }
+
+        D_801370CC = gButtonHold;
+        D_801370CE = gButtonPress;
+
+        if (D_800BE5F4 != 0) {
+            if ((uint8_t)D_800BE5F4 == 2) {
+                func_800485AC(index, &D_801370CE, &D_801370CC);
+            }
+            else {
+                phi_v0 = &D_801225F0;
+                phi_v1 = &D_8011DD70;
+                do {
+                    phi_v0[1] = 0;
+                    phi_v1[-3] = 0;
+                    phi_v0[2] = 0;
+                    phi_v1[-2] = 0;
+                    phi_v0[3] = 0;
+                    phi_v1[-1] = 0;
+                    phi_v0[0] = 0;
+                    phi_v1[0] = 0;
+
+                    phi_v0 += 4;
+                    phi_v1 += 4;
+                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&D_8011DDF0);
+
+                D_801370CE = 0;
+                D_801370CC = 0;
+
+                gActors[index].unk_0x12F = 0;
+
+                D_801373E0.unk_0x12 = 0x64;
+                D_801373E0.unk_0x13 = 0;
+
+                func_800485AC(index, &D_801370CE, &D_801370CC);
+            }
+        }
+
+        D_801373D8 = func_80048600(index);
+
+        if (D_801373E0.unk_0x50 != 0) {
+            func_80083A04(D_801373E0.unk_0x50, -0x20, 0x40);
+            if ((D_800BE4E0 & 0x7F) == 0) {
+                D_801373E0.unk_0x50 = 0;
+            }
+        }
+
+        if (D_801373E0.unk_0x54 != 0) {
+            func_80083A04(D_801373E0.unk_0x54, -0x20, 0x30);
+            if ((D_800BE4E0 & 0x7F) == 0) {
+                D_801373E0.unk_0x54 = 0;
+            }
+        }
+
+        if (D_801373E0.unk_0x58 != 0) {
+            func_80083A04(D_801373E0.unk_0x58, -0x20, 0x20);
+            if ((D_800BE4E0 & 0x7F) == 0) {
+                D_801373E0.unk_0x58 = 0;
+            }
+        }
+
+        if (D_801373E0.unk_0x5C != 0) {
+            func_80083A04(D_801373E0.unk_0x5C, -0x20, 0x10);
+            if ((D_800BE4E0 & 0x7F) == 0) {
+                D_801373E0.unk_0x5C = 0;
+            }
+        }
+
+        // when these two flags are set, marina looks like she's holding blockman,
+        // however, blockman himself doesn't effect these
+        // maybe it's the tricycle?
+        gActors[index].flag &= ~8;
+        if (D_801373E0.unk_0x78 & 0x10000) {
+            gActors[index].flag |= 8;
+            gActors[index].unk_0x12C &= 0xFFF8;
+            gActors[index].unk_0xDC &= 0xFFFE;
+            gActors[index].pos.x_w += D_801373E0.unk_0x60;
+        }
+
+        func_80048740(index);
+
+        if (func_80058F9C(index) == 0) {
+            func_80049AC0(index);
+        }
+
+        gActors[index].flag &= ~0xA80;
+        gActors[index].unk_0x12C = 0;
+        gActors[index].unk_0x12E = 0;
+
+        //(((gActors[index].unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
+        gActorFuncTable_800D3DB0[gActors[index].unk_0xD0_h](index);
+
+        func_80048BB0(index);
+
+        if (gActors[index].flag & ACTOR_FLAG_ATTACHED) {
+            D_801373E0.unk_0x70 = gActors[index].unk_0xD6;
+
+            if (func_8005D338(index) < 0x66) {
+                gActors[gActors[index].unk_0xD6].unk_0x108 += func_80049A04(index); // return size
+            }
+
+            // ((((((d6 * 4) - d6) * 4) + d6) * 4) - d6) * 8
+            /* ((((((1 * 4) - 1) * 4) + 1) * 4) - 1) * 8
+             * (((((4 - 1) * 4) + 1) * 4) - 1) * 8
+             * ((((3 * 4) + 1) * 4) - 1) * 8
+             * (((12 + 1) * 4) - 1) * 8
+             * ((13 * 4) - 1) * 8
+             * (52 - 1) * 8
+             * 51 * 8
+             * = 408 == 0x198
+             * bruh
+            */
+            //held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) - gActors[index].unk_0xD6) * 8) + gActors;
+            gActors[gActors[index].unk_0xD6].unk_0x104 += gActors[index].unk_0xEC;
+            gActors[gActors[index].unk_0xD6].unk_0x108 += gActors[index].unk_0xF0;
+        }
+
+        func_8005D450(index);
+        func_8005CAA8(index, &D_800D4000);
+        func_8005BFA4(index);
+
+        if (func_8005C5E0(index) == 1 && gActors[index].unk_0x13C >= 0x1F) {
+            gActors[index].unk_0x183 = 6;
+        }
+
+        if ((gActors[index].unk_0x98 & 2) != 0) {
+            D_801373E0.unk_0x68 = gActors[index].unk_0xF8;
+            D_801373E0.unk_0x6C = gActors[index].unk_0xFC;
+        }
+
+        D_801373E0.unk_0x64 = gActors[index].unk_0x98;
+        gActors[index].unk_0x98 &= 0xFFDFF9FF;
+        D_801373E0.unk_0x7C++;
+
+        gActors[index].unk_0xB4 = D_800EF630 * gActors[index].unk_0x124;
+        gActors[index].unk_0xB8 = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
+
+        D_800BE5D8 = gActors[index].pos.x_w + D_800BE558;
+        D_800BE5DC = gActors[index].pos.y_w + D_800BE55C;
+        D_800BE5E8 = gActors[index].unk_0xEC;
+        D_800BE5EC = gActors[index].unk_0xF0;
+
+        if (D_800BE5D0 == 0x46) {
+            if (gActors[index].unk_0xF0 <= -294912.0) {
+                if (D_801373E0.unk_0x44 == 0) {
+                    if (func_8000334C(0x3E) >= 0) {
+                        D_801373E0.unk_0x44 = 1;
+                    }
+
+                    return;
+                }
+            }
+            else if (D_801373E0.unk_0x44 != 0) {
+                func_800032C4(0x3E);
+                D_801373E0.unk_0x44 = 0;
+
+                return;
+            }
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004ED10.s")
-//#endif
+#endif
