@@ -1,6 +1,6 @@
 glabel func_800123AC
-/* 12FAC 800123AC 3C05800C */  lui        $a1, %hi(D_800BE5D8)
-/* 12FB0 800123B0 24A5E5D8 */  addiu      $a1, $a1, %lo(D_800BE5D8)
+/* 12FAC 800123AC 3C05800C */  lui        $a1, %hi(gPlayerPosXMirror)
+/* 12FB0 800123B0 24A5E5D8 */  addiu      $a1, $a1, %lo(gPlayerPosXMirror)
 /* 12FB4 800123B4 3C03800C */  lui        $v1, %hi(D_800BE558)
 /* 12FB8 800123B8 8463E558 */  lh         $v1, %lo(D_800BE558)($v1)
 /* 12FBC 800123BC 84AE0000 */  lh         $t6, ($a1)

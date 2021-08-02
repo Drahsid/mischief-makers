@@ -122,7 +122,7 @@ glabel func_80004F24
 /* 5BF4 80004FF4 03E00008 */  jr         $ra
 /* 5BF8 80004FF8 27BD0038 */   addiu     $sp, $sp, 0x38
 
-glabel GameSave_ClearCard
+glabel GameSave_Initialize
 /* 5BFC 80004FFC 308E00FF */  andi       $t6, $a0, 0xff
 /* 5C00 80005000 000E7880 */  sll        $t7, $t6, 2
 /* 5C04 80005004 01EE7823 */  subu       $t7, $t7, $t6
@@ -171,7 +171,7 @@ glabel GameSave_ClearCard
 /* 5CAC 800050AC 03E00008 */  jr         $ra
 /* 5CB0 800050B0 AC2C1AD8 */   sw        $t4, 0x1ad8($at)
 
-glabel GameSave_Reset
+glabel GameSave_SetDefaults
 /* 5CB4 800050B4 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* 5CB8 800050B8 3C05800C */  lui        $a1, %hi(D_800C4FC0)
 /* 5CBC 800050BC 3C038017 */  lui        $v1, %hi(D_80171AE8)
@@ -233,13 +233,13 @@ glabel GameSave_CheckAndWipe
 /* 5D8C 8000518C AFBF001C */  sw         $ra, 0x1c($sp)
 /* 5D90 80005190 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5D94 80005194 AFB00018 */  sw         $s0, 0x18($sp)
-/* 5D98 80005198 0C02917C */  jal        func_800A45F0
+/* 5D98 80005198 0C02917C */  jal        osEepromProbe
 /* 5D9C 8000519C 2484ADA0 */   addiu     $a0, $a0, %lo(D_8012ADA0)
 /* 5DA0 800051A0 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5DA4 800051A4 27A6002C */  addiu      $a2, $sp, 0x2c
 /* 5DA8 800051A8 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5DAC 800051AC 00002825 */  or         $a1, $zero, $zero
-/* 5DB0 800051B0 0C02919C */  jal        func_800A4670
+/* 5DB0 800051B0 0C02919C */  jal        osEepromLongRead
 /* 5DB4 800051B4 24070008 */   addiu     $a3, $zero, 8
 /* 5DB8 800051B8 3C02800C */  lui        $v0, %hi(D_800C4F20)
 /* 5DBC 800051BC 27A6002C */  addiu      $a2, $sp, 0x2c
@@ -263,25 +263,25 @@ glabel GameSave_CheckAndWipe
 /* 5DFC 800051FC 01801825 */   or        $v1, $t4, $zero
 /* 5E00 80005200 11200033 */  beqz       $t1, .L800052D0
 /* 5E04 80005204 3C108017 */   lui       $s0, 0x8017
-/* 5E08 80005208 0C0013FF */  jal        GameSave_ClearCard
+/* 5E08 80005208 0C0013FF */  jal        GameSave_Initialize
 /* 5E0C 8000520C 00002025 */   or        $a0, $zero, $zero
-/* 5E10 80005210 0C0013FF */  jal        GameSave_ClearCard
+/* 5E10 80005210 0C0013FF */  jal        GameSave_Initialize
 /* 5E14 80005214 24040001 */   addiu     $a0, $zero, 1
 /* 5E18 80005218 3C108017 */  lui        $s0, %hi(GameSave_Names)
 /* 5E1C 8000521C 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E20 80005220 26061AA0 */  addiu      $a2, $s0, %lo(GameSave_Names)
 /* 5E24 80005224 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E28 80005228 24050002 */  addiu      $a1, $zero, 2
-/* 5E2C 8000522C 0C0291F0 */  jal        GameSave_Write
+/* 5E2C 8000522C 0C0291F0 */  jal        osEepromLongWrite
 /* 5E30 80005230 24070048 */   addiu     $a3, $zero, 0x48
-/* 5E34 80005234 0C00142D */  jal        GameSave_Reset
+/* 5E34 80005234 0C00142D */  jal        GameSave_SetDefaults
 /* 5E38 80005238 00000000 */   nop
 /* 5E3C 8000523C 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E40 80005240 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 5E44 80005244 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 5E48 80005248 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E4C 8000524C 2405000C */  addiu      $a1, $zero, 0xc
-/* 5E50 80005250 0C0291F0 */  jal        GameSave_Write
+/* 5E50 80005250 0C0291F0 */  jal        osEepromLongWrite
 /* 5E54 80005254 24070032 */   addiu     $a3, $zero, 0x32
 /* 5E58 80005258 3C10800C */  lui        $s0, %hi(gTimeRecords)
 /* 5E5C 8000525C 26104F28 */  addiu      $s0, $s0, %lo(gTimeRecords)
@@ -289,27 +289,27 @@ glabel GameSave_CheckAndWipe
 /* 5E64 80005264 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E68 80005268 02003025 */  or         $a2, $s0, $zero
 /* 5E6C 8000526C 24050014 */  addiu      $a1, $zero, 0x14
-/* 5E70 80005270 0C0291F0 */  jal        GameSave_Write
+/* 5E70 80005270 0C0291F0 */  jal        osEepromLongWrite
 /* 5E74 80005274 24070080 */   addiu     $a3, $zero, 0x80
 /* 5E78 80005278 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E7C 8000527C 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 5E80 80005280 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 5E84 80005284 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E88 80005288 24050024 */  addiu      $a1, $zero, 0x24
-/* 5E8C 8000528C 0C0291F0 */  jal        GameSave_Write
+/* 5E8C 8000528C 0C0291F0 */  jal        osEepromLongWrite
 /* 5E90 80005290 24070032 */   addiu     $a3, $zero, 0x32
 /* 5E94 80005294 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5E98 80005298 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5E9C 8000529C 2405002C */  addiu      $a1, $zero, 0x2c
 /* 5EA0 800052A0 02003025 */  or         $a2, $s0, $zero
-/* 5EA4 800052A4 0C0291F0 */  jal        GameSave_Write
+/* 5EA4 800052A4 0C0291F0 */  jal        osEepromLongWrite
 /* 5EA8 800052A8 24070080 */   addiu     $a3, $zero, 0x80
 /* 5EAC 800052AC 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5EB0 800052B0 3C06800C */  lui        $a2, %hi(D_800C4F20)
 /* 5EB4 800052B4 24C64F20 */  addiu      $a2, $a2, %lo(D_800C4F20)
 /* 5EB8 800052B8 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5EBC 800052BC 00002825 */  or         $a1, $zero, $zero
-/* 5EC0 800052C0 0C0291F0 */  jal        GameSave_Write
+/* 5EC0 800052C0 0C0291F0 */  jal        osEepromLongWrite
 /* 5EC4 800052C4 24070008 */   addiu     $a3, $zero, 8
 /* 5EC8 800052C8 100000E1 */  b          .L80005650
 /* 5ECC 800052CC 8FBF001C */   lw        $ra, 0x1c($sp)
@@ -321,14 +321,14 @@ glabel GameSave_CheckAndWipe
 /* 5EE0 800052E0 24050002 */  addiu      $a1, $zero, 2
 /* 5EE4 800052E4 24070048 */  addiu      $a3, $zero, 0x48
 /* 5EE8 800052E8 00004825 */  or         $t1, $zero, $zero
-/* 5EEC 800052EC 0C02919C */  jal        func_800A4670
+/* 5EEC 800052EC 0C02919C */  jal        osEepromLongRead
 /* 5EF0 800052F0 A3A0002B */   sb        $zero, 0x2b($sp)
 /* 5EF4 800052F4 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 5EF8 800052F8 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 5EFC 800052FC 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 5F00 80005300 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 5F04 80005304 2405000C */  addiu      $a1, $zero, 0xc
-/* 5F08 80005308 0C02919C */  jal        func_800A4670
+/* 5F08 80005308 0C02919C */  jal        osEepromLongRead
 /* 5F0C 8000530C 24070032 */   addiu     $a3, $zero, 0x32
 /* 5F10 80005310 93A9002B */  lbu        $t1, 0x2b($sp)
 /* 5F14 80005314 00001825 */  or         $v1, $zero, $zero
@@ -416,22 +416,22 @@ glabel GameSave_CheckAndWipe
 .L80005444:
 /* 6044 80005444 00002025 */   or        $a0, $zero, $zero
 .L80005448:
-/* 6048 80005448 0C0013FF */  jal        GameSave_ClearCard
+/* 6048 80005448 0C0013FF */  jal        GameSave_Initialize
 /* 604C 8000544C A3A9002B */   sb        $t1, 0x2b($sp)
 /* 6050 80005450 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6054 80005454 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6058 80005458 24050002 */  addiu      $a1, $zero, 2
 /* 605C 8000545C 02003025 */  or         $a2, $s0, $zero
-/* 6060 80005460 0C0291F0 */  jal        GameSave_Write
+/* 6060 80005460 0C0291F0 */  jal        osEepromLongWrite
 /* 6064 80005464 24070048 */   addiu     $a3, $zero, 0x48
-/* 6068 80005468 0C00142D */  jal        GameSave_Reset
+/* 6068 80005468 0C00142D */  jal        GameSave_SetDefaults
 /* 606C 8000546C 00000000 */   nop
 /* 6070 80005470 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6074 80005474 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 6078 80005478 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 607C 8000547C 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6080 80005480 2405000C */  addiu      $a1, $zero, 0xc
-/* 6084 80005484 0C0291F0 */  jal        GameSave_Write
+/* 6084 80005484 0C0291F0 */  jal        osEepromLongWrite
 /* 6088 80005488 24070032 */   addiu     $a3, $zero, 0x32
 /* 608C 8000548C 93A9002B */  lbu        $t1, 0x2b($sp)
 /* 6090 80005490 00000000 */  nop
@@ -443,14 +443,14 @@ glabel GameSave_CheckAndWipe
 /* 60A4 800054A4 24070048 */  addiu      $a3, $zero, 0x48
 /* 60A8 800054A8 00005025 */  or         $t2, $zero, $zero
 /* 60AC 800054AC A3A9002B */  sb         $t1, 0x2b($sp)
-/* 60B0 800054B0 0C02919C */  jal        func_800A4670
+/* 60B0 800054B0 0C02919C */  jal        osEepromLongRead
 /* 60B4 800054B4 A3A0002A */   sb        $zero, 0x2a($sp)
 /* 60B8 800054B8 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 60BC 800054BC 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 60C0 800054C0 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 60C4 800054C4 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 60C8 800054C8 24050024 */  addiu      $a1, $zero, 0x24
-/* 60CC 800054CC 0C02919C */  jal        func_800A4670
+/* 60CC 800054CC 0C02919C */  jal        osEepromLongRead
 /* 60D0 800054D0 24070032 */   addiu     $a3, $zero, 0x32
 /* 60D4 800054D4 93A9002B */  lbu        $t1, 0x2b($sp)
 /* 60D8 800054D8 93AA002A */  lbu        $t2, 0x2a($sp)
@@ -536,22 +536,22 @@ glabel GameSave_CheckAndWipe
 /* 6200 80005600 14200013 */  bnez       $at, .L80005650
 /* 6204 80005604 8FBF001C */   lw        $ra, 0x1c($sp)
 .L80005608:
-/* 6208 80005608 0C0013FF */  jal        GameSave_ClearCard
+/* 6208 80005608 0C0013FF */  jal        GameSave_Initialize
 /* 620C 8000560C 24040001 */   addiu     $a0, $zero, 1
 /* 6210 80005610 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6214 80005614 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6218 80005618 24050002 */  addiu      $a1, $zero, 2
 /* 621C 8000561C 02003025 */  or         $a2, $s0, $zero
-/* 6220 80005620 0C0291F0 */  jal        GameSave_Write
+/* 6220 80005620 0C0291F0 */  jal        osEepromLongWrite
 /* 6224 80005624 24070048 */   addiu     $a3, $zero, 0x48
-/* 6228 80005628 0C00142D */  jal        GameSave_Reset
+/* 6228 80005628 0C00142D */  jal        GameSave_SetDefaults
 /* 622C 8000562C 00000000 */   nop
 /* 6230 80005630 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6234 80005634 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 6238 80005638 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 623C 8000563C 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6240 80005640 24050024 */  addiu      $a1, $zero, 0x24
-/* 6244 80005644 0C0291F0 */  jal        GameSave_Write
+/* 6244 80005644 0C0291F0 */  jal        osEepromLongWrite
 /* 6248 80005648 24070032 */   addiu     $a3, $zero, 0x32
 /* 624C 8000564C 8FBF001C */  lw         $ra, 0x1c($sp)
 .L80005650:
@@ -559,12 +559,12 @@ glabel GameSave_CheckAndWipe
 /* 6254 80005654 03E00008 */  jr         $ra
 /* 6258 80005658 27BD0038 */   addiu     $sp, $sp, 0x38
 
-glabel func_8000565C
+glabel GameSave_LoadRecords
 /* 625C 8000565C 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* 6260 80005660 AFBF001C */  sw         $ra, 0x1c($sp)
 /* 6264 80005664 3C048013 */  lui        $a0, %hi(D_8012ADA0)
 /* 6268 80005668 AFB00018 */  sw         $s0, 0x18($sp)
-/* 626C 8000566C 0C02917C */  jal        func_800A45F0
+/* 626C 8000566C 0C02917C */  jal        osEepromProbe
 /* 6270 80005670 2484ADA0 */   addiu     $a0, $a0, %lo(D_8012ADA0)
 /* 6274 80005674 3C0E800C */  lui        $t6, %hi(gSaveSlotIndex)
 /* 6278 80005678 91CE5008 */  lbu        $t6, %lo(gSaveSlotIndex)($t6)
@@ -576,7 +576,7 @@ glabel func_8000565C
 /* 6290 80005690 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 6294 80005694 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 6298 80005698 24050024 */  addiu      $a1, $zero, 0x24
-/* 629C 8000569C 0C02919C */  jal        func_800A4670
+/* 629C 8000569C 0C02919C */  jal        osEepromLongRead
 /* 62A0 800056A0 24070032 */   addiu     $a3, $zero, 0x32
 /* 62A4 800056A4 3C10800C */  lui        $s0, %hi(gTimeRecords)
 /* 62A8 800056A8 26104F28 */  addiu      $s0, $s0, %lo(gTimeRecords)
@@ -584,7 +584,7 @@ glabel func_8000565C
 /* 62B0 800056B0 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 62B4 800056B4 02003025 */  or         $a2, $s0, $zero
 /* 62B8 800056B8 2405002C */  addiu      $a1, $zero, 0x2c
-/* 62BC 800056BC 0C02919C */  jal        func_800A4670
+/* 62BC 800056BC 0C02919C */  jal        osEepromLongRead
 /* 62C0 800056C0 24070080 */   addiu     $a3, $zero, 0x80
 /* 62C4 800056C4 1000000E */  b          .L80005700
 /* 62C8 800056C8 00000000 */   nop
@@ -592,7 +592,7 @@ glabel func_8000565C
 /* 62CC 800056CC 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 62D0 800056D0 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 62D4 800056D4 2405000C */  addiu      $a1, $zero, 0xc
-/* 62D8 800056D8 0C02919C */  jal        func_800A4670
+/* 62D8 800056D8 0C02919C */  jal        osEepromLongRead
 /* 62DC 800056DC 24070032 */   addiu     $a3, $zero, 0x32
 /* 62E0 800056E0 3C10800C */  lui        $s0, %hi(gTimeRecords)
 /* 62E4 800056E4 26104F28 */  addiu      $s0, $s0, %lo(gTimeRecords)
@@ -600,7 +600,7 @@ glabel func_8000565C
 /* 62EC 800056EC 2484ADA0 */  addiu      $a0, $a0, %lo(D_8012ADA0)
 /* 62F0 800056F0 02003025 */  or         $a2, $s0, $zero
 /* 62F4 800056F4 24050014 */  addiu      $a1, $zero, 0x14
-/* 62F8 800056F8 0C02919C */  jal        func_800A4670
+/* 62F8 800056F8 0C02919C */  jal        osEepromLongRead
 /* 62FC 800056FC 24070080 */   addiu     $a3, $zero, 0x80
 .L80005700:
 /* 6300 80005700 3C028017 */  lui        $v0, %hi(D_80171B19)
@@ -641,13 +641,13 @@ glabel func_80005770
 /* 6378 80005778 3C108013 */  lui        $s0, %hi(D_8012ADA0)
 /* 637C 8000577C 2610ADA0 */  addiu      $s0, $s0, %lo(D_8012ADA0)
 /* 6380 80005780 AFBF001C */  sw         $ra, 0x1c($sp)
-/* 6384 80005784 0C02917C */  jal        func_800A45F0
+/* 6384 80005784 0C02917C */  jal        osEepromProbe
 /* 6388 80005788 02002025 */   or        $a0, $s0, $zero
 /* 638C 8000578C 3C068017 */  lui        $a2, %hi(GameSave_Names)
 /* 6390 80005790 24C61AA0 */  addiu      $a2, $a2, %lo(GameSave_Names)
 /* 6394 80005794 02002025 */  or         $a0, $s0, $zero
 /* 6398 80005798 24050002 */  addiu      $a1, $zero, 2
-/* 639C 8000579C 0C0291F0 */  jal        GameSave_Write
+/* 639C 8000579C 0C0291F0 */  jal        osEepromLongWrite
 /* 63A0 800057A0 24070048 */   addiu     $a3, $zero, 0x48
 /* 63A4 800057A4 3C0E800C */  lui        $t6, %hi(gSaveSlotIndex)
 /* 63A8 800057A8 91CE5008 */  lbu        $t6, %lo(gSaveSlotIndex)($t6)
@@ -658,26 +658,26 @@ glabel func_80005770
 /* 63BC 800057BC 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
 /* 63C0 800057C0 02002025 */  or         $a0, $s0, $zero
 /* 63C4 800057C4 24050024 */  addiu      $a1, $zero, 0x24
-/* 63C8 800057C8 0C0291F0 */  jal        GameSave_Write
+/* 63C8 800057C8 0C0291F0 */  jal        osEepromLongWrite
 /* 63CC 800057CC 24070032 */   addiu     $a3, $zero, 0x32
 /* 63D0 800057D0 3C06800C */  lui        $a2, %hi(gTimeRecords)
 /* 63D4 800057D4 24C64F28 */  addiu      $a2, $a2, %lo(gTimeRecords)
 /* 63D8 800057D8 02002025 */  or         $a0, $s0, $zero
 /* 63DC 800057DC 2405002C */  addiu      $a1, $zero, 0x2c
-/* 63E0 800057E0 0C0291F0 */  jal        GameSave_Write
+/* 63E0 800057E0 0C0291F0 */  jal        osEepromLongWrite
 /* 63E4 800057E4 24070080 */   addiu     $a3, $zero, 0x80
 /* 63E8 800057E8 1000000C */  b          .L8000581C
 /* 63EC 800057EC 8FBF001C */   lw        $ra, 0x1c($sp)
 .L800057F0:
 /* 63F0 800057F0 3C068017 */  lui        $a2, %hi(D_80171AE8)
 /* 63F4 800057F4 24C61AE8 */  addiu      $a2, $a2, %lo(D_80171AE8)
-/* 63F8 800057F8 0C0291F0 */  jal        GameSave_Write
+/* 63F8 800057F8 0C0291F0 */  jal        osEepromLongWrite
 /* 63FC 800057FC 24070032 */   addiu     $a3, $zero, 0x32
 /* 6400 80005800 3C06800C */  lui        $a2, %hi(gTimeRecords)
 /* 6404 80005804 24C64F28 */  addiu      $a2, $a2, %lo(gTimeRecords)
 /* 6408 80005808 02002025 */  or         $a0, $s0, $zero
 /* 640C 8000580C 24050014 */  addiu      $a1, $zero, 0x14
-/* 6410 80005810 0C0291F0 */  jal        GameSave_Write
+/* 6410 80005810 0C0291F0 */  jal        osEepromLongWrite
 /* 6414 80005814 24070080 */   addiu     $a3, $zero, 0x80
 /* 6418 80005818 8FBF001C */  lw         $ra, 0x1c($sp)
 .L8000581C:
@@ -690,9 +690,9 @@ glabel GameSave_Erase
 /* 642C 8000582C 3C04800C */  lui        $a0, %hi(gSaveSlotIndex)
 /* 6430 80005830 AFBF0014 */  sw         $ra, 0x14($sp)
 /* 6434 80005834 90845008 */  lbu        $a0, %lo(gSaveSlotIndex)($a0)
-/* 6438 80005838 0C0013FF */  jal        GameSave_ClearCard
+/* 6438 80005838 0C0013FF */  jal        GameSave_Initialize
 /* 643C 8000583C 00000000 */   nop
-/* 6440 80005840 0C00142D */  jal        GameSave_Reset
+/* 6440 80005840 0C00142D */  jal        GameSave_SetDefaults
 /* 6444 80005844 00000000 */   nop
 /* 6448 80005848 0C0015DC */  jal        func_80005770
 /* 644C 8000584C 00000000 */   nop
@@ -5037,7 +5037,7 @@ glabel L8000966C_A26C
 /* A470 80009870 240C0000 */  addiu      $t4, $zero, 0
 /* A474 80009874 240D0000 */  addiu      $t5, $zero, 0
 /* A478 80009878 AC2D1ADC */  sw         $t5, %lo(D_80171ADC)($at)
-/* A47C 8000987C 0C00142D */  jal        GameSave_Reset
+/* A47C 8000987C 0C00142D */  jal        GameSave_SetDefaults
 /* A480 80009880 AC2C1AD8 */   sw        $t4, 0x1ad8($at)
 /* A484 80009884 3C018018 */  lui        $at, %hi(gRedGems)
 /* A488 80009888 A4308136 */  sh         $s0, %lo(gRedGems)($at)
@@ -5066,7 +5066,7 @@ glabel L800098A8_A4A8
 /* A4DC 800098DC 24CEFFFF */  addiu      $t6, $a2, -1
 /* A4E0 800098E0 14800012 */  bnez       $a0, L8000992C_A52C
 /* A4E4 800098E4 A52E0000 */   sh        $t6, ($t1)
-/* A4E8 800098E8 0C001597 */  jal        func_8000565C
+/* A4E8 800098E8 0C001597 */  jal        GameSave_LoadRecords
 /* A4EC 800098EC 00000000 */   nop
 /* A4F0 800098F0 3C06800C */  lui        $a2, %hi(gSaveSlotIndex)
 /* A4F4 800098F4 90C65008 */  lbu        $a2, %lo(gSaveSlotIndex)($a2)

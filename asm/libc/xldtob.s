@@ -55,12 +55,12 @@ glabel _Ldtob
 /* B9F64 800B9364 24010002 */  addiu      $at, $zero, 2
 /* B9F68 800B9368 17010004 */  bne        $t8, $at, .L800B937C
 /* B9F6C 800B936C 00000000 */   nop
-/* B9F70 800B9370 3C10800F */  lui        $s0, %hi(D_800EE9F8)
+/* B9F70 800B9370 3C10800F */  lui        $s0, %hi(xldtob_rodata_0048)
 /* B9F74 800B9374 10000003 */  b          .L800B9384
-/* B9F78 800B9378 2610E9F8 */   addiu     $s0, $s0, %lo(D_800EE9F8)
+/* B9F78 800B9378 2610E9F8 */   addiu     $s0, $s0, %lo(xldtob_rodata_0048)
 .L800B937C:
-/* B9F7C 800B937C 3C10800F */  lui        $s0, %hi(D_800EE9FC)
-/* B9F80 800B9380 2610E9FC */  addiu      $s0, $s0, %lo(D_800EE9FC)
+/* B9F7C 800B937C 3C10800F */  lui        $s0, %hi(xldtob_rodata_004C)
+/* B9F80 800B9380 2610E9FC */  addiu      $s0, $s0, %lo(xldtob_rodata_004C)
 .L800B9384:
 /* B9F84 800B9384 8FB90098 */  lw         $t9, 0x98($sp)
 /* B9F88 800B9388 24080003 */  addiu      $t0, $zero, 3
@@ -127,11 +127,11 @@ glabel _Ldtob
 /* BA06C 800B946C 11C00009 */  beqz       $t6, .L800B9494
 /* BA070 800B9470 00000000 */   nop
 /* BA074 800B9474 8FAF005C */  lw         $t7, 0x5c($sp)
-/* BA078 800B9478 3C01800F */  lui        $at, %hi(D_800EE9B0)
+/* BA078 800B9478 3C01800F */  lui        $at, %hi(xldtob_rodata_0000)
 /* BA07C 800B947C D7B20068 */  ldc1       $f18, 0x68($sp)
 /* BA080 800B9480 000FC0C0 */  sll        $t8, $t7, 3
 /* BA084 800B9484 00380821 */  addu       $at, $at, $t8
-/* BA088 800B9488 D424E9B0 */  ldc1       $f4, %lo(D_800EE9B0)($at)
+/* BA088 800B9488 D424E9B0 */  ldc1       $f4, %lo(xldtob_rodata_0000)($at)
 /* BA08C 800B948C 46249182 */  mul.d      $f6, $f18, $f4
 /* BA090 800B9490 F7A60068 */  sdc1       $f6, 0x68($sp)
 .L800B9494:
@@ -168,11 +168,11 @@ glabel _Ldtob
 /* BA100 800B9500 13000009 */  beqz       $t8, .L800B9528
 /* BA104 800B9504 00000000 */   nop
 /* BA108 800B9508 8FB9005C */  lw         $t9, 0x5c($sp)
-/* BA10C 800B950C 3C01800F */  lui        $at, %hi(D_800EE9B0)
+/* BA10C 800B950C 3C01800F */  lui        $at, %hi(xldtob_rodata_0000)
 /* BA110 800B9510 D7AA0050 */  ldc1       $f10, 0x50($sp)
 /* BA114 800B9514 001948C0 */  sll        $t1, $t9, 3
 /* BA118 800B9518 00290821 */  addu       $at, $at, $t1
-/* BA11C 800B951C D430E9B0 */  ldc1       $f16, %lo(D_800EE9B0)($at)
+/* BA11C 800B951C D430E9B0 */  ldc1       $f16, %lo(xldtob_rodata_0000)($at)
 /* BA120 800B9520 46305482 */  mul.d      $f18, $f10, $f16
 /* BA124 800B9524 F7B20050 */  sdc1       $f18, 0x50($sp)
 .L800B9528:
@@ -235,9 +235,9 @@ glabel _Ldtob
 /* BA1F0 800B95F0 AFB8004C */   sw        $t8, 0x4c($sp)
 /* BA1F4 800B95F4 8FB90044 */  lw         $t9, 0x44($sp)
 /* BA1F8 800B95F8 D7A60068 */  ldc1       $f6, 0x68($sp)
-/* BA1FC 800B95FC 3C01800F */  lui        $at, %hi(D_800EEA08)
+/* BA1FC 800B95FC 3C01800F */  lui        $at, %hi(xldtob_rodata_0058)
 /* BA200 800B9600 44994000 */  mtc1       $t9, $f8
-/* BA204 800B9604 D432EA08 */  ldc1       $f18, %lo(D_800EEA08)($at)
+/* BA204 800B9604 D432EA08 */  ldc1       $f18, %lo(xldtob_rodata_0058)($at)
 /* BA208 800B9608 468042A1 */  cvt.d.w    $f10, $f8
 /* BA20C 800B960C 462A3401 */  sub.d      $f16, $f6, $f10
 /* BA210 800B9610 46328102 */  mul.d      $f4, $f16, $f18

@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel syncprintf_text_0000
+glabel __osSyncVPrintf
 /* A63F0 800A57F0 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* A63F4 800A57F4 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A63F8 800A57F8 AFA40028 */  sw         $a0, 0x28($sp)
@@ -49,7 +49,7 @@ glabel syncprintf_text_0000
 /* A647C 800A587C 03E00008 */  jr         $ra
 /* A6480 800A5880 00000000 */   nop
 
-glabel func_800A5884
+glabel rmonPutchar
 /* A6484 800A5884 308400FF */  andi       $a0, $a0, 0xff
 /* A6488 800A5888 3C0E800F */  lui        $t6, %hi(D_800EA568)
 /* A648C 800A588C 8DCEA568 */  lw         $t6, %lo(D_800EA568)($t6)
@@ -89,7 +89,7 @@ glabel func_800A58FC
 /* A64FC 800A58FC 03E00008 */  jr         $ra
 /* A6500 800A5900 00000000 */   nop
 
-glabel syncprintf_text_0114
+glabel msp_proutSyncPrintf
 /* A6504 800A5904 27BDFF48 */  addiu      $sp, $sp, -0xb8
 /* A6508 800A5908 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A650C 800A590C AFA400B8 */  sw         $a0, 0xb8($sp)
@@ -179,7 +179,7 @@ glabel syncprintf_text_0114
 /* A6640 800A5A40 8FAA00AC */  lw         $t2, 0xac($sp)
 /* A6644 800A5A44 27AB0028 */  addiu      $t3, $sp, 0x28
 /* A6648 800A5A48 014B2023 */  subu       $a0, $t2, $t3
-/* A664C 800A5A4C 0C029621 */  jal        func_800A5884
+/* A664C 800A5A4C 0C029621 */  jal        rmonPutchar
 /* A6650 800A5A50 2484FFFF */   addiu     $a0, $a0, -1
 /* A6654 800A5A54 27AC0028 */  addiu      $t4, $sp, 0x28
 /* A6658 800A5A58 AFAC00A8 */  sw         $t4, 0xa8($sp)
@@ -191,7 +191,7 @@ glabel syncprintf_text_0114
 /* A666C 800A5A6C 8FAF00A8 */  lw         $t7, 0xa8($sp)
 /* A6670 800A5A70 91E40000 */  lbu        $a0, ($t7)
 /* A6674 800A5A74 25F90001 */  addiu      $t9, $t7, 1
-/* A6678 800A5A78 0C029621 */  jal        func_800A5884
+/* A6678 800A5A78 0C029621 */  jal        rmonPutchar
 /* A667C 800A5A7C AFB900A8 */   sw        $t9, 0xa8($sp)
 /* A6680 800A5A80 8FB800A8 */  lw         $t8, 0xa8($sp)
 /* A6684 800A5A84 8FA800AC */  lw         $t0, 0xac($sp)
@@ -215,7 +215,7 @@ glabel syncprintf_text_0114
 /* A66C0 800A5AC0 8FAF00AC */  lw         $t7, 0xac($sp)
 /* A66C4 800A5AC4 27B90028 */  addiu      $t9, $sp, 0x28
 /* A66C8 800A5AC8 01F92023 */  subu       $a0, $t7, $t9
-/* A66CC 800A5ACC 0C029621 */  jal        func_800A5884
+/* A66CC 800A5ACC 0C029621 */  jal        rmonPutchar
 /* A66D0 800A5AD0 2484FFFF */   addiu     $a0, $a0, -1
 /* A66D4 800A5AD4 27B80028 */  addiu      $t8, $sp, 0x28
 /* A66D8 800A5AD8 AFB800A8 */  sw         $t8, 0xa8($sp)
@@ -227,7 +227,7 @@ glabel syncprintf_text_0114
 /* A66EC 800A5AEC 8FAA00A8 */  lw         $t2, 0xa8($sp)
 /* A66F0 800A5AF0 91440000 */  lbu        $a0, ($t2)
 /* A66F4 800A5AF4 254B0001 */  addiu      $t3, $t2, 1
-/* A66F8 800A5AF8 0C029621 */  jal        func_800A5884
+/* A66F8 800A5AF8 0C029621 */  jal        rmonPutchar
 /* A66FC 800A5AFC AFAB00A8 */   sw        $t3, 0xa8($sp)
 /* A6700 800A5B00 8FAC00A8 */  lw         $t4, 0xa8($sp)
 /* A6704 800A5B04 8FAD00AC */  lw         $t5, 0xac($sp)
@@ -245,7 +245,7 @@ glabel syncprintf_text_0114
 /* A672C 800A5B2C 03E00008 */  jr         $ra
 /* A6730 800A5B30 00000000 */   nop
 
-glabel osSyncPrintf
+glabel kmcErrorHandler
 /* A6734 800A5B34 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A6738 800A5B38 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A673C 800A5B3C AFA40020 */  sw         $a0, 0x20($sp)
@@ -259,8 +259,8 @@ glabel osSyncPrintf
 /* A675C 800A5B5C 8F1826C0 */  lw         $t8, %lo(__kmc_pt_mode)($t8)
 /* A6760 800A5B60 13000009 */  beqz       $t8, .L800A5B88
 /* A6764 800A5B64 00000000 */   nop
-/* A6768 800A5B68 3C04800A */  lui        $a0, %hi(syncprintf_text_0114)
-/* A676C 800A5B6C 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
+/* A6768 800A5B68 3C04800A */  lui        $a0, %hi(msp_proutSyncPrintf)
+/* A676C 800A5B6C 24845904 */  addiu      $a0, $a0, %lo(msp_proutSyncPrintf)
 /* A6770 800A5B70 00002825 */  or         $a1, $zero, $zero
 /* A6774 800A5B74 8FA60020 */  lw         $a2, 0x20($sp)
 /* A6778 800A5B78 0C02CCC4 */  jal        _Putfld
@@ -268,8 +268,8 @@ glabel osSyncPrintf
 /* A6780 800A5B80 10000008 */  b          .L800A5BA4
 /* A6784 800A5B84 AFA2001C */   sw        $v0, 0x1c($sp)
 .L800A5B88:
-/* A6788 800A5B88 3C04800A */  lui        $a0, %hi(syncprintf_text_0000)
-/* A678C 800A5B8C 248457F0 */  addiu      $a0, $a0, %lo(syncprintf_text_0000)
+/* A6788 800A5B88 3C04800A */  lui        $a0, %hi(__osSyncVPrintf)
+/* A678C 800A5B8C 248457F0 */  addiu      $a0, $a0, %lo(__osSyncVPrintf)
 /* A6790 800A5B90 00002825 */  or         $a1, $zero, $zero
 /* A6794 800A5B94 8FA60020 */  lw         $a2, 0x20($sp)
 /* A6798 800A5B98 0C02CCC4 */  jal        _Putfld
@@ -298,8 +298,8 @@ glabel rmonPrintf
 /* A67E4 800A5BE4 8F1826C0 */  lw         $t8, %lo(__kmc_pt_mode)($t8)
 /* A67E8 800A5BE8 13000008 */  beqz       $t8, .L800A5C0C
 /* A67EC 800A5BEC 00000000 */   nop
-/* A67F0 800A5BF0 3C04800A */  lui        $a0, %hi(syncprintf_text_0114)
-/* A67F4 800A5BF4 24845904 */  addiu      $a0, $a0, %lo(syncprintf_text_0114)
+/* A67F0 800A5BF0 3C04800A */  lui        $a0, %hi(msp_proutSyncPrintf)
+/* A67F4 800A5BF4 24845904 */  addiu      $a0, $a0, %lo(msp_proutSyncPrintf)
 /* A67F8 800A5BF8 00002825 */  or         $a1, $zero, $zero
 /* A67FC 800A5BFC 8FA60020 */  lw         $a2, 0x20($sp)
 /* A6800 800A5C00 0C02CCC4 */  jal        _Putfld

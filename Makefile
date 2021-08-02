@@ -1,7 +1,7 @@
 BASENAME  = mischiefmakers
 
 BUILD_DIR = build
-ASM_DIRS  = asm asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp asm/eeprom asm/pi\
+ASM_DIRS  = asm asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp asm/eeprom asm/pi asm/ai asm/error asm/si asm/rsp\
 			asm/data asm/data/os asm/data/io asm/data/audio asm/data/rmon asm/data/libc asm/data/host asm/data/logger asm/data/gu asm/data/sp
 BIN_DIRS  = assets
 SRC_DIR   = src
@@ -69,6 +69,7 @@ dirs:
 	$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS),$(shell mkdir -p $(BUILD_DIR)/$(dir)))
 
 nuke:
+	rm -rf asm
 	rm -rf assets
 	rm -rf build
 	rm -f *auto.txt

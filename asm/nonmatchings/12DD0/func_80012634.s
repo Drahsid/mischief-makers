@@ -26,8 +26,8 @@ glabel func_80012634
 /* 13290 80012690 01EE7821 */  addu       $t7, $t7, $t6
 /* 13294 80012694 8DEFF59C */  lw         $t7, %lo(gActors+0x8C)($t7)
 /* 13298 80012698 8D180000 */  lw         $t8, ($t0)
-/* 1329C 8001269C 3C02800C */  lui        $v0, %hi(D_800BE5DC)
-/* 132A0 800126A0 8C42E5DC */  lw         $v0, %lo(D_800BE5DC)($v0)
+/* 1329C 8001269C 3C02800C */  lui        $v0, %hi(gPlayerPosYMirror)
+/* 132A0 800126A0 8C42E5DC */  lw         $v0, %lo(gPlayerPosYMirror)($v0)
 /* 132A4 800126A4 01F8C821 */  addu       $t9, $t7, $t8
 /* 132A8 800126A8 03224821 */  addu       $t1, $t9, $v0
 /* 132AC 800126AC 24E7E554 */  addiu      $a3, $a3, -0x1aac

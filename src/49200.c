@@ -394,8 +394,8 @@ void func_8004EC60(uint16_t index) {
         gActors[index].unk_0xF0 = 0xFFF80000;
     }
 
-    D_801373E0.unk_0x50 = D_800BE5D8;
-    D_801373E0.unk_0x54 = D_800BE5DC;
+    D_801373E0.unk_0x50 = gPlayerPosXMirror;
+    D_801373E0.unk_0x54 = gPlayerPosYMirror;
 }
 
 
@@ -433,7 +433,7 @@ void func_8004EC60(uint16_t index) {
 //            }
 //            else {
 //                phi_v0 = &D_801225F0;
-//                phi_v1 = &D_8011DD70;
+//                phi_v1 = &gInputBuffer;
 //                do {
 //                    phi_v0[1] = 0;
 //                    phi_v1[-3] = 0;
@@ -559,10 +559,10 @@ void func_8004EC60(uint16_t index) {
 //        gActors[index].unk_0xB4 = D_800EF630 * gActors[index].unk_0x124;
 //        gActors[index].unk_0xB8 = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
 //
-//        D_800BE5D8 = gActors[index].pos.x_w + D_800BE558;
-//        D_800BE5DC = gActors[index].pos.y_w + D_800BE55C;
-//        D_800BE5E8 = gActors[index].unk_0xEC;
-//        D_800BE5EC = gActors[index].unk_0xF0;
+//        gPlayerPosXMirror = gActors[index].pos.x_w + D_800BE558;
+//        gPlayerPosYMirror = gActors[index].pos.y_w + D_800BE55C;
+//        gPlayerVelXMirror = gActors[index].unk_0xEC;
+//        gPlayerVelYMirror = gActors[index].unk_0xF0;
 //
 //        if (D_800BE5D0 == 0x46) {
 //            if (gActors[index].unk_0xF0 <= -294912.0) {

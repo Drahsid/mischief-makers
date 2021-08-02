@@ -380,9 +380,9 @@ glabel func_800B7738
 .L800B775C:
 /* B835C 800B775C 848E0018 */  lh         $t6, 0x18($a0)
 /* B8360 800B7760 460A3482 */  mul.s      $f18, $f6, $f10
-/* B8364 800B7764 3C01800F */  lui        $at, %hi(D_800EE940)
+/* B8364 800B7764 3C01800F */  lui        $at, %hi(seq_rodata_0000)
 /* B8368 800B7768 448E4000 */  mtc1       $t6, $f8
-/* B836C 800B776C D42AE940 */  ldc1       $f10, %lo(D_800EE940)($at)
+/* B836C 800B776C D42AE940 */  ldc1       $f10, %lo(seq_rodata_0000)($at)
 /* B8370 800B7770 46804420 */  cvt.s.w    $f16, $f8
 /* B8374 800B7774 46009121 */  cvt.d.s    $f4, $f18
 /* B8378 800B7778 460081A1 */  cvt.d.s    $f6, $f16
@@ -402,8 +402,8 @@ glabel func_800B7794
 glabel func_800B779C
 /* B839C 800B779C AFA50004 */  sw         $a1, 4($sp)
 /* B83A0 800B77A0 C7A40004 */  lwc1       $f4, 4($sp)
-/* B83A4 800B77A4 3C01800F */  lui        $at, %hi(D_800EE948)
-/* B83A8 800B77A8 D428E948 */  ldc1       $f8, %lo(D_800EE948)($at)
+/* B83A4 800B77A4 3C01800F */  lui        $at, %hi(seq_rodata_0008)
+/* B83A8 800B77A8 D428E948 */  ldc1       $f8, %lo(seq_rodata_0008)($at)
 /* B83AC 800B77AC 848E0018 */  lh         $t6, 0x18($a0)
 /* B83B0 800B77B0 460021A1 */  cvt.d.s    $f6, $f4
 /* B83B4 800B77B4 46283282 */  mul.d      $f10, $f6, $f8

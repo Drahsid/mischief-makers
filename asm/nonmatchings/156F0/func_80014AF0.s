@@ -82,13 +82,13 @@ glabel func_80014AF0
 /* 15810 80014C10 3C0D800C */  lui        $t5, %hi(D_800BE558)
 /* 15814 80014C14 8DADE558 */  lw         $t5, %lo(D_800BE558)($t5)
 /* 15818 80014C18 8CAC0088 */  lw         $t4, 0x88($a1)
-/* 1581C 80014C1C 3C01800C */  lui        $at, %hi(D_800BE5D8)
+/* 1581C 80014C1C 3C01800C */  lui        $at, %hi(gPlayerPosXMirror)
 /* 15820 80014C20 018D7021 */  addu       $t6, $t4, $t5
-/* 15824 80014C24 AC2EE5D8 */  sw         $t6, %lo(D_800BE5D8)($at)
+/* 15824 80014C24 AC2EE5D8 */  sw         $t6, %lo(gPlayerPosXMirror)($at)
 /* 15828 80014C28 3C18800C */  lui        $t8, %hi(D_800BE55C)
 /* 1582C 80014C2C 8F18E55C */  lw         $t8, %lo(D_800BE55C)($t8)
 /* 15830 80014C30 8CAF008C */  lw         $t7, 0x8c($a1)
-/* 15834 80014C34 3C01800C */  lui        $at, %hi(D_800BE5DC)
+/* 15834 80014C34 3C01800C */  lui        $at, %hi(gPlayerPosYMirror)
 /* 15838 80014C38 01F8C821 */  addu       $t9, $t7, $t8
 /* 1583C 80014C3C 03E00008 */  jr         $ra
-/* 15840 80014C40 AC39E5DC */   sw        $t9, %lo(D_800BE5DC)($at)
+/* 15840 80014C40 AC39E5DC */   sw        $t9, %lo(gPlayerPosYMirror)($at)

@@ -18,8 +18,8 @@ glabel guPerspectiveF
 /* A552C 800A492C 0C02CB32 */  jal        guMtxIdentF
 /* A5530 800A4930 8FA40030 */   lw        $a0, 0x30($sp)
 /* A5534 800A4934 C7A40038 */  lwc1       $f4, 0x38($sp)
-/* A5538 800A4938 3C01800F */  lui        $at, %hi(D_800EDA70)
-/* A553C 800A493C D428DA70 */  ldc1       $f8, %lo(D_800EDA70)($at)
+/* A5538 800A4938 3C01800F */  lui        $at, %hi(perspective_rodata_0000)
+/* A553C 800A493C D428DA70 */  ldc1       $f8, %lo(perspective_rodata_0000)($at)
 /* A5540 800A4940 460021A1 */  cvt.d.s    $f6, $f4
 /* A5544 800A4944 46283282 */  mul.d      $f10, $f6, $f8
 /* A5548 800A4948 46205420 */  cvt.s.d    $f16, $f10

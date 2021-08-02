@@ -13,10 +13,10 @@ glabel func_800121D0
 /* 12DFC 800121FC 2442F510 */  addiu      $v0, $v0, %lo(gActors)
 /* 12E00 80012200 240E0001 */  addiu      $t6, $zero, 1
 /* 12E04 80012204 A44E0090 */  sh         $t6, 0x90($v0)
-/* 12E08 80012208 3C01800C */  lui        $at, %hi(D_800BE5E8)
-/* 12E0C 8001220C AC20E5E8 */  sw         $zero, %lo(D_800BE5E8)($at)
-/* 12E10 80012210 3C01800C */  lui        $at, %hi(D_800BE5EC)
-/* 12E14 80012214 AC20E5EC */  sw         $zero, %lo(D_800BE5EC)($at)
+/* 12E08 80012208 3C01800C */  lui        $at, %hi(gPlayerVelXMirror)
+/* 12E0C 8001220C AC20E5E8 */  sw         $zero, %lo(gPlayerVelXMirror)($at)
+/* 12E10 80012210 3C01800C */  lui        $at, %hi(gPlayerVelYMirror)
+/* 12E14 80012214 AC20E5EC */  sw         $zero, %lo(gPlayerVelYMirror)($at)
 /* 12E18 80012218 A44000CC */  sh         $zero, 0xcc($v0)
 /* 12E1C 8001221C 3C01800C */  lui        $at, %hi(D_800BE5D4)
 /* 12E20 80012220 A420E5D4 */  sh         $zero, %lo(D_800BE5D4)($at)
@@ -24,9 +24,9 @@ glabel func_800121D0
 /* 12E28 80012228 A420E5F0 */  sh         $zero, %lo(D_800BE5F0)($at)
 /* 12E2C 8001222C 3C01800C */  lui        $at, %hi(D_800BE5F8)
 /* 12E30 80012230 3C058012 */  lui        $a1, %hi(D_801225F0)
-/* 12E34 80012234 3C048012 */  lui        $a0, %hi(D_8011DD70)
+/* 12E34 80012234 3C048012 */  lui        $a0, %hi(gInputBuffer)
 /* 12E38 80012238 A420E5F8 */  sh         $zero, %lo(D_800BE5F8)($at)
-/* 12E3C 8001223C 2484DD70 */  addiu      $a0, $a0, %lo(D_8011DD70)
+/* 12E3C 8001223C 2484DD70 */  addiu      $a0, $a0, %lo(gInputBuffer)
 /* 12E40 80012240 24A525F0 */  addiu      $a1, $a1, %lo(D_801225F0)
 /* 12E44 80012244 00001825 */  or         $v1, $zero, $zero
 .L80012248:

@@ -45,9 +45,9 @@ glabel func_80047E38
 /* 48AB0 80047EB0 0302C824 */  and        $t9, $t8, $v0
 /* 48AB4 80047EB4 A43925F0 */  sh         $t9, %lo(D_801225F0)($at)
 /* 48AB8 80047EB8 94A80000 */  lhu        $t0, ($a1)
-/* 48ABC 80047EBC 3C018012 */  lui        $at, %hi(D_8011DD70)
+/* 48ABC 80047EBC 3C018012 */  lui        $at, %hi(gInputBuffer)
 /* 48AC0 80047EC0 01024824 */  and        $t1, $t0, $v0
-/* 48AC4 80047EC4 A429DD70 */  sh         $t1, %lo(D_8011DD70)($at)
+/* 48AC4 80047EC4 A429DD70 */  sh         $t1, %lo(gInputBuffer)($at)
 /* 48AC8 80047EC8 AC800020 */  sw         $zero, 0x20($a0)
 /* 48ACC 80047ECC 03E00008 */  jr         $ra
 /* 48AD0 80047ED0 AC800024 */   sw        $zero, 0x24($a0)

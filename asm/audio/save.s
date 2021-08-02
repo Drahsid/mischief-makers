@@ -28,10 +28,10 @@ glabel alSavePull
 /* B2C34 800B2034 10000007 */  b          .L800B2054
 /* B2C38 800B2038 00000000 */   nop
 .L800B203C:
-/* B2C3C 800B203C 3C04800F */  lui        $a0, %hi(D_800EE5F0)
-/* B2C40 800B2040 3C05800F */  lui        $a1, %hi(D_800EE604)
-/* B2C44 800B2044 24A5E604 */  addiu      $a1, $a1, %lo(D_800EE604)
-/* B2C48 800B2048 2484E5F0 */  addiu      $a0, $a0, %lo(D_800EE5F0)
+/* B2C3C 800B203C 3C04800F */  lui        $a0, %hi(save_rodata_0000)
+/* B2C40 800B2040 3C05800F */  lui        $a1, %hi(save_rodata_0014)
+/* B2C44 800B2044 24A5E604 */  addiu      $a1, $a1, %lo(save_rodata_0014)
+/* B2C48 800B2048 2484E5F0 */  addiu      $a0, $a0, %lo(save_rodata_0000)
 /* B2C4C 800B204C 0C026E74 */  jal        __assert
 /* B2C50 800B2050 24060023 */   addiu     $a2, $zero, 0x23
 .L800B2054:

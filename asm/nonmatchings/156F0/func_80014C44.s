@@ -62,11 +62,11 @@ glabel func_80014C44
 /* 15928 80014D28 8C4C0088 */  lw         $t4, 0x88($v0)
 /* 1592C 80014D2C 8C4E008C */  lw         $t6, 0x8c($v0)
 /* 15930 80014D30 8D6F0000 */  lw         $t7, ($t3)
-/* 15934 80014D34 3C03800C */  lui        $v1, %hi(D_800BE5D8)
-/* 15938 80014D38 3C04800C */  lui        $a0, %hi(D_800BE5DC)
+/* 15934 80014D34 3C03800C */  lui        $v1, %hi(gPlayerPosXMirror)
+/* 15938 80014D38 3C04800C */  lui        $a0, %hi(gPlayerPosYMirror)
 /* 1593C 80014D3C 844600AA */  lh         $a2, 0xaa($v0)
-/* 15940 80014D40 2484E5DC */  addiu      $a0, $a0, %lo(D_800BE5DC)
-/* 15944 80014D44 2463E5D8 */  addiu      $v1, $v1, %lo(D_800BE5D8)
+/* 15940 80014D40 2484E5DC */  addiu      $a0, $a0, %lo(gPlayerPosYMirror)
+/* 15944 80014D44 2463E5D8 */  addiu      $v1, $v1, %lo(gPlayerPosXMirror)
 /* 15948 80014D48 01853821 */  addu       $a3, $t4, $a1
 /* 1594C 80014D4C 01CFC021 */  addu       $t8, $t6, $t7
 /* 15950 80014D50 AC670000 */  sw         $a3, ($v1)
@@ -97,8 +97,8 @@ glabel func_80014C44
 /* 159B0 80014DB0 05A10004 */  bgez       $t5, .L80014DC4
 /* 159B4 80014DB4 AC4C0088 */   sw        $t4, 0x88($v0)
 /* 159B8 80014DB8 AC4000EC */  sw         $zero, 0xec($v0)
-/* 159BC 80014DBC 3C01800C */  lui        $at, %hi(D_800BE5E8)
-/* 159C0 80014DC0 AC20E5E8 */  sw         $zero, %lo(D_800BE5E8)($at)
+/* 159BC 80014DBC 3C01800C */  lui        $at, %hi(gPlayerVelXMirror)
+/* 159C0 80014DC0 AC20E5E8 */  sw         $zero, %lo(gPlayerVelXMirror)($at)
 .L80014DC4:
 /* 159C4 80014DC4 8C4F0098 */  lw         $t7, 0x98($v0)
 /* 159C8 80014DC8 00000000 */  nop
@@ -133,8 +133,8 @@ glabel func_80014C44
 /* 15A34 80014E34 19A00004 */  blez       $t5, .L80014E48
 /* 15A38 80014E38 AC4C0088 */   sw        $t4, 0x88($v0)
 /* 15A3C 80014E3C AC4000EC */  sw         $zero, 0xec($v0)
-/* 15A40 80014E40 3C01800C */  lui        $at, %hi(D_800BE5E8)
-/* 15A44 80014E44 AC20E5E8 */  sw         $zero, %lo(D_800BE5E8)($at)
+/* 15A40 80014E40 3C01800C */  lui        $at, %hi(gPlayerVelXMirror)
+/* 15A44 80014E44 AC20E5E8 */  sw         $zero, %lo(gPlayerVelXMirror)($at)
 .L80014E48:
 /* 15A48 80014E48 8C4F0098 */  lw         $t7, 0x98($v0)
 /* 15A4C 80014E4C 00000000 */  nop

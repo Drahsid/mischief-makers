@@ -7,49 +7,6 @@
 
 .section .text, "ax"
 
-glabel osSetIntMask
-/* AF2A0 800AE6A0 400C6000 */  mfc0       $t4, $12
-/* AF2A4 800AE6A4 3182FF01 */  andi       $v0, $t4, 0xff01
-/* AF2A8 800AE6A8 3C08800F */  lui        $t0, %hi(__OSGlobalIntMask)
-/* AF2AC 800AE6AC 25089780 */  addiu      $t0, $t0, %lo(__OSGlobalIntMask)
-/* AF2B0 800AE6B0 8D0B0000 */  lw         $t3, ($t0)
-/* AF2B4 800AE6B4 2401FFFF */  addiu      $at, $zero, -1
-/* AF2B8 800AE6B8 01614026 */  xor        $t0, $t3, $at
-/* AF2BC 800AE6BC 3108FF00 */  andi       $t0, $t0, 0xff00
-/* AF2C0 800AE6C0 00481025 */  or         $v0, $v0, $t0
-/* AF2C4 800AE6C4 3C0AA430 */  lui        $t2, %hi(MI_INTR_MASK)
-/* AF2C8 800AE6C8 8D4A000C */  lw         $t2, %lo(MI_INTR_MASK)($t2)
-/* AF2CC 800AE6CC 11400005 */  beqz       $t2, .L800AE6E4
-/* AF2D0 800AE6D0 000B4C02 */   srl       $t1, $t3, 0x10
-/* AF2D4 800AE6D4 2401FFFF */  addiu      $at, $zero, -1
-/* AF2D8 800AE6D8 01214826 */  xor        $t1, $t1, $at
-/* AF2DC 800AE6DC 3129003F */  andi       $t1, $t1, 0x3f
-/* AF2E0 800AE6E0 01495025 */  or         $t2, $t2, $t1
-.L800AE6E4:
-/* AF2E4 800AE6E4 000A5400 */  sll        $t2, $t2, 0x10
-/* AF2E8 800AE6E8 004A1025 */  or         $v0, $v0, $t2
-/* AF2EC 800AE6EC 3C01003F */  lui        $at, 0x3f
-/* AF2F0 800AE6F0 00814024 */  and        $t0, $a0, $at
-/* AF2F4 800AE6F4 010B4024 */  and        $t0, $t0, $t3
-/* AF2F8 800AE6F8 000843C2 */  srl        $t0, $t0, 0xf
-/* AF2FC 800AE6FC 3C0A800F */  lui        $t2, %hi(__osRcpImTable)
-/* AF300 800AE700 01485021 */  addu       $t2, $t2, $t0
-/* AF304 800AE704 954AE390 */  lhu        $t2, %lo(__osRcpImTable)($t2)
-/* AF308 800AE708 3C01A430 */  lui        $at, %hi(MI_INTR_MASK)
-/* AF30C 800AE70C AC2A000C */  sw         $t2, %lo(MI_INTR_MASK)($at)
-/* AF310 800AE710 3088FF01 */  andi       $t0, $a0, 0xff01
-/* AF314 800AE714 3169FF00 */  andi       $t1, $t3, 0xff00
-/* AF318 800AE718 01094024 */  and        $t0, $t0, $t1
-/* AF31C 800AE71C 3C01FFFF */  lui        $at, 0xffff
-/* AF320 800AE720 342100FF */  ori        $at, $at, 0xff
-/* AF324 800AE724 01816024 */  and        $t4, $t4, $at
-/* AF328 800AE728 01886025 */  or         $t4, $t4, $t0
-/* AF32C 800AE72C 408C6000 */  mtc0       $t4, $12
-/* AF330 800AE730 00000000 */  nop
-/* AF334 800AE734 00000000 */  nop
-/* AF338 800AE738 03E00008 */  jr         $ra
-/* AF33C 800AE73C 00000000 */   nop
-
 glabel init_lpfilter
 /* AF340 800AE740 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AF344 800AE744 848E0000 */  lh         $t6, ($a0)
@@ -125,7 +82,7 @@ glabel init_lpfilter
 /* AF44C 800AE84C 03E00008 */  jr         $ra
 /* AF450 800AE850 27BD0020 */   addiu     $sp, $sp, 0x20
 
-glabel func_800AE854
+glabel alFxNew
 /* AF454 800AE854 27BDFFC8 */  addiu      $sp, $sp, -0x38
 /* AF458 800AE858 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AF45C 800AE85C AFA40038 */  sw         $a0, 0x38($sp)
@@ -508,7 +465,7 @@ glabel func_800AE854
 /* AFA10 800AEE10 03E00008 */  jr         $ra
 /* AFA14 800AEE14 00000000 */   nop
 
-glabel func_800AEE18
+glabel alEnvmixerNew
 /* AFA18 800AEE18 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AFA1C 800AEE1C AFBF001C */  sw         $ra, 0x1c($sp)
 /* AFA20 800AEE20 AFA40020 */  sw         $a0, 0x20($sp)
@@ -584,7 +541,7 @@ glabel func_800AEE18
 /* AFB34 800AEF34 03E00008 */  jr         $ra
 /* AFB38 800AEF38 00000000 */   nop
 
-glabel func_800AEF3C
+glabel alLoadNew
 /* AFB3C 800AEF3C 27BDFFD8 */  addiu      $sp, $sp, -0x28
 /* AFB40 800AEF40 AFBF001C */  sw         $ra, 0x1c($sp)
 /* AFB44 800AEF44 AFA40028 */  sw         $a0, 0x28($sp)
@@ -638,7 +595,7 @@ glabel func_800AEF3C
 /* AFC00 800AF000 03E00008 */  jr         $ra
 /* AFC04 800AF004 00000000 */   nop
 
-glabel func_800AF008
+glabel alResampleNew
 /* AFC08 800AF008 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AFC0C 800AF00C AFBF001C */  sw         $ra, 0x1c($sp)
 /* AFC10 800AF010 AFA40020 */  sw         $a0, 0x20($sp)
@@ -786,7 +743,7 @@ glabel alSynAllocFX
 /* AFE18 800AF218 0019C880 */  sll        $t9, $t9, 2
 /* AFE1C 800AF21C 01F92021 */  addu       $a0, $t7, $t9
 /* AFE20 800AF220 24840020 */  addiu      $a0, $a0, 0x20
-/* AFE24 800AF224 0C02BA15 */  jal        func_800AE854
+/* AFE24 800AF224 0C02BA15 */  jal        alFxNew
 /* AFE28 800AF228 8FA60024 */   lw        $a2, 0x24($sp)
 /* AFE2C 800AF22C 87AA001E */  lh         $t2, 0x1e($sp)
 /* AFE30 800AF230 8FA80018 */  lw         $t0, 0x18($sp)

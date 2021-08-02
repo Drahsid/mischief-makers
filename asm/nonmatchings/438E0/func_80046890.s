@@ -12,8 +12,8 @@ glabel func_80046890
 /* 474B8 800468B8 3C19800C */  lui        $t9, %hi(D_800BE55C)
 /* 474BC 800468BC 8F39E55C */  lw         $t9, %lo(D_800BE55C)($t9)
 /* 474C0 800468C0 8F18F59C */  lw         $t8, %lo(gActors+0x8C)($t8)
-/* 474C4 800468C4 3C02800C */  lui        $v0, %hi(D_800BE5DC)
-/* 474C8 800468C8 8C42E5DC */  lw         $v0, %lo(D_800BE5DC)($v0)
+/* 474C4 800468C4 3C02800C */  lui        $v0, %hi(gPlayerPosYMirror)
+/* 474C8 800468C8 8C42E5DC */  lw         $v0, %lo(gPlayerPosYMirror)($v0)
 /* 474CC 800468CC 03194021 */  addu       $t0, $t8, $t9
 /* 474D0 800468D0 01024821 */  addu       $t1, $t0, $v0
 /* 474D4 800468D4 3C06800C */  lui        $a2, %hi(D_800BE554)

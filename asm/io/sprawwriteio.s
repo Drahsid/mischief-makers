@@ -19,10 +19,10 @@ glabel __osSpRawWriteIo
 /* B6520 800B5920 10000007 */  b          .L800B5940
 /* B6524 800B5924 00000000 */   nop
 .L800B5928:
-/* B6528 800B5928 3C04800F */  lui        $a0, %hi(D_800EE7F0)
-/* B652C 800B592C 3C05800F */  lui        $a1, %hi(D_800EE808)
-/* B6530 800B5930 24A5E808 */  addiu      $a1, $a1, %lo(D_800EE808)
-/* B6534 800B5934 2484E7F0 */  addiu      $a0, $a0, %lo(D_800EE7F0)
+/* B6528 800B5928 3C04800F */  lui        $a0, %hi(sprawwrite_rodata_0000)
+/* B652C 800B592C 3C05800F */  lui        $a1, %hi(sprawwrite_rodata_0018)
+/* B6530 800B5930 24A5E808 */  addiu      $a1, $a1, %lo(sprawwrite_rodata_0018)
+/* B6534 800B5934 2484E7F0 */  addiu      $a0, $a0, %lo(sprawwrite_rodata_0000)
 /* B6538 800B5938 0C026E74 */  jal        __assert
 /* B653C 800B593C 24060033 */   addiu     $a2, $zero, 0x33
 .L800B5940:

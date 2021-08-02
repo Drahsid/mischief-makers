@@ -17,8 +17,8 @@ glabel sprintf
 /* A6258 800A5658 27AE0024 */  addiu      $t6, $sp, 0x24
 /* A625C 800A565C 25CF0004 */  addiu      $t7, $t6, 4
 /* A6260 800A5660 AFAF0018 */  sw         $t7, 0x18($sp)
-/* A6264 800A5664 3C04800A */  lui        $a0, %hi(sprintf_text_007C)
-/* A6268 800A5668 248456BC */  addiu      $a0, $a0, %lo(sprintf_text_007C)
+/* A6264 800A5664 3C04800A */  lui        $a0, %hi(proutSprintf)
+/* A6268 800A5668 248456BC */  addiu      $a0, $a0, %lo(proutSprintf)
 /* A626C 800A566C 8FA50020 */  lw         $a1, 0x20($sp)
 /* A6270 800A5670 8FA60024 */  lw         $a2, 0x24($sp)
 /* A6274 800A5674 0C02CCC4 */  jal        _Putfld
@@ -42,7 +42,7 @@ glabel sprintf
 /* A62B4 800A56B4 03E00008 */  jr         $ra
 /* A62B8 800A56B8 00000000 */   nop
 
-glabel sprintf_text_007C
+glabel proutSprintf
 /* A62BC 800A56BC 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* A62C0 800A56C0 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A62C4 800A56C4 AFA40018 */  sw         $a0, 0x18($sp)

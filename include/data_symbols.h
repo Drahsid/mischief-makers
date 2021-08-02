@@ -66,12 +66,12 @@ extern uint16_t D_800BE594;
 extern uint16_t D_800BE5A4;
 extern uint16_t D_800BE5D0;
 extern uint16_t D_800BE5D4;
-extern int32_t D_800BE5D8;
-extern int32_t D_800BE5DC;
+extern int32_t gPlayerPosXMirror; //likely {s16[2];s32;} unions
+extern int32_t gPlayerPosYMirror;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
-extern int32_t D_800BE5E8;
-extern int32_t D_800BE5EC;
+extern int32_t gPlayerVelXMirror;
+extern int32_t gPlayerVelYMirror;
 extern int16_t D_800BE5F0;
 extern int32_t D_800BE5F4;
 extern int16_t D_800BE5F8;
@@ -297,7 +297,7 @@ extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern UNK_TYPE D_8011D970;
-extern int16_t D_8011DD70[64]; //buffer of controller inputs
+extern int16_t gInputBuffer[64]; //buffer of controller inputs
 extern UNK_TYPE D_8011DDF0;
 extern int16_t D_801225F0;
 extern uint32_t D_80126670; // initial thread stack head

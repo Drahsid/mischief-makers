@@ -1,6 +1,6 @@
 glabel func_8004767C
-/* 4827C 8004767C 3C03800C */  lui        $v1, %hi(D_800BE5D8)
-/* 48280 80047680 8463E5D8 */  lh         $v1, %lo(D_800BE5D8)($v1)
+/* 4827C 8004767C 3C03800C */  lui        $v1, %hi(gPlayerPosXMirror)
+/* 48280 80047680 8463E5D8 */  lh         $v1, %lo(gPlayerPosXMirror)($v1)
 /* 48284 80047684 308EFFFF */  andi       $t6, $a0, 0xffff
 /* 48288 80047688 01C3082A */  slt        $at, $t6, $v1
 /* 4828C 8004768C AFA40000 */  sw         $a0, ($sp)
@@ -14,8 +14,8 @@ glabel func_8004767C
 /* 482AC 800476AC 25C80020 */  addiu      $t0, $t6, 0x20
 /* 482B0 800476B0 0068082A */  slt        $at, $v1, $t0
 /* 482B4 800476B4 10200015 */  beqz       $at, .L8004770C
-/* 482B8 800476B8 3C03800C */   lui       $v1, %hi(D_800BE5DC)
-/* 482BC 800476BC 8463E5DC */  lh         $v1, %lo(D_800BE5DC)($v1)
+/* 482B8 800476B8 3C03800C */   lui       $v1, %hi(gPlayerPosYMirror)
+/* 482BC 800476BC 8463E5DC */  lh         $v1, %lo(gPlayerPosYMirror)($v1)
 /* 482C0 800476C0 25E90020 */  addiu      $t1, $t7, 0x20
 /* 482C4 800476C4 01E3082A */  slt        $at, $t7, $v1
 /* 482C8 800476C8 10200010 */  beqz       $at, .L8004770C

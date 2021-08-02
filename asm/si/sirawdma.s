@@ -19,10 +19,10 @@ glabel __osSiRawStartDma
 /* AB540 800AA940 10000007 */  b          .L800AA960
 /* AB544 800AA944 00000000 */   nop
 .L800AA948:
-/* AB548 800AA948 3C04800F */  lui        $a0, %hi(D_800EDEE0)
-/* AB54C 800AA94C 3C05800F */  lui        $a1, %hi(D_800EDEFC)
-/* AB550 800AA950 24A5DEFC */  addiu      $a1, $a1, %lo(D_800EDEFC)
-/* AB554 800AA954 2484DEE0 */  addiu      $a0, $a0, %lo(D_800EDEE0)
+/* AB548 800AA948 3C04800F */  lui        $a0, %hi(sirawdma_rodata_0000)
+/* AB54C 800AA94C 3C05800F */  lui        $a1, %hi(sirawdma_rodata_001C)
+/* AB550 800AA950 24A5DEFC */  addiu      $a1, $a1, %lo(sirawdma_rodata_001C)
+/* AB554 800AA954 2484DEE0 */  addiu      $a0, $a0, %lo(sirawdma_rodata_0000)
 /* AB558 800AA958 0C026E74 */  jal        __assert
 /* AB55C 800AA95C 24060037 */   addiu     $a2, $zero, 0x37
 .L800AA960:

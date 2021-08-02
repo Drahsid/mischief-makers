@@ -1273,11 +1273,11 @@ glabel func_8005E56C
 /* 5F3C4 8005E7C4 A62A00D0 */  sh         $t2, 0xd0($s1)
 /* 5F3C8 8005E7C8 0C000CD3 */  jal        SFX_Play_1
 /* 5F3CC 8005E7CC 2404010D */   addiu     $a0, $zero, 0x10d
-/* 5F3D0 8005E7D0 3C0B800C */  lui        $t3, %hi(D_800BE5D8)
-/* 5F3D4 8005E7D4 856BE5D8 */  lh         $t3, %lo(D_800BE5D8)($t3)
+/* 5F3D0 8005E7D0 3C0B800C */  lui        $t3, %hi(gPlayerPosXMirror)
+/* 5F3D4 8005E7D4 856BE5D8 */  lh         $t3, %lo(gPlayerPosXMirror)($t3)
 /* 5F3D8 8005E7D8 3C018018 */  lui        $at, %hi(D_80178440)
-/* 5F3DC 8005E7DC 3C0C800C */  lui        $t4, %hi(D_800BE5DC)
-/* 5F3E0 8005E7E0 858CE5DC */  lh         $t4, %lo(D_800BE5DC)($t4)
+/* 5F3DC 8005E7DC 3C0C800C */  lui        $t4, %hi(gPlayerPosYMirror)
+/* 5F3E0 8005E7E0 858CE5DC */  lh         $t4, %lo(gPlayerPosYMirror)($t4)
 /* 5F3E4 8005E7E4 A42B8440 */  sh         $t3, %lo(D_80178440)($at)
 /* 5F3E8 8005E7E8 3C018018 */  lui        $at, %hi(D_80178442)
 /* 5F3EC 8005E7EC A42C8442 */  sh         $t4, %lo(D_80178442)($at)
@@ -2326,9 +2326,9 @@ glabel func_8005F6D4
 /* 60314 8005F714 3C028018 */  lui        $v0, %hi(D_80178440)
 /* 60318 8005F718 31F87000 */  andi       $t8, $t7, 0x7000
 /* 6031C 8005F71C 1300001A */  beqz       $t8, .L8005F788
-/* 60320 8005F720 3C03800C */   lui       $v1, %hi(D_800BE5D8)
+/* 60320 8005F720 3C03800C */   lui       $v1, %hi(gPlayerPosXMirror)
 /* 60324 8005F724 84428440 */  lh         $v0, %lo(D_80178440)($v0)
-/* 60328 8005F728 8463E5D8 */  lh         $v1, %lo(D_800BE5D8)($v1)
+/* 60328 8005F728 8463E5D8 */  lh         $v1, %lo(gPlayerPosXMirror)($v1)
 /* 6032C 8005F72C 24590020 */  addiu      $t9, $v0, 0x20
 /* 60330 8005F730 0323082A */  slt        $at, $t9, $v1
 /* 60334 8005F734 14200012 */  bnez       $at, .L8005F780
@@ -2337,8 +2337,8 @@ glabel func_8005F6D4
 /* 60340 8005F740 1420000F */  bnez       $at, .L8005F780
 /* 60344 8005F744 3C028018 */   lui       $v0, %hi(D_80178442)
 /* 60348 8005F748 84428442 */  lh         $v0, %lo(D_80178442)($v0)
-/* 6034C 8005F74C 3C03800C */  lui        $v1, %hi(D_800BE5DC)
-/* 60350 8005F750 8463E5DC */  lh         $v1, %lo(D_800BE5DC)($v1)
+/* 6034C 8005F74C 3C03800C */  lui        $v1, %hi(gPlayerPosYMirror)
+/* 60350 8005F750 8463E5DC */  lh         $v1, %lo(gPlayerPosYMirror)($v1)
 /* 60354 8005F754 24490020 */  addiu      $t1, $v0, 0x20
 /* 60358 8005F758 0123082A */  slt        $at, $t1, $v1
 /* 6035C 8005F75C 14200008 */  bnez       $at, .L8005F780

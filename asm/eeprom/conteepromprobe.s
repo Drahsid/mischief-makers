@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A45F0
+glabel osEepromProbe
 /* A51F0 800A45F0 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* A51F4 800A45F4 AFBF0014 */  sw         $ra, 0x14($sp)
 /* A51F8 800A45F8 AFA40020 */  sw         $a0, 0x20($sp)

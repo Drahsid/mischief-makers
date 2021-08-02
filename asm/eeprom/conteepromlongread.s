@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A4670
+glabel osEepromLongRead
 /* A5270 800A4670 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* A5274 800A4674 AFBF0024 */  sw         $ra, 0x24($sp)
 /* A5278 800A4678 AFA40040 */  sw         $a0, 0x40($sp)

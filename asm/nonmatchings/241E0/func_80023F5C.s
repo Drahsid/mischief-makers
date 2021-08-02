@@ -7,8 +7,8 @@ glabel func_80023F5C
 /* 24B70 80023F70 2442F510 */   addiu     $v0, $v0, %lo(gActors)
 /* 24B74 80023F74 34188000 */  ori        $t8, $zero, 0x8000
 /* 24B78 80023F78 3C01800C */  lui        $at, %hi(D_800BE544)
-/* 24B7C 80023F7C 3C19800C */  lui        $t9, %hi(D_800BE5D8)
-/* 24B80 80023F80 8F39E5D8 */  lw         $t9, %lo(D_800BE5D8)($t9)
+/* 24B7C 80023F7C 3C19800C */  lui        $t9, %hi(gPlayerPosXMirror)
+/* 24B80 80023F80 8F39E5D8 */  lw         $t9, %lo(gPlayerPosXMirror)($t9)
 /* 24B84 80023F84 A438E544 */  sh         $t8, %lo(D_800BE544)($at)
 /* 24B88 80023F88 3C01800C */  lui        $at, %hi(D_800BE550)
 /* 24B8C 80023F8C AC39E550 */  sw         $t9, %lo(D_800BE550)($at)
@@ -34,8 +34,8 @@ glabel func_80023F5C
 /* 24BDC 80023FDC 03E00008 */  jr         $ra
 /* 24BE0 80023FE0 AC2FE554 */   sw        $t7, %lo(D_800BE554)($at)
 .L80023FE4:
-/* 24BE4 80023FE4 3C18800C */  lui        $t8, %hi(D_800BE5DC)
-/* 24BE8 80023FE8 8F18E5DC */  lw         $t8, %lo(D_800BE5DC)($t8)
+/* 24BE4 80023FE4 3C18800C */  lui        $t8, %hi(gPlayerPosYMirror)
+/* 24BE8 80023FE8 8F18E5DC */  lw         $t8, %lo(gPlayerPosYMirror)($t8)
 /* 24BEC 80023FEC 3C010028 */  lui        $at, 0x28
 /* 24BF0 80023FF0 0301C821 */  addu       $t9, $t8, $at
 /* 24BF4 80023FF4 3C01800C */  lui        $at, %hi(D_800BE554)

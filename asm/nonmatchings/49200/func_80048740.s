@@ -127,9 +127,9 @@ glabel func_80048740
 /* 49500 80048900 3C18800C */  lui        $t8, %hi(gButton_DRight)
 /* 49504 80048904 9718E510 */  lhu        $t8, %lo(gButton_DRight)($t8)
 /* 49508 80048908 03201025 */  or         $v0, $t9, $zero
-/* 4950C 8004890C 3C0A8012 */  lui        $t2, %hi(D_8011DD70)
+/* 4950C 8004890C 3C0A8012 */  lui        $t2, %hi(gInputBuffer)
 /* 49510 80048910 01CFC825 */  or         $t9, $t6, $t7
-/* 49514 80048914 254ADD70 */  addiu      $t2, $t2, %lo(D_8011DD70)
+/* 49514 80048914 254ADD70 */  addiu      $t2, $t2, %lo(gInputBuffer)
 /* 49518 80048918 00004825 */  or         $t1, $zero, $zero
 /* 4951C 8004891C 03386025 */  or         $t4, $t9, $t8
 .L80048920:

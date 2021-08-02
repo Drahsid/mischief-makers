@@ -21,10 +21,10 @@ glabel __osSpRawStartDma
 /* AB9F8 800AADF8 10000007 */  b          .L800AAE18
 /* AB9FC 800AADFC 00000000 */   nop
 .L800AAE00:
-/* ABA00 800AAE00 3C04800F */  lui        $a0, %hi(D_800EDF10)
-/* ABA04 800AAE04 3C05800F */  lui        $a1, %hi(D_800EDF28)
-/* ABA08 800AAE08 24A5DF28 */  addiu      $a1, $a1, %lo(D_800EDF28)
-/* ABA0C 800AAE0C 2484DF10 */  addiu      $a0, $a0, %lo(D_800EDF10)
+/* ABA00 800AAE00 3C04800F */  lui        $a0, %hi(sprawdma_rodata_0000)
+/* ABA04 800AAE04 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0018)
+/* ABA08 800AAE08 24A5DF28 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0018)
+/* ABA0C 800AAE0C 2484DF10 */  addiu      $a0, $a0, %lo(sprawdma_rodata_0000)
 /* ABA10 800AAE10 0C026E74 */  jal        __assert
 /* ABA14 800AAE14 2406003A */   addiu     $a2, $zero, 0x3a
 .L800AAE18:
@@ -35,10 +35,10 @@ glabel __osSpRawStartDma
 /* ABA28 800AAE28 10000007 */  b          .L800AAE48
 /* ABA2C 800AAE2C 00000000 */   nop
 .L800AAE30:
-/* ABA30 800AAE30 3C04800F */  lui        $a0, %hi(D_800EDF3C)
-/* ABA34 800AAE34 3C05800F */  lui        $a1, %hi(D_800EDF58)
-/* ABA38 800AAE38 24A5DF58 */  addiu      $a1, $a1, %lo(D_800EDF58)
-/* ABA3C 800AAE3C 2484DF3C */  addiu      $a0, $a0, %lo(D_800EDF3C)
+/* ABA30 800AAE30 3C04800F */  lui        $a0, %hi(sprawdma_rodata_002C)
+/* ABA34 800AAE34 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0048)
+/* ABA38 800AAE38 24A5DF58 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0048)
+/* ABA3C 800AAE3C 2484DF3C */  addiu      $a0, $a0, %lo(sprawdma_rodata_002C)
 /* ABA40 800AAE40 0C026E74 */  jal        __assert
 /* ABA44 800AAE44 2406003B */   addiu     $a2, $zero, 0x3b
 .L800AAE48:
@@ -49,10 +49,10 @@ glabel __osSpRawStartDma
 /* ABA58 800AAE58 10000007 */  b          .L800AAE78
 /* ABA5C 800AAE5C 00000000 */   nop
 .L800AAE60:
-/* ABA60 800AAE60 3C04800F */  lui        $a0, %hi(D_800EDF6C)
-/* ABA64 800AAE64 3C05800F */  lui        $a1, %hi(D_800EDF80)
-/* ABA68 800AAE68 24A5DF80 */  addiu      $a1, $a1, %lo(D_800EDF80)
-/* ABA6C 800AAE6C 2484DF6C */  addiu      $a0, $a0, %lo(D_800EDF6C)
+/* ABA60 800AAE60 3C04800F */  lui        $a0, %hi(sprawdma_rodata_005C)
+/* ABA64 800AAE64 3C05800F */  lui        $a1, %hi(sprawdma_rodata_0070)
+/* ABA68 800AAE68 24A5DF80 */  addiu      $a1, $a1, %lo(sprawdma_rodata_0070)
+/* ABA6C 800AAE6C 2484DF6C */  addiu      $a0, $a0, %lo(sprawdma_rodata_005C)
 /* ABA70 800AAE70 0C026E74 */  jal        __assert
 /* ABA74 800AAE74 2406003C */   addiu     $a2, $zero, 0x3c
 .L800AAE78:

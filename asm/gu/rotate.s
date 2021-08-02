@@ -143,7 +143,7 @@ glabel guRotateF
 /* A5CAC 800A50AC 03E00008 */  jr         $ra
 /* A5CB0 800A50B0 00000000 */   nop
 
-glabel guAlign
+glabel guRotate
 /* A5CB4 800A50B4 27BDFFA0 */  addiu      $sp, $sp, -0x60
 /* A5CB8 800A50B8 AFBF001C */  sw         $ra, 0x1c($sp)
 /* A5CBC 800A50BC AFA40060 */  sw         $a0, 0x60($sp)

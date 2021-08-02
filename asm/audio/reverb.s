@@ -28,10 +28,10 @@ glabel alFxPull
 /* B8944 800B7D44 10000007 */  b          .L800B7D64
 /* B8948 800B7D48 00000000 */   nop
 .L800B7D4C:
-/* B894C 800B7D4C 3C04800F */  lui        $a0, %hi(D_800EE950)
-/* B8950 800B7D50 3C05800F */  lui        $a1, %hi(D_800EE958)
-/* B8954 800B7D54 24A5E958 */  addiu      $a1, $a1, %lo(D_800EE958)
-/* B8958 800B7D58 2484E950 */  addiu      $a0, $a0, %lo(D_800EE950)
+/* B894C 800B7D4C 3C04800F */  lui        $a0, %hi(reverb_rodata_0000)
+/* B8950 800B7D50 3C05800F */  lui        $a1, %hi(reverb_rodata_0008)
+/* B8954 800B7D54 24A5E958 */  addiu      $a1, $a1, %lo(reverb_rodata_0008)
+/* B8958 800B7D58 2484E950 */  addiu      $a0, $a0, %lo(reverb_rodata_0000)
 /* B895C 800B7D5C 0C026E74 */  jal        __assert
 /* B8960 800B7D60 2406004C */   addiu     $a2, $zero, 0x4c
 .L800B7D64:
@@ -528,8 +528,8 @@ glabel alFxParamHdl
 /* B90C0 800B84C0 46243180 */  add.d      $f6, $f6, $f4
 .L800B84C4:
 /* B90C4 800B84C4 8FA90018 */  lw         $t1, 0x18($sp)
-/* B90C8 800B84C8 3C01800F */  lui        $at, %hi(D_800EE990)
-/* B90CC 800B84CC D432E990 */  ldc1       $f18, %lo(D_800EE990)($at)
+/* B90C8 800B84C8 3C01800F */  lui        $at, %hi(reverb_rodata_0040)
+/* B90CC 800B84CC D432E990 */  ldc1       $f18, %lo(reverb_rodata_0040)($at)
 /* B90D0 800B84D0 44894000 */  mtc1       $t1, $f8
 /* B90D4 800B84D4 00000000 */  nop
 /* B90D8 800B84D8 468042A0 */  cvt.s.w    $f10, $f8

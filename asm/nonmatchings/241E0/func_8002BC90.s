@@ -19,9 +19,9 @@ glabel func_8002BC90
 /* 2C8CC 8002BCCC 3C08800C */  lui        $t0, %hi(gButton_DUp)
 /* 2C8D0 8002BCD0 9508E504 */  lhu        $t0, %lo(gButton_DUp)($t0)
 /* 2C8D4 8002BCD4 240FFFFF */  addiu      $t7, $zero, -1
-/* 2C8D8 8002BCD8 3C0B8012 */  lui        $t3, %hi(D_8011DD70)
+/* 2C8D8 8002BCD8 3C0B8012 */  lui        $t3, %hi(gInputBuffer)
 /* 2C8DC 8002BCDC 00001825 */  or         $v1, $zero, $zero
-/* 2C8E0 8002BCE0 256BDD70 */  addiu      $t3, $t3, %lo(D_8011DD70)
+/* 2C8E0 8002BCE0 256BDD70 */  addiu      $t3, $t3, %lo(gInputBuffer)
 /* 2C8E4 8002BCE4 00002825 */  or         $a1, $zero, $zero
 /* 2C8E8 8002BCE8 240C0002 */  addiu      $t4, $zero, 2
 /* 2C8EC 8002BCEC 01E84823 */  subu       $t1, $t7, $t0

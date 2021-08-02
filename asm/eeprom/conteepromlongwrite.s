@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel GameSave_Write
+glabel osEepromLongWrite
 /* A53C0 800A47C0 27BDFFC0 */  addiu      $sp, $sp, -0x40
 /* A53C4 800A47C4 AFBF0024 */  sw         $ra, 0x24($sp)
 /* A53C8 800A47C8 AFA40040 */  sw         $a0, 0x40($sp)

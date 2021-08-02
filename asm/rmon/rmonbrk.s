@@ -7,7 +7,7 @@
 
 .section .text, "ax"
 
-glabel func_800A9B00
+glabel SetTempBreakpoint
 /* AA700 800A9B00 27BDFFE8 */  addiu      $sp, $sp, -0x18
 /* AA704 800A9B04 AFBF0014 */  sw         $ra, 0x14($sp)
 /* AA708 800A9B08 AFA40018 */  sw         $a0, 0x18($sp)
@@ -17,8 +17,8 @@ glabel func_800A9B00
 /* AA718 800A9B18 00000000 */   nop
 .L800A9B1C:
 /* AA71C 800A9B1C 8FAF0018 */  lw         $t7, 0x18($sp)
-/* AA720 800A9B20 3C198019 */  lui        $t9, %hi(rmonbrk_bss_0008)
-/* AA724 800A9B24 2739A398 */  addiu      $t9, $t9, %lo(rmonbrk_bss_0008)
+/* AA720 800A9B20 3C198019 */  lui        $t9, %hi(breakpoints)
+/* AA724 800A9B24 2739A398 */  addiu      $t9, $t9, %lo(breakpoints)
 /* AA728 800A9B28 8DF80000 */  lw         $t8, ($t7)
 /* AA72C 800A9B2C AF380004 */  sw         $t8, 4($t9)
 /* AA730 800A9B30 8FA90018 */  lw         $t1, 0x18($sp)
@@ -31,16 +31,16 @@ glabel func_800A9B00
 /* AA74C 800A9B4C 0C029BE4 */  jal        osInvalICache
 /* AA750 800A9B50 24050004 */   addiu     $a1, $zero, 4
 /* AA754 800A9B54 8FAA0018 */  lw         $t2, 0x18($sp)
-/* AA758 800A9B58 3C0B8019 */  lui        $t3, %hi(rmonbrk_bss_0008)
-/* AA75C 800A9B5C 256BA398 */  addiu      $t3, $t3, %lo(rmonbrk_bss_0008)
+/* AA758 800A9B58 3C0B8019 */  lui        $t3, %hi(breakpoints)
+/* AA75C 800A9B5C 256BA398 */  addiu      $t3, $t3, %lo(breakpoints)
 /* AA760 800A9B60 AD6A0000 */  sw         $t2, ($t3)
 /* AA764 800A9B64 8FAC001C */  lw         $t4, 0x1c($sp)
 /* AA768 800A9B68 11800011 */  beqz       $t4, .L800A9BB0
 /* AA76C 800A9B6C 00000000 */   nop
 /* AA770 800A9B70 8FAD001C */  lw         $t5, 0x1c($sp)
-/* AA774 800A9B74 3C018019 */  lui        $at, %hi(D_8018A41C)
+/* AA774 800A9B74 3C018019 */  lui        $at, %hi(altbreak+0x4)
 /* AA778 800A9B78 8DAE0000 */  lw         $t6, ($t5)
-/* AA77C 800A9B7C AC2EA41C */  sw         $t6, %lo(D_8018A41C)($at)
+/* AA77C 800A9B7C AC2EA41C */  sw         $t6, %lo(altbreak+0x4)($at)
 /* AA780 800A9B80 8FB8001C */  lw         $t8, 0x1c($sp)
 /* AA784 800A9B84 240F040D */  addiu      $t7, $zero, 0x40d
 /* AA788 800A9B88 AF0F0000 */  sw         $t7, ($t8)
@@ -51,8 +51,8 @@ glabel func_800A9B00
 /* AA79C 800A9B9C 0C029BE4 */  jal        osInvalICache
 /* AA7A0 800A9BA0 24050004 */   addiu     $a1, $zero, 4
 /* AA7A4 800A9BA4 8FB9001C */  lw         $t9, 0x1c($sp)
-/* AA7A8 800A9BA8 3C018019 */  lui        $at, %hi(D_8018A418)
-/* AA7AC 800A9BAC AC39A418 */  sw         $t9, %lo(D_8018A418)($at)
+/* AA7A8 800A9BA8 3C018019 */  lui        $at, %hi(altbreak)
+/* AA7AC 800A9BAC AC39A418 */  sw         $t9, %lo(altbreak)($at)
 .L800A9BB0:
 /* AA7B0 800A9BB0 10000001 */  b          .L800A9BB8
 /* AA7B4 800A9BB4 00000000 */   nop
@@ -65,13 +65,13 @@ glabel func_800A9B00
 glabel ClearTempBreakpoint
 /* AA7C8 800A9BC8 27BDFFE0 */  addiu      $sp, $sp, -0x20
 /* AA7CC 800A9BCC AFBF0014 */  sw         $ra, 0x14($sp)
-/* AA7D0 800A9BD0 3C0E8019 */  lui        $t6, %hi(rmonbrk_bss_0008)
-/* AA7D4 800A9BD4 25CEA398 */  addiu      $t6, $t6, %lo(rmonbrk_bss_0008)
+/* AA7D0 800A9BD0 3C0E8019 */  lui        $t6, %hi(breakpoints)
+/* AA7D4 800A9BD4 25CEA398 */  addiu      $t6, $t6, %lo(breakpoints)
 /* AA7D8 800A9BD8 8DCF0000 */  lw         $t7, ($t6)
 /* AA7DC 800A9BDC 11E0001F */  beqz       $t7, .L800A9C5C
 /* AA7E0 800A9BE0 00000000 */   nop
-/* AA7E4 800A9BE4 3C188019 */  lui        $t8, %hi(rmonbrk_bss_0008)
-/* AA7E8 800A9BE8 2718A398 */  addiu      $t8, $t8, %lo(rmonbrk_bss_0008)
+/* AA7E4 800A9BE4 3C188019 */  lui        $t8, %hi(breakpoints)
+/* AA7E8 800A9BE8 2718A398 */  addiu      $t8, $t8, %lo(breakpoints)
 /* AA7EC 800A9BEC 8F190000 */  lw         $t9, ($t8)
 /* AA7F0 800A9BF0 8F280000 */  lw         $t0, ($t9)
 /* AA7F4 800A9BF4 AFA8001C */  sw         $t0, 0x1c($sp)
@@ -82,32 +82,32 @@ glabel ClearTempBreakpoint
 /* AA808 800A9C08 2401000D */  addiu      $at, $zero, 0xd
 /* AA80C 800A9C0C 15410010 */  bne        $t2, $at, .L800A9C50
 /* AA810 800A9C10 00000000 */   nop
-/* AA814 800A9C14 3C0B8019 */  lui        $t3, %hi(rmonbrk_bss_0008)
-/* AA818 800A9C18 256BA398 */  addiu      $t3, $t3, %lo(rmonbrk_bss_0008)
+/* AA814 800A9C14 3C0B8019 */  lui        $t3, %hi(breakpoints)
+/* AA818 800A9C18 256BA398 */  addiu      $t3, $t3, %lo(breakpoints)
 /* AA81C 800A9C1C 8D6C0004 */  lw         $t4, 4($t3)
 /* AA820 800A9C20 8D6D0000 */  lw         $t5, ($t3)
 /* AA824 800A9C24 ADAC0000 */  sw         $t4, ($t5)
-/* AA828 800A9C28 3C0E8019 */  lui        $t6, %hi(rmonbrk_bss_0008)
-/* AA82C 800A9C2C 25CEA398 */  addiu      $t6, $t6, %lo(rmonbrk_bss_0008)
+/* AA828 800A9C28 3C0E8019 */  lui        $t6, %hi(breakpoints)
+/* AA82C 800A9C2C 25CEA398 */  addiu      $t6, $t6, %lo(breakpoints)
 /* AA830 800A9C30 8DC40000 */  lw         $a0, ($t6)
 /* AA834 800A9C34 0C029BC4 */  jal        osWritebackDCache
 /* AA838 800A9C38 24050004 */   addiu     $a1, $zero, 4
-/* AA83C 800A9C3C 3C0F8019 */  lui        $t7, %hi(rmonbrk_bss_0008)
-/* AA840 800A9C40 25EFA398 */  addiu      $t7, $t7, %lo(rmonbrk_bss_0008)
+/* AA83C 800A9C3C 3C0F8019 */  lui        $t7, %hi(breakpoints)
+/* AA840 800A9C40 25EFA398 */  addiu      $t7, $t7, %lo(breakpoints)
 /* AA844 800A9C44 8DE40000 */  lw         $a0, ($t7)
 /* AA848 800A9C48 0C029BE4 */  jal        osInvalICache
 /* AA84C 800A9C4C 24050004 */   addiu     $a1, $zero, 4
 .L800A9C50:
-/* AA850 800A9C50 3C188019 */  lui        $t8, %hi(rmonbrk_bss_0008)
-/* AA854 800A9C54 2718A398 */  addiu      $t8, $t8, %lo(rmonbrk_bss_0008)
+/* AA850 800A9C50 3C188019 */  lui        $t8, %hi(breakpoints)
+/* AA854 800A9C54 2718A398 */  addiu      $t8, $t8, %lo(breakpoints)
 /* AA858 800A9C58 AF000000 */  sw         $zero, ($t8)
 .L800A9C5C:
-/* AA85C 800A9C5C 3C198019 */  lui        $t9, %hi(D_8018A418)
-/* AA860 800A9C60 8F39A418 */  lw         $t9, %lo(D_8018A418)($t9)
+/* AA85C 800A9C5C 3C198019 */  lui        $t9, %hi(altbreak)
+/* AA860 800A9C60 8F39A418 */  lw         $t9, %lo(altbreak)($t9)
 /* AA864 800A9C64 1320001B */  beqz       $t9, .L800A9CD4
 /* AA868 800A9C68 00000000 */   nop
-/* AA86C 800A9C6C 3C088019 */  lui        $t0, %hi(D_8018A418)
-/* AA870 800A9C70 8D08A418 */  lw         $t0, %lo(D_8018A418)($t0)
+/* AA86C 800A9C6C 3C088019 */  lui        $t0, %hi(altbreak)
+/* AA870 800A9C70 8D08A418 */  lw         $t0, %lo(altbreak)($t0)
 /* AA874 800A9C74 8D090000 */  lw         $t1, ($t0)
 /* AA878 800A9C78 AFA9001C */  sw         $t1, 0x1c($sp)
 /* AA87C 800A9C7C 8FAA001C */  lw         $t2, 0x1c($sp)
@@ -117,22 +117,22 @@ glabel ClearTempBreakpoint
 /* AA88C 800A9C8C 2401000D */  addiu      $at, $zero, 0xd
 /* AA890 800A9C90 1561000E */  bne        $t3, $at, .L800A9CCC
 /* AA894 800A9C94 00000000 */   nop
-/* AA898 800A9C98 3C0C8019 */  lui        $t4, %hi(D_8018A41C)
-/* AA89C 800A9C9C 3C0D8019 */  lui        $t5, %hi(D_8018A418)
-/* AA8A0 800A9CA0 8DADA418 */  lw         $t5, %lo(D_8018A418)($t5)
-/* AA8A4 800A9CA4 8D8CA41C */  lw         $t4, %lo(D_8018A41C)($t4)
+/* AA898 800A9C98 3C0C8019 */  lui        $t4, %hi(altbreak+0x4)
+/* AA89C 800A9C9C 3C0D8019 */  lui        $t5, %hi(altbreak)
+/* AA8A0 800A9CA0 8DADA418 */  lw         $t5, %lo(altbreak)($t5)
+/* AA8A4 800A9CA4 8D8CA41C */  lw         $t4, %lo(altbreak+0x4)($t4)
 /* AA8A8 800A9CA8 ADAC0000 */  sw         $t4, ($t5)
-/* AA8AC 800A9CAC 3C048019 */  lui        $a0, %hi(D_8018A418)
-/* AA8B0 800A9CB0 8C84A418 */  lw         $a0, %lo(D_8018A418)($a0)
+/* AA8AC 800A9CAC 3C048019 */  lui        $a0, %hi(altbreak)
+/* AA8B0 800A9CB0 8C84A418 */  lw         $a0, %lo(altbreak)($a0)
 /* AA8B4 800A9CB4 0C029BC4 */  jal        osWritebackDCache
 /* AA8B8 800A9CB8 24050004 */   addiu     $a1, $zero, 4
-/* AA8BC 800A9CBC 3C048019 */  lui        $a0, %hi(D_8018A418)
-/* AA8C0 800A9CC0 8C84A418 */  lw         $a0, %lo(D_8018A418)($a0)
+/* AA8BC 800A9CBC 3C048019 */  lui        $a0, %hi(altbreak)
+/* AA8C0 800A9CC0 8C84A418 */  lw         $a0, %lo(altbreak)($a0)
 /* AA8C4 800A9CC4 0C029BE4 */  jal        osInvalICache
 /* AA8C8 800A9CC8 24050004 */   addiu     $a1, $zero, 4
 .L800A9CCC:
-/* AA8CC 800A9CCC 3C018019 */  lui        $at, %hi(D_8018A418)
-/* AA8D0 800A9CD0 AC20A418 */  sw         $zero, %lo(D_8018A418)($at)
+/* AA8CC 800A9CCC 3C018019 */  lui        $at, %hi(altbreak)
+/* AA8D0 800A9CD0 AC20A418 */  sw         $zero, %lo(altbreak)($at)
 .L800A9CD4:
 /* AA8D4 800A9CD4 10000001 */  b          .L800A9CDC
 /* AA8D8 800A9CD8 00000000 */   nop
@@ -156,23 +156,23 @@ glabel __rmonSetBreak
 /* AA914 800A9D14 91CF0009 */  lbu        $t7, 9($t6)
 /* AA918 800A9D18 15E1000A */  bne        $t7, $at, .L800A9D44
 /* AA91C 800A9D1C 00000000 */   nop
-/* AA920 800A9D20 3C118019 */  lui        $s1, %hi(rmonbrk_bss_0090)
-/* AA924 800A9D24 2631A420 */  addiu      $s1, $s1, %lo(rmonbrk_bss_0090)
-/* AA928 800A9D28 3C128019 */  lui        $s2, %hi(rmonbrk_bss_0090)
-/* AA92C 800A9D2C 2652A420 */  addiu      $s2, $s2, %lo(rmonbrk_bss_0090)
+/* AA920 800A9D20 3C118019 */  lui        $s1, %hi(RCPbreakpoints)
+/* AA924 800A9D24 2631A420 */  addiu      $s1, $s1, %lo(RCPbreakpoints)
+/* AA928 800A9D28 3C128019 */  lui        $s2, %hi(RCPbreakpoints)
+/* AA92C 800A9D2C 2652A420 */  addiu      $s2, $s2, %lo(RCPbreakpoints)
 /* AA930 800A9D30 26520008 */  addiu      $s2, $s2, 8
-/* AA934 800A9D34 3C138019 */  lui        $s3, %hi(rmonbrk_bss_0090)
-/* AA938 800A9D38 2673A420 */  addiu      $s3, $s3, %lo(rmonbrk_bss_0090)
+/* AA934 800A9D34 3C138019 */  lui        $s3, %hi(RCPbreakpoints)
+/* AA938 800A9D38 2673A420 */  addiu      $s3, $s3, %lo(RCPbreakpoints)
 /* AA93C 800A9D3C 10000009 */  b          .L800A9D64
 /* AA940 800A9D40 26730080 */   addiu     $s3, $s3, 0x80
 .L800A9D44:
-/* AA944 800A9D44 3C118019 */  lui        $s1, %hi(rmonbrk_bss_0008)
-/* AA948 800A9D48 2631A398 */  addiu      $s1, $s1, %lo(rmonbrk_bss_0008)
-/* AA94C 800A9D4C 3C128019 */  lui        $s2, %hi(rmonbrk_bss_0008)
-/* AA950 800A9D50 2652A398 */  addiu      $s2, $s2, %lo(rmonbrk_bss_0008)
+/* AA944 800A9D44 3C118019 */  lui        $s1, %hi(breakpoints)
+/* AA948 800A9D48 2631A398 */  addiu      $s1, $s1, %lo(breakpoints)
+/* AA94C 800A9D4C 3C128019 */  lui        $s2, %hi(breakpoints)
+/* AA950 800A9D50 2652A398 */  addiu      $s2, $s2, %lo(breakpoints)
 /* AA954 800A9D54 26520008 */  addiu      $s2, $s2, 8
-/* AA958 800A9D58 3C138019 */  lui        $s3, %hi(rmonbrk_bss_0008)
-/* AA95C 800A9D5C 2673A398 */  addiu      $s3, $s3, %lo(rmonbrk_bss_0008)
+/* AA958 800A9D58 3C138019 */  lui        $s3, %hi(breakpoints)
+/* AA95C 800A9D5C 2673A398 */  addiu      $s3, $s3, %lo(breakpoints)
 /* AA960 800A9D60 26730080 */  addiu      $s3, $s3, 0x80
 .L800A9D64:
 /* AA964 800A9D64 0253082B */  sltu       $at, $s2, $s3
@@ -315,8 +315,8 @@ glabel __rmonClearBreak
 /* AAB48 800A9F48 1701001A */  bne        $t8, $at, .L800A9FB4
 /* AAB4C 800A9F4C 00000000 */   nop
 /* AAB50 800A9F50 8E190010 */  lw         $t9, 0x10($s0)
-/* AAB54 800A9F54 3C098019 */  lui        $t1, %hi(rmonbrk_bss_0090)
-/* AAB58 800A9F58 2529A420 */  addiu      $t1, $t1, %lo(rmonbrk_bss_0090)
+/* AAB54 800A9F54 3C098019 */  lui        $t1, %hi(RCPbreakpoints)
+/* AAB58 800A9F58 2529A420 */  addiu      $t1, $t1, %lo(RCPbreakpoints)
 /* AAB5C 800A9F5C 001940C0 */  sll        $t0, $t9, 3
 /* AAB60 800A9F60 01098821 */  addu       $s1, $t0, $t1
 /* AAB64 800A9F64 8E2A0000 */  lw         $t2, ($s1)
@@ -343,8 +343,8 @@ glabel __rmonClearBreak
 /* AABB0 800A9FB0 00000000 */   nop
 .L800A9FB4:
 /* AABB4 800A9FB4 8E0D0010 */  lw         $t5, 0x10($s0)
-/* AABB8 800A9FB8 3C0F8019 */  lui        $t7, %hi(rmonbrk_bss_0008)
-/* AABBC 800A9FBC 25EFA398 */  addiu      $t7, $t7, %lo(rmonbrk_bss_0008)
+/* AABB8 800A9FB8 3C0F8019 */  lui        $t7, %hi(breakpoints)
+/* AABBC 800A9FBC 25EFA398 */  addiu      $t7, $t7, %lo(breakpoints)
 /* AABC0 800A9FC0 000D70C0 */  sll        $t6, $t5, 3
 /* AABC4 800A9FC4 01CF8821 */  addu       $s1, $t6, $t7
 /* AABC8 800A9FC8 8E380000 */  lw         $t8, ($s1)
@@ -638,7 +638,7 @@ glabel __rmonSetSingleStep
 /* AAFE4 800AA3E4 00000000 */   nop
 /* AAFE8 800AA3E8 8FA40024 */  lw         $a0, 0x24($sp)
 /* AAFEC 800AA3EC 00002825 */  or         $a1, $zero, $zero
-/* AAFF0 800AA3F0 0C02A6C0 */  jal        func_800A9B00
+/* AAFF0 800AA3F0 0C02A6C0 */  jal        SetTempBreakpoint
 /* AAFF4 800AA3F4 24840004 */   addiu     $a0, $a0, 4
 /* AAFF8 800AA3F8 1000001C */  b          .L800AA46C
 /* AAFFC 800AA3FC 00000000 */   nop
@@ -664,14 +664,14 @@ glabel __rmonSetSingleStep
 /* AB044 800AA444 00000000 */   nop
 .L800AA448:
 /* AB048 800AA448 8FA4001C */  lw         $a0, 0x1c($sp)
-/* AB04C 800AA44C 0C02A6C0 */  jal        func_800A9B00
+/* AB04C 800AA44C 0C02A6C0 */  jal        SetTempBreakpoint
 /* AB050 800AA450 00002825 */   or        $a1, $zero, $zero
 /* AB054 800AA454 10000005 */  b          .L800AA46C
 /* AB058 800AA458 00000000 */   nop
 .L800AA45C:
 /* AB05C 800AA45C 8FA50024 */  lw         $a1, 0x24($sp)
 /* AB060 800AA460 8FA4001C */  lw         $a0, 0x1c($sp)
-/* AB064 800AA464 0C02A6C0 */  jal        func_800A9B00
+/* AB064 800AA464 0C02A6C0 */  jal        SetTempBreakpoint
 /* AB068 800AA468 24A50008 */   addiu     $a1, $a1, 8
 .L800AA46C:
 /* AB06C 800AA46C 10000003 */  b          .L800AA47C

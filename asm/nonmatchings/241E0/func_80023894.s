@@ -12,11 +12,11 @@ glabel func_80023894
 /* 244BC 800238BC 2442E634 */  addiu      $v0, $v0, %lo(D_800BE634)
 /* 244C0 800238C0 AC2FE548 */  sw         $t7, %lo(D_800BE548)($at)
 /* 244C4 800238C4 94580000 */  lhu        $t8, ($v0)
-/* 244C8 800238C8 3C03800C */  lui        $v1, %hi(D_800BE5D8)
+/* 244C8 800238C8 3C03800C */  lui        $v1, %hi(gPlayerPosXMirror)
 /* 244CC 800238CC 1300000F */  beqz       $t8, .L8002390C
-/* 244D0 800238D0 2463E5D8 */   addiu     $v1, $v1, %lo(D_800BE5D8)
-/* 244D4 800238D4 3C03800C */  lui        $v1, %hi(D_800BE5D8)
-/* 244D8 800238D8 2463E5D8 */  addiu      $v1, $v1, %lo(D_800BE5D8)
+/* 244D0 800238D0 2463E5D8 */   addiu     $v1, $v1, %lo(gPlayerPosXMirror)
+/* 244D4 800238D4 3C03800C */  lui        $v1, %hi(gPlayerPosXMirror)
+/* 244D8 800238D8 2463E5D8 */  addiu      $v1, $v1, %lo(gPlayerPosXMirror)
 /* 244DC 800238DC 8C790000 */  lw         $t9, ($v1)
 /* 244E0 800238E0 3C01FFA0 */  lui        $at, 0xffa0
 /* 244E4 800238E4 03214021 */  addu       $t0, $t9, $at

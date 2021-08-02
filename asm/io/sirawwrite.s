@@ -19,10 +19,10 @@ glabel __osSiRawWriteIo
 /* A7AA0 800A6EA0 10000007 */  b          .L800A6EC0
 /* A7AA4 800A6EA4 00000000 */   nop
 .L800A6EA8:
-/* A7AA8 800A6EA8 3C04800F */  lui        $a0, %hi(D_800EDB40)
-/* A7AAC 800A6EAC 3C05800F */  lui        $a1, %hi(D_800EDB58)
-/* A7AB0 800A6EB0 24A5DB58 */  addiu      $a1, $a1, %lo(D_800EDB58)
-/* A7AB4 800A6EB4 2484DB40 */  addiu      $a0, $a0, %lo(D_800EDB40)
+/* A7AA8 800A6EA8 3C04800F */  lui        $a0, %hi(sirawwrite_rodata_0000)
+/* A7AAC 800A6EAC 3C05800F */  lui        $a1, %hi(sirawwrite_rodata_0018)
+/* A7AB0 800A6EB0 24A5DB58 */  addiu      $a1, $a1, %lo(sirawwrite_rodata_0018)
+/* A7AB4 800A6EB4 2484DB40 */  addiu      $a0, $a0, %lo(sirawwrite_rodata_0000)
 /* A7AB8 800A6EB8 0C026E74 */  jal        __assert
 /* A7ABC 800A6EBC 24060034 */   addiu     $a2, $zero, 0x34
 .L800A6EC0:

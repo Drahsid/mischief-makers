@@ -79,10 +79,10 @@ glabel func_8004ED10
 /* 4FA3C 8004EE3C 1000001A */  b          .L8004EEA8
 /* 4FA40 8004EE40 97A40032 */   lhu       $a0, 0x32($sp)
 .L8004EE44:
-/* 4FA44 8004EE44 3C038012 */  lui        $v1, %hi(D_8011DD70)
+/* 4FA44 8004EE44 3C038012 */  lui        $v1, %hi(gInputBuffer)
 /* 4FA48 8004EE48 3C048012 */  lui        $a0, %hi(D_8011DDF0)
 /* 4FA4C 8004EE4C 2484DDF0 */  addiu      $a0, $a0, %lo(D_8011DDF0)
-/* 4FA50 8004EE50 2463DD70 */  addiu      $v1, $v1, %lo(D_8011DD70)
+/* 4FA50 8004EE50 2463DD70 */  addiu      $v1, $v1, %lo(gInputBuffer)
 /* 4FA54 8004EE54 244225F0 */  addiu      $v0, $v0, 0x25f0
 .L8004EE58:
 /* 4FA58 8004EE58 24630008 */  addiu      $v1, $v1, 8
@@ -328,16 +328,16 @@ glabel func_8004ED10
 /* 4FDE8 8004F1E8 016C6821 */  addu       $t5, $t3, $t4
 /* 4FDEC 8004F1EC AC2DE5D8 */  sw         $t5, -0x1a28($at)
 /* 4FDF0 8004F1F0 8E0E008C */  lw         $t6, 0x8c($s0)
-/* 4FDF4 8004F1F4 3C01800C */  lui        $at, %hi(D_800BE5DC)
+/* 4FDF4 8004F1F4 3C01800C */  lui        $at, %hi(gPlayerPosYMirror)
 /* 4FDF8 8004F1F8 01CF4021 */  addu       $t0, $t6, $t7
-/* 4FDFC 8004F1FC AC28E5DC */  sw         $t0, %lo(D_800BE5DC)($at)
+/* 4FDFC 8004F1FC AC28E5DC */  sw         $t0, %lo(gPlayerPosYMirror)($at)
 /* 4FE00 8004F200 8E0900EC */  lw         $t1, 0xec($s0)
-/* 4FE04 8004F204 3C01800C */  lui        $at, %hi(D_800BE5E8)
-/* 4FE08 8004F208 AC29E5E8 */  sw         $t1, %lo(D_800BE5E8)($at)
+/* 4FE04 8004F204 3C01800C */  lui        $at, %hi(gPlayerVelXMirror)
+/* 4FE08 8004F208 AC29E5E8 */  sw         $t1, %lo(gPlayerVelXMirror)($at)
 /* 4FE0C 8004F20C 8E0300F0 */  lw         $v1, 0xf0($s0)
-/* 4FE10 8004F210 3C01800C */  lui        $at, %hi(D_800BE5EC)
+/* 4FE10 8004F210 3C01800C */  lui        $at, %hi(gPlayerVelYMirror)
 /* 4FE14 8004F214 9739E5D0 */  lhu        $t9, -0x1a30($t9)
-/* 4FE18 8004F218 AC23E5EC */  sw         $v1, %lo(D_800BE5EC)($at)
+/* 4FE18 8004F218 AC23E5EC */  sw         $v1, %lo(gPlayerVelYMirror)($at)
 /* 4FE1C 8004F21C 24010046 */  addiu      $at, $zero, 0x46
 /* 4FE20 8004F220 1721001D */  bne        $t9, $at, .L8004F298
 /* 4FE24 8004F224 8FBF001C */   lw        $ra, 0x1c($sp)

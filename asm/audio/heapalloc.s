@@ -71,8 +71,8 @@ glabel alHeapDBAlloc
 /* 9C820 8009BC20 AD48000C */   sw        $t0, 0xc($t2)
 .L8009BC24:
 /* 9C824 8009BC24 8FAB0018 */  lw         $t3, 0x18($sp)
-/* 9C828 8009BC28 3C19800F */  lui        $t9, %hi(D_800ED6E0)
-/* 9C82C 8009BC2C 2739D6E0 */  addiu      $t9, $t9, %lo(D_800ED6E0)
+/* 9C828 8009BC28 3C19800F */  lui        $t9, %hi(heapalloc_rodata_0000)
+/* 9C82C 8009BC2C 2739D6E0 */  addiu      $t9, $t9, %lo(heapalloc_rodata_0000)
 /* 9C830 8009BC30 AD790008 */  sw         $t9, 8($t3)
 /* 9C834 8009BC34 8FA90018 */  lw         $t1, 0x18($sp)
 /* 9C838 8009BC38 AD20000C */  sw         $zero, 0xc($t1)

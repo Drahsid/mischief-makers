@@ -11,16 +11,16 @@ glabel func_80024004
 /* 24C28 80024028 2B210003 */  slti       $at, $t9, 3
 /* 24C2C 8002402C 10200008 */  beqz       $at, .L80024050
 /* 24C30 80024030 3C0B800C */   lui       $t3, 0x800c
-/* 24C34 80024034 3C08800C */  lui        $t0, %hi(D_800BE5DC)
-/* 24C38 80024038 8D08E5DC */  lw         $t0, %lo(D_800BE5DC)($t0)
+/* 24C34 80024034 3C08800C */  lui        $t0, %hi(gPlayerPosYMirror)
+/* 24C38 80024038 8D08E5DC */  lw         $t0, %lo(gPlayerPosYMirror)($t0)
 /* 24C3C 8002403C 3C010028 */  lui        $at, 0x28
 /* 24C40 80024040 01014821 */  addu       $t1, $t0, $at
 /* 24C44 80024044 3C01800C */  lui        $at, %hi(D_800BE554)
 /* 24C48 80024048 10000005 */  b          .L80024060
 /* 24C4C 8002404C AC29E554 */   sw        $t1, %lo(D_800BE554)($at)
 .L80024050:
-/* 24C50 80024050 3C0A800C */  lui        $t2, %hi(D_800BE5DC)
-/* 24C54 80024054 8D4AE5DC */  lw         $t2, %lo(D_800BE5DC)($t2)
+/* 24C50 80024050 3C0A800C */  lui        $t2, %hi(gPlayerPosYMirror)
+/* 24C54 80024054 8D4AE5DC */  lw         $t2, %lo(gPlayerPosYMirror)($t2)
 /* 24C58 80024058 3C01800C */  lui        $at, %hi(D_800BE554)
 /* 24C5C 8002405C AC2AE554 */  sw         $t2, %lo(D_800BE554)($at)
 .L80024060:

@@ -18,12 +18,12 @@ glabel func_800282F0
 /* 28F30 80028330 85CEE558 */  lh         $t6, %lo(D_800BE558)($t6)
 /* 28F34 80028334 3C18800C */  lui        $t8, %hi(D_800BE55C)
 /* 28F38 80028338 8718E55C */  lh         $t8, %lo(D_800BE55C)($t8)
-/* 28F3C 8002833C 3C01800C */  lui        $at, %hi(D_800BE5D8)
+/* 28F3C 8002833C 3C01800C */  lui        $at, %hi(gPlayerPosXMirror)
 /* 28F40 80028340 01C47821 */  addu       $t7, $t6, $a0
-/* 28F44 80028344 A42FE5D8 */  sh         $t7, %lo(D_800BE5D8)($at)
-/* 28F48 80028348 3C01800C */  lui        $at, %hi(D_800BE5DC)
+/* 28F44 80028344 A42FE5D8 */  sh         $t7, %lo(gPlayerPosXMirror)($at)
+/* 28F48 80028348 3C01800C */  lui        $at, %hi(gPlayerPosYMirror)
 /* 28F4C 8002834C 0305C821 */  addu       $t9, $t8, $a1
-/* 28F50 80028350 A439E5DC */  sh         $t9, %lo(D_800BE5DC)($at)
+/* 28F50 80028350 A439E5DC */  sh         $t9, %lo(gPlayerPosYMirror)($at)
 /* 28F54 80028354 3C01800D */  lui        $at, %hi(D_800CA230)
 /* 28F58 80028358 A420A230 */  sh         $zero, %lo(D_800CA230)($at)
 /* 28F5C 8002835C 844800E0 */  lh         $t0, 0xe0($v0)

@@ -1289,16 +1289,16 @@ glabel alResamplePull
 /* B13D4 800B07D4 00000000 */   nop
 .L800B07D8:
 /* B13D8 800B07D8 8FAA0044 */  lw         $t2, 0x44($sp)
-/* B13DC 800B07DC 3C01800F */  lui        $at, %hi(D_800EE500)
-/* B13E0 800B07E0 D428E500 */  ldc1       $f8, %lo(D_800EE500)($at)
+/* B13DC 800B07DC 3C01800F */  lui        $at, %hi(resample_rodata_0000)
+/* B13E0 800B07E0 D428E500 */  ldc1       $f8, %lo(resample_rodata_0000)($at)
 /* B13E4 800B07E4 C5440018 */  lwc1       $f4, 0x18($t2)
 /* B13E8 800B07E8 460021A1 */  cvt.d.s    $f6, $f4
 /* B13EC 800B07EC 4626403C */  c.lt.d     $f8, $f6
 /* B13F0 800B07F0 00000000 */  nop
 /* B13F4 800B07F4 45000005 */  bc1f       .L800B080C
 /* B13F8 800B07F8 00000000 */   nop
-/* B13FC 800B07FC 3C01800F */  lui        $at, %hi(D_800EE508)
-/* B1400 800B0800 C42AE508 */  lwc1       $f10, %lo(D_800EE508)($at)
+/* B13FC 800B07FC 3C01800F */  lui        $at, %hi(resample_rodata_0008)
+/* B1400 800B0800 C42AE508 */  lwc1       $f10, %lo(resample_rodata_0008)($at)
 /* B1404 800B0804 8FAB0044 */  lw         $t3, 0x44($sp)
 /* B1408 800B0808 E56A0018 */  swc1       $f10, 0x18($t3)
 .L800B080C:
@@ -1566,10 +1566,10 @@ glabel alEnvmixerPull
 /* B17E8 800B0BE8 10000007 */  b          .L800B0C08
 /* B17EC 800B0BEC 00000000 */   nop
 .L800B0BF0:
-/* B17F0 800B0BF0 3C04800F */  lui        $a0, %hi(D_800EE530)
-/* B17F4 800B0BF4 3C05800F */  lui        $a1, %hi(D_800EE540)
-/* B17F8 800B0BF8 24A5E540 */  addiu      $a1, $a1, %lo(D_800EE540)
-/* B17FC 800B0BFC 2484E530 */  addiu      $a0, $a0, %lo(D_800EE530)
+/* B17F0 800B0BF0 3C04800F */  lui        $a0, %hi(env_rodata_0000)
+/* B17F4 800B0BF4 3C05800F */  lui        $a1, %hi(env_rodata_0010)
+/* B17F8 800B0BF8 24A5E540 */  addiu      $a1, $a1, %lo(env_rodata_0010)
+/* B17FC 800B0BFC 2484E530 */  addiu      $a0, $a0, %lo(env_rodata_0000)
 /* B1800 800B0C00 0C026E74 */  jal        __assert
 /* B1804 800B0C04 24060069 */   addiu     $a2, $zero, 0x69
 .L800B0C08:
@@ -1580,10 +1580,10 @@ glabel alEnvmixerPull
 /* B1818 800B0C18 10000007 */  b          .L800B0C38
 /* B181C 800B0C1C 00000000 */   nop
 .L800B0C20:
-/* B1820 800B0C20 3C04800F */  lui        $a0, %hi(D_800EE550)
-/* B1824 800B0C24 3C05800F */  lui        $a1, %hi(D_800EE570)
-/* B1828 800B0C28 24A5E570 */  addiu      $a1, $a1, %lo(D_800EE570)
-/* B182C 800B0C2C 2484E550 */  addiu      $a0, $a0, %lo(D_800EE550)
+/* B1820 800B0C20 3C04800F */  lui        $a0, %hi(env_rodata_0028)
+/* B1824 800B0C24 3C05800F */  lui        $a1, %hi(env_rodata_0048)
+/* B1828 800B0C28 24A5E570 */  addiu      $a1, $a1, %lo(env_rodata_0048)
+/* B182C 800B0C2C 2484E550 */  addiu      $a0, $a0, %lo(env_rodata_0028)
 /* B1830 800B0C30 0C026E74 */  jal        __assert
 /* B1834 800B0C34 2406006A */   addiu     $a2, $zero, 0x6a
 .L800B0C38:
@@ -1731,7 +1731,7 @@ glabel alEnvmixerPull
 /* B1A5C 800B0E5C 27A60046 */  addiu      $a2, $sp, 0x46
 /* B1A60 800B0E60 8FA70048 */  lw         $a3, 0x48($sp)
 /* B1A64 800B0E64 AFB80010 */  sw         $t8, 0x10($sp)
-/* B1A68 800B0E68 0C02C521 */  jal        func_800B1484
+/* B1A68 800B0E68 0C02C521 */  jal        _pullSubFrame
 /* B1A6C 800B0E6C AFA80014 */   sw        $t0, 0x14($sp)
 /* B1A70 800B0E70 AFA2005C */  sw         $v0, 0x5c($sp)
 /* B1A74 800B0E74 8FAA0058 */  lw         $t2, 0x58($sp)
@@ -1921,7 +1921,7 @@ glabel alEnvmixerPull
 /* B1D34 800B1134 27A60046 */  addiu      $a2, $sp, 0x46
 /* B1D38 800B1138 8FA70048 */  lw         $a3, 0x48($sp)
 /* B1D3C 800B113C AFAE0010 */  sw         $t6, 0x10($sp)
-/* B1D40 800B1140 0C02C521 */  jal        func_800B1484
+/* B1D40 800B1140 0C02C521 */  jal        _pullSubFrame
 /* B1D44 800B1144 AFAB0014 */   sw        $t3, 0x14($sp)
 /* B1D48 800B1148 AFA2005C */  sw         $v0, 0x5c($sp)
 /* B1D4C 800B114C 8FA90058 */  lw         $t1, 0x58($sp)
@@ -1956,7 +1956,7 @@ glabel alEnvmixerPull
 /* B1DBC 800B11BC 27A60046 */  addiu      $a2, $sp, 0x46
 /* B1DC0 800B11C0 8FA70048 */  lw         $a3, 0x48($sp)
 /* B1DC4 800B11C4 AFAE0010 */  sw         $t6, 0x10($sp)
-/* B1DC8 800B11C8 0C02C521 */  jal        func_800B1484
+/* B1DC8 800B11C8 0C02C521 */  jal        _pullSubFrame
 /* B1DCC 800B11CC AFAB0014 */   sw        $t3, 0x14($sp)
 /* B1DD0 800B11D0 AFA2005C */  sw         $v0, 0x5c($sp)
 /* B1DD4 800B11D4 8FA90058 */  lw         $t1, 0x58($sp)
@@ -2007,7 +2007,7 @@ glabel alEnvmixerPull
 /* B1E7C 800B127C 27A60046 */  addiu      $a2, $sp, 0x46
 /* B1E80 800B1280 8FA70068 */  lw         $a3, 0x68($sp)
 /* B1E84 800B1284 AFAB0010 */  sw         $t3, 0x10($sp)
-/* B1E88 800B1288 0C02C521 */  jal        func_800B1484
+/* B1E88 800B1288 0C02C521 */  jal        _pullSubFrame
 /* B1E8C 800B128C AFA90014 */   sw        $t1, 0x14($sp)
 /* B1E90 800B1290 AFA2005C */  sw         $v0, 0x5c($sp)
 /* B1E94 800B1294 8FA80058 */  lw         $t0, 0x58($sp)
@@ -2150,7 +2150,7 @@ glabel alEnvmixerParam
 /* B207C 800B147C 03E00008 */  jr         $ra
 /* B2080 800B1480 00000000 */   nop
 
-glabel func_800B1484
+glabel _pullSubFrame
 /* B2084 800B1484 27BDFFB0 */  addiu      $sp, $sp, -0x50
 /* B2088 800B1488 AFBF001C */  sw         $ra, 0x1c($sp)
 /* B208C 800B148C AFA40050 */  sw         $a0, 0x50($sp)

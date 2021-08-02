@@ -23920,9 +23920,9 @@ glabel func_8007AB44
 /* 7BBDC 8007AFDC AC2DE5D8 */  sw         $t5, -0x1a28($at)
 /* 7BBE0 8007AFE0 8D580000 */  lw         $t8, ($t2)
 /* 7BBE4 8007AFE4 8D6E008C */  lw         $t6, 0x8c($t3)
-/* 7BBE8 8007AFE8 3C01800C */  lui        $at, %hi(D_800BE5DC)
+/* 7BBE8 8007AFE8 3C01800C */  lui        $at, %hi(gPlayerPosYMirror)
 /* 7BBEC 8007AFEC 01D87821 */  addu       $t7, $t6, $t8
-/* 7BBF0 8007AFF0 AC2FE5DC */  sw         $t7, %lo(D_800BE5DC)($at)
+/* 7BBF0 8007AFF0 AC2FE5DC */  sw         $t7, %lo(gPlayerPosYMirror)($at)
 /* 7BBF4 8007AFF4 8E0C0090 */  lw         $t4, 0x90($s0)
 /* 7BBF8 8007AFF8 85460000 */  lh         $a2, ($t2)
 /* 7BBFC 8007AFFC 2599F000 */  addiu      $t9, $t4, -0x1000

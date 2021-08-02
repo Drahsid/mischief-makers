@@ -28,15 +28,15 @@ glabel func_8004178C
 /* 423F0 800417F0 3C19800C */  lui        $t9, %hi(D_800BE558)
 /* 423F4 800417F4 8739E558 */  lh         $t9, %lo(D_800BE558)($t9)
 /* 423F8 800417F8 84480088 */  lh         $t0, 0x88($v0)
-/* 423FC 800417FC 3C01800C */  lui        $at, %hi(D_800BE5D8)
+/* 423FC 800417FC 3C01800C */  lui        $at, %hi(gPlayerPosXMirror)
 /* 42400 80041800 03284821 */  addu       $t1, $t9, $t0
-/* 42404 80041804 A429E5D8 */  sh         $t1, %lo(D_800BE5D8)($at)
+/* 42404 80041804 A429E5D8 */  sh         $t1, %lo(gPlayerPosXMirror)($at)
 /* 42408 80041808 3C0A800C */  lui        $t2, %hi(D_800BE55C)
 /* 4240C 8004180C 854AE55C */  lh         $t2, %lo(D_800BE55C)($t2)
 /* 42410 80041810 844B008C */  lh         $t3, 0x8c($v0)
-/* 42414 80041814 3C01800C */  lui        $at, %hi(D_800BE5DC)
+/* 42414 80041814 3C01800C */  lui        $at, %hi(gPlayerPosYMirror)
 /* 42418 80041818 014B6021 */  addu       $t4, $t2, $t3
-/* 4241C 8004181C A42CE5DC */  sh         $t4, %lo(D_800BE5DC)($at)
+/* 4241C 8004181C A42CE5DC */  sh         $t4, %lo(gPlayerPosYMirror)($at)
 /* 42420 80041820 8C4D0080 */  lw         $t5, 0x80($v0)
 /* 42424 80041824 2401FFDF */  addiu      $at, $zero, -0x21
 /* 42428 80041828 8FA5001C */  lw         $a1, 0x1c($sp)

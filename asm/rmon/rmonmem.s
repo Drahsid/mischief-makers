@@ -522,16 +522,16 @@ glabel __rmonGetExeName
 /* AA414 800A9814 15C10008 */  bne        $t6, $at, .L800A9838
 /* AA418 800A9818 00000000 */   nop
 /* AA41C 800A981C 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA420 800A9820 3C05800F */  lui        $a1, %hi(D_800EDCD8)
-/* AA424 800A9824 24A5DCD8 */  addiu      $a1, $a1, %lo(D_800EDCD8)
+/* AA420 800A9820 3C05800F */  lui        $a1, %hi(rmonmem_rodata_0098)
+/* AA424 800A9824 24A5DCD8 */  addiu      $a1, $a1, %lo(rmonmem_rodata_0098)
 /* AA428 800A9828 0C02A493 */  jal        func_800A924C
 /* AA42C 800A982C 24840010 */   addiu     $a0, $a0, 0x10
 /* AA430 800A9830 10000006 */  b          .L800A984C
 /* AA434 800A9834 00000000 */   nop
 .L800A9838:
 /* AA438 800A9838 8FA40018 */  lw         $a0, 0x18($sp)
-/* AA43C 800A983C 3C05800F */  lui        $a1, %hi(D_800EDCE0)
-/* AA440 800A9840 24A5DCE0 */  addiu      $a1, $a1, %lo(D_800EDCE0)
+/* AA43C 800A983C 3C05800F */  lui        $a1, %hi(rmonmem_rodata_00A0)
+/* AA440 800A9840 24A5DCE0 */  addiu      $a1, $a1, %lo(rmonmem_rodata_00A0)
 /* AA444 800A9844 0C02A493 */  jal        func_800A924C
 /* AA448 800A9848 24840010 */   addiu     $a0, $a0, 0x10
 .L800A984C:
