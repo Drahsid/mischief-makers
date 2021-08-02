@@ -202,7 +202,7 @@ segments:
       - [0xEBC50, .rodata, 17A70]
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
-      - [0xEC5C0, .rodata, 241E0] # start for the jtbl at 0xEC6AC
+      - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
 
       # libultra
       #- [0xEE200, rodata, io/viswapbuf]

@@ -9,43 +9,43 @@ void func_80042CE8(int32_t a0) {}
 
 void func_80042CF0(int32_t a0) {}
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//void func_80042CF8(uint16_t* arg0) {
-//    uint16_t new_var;
-//    uint16_t* sp0;
-//    uint32_t index;
-//    uint32_t new_var2;
-//    uint16_t* a0;
-//    if (!index) {
-//    }
-//
-//    a0 = arg0;
-//    if (a0 != 0) {
-//        if ((*a0) != 0) {
-//            do {
-//                sp0 = (&D_800D2978)[index];
-//                index = (index + 3) & 0xFFFF;
-//                new_var = a0[1];
-//                sp0[0] = a0[0];
-//                sp0[1] = new_var;
-//                sp0[2] = a0[2];
-//                a0 += 6;
-//            } while (a0[3] != 0);
-//        }
-//    }
-//
-//    new_var2 = index;
-//    while (new_var2 != 0x600) {
-//        do {
-//            index = (index + 3) & 0xFFFF;
-//            (&D_800D2978)[index] = 0;
-//        } while (index != 0x600);
-//    }
-//}
-//#else
+
+#ifdef NON_MATCHING
+void func_80042CF8(uint16_t* arg0) {
+    uint16_t new_var;
+    uint16_t* sp0;
+    uint32_t index;
+    uint32_t new_var2;
+    uint16_t* a0;
+    if (!index) {
+    }
+
+    a0 = arg0;
+    if (a0 != 0) {
+        if ((*a0) != 0) {
+            do {
+                sp0 = (&D_800D2978)[index];
+                index = (index + 3) & 0xFFFF;
+                new_var = a0[1];
+                sp0[0] = a0[0];
+                sp0[1] = new_var;
+                sp0[2] = a0[2];
+                a0 += 6;
+            } while (a0[3] != 0);
+        }
+    }
+
+    new_var2 = index;
+    while (new_var2 != 0x600) {
+        do {
+            index = (index + 3) & 0xFFFF;
+            (&D_800D2978)[index] = 0;
+        } while (index != 0x600);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF8.s")
-//#endif
+#endif
 
 #ifdef NON_MATCHING
 // Differences are minor regalloc and instruction order (functionally identical)
@@ -360,23 +360,23 @@ int32_t func_80045F08(int32_t arg0) {
     return 0;
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//void func_80045F14(uint16_t* arg0) {
-//    D_800BE550 = arg0[0];
-//    D_800BE554 = arg0[1];
-//    D_800BE558 = D_800BE550;
-//    D_800BE55C = D_800BE554;
-//    D_800BE560 = D_800BE558;
-//    D_800BE564 = D_800BE55C;
-//    D_800D2920 = arg0[2];
-//    D_800D2924 = arg0[3];
-//    D_800D2918 = arg0[4];
-//    D_800D291C = arg0[5];
-//}
-//#else
+
+#ifdef NON_MATCHING
+void func_80045F14(uint16_t* arg0) {
+    D_800BE550 = arg0[0];
+    D_800BE554 = arg0[1];
+    D_800BE558 = D_800BE550;
+    D_800BE55C = D_800BE554;
+    D_800BE560 = D_800BE558;
+    D_800BE564 = D_800BE55C;
+    D_800D2920 = arg0[2];
+    D_800D2924 = arg0[3];
+    D_800D2918 = arg0[4];
+    D_800D291C = arg0[5];
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045F14.s")
-//#endif
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045FA4.s")
 
@@ -401,23 +401,23 @@ void func_80046188(int32_t arg0, int32_t arg1) {
     func_80003A38();
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//// needs reordering
-//void func_80046218(int16_t arg0, int32_t arg1) {
-//    if ((arg1 & 0xFFFF) != 0) {
-//        D_800D28FC |= 1;
-//    }
-//
-//    D_800D28E4 = 0x64;
-//    D_800D28E8 = 0;
-//    D_800D28EC = 0;
-//    D_800D28F0 = arg0;
-//    D_800D28F4 = 0;
-//}
-//#else
+
+#ifdef NON_MATCHING
+// needs reordering
+void func_80046218(int16_t arg0, int32_t arg1) {
+    if ((arg1 & 0xFFFF) != 0) {
+        D_800D28FC |= 1;
+    }
+
+    D_800D28E4 = 0x64;
+    D_800D28E8 = 0;
+    D_800D28EC = 0;
+    D_800D28F0 = arg0;
+    D_800D28F4 = 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046218.s")
-//#endif
+#endif
 
 void func_80046274(int32_t arg0, int32_t arg1) {
     return;
@@ -582,27 +582,27 @@ void func_80047A14(void) {
     }
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-//void func_80047A54(void) {
-//    int32_t temp_t0;
-//    int32_t temp_t2;
-//
-//    D_800BE4EC = 1;
-//    D_800D28E4 += 1;
-//    D_800D2928 = 0;
-//    temp_t0 = D_800D28FC | 4;
-//    temp_t2 = temp_t0 & ~8;
-//    D_800D28FC = temp_t0;
-//    D_800D28FC = temp_t2;
-//    D_800BE544 = 0x8000;
-//    D_800D2938 = 0;
-//    D_800D2908 = 0;
-//    D_800D2900 = 0;
-//}
-//#else
+
+#ifdef NON_MATCHING
+void func_80047A54(void) {
+    int32_t temp_t0;
+    int32_t temp_t2;
+
+    D_800BE4EC = 1;
+    D_800D28E4 += 1;
+    D_800D2928 = 0;
+    temp_t0 = D_800D28FC | 4;
+    temp_t2 = temp_t0 & ~8;
+    D_800D28FC = temp_t0;
+    D_800D28FC = temp_t2;
+    D_800BE544 = 0x8000;
+    D_800D2938 = 0;
+    D_800D2908 = 0;
+    D_800D2900 = 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047A54.s")
-//#endif
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047AC4.s")
 

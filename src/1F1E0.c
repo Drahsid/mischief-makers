@@ -129,26 +129,26 @@ void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
 }
 
-// SPLAT BUG
-//#ifdef NON_MATCHING
-///* Differences are regalloc and instruction order
-// * Additionally, when it loads actor.unk_0x98, there should be a nop following it
-// */
-//int32_t func_8001FF50(void) {
-//    int32_t index;
-//    int32_t temp;
-//
-//    for (index = 1; index < ACTOR_COUNT1; index = temp) {
-//        index++;
-//        temp = index & 0xFFFF;
-//        gActors[index].unk_0x98 &= 0x380600;
-//    }
-//
-//    return temp;
-//}
-//#else
+
+#ifdef NON_MATCHING
+/* Differences are regalloc and instruction order
+ * Additionally, when it loads actor.unk_0x98, there should be a nop following it
+ */
+int32_t func_8001FF50(void) {
+    int32_t index;
+    int32_t temp;
+
+    for (index = 1; index < ACTOR_COUNT1; index = temp) {
+        index++;
+        temp = index & 0xFFFF;
+        gActors[index].unk_0x98 &= 0x380600;
+    }
+
+    return temp;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
-//#endif
+#endif
 
 void func_8001FFA0(void) {
     return;
@@ -303,7 +303,7 @@ void GamePlay_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
 
-// SPLAT BUG
+
 #ifdef NON_MATCHING
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
  * Needs reordering and major regalloc fixes, start has branching behavior that I don't know how to replicate
