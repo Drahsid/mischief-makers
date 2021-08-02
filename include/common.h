@@ -16,7 +16,7 @@ typedef struct {
 } Vec2i_union; /* sizeof = 0x08 */
 
 typedef struct {
-union {
+    union {
         /* 0x00 */ uint16_t x;
         /* 0x00 */ int32_t x_w;
     };
@@ -41,4 +41,3 @@ typedef union {
 } RGBA32; /* sizeof = 0x04 */
 
 #endif
-

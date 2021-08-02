@@ -48,13 +48,12 @@ void func_80042CF8(uint16_t* arg0) {
 #endif
 
 #ifdef NON_MATCHING
-//Differences are minor regalloc and instruction order (functionally identical)
+// Differences are minor regalloc and instruction order (functionally identical)
 void func_80042D84(int16_t x) {
-  int16_t uVar1;
-  
-  for (uVar1 = x; uVar1 != 0x600; uVar1+=3) 
-    (&D_800D2978)[uVar1] = 0;
+    int16_t uVar1;
 
+    for (uVar1 = x; uVar1 != 0x600; uVar1 += 3)
+        (&D_800D2978)[uVar1] = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")

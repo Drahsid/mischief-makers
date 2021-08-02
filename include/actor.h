@@ -29,7 +29,7 @@ enum {
     ACTOR_FLAG_UNK22 = (1 << 22),
     ACTOR_FLAG_UNK23 = (1 << 23),
     ACTOR_FLAG_UNK24 = (1 << 24),
-    ACTOR_FLAG_ATTACHED = (1 << 25), // might be holding, or held. This bit is on for Marina when she is holding an actor (see func_8004ED10)
+    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see func_8004ED10)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
     ACTOR_FLAG_UNK27 = (1 << 27),
     ACTOR_FLAG_UNK28 = (1 << 28),
@@ -69,14 +69,9 @@ typedef void (*ActorFunc)(uint16_t index);
     0x0CC: pos_x_4                  16
     0x0CE: pos_y_4                  16
     0x0D0: status                   16 // hope code can describe this better than I can
-    0x0D2: type                     16 // effects the function of the actor, and what actor it is. Marina is 0x16; you can have multiple Marinas if you initialize more actors with this type (this is how I made Mischief Makers Online) I want to properly document these.
-    0x0D4: iframes                  16
-    0x0D6: last_held_sprite         16 // might actually be index, we will see
-    0x0D8: flags_2                  32 // unsure
-    0x0E0: hit_points               16
-    0x0E2: damage_queue             16 // probably incorrect
-    0x0E4: strength                 16 // probably incorrect
-    0x0E8: pointer                  32
+    0x0D2: type                     16 // effects the function of the actor, and what actor it is. Marina is 0x16; you can have multiple Marinas if you initialize more actors with this type (this is
+   how I made Mischief Makers Online) I want to properly document these. 0x0D4: iframes                  16 0x0D6: last_held_sprite         16 // might actually be index, we will see 0x0D8: flags_2 32
+   // unsure 0x0E0: hit_points               16 0x0E2: damage_queue             16 // probably incorrect 0x0E4: strength                 16 // probably incorrect 0x0E8: pointer                  32
     0x0EC: vel                      64 // uses same union type as pos
     0x0F4: vel_z                    32
     0x120: scale_xy                 32 // float
@@ -200,21 +195,20 @@ typedef struct {
     /* 0x18C */ uint8_t unk_0x18C[0xC];
 } Actor; /* sizeof = 0x198 */
 
-typedef void(*Actor_func_8001EB8Cfn)(int32_t, int32_t, Actor*, uint32_t);
+typedef void (*Actor_func_8001EB8Cfn)(int32_t, int32_t, Actor*, uint32_t);
 
 extern Actor gActors[];
 extern ActorFunc gActorFuncTable[];
 extern Actor_func_8001EB8Cfn D_800CA1C0[];
 
 #define gPlayerActorp (gActors)
-#define gPlayerActor gActors[0]
-#define ACTOR_COUNT0 0x90
-#define ACTOR_COUNT1 0xC0
-#define ACTOR_COUNT2 0xD0
+#define gPlayerActor  gActors[0]
+#define ACTOR_COUNT0  0x90
+#define ACTOR_COUNT1  0xC0
+#define ACTOR_COUNT2  0xD0
 
-#define Actor_Active_Set(ACTOR) ((ACTOR)->flag |= ACTOR_FLAG_ACTIVE)
+#define Actor_Active_Set(ACTOR)   ((ACTOR)->flag |= ACTOR_FLAG_ACTIVE)
 #define Actor_Active_Unset(ACTOR) ((ACTOR)->flag &= ~ACTOR_FLAG_ACTIVE)
-#define Actor_Active_Get(ACTOR) ((ACTOR)->flag & ACTOR_FLAG_ACTIVE)
+#define Actor_Active_Get(ACTOR)   ((ACTOR)->flag & ACTOR_FLAG_ACTIVE)
 
 #endif
-

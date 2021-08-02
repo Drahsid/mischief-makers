@@ -9,7 +9,9 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
 // BUG: This function writes to unallocated stack space!
-void func_8001E808(int32_t arg0, int32_t arg1) {return;}
+void func_8001E808(int32_t arg0, int32_t arg1) {
+    return;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
@@ -148,7 +150,9 @@ int32_t func_8001FF50(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
 #endif
 
-void func_8001FFA0(void) {return;}
+void func_8001FFA0(void) {
+    return;
+}
 
 void func_8001FFA8(void) {
     D_800CA230 = 0;
@@ -211,7 +215,7 @@ void func_80020024(void) {
     func_8001107C(); // foreground layer of background?
 
     if (D_800CA230 == 0) {
-        func_8004ED10(0); // spawns/updates the player
+        func_8004ED10(0);    // spawns/updates the player
         func_8008C528(0x41); // unknown
     }
 
@@ -252,11 +256,13 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-void YellowGem_printProgress(void) { //Print "Got it" or "Not Yet"
-    if (YellowGem_getFlag(gCurrentStage))
-      {func_800836A0(9, 1, &Alpha_GotIt, 0);}
-    else
-      {func_800836A0(9, 1, &Alpha_NotYet, 0);}
+void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
+    if (YellowGem_getFlag(gCurrentStage)) {
+        func_800836A0(9, 1, &Alpha_GotIt, 0);
+    }
+    else {
+        func_800836A0(9, 1, &Alpha_NotYet, 0);
+    }
 }
 
 
@@ -290,9 +296,9 @@ int32_t func_800208D4(void) {
 void GamePlay_Tick(void) {
     uint32_t sp1C;
 
-    sp1C = osGetTime(); 
+    sp1C = osGetTime();
     func_800457C8();
-    gTickDelta = osGetTime() - sp1C; 
+    gTickDelta = osGetTime() - sp1C;
 
     if (gGamePaused != 0) {
         PauseGame_Tick();

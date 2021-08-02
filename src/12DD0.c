@@ -12,7 +12,8 @@ void func_800121D0(void) {
     sp1E = D_800EF5F0;
     func_8001E2D0(0);
 
-    if (sp1E) {}
+    if (sp1E) {
+    }
 
     D_800EF5F0 = sp1E;
 
@@ -23,11 +24,12 @@ void func_800121D0(void) {
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
 
-    if (gActors) {}
+    if (gActors) {
+    }
 
     D_800BE5F8 = 0;
 
-    for (index = 0; index < 0x40;  index++ /* = (index + 1) & 0xFFFF*/) {
+    for (index = 0; index < 0x40; index++ /* = (index + 1) & 0xFFFF*/) {
         (&D_8011DD70)[index] = 0;
         (&D_801225F0)[index] = 0;
     }

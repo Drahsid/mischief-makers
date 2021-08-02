@@ -46,7 +46,7 @@ void Sound_DMA(int32_t Addr, void* Vaddr, uint32_t Len) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800032C4.s")
 
-int32_t SFX_Play_1(UNK_TYPE ID) { //main SFX playing wrapper
+int32_t SFX_Play_1(UNK_TYPE ID) { // main SFX playing wrapper
     return SFX_func(ID, -1, -1, 0x81, 0xFF, 0);
 }
 
@@ -144,11 +144,10 @@ void BGM_Stop(void) {
 
 void SFX_StopAll(void) {
     u8 i;
-    for(i = 0; i<4; i++){
+    for (i = 0; i < 4; i++) {
         alSeqpStop(SFX_pALCPlayers[i]);
         SFX_ChannelStates[i] = 0;
-        }
-
+    }
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_SetPan.s")
 

@@ -49,26 +49,26 @@ void func_80022F48(void) {
     GameSave_Initialize(1);
     GameSave_SetDefaults();
 
-    gButton_Start   = START_BUTTON;
-    gButton_DUp     = U_JPAD;
-    gButton_DDown   = D_JPAD;
-    gButton_DLeft   = L_JPAD;
-    gButton_DRight  = R_JPAD;
-    gButton_B       = B_BUTTON;
-    gButton_A       = A_BUTTON;
-    gButton_CLeft   = L_CBUTTONS;
-    gButton_CDown   = D_CBUTTONS;
-    gButton_CUp     = U_CBUTTONS;
-    gButton_CRight  = R_CBUTTONS;
-    gButton_ZTrig   = Z_TRIG;
-    gButton_LTrig   = L_TRIG;
-    gButton_RTrig   = R_TRIG;
-    D_801781F8      = 0;
-    D_800CBF44      = 0;
+    gButton_Start = START_BUTTON;
+    gButton_DUp = U_JPAD;
+    gButton_DDown = D_JPAD;
+    gButton_DLeft = L_JPAD;
+    gButton_DRight = R_JPAD;
+    gButton_B = B_BUTTON;
+    gButton_A = A_BUTTON;
+    gButton_CLeft = L_CBUTTONS;
+    gButton_CDown = D_CBUTTONS;
+    gButton_CUp = U_CBUTTONS;
+    gButton_CRight = R_CBUTTONS;
+    gButton_ZTrig = Z_TRIG;
+    gButton_LTrig = L_TRIG;
+    gButton_RTrig = R_TRIG;
+    D_801781F8 = 0;
+    D_800CBF44 = 0;
     gPlayerActor.health = 1000;
-    gRedGems        = 30;
-    gGameState      = 1;
-    gGameSubState   = 0;
+    gRedGems = 30;
+    gGameState = 1;
+    gGameSubState = 0;
     return;
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")

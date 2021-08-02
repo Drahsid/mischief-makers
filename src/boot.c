@@ -235,7 +235,7 @@ void Thread_IdleProc(int32_t arg0) {
         phi_v0 = &osViModeTable + 2;
     }
     D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8);                     // osCreatePiManager ?
+    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
     osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA);
     osStartThread(&D_8012A9F8);
     osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
@@ -375,12 +375,12 @@ void func_80001264(void) {
     osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
-int32_t  func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
-    int32_t  sp2C[2];
-    uint16_t sp28[8]; //rewrite so this is OSIoMesg and matches
+int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
+    int32_t sp2C[2];
+    uint16_t sp28[8]; // rewrite so this is OSIoMesg and matches
 
     osInvalDCache(Vaddr, nBytes);
-    sp2C[0]=osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
+    sp2C[0] = osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
     return sp2C[0];
 }
 
@@ -458,4 +458,3 @@ uint16_t func_8000178C(void) {
     D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;
     return D_800BE5A4 / 0x100;
 }
-

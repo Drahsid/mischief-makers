@@ -624,7 +624,7 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 /*
-void YellowGem_setFlag(void){  
+void YellowGem_setFlag(void){
   gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
 }
 */

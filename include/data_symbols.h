@@ -1,9 +1,9 @@
 #ifndef DATA_SYMBOLS_H
 #define DATA_SYMBOLS_H
 
+#include "actor.h"
 #include "inttypes.h"
 #include "unknown_structs.h"
-#include "actor.h"
 #include <ultra64.h>
 
 typedef uint32_t UNK_TYPE;
@@ -66,7 +66,7 @@ extern uint16_t D_800BE594;
 extern uint16_t D_800BE5A4;
 extern uint16_t D_800BE5D0;
 extern uint16_t D_800BE5D4;
-extern int32_t gPlayerPosXMirror; //likely {s16[2];s32;} unions
+extern int32_t gPlayerPosXMirror; // likely {s16[2];s32;} unions
 extern int32_t gPlayerPosYMirror;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
@@ -122,10 +122,10 @@ extern int32_t D_800C4EBC;
 extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
-extern double gSprtieScaleXA;
-extern double gSprtieScaleYA;
-extern uint16_t gTimeRecords[64];//records for stage times.
-extern uint16_t D_800C4FA8[11]; //contains default "Start" filename
+extern double gSpriteScaleX;
+extern double gSpriteScaleY;
+extern uint16_t gTimeRecords[64]; // records for stage times.
+extern uint16_t D_800C4FA8[11];   // contains default "Start" filename
 extern uint16_t nameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern UNK_TYPE D_800C71A0;
@@ -149,7 +149,7 @@ extern uint16_t D_800CA248;
 extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
 extern uint16_t Alpha_NotYet[]; //"Not Yet"
-extern uint16_t Alpha_GotIt[]; //"Got it"
+extern uint16_t Alpha_GotIt[];  //"Got it"
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
@@ -157,7 +157,7 @@ extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
-extern uint8_t D_800CCFDC; //does not like being declared an array. Which it is.
+extern uint8_t D_800CCFDC; // does not like being declared an array. Which it is.
 extern int32_t D_800CEC0C;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
@@ -241,7 +241,7 @@ extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern UNK_TYPE D_800EEA10;
-extern uint8_t bssStart; //also deals with sound state.
+extern uint8_t bssStart; // also deals with sound state.
 extern int16_t Bgm_vol;
 extern int16_t D_800EF4D4;
 extern uint8_t SFX_ChannelStates[];
@@ -303,7 +303,7 @@ extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern UNK_TYPE D_8011D970;
-extern int16_t gInputBuffer[64]; //buffer of controller inputs
+extern int16_t gInputBuffer[64]; // buffer of controller inputs
 extern UNK_TYPE D_8011DDF0;
 extern int16_t D_801225F0;
 extern uint32_t D_80126670; // initial thread stack head
@@ -313,7 +313,7 @@ extern uint32_t* D_8012A670;
 extern UNK_TYPE D_8012A678;
 extern OSThread D_8012A698; // idle
 extern OSThread D_8012A848; // video, controller
-extern OSThread D_8012A9F8; //rmon
+extern OSThread D_8012A9F8; // rmon
 extern OSMesgQueue D_8012ABA8;
 extern OSMesgQueue D_8012ABC0;
 extern UNK_TYPE D_8012ABD8;
@@ -368,8 +368,8 @@ extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
 extern int64_t gYellowGemBitfeild;
 extern int8_t gWorldProgress;
-extern Mtx *D_801780F0;
-extern Mtx *D_801780F4;
+extern Mtx* D_801780F0;
+extern Mtx* D_801780F4;
 extern UNK_POINTER D_80178104;
 extern UNK_POINTER D_80178108;
 extern UNK_POINTER D_8017810C;
@@ -395,7 +395,7 @@ extern uint16_t D_801781D0;
 extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
-extern uint16_t gStageTime; //pauses for cutscene, loading
+extern uint16_t gStageTime; // pauses for cutscene, loading
 extern int64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;

@@ -1,4 +1,4 @@
-//game uses a unique alphabet for the "big text" that is 16 bits.
+// game uses a unique alphabet for the "big text" that is 16 bits.
 
 #define ALPHA_Space 0x0000
 
@@ -67,21 +67,21 @@
 #define ALPHA_8 0x00a9
 #define ALPHA_9 0x00aa
 
-#define ALPHA_EXCLAMATION 0x00b1
+#define ALPHA_EXCLAMATION  0x00b1
 #define ALPHA_EXCLAMATION2 0x00b2
-#define ALPHA_QUESTION 0x00b3
-#define ALPHA_BRACKETLEFT 0x00b8
+#define ALPHA_QUESTION     0x00b3
+#define ALPHA_BRACKETLEFT  0x00b8
 #define ALPHA_BRACKETRIGHT 0x00b9
-#define ALPHA_COLON 0x00bb
-#define ALPHA_PLUS 0x00bf
-#define ALPHA_MINUS 0x00c0
-#define ALPHA_EQUALS 0x00c3
-#define ALPHA_HEART 0x00c5
-#define ALPHA_NOTE 0x00c6
-#define ALPHA_II 0x00cd
-#define ALPHA_APLHA 0x00ce //as in the greek letter
-#define ALPHA_BETA 0x00cf
-#define ALPHA_GAMMA 0x00d0
+#define ALPHA_COLON        0x00bb
+#define ALPHA_PLUS         0x00bf
+#define ALPHA_MINUS        0x00c0
+#define ALPHA_EQUALS       0x00c3
+#define ALPHA_HEART        0x00c5
+#define ALPHA_NOTE         0x00c6
+#define ALPHA_II           0x00cd
+#define ALPHA_APLHA        0x00ce // as in the greek letter
+#define ALPHA_BETA         0x00cf
+#define ALPHA_GAMMA        0x00d0
 #define ALPHA_APOSTROPHE_S 0x00d1
 
 #define ALPHA_NULL 0x8fff
