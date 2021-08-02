@@ -434,6 +434,7 @@ extern uint8_t NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
+
 extern u16 GameSave_Names[2][11];
 extern u8 GameSave_Age[2];
 extern u8 GameSave_Sex[2];
@@ -441,4 +442,3 @@ extern u16 GameSave_RedGems[2];
 extern u16 GameSave_YellowGems[2];
 extern u64 GameSave_PlayTime[2]; // contains total play time
 extern u32 gFestivalRecords[7];
-#endif

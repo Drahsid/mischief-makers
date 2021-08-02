@@ -274,6 +274,7 @@ void RedGem_PrintPause(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 #endif
 
+
 void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
     if (YellowGem_getFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
     else func_800836A0(9, 1, &Alpha_NotYet, 0);
@@ -309,9 +310,6 @@ void func_80020A54(void){
   u16 i;
   for(i = 200;i < 204;i++) gActors[i].flag = 0;
 }
-
-//#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 
 void GamePlay_Tick(void) {

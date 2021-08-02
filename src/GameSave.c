@@ -4,7 +4,6 @@
 #include <ultra64.h>
 
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E90.s")

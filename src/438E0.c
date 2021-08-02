@@ -536,9 +536,9 @@ void func_800475EC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800475EC.s")
 #endif
 
-
 void func_80047648(int16_t arg0) {
     D_800D2914 = (arg0 - (gPlayerActor.health / 10)) + 100;
+
 }
 
 void func_80047674(void) {}

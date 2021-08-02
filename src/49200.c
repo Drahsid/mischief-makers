@@ -560,6 +560,7 @@ void func_8004ED10(uint16_t index) {
 
          D_800BE5D8 = gActors[index].pos.x_w + D_800BE558;
          D_800BE5DC = gActors[index].pos.y_w + D_800BE55C;
+
          gPlayerVelXMirror = gActors[index].unk_0xEC;
          gPlayerVelYMirror = gActors[index].unk_0xF0;
 

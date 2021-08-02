@@ -703,6 +703,7 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F420.s")
 
+
 void RedGem_Cap(void) {if (gRedGems >= 9999) gRedGems = 9999;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F6D4.s")
@@ -759,6 +760,7 @@ void gem_collision(u16 arg0, u16 arg1, s32 arg2, s16 arg3, s16 arg4) {
     func_800036C8(0x125, arg0);
 }
 */
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/gem_collision.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002FC30.s")
