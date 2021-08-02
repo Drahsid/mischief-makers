@@ -19,10 +19,10 @@ glabel __osSpRawReadIo
 /* A79E0 800A6DE0 10000007 */  b          .L800A6E00
 /* A79E4 800A6DE4 00000000 */   nop
 .L800A6DE8:
-/* A79E8 800A6DE8 3C04800F */  lui        $a0, %hi(sprawread_rodata_0000)
-/* A79EC 800A6DEC 3C05800F */  lui        $a1, %hi(sprawread_rodata_0018)
-/* A79F0 800A6DF0 24A5DB08 */  addiu      $a1, $a1, %lo(sprawread_rodata_0018)
-/* A79F4 800A6DF4 2484DAF0 */  addiu      $a0, $a0, %lo(sprawread_rodata_0000)
+/* A79E8 800A6DE8 3C04800F */  lui        $a0, %hi(D_800EDAF0)
+/* A79EC 800A6DEC 3C05800F */  lui        $a1, %hi(D_800EDB08)
+/* A79F0 800A6DF0 24A5DB08 */  addiu      $a1, $a1, %lo(D_800EDB08)
+/* A79F4 800A6DF4 2484DAF0 */  addiu      $a0, $a0, %lo(D_800EDAF0)
 /* A79F8 800A6DF8 0C026E74 */  jal        __assert
 /* A79FC 800A6DFC 24060033 */   addiu     $a2, $zero, 0x33
 .L800A6E00:
@@ -32,10 +32,10 @@ glabel __osSpRawReadIo
 /* A7A0C 800A6E0C 10000007 */  b          .L800A6E2C
 /* A7A10 800A6E10 00000000 */   nop
 .L800A6E14:
-/* A7A14 800A6E14 3C04800F */  lui        $a0, %hi(sprawread_rodata_002C)
-/* A7A18 800A6E18 3C05800F */  lui        $a1, %hi(sprawread_rodata_003C)
-/* A7A1C 800A6E1C 24A5DB2C */  addiu      $a1, $a1, %lo(sprawread_rodata_003C)
-/* A7A20 800A6E20 2484DB1C */  addiu      $a0, $a0, %lo(sprawread_rodata_002C)
+/* A7A14 800A6E14 3C04800F */  lui        $a0, %hi(D_800EDB1C)
+/* A7A18 800A6E18 3C05800F */  lui        $a1, %hi(D_800EDB2C)
+/* A7A1C 800A6E1C 24A5DB2C */  addiu      $a1, $a1, %lo(D_800EDB2C)
+/* A7A20 800A6E20 2484DB1C */  addiu      $a0, $a0, %lo(D_800EDB1C)
 /* A7A24 800A6E24 0C026E74 */  jal        __assert
 /* A7A28 800A6E28 24060034 */   addiu     $a2, $zero, 0x34
 .L800A6E2C:

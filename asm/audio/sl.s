@@ -36,10 +36,10 @@ glabel alSynNew
 /* 9F1A4 8009E5A4 8FA90048 */  lw         $t1, 0x48($sp)
 /* 9F1A8 8009E5A8 8F280010 */  lw         $t0, 0x10($t9)
 /* 9F1AC 8009E5AC AD280024 */  sw         $t0, 0x24($t1)
-/* 9F1B0 8009E5B0 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0000)
+/* 9F1B0 8009E5B0 3C04800F */  lui        $a0, %hi(D_800ED930)
 /* 9F1B4 8009E5B4 240A001C */  addiu      $t2, $zero, 0x1c
 /* 9F1B8 8009E5B8 AFAA0010 */  sw         $t2, 0x10($sp)
-/* 9F1BC 8009E5BC 2484D930 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0000)
+/* 9F1BC 8009E5BC 2484D930 */  addiu      $a0, $a0, %lo(D_800ED930)
 /* 9F1C0 8009E5C0 2405003D */  addiu      $a1, $zero, 0x3d
 /* 9F1C4 8009E5C4 8FA60030 */  lw         $a2, 0x30($sp)
 /* 9F1C8 8009E5C8 0C026ECC */  jal        alHeapDBAlloc
@@ -50,10 +50,10 @@ glabel alSynNew
 /* 9F1DC 8009E5DC 8FAB002C */  lw         $t3, 0x2c($sp)
 /* 9F1E0 8009E5E0 8FAC0048 */  lw         $t4, 0x48($sp)
 /* 9F1E4 8009E5E4 AD8B0038 */  sw         $t3, 0x38($t4)
-/* 9F1E8 8009E5E8 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0018)
+/* 9F1E8 8009E5E8 3C04800F */  lui        $a0, %hi(D_800ED948)
 /* 9F1EC 8009E5EC 240D004C */  addiu      $t5, $zero, 0x4c
 /* 9F1F0 8009E5F0 AFAD0010 */  sw         $t5, 0x10($sp)
-/* 9F1F4 8009E5F4 2484D948 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0018)
+/* 9F1F4 8009E5F4 2484D948 */  addiu      $a0, $a0, %lo(D_800ED948)
 /* 9F1F8 8009E5F8 24050045 */  addiu      $a1, $zero, 0x45
 /* 9F1FC 8009E5FC 8FA60030 */  lw         $a2, 0x30($sp)
 /* 9F200 8009E600 0C026ECC */  jal        alHeapDBAlloc
@@ -64,11 +64,11 @@ glabel alSynNew
 /* 9F214 8009E614 240F0001 */  addiu      $t7, $zero, 1
 /* 9F218 8009E618 AF0F0040 */  sw         $t7, 0x40($t8)
 /* 9F21C 8009E61C 8FB9004C */  lw         $t9, 0x4c($sp)
-/* 9F220 8009E620 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0030)
+/* 9F220 8009E620 3C04800F */  lui        $a0, %hi(D_800ED960)
 /* 9F224 8009E624 24080004 */  addiu      $t0, $zero, 4
 /* 9F228 8009E628 8F270004 */  lw         $a3, 4($t9)
 /* 9F22C 8009E62C AFA80010 */  sw         $t0, 0x10($sp)
-/* 9F230 8009E630 2484D960 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0030)
+/* 9F230 8009E630 2484D960 */  addiu      $a0, $a0, %lo(D_800ED960)
 /* 9F234 8009E634 24050047 */  addiu      $a1, $zero, 0x47
 /* 9F238 8009E638 0C026ECC */  jal        alHeapDBAlloc
 /* 9F23C 8009E63C 8FA60030 */   lw        $a2, 0x30($sp)
@@ -79,10 +79,10 @@ glabel alSynNew
 /* 9F250 8009E650 8D240034 */  lw         $a0, 0x34($t1)
 /* 9F254 8009E654 0C02BC2F */  jal        alAuxBusNew
 /* 9F258 8009E658 8D460004 */   lw        $a2, 4($t2)
-/* 9F25C 8009E65C 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0048)
+/* 9F25C 8009E65C 3C04800F */  lui        $a0, %hi(D_800ED978)
 /* 9F260 8009E660 240B0020 */  addiu      $t3, $zero, 0x20
 /* 9F264 8009E664 AFAB0010 */  sw         $t3, 0x10($sp)
-/* 9F268 8009E668 2484D978 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0048)
+/* 9F268 8009E668 2484D978 */  addiu      $a0, $a0, %lo(D_800ED978)
 /* 9F26C 8009E66C 2405004D */  addiu      $a1, $zero, 0x4d
 /* 9F270 8009E670 8FA60030 */  lw         $a2, 0x30($sp)
 /* 9F274 8009E674 0C026ECC */  jal        alHeapDBAlloc
@@ -90,11 +90,11 @@ glabel alSynNew
 /* 9F27C 8009E67C 8FAC0048 */  lw         $t4, 0x48($sp)
 /* 9F280 8009E680 AD820030 */  sw         $v0, 0x30($t4)
 /* 9F284 8009E684 8FAD004C */  lw         $t5, 0x4c($sp)
-/* 9F288 8009E688 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0060)
+/* 9F288 8009E688 3C04800F */  lui        $a0, %hi(D_800ED990)
 /* 9F28C 8009E68C 240E0004 */  addiu      $t6, $zero, 4
 /* 9F290 8009E690 8DA70004 */  lw         $a3, 4($t5)
 /* 9F294 8009E694 AFAE0010 */  sw         $t6, 0x10($sp)
-/* 9F298 8009E698 2484D990 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0060)
+/* 9F298 8009E698 2484D990 */  addiu      $a0, $a0, %lo(D_800ED990)
 /* 9F29C 8009E69C 2405004E */  addiu      $a1, $zero, 0x4e
 /* 9F2A0 8009E6A0 0C026ECC */  jal        alHeapDBAlloc
 /* 9F2A4 8009E6A4 8FA60030 */   lw        $a2, 0x30($sp)
@@ -136,11 +136,11 @@ glabel alSynNew
 /* 9F32C 8009E72C 8FAF0048 */  lw         $t7, 0x48($sp)
 /* 9F330 8009E730 ADE00010 */  sw         $zero, 0x10($t7)
 /* 9F334 8009E734 8FB8004C */  lw         $t8, 0x4c($sp)
-/* 9F338 8009E738 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0078)
+/* 9F338 8009E738 3C04800F */  lui        $a0, %hi(D_800ED9A8)
 /* 9F33C 8009E73C 241900DC */  addiu      $t9, $zero, 0xdc
 /* 9F340 8009E740 8F070004 */  lw         $a3, 4($t8)
 /* 9F344 8009E744 AFB90010 */  sw         $t9, 0x10($sp)
-/* 9F348 8009E748 2484D9A8 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0078)
+/* 9F348 8009E748 2484D9A8 */  addiu      $a0, $a0, %lo(D_800ED9A8)
 /* 9F34C 8009E74C 24050066 */  addiu      $a1, $zero, 0x66
 /* 9F350 8009E750 0C026ECC */  jal        alHeapDBAlloc
 /* 9F354 8009E754 8FA60030 */   lw        $a2, 0x30($sp)
@@ -219,11 +219,11 @@ glabel alSynNew
 /* 9F470 8009E870 0C02C855 */  jal        alSaveParam
 /* 9F474 8009E874 8DE60030 */   lw        $a2, 0x30($t7)
 /* 9F478 8009E878 8FB8004C */  lw         $t8, 0x4c($sp)
-/* 9F47C 8009E87C 3C04800F */  lui        $a0, %hi(synthesizer_rodata_0090)
+/* 9F47C 8009E87C 3C04800F */  lui        $a0, %hi(D_800ED9C0)
 /* 9F480 8009E880 2419001C */  addiu      $t9, $zero, 0x1c
 /* 9F484 8009E884 8F070008 */  lw         $a3, 8($t8)
 /* 9F488 8009E888 AFB90010 */  sw         $t9, 0x10($sp)
-/* 9F48C 8009E88C 2484D9C0 */  addiu      $a0, $a0, %lo(synthesizer_rodata_0090)
+/* 9F48C 8009E88C 2484D9C0 */  addiu      $a0, $a0, %lo(D_800ED9C0)
 /* 9F490 8009E890 2405007F */  addiu      $a1, $zero, 0x7f
 /* 9F494 8009E894 0C026ECC */  jal        alHeapDBAlloc
 /* 9F498 8009E898 8FA60030 */   lw        $a2, 0x30($sp)

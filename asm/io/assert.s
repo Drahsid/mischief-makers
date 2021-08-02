@@ -13,8 +13,8 @@ glabel __assert
 /* 9C5D8 8009B9D8 AFA40018 */  sw         $a0, 0x18($sp)
 /* 9C5DC 8009B9DC AFA5001C */  sw         $a1, 0x1c($sp)
 /* 9C5E0 8009B9E0 AFA60020 */  sw         $a2, 0x20($sp)
-/* 9C5E4 8009B9E4 3C04800F */  lui        $a0, %hi(assert_rodata_0000)
-/* 9C5E8 8009B9E8 2484D6C0 */  addiu      $a0, $a0, %lo(assert_rodata_0000)
+/* 9C5E4 8009B9E4 3C04800F */  lui        $a0, %hi(D_800ED6C0)
+/* 9C5E8 8009B9E8 2484D6C0 */  addiu      $a0, $a0, %lo(D_800ED6C0)
 /* 9C5EC 8009B9EC 8FA5001C */  lw         $a1, 0x1c($sp)
 /* 9C5F0 8009B9F0 8FA60020 */  lw         $a2, 0x20($sp)
 /* 9C5F4 8009B9F4 0C0296CD */  jal        kmcErrorHandler

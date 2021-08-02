@@ -3547,8 +3547,8 @@ glabel spDraw
 /* A40E0 800A34E0 46049182 */  mul.s      $f6, $f18, $f4
 /* A40E4 800A34E4 46065400 */  add.s      $f16, $f10, $f6
 /* A40E8 800A34E8 E7B000FC */  swc1       $f16, 0xfc($sp)
-/* A40EC 800A34EC 3C01800F */  lui        $at, %hi(sprite_rodata_002C)
-/* A40F0 800A34F0 C424DA4C */  lwc1       $f4, %lo(sprite_rodata_002C)($at)
+/* A40EC 800A34EC 3C01800F */  lui        $at, %hi(D_800EDA4C)
+/* A40F0 800A34F0 C424DA4C */  lwc1       $f4, %lo(D_800EDA4C)($at)
 /* A40F4 800A34F4 C7B200FC */  lwc1       $f18, 0xfc($sp)
 /* A40F8 800A34F8 46049200 */  add.s      $f8, $f18, $f4
 /* A40FC 800A34FC 4600428D */  trunc.w.s  $f10, $f8
@@ -3677,8 +3677,8 @@ glabel spDraw
 /* A42D8 800A36D8 46122202 */  mul.s      $f8, $f4, $f18
 /* A42DC 800A36DC 46083400 */  add.s      $f16, $f6, $f8
 /* A42E0 800A36E0 E7B000FC */  swc1       $f16, 0xfc($sp)
-/* A42E4 800A36E4 3C01800F */  lui        $at, %hi(sprite_rodata_0034)
-/* A42E8 800A36E8 C432DA54 */  lwc1       $f18, %lo(sprite_rodata_0034)($at)
+/* A42E4 800A36E4 3C01800F */  lui        $at, %hi(D_800EDA54)
+/* A42E8 800A36E8 C432DA54 */  lwc1       $f18, %lo(D_800EDA54)($at)
 /* A42EC 800A36EC C7A400FC */  lwc1       $f4, 0xfc($sp)
 /* A42F0 800A36F0 46122280 */  add.s      $f10, $f4, $f18
 /* A42F4 800A36F4 4600518D */  trunc.w.s  $f6, $f10
@@ -3797,8 +3797,8 @@ glabel spDraw
 /* A44A0 800A38A0 46049282 */  mul.s      $f10, $f18, $f4
 /* A44A4 800A38A4 460A4400 */  add.s      $f16, $f8, $f10
 /* A44A8 800A38A8 E7B00100 */  swc1       $f16, 0x100($sp)
-/* A44AC 800A38AC 3C01800F */  lui        $at, %hi(sprite_rodata_003C)
-/* A44B0 800A38B0 C424DA5C */  lwc1       $f4, %lo(sprite_rodata_003C)($at)
+/* A44AC 800A38AC 3C01800F */  lui        $at, %hi(D_800EDA5C)
+/* A44B0 800A38B0 C424DA5C */  lwc1       $f4, %lo(D_800EDA5C)($at)
 /* A44B4 800A38B4 C7B20100 */  lwc1       $f18, 0x100($sp)
 /* A44B8 800A38B8 46049180 */  add.s      $f6, $f18, $f4
 /* A44BC 800A38BC 4600320D */  trunc.w.s  $f8, $f6
