@@ -10,7 +10,7 @@ void func_800121D0(void) {
     uint16_t index;
 
     sp1E = D_800EF5F0;
-    func_8001E2D0(0);
+    Actor_Spawn(0);
 
     if (sp1E) {
     }

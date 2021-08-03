@@ -313,7 +313,19 @@ void func_80025B7C(void) {
     func_80025E00();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80025BFC.s")
+void func_80025BFC(void) {
+    uint32_t* phi_v1;
+    uint32_t* phi_a0;
+    uint16_t index;
+
+    for (index = 0, phi_v1 = (uint32_t*)0x80380000, phi_a0 = (uint32_t*)0x803DA200; index < 0x180; index++) {
+        *phi_a0 = *phi_v1;
+        phi_a0++;
+        phi_v1++;
+        // though below makes more sense, above is required to match? Feels fake
+        // phi_a0[index] = phi_v1[index];
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80025C38.s")
 
@@ -337,7 +349,16 @@ void func_80025B7C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80026494.s")
 
+#ifdef NON_MATCHING
+// the subtraction gets optimized out...
+void func_8002653C(void) {
+    int32_t phi_a0 = 0x41E53F8 - 0x4000000;
+
+    func_800011F0(phi_a0, &D_800DE348, 0x1500);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002653C.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80026584.s")
 
@@ -377,9 +398,12 @@ void func_80025B7C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002729C.s")
 
+// possible file split (following functions are generally related to actors, and next function is 16-byte aligned)
+
+// context implies this is something like Actor_Spawn[at]Position...
 void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     gActors[index].unk_0xD2 = 0;
-    func_8001E2D0(index);
+    Actor_Spawn(index); // ...which implies that this is Actor_Spawn
     gActors[index].unk_0x94 |= 0x800;
     gActors[index].unk_0x188 = 0;
     gActors[index].pos.x = pos_x;
@@ -387,15 +411,47 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
     gActors[index].pos.z = pos_z;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800273FC.s")
+void func_800273FC(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+    func_80027370(index, pos_x, pos_y, pos_z);
+    gActors[index].unk_0x84 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027468.s")
+void func_80027468(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, uint8_t r, uint8_t g, uint8_t b) {
+    Actor* actor;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027510.s")
+    func_80027370(index, pos_x, pos_y, pos_z);
+    actor = &gActors[index];
+    actor->unk_0xE6 = 0;
+    actor->unk_0x84 = arg1;
+
+    if ((r | g | b) != 0) {
+        actor->rgba.r = r;
+        actor->unk_0x94 |= 0x10;
+        actor->rgba.g = g;
+        actor->rgba.b = b;
+    }
+}
+
+void func_80027510(uint16_t index, uint32_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+    Actor* actor;
+
+    func_80027370(index, pos_x, pos_y, pos_z);
+    actor = &gActors[index];
+    actor->unk_0xE8 = arg1;
+    actor->unk_0xE6 = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027588.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027644.s")
+void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, int32_t arg5) {
+    Actor* actor;
+
+    func_800273FC(index, arg1, pos_x, pos_y, pos_z);
+    actor = &gActors[index];
+    actor->unk_0x94 |= 0x200;
+    actor->flag |= 8;
+    actor->unk_0x18C = arg5;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800276DC.s")
 
@@ -407,6 +463,7 @@ void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027A88.s")
 
+// might be text related
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027AC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027B28.s")
