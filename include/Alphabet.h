@@ -1,4 +1,4 @@
-// game uses a unique alphabet for the "big text" that is 16 bits.
+// game uses a unique alphabet for the text that is 16 bits.
 
 #define ALPHA_Space 0x0000
 

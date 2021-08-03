@@ -249,9 +249,9 @@ extern UNK_TYPE D_800EEA10;
 extern uint8_t bssStart; // also deals with sound state.
 extern int16_t Bgm_vol;
 extern int16_t D_800EF4D4;
-extern uint8_t SFX_ChannelStates[];
-extern int16_t SFX_Volumes[];
-extern int16_t D_800EF500[];
+extern uint8_t SFX_ChannelStates[4];
+extern int16_t SFX_Volumes[4];
+extern int16_t D_800EF500[4];
 extern uint16_t D_800EF508;
 extern int16_t D_800EF598;
 extern uint16_t D_800EF794;
@@ -319,7 +319,7 @@ extern UNK_TYPE D_80129670;
 extern uint32_t* D_8012A670;
 extern UNK_TYPE D_8012A678;
 extern OSThread D_8012A698; // idle
-extern OSThread D_8012A848; // video, controller
+extern OSThread D_8012A848; // video, controller, sound, ect.
 extern OSThread D_8012A9F8; // rmon
 extern OSMesgQueue D_8012ABA8;
 extern OSMesgQueue D_8012ABC0;
@@ -374,7 +374,7 @@ extern UNK_TYPE D_8016DEB8;
 extern ALCSPlayer* BGM_pALCPlayer;
 extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
-extern int64_t gYellowGemBitfeild;
+extern uint64_t gYellowGemBitfeild;
 extern int8_t gWorldProgress;
 extern Mtx* D_801780F0;
 extern Mtx* D_801780F4;
@@ -409,10 +409,10 @@ extern uint16_t D_801781D0;
 extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
-extern uint16_t gStageTime; // pauses for cutscene, loading
-extern int64_t YelloGemBitfeildTemp;
+extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
+extern uint64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
-extern uint16_t gStageTimeReal;
+extern uint16_t gStageTimeReal; // does not pause
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
 extern uint8_t D_80171B19;
@@ -434,11 +434,12 @@ extern uint8_t NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
-
-extern u16 GameSave_Names[2][11];
-extern u8 GameSave_Age[2];
-extern u8 GameSave_Sex[2];
-extern u16 GameSave_RedGems[2];
-extern u16 GameSave_YellowGems[2];
-extern u64 GameSave_PlayTime[2]; // contains total play time
-extern u32 gFestivalRecords[7];
+// todo: organize by scope/ purpose.
+extern uint16_t GameSave_Names[2][11];
+extern uint8_t GameSave_Age[2];
+extern uint8_t GameSave_Sex[2]; // 0= M, 1=F
+extern uint16_t GameSave_RedGems[2];
+extern uint16_t GameSave_YellowGems[2];
+extern uint64_t GameSave_PlayTime[2];
+extern uint32_t gFestivalRecords[7]; //in order on the menu. also used to calculate stage time
+#endif
