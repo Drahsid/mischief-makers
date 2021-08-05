@@ -150,9 +150,7 @@ int32_t func_8001FF50(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
 #endif
 
-void func_8001FFA0(void) {
-    return;
-}
+void func_8001FFA0(void) {}
 
 void func_8001FFA8(void) {
     D_800CA230 = 0;
@@ -300,12 +298,8 @@ void GamePlay_Tick(void) {
     func_800457C8();
     gTickDelta = osGetTime() - sp1C;
 
-    if (gGamePaused != 0) {
-        PauseGame_Tick();
-    }
-    else {
-        func_80020024();
-    }
+    if (gGamePaused) PauseGame_Tick();
+    else func_80020024();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
@@ -402,24 +396,16 @@ void AttractMode_Tick(void) {
 #endif
 
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig) != 0) {
-        D_800BE6B8 ^= 0xFF;
-    }
+    if ((gButtonPress & gButton_RTrig)) D_800BE6B8 ^= 0xFF;
 }
 
-void ptstart(void) {
-    return;
-}
+void ptstart(void) {}
 
-void func_80021660(void) {
-    return;
-}
+void func_80021660(void) {}
 
 // BUG: This function writes to unallocated stack space!
 void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
     return;
 }
 
-void func_8002167C(void) {
-    return;
-}
+void func_8002167C(void) {}

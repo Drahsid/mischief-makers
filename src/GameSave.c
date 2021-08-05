@@ -122,9 +122,17 @@ void func_80006E60(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
-
+#ifdef NON_MATCHING
+// compiler refuses to recognize symbols
+void isNameEntryMaxed(void){
+  if (NameEntryCurrentChar == 10) {
+    nameEntrySelectedColumn = 2;
+    nameEntrySelectedRow = 5;
+  }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
 #ifdef NON_MATCHING

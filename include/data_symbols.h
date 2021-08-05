@@ -314,9 +314,9 @@ extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;
 extern uint32_t* D_8012A670;
-extern UNK_TYPE D_8012A678;
+extern OSMesg D_8012A678[8];
 extern OSThread D_8012A698; // idle
-extern OSThread D_8012A848; // video, controller
+extern OSThread D_8012A848; // Main
 extern OSThread D_8012A9F8; // rmon
 extern OSMesgQueue D_8012ABA8;
 extern OSMesgQueue D_8012ABC0;

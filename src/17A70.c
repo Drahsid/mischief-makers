@@ -591,12 +591,27 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
+#ifdef NON_MATCHING
+int32_t Get_TimeRank(uint16_t t, uint16_t s) {
+    s32 temp_v0;
+    u16 temp_v1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A758.s")
-
+    temp_v1 = gTimesToBeat[s];
+    temp_v0 = t;
+    if (temp_v0 < (s32) temp_v1) return 0;
+    if (temp_v0 < (temp_v1 + 1800)) return 1;
+    if (temp_v0 < (temp_v1 + 7200)) return 2;
+    if ((temp_v0 < (temp_v1 + 18000)) && (temp_v0 < 36000)) return 3;
+    return 4;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Get_TimeRank.s")
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A7E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A838.s")
+void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
+    func_80083810(arg0, arg1, D_800C96A0[Get_TimeRank(time, stage)], arg4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A890.s")
 
@@ -662,7 +677,7 @@ u64 YellowGem_getFlag(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D040.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D0A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Calculate_TimeRecordTotal.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
 

@@ -339,8 +339,7 @@ void Thread_IOProc(int32_t arg0) {
 
 void Input_Update(void) {
     osContGetReadData(gConpadArrayB);
-    if (!gConpadArrayA[gPlayerControllerIndex].errno) {
-    }
+    if (!gConpadArrayA[gPlayerControllerIndex].errno) {}
 
     osContGetReadData(gConpadArrayA);
 
@@ -349,14 +348,41 @@ void Input_Update(void) {
         gJoyX = gConpadArrayA[gPlayerControllerIndex].stick_x;
         gJoyY = gConpadArrayA[gPlayerControllerIndex].stick_y;
     }
-    else {
-        gButtonCur = 0U;
-    }
+    else gButtonCur = 0U;
 
     gButtonPress = (gButtonCur ^ D_800BE538) & gButtonCur;
     gButtonHold = gButtonCur;
     D_800BE538 = gButtonCur;
 }
+/*
+s32 Input_GetFirstController(void){
+  s32 sVar1;
+  byte abStack5 [5];
+  
+  osCreateMesgQueue(&D_8012AC20,&D_8012AC7C,1);
+  osSetEventMesg(5,&D_8012AC20,(OSMesg)0x1);
+  osContReset(&D_8012AC20,abStack5,contStatArray);
+  osCreateMesgQueue(&D_8012AC08,&OSMesg_8012ac78,1);
+  osSetEventMesg(5,&D_8012AC08,(OSMesg)0x0);
+  osCreateMesgQueue(&gContMesgq,&OSMesg_8012adb8,2);
+  osSetEventMesg(5,&gContMesgq,(OSMesg)0x2);
+  if (((abStack5[0] & 1) == 0) || ((contStatArray[0].errno & CONT_NO_RESPONSE_ERROR))) {
+    if (((abStack5[0] & 2) == 0) || ((contStatArray[1].errno & CONT_NO_RESPONSE_ERROR))) {
+      if (((abStack5[0] & 4) == 0) || ((contStatArray[2].errno & CONT_NO_RESPONSE_ERROR))) {
+        if ((abStack5[0] & 8) == 0) sVar1 = -1;
+        else {
+          sVar1 = -1;
+          if ((contStatArray[3].errno & CONT_NO_RESPONSE_ERROR) == 0) {sVar1 = 3;
+        }
+      }
+      else sVar1 = 2;
+    }
+    else sVar1 = 1;
+  }
+  else sVar1 = 0;
+  return sVar1;
+}*/
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
@@ -370,7 +396,7 @@ void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
 }
 
 void func_80001264(void) {
-    uint32_t sp1C;
+    OSMesg sp1C;
     osRecvMesg(&D_8012ABA8, &sp1C, 1);
 }
 
