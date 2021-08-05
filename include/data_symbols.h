@@ -113,6 +113,7 @@ extern UNK_TYPE D_800BE73C;
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
+extern s16 D_800C383C[];
 extern Sprite D_800C4E5C;
 extern int8_t gSpriteColR;
 extern int8_t gSpriteColG;
@@ -125,7 +126,7 @@ extern uint32_t D_800C4EC8;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
 extern uint16_t gTimeRecords[64]; // records for stage times.
-extern uint16_t D_800C4FA8[11];   // contains default "Start" filename
+extern uint16_t GameSave_DefaultName[11];   // contains default "Start" filename
 extern uint16_t nameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern UNK_TYPE D_800C71A0;
@@ -139,6 +140,8 @@ extern UNK_TYPE D_800C9080;
 extern UNK_TYPE D_800C94CC;
 extern UNK_TYPE D_800C94D0;
 extern UNK_TYPE D_800C94DA;
+extern s16 D_800C9694[5];
+extern s16* D_800C96A0[5]; //"Perfect!!!","Excellent!","Very Good!", "  Good  ","Try Harder"
 extern ActorInit gActorInit[];
 extern uint32_t D_800C9FCC[];
 extern int32_t D_800C9DD8[];
@@ -160,8 +163,10 @@ extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
+extern u16 D_800CC6EC[88][8];
 extern uint8_t D_800CCFDC; // does not like being declared an array. Which it is.
 extern int32_t D_800CEC0C;
+extern u8 D_800D16AA[]; //right in the middle of a pointer array?
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
 extern uint16_t D_800D28E8;
@@ -336,7 +341,7 @@ extern OSViMode D_8012AD10;
 extern OSContStatus OSContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
-extern OSMesgQueue D_8012ADA0;
+extern OSMesgQueue gContMesgq;
 extern Mtx D_8012ADC0[390]; // room for 390 Mtx...
 extern Mtx D_80130F40[390];
 extern UNK_TYPE gPlayerControllerIndex;
@@ -363,15 +368,19 @@ extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
 extern int32_t D_801376E4;
 extern int32_t D_801376E8;
+extern OSMesg D_80137800[48];
 extern OSMesgQueue D_801377B8;
 extern OSMesgQueue D_801377D0;
 extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
+extern void* Sound_AIBuffers[3];
 extern uint16_t D_80137D90;
 extern UNK_TYPE D_8016DEB8;
 extern ALCSPlayer* BGM_pALCPlayer;
 extern OSTask* D_8016E6F0;
-extern UNK_TYPE D_8016E718;
+extern u32 D_8016E718;
+extern Bitmap D_8016E820[56];
+extern UNK_TYPE D_8016EF20;
 extern int64_t gYellowGemBitfeild;
 extern int8_t gWorldProgress;
 extern Mtx* D_801780F0;
@@ -426,5 +435,13 @@ extern uint8_t NameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern CFB D_803DA800[2];
+// todo: organize by scope/ purpose.
+extern uint16_t GameSave_Names[2][11];
+extern uint8_t GameSave_Age[2];
+extern uint8_t GameSave_Sex[2]; // 0= M, 1=F
+extern uint16_t GameSave_RedGems[2];
+extern uint16_t GameSave_YellowGems[2];
+extern uint64_t GameSave_PlayTime[2];
+extern uint32_t gFestivalRecords[7]; //in order on the menu. also used to calculate stage time
 
 #endif

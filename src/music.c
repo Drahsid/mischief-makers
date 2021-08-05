@@ -6,9 +6,9 @@
 ALCSPlayer SFX_ALCPlayers[4];
 ALCSPlayer* SFX_pALCPlayers[4];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800017D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaCallBack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001988.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaNew.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001A80.s")
 
@@ -21,7 +21,27 @@ void Sound_SetEventMesg(void) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_Tick.s")
-
+/*
+void func_800028D0(void){  
+  u8 i;
+  
+  osRecvMesg(&D_801377D0,0,1);
+  D_8016E718 = (D_800C3838 -1) % 3;
+  osAiSetNextBuffer(Sound_AIBuffers[D_8016E718],D_800C383C[D_8016E718] << 2);
+  i = 0;
+  if (D_800C3830>0) {
+    do {
+      osRecvMesg(&D_801377B8,0,0);
+      i++;
+    } while (i < D_800C3830);
+  }
+  func_80001A80();
+  D_800C3830 = 0;
+  D_800C3834 ^= 1;
+  D_800C3838++;
+  D_8016DEB8++;
+  }
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800028D0.s")
 
 void func_800029EC(void) {

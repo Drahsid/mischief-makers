@@ -607,7 +607,9 @@ int32_t Get_TimeRank(uint16_t t, uint16_t s) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Get_TimeRank.s")
 #endif
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A7E0.s")
+void func_8001A7E0(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
+    func_8008379C(arg0, arg1, D_800C9694[Get_TimeRank(time, stage)], arg4);
+}
 
 void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
     func_80083810(arg0, arg1, D_800C96A0[Get_TimeRank(time, stage)], arg4);
@@ -621,7 +623,7 @@ void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, in
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B004.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B02C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/World_IncrementProgress.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B078.s")
 

@@ -2,14 +2,18 @@
 #include <function_symbols.h>
 #include <inttypes.h>
 #include <ultra64.h>
+#include "alphabet.h"
 
-uint16_t GameSave_Names[2][11];
-uint8_t GameSave_Age[2];
-uint8_t GameSave_Sex[2];
-uint16_t GameSave_RedGems[2];
-uint16_t GameSave_YellowGems[2];
-uint64_t D_80171AD8[2]; // contains total play time
-uint32_t gFestivalRecords[7];
+char GameSave_EEPROMID[8]="TREA0722";
+
+u16 gTimeRecords[64]=
+ {36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
+  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
+  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
+  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000};
+
+u16 GameSave_DefaultName[11]={ALPHA_Cap_S,ALPHA_Lower_T,ALPHA_Lower_A,ALPHA_Lower_R,ALPHA_Lower_T,
+  ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_NULL};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 
@@ -21,7 +25,17 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
-
+/*
+void GameSave_Initialize(u8 slot){
+  u16 i;
+  for(i=0;i<11;i++) GameSave_Names[slot][i] = GameSave_DefaultName[i];
+  GameSave_Age[slot] = 0;
+  GameSave_Sex[slot] = 0;
+  GameSave_RedGems[slot] = 30;
+  GameSave_YellowGems[slot] = 0;
+  GameSave_PlayTime[slot]=0;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_SetDefaults.s")
@@ -31,39 +45,35 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 void GameSave_LoadRecords(void) {
     uint16_t index;
 
-    osEepromProbe(&D_8012ADA0);
+    osEepromProbe(&gContMesgq);
     if (gSaveSlotIndex) {
-        osEepromLongRead(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongRead(&D_8012ADA0, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
+        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
     }
     else {
-        osEepromLongRead(&D_8012ADA0, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongRead(&D_8012ADA0, 0x14, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
+        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, 0x80);
     }
-    if (D_80171B19 >= 2) {
-        D_80171B19 = 0;
-    }
+    if (D_80171B19 >= 2) D_80171B19 = 0;
 
     func_80004F24();
 
     for (index = 0; index < 64; index++) {
-        if (gTimeRecords[index] > 36000) {
-            gTimeRecords[index] = 36000;
-        }
+        if (gTimeRecords[index] > 36000) gTimeRecords[index] = 36000;
     }
 }
 
 void func_80005770(void) {
-    osEepromProbe(&D_8012ADA0);
-    osEepromLongWrite(&D_8012ADA0, 2, GameSave_Names, 0x48);
+    osEepromProbe(&gContMesgq);
+    osEepromLongWrite(&gContMesgq, 2, GameSave_Names, 0x48);
 
     if (gSaveSlotIndex) {
-        osEepromLongWrite(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&D_8012ADA0, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
+        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
     }
     else {
-        osEepromLongWrite(&D_8012ADA0, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&D_8012ADA0, 0x14, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
+        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, 0x80);
     }
 }
 
@@ -124,14 +134,14 @@ void func_80006E60(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
-void isNameEntryMaxed(void){
+void NameEntry_IsMaxed(void){
   if (NameEntryCurrentChar == 10) {
     nameEntrySelectedColumn = 2;
     nameEntrySelectedRow = 5;
   }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/isNameEntryMaxed.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 

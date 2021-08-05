@@ -5,6 +5,7 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+
 void func_800235E0(void) {
     D_800BE72C = 0;
     D_800BE730 = 0;
@@ -458,6 +459,13 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027800.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800278E8.s")
+
+/*
+u8 func_80027A44(u16 *arg0) {
+    if (ALPHA_Lower_A > *arg0) return 6;
+    if (*arg0 == 0xC000) return 7;
+    return D_800D16AA[*arg0];
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80027A44.s")
 
@@ -1141,23 +1149,18 @@ int32_t  func_800409E0(u32 Index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042290.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042308.s")
+void func_80042308(u16 i){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042310.s")
+void func_80042310(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {}
+void func_80042324(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042324.s")
+void func_80042338(u16 i){}
+void func_80042340(u16 i){}
+void func_80042348(u16 i){}
+void func_80042350(u16 i){}
+void func_80042358(u16 i){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042338.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042340.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042348.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042350.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042358.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042360.s")
+void func_80042360(u16 i){gActors[i].unk_0xD0_h++;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800423A0.s")
 

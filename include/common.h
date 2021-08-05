@@ -2,7 +2,7 @@
 #define COMMON_INCLUDE_H
 
 #include "inttypes.h"
-
+#include "Alphabet.h"
 enum {
     GAMESTATE_SOFTRESET,
     GAMESTATE_INTRO,
@@ -57,5 +57,6 @@ typedef union {
     };
     /* 0x00 */ uint32_t rgba;
 } RGBA32; /* sizeof = 0x04 */
+
 
 #endif

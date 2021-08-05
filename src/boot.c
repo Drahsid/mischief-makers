@@ -277,8 +277,8 @@ void Thread_IOProc(int32_t arg0) {
     gPlayerControllerIndex = Input_GetFirstController();
     phi_s2 = (void*)0x803DA800;
     while (1) {
-        func_8009AA80(&D_8012ADA0);
-        osRecvMesg(&D_8012ADA0, 0, 1);
+        func_8009AA80(&gContMesgq);
+        osRecvMesg(&gContMesgq, 0, 1);
         osContGetReadData(&D_8012AD88);
         if (gPlayerControllerIndex != -1) {
             if (1) {
@@ -331,7 +331,7 @@ void Thread_IOProc(int32_t arg0) {
         Input_Update();
     }
 
-    Sound_Tick(new_var3);
+    Sound_Tick();
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IOProc.s")

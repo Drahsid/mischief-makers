@@ -3,6 +3,27 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+/*
+Sprite D_800C4E5C ={
+    0,0,0,0,                //x,y,h,w
+    1.0,1.0,                //Scale
+    0,0,                    //expx,expy
+    SP_TRANSPARENT, 0x1234, //Attr,
+    0xff,0xff,0xff,0xff,    //RGBA
+    0,0,NULL,               //startTLUT,nTLUT,LUT,
+    0,1,56,648,             //istart,istep,nbitmaps,ndisplist
+    15,128,4,0              //bmHeight,bmReal,bmFMT,bmsiz
+    D_8016E820,             //bitmap
+    &D_8016EF20,NULL,       //rsp_dl,rsp_dl_next
+    0,0};                   //frac
+*/
+s8 gSpriteColR=0xFF;
+s8 gSpriteColG=0xFF;
+s8 gSpriteColB=0xFF;
+s8 gSpriteColA=0xFF;
+double gSpriteScaleX=1.0;
+double gSpriteScaleY=1.0;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_800045F8.s")
@@ -17,16 +38,17 @@ void Sprite_Init(int32_t* arg0) {
     spInit(temp_a0);
     D_800C4E5C.rsp_dl_next = D_800C4E5C.rsp_dl;
     *arg0 = sp1C;
+    //keeps forcing 16-bit value.(FFFF vs FF)
     gSpriteColR = 0xFF;
     gSpriteColG = 0xFF;
     gSpriteColB = 0xFF;
     gSpriteColA = 0xFF;
     D_800C4EBC = 0;
     D_800C4EC0 = 0;
-    D_800C4EC4 = 0x28;
+    D_800C4EC4 = 40;
     D_800C4EC8 = 1;
-    gSpriteScaleX = (double)1.0;
-    gSpriteScaleY = (double)1.0;
+    gSpriteScaleX = 1.0;
+    gSpriteScaleY = 1.0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Init.s")
@@ -68,12 +90,9 @@ void Sprite_SetColor(int8_t r, int8_t g, int8_t b, int8_t a) {
 void Sprite_SetTransparent(int32_t arg0) {
     Sprite* new_var = &D_800C4E5C;
     spClearAttribute(&D_800C4E5C, 0xFFFF);
-    if (arg0 != 0) {
-        spSetAttribute(new_var, SP_TRANSPARENT);
-    }
-    else {
-        spClearAttribute(new_var, SP_TRANSPARENT);
-    }
+    if (arg0) spSetAttribute(new_var, SP_TRANSPARENT);
+    else spClearAttribute(new_var, SP_TRANSPARENT);
+
 }
 
 #ifdef NON_MATCHING
