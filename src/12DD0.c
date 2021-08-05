@@ -9,9 +9,14 @@ void func_800121D0(void) {
     uint16_t index;
     uint16_t sp1E = gPlayerActor.health;
 
-    func_8001E2D0(0);
-    if (sp1E) {}
-    gPlayerActor.health = (s16)sp1E;
+    sp1E = D_800EF5F0;
+    Actor_Spawn(0);
+
+    if (sp1E) {
+    }
+
+    gPlayerActor.health = sp1E;
+
     gActors->pos.z = 1;
     gPlayerVelXMirror = 0;
     gPlayerVelYMirror = 0;

@@ -3,8 +3,8 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+// this is hand-written
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/entrypoint.s")
-
 
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
@@ -246,19 +246,18 @@ void Thread_IdleProc(int32_t arg0) {
     }
 }
 #else
-
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000A84.s")
-/* Splat bug.
+
 #ifdef NON_MATCHING
 // primary issue in matching is loading of data_ptr / data_size
 void Thread_IOProc(int32_t arg0) {
     OSMesgQueue* new_var3;
-    int new_var;
+    int32_t new_var;
     void* phi_s2;
 
     Sound_InitPlayers();
@@ -270,7 +269,7 @@ void Thread_IOProc(int32_t arg0) {
     osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
     osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
-    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_DITHER_OFF);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_OFF);
     osViSetEvent(new_var3, D_8012AC80, 1);
     func_800008E0();
     func_80022D10();
@@ -334,9 +333,9 @@ void Thread_IOProc(int32_t arg0) {
 
     Sound_Tick(new_var3);
 }
-#else*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IOProc.s")
-//#endif
+#endif
 
 void Input_Update(void) {
     osContGetReadData(gConpadArrayB);
