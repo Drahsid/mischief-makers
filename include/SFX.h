@@ -1,4 +1,6 @@
 // Sound Effect Id's. Differnt from Sound test numbers, as it uses a lookup table
+#ifndef SFX_H
+#define SFX_H
 
 #define SFX_MARINA_TITLE    0x0021 // "Mischief Makers!"
 #define SFX_MARINA_YELL1    0x00B4 // "Hah!"
@@ -84,3 +86,6 @@
 #define SFX_STAGE_TILES 0x00BB
 
 #define SFX_LIFEBAR 0x0141
+
+#endif
+

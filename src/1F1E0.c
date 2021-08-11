@@ -234,7 +234,7 @@ void func_80020024(void) {
     func_80047C98(); // level objects
 
     if ((D_800BE6AC & 0x4000) != 0) {
-        phi_s2 = SFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = SFX_Volumes; // Whitespace memes
+        phi_s2 = gSFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -254,7 +254,7 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
+void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
     if (YellowGem_getFlag(gCurrentStage)) {
         func_800836A0(9, 1, &Alpha_GotIt, 0);
     }
@@ -347,7 +347,7 @@ void AttractMode_Tick(void) {
         else if (gGameSubState == 3) {
             func_80021098(&gGameSubState);
             if (D_801037AA == D_80103944) {
-                AttractModeIndex += 1;
+                gAttractModeIndex += 1;
                 D_80137D90 = 0;
                 gGameState = GAMESTATE_SOFTRESET;
                 gGameSubState = 0;
@@ -361,11 +361,11 @@ void AttractMode_Tick(void) {
         }
     }
     else {
-        if (3 < AttractModeIndex) {
-            AttractModeIndex = 0;
+        if (3 < gAttractModeIndex) {
+            gAttractModeIndex = 0;
         }
 
-        gCurrentStage = (&D_800CA2B0)[AttractModeIndex];
+        gCurrentStage = (&D_800CA2B0)[gAttractModeIndex];
         D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
         D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)gCurrentStage * 2);
         D_800CA234 = 0xA00;
@@ -373,7 +373,7 @@ void AttractMode_Tick(void) {
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&AttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
+        func_800232A4(&gAttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
         D_80104098.unk_0x2920 = 0;
@@ -387,8 +387,8 @@ void AttractMode_Tick(void) {
         D_800CA240 = 0;
         D_800CA248 = 0;
         D_800CA24C = 0;
-        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[AttractModeIndex];
-        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[AttractModeIndex];
+        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[gAttractModeIndex];
+        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[gAttractModeIndex];
     }
 }
 #else
@@ -399,13 +399,11 @@ void func_80021620(void) {
     if ((gButtonPress & gButton_RTrig)) D_800BE6B8 ^= 0xFF;
 }
 
-void ptstart(void) {}
+void func_80021658(void) {}
 
 void func_80021660(void) {}
 
 // BUG: This function writes to unallocated stack space!
-void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
-    return;
-}
+void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {}
 
 void func_8002167C(void) {}

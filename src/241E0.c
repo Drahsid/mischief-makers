@@ -433,12 +433,12 @@ void func_80027468(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
     }
 }
 
-void func_80027510(uint16_t index, uint32_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+void func_80027510(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     Actor* actor;
 
     func_80027370(index, pos_x, pos_y, pos_z);
     actor = &gActors[index];
-    actor->unk_0xE8 = arg1;
+    actor->unk_0xE8 = (uint32_t)arg1;
     actor->unk_0xE6 = 1;
 }
 
@@ -776,7 +776,7 @@ void RedGem_Cap(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F6D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/gem_collision.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/GemCollision.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002FC30.s")
 

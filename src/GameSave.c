@@ -1,8 +1,9 @@
+#include "GameSave.h"
 #include <data_symbols.h>
 #include <function_symbols.h>
-#include <inttypes.h>
 #include <ultra64.h>
 #include "alphabet.h"
+
 
 char GameSave_EEPROMID[8]="TREA0722";
 
@@ -146,14 +147,13 @@ void NameEntry_IsMaxed(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
 #ifdef NON_MATCHING
-// compiler refuses to recognize symbols
 void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng) {
-    if (NameEntryCurrentChar < 10) {
-        if (nameEntryLanguage == 0) nameEntrySpace[NameEntryCurrentChar] = lang1[nameEntrySelectedColumn];
-        else if (nameEntryLanguage == 1)
-            nameEntrySpace[NameEntryCurrentChar] = lang2[nameEntrySelectedColumn];
-        else if (nameEntryLanguage == 2)
-            nameEntrySpace[NameEntryCurrentChar] = Eng[nameEntrySelectedColumn];
+    if (gNameEntryCurrentChar < 10) {
+        if (gNameEntryLanguage == 0) gNameEntrySpace[gNameEntryCurrentChar] = lang1[gNameEntrySelectedColumn];
+        else if (gNameEntryLanguage == 1)
+            gNameEntrySpace[gNameEntryCurrentChar] = lang2[gNameEntrySelectedColumn];
+        else if (gNameEntryLanguage == 2)
+            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
         SFX_Play_1(0x23);
         SFX_Play_1(0x10d);
         func_80007ABC();

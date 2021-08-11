@@ -180,65 +180,60 @@ void mainproc(int32_t arg0) {
     osStartThread(&D_8012A698);
 }
 
-
 #ifdef NON_MATCHING
+// OK besides regalloc and do while loops
 void Thread_IdleProc(int32_t arg0) {
-    uint32_t temp_t0;
-    uint32_t temp_t1;
-    uint32_t temp_t5;
-    uint32_t temp_t7;
-    uint32_t phi_t0;
-    uint32_t phi_t7;
-    uint32_t phi_t5;
-    uint32_t phi_t1;
-    uint32_t phi_v0;
+    int32_t* phi_t0;
+    int32_t* phi_t7;
+    int32_t* phi_t5;
+    int32_t* phi_t1;
+    int32_t* phi_v0;
 
     osCreateViManager(0xFE);
-    if (osTvType == 2) {
-        osViSetMode(osViModeTable + 0x1e); // osViSetMode ?
+    if (osTvType == OS_TV_MPAL) {
+        osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Framebuffer_Clear();
-        phi_t0 = (uint32_t)&osViModeTable + 0x1e;
-        phi_t7 = (uint32_t)&D_8012AD10;
-    loop_2:
-        temp_t0 = phi_t0 + 0xC;
-        *((uint32_t*)phi_t7) = *((uint32_t*)phi_t0);
-        temp_t7 = phi_t7 + 0xC;
-        *((uint32_t*)temp_t7 - 8) = *((uint32_t*)temp_t0 - 8);
-        *((uint32_t*)temp_t7 - 4) = *((uint32_t*)temp_t0 - 4);
-        phi_t0 = temp_t0;
-        phi_t7 = temp_t7;
-        if (temp_t0 != (&osViModeTable + 0x1e + 0x48)) {
-            goto loop_2;
-        }
-        *((uint32_t*)temp_t7 + 0) = *((uint32_t*)temp_t0 + 0);
-        *((uint32_t*)temp_t7 + 4) = *((uint32_t*)temp_t0 + 4);
-        phi_v0 = &osViModeTable + 0x1e;
+        phi_t0 = &osViModeTable[OS_VI_MPAL_LAN1];
+        phi_t7 = &D_8012AD10;
+        phi_v0 = &osViModeTable[OS_VI_MPAL_LAN1];
+
+        do {
+            phi_t7[0] = phi_t0[0];
+            phi_t7[1] = phi_t0[1];
+            phi_t7[2] = phi_t0[2];
+
+            phi_t0 += 3;
+            phi_t7 += 3;
+        } while (phi_t0 != (int32_t*)&osViModeTable[OS_VI_MPAL_LAN1 + 1]);
+
+        phi_t7[0] = phi_t0[0];
+        phi_t7[1] = phi_t0[1];
     }
     else {
-        osViSetMode(osViModeTable + 2);
+        osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
         Framebuffer_Clear();
-        phi_t5 = (uint32_t)osViModeTable + 2;
-        phi_t1 = (uint32_t)&D_8012AD10;
-    loop_5:
-        temp_t5 = phi_t5 + 0xC;
-        *((uint32_t*)phi_t1) = *((uint32_t*)phi_t5);
-        temp_t1 = phi_t1 + 0xC;
-        *((uint32_t*)temp_t1 - 8) = *((uint32_t*)temp_t5 - 8);
-        *((uint32_t*)temp_t1 - 4) = *((uint32_t*)temp_t5 - 4);
-        phi_t5 = temp_t5;
-        phi_t1 = temp_t1;
-        if (temp_t5 != (uint32_t)(osViModeTable + 2 + 0x48)) {
-            goto loop_5;
-        }
-        *((uint32_t*)temp_t1 + 0) = *((uint32_t*)temp_t5 + 0);
-        *((uint32_t*)temp_t1 + 4) = *((uint32_t*)temp_t5 + 4);
-        phi_v0 = &osViModeTable + 2;
+        phi_t5 = &osViModeTable[OS_VI_NTSC_LAN1];
+        phi_t1 = &D_8012AD10;
+        phi_v0 = &osViModeTable[OS_VI_NTSC_LAN1];
+
+        do {
+            phi_t1[0] = phi_t5[0];
+            phi_t1[1] = phi_t5[1];
+            phi_t1[2] = phi_t5[2];
+
+            phi_t1 += 3;
+            phi_t5 += 3;
+        } while (phi_t5 != (int32_t*)&osViModeTable[OS_VI_NTSC_LAN1 + 1]);
+
+        phi_t1[0] = phi_t5[0];
+        phi_t1[1] = phi_t5[1];
     }
     D_8012AD08 = phi_v0;
-    func_80099CF0(0x96, &D_8012AC38, &D_8012A678, 8); // osCreatePiManager ?
-    osCreateThread(&D_8012A9F8, 0, &func_8009A2B8, 0, &D_80129670, 0xFA);
+
+    osCreatePiManager(0x96, &D_8012AC38, &D_8012A678, 8);
+    osCreateThread(&D_8012A9F8, 0, &Thread_RmonProc, 0, &D_80129670, 0xFA);
     osStartThread(&D_8012A9F8);
-    osCreateThread(&D_8012A848, 3, &func_80000C20, arg0, &D_80128670, 0xA);
+    osCreateThread(&D_8012A848, 3, &Thread_MainProc, arg0, &D_80128670, 0xA);
     osStartThread(&D_8012A848);
     osSetThreadPri(0, 0);
 
@@ -254,53 +249,56 @@ void Thread_IdleProc(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_80000A84.s")
 
 #ifdef NON_MATCHING
-// primary issue in matching is loading of data_ptr / data_size
-void Thread_IOProc(int32_t arg0) {
-    OSMesgQueue* new_var3;
-    int32_t new_var;
-    void* phi_s2;
+// Almost OK! Need to produce the sra 3, srl 3 at D_8012AC84->t.data_ptr = ..., then regalloc
+void Thread_MainProc(int32_t arg0) {
+    uint16_t* cfb;
 
     Sound_InitPlayers();
-    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABA8), (void**)(&D_8012AC68), 1);
-    new_var3 = &D_8012ABC0;
-    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABD8), (void**)(&D_8012AC70), 1);
+    osCreateMesgQueue(&D_8012ABA8, &D_8012AC68, 1);
+    osCreateMesgQueue(&D_8012ABD8, &D_8012AC70, 1);
     osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
     Sound_SetEventMesg();
-    osCreateMesgQueue((OSMesgQueue*)(&D_8012ABF0), (void**)(&D_8012AC74), 1);
-    osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
-    osCreateMesgQueue(new_var3, (void**)(&D_8012AC6C), 1);
-    osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_OFF);
-    osViSetEvent(new_var3, D_8012AC80, 1);
+    osCreateMesgQueue(&D_8012ABF0, &D_8012AC74, 1);
+    osSetEventMesg(9U, &D_8012ABF0, D_8012AC80);
+    osCreateMesgQueue(&D_8012ABC0, &D_8012AC6C, 1);
+    osViSetSpecialFeatures(0xA);
+    osViSetEvent(&D_8012ABC0, D_8012AC80, 1U);
+
     func_800008E0();
     func_80022D10();
-    func_80000A84(D_800BE700);
+    func_80000A84(gCurrentFramebufferIndex);
+
     gPlayerControllerIndex = Input_GetFirstController();
-    phi_s2 = (void*)0x803DA800;
+    cfb = D_803DA800;
+
     while (1) {
-        func_8009AA80(&gContMesgq);
-        osRecvMesg(&gContMesgq, 0, 1);
-        osContGetReadData(&D_8012AD88);
+        osContStartReadData(&gContMesgq);
+        osRecvMesg(&gContMesgq, NULL, 1);
+        osContGetReadData(gConpadArrayB);
         if (gPlayerControllerIndex != -1) {
-            if (1) {
-                func_8009AA80(&D_8012AC08);
-            }
+            osContStartReadData(&D_8012AC08);
         }
 
         D_8012AC84->t.type = 1;
         D_8012AC84->t.flags = 0;
-        D_8012AC84->t.ucode_boot = 0x800BA9E0;
-        D_8012AC84->t.ucode_boot_size = (&D_800BAAB0) - ((uint32_t*)0x800BA9E0);
-        D_8012AC84->t.ucode = (uint64_t*)(&D_800BAAB0);
-        D_8012AC84->t.ucode_data = (uint64_t*)(&D_800EEA10);
-        D_8012AC84->t.output_buff = 0;
-        D_8012AC84->t.output_buff_size = 0;
+        D_8012AC84->t.ucode_boot = (uint64_t*)rspbootTextStart;
+        D_8012AC84->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
+        D_8012AC84->t.ucode = (uint64_t*)gspFast3DTextStart;
+        D_8012AC84->t.ucode_data = (uint64_t*)gspFast3DDataStart;
+        D_8012AC84->t.output_buff = NULL;
+        D_8012AC84->t.output_buff_size = NULL;
         D_8012AC84->t.ucode_size = 0x1000;
         D_8012AC84->t.ucode_data_size = 0x800;
-        D_8012AC84->t.dram_stack = (uint64_t*)(&D_8011D970);
+        D_8012AC84->t.dram_stack = (uint64_t*)&D_8011D970;
         D_8012AC84->t.dram_stack_size = 0x400;
-        D_8012AC84->t.data_ptr = ((D_800BE700 * 0x6180) + 0x8012ADC0) + (new_var = 0x180);
-        D_8012AC84->t.data_size = (((int32_t)((((*((uint32_t*)0x8012A670)) - 0x8012ADC0) + ((-((int32_t)(D_800BE700 * 0x6180))) & 0xFFFFu)) - new_var)) >> 3) * 8;
-        D_8012AC84->t.yield_data_ptr = (uint64_t*)(&D_8011DDF0);
+
+        //(uint64_t*)((gCurrentFramebufferIndex * 0x6180) + gDListTail + 0x180);
+        D_8012AC84->t.data_ptr = &gDListTail[gCurrentFramebufferIndex][48];
+
+        //((s32)(((gDListHead - gDListTail) + -(s32)(gCurrentFramebufferIndex * 0x6180)) - 0x180) >> 3) * 8;
+        D_8012AC84->t.data_size = (uint32_t)gDListHead - (uint32_t)(&gDListTail[gCurrentFramebufferIndex][48]);
+
+        D_8012AC84->t.yield_data_ptr = (uint64_t*)&D_8011DDF0;
         D_8012AC84->t.yield_data_size = 0xDA0;
 
         osWritebackDCacheAll();
@@ -308,33 +306,35 @@ void Thread_IOProc(int32_t arg0) {
         osSpTaskStartGo(D_8012AC84);
         Sound_Tick();
         func_800028D0();
-        D_800BE700 = 1 - (D_800BE700 & 0xFFFF);
-        func_80000A84(D_800BE700 & 0xFFFF);
-        osRecvMesg(&D_8012ABF0, 0, 1);
+
+        gCurrentFramebufferIndex = 1 - gCurrentFramebufferIndex;
+
+        func_80000A84(gCurrentFramebufferIndex);
+        osRecvMesg(&D_8012ABF0, NULL, 1);
         func_800029EC();
-        osViSwapBuffer(phi_s2);
+        osViSwapBuffer(cfb);
         func_80010898();
-        if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
-            D_8012AC84->t.ucode_boot = 0x800BA9E0;
+
+        // D_8012ABC0 is probably the retrace/vsync queue
+        if (MQ_IS_FULL(&D_8012ABC0)) { // if (D_8012ABC0.validCount >= D_8012ABC0.msgCount) {
+            Sound_Tick(&D_8012ABC0);
             func_800028D0();
-            osRecvMesg((uint32_t*)new_var3, &D_8012AC80, 1);
+            osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
             func_800029EC();
         }
 
-        phi_s2 = &D_8012AC80;
-        osRecvMesg((uint32_t*)new_var3, phi_s2, 1);
-        phi_s2 = (void*)0x803DA800;
-        if (D_800BE700 != 0) {
-            phi_s2 = (void*)0x801DA800;
+        osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
+
+        if (gCurrentFramebufferIndex != 0) {
+            cfb = D_801DA800;
         }
 
         Input_Update();
     }
-
     Sound_Tick();
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IOProc.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_MainProc.s")
 #endif
 
 void Input_Update(void) {
@@ -412,7 +412,6 @@ int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_8000147C.s")
-
 
 void GameState_Tick(void) {
     switch (gGameState) {
