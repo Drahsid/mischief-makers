@@ -3,7 +3,7 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-ALCSPlayer SFX_ALCPlayers[4];
+ALCSPlayer gSFX_ALCPlayers[4];
 ALCSPlayer* SFX_pALCPlayers[4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800017D0.s")
@@ -54,15 +54,14 @@ void SFX_Play_2(UNK_TYPE arg0) {
     SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
-/* Splat bug. Again.
 #ifdef NON_MATCHING
 // Differences are regalloc
 void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
     SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
 }
-#else*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_3.s")
-//#endif
+#endif
 
 #ifdef NON_MATCHING
 // Differences are regalloc
@@ -146,7 +145,7 @@ void SFX_StopAll(void) {
     u8 i;
     for (i = 0; i < 4; i++) {
         alSeqpStop(SFX_pALCPlayers[i]);
-        SFX_ChannelStates[i] = 0;
+        gSFX_ChannelStates[i] = 0;
     }
 }
 

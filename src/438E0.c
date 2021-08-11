@@ -9,7 +9,6 @@ void func_80042CE8(int32_t a0) {}
 
 void func_80042CF0(int32_t a0) {}
 
-
 #ifdef NON_MATCHING
 void func_80042CF8(uint16_t* arg0) {
     uint16_t new_var;

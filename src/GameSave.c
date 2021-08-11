@@ -1,13 +1,13 @@
+#include "GameSave.h"
 #include <data_symbols.h>
 #include <function_symbols.h>
-#include <inttypes.h>
 #include <ultra64.h>
 
-uint16_t GameSave_Names[2][11];
-uint8_t GameSave_Age[2];
-uint8_t GameSave_Sex[2];
-uint16_t GameSave_RedGems[2];
-uint16_t GameSave_YellowGems[2];
+uint16_t gGameSave_Names[2][11];
+uint8_t gGameSave_Age[2];
+uint8_t gGameSave_Sex[2];
+uint16_t gGameSave_RedGems[2];
+uint16_t gGameSave_YellowGems[2];
 uint64_t D_80171AD8[2]; // contains total play time
 uint32_t gFestivalRecords[7];
 
@@ -55,7 +55,7 @@ void GameSave_LoadRecords(void) {
 
 void func_80005770(void) {
     osEepromProbe(&D_8012ADA0);
-    osEepromLongWrite(&D_8012ADA0, 2, GameSave_Names, 0x48);
+    osEepromLongWrite(&D_8012ADA0, 2, gGameSave_Names, 0x48);
 
     if (gSaveSlotIndex) {
         osEepromLongWrite(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
@@ -130,12 +130,12 @@ void func_80006E60(void) {
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
 void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng) {
-    if (NameEntryCurrentChar < 10) {
-        if (nameEntryLanguage == 0) nameEntrySpace[NameEntryCurrentChar] = lang1[nameEntrySelectedColumn];
-        else if (nameEntryLanguage == 1)
-            nameEntrySpace[NameEntryCurrentChar] = lang2[nameEntrySelectedColumn];
-        else if (nameEntryLanguage == 2)
-            nameEntrySpace[NameEntryCurrentChar] = Eng[nameEntrySelectedColumn];
+    if (gNameEntryCurrentChar < 10) {
+        if (gNameEntryLanguage == 0) gNameEntrySpace[gNameEntryCurrentChar] = lang1[gNameEntrySelectedColumn];
+        else if (gNameEntryLanguage == 1)
+            gNameEntrySpace[gNameEntryCurrentChar] = lang2[gNameEntrySelectedColumn];
+        else if (gNameEntryLanguage == 2)
+            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
         SFX_Play_1(0x23);
         SFX_Play_1(0x10d);
         func_80007ABC();

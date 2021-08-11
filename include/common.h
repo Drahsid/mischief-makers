@@ -33,18 +33,19 @@ typedef struct {
     };
 } Vec2i_union; /* sizeof = 0x08 */
 
-typedef struct {
-    union {
-        /* 0x00 */ uint16_t x;
+typedef union {
+    struct {
         /* 0x00 */ int32_t x_w;
-    };
-    union {
-        /* 0x04 */ uint16_t y;
         /* 0x04 */ int32_t y_w;
-    };
-    union {
-        /* 0x08 */ uint16_t z;
         /* 0x08 */ int32_t z_w;
+    };
+    struct {
+        /* 0x00 */ uint16_t x;
+        /* 0x02 */ uint16_t x_1;
+        /* 0x04 */ uint16_t y;
+        /* 0x06 */ uint16_t y_1;
+        /* 0x08 */ uint16_t z;
+        /* 0x0A */ uint16_t z_1;
     };
 } Vec3i_union; /* sizeof = 0x0C */
 

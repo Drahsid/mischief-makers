@@ -6,7 +6,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048600.s")
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_800486F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048740.s")
@@ -26,7 +25,6 @@ int32_t func_80048CE4() {
     if (gPlayerActor.unk_0xD1 < 55) return 2;
     return 3;
 }
-
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048D30.s")
 
@@ -397,7 +395,6 @@ void func_8004EC60(uint16_t index) {
     D_801373E0.unk_0x50 = gPlayerPosXMirror;
     D_801373E0.unk_0x54 = gPlayerPosYMirror;
 }
-
 
 #ifdef NON_MATCHING
 // ActorFunc for Marina
