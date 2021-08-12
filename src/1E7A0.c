@@ -100,7 +100,7 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x190 = 0;
     gActors[index].unk_0x18C = 0;
     gActors[index].unk_0x188 = 0;
-    gActors[index].unk_0x184 = 0;
+    gActors[index].unk_0x184_w = 0;
     gActors[index].unk_0x180_w = 0;
     gActors[index].unk_0x17C = 0;
     gActors[index].unk_0x178 = 0;
