@@ -63,7 +63,7 @@ extern int16_t D_800BE588;
 extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
-extern uint16_t D_800BE5A4;
+extern uint16_t gRNGSeed;
 extern uint16_t D_800BE5D0;
 extern uint16_t D_800BE5D4;
 extern int32_t gPlayerPosXMirror; // likely {s16[2];s32;} unions
@@ -144,7 +144,7 @@ extern UNK_TYPE D_800C94DA;
 extern s16 D_800C9694[5];
 extern s16* D_800C96A0[5]; //"Perfect!!!","Excellent!","Very Good!", "  Good  ","Try Harder"
 extern ActorInit gActorInit[];
-extern int32_t gActorInitFlags[];
+extern int32_t gActorInitFlags[125];
 extern uint32_t D_800C9FCC[];
 extern uint16_t D_800CA230;
 extern uint16_t D_800CA234;
@@ -175,7 +175,7 @@ extern int32_t D_800D28EC;
 extern uint16_t D_800D28F0;
 extern int16_t D_800D28F4;
 extern int16_t D_800D28F8;
-extern int32_t D_800D28FC;
+extern uint32_t D_800D28FC;
 extern int16_t D_800D2900;
 extern uint16_t D_800D2908;
 extern int16_t D_800D2914;
@@ -194,7 +194,11 @@ extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
 extern uint16_t D_800D2978;
+extern s16 D_800D36DC[16];
+extern s16 D_800D36FC[16];
 extern uint16_t D_800D3770[];
+extern uint16_t D_800D3888[];
+extern s16 D_800D84E8[];
 extern uint16_t D_800D37A4;
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern UNK_TYPE D_800D4000;
@@ -278,9 +282,9 @@ extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;
 extern Gfx* gDListHead;
 extern OSMesg D_8012A678[8];
-extern OSThread D_8012A698; // idle
-extern OSThread D_8012A848; // Main
-extern OSThread D_8012A9F8; // rmon
+extern OSThread idleThread;
+extern OSThread mainThread;
+extern OSThread rmonThread;
 extern OSMesgQueue D_8012ABA8;
 extern OSMesgQueue D_8012ABC0;
 extern OSMesgQueue D_8012ABD8;
@@ -307,6 +311,7 @@ extern uint16_t D_801370CC;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;
 extern struct_D_801373E0 D_801373E0;
+extern
 extern UNK_TYPE D_80137458;
 extern UNK_POINTER D_8013746C;
 extern uint16_t D_8013747C;
@@ -380,6 +385,7 @@ extern uint16_t gStageTime; // pauses for cutscene, loading
 extern int64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
+extern s32 D_801782B0;
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
 extern uint8_t D_80171B19;
@@ -400,14 +406,6 @@ extern uint8_t gNameEntrySelectedRow;
 extern uint8_t gNameEntryCurrentChar;
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
-// todo: organize by scope/ purpose.
-extern uint16_t GameSave_Names[2][11];
-extern uint8_t GameSave_Age[2];
-extern uint8_t GameSave_Sex[2]; // 0= M, 1=F
-extern uint16_t GameSave_RedGems[2];
-extern uint16_t GameSave_YellowGems[2];
-extern uint64_t GameSave_PlayTime[2];
-extern uint32_t gFestivalRecords[7]; //in order on the menu. also used to calculate stage time
 // framebuffers (in between these seems to be texture data)
 extern uint16_t D_801DA800[320][240];
 extern uint16_t D_803DA800[320][240];

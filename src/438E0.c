@@ -296,43 +296,40 @@ void func_8004495C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045500.s")
+void func_80045500(void){
+    u16 i;
+    for(i=0;i<16;i++){
+        D_800D36DC[i]=0;
+        D_800D36FC[i]=0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045544.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc for t1 and t9 during the int16 cast for return
 int16_t func_800456DC(void) {
-    uint32_t temp_v1;
-    int16_t temp_t1_t9;
-
-    temp_v1 = gStageTimeReal;
-    if ((temp_v1 & 0x20) != 0) {
-        temp_t1_t9 = 15 - (temp_v1 & 0x1F);
-        return temp_t1_t9;
-    }
-
-    temp_t1_t9 = (temp_v1 & 0x1F) - 15;
-    return temp_t1_t9;
+  if((gStageTimeReal&32))
+    return (0xf - (gStageTimeReal & 0x1f));
+  return ((gStageTimeReal & 0x1f) - 0xf);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800456DC.s")
-#endif
 
 #ifdef NON_MATCHING
-// missing "move    a3,t6" temporary variable
-void func_8004571C(void) {
-    int16_t temp_t6;
-
-    temp_t6 = func_800456DC();
-    func_8002B5A0(0x8001, 0, 0, temp_t6);
+// "ORI A0,R0,0x8001" expected, "ADDIU A0,R0,0x8001" generated
+s16 func_8004571C(void) {
+    return func_8002B5A0(0x8001, 0, 0, func_800456DC());
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004571C.s")
 #endif
-
+/*
+void func_80045758(){
+    u16 v=D_800D3888[gStageTimeReal>>3%24];
+    u16 i;
+    for(i=0x71;i<128;i++) D_800D84E8[i]=v;
+    
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
@@ -394,25 +391,22 @@ void func_80046188(int32_t arg0, int32_t arg1) {
 
 
 #ifdef NON_MATCHING
-// needs reordering
-void func_80046218(int16_t arg0, int32_t arg1) {
-    if ((arg1 & 0xFFFF) != 0) {
-        D_800D28FC |= 1;
-    }
-
-    D_800D28E4 = 0x64;
+ //needs reordering
+void func_80046218(int16_t arg0, uint16_t arg1) {
     D_800D28E8 = 0;
-    D_800D28EC = 0;
-    D_800D28F0 = arg0;
     D_800D28F4 = 0;
+    D_800D28F0 = arg0;
+    D_800D28E4 = 100; //stored in t9 instead of t8
+    D_800D28EC = 0;
+    if (arg1) D_800D28FC |= 1;
+    
+    
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046218.s")
 #endif
 
-void func_80046274(int32_t arg0, int32_t arg1) {
-    return;
-}
+void func_80046274(int32_t arg0, int32_t arg1) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046280.s")
 
@@ -422,10 +416,18 @@ void func_800463C0(void) {
     func_800462F0();
     D_800BE568 = D_800BE558 - 0x90;
 }
-
+/*
+s32 func_800463F0(void){
+    if ((!D_800D28FC&0x1000)&&(!func_8005DEFC())) return 0;
+    return 1;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046434.s")
+void func_80046434(void) {
+    if (gPlayerActor.flag&0x20) D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
+    else D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046498.s")
 
@@ -473,22 +475,16 @@ void func_80046A30(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, and what seems to be a (void) {return 0; } at the bottom
 int32_t func_80046E6C(void) {
-    if ((gButtonPress & gButton_ZTrig) != 0) {
+    if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = (uint16_t)D_800D28E4;
         D_800D28E4 = 0x63;
         D_800D2938 = 0;
+        return 1;
     }
-
-    if (1) return 1;
-    else
-        return 0;
+    return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046E6C.s")
-#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")
 

@@ -84,7 +84,6 @@ void Sprite_SetColor(int8_t r, int8_t g, int8_t b, int8_t a) {
     gSpriteColG = g;
     gSpriteColB = b;
     gSpriteColA = a;
-
 }
 
 void Sprite_SetTransparent(int32_t arg0) {

@@ -66,7 +66,7 @@ void GameSave_LoadRecords(void) {
 
 void func_80005770(void) {
     osEepromProbe(&gContMesgq);
-    osEepromLongWrite(&gContMesgq, 2, GameSave_Names, 0x48);
+    osEepromLongWrite(&gContMesgq, 2, gGameSave_Names, 0x48);
 
     if (gSaveSlotIndex) {
         osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);

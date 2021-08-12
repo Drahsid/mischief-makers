@@ -28,12 +28,10 @@ void func_800028D0(void){
   osRecvMesg(&D_801377D0,0,1);
   D_8016E718 = (D_800C3838 -1) % 3;
   osAiSetNextBuffer(Sound_AIBuffers[D_8016E718],D_800C383C[D_8016E718] << 2);
-  i = 0;
+  for(i=0;i<D_800C3830;i++)
   if (D_800C3830>0) {
-    do {
+    for(i=0;i<D_800C3830;i++)
       osRecvMesg(&D_801377B8,0,0);
-      i++;
-    } while (i < D_800C3830);
   }
   func_80001A80();
   D_800C3830 = 0;

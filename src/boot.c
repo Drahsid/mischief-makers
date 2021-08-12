@@ -176,8 +176,8 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&D_8012A698, 1, Thread_IdleProc, 0, &D_80126670, 0xA);
-    osStartThread(&D_8012A698);
+    osCreateThread(&idleThread, 1, Thread_IdleProc, 0, &D_80126670, 0xA);
+    osStartThread(&idleThread);
 }
 
 #ifdef NON_MATCHING
@@ -231,10 +231,10 @@ void Thread_IdleProc(int32_t arg0) {
     D_8012AD08 = phi_v0;
 
     osCreatePiManager(0x96, &D_8012AC38, &D_8012A678, 8);
-    osCreateThread(&D_8012A9F8, 0, &Thread_RmonProc, 0, &D_80129670, 0xFA);
-    osStartThread(&D_8012A9F8);
-    osCreateThread(&D_8012A848, 3, &Thread_MainProc, arg0, &D_80128670, 0xA);
-    osStartThread(&D_8012A848);
+    osCreateThread(&rmonThread, 0, &Thread_RmonProc, 0, &D_80129670, 0xFA);
+    osStartThread(&rmonThread);
+    osCreateThread(&mainThread, 3, &Thread_MainProc, arg0, &D_80128670, 0xA);
+    osStartThread(&mainThread);
     osSetThreadPri(0, 0);
 
     while (1) {
@@ -478,7 +478,7 @@ void GameState_Tick(void) {
 }
 
 // this is a linear congruential algorithm for prng
-uint16_t func_8000178C(void) {
-    D_800BE5A4 = (D_800BE5A4 * 0x85) + 1;
-    return D_800BE5A4 / 0x100;
+uint16_t Rand(void) {
+    gRNGSeed = (gRNGSeed * 0x85) + 1;
+    return gRNGSeed / 0x100;
 }
