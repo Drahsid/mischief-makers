@@ -9,7 +9,7 @@ extern uint8_t gGameSave_Age[2];
 extern uint8_t gGameSave_Sex[2];
 extern uint16_t gGameSave_RedGems[2];
 extern uint16_t gGameSave_YellowGems[2];
-extern uint64_t D_80171AD8[2]; // contains total play time
+extern uint64_t GameSave_PlayTime[2]; // contains total play time
 extern uint32_t gFestivalRecords[7];
 
 extern uint16_t func_80004E70(uint32_t x, int32_t y);
@@ -32,7 +32,7 @@ extern void func_80006360();
 extern void func_80006B1C(uint16_t x);
 extern void func_80006B9C();
 extern void func_80006CC8();
-extern void func_80006DF4();
+extern void func_80006DF4(u16 i);
 extern void func_80006E60();
 extern void func_80006EDC();
 extern void func_800072A4();

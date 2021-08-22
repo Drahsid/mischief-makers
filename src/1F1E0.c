@@ -9,9 +9,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
 // BUG: This function writes to unallocated stack space!
-void func_8001E808(int32_t arg0, int32_t arg1) {
-    return;
-}
+void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
@@ -96,9 +94,9 @@ Actor* func_8001EADC(int32_t arg0, int32_t arg1) {
  * Differences are regalloc, and instruction order
  * Function called from D_800CA1C0 seems to be bogus (the wrong effect triggers in-game)
  */
-void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
-    int32_t index0 = actorIndexR & 0xFFFF;
-    int32_t index1 = actorIndexL & 0xFFFF;
+void func_8001EB8C(int16_t actorIndexL, int16_t actorIndexR) {
+    int16_t index0 = actorIndexR & 0xFFFF;
+    int16_t index1 = actorIndexL & 0xFFFF;
     Actor* actor0 = &gActors[index1];
     Actor* actor1 = &gActors[index0];
 
@@ -121,9 +119,7 @@ void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FEB0.s")
 
-void func_8001FF28(void) {
-    return;
-}
+void func_8001FF28(void) {}
 
 void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
@@ -134,17 +130,11 @@ void func_8001FF30(void) {
 /* Differences are regalloc and instruction order
  * Additionally, when it loads actor.unk_0x98, there should be a nop following it
  */
-int32_t func_8001FF50(void) {
-    int32_t index;
-    int32_t temp;
-
-    for (index = 1; index < ACTOR_COUNT1; index = temp) {
-        index++;
-        temp = index & 0xFFFF;
+void func_8001FF50(void) {
+    int16_t index;
+    for (index = 1; index < ACTOR_COUNT1; index++) {
         gActors[index].unk_0x98 &= 0x380600;
     }
-
-    return temp;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
@@ -250,7 +240,7 @@ void func_80020024(void) {
         } while (phi_s1 != D_800EF500);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Playtime_PrintPause.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
@@ -268,18 +258,15 @@ void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
 
 #ifdef NON_MATCHING
 // primarily regalloc differences, and a missing move
-int32_t func_800208D4(void) {
-    int32_t index;
-    int32_t phi_return;
+void func_800208D4(void) {
+    uint16_t index;
 
-    for (index = 0xC8; index < 0xCC; index = (index + 1) & 0xFFFF) {
+    for (index = 0xC8; index < 0xCC; index++) {
         gActors[index].flag = 0;
-        phi_return = index; // this should be a move v0, t8, and is inside of the loop
     }
-    D_800EF4D2 = (int16_t)D_800EF4D4;
+    gBgmVolume = (int16_t)D_800EF4D4;
     gGameSubState = (uint16_t)0;
     gGamePaused = (uint16_t)0;
-    return phi_return;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800208D4.s")
@@ -287,7 +274,12 @@ int32_t func_800208D4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
+void func_80020A54(void){
+    u16 i;
+    for(i=200;i<0xcc;i++) gActors[i].flag=0;
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 

@@ -2,7 +2,21 @@
 #include <function_symbols.h>
 #include <inttypes.h>
 #include <ultra64.h>
-
+/*
+u16 func_80048600(u16 i){
+    u16 ret;
+    if((D_801370CC&gButton_DLeft)==0){
+     ret=0;
+     if((D_801370CC&gButton_DRight)&&(ret=2,gActors[i].flag&0x20))ret=0x82;
+    }
+    else{
+        ret=1;
+        if(gActors[i].flag&0x20) ret=0x81;
+    }
+    if(D_801370CC&gButton_DDown) ret|=0x10;
+    if(D_801370CC&gButton_DUp) ret|=0x20;
+    return ret;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048600.s")
 
@@ -15,8 +29,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
 int32_t func_80048C94(int32_t arg0) {
-    float* new_var = &gPlayerActor.unk_0x120;
-    return (int32_t)((D_800D5794)[arg0] * (*new_var));
+    return D_800D5794[arg0]*gPlayerActor.unk_0x120;
 }
 
 int32_t func_80048CE4() {

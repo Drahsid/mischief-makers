@@ -34,7 +34,7 @@ void GameSave_Initialize(u8 slot){
   GameSave_Sex[slot] = 0;
   GameSave_RedGems[slot] = 30;
   GameSave_YellowGems[slot] = 0;
-  GameSave_PlayTime[slot]=0;
+  GameSave_PlayTime[slot]=(u64)0;
 }
 */
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
@@ -97,13 +97,29 @@ void GameSave_Erase(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_8000607C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006360.s")
-
+/*
+void func_80006B1C(u16 i){
+    u16 j;
+    i&=0xFFFF;
+    for(j=i+0xab;j<i+0xBD;j++) gActors[j].flag=0;
+    func_80006360(i);
+    gGameSubState=1;
+    gSaveSlotIndex=0;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B1C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
-
+/*
+void func_80006DF4(u16 i){
+    gActors[i].unk_0xBC+=8.0;
+    gActors[i].unk_0xC0+=8.0;
+    gActors[i+1].unk_0xBC-=8.0;
+    gActors[i+1].unk_0xC0-=8.0;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006DF4.s")
 
 #ifdef NON_MATCHING

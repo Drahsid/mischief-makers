@@ -110,6 +110,7 @@ extern int32_t D_800BE728;
 extern int32_t D_800BE72C;
 extern int32_t D_800BE730;
 extern UNK_TYPE D_800BE73C;
+extern u8 SFX2ByteArray[294][2]; //table of volume and length(?) of SFX.
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
@@ -168,6 +169,7 @@ extern u16 D_800CC6EC[88][8];
 extern uint8_t D_800CCFDC; // does not like being declared an array. Which it is.
 extern int32_t D_800CEC0C;
 extern u8 D_800D16AA[]; //right in the middle of a pointer array?
+extern s16 D_800D16C4;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
 extern uint16_t D_800D28E8;
@@ -264,15 +266,21 @@ extern int16_t D_800EF4D4;
 extern uint8_t gSFX_ChannelStates[];
 extern int16_t gSFX_Volumes[];
 extern int16_t D_800EF500[];
-extern uint16_t D_800EF508;
+extern uint16_t D_800EF508[4]; //holds current SFX indicies per channel
+extern u8 D_80104090[];
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
+extern u8 D_801069D8[];
 extern struct_func_80044360_D_801069E0 D_801069E0[];
+extern s16 D_80108DE0[];
 extern uint32_t D_80103480;
 extern uint32_t D_80103616;
 extern uint32_t D_801037AA;
 extern uint32_t D_80103944;
+extern u16 D_8010CDE8[];
+extern u8 D_8011CDF0[];
+extern u8 D_8011CF18[];
 extern UNK_TYPE D_8011D970;
 extern int16_t gInputBuffer[64]; // buffer of controller inputs
 extern UNK_TYPE D_8011DDF0;
@@ -365,7 +373,7 @@ extern uint8_t D_80178133;
 extern uint8_t D_80178134;
 extern uint16_t gContinueChoice;
 extern uint16_t gRedGems;
-extern int16_t gCurrentStage;
+extern uint16_t gCurrentStage;
 extern uint16_t D_80178164;
 extern uint16_t D_80178166;
 extern UNK_TYPE D_80178170;

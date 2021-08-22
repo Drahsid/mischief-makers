@@ -443,31 +443,14 @@ void func_80046434(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046934.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, functionally identical
 void func_80046A30(void) {
-    int new_var;
-    Actor* actor;
     uint16_t index;
 
     func_800286C8();
-
-    index = ACTOR_COUNT1;
-    do {
-        new_var = index;
-        actor = &gActors[new_var];
-        index = (index + 1) & 0xFFFF;
-        if (!index) {
-        }
-
-        if ((actor->flag & 0x80000) != 0) {
-            actor->flag = 0;
-        }
-    } while (index < (ACTOR_COUNT1 + 7));
+    for(index=ACTOR_COUNT1;index<ACTOR_COUNT1+7;index++){   
+        if(gActors[index].flag & 0x80000) gActors[index].flag=0;
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A30.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A9C.s")
 
@@ -559,6 +542,21 @@ void func_80047958(void) {
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }
+/*
+void func_80047994(){
+    D_800BE4EC=1;
+    if(func_80046B4C()){
+        D_800D2938=0;
+        func_80020A54();
+        func_80028744();
+        func_8005DFC8(0);
+        D_800D16C4=0;
+        SFX_StopAll();
+        if(D_800D28E4==98) func_80047958();
+    }
+    D_800D28E4 = D_800D28F0;
+}
+*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047994.s")
 
@@ -572,16 +570,11 @@ void func_80047A14(void) {
 
 #ifdef NON_MATCHING
 void func_80047A54(void) {
-    int32_t temp_t0;
-    int32_t temp_t2;
 
     D_800BE4EC = 1;
-    D_800D28E4 += 1;
+    D_800D28E4++;
     D_800D2928 = 0;
-    temp_t0 = D_800D28FC | 4;
-    temp_t2 = temp_t0 & ~8;
-    D_800D28FC = temp_t0;
-    D_800D28FC = temp_t2;
+    D_800D28FC = D_800D28FC & ~8 |4;
     D_800BE544 = 0x8000;
     D_800D2938 = 0;
     D_800D2908 = 0;

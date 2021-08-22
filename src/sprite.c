@@ -39,10 +39,10 @@ void Sprite_Init(int32_t* arg0) {
     D_800C4E5C.rsp_dl_next = D_800C4E5C.rsp_dl;
     *arg0 = sp1C;
     //keeps forcing 16-bit value.(FFFF vs FF)
-    gSpriteColR = 0xFF;
-    gSpriteColG = 0xFF;
-    gSpriteColB = 0xFF;
-    gSpriteColA = 0xFF;
+    gSpriteColR = 256;
+    gSpriteColG = 256;
+    gSpriteColB = 256;
+    gSpriteColA = 256;
     D_800C4EBC = 0;
     D_800C4EC0 = 0;
     D_800C4EC4 = 40;
@@ -60,7 +60,7 @@ void Sprite_Finish(int32_t* arg0) {
 
     temp_a0 = &sp1C;
     sp1C = *arg0;
-    spFinish(temp_a0);
+    spFinish((Gfx**)temp_a0);
     *arg0 = (int32_t)(sp1C - 8);
 }
 
@@ -103,9 +103,9 @@ void Sprite_Update(void** arg0) {
 
     temp_a3 = D_800C4EC4;
     temp_s1 = *arg0;
-    D_800C4E5C.width = (s16)((temp_a3 * 8) + 8);
+    D_800C4E5C.width = (s16)((temp_a3 <<3) + 8);
     temp_v0 = D_800C4EC8;
-    D_800C4E5C.height = (s16)((temp_v0 * 0x10) + 8);
+    D_800C4E5C.height = (s16)((temp_v0 <<4) + 8);
     func_80004380(&D_800C4E5C, &D_800C4EA0, temp_a3, temp_v0);
     spMove(&D_800C4E5C, D_800C4EBC, D_800C4EC0);
     spColor(&D_800C4E5C, gSpriteColR, gSpriteColG, gSpriteColB, (int32_t)gSpriteColA);

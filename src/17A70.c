@@ -1,4 +1,5 @@
 #include "BGM.h"
+#include "GameSave.h"
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <inttypes.h>
@@ -793,7 +794,24 @@ void StageSelect_Tick(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
-
+/*
+void CalculateFestivalTime(void){
+  s32 TimeA, TimeB, TimeC, TimeD;
+  if(gCurrentStage==33){ //is it "the day of"
+    TimeA=func_80019520(gFestivalRecords[2]);
+    TimeB=func_80019520(gFestivalRecords[1]);
+    TimeC=func_80019520(gFestivalRecords[0]);
+    TimeD=func_80019520(gFestivalRecords[5]);
+    gStageTime=TimeD+TimeC+TimeB+TimeA;
+    if(gFestivalRecords[3]<1800) gStageTime -= gFestivalRecords[3]       + 1800;
+    if(gFestivalRecords[4]<1800) gStageTime += gFestivalRecords[4] * -10 + 1800;
+    if(gFestivalRecords[6]<1800) gStageTime += gFestivalRecords[6] * -10 + 1800;
+    }
+    gGamePaused=0;
+    gGameState=12; //transitional state
+    gGameSubState=8;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/CalculateFestivalTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")

@@ -57,11 +57,35 @@ void Sound_DMA(int32_t Addr, void* Vaddr, uint32_t Len) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/BGM_Play.s")
+/*
+void func_80002F48(u8 chan,void *player,s16 SFX_ID,s16 arg3,s8 arg4,u8 state,u16 arg6,u16 arg7){
+    gSFX_ChannelStates[chan]=state;
+    D_80108DE0[chan]=arg6;
+    D_800EF508[chan]=SFX_ID;
+    D_80104090[chan]=SFX2ByteArray[SFX_ID][1];
+    D_8010CDE8[chan]=arg7;
+    D_801069D8[chan]=arg4;
+    if((-1<arg3)&&(arg3<257)){
+        gSFX_Volumes[chan]=SFX2ByteArray[SFX_ID][0] * arg3;
+        return;
+    }
+    gSFX_Volumes[chan]=SFX2ByteArray[SFX_ID][0] << 8;
 
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_func.s")
-
+/*
+s32 func_800032C4(s16 x){
+    u8 i=0;
+    while(gSFX_ChannelStates[i]==0||x!=D_800EF508[i]){
+        i++;
+        if(3<i) return -1;
+    }
+    alSeqpStop(SFX_pALCPlayers[i]);
+    return i;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800032C4.s")
 
 int32_t SFX_Play_1(UNK_TYPE ID) { // main SFX playing wrapper
@@ -72,59 +96,29 @@ void SFX_Play_2(UNK_TYPE arg0) {
     SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
     SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_3.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_4(UNK_TYPE arg0, int8_t arg1) {
-    SFX_func(-1, arg1, -1, 0x81, 0xFF, 0);
+    SFX_func(arg0, -1, arg1, 0x81, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_4.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_5(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x81, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_5.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_6(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x91, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_6.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_7(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x92, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_7.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x93, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_8.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003540.s")
 
@@ -138,14 +132,15 @@ void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800038C8.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
     SFX_func(arg0, -1, -1, 0xC1, arg1, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003980.s")
-#endif
+
+/*void func_800039B8(UNK_TYPE SFX_ID){
+    int i = SFX_func(SFX_ID, -1, -1, 0x89, 0xFF, 0);
+    D_8011CDF0[i]=127;
+    D_8011CF18[i]=64;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800039B8.s")
 

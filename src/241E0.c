@@ -515,9 +515,11 @@ u16 func_80028528(void){return func_800284B8(0x90,0xC0);}
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002854C.s")
 
 void Actor_ZeroFlagRange(u16 from, u16 to){
-    for(from=from;from<to;from++) gActors[from].flag=0;
+    for(from=from;from<to;from++)
+     {gActors[from].flag=0;}
     }
 
+//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/Actor_ZeroFlagRange.s")
 void Actor_ZeroFlag_0x10_0x20(void){Actor_ZeroFlagRange(0x10,0x20);}
 
 void Actor_ZeroFlag_0x30_0x90(void){Actor_ZeroFlagRange(0x30,0x90);}
@@ -636,7 +638,11 @@ float func_80029860(float A, float B, float C){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029F00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029FB8.s")
+u16 func_80029FB8(u16 i, s16 x1, s16 x2, s16 y1, s16 y2){
+    return func_80029E48(i,x1,x2)|func_80029F00(i,y1,y2);
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029FB8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A018.s")
 
