@@ -9,7 +9,7 @@ enum {
     ACTOR_FLAG_UNK2 = (1 << 2),
     ACTOR_FLAG_UNK3 = (1 << 3),
     ACTOR_FLAG_UNK4 = (1 << 4),
-    ACTOR_FLAG_UNK5 = (1 << 5),
+    ACTOR_FLAG_FLIPPED = (1 << 5), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x scale, in this context?)
     ACTOR_FLAG_UNK6 = (1 << 6),
     ACTOR_FLAG_UNK7 = (1 << 7),
     ACTOR_FLAG_UNK8 = (1 << 8),
@@ -217,7 +217,13 @@ typedef struct {
         };
         /* 0x180 */ uint32_t unk_0x180_w;
     };
-    /* 0x184 */ uint32_t unk_0x184;
+    union {
+        /* 0x184 */ uint32_t unk_0x184_w; // read as word in Actor_Spawn
+        struct {
+            /* 0x184 */ uint16_t unk_0x184;
+            /* 0x186 */ uint16_t unk_0x186;
+        };
+    };
     /* 0x188 */ uint32_t unk_0x188;
     /* 0x18C */ uint32_t unk_0x18C;
     /* 0x190 */ uint32_t unk_0x190;

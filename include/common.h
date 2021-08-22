@@ -40,12 +40,12 @@ typedef union {
         /* 0x08 */ int32_t z_w;
     };
     struct {
-        /* 0x00 */ uint16_t x;
-        /* 0x02 */ uint16_t x_1;
-        /* 0x04 */ uint16_t y;
-        /* 0x06 */ uint16_t y_1;
-        /* 0x08 */ uint16_t z;
-        /* 0x0A */ uint16_t z_1;
+        /* 0x00 */ int16_t x;
+        /* 0x02 */ int16_t x_1;
+        /* 0x04 */ int16_t y;
+        /* 0x06 */ int16_t y_1;
+        /* 0x08 */ int16_t z;
+        /* 0x0A */ int16_t z_1;
     };
 } Vec3i_union; /* sizeof = 0x0C */
 
