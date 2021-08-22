@@ -249,7 +249,7 @@ void func_807760F8(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_80777468.s")
 
 void func_80777524(uint16_t index) {
-    if ((D_800E3584 & 0xC0000) != 0) {
+    if (D_800E3584 & 0xC0000) {
         gActors[index].unk_0xD0_h = 0x70;
     }
 }

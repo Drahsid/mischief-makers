@@ -122,27 +122,58 @@ void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003540.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800035F8.s")
+s32 func_800035F8(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800036C8.s")
+    if((gActors[i].pos.x<-0x90)||(gActors[i].pos.x>=0x90)) return -1;
+    if((gActors[i].pos.y<-0x60)||(gActors[i].pos.y>=0x60)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x81,0xFF,0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003778.s")
+s32 func_800036C8(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
+
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x81,0xFF,0);
+}
+
+s32 func_80003778(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
+
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x91,0xFF,0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003828.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800038C8.s")
+s32 func_800038C8(UNK_TYPE SFX_ID, u16 i,u16 arg2){
+    s8 valA;
+    s16 valB;
+
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0xA1,0xFF,arg2);
+}
 
 void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
     SFX_func(arg0, -1, -1, 0xC1, arg1, 0);
 }
 
-/*void func_800039B8(UNK_TYPE SFX_ID){
+void func_800039B8(UNK_TYPE SFX_ID,u32 arg1,u32 arg2){ //2 unused args?
     int i = SFX_func(SFX_ID, -1, -1, 0x89, 0xFF, 0);
     D_8011CDF0[i]=127;
     D_8011CF18[i]=64;
-}*/
-
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800039B8.s")
+}
 
 void BGM_SFX_Stop(void) {
     BGM_Stop();
