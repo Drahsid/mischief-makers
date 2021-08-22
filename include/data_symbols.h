@@ -136,6 +136,7 @@ extern UNK_TYPE D_800C7E14;
 extern UNK_TYPE D_800C823C;
 extern uint16_t D_800C8378[64];
 extern uint16_t D_800C83F8[64];
+extern uint16_t gTimesToBeat[64];
 extern UNK_TYPE D_800C8EF0;
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
@@ -202,6 +203,7 @@ extern s16 D_800D36FC[16];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D3888[];
 extern s16 D_800D84E8[];
+extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern UNK_TYPE D_800D4000;
@@ -210,7 +212,7 @@ extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
-extern UNK_TYPE gData_RedGem;
+extern UNK_TYPE gData_RedGem; // sprite data for red gem?
 extern UNK_TYPE D_800D8668;
 extern UNK_TYPE D_800D9B7C;
 extern UNK_TYPE D_800D9C7C;
@@ -326,10 +328,10 @@ extern uint16_t D_801370CC;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;
 extern struct_D_801373E0 D_801373E0;
-extern
 extern UNK_TYPE D_80137458;
 extern UNK_POINTER D_8013746C;
 extern uint16_t D_8013747C;
+extern uint32_t D_80137420;
 extern uint16_t D_80137480;
 extern UNK_TYPE gTickDelta;
 extern uint32_t D_801376A0;

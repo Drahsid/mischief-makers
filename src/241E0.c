@@ -735,7 +735,19 @@ void func_8002B140(u16 x, s16 y){ // looks to be some actor color blend.
     gActors[x].rgba.b=func_8002B010(x,gActors[x].rgba.b,y);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B1D0.s")
+void func_8002B1D0(u16 x, s16 y){
+    gActors[x].rgba.r=func_8002981C(gActors[x].rgba.r,0,y);
+    gActors[x].rgba.g=func_8002981C(gActors[x].rgba.g,0,y);
+    gActors[x].rgba.b=func_8002981C(gActors[x].rgba.b,0,y);
+}
+/*
+void func_8002B25C(u16 x, s16 y){
+    u8 C;
+    C=func_8002B010(x,gActors[x].rgba.r,y);
+    gActors[x].rgba.r=C;
+    gActors[x].rgba.g=C;
+    gActors[x].rgba.b=C;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B25C.s")
 

@@ -826,7 +826,13 @@ void CalculateFestivalTime(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019E48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019EC4.s")
+void func_80019EC4(void){
+    func_8008310C();
+    func_80083454();
+    func_80019A80();
+    func_80019E48();
+    func_8001A254();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019F04.s")
 
@@ -837,22 +843,16 @@ void CalculateFestivalTime(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
-#ifdef NON_MATCHING
-int32_t Get_TimeRank(uint16_t t, uint16_t s) {
-    s32 temp_v0;
-    u16 temp_v1;
 
-    temp_v1 = gTimesToBeat[s];
-    temp_v0 = t;
-    if (temp_v0 < (s32) temp_v1) return 0;
-    if (temp_v0 < (temp_v1 + 1800)) return 1;
-    if (temp_v0 < (temp_v1 + 7200)) return 2;
-    if ((temp_v0 < (temp_v1 + 18000)) && (temp_v0 < 36000)) return 3;
+int16_t Get_TimeRank(uint16_t t, uint16_t s) {
+
+    if (t < gTimesToBeat[s]) return 0;
+    if (t < (gTimesToBeat[s] + 1800)) return 1;
+    if (t < (gTimesToBeat[s] + 7200)) return 2;
+    if ((t < (gTimesToBeat[s] + 18000)) && (t < 36000)) return 3;
     return 4;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Get_TimeRank.s")
-#endif
+
 void func_8001A7E0(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
     func_8008379C(arg0, arg1, D_800C9694[Get_TimeRank(time, stage)], arg4);
 }
@@ -888,15 +888,15 @@ void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, in
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 /*
 void YellowGem_setFlag(void){
-  gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
+  gYellowGemBitfeild |= __ll_lshift(1,gCurrentStage);
 }
 */
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
 /*
 u64 YellowGem_getFlag(u16 arg0) {
-    return gYellowGemBitfeild & __ll_lshift(1,(u64)arg0);
-}
-*/
+    return gYellowGemBitfeild & __ll_lshift(1,arg0);
+}*/
+
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
