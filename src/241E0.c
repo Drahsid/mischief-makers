@@ -295,10 +295,11 @@ void func_800253A8(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
 
+//TODO: Declare Stage BGM list
 
-void func_80025578(void) { // mismatches when D_800CCFDC declared Array
-    if (*(&D_800CCFDC + D_800BE5D0) != 255) {
-        BGM_Play(*(&D_800CCFDC + D_800BE5D0));
+void func_80025578(void) {
+    if (D_800CCFDC[D_800BE5D0] != 255) {
+        BGM_Play(D_800CCFDC[D_800BE5D0]);
     }
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s")
@@ -353,7 +354,8 @@ void func_80025BFC(void) {
 #ifdef NON_MATCHING
 // the subtraction gets optimized out...
 void func_8002653C(void) {
-    int32_t phi_a0 = 0x41E53F8 - 0x4000000;
+    int32_t phi_a0 = 0x41E53F8;
+    phi_a0-= 0x4000000;
 
     func_800011F0(phi_a0, &D_800DE348, 0x1500);
 }
@@ -519,7 +521,6 @@ void Actor_ZeroFlagRange(u16 from, u16 to){
      {gActors[from].flag=0;}
     }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/Actor_ZeroFlagRange.s")
 void Actor_ZeroFlag_0x10_0x20(void){Actor_ZeroFlagRange(0x10,0x20);}
 
 void Actor_ZeroFlag_0x30_0x90(void){Actor_ZeroFlagRange(0x30,0x90);}
@@ -548,20 +549,29 @@ void func_80028744(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002877C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002884C.s")
+/*
+s32 func_800288EC(u16 i,s16 x){
+    if( (gActors[i].pos.x<=(x+0x90)) && (gActors[i].pos.x>(x-0x90)) &&
+     (gActors[i].pos.y<=(x+0x60)) && (gActors[i].pos.y>(x-0x60))) return 0;
+    return 1;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800288EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80028980.s")
+void func_80028980(u16 i, s16 arg1, u32 SFX){
+    if(func_800288EC(i,arg1)==0) func_800036C8(SFX,i);
+}
 
 s32 func_800289CC(s32 x){ //ABS?
     if(x<0) return -x;
     return x;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800289CC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800289E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80028AE8.s")
+void func_80028AE8(u16 i){
+    func_800289E4(i,D_800D36FC,0x7FFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80028B1C.s")
 
@@ -581,6 +591,17 @@ void func_80028C00(u16 x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029044.s")
 
+/*void func_80029134(u16 i){
+    gActors[i].flag &= ~0x00011000;
+    gActors[i].flag |= 0x20000; //this step is off?
+    gActors[i].unk_0xEC = 0;
+    gActors[i].unk_0xF0 = 0;
+    gActors[i].unk_0xF4 = 0;
+    gActors[i].pos.x_w = gActors[i].unk_0x104;
+    gActors[i].pos.y_w = gActors[i].unk_0x108;
+    gActors[i].pos.z_w = gActors[i].unk_0x10C;
+}*/
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029134.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800291AC.s")
@@ -598,6 +619,16 @@ u32 func_80029650(void){return func_800294E0() + 32 & 0x3C0;}
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029678.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029798.s")
+/*
+int32_t func_8002981C(int32_t A, int32_t B, int32_t C){
+    int32_t D=A-B;
+    if(D<1){
+        if(-C <= D) return B;
+        return A+C;
+    }
+    if(D<=C) return B;
+    return A-C;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002981C.s")
 /*
@@ -613,6 +644,16 @@ float func_80029860(float A, float B, float C){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029860.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800298D0.s")
+/*
+s32 func_8002995C(s32 A, s32 B){
+    if(A>B){
+        if(A-B< 0x2000000) return 1;
+        return -1;
+        
+    }
+    if(-0x2000000< A-B ) return -1;
+    return 1;
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002995C.s")
 
@@ -632,7 +673,12 @@ float func_80029860(float A, float B, float C){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029D58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029DEC.s")
+s32 func_80029DEC(u16 arg0,u16 arg1){
+    if ((D_800BE4E0&arg0)==0){
+        if((Rand()&arg1)==0) return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029E48.s")
 
@@ -642,34 +688,72 @@ u16 func_80029FB8(u16 i, s16 x1, s16 x2, s16 y1, s16 y2){
     return func_80029E48(i,x1,x2)|func_80029F00(i,y1,y2);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029FB8.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A018.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A090.s")
+s32 func_8002A090(s32 A, s32 B){
+    if(B<0) B = -B;
+    if(B<A) A = B;
+    if(A<-B) A = -B;
+    return A;
+}
+void func_8002A0C4(u16 i, s32 x){
+    if(gActors[i].flag & 0x20) gActors[i].unk_0xEC= -x;
+    else gActors[i].unk_0xEC= x;
+}
+void func_8002A118(u16 i,s32 x){
+    gActors[i].unk_0xEC = func_8002A090(gActors[i].unk_0xEC,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A0C4.s")
+void func_8002A170(u16 i,s32 x){
+    gActors[i].unk_0xF0 = func_8002A090(gActors[i].unk_0xF0,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A118.s")
+void func_8002A1C8(u16 i,s32 x){
+    func_8002A118(i,x);
+    func_8002A170(i,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A170.s")
+void func_8002A200(u16 i,s32 x){
+    gActors[i].unk_0xF8 = func_8002A090(gActors[i].unk_0xF8,x);
+}
+void func_8002A258(u16 i,s32 x){
+    gActors[i].unk_0xFC = func_8002A090(gActors[i].unk_0xFC,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A1C8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A200.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A258.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A2B0.s")
+void func_8002A2B0(u16 i,s32 x){
+    gActors[i].unk_0xF8 = func_8002A090(gActors[i].unk_0xF8,x);
+    gActors[i].unk_0xFC = func_8002A090(gActors[i].unk_0xFC,x);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A320.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A404.s")
+void func_8002A404(u16 i,s32 x){
+    gActors[i].unk_0xEC = func_8002981C(gActors[i].unk_0xEC,0,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A464.s")
+void func_8002A464(u16 i,s32 x){
+    gActors[i].unk_0xF0 = func_8002981C(gActors[i].unk_0xF0,0,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A4C4.s")
-
+void func_8002A4C4(u16 i,s32 x,s32 y){
+    func_8002A404(i,x);
+    func_8002A464(i,y);
+}
+/*
+s32 func_8002A4FC(u16 i){
+    if(gActors[i].unk_0xEC<1){
+        if (gActors[i].unk_0x98&4){
+            gActors[i].unk_0xEC=0;
+            return 2;
+        }
+    }
+    else {
+        if (gActors[i].unk_0x98&8){
+            gActors[i].unk_0xEC=0;
+            return 1;
+        }
+    }
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A4FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A57C.s")
@@ -683,14 +767,43 @@ u16 func_80029FB8(u16 i, s16 x1, s16 x2, s16 y1, s16 y2){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A990.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AA20.s")
+void func_8002ABE4(u16 i, s16 x){
+    gActors[i].unk_0xA6=x;
+    gActors[i].unk_0xA8=-x;
+    gActors[i].unk_0xA2=-x;
+    gActors[i].unk_0xA4=x;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ABE4.s")
+void func_8002AC30(u16 i, s16 x){
+    gActors[i].unk_0xAE=x;
+    gActors[i].unk_0xB0=-x;
+    gActors[i].unk_0xAA=-x;
+    gActors[i].unk_0xAC=x;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AC30.s")
+void func_8002AC7C(u16 i, s16 x,s16 y){
+    if(gActors[i].flag&0x20){
+        gActors[i].unk_0xA4=-x;
+        gActors[i].unk_0xA2=-y;
+    }
+    else{
+        gActors[i].unk_0xA2=x;
+        gActors[i].unk_0xA4=y;
+    }
+    
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AC7C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ACFC.s")
+void func_8002ACFC(u16 i, s16 x,s16 y){
+    if(gActors[i].flag&0x20){
+        gActors[i].unk_0xAC=-x;
+        gActors[i].unk_0xAA=-y;
+    }
+    else{
+        gActors[i].unk_0xAA=x;
+        gActors[i].unk_0xAC=y;
+    }
+    
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AD7C.s")
 /*
@@ -718,42 +831,73 @@ void func_8002AEF8(u16 x, s16 y){
     gActors[x].rgba.b=func_8002AE44(gActors[x].rgba.b,y);
 }
 
-void func_8002AF7C(u16 x, u16 arg1, s16 arg2){
+void func_8002AF7C(u16 i, u16 arg1, s16 arg2){
     if((D_800BE4E0&arg1)==0){
-        gActors[x].rgba.r=0x7f;
-        gActors[x].rgba.g=0x7f;
-        gActors[x].rgba.b=0x7f;
+        gActors[i].rgba.r=0x7f;
+        gActors[i].rgba.g=0x7f;
+        gActors[i].rgba.b=0x7f;
     }
-    else func_8002AEF8(x,arg2);
+    else func_8002AEF8(i,arg2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B010.s")
 
-void func_8002B140(u16 x, s16 y){ // looks to be some actor color blend.
-    gActors[x].rgba.r=func_8002B010(x,gActors[x].rgba.r,y);
-    gActors[x].rgba.g=func_8002B010(x,gActors[x].rgba.g,y);
-    gActors[x].rgba.b=func_8002B010(x,gActors[x].rgba.b,y);
+void func_8002B140(u16 i, s16 y){ // looks to be some actor color blend.
+    gActors[i].rgba.r=func_8002B010(i,gActors[i].rgba.r,y);
+    gActors[i].rgba.g=func_8002B010(i,gActors[i].rgba.g,y);
+    gActors[i].rgba.b=func_8002B010(i,gActors[i].rgba.b,y);
 }
 
-void func_8002B1D0(u16 x, s16 y){
-    gActors[x].rgba.r=func_8002981C(gActors[x].rgba.r,0,y);
-    gActors[x].rgba.g=func_8002981C(gActors[x].rgba.g,0,y);
-    gActors[x].rgba.b=func_8002981C(gActors[x].rgba.b,0,y);
+void func_8002B1D0(u16 i, s16 y){
+    gActors[i].rgba.r=func_8002981C(gActors[i].rgba.r,0,y);
+    gActors[i].rgba.g=func_8002981C(gActors[i].rgba.g,0,y);
+    gActors[i].rgba.b=func_8002981C(gActors[i].rgba.b,0,y);
 }
 /*
-void func_8002B25C(u16 x, s16 y){
+void func_8002B25C(u16 i, s16 y){
     u8 C;
-    C=func_8002B010(x,gActors[x].rgba.r,y);
-    gActors[x].rgba.r=C;
-    gActors[x].rgba.g=C;
-    gActors[x].rgba.b=C;
+    C=func_8002B010(x,gActors[i].rgba.r,y);//non-matching stack?
+    gActors[i].rgba.r=C;
+    gActors[i].rgba.g=C;
+    gActors[i].rgba.b=C;
 }*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B25C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B2D0.s")
+/*
+void func_8002B330(u16 i){
+    u8 C;
+    if(D_800BE4E0&4){
+    C=func_8002B010(i,gActors[i].rgba.r,64);
+    gActors[i].rgba.r=C;
+    gActors[i].rgba.g=C;
+    gActors[i].rgba.b=C;
+    }
+    else{
+    C=func_8002B010(i,gActors[i].rgba.r,-64);
+    gActors[i].rgba.r=C;
+    gActors[i].rgba.g=C;
+    gActors[i].rgba.b=C;
+    }
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B330.s")
+/*
+void func_8002B400(u16 i){
+    u8 C;
+    if(D_800BE4E0&4){
+    gActors[i].rgba.r=func_8002B010(i,gActors[i].rgba.r,64);
+    gActors[i].rgba.g=0;
+    gActors[i].rgba.b=0;
+    }
+    else{
+    gActors[i].rgba.r=0;
+    C=func_8002B010(i,gActors[i].rgba.g,-64);
+    gActors[i].rgba.g=C;
+    gActors[i].rgba.b=C;
+    }
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B400.s")
 
@@ -766,19 +910,49 @@ void func_8002B25C(u16 x, s16 y){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B7B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B7F4.s")
-
+/*
+void func_8002B82C(uint16_t* arg0, int16_t* arg1, int16_t arg2, int16_t arg3, int16_t arg4, int16_t arg5){
+u16 i;
+ for(i=arg2;0<i;i--){
+     *arg1++=func_8002B5A0(*arg0++,arg3,arg4,arg5);
+ }
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B82C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B8F0.s")
+s32 func_8002B8F0(u16 i, u16 dmg){
+    if(gActors[i].health<=dmg){
+        gActors[i].health=0;
+        return 0;
+    }
+    gActors[i].health-=dmg;
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B954.s")
+s32 func_8002B954(u16 i, u16 x){
+    if(D_800BE4D8==0){
+        if (x&0x80) return 1;
+        if((x&0x40) && (gActors[i].unk_0xF0<0)) return 1;
+    }
+    return 0;
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B954.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B9D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BACC.s")
+s32 func_8002BACC(u16 unk, u16 x){
+    if((D_800BE4D8==0)&&(x&0x80)) return 1;
+    return 0;
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BACC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BB04.s")
-
+/* RegAlloc?
+u8 func_8002BC10(u16 i){
+    u16 x=func_80012C04(gActors[i].pos.x,gActors[i].pos.y)&0x7F;
+    if((x==50)||(x==54)) x=0;
+    return x;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BC10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BC90.s")
@@ -903,7 +1077,10 @@ void func_80030B0C(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80030B0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80030B84.s")
+void func_80030B84(u16 i){
+    func_80030A74(i);
+    func_80030B0C(i);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80030BB8.s")
 
@@ -915,27 +1092,58 @@ void func_80030B0C(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800310A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003119C.s")
+void func_8003119C(u32 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_80030F94(func_800284B8(16,45),arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800311EC.s")
+void func_800311EC(u16 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_800310A4(func_800284B8(16,45),arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003123C.s")
+void func_8003123C(u32 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_80030F94(func_80028528(),arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031284.s")
+void func_80031284(u16 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_800310A4(func_80028528(),arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800312CC.s")
+void func_800312CC(u32 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_80030F94(func_800284B8(16,45)|0x8000,arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031324.s")
+void func_80031324(u16 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_800310A4(func_800284B8(16,45)|0x8000,arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003137C.s")
+void func_8003137C(u32 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_80030F94(func_80028528()|0x8000,arg0,arg1,arg2,arg3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800313CC.s")
+void func_800313CC(u16 arg0, u32 arg1, u32 arg2, u32 arg3){
+    func_800310A4(func_80028528()|0x8000,arg0,arg1,arg2,arg3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003141C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031CAC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031D58.s")
+u16 func_80031CAC(u16 arg0,s32 x, s32 y, s32 z){
+    u16 i = func_80028528();
+    if(i){
+        gActors[i].unk_0xD2=0x34;
+        Actor_Spawn(i);
+        gActors[i].flag=3;
+        gActors[i].unk_0x84=arg0;
+        gActors[i].pos.x_w=x;
+        gActors[i].pos.y_w=y;
+        gActors[i].pos.z_w=z;
+        gActors[i].unk_0x148=1.0;
+    }
+    return i;
+}
+void func_80031D58(u16 A, u16 B){
+    if(B<A) gActors[B].unk_0x148=0.0;
+    else gActors[B].unk_0x148=1.0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031DDC.s")
 
@@ -965,11 +1173,16 @@ void func_80030B0C(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800337F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800338F4.s")
+void func_800338F4(s16 arg0,s16 arg1, s16 arg2){
+    if((D_800BE4E0&0x0F)==0) func_800337F4(arg0,arg1,arg2,0x132);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80033948.s")
+u16 D_800D2294[4]={0x136,0x138,0x13A,0x13A};
+void func_80033948(s16 arg0,s16 arg1, s16 arg2){
+    if((D_800BE4E0&0x0F)==0) func_800337F4(arg0,arg1,arg2,D_800D2294[Rand()&3]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800339AC.s")
+void func_800339AC(s16 arg0,s16 arg1, s16 arg2){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800339BC.s")
 
@@ -1214,15 +1427,14 @@ void func_80040564(u16 param_1){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800405C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800406A4.s")
-/*s32 func_800407D4(u16 x){
-    u16 y;
-  if (D_800D5820==x) {
-      y = D_800D5824;
-    if (y == 0x800) return 0x800;
-    if (y == 0x1000) return 0x1000;
-    if (y == 0x2000) return 0x2000;
-    if (y == 0x4000) return 0x4000;
-    if (y == 0x8000) return 0x8000;
+/*
+s32 func_800407D4(u16 x){
+  if (x==D_800D5820) {
+    if (D_800D5824 == 0x800) return 0x800;
+    if (D_800D5824 == 0x1000) return 0x1000;
+    if (D_800D5824 == 0x2000) return 0x2000;
+    if (D_800D5824 == 0x4000) return 0x4000;
+    if (D_800D5824 == 0x8000) return 0x8000;
   }
   return 0;
 }*/
@@ -1327,13 +1539,17 @@ void func_80042360(u16 i){gActors[i].unk_0xD0_h++;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042A0C.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042AEC.s")
+
 void func_80042AEC(u16 i){
     func_80042864(i);
     func_800423A0(i);
     func_800427E0(i);
 }
-
+/*
+void func_80042B2C(u16 i){
+    if(0<=gActors[i].unk_0x110){gActors[i].unk_0xD0_h-=2;}
+    else gActors[i].flag=0;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042B2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042B94.s")

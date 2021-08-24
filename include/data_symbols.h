@@ -25,6 +25,7 @@ extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
 extern uint16_t D_800BE4D4;
+extern uint16_t D_800BE4D8;
 extern uint16_t D_800BE4E0;
 extern uint16_t D_800BE4E4;
 extern int16_t D_800BE4EC;
@@ -168,7 +169,7 @@ extern uint16_t D_800CBF44;
 extern uint16_t D_800CBF58;
 extern int8_t D_800CC428;
 extern u16 D_800CC6EC[88][8];
-extern uint8_t D_800CCFDC; // does not like being declared an array. Which it is.
+extern uint8_t D_800CCFDC[88]; // Stage BGM indecies
 extern int32_t D_800CEC0C;
 extern u8 D_800D16AA[]; //right in the middle of a pointer array?
 extern s16 D_800D16C4;
@@ -211,6 +212,7 @@ extern uint32_t D_800D4184;
 extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
+extern u16 D_800D5824;
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
 extern UNK_TYPE gData_RedGem; // sprite data for red gem?
 extern UNK_TYPE D_800D8668;
