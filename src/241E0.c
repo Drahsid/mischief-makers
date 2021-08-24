@@ -936,15 +936,12 @@ s32 func_8002B954(u16 i, u16 x){
     return 0;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B954.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B9D8.s")
 
 s32 func_8002BACC(u16 unk, u16 x){
     if((D_800BE4D8==0)&&(x&0x80)) return 1;
     return 0;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BACC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BB04.s")
 /* RegAlloc?
@@ -963,14 +960,24 @@ u8 func_8002BC10(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C1D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C1E0.s")
+void func_8002C1E0(u16* x, u16* y, u16 z){
+    for(z!=0;z>0;z--){
+        *y=*x;
+        x++;
+        y++;}
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C218.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C328.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C3C8.s")
-
+/*
+void func_8002C510(u16 i){
+    if(gActors[i].flag&0x80==0) func_8002AEB4(i,gActors[i].unk_0x154-8);
+    else func_8002AEB4(i,gActors[i].unk_0x154+6);
+    func_8002AC30(i,*(s16*)(gActors[i].unk_0x158+2)); //that's why we'll call it a union.
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C510.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C5C4.s")
@@ -1009,12 +1016,49 @@ u8 func_8002BC10(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002E89C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002EBB8.s")
+const float D_800EB904=0.8;
+void func_8002EBB8(u16 i, s16 x, s16 y,s32 A, s32 B){
+    float f;
+    gActors[i].unk_0xD2=0x2602;
+    Actor_Spawn(i);
+    f=D_800EB904;
+    gActors[i].unk_0x94=9;
+    gActors[i].flag=7;
+    gActors[i].unk_0x84=0x24A;
+    gActors[i].unk_0xCE=5;
+    gActors[i].unk_0xDF=0;
+    gActors[i].unk_0xDA=4;
+    gActors[i].unk_0xDB=4;
+    gActors[i].unk_0xB4=f;
+    gActors[i].unk_0xB8=f;
+    func_8002ABE4(i,4);
+    func_8002AC30(i,8);
+    gActors[i].health=1;
+    gActors[i].unk_0xE4=30;
+    gActors[i].pos.x=x;
+    gActors[i].pos.y=y;
+    gActors[i].unk_0xEC=A;
+    gActors[i].unk_0xF0=B;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ECAC.s")
+void func_8002ECAC(u16 i, s16 x, s16 y,s32 A, s32 B){
+    gActors[i].unk_0xD2=0x2600;
+    Actor_Spawn(i);
+    gActors[i].pos.x=x;
+    gActors[i].pos.y=y;
+    gActors[i].unk_0xEC=A;
+    gActors[i].unk_0xF0=B;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ED34.s")
-
+void func_8002ED34(u16 i, s16 x, s16 y,s32 z){}
+/*
+void func_8002ED48(u16 i, s16 x, s16 y){
+    gActors[i].unk_0xD2=0x2603;
+    Actor_Spawn(i);
+    gActors[i].health=10;
+    gActors[i].pos.x=x;
+    gActors[i].pos.y=y;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ED48.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002EDC8.s")
