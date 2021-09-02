@@ -851,18 +851,17 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B3D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
-/*
+
 void YellowGem_setFlag(void){
-  gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
+    gYellowGemBitfeild |= (uint64_t) 1 << (uint16_t) gCurrentStage;
 }
-*/
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
-/*
-u64 YellowGem_getFlag(u16 arg0) {
-    return gYellowGemBitfeild & __ll_lshift(1,(u64)arg0);
+
+uint64_t YellowGem_getFlag(uint16_t arg0) {
+    uint64_t mask;
+
+    mask = ((uint64_t) 1 << arg0);
+    return gYellowGemBitfeild & mask;
 }
-*/
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 

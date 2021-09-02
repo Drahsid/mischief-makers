@@ -182,7 +182,7 @@ extern void GameSave_Update();
 extern void func_8001B3D0();
 extern void func_8001B460();
 extern void YellowGem_setFlag();
-extern uint64_t YellowGem_getFlag(u16);
+extern uint64_t YellowGem_getFlag(uint16_t);
 extern void func_8001C834();
 extern void func_8001C8B0();
 extern void func_8001C97C();
