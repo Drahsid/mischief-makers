@@ -165,7 +165,7 @@ void func_800232A4(void) {
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
-    YelloGemBitfeildTemp = gYellowGemBitfeild;
+    YelloGemBitfeildTemp = gYellowGemBitfield;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameSubState = 0;
 }

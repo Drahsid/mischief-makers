@@ -337,7 +337,7 @@ extern UNK_TYPE D_8016DEB8;
 extern ALCSPlayer* BGM_pALCPlayer;
 extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
-extern int64_t gYellowGemBitfeild;
+extern int64_t gYellowGemBitfield;
 extern int8_t gWorldProgress;
 extern Mtx* D_801780F0;
 extern Mtx* D_801780F4;

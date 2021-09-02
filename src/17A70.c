@@ -853,14 +853,14 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 
 void YellowGem_setFlag(void){
-    gYellowGemBitfeild |= (uint64_t) 1 << (uint16_t) gCurrentStage;
+    gYellowGemBitfield |= (uint64_t) 1 << (uint16_t) gCurrentStage;
 }
 
 uint64_t YellowGem_getFlag(uint16_t arg0) {
     uint64_t mask;
 
     mask = ((uint64_t) 1 << arg0);
-    return gYellowGemBitfeild & mask;
+    return gYellowGemBitfield & mask;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
