@@ -9,9 +9,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
 // BUG: This function writes to unallocated stack space!
-void func_8001E808(int32_t arg0, int32_t arg1) {
-    return;
-}
+void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
@@ -96,9 +94,9 @@ Actor* func_8001EADC(int32_t arg0, int32_t arg1) {
  * Differences are regalloc, and instruction order
  * Function called from D_800CA1C0 seems to be bogus (the wrong effect triggers in-game)
  */
-void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
-    int32_t index0 = actorIndexR & 0xFFFF;
-    int32_t index1 = actorIndexL & 0xFFFF;
+void func_8001EB8C(int16_t actorIndexL, int16_t actorIndexR) {
+    int16_t index0 = actorIndexR & 0xFFFF;
+    int16_t index1 = actorIndexL & 0xFFFF;
     Actor* actor0 = &gActors[index1];
     Actor* actor1 = &gActors[index0];
 
@@ -121,9 +119,7 @@ void func_8001EB8C(int32_t actorIndexL, int32_t actorIndexR) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FEB0.s")
 
-void func_8001FF28(void) {
-    return;
-}
+void func_8001FF28(void) {}
 
 void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
@@ -134,25 +130,17 @@ void func_8001FF30(void) {
 /* Differences are regalloc and instruction order
  * Additionally, when it loads actor.unk_0x98, there should be a nop following it
  */
-int32_t func_8001FF50(void) {
-    int32_t index;
-    int32_t temp;
-
-    for (index = 1; index < ACTOR_COUNT1; index = temp) {
-        index++;
-        temp = index & 0xFFFF;
+void func_8001FF50(void) {
+    int16_t index;
+    for (index = 1; index < ACTOR_COUNT1; index++) {
         gActors[index].unk_0x98 &= 0x380600;
     }
-
-    return temp;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
 #endif
 
-void func_8001FFA0(void) {
-    return;
-}
+void func_8001FFA0(void) {}
 
 void func_8001FFA8(void) {
     D_800CA230 = 0;
@@ -236,7 +224,7 @@ void func_80020024(void) {
     func_80047C98(); // level objects
 
     if ((D_800BE6AC & 0x4000) != 0) {
-        phi_s2 = SFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = SFX_Volumes; // Whitespace memes
+        phi_s2 = gSFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -252,30 +240,14 @@ void func_80020024(void) {
         } while (phi_s1 != D_800EF500);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
-#ifdef NON_MATCHING
-void RedGem_PrintPause(void) {
-    s32 temp_t1;
-    s32 temp_t8;
-    u16 temp_s0;
-    u16 temp_s1;
-
-    temp_s1 = gRedGems;
-    temp_s0 = temp_s1;
-    func_80083518(6, 1, (s16) (((s32) temp_s1 % 10) + 0x51), 0);
-    temp_t8 = ((s32) temp_s0 / 10) & 0xFFFF;
-    func_80083518(5, 1, (s16) ((temp_t8 % 10) + 0x51), 0);
-    temp_t1 = (temp_t8 / 10) & 0xFFFF;
-    func_80083518(4, 1, (s16) ((temp_t1 % 10) + 0x51), 0);
-    func_80083518(3, 1, (s16) (((s32) ((temp_t1 / 10) & 0xFFFF) % 10) + 0x51), 0);
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Playtime_PrintPause.s")
 
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 #endif
 
 
-void YellowGem_printProgress(void) { // Print "Got it" or "Not Yet"
+void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
     if (YellowGem_getFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
     else func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
@@ -319,12 +291,8 @@ void GamePlay_Tick(void) {
     func_800457C8();
     gTickDelta = osGetTime() - sp1C;
 
-    if (gGamePaused != 0) {
-        PauseGame_Tick();
-    }
-    else {
-        func_80020024();
-    }
+    if (gGamePaused) PauseGame_Tick();
+    else func_80020024();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
@@ -372,7 +340,7 @@ void AttractMode_Tick(void) {
         else if (gGameSubState == 3) {
             func_80021098(&gGameSubState);
             if (D_801037AA == D_80103944) {
-                AttractModeIndex += 1;
+                gAttractModeIndex += 1;
                 D_80137D90 = 0;
                 gGameState = GAMESTATE_SOFTRESET;
                 gGameSubState = 0;
@@ -386,11 +354,11 @@ void AttractMode_Tick(void) {
         }
     }
     else {
-        if (3 < AttractModeIndex) {
-            AttractModeIndex = 0;
+        if (3 < gAttractModeIndex) {
+            gAttractModeIndex = 0;
         }
 
-        gCurrentStage = (&D_800CA2B0)[AttractModeIndex];
+        gCurrentStage = (&D_800CA2B0)[gAttractModeIndex];
         D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
         D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)gCurrentStage * 2);
         D_800CA234 = 0xA00;
@@ -398,7 +366,7 @@ void AttractMode_Tick(void) {
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&AttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
+        func_800232A4(&gAttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
         D_80104098.unk_0x2920 = 0;
@@ -412,8 +380,8 @@ void AttractMode_Tick(void) {
         D_800CA240 = 0;
         D_800CA248 = 0;
         D_800CA24C = 0;
-        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[AttractModeIndex];
-        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[AttractModeIndex];
+        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[gAttractModeIndex];
+        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[gAttractModeIndex];
     }
 }
 #else
@@ -421,24 +389,14 @@ void AttractMode_Tick(void) {
 #endif
 
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig) != 0) {
-        D_800BE6B8 ^= 0xFF;
-    }
+    if ((gButtonPress & gButton_RTrig)) D_800BE6B8 ^= 0xFF;
 }
 
-void ptstart(void) {
-    return;
-}
+void func_80021658(void) {}
 
-void func_80021660(void) {
-    return;
-}
+void func_80021660(void) {}
 
 // BUG: This function writes to unallocated stack space!
-void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
-    return;
-}
+void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {}
 
-void func_8002167C(void) {
-    return;
-}
+void func_8002167C(void) {}

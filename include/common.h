@@ -2,7 +2,7 @@
 #define COMMON_INCLUDE_H
 
 #include "inttypes.h"
-
+#include "Alphabet.h"
 enum {
     GAMESTATE_SOFTRESET,
     GAMESTATE_INTRO,
@@ -33,18 +33,19 @@ typedef struct {
     };
 } Vec2i_union; /* sizeof = 0x08 */
 
-typedef struct {
-    union {
-        /* 0x00 */ uint16_t x;
+typedef union {
+    struct {
         /* 0x00 */ int32_t x_w;
-    };
-    union {
-        /* 0x04 */ uint16_t y;
         /* 0x04 */ int32_t y_w;
-    };
-    union {
-        /* 0x08 */ uint16_t z;
         /* 0x08 */ int32_t z_w;
+    };
+    struct {
+        /* 0x00 */ int16_t x;
+        /* 0x02 */ int16_t x_1;
+        /* 0x04 */ int16_t y;
+        /* 0x06 */ int16_t y_1;
+        /* 0x08 */ int16_t z;
+        /* 0x0A */ int16_t z_1;
     };
 } Vec3i_union; /* sizeof = 0x0C */
 
@@ -57,5 +58,6 @@ typedef union {
     };
     /* 0x00 */ uint32_t rgba;
 } RGBA32; /* sizeof = 0x04 */
+
 
 #endif

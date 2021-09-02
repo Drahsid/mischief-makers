@@ -1,3 +1,5 @@
+#include "BGM.h"
+#include "GameSave.h"
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <inttypes.h>
@@ -374,9 +376,9 @@ void Intro_Tick(void) {
             break;
         }
         case 16: {
-            D_8012A670 = (uint32_t*)((uint8_t*)D_8012A670 + 8);
-            D_8012A670[0] = 0x6000000;
-            D_8012A670[1] = &D_800C8EF0;
+            gDListHead = (uint32_t*)((uint8_t*)gDListHead + 8);
+            gDListHead[0] = 0x6000000;
+            gDListHead[1] = &D_800C8EF0;
 
             D_800F4210 = 0;
             D_800F43A8 = 0;
@@ -419,8 +421,235 @@ void func_80017F08(void) {//prints "Press start" and copyright info
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
 
+#ifdef NON_MATCHING
+void TitleScreen_Tick(void) {
+    uint16_t buttonPress;
 
+    switch (gGameSubState) {
+        // OK
+        case 0: {
+            BGM_Play(BGM_OPENING_TITLE);
+            gGameSubState = 0x10;
+            // fallthrough
+        }
+        // OK
+        case 16: {
+            gSPDisplayList(gDListHead++, &D_800C8EF0);
+            func_800230B8(&gDListHead);
+            func_80017FE8(0x33);
+            D_800BE5D0 = 8;
+            gGameSubState += 1;
+        }
+        default: {
+            break;
+        }
+        // OK
+        case 17: {
+            func_80026E60(0x50);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 18: {
+            func_80026F2C(0x50);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 19: {
+            func_800270E4(0x15);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 20: {
+            func_8002670C(D_800BE5D0);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 21: {
+            func_80026784(D_800BE5D0);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 22: {
+            func_80026428(D_800BE5D0);
+            gGameSubState += 1;
+            break;
+        }
+        // OK
+        case 23: {
+            func_80025BFC();
+            func_8002B82C(0x803DA400, 0x80380200, 0xFF, 2, 0, 0);
+            D_800BE578 = 2;
+            D_800BE580 = -0xC;
+            D_801376A0 = 0x80380200;
+            D_800BE6E4 = 0;
+            D_800BE6E8 = 1;
+            D_800BE6EC = 0;
+            D_800BE70C = 1;
+            func_80010C20(D_800BE5D0);
+            gGameSubState += 1;
+            break;
+        }
+        // some actors are referenced by a pointer, probably Actor* local vars?
+        case 24: {
+            gActors[7].rgba.b = 0;
+            D_801781A0 = 0;
+
+            func_800273FC(16, 0x800, 0x70, 0xFF68, 0);
+            gActors[16].unk_0x94 |= 0x100;
+            gActors[16].rgba.a = 0x80;
+
+            func_800273FC(17, 0x1000, 0xFF88, 0xFF68, 0);
+            gActors[17].unk_0x94 |= 0x100;
+            gActors[17].rgba.a = 0x80;
+
+            gActors[48].unk_0xD2 = 0;
+            actor2_Spawn(48);
+            gActors[48].unk_0x94 |= 0x200;
+            gActors[48].flag |= 0x30000000;
+            gActors[48].unk_0x17C = 0x80343C28;
+            gActors[48].unk_0x180 = 0x80349728;
+            gActors[48].unk_0x188 = 0xE;
+            gActors[48].pos.x = 0x2A;
+            gActors[48].unk_0xAA = 0xE0;
+            gActors[48].unk_0xAC = 1;
+            gActors[48].unk_0xAE = 8;
+            gActors[48].unk_0xB0 = 0xD;
+
+            gActors[49].flag = 0;
+            gActors[50].flag = 0;
+
+            gGameSubState += 1;
+            break;
+        }
+        case 25: {
+            func_80017F08();
+
+            if (gActors[51].rgba.a == 7) {
+                gActors[51].flag = 0;
+                gActors[51].unk_0x154 = 0x10040;
+                gGameSubState += 1;
+            }
+            else {
+                gActors[51].rgba.a -= 8;
+            }
+
+            break;
+        }
+        case 26: {
+            gActors[51].unk_0x154--;
+            func_8001809C();
+
+            if (gActors[51].unk_0x154 == 0x10000) {
+                SFX_Play_1(0x21U);
+            }
+
+            // test to toggle sound test
+            if (((gButtonHold & gButton_A) != 0) && ((gButtonHold & gButton_CLeft) != 0) && ((gButtonHold & gButton_CRight) != 0) && ((gButtonHold & gButton_LTrig) != 0) &&
+                ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) && ((gButtonHold & gButton_CUp) == 0) && ((gButtonHold & gButton_RTrig) == 0)) {
+                gActors[7].rgba.b = 1;
+            }
+            else {
+                gActors[7].rgba.b = 0;
+            }
+
+            func_80017F08();
+
+            buttonPress = gButtonPress;
+            if ((gButtonPress & gButton_Start) != 0) {
+                SFX_Play_1(0x23U);
+                func_80003F24(1, 0x40);
+
+                D_80178166 = 0;
+
+                if (gActors[7].rgba.b != 0) {
+                    gGameSubState = 0x30;
+                    buttonPress = gButtonPress;
+                }
+                else {
+                    gGameSubState = 0x20;
+                    buttonPress = gButtonPress;
+                }
+            }
+
+            if ((D_80137DA0 >= 0x1141 || (buttonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
+                func_80003F24(1, 0x20);
+                gActors[51].unk_0x94 |= 0x10;
+                gActors[51].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
+                gActors[51].rgba.b = 0x7F;
+                gActors[51].rgba.g = 0x7F;
+                gActors[51].rgba.r = 0x7F;
+                gActors[51].rgba.a = 7;
+                gGameSubState += 1;
+                break;
+            }
+            break;
+        }
+        // OK (besides regalloc)
+        case 27: {
+            func_8001809C();
+            func_80017F08();
+
+            if (gActors[51].rgba.a == 0xFF) {
+                D_80137D90 = 0;
+                gGameState = 0xA;
+                gGameSubState = 0;
+            }
+            else {
+                gActors[51].rgba.a += 8;
+            }
+            break;
+        }
+        // OK (besides regalloc)
+        case 32: {
+            func_800180FC();
+            if (D_80137D90 == 3) {
+                D_80137D90 = 0;
+                D_80178164 = 0x20U;
+                gGameSubState += 1;
+            }
+            break;
+        }
+        // OK (besides regalloc)
+        case 33: {
+            func_800180FC();
+            if (D_80178164-- == 0) {
+                gGameState = 0xB;
+                gGameSubState = 0;
+            }
+            break;
+        }
+        // OK (besides regalloc)
+        case 48: {
+            func_800180FC();
+            if (D_80137D90 == 3) {
+                D_80137D90 = 0;
+                D_80178164 = 0x20U;
+                gGameSubState += 1;
+            }
+            break;
+        }
+        // OK (besides regalloc)
+        case 49: {
+            func_800180FC();
+            if (D_80178164-- == 0) {
+                func_800230B8(&D_80178164);
+                gActors[16].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
+                gActors[17].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
+                gGameState = GAMESTATE_DEBUG_SOUNDTEST;
+                gGameSubState = 0;
+            }
+            break;
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_Tick.s")
 
@@ -574,8 +803,25 @@ void StageSelect_Tick(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/calculateFestivalTime.s")
+/*
+void CalculateFestivalTime(void){
+  s32 TimeA, TimeB, TimeC, TimeD;
+  if(gCurrentStage==33){ //is it "the day of"
+    TimeA=func_80019520(gFestivalRecords[2]);
+    TimeB=func_80019520(gFestivalRecords[1]);
+    TimeC=func_80019520(gFestivalRecords[0]);
+    TimeD=func_80019520(gFestivalRecords[5]);
+    gStageTime=TimeD+TimeC+TimeB+TimeA;
+    if(gFestivalRecords[3]<1800) gStageTime -= gFestivalRecords[3]       + 1800;
+    if(gFestivalRecords[4]<1800) gStageTime += gFestivalRecords[4] * -10 + 1800;
+    if(gFestivalRecords[6]<1800) gStageTime += gFestivalRecords[6] * -10 + 1800;
+    }
+    gGamePaused=0;
+    gGameState=12; //transitional state
+    gGameSubState=8;
+}
+*/
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/CalculateFestivalTime.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 
@@ -589,7 +835,13 @@ void StageSelect_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019E48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019EC4.s")
+void func_80019EC4(void){
+    func_8008310C();
+    func_80083454();
+    func_80019A80();
+    func_80019E48();
+    func_8001A254();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019F04.s")
 
@@ -600,26 +852,22 @@ void StageSelect_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
-#ifdef NON_MATCHING
-int32_t get_time_rank(uint16_t t, uint16_t s) {
-    s32 temp_v0;
-    u16 temp_v1;
 
-    temp_v1 = gTimesToBeat[s];
-    temp_v0 = t;
-    if (temp_v0 < (s32) temp_v1) return 0;
-    if (temp_v0 < (temp_v1 + 1800)) return 1;
-    if (temp_v0 < (temp_v1 + 7200)) return 2;
-    if ((temp_v0 < (temp_v1 + 18000)) && (temp_v0 < 36000)) return 3;
+int16_t Get_TimeRank(uint16_t t, uint16_t s) {
+
+    if (t < gTimesToBeat[s]) return 0;
+    if (t < (gTimesToBeat[s] + 1800)) return 1;
+    if (t < (gTimesToBeat[s] + 7200)) return 2;
+    if ((t < (gTimesToBeat[s] + 18000)) && (t < 36000)) return 3;
     return 4;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/get_time_rank.s")
-#endif
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A7E0.s")
+
+void func_8001A7E0(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
+    func_8008379C(arg0, arg1, D_800C9694[Get_TimeRank(time, stage)], arg4);
+}
 
 void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
-    func_80083810(arg0, arg1, D_800C96A0[get_time_rank(time, stage)], arg4);
+    func_80083810(arg0, arg1, D_800C96A0[Get_TimeRank(time, stage)], arg4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A890.s")
@@ -650,7 +898,7 @@ int16_t YellowGem_Count(void){
   u16 i;
   u64 flag = 1;
   s16 count=0;
-  
+
   for(i = 0; i < 63; i++) {
     if (gYellowGemBitfeild & flag) count++;
     flag = __ll_lshift(flag,1);
@@ -665,7 +913,7 @@ void GameSave_Update(void){
   u8 bVar1;
   u16 uVar2;
   u16 uVar4;
-  
+
   uVar2 = gCurrentStage;
   bVar1 = gWorldProgress;
   D_80178150 = gTimeRecords[gCurrentStage];
@@ -686,7 +934,7 @@ void GameSave_Update(void){
 void func_8001B3D0(void){
   u16 uVar1;
   u32 uVar2;
-  
+
   gWorldProgress = (u8)gCurrentStage;
   GameSave_RedGems[gSaveSlotIndex] = gRedGems;
   uVar1 = YellowGem_Count();
@@ -699,15 +947,15 @@ void func_8001B3D0(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
 /*
 void YellowGem_setFlag(void){
-  gYellowGemBitfeild |= __ll_lshift(0,1,(u64)gCurrentStage);
+  gYellowGemBitfeild |= __ll_lshift(1,gCurrentStage);
 }
 */
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_setFlag.s")
 /*
 u64 YellowGem_getFlag(u16 arg0) {
-    return gYellowGemBitfeild & __ll_lshift(1,(u64)arg0);
-}
-*/
+    return gYellowGemBitfeild & __ll_lshift(1,arg0);
+}*/
+
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/YellowGem_getFlag.s")
 
 #ifdef NON_MATCHING
@@ -744,9 +992,9 @@ void func_8001C834(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D040.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/calculate_time_record_total.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Calculate_TimeRecordTotal.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/print_record_entry.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/PrintRecordEntry.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D5B8.s")
 

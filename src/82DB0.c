@@ -40,8 +40,8 @@ void func_800822B8(void) {
     if (D_80178460 != 0) {
         func_80001264();
 
-        if (((D_800BE6A4 & 0x7FFF) + D_800BE700) != 0) {
-            if (((D_800BE6A4 & 0x7FFF) + D_800BE700) != 1) {
+        if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 0) {
+            if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 1) {
                 phi_v0 = D_800BE6A4 & 0x7FFF;
             }
             else {

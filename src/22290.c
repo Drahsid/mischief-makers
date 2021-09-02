@@ -19,8 +19,8 @@ void func_80022D10(void) {
     D_800BE6EC = 0;
     gButton_B = 0x4000;
     gButton_A = 0x8000;
-    D_800BE700 = 0;
-    AttractModeIndex = 0;
+    gCurrentFramebufferIndex = 0;
+    gAttractModeIndex = 0;
     gGameState = GAMESTATE_SOFTRESET;
     gGameSubState = 0;
 }

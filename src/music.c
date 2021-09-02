@@ -3,12 +3,12 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-ALCSPlayer SFX_ALCPlayers[4];
+ALCSPlayer gSFX_ALCPlayers[4];
 ALCSPlayer* SFX_pALCPlayers[4];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800017D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaCallBack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001988.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaNew.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001A80.s")
 
@@ -21,7 +21,25 @@ void Sound_SetEventMesg(void) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_Tick.s")
-
+/*
+void func_800028D0(void){  
+  u8 i;
+  
+  osRecvMesg(&D_801377D0,0,1);
+  D_8016E718 = (D_800C3838 -1) % 3;
+  osAiSetNextBuffer(Sound_AIBuffers[D_8016E718],D_800C383C[D_8016E718] << 2);
+  for(i=0;i<D_800C3830;i++)
+  if (D_800C3830>0) {
+    for(i=0;i<D_800C3830;i++)
+      osRecvMesg(&D_801377B8,0,0);
+  }
+  func_80001A80();
+  D_800C3830 = 0;
+  D_800C3834 ^= 1;
+  D_800C3838++;
+  D_8016DEB8++;
+  }
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800028D0.s")
 
 void func_800029EC(void) {
@@ -39,11 +57,35 @@ void Sound_DMA(int32_t Addr, void* Vaddr, uint32_t Len) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/BGM_Play.s")
+/*
+void func_80002F48(u8 chan,void *player,s16 SFX_ID,s16 arg3,s8 arg4,u8 state,u16 arg6,u16 arg7){
+    gSFX_ChannelStates[chan]=state;
+    D_80108DE0[chan]=arg6;
+    D_800EF508[chan]=SFX_ID;
+    D_80104090[chan]=SFX2ByteArray[SFX_ID][1];
+    D_8010CDE8[chan]=arg7;
+    D_801069D8[chan]=arg4;
+    if((-1<arg3)&&(arg3<257)){
+        gSFX_Volumes[chan]=SFX2ByteArray[SFX_ID][0] * arg3;
+        return;
+    }
+    gSFX_Volumes[chan]=SFX2ByteArray[SFX_ID][0] << 8;
 
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_func.s")
-
+/*
+s32 func_800032C4(s16 x){
+    u8 i=0;
+    while(gSFX_ChannelStates[i]==0||x!=D_800EF508[i]){
+        i++;
+        if(3<i) return -1;
+    }
+    alSeqpStop(SFX_pALCPlayers[i]);
+    return i;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800032C4.s")
 
 int32_t SFX_Play_1(UNK_TYPE ID) { // main SFX playing wrapper
@@ -54,83 +96,84 @@ void SFX_Play_2(UNK_TYPE arg0) {
     SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
-/* Splat bug. Again.
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
     SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
 }
-#else*/
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_3.s")
-//#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_4(UNK_TYPE arg0, int8_t arg1) {
-    SFX_func(-1, arg1, -1, 0x81, 0xFF, 0);
+    SFX_func(arg0, -1, arg1, 0x81, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_4.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_5(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x81, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_5.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_6(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x91, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_6.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_7(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x92, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_7.s")
-#endif
 
-#ifdef NON_MATCHING
-// Differences are regalloc
 void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
     SFX_func(arg0, arg1, arg2, 0x93, 0xFF, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_8.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003540.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800035F8.s")
+s32 func_800035F8(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800036C8.s")
+    if((gActors[i].pos.x<-0x90)||(gActors[i].pos.x>=0x90)) return -1;
+    if((gActors[i].pos.y<-0x60)||(gActors[i].pos.y>=0x60)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x81,0xFF,0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003778.s")
+s32 func_800036C8(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
+
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x81,0xFF,0);
+}
+
+s32 func_80003778(UNK_TYPE SFX_ID, u16 i){
+    s8 valA;
+    s16 valB;
+
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0x91,0xFF,0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003828.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800038C8.s")
+s32 func_800038C8(UNK_TYPE SFX_ID, u16 i,u16 arg2){
+    s8 valA;
+    s16 valB;
 
-#ifdef NON_MATCHING
-// Differences are regalloc
+    if((gActors[i].pos.x<-383)||(gActors[i].pos.x>=384)) return -1;
+    func_80003540(gActors[i].pos.x,gActors[i].pos.y,&valA,&valB);
+    if(valB<128) return -1;
+    else return SFX_func(SFX_ID,valB,valA,0xA1,0xFF,arg2);
+}
+
 void func_80003980(UNK_TYPE arg0, uint16_t arg1) {
     SFX_func(arg0, -1, -1, 0xC1, arg1, 0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003980.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800039B8.s")
+void func_800039B8(UNK_TYPE SFX_ID,u32 arg1,u32 arg2){ //2 unused args?
+    int i = SFX_func(SFX_ID, -1, -1, 0x89, 0xFF, 0);
+    D_8011CDF0[i]=127;
+    D_8011CF18[i]=64;
+}
 
 void BGM_SFX_Stop(void) {
     BGM_Stop();
@@ -146,7 +189,7 @@ void SFX_StopAll(void) {
     u8 i;
     for (i = 0; i < 4; i++) {
         alSeqpStop(SFX_pALCPlayers[i]);
-        SFX_ChannelStates[i] = 0;
+        gSFX_ChannelStates[i] = 0;
     }
 }
 
