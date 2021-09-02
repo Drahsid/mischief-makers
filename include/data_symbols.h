@@ -67,7 +67,7 @@ extern uint8_t bssStart; // also deals with sound state.
 extern int16_t gBgmVolume;
 extern uint8_t gSFX_ChannelStates[];
 extern int16_t gSFX_Volumes[];
-extern uint16_t gInputHistory[64]; // buffer of controller inputs
+extern uint16_t gInputHistoryPress[64]; // buffer of controller inputs
 extern Gfx* gDListHead;
 extern OSContStatus OSgContStatArray[4];
 extern OSContPad gConpadArrayA[4];
@@ -383,7 +383,7 @@ extern uint16_t D_801069B8;
 extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern UNK_TYPE D_8011D970;
 extern UNK_TYPE D_8011DDF0;
-extern uint16_t D_801225F0[]; // input history
+extern uint16_t gInputHistoryHold[];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;

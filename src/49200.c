@@ -428,8 +428,8 @@ void func_8004ED10(uint16_t index) {
                 func_800485AC(index, &D_801370CE, &D_801370CC);
             }
             else {
-                phi_v0 = &D_801225F0;
-                phi_v1 = &D_8011DD70;
+                phi_v0 = gInputHistoryHold;
+                phi_v1 = gInputHistoryPress;
                 do {
                     phi_v0[1] = 0;
                     phi_v1[-3] = 0;
