@@ -23,7 +23,7 @@ void func_80042CF8(uint16_t* arg0) {
     if (a0 != 0) {
         if ((*a0) != 0) {
             do {
-                sp0 = (&D_800D2978)[index];
+                sp0 = D_800D2978[index];
                 index = (index + 3) & 0xFFFF;
                 new_var = a0[1];
                 sp0[0] = a0[0];
@@ -38,7 +38,7 @@ void func_80042CF8(uint16_t* arg0) {
     while (new_var2 != 0x600) {
         do {
             index = (index + 3) & 0xFFFF;
-            (&D_800D2978)[index] = 0;
+            D_800D2978[index] = 0;
         } while (index != 0x600);
     }
 }
@@ -46,17 +46,11 @@ void func_80042CF8(uint16_t* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF8.s")
 #endif
 
-#ifdef NON_MATCHING
-// Differences are minor regalloc and instruction order (functionally identical)
-void func_80042D84(int16_t x) {
-    int16_t uVar1;
-
-    for (uVar1 = x; uVar1 != 0x600; uVar1 += 3)
-        (&D_800D2978)[uVar1] = 0;
+void func_80042D84(uint16_t x) {
+    while (x != 0x600) {
+        D_800D2978[x & 0xFFFFFFFF] = 0, x += 3; // Whitespace memes
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")
-#endif
 
 #ifdef NON_MATCHING
 void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
@@ -81,10 +75,10 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
         phi_a0 = arg0;
         phi_a3_2 = 0;
         phi_a1_2 = temp_a1;
-        phi_a2 = &D_800D2978;
+        phi_a2 = D_800D2978;
         if (temp_a1 != 0) {
             do {
-                temp_v0 = &D_800D2978 + (phi_a3 * 2);
+                temp_v0 = D_800D2978[phi_a3];
                 temp_v0[0] = phi_a1;
                 temp_v0[1] = phi_a0[1];
                 temp_t9 = (phi_a3 + 3) & 0xFFFF;
@@ -95,7 +89,7 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
                 phi_a0 += 6;
                 phi_a3_2 = temp_t9;
                 phi_a1_2 = temp_a1_2;
-                phi_a2 = &D_800D2978;
+                phi_a2 = D_800D2978;
             } while (temp_a1_2 != 0);
         }
     }
@@ -335,9 +329,11 @@ void func_8004571C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
+#ifdef NON_MATCHING
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004586C.s")
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
+#endif
 
 void func_80045D84(int32_t arg0, int32_t arg1) {
     D_800D28E4 = 100;

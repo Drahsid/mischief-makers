@@ -45,7 +45,7 @@ segments:
       - [0x66250, c]
       - [0x7D8E0, asm]
       - [0x805E0, asm]
-      - [0x80D90, asm]
+      - [0x80D90, c]
       - [0x82920, asm]
       - [0x82DB0, c]
       - [0x82F80, asm]
@@ -208,7 +208,9 @@ segments:
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
       - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
-
+      - [0xEC6C0, bin]
+      - [0xEC920, rodata, 438E0] # start for the jtbl in func_800457C8
+      - [0xEC960, bin]
       # libultra
       #- [0xEE200, rodata, io/viswapbuf]
       #- [0xEE230, rodata, os/visetmode]
@@ -235,7 +237,6 @@ segments:
       #- [0xEF540, rodata, audio/seq]
       #- [0xEF550, rodata, audio/reverb]
       #- [0xEF5B0, rodata, libc/xldtob]
-      - [0xEC6C0, bin]
       - [0xEF880, bin] # "RSP SW Version:" ...
       - [0x7754F0, c] # includes actor functions from func_80016E70
 

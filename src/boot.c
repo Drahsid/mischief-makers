@@ -360,27 +360,28 @@ void Input_Update(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
-void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    OSIoMesg sp30;
-    uint32_t sp2C;
+// looks like this starts a blocking dma
+int32_t func_800011F0(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mesgBlock;
+    OSMesg mesg;
 
-    osInvalDCache(arg1, arg2);
-    osPiStartDma(&sp30, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
-    osRecvMesg(&D_8012ABA8, &sp2C, 1);
+    osInvalDCache(vaddr, nbytes);
+    osPiStartDma(&mesgBlock, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+    return osRecvMesg(&D_8012ABA8, &mesg, OS_MESG_BLOCK);
 }
 
-void func_80001264(void) {
-    uint32_t sp1C;
-    osRecvMesg(&D_8012ABA8, &sp1C, 1);
+// receives last message on D_8012ABA8
+int32_t func_80001264(void) {
+    OSMesg mesg;
+    return osRecvMesg(&D_8012ABA8, &mesg, 1);
 }
 
-int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
-    int32_t sp2C[2];
-    uint16_t sp28[8]; // rewrite so this is OSIoMesg and matches
+// starts a dma
+int32_t func_80001290(int32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mesgBlock;
 
-    osInvalDCache(Vaddr, nBytes);
-    sp2C[0] = osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
-    return sp2C[0];
+    osInvalDCache(vaddr, nbytes);
+    return osPiStartDma(&mesgBlock, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")

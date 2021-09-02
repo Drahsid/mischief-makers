@@ -375,9 +375,7 @@ void Intro_Tick(void) {
             break;
         }
         case 16: {
-            gDListHead = (uint32_t*)((uint8_t*)gDListHead + 8);
-            gDListHead[0] = 0x6000000;
-            gDListHead[1] = &D_800C8EF0;
+            gSPDisplayList(gDListHead++, &D_800C8EF0);
 
             D_800F4210 = 0;
             D_800F43A8 = 0;

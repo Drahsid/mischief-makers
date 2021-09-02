@@ -188,7 +188,7 @@ extern uint16_t D_800D2968;
 extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
-extern uint16_t D_800D2978;
+extern uint16_t D_800D2978[];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D37A4;
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
@@ -397,6 +397,7 @@ extern float D_801B0088;
 extern float D_801B00A0;
 extern float D_801B01C0;
 extern float D_801B01C8;
+extern UNK_TYPE D_801C4400;
 extern ActorFunc gActorFuncTable_801B0800[];
 extern uint8_t gNameEntryLanguage;
 extern uint8_t gNameEntrySelectedColumn;
@@ -408,5 +409,9 @@ extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in
 // framebuffers (in between these seems to be texture data)
 extern uint16_t D_801DA800[320][240];
 extern uint16_t D_803DA800[320][240];
+
+extern UNK_TYPE D_0040AC80;
+extern UNK_TYPE D_05095C98;
+
 
 #endif
