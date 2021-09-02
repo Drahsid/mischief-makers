@@ -11,14 +11,6 @@ extern void entrypoint(void);
 extern void Thread_MainProc(int32_t arg0);
 extern void Input_Update(void);
 extern uint32_t Input_GetFirstController();
-<<<<<<< Updated upstream
-extern void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2);
-extern void func_80001264(void);
-extern int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes);
-extern void func_800012F0();
-extern void func_8000147C();
-=======
->>>>>>> Stashed changes
 extern void GameState_Tick(void);
 extern void Sound_InitPlayers();
 extern void Sound_SetEventMesg(void);
@@ -66,6 +58,8 @@ extern void AttractMode_Tick(void);
 extern void RedGem_Cap();
 extern void GemCollision();
 extern void Actor_AddHP(uint32_t index, int16_t HP);
+
+
 extern void func_800008E0();
 extern void func_80000A84();
 extern int32_t func_800011F0(uint32_t devaddr, void* vaddr, uint32_t nbytes);

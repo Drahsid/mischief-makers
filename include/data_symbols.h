@@ -11,7 +11,6 @@ typedef uint32_t UNK_POINTER;
 
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;
-
 extern uint16_t gGamePaused;
 extern uint16_t gGameState;
 extern uint16_t gGameSubState;
@@ -97,6 +96,11 @@ extern uint8_t gNameEntryCurrentChar;
 extern uint8_t gSpriteData_YellowGem[];
 extern uint8_t gSpriteData_RedGem[];
 extern uint8_t gSpriteData_BlueGem[];
+extern ActorFunc gActorFuncTable_801B0800[];
+extern uint8_t gNameEntryLanguage;
+extern uint8_t gNameEntrySelectedColumn;
+extern uint8_t gNameEntrySelectedRow;
+extern uint8_t gNameEntryCurrentChar;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
@@ -483,36 +487,12 @@ extern float D_801B0088;
 extern float D_801B00A0;
 extern float D_801B01C0;
 extern float D_801B01C8;
-<<<<<<< Updated upstream
-extern ActorFunc gActorFuncTable_801B0800[];
-extern uint8_t gNameEntryLanguage;
-extern uint8_t gNameEntrySelectedColumn;
-extern uint8_t gNameEntrySelectedRow;
-extern uint8_t gNameEntryCurrentChar;
-=======
-extern UNK_TYPE D_801C4400;
 extern uint16_t D_801DA800[320][240]; // framebuffer
-extern int16_t D_80202CCE;
-extern int16_t D_80202EDE;
-extern int16_t D_80211A00;
-extern int16_t D_802450B2;
-extern int16_t D_80245EA2;
-extern int16_t D_80246CDE;
-extern int16_t D_80247AB8;
-extern int16_t D_80251020;
->>>>>>> Stashed changes
 extern UNK_TYPE D_802C9F70;
 extern int16_t D_803023B4;
 extern int16_t D_80362762;
 extern int16_t D_80372560;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
-<<<<<<< Updated upstream
-
-// framebuffers (in between these seems to be texture data)
-extern uint16_t D_801DA800[320][240];
-extern uint16_t D_803DA800[320][240];
-=======
 extern uint16_t D_803DA800[320][240]; // framebuffer
->>>>>>> Stashed changes
 
 #endif
