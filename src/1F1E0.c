@@ -269,19 +269,19 @@ void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
 
 #ifdef NON_MATCHING
-// regalloc differences (v1 and v0 need to be swapped)
-uint16_t func_800208D4(void) {
-    uint16_t index;
+// primarily regalloc differences, and a missing move
+int32_t func_800208D4(void) {
+    int32_t index;
+    int32_t phi_return;
 
-    for (index = 0xC8; index < 0xCC; index++) {
+    for (index = 0xC8; index < 0xCC; index = (index + 1) & 0xFFFF) {
         gActors[index].flag = 0;
+        phi_return = index; // this should be a move v0, t8, and is inside of the loop
     }
-
-    gBgmVolume = D_800EF4D4;
-    gGameSubState = 0;
-    gGamePaused = 0;
-
-    return index;
+    D_800EF4D2 = (int16_t)D_800EF4D4;
+    gGameSubState = (uint16_t)0;
+    gGamePaused = (uint16_t)0;
+    return phi_return;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_800208D4.s")

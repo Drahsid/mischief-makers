@@ -45,7 +45,28 @@ void func_80012288(void) {
     func_800121D0();
 }
 
+#if 1
+void func_800122B0(void) {
+    s32 temp_a0;
+    uint16_t phi_a0;
+
+    if (D_800BE5D4 != 0) {
+        gButtonHold &= gButton_Start;
+        gButtonPress &= gButton_Start;
+    }
+
+    for (phi_a0 = 0x3F; phi_a0 > 0; phi_a0--) {
+        D_801225F0[phi_a0] = D_801225F0[phi_a0 - 1];
+        gInputHistory[phi_a0] = gInputHistory[phi_a0 - 1];
+    }
+
+    D_801225F0[0] = gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
+    gInputHistory[0] = gButtonPress & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
+}
+
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800122B0.s")
+#endif
 
 #ifdef NON_MATCHING
 // totally identical except for swapped regalloc on 2 instructions

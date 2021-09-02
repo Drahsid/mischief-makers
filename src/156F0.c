@@ -30,13 +30,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015418.s")
 
-#ifdef NON_MATCHING
-void func_80015490(uint16_t index) {
-    func_80014FD0(index, (gActors[index].pos.x + D_800BE558) % 16);
-}
-#else
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015490.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800154F4.s")
 

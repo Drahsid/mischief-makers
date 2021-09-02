@@ -71,20 +71,7 @@ void func_80022F48(void) {
     gGameSubState = 0;
     return;
 }
-
-void func_800230B8(void) {
-    uint16_t phi_v0;
-    uint16_t phi_v0_2;
-
-    for (phi_v0 = 0; phi_v0 < ACTOR_COUNT2; phi_v0 ++) {
-        gActors[phi_v0].flag = 0;
-        gActors[phi_v0].unk_0xE8 = 0;
-    }
-
-    for (phi_v0_2 = 0; phi_v0_2 < 0x40; phi_v0_2++) {
-        D_801069E0[phi_v0_2].unk_0x80 = 0;
-    }
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002312C.s")
 
@@ -158,9 +145,9 @@ void func_800232A4(void) {
     D_800BE674 = temp_t8_3;
     D_800BE66C = temp_t8_3;
     gGamePaused = temp_t8_3;
-    func_80042D84(0); // zeroes some array
-    func_80010A10(); // resets camera and dlists
-    func_800230B8(); // deactivates actors and level sprites
+    func_80042D84(0);
+    func_80010A10();
+    func_800230B8();
     func_80023168();
     func_80012288();
     D_800BE5D4 = 1;
@@ -170,10 +157,10 @@ void func_800232A4(void) {
         D_800D2908 = (uint16_t)0;
     }
 
-    func_80025C38(); // loads background
+    func_80025C38();
     gStageTime = 0;
     D_800D294C = (uint16_t)0;
-    func_80010C20(D_800BE5D0); // loads collision
+    func_80010C20(D_800BE5D0);
     GamePlay_Tick();
     func_80047CCC();
     func_80047C98();
