@@ -257,7 +257,7 @@ void func_80020024(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
 void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
-    if (YellowGem_getFlag(gCurrentStage)) {
+    if (YellowGem_GetFlag(gCurrentStage)) {
         func_800836A0(9, 1, &Alpha_GotIt, 0);
     }
     else {
