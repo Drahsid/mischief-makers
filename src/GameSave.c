@@ -15,7 +15,7 @@ u16 gTimeRecords[64]=
 
 u16 GameSave_DefaultName[11]={ALPHA_Cap_S,ALPHA_Lower_T,ALPHA_Lower_A,ALPHA_Lower_R,ALPHA_Lower_T,
   ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_NULL};
-
+u32 D_800C4FC0[10]={0x10000,0x20000,0x40000,0x64,3,0x20000,3,0x40000,0,0x40000};
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E90.s")
@@ -24,19 +24,33 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
     if (999 < x) return 1;
     return 0;
 }
+u8 D_800C5018[]={0,0,0,1,1,0,1,0,1,0,0,0};
+/*
+u32 func_80004F24(void){
+    u16 i,b;
+    u32 ret=1;
+    u32* x;
+    for(i=0;i++;i<7){
+      if(D_800C5018[i]) b=IsOver999(gFestivalRecords[i]);
+      else b= func_80004E90(gFestivalRecords[i]);
+      if(b){
+         ret=1;
+         *x=D_800C4FC0[i];}
+    }
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
 /*
 void GameSave_Initialize(u8 slot){
   u16 i;
-  for(i=0;i<11;i++) GameSave_Names[slot][i] = GameSave_DefaultName[i];
-  GameSave_Age[slot] = 0;
-  GameSave_Sex[slot] = 0;
-  GameSave_RedGems[slot] = 30;
-  GameSave_YellowGems[slot] = 0;
-  GameSave_PlayTime[slot]=(u64)0;
-}
-*/
+  for(i=0;i<11;i++){gGameSave_Names[slot][i] = GameSave_DefaultName[i];}
+  gGameSave_Age[slot] = 0;
+  gGameSave_Sex[slot] = 0;
+  gGameSave_RedGems[slot] = 30;
+  gGameSave_YellowGems[slot] = 0;
+  gGameSave_PlayTime[slot]=(u64)0;
+}*/
+
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_SetDefaults.s")

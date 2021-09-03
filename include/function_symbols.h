@@ -68,9 +68,7 @@ extern void Sprite_SetTransparent(int32_t arg0);
 extern void Sprite_Update(void** x); // Gfx** ?
 extern int32_t func_80004910();
 extern uint16_t func_80004E70(uint32_t x, int32_t y);
-extern void func_80004E90();
 extern int32_t IsOver999(uint32_t x);
-extern void func_80004F24();
 extern void func_80009940();
 extern void func_80009BE0(void);
 extern void func_80009BE8();
