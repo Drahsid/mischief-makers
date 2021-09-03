@@ -23,8 +23,8 @@ extern float gUpZ;
 extern float gEyeX;
 extern float gEyeY;
 extern float gEyeZ;
-extern float D_800BCCD0[512]; /*contains values from 1.0 - -1.0.
-may be larger (1536 entries)- values ascend afterwards (sine table?)*/
+extern UNK_TYPE D_800BA9E0;
+extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
 extern uint16_t D_800BE4D4;
 extern uint16_t D_800BE4D8;
@@ -221,8 +221,6 @@ extern uint16_t D_800CA248;
 extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
 extern UNK_TYPE D_800CA2B0;
-extern char* D_800C9680[5]; // S,A,B,C,D
-extern uint16_t D_800C9694[5];
 extern uint16_t* D_800C96A0[5]; //"perfect","excellent","very good","   good   ","try harder"
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
@@ -494,35 +492,15 @@ extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
 extern OSIoMesg D_801378E0[];
 extern OSTask D_80137D60[2];
-extern Acmd *D_80137D68[2];
 extern void* Sound_AIBuffers[3];
-extern ALHeap D_80137D80;
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0;
-extern uint8_t D_80137DA8[220160]; //ALHeap base
 extern UNK_TYPE D_8016DEB8;
-extern ALGlobals Sound_ALGlobals;
-extern ALSynConfig ALGlobals_ALSynConfig;
-extern ALCSPlayer D_8016DF68;
 extern ALCSPlayer* BGM_pALCPlayer;
-extern ALSeq D_8016E2E8[4];
-extern ALCSeq* D_8016e6C8[4];
 extern OSTask* D_8016E6F0;
-extern ALSeqFile* D_8016E6F4;
-extern ALInstrument* D_8016E6F8;
-extern ALSound* D_8016E6FC;
-extern ALEnvelope* D_8016E700;
-extern ALKeyMap* D_8016E704;
-extern Acmd* D_8016E708;
-extern float D_8016E70C; //(ALGlobals_ALsynConfig.outputrate * 1.0) / 60.0
-extern s32 D_8016E710; //ALAudioFrame(cmdLen)
-extern s32 D_8016E714; 
 extern u32 D_8016E718;
-extern OSMesgQueue D_8016E728;
-extern OSMesg D_8016E740;
-extern OSIoMesg D_8016E748[9];
 extern Bitmap D_8016E820[56];
-extern u64 D_8016EF20[696]; //sprite->rsp_dl
+extern UNK_TYPE D_8016EF20;
 extern int64_t gYellowGemBitfeild;
 extern int8_t gWorldProgress;
 extern Mtx* D_801780F0;
@@ -563,7 +541,7 @@ extern uint16_t D_801781D0;
 extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
-extern uint16_t gStageTime; // pauses for cutscene, loading. capped at 36000
+extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
 extern uint64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
@@ -589,17 +567,7 @@ extern uint8_t gNameEntryLanguage;
 extern uint8_t gNameEntrySelectedColumn;
 extern uint8_t gNameEntrySelectedRow;
 extern uint8_t gNameEntryCurrentChar;
-//addresses given in func_80010A10
 extern UNK_TYPE D_802C9F70;
-extern UNK_TYPE D_802DB888;
-extern UNK_TYPE D_802EB278;
-extern UNK_TYPE D_802F93B8;
-extern UNK_TYPE D_80310D00;
-extern UNK_TYPE D_80317F48;
-extern UNK_TYPE D_8032F940;
-extern UNK_TYPE D_80338810;
-extern UNK_TYPE D_803440C8;
-extern UNK_TYPE D_80350AD8;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 // framebuffers (in between these seems to be texture data)
 extern uint16_t D_801DA800[320][240];
