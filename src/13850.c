@@ -10,7 +10,7 @@ void func_80012C50(uint16_t index, uint16_t arg1, uint16_t arg2) {
     func_80027510(index, &D_800E13DC, arg1, arg2, 0x403);
     actor = &gActors[index];
     actor->unk_0x94 |= 0x200;
-    actor->unk_0x18C = &gData_RedGem;
+    actor->unk_0x18C = &gSpriteData_RedGem;
 }
 
 void func_80012CD4(void) {
@@ -55,7 +55,7 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
         for (index = 0x41; index < 0x4B; index++) {
             func_80027510(index, &D_800E13DC, 0, 0xA0, 0x403);
             gActors[index].unk_0x94 |= 0x200;
-            gActors[index].unk_0x18C = (uint32_t)&gData_RedGem;
+            gActors[index].unk_0x18C = (uint32_t)&gSpriteData_RedGem;
             gActors[index].unk_0x154 = 0xC0;
             gActors[index].unk_0x158 = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
         }

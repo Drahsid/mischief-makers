@@ -386,27 +386,25 @@ s32 Input_GetFirstController(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
-void func_800011F0(int32_t arg0, uint32_t arg1, uint32_t arg2) {
-    OSIoMesg sp30;
-    uint32_t sp2C;
+int32_t func_800011F0(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mb;
+    OSMesg mesg;
 
-    osInvalDCache(arg1, arg2);
-    osPiStartDma(&sp30, 0, 0, arg0, arg1, arg2, &D_8012ABA8);
-    osRecvMesg(&D_8012ABA8, &sp2C, 1);
+    osInvalDCache(vaddr, nbytes);
+    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+    return osRecvMesg(&D_8012ABA8, &mesg, 1);
 }
 
-void func_80001264(void) {
-    OSMesg sp1C;
-    osRecvMesg(&D_8012ABA8, &sp1C, 1);
+int32_t func_80001264(void) {
+    OSMesg mesg;
+    return osRecvMesg(&D_8012ABA8, &mesg, 1);
 }
 
-int32_t func_80001290(int32_t dir, void* Vaddr, uint32_t nBytes) {
-    int32_t sp2C[2];
-    uint16_t sp28[8]; // rewrite so this is OSIoMesg and matches
+int32_t func_80001290(int32_t dir, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mb; // rewrite so this is OSIoMesg and matches
 
-    osInvalDCache(Vaddr, nBytes);
-    sp2C[0] = osPiStartDma(&sp28, 0, 0, dir, Vaddr, nBytes, &D_8012ABA8);
-    return sp2C[0];
+    osInvalDCache(vaddr, nbytes);
+    return osPiStartDma(&mb, 0, 0, dir, vaddr, nbytes, &D_8012ABA8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800012F0.s")

@@ -1,6 +1,7 @@
 name: Mischief Makers (North America)
 options:
   basename: mischiefmakers
+  sha1: 811709c6473f74cbf283aa61f056e1de3046ec73
   find_file_boundaries: True
   compiler: IDO
   platform: n64
