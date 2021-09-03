@@ -314,7 +314,9 @@ int16_t func_800456DC(void) {
   return ((gStageTimeReal & 0x1f) - 0xf);
 }
 
-int32_t func_8004571C(void) {return func_8002B5A0(0x8001, 0, 0, func_800456DC());}
+int16_t func_8004571C(void) {
+    return func_8002B5A0(0x8001, 0, 0, func_800456DC());
+    }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
