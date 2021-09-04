@@ -3,9 +3,6 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-// this is hand-written
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/entrypoint.s")
-
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
  * It stores 0 in a bunch of registers, and uses about 10 at a time to write to the cfb
@@ -180,8 +177,6 @@ void mainproc(int32_t arg0) {
     osStartThread(&D_8012A698);
 }
 
-// #ifdef NON_MATCHING
-// OK besides regalloc and do while loops
 void Thread_IdleProc(int32_t arg0) {
     osCreateViManager(0xFE);
     if (osTvType == OS_TV_MPAL) {
@@ -209,9 +204,6 @@ void Thread_IdleProc(int32_t arg0) {
 
     }
 }
-// #else
-// #pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
-// #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
