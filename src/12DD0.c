@@ -29,12 +29,12 @@ void func_800121D0(void) {
 
     D_800BE5F8 = 0;
 
-    for (index = 0; index < 0x40; index++ /* = (index + 1) & 0xFFFF*/) {
-        (&D_8011DD70)[index] = 0;
-        (&D_801225F0)[index] = 0;
+    for (index = 0; index < 0x40; index++) {
+        gInputHistoryPress[index] = 0;
+        gInputHistoryHold[index] = 0;
     }
 
-    func_8004A960(0, &D_801225F0);
+    func_8004A960(0, &gInputHistoryHold);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")
@@ -45,7 +45,23 @@ void func_80012288(void) {
     func_800121D0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800122B0.s")
+void func_800122B0(void) {
+    s32 temp_a0;
+    uint16_t phi_a0;
+
+    if (D_800BE5D4 != 0) {
+        gButtonHold &= gButton_Start;
+        gButtonPress &= gButton_Start;
+    }
+
+    for (phi_a0 = 0x3F; phi_a0 > 0; phi_a0--) {
+        gInputHistoryHold[phi_a0] = gInputHistoryHold[phi_a0 - 1];
+        gInputHistoryPress[phi_a0] = gInputHistoryPress[phi_a0 - 1];
+    }
+
+    gInputHistoryHold[0] = gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
+    gInputHistoryPress[0] = gButtonPress & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
+}
 
 #ifdef NON_MATCHING
 // totally identical except for swapped regalloc on 2 instructions

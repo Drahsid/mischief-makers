@@ -337,8 +337,6 @@ void func_8004571C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004586C.s")
-
 void func_80045D84(int32_t arg0, int32_t arg1) {
     D_800D28E4 = 100;
 }
