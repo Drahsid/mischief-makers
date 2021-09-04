@@ -58,6 +58,7 @@ extern void AttractMode_Tick(void);
 extern void RedGem_Cap();
 extern void GemCollision();
 extern void Actor_AddHP(uint32_t index, int16_t HP);
+extern void Thread_RmonProc(void*);
 
 
 extern void func_800008E0();
