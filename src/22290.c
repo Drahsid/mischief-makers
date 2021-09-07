@@ -71,6 +71,7 @@ void func_80022F48(void) {
     gGameSubState = 0;
     return;
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002312C.s")
@@ -130,8 +131,8 @@ void func_800232A4(void) {
     gPlayerVelYMirror = (int32_t)D_800BE5F0;
     gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;
     gPlayerPosYMirror = gPlayerVelXMirror;
-    gPlayerPosXMirror = gPlayerPosYMirror;
-    temp_v0 = gPlayerPosXMirror;
+    gPlayerPosXMirror._w = gPlayerPosYMirror._w;
+    temp_v0 = gPlayerPosXMirror._w;
     gPlayerActorp->pos.y = temp_v0;
     gPlayerActorp->pos.x = temp_v0;
     D_800BE6A4 = (uint16_t)temp_v0;
@@ -160,7 +161,7 @@ void func_800232A4(void) {
     func_80025C38();
     gStageTime = 0;
     D_800D294C = (uint16_t)0;
-    func_80010C20(D_800BE5D0);
+    func_80010C20(D_800BE5D0); // collision?
     GamePlay_Tick();
     func_80047CCC();
     func_80047C98();

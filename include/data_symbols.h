@@ -41,15 +41,15 @@ extern uint16_t gButton_LTrig;
 extern uint16_t gButton_RTrig;
 extern int8_t gJoyX;
 extern int8_t gJoyY;
-extern int32_t gPlayerPosXMirror; // likely {s16[2];s32;} unions
-extern int32_t gPlayerPosYMirror;
+extern s2_w gPlayerPosXMirror;
+extern s2_w gPlayerPosYMirror;
 extern int32_t gPlayerVelXMirror;
 extern int32_t gPlayerVelYMirror;
 extern uint16_t gCurrentFramebufferIndex;
-extern int8_t gSpriteColR;
-extern int8_t gSpriteColG;
-extern int8_t gSpriteColB;
-extern int8_t gSpriteColA;
+extern uint8_t gSpriteColR;
+extern uint8_t gSpriteColG;
+extern uint8_t gSpriteColB;
+extern uint8_t gSpriteColA;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
 extern uint16_t gTimeRecords[64]; // records for stage times.
@@ -72,16 +72,16 @@ extern Gfx* gDListHead;
 extern OSContStatus OSgContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
-extern Gfx gDListTail[2][0xC30];
+extern Gfx_Data gDListTail[2];
 extern uint32_t gPlayerControllerIndex;
 extern uint16_t gButtonCur;
 extern UNK_TYPE gTickDelta;
 extern ALCSPlayer* BGM_pALCPlayer;
-extern int64_t gYellowGemBitfeild;
-extern int8_t gWorldProgress;
+extern uint64_t gYellowGemBitfeild;
+extern uint8_t gWorldProgress;
 extern uint16_t gContinueChoice;
 extern uint16_t gRedGems;
-extern int16_t gCurrentStage;
+extern uint16_t gCurrentStage;
 extern uint16_t gStageTime; // pauses for cutscene, loading
 extern int64_t YelloGemBitfeildTemp;
 extern uint16_t gStageTimeReal;
@@ -101,6 +101,7 @@ extern uint8_t gNameEntryLanguage;
 extern uint8_t gNameEntrySelectedColumn;
 extern uint8_t gNameEntrySelectedRow;
 extern uint8_t gNameEntryCurrentChar;
+extern uint32_t gPlayTime;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
@@ -114,8 +115,8 @@ extern uint32_t D_800BE550;
 extern uint32_t D_800BE554;
 extern int16_t D_800BE558;
 extern int16_t D_800BE55C;
-extern UNK_TYPE D_800BE560;
-extern int32_t D_800BE564;
+extern s2_w D_800BE560;
+extern s2_w D_800BE564;
 extern int16_t D_800BE568;
 extern int16_t D_800BE578;
 extern int16_t D_800BE57C;
@@ -147,8 +148,26 @@ extern uint16_t D_800BE670;
 extern uint16_t D_800BE674;
 extern uint16_t D_800BE6A4;
 extern int16_t D_800BE6A8;
+/* a set of flags with the following properties for each bit (hi-to-lo):
+ * 0 unknown (func_8001FF28 is just jr ra)
+ * 1 Draw some debug info
+ * 2 unknown
+ * 3 unknown (func_80021660 is just jr ra)
+ * 4 unknown
+ * 5 unknown
+ * 6 Force pause (see func_800012F0)
+ * 7 unknown
+ * 8 Draw some debug info
+ * 9 unknown (func_80021658 is just jr ra)
+ * A unknown
+ * B unknown
+ * C unknown
+ * D Effects stage depth of fg and bg objects
+ * E Makes the game really slow? Looks like lag, but it's just running slow (related to D_800BE6B4)
+ * F unknown (func_8002167C is just jr ra)
+*/
 extern uint16_t D_800BE6AC;
-extern uint16_t D_800BE6B4;
+extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in D_800BE6AC is set
 extern uint16_t D_800BE6B8;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -177,6 +196,8 @@ extern uint32_t D_800C4EC0;
 extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
 extern uint16_t D_800C4FA8[11];   // contains default "Start" filename
+extern uint32_t D_800C4FC0[];
+extern uint8_t D_800C5010[];
 extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C7E14;
 extern UNK_TYPE D_800C823C;
@@ -233,7 +254,7 @@ extern uint16_t D_800D2968;
 extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
-extern uint16_t D_800D2978;
+extern uint16_t D_800D2978[];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
@@ -367,10 +388,13 @@ extern UNK_TYPE D_800E1C00;
 extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
 extern UNK_TYPE D_800E3584;
+extern Gfx D_800E38B0[];
+extern Gfx D_800E3930[];
 extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern int16_t D_800EF4D4;
+extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
 extern uint16_t D_800EF508;
 extern uint32_t D_80103480;
@@ -380,7 +404,9 @@ extern uint32_t D_80103944;
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
-extern struct_func_80044360_D_801069E0 D_801069E0[];
+extern struct_D_801069E0 D_801069E0[]; // seems to be the sprite objects (not the collision,) of level objects
+extern UNK_TYPE D_8011CDF0;
+extern UNK_TYPE D_8011CF18;
 extern UNK_TYPE D_8011D970;
 extern UNK_TYPE D_8011DDF0;
 extern uint16_t gInputHistoryHold[];
@@ -433,12 +459,20 @@ extern OSMesgQueue D_801377B8;
 extern OSMesgQueue D_801377D0;
 extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
+extern ALHeap D_80137D80;
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0;
+extern ALLink D_8016D9CC;
+extern ALLink D_8016D9B8;
 extern UNK_TYPE D_8016DEB8;
 extern OSTask* D_8016E6F0;
 extern UNK_TYPE D_8016E718;
+extern uint32_t D_80171ADC[2][2];
+extern UNK_TYPE D_80171D30;
 extern uint8_t D_80171B19;
+extern UNK_TYPE D_80171B30;
+extern UNK_TYPE D_80171C30;
+extern UNK_TYPE D_80171F10;
 extern Mtx* D_801780F0;
 extern Mtx* D_801780F4;
 extern UNK_POINTER D_80178104;
@@ -487,12 +521,12 @@ extern float D_801B0088;
 extern float D_801B00A0;
 extern float D_801B01C0;
 extern float D_801B01C8;
-extern uint16_t D_801DA800[320][240]; // framebuffer
+extern uint16_t gFramebuffer0[320][240]; // framebuffer
 extern UNK_TYPE D_802C9F70;
 extern int16_t D_803023B4;
 extern int16_t D_80362762;
 extern int16_t D_80372560;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
-extern uint16_t D_803DA800[320][240]; // framebuffer
+extern uint16_t gFramebuffer1[320][240]; // framebuffer
 
 #endif

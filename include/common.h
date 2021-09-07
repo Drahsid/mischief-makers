@@ -21,14 +21,24 @@ enum {
     GAMESTATE_UNKNOWN2 // level select (best times?)
 };
 
-// this struct seems weird, name will be weird until I understand it
+// these structs seem weird, name will be awkward until we understand their purposes
 typedef struct {
     union {
-        /* 0x00 */ uint16_t x;
+        struct {
+            /* 0x00 */ int16_t _hi;
+            /* 0x02 */ int16_t _lo;
+        };
+        /* 0x00 */ int32_t _w;
+    };
+} s2_w; /* sizeof = 0x04 */ // short[2], word
+
+typedef struct {
+    union {
+        /* 0x00 */ int16_t x;
         /* 0x00 */ int32_t x_w;
     };
     union {
-        /* 0x04 */ uint16_t y;
+        /* 0x04 */ int16_t y;
         /* 0x04 */ int32_t y_w;
     };
 } Vec2i_union; /* sizeof = 0x08 */

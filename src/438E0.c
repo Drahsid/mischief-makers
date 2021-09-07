@@ -11,52 +11,37 @@ void func_80042CF0(int32_t a0) {}
 
 #ifdef NON_MATCHING
 void func_80042CF8(uint16_t* arg0) {
-    uint16_t new_var;
     uint16_t* sp0;
-    uint32_t index;
-    uint32_t new_var2;
-    uint16_t* a0;
-    if (!index) {
-    }
+    uint16_t index = 0;
 
-    a0 = arg0;
-    if (a0 != 0) {
-        if ((*a0) != 0) {
-            do {
-                sp0 = (&D_800D2978)[index];
-                index = (index + 3) & 0xFFFF;
-                new_var = a0[1];
-                sp0[0] = a0[0];
-                sp0[1] = new_var;
-                sp0[2] = a0[2];
-                a0 += 6;
-            } while (a0[3] != 0);
-        }
-    }
-
-    new_var2 = index;
-    while (new_var2 != 0x600) {
+    if (arg0 != 0 && arg0[0] != 0) {
         do {
-            index = (index + 3) & 0xFFFF;
-            (&D_800D2978)[index] = 0;
-        } while (index != 0x600);
+            sp0 = D_800D2978[index];
+            sp0[0] = arg0[0];
+            sp0[1] = arg0[1];
+            sp0[2] = arg0[2];
+
+            index += 3;
+            arg0 += 6;
+        } while (arg0[3] != 0);
+    }
+
+    while (index != 0x600) {
+        index += 3;
+        D_800D2978[index] = 0;
     }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF8.s")
 #endif
 
-#ifdef NON_MATCHING
-// Differences are minor regalloc and instruction order (functionally identical)
-void func_80042D84(int16_t x) {
-    int16_t uVar1;
-
-    for (uVar1 = x; uVar1 != 0x600; uVar1 += 3)
-        (&D_800D2978)[uVar1] = 0;
+void func_80042D84(uint16_t index) {
+    while (index != 0x600) {
+        // index is being promoted to a u32 here (implicitly,) and this is on the same line as index += 3
+        // this might be something like D_800D2978[index += 3]
+        D_800D2978[index & 0xFFFFFFFF] = 0, index += 3; // whitespace memes
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")
-#endif
 
 #ifdef NON_MATCHING
 void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
@@ -224,7 +209,7 @@ void func_80043D30(int32_t arg0) {
 
 void func_80044360(void) {
     D_801069E0[D_801782C0].unk_0x80 = 10;
-    D_801069E0[D_801782C0].unk_0x8C = NULL;
+    D_801069E0[D_801782C0].texture = NULL;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044390.s")
@@ -243,7 +228,7 @@ void func_80044360(void) {
 
 void func_8004495C(void) {
     D_801069E0[D_801782C0].unk_0x80 = D_800D3770[D_800D37A4];
-    D_801069E0[D_801782C0].unk_0x8C = 0x80203440;
+    D_801069E0[D_801782C0].texture = 0x80203440;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800449A8.s")
@@ -349,15 +334,14 @@ int32_t func_80045F08(int32_t arg0) {
     return 0;
 }
 
-
 #ifdef NON_MATCHING
 void func_80045F14(uint16_t* arg0) {
     D_800BE550 = arg0[0];
     D_800BE554 = arg0[1];
     D_800BE558 = D_800BE550;
     D_800BE55C = D_800BE554;
-    D_800BE560 = D_800BE558;
-    D_800BE564 = D_800BE55C;
+    D_800BE560._hi = D_800BE558;
+    D_800BE564._hi = D_800BE55C;
     D_800D2920 = arg0[2];
     D_800D2924 = arg0[3];
     D_800D2918 = arg0[4];
@@ -371,7 +355,7 @@ void func_80045F14(uint16_t* arg0) {
 
 void func_80046148(void) {
     func_80045FA4();
-    gPlayerActorp->flag &= -2;
+    gPlayerActorp->flag &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4 = 4;
 }
 
@@ -390,23 +374,17 @@ void func_80046188(int32_t arg0, int32_t arg1) {
     BGM_Stop();
 }
 
+void func_80046218(uint16_t arg0, uint16_t arg1) {
+    D_800D28E8 = 0;
+    D_800D28F4 = 0;
+    D_800D28F0 = arg0;
+    D_800D28E4 = 0x64;
+    D_800D28EC = 0;
 
-#ifdef NON_MATCHING
-// needs reordering
-void func_80046218(int16_t arg0, int32_t arg1) {
-    if ((arg1 & 0xFFFF) != 0) {
+    if (arg1 != 0) {
         D_800D28FC |= 1;
     }
-
-    D_800D28E4 = 0x64;
-    D_800D28E8 = 0;
-    D_800D28EC = 0;
-    D_800D28F0 = arg0;
-    D_800D28F4 = 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046218.s")
-#endif
 
 void func_80046274(int32_t arg0, int32_t arg1) {
     return;
@@ -439,31 +417,17 @@ void func_800463C0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046934.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, functionally identical
 void func_80046A30(void) {
-    int new_var;
-    Actor* actor;
     uint16_t index;
 
     func_800286C8();
 
-    index = ACTOR_COUNT1;
-    do {
-        new_var = index;
-        actor = &gActors[new_var];
-        index = (index + 1) & 0xFFFF;
-        if (!index) {
+    for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
+        if ((gActors[index].flag & ACTOR_FLAG_UNK19) != 0) {
+            gActors[index].flag = 0;
         }
-
-        if ((actor->flag & 0x80000) != 0) {
-            actor->flag = 0;
-        }
-    } while (index < (ACTOR_COUNT1 + 7));
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A30.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A9C.s")
 
@@ -471,22 +435,16 @@ void func_80046A30(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, and what seems to be a (void) {return 0; } at the bottom
 int32_t func_80046E6C(void) {
     if ((gButtonPress & gButton_ZTrig) != 0) {
-        D_800D28F0 = (uint16_t)D_800D28E4;
+        D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x63;
         D_800D2938 = 0;
+        return 1;
     }
 
-    if (1) return 1;
-    else
-        return 0;
+    return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046E6C.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")
 
@@ -541,13 +499,9 @@ void func_800475EC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800475EC.s")
 #endif
 
-#ifdef NON_MATCHING
-void func_80047648(int32_t arg0) {
+void func_80047648(int16_t arg0) {
     D_800D2914 = (arg0 - (gPlayerActor.health / 0xA)) + 0x64;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047648.s")
-#endif
 
 void func_80047674(void) {}
 
@@ -556,8 +510,8 @@ void func_80047674(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047714.s")
 
 void func_80047958(void) {
-    int new_var = D_800D28F0 - 0x1F;
-    D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + (new_var & 0xFFFF)));
+    uint16_t temp = D_800D28F0 - 0x1F;
+    D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + temp));
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }

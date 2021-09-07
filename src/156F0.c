@@ -53,13 +53,13 @@ void func_80016CB4(void) {
 
     if ((D_80137458 & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
-            if ((gActors[index].flag & 2) != 0) {
+            if ((gActors[index].flag & ACTOR_FLAG_ACTIVE) != 0) {
                 func_800160EC(index);
-                gActors[index].unk_0x98 &= 0xFFF7FFFF;
+                gActors[index].unk_0x98 &= ~(1 << 19);
             }
         }
-        gPlayerPosXMirror = gActors[index].pos.x_w + *((int16_t*)(&D_800BE558));
-        gPlayerPosYMirror = gActors[index].pos.y_w + *((int16_t*)(&D_800BE55C));
+        gPlayerPosXMirror._w = gActors[index].pos.x_w + D_800BE558; // are these s2w?
+        gPlayerPosYMirror._w = gActors[index].pos.y_w + D_800BE55C;
     }
 }
 #else

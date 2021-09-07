@@ -5,18 +5,25 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_800045F8.s")
+uint8_t* func_800045F8(uint8_t* arg0, uint8_t arg1) {
+    while (arg0[0] != 0 && arg1 != arg0[0]) {
+        arg0++;
+    }
 
-#ifdef NON_MATCHING
-void Sprite_Init(int32_t* arg0) {
-    int32_t sp1C;
-    int32_t* temp_a0;
+    if (arg0[0] != 0) {
+        return arg0;
+    }
 
-    temp_a0 = &sp1C;
-    sp1C = *arg0;
-    spInit(temp_a0);
+    return NULL;
+}
+
+void Sprite_Init(Gfx** dlistp) {
+    Gfx* dlist;
+
+    dlist = *dlistp;
+    spInit(&dlist);
     D_800C4E5C.rsp_dl_next = D_800C4E5C.rsp_dl;
-    *arg0 = sp1C;
+    *dlistp = dlist;
     gSpriteColR = 0xFF;
     gSpriteColG = 0xFF;
     gSpriteColB = 0xFF;
@@ -25,21 +32,16 @@ void Sprite_Init(int32_t* arg0) {
     D_800C4EC0 = 0;
     D_800C4EC4 = 0x28;
     D_800C4EC8 = 1;
-    gSpriteScaleX = (double)1.0;
-    gSpriteScaleY = (double)1.0;
+    gSpriteScaleX = 1.0;
+    gSpriteScaleY = 1.0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Init.s")
-#endif
 
-void Sprite_Finish(int32_t* arg0) {
-    int32_t sp1C;
-    int32_t* temp_a0;
+void Sprite_Finish(Gfx** dlistp) {
+    Gfx* dlist;
 
-    temp_a0 = &sp1C;
-    sp1C = *arg0;
-    spFinish(temp_a0);
-    *arg0 = (int32_t)(sp1C - 8);
+    dlist = *dlistp;
+    spFinish(&dlist);
+    *dlistp = dlist - 1;
 }
 
 void Sprite_SetPosition(int32_t arg0, uint32_t arg1) {
@@ -57,45 +59,38 @@ void Sprite_SetScale(double x, double y) {
     gSpriteScaleY = y;
 }
 
-void Sprite_SetColor(int8_t r, int8_t g, int8_t b, int8_t a) {
+void Sprite_SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     gSpriteColR = r;
     gSpriteColG = g;
     gSpriteColB = b;
     gSpriteColA = a;
-
 }
 
 void Sprite_SetTransparent(int32_t arg0) {
-    Sprite* new_var = &D_800C4E5C;
     spClearAttribute(&D_800C4E5C, 0xFFFF);
     if (arg0 != 0) {
-        spSetAttribute(new_var, SP_TRANSPARENT);
+        spSetAttribute(&D_800C4E5C, SP_TRANSPARENT);
     }
     else {
-        spClearAttribute(new_var, SP_TRANSPARENT);
+        spClearAttribute(&D_800C4E5C, SP_TRANSPARENT);
     }
 }
 
+// Need to figure out args to func_80004380 to match, a0 is Sprite*
 #ifdef NON_MATCHING
-void Sprite_Update(void** arg0) {
-    int32_t temp_a3;
-    int32_t temp_v0;
-    int32_t temp_v0_2;
-    void* temp_s1;
-
-    temp_a3 = D_800C4EC4;
-    temp_s1 = *arg0;
-    D_800C4E5C.width = (s16)((temp_a3 * 8) + 8);
-    temp_v0 = D_800C4EC8;
-    D_800C4E5C.height = (s16)((temp_v0 * 0x10) + 8);
-    func_80004380(&D_800C4E5C, &D_800C4EA0, temp_a3, temp_v0);
+void Sprite_Update(Gfx** dlistp) {
+    D_800C4E5C.width = (D_800C4EC4 * 8) + 8;
+    D_800C4E5C.height = (D_800C4EC8 * 16) + 8;
+    func_80004380(&D_800C4E5C, D_800C4EC8);
     spMove(&D_800C4E5C, D_800C4EBC, D_800C4EC0);
-    spColor(&D_800C4E5C, gSpriteColR, gSpriteColG, gSpriteColB, (int32_t)gSpriteColA);
-    spScale(&D_800C4E5C, (f32)gSpriteScaleX, (f32)gSpriteScaleY);
-    temp_v0_2 = spDraw(&D_800C4E5C);
-    temp_s1->unk0 = 0x6000000;
-    temp_s1->unk4 = temp_v0_2;
-    *arg0 = (void*)(temp_s1 + 8);
+    spColor(&D_800C4E5C, gSpriteColR, gSpriteColG, gSpriteColB, gSpriteColA);
+    spScale(&D_800C4E5C, gSpriteScaleX, gSpriteScaleY);
+
+    gSPDisplayList(*dlistp++, spDraw(&D_800C4E5C));
+
+    /*(*dlistp)->words.w0 = 0x6000000;
+    (*dlistp)->words.w1 = spDraw(&D_800C4E5C);
+    *dlistp++;*/
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")

@@ -3,42 +3,28 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-#ifdef NON_MATCHING
-// Only difference is index should get moved into t9 when masked, and back into v1 before the loop continues
 void func_800121D0(void) {
-    uint16_t sp1E;
-    uint16_t index;
+    uint16_t index = gPlayerActorp->healthu;
+    Actor* player = gPlayerActorp; // required to match
 
-    sp1E = D_800EF5F0;
     Actor_Spawn(0);
 
-    if (sp1E) {
-    }
-
-    D_800EF5F0 = sp1E;
-
-    gActors->pos.z = 1;
-    D_800BE5E8 = 0;
-    D_800BE5EC = 0;
-    gActors->unk_0xCC = 0;
+    player->health = index;
+    gPlayerActorp->pos.z = 1;
+    gPlayerVelXMirror = 0;
+    gPlayerVelYMirror = 0;
+    gPlayerActorp->unk_0xCC = 0;
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
-
-    if (gActors) {
-    }
-
     D_800BE5F8 = 0;
 
-    for (index = 0; index < 0x40; index++) {
+    for (index = 0; index < 64; index++) {
         gInputHistoryPress[index] = 0;
         gInputHistoryHold[index] = 0;
     }
 
-    func_8004A960(0, &gInputHistoryHold);
+    func_8004A960(0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800121D0.s")
-#endif
 
 void func_80012288(void) {
     gPlayerActor.unk_0xD2 = 0x16;
@@ -63,33 +49,23 @@ void func_800122B0(void) {
     gInputHistoryPress[0] = gButtonPress & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
 }
 
-#ifdef NON_MATCHING
-// totally identical except for swapped regalloc on 2 instructions
 void func_800123AC(void) {
-    int32_t temp_a0;
-
-    temp_a0 = gPlayerPosXMirror - D_800BE558;
-
-    if (temp_a0 < -0x90) {
-        gPlayerPosXMirror = D_800BE558 - 0x90;
-        D_800EF598 = -0x90;
-        return;
+    int32_t temp = gPlayerPosXMirror._hi - D_800BE558;
+    if (temp < -0x90) {
+        gPlayerPosXMirror._hi = D_800BE558 - 0x90;
+        gPlayerActorp->pos.x = -0x90;
     }
-
-    if ((gPlayerPosXMirror - D_800BE558) >= 0x91) {
-        gPlayerPosXMirror = D_800BE558 + 0x90;
-        D_800EF598 = 0x90;
-        return;
+    else if (temp >= 0x91) {
+        gPlayerPosXMirror._hi = D_800BE558 + 0x90;
+        gPlayerActorp->pos.x = 0x90;
     }
-
-    D_800EF598 = (int16_t)temp_a0;
+    else {
+        gPlayerActorp->pos.x = gPlayerPosXMirror._hi - D_800BE558;
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_800123AC.s")
-#endif
 
 void func_80012418(void) {
-    gPlayerActor.pos.y = (int16_t)(*(int16_t*)(&gPlayerPosYMirror) - D_800BE55C);
+    gPlayerActor.pos.y = gPlayerPosYMirror._hi - D_800BE55C;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
@@ -102,17 +78,17 @@ void func_80012418(void) {
  * I am not sure how to replicate, since what I have currently written gets optimized out
  */
 void func_80012830(void) {
-    // It is lh then lw the same values ?
-    D_800BE560 = (int16_t)D_800BE558;
-    D_800BE560 = (int32_t)D_800BE558;
+    D_800BE560._hi = D_800BE558;
+    D_800BE560._w = D_800BE558;
     if (D_800BE62C != 0) {
         func_800123AC();
     }
     else {
         func_80012438();
     }
-    D_800BE564 = (int16_t)D_800BE55C;
-    D_800BE564 = (int32_t)D_800BE55C;
+
+    D_800BE564._hi = D_800BE55C;
+    D_800BE564._w = D_800BE55C;
     if (D_800BE630 != 0) {
         func_80012418();
     }

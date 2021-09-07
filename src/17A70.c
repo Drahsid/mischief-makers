@@ -231,7 +231,7 @@ void func_8001751C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
 
 #ifdef NON_MATCHING
-// behavioraly equal, differences are regalloc  and some of the load/stores are out of order
+// behavioraly equal, differences are regalloc and some of the load/stores are out of order
 void Intro_Tick(void) {
     switch (gGameSubState) {
         case 0: {
@@ -405,7 +405,29 @@ void Intro_Tick(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
 
+// cp1 stuff is producing a flipped pair of instructions
+#ifdef NON_MATCHING
+void func_80017FE8(uint16_t index) {
+    Actor* actor = &gActors[index];
+
+    actor->unk_0xD2 = 0;
+    Actor_Spawn(index);
+    actor->pos.x = -2;
+    actor->pos.y = 4;
+    actor->unk_0x84 = 0x2D0;
+    actor->unk_0x94 |= 0x801;
+    actor->pos.z = 0x100;
+    actor->unk_0x188 = 0;
+    actor->rgba.a = 0xFF;
+    actor->rgba.b = 0xFF;
+    actor->rgba.g = 0xFF;
+    actor->rgba.r = 0xFF;
+    actor->unk_0xB4 = 18.0f;
+    actor->unk_0xB8 = 12.0f;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001809C.s")
 
@@ -500,7 +522,7 @@ void TitleScreen_Tick(void) {
             gActors[48].unk_0xD2 = 0;
             actor2_Spawn(48);
             gActors[48].unk_0x94 |= 0x200;
-            gActors[48].flag |= 0x30000000;
+            gActors[48].flag |= (ACTOR_FLAG_UNK28 | ACTOR_FLAG_UNK29); // 0x30000000;
             gActors[48].unk_0x17C = 0x80343C28;
             gActors[48].unk_0x180 = 0x80349728;
             gActors[48].unk_0x188 = 0xE;
@@ -569,7 +591,7 @@ void TitleScreen_Tick(void) {
             if ((D_80137DA0 >= 0x1141 || (buttonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
                 gActors[51].unk_0x94 |= 0x10;
-                gActors[51].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
+                gActors[51].flag = ACTOR_FLAG_ENABLED;
                 gActors[51].rgba.b = 0x7F;
                 gActors[51].rgba.g = 0x7F;
                 gActors[51].rgba.r = 0x7F;
@@ -628,8 +650,8 @@ void TitleScreen_Tick(void) {
             func_800180FC();
             if (D_80178164-- == 0) {
                 func_800230B8(&D_80178164);
-                gActors[16].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
-                gActors[17].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
+                gActors[16].flag = ACTOR_FLAG_ENABLED;
+                gActors[17].flag = ACTOR_FLAG_ENABLED;
                 gGameState = GAMESTATE_DEBUG_SOUNDTEST;
                 gGameSubState = 0;
             }
