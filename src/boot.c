@@ -236,8 +236,6 @@ void func_80000A84(uint16_t buffer_index) {
     gSPEndDisplayList(gDListHead++);
 }
 
-#ifdef NON_MATCHING
-// OK except for 4 extra nops before returns
 void Thread_MainProc(int32_t arg0) {
     uint16_t* framebuffer;
 
@@ -320,9 +318,6 @@ void Thread_MainProc(int32_t arg0) {
         Input_Update();
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_MainProc.s")
-#endif
 
 void Input_Update(void) {
     osContGetReadData(gConpadArrayB);
