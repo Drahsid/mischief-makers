@@ -46,8 +46,8 @@ extern void StageSelect_Tick(void);
 extern void Record_PrintTime();
 extern void YellowGem_Count();
 extern void GameSave_Update();
-extern void YellowGem_setFlag();
-extern uint64_t YellowGem_getFlag(u16);
+extern void YellowGem_SetFlag();
+extern uint64_t YellowGem_GetFlag(u16);
 extern void PrintRecordEntry();
 extern void Actor_Spawn(uint16_t arg0);
 extern void RedGem_PrintPause();
@@ -58,6 +58,7 @@ extern void AttractMode_Tick(void);
 extern void RedGem_Cap();
 extern void GemCollision();
 extern void Actor_AddHP(uint32_t index, int16_t HP);
+extern void Thread_RmonProc(void*);
 
 
 extern void func_800008E0();

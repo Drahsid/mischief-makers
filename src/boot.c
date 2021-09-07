@@ -3,9 +3,6 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-// this is hand-written
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/entrypoint.s")
-
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
  * It stores 0 in a bunch of registers, and uses about 10 at a time to write to the cfb
@@ -180,69 +177,33 @@ void mainproc(int32_t arg0) {
     osStartThread(&D_8012A698);
 }
 
-#ifdef NON_MATCHING
-// OK besides regalloc and do while loops
 void Thread_IdleProc(int32_t arg0) {
-    int32_t* phi_t0;
-    int32_t* phi_t7;
-    int32_t* phi_t5;
-    int32_t* phi_t1;
-    int32_t* phi_v0;
-
     osCreateViManager(0xFE);
     if (osTvType == OS_TV_MPAL) {
         osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Framebuffer_Clear();
-        phi_t0 = &osViModeTable[OS_VI_MPAL_LAN1];
-        phi_t7 = &D_8012AD10;
-        phi_v0 = &osViModeTable[OS_VI_MPAL_LAN1];
 
-        do {
-            phi_t7[0] = phi_t0[0];
-            phi_t7[1] = phi_t0[1];
-            phi_t7[2] = phi_t0[2];
-
-            phi_t0 += 3;
-            phi_t7 += 3;
-        } while (phi_t0 != (int32_t*)&osViModeTable[OS_VI_MPAL_LAN1 + 1]);
-
-        phi_t7[0] = phi_t0[0];
-        phi_t7[1] = phi_t0[1];
+        D_8012AD10 = osViModeTable[OS_VI_MPAL_LAN1];
+        D_8012AD08 = &osViModeTable[OS_VI_MPAL_LAN1];
     }
     else {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
         Framebuffer_Clear();
-        phi_t5 = &osViModeTable[OS_VI_NTSC_LAN1];
-        phi_t1 = &D_8012AD10;
-        phi_v0 = &osViModeTable[OS_VI_NTSC_LAN1];
-
-        do {
-            phi_t1[0] = phi_t5[0];
-            phi_t1[1] = phi_t5[1];
-            phi_t1[2] = phi_t5[2];
-
-            phi_t1 += 3;
-            phi_t5 += 3;
-        } while (phi_t5 != (int32_t*)&osViModeTable[OS_VI_NTSC_LAN1 + 1]);
-
-        phi_t1[0] = phi_t5[0];
-        phi_t1[1] = phi_t5[1];
+        D_8012AD10 = osViModeTable[OS_VI_NTSC_LAN1];
+        D_8012AD08 = &osViModeTable[OS_VI_NTSC_LAN1];
     }
-    D_8012AD08 = phi_v0;
 
     osCreatePiManager(0x96, &D_8012AC38, &D_8012A678, 8);
     osCreateThread(&D_8012A9F8, 0, &Thread_RmonProc, 0, &D_80129670, 0xFA);
     osStartThread(&D_8012A9F8);
     osCreateThread(&D_8012A848, 3, &Thread_MainProc, arg0, &D_80128670, 0xA);
     osStartThread(&D_8012A848);
-    osSetThreadPri(0, 0);
+    osSetThreadPri(NULL, 0);
 
     while (1) {
+
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/Thread_IdleProc.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
