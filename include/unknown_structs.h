@@ -2,6 +2,7 @@
 #define UNKNOWN_STRUCTS
 
 #include "inttypes.h"
+#include <ultra64.h>
 
 typedef struct {
     uint8_t unk_0x000[0xBC6];
@@ -19,11 +20,12 @@ typedef struct {
 } struct_func_80021270_D_80104098;
 
 typedef struct {
-    uint8_t unk_0x00[0x80];
-    uint16_t unk_0x80;
-    uint8_t unk_0x82[0xA];
-    uint8_t* unk_0x8C;
-} struct_func_80044360_D_801069E0; /* sizeof 0x90 */
+    /* 0x00 */ uint8_t unk_0x00[0x80];
+    /* 0x80 */ uint16_t unk_0x80;
+    /* 0x82 */ uint16_t unk_0x82;
+    /* 0x84 */ Vec2i_union pos;
+    /* 0x8C */ void* texture;
+} struct_D_801069E0; /* sizeof 0x90 */
 
 typedef struct {
     /* 0x00 */ uint8_t unk_0x00[0x12];
@@ -47,5 +49,12 @@ typedef struct {
     /* 0x78 */ uint32_t unk_0x78;
     /* 0x7C */ uint32_t unk_0x7C;
 } struct_D_801373E0; /* sizeof = unk */
+
+// Dunno what to call this, contains a dlist and the 0x180 byte preamble
+typedef struct {
+    /* 0x0000 */ uint8_t unk_0x00[0x180];
+    /* 0x0180 */ Gfx dlist[3072];
+} Gfx_Data; /* sizeof = 0x6180 */
+
 
 #endif

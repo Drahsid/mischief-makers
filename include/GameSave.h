@@ -12,8 +12,8 @@ extern uint16_t gGameSave_YellowGems[2];
 extern uint64_t GameSave_PlayTime[2]; // contains total play time
 extern uint32_t gFestivalRecords[7];
 
-extern uint16_t func_80004E70(uint32_t x, int32_t y);
-extern void func_80004E90();
+extern uint16_t func_80004E70(int32_t lhs, uint32_t offset);
+extern int32_t func_80004E90(uint32_t arg0);
 extern int32_t IsOver999(uint32_t x);
 extern void func_80004F24();
 extern void GameSave_Initialize(u8 slot);
@@ -22,8 +22,8 @@ extern void func_80005188();
 extern void func_8000565C();
 extern void func_80005770();
 extern void func_80005828();
-extern void func_80005860();
-extern void func_800058E0(uint16_t arg0, int16_t arg1, uint16_t arg2, uint16_t arg3, void* arg4);
+extern void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3);
+extern void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4);
 extern void func_800059A4();
 extern void func_80005B68();
 extern void func_80005C3C();

@@ -264,7 +264,7 @@ void func_8006C5A4(uint16_t index) {
     actor = &gActors[index];
     if (actor->unk_0xD0_h >= 0x51 && actor->unk_0xD0_h != 0xFFFF) {
         if (actor->health == 0) {
-            actor->flag &= -0x401;
+            actor->flag &= ~ACTOR_FLAG_UNK10;
         }
 
         if (actor->unk_0xD4 != 0) {

@@ -3,12 +3,37 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
+// since the functions in this file include music, sfx and other general sound stuff, should we rename this file to "sound.c" ?
+
 ALCSPlayer gSFX_ALCPlayers[4];
 ALCSPlayer* SFX_pALCPlayers[4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaCallBack.s")
 
+// TODO: Figure out D_8016D9A8 and D_8016D9B8 types
+#ifdef NON_MATCHING
+void Audio_dmaNew(void** arg0) {
+    ALLink* phi_s0;
+    ALLink* phi_s1;
+
+    if (D_8016D9A8.unk0 == 0) {
+        D_8016D9A8.unk8 = &D_8016D9B8;
+        D_8016D9B8.unk4 = 0;
+        D_8016D9B8.unk0 = 0;
+
+        for (phi_s0 = &D_8016D9CC, phi_s1 = &D_8016D9B8; phi_s0 != 0x8016DEB8; phi_s0 += 2, phi_s1 += 2) {
+            alLink(phi_s0, phi_s1);
+            phi_s1->next = alHeapDBAlloc(NULL, 0, &D_80137D80, 1, 0x270);
+        }
+
+        phi_s1[2].next = alHeapDBAlloc(0, 0, &D_80137D80, 1, 0x270);
+        D_8016D9A8.unk0 = 1U;
+    }
+    *arg0 = &D_8016D9A8;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaNew.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001A80.s")
 
@@ -50,9 +75,9 @@ void func_800029EC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002A2C.s")
 
-void Sound_DMA(int32_t Addr, void* Vaddr, uint32_t Len) {
+void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     osWritebackDCacheAll();
-    osPiStartDma(&D_801378C8, 0, 0, Addr, Vaddr, Len, &D_801377B8);
+    osPiStartDma(&D_801378C8, 0, 0, devaddr, vaddr, nbytes, &D_801377B8);
     osRecvMesg(&D_801377B8, 0, 1);
 }
 
@@ -74,53 +99,47 @@ void func_80002F48(u8 chan,void *player,s16 SFX_ID,s16 arg3,s8 arg4,u8 state,u16
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_func.s")
-/*
-s32 func_800032C4(s16 x){
-    u8 i=0;
-    while(gSFX_ChannelStates[i]==0||x!=D_800EF508[i]){
-        i++;
-        if(3<i) return -1;
-    }
-    alSeqpStop(SFX_pALCPlayers[i]);
-    return i;
-}
-*/
+#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800032C4.s")
 
-int32_t SFX_Play_1(UNK_TYPE ID) { // main SFX playing wrapper
-    return SFX_func(ID, -1, -1, 0x81, 0xFF, 0);
+// main SFX playing wrapper
+void SFX_Play_1(uint32_t id) {
+    SFX_Play_0(id, -1, -1, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_2(UNK_TYPE arg0) {
-    SFX_func(arg0, -1, -1, 0x91, 0xFF, 0);
+void SFX_Play_2(uint32_t id) {
+    SFX_Play_0(id, -1, -1, 0x91, 0xFF, 0);
 }
 
-void SFX_Play_3(UNK_TYPE arg0, int16_t arg1) {
-    SFX_func(arg0, arg1, -1, 0x81, 0xFF, 0);
+void SFX_Play_3(uint32_t id, int16_t arg1) {
+    SFX_Play_0(id, arg1, -1, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_4(UNK_TYPE arg0, int8_t arg1) {
-    SFX_func(arg0, -1, arg1, 0x81, 0xFF, 0);
+void SFX_Play_4(uint32_t id, int8_t arg1) {
+    SFX_Play_0(id, -1, arg1, 0x81U, 0xFFU, 0U);
 }
 
-void SFX_Play_5(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    SFX_func(arg0, arg1, arg2, 0x81, 0xFF, 0);
+void SFX_Play_5(uint32_t id, int16_t arg1, int8_t arg2) {
+    SFX_Play_0(id, arg1, arg2, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_6(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    SFX_func(arg0, arg1, arg2, 0x91, 0xFF, 0);
+void SFX_Play_6(uint32_t id, int16_t arg1, int8_t arg2) {
+    SFX_Play_0(id, arg1, arg2, 0x91, 0xFF, 0);
 }
 
-void SFX_Play_7(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    SFX_func(arg0, arg1, arg2, 0x92, 0xFF, 0);
+void SFX_Play_7(uint32_t id, int16_t arg1, int8_t arg2) {
+    SFX_Play_0(id, arg1, arg2, 0x92, 0xFF, 0);
 }
 
-void SFX_Play_8(UNK_TYPE arg0, int16_t arg1, int8_t arg2) {
-    SFX_func(arg0, arg1, arg2, 0x93, 0xFF, 0);
+void SFX_Play_8(uint32_t id, int16_t arg1, int8_t arg2) {
+    SFX_Play_0(id, arg1, arg2, 0x93, 0xFF, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003540.s")
+void func_80003540(int16_t arg0, int16_t arg1, int8_t* arg2, int16_t* arg3) {
+    int32_t phi_v1;
+    int32_t phi_v0;
+    int16_t temp;
 
 s32 func_800035F8(UNK_TYPE SFX_ID, u16 i){
     s8 valA;
@@ -153,8 +172,6 @@ s32 func_80003778(UNK_TYPE SFX_ID, u16 i){
     else return SFX_func(SFX_ID,valB,valA,0x91,0xFF,0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003828.s")
-
 s32 func_800038C8(UNK_TYPE SFX_ID, u16 i,u16 arg2){
     s8 valA;
     s16 valB;
@@ -186,10 +203,10 @@ void BGM_Stop(void) {
 }
 
 void SFX_StopAll(void) {
-    u8 i;
-    for (i = 0; i < 4; i++) {
-        alSeqpStop(SFX_pALCPlayers[i]);
-        gSFX_ChannelStates[i] = 0;
+    uint8_t index;
+    for (index = 0; index < 4; index++) {
+        alSeqpStop(SFX_pALCPlayers[index]);
+        gSFX_ChannelStates[index] = 0;
     }
 }
 

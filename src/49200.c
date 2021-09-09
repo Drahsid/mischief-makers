@@ -50,8 +50,8 @@ int32_t func_80049040(uint16_t index) {
         return 0;
     }
 
-    gActors[index].flag &= ~0x4040;
-    gActors[index].flag &= 0xFF3CFFFF, gActors[index].flag |= 0x20000; // whitespace memes
+    gActors[index].flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK14);
+    gActors[index].flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23), gActors[index].flag |= ACTOR_FLAG_UNK17; // whitespace memes
     return 1;
 }
 
@@ -70,8 +70,8 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
         return 0;
     }
 
-    actor->flag &= 0xFF3CB53F;
-    actor->flag |= 0x10000;
+    actor->flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
+    actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
     actor->unk_0x150 = func_8005C6D0(actor->unk_0xF0) - 4;
@@ -120,11 +120,11 @@ block1:
     }
 
     if ((D_801373D8 & 2) != 0) {
-        gActors[index].flag &= -0x21;
+        gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
     }
 
     if ((D_801373D8 & 1) != 0) {
-        gActors[index].flag |= 0x20;
+        gActors[index].flag |= ACTOR_FLAG_FLIPPED;
     }
 
     if (gActors[index].unk_0xD1 != 0x16) {
@@ -141,11 +141,11 @@ block2:
     }
 
     if ((D_801373D8 & 2) != 0) {
-        gActors[index].flag &= -0x21;
+        gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
     }
 
     if ((D_801373D8 & 1) != 0) {
-        gActors[index].flag |= 0x20;
+        gActors[index].flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK2 | ACTOR_FLAG_UNK3 | ACTOR_FLAG_UNK4;
     }
 
     if (gActors[index].unk_0xD1 != 0x16) {
@@ -211,8 +211,8 @@ void func_8004AA64(uint16_t index) {
         gActors[index].unk_0x12F = 0;
         gActors[index].unk_0xF0 = 0;
         gActors[index].unk_0xEC = 0;
-        gActors[index].flag &= 0x20;
-        gActors[index].flag |= 0x8011103;
+        gActors[index].flag &= ACTOR_FLAG_FLIPPED;
+        gActors[index].flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK27;
         gActors[index].unk_0xD0 = 1;
         gActors[index].unk_0x128 = 1.0f;
         gActors[index].unk_0x124 = 1.0f;
@@ -265,7 +265,7 @@ void func_8004B18C(uint16_t index) {
     actor->unk_0x12C = 7;
 
     phi_a1 = func_80048C94(1);
-    if ((actor->flag & 0x20) != 0) {
+    if ((actor->flag & ACTOR_FLAG_FLIPPED) != 0) {
         phi_a1 = -phi_a1;
     }
 
@@ -299,7 +299,7 @@ void func_8004B290(uint16_t index) {
         return;
     }
 
-    gActors[index].flag |= 0x4000;
+    gActors[index].flag |= ACTOR_FLAG_UNK14;
     gActors[index].unk_0xD0_h = 3;
 }
 
@@ -405,8 +405,8 @@ void func_8004EC60(uint16_t index) {
         gActors[index].unk_0xF0 = 0xFFF80000;
     }
 
-    D_801373E0.unk_0x50 = gPlayerPosXMirror;
-    D_801373E0.unk_0x54 = gPlayerPosYMirror;
+    D_801373E0.unk_0x50 = gPlayerPosXMirror._w;
+    D_801373E0.unk_0x54 = gPlayerPosYMirror._w;
 }
 
 #ifdef NON_MATCHING
@@ -502,9 +502,9 @@ void func_8004ED10(uint16_t index) {
         // when these two flags are set, marina looks like she's holding blockman,
         // however, blockman himself doesn't effect these
         // maybe it's the tricycle?
-        gActors[index].flag &= ~8;
+        gActors[index].flag &= ~ACTOR_FLAG_UNK3;
         if (D_801373E0.unk_0x78 & 0x10000) {
-            gActors[index].flag |= 8;
+            gActors[index].flag |= ACTOR_FLAG_UNK3;
             gActors[index].unk_0x12C &= 0xFFF8;
             gActors[index].unk_0xDC &= 0xFFFE;
             gActors[index].pos.x_w += D_801373E0.unk_0x60;
@@ -516,7 +516,7 @@ void func_8004ED10(uint16_t index) {
             func_80049AC0(index);
         }
 
-        gActors[index].flag &= ~0xA80;
+        gActors[index].flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11); //~0xA80;
         gActors[index].unk_0x12C = 0;
         gActors[index].unk_0x12E = 0;
 

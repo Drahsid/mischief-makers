@@ -38,6 +38,9 @@ enum {
     ACTOR_FLAG_UNK31 = (1 << 31)
 };
 
+// Common combined flags
+#define ACTOR_FLAG_ENABLED (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE)
+
 typedef void (*ActorFunc)(uint16_t index);
 
 /*
@@ -74,7 +77,9 @@ typedef void (*ActorFunc)(uint16_t index);
  *  0x0D6: last_held_sprite         16 // might actually be index, we will see
  *  0x0D8: flags_2 32                  // unsure
  *  0x0E0: hit_points               16
- *  0x0E2: damage_queue             16 // probably incorrect 0x0E4: strength                 16 // probably incorrect 0x0E8: pointer                  32
+ *  0x0E2: damage_queue             16 // probably incorrect
+ *  0x0E4: strength                 16 // probably incorrect
+ *  0x0E8: pointer                  32
  *  0x0EC: vel                      64 // uses same union type as pos
  *  0x0F4: vel_z                    32
  *  0x120: scale_xy                 32 // float
@@ -97,7 +102,7 @@ typedef void (*ActorFunc)(uint16_t index);
  */
 
 typedef struct {
-    /* 0x000 */ uint8_t unk_0x04[0x80];
+    /* 0x000 */ uint8_t unk_0x00[0x80];
     /* 0x080 */ int32_t flag;
     /* 0x084 */ uint16_t unk_0x84;
     /* 0x086 */ uint8_t unk_0x86;
@@ -144,7 +149,10 @@ typedef struct {
     /* 0x0DD */ uint8_t unk_0xDD;
     /* 0x0DE */ uint8_t unk_0xDE;
     /* 0x0DF */ uint8_t unk_0xDF;
-    /* 0x0E0 */ int16_t health;
+    union {
+        /* 0x0E0 */ int16_t health;
+        /* 0x0E0 */ uint16_t healthu;
+    };
     /* 0x0E2 */ uint16_t unk_0xE2;
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
@@ -240,7 +248,8 @@ typedef struct {
     /* 0x0C */ uint16_t unk_0xC;
 } ActorInit; /* sizeof = 0x0E */
 
-typedef void (*Actor_func_8001EB8Cfn)(int32_t, int32_t, Actor*, uint32_t);
+// Might be u16, u16 (index0, index1)
+typedef void (*Actor_func_8001EB8Cfn)(int32_t, int32_t);
 
 extern Actor gActors[];
 extern ActorFunc gActorFuncTable[];
@@ -251,9 +260,5 @@ extern Actor_func_8001EB8Cfn D_800CA1C0[];
 #define ACTOR_COUNT0  0x90
 #define ACTOR_COUNT1  0xC0
 #define ACTOR_COUNT2  0xD0
-
-#define Actor_Active_Set(ACTOR)   ((ACTOR)->flag |= ACTOR_FLAG_ACTIVE)
-#define Actor_Active_Unset(ACTOR) ((ACTOR)->flag &= ~ACTOR_FLAG_ACTIVE)
-#define Actor_Active_Get(ACTOR)   ((ACTOR)->flag & ACTOR_FLAG_ACTIVE)
 
 #endif

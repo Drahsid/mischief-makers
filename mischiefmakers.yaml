@@ -19,11 +19,12 @@ segments:
     start: 0x1000
     vram: 0x80000400
     subsegments:
-      - [0x01000, c, boot]
+      - [0x01000, asm, entrypoint]
+      - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
       - [0x05A70, c, GameSave]
-      - [0x0A540, c] #player control?
+      - [0x0A540, c]
       - [0x11820, asm]
       - [0x12DD0, c]
       - [0x134E0, c]

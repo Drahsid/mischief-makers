@@ -22,8 +22,8 @@ void func_80009BE0(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_8000FBF4.s")
 
 void func_80010898(void) {
-    D_801780F0 = gDListTail[0];
-    D_801780F4 = gDListTail[1];
+    D_801780F0 = gDListTail[0].unk_0x00;
+    D_801780F4 = gDListTail[1].unk_0x00;
 
     guLookAt(D_801780F0 + 3, gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
     guLookAt(D_801780F4 + 3, gEyeX, gEyeY, gEyeZ, gAtX, gAtY, gAtZ, gUpX, gUpY, gUpZ);
@@ -42,8 +42,8 @@ void func_800109B0(void) {
 }
 
 void func_80010A10(void) {
-    D_801780F0 = gDListTail[0];
-    D_801780F4 = gDListTail[1];
+    D_801780F0 = gDListTail[0].unk_0x00;
+    D_801780F4 = gDListTail[1].unk_0x00;
     guOrtho(D_801780F0, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     guOrtho(D_801780F4, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     guOrtho(D_801780F0 + 2, -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);

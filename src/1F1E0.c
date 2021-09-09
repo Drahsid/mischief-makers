@@ -13,50 +13,29 @@ void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
-#ifdef NON_MATCHING
-// Differences are regalloc, instruction order, and we are missing a sw anf move
-void func_8001E8E4(int32_t arg0, int32_t arg1) {
-    Actor* temp_v0;
-    Actor* temp_v1;
-    Actor* temp_v1_2;
-    int32_t temp_t7;
-    Actor* phi_v1;
-
-    temp_t7 = arg1 & 0xFFFF;
-    temp_v0 = &gActors[arg0 & 0xFFFF];
-    if ((temp_v0->flag & 0x20) == 0) {
-        temp_v1 = &gActors[temp_t7];
-        temp_v1->unk_0xF8 = temp_v0->unk_0xF8;
-        phi_v1 = temp_v1;
+void func_8001E8E4(uint16_t indexL, uint16_t indexR) {
+    if ((gActors[indexL].flag & ACTOR_FLAG_FLIPPED) == 0) {
+        gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xF8;
     }
     else {
-        temp_v1_2 = &gActors[temp_t7];
-        temp_v1_2->unk_0xF8 = (uint32_t) - (int32_t)temp_v0->unk_0xF8;
-        phi_v1 = temp_v1_2;
+        gActors[indexR].unk_0xF8 = -gActors[indexL].unk_0xF8;
     }
-    phi_v1->unk_0xFC = temp_v0->unk_0xFC;
+    gActors[indexR].unk_0xFC = gActors[indexL].unk_0xFC;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E8E4.s")
-#endif
 
 #ifdef NON_MATCHING
-// Differences are regalloc and storing the two args forward on the stack
-void func_8001E964(int32_t arg0, int32_t arg1) {
-    int32_t index0 = arg1 & 0xFFFF;
-    int32_t index1 = arg0 & 0xFFFF;
-    Actor* temp_v0;
-    Actor* temp_v1;
+// Differences are regalloc
+void func_8001E964(uint16_t indexL, uint16_t indexR) {
+    Actor* actor0 = &gActors[indexL];
+    Actor* actor1 = &gActors[indexR];
 
-    temp_v0 = &gActors[index0];
-    temp_v1 = &gActors[index1];
-    if ((int16_t)temp_v0->pos.x < (int16_t)temp_v1->pos.x) {
-        temp_v0->unk_0xF8 = (int32_t)-temp_v1->unk_0xF8;
+    if (actor0->pos.x < actor1->pos.x) {
+        actor0->unk_0xF8 = -actor1->unk_0xF8;
     }
     else {
-        temp_v0->unk_0xF8 = (int32_t)temp_v1->unk_0xF8;
+        actor0->unk_0xF8 = actor1->unk_0xF8;
     }
-    temp_v0->unk_0xFC = (uint32_t)temp_v1->unk_0xFC;
+    actor0->unk_0xFC = actor1->unk_0xFC;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E964.s")
@@ -64,46 +43,30 @@ void func_8001E964(int32_t arg0, int32_t arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E9DC.s")
 
-#ifdef NON_MATCHING
-// Not close to matching yet
-Actor* func_8001EADC(int32_t arg0, int32_t arg1) {
-    int32_t index0 = arg0 & 0xFFFF;
-    int32_t index1 = arg1 & 0xFFFF;
-    uint8_t temp_v0_2;
-    Actor* temp_v0;
-    Actor* temp_v1;
+void func_8001EADC(uint16_t indexL, uint16_t indexR) {
+    Actor* actor = &gActors[indexR];
 
-    temp_v1 = &gActors[index1];
-    temp_v0_2 = temp_v1->unk_0xDE;
-    if (temp_v0_2 == 0xB || temp_v0_2 == 0xE || temp_v0_2 == 0xF) {
-        temp_v1->unk_0x98 &= ~2;
-        temp_v0 = &gActors[index0];
-        temp_v0->unk_0x98 ^= 3;
-        temp_v0->unk_0xDC = temp_v0->unk_0xDA;
-        temp_v0->unk_0xDD = temp_v0->unk_0xDB;
-        return temp_v0;
+    if (actor->unk_0xDE == 11 || actor->unk_0xDE == 14 || actor->unk_0xDE == 15) {
+        actor->unk_0x98 &= ~2;
+
+        actor = &gActors[indexL];
+        actor->unk_0x98 ^= 3;
+        actor->unk_0xDC = actor->unk_0xDA;
+        actor->unk_0xDD = actor->unk_0xDB;
     }
-    return func_8001E9DC(index0, index1, &gActors, sizeof(Actor));
+    else {
+        func_8001E9DC(indexL, indexR);
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EADC.s")
-#endif
 
 #ifdef NON_MATCHING
-/* This function is related to hit / kncokback effects?
- * Differences are regalloc, and instruction order
- * Function called from D_800CA1C0 seems to be bogus (the wrong effect triggers in-game)
+/* This function is related to hit / knockback effects?
+ * Differences are regalloc, behaviorally the same
  */
-void func_8001EB8C(int16_t actorIndexL, int16_t actorIndexR) {
-    int16_t index0 = actorIndexR & 0xFFFF;
-    int16_t index1 = actorIndexL & 0xFFFF;
-    Actor* actor0 = &gActors[index1];
-    Actor* actor1 = &gActors[index0];
-
-    actor1->unk_0xDC = actor0->unk_0xDA;
-    actor1->unk_0xDD = actor0->unk_0xDB;
-    //((actor0->unk_0xDB * 4) + 0x800D0000)->unk-5E40(index0, index1, &gActors, 0x198);
-    D_800CA1C0[actor0->unk_0xDB * 4](index0, index1, &gActors, sizeof(Actor));
+void func_8001EB8C(uint16_t indexL, uint16_t indexR) {
+    gActors[indexR].unk_0xDC = gActors[indexL].unk_0xDA;
+    gActors[indexR].unk_0xDD = gActors[indexL].unk_0xDB;
+    D_800CA1C0[gActors[indexL].unk_0xDB](indexL, indexR);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EB8C.s")
@@ -125,20 +88,13 @@ void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
 }
 
-
-#ifdef NON_MATCHING
-/* Differences are regalloc and instruction order
- * Additionally, when it loads actor.unk_0x98, there should be a nop following it
- */
 void func_8001FF50(void) {
-    int16_t index;
+    uint16_t index;
+
     for (index = 1; index < ACTOR_COUNT1; index++) {
         gActors[index].unk_0x98 &= 0x380600;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FF50.s")
-#endif
 
 void func_8001FFA0(void) {}
 
@@ -242,9 +198,9 @@ void func_80020024(void) {
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Playtime_PrintPause.s")
 
-#else
+
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
-#endif
+
 
 
 void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
@@ -268,7 +224,7 @@ void func_800208D4(void) {
     uint16_t index;
 
     for (index = 0xC8; index < 0xCC; index++) gActors[index].flag = 0;
-    Bgm_vol = (int16_t)D_800EF4D4;
+    Bgm_vol = D_800EF4D4;
     gGameSubState = 0;
     gGamePaused = 0;
 }
@@ -285,11 +241,11 @@ void func_80020A54(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 
 void GamePlay_Tick(void) {
-    uint32_t sp1C;
+    uint32_t time;
 
-    sp1C = osGetTime();
-    func_800457C8();
-    gTickDelta = osGetTime() - sp1C;
+    time = osGetTime();
+    func_800457C8(); // this function dmas sprite data for things like gems
+    gTickDelta = osGetTime() - time;
 
     if (gGamePaused) PauseGame_Tick();
     else func_80020024();
@@ -388,6 +344,11 @@ void AttractMode_Tick(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/AttractMode_Tick.s")
 #endif
 
+/* when I first came across this ages ago, I was really confused, now I know:
+ * it changes the color of debug text when you press R (see usage of D_800BE6AC)
+ * will need to investigate further, but it seems to just be an i8 color
+ * why didn't they just give the text an outline?
+ */
 void func_80021620(void) {
     if ((gButtonPress & gButton_RTrig)) D_800BE6B8 ^= 0xFF;
 }

@@ -54,8 +54,8 @@ void func_80023A34(void) {
     func_800237F0();
     if ((D_800BE6AC & 0xA400) == 0) {
         D_800BE544 = 0x8000;
-        D_800BE550 = (int32_t)(gPlayerPosXMirror + 0x200000);
-        D_800BE554 = (int32_t)gPlayerPosYMirror;
+        D_800BE550 = (int32_t)(gPlayerPosXMirror._w + 0x200000);
+        D_800BE554 = (int32_t)gPlayerPosYMirror._w;
         D_800BE704 = 1;
     }
 }
@@ -302,6 +302,7 @@ void func_80025578(void) {
         BGM_Play(D_800CCFDC[D_800BE5D0]);
     }
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s")
 
 void func_80025B7C(void) {
@@ -403,10 +404,10 @@ void func_8002653C(void) {
 
 // possible file split (following functions are generally related to actors, and next function is 16-byte aligned)
 
-// context implies this is something like Actor_Spawn[at]Position...
+// context implies this is something like Actor_Spawn[at]Position
 void func_80027370(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     gActors[index].unk_0xD2 = 0;
-    Actor_Spawn(index); // ...which implies that this is Actor_Spawn
+    Actor_Spawn(index);
     gActors[index].unk_0x94 |= 0x800;
     gActors[index].unk_0x188 = 0;
     gActors[index].pos.x = pos_x;
@@ -452,7 +453,7 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
     func_800273FC(index, arg1, pos_x, pos_y, pos_z);
     actor = &gActors[index];
     actor->unk_0x94 |= 0x200;
-    actor->flag |= 8;
+    actor->flag |= ACTOR_FLAG_UNK3;
     actor->unk_0x18C = arg5;
 }
 
@@ -1541,16 +1542,19 @@ void func_80040858(s16 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80040858.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004089C.s")
-/*
-int32_t  func_800409E0(u16 Index){
-  if ((0 < gActors[Index].health) && (gActors[Index].unk_0xD4 == 0) &&
-      ((gActors[Index].flag & 3)==3) && (0x50 < gActors[Index].unk_0xD0_h)) {
-    return 0;
-  }
-  return 1;
-}*/
 
+#ifdef NON_MATCHING
+int32_t func_800409E0(uint16_t index) {
+    if (gActors[index].health > 0 && gActors[index].unk_0xD4 <= 0 &&
+        (gActors[index].flag & ACTOR_FLAG_ENABLED) == 3 &&
+        gActors[index].unk_0xD0_h < 0x51) {
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800409E0.s")
+#endif
 /*
 s32 func_80040A64(void) {
     s32 ret;
@@ -1560,6 +1564,7 @@ s32 func_80040A64(void) {
     }
     return ret;
 }*/
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80040A64.s")
 /*

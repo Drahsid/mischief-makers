@@ -85,7 +85,7 @@ void func_8077579C(uint16_t index) {
         }
         else {
             gActors[index].unk_0xD0_h = 0x130;
-            gActors[index].flag &= 0xFFFF7D7F;
+            gActors[index].flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK15);
             gActors[index].unk_0x120 = ((float)gActors[index].unk_0xEC * 1.5);
             gActors[index].unk_0x158 = 0x6000;
             gActors[index].unk_0x15C = 0;
@@ -272,7 +272,7 @@ void func_80777EA8(uint16_t index) {
     if (gActors[index].unk_0xD0_h == 0) {
         gActors[index].unk_0xD0_h++;
         gActors[index].unk_0x94 = 0x200;
-        gActors[index].flag = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FLIPPED;
+        gActors[index].flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED;
         gActors[index].unk_0xE6 = 1;
         gActors[index].unk_0xE8 = &D_800E1F64;
         func_8006CD5C(index);
@@ -283,7 +283,7 @@ void func_80777EA8(uint16_t index) {
         gActors[index].unk_0xEC = 0xFFFB0000;
         gActors[index].unk_0xF0 = 0x30000;
         gActors[index].unk_0xD8 &= 0xFFF7;
-        gActors[index].flag &= -0x21;
+        gActors[index].flag &= ~(ACTOR_FLAG_UNK2 | ACTOR_FLAG_UNK4); //-0x21;
         func_800036C8(0x9D, index);
     }
     else {
