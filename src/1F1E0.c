@@ -268,7 +268,7 @@ void func_800208D4(void) {
     uint16_t index;
 
     for (index = 0xC8; index < 0xCC; index++) gActors[index].flag = 0;
-    gBgmVolume = (int16_t)D_800EF4D4;
+    Bgm_vol = (int16_t)D_800EF4D4;
     gGameSubState = 0;
     gGamePaused = 0;
 }
