@@ -129,15 +129,15 @@ void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3)
 }
 
 // Differences related to implicit casts
-#ifdef NON_MATCHING
+/*#ifdef NON_MATCHING
 void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
     uint16_t* red_gems = &gGameSave_RedGems[arg3];
     func_80027800(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
     func_80027800(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
-#else
+#else*/
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800058E0.s")
-#endif
+//#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800059A4.s")
 
@@ -226,7 +226,7 @@ void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng) {
             gNameEntrySpace[gNameEntryCurrentChar] = lang2[gNameEntrySelectedColumn];
         }
         else if (gNameEntryLanguage == 2) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang3[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
         }
         SFX_Play_1(SFX_MENU_DING);
         SFX_Play_1(0x10D);

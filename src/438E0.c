@@ -299,7 +299,9 @@ int16_t func_800456DC(void) {
   return ((gStageTimeReal & 0x1f) - 0xf);
 }
 
-int32_t func_8004571C(void) {return func_8002B5A0(0x8001, 0, 0, func_800456DC());}
+int16_t func_8004571C(void) {
+    return func_8002B5A0(0x8001, 0, 0, func_800456DC());
+    }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
@@ -412,7 +414,7 @@ void func_80046A30(void) {
     func_800286C8();
 
     for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
-        if ((gActors[index].flag & ACTOR_FLAG_UNK19) gActors[index].flag = 0;
+        if ((gActors[index].flag & ACTOR_FLAG_UNK19)) gActors[index].flag = 0;
     }
 }
 

@@ -69,5 +69,15 @@ typedef union {
     /* 0x00 */ uint32_t rgba;
 } RGBA32; /* sizeof = 0x04 */
 
+typedef struct{
+    int16_t unk0x0; //init/ read flag?
+    char text[80]; //2 bytes after (align solves for it?)
+    int32_t posX;
+    int32_t posY;
+    RGBA32 color;
+    float ScaleX;
+    float ScaleY;
+}TextTransform;
+
 
 #endif

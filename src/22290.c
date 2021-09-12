@@ -100,7 +100,7 @@ void func_800232A4(void) {
     D_800BE6F0 = (uint8_t)0xFF;
     D_800BE63C = (int16_t)gPlayerActorp->health;
     D_800BE6C0 = -8;
-    D_800BE6AC = 4;
+    DebugBitfeild = 4;
 
     for (phi_v0 = 0; phi_v0 < 8; phi_v0 = (phi_v0 + 1) & 0xFFFF) {
         ((uint16_t*)&D_80137480)[phi_v0] = (uint16_t)0;

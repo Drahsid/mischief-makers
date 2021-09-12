@@ -96,11 +96,11 @@ void func_80097384(u16 i){
 void func_80097968(void){
   if (gButtonPress & gButton_ZTrig) {
     D_800D28E4 = 100;
-    Actor_ZeroFlag_0x30_0x90();
-    Actor_ZeroFlag_0x10_0x20();
+    Actor_ZeroFlag_48_144();
+    Actor_ZeroFlag_16_32();
     Actor_ZeroFlagRange(0x10,0x30);
     Actor_ZeroFlagRange(0x90,0xc0);
-    Actor_ZeroFlag_0xC0_0xC7();
+    Actor_ZeroFlag_192_199();
     func_800286C8();
     gActors[193].unk_0xD2 = 0x34;
     Actor_Spawn(193);

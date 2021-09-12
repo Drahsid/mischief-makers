@@ -9,12 +9,20 @@ Discarded input sections
  .pdr           0x0000000000000000        0x0 build/asm/header.s.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/asm/header.s.o
+ .data          0x0000000000000000        0x0 build/asm/entrypoint.s.o
+ .bss           0x0000000000000000        0x0 build/asm/entrypoint.s.o
+ .reginfo       0x0000000000000000       0x18 build/asm/entrypoint.s.o
+ .MIPS.abiflags
+                0x0000000000000000       0x18 build/asm/entrypoint.s.o
+ .pdr           0x0000000000000000        0x0 build/asm/entrypoint.s.o
+ .gnu.attributes
+                0x0000000000000000       0x10 build/asm/entrypoint.s.o
  .options       0x0000000000000000       0x20 build/src/boot.c.o
  .reginfo       0x0000000000000000       0x18 build/src/boot.c.o
  .bss           0x0000000000000000      0x200 build/src/music.c.o
  .options       0x0000000000000000       0x20 build/src/music.c.o
  .reginfo       0x0000000000000000       0x18 build/src/music.c.o
- .data          0x0000000000000000       0x20 build/src/sprite.c.o
+ .data          0x0000000000000000       0x70 build/src/sprite.c.o
  .options       0x0000000000000000       0x20 build/src/sprite.c.o
  .reginfo       0x0000000000000000       0x18 build/src/sprite.c.o
  .data          0x0000000000000000       0xa0 build/src/GameSave.c.o
@@ -32,14 +40,8 @@ Discarded input sections
                 0x0000000000000000       0x10 build/asm/11820.s.o
  .options       0x0000000000000000       0x20 build/src/12DD0.c.o
  .reginfo       0x0000000000000000       0x18 build/src/12DD0.c.o
- .data          0x0000000000000000        0x0 build/asm/134E0.s.o
- .bss           0x0000000000000000        0x0 build/asm/134E0.s.o
- .reginfo       0x0000000000000000       0x18 build/asm/134E0.s.o
- .MIPS.abiflags
-                0x0000000000000000       0x18 build/asm/134E0.s.o
- .pdr           0x0000000000000000        0x0 build/asm/134E0.s.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/asm/134E0.s.o
+ .options       0x0000000000000000       0x20 build/src/134E0.c.o
+ .reginfo       0x0000000000000000       0x18 build/src/134E0.c.o
  .options       0x0000000000000000       0x20 build/src/13850.c.o
  .reginfo       0x0000000000000000       0x18 build/src/13850.c.o
  .options       0x0000000000000000       0x20 build/src/156F0.c.o
@@ -52,7 +54,7 @@ Discarded input sections
  .reginfo       0x0000000000000000       0x18 build/src/1F1E0.c.o
  .options       0x0000000000000000       0x20 build/src/22290.c.o
  .reginfo       0x0000000000000000       0x18 build/src/22290.c.o
- .data          0x0000000000000000       0x10 build/src/241E0.c.o
+ .data          0x0000000000000000       0x70 build/src/241E0.c.o
  .options       0x0000000000000000       0x20 build/src/241E0.c.o
  .reginfo       0x0000000000000000       0x18 build/src/241E0.c.o
  .options       0x0000000000000000       0x20 build/src/438E0.c.o
@@ -141,14 +143,8 @@ Discarded input sections
  .pdr           0x0000000000000000        0x0 build/asm/80D90.s.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/asm/80D90.s.o
- .data          0x0000000000000000        0x0 build/asm/82920.s.o
- .bss           0x0000000000000000        0x0 build/asm/82920.s.o
- .reginfo       0x0000000000000000       0x18 build/asm/82920.s.o
- .MIPS.abiflags
-                0x0000000000000000       0x18 build/asm/82920.s.o
- .pdr           0x0000000000000000        0x0 build/asm/82920.s.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/asm/82920.s.o
+ .options       0x0000000000000000       0x20 build/src/82920.c.o
+ .reginfo       0x0000000000000000       0x18 build/src/82920.c.o
  .options       0x0000000000000000       0x20 build/src/82DB0.c.o
  .reginfo       0x0000000000000000       0x18 build/src/82DB0.c.o
  .data          0x0000000000000000        0x0 build/asm/82F80.s.o
@@ -159,14 +155,8 @@ Discarded input sections
  .pdr           0x0000000000000000        0x0 build/asm/82F80.s.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/asm/82F80.s.o
- .data          0x0000000000000000        0x0 build/asm/844E0.s.o
- .bss           0x0000000000000000        0x0 build/asm/844E0.s.o
- .reginfo       0x0000000000000000       0x18 build/asm/844E0.s.o
- .MIPS.abiflags
-                0x0000000000000000       0x18 build/asm/844E0.s.o
- .pdr           0x0000000000000000        0x0 build/asm/844E0.s.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/asm/844E0.s.o
+ .options       0x0000000000000000       0x20 build/src/DebugText.c.o
+ .reginfo       0x0000000000000000       0x18 build/src/DebugText.c.o
  .data          0x0000000000000000        0x0 build/asm/84BB0.s.o
  .bss           0x0000000000000000        0x0 build/asm/84BB0.s.o
  .reginfo       0x0000000000000000       0x18 build/asm/84BB0.s.o
@@ -1380,6 +1370,7 @@ Linker script and memory map
 
 LOAD build/asm/header.s.o
 LOAD build/assets/boot.bin.o
+LOAD build/asm/entrypoint.s.o
 LOAD build/src/boot.c.o
 LOAD build/src/music.c.o
 LOAD build/src/sprite.c.o
@@ -1387,7 +1378,7 @@ LOAD build/src/GameSave.c.o
 LOAD build/src/A540.c.o
 LOAD build/asm/11820.s.o
 LOAD build/src/12DD0.c.o
-LOAD build/asm/134E0.s.o
+LOAD build/src/134E0.c.o
 LOAD build/src/13850.c.o
 LOAD build/src/156F0.c.o
 LOAD build/src/17A70.c.o
@@ -1408,10 +1399,10 @@ LOAD build/src/66250.c.o
 LOAD build/asm/7D8E0.s.o
 LOAD build/asm/805E0.s.o
 LOAD build/asm/80D90.s.o
-LOAD build/asm/82920.s.o
+LOAD build/src/82920.c.o
 LOAD build/src/82DB0.c.o
 LOAD build/asm/82F80.s.o
-LOAD build/asm/844E0.s.o
+LOAD build/src/DebugText.c.o
 LOAD build/asm/84BB0.s.o
 LOAD build/src/8D0A0.c.o
 LOAD build/src/8F080.c.o
@@ -1635,9 +1626,11 @@ LOAD build/assets/trailer.bin.o
 
 .main           0x0000000080000400    0xea7e8 load address 0x0000000000001000
                 0x0000000080000400                main_TEXT_START = .
- build/src/boot.c.o(.text)
- .text          0x0000000080000400     0x13d0 build/src/boot.c.o
+ build/asm/entrypoint.s.o(.text)
+ .text          0x0000000080000400       0x50 build/asm/entrypoint.s.o
                 0x0000000080000400                entrypoint
+ build/src/boot.c.o(.text)
+ .text          0x0000000080000450     0x1380 build/src/boot.c.o
                 0x0000000080000450                Framebuffer_Clear
                 0x00000000800006bc                mainproc
                 0x0000000080000718                Thread_IdleProc
@@ -1667,7 +1660,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080002ae0                Sound_DMA
                 0x0000000080002b50                BGM_Play
                 0x0000000080002f48                func_80002F48
-                0x0000000080003020                SFX_func
+                0x0000000080003020                SFX_Play_0
                 0x00000000800032c4                func_800032C4
                 0x000000008000334c                SFX_Play_1
                 0x0000000080003380                SFX_Play_2
@@ -1804,8 +1797,8 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080012438                func_80012438
                 0x0000000080012634                func_80012634
                 0x0000000080012830                func_80012830
- build/asm/134E0.s.o(.text)
- .text          0x00000000800128e0      0x370 build/asm/134E0.s.o
+ build/src/134E0.c.o(.text)
+ .text          0x00000000800128e0      0x370 build/src/134E0.c.o
                 0x00000000800128e0                func_800128E0
                 0x00000000800128f0                func_800128F0
                 0x0000000080012944                func_80012944
@@ -1963,8 +1956,8 @@ LOAD build/assets/trailer.bin.o
                 0x000000008001c6f0                L8001C6F0_1D2F0
                 0x000000008001c77c                L8001C77C_1D37C
                 0x000000008001c794                L8001C794_1D394
-                0x000000008001c7a4                YellowGem_setFlag
-                0x000000008001c7f0                YellowGem_getFlag
+                0x000000008001c7a4                YellowGem_SetFlag
+                0x000000008001c7f0                YellowGem_GetFlag
                 0x000000008001c834                func_8001C834
                 0x000000008001c8b0                func_8001C8B0
                 0x000000008001c97c                func_8001C97C
@@ -2206,10 +2199,10 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080028528                func_80028528
                 0x000000008002854c                func_8002854C
                 0x00000000800285e4                Actor_ZeroFlagRange
-                0x0000000080028638                Actor_ZeroFlag_0x10_0x20
-                0x000000008002865c                Actor_ZeroFlag_0x30_0x90
-                0x0000000080028680                Actor_ZeroFlag_0x90_0xC0
-                0x00000000800286a4                Actor_ZeroFlag_0xC0_0xC7
+                0x0000000080028638                Actor_ZeroFlag_16_32
+                0x000000008002865c                Actor_ZeroFlag_48_144
+                0x0000000080028680                Actor_ZeroFlag_144_192
+                0x00000000800286a4                Actor_ZeroFlag_192_199
                 0x00000000800286c8                func_800286C8
                 0x0000000080028704                func_80028704
                 0x0000000080028744                func_80028744
@@ -2656,7 +2649,6 @@ LOAD build/assets/trailer.bin.o
                 0x000000008004571c                func_8004571C
                 0x0000000080045758                func_80045758
                 0x00000000800457c8                func_800457C8
-                0x000000008004586c                func_8004586C
                 0x0000000080045d84                func_80045D84
                 0x0000000080045d9c                func_80045D9C
                 0x0000000080045e58                func_80045E58
@@ -3628,8 +3620,8 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080081cf0                func_80081CF0
                 0x0000000080081cfc                func_80081CFC
                 0x0000000080081d08                func_80081D08
- build/asm/82920.s.o(.text)
- .text          0x0000000080081d20      0x490 build/asm/82920.s.o
+ build/src/82920.c.o(.text)
+ .text          0x0000000080081d20      0x490 build/src/82920.c.o
                 0x0000000080081d20                func_80081D20
                 0x0000000080081e38                func_80081E38
                 0x0000000080081fc8                func_80081FC8
@@ -3658,20 +3650,20 @@ LOAD build/assets/trailer.bin.o
                 0x000000008008379c                func_8008379C
                 0x0000000080083810                func_80083810
                 0x0000000080083878                func_80083878
- build/asm/844E0.s.o(.text)
- .text          0x00000000800838e0      0x6d0 build/asm/844E0.s.o
-                0x00000000800838e0                func_800838E0
-                0x000000008008391c                func_8008391C
-                0x0000000080083a04                func_80083A04
-                0x0000000080083a74                func_80083A74
-                0x0000000080083ae4                func_80083AE4
-                0x0000000080083b5c                func_80083B5C
-                0x0000000080083bd8                func_80083BD8
-                0x0000000080083c54                func_80083C54
-                0x0000000080083ccc                func_80083CCC
-                0x0000000080083cf0                func_80083CF0
-                0x0000000080083db8                func_80083DB8
-                0x0000000080083e74                func_80083E74
+ build/src/DebugText.c.o(.text)
+ .text          0x00000000800838e0      0x6d0 build/src/DebugText.c.o
+                0x00000000800838e0                DebugText_Reset
+                0x000000008008391c                DebugText_SetData
+                0x0000000080083a04                DebugText_PrintIntHex
+                0x0000000080083a74                DebugText_PrintInt
+                0x0000000080083ae4                DebugText_PrintFloat
+                0x0000000080083b5c                DebugText_PrintByteHex
+                0x0000000080083bd8                DebugText_PrintShortHexWhite
+                0x0000000080083c54                DebugText_PrintShortHexBlack
+                0x0000000080083ccc                DebugText_GetTime
+                0x0000000080083cf0                DebugText_PrintDeltaTime
+                0x0000000080083db8                DebugText_PrintfTime
+                0x0000000080083e74                DebugText_Tick
  build/asm/84BB0.s.o(.text)
  .text          0x0000000080083fb0     0x84f0 build/asm/84BB0.s.o
                 0x0000000080083fb0                func_80083FB0
@@ -5559,7 +5551,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a5fc8                __osException = 0x800a5fc8
                 0x00000000800a6d80                __osCleanupThread = 0x800a6d80
                 0x00000000800ba9e0                rspbootTextStart = 0x800ba9e0
-                0x00000000800baab0                gspFast3DTextStart = 0x800baab0
+                0x00000000800baab0                rspbootTextEnd = 0x800baab0
                 0x00000000800bbeb0                aspMainTextStart = 0x800bbeb0
                 0x00000000800d9ae4                initialize_emu_text_0000 = 0x800d9ae4
                 0x00000000800e9778                osViClock = 0x800e9778
@@ -5771,7 +5763,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080171b18                gWorldProgress = 0x80171b18
                 0x00000000800ca2b0                attractModeStages = 0x800ca2b0
                 0x00000000800ca238                gAttractModeIndex = 0x800ca238
-                0x00000000800c96b4                Alphabet_record = 0x800c96b4
+                0x00000000800c96b4                gAlphabet_Record = 0x800c96b4
                 0x00000000801781f0                gYellowGemBitfeildTemp = 0x801781f0
                 0x0000000080178138                gContinueChoice = 0x80178138
                 0x00000000800c2926                SFX2ByteArray = 0x800c2926
@@ -5787,10 +5779,10 @@ LOAD build/assets/trailer.bin.o
                 0x00000000801370c8                gPlayTime = 0x801370c8
                 0x00000000801781e0                gStageTime = 0x801781e0
                 0x00000000801782b8                gStageTimeReal = 0x801782b8
-                0x00000000800d88b8                gData_RedGem = 0x800d88b8
+                0x00000000800d88b8                gSpriteData_RedGem = 0x800d88b8
                 0x00000000800d2950                gPlayerActorIndex = 0x800d2950
-                0x00000000800d86d8                gData_BlueGem = 0x800d86d8
-                0x00000000800d8c78                gData_YellowGem = 0x800d8c78
+                0x00000000800d86d8                gSpriteData_BlueGem = 0x800d86d8
+                0x00000000800d8c78                gSpriteData_YellowGem = 0x800d8c78
                 0x00000000800c5008                gSaveSlotIndex = 0x800c5008
                 0x0000000080171aa0                gGameSave_Names = 0x80171aa0
                 0x0000000080171ad0                gGameSave_RedGems = 0x80171ad0
@@ -5820,7 +5812,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008019b000                gActorFuncTable_8019B000 = 0x8019b000
                 0x00000000801a6800                gActorFuncTable_801A6800 = 0x801a6800
                 0x00000000801b0800                gActorFuncTable_801B0800 = 0x801b0800
-                0x000000008011dd70                gInputBuffer = 0x8011dd70
+                0x000000008011dd70                gInputHistoryPress = 0x8011dd70
                 0x00000000800be5d8                gPlayerPosXMirror = 0x800be5d8
                 0x00000000800be5dc                gPlayerPosYMirror = 0x800be5dc
                 0x00000000800be5e8                gPlayerVelXMirror = 0x800be5e8
@@ -5830,7 +5822,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080185070                freeRamromQ = 0x80185070
                 0x00000000801855f0                tmp_task = 0x801855f0
                 0x0000000080171ae8                gFestivalRecords = 0x80171ae8
-                0x0000000080171ad8                GameSave_PlayTime = 0x80171ad8
+                0x0000000080171ad8                gGameSave_PlayTime = 0x80171ad8
                 0x00000000800c8478                gTimesToBeat = 0x800c8478
                 0x0000000080178168                gTimeRecordTotal = 0x80178168
                 0x00000000800c4f20                GameSave_EEPROMID = 0x800c4f20
@@ -5843,8 +5835,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c3858                AlFX_params = 0x800c3858
                 0x00000000800c5004                GameSave_SelectedAge = 0x800c5004
                 0x00000000800be5a4                gRNGSeed = 0x800be5a4
-                0x000000008012a848                rmonThread = 0x8012a848
-                0x000000008012a9f8                mainThread = 0x8012a9f8
+                0x000000008012a9f8                rmonThread = 0x8012a9f8
+                0x000000008012a848                mainThread = 0x8012a848
                 0x0000000080185068                getRamromBuf = 0x80185068
                 0x0000000080185088                freeRamromBuf = 0x80185088
                 0x00000000800eea10                gspFast3DDataStart = 0x800eea10
@@ -5852,6 +5844,11 @@ LOAD build/assets/trailer.bin.o
                 0x000000008012adc0                gDListTail = 0x8012adc0
                 0x00000000800be700                gCurrentFramebufferIndex = 0x800be700
                 0x000000008012a698                idleThread = 0x8012a698
+                0x00000000801225f0                gInputHistoryHold = 0x801225f0
+                0x000000008016e718                gSound_currentBuffer = 0x8016e718
+                0x00000000800c4e5c                gSprite = 0x800c4e5c
+                0x0000000080182018                DebugText_Time = 0x80182018
+                0x00000000800be6ac                DebugBitfeild = 0x800be6ac
                 0x0000000080124670                D_80124670 = 0x80124670
                 0x0000000080126670                D_80126670 = 0x80126670
                 0x000000008012ad10                D_8012AD10 = 0x8012ad10
@@ -5881,7 +5878,6 @@ LOAD build/assets/trailer.bin.o
                 0x000000008012ac7c                D_8012AC7C = 0x8012ac7c
                 0x000000008012ac78                D_8012AC78 = 0x8012ac78
                 0x000000008012adb8                D_8012ADB8 = 0x8012adb8
-                0x00000000800be6ac                D_800BE6AC = 0x800be6ac
                 0x00000000800be4ec                D_800BE4EC = 0x800be4ec
                 0x00000000800be4e4                D_800BE4E4 = 0x800be4e4
                 0x0000000080171b30                D_80171B30 = 0x80171b30
@@ -5926,7 +5922,6 @@ LOAD build/assets/trailer.bin.o
                 0x000000008016e6f0                D_8016E6F0 = 0x8016e6f0
                 0x000000008016e708                D_8016E708 = 0x8016e708
                 0x00000000800c3838                D_800C3838 = 0x800c3838
-                0x000000008016e718                D_8016E718 = 0x8016e718
                 0x000000008016e724                D_8016E724 = 0x8016e724
                 0x00000000800c382c                D_800C382C = 0x800c382c
                 0x00000000800c383c                D_800C383C = 0x800c383c
@@ -5958,8 +5953,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080137d92                D_80137D92 = 0x80137d92
                 0x0000000080137d96                D_80137D96 = 0x80137d96
                 0x0000000080137d98                D_80137D98 = 0x80137d98
-                0x000000008016e820                D_8016E820 = 0x8016e820
-                0x00000000800c4e5c                D_800C4E5C = 0x800c4e5c
+                0x000000008016e820                gSpriteBitmaps = 0x8016e820
                 0x00000000800c4ebc                D_800C4EBC = 0x800c4ebc
                 0x00000000800c4ec0                D_800C4EC0 = 0x800c4ec0
                 0x00000000800c4ec4                D_800C4EC4 = 0x800c4ec4
@@ -6177,7 +6171,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800be5d4                D_800BE5D4 = 0x800be5d4
                 0x00000000800be5f0                D_800BE5F0 = 0x800be5f0
                 0x00000000800be5f8                D_800BE5F8 = 0x800be5f8
-                0x00000000801225f0                D_801225F0 = 0x801225f0
                 0x00000000800be544                D_800BE544 = 0x800be544
                 0x00000000800be61c                D_800BE61C = 0x800be61c
                 0x00000000800be550                D_800BE550 = 0x800be550
@@ -7369,7 +7362,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ed088                D_800ED088 = 0x800ed088
                 0x00000000800ed090                D_800ED090 = 0x800ed090
                 0x00000000800ed098                D_800ED098 = 0x800ed098
-                0x0000000080182018                D_80182018 = 0x80182018
                 0x00000000800ed0c0                D_800ED0C0 = 0x800ed0c0
                 0x00000000800ed0c8                D_800ED0C8 = 0x800ed0c8
                 0x00000000800ed0a0                D_800ED0A0 = 0x800ed0a0
@@ -7868,4 +7860,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d2950                D_800D2950 = 0x800d2950
                 0x00000000800d3770                D_800D3770 = 0x800d3770
                 0x00000000800d7f00                gActorFuncTable_800D7F00 = 0x800d7f00
+                0x00000000800e3930                D_800E3930 = 0x800e3930
+                0x00000000801da800                gFramebuffer0 = 0x801da800
+                0x00000000803da800                gFramebuffer1 = 0x803da800
+                0x00000000800baab0                gspFast3DTextStart = 0x800baab0
 OUTPUT(build/mischiefmakers.elf elf32-tradbigmips)

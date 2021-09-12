@@ -9,7 +9,7 @@ extern uint8_t gGameSave_Age[2];
 extern uint8_t gGameSave_Sex[2];
 extern uint16_t gGameSave_RedGems[2];
 extern uint16_t gGameSave_YellowGems[2];
-extern uint64_t GameSave_PlayTime[2]; // contains total play time
+extern uint64_t gGameSave_PlayTime[2]; // contains total play time
 extern uint32_t gFestivalRecords[7];
 
 extern uint16_t func_80004E70(int32_t lhs, uint32_t offset);

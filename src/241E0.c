@@ -4,7 +4,7 @@
 #include <function_symbols.h>
 #include <inttypes.h>
 #include <ultra64.h>
-
+#include <BGM.h>
 
 void func_800235E0(void) {
     D_800BE72C = 0;
@@ -52,7 +52,7 @@ void func_80023A08(void) {
 
 void func_80023A34(void) {
     func_800237F0();
-    if ((D_800BE6AC & 0xA400) == 0) {
+    if ((DebugBitfeild & 0xA400) == 0) {
         D_800BE544 = 0x8000;
         D_800BE550 = (int32_t)(gPlayerPosXMirror._w + 0x200000);
         D_800BE554 = (int32_t)gPlayerPosYMirror._w;
@@ -223,7 +223,13 @@ void func_80024DA8(void) {
     D_800BE708 = 1;
     D_800BE588 = 3;
 }
-
+/*
+void func_80024DD8(void){
+    u16 i;
+    u16* x=D_800CC228;
+    u16* y=80380400;
+    for(i=0;i<256;i++){ x++ = y++;}
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024DD8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024E18.s")
@@ -248,9 +254,7 @@ void func_80025094(void) {
 
 void func_80025114(void) {
     func_800235F4();
-    if ((D_800BE4E0 & 1) != 0) {
-        D_800BE57C = (int16_t)(D_800BE57C + 1);
-    }
+    if ((D_800BE4E0 & 1)) D_800BE57C++;
 }
 
 void func_8002515C(void) {
@@ -295,7 +299,16 @@ void func_800253A8(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
 
-//TODO: Declare Stage BGM list
+u8 D_800CCFC[]={
+    BGM_ESPERANCE, BGM_VOLCANIC, 0xff, 0xff, 0xff, 0xff, 0xff, BGM_YUJYA, 0xff, 0xff,
+    BGM_YUJYA, BGM_OPENING_TITLE, BGM_ESPERANCE, BGM_VOLCANIC, BGM_TO1, 0xff, 0xff, 0xff, 0xff, BGM_BOSS,
+    BGM_BONO, 0xff, BGM_REVENGE, BGM_WOODS, BGM_GLOOMY, BGM_BOSS, BGM_BOSS, 0xff, BGM_DETERMINATION, 0xff,
+    BGM_BONO, BGM_OUT, BGM_ESPERANCE, BGM_WOODS, BGM_BONO, BGM_BONO, BGM_LIKE_A_WIND, BGM_MARINA, BGM_VOLCANIC, BGM_OUT,
+    BGM_MARINA, 0xff, BGM_A_CAVE, BGM_A_CAVE, BGM_A_CAVE, BGM_A_CAVE, BGM_OUT, BGM_MARINA, BGM_OBAKESONG, BGM_A_CAVE,
+    BGM_A_CAVE, BGM_A_CAVE, BGM_ESPERANCE, BGM_HURRY, BGM_LIKE_A_WIND, BGM_HURRY, BGM_LIKE_A_WIND, 0xff, 0xff, BGM_OUT,
+    BGM_GIMMICK, BGM_MARINA, BGM_GIMMICK, BGM_BONO, 0x0f, BGM_LETHE, BGM_DETERMINATION, BGM_HURRY, BGM_ESPERANCE, BGM_VOLCANIC,
+    BGM_VOLCANIC, BGM_MARINA, BGM_BONO, BGM_TO1, BGM_TO1, BGM_TO1, BGM_TO1, BGM_HURRY, BGM_HURRY, 0xff,
+    BGM_TO1, BGM_TO1, BGM_TO1, BGM_TO1, BGM_TO1, BGM_YUJYA, BGM_REVENGE, BGM_TO1 };
 
 void func_80025578(void) {
     if (D_800CCFDC[D_800BE5D0] != 255) {
@@ -522,29 +535,29 @@ void Actor_ZeroFlagRange(u16 from, u16 to){
      {gActors[from].flag=0;}
     }
 
-void Actor_ZeroFlag_0x10_0x20(void){Actor_ZeroFlagRange(0x10,0x20);}
+void Actor_ZeroFlag_16_32(void){Actor_ZeroFlagRange(0x10,0x20);}
 
-void Actor_ZeroFlag_0x30_0x90(void){Actor_ZeroFlagRange(0x30,0x90);}
+void Actor_ZeroFlag_48_144(void){Actor_ZeroFlagRange(0x30,0x90);}
 
-void Actor_ZeroFlag_0x90_0xC0(void){Actor_ZeroFlagRange(0x90,0xC0);}
+void Actor_ZeroFlag_144_192(void){Actor_ZeroFlagRange(0x90,0xC0);}
 
-void Actor_ZeroFlag_0xC0_0xC7(void){Actor_ZeroFlagRange(0xc0,199);}
+void Actor_ZeroFlag_192_199(void){Actor_ZeroFlagRange(0xc0,199);}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800286C8.s")
 
 void func_80028704(void){
-    Actor_ZeroFlag_0x10_0x20();
-    Actor_ZeroFlag_0x30_0x90();
-    Actor_ZeroFlag_0x90_0xC0();
-    Actor_ZeroFlag_0xC0_0xC7();
+    Actor_ZeroFlag_16_32();
+    Actor_ZeroFlag_48_144();
+    Actor_ZeroFlag_144_192();
+    Actor_ZeroFlag_192_199();
     func_800286C8();
 }
 
 void func_80028744(void){
-    Actor_ZeroFlag_0x10_0x20();
-    Actor_ZeroFlag_0x30_0x90();
-    Actor_ZeroFlag_0x90_0xC0();
-    Actor_ZeroFlag_0xC0_0xC7();
+    Actor_ZeroFlag_16_32();
+    Actor_ZeroFlag_48_144();
+    Actor_ZeroFlag_144_192();
+    Actor_ZeroFlag_192_199();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002877C.s")

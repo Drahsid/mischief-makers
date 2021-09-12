@@ -58,6 +58,10 @@ extern uint8_t gSpriteColR;
 extern uint8_t gSpriteColG;
 extern uint8_t gSpriteColB;
 extern uint8_t gSpriteColA;
+extern int32_t D_800C4EBC;
+extern uint32_t D_800C4EC0;
+extern int32_t D_800C4EC4;
+extern uint32_t D_800C4EC8;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
 extern uint16_t gTimeRecords[64]; // records for stage times.
@@ -91,7 +95,6 @@ extern uint16_t gContinueChoice;
 extern uint16_t gRedGems;
 extern uint16_t gCurrentStage;
 extern uint16_t gStageTime; // pauses for cutscene, loading
-extern int64_t YelloGemBitfeildTemp;
 extern uint16_t gStageTimeReal;
 extern ActorFunc gActorFuncTable_80192000[];
 extern ActorFunc gActorFuncTable_8019B000[];
@@ -158,8 +161,8 @@ extern uint16_t D_800BE6A4;
 extern int16_t D_800BE6A8;
 /* a set of flags with the following properties for each bit (hi-to-lo):
  * 0 unknown (func_8001FF28 is just jr ra)
- * 1 Draw some debug info
- * 2 unknown
+ * 1 Draw SFX Channel data
+ * 2 
  * 3 unknown (func_80021660 is just jr ra)
  * 4 unknown
  * 5 unknown
@@ -170,12 +173,12 @@ extern int16_t D_800BE6A8;
  * A unknown
  * B unknown
  * C unknown
- * D Effects stage depth of fg and bg objects
+ * D Ortho / perspective view 
  * E Makes the game really slow? Looks like lag, but it's just running slow (related to D_800BE6B4)
  * F unknown (func_8002167C is just jr ra)
 */
-extern uint16_t D_800BE6AC;
-extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in D_800BE6AC is set
+extern uint16_t DebugBitfeild;
+extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in DebugBitfeild is set
 extern uint16_t D_800BE6B8;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -200,11 +203,8 @@ extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
 extern s16 D_800C383C[];
-extern Sprite D_800C4E5C;
-extern int32_t D_800C4EBC;
-extern uint32_t D_800C4EC0;
-extern int32_t D_800C4EC4;
-extern uint32_t D_800C4EC8;
+extern Sprite gSprite;
+
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
 extern uint16_t gTimeRecords[64]; // records for stage times.
@@ -230,7 +230,6 @@ extern UNK_TYPE D_800C94CC;
 extern UNK_TYPE D_800C94D0;
 extern UNK_TYPE D_800C94DA;
 extern s16 D_800C9694[5];
-extern s16* D_800C96A0[5]; //"Perfect!!!","Excellent!","Very Good!", "  Good  ","Try Harder"
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
 extern uint32_t D_800C9FCC[];
@@ -282,7 +281,7 @@ extern uint16_t D_800D2968;
 extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
-extern uint16_t D_800D2978[75][3];
+extern uint16_t D_800D2978[];
 extern s16 D_800D36DC[16];
 extern s16 D_800D36FC[16];
 extern uint16_t D_800D3770[];
@@ -291,7 +290,7 @@ extern s16 D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
-extern uint32_t D_800D4184;
+extern uint32_t D_800D4184[82]; //pointer array?
 extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
@@ -351,15 +350,15 @@ extern UNK_TYPE D_800DCA7C;
 extern int16_t D_800DCADE;
 extern UNK_TYPE D_800DCC7C;
 extern int16_t D_800DCCDE;
-extern UNK_TYPE D_800DD47C;
+extern int16_t D_800DD47C[];
 extern int16_t D_800DD4DC;
-extern UNK_TYPE D_800DD67C;
+extern int16_t D_800DD67C[];
 extern int16_t D_800DD6DC;
-extern UNK_TYPE D_800DD87C;
+extern int16_t D_800DD87C[];
 extern int16_t D_800DD8DC;
-extern UNK_TYPE D_800DDA88;
+extern int16_t D_800DDA88[];
 extern int16_t D_800DDAD6;
-extern UNK_TYPE D_800DDC48;
+extern int16_t D_800DDC48[];
 extern int16_t D_800DDC96;
 extern UNK_TYPE D_800DDE08;
 extern int16_t D_800DDE56;
@@ -414,7 +413,7 @@ extern UNK_TYPE D_800DFE48;
 extern int16_t D_800DFEA2;
 extern UNK_TYPE D_800E0048;
 extern int16_t D_800E00A2;
-extern UNK_TYPE D_800E0248;
+extern int16_t D_800E0248[];
 extern int16_t D_800E02A2;
 extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
@@ -433,12 +432,13 @@ extern int16_t D_800EF4D4;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
 extern uint16_t D_800EF508[4]; //holds current SFX indicies per channel
+extern s32 D_800F4540;
+extern s32 D_800F46D8;
 extern u8 D_80104090[];
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern u8 D_801069D8[];
-extern struct_func_80044360_D_801069E0 D_801069E0[];
 extern s16 D_80108DE0[];
 
 extern uint32_t D_80103480;
@@ -453,15 +453,12 @@ extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern struct_D_801069E0 D_801069E0[]; // seems to be the sprite objects (not the collision,) of level objects
-extern UNK_TYPE D_8011CDF0;
-extern UNK_TYPE D_8011CF18;
 extern UNK_TYPE D_8011D970;
 extern UNK_TYPE D_8011DDF0;
-extern int16_t gInputHistoryHold[];
+extern uint16_t gInputHistoryHold[];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;
-extern Gfx* gDListHead;
 extern OSMesg D_8012A678[8];
 extern OSThread idleThread;
 extern OSThread mainThread;
@@ -485,7 +482,6 @@ extern OSContStatus OSgContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
 extern OSMesgQueue gContMesgq;
-extern Gfx gDListTail[2][0xC30];
 extern uint32_t gPlayerControllerIndex;
 extern uint16_t gButtonCur;
 extern uint32_t gPlayTime;
@@ -512,26 +508,35 @@ extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
 extern int32_t D_801376E4;
 extern int32_t D_801376E8;
-extern OSMesg D_80137800[48];
 extern OSMesgQueue D_801377B8;
 extern OSMesgQueue D_801377D0;
+extern OSMesg D_80137800[48];
 extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
+extern OSIoMesg D_801378E0[48];
+extern OSTask* D_80137D60[2];
+extern Acmd* D_80137D68[2];
 extern void* Sound_AIBuffers[3];
 extern ALHeap D_80137D80;
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0;
+extern uint8_t D_80137DA8[220160]; //ALHeap base
 extern ALLink D_8016D9CC;
 extern ALLink D_8016D9B8;
 extern UNK_TYPE D_8016DEB8;
+extern ALGlobals Sound_ALGlobals;
+extern ALSynConfig ALGlobals_SynConfig;
+extern ALBankFile* D_8016DF34;
+extern ALBank* D_8016DF38;
+extern ALBank* D_8016DF3C;
 extern ALCSPlayer* BGM_pALCPlayer;
+extern ALCSeq* D_8016E2E0;
+extern ALCSeq D_8016E2E8[4];
+extern ALCSeq* D_8016E6C8[4];
 extern OSTask* D_8016E6F0;
 extern u32 D_8016E718;
-extern Bitmap D_8016E820[56];
+extern Bitmap gSpriteBitmaps[2][56];
 extern UNK_TYPE D_8016EF20;
-extern int64_t gYellowGemBitfeild;
-extern int8_t gWorldProgress;
-extern UNK_TYPE D_8016E718;
 extern uint32_t D_80171ADC[2][2];
 extern UNK_TYPE D_80171D30;
 extern uint8_t D_80171B19;
@@ -557,6 +562,16 @@ extern uint8_t D_80178134;
 extern uint16_t gContinueChoice;
 extern uint16_t gRedGems;
 extern uint16_t gCurrentStage;
+extern uint16_t D_80178150;
+extern uint16_t D_80178152;
+extern uint16_t D_80178154;
+extern uint16_t D_80178156;
+extern uint16_t D_80178158;
+extern uint16_t D_8017815A;
+extern uint16_t D_8017815C;
+extern uint16_t D_80178164;
+extern uint16_t D_80178160;
+extern uint16_t D_80178162;
 extern uint16_t D_80178164;
 extern uint16_t D_80178166;
 extern UNK_TYPE D_80178170;

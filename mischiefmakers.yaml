@@ -51,7 +51,7 @@ segments:
       - [0x82920, c]
       - [0x82DB0, c]
       - [0x82F80, asm]
-      - [0x844E0, asm]
+      - [0x844E0, c, DebugText] # looks to provide text/ transform data for sprite.c. unique struct.
       - [0x84BB0, asm]
       - [0x8D0A0, c]
       - [0x8F080, c]
@@ -211,6 +211,7 @@ segments:
       - [0xEC190, bin]
       - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
 
+
       # libultra
       #- [0xEE200, rodata, io/viswapbuf]
       #- [0xEE230, rodata, os/visetmode]
@@ -238,6 +239,8 @@ segments:
       #- [0xEF550, rodata, audio/reverb]
       #- [0xEF5B0, rodata, libc/xldtob]
       - [0xEC6C0, bin]
+      #- [0xEDC70, rodata, DebugText] # strings and doubles
+      #- [0xEDCE0, rodata, 84BB0]
       - [0xEF880, bin] # "RSP SW Version:" ...
       - [0x7754F0, c] # includes actor functions from func_80016E70
 

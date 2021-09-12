@@ -946,9 +946,9 @@ void GameSave_Update(void){
     gTimeRecords[gCurrentStage] = gStageTime;
   }
   if (uVar4 == uVar2) {gWorldProgress = (char)uVar2 + 1;}
-    GameSave_RedGems[gSaveSlotIndex] = gRedGems;
-    GameSave_YellowGems[gSaveSlotIndex] = YellowGem_Count();
-    GameSave_PlayTime[gSaveSlotIndex]= (u64)gPlayTime;
+    gGameSave_RedGems[gSaveSlotIndex] = gRedGems;
+    gGameSave_YellowGems[gSaveSlotIndex] = YellowGem_Count();
+    gGameSave_PlayTime[gSaveSlotIndex]= (u64)gPlayTime;
     func_80005770();
     gWorldProgress = bVar1;
 }
@@ -960,11 +960,11 @@ void func_8001B3D0(void){
   u32 uVar2;
 
   gWorldProgress = (u8)gCurrentStage;
-  GameSave_RedGems[gSaveSlotIndex] = gRedGems;
+  gGameSave_RedGems[gSaveSlotIndex] = gRedGems;
   uVar1 = YellowGem_Count();
   uVar2 = (u32)gSaveSlotIndex;
-  GameSave_YellowGems[uVar2] = uVar1;
-  GameSave_PlayTime[uVar2] = (u64)gPlayTime;
+  gGameSave_YellowGems[uVar2] = uVar1;
+  gGameSave_PlayTime[uVar2] = (u64)gPlayTime;
   func_80005770();
 }
 
@@ -990,6 +990,7 @@ void func_8001C834(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C834.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C8B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C97C.s")

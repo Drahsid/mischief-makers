@@ -174,7 +174,7 @@ int32_t func_80049A04(uint16_t index) {
     short new_var;
     uint32_t temp_a0;
 
-    temp_a0 = (&D_800D4184)[func_8005D338(index)];
+    temp_a0 = D_800D4184[func_8005D338(index)];
     if (temp_a0 == 0) {
         return 0;
     }
