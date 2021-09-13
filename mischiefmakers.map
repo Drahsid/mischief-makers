@@ -1639,9 +1639,9 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080000c20                Thread_MainProc
                 0x0000000080000fe0                Input_Update
                 0x0000000080001098                Input_GetFirstController
-                0x00000000800011f0                func_800011F0
+                0x00000000800011f0                RomCopy_A
                 0x0000000080001264                func_80001264
-                0x0000000080001290                func_80001290
+                0x0000000080001290                RomCopy_B
                 0x00000000800012f0                func_800012F0
                 0x000000008000147c                func_8000147C
                 0x0000000080001670                GameState_Tick
@@ -5848,7 +5848,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008016e718                gSound_currentBuffer = 0x8016e718
                 0x00000000800c4e5c                gSprite = 0x800c4e5c
                 0x0000000080182018                DebugText_Time = 0x80182018
-                0x00000000800be6ac                DebugBitfeild = 0x800be6ac
+                0x00000000800be6ac                gDebugBitfeild = 0x800be6ac
                 0x0000000080124670                D_80124670 = 0x80124670
                 0x0000000080126670                D_80126670 = 0x80126670
                 0x000000008012ad10                D_8012AD10 = 0x8012ad10
@@ -6173,13 +6173,13 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800be5f8                D_800BE5F8 = 0x800be5f8
                 0x00000000800be544                D_800BE544 = 0x800be544
                 0x00000000800be61c                D_800BE61C = 0x800be61c
-                0x00000000800be550                D_800BE550 = 0x800be550
+                0x00000000800be550                gScreenPosTargetX = 0x800be550
                 0x00000000800be704                D_800BE704 = 0x800be704
                 0x00000000800be548                D_800BE548 = 0x800be548
                 0x00000000800be568                D_800BE568 = 0x800be568
                 0x00000000800be56c                D_800BE56C = 0x800be56c
                 0x00000000800be620                D_800BE620 = 0x800be620
-                0x00000000800be554                D_800BE554 = 0x800be554
+                0x00000000800be554                gScreenPosTargetY = 0x800be554
                 0x00000000800be708                D_800BE708 = 0x800be708
                 0x00000000800be54c                D_800BE54C = 0x800be54c
                 0x00000000800be574                D_800BE574 = 0x800be574

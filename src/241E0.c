@@ -26,7 +26,7 @@ void func_80023678(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800236A0.s")
 
 void func_80023798(void) {
-    D_800BE578 = (int16_t)((int32_t)D_800BE558 / 2);
+    D_800BE578 = (int16_t)((int32_t)D_800BE558._hi / 2);
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
     D_800BE6A8 = 1;
@@ -52,10 +52,10 @@ void func_80023A08(void) {
 
 void func_80023A34(void) {
     func_800237F0();
-    if ((DebugBitfeild & 0xA400) == 0) {
+    if ((gDebugBitfeild & 0xA400) == 0) {
         D_800BE544 = 0x8000;
-        D_800BE550 = (int32_t)(gPlayerPosXMirror._w + 0x200000);
-        D_800BE554 = (int32_t)gPlayerPosYMirror._w;
+        gScreenPosTargetX._w = (int32_t)(gPlayerPosXMirror._w + 0x200000);
+        gScreenPosTargetY._w = (int32_t)gPlayerPosYMirror._w;
         D_800BE704 = 1;
     }
 }
@@ -86,8 +86,8 @@ void func_80023D48(void) {
 }
 
 void func_80023D70(void) {
-    D_800BE578 = (int16_t)D_800BE558;
-    D_800BE580 = (int16_t)(D_800BE55C + 0x60);
+    D_800BE578 = D_800BE558._hi;
+    D_800BE580 = D_800BE55C._hi + 0x60;
 }
 
 void func_80023D98(void) {
@@ -266,7 +266,7 @@ void func_8002515C(void) {
 void func_80025184(void) {
     int16_t temp_v0;
 
-    temp_v0 = D_800BE558;
+    temp_v0 = D_800BE558._hi;
     D_800BE578 = (int16_t)(((int32_t)temp_v0 / 4) & 0x1FF);
     D_800BE57C = (int16_t)(((int32_t)temp_v0 / 8) & 0x1FF);
 }
@@ -371,7 +371,7 @@ void func_8002653C(void) {
     int32_t phi_a0 = 0x41E53F8;
     phi_a0-= 0x4000000;
 
-    func_800011F0(phi_a0, &D_800DE348, 0x1500);
+    RomCopy_A(phi_a0, &D_800DE348, 0x1500);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002653C.s")
@@ -1607,9 +1607,21 @@ void FUN_80040ab4(u16 param_1){
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004168C.s")
 
 void func_8004172C(u16 i, u16* pos){
-    gActors[i].pos.x= pos[0] - D_800BE558;
-    gActors[i].pos.y= pos[1] - D_800BE55C;
+    gActors[i].pos.x= pos[0] - D_800BE558._hi;
+    gActors[i].pos.y= pos[1] - D_800BE55C._hi;
 }
+
+/*
+void func_8004178C(u16 i, u16* pos){
+    if(gActors[i].unk_0x174) func_8004172C(gActors[i].unk_0x174,pos);
+    else {
+        func_8004172C(0,pos);
+        gPlayerPosXMirror._hi= D_800BE558._hi + gActors[0].pos.x;
+        gPlayerPosXMirror._hi= D_800BE55C._hi + gActors[0].pos.y;
+        gActors[0].flag &= ~0x20;
+        if((pos[2]&1)) gActors[0].flag |= 0x20;
+        }
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004178C.s")
 
@@ -1617,7 +1629,6 @@ s32 func_8004185c(u16 i){
     if(gActors[i].unk_0xD0_h == 2)return 1;
     return 0;
 }
-
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800418A8.s")
 

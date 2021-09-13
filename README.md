@@ -1,5 +1,5 @@
 # Mischief Makers
-[![Match Status](https://img.shields.io/badge/matched-3.76-brightgreen.svg)]()
+[![Match Status](https://img.shields.io/badge/matched-3.78-brightgreen.svg)]()
 [![Decomp Status](https://img.shields.io/badge/decompiled-5.98-yellow.svg)]()
 
 A in-progress decompilation of Mischief Makers (or Yuke-Yuke!! Trouble Makers, ゆけゆけ!!トラブルメーカーズ, Yuke Yuke!! Toraburu Mēkāzu in Japanese.)

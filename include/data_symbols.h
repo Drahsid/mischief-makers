@@ -122,10 +122,10 @@ extern uint16_t D_800BE4E4;
 extern int16_t D_800BE4EC;
 extern uint16_t D_800BE538;
 extern uint16_t D_800BE544;
-extern uint32_t D_800BE550;
-extern uint32_t D_800BE554;
-extern int16_t D_800BE558;
-extern int16_t D_800BE55C;
+extern s2_w gScreenPosTargetX; //these few seem to be screen position related
+extern s2_w gScreenPosTargetY;
+extern s2_w D_800BE558;
+extern s2_w D_800BE55C;
 extern s2_w D_800BE560;
 extern s2_w D_800BE564;
 extern int16_t D_800BE568;
@@ -177,8 +177,8 @@ extern int16_t D_800BE6A8;
  * E Makes the game really slow? Looks like lag, but it's just running slow (related to D_800BE6B4)
  * F unknown (func_8002167C is just jr ra)
 */
-extern uint16_t DebugBitfeild;
-extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in DebugBitfeild is set
+extern uint16_t gDebugBitfeild;
+extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
 extern uint16_t D_800BE6B8;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -576,7 +576,7 @@ extern uint16_t D_80178164;
 extern uint16_t D_80178166;
 extern UNK_TYPE D_80178170;
 extern UNK_TYPE D_80178188;
-extern int8_t D_801781A0;
+extern uint8_t D_801781A0;
 extern int32_t D_801781A1;
 extern int16_t D_801781C0[];
 extern uint16_t D_801781C8;

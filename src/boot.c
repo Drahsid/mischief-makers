@@ -367,7 +367,7 @@ s32 Input_GetFirstController(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 
-int32_t func_800011F0(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
+int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;
     OSMesg mesg;
 
@@ -381,24 +381,25 @@ int32_t func_80001264(void) {
     return osRecvMesg(&D_8012ABA8, &mesg, 1);
 }
 
-int32_t func_80001290(int32_t dir, void* vaddr, uint32_t nbytes) {
-    OSIoMesg mb; // rewrite so this is OSIoMesg and matches
+//same as above, no osRecvMesg. used once.
+int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mb; 
 
     osInvalDCache(vaddr, nbytes);
-    return osPiStartDma(&mb, 0, 0, dir, vaddr, nbytes, &D_8012ABA8);
+    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
 }
 
 void func_800012F0(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        if ((DebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
+        if ((gDebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
             gGamePaused = 1;
         }
 
         if (gGamePaused != 0 && gGameSubState == 0x10) {
             if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                if ((DebugBitfeild & 0x100) != 0) {
-                    func_80020844(DebugBitfeild, &gGameSubState, &DebugBitfeild);
+                if ((gDebugBitfeild & 0x100) != 0) {
+                    func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
                     func_800208D4();
                 }
                 else {
@@ -409,8 +410,8 @@ void func_800012F0(void) {
         else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
             if (gActors->health >= 0) {
                 gGamePaused = 1;
-                DebugBitfeild &= 0xFFEF;
-                if ((DebugBitfeild & 0x100) != 0) {
+                gDebugBitfeild &= 0xFFEF;
+                if ((gDebugBitfeild & 0x100) != 0) {
                     gGameSubState = 0x10;
                 }
                 else {
@@ -470,19 +471,19 @@ void func_8000147C(void) {
     func_8000F290();
     func_80009BE0();
 
-    if ((DebugBitfeild & 1) != 0) {
+    if ((gDebugBitfeild & 1) != 0) {
         func_8002167C();
     }
 
-    if ((DebugBitfeild & 0x8000) != 0) {
+    if ((gDebugBitfeild & 0x8000) != 0) {
         func_8001FF28();
     }
 
-    if ((DebugBitfeild & 0x40) != 0) {
+    if ((gDebugBitfeild & 0x40) != 0) {
         func_80021658();
     }
 
-    if ((DebugBitfeild & 0x1020) == 0x1000) {
+    if ((gDebugBitfeild & 0x1020) == 0x1000) {
         func_80021660();
     }
 

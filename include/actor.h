@@ -197,7 +197,7 @@ typedef struct {
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
     /* 0x150 */ int32_t unk_0x150;
-    /* 0x154 */ uint32_t unk_0x154;
+    /* 0x154 */ uint32_t unk_0x154; //s2_w - lower short called sometimes.
     /* 0x158 */ int32_t unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ uint32_t unk_0x160;

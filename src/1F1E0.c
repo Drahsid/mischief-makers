@@ -126,7 +126,7 @@ void func_80020024(void) {
 
     func_800122B0(); // input history
 
-    if ((DebugBitfeild & 2) != 0) {
+    if ((gDebugBitfeild & 2) != 0) {
         if ((gButtonPress & gButton_LTrig) != 0) {
             if (D_800BE6B4 != 1) {
                 D_800BE6B4--;
@@ -179,7 +179,7 @@ void func_80020024(void) {
 
     func_80047C98(); // level objects
 
-    if ((DebugBitfeild & 0x4000) != 0) {
+    if ((gDebugBitfeild & 0x4000) != 0) {
         phi_s2 = gSFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
@@ -345,7 +345,7 @@ void AttractMode_Tick(void) {
 #endif
 
 /* when I first came across this ages ago, I was really confused, now I know:
- * it changes the color of debug text when you press R (see usage of DebugBitfeild)
+ * it changes the color of debug text when you press R (see usage of gDebugBitfeild)
  * will need to investigate further, but it seems to just be an i8 color
  * why didn't they just give the text an outline?
  */

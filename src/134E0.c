@@ -3,8 +3,12 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-uint8_t func_800128E0(int32_t x, int32_t y){return 0xff;}
-
+uint8_t func_800128E0(int32_t x, int32_t y){return 255;}
+/*
+uint8_t func_800128F0(int32_t x, int32_t y){
+    if(((x&0xf))>>1+8<=(y&0xf)) return 0;
+    return 255;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_800128F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_80012944.s")

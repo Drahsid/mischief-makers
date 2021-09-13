@@ -403,18 +403,17 @@ void Intro_Tick(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Intro_Tick.s")
 #endif
-#ifdef NON_MATCHING
+
+char D_800C8F68[]="PRESS START";
+char D_800C8F74[]="@1997 TREASURE/ENIX";
+char D_800C8F88[]="LICENED BY NINTENDO";
+
 void func_80017F08(void) {//prints "Press start" and copyright info
-    u8 temp_t9;
     func_80017770();
-    temp_t9 = (0x1F - D_801781A0 / 4);
-    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, temp_t9, temp_t9, 0x1FU));
+    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0 / 4), (0x1F - D_801781A0 / 4), 0x1FU));
     func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
     func_800276DC(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
-#endif
 
 
 // cp1 stuff is producing a flipped pair of instructions
@@ -876,6 +875,13 @@ void func_80019EC4(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A254.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
+
+uint16_t gTimesToBeat[]={0,0,840,1020,1500,480,1932,2160,1320,2580,
+ /*[10]*/                1740,720,2160,1560,660,1000,720,1620,1680,
+ /*[20]*/                1500,1500,6660,0,1920,1800,3000,4320,1320,
+ /*[30]*/                3600,1080,2220,9360,660,3720,0,1620,1680,19200,
+ /*[40]*/                2580,1800,960,4920,2340,2220,2040,3480,0,5280,
+ /*[50]*/                1680,3873,1020,4800,3300,0,4500,5160};
 
 int16_t Get_TimeRank(uint16_t t, uint16_t s) {
 

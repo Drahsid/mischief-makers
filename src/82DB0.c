@@ -21,8 +21,8 @@ void func_800821B0(void) {
             phi_a0 = 0x5095C98 + (temp_t1 * 4) + 0xFAFFFFFC + 0x40AC80;
         }
 
-        func_800011F0(phi_a0, sp28, 8U);
-        func_80001290(sp28[0] + 0xFB000000 + 0x40AC80, 0x801C4400U, sp28[1] - sp28[0]);
+        RomCopy_A(phi_a0, sp28, 8U);
+        RomCopy_B(sp28[0] + 0xFB000000 + 0x40AC80, 0x801C4400U, sp28[1] - sp28[0]);
         D_80178460 = 1;
     }
     else {

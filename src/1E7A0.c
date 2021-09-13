@@ -7,8 +7,8 @@
 void func_8001DBA0(uint16_t* arg0, uint16_t index) {
     gActors[index].unk_0xD2 = arg0[5];
     Actor_Spawn(index);
-    gActors[index].pos.x = arg0[1] - D_800BE558;
-    gActors[index].pos.y = arg0[2] - D_800BE55C;
+    gActors[index].pos.x = arg0[1] - D_800BE558._hi;
+    gActors[index].pos.y = arg0[2] - D_800BE55C._hi;
     gActors[index].unk_0x110 = arg0[3];
     gActors[index].unk_0xD8 = arg0[4];
 }

@@ -321,10 +321,10 @@ int32_t func_80045F08(int32_t arg0) {
 
 #ifdef NON_MATCHING
 void func_80045F14(uint16_t* arg0) {
-    D_800BE550 = arg0[0];
-    D_800BE554 = arg0[1];
-    D_800BE558 = D_800BE550;
-    D_800BE55C = D_800BE554;
+    gScreenPosTargetX._w = arg0[0];
+    gScreenPosTargetY._w = arg0[1];
+    D_800BE558 = gScreenPosTargetX._w;
+    D_800BE55C = gScreenPosTargetY._w;
     D_800BE560._hi = D_800BE558;
     D_800BE564._hi = D_800BE55C;
     D_800D2920 = arg0[2];
@@ -379,11 +379,11 @@ void func_80046274(int32_t arg0, int32_t arg1) {}
 
 void func_800463C0(void) {
     func_800462F0();
-    D_800BE568 = D_800BE558 - 0x90;
+    D_800BE568 = D_800BE558._hi - 0x90;
 }
 /*
 s32 func_800463F0(void){
-    if ((!D_800D28FC&0x1000)&&(!func_8005DEFC())) return 0;
+    if ((!D_800D28FC&0x1000)&&(func_8005DEFC()==0)) return 0;
     return 1;
 }
 */

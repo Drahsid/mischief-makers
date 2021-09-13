@@ -58,8 +58,8 @@ void func_80016CB4(void) {
                 gActors[index].unk_0x98 &= ~(1 << 19);
             }
         }
-        gPlayerPosXMirror._w = gActors[index].pos.x_w + D_800BE558; // are these s2w?
-        gPlayerPosYMirror._w = gActors[index].pos.y_w + D_800BE55C;
+        gPlayerPosXMirror._w = gActors[index].pos.x_w + D_800BE558._w; // are these s2w?
+        gPlayerPosYMirror._w = gActors[index].pos.y_w + D_800BE55C._w;
     }
 }
 #else
