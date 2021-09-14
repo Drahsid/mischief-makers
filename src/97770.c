@@ -85,8 +85,6 @@ void func_80097384(u16 i){
     func_8002AEB4(i,127);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097384.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097428.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097574.s")
@@ -121,4 +119,5 @@ void func_80097968(void){
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097968.s")
 
+// this may be part of the "level clear" sequence.
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097A74.s")

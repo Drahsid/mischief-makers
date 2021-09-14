@@ -28,6 +28,10 @@ u16 func_80048600(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
+int32_t D_800D5794[19]={
+    0x4000,0x20000,0x20000,0x10000,0x8000,0x38000,0x38000,0x38000,0x28000,0x2666,
+    0x50000,0x50000,0x50000,0x50000,0x50000,0x30000,0x30000,0x30000,0x28000};
+
 int32_t func_80048C94(int32_t arg0) {
     return D_800D5794[arg0]*gPlayerActor.unk_0x120;
 }
@@ -455,7 +459,7 @@ void func_8004ED10(uint16_t index) {
 
                     phi_v0 += 4;
                     phi_v1 += 4;
-                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&D_8011DDF0);
+                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&gInputHistoryPress[64]);
 
                 D_801370CE = 0;
                 D_801370CC = 0;
@@ -584,7 +588,7 @@ void func_8004ED10(uint16_t index) {
                 }
             }
             else if (D_801373E0.unk_0x44 != 0) {
-                func_800032C4(0x3E);
+                SFX_Stop(0x3E);
                 D_801373E0.unk_0x44 = 0;
 
                 return;

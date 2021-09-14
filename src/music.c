@@ -3,7 +3,7 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-// since the functions in this file include music, sfx and other general sound stuff, should we rename this file to "sound.c" ?
+// While this script contains general sound functions, it is named music.c after Assert found in code.
 
 ALCSPlayer gSFX_ALCPlayers[4];
 ALCSPlayer* SFX_pALCPlayers[4];
@@ -23,10 +23,10 @@ void Audio_dmaNew(void** arg0) {
 
         for (phi_s0 = &D_8016D9CC, phi_s1 = &D_8016D9B8; phi_s0 != 0x8016DEB8; phi_s0 += 2, phi_s1 += 2) {
             alLink(phi_s0, phi_s1);
-            phi_s1->next = alHeapDBAlloc(NULL, 0, &D_80137D80, 1, 0x270);
+            phi_s1->next = alHeapDBAlloc(NULL, 0, &Sound_ALHeap, 1, 0x270);
         }
 
-        phi_s1[2].next = alHeapDBAlloc(0, 0, &D_80137D80, 1, 0x270);
+        phi_s1[2].next = alHeapDBAlloc(0, 0, &Sound_ALHeap, 1, 0x270);
         D_8016D9A8.unk0 = 1U;
     }
     *arg0 = &D_8016D9A8;
@@ -86,7 +86,7 @@ void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
 void func_80002F48(u8 chan,void *player,s16 SFX_ID,s16 arg3,s8 arg4,u8 state,u16 arg6,u16 arg7){
     gSFX_ChannelStates[chan]=state;
     D_80108DE0[chan]=arg6;
-    D_800EF508[chan]=SFX_ID;
+    gSFXCurrentIndex[chan]=SFX_ID;
     D_80104090[chan]=SFX2ByteArray[SFX_ID][1];
     D_8010CDE8[chan]=arg7;
     D_801069D8[chan]=arg4;
@@ -100,8 +100,17 @@ void func_80002F48(u8 chan,void *player,s16 SFX_ID,s16 arg3,s8 arg4,u8 state,u16
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
+/*
+int32_t SFX_Stop(u16 ID){
+    u8 i;
+    for(i=0; gSFXCurrentIndex[i] != ID || gSFX_ChannelStates[i]==0; i++){
+        if(i>3) return -1;
+    }
+    alSeqpStop((ALSeqPlayer *)SFX_pALCPlayers[i]);
+    return i;
+}*/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800032C4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Stop.s")
 
 // main SFX playing wrapper
 void SFX_Play_1(uint32_t id) {

@@ -225,10 +225,14 @@ void func_80024DA8(void) {
 }
 /*
 void func_80024DD8(void){
-    u16 i;
     u16* x=D_800CC228;
-    u16* y=80380400;
-    for(i=0;i<256;i++){ x++ = y++;}
+    u16* y=D_80380400;
+    u16 i;
+    for(i=0;i<256;i++){
+      *y = *x;
+      x++;
+      y++;
+      }
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024DD8.s")
 
@@ -1252,7 +1256,12 @@ void func_80031D58(u16 A, u16 B){
     if(B<A) gActors[B].unk_0x148=0.0;
     else gActors[B].unk_0x148=1.0;
 }
-
+/*
+void func_80031DDC(u16 i){
+    Actor* actor = &gActors[i];
+    if(actor->unk_0x148 = 0.0){actor->flag=0;}
+    actor->unk_0x148-= 1.0;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031DDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80031E38.s")

@@ -179,8 +179,8 @@ void func_80020024(void) {
 
     func_80047C98(); // level objects
 
-    if ((gDebugBitfeild & 0x4000) != 0) {
-        phi_s2 = gSFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = gSFX_Volumes; // Whitespace memes
+    if ((gDebugBitfeild & 0x4000)) {
+        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFXCurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -238,6 +238,7 @@ void func_80020A54(void){
   u16 i;
   for(i = 200;i < 204;i++) gActors[i].flag = 0;
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 
 void GamePlay_Tick(void) {
@@ -350,7 +351,7 @@ void AttractMode_Tick(void) {
  * why didn't they just give the text an outline?
  */
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig)) D_800BE6B8 ^= 0xFF;
+    if ((gButtonPress & gButton_RTrig)) D_800BE6B8._s ^= 0xFF;
 }
 
 void func_80021658(void) {}

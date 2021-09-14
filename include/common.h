@@ -31,6 +31,15 @@ typedef struct {
         /* 0x00 */ int32_t _w;
     };
 } s2_w; /* sizeof = 0x04 */ // short[2], word
+typedef struct {
+    union {
+        struct {
+            /* 0x00 */ uint8_t _hi;
+            /* 0x01 */ uint8_t _lo;
+        };
+        /* 0x00 */ uint16_t _s;
+    };
+} b2_s; 
 
 typedef struct {
     union {
