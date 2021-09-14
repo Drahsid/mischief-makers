@@ -2,6 +2,8 @@
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <inttypes.h>
+#include <SFX.h>
+#include <Alphabet.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
@@ -11,6 +13,17 @@
 // BUG: This function writes to unallocated stack space!
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
+/*
+void func_8001E814(int16_t indexL, int16_t indexR){
+    if((gActors[indexL].unk_0xEC==0)&&(gActors[indexL].unk_0xF0==0)){
+        gActors[indexR].unk_0xF8 = func_8001E5E0(indexL,indexR,0x2000);
+        gActors[indexR].unk_0xFC = func_8001E6F4(indexL,indexR,0x2000);
+    }
+    else{
+        gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xEC;
+        gActors[indexR].unk_0xFC = gActors[indexL].unk_0xF0;
+    }
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 
 void func_8001E8E4(uint16_t indexL, uint16_t indexR) {
@@ -208,13 +221,11 @@ void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
     else func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
 #ifdef NON_MATCHING
-void func_80020844(void) {
+void func_80020844(void) { //resets sound levels after exiting pause menu?
     u16 i;
-    for(i = 0; i < 4; i++)
-      {SFX_Volumes[i] = D_801781C0[i];}
-    SFX_Play_1(0xCBU);
-    for(i = 204;i < 208;i++)
-      {gActors[i].flag = 0;}
+    for(i = 0; i < 4; i++) SFX_Volumes[i] = D_801781C0[i];
+    SFX_Play_1(SFX_MARINA_YELL2);
+    for(i = 204;i < 208;i++) gActors[i].flag = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")

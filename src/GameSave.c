@@ -217,13 +217,13 @@ void NameEntry_IsMaxed(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
 #ifdef NON_MATCHING
-void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng) {
+void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
     if (gNameEntryCurrentChar < 10) {
         if (gNameEntryLanguage == 0) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang1[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Hiragana[gNameEntrySelectedColumn];
         }
         else if (gNameEntryLanguage == 1) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang2[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Katakana[gNameEntrySelectedColumn];
         }
         else if (gNameEntryLanguage == 2) {
             gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];

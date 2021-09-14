@@ -803,7 +803,6 @@ gSpriteColA = 0x800c4eb8; // type:data size:0x1
 gSoundTest_SelectedSFX = 0x800efac4; // type:data
 gSoundTest_SFXEntries = 0x800c9280; // type:data size:0x24c
 gSoundTest_SelectedBGM = 0x800ef92c; // type:data
-alSynFreeFX = 0x8001e808; // type:func
 Alpha_NotYet = 0x800ca28c; // type:data size:0x12
 Alpha_GotIt = 0x800ca2a0; // type:data size:0x2
 gPlayTime = 0x801370c8; // type:data size:0x4

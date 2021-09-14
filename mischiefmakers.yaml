@@ -50,7 +50,7 @@ segments:
       - [0x80D90, asm]
       - [0x82920, c]
       - [0x82DB0, c]
-      - [0x82F80, asm]
+      - [0x82F80, asm] # likey deals with text defined in Alphabet.h
       - [0x844E0, c, DebugText] # looks to provide text/ transform data for sprite.c. unique struct.
       - [0x84BB0, asm]
       - [0x8D0A0, c]

@@ -169,17 +169,18 @@ extern int16_t D_800BE6A8;
  * 4 unknown
  * 5 unknown
  * 6 Force pause (see func_800012F0)
- * 7 unknown
+ * 7 pause does not open menu.
  * 8 Draw some debug info
  * 9 unknown (func_80021658 is just jr ra)
  * A unknown
  * B unknown
  * C unknown
  * D Ortho / perspective view 
- * E Makes the game really slow? Looks like lag, but it's just running slow (related to D_800BE6B4)
+ * E L and R change gameplay speed (60 / D_800BE6B4 fps)
  * F unknown (func_8002167C is just jr ra)
 */
 extern uint16_t gDebugBitfeild;
+extern float D_800BE6B0; //90.0f, never used, AFAIK
 extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
 extern b2_s D_800BE6B8;
 extern int32_t D_800BE6C0;
@@ -200,6 +201,8 @@ extern int32_t D_800BE728;
 extern int32_t D_800BE72C;
 extern int32_t D_800BE730;
 extern UNK_TYPE D_800BE73C;
+extern char* D_800BE84C[33]; // BGM titles left in data.
+extern char** D_800BEA4C[32]; // instrument names, and variations.
 extern char* D_800C1694[294]; //could help add to SFX.h
 extern u8 D_800C2280[223]; //looks like it's ID's for ALInstrument
 extern char* SfxLabels[224]; // may be wrong.
@@ -215,16 +218,17 @@ extern UNK_TYPE D_800C3908;
 extern Sprite gSprite;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
+
 extern uint16_t gTimeRecords[64]; // records for stage times.
 extern uint16_t GameSave_DefaultName[11];   // contains default "Start" filename
 extern uint16_t nameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
 extern uint8_t D_800C5010[];
-extern uint16_t gNameEntryRow0ENG[18]; //arrays with the english nam entry characters
+extern uint16_t gNameEntryRow0ENG[18]; //arrays with the english name entry characters
 extern uint16_t gNameEntryRow1ENG[18]; // there are 2 more like this for other languages
-extern uint16_t gNameEntryRow2ENG[18]; // one is probably Japanese, another lost in translation.
-extern uint16_t gNameEntryRow3ENG[18]; // the former can be translated, the latter is "corrupted"
+extern uint16_t gNameEntryRow2ENG[18]; // Japan version had 3 character sets to select with L/R
+extern uint16_t gNameEntryRow3ENG[18]; // one is still readable, but the other seems lost.
 extern uint16_t gNameEntryRow4ENG[18];
 extern UNK_TYPE D_800C71A0;
 extern UNK_TYPE D_800C7E14;
