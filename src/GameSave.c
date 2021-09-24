@@ -8,13 +8,13 @@
 
 char GameSave_EEPROMID[8]="TREA0722";
 
-u16 gTimeRecords[64]=
+uint16_t gTimeRecords[64]=
  {36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
   36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
   36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
   36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000};
 
-u16 GameSave_DefaultName[11]={ALPHA_Cap_S,ALPHA_Lower_T,ALPHA_Lower_A,ALPHA_Lower_R,ALPHA_Lower_T,
+uint16_t GameSave_DefaultName[11]={ALPHA_Cap_S,ALPHA_Lower_T,ALPHA_Lower_A,ALPHA_Lower_R,ALPHA_Lower_T,
   ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_NULL};
 
 // This function gets the lower 4 bits of the word lhs + (offset)
@@ -44,19 +44,19 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
-/*
-void GameSave_Initialize(u8 slot){
-  u16 i;
+#ifdef NON_MATCHING
+void GameSave_Initialize(uint8_t slot){
+  uint16_t i;
   for(i=0;i<11;i++) GameSave_Names[slot][i] = GameSave_DefaultName[i];
   GameSave_Age[slot] = 0;
   GameSave_Sex[slot] = 0;
   GameSave_RedGems[slot] = 30;
   GameSave_YellowGems[slot] = 0;
-  GameSave_PlayTime[slot]=(u64)0;
+  GameSave_PlayTime[slot]=(uint64_t)0;
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
-
+#endif
 // need to implicitly call __ll_lshift
 #ifdef NON_MATCHING
 void GameSave_SetDefaults(void) {
@@ -129,15 +129,15 @@ void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3)
 }
 
 // Differences related to implicit casts
-/*#ifdef NON_MATCHING
+#ifdef NON_MATCHING
 void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
     uint16_t* red_gems = &gGameSave_RedGems[arg3];
     func_80027800(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
     func_80027800(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
-#else*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800058E0.s")
-//#endif
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800059A4.s")
 
@@ -148,18 +148,18 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_8000607C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006360.s")
-/*
-void func_80006B1C(u16 i){
-    u16 j;
+#ifdef NON_MATCHING
+void func_80006B1C(uint16_t i){
+    uint16_t j;
     i&=0xFFFF;
     for(j=i+0xab;j<i+0xBD;j++) gActors[j].flag=0;
     func_80006360(i);
     gGameSubState=1;
     gSaveSlotIndex=0;
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B1C.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
@@ -214,8 +214,9 @@ void NameEntry_IsMaxed(void){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
 #endif
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
+// Original Japanese version has 3 different character sets for name entry. All other regions have 1
 #ifdef NON_MATCHING
 void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
     if (gNameEntryCurrentChar < 10) {

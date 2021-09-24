@@ -13,7 +13,7 @@ Sprite gSprite ={
     0,0,NULL,               //startTLUT,nTLUT,LUT,
     0,1,56,648,             //istart,istep,nbitmaps,ndisplist
     15,128,4,0              //bmHeight,bmReal,bmFMT,bmsiz
-    gSpriteBitmaps,             //bitmap
+    gSpriteBitmaps,         //bitmap
     &D_8016EF20,NULL,       //rsp_dl,rsp_dl_next
     0,0};                   //frac
 */

@@ -4,15 +4,15 @@
 #include <inttypes.h>
 #include <ultra64.h>
 
-void func_8008C4A0(u32 x){}
-void func_8008C4A8(u32 x){}
-void func_8008C4B0(u32 x,u32 y, u32 z){}
-void func_8008C4C0(u32 x){}
-void func_8008C4C8(u32 x){}
-void func_8008C4D0(u32 x){}
-void func_8008C4D8(u32 x){}
+void func_8008C4A0(uint32_t x){}
+void func_8008C4A8(uint32_t x){}
+void func_8008C4B0(uint32_t x,uint32_t y, uint32_t z){}
+void func_8008C4C0(uint32_t x){}
+void func_8008C4C8(uint32_t x){}
+void func_8008C4D0(uint32_t x){}
+void func_8008C4D8(uint32_t x){}
 
-void func_8008C4E0(u16 i){
+void func_8008C4E0(uint16_t i){
     gActors[i].rgba.b=0;
     gActors[i].rgba.g=0;
     gActors[i].rgba.r=0;
@@ -65,13 +65,13 @@ void func_8008C4E0(u16 i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D99C.s")
 
-u32 func_8008DA24(u16 i){
+uint32_t func_8008DA24(uint16_t i){
     return func_8008D480(i);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DA4C.s")
 
-void StartContinueMode(u16 i){
+void StartContinueMode(uint16_t i){
     if(gGameState==GAMESTATE_GAMEPLAY){
         gActors[i].flag=0;
         gActors[i].unk_0xD0_h=0;

@@ -335,9 +335,9 @@ void Input_Update(void) {
     gButtonHold = gButtonCur;
     D_800BE538 = gButtonCur;
 }
-/*
-s32 Input_GetFirstController(void){
-  s32 sVar1;
+#ifdef NON_MATCHING
+int32_t Input_GetFirstController(void){
+  int32_t sVar1;
   byte abStack5 [5];
 
   osCreateMesgQueue(&D_8012AC20,&D_8012AC7C,1);
@@ -362,10 +362,10 @@ s32 Input_GetFirstController(void){
   }
   else sVar1 = 0;
   return sVar1;
-}*/
-
-
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
+#endif
 
 int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;

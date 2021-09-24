@@ -193,23 +193,30 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A14.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
-/*
-void func_80096A70(u16 i){
+
+#ifdef NON_MATCHING
+void func_80096A70(uint16_t i){
     gActors[(i+1)].unk_0xD8=2;
     func_800902B0(i);
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A70.s")
-/*
-void func_80096AC4(u16 i){
+#endif
+
+#ifdef NON_MATCHING
+void func_80096AC4(uint16_t i){
     gActors[i+1].unk_0xD8=3;
     func_800902B0(i);
-}*/
-
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096AC4.s")
-/*
-void func_80096B18(float f1, float f2,u16 i){
+#endif
+
+#ifdef NON_MATCHING
+void func_80096B18(float f1, float f2,uint16_t i){
     gActors[i+1].unk_0xD8=5;
     func_800902B0(f1,f2,i);
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096B18.s")
+#endif

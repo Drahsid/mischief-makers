@@ -13,7 +13,7 @@
 // BUG: This function writes to unallocated stack space!
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
-/*
+#ifdef NON_MATCHING
 void func_8001E814(int16_t indexL, int16_t indexR){
     if((gActors[indexL].unk_0xEC==0)&&(gActors[indexL].unk_0xF0==0)){
         gActors[indexR].unk_0xF8 = func_8001E5E0(indexL,indexR,0x2000);
@@ -23,8 +23,10 @@ void func_8001E814(int16_t indexL, int16_t indexR){
         gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xEC;
         gActors[indexR].unk_0xFC = gActors[indexL].unk_0xF0;
     }
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
+#endif
 
 void func_8001E8E4(uint16_t indexL, uint16_t indexR) {
     if ((gActors[indexL].flag & ACTOR_FLAG_FLIPPED) == 0) {
@@ -222,7 +224,7 @@ void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
 }
 #ifdef NON_MATCHING
 void func_80020844(void) { //resets sound levels after exiting pause menu?
-    u16 i;
+    uint16_t i;
     for(i = 0; i < 4; i++) SFX_Volumes[i] = D_801781C0[i];
     SFX_Play_1(SFX_MARINA_YELL2);
     for(i = 204;i < 208;i++) gActors[i].flag = 0;
@@ -246,7 +248,7 @@ void func_800208D4(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
 void func_80020A54(void){
-  u16 i;
+  uint16_t i;
   for(i = 200;i < 204;i++) gActors[i].flag = 0;
 }
 

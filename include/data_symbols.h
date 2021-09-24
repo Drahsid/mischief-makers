@@ -204,14 +204,14 @@ extern UNK_TYPE D_800BE73C;
 extern char* D_800BE84C[33]; // BGM titles left in data.
 extern char** D_800BEA4C[32]; // instrument names, and variations.
 extern char* D_800C1694[294]; //could help add to SFX.h
-extern u8 D_800C2280[223]; //looks like it's ID's for ALInstrument
+extern uint8_t D_800C2280[223]; //looks like it's ID's for ALInstrument
 extern char* SfxLabels[224]; // may be wrong.
-extern u16 D_800C26DC[293];
-extern u8 SFX2ByteArray[294][2]; //table of volume and length(?) of SFX.
+extern uint16_t D_800C26DC[293];
+extern uint8_t SFX2ByteArray[294][2]; //table of volume and length(?) of SFX.
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
-extern s16 D_800C383C[];
+extern int16_t D_800C383C[];
 extern s32 ALFX_params[44];
 
 extern UNK_TYPE D_800C3908;
@@ -246,7 +246,7 @@ extern UNK_TYPE D_800C9080;
 extern UNK_TYPE D_800C94CC;
 extern UNK_TYPE D_800C94D0;
 extern UNK_TYPE D_800C94DA;
-extern s16 D_800C9694[5];
+extern int16_t D_800C9694[5];
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
 extern uint32_t D_800C9FCC[];
@@ -269,11 +269,11 @@ extern uint16_t D_800CBF54;
 extern uint16_t D_800CBF58;
 extern int16_t D_800CC228[256];
 extern int8_t D_800CC428;
-extern u16 D_800CC6EC[88][8];
+extern uint16_t D_800CC6EC[88][8];
 extern uint8_t D_800CCFDC[88]; // Stage BGM indecies
 extern int32_t D_800CEC0C;
-extern u8 D_800D16AA[]; //right in the middle of a pointer array?
-extern s16 D_800D16C4;
+extern uint8_t D_800D16AA[]; //right in the middle of a pointer array?
+extern int16_t D_800D16C4;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
 extern uint16_t D_800D28E8;
@@ -293,18 +293,18 @@ extern int32_t D_800D2928;
 extern int32_t D_800D2928;
 extern int32_t D_800D2938;
 extern uint16_t D_800D294C;
-extern u16 gPlayerActorIndex;
-extern u16 D_800D2954;
+extern uint16_t gPlayerActorIndex;
+extern uint16_t D_800D2954;
 extern uint16_t D_800D2968;
 extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
 extern uint16_t D_800D2978[];
-extern s16 D_800D36DC[16];
-extern s16 D_800D36FC[16];
+extern int16_t D_800D36DC[16];
+extern int16_t D_800D36FC[16];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D3888[];
-extern s16 D_800D84E8[];
+extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
@@ -312,7 +312,7 @@ extern uint32_t D_800D4184[82]; //pointer array?
 extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
-extern u16 D_800D5824;
+extern uint16_t D_800D5824;
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
 extern UNK_TYPE gData_RedGem; // sprite data for red gem?
 extern UNK_TYPE D_800D8668;
@@ -450,23 +450,23 @@ extern int16_t D_800EF4D4;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
 extern uint16_t gSFXCurrentIndex[4]; //holds current SFX indicies per channel
-extern s32 D_800F4540;
-extern s32 D_800F46D8;
-extern u8 D_80104090[];
+extern int32_t D_800F4540;
+extern int32_t D_800F46D8;
+extern uint8_t D_80104090[];
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern ALPan D_801069D8[];
-extern s16 D_80108DE0[];
+extern int16_t D_80108DE0[];
 
 extern uint32_t D_80103480;
 extern uint32_t D_80103616;
 extern uint32_t D_801037AA;
 extern uint32_t D_80103944;
 
-extern u16 D_8010CDE8[];
-extern u8 D_8011CDF0[];
-extern u8 D_8011CF18[];
+extern uint16_t D_8010CDE8[];
+extern uint8_t D_8011CDF0[];
+extern uint8_t D_8011CF18[];
 extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
@@ -552,7 +552,7 @@ extern ALCSeq* D_8016E2E0;
 extern ALCSeq D_8016E2E8[4];
 extern ALCSeq* D_8016E6C8[4];
 extern OSTask* D_8016E6F0;
-extern u32 D_8016E718;
+extern uint32_t D_8016E718;
 extern Bitmap gSpriteBitmaps[2][56];
 extern UNK_TYPE D_8016EF20;
 extern uint32_t D_80171ADC[2][2];
@@ -609,7 +609,7 @@ extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
 extern uint64_t YelloGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
-extern s32 D_801782B0;
+extern int32_t D_801782B0;
 extern uint16_t D_801782C0;
 extern uint16_t D_80178460;
 extern UNK_TYPE D_801850B0;

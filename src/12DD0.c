@@ -32,7 +32,7 @@ void func_80012288(void) {
 }
 
 void func_800122B0(void) {
-    s32 temp_a0;
+    int32_t temp_a0;
     uint16_t phi_a0;
 
     if (D_800BE5D4 != 0) {

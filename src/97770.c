@@ -7,8 +7,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80096B70.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80096E14.s")
-/*
-void func_8009705C(u16 i){
+#ifdef NON_MATCHING
+void func_8009705C(uint16_t i){
     gActors[i].unk_0xD2=0x75;
     Actor_Spawn(i);
     gActors[i].unk_0xD0_h=0x1000;
@@ -21,10 +21,12 @@ void func_8009705C(u16 i){
     gActors[i].pos.z=0x80;
     gActors[i].unk_0x154=0x6000;
     gActors[i].unk_0x114=0.8; //seen as rodata
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_8009705C.s")
+#endif
 
-void func_80097108(u16 i){
+void func_80097108(uint16_t i){
     gActors[i].unk_0xD2=0x75;
     Actor_Spawn(i);
     gActors[i].unk_0xD0_h=0x2000;
@@ -37,7 +39,7 @@ void func_80097108(u16 i){
     gActors[i].pos.z=0xFC80;
 }
 
-void func_800971A0(u16 i){
+void func_800971A0(uint16_t i){
     gActors[i].unk_0xD2=0x75;
     Actor_Spawn(i);
     gActors[i].unk_0xD0_h=0x100;
@@ -52,7 +54,7 @@ void func_800971A0(u16 i){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_8009723C.s")
-/*
+#ifdef NON_MATCHING
 void func_800972DC(void){
     gActors[80].unk_0xD2=0x75;
     Actor_Spawn(80);
@@ -66,12 +68,13 @@ void func_800972DC(void){
     gActors[80].pos.y_1=0;
     gActors[80].pos.z_1=0x90;
     func_8002AEB4(80,0);
-}*/
+}
 
-
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_800972DC.s")
+#endif
 
-void func_80097384(u16 i){
+void func_80097384(uint16_t i){
     gActors[i].unk_0xD2=0x75;
     Actor_Spawn(i);
     gActors[i].unk_0xD0_h=0xC000;
@@ -90,7 +93,7 @@ void func_80097384(u16 i){
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097574.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_800977B8.s")
-/*
+#ifdef NON_MATCHING
 void func_80097968(void){
   if (gButtonPress & gButton_ZTrig) {
     D_800D28E4 = 100;
@@ -116,8 +119,10 @@ void func_80097968(void){
     D_800D16C4 = 0;
     SFX_StopAll();
   }
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097968.s")
+#endif
 
 // this may be part of the "level clear" sequence.
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097A74.s")

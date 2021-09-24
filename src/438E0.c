@@ -282,7 +282,7 @@ void func_8004495C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
 
 void func_80045500(void){
-    u16 i;
+    uint16_t i;
     for(i=0;i<16;i++){
         D_800D36DC[i]=0;
         D_800D36FC[i]=0;
@@ -382,7 +382,7 @@ void func_800463C0(void) {
     D_800BE568 = D_800BE558._hi - 0x90;
 }
 /*
-s32 func_800463F0(void){
+int32_t func_800463F0(void){
     if ((!D_800D28FC&0x1000)&&(func_8005DEFC()==0)) return 0;
     return 1;
 }
@@ -507,7 +507,7 @@ void func_80047958(void) {
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }
-/*
+#ifdef NON_MATCHING
 void func_80047994(){
     D_800BE4EC=1;
     if(func_80046B4C()){
@@ -521,9 +521,9 @@ void func_80047994(){
     }
     D_800D28E4 = D_800D28F0;
 }
-*/
-
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047994.s")
+#endif
 
 void func_80047A14(void) {
     func_80047994();
