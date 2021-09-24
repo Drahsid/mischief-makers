@@ -56,8 +56,8 @@
 #define ALPHA_Cap_Y 0x0150
 #define ALPHA_Cap_Z 0x0151
 
-//there is a second alphabet using a slimmer font.
-//The top is used for titles and names, the bottom, everything else.
+// there is a second alphabet using a slimmer font.
+// The top is used for titles and names, the bottom, everything else.
 
 #define ALPHA_THIN_Lower_A 0x0075
 #define ALPHA_THIN_Lower_B 0x0076
@@ -143,5 +143,5 @@
 #define ALPHA_GAMMA        0x00D0
 #define ALPHA_APOSTROPHE_S 0x00D1
 
-//there are also some leftover japanese characters. someone who knows the dialect can cover these?
+// there are also some leftover japanese characters. someone who knows the dialect can cover these?
 #define ALPHA_NULL 0x8FFF

@@ -87,4 +87,3 @@
 #define SFX_LIFEBAR 0x0141
 
 #endif
-

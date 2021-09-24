@@ -8,7 +8,7 @@ typedef struct {
     uint8_t unk_0x000[0xBC6];
     uint8_t unk_0xBC6;
     uint8_t unk_0xBC7;
-} struct_func_800188CC_gActors; //struct used in sound test
+} struct_func_800188CC_gActors; // struct used in sound test
 
 typedef struct {
     uint8_t unk_0x00[0x2880];

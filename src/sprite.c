@@ -17,18 +17,18 @@ Sprite gSprite ={
     &D_8016EF20,NULL,       //rsp_dl,rsp_dl_next
     0,0};                   //frac
 */
-uint8_t gSpriteColR=0xFF;
-uint8_t gSpriteColG=0xFF;
-uint8_t gSpriteColB=0xFF;
-uint8_t gSpriteColA=0xFF;
-int32_t D_800C4EBC=0;
-uint32_t D_800C4EC0=0;
-int32_t D_800C4EC4=40;
-uint32_t D_800C4EC8=1;
-double gSpriteScaleX=1.0;
-double gSpriteScaleY=1.0;
-int32_t D_800c4EE0[]={1,1,1,1,1,2,2,2};
-int32_t D_800c4F00[]={-2,-1,0,1,2,-1,0,1};
+uint8_t gSpriteColR = 0xFF;
+uint8_t gSpriteColG = 0xFF;
+uint8_t gSpriteColB = 0xFF;
+uint8_t gSpriteColA = 0xFF;
+int32_t D_800C4EBC = 0;
+uint32_t D_800C4EC0 = 0;
+int32_t D_800C4EC4 = 40;
+uint32_t D_800C4EC8 = 1;
+double gSpriteScaleX = 1.0;
+double gSpriteScaleY = 1.0;
+int32_t D_800c4EE0[] = {1, 1, 1, 1, 1, 2, 2, 2};
+int32_t D_800c4F00[] = {-2, -1, 0, 1, 2, -1, 0, 1};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
@@ -96,7 +96,8 @@ void Sprite_SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
 void Sprite_SetTransparent(int32_t arg0) {
     spClearAttribute(&gSprite, 0xFFFF);
     if (arg0) spSetAttribute(&gSprite, SP_TRANSPARENT);
-    else spClearAttribute(&gSprite, SP_TRANSPARENT);
+    else
+        spClearAttribute(&gSprite, SP_TRANSPARENT);
 }
 
 // Need to figure out args to func_80004380 to match, a0 is Sprite*

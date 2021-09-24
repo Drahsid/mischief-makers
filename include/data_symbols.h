@@ -9,8 +9,8 @@
 typedef uint32_t UNK_TYPE;
 typedef uint32_t UNK_POINTER;
 
-extern float D_800BCCD0[1024]; //looks to be a lookup table of values from 1.0 to -1.0. decends and ascends several times
-extern float D_800BDCD0[512];  //second lookup table, 1.0 to -0.99998. unused?
+extern float D_800BCCD0[1024]; // looks to be a lookup table of values from 1.0 to -1.0. decends and ascends several times
+extern float D_800BDCD0[512];  // second lookup table, 1.0 to -0.99998. unused?
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;
 extern uint16_t gGamePaused;
@@ -72,8 +72,8 @@ extern uint8_t gSaveSlotIndex;
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[];
 extern uint16_t gAttractModeIndex;
-extern uint16_t Alpha_NotYet[]; //"Not Yet"
-extern uint16_t Alpha_GotIt[];  //"Got it"
+extern uint16_t Alpha_NotYet[];              //"Not Yet"
+extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800E5AC0[];
@@ -124,7 +124,7 @@ extern uint16_t D_800BE4E4;
 extern int16_t D_800BE4EC;
 extern uint16_t D_800BE538;
 extern uint16_t D_800BE544;
-extern s2_w gScreenPosTargetX; //these few seem to be screen position related
+extern s2_w gScreenPosTargetX; // these few seem to be screen position related
 extern s2_w gScreenPosTargetY;
 extern s2_w D_800BE558;
 extern s2_w D_800BE55C;
@@ -164,7 +164,7 @@ extern int16_t D_800BE6A8;
 /* a set of flags with the following properties for each bit (hi-to-lo):
  * 0 unknown (func_8001FF28 is just jr ra)
  * 1 Draw SFX Channel data
- * 2 
+ * 2
  * 3 unknown (func_80021660 is just jr ra)
  * 4 unknown
  * 5 unknown
@@ -175,12 +175,12 @@ extern int16_t D_800BE6A8;
  * A unknown
  * B unknown
  * C unknown
- * D Ortho / perspective view 
+ * D Ortho / perspective view
  * E L and R change gameplay speed (60 / D_800BE6B4 fps)
  * F unknown (func_8002167C is just jr ra)
-*/
+ */
 extern uint16_t gDebugBitfeild;
-extern float D_800BE6B0; //90.0f, never used, AFAIK
+extern float D_800BE6B0;    // 90.0f, never used, AFAIK
 extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
 extern b2_s D_800BE6B8;
 extern int32_t D_800BE6C0;
@@ -201,13 +201,13 @@ extern int32_t D_800BE728;
 extern int32_t D_800BE72C;
 extern int32_t D_800BE730;
 extern UNK_TYPE D_800BE73C;
-extern char* D_800BE84C[33]; // BGM titles left in data.
-extern char** D_800BEA4C[32]; // instrument names, and variations.
-extern char* D_800C1694[294]; //could help add to SFX.h
-extern uint8_t D_800C2280[223]; //looks like it's ID's for ALInstrument
-extern char* SfxLabels[224]; // may be wrong.
+extern char* D_800BE84C[33];    // BGM titles left in data.
+extern char** D_800BEA4C[32];   // instrument names, and variations.
+extern char* D_800C1694[294];   // could help add to SFX.h
+extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
+extern char* SfxLabels[224];    // may be wrong.
 extern uint16_t D_800C26DC[293];
-extern uint8_t SFX2ByteArray[294][2]; //table of volume and length(?) of SFX.
+extern uint8_t SFX2ByteArray[294][2]; // table of volume and length(?) of SFX.
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
@@ -219,13 +219,13 @@ extern Sprite gSprite;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
 
-extern uint16_t gTimeRecords[64]; // records for stage times.
-extern uint16_t GameSave_DefaultName[11];   // contains default "Start" filename
+extern uint16_t gTimeRecords[64];         // records for stage times.
+extern uint16_t GameSave_DefaultName[11]; // contains default "Start" filename
 extern uint16_t nameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
 extern uint8_t D_800C5010[];
-extern uint16_t gNameEntryRow0ENG[18]; //arrays with the english name entry characters
+extern uint16_t gNameEntryRow0ENG[18]; // arrays with the english name entry characters
 extern uint16_t gNameEntryRow1ENG[18]; // there are 2 more like this for other languages
 extern uint16_t gNameEntryRow2ENG[18]; // Japan version had 3 character sets to select with L/R
 extern uint16_t gNameEntryRow3ENG[18]; // one is still readable, but the other seems lost.
@@ -237,9 +237,9 @@ extern uint16_t D_800C8378[64];
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
 extern UNK_TYPE D_800C8EF0;
-extern char D_800C8F68[];//PRESS START
-extern char D_800C8F74[];//@1997 TREASURE/ENIX
-extern char D_800C8F88[];//LICENCED TO NINTENDO
+extern char D_800C8F68[]; // PRESS START
+extern char D_800C8F74[]; //@1997 TREASURE/ENIX
+extern char D_800C8F88[]; // LICENCED TO NINTENDO
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
 extern UNK_TYPE D_800C9080;
@@ -272,7 +272,7 @@ extern int8_t D_800CC428;
 extern uint16_t D_800CC6EC[88][8];
 extern uint8_t D_800CCFDC[88]; // Stage BGM indecies
 extern int32_t D_800CEC0C;
-extern uint8_t D_800D16AA[]; //right in the middle of a pointer array?
+extern uint8_t D_800D16AA[]; // right in the middle of a pointer array?
 extern int16_t D_800D16C4;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
@@ -308,13 +308,13 @@ extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
-extern uint32_t D_800D4184[82]; //pointer array?
+extern uint32_t D_800D4184[82]; // pointer array?
 extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
 extern uint16_t D_800D5824;
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
-extern UNK_TYPE gData_RedGem; // sprite data for red gem?
+extern UNK_TYPE gData_RedGem;                // sprite data for red gem?
 extern UNK_TYPE D_800D8668;
 extern UNK_TYPE D_800D8750;
 extern UNK_TYPE D_800D87C8;
@@ -449,7 +449,7 @@ extern UNK_TYPE D_800EA500;
 extern int16_t D_800EF4D4;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
-extern uint16_t gSFXCurrentIndex[4]; //holds current SFX indicies per channel
+extern uint16_t gSFXCurrentIndex[4]; // holds current SFX indicies per channel
 extern int32_t D_800F4540;
 extern int32_t D_800F46D8;
 extern uint8_t D_80104090[];
@@ -538,7 +538,7 @@ extern void* Sound_AIBuffers[3];
 extern ALHeap Sound_ALHeap;
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0;
-extern uint8_t D_80137DA8[220160]; //ALHeap base
+extern uint8_t D_80137DA8[220160]; // ALHeap base
 extern ALLink D_8016D9CC;
 extern ALLink D_8016D9B8;
 extern UNK_TYPE D_8016DEB8;
@@ -573,7 +573,7 @@ extern UNK_POINTER D_8017811C;
 extern UNK_POINTER D_80178120;
 extern UNK_POINTER D_80178124;
 extern UNK_POINTER D_80178128;
-extern uint16_t D_80178130; //continue timer?
+extern uint16_t D_80178130; // continue timer?
 extern uint8_t D_80178132;
 extern uint8_t D_80178133;
 extern uint8_t D_80178134;

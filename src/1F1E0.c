@@ -1,9 +1,9 @@
+#include <Alphabet.h>
+#include <SFX.h>
 #include <actor.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <inttypes.h>
-#include <SFX.h>
-#include <Alphabet.h>
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
@@ -14,12 +14,12 @@
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #ifdef NON_MATCHING
-void func_8001E814(int16_t indexL, int16_t indexR){
-    if((gActors[indexL].unk_0xEC==0)&&(gActors[indexL].unk_0xF0==0)){
-        gActors[indexR].unk_0xF8 = func_8001E5E0(indexL,indexR,0x2000);
-        gActors[indexR].unk_0xFC = func_8001E6F4(indexL,indexR,0x2000);
+void func_8001E814(int16_t indexL, int16_t indexR) {
+    if ((gActors[indexL].unk_0xEC == 0) && (gActors[indexL].unk_0xF0 == 0)) {
+        gActors[indexR].unk_0xF8 = func_8001E5E0(indexL, indexR, 0x2000);
+        gActors[indexR].unk_0xFC = func_8001E6F4(indexL, indexR, 0x2000);
     }
-    else{
+    else {
         gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xEC;
         gActors[indexR].unk_0xFC = gActors[indexL].unk_0xF0;
     }
@@ -217,17 +217,19 @@ void func_80020024(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
 
-
 void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
     if (YellowGem_GetFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
-    else func_800836A0(9, 1, &Alpha_NotYet, 0);
+    else
+        func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
 #ifdef NON_MATCHING
-void func_80020844(void) { //resets sound levels after exiting pause menu?
+void func_80020844(void) { // resets sound levels after exiting pause menu?
     uint16_t i;
-    for(i = 0; i < 4; i++) SFX_Volumes[i] = D_801781C0[i];
+    for (i = 0; i < 4; i++)
+        SFX_Volumes[i] = D_801781C0[i];
     SFX_Play_1(SFX_MARINA_YELL2);
-    for(i = 204;i < 208;i++) gActors[i].flag = 0;
+    for (i = 204; i < 208; i++)
+        gActors[i].flag = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
@@ -236,20 +238,20 @@ void func_80020844(void) { //resets sound levels after exiting pause menu?
 void func_800208D4(void) {
     uint16_t index;
 
-    for (index = 0xC8; index < 0xCC; index++) gActors[index].flag = 0;
+    for (index = 0xC8; index < 0xCC; index++)
+        gActors[index].flag = 0;
     gBgmVolume = D_800EF4D4;
     gGameSubState = 0;
     gGamePaused = 0;
 }
 
 
-
-
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
-void func_80020A54(void){
-  uint16_t i;
-  for(i = 200;i < 204;i++) gActors[i].flag = 0;
+void func_80020A54(void) {
+    uint16_t i;
+    for (i = 200; i < 204; i++)
+        gActors[i].flag = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
@@ -262,7 +264,8 @@ void GamePlay_Tick(void) {
     gTickDelta = osGetTime() - time;
 
     if (gGamePaused) PauseGame_Tick();
-    else func_80020024();
+    else
+        func_80020024();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")

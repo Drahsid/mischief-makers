@@ -281,11 +281,11 @@ void func_8004495C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
 
-void func_80045500(void){
+void func_80045500(void) {
     uint16_t i;
-    for(i=0;i<16;i++){
-        D_800D36DC[i]=0;
-        D_800D36FC[i]=0;
+    for (i = 0; i < 16; i++) {
+        D_800D36DC[i] = 0;
+        D_800D36FC[i] = 0;
     }
 }
 
@@ -294,14 +294,13 @@ void func_80045500(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
 int16_t func_800456DC(void) {
-  if((gStageTimeReal&32))
-    return (0xf - (gStageTimeReal & 0x1f));
-  return ((gStageTimeReal & 0x1f) - 0xf);
+    if ((gStageTimeReal & 32)) return (0xf - (gStageTimeReal & 0x1f));
+    return ((gStageTimeReal & 0x1f) - 0xf);
 }
 
 int16_t func_8004571C(void) {
     return func_8002B5A0(0x8001, 0, 0, func_800456DC());
-    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
@@ -390,8 +389,9 @@ int32_t func_800463F0(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
 
 void func_80046434(void) {
-    if (gPlayerActor.flag&0x20) D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
-    else D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
+    if (gPlayerActor.flag & 0x20) D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
+    else
+        D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046498.s")
@@ -492,7 +492,6 @@ void func_800475EC(void) {
 
 void func_80047648(int16_t arg0) {
     D_800D2914 = (arg0 - (gPlayerActor.health / 10)) + 100;
-
 }
 
 void func_80047674(void) {}
@@ -508,16 +507,16 @@ void func_80047958(void) {
     gGameSubState = 0;
 }
 #ifdef NON_MATCHING
-void func_80047994(){
-    D_800BE4EC=1;
-    if(func_80046B4C()){
-        D_800D2938=0;
+void func_80047994() {
+    D_800BE4EC = 1;
+    if (func_80046B4C()) {
+        D_800D2938 = 0;
         func_80020A54();
         func_80028744();
         func_8005DFC8(0);
-        D_800D16C4=0;
+        D_800D16C4 = 0;
         SFX_StopAll();
-        if(D_800D28E4==98) func_80047958();
+        if (D_800D28E4 == 98) func_80047958();
     }
     D_800D28E4 = D_800D28F0;
 }
@@ -535,11 +534,10 @@ void func_80047A14(void) {
 
 #ifdef NON_MATCHING
 void func_80047A54(void) {
-
     D_800BE4EC = 1;
     D_800D28E4++;
     D_800D2928 = 0;
-    D_800D28FC = D_800D28FC & ~8 |4;
+    D_800D28FC = D_800D28FC & ~8 | 4;
     D_800BE544 = 0x8000;
     D_800D2938 = 0;
     D_800D2908 = 0;

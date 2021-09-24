@@ -1,15 +1,15 @@
 #ifndef GAME_SAVE_H
 #define GAME_SAVE_H
 
-#include <ultra64.h>
 #include <inttypes.h>
+#include <ultra64.h>
 
 extern uint16_t gGameSave_Names[2][11];
 extern uint8_t gGameSave_Age[2];
 extern uint8_t gGameSave_Sex[2];
 extern uint16_t gGameSave_RedGems[2];
 extern uint16_t gGameSave_YellowGems[2];
-extern uint64_t gGameSave_PlayTime[2]; //may be {u64;u32[2]} union.
+extern uint64_t gGameSave_PlayTime[2]; // may be {u64;u32[2]} union.
 extern uint32_t gFestivalRecords[7];
 
 extern uint16_t func_80004E70(int32_t lhs, uint32_t offset);
@@ -47,4 +47,3 @@ extern void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng)
 extern void func_80007C8C();
 
 #endif
-

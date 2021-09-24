@@ -195,8 +195,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
 
 #ifdef NON_MATCHING
-void func_80096A70(uint16_t i){
-    gActors[(i+1)].unk_0xD8=2;
+void func_80096A70(uint16_t i) {
+    gActors[(i + 1)].unk_0xD8 = 2;
     func_800902B0(i);
 }
 #else
@@ -204,8 +204,8 @@ void func_80096A70(uint16_t i){
 #endif
 
 #ifdef NON_MATCHING
-void func_80096AC4(uint16_t i){
-    gActors[i+1].unk_0xD8=3;
+void func_80096AC4(uint16_t i) {
+    gActors[i + 1].unk_0xD8 = 3;
     func_800902B0(i);
 }
 #else
@@ -213,9 +213,9 @@ void func_80096AC4(uint16_t i){
 #endif
 
 #ifdef NON_MATCHING
-void func_80096B18(float f1, float f2,uint16_t i){
-    gActors[i+1].unk_0xD8=5;
-    func_800902B0(f1,f2,i);
+void func_80096B18(float f1, float f2, uint16_t i) {
+    gActors[i + 1].unk_0xD8 = 5;
+    func_800902B0(f1, f2, i);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096B18.s")

@@ -1,21 +1,18 @@
 #include "GameSave.h"
+#include "alphabet.h"
 #include <SFX.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <ultra64.h>
-#include "alphabet.h"
 
 
-char GameSave_EEPROMID[8]="TREA0722";
+char GameSave_EEPROMID[8] = "TREA0722";
 
-uint16_t gTimeRecords[64]=
- {36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
-  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
-  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,
-  36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000,36000};
+uint16_t gTimeRecords[64] = {36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000};
 
-uint16_t GameSave_DefaultName[11]={ALPHA_Cap_S,ALPHA_Lower_T,ALPHA_Lower_A,ALPHA_Lower_R,ALPHA_Lower_T,
-  ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_Space,ALPHA_NULL};
+uint16_t GameSave_DefaultName[11] = {ALPHA_Cap_S, ALPHA_Lower_T, ALPHA_Lower_A, ALPHA_Lower_R, ALPHA_Lower_T, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_NULL};
 
 // This function gets the lower 4 bits of the word lhs + (offset)
 // Difference is flipped instructions
@@ -45,14 +42,15 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
 #ifdef NON_MATCHING
-void GameSave_Initialize(uint8_t slot){
-  uint16_t i;
-  for(i=0;i<11;i++) GameSave_Names[slot][i] = GameSave_DefaultName[i];
-  GameSave_Age[slot] = 0;
-  GameSave_Sex[slot] = 0;
-  GameSave_RedGems[slot] = 30;
-  GameSave_YellowGems[slot] = 0;
-  GameSave_PlayTime[slot]=(uint64_t)0;
+void GameSave_Initialize(uint8_t slot) {
+    uint16_t i;
+    for (i = 0; i < 11; i++)
+        GameSave_Names[slot][i] = GameSave_DefaultName[i];
+    GameSave_Age[slot] = 0;
+    GameSave_Sex[slot] = 0;
+    GameSave_RedGems[slot] = 30;
+    GameSave_YellowGems[slot] = 0;
+    GameSave_PlayTime[slot] = (uint64_t)0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
@@ -149,13 +147,14 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006360.s")
 #ifdef NON_MATCHING
-void func_80006B1C(uint16_t i){
+void func_80006B1C(uint16_t i) {
     uint16_t j;
-    i&=0xFFFF;
-    for(j=i+0xab;j<i+0xBD;j++) gActors[j].flag=0;
+    i &= 0xFFFF;
+    for (j = i + 0xab; j < i + 0xBD; j++)
+        gActors[j].flag = 0;
     func_80006360(i);
-    gGameSubState=1;
-    gSaveSlotIndex=0;
+    gGameSubState = 1;
+    gSaveSlotIndex = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B1C.s")
@@ -205,11 +204,11 @@ void func_80007578(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
-void NameEntry_IsMaxed(void){
-  if (NameEntryCurrentChar == 10) {
-    nameEntrySelectedColumn = 2;
-    nameEntrySelectedRow = 5;
-  }
+void NameEntry_IsMaxed(void) {
+    if (NameEntryCurrentChar == 10) {
+        nameEntrySelectedColumn = 2;
+        nameEntrySelectedRow = 5;
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")

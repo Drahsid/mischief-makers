@@ -3,18 +3,18 @@
 #include <inttypes.h>
 #include <ultra64.h>
 #ifdef NON_MATCHING
-uint16_t func_80048600(uint16_t i){
+uint16_t func_80048600(uint16_t i) {
     uint16_t ret;
-    if((D_801370CC&gButton_DLeft)==0){
-     ret=0;
-     if((D_801370CC&gButton_DRight)&&(ret=2,gActors[i].flag&0x20))ret=0x82;
+    if ((D_801370CC & gButton_DLeft) == 0) {
+        ret = 0;
+        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[i].flag & 0x20)) ret = 0x82;
     }
-    else{
-        ret=1;
-        if(gActors[i].flag&0x20) ret=0x81;
+    else {
+        ret = 1;
+        if (gActors[i].flag & 0x20) ret = 0x81;
     }
-    if(D_801370CC&gButton_DDown) ret|=0x10;
-    if(D_801370CC&gButton_DUp) ret|=0x20;
+    if (D_801370CC & gButton_DDown) ret |= 0x10;
+    if (D_801370CC & gButton_DUp) ret |= 0x20;
     return ret;
 }
 #else
@@ -29,9 +29,7 @@ uint16_t func_80048600(uint16_t i){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
-int32_t D_800D5794[19]={
-    0x4000,0x20000,0x20000,0x10000,0x8000,0x38000,0x38000,0x38000,0x28000,0x2666,
-    0x50000,0x50000,0x50000,0x50000,0x50000,0x30000,0x30000,0x30000,0x28000};
+int32_t D_800D5794[19] = {0x4000, 0x20000, 0x20000, 0x10000, 0x8000, 0x38000, 0x38000, 0x38000, 0x28000, 0x2666, 0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000};
 
 int32_t func_80048C94(int32_t arg0) {
     return D_800D5794[arg0] * gPlayerActor.unk_0x120;
@@ -75,7 +73,8 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
         return 0;
     }
 
-    actor->flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
+    actor->flag &=
+        ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
