@@ -2,9 +2,24 @@
 #include <function_symbols.h>
 #include <inttypes.h>
 #include <ultra64.h>
-
-
+#ifdef NON_MATCHING
+uint16_t func_80048600(uint16_t i) {
+    uint16_t ret;
+    if ((D_801370CC & gButton_DLeft) == 0) {
+        ret = 0;
+        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[i].flag & 0x20)) ret = 0x82;
+    }
+    else {
+        ret = 1;
+        if (gActors[i].flag & 0x20) ret = 0x81;
+    }
+    if (D_801370CC & gButton_DDown) ret |= 0x10;
+    if (D_801370CC & gButton_DUp) ret |= 0x20;
+    return ret;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048600.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_800486F4.s")
 
@@ -14,9 +29,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
+int32_t D_800D5794[19] = {0x4000, 0x20000, 0x20000, 0x10000, 0x8000, 0x38000, 0x38000, 0x38000, 0x28000, 0x2666, 0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000};
+
 int32_t func_80048C94(int32_t arg0) {
-    float* new_var = &gPlayerActor.unk_0x120;
-    return (int32_t)((D_800D5794)[arg0] * (*new_var));
+    return D_800D5794[arg0] * gPlayerActor.unk_0x120;
 }
 
 int32_t func_80048CE4() {
@@ -57,7 +73,8 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
         return 0;
     }
 
-    actor->flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
+    actor->flag &=
+        ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
@@ -161,7 +178,7 @@ int32_t func_80049A04(uint16_t index) {
     short new_var;
     uint32_t temp_a0;
 
-    temp_a0 = (&D_800D4184)[func_8005D338(index)];
+    temp_a0 = D_800D4184[func_8005D338(index)];
     if (temp_a0 == 0) {
         return 0;
     }
@@ -442,7 +459,7 @@ void func_8004ED10(uint16_t index) {
 
                     phi_v0 += 4;
                     phi_v1 += 4;
-                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&D_8011DDF0);
+                } while (((uint32_t)&phi_v1[3]) != (uint32_t)&gInputHistoryPress[64]);
 
                 D_801370CE = 0;
                 D_801370CC = 0;
@@ -571,7 +588,7 @@ void func_8004ED10(uint16_t index) {
                 }
             }
             else if (D_801373E0.unk_0x44 != 0) {
-                func_800032C4(0x3E);
+                SFX_Stop(0x3E);
                 D_801373E0.unk_0x44 = 0;
 
                 return;

@@ -1,3 +1,5 @@
+#include <Alphabet.h>
+#include <SFX.h>
 #include <actor.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
@@ -9,11 +11,22 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
 // BUG: This function writes to unallocated stack space!
-void func_8001E808(int32_t arg0, int32_t arg1) {
-    return;
-}
+void func_8001E808(int16_t arg0, int16_t arg1) {}
 
+#ifdef NON_MATCHING
+void func_8001E814(int16_t indexL, int16_t indexR) {
+    if ((gActors[indexL].unk_0xEC == 0) && (gActors[indexL].unk_0xF0 == 0)) {
+        gActors[indexR].unk_0xF8 = func_8001E5E0(indexL, indexR, 0x2000);
+        gActors[indexR].unk_0xFC = func_8001E6F4(indexL, indexR, 0x2000);
+    }
+    else {
+        gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xEC;
+        gActors[indexR].unk_0xFC = gActors[indexL].unk_0xF0;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
+#endif
 
 void func_8001E8E4(uint16_t indexL, uint16_t indexR) {
     if ((gActors[indexL].flag & ACTOR_FLAG_FLIPPED) == 0) {
@@ -84,9 +97,7 @@ void func_8001EB8C(uint16_t indexL, uint16_t indexR) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FEB0.s")
 
-void func_8001FF28(void) {
-    return;
-}
+void func_8001FF28(void) {}
 
 void func_8001FF30(void) {
     gPlayerActorp->unk_0x98 &= 0x80600;
@@ -100,9 +111,7 @@ void func_8001FF50(void) {
     }
 }
 
-void func_8001FFA0(void) {
-    return;
-}
+void func_8001FFA0(void) {}
 
 void func_8001FFA8(void) {
     D_800CA230 = 0;
@@ -132,7 +141,7 @@ void func_80020024(void) {
 
     func_800122B0(); // input history
 
-    if ((D_800BE6AC & 2) != 0) {
+    if ((gDebugBitfeild & 2) != 0) {
         if ((gButtonPress & gButton_LTrig) != 0) {
             if (D_800BE6B4 != 1) {
                 D_800BE6B4--;
@@ -185,14 +194,14 @@ void func_80020024(void) {
 
     func_80047C98(); // level objects
 
-    if ((D_800BE6AC & 0x4000) != 0) {
-        phi_s2 = gSFX_ChannelStates, phi_s3 = &D_800EF508, phi_s1 = gSFX_Volumes; // Whitespace memes
+    if ((gDebugBitfeild & 0x4000)) {
+        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFXCurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
-            func_80083C54(phi_s2[0], -0x90, phi_s0);
-            func_80083A74(phi_s3[0] - 0x21, -0x90, phi_s4);
-            func_80083C54(phi_s1[0], -0x68, phi_s0);
+            DebugText_PrintShortHexBlack(phi_s2[0], -0x90, phi_s0);
+            DebugText_PrintInt(phi_s3[0] - 0x21, -0x90, phi_s4);
+            DebugText_PrintShortHexBlack(phi_s1[0], -0x68, phi_s0);
 
             phi_s2++;
             phi_s0 -= 0x20;
@@ -202,36 +211,48 @@ void func_80020024(void) {
         } while (phi_s1 != D_800EF500);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002034C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Playtime_PrintPause.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
-    if (YellowGem_GetFlag(gCurrentStage)) {
-        func_800836A0(9, 1, &Alpha_GotIt, 0);
-    }
-    else {
-        func_800836A0(9, 1, &Alpha_NotYet, 0);
-    }
-}
 
+void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
+    if (YellowGem_GetFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
+    else
+        func_800836A0(9, 1, &Alpha_NotYet, 0);
+}
+#ifdef NON_MATCHING
+void func_80020844(void) { // resets sound levels after exiting pause menu?
+    uint16_t i;
+    for (i = 0; i < 4; i++)
+        SFX_Volumes[i] = D_801781C0[i];
+    SFX_Play_1(SFX_MARINA_YELL2);
+    for (i = 204; i < 208; i++)
+        gActors[i].flag = 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
+#endif
 
 void func_800208D4(void) {
     uint16_t index;
 
-    for (index = 0xC8; index < 0xCC; index++) {
+    for (index = 0xC8; index < 0xCC; index++)
         gActors[index].flag = 0;
-    }
-
     gBgmVolume = D_800EF4D4;
     gGameSubState = 0;
     gGamePaused = 0;
 }
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A54.s")
+void func_80020A54(void) {
+    uint16_t i;
+    for (i = 200; i < 204; i++)
+        gActors[i].flag = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
 
@@ -242,12 +263,9 @@ void GamePlay_Tick(void) {
     func_800457C8(); // this function dmas sprite data for things like gems
     gTickDelta = osGetTime() - time;
 
-    if (gGamePaused != 0) {
-        PauseGame_Tick();
-    }
-    else {
+    if (gGamePaused) PauseGame_Tick();
+    else
         func_80020024();
-    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
@@ -344,29 +362,19 @@ void AttractMode_Tick(void) {
 #endif
 
 /* when I first came across this ages ago, I was really confused, now I know:
- * it changes the color of debug text when you press R (see usage of D_800BE6AC)
+ * it changes the color of debug text when you press R (see usage of gDebugBitfeild)
  * will need to investigate further, but it seems to just be an i8 color
  * why didn't they just give the text an outline?
  */
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig) != 0) {
-        D_800BE6B8 ^= 0xFF;
-    }
+    if ((gButtonPress & gButton_RTrig)) D_800BE6B8._s ^= 0xFF;
 }
 
-void func_80021658(void) {
-    return;
-}
+void func_80021658(void) {}
 
-void func_80021660(void) {
-    return;
-}
+void func_80021660(void) {}
 
 // BUG: This function writes to unallocated stack space!
-void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {
-    return;
-}
+void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {}
 
-void func_8002167C(void) {
-    return;
-}
+void func_8002167C(void) {}

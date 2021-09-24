@@ -1,16 +1,18 @@
 #include "GameSave.h"
+#include "alphabet.h"
 #include <SFX.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
 #include <ultra64.h>
 
-uint16_t gGameSave_Names[2][11];
-uint8_t gGameSave_Age[2];
-uint8_t gGameSave_Sex[2];
-uint16_t gGameSave_RedGems[2];
-uint16_t gGameSave_YellowGems[2];
-uint64_t D_80171AD8[2]; // contains total play time
-uint32_t gFestivalRecords[7];
+
+char GameSave_EEPROMID[8] = "TREA0722";
+
+uint16_t gTimeRecords[64] = {36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000};
+
+uint16_t GameSave_DefaultName[11] = {ALPHA_Cap_S, ALPHA_Lower_T, ALPHA_Lower_A, ALPHA_Lower_R, ALPHA_Lower_T, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_NULL};
 
 // This function gets the lower 4 bits of the word lhs + (offset)
 // Difference is flipped instructions
@@ -39,27 +41,20 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
-
-// OK except for D_80171ADC stuff. Is it a struct?
 #ifdef NON_MATCHING
-void GameSave_Initialize(uint8_t save_index) {
-    uint16_t index;
-
-    for (index = 0; index < 11; index++) {
-        gGameSave_Names[save_index][index] = D_800C4FA8[index];
-    }
-
-    gGameSave_Age[save_index] = 0;
-    gGameSave_Sex[save_index] = 0;
-    gGameSave_RedGems[save_index] = 30;
-    gGameSave_YellowGems[save_index] = 0;
-    D_80171ADC[save_index][0] = 0;
-    *(uint32_t*)(((uint8_t*)&D_80171ADC) + 0x1AD8) = 0;
+void GameSave_Initialize(uint8_t slot) {
+    uint16_t i;
+    for (i = 0; i < 11; i++)
+        GameSave_Names[slot][i] = GameSave_DefaultName[i];
+    GameSave_Age[slot] = 0;
+    GameSave_Sex[slot] = 0;
+    GameSave_RedGems[slot] = 30;
+    GameSave_YellowGems[slot] = 0;
+    GameSave_PlayTime[slot] = (uint64_t)0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
 #endif
-
 // need to implicitly call __ll_lshift
 #ifdef NON_MATCHING
 void GameSave_SetDefaults(void) {
@@ -87,39 +82,35 @@ void GameSave_SetDefaults(void) {
 void GameSave_LoadRecords(void) {
     uint16_t index;
 
-    osEepromProbe(&D_8012ADA0);
+    osEepromProbe(&gContMesgq);
     if (gSaveSlotIndex) {
-        osEepromLongRead(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongRead(&D_8012ADA0, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
+        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
     }
     else {
-        osEepromLongRead(&D_8012ADA0, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongRead(&D_8012ADA0, 0x14, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
+        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, 0x80);
     }
-    if (D_80171B19 >= 2) {
-        D_80171B19 = 0;
-    }
+    if (D_80171B19 >= 2) D_80171B19 = 0;
 
     func_80004F24();
 
     for (index = 0; index < 64; index++) {
-        if (gTimeRecords[index] > 36000) {
-            gTimeRecords[index] = 36000;
-        }
+        if (gTimeRecords[index] > 36000) gTimeRecords[index] = 36000;
     }
 }
 
 void func_80005770(void) {
-    osEepromProbe(&D_8012ADA0);
-    osEepromLongWrite(&D_8012ADA0, 2, gGameSave_Names, 0x48);
+    osEepromProbe(&gContMesgq);
+    osEepromLongWrite(&gContMesgq, 2, gGameSave_Names, 0x48);
 
     if (gSaveSlotIndex) {
-        osEepromLongWrite(&D_8012ADA0, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&D_8012ADA0, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
+        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
     }
     else {
-        osEepromLongWrite(&D_8012ADA0, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&D_8012ADA0, 0x14, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
+        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, 0x80);
     }
 }
 
@@ -155,9 +146,19 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_8000607C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006360.s")
-
+#ifdef NON_MATCHING
+void func_80006B1C(uint16_t i) {
+    uint16_t j;
+    i &= 0xFFFF;
+    for (j = i + 0xab; j < i + 0xBD; j++)
+        gActors[j].flag = 0;
+    func_80006360(i);
+    gGameSubState = 1;
+    gSaveSlotIndex = 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B1C.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
@@ -201,22 +202,31 @@ void func_80007578(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
-
+#ifdef NON_MATCHING
+// compiler refuses to recognize symbols
+void NameEntry_IsMaxed(void) {
+    if (NameEntryCurrentChar == 10) {
+        nameEntrySelectedColumn = 2;
+        nameEntrySelectedRow = 5;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
-
+// Original Japanese version has 3 different character sets for name entry. All other regions have 1
 #ifdef NON_MATCHING
-void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* lang3) {
+void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
     if (gNameEntryCurrentChar < 10) {
         if (gNameEntryLanguage == 0) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang1[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Hiragana[gNameEntrySelectedColumn];
         }
         else if (gNameEntryLanguage == 1) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang2[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Katakana[gNameEntrySelectedColumn];
         }
         else if (gNameEntryLanguage == 2) {
-            gNameEntrySpace[gNameEntryCurrentChar] = lang3[gNameEntrySelectedColumn];
+            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
         }
         SFX_Play_1(SFX_MENU_DING);
         SFX_Play_1(0x10D);

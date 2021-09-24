@@ -100,7 +100,7 @@ void func_800232A4(void) {
     D_800BE6F0 = (uint8_t)0xFF;
     D_800BE63C = (int16_t)gPlayerActorp->health;
     D_800BE6C0 = -8;
-    D_800BE6AC = 4;
+    gDebugBitfeild = 4;
 
     for (phi_v0 = 0; phi_v0 < 8; phi_v0 = (phi_v0 + 1) & 0xFFFF) {
         ((uint16_t*)&D_80137480)[phi_v0] = (uint16_t)0;
@@ -121,8 +121,8 @@ void func_800232A4(void) {
     D_800BE560 = (uint32_t)temp_t6_2;
     D_800BE55C = temp_t6_2;
     D_800BE558 = temp_t6_2;
-    D_800BE554 = temp_t6_2;
-    D_800BE550 = temp_t6_2;
+    gScreenPosTargetY = temp_t6_2;
+    gScreenPosTargetX = temp_t6_2;
     D_800BE618 = temp_t6_2;
     D_800BE614 = temp_t6_2;
     D_800BE610 = temp_t6_2;

@@ -32,7 +32,7 @@ void func_80012288(void) {
 }
 
 void func_800122B0(void) {
-    s32 temp_a0;
+    int32_t temp_a0;
     uint16_t phi_a0;
 
     if (D_800BE5D4 != 0) {
@@ -50,22 +50,22 @@ void func_800122B0(void) {
 }
 
 void func_800123AC(void) {
-    int32_t temp = gPlayerPosXMirror._hi - D_800BE558;
+    int32_t temp = gPlayerPosXMirror._hi - D_800BE558._hi;
     if (temp < -0x90) {
-        gPlayerPosXMirror._hi = D_800BE558 - 0x90;
+        gPlayerPosXMirror._hi = D_800BE558._hi - 0x90;
         gPlayerActorp->pos.x = -0x90;
     }
     else if (temp >= 0x91) {
-        gPlayerPosXMirror._hi = D_800BE558 + 0x90;
+        gPlayerPosXMirror._hi = D_800BE558._hi + 0x90;
         gPlayerActorp->pos.x = 0x90;
     }
     else {
-        gPlayerActorp->pos.x = gPlayerPosXMirror._hi - D_800BE558;
+        gPlayerActorp->pos.x = gPlayerPosXMirror._hi - D_800BE558._hi;
     }
 }
 
 void func_80012418(void) {
-    gPlayerActor.pos.y = gPlayerPosYMirror._hi - D_800BE55C;
+    gPlayerActor.pos.y = gPlayerPosYMirror._hi - D_800BE55C._hi;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")

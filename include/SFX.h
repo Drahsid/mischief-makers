@@ -27,7 +27,6 @@
 #define SFX_THEO_GOODBYE  0x00DB // "Goodbye..."
 #define SFX_THEO_HELP1    0x00DC // "Heeeeeelp!"
 #define SFX_THEO_HELP2    0x00DD // "Help me, Marina!"
-#define SFX_THEO_HELP1    0x00DC // "Heeeeeelp!"
 #define SFX_THEO_GRUNT2   0x00DE
 #define SFX_LEO_LAUGH     0x00DF
 #define SFX_THEO_YAY2     0x00E0 // "Boy, am I glad to see you, Marina!"
@@ -88,4 +87,3 @@
 #define SFX_LIFEBAR 0x0141
 
 #endif
-

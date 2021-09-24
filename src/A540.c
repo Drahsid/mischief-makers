@@ -9,9 +9,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_80009940.s")
 
-void func_80009BE0(void) {
-    return;
-}
+void func_80009BE0(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_80009BE8.s")
 

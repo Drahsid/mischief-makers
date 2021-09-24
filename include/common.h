@@ -1,8 +1,8 @@
 #ifndef COMMON_INCLUDE_H
 #define COMMON_INCLUDE_H
 
+#include "Alphabet.h"
 #include "inttypes.h"
-
 enum {
     GAMESTATE_SOFTRESET,
     GAMESTATE_INTRO,
@@ -31,6 +31,16 @@ typedef struct {
         /* 0x00 */ int32_t _w;
     };
 } s2_w; /* sizeof = 0x04 */ // short[2], word
+
+typedef struct {
+    union {
+        struct {
+            /* 0x00 */ uint8_t _hi;
+            /* 0x01 */ uint8_t _lo;
+        };
+        /* 0x00 */ uint16_t _s;
+    };
+} b2_s;
 
 typedef struct {
     union {
@@ -68,5 +78,16 @@ typedef union {
     };
     /* 0x00 */ uint32_t rgba;
 } RGBA32; /* sizeof = 0x04 */
+
+typedef struct {
+    int16_t unk0x0; // init/ read flag?
+    char text[80];  // 2 bytes after (align solves for it?)
+    int32_t posX;
+    int32_t posY;
+    RGBA32 color;
+    float ScaleX;
+    float ScaleY;
+} TextTransform;
+
 
 #endif

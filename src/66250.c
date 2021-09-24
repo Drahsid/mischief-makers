@@ -281,7 +281,7 @@ void func_8006C5A4(uint16_t index) {
             actor->unk_0x148 = actor->unk_0xB4;
         }
 
-        if (((actor->unk_0x98 & 0x200) == 0) && (D_800D2950 != index)) {
+        if (((actor->unk_0x98 & 0x200) == 0) && (gPlayerActorIndex != index)) {
             func_80028C00(index);
         }
     }

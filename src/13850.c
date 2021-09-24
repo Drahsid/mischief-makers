@@ -37,7 +37,7 @@ void func_80012CD4(void) {
     gGameSubState += 1;
 }
 
-void func_80012DF0(uint16_t arg0) {
+void GamePlay_Continue_PayGems(uint16_t arg0) {
     uint16_t index;
 
     if (gRedGems >= arg0) {
