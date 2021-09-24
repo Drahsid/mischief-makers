@@ -7,14 +7,18 @@ uint16_t func_80048600(uint16_t i) {
     uint16_t ret;
     if ((D_801370CC & gButton_DLeft) == 0) {
         ret = 0;
-        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[i].flag & 0x20)) ret = 0x82;
+        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[i].flag & 0x20))
+            ret = 0x82;
     }
     else {
         ret = 1;
-        if (gActors[i].flag & 0x20) ret = 0x81;
+        if (gActors[i].flag & 0x20)
+            ret = 0x81;
     }
-    if (D_801370CC & gButton_DDown) ret |= 0x10;
-    if (D_801370CC & gButton_DUp) ret |= 0x20;
+    if (D_801370CC & gButton_DDown)
+        ret |= 0x10;
+    if (D_801370CC & gButton_DUp)
+        ret |= 0x20;
     return ret;
 }
 #else
@@ -29,16 +33,21 @@ uint16_t func_80048600(uint16_t i) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
-int32_t D_800D5794[19] = {0x4000, 0x20000, 0x20000, 0x10000, 0x8000, 0x38000, 0x38000, 0x38000, 0x28000, 0x2666, 0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000};
+int32_t D_800D5794[19] = {0x4000,  0x20000, 0x20000, 0x10000, 0x8000,  0x38000, 0x38000, 0x38000, 0x28000, 0x2666,
+                          0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000};
 
 int32_t func_80048C94(int32_t arg0) {
     return D_800D5794[arg0] * gPlayerActor.unk_0x120;
 }
 
 int32_t func_80048CE4() {
-    if (gPlayerActor.unk_0xD1 == 1) return 1;
-    if (gPlayerActor.unk_0xD1 < 46) return 0;
-    if (gPlayerActor.unk_0xD1 < 55) return 2;
+    if (gPlayerActor.unk_0xD1 == 1)
+        return 1;
+    if (gPlayerActor.unk_0xD1 < 46)
+        return 0;
+    if (gPlayerActor.unk_0xD1 < 55)
+        return 2;
+
     return 3;
 }
 
@@ -54,7 +63,8 @@ int32_t func_80049040(uint16_t index) {
     }
 
     gActors[index].flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK14);
-    gActors[index].flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23), gActors[index].flag |= ACTOR_FLAG_UNK17; // whitespace memes
+    gActors[index].flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23),
+        gActors[index].flag |= ACTOR_FLAG_UNK17; // whitespace memes
     return 1;
 }
 
@@ -74,7 +84,8 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
     }
 
     actor->flag &=
-        ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
+        ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 |
+          ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23); // 0xFF3CB53F;
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
@@ -352,10 +363,12 @@ void func_8004EAE4(uint16_t index) {
         gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x158;
     }
 
-    func_80083A04(gActors[index].unk_0x84 - gActors[index].unk_0x158, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
+    func_80083A04(
+        gActors[index].unk_0x84 - gActors[index].unk_0x158, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
 
     phi_a3 = 0;
-    if (((gButtonHold & gButton_DRight) != 0) && (((gActors[index].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150 < 9) == 0)))) {
+    if (((gButtonHold & gButton_DRight) != 0) &&
+        (((gActors[index].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150 < 9) == 0)))) {
         gActors[index].unk_0x84++;
         phi_a3 = 1;
         if (gActors[index].unk_0x15C < (gActors[index].unk_0x84 & 0xFFFF)) {
@@ -547,7 +560,8 @@ void func_8004ED10(uint16_t index) {
              * = 408 == 0x198
              * bruh
              */
-            // held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) - gActors[index].unk_0xD6) * 8) + gActors;
+            // held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) -
+            // gActors[index].unk_0xD6) * 8) + gActors;
             gActors[gActors[index].unk_0xD6].unk_0x104 += gActors[index].unk_0xEC;
             gActors[gActors[index].unk_0xD6].unk_0x108 += gActors[index].unk_0xF0;
         }

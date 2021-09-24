@@ -199,8 +199,7 @@ void Thread_IdleProc(void* arg0) {
     osStartThread(&mainThread);
     osSetThreadPri(0, 0);
 
-    while (1) {
-    }
+    while (1) {}
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
@@ -319,8 +318,7 @@ void Thread_MainProc(int32_t arg0) {
 
 void Input_Update(void) {
     osContGetReadData(gConpadArrayB);
-    if (!gConpadArrayA[gPlayerControllerIndex].errno) {
-    }
+    if (!gConpadArrayA[gPlayerControllerIndex].errno) {}
 
     osContGetReadData(gConpadArrayA);
 
@@ -329,13 +327,15 @@ void Input_Update(void) {
         gJoyX = gConpadArrayA[gPlayerControllerIndex].stick_x;
         gJoyY = gConpadArrayA[gPlayerControllerIndex].stick_y;
     }
-    else
-        gButtonCur = 0U;
+    else {
+        gButtonCur = 0;
+    }
 
     gButtonPress = (gButtonCur ^ D_800BE538) & gButtonCur;
     gButtonHold = gButtonCur;
     D_800BE538 = gButtonCur;
 }
+
 #ifdef NON_MATCHING
 int32_t Input_GetFirstController(void) {
     int32_t sVar1;
@@ -351,7 +351,8 @@ int32_t Input_GetFirstController(void) {
     if (((abStack5[0] & 1) == 0) || ((contStatArray[0].errno & CONT_NO_RESPONSE_ERROR))) {
         if (((abStack5[0] & 2) == 0) || ((contStatArray[1].errno & CONT_NO_RESPONSE_ERROR))) {
             if (((abStack5[0] & 4) == 0) || ((contStatArray[2].errno & CONT_NO_RESPONSE_ERROR))) {
-                if ((abStack5[0] & 8) == 0) sVar1 = -1;
+                if ((abStack5[0] & 8) == 0)
+                    sVar1 = -1;
                 else {
                     sVar1 = -1;
                     if ((contStatArray[3].errno & CONT_NO_RESPONSE_ERROR) == 0) {
@@ -367,200 +368,199 @@ int32_t Input_GetFirstController(void) {
             sVar1 = 0;
         return sVar1;
     }
+}
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 #endif
 
-    int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
-        OSIoMesg mb;
-        OSMesg mesg;
+int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mb;
+    OSMesg mesg;
+    osInvalDCache(vaddr, nbytes);
+    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+}
 
-        osInvalDCache(vaddr, nbytes);
-        osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
-        return osRecvMesg(&D_8012ABA8, &mesg, 1);
-    }
+int32_t func_80001264(void) {
+    OSMesg mesg;
+    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+}
 
-    int32_t func_80001264(void) {
-        OSMesg mesg;
-        return osRecvMesg(&D_8012ABA8, &mesg, 1);
-    }
+// same as above, no osRecvMesg. used once.
+int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
+    OSIoMesg mb;
+    osInvalDCache(vaddr, nbytes);
+    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+}
 
-    // same as above, no osRecvMesg. used once.
-    int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
-        OSIoMesg mb;
+void func_800012F0(void) {
+    if (gGameState == GAMESTATE_GAMEPLAY) {
+        if ((gDebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
+            gGamePaused = 1;
+        }
 
-        osInvalDCache(vaddr, nbytes);
-        return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
-    }
-
-    void func_800012F0(void) {
-        if (gGameState == GAMESTATE_GAMEPLAY) {
-            if ((gDebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
-                gGamePaused = 1;
-            }
-
-            if (gGamePaused != 0 && gGameSubState == 0x10) {
-                if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
-                    // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                    if ((gDebugBitfeild & 0x100) != 0) {
-                        func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
-                        func_800208D4();
-                    }
-                    else {
-                        gGameSubState = 0x20;
-                    }
+        if (gGamePaused != 0 && gGameSubState == 0x10) {
+            if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
+                // if this is true, you can pause while not drawing the pause screen (it still processes though?)
+                if ((gDebugBitfeild & 0x100) != 0) {
+                    func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
+                    func_800208D4();
                 }
-            }
-            else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
-                if (gActors->health >= 0) {
-                    gGamePaused = 1;
-                    gDebugBitfeild &= 0xFFEF;
-                    if ((gDebugBitfeild & 0x100) != 0) {
-                        gGameSubState = 0x10;
-                    }
-                    else {
-                        gGameSubState = 0;
-                    }
+                else {
+                    gGameSubState = 0x20;
                 }
-            }
-            if (gGamePaused == 0) {
-                DebugText_Reset();
             }
         }
-        else {
+        else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
+            if (gActors->health >= 0) {
+                gGamePaused = 1;
+                gDebugBitfeild &= 0xFFEF;
+                if ((gDebugBitfeild & 0x100) != 0) {
+                    gGameSubState = 0x10;
+                }
+                else {
+                    gGameSubState = 0;
+                }
+            }
+        }
+        if (gGamePaused == 0) {
             DebugText_Reset();
         }
     }
+    else {
+        DebugText_Reset();
+    }
+}
 
-    // main update
-    void func_8000147C(void) {
-        D_800BE4E4 += 1;
-        if (gPlayTime < 0x1EE627FF) {
-            gPlayTime++;
-        }
-
-        func_800012F0();
-        GameState_Tick();
-        func_800821B0();
-        func_80009940();
-        func_80082F10();
-        func_80009BE8(&D_80171B30);
-
-        if (D_800BE674 != 0) {
-            func_80082CFC();
-            func_8000DD6C();
-            func_80009BE8(&D_80171D30);
-            func_80082E04();
-        }
-        else {
-            func_80082E04();
-            func_80009BE8(&D_80171C30);
-            func_80082CFC();
-            func_80009BE8(&D_80171D30);
-            func_8000DD6C();
-        }
-
-        if (D_8013747C != 0) {
-            func_8000EA88();
-            func_80009BE8(&D_80171F10);
-        }
-        else {
-            func_80009BE8(&D_80171F10);
-            func_8000EA88();
-        }
-
-        Rand(); // update rng
-        func_800822B8();
-        func_800218FC();
-        func_8000F290();
-        func_80009BE0();
-
-        if ((gDebugBitfeild & 1) != 0) {
-            func_8002167C();
-        }
-
-        if ((gDebugBitfeild & 0x8000) != 0) {
-            func_8001FF28();
-        }
-
-        if ((gDebugBitfeild & 0x40) != 0) {
-            func_80021658();
-        }
-
-        if ((gDebugBitfeild & 0x1020) == 0x1000) {
-            func_80021660();
-        }
-
-        func_80021620();
-        DebugText_Tick();
+// main update
+void func_8000147C(void) {
+    D_800BE4E4 += 1;
+    if (gPlayTime < 0x1EE627FF) {
+        gPlayTime++;
     }
 
-    void GameState_Tick(void) {
-        switch (gGameState) {
-            case GAMESTATE_SOFTRESET: {
-                func_80022F48(); // soft reset
-                break;
-            }
-            case GAMESTATE_INTRO: {
-                Intro_Tick(); // intro
-                break;
-            }
-            case GAMESTATE_TITLESCREEN: {
-                TitleScreen_Tick(); // titlescreen
-                break;
-            }
-            case GAMESTATE_DEBUG_SOUNDTEST: {
-                SoundTest_Tick(); // sound test
-                break;
-            }
-            case GAMESTATE_DEBUG_STAGESELECT: {
-                StageSelect_Tick(); // debug level select
-                break;
-            }
-            case GAMESTATE_LOADING: {
-                func_800232A4(); // loading stage
-                break;
-            }
-            case GAMESTATE_GAMEPLAY: {
-                GamePlay_Tick(); // stage update
-                break;
-            }
-            case GAMESTATE_CONTINUE: {
-                GamePlay_Tick_Continue(); // game over
-                break;
-            }
-            case GAMESTATE_UNKNOWN0: {
-                func_80388000(); // unknown
-                break;
-            }
-            case GAMESTATE_UNKNOWN1: {
-                func_80388008(); // unknown
-                break;
-            }
-            case GAMESTATE_ATTRACT: {
-                AttractMode_Tick(); // demo mode
-                break;
-            }
-            case GAMESTATE_FILESELECT: {
-                func_80007C8C(); // fileselect
-                break;
-            }
-            case GAMESTATE_TRANSITION: {
-                func_8001B460(); // transition
-                break;
-            }
-            case GAMESTATE_UNKNOWN2: {
-                func_8001D654(); // level select (best times?)
-                break;
-            }
-            default: {
-                break; // applies for case 13?
-            }
-        }
+    func_800012F0();
+    GameState_Tick();
+    func_800821B0();
+    func_80009940();
+    func_80082F10();
+    func_80009BE8(&D_80171B30);
+
+    if (D_800BE674 != 0) {
+        func_80082CFC();
+        func_8000DD6C();
+        func_80009BE8(&D_80171D30);
+        func_80082E04();
+    }
+    else {
+        func_80082E04();
+        func_80009BE8(&D_80171C30);
+        func_80082CFC();
+        func_80009BE8(&D_80171D30);
+        func_8000DD6C();
     }
 
-    // this is a linear congruential algorithm for prng
-    uint16_t Rand(void) {
-        gRNGSeed = (gRNGSeed * 0x85) + 1;
-        return gRNGSeed / 0x100;
+    if (D_8013747C != 0) {
+        func_8000EA88();
+        func_80009BE8(&D_80171F10);
     }
+    else {
+        func_80009BE8(&D_80171F10);
+        func_8000EA88();
+    }
+
+    Rand(); // update rng
+    func_800822B8();
+    func_800218FC();
+    func_8000F290();
+    func_80009BE0();
+
+    if ((gDebugBitfeild & 1) != 0) {
+        func_8002167C();
+    }
+
+    if ((gDebugBitfeild & 0x8000) != 0) {
+        func_8001FF28();
+    }
+
+    if ((gDebugBitfeild & 0x40) != 0) {
+        func_80021658();
+    }
+
+    if ((gDebugBitfeild & 0x1020) == 0x1000) {
+        func_80021660();
+    }
+
+    func_80021620();
+    DebugText_Tick();
+}
+
+void GameState_Tick(void) {
+    switch (gGameState) {
+        case GAMESTATE_SOFTRESET: {
+            func_80022F48(); // soft reset
+            break;
+        }
+        case GAMESTATE_INTRO: {
+            Intro_Tick(); // intro
+            break;
+        }
+        case GAMESTATE_TITLESCREEN: {
+            TitleScreen_Tick(); // titlescreen
+            break;
+        }
+        case GAMESTATE_DEBUG_SOUNDTEST: {
+            SoundTest_Tick(); // sound test
+            break;
+        }
+        case GAMESTATE_DEBUG_STAGESELECT: {
+            StageSelect_Tick(); // debug level select
+            break;
+        }
+        case GAMESTATE_LOADING: {
+            func_800232A4(); // loading stage
+            break;
+        }
+        case GAMESTATE_GAMEPLAY: {
+            GamePlay_Tick(); // stage update
+            break;
+        }
+        case GAMESTATE_CONTINUE: {
+            GamePlay_Tick_Continue(); // game over
+            break;
+        }
+        case GAMESTATE_UNKNOWN0: {
+            func_80388000(); // unknown
+            break;
+        }
+        case GAMESTATE_UNKNOWN1: {
+            func_80388008(); // unknown
+            break;
+        }
+        case GAMESTATE_ATTRACT: {
+            AttractMode_Tick(); // demo mode
+            break;
+        }
+        case GAMESTATE_FILESELECT: {
+            func_80007C8C(); // fileselect
+            break;
+        }
+        case GAMESTATE_TRANSITION: {
+            func_8001B460(); // transition
+            break;
+        }
+        case GAMESTATE_UNKNOWN2: {
+            func_8001D654(); // level select (best times?)
+            break;
+        }
+        default: {
+            break; // applies for case 13?
+        }
+    }
+}
+
+// this is a linear congruential algorithm for prng
+uint16_t Rand(void) {
+    gRNGSeed = (gRNGSeed * 0x85) + 1;
+    return gRNGSeed / 0x100;
+}

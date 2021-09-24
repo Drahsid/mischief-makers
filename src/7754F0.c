@@ -9,8 +9,7 @@ void func_807748F0(int32_t arg0) {}
 void func_807748F8(uint16_t index, uint8_t arg1) {
     uint16_t i;
 
-    if (gActors[index].pos.y) {
-    }
+    if (gActors[index].pos.y) {}
 
     for (i = 0; i < 7; i++) {
         func_80012044(gActors[index].pos.x, gActors[index].pos.y + D_801AFE90[i], arg1);
@@ -60,8 +59,7 @@ void func_807756CC(uint16_t index) {
     if ((gButtonHold & gButton_DRight) != 0 || (gButtonHold & gButton_DLeft) != 0) {
         if ((gActors[index].flag & ACTOR_FLAG_FLIPPED) != 0) {
             // Is this an oversight?
-            if (gButtonHold & gButton_DRight != 0) {
-            }
+            if (gButtonHold & gButton_DRight != 0) {}
             gActors[index].unk_0xD0_h = 0x60;
         }
         else {

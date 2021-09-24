@@ -1,5 +1,5 @@
 #include "GameSave.h"
-#include "alphabet.h"
+#include "Alphabet.h"
 #include <SFX.h>
 #include <data_symbols.h>
 #include <function_symbols.h>
@@ -8,11 +8,14 @@
 
 char GameSave_EEPROMID[8] = "TREA0722";
 
-uint16_t gTimeRecords[64] = {36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000};
+uint16_t gTimeRecords[64] = {36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000};
 
-uint16_t GameSave_DefaultName[11] = {ALPHA_Cap_S, ALPHA_Lower_T, ALPHA_Lower_A, ALPHA_Lower_R, ALPHA_Lower_T, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_Space, ALPHA_NULL};
+uint16_t GameSave_DefaultName[11] = {ALPHA_UPPER_S, ALPHA_LOWER_T, ALPHA_LOWER_A, ALPHA_LOWER_R, ALPHA_LOWER_T, ALPHA_SPACE,
+                                     ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_NULL};
 
 // This function gets the lower 4 bits of the word lhs + (offset)
 // Difference is flipped instructions
@@ -36,16 +39,20 @@ int32_t func_80004E90(uint32_t arg0) {
 }
 
 int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
-    if (999 < x) return 1;
+    if (999 < x) {
+        return 1;
+    }
     return 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
 #ifdef NON_MATCHING
 void GameSave_Initialize(uint8_t slot) {
-    uint16_t i;
-    for (i = 0; i < 11; i++)
+    uint16_t index;
+    for (index = 0; index < 11; index++) {
         GameSave_Names[slot][i] = GameSave_DefaultName[i];
+    }
+
     GameSave_Age[slot] = 0;
     GameSave_Sex[slot] = 0;
     GameSave_RedGems[slot] = 30;
@@ -91,12 +98,15 @@ void GameSave_LoadRecords(void) {
         osEepromLongRead(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
         osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, 0x80);
     }
-    if (D_80171B19 >= 2) D_80171B19 = 0;
+    if (D_80171B19 >= 2)
+        D_80171B19 = 0;
 
     func_80004F24();
 
     for (index = 0; index < 64; index++) {
-        if (gTimeRecords[index] > 36000) gTimeRecords[index] = 36000;
+        if (gTimeRecords[index] > 36000) {
+            gTimeRecords[index] = 36000;
+        }
     }
 }
 
@@ -150,8 +160,10 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 void func_80006B1C(uint16_t i) {
     uint16_t j;
     i &= 0xFFFF;
-    for (j = i + 0xab; j < i + 0xBD; j++)
+    for (j = i + 0xab; j < i + 0xBD; j++) {
         gActors[j].flag = 0;
+    }
+
     func_80006360(i);
     gGameSubState = 1;
     gSaveSlotIndex = 0;

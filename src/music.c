@@ -12,7 +12,7 @@ ALCSPlayer* SFX_pALCPlayers[4];
 
 // TODO: Figure out D_8016D9A8 and D_8016D9B8 types
 #ifdef NON_MATCHING
-void Audio_dmaNew(void** arg0) {
+void Audio_DmaNew(void** arg0) {
     ALLink* phi_s0;
     ALLink* phi_s1;
 
@@ -32,7 +32,7 @@ void Audio_dmaNew(void** arg0) {
     *arg0 = &D_8016D9A8;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaNew.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_DmaNew.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001A80.s")
@@ -48,16 +48,19 @@ void Sound_SetEventMesg(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_Tick.s")
 #ifdef NON_MATCHING
 void func_800028D0(void) {
-    uint8_t i;
+    uint8_t index;
 
     osRecvMesg(&D_801377D0, 0, 1);
     D_8016E718 = (D_800C3838 - 1) % 3;
     osAiSetNextBuffer(Sound_AIBuffers[D_8016E718], D_800C383C[D_8016E718] << 2);
-    for (i = 0; i < D_800C3830; i++)
+    for (index = 0; index < D_800C3830; index++) {
         if (D_800C3830 > 0) {
-            for (i = 0; i < D_800C3830; i++)
+            for (index = 0; index < D_800C3830; index++) {
                 osRecvMesg(&D_801377B8, 0, 0);
+            }
         }
+    }
+
     func_80001A80();
     D_800C3830 = 0;
     D_800C3834 ^= 1;
@@ -101,13 +104,16 @@ void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
 #ifdef NON_MATCHING
-int32_t SFX_Stop(uint16_t ID) {
-    uint8_t i;
-    for (i = 0; gSFXCurrentIndex[i] != ID || gSFX_ChannelStates[i] == 0; i++) {
-        if (i > 3) return -1;
+int32_t SFX_Stop(uint16_t id) {
+    uint8_t index;
+    for (index = 0; gSFXCurrentIndex[index] != id || gSFX_ChannelStates[index] == 0; index++) {
+        if (index > 3) {
+            return -1;
+        }
     }
-    alSeqpStop((ALSeqPlayer*)SFX_pALCPlayers[i]);
-    return i;
+
+    alSeqpStop((ALSeqPlayer*)SFX_pALCPlayers[index]);
+    return index;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Stop.s")
@@ -150,73 +156,117 @@ void func_80003540(int16_t arg0, int16_t arg1, int8_t* arg2, int16_t* arg3) {
     int32_t phi_v0;
     int16_t temp;
 
-    if (arg0 < -0x80) *arg2 = 0;
-    else if (arg0 >= 0x80)
+    if (arg0 < -0x80) {
+        *arg2 = 0;
+    }
+    else if (arg0 >= 0x80) {
         *arg2 = 0x7F;
-    else
+    }
+    else {
         *arg2 = ((arg0 / 2) + 0x40);
+    }
 
     // looks like inlined abs?
-    if (arg0 > 0) phi_v0 = arg0;
-    else
+    if (arg0 > 0) {
+        phi_v0 = arg0;
+    }
+    else {
         phi_v0 = -arg0;
+    }
 
-    if (arg1 > 0) phi_v1 = arg1;
-    else
+    if (arg1 > 0) {
+        phi_v1 = arg1;
+    }
+    else {
         phi_v1 = -arg1;
+    }
 
     temp = phi_v1 + phi_v0;
-    if (temp < 0x100) *arg3 = 0x100;
-    else if (temp < 0x200)
+    if (temp < 0x100) {
+        *arg3 = 0x100;
+    }
+    else if (temp < 0x200) {
         *arg3 = (0x200 - temp);
-    else
+    }
+    else {
         *arg3 = 0;
+    }
 }
-int32_t func_800035F8(uint32_t SFX_ID, uint16_t i) {
-    s8 valA;
-    int16_t valB;
 
-    if ((gActors[i].pos.x < -0x90) || (gActors[i].pos.x >= 0x90)) return -1;
-    if ((gActors[i].pos.y < -0x60) || (gActors[i].pos.y >= 0x60)) return -1;
-    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &valA, &valB);
-    if (valB < 128) return -1;
-    else
-        return SFX_Play_0(SFX_ID, valB, valA, 0x81, 0xFF, 0);
+int32_t func_800035F8(uint32_t SFX_ID, uint16_t i) {
+    int8_t val_a;
+    int16_t val_b;
+
+    if ((gActors[i].pos.x < -0x90) || (gActors[i].pos.x >= 0x90)) {
+        return -1;
+    }
+
+    if ((gActors[i].pos.y < -0x60) || (gActors[i].pos.y >= 0x60)) {
+        return -1;
+    }
+
+    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &val_a, &val_b);
+
+    if (val_b < 128) {
+        return -1;
+    }
+    else {
+        return SFX_Play_0(SFX_ID, val_b, val_a, 0x81, 0xFF, 0);
+    }
 }
 
 int32_t func_800036C8(uint32_t SFX_ID, uint16_t i) {
-    s8 valA;
-    int16_t valB;
+    int8_t val_a;
+    int16_t val_b;
 
-    if ((gActors[i].pos.x < -383) || (gActors[i].pos.x >= 384)) return -1;
-    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &valA, &valB);
-    if (valB < 128) return -1;
-    else
-        return SFX_Play_0(SFX_ID, valB, valA, 0x81, 0xFF, 0);
+    if ((gActors[i].pos.x < -383) || (gActors[i].pos.x >= 384)) {
+        return -1;
+    }
+
+    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &val_a, &val_b);
+
+    if (val_b < 128) {
+        return -1;
+    }
+    else {
+        return SFX_Play_0(SFX_ID, val_b, val_a, 0x81, 0xFF, 0);
+    }
 }
 
 int32_t func_80003778(uint32_t SFX_ID, uint16_t i) {
-    s8 valA;
-    int16_t valB;
+    int8_t val_a;
+    int16_t val_b;
 
-    if ((gActors[i].pos.x < -383) || (gActors[i].pos.x >= 384)) return -1;
-    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &valA, &valB);
-    if (valB < 128) return -1;
-    else
-        return SFX_Play_0(SFX_ID, valB, valA, 0x91, 0xFF, 0);
+    if ((gActors[i].pos.x < -383) || (gActors[i].pos.x >= 384)) {
+        return -1;
+    }
+
+    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &val_a, &val_b);
+
+    if (val_b < 128) {
+        return -1;
+    }
+    else {
+        return SFX_Play_0(SFX_ID, val_b, val_a, 0x91, 0xFF, 0);
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003828.s")
 
-int32_t func_800038C8(uint32_t SFX_ID, uint16_t i, uint16_t arg2) {
-    s8 valA;
-    int16_t valB;
+int32_t func_800038C8(uint32_t SFX_ID, uint16_t index, uint16_t arg2) {
+    int8_t val_a;
+    int16_t val_b;
 
-    if ((gActors[i].pos.x < -383) || (gActors[i].pos.x >= 384)) return -1;
-    func_80003540(gActors[i].pos.x, gActors[i].pos.y, &valA, &valB);
-    if (valB < 128) return -1;
-    else
-        return SFX_Play_0(SFX_ID, valB, valA, 0xA1, 0xFF, arg2);
+    if ((gActors[index].pos.x < -383) || (gActors[index].pos.x >= 384))
+        return -1;
+    func_80003540(gActors[index].pos.x, gActors[index].pos.y, &val_a, &val_b);
+
+    if (val_b < 128) {
+        return -1;
+    }
+    else {
+        return SFX_Play_0(SFX_ID, val_b, val_a, 0xA1, 0xFF, arg2);
+    }
 }
 
 void func_80003980(uint32_t arg0, uint16_t arg1) {
