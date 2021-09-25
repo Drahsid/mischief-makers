@@ -208,6 +208,7 @@ extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
 extern char* SfxLabels[224];    // may be wrong.
 extern uint16_t D_800C26DC[293];
 extern uint8_t SFX2ByteArray[294][2]; // table of volume and length(?) of SFX.
+extern int32_t D_800C382C; //AI_LEN >>2
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
@@ -446,6 +447,7 @@ extern Gfx D_800E3930[];
 extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
+extern uint64_t D_800EF210[11]; //D_8016e6f0->ucode_data
 extern int16_t D_800EF4D4;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
@@ -486,7 +488,7 @@ extern OSMesgQueue D_8012ABC0;
 extern OSMesgQueue D_8012ABD8;
 extern OSMesgQueue D_8012ABF0;
 extern OSMesgQueue D_8012AC08;
-extern OSMesgQueue D_8012AC38;
+extern OSMesgQueue D_8012AC38[2];
 extern OSMesg D_8012AC68;
 extern OSMesg D_8012AC6C;
 extern OSMesg D_8012AC70;
@@ -548,11 +550,20 @@ extern ALBankFile* D_8016DF34;
 extern ALBank* D_8016DF38;
 extern ALBank* D_8016DF3C;
 extern ALCSPlayer* BGM_pALCPlayer;
+extern ALCSeq D_8016E1E8;
 extern ALCSeq* D_8016E2E0;
 extern ALCSeq D_8016E2E8[4];
 extern ALCSeq* D_8016E6C8[4];
+extern u8* D_8016E6E0[4];
 extern OSTask* D_8016E6F0;
+extern ALInstrument* D_8016E6F8;
+extern ALSound* D_8016E6FC;
+extern ALEnvelope* D_8016E700;
+extern ALKeyMap* D_8016E704;
+extern Acmd* D_8016E708;
+extern float D_8016E70C; //ALGlobals_ALsynConfig.outputrate * 1 / 60.0
 extern uint32_t D_8016E718;
+extern OSIoMesg D_8016E748[9];
 extern Bitmap gSpriteBitmaps[2][56];
 extern UNK_TYPE D_8016EF20;
 extern uint32_t D_80171ADC[2][2];

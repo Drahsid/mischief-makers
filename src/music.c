@@ -41,7 +41,7 @@ void Audio_dmaNew(void** arg0) {
 
 void Sound_SetEventMesg(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
-    osSetEventMesg(4, &D_801377D0, 0);
+    osSetEventMesg(OS_EVENT_SP, &D_801377D0, 0);
     osSendMesg(&D_801377D0, 0, 1);
 }
 

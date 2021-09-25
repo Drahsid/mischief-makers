@@ -240,12 +240,12 @@ void Thread_MainProc(int32_t arg0) {
     Sound_InitPlayers();
     osCreateMesgQueue(&D_8012ABA8, &D_8012AC68, 1);
     osCreateMesgQueue(&D_8012ABD8, &D_8012AC70, 1);
-    osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
+    osSetEventMesg(OS_EVENT_SP, &D_8012ABD8, D_8012AC80);
     Sound_SetEventMesg();
     osCreateMesgQueue(&D_8012ABF0, &D_8012AC74, 1);
-    osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
+    osSetEventMesg(OS_EVENT_DP, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(&D_8012ABC0, &D_8012AC6C, 1);
-    osViSetSpecialFeatures(0xA);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_GAMMA_DITHER_OFF);
     osViSetEvent(&D_8012ABC0, D_8012AC80, 1);
 
     func_800008E0();
@@ -342,12 +342,12 @@ int32_t Input_GetFirstController(void) {
     byte abStack5[5];
 
     osCreateMesgQueue(&D_8012AC20, &D_8012AC7C, 1);
-    osSetEventMesg(5, &D_8012AC20, (OSMesg)0x1);
-    osContReset(&D_8012AC20, abStack5, contStatArray);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC20, (OSMesg)0x1);
+    osContInit(&D_8012AC20, abStack5, contStatArray);
     osCreateMesgQueue(&D_8012AC08, &OSMesg_8012ac78, 1);
-    osSetEventMesg(5, &D_8012AC08, (OSMesg)0x0);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC08, (OSMesg)0x0);
     osCreateMesgQueue(&gContMesgq, &OSMesg_8012adb8, 2);
-    osSetEventMesg(5, &gContMesgq, (OSMesg)0x2);
+    osSetEventMesg(OS_EVENT_SI, &gContMesgq, (OSMesg)0x2);
     if (((abStack5[0] & 1) == 0) || ((contStatArray[0].errno & CONT_NO_RESPONSE_ERROR))) {
         if (((abStack5[0] & 2) == 0) || ((contStatArray[1].errno & CONT_NO_RESPONSE_ERROR))) {
             if (((abStack5[0] & 4) == 0) || ((contStatArray[2].errno & CONT_NO_RESPONSE_ERROR))) {
@@ -367,6 +367,7 @@ int32_t Input_GetFirstController(void) {
             sVar1 = 0;
         return sVar1;
     }
+}
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
 #endif

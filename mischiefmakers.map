@@ -46,6 +46,7 @@ Discarded input sections
  .reginfo       0x0000000000000000       0x18 build/src/13850.c.o
  .options       0x0000000000000000       0x20 build/src/156F0.c.o
  .reginfo       0x0000000000000000       0x18 build/src/156F0.c.o
+ .data          0x0000000000000000       0xc0 build/src/17A70.c.o
  .options       0x0000000000000000       0x20 build/src/17A70.c.o
  .reginfo       0x0000000000000000       0x18 build/src/17A70.c.o
  .options       0x0000000000000000       0x20 build/src/1E7A0.c.o
@@ -67,6 +68,7 @@ Discarded input sections
  .pdr           0x0000000000000000        0x0 build/asm/48A30.s.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/asm/48A30.s.o
+ .data          0x0000000000000000       0x50 build/src/49200.c.o
  .options       0x0000000000000000       0x20 build/src/49200.c.o
  .reginfo       0x0000000000000000       0x18 build/src/49200.c.o
  .data          0x0000000000000000        0x0 build/asm/4FEB0.s.o
@@ -155,6 +157,7 @@ Discarded input sections
  .pdr           0x0000000000000000        0x0 build/asm/82F80.s.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/asm/82F80.s.o
+ .bss           0x0000000000000000     0x1050 build/src/DebugText.c.o
  .options       0x0000000000000000       0x20 build/src/DebugText.c.o
  .reginfo       0x0000000000000000       0x18 build/src/DebugText.c.o
  .data          0x0000000000000000        0x0 build/asm/84BB0.s.o
@@ -2649,6 +2652,14 @@ LOAD build/assets/trailer.bin.o
                 0x000000008004571c                func_8004571C
                 0x0000000080045758                func_80045758
                 0x00000000800457c8                func_800457C8
+                0x000000008004586c                L8004586C_4646C
+                0x00000000800458c4                L800458C4_464C4
+                0x000000008004591c                L8004591C_4651C
+                0x000000008004596c                L8004596C_4656C
+                0x00000000800459bc                L800459BC_465BC
+                0x0000000080045a0c                L80045A0C_4660C
+                0x0000000080045a5c                L80045A5C_4665C
+                0x0000000080045ab4                L80045AB4_466B4
                 0x0000000080045d84                func_80045D84
                 0x0000000080045d9c                func_80045D9C
                 0x0000000080045e58                func_80045E58
@@ -4106,7 +4117,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008009aed0                _VirtualToPhysicalTask
                 0x000000008009b014                osSpTaskLoad
                 0x000000008009b294                osSpTaskStartGo
-                0x000000008009b2e0                osContReset
+                0x000000008009b2e0                osContInit
                 0x000000008009b4f8                __osContGetInitData
                 0x000000008009b5dc                __osPackRequestData
                 0x000000008009b6e0                osInvalDCache
@@ -5560,10 +5571,11 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea4d0                __osPiDevMgr = 0x800ea4d0
                 0x00000000800ea4f0                __osCurrentHandle = 0x800ea4f0
                 0x00000000800ea500                __rmonActive = 0x800ea500
+                0x00000000800ea510                __osContinitialized = 0x800ea510
                 0x00000000800ea520                alGlobals = 0x800ea520
-                0x00000000800ea540                sprite_data_0000 = 0x800ea540
-                0x00000000800ea544                sprite_data_0004 = 0x800ea544
-                0x00000000800ea550                rotate_data_0000 = 0x800ea550
+                0x00000000800ea540                prev_bmbuf = 0x800ea540
+                0x00000000800ea544                sp_attr = 0x800ea544
+                0x00000000800ea550                dtor = 0x800ea550
                 0x00000000800ea570                vi = 0x800ea570
                 0x00000000800ea5d4                __osViNext = 0x800ea5d4
                 0x00000000800ea600                __osThreadTail = 0x800ea600
@@ -5573,18 +5585,19 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea620                __osTimerList = 0x800ea620
                 0x00000000800ea630                __osPiAccessQueueEnabled = 0x800ea630
                 0x00000000800ea640                __osRdb_IP6_Empty = 0x800ea640
-                0x00000000800ea7f0                env_data_0000 = 0x800ea7f0
-                0x00000000800ea930                xprintf_data_0000 = 0x800ea930
-                0x00000000800ea954                xprintf_data_0024 = 0x800ea954
+                0x00000000800ea7f0                eqpower = 0x800ea7f0
+                0x00000000800ea930                spaces = 0x800ea930
+                0x00000000800ea954                zeroes = 0x800ea954
                 0x00000000800ea980                osViModeNtscLan1 = 0x800ea980
                 0x00000000800ea9d0                osViModePalLan1 = 0x800ea9d0
                 0x00000000800eaa20                osViModeMpalLan1 = 0x800eaa20
+                0x00000000800eaa70                errorLog = 0x800eaa70
                 0x00000000800eaa84                __osCommonHandler = 0x800eaa84
                 0x00000000800eaa90                numChars = 0x800eaa90
                 0x00000000800eaaa0                readHostInitalized = 0x800eaaa0
-                0x00000000800eaab0                rmoncmds_data_0000 = 0x800eaab0
-                0x00000000800eabb0                xlitob_data_0000 = 0x800eabb0
-                0x00000000800eabc4                xlitob_data_0014 = 0x800eabc4
+                0x00000000800eaab0                dispatchTable = 0x800eaab0
+                0x00000000800eabb0                ldigs = 0x800eabb0
+                0x00000000800eabc4                udigs = 0x800eabc4
                 0x00000000800eabe0                __osLogOKtoWrite = 0x800eabe0
                 0x00000000800eabe4                __osLogInitialized = 0x800eabe4
                 0x00000000800ed600                viswapbuf_rodata_0000 = 0x800ed600
@@ -5622,25 +5635,24 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ee118                seqplayer_rodata_0178 = 0x800ee118
                 0x00000000800ee128                seqplayer_rodata_0188 = 0x800ee128
                 0x00000000800ee390                __osRcpImTable = 0x800ee390
-                0x00000000800ee670                sinf_rodata_0000 = 0x800ee670
-                0x00000000800ee698                sinf_rodata_0028 = 0x800ee698
-                0x00000000800ee6a0                sinf_rodata_0030 = 0x800ee6a0
-                0x00000000800ee6a8                sinf_rodata_0038 = 0x800ee6a8
-                0x00000000800ee6b0                sinf_rodata_0040 = 0x800ee6b0
+                0x00000000800ee670                P = 0x800ee670
+                0x00000000800ee698                rpi = 0x800ee698
+                0x00000000800ee6a0                pihi = 0x800ee6a0
+                0x00000000800ee6a8                pilo = 0x800ee6a8
+                0x00000000800ee6b0                zero = 0x800ee6b0
                 0x00000000800ee6c0                xprintf_rodata_0000 = 0x800ee6c0
-                0x00000000800ee6c4                xprintf_rodata_0004 = 0x800ee6c4
-                0x00000000800ee6cc                xprintf_rodata_000C = 0x800ee6cc
+                0x00000000800ee6c4                fchar = 0x800ee6c4
+                0x00000000800ee6cc                fbit = 0x800ee6cc
                 0x00000000800ee7f0                sprawwrite_rodata_0000 = 0x800ee7f0
                 0x00000000800ee808                sprawwrite_rodata_0018 = 0x800ee808
                 0x00000000800ee940                seq_rodata_0000 = 0x800ee940
                 0x00000000800ee948                seq_rodata_0008 = 0x800ee948
                 0x00000000800ee990                reverb_rodata_0040 = 0x800ee990
                 0x00000000800ee9a0                __libm_qnan_f = 0x800ee9a0
-                0x00000000800ee9b0                xldtob_rodata_0000 = 0x800ee9b0
+                0x00000000800ee9b0                pows = 0x800ee9b0
                 0x00000000800ee9f8                xldtob_rodata_0048 = 0x800ee9f8
                 0x00000000800ee9fc                xldtob_rodata_004C = 0x800ee9fc
                 0x00000000800eea08                xldtob_rodata_0058 = 0x800eea08
-                0x00000000800ef598                FB_BGCOLOR = 0x800ef598
                 0x00000000801826c0                __kmc_pt_mode = 0x801826c0
                 0x00000000801826d0                viThread = 0x801826d0
                 0x0000000080182880                viThreadStack = 0x80182880
@@ -5702,9 +5714,11 @@ LOAD build/assets/trailer.bin.o
                 0x000000008018a748                __osRdb_IP6_Ct = 0x8018a748
                 0x000000008018a74c                __osRdb_IP6_CurWrite = 0x8018a74c
                 0x000000008018a750                __osRdb_IP6_CurSend = 0x8018a750
+                0x00000000801856f0                __osCurrentTime = 0x801856f0
                 0x000000008018b780                __osLogDoneMsgQ = 0x8018b780
                 0x000000008018b798                __osLogMsgBuf = 0x8018b798
                 0x00000000800ef4d0                bssStart = 0x800ef4d0
+                0x00000000800ef508                gSFXCurrentIndex = 0x800ef508
                 0x00000000800ef510                gActors = 0x800ef510
                 0x00000000800be4f4                gGameSubState = 0x800be4f4
                 0x00000000800be5a8                gEyeX = 0x800be5a8
@@ -5807,6 +5821,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea650                __osSiAccessQueueEnabled = 0x800ea650
                 0x000000008018a4a8                __osSiAccessQueue = 0x8018a4a8
                 0x000000008018a4c0                __osEepPifRam = 0x8018a4c0
+                0x000000008018a500                errorLogData = 0x8018a500
                 0x00000000800e5ac0                gActorFuncTable_800E5AC0 = 0x800e5ac0
                 0x0000000080192000                gActorFuncTable_80192000 = 0x80192000
                 0x000000008019b000                gActorFuncTable_8019B000 = 0x8019b000
@@ -5847,8 +5862,12 @@ LOAD build/assets/trailer.bin.o
                 0x00000000801225f0                gInputHistoryHold = 0x801225f0
                 0x000000008016e718                gSound_currentBuffer = 0x8016e718
                 0x00000000800c4e5c                gSprite = 0x800c4e5c
+                0x0000000080180fd0                DebugText_Count = 0x80180fd0
+                0x0000000080180fd8                DebugText_TransformArray = 0x80180fd8
                 0x0000000080182018                DebugText_Time = 0x80182018
                 0x00000000800be6ac                gDebugBitfeild = 0x800be6ac
+                0x00000000800be550                gScreenPosTargetX = 0x800be550
+                0x00000000800be554                gScreenPosTargetY = 0x800be554
                 0x0000000080124670                D_80124670 = 0x80124670
                 0x0000000080126670                D_80126670 = 0x80126670
                 0x000000008012ad10                D_8012AD10 = 0x8012ad10
@@ -5891,7 +5910,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c3830                D_800C3830 = 0x800c3830
                 0x00000000801377b8                D_801377B8 = 0x801377b8
                 0x000000008016d9b8                D_8016D9B8 = 0x8016d9b8
-                0x0000000080137d80                Sound_ALHeap = 0x80137d80
+                0x0000000080137d80                D_80137D80 = 0x80137d80
                 0x0000000080137800                D_80137800 = 0x80137800
                 0x000000008016e728                D_8016E728 = 0x8016e728
                 0x000000008016e740                D_8016E740 = 0x8016e740
@@ -5930,7 +5949,6 @@ LOAD build/assets/trailer.bin.o
                 0x000000008016e6f8                D_8016E6F8 = 0x8016e6f8
                 0x000000008016e6fc                D_8016E6FC = 0x8016e6fc
                 0x000000008016e700                D_8016E700 = 0x8016e700
-                0x00000000800ef508                gSFXCurrentIndex = 0x800ef508
                 0x00000000800c2bb4                D_800C2BB4 = 0x800c2bb4
                 0x00000000801069d8                D_801069D8 = 0x801069d8
                 0x00000000800c26dc                D_800C26DC = 0x800c26dc
@@ -5953,7 +5971,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080137d92                D_80137D92 = 0x80137d92
                 0x0000000080137d96                D_80137D96 = 0x80137d96
                 0x0000000080137d98                D_80137D98 = 0x80137d98
-                0x000000008016e820                gSpriteBitmaps = 0x8016e820
+                0x000000008016e820                D_8016E820 = 0x8016e820
                 0x00000000800c4ebc                D_800C4EBC = 0x800c4ebc
                 0x00000000800c4ec0                D_800C4EC0 = 0x800c4ec0
                 0x00000000800c4ec4                D_800C4EC4 = 0x800c4ec4
@@ -6173,13 +6191,11 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800be5f8                D_800BE5F8 = 0x800be5f8
                 0x00000000800be544                D_800BE544 = 0x800be544
                 0x00000000800be61c                D_800BE61C = 0x800be61c
-                0x00000000800be550                gScreenPosTargetX = 0x800be550
                 0x00000000800be704                D_800BE704 = 0x800be704
                 0x00000000800be548                D_800BE548 = 0x800be548
                 0x00000000800be568                D_800BE568 = 0x800be568
                 0x00000000800be56c                D_800BE56C = 0x800be56c
                 0x00000000800be620                D_800BE620 = 0x800be620
-                0x00000000800be554                gScreenPosTargetY = 0x800be554
                 0x00000000800be708                D_800BE708 = 0x800be708
                 0x00000000800be54c                D_800BE54C = 0x800be54c
                 0x00000000800be574                D_800BE574 = 0x800be574
@@ -6821,7 +6837,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d19b8                D_800D19B8 = 0x800d19b8
                 0x00000000800d2910                D_800D2910 = 0x800d2910
                 0x00000000800d37bc                D_800D37BC = 0x800d37bc
-                0x00000000800ebd20                D_800EBD20 = 0x800ebd20
+                0x00000000800ebd20                jtbl_800EBD20 = 0x800ebd20
                 0x00000000800d8d68                D_800D8D68 = 0x800d8d68
                 0x00000000800de188                D_800DE188 = 0x800de188
                 0x00000000800d8de0                D_800D8DE0 = 0x800d8de0
@@ -7353,8 +7369,6 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080180d90                D_80180D90 = 0x80180d90
                 0x000000008017dcf0                D_8017DCF0 = 0x8017dcf0
                 0x000000008017f310                D_8017F310 = 0x8017f310
-                0x0000000080180fd8                D_80180FD8 = 0x80180fd8
-                0x0000000080180fd0                D_80180FD0 = 0x80180fd0
                 0x00000000800ed070                D_800ED070 = 0x800ed070
                 0x00000000800be6b9                D_800BE6B9 = 0x800be6b9
                 0x00000000800ed078                D_800ED078 = 0x800ed078
@@ -7604,13 +7618,11 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ed5e8                D_800ED5E8 = 0x800ed5e8
                 0x00000000800ed5f4                D_800ED5F4 = 0x800ed5f4
                 0x00000000801838e0                D_801838E0 = 0x801838e0
-                0x00000000801856f0                D_801856F0 = 0x801856f0
                 0x00000000801856f4                D_801856F4 = 0x801856f4
                 0x00000000800ed630                D_800ED630 = 0x800ed630
                 0x00000000800ed640                D_800ED640 = 0x800ed640
                 0x00000000800ed6a0                D_800ED6A0 = 0x800ed6a0
                 0x00000000800ed6ac                D_800ED6AC = 0x800ed6ac
-                0x00000000800ea510                D_800EA510 = 0x800ea510
                 0x0000000080185698                D_80185698 = 0x80185698
                 0x00000000801856b0                D_801856B0 = 0x801856b0
                 0x00000000800ed6c0                D_800ED6C0 = 0x800ed6c0
@@ -7634,7 +7646,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea56c                D_800EA56C = 0x800ea56c
                 0x00000000bff08004                D_BFF08004 = 0xbff08004
                 0x00000000bff08000                D_BFF08000 = 0xbff08000
-                0x000000008018a550                D_8018A550 = 0x8018a550
                 0x00000000c0000008                D_C0000008 = 0xc0000008
                 0x00000000c0000000                D_C0000000 = 0xc0000000
                 0x00000000800ea5f8                D_800EA5F8 = 0x800ea5f8
@@ -7713,7 +7724,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ee620                D_800EE620 = 0x800ee620
                 0x00000000800ee660                D_800EE660 = 0x800ee660
                 0x00000000800ee6e4                jtbl_800EE6E4 = 0x800ee6e4
-                0x00000000800eaa70                D_800EAA70 = 0x800eaa70
                 0x00000000800ee7c0                D_800EE7C0 = 0x800ee7c0
                 0x00000000800ee7d0                D_800EE7D0 = 0x800ee7d0
                 0x00000000800ee950                D_800EE950 = 0x800ee950
