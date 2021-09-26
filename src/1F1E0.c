@@ -218,7 +218,8 @@ void func_80020024(void) {
 
 
 void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
-    if (YellowGem_GetFlag(gCurrentStage)) func_800836A0(9, 1, &Alpha_GotIt, 0);
+    if (YellowGem_GetFlag(gCurrentStage))
+        func_800836A0(9, 1, &Alpha_GotIt, 0);
     else
         func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
@@ -263,7 +264,8 @@ void GamePlay_Tick(void) {
     func_800457C8(); // this function dmas sprite data for things like gems
     gTickDelta = osGetTime() - time;
 
-    if (gGamePaused) PauseGame_Tick();
+    if (gGamePaused)
+        PauseGame_Tick();
     else
         func_80020024();
 }
@@ -367,7 +369,8 @@ void AttractMode_Tick(void) {
  * why didn't they just give the text an outline?
  */
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig)) D_800BE6B8._s ^= 0xFF;
+    if ((gButtonPress & gButton_RTrig))
+        D_800BE6B8._s ^= 0xFF;
 }
 
 void func_80021658(void) {}

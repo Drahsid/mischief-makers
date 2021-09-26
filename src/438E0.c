@@ -294,7 +294,8 @@ void func_80045500(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
 int16_t func_800456DC(void) {
-    if ((gStageTimeReal & 32)) return (0xf - (gStageTimeReal & 0x1f));
+    if ((gStageTimeReal & 32))
+        return (0xf - (gStageTimeReal & 0x1f));
     return ((gStageTimeReal & 0x1f) - 0xf);
 }
 
@@ -389,7 +390,8 @@ int32_t func_800463F0(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
 
 void func_80046434(void) {
-    if (gPlayerActor.flag & 0x20) D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
+    if (gPlayerActor.flag & 0x20)
+        D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
     else
         D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
 }
@@ -414,7 +416,8 @@ void func_80046A30(void) {
     func_800286C8();
 
     for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
-        if ((gActors[index].flag & ACTOR_FLAG_UNK19)) gActors[index].flag = 0;
+        if ((gActors[index].flag & ACTOR_FLAG_UNK19))
+            gActors[index].flag = 0;
     }
 }
 
@@ -444,7 +447,8 @@ void func_800472D4(void) {
 }
 
 void func_8004732C(void) {
-    if (func_80046D5C()) func_800472D4();
+    if (func_80046D5C())
+        func_800472D4();
 }
 
 #ifdef NON_MATCHING
@@ -516,7 +520,8 @@ void func_80047994() {
         func_8005DFC8(0);
         D_800D16C4 = 0;
         SFX_StopAll();
-        if (D_800D28E4 == 98) func_80047958();
+        if (D_800D28E4 == 98)
+            func_80047958();
     }
     D_800D28E4 = D_800D28F0;
 }

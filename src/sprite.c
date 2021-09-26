@@ -95,9 +95,12 @@ void Sprite_SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
 
 void Sprite_SetTransparent(int32_t arg0) {
     spClearAttribute(&gSprite, 0xFFFF);
-    if (arg0) spSetAttribute(&gSprite, SP_TRANSPARENT);
-    else
+    if (arg0) {
+        spSetAttribute(&gSprite, SP_TRANSPARENT);
+    }
+    else {
         spClearAttribute(&gSprite, SP_TRANSPARENT);
+    }
 }
 
 // Need to figure out args to func_80004380 to match, a0 is Sprite*

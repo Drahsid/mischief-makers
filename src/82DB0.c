@@ -12,7 +12,8 @@ void func_800821B0(void) {
     uint16_t temp_v0;
     int32_t phi_a0;
 
-    if ((((gPlayerActorp->flag & ACTOR_FLAG_DRAW) != 0) || (D_800BE714 != 0)) && (temp_v0 = gPlayerActorp->unk_0x84, ((temp_v0 & 0xF800) == 0x5800))) {
+    if ((((gPlayerActorp->flag & ACTOR_FLAG_DRAW) != 0) || (D_800BE714 != 0)) &&
+        (temp_v0 = gPlayerActorp->unk_0x84, ((temp_v0 & 0xF800) == 0x5800))) {
         D_800BE714 = 0;
         temp_t1 = ((int32_t)(temp_v0 & 0x7FF) % 0x322) & 0xFFFF;
         phi_a0 = 0x1004A0918;
@@ -52,8 +53,7 @@ void func_800822B8(void) {
         }
         else {
             func_80098B50(0x801C4400, 0x8027AEE8, 0x1000);
-            if (!D_800BE6A4) {
-            }
+            if (!D_800BE6A4) {}
 
             phi_v0 = D_800BE6A4 & 0x7FFF;
         }

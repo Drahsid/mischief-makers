@@ -572,8 +572,9 @@ void TitleScreen_Tick(void) {
             }
 
             // test to toggle sound test
-            if (((gButtonHold & gButton_A) != 0) && ((gButtonHold & gButton_CLeft) != 0) && ((gButtonHold & gButton_CRight) != 0) && ((gButtonHold & gButton_LTrig) != 0) &&
-                ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) && ((gButtonHold & gButton_CUp) == 0) && ((gButtonHold & gButton_RTrig) == 0)) {
+            if (((gButtonHold & gButton_A) != 0) && ((gButtonHold & gButton_CLeft) != 0) && ((gButtonHold & gButton_CRight) != 0) &&
+                ((gButtonHold & gButton_LTrig) != 0) && ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) &&
+                ((gButtonHold & gButton_CUp) == 0) && ((gButtonHold & gButton_RTrig) == 0)) {
                 gActors[7].rgba.b = 1;
             }
             else {
@@ -802,8 +803,7 @@ void StageSelect_Tick(void) {
         temp_a0 = (phi_a2_2 + 1) & 0xFFFF;
         phi_a2_2 = temp_a0;
         phi_a0 = temp_a0;
-        if (!(&gActors)) {
-        }
+        if (!(&gActors)) {}
         if (temp_a0 < 0x16) {
             goto loop_7;
         }
@@ -935,10 +935,14 @@ uint16_t gTimesToBeat[] = {
     5160};
 
 int16_t Get_TimeRank(uint16_t t, uint16_t s) {
-    if (t < gTimesToBeat[s]) return 0;
-    if (t < (gTimesToBeat[s] + 1800)) return 1;
-    if (t < (gTimesToBeat[s] + 7200)) return 2;
-    if ((t < (gTimesToBeat[s] + 18000)) && (t < 36000)) return 3;
+    if (t < gTimesToBeat[s])
+        return 0;
+    if (t < (gTimesToBeat[s] + 1800))
+        return 1;
+    if (t < (gTimesToBeat[s] + 7200))
+        return 2;
+    if ((t < (gTimesToBeat[s] + 18000)) && (t < 36000))
+        return 3;
     return 4;
 }
 
