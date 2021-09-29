@@ -21,7 +21,7 @@ void DebugText_Reset(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/DebugText/DebugText_SetData.s")
 
 #ifdef NON_MATCHING
-void DebugText_PrintIntHex(int i, int posX, int posY) {
+void DebugText_PrintIntHex(int32_t i, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%08X", i);
     DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
@@ -31,7 +31,7 @@ void DebugText_PrintIntHex(int i, int posX, int posY) {
 #endif
 
 #ifdef NON_MATCHING
-void DebugText_PrintInt(int i, int posX, int posY) {
+void DebugText_PrintInt(int32_t i, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%04d", i);
     DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
@@ -41,7 +41,7 @@ void DebugText_PrintInt(int i, int posX, int posY) {
 #endif
 
 #ifdef NON_MATCHING
-void DebugText_PrintFloat(int f, int posX, int posY) {
+void DebugText_PrintFloat(float f, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%8.4f", f);
     DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
@@ -51,7 +51,7 @@ void DebugText_PrintFloat(int f, int posX, int posY) {
 #endif
 
 #ifdef NON_MATCHING
-void DebugText_PrintByteHex(uint16_t i, int posX, int posY) {
+void DebugText_PrintByteHex(uint16_t i, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%02X", i);
     DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
@@ -61,7 +61,7 @@ void DebugText_PrintByteHex(uint16_t i, int posX, int posY) {
 #endif
 
 #ifdef NON_MATCHING
-void DebugText_PrintShortHexWhite(uint16_t i, int posX, int posY) {
+void DebugText_PrintShortHexWhite(uint16_t i, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%04X", i);
     DebugText_SetData(txt, posX, posY, 0XFF, 0XFF, 0XFF, 0xff, 1.0, 1.0);
@@ -71,7 +71,7 @@ void DebugText_PrintShortHexWhite(uint16_t i, int posX, int posY) {
 #endif
 
 #ifdef NON_MATCHING
-void DebugText_PrintShortHexBlack(uint16_t i, int posX, int posY) {
+void DebugText_PrintShortHexBlack(uint16_t i, int32_t posX, int32_t posY) {
     char txt[80];
     sprintf(txt, "%04X", i);
     DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);

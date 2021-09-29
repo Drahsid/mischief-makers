@@ -201,7 +201,7 @@ void Thread_IdleProc(void* arg0) {
 
     while (1) {}
 }
-
+//set D_8012AD08->comRegs.hStart and  D_8012AD08->feildregs[].vScale
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
 // main update setup
@@ -263,7 +263,7 @@ void Thread_MainProc(int32_t arg0) {
             osContStartReadData(&D_8012AC08);
         }
 
-        D_8012AC84->t.type = 1;
+        D_8012AC84->t.type = M_GFXTASK;
         D_8012AC84->t.flags = 0;
         D_8012AC84->t.ucode_boot = (uint64_t*)rspbootTextStart;
         D_8012AC84->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
@@ -340,12 +340,12 @@ int32_t Input_GetFirstController(void) {
     byte abStack5[5];
 
     osCreateMesgQueue(&D_8012AC20, &D_8012AC7C, 1);
-    osSetEventMesg(5, &D_8012AC20, (OSMesg)0x1);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC20, (OSMesg)0x1);
     osContInit(&D_8012AC20, abStack5, contStatArray);
     osCreateMesgQueue(&D_8012AC08, &OSMesg_8012ac78, 1);
-    osSetEventMesg(5, &D_8012AC08, (OSMesg)0x0);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC08, (OSMesg)0x0);
     osCreateMesgQueue(&gContMesgq, &OSMesg_8012adb8, 2);
-    osSetEventMesg(5, &gContMesgq, (OSMesg)0x2);
+    osSetEventMesg(OS_EVENT_SI, &gContMesgq, (OSMesg)0x2);
     if (((abStack5[0] & 1) == 0) || ((contStatArray[0].errno & CONT_NO_RESPONSE_ERROR))) {
         if (((abStack5[0] & 2) == 0) || ((contStatArray[1].errno & CONT_NO_RESPONSE_ERROR))) {
             if (((abStack5[0] & 4) == 0) || ((contStatArray[2].errno & CONT_NO_RESPONSE_ERROR))) {
@@ -397,7 +397,7 @@ void func_800012F0(void) {
             gGamePaused = 1;
         }
 
-        if (gGamePaused != 0 && gGameSubState == 0x10) {
+        if (gGamePaused && gGameSubState == 0x10) {
             if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
                 if ((gDebugBitfeild & 0x100) != 0) {
@@ -413,7 +413,7 @@ void func_800012F0(void) {
             if (gActors->health >= 0) {
                 gGamePaused = 1;
                 gDebugBitfeild &= 0xFFEF;
-                if ((gDebugBitfeild & 0x100) != 0) {
+                if (gDebugBitfeild & 0x100) {
                     gGameSubState = 0x10;
                 }
                 else {
@@ -480,15 +480,15 @@ void func_8000147C(void) {
     func_8000F290();
     func_80009BE0();
 
-    if ((gDebugBitfeild & 1) != 0) {
+    if ((gDebugBitfeild & 1)) {
         func_8002167C();
     }
 
-    if ((gDebugBitfeild & 0x8000) != 0) {
+    if ((gDebugBitfeild & 0x8000)) {
         func_8001FF28();
     }
 
-    if ((gDebugBitfeild & 0x40) != 0) {
+    if ((gDebugBitfeild & 0x40)) {
         func_80021658();
     }
 
@@ -499,102 +499,6 @@ void func_8000147C(void) {
     func_80021620();
     DebugText_Tick();
 }
-
-            if (gGamePaused != 0 && gGameSubState == 0x10) {
-                if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
-                    // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                    if ((gDebugBitfeild & 0x100) != 0) {
-                        func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
-                        func_800208D4();
-                    }
-                    else {
-                        gGameSubState = 0x20;
-                    }
-                }
-            }
-            else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
-                if (gActors->health >= 0) {
-                    gGamePaused = 1;
-                    gDebugBitfeild &= 0xFFEF;
-                    if ((gDebugBitfeild & 0x100) != 0) {
-                        gGameSubState = 0x10;
-                    }
-                    else {
-                        gGameSubState = 0;
-                    }
-                }
-            }
-            if (gGamePaused == 0) {
-                DebugText_Reset();
-            }
-        }
-        else {
-            DebugText_Reset();
-        }
-    }
-
-    // main update
-    void func_8000147C(void) {
-        D_800BE4E4 += 1;
-        if (gPlayTime < 0x1EE627FF) {
-            gPlayTime++;
-        }
-
-        func_800012F0();
-        GameState_Tick();
-        func_800821B0();
-        func_80009940();
-        func_80082F10();
-        func_80009BE8(&D_80171B30);
-
-        if (D_800BE674 != 0) {
-            func_80082CFC();
-            func_8000DD6C();
-            func_80009BE8(&D_80171D30);
-            func_80082E04();
-        }
-        else {
-            func_80082E04();
-            func_80009BE8(&D_80171C30);
-            func_80082CFC();
-            func_80009BE8(&D_80171D30);
-            func_8000DD6C();
-        }
-
-        if (D_8013747C != 0) {
-            func_8000EA88();
-            func_80009BE8(&D_80171F10);
-        }
-        else {
-            func_80009BE8(&D_80171F10);
-            func_8000EA88();
-        }
-
-        Rand(); // update rng
-        func_800822B8();
-        func_800218FC();
-        func_8000F290();
-        func_80009BE0();
-
-        if ((gDebugBitfeild & 1) != 0) {
-            func_8002167C();
-        }
-
-        if ((gDebugBitfeild & 0x8000) != 0) {
-            func_8001FF28();
-        }
-
-        if ((gDebugBitfeild & 0x40) != 0) {
-            func_80021658();
-        }
-
-        if ((gDebugBitfeild & 0x1020) == 0x1000) {
-            func_80021660();
-        }
-
-        func_80021620();
-        DebugText_Tick();
-    }
 
     void GameState_Tick(void) {
         switch (gGameState) {
