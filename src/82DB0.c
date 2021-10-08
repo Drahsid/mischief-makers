@@ -1,9 +1,8 @@
-#include <actor.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "actor.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
-
 
 #ifdef NON_MATCHING
 void func_800821B0(void) {

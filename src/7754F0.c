@@ -1,7 +1,7 @@
 #include "actor.h"
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_807748F0(int32_t arg0) {}
@@ -185,28 +185,28 @@ void func_80775B10(uint16_t index) {
 #ifdef NON_MATCHING
 // Difference is stack size (temp has to go?) if we make Actor_Spawn have a return value
 // Does Actor_Spawn return an Actor*?
-void func_80775FF8(uint16_t indexR) {
+void func_80775FF8(uint16_t index1) {
     float temp;
-    uint16_t indexL;
+    uint16_t index0;
 
-    indexL = func_800284B8(8, 0x10);
-    if (indexL != 0) {
-        gActors[indexL].unk_0xD2 = 0x1D04;
+    index0 = func_800284B8(8, 0x10);
+    if (index0 != 0) {
+        gActors[index0].unk_0xD2 = 0x1D04;
 
-        Actor_Spawn(indexL);
+        Actor_Spawn(index0);
         temp = D_801B00A0;
-        gActors[indexL].unk_0x84 = 0x13C;
-        gActors[indexL].pos.x = gActors[indexR].pos.x;
-        gActors[indexL].pos.z = gActors[indexR].pos.z + 0x10;
-        gActors[indexL].unk_0x94 = 0xA01;
-        gActors[indexL].flag = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_UNK3);
-        gActors[indexL].unk_0x18C = &D_800D8668;
-        gActors[indexL].unk_0x150 = 0x100000;
-        gActors[indexL].unk_0xB4 = temp;
-        gActors[indexL].unk_0xB8 = temp;
-        gActors[indexL].unk_0x154 = gActors[indexR].unk_0x160;
-        gActors[indexL].unk_0x158 = 0x20000;
-        gActors[indexL].unk_0x15C = 0x14;
+        gActors[index0].unk_0x84 = 0x13C;
+        gActors[index0].pos.x = gActors[index1].pos.x;
+        gActors[index0].pos.z = gActors[index1].pos.z + 0x10;
+        gActors[index0].unk_0x94 = 0xA01;
+        gActors[index0].flag = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_UNK3);
+        gActors[index0].unk_0x18C = &D_800D8668;
+        gActors[index0].unk_0x150 = 0x100000;
+        gActors[index0].unk_0xB4 = temp;
+        gActors[index0].unk_0xB8 = temp;
+        gActors[index0].unk_0x154 = gActors[index1].unk_0x160;
+        gActors[index0].unk_0x158 = 0x20000;
+        gActors[index0].unk_0x15C = 0x14;
     }
 }
 #else
@@ -300,13 +300,13 @@ void func_80777EA8(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_80778110.s")
 
-void func_80778214(uint16_t indexL, uint16_t indexR) {
-    Actor* actor = &gActors[indexR];
+void func_80778214(uint16_t index0, uint16_t index1) {
+    Actor* actor = &gActors[index1];
     actor->unk_0xD2 = 0x45;
-    Actor_Spawn(indexR);
-    actor->pos.x = gActors[indexL].pos.x;
-    actor->pos.y = gActors[indexL].pos.y;
-    actor->unk_0xEC = gActors[indexL].unk_0x148 * 131072.0f;
+    Actor_Spawn(index1);
+    actor->pos.x = gActors[index0].pos.x;
+    actor->pos.y = gActors[index0].pos.y;
+    actor->unk_0xEC = gActors[index0].unk_0x148 * 131072.0f;
     actor->unk_0xF0 = 0x30000;
     actor->unk_0x110 = D_801B01C0;
     actor->unk_0xD8 = 2;

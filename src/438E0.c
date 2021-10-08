@@ -1,6 +1,6 @@
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_80042CE0(void) {}
@@ -282,10 +282,10 @@ void func_8004495C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
 
 void func_80045500(void) {
-    uint16_t i;
-    for (i = 0; i < 16; i++) {
-        D_800D36DC[i] = 0;
-        D_800D36FC[i] = 0;
+    uint16_t index;
+    for (index = 0; index < 16; index++) {
+        D_800D36DC[index] = 0;
+        D_800D36FC[index] = 0;
     }
 }
 
@@ -294,8 +294,10 @@ void func_80045500(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
 int16_t func_800456DC(void) {
-    if ((gStageTimeReal & 32))
+    if ((gStageTimeReal & 32)) {
         return (0xf - (gStageTimeReal & 0x1f));
+    }
+
     return ((gStageTimeReal & 0x1f) - 0xf);
 }
 
@@ -381,19 +383,26 @@ void func_800463C0(void) {
     func_800462F0();
     D_800BE568 = D_800BE558._hi - 0x90;
 }
-/*
+
+#ifdef NON_MATCHING
 int32_t func_800463F0(void){
-    if ((!D_800D28FC&0x1000)&&(func_8005DEFC()==0)) return 0;
+    if ((!D_800D28FC & 0x1000) && func_8005DEFC() == 0) {
+        return 0;
+    }
+
     return 1;
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
+#endif
 
 void func_80046434(void) {
-    if (gPlayerActor.flag & 0x20)
+    if (gPlayerActor.flag & 0x20) {
         D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
-    else
+    }
+    else {
         D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046498.s")
@@ -416,8 +425,9 @@ void func_80046A30(void) {
     func_800286C8();
 
     for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
-        if ((gActors[index].flag & ACTOR_FLAG_UNK19))
+        if ((gActors[index].flag & ACTOR_FLAG_UNK19)) {
             gActors[index].flag = 0;
+        }
     }
 }
 
@@ -434,6 +444,7 @@ int32_t func_80046E6C(void) {
         D_800D2938 = 0;
         return 1;
     }
+
     return 0;
 }
 
@@ -510,6 +521,7 @@ void func_80047958(void) {
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }
+
 #ifdef NON_MATCHING
 void func_80047994() {
     D_800BE4EC = 1;
@@ -520,8 +532,9 @@ void func_80047994() {
         func_8005DFC8(0);
         D_800D16C4 = 0;
         SFX_StopAll();
-        if (D_800D28E4 == 98)
+        if (D_800D28E4 == 98) {
             func_80047958();
+        }
     }
     D_800D28E4 = D_800D28F0;
 }

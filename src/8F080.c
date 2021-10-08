@@ -1,7 +1,7 @@
 #include "common.h"
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
@@ -195,27 +195,27 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
 
 #ifdef NON_MATCHING
-void func_80096A70(uint16_t i) {
-    gActors[(i + 1)].unk_0xD8 = 2;
-    func_800902B0(i);
+void func_80096A70(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 2;
+    func_800902B0(index);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A70.s")
 #endif
 
 #ifdef NON_MATCHING
-void func_80096AC4(uint16_t i) {
-    gActors[i + 1].unk_0xD8 = 3;
-    func_800902B0(i);
+void func_80096AC4(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 3;
+    func_800902B0(index);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096AC4.s")
 #endif
 
 #ifdef NON_MATCHING
-void func_80096B18(float f1, float f2, uint16_t i) {
-    gActors[i + 1].unk_0xD8 = 5;
-    func_800902B0(f1, f2, i);
+void func_80096B18(float f1, float f2, uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 5;
+    func_800902B0(f1, f2, index);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096B18.s")

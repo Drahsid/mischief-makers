@@ -1,6 +1,6 @@
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80021690.s")
@@ -166,7 +166,7 @@ void func_800232A4(void) {
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
-    YelloGemBitfeildTemp = gYellowGemBitfeild;
+    gYellowGemBitfeildTemp = gYellowGemBitfeild;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameSubState = 0;
 }

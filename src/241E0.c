@@ -1,9 +1,9 @@
-#include <BGM.h>
-#include <actor.h>
-#include <common.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "BGM.h"
+#include "actor.h"
+#include "common.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_800235E0(void) {
@@ -223,6 +223,7 @@ void func_80024DA8(void) {
     D_800BE708 = 1;
     D_800BE588 = 3;
 }
+
 #ifdef NON_MATCHING
 void func_80024DD8(void) {
     uint16_t* x = D_800CC228;
@@ -710,6 +711,7 @@ void func_80028C00(uint16_t x) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80028E1C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029044.s")
+
 #ifdef NON_MATCHING
 void func_80029134(uint16_t i) {
     gActors[i].flag &= ~0x00011000;
@@ -724,6 +726,7 @@ void func_80029134(uint16_t i) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029134.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800291AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800294E0.s")
@@ -747,6 +750,7 @@ uint32_t func_80029650(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029678.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029798.s")
+
 #ifdef NON_MATCHING
 int32_t func_8002981C(int32_t A, int32_t B, int32_t C) {
     int32_t D = A - B;
@@ -761,6 +765,7 @@ int32_t func_8002981C(int32_t A, int32_t B, int32_t C) {
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002981C.s")
+
 #endif
 #ifdef NON_MATCHING
 float func_80029860(float A, float B, float C) {
@@ -777,7 +782,9 @@ float func_80029860(float A, float B, float C) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029860.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800298D0.s")
+
 #ifdef NON_MATCHING
 int32_t func_8002995C(int32_t A, int32_t B) {
     if (A > B) {
@@ -792,6 +799,7 @@ int32_t func_8002995C(int32_t A, int32_t B) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002995C.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800299B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80029A7C.s")
@@ -826,21 +834,29 @@ uint16_t func_80029FB8(uint16_t i, int16_t x1, int16_t x2, int16_t y1, int16_t y
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002A018.s")
 
-int32_t func_8002A090(int32_t A, int32_t B) {
-    if (B < 0)
-        B = -B;
-    if (B < A)
-        A = B;
-    if (A < -B)
-        A = -B;
-    return A;
+int32_t func_8002A090(int32_t a, int32_t b) {
+    if (b < 0) {
+        b = -b;
+    }
+    if (b < a) {
+        a = b;
+    }
+    if (a < -b) {
+        a = -b;
+    }
+
+    return a;
 }
+
 void func_8002A0C4(uint16_t i, int32_t x) {
-    if (gActors[i].flag & 0x20)
+    if (gActors[i].flag & 0x20) {
         gActors[i].unk_0xEC = -x;
-    else
+    }
+    else {
         gActors[i].unk_0xEC = x;
+    }
 }
+
 void func_8002A118(uint16_t i, int32_t x) {
     gActors[i].unk_0xEC = func_8002A090(gActors[i].unk_0xEC, x);
 }
@@ -946,22 +962,30 @@ void func_8002ACFC(uint16_t i, int16_t x, int16_t y) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AD7C.s")
+
 #ifdef NON_MATCHING
 uint8_t func_8002AE44(int16_t x, int16_t y) {
     if (-1 < y) {
         y += x;
-        if (255 < y)
+
+        if (255 < y) {
             return 255;
+        }
+
         return y;
     }
-    if (x <= -y)
+
+    if (x <= -y) {
         return 0;
+    }
+
     return x + y;
 }
 
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002AE44.s")
 #endif
+
 void func_8002AEB4(uint16_t i, uint8_t col) { // uniform grayscale.
     gActors[i].rgba.r = col;
     gActors[i].rgba.g = col;
@@ -980,8 +1004,9 @@ void func_8002AF7C(uint16_t i, uint16_t arg1, int16_t arg2) {
         gActors[i].rgba.g = 0x7f;
         gActors[i].rgba.b = 0x7f;
     }
-    else
+    else {
         func_8002AEF8(i, arg2);
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B010.s")
@@ -997,6 +1022,7 @@ void func_8002B1D0(uint16_t i, int16_t y) {
     gActors[i].rgba.g = func_8002981C(gActors[i].rgba.g, 0, y);
     gActors[i].rgba.b = func_8002981C(gActors[i].rgba.b, 0, y);
 }
+
 #ifdef NON_MATCHING
 void func_8002B25C(uint16_t i, int16_t y) {
     uint8_t C;
@@ -1008,21 +1034,24 @@ void func_8002B25C(uint16_t i, int16_t y) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B25C.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B2D0.s")
+
 #ifdef NON_MATCHING
 void func_8002B330(uint16_t i) {
-    uint8_t C;
+    uint8_t c;
+
     if (D_800BE4E0 & 4) {
-        C = func_8002B010(i, gActors[i].rgba.r, 64);
-        gActors[i].rgba.r = C;
-        gActors[i].rgba.g = C;
-        gActors[i].rgba.b = C;
+        c = func_8002B010(i, gActors[i].rgba.r, 64);
+        gActors[i].rgba.r = c;
+        gActors[i].rgba.g = c;
+        gActors[i].rgba.b = c;
     }
     else {
-        C = func_8002B010(i, gActors[i].rgba.r, -64);
-        gActors[i].rgba.r = C;
-        gActors[i].rgba.g = C;
-        gActors[i].rgba.b = C;
+        c = func_8002B010(i, gActors[i].rgba.r, -64);
+        gActors[i].rgba.r = c;
+        gActors[i].rgba.g = c;
+        gActors[i].rgba.b = c;
     }
 }
 #else
@@ -1031,7 +1060,8 @@ void func_8002B330(uint16_t i) {
 
 #ifdef NON_MATCHING
 void func_8002B400(uint16_t i) {
-    uint8_t C;
+    uint8_t c;
+
     if (D_800BE4E0 & 4) {
         gActors[i].rgba.r = func_8002B010(i, gActors[i].rgba.r, 64);
         gActors[i].rgba.g = 0;
@@ -1039,9 +1069,9 @@ void func_8002B400(uint16_t i) {
     }
     else {
         gActors[i].rgba.r = 0;
-        C = func_8002B010(i, gActors[i].rgba.g, -64);
-        gActors[i].rgba.g = C;
-        gActors[i].rgba.b = C;
+        c = func_8002B010(i, gActors[i].rgba.g, -64);
+        gActors[i].rgba.g = c;
+        gActors[i].rgba.b = c;
     }
 }
 #else
@@ -1057,10 +1087,11 @@ void func_8002B400(uint16_t i) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B7B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B7F4.s")
+
 #ifdef NON_MATCHING
 void func_8002B82C(uint16_t* arg0, int16_t* arg1, int16_t arg2, int16_t arg3, int16_t arg4, int16_t arg5) {
-    uint16_t i;
-    for (i = arg2; 0 < i; i--) {
+    uint16_t index;
+    for (index = arg2; 0 < index; index--) {
         *arg1++ = func_8002B5A0(*arg0++, arg3, arg4, arg5);
     }
 }
@@ -1068,40 +1099,49 @@ void func_8002B82C(uint16_t* arg0, int16_t* arg1, int16_t arg2, int16_t arg3, in
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B82C.s")
 #endif
 
-int32_t func_8002B8F0(uint16_t i, uint16_t dmg) {
-    if (gActors[i].health <= dmg) {
-        gActors[i].health = 0;
+int32_t func_8002B8F0(uint16_t index, uint16_t dmg) {
+    if (gActors[index].health <= dmg) {
+        gActors[index].health = 0;
         return 0;
     }
-    gActors[i].health -= dmg;
+    gActors[index].health -= dmg;
     return 1;
 }
 
-int32_t func_8002B954(uint16_t i, uint16_t x) {
+int32_t func_8002B954(uint16_t index, uint16_t arg1) {
     if (D_800BE4D8 == 0) {
-        if (x & 0x80)
+        if (arg1 & 0x80) {
             return 1;
-        if ((x & 0x40) && (gActors[i].unk_0xF0 < 0))
+        }
+
+        if ((arg1 & 0x40) && (gActors[index].unk_0xF0 < 0)) {
             return 1;
+        }
     }
     return 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002B9D8.s")
 
-int32_t func_8002BACC(uint16_t unk, uint16_t x) {
-    if ((D_800BE4D8 == 0) && (x & 0x80))
+int32_t func_8002BACC(uint16_t arg0, uint16_t arg1) {
+    if ((D_800BE4D8 == 0) && (arg1 & 0x80)) {
         return 1;
+    }
+
     return 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002BB04.s")
+
 #ifdef NON_MATCHING
 // RegAlloc?
-uint8_t func_8002BC10(uint16_t i) {
-    uint16_t x = func_80012C04(gActors[i].pos.x, gActors[i].pos.y) & 0x7F;
-    if ((x == 50) || (x == 54))
+uint8_t func_8002BC10(uint16_t index) {
+    uint16_t x = func_80012C04(gActors[index].pos.x, gActors[index].pos.y) & 0x7F;
+
+    if ((x == 50) || (x == 54)) {
         x = 0;
+    }
+
     return x;
 }
 #else
@@ -1129,13 +1169,17 @@ void func_8002C1E0(uint16_t* x, uint16_t* y, uint16_t z) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C328.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C3C8.s")
+
 #ifdef NON_MATCHING
-void func_8002C510(uint16_t i) {
-    if (gActors[i].flag & 0x80 == 0)
-        func_8002AEB4(i, gActors[i].unk_0x154 - 8);
-    else
-        func_8002AEB4(i, gActors[i].unk_0x154 + 6);
-    func_8002AC30(i, *(int16_t*)(gActors[i].unk_0x158 + 2)); // that's why we'll call it a union.
+void func_8002C510(uint16_t index) {
+    if (gActors[index].flag & 0x80 == 0) {
+        func_8002AEB4(index, gActors[index].unk_0x154 - 8);
+    }
+    else {
+        func_8002AEB4(index, gActors[index].unk_0x154 + 6);
+    }
+
+    func_8002AC30(index, *(int16_t*)(gActors[index].unk_0x158 + 2)); // that's why we'll call it a union.
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002C510.s")
@@ -1178,47 +1222,53 @@ void func_8002C510(uint16_t i) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002E89C.s")
 
 const float D_800EB904 = 0.8;
-void func_8002EBB8(uint16_t i, int16_t x, int16_t y, int32_t A, int32_t B) {
-    float f;
-    gActors[i].unk_0xD2 = 0x2602;
-    Actor_Spawn(i);
-    f = D_800EB904;
-    gActors[i].unk_0x94 = 9;
-    gActors[i].flag = 7;
-    gActors[i].unk_0x84 = 0x24A;
-    gActors[i].unk_0xCE = 5;
-    gActors[i].unk_0xDF = 0;
-    gActors[i].unk_0xDA = 4;
-    gActors[i].unk_0xDB = 4;
-    gActors[i].unk_0xB4 = f;
-    gActors[i].unk_0xB8 = f;
-    func_8002ABE4(i, 4);
-    func_8002AC30(i, 8);
-    gActors[i].health = 1;
-    gActors[i].unk_0xE4 = 30;
-    gActors[i].pos.x = x;
-    gActors[i].pos.y = y;
-    gActors[i].unk_0xEC = A;
-    gActors[i].unk_0xF0 = B;
+
+void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
+    float temp;
+
+    gActors[index].unk_0xD2 = 0x2602;
+    Actor_Spawn(index);
+
+    temp = D_800EB904;
+    gActors[index].unk_0x94 = 9;
+    gActors[index].flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK2;
+    gActors[index].unk_0x84 = 0x24A;
+    gActors[index].unk_0xCE = 5;
+    gActors[index].unk_0xDF = 0;
+    gActors[index].unk_0xDA = 4;
+    gActors[index].unk_0xDB = 4;
+    gActors[index].unk_0xB4 = temp;
+    gActors[index].unk_0xB8 = temp;
+
+    func_8002ABE4(index, 4);
+    func_8002AC30(index, 8);
+
+    gActors[index].health = 1;
+    gActors[index].unk_0xE4 = 30;
+    gActors[index].pos.x = x;
+    gActors[index].pos.y = y;
+    gActors[index].unk_0xEC = A;
+    gActors[index].unk_0xF0 = B;
 }
 
-void func_8002ECAC(uint16_t i, int16_t x, int16_t y, int32_t A, int32_t B) {
-    gActors[i].unk_0xD2 = 0x2600;
-    Actor_Spawn(i);
-    gActors[i].pos.x = x;
-    gActors[i].pos.y = y;
-    gActors[i].unk_0xEC = A;
-    gActors[i].unk_0xF0 = B;
+void func_8002ECAC(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
+    gActors[index].unk_0xD2 = 0x2600;
+    Actor_Spawn(index);
+    gActors[index].pos.x = x;
+    gActors[index].pos.y = y;
+    gActors[index].unk_0xEC = A;
+    gActors[index].unk_0xF0 = B;
 }
 
 void func_8002ED34(uint16_t i, int16_t x, int16_t y, int32_t z) {}
+
 #ifdef NON_MATCHING
-void func_8002ED48(uint16_t i, int16_t x, int16_t y) {
-    gActors[i].unk_0xD2 = 0x2603;
-    Actor_Spawn(i);
-    gActors[i].health = 10;
-    gActors[i].pos.x = x;
-    gActors[i].pos.y = y;
+void func_8002ED48(uint16_t index, int16_t x, int16_t y) {
+    gActors[index].unk_0xD2 = 0x2603;
+    Actor_Spawn(index);
+    gActors[index].health = 10;
+    gActors[index].pos.x = x;
+    gActors[index].pos.y = y;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002ED48.s")
@@ -1237,12 +1287,14 @@ void func_8002ED48(uint16_t i, int16_t x, int16_t y) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F420.s")
 
 
-void RedGem_Cap(void) {
-    if (gRedGems >= 9999)
+void RedGem_Clamp(void) {
+    if (gRedGems >= 9999) {
         gRedGems = 9999;
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002F6D4.s")
+
 #ifdef NON_MATCHING
 void gem_collision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int16_t arg4) {
     uint16_t temp_v1;
@@ -1251,7 +1303,7 @@ void gem_collision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int
 
     if (arg2 == &Data_RedGem) {
         gRedGems++;
-        RedGem_Cap();
+        RedGem_Clamp();
         func_8003FB20(arg0, 0, 1.0, arg3, (int32_t)arg4, (int32_t)((gPlayerActorIndex * 0x198) + 0x800F0000)->unk - A60);
         if (arg1 != 0) {
             func_80003828(0x57, arg0);
@@ -1301,7 +1353,6 @@ void gem_collision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int
     }
     func_800036C8(0x125, arg0);
 }
-
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/GemCollision.s")
 #endif
@@ -1322,26 +1373,26 @@ void gem_collision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80030A24.s")
 
-void func_80030A74(uint16_t i) {
+void func_80030A74(uint16_t index) {
     if (D_800BE4E0 & 1) {
-        gActors[i].rgba.r = 0x7f;
-        gActors[i].rgba.g = 0x7f;
-        gActors[i].rgba.b = 0x7f;
+        gActors[index].rgba.r = 0x7f;
+        gActors[index].rgba.g = 0x7f;
+        gActors[index].rgba.b = 0x7f;
     }
     else {
-        gActors[i].rgba.r = 0x4f;
-        gActors[i].rgba.g = 0x4f;
-        gActors[i].rgba.b = 0x4f;
+        gActors[index].rgba.r = 0x4f;
+        gActors[index].rgba.g = 0x4f;
+        gActors[index].rgba.b = 0x4f;
     }
 }
 
 #ifdef NON_MATCHING
-void func_80030B0C(uint16_t i) {
-    if (gActors[i].unk_0x104 > 1) {
-        gActors[i].unk_0x104--;
+void func_80030B0C(uint16_t index) {
+    if (gActors[index].unk_0x104 > 1) {
+        gActors[index].unk_0x104--;
     }
     else
-        gActors[i].rgba.a = func_8002AE44(gActors[i].rgba.a, (int16_t)gActors[i].unk_0x108 + 2);
+        gActors[index].rgba.a = func_8002AE44(gActors[index].rgba.a, (int16_t)gActors[index].unk_0x108 + 2);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80030B0C.s")
@@ -1397,28 +1448,34 @@ void func_800313CC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8003141C.s")
 
 uint16_t func_80031CAC(uint16_t arg0, int32_t x, int32_t y, int32_t z) {
-    uint16_t i = func_80028528();
-    if (i) {
-        gActors[i].unk_0xD2 = 0x34;
-        Actor_Spawn(i);
-        gActors[i].flag = 3;
-        gActors[i].unk_0x84 = arg0;
-        gActors[i].pos.x_w = x;
-        gActors[i].pos.y_w = y;
-        gActors[i].pos.z_w = z;
-        gActors[i].unk_0x148 = 1.0;
+    uint16_t index = func_80028528();
+
+    if (index) {
+        gActors[index].unk_0xD2 = 0x34;
+        Actor_Spawn(index);
+        gActors[index].flag = 3;
+        gActors[index].unk_0x84 = arg0;
+        gActors[index].pos.x_w = x;
+        gActors[index].pos.y_w = y;
+        gActors[index].pos.z_w = z;
+        gActors[index].unk_0x148 = 1.0;
     }
-    return i;
+
+    return index;
 }
-void func_80031D58(uint16_t A, uint16_t B) {
-    if (B < A)
-        gActors[B].unk_0x148 = 0.0;
-    else
-        gActors[B].unk_0x148 = 1.0;
+void func_80031D58(uint16_t arg0, uint16_t index) {
+    if (index < arg0) {
+        gActors[index].unk_0x148 = 0.0;
+    }
+    else {
+        gActors[index].unk_0x148 = 1.0;
+    }
 }
+
 #ifdef NON_MATCHING
-void func_80031DDC(uint16_t i) {
-    Actor* actor = &gActors[i];
+void func_80031DDC(uint16_t index) {
+    Actor* actor = &gActors[index];
+
     if (actor->unk_0x148 = 0.0) {
         actor->flag = 0;
     }
@@ -1455,14 +1512,17 @@ void func_80031DDC(uint16_t i) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800337F4.s")
 
 void func_800338F4(int16_t arg0, int16_t arg1, int16_t arg2) {
-    if ((D_800BE4E0 & 0x0F) == 0)
+    if ((D_800BE4E0 & 0x0F) == 0) {
         func_800337F4(arg0, arg1, arg2, 0x132);
+    }
 }
 
-uint16_t D_800D2294[4] = {0x136, 0x138, 0x13A, 0x13A};
+uint16_t D_800D2294[4] = { 0x136, 0x138, 0x13A, 0x13A };
+
 void func_80033948(int16_t arg0, int16_t arg1, int16_t arg2) {
-    if ((D_800BE4E0 & 0x0F) == 0)
+    if ((D_800BE4E0 & 0x0F) == 0) {
         func_800337F4(arg0, arg1, arg2, D_800D2294[Rand() & 3]);
+    }
 }
 
 void func_800339AC(int16_t arg0, int16_t arg1, int16_t arg2) {}
@@ -1700,12 +1760,13 @@ void func_8003F9CC(float f, uint16_t a, uint16_t b, uint32_t c) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004023C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800404AC.s")
+
 #ifdef NON_MATCHING
-void func_80040564(uint16_t param_1) {
-    if (gActors[param_1].unk_0xD0_h == 0) {
-        gActors[param_1].flag = 0x9183;
+void func_80040564(uint16_t index) {
+    if (gActors[index].unk_0xD0_h == 0) {
+        gActors[index].flag = 0x9183;
     }
-    else if (gActors[param_1].unk_0xD0_h != 1) {
+    else if (gActors[index].unk_0xD0_h != 1) {
         return;
     }
 }
@@ -1716,29 +1777,38 @@ void func_80040564(uint16_t param_1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800405C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800406A4.s")
+
 #ifdef NON_MATCHING
-int32_t func_800407D4(uint16_t x) {
-    if (x == D_800D5820) {
-        if (D_800D5824 == 0x800)
+int32_t func_800407D4(uint16_t arg0) {
+    if (arg0 == D_800D5820) {
+        if (D_800D5824 == 0x800) {
             return 0x800;
-        if (D_800D5824 == 0x1000)
+        }
+        if (D_800D5824 == 0x1000) {
             return 0x1000;
-        if (D_800D5824 == 0x2000)
+        }
+        if (D_800D5824 == 0x2000) {
             return 0x2000;
-        if (D_800D5824 == 0x4000)
+        }
+        if (D_800D5824 == 0x4000) {
             return 0x4000;
-        if (D_800D5824 == 0x8000)
+        }
+        if (D_800D5824 == 0x8000) {
             return 0x8000;
+        }
     }
+
     return 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800407D4.s")
 #endif
+
 #ifdef NON_MATCHING
 void func_80040858(int16_t arg0) {
-    if ((arg0 == D_800D5820) && (func_8005DEFC()))
+    if ((arg0 == D_800D5820) && (func_8005DEFC())) {
         func_8005DFC8(0);
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80040858.s")
@@ -1752,20 +1822,26 @@ int32_t func_800409E0(uint16_t index) {
         gActors[index].unk_0xD0_h < 0x51) {
         return 1;
     }
+
     return 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800409E0.s")
 #endif
+
 #ifdef NON_MATCHING
 int32_t func_80040A64(void) {
     int32_t ret;
-    if (gPlayerActorIndex == 0)
+
+    if (gPlayerActorIndex == 0) {
         ret = func_80048CE4();
-    else {
-        if (D_800D2954 > 0)
-            ret = func_800409E0(gPlayerActorIndex);
     }
+    else {
+        if (D_800D2954 > 0) {
+            ret = func_800409E0(gPlayerActorIndex);
+        }
+    }
+
     return ret;
 }
 #else
@@ -1773,15 +1849,15 @@ int32_t func_80040A64(void) {
 #endif
 
 #ifdef NON_MATCHING
-void FUN_80040ab4(uint16_t param_1) {
-    gActors[param_1].field_0x94 = 0x205;
-    gActors[param_1].flag = 0x1003;
-    gActors[param_1].field_0x84 = 0x1a8;
-    *(undefined*)&gActors[param_1].field_0xdf = 0x40;
-    FUN_8002ac30(param_1, 10);
-    *(undefined2*)(gActors[param_1].pos + 2) = 0xffff;
-    gActors[param_1].field_0x10c[4] = 1.0;
-    gActors[param_1].field_0x120 = 255.0;
+void FUN_80040ab4(uint16_t index) {
+    gActors[index].field_0x94 = 0x205;
+    gActors[index].flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK12;
+    gActors[index].field_0x84 = 0x1a8;
+    *(uint8_t*)&gActors[index].field_0xdf = 0x40;
+    func_8002AC30(index, 10);
+    *(uint16_t*)(gActors[index].pos + 2) = 0xffff;
+    gActors[index].field_0x10c[4] = 1.0;
+    gActors[index].field_0x120 = 255.0;
     return;
 }
 #else
@@ -1798,41 +1874,47 @@ void FUN_80040ab4(uint16_t param_1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004168C.s")
 
-void func_8004172C(uint16_t i, uint16_t* pos) {
-    gActors[i].pos.x = pos[0] - D_800BE558._hi;
-    gActors[i].pos.y = pos[1] - D_800BE55C._hi;
+void func_8004172C(uint16_t index, uint16_t* pos) {
+    gActors[index].pos.x = pos[0] - D_800BE558._hi;
+    gActors[index].pos.y = pos[1] - D_800BE55C._hi;
 }
 
 #ifdef NON_MATCHING
-void func_8004178C(uint16_t i, uint16_t* pos) {
-    if (gActors[i].unk_0x174)
-        func_8004172C(gActors[i].unk_0x174, pos);
+void func_8004178C(uint16_t index, uint16_t* pos) {
+    if (gActors[index].unk_0x174)
+        func_8004172C(gActors[index].unk_0x174, pos);
     else {
         func_8004172C(0, pos);
-        gPlayerPosXMirror._hi = D_800BE558._hi + gActors[0].pos.x;
-        gPlayerPosXMirror._hi = D_800BE55C._hi + gActors[0].pos.y;
-        gActors[0].flag &= ~0x20;
-        if ((pos[2] & 1))
-            gActors[0].flag |= 0x20;
+        gPlayerPosXMirror._hi = D_800BE558._hi + gPlayerActor.pos.x;
+        gPlayerPosXMirror._hi = D_800BE55C._hi + gPlayerActor.pos.y;
+
+        gPlayerActor.flag &= ~ACTOR_FLAG_FLIPPED;
+        if ((pos[2] & 1)) {
+            gPlayerActor.flag |= ACTOR_FLAG_FLIPPED;
+        }
     }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8004178C.s")
 #endif
 
-int32_t func_8004185c(uint16_t i) {
-    if (gActors[i].unk_0xD0_h == 2)
+int32_t func_8004185c(uint16_t index) {
+    if (gActors[index].unk_0xD0_h == 2) {
         return 1;
+    }
+
     return 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800418A8.s")
 
-int32_t func_80042290(uint16_t i) {
-    if ((gActors[i].unk_0xD2 == 0x90C) && ((gActors[i].flag & 2))) {
-        if ((gActors[i].unk_0x188 & 0x8000) == 0)
+int32_t func_80042290(uint16_t index) {
+    if (gActors[index].unk_0xD2 == 0x90C && (gActors[index].flag & ACTOR_FLAG_ACTIVE)) {
+        if ((gActors[index].unk_0x188 & 0x8000) == 0) {
             return 1;
+        }
     }
+
     return 0;
 }
 
@@ -1847,8 +1929,8 @@ void func_80042348(uint16_t i) {}
 void func_80042350(uint16_t i) {}
 void func_80042358(uint16_t i) {}
 
-void func_80042360(uint16_t i) {
-    gActors[i].unk_0xD0_h++;
+void func_80042360(uint16_t index) {
+    gActors[index].unk_0xD0_h++;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800423A0.s")
@@ -1861,19 +1943,20 @@ void func_80042360(uint16_t i) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042A0C.s")
 
-
 void func_80042AEC(uint16_t i) {
     func_80042864(i);
     func_800423A0(i);
     func_800427E0(i);
 }
+
 #ifdef NON_MATCHING
-void func_80042B2C(uint16_t i) {
-    if (0 <= gActors[i].unk_0x110) {
-        gActors[i].unk_0xD0_h -= 2;
+void func_80042B2C(uint16_t index) {
+    if (0 <= gActors[index].unk_0x110) {
+        gActors[index].unk_0xD0_h -= 2;
     }
-    else
-        gActors[i].flag = 0;
+    else {
+        gActors[index].flag = 0;
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80042B2C.s")

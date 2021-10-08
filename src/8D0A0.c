@@ -1,7 +1,7 @@
 #include "common.h"
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_8008C4A0(uint32_t x) {}
@@ -12,10 +12,10 @@ void func_8008C4C8(uint32_t x) {}
 void func_8008C4D0(uint32_t x) {}
 void func_8008C4D8(uint32_t x) {}
 
-void func_8008C4E0(uint16_t i) {
-    gActors[i].rgba.b = 0;
-    gActors[i].rgba.g = 0;
-    gActors[i].rgba.r = 0;
+void func_8008C4E0(uint16_t index) {
+    gActors[index].rgba.b = 0;
+    gActors[index].rgba.g = 0;
+    gActors[index].rgba.r = 0;
     D_80137420 = 0;
 }
 
@@ -65,25 +65,25 @@ void func_8008C4E0(uint16_t i) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D99C.s")
 
-uint32_t func_8008DA24(uint16_t i) {
-    return func_8008D480(i);
+uint32_t func_8008DA24(uint16_t arg0) {
+    return func_8008D480(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DA4C.s")
 
-void StartContinueMode(uint16_t i) {
+void StartContinueMode(uint16_t index) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        gActors[i].flag = 0;
-        gActors[i].unk_0xD0_h = 0;
+        gActors[index].flag = 0;
+        gActors[index].unk_0xD0_h = 0;
         gGameState = GAMESTATE_CONTINUE;
         gGameSubState = 0;
-        gActors[i].unk_0xEC = 0;
-        gActors[i].unk_0xF0 = 0;
-        gActors[i].unk_0xF4 = 0;
+        gActors[index].unk_0xEC = 0;
+        gActors[index].unk_0xF0 = 0;
+        gActors[index].unk_0xF4 = 0;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/Check_for_player_death.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/Check_For_Player_Death.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DE20.s")
 

@@ -1,15 +1,19 @@
 #ifndef GAME_SAVE_H
 #define GAME_SAVE_H
 
-#include <inttypes.h>
+#include "inttypes.h"
 #include <ultra64.h>
 
-extern uint16_t gGameSave_Names[2][11];
-extern uint8_t gGameSave_Age[2];
-extern uint8_t gGameSave_Sex[2];
-extern uint16_t gGameSave_RedGems[2];
-extern uint16_t gGameSave_YellowGems[2];
-extern uint64_t gGameSave_PlayTime[2]; // may be {u64;u32[2]} union.
+extern char gEEPROMID[8];
+extern uint16_t gTimeRecords[64]; // records for stage times.
+extern uint16_t gDefaultFileName[11]; // contains default "Start" filename
+
+extern uint16_t gFileNames[2][11];
+extern uint8_t gFileAges[2];
+extern uint8_t gFileSexes[2];
+extern uint16_t gFileRedGems[2];
+extern uint16_t gFileYellowGems[2];
+extern uint64_t gFilePlayTimes[2]; // may be {u64;u32[2]} union.
 extern uint32_t gFestivalRecords[7];
 
 extern uint16_t func_80004E70(int32_t lhs, uint32_t offset);

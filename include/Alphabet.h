@@ -1,3 +1,6 @@
+#ifndef ALPHABET_H
+#define ALPHABET_H
+
 // game uses a unique alphabet for the text that is 16 bits.
 
 #define ALPHA_SPACE 0x0000
@@ -145,3 +148,6 @@
 
 // there are also some leftover japanese characters. someone who knows the dialect can cover these?
 #define ALPHA_NULL 0x8FFF
+
+#endif
+

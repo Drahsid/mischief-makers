@@ -3,6 +3,7 @@
 
 #include "Alphabet.h"
 #include "inttypes.h"
+
 enum {
     GAMESTATE_SOFTRESET,
     GAMESTATE_INTRO,

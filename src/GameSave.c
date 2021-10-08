@@ -1,21 +1,24 @@
 #include "GameSave.h"
 #include "Alphabet.h"
-#include <SFX.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
+#include "SFX.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
 #include <ultra64.h>
 
+char gEEPROMID[8] = "TREA0722";
 
-char GameSave_EEPROMID[8] = "TREA0722";
+uint16_t gTimeRecords[64] = {
+    36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+    36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+    36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+    36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
+    36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000
+};
 
-uint16_t gTimeRecords[64] = {36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
-                             36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000};
-
-uint16_t GameSave_DefaultName[11] = {ALPHA_UPPER_S, ALPHA_LOWER_T, ALPHA_LOWER_A, ALPHA_LOWER_R, ALPHA_LOWER_T, ALPHA_SPACE,
-                                     ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_NULL};
+uint16_t gDefaultFileName[11] = {
+    ALPHA_UPPER_S, ALPHA_LOWER_T, ALPHA_LOWER_A, ALPHA_LOWER_R, ALPHA_LOWER_T, ALPHA_SPACE,
+    ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_NULL
+};
 
 // This function gets the lower 4 bits of the word lhs + (offset)
 // Difference is flipped instructions
@@ -46,11 +49,12 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
+
 #ifdef NON_MATCHING
 void GameSave_Initialize(uint8_t slot) {
     uint16_t index;
     for (index = 0; index < 11; index++) {
-        GameSave_Names[slot][i] = GameSave_DefaultName[i];
+        GameSave_Names[slot][i] = gDefaultFileName[i];
     }
 
     GameSave_Age[slot] = 0;
@@ -62,6 +66,7 @@ void GameSave_Initialize(uint8_t slot) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_Initialize.s")
 #endif
+
 // need to implicitly call __ll_lshift
 #ifdef NON_MATCHING
 void GameSave_SetDefaults(void) {
@@ -112,7 +117,7 @@ void GameSave_LoadRecords(void) {
 
 void func_80005770(void) {
     osEepromProbe(&gContMesgq);
-    osEepromLongWrite(&gContMesgq, 2, gGameSave_Names, 0x48);
+    osEepromLongWrite(&gContMesgq, 2, gFileNames, 0x48);
 
     if (gSaveSlotIndex) {
         osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
@@ -139,7 +144,7 @@ void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3)
 // Differences related to implicit casts
 #ifdef NON_MATCHING
 void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
-    uint16_t* red_gems = &gGameSave_RedGems[arg3];
+    uint16_t* red_gems = &gFileRedGems[arg3];
     func_80027800(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
     func_80027800(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
@@ -156,6 +161,7 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_8000607C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006360.s")
+
 #ifdef NON_MATCHING
 void func_80006B1C(uint16_t i) {
     uint16_t j;
@@ -171,6 +177,7 @@ void func_80006B1C(uint16_t i) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B1C.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006B9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
@@ -214,6 +221,7 @@ void func_80007578(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
+
 #ifdef NON_MATCHING
 // compiler refuses to recognize symbols
 void NameEntry_IsMaxed(void) {
@@ -227,6 +235,7 @@ void NameEntry_IsMaxed(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
+
 // Original Japanese version has 3 different character sets for name entry. All other regions have 1
 #ifdef NON_MATCHING
 void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
