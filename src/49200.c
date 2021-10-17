@@ -128,77 +128,69 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80049300.s")
 
-#ifdef NON_MATCHING
-// reordering is done, differences are regalloc and some issues related to the masked index in t6
-uint32_t func_80049460(uint32_t index) {
-    uint8_t temp_v0;
-
-    temp_v0 = func_80049300(index);
-
-    if (temp_v0 != 1) {
-        if (temp_v0 != 2) {
-            if (temp_v0 != 3) {
-                return 0;
+uint32_t func_80049460(uint16_t index) {
+    switch (func_80049300(index)) {
+        case 1: {
+            if ((gActors[index].unk_0x98 & 0x80) != 0) {
+                gActors[index].unk_0x140 = 0;
             }
-            goto block3;
+
+            if ((D_801373D8 & 2) != 0) {
+                gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
+            }
+
+            if ((D_801373D8 & 1) != 0) {
+                gActors[index].flag |= ACTOR_FLAG_FLIPPED;
+            }
+
+            if (gActors[index].unk_0xD1 != 0x16) {
+                gActors[index].unk_0x150 = 0;
+            }
+
+            gActors[index].unk_0xD0_h = 0x1F;
+
+            return 1;
+            break;
         }
-        goto block2;
+        case 2: {
+            if ((gActors[index].unk_0x98 & 0x80) != 0) {
+                gActors[index].unk_0x140 = 0;
+            }
+
+            if ((D_801373D8 & 2) != 0) {
+                gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
+            }
+
+            if ((D_801373D8 & 1) != 0) {
+                gActors[index].flag |= ACTOR_FLAG_FLIPPED;
+            }
+
+            if (gActors[index].unk_0xD1 != 0x16) {
+                gActors[index].unk_0x150 = 0;
+            }
+
+            gActors[index].unk_0xD0_h = 0x1F;
+
+            return 2;
+            break;
+        }
+        case 3: {
+            if ((D_801373D8 & 0x20) != 0) {
+                gActors[index].unk_0xD0_h = 0x2D;
+            }
+            else {
+                gActors[index].unk_0xD0_h = 0x2C;
+            }
+
+            return 3;
+            break;
+        }
+        default: {
+            return 0;
+            break;
+        }
     }
-    goto block1;
-
-block1:
-    if ((gActors[index].unk_0x98 & 0x80) != 0) {
-        gActors[index].unk_0x140 = 0;
-    }
-
-    if ((D_801373D8 & 2) != 0) {
-        gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-    }
-
-    if ((D_801373D8 & 1) != 0) {
-        gActors[index].flag |= ACTOR_FLAG_FLIPPED;
-    }
-
-    if (gActors[index].unk_0xD1 != 0x16) {
-        gActors[index].unk_0x150 = 0;
-    }
-
-    gActors[index].unk_0xD0_h = 0x1F;
-
-    return 1;
-
-block2:
-    if ((gActors[index].unk_0x98 & 0x80) != 0) {
-        gActors[index].unk_0x140 = 0;
-    }
-
-    if ((D_801373D8 & 2) != 0) {
-        gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-    }
-
-    if ((D_801373D8 & 1) != 0) {
-        gActors[index].flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK2 | ACTOR_FLAG_UNK3 | ACTOR_FLAG_UNK4;
-    }
-
-    if (gActors[index].unk_0xD1 != 0x16) {
-        gActors[index].unk_0x150 = 0;
-    }
-
-    gActors[index].unk_0xD0_h = 0x1F;
-    return 2;
-
-block3:
-    if ((D_801373D8 & 0x20) != 0) {
-        gActors[index].unk_0xD0_h = 0x2D;
-        return 3;
-    }
-
-    gActors[index].unk_0xD0_h = 0x2C;
-    return 3;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80049460.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80049660.s")
 

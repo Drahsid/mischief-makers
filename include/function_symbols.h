@@ -869,7 +869,7 @@ extern int32_t func_80049040(uint16_t index);
 extern void func_800490BC();
 extern int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2);
 extern uint8_t func_80049300(uint16_t arg0);
-extern uint8_t func_80049460(uint16_t index);
+extern uint32_t func_80049460(uint16_t index);
 extern void func_80049660();
 extern int32_t func_80049A04(uint16_t index);
 extern void func_80049AC0(uint16_t index);
