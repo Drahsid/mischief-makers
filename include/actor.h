@@ -73,9 +73,14 @@ typedef void (*ActorFunc)(uint16_t index);
  *  0x0CC: pos_x_4                  16
  *  0x0CE: pos_y_4                  16
  *  0x0D0: status                   16 // hope code can describe this better than I can
- *  0x0D2: type                     16 // effects the function of the actor, and what actor it is. Marina is 0x16; you can have multiple Marinas if you initialize more actors with this type (this is
- * how I made Mischief Makers Online) I want to properly document these. 0x0D4: iframes                  16 0x0D6: last_held_sprite         16 // might actually be index, we will see 0x0D8: flags_2 32
- * // unsure 0x0E0: hit_points               16 0x0E2: damage_queue             16 // probably incorrect 0x0E4: strength                 16 // probably incorrect 0x0E8: pointer                  32
+ *  0x0D2: type                     16 // effects the function of the actor, and what actor it is. Marina is 0x16; you can have multiple Marinas if you initialize more actors with this type (this is how I made Mischief Makers Online) I want to properly document these.
+ *  0x0D4: iframes                  16
+ *  0x0D6: last_held_sprite         16 // might actually be index, we will see
+ *  0x0D8: flags_2                  32 // unsure
+ *  0x0E0: hit_points               16
+ *  0x0E2: damage_queue             16 // probably incorrect
+ *  0x0E4: strength                 16 // probably incorrect
+ *  0x0E8: pointer                  32
  *  0x0EC: vel                      64 // uses same union type as pos
  *  0x0F4: vel_z                    32
  *  0x120: scale_xy                 32 // float

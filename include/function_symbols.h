@@ -4,10 +4,10 @@
 #include "actor.h"
 #include "inttypes.h"
 
+extern void entrypoint(void);
 extern void Framebuffer_Clear(void);
 extern void mainproc(int32_t arg0);
-void Thread_IdleProc(void* arg0);
-extern void entrypoint(void);
+extern void Thread_IdleProc(void* arg0);
 extern void Thread_MainProc(int32_t arg0);
 extern void Input_Update(void);
 extern uint32_t Input_GetFirstController();
@@ -58,11 +58,9 @@ extern void YellowGem_PrintProgress();
 extern void PauseGame_Tick();
 extern void GamePlay_Tick(void);
 extern void AttractMode_Tick(void);
-extern void RedGem_Cap();
+extern void RedGem_Clamp();
 extern void GemCollision();
 extern void Thread_RmonProc(void*);
-
-
 extern void func_800008E0();
 extern void func_80000A84(uint16_t arg0);
 extern int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes);
@@ -70,7 +68,6 @@ extern int32_t func_80001264(void);
 extern int32_t RomCopy_B(int32_t dir, void* vaddr, uint32_t nbytes);
 extern void func_800012F0(void);
 extern void func_8000147C(void);
-extern uint16_t Rand(void);
 extern void func_800017D0();
 extern void func_80001988();
 extern void func_80001A80();
@@ -136,7 +133,6 @@ extern uint8_t func_80012B28(int32_t x, int32_t y);
 extern uint8_t func_80012B88(int32_t x, int32_t y);
 extern uint8_t func_80012C04(int16_t, int16_t);
 extern void func_80012C50(uint16_t index, uint16_t arg1, uint16_t arg2);
-
 extern void func_80012CD4();
 extern void GamePlay_Continue_PayGems(uint16_t arg0);
 extern void GamePlay_Tick_Continue();
@@ -190,7 +186,7 @@ extern void func_80019FB4();
 extern void func_8001A15C();
 extern void func_8001A254();
 extern void func_8001A584();
-extern int16_t Get_TimeRank(uint16_t t, uint16_t s);
+extern int16_t Stage_GetTimeRank(uint16_t t, uint16_t s);
 extern void func_8001A7E0(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4);
 extern void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4);
 extern void func_8001A890();
@@ -230,11 +226,11 @@ extern int32_t func_8001E5E0(uint16_t, uint16_t, int32_t);
 extern int32_t func_8001E6F4(uint16_t, uint16_t, int32_t);
 extern void func_8001E808(int16_t arg0, int16_t arg1);
 extern void func_8001E814(int16_t arg0, int16_t arg1);
-extern void func_8001E8E4(uint16_t indexL, uint16_t indexR);
-extern void func_8001E964(uint16_t indexL, uint16_t indexR);
-extern void func_8001E9DC(uint16_t indexL, uint16_t indexR);
-extern void func_8001EADC(uint16_t indexL, uint16_t indexR);
-extern void func_8001EB8C(uint16_t indexL, uint16_t indexR);
+extern void func_8001E8E4(uint16_t index0, uint16_t index1);
+extern void func_8001E964(uint16_t index0, uint16_t index1);
+extern void func_8001E9DC(uint16_t index0, uint16_t index1);
+extern void func_8001EADC(uint16_t index0, uint16_t index1);
+extern void func_8001EB8C(uint16_t index0, uint16_t index1);
 extern void func_8001EC1C();
 extern void func_8001F88C();
 extern void func_8001FA78();
@@ -1808,7 +1804,7 @@ extern void func_807760F8(uint16_t index);
 extern void func_80777524(uint16_t index);
 extern void func_80777E5C(uint16_t index);
 extern void func_80777EA8(uint16_t index);
-extern void func_80778214(uint16_t indexL, uint16_t indexR);
+extern void func_80778214(uint16_t index0, uint16_t index1);
 extern void func_80778768(uint32_t index);
 
 #endif

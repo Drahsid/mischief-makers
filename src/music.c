@@ -1,12 +1,9 @@
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
-#include <ultra64.h>
+#include "music.h"
 
 // While this script contains general sound functions, it is named music.c after Assert found in code.
 
-ALCSPlayer gSFX_ALCPlayers[4];
-ALCSPlayer* SFX_pALCPlayers[4];
+ALCSPlayer gALCPlayers[4];
+ALCSPlayer* gPALCPlayers[4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaCallBack.s")
 
@@ -23,10 +20,10 @@ void Audio_DmaNew(void** arg0) {
 
         for (phi_s0 = &D_8016D9CC, phi_s1 = &D_8016D9B8; phi_s0 != 0x8016DEB8; phi_s0 += 2, phi_s1 += 2) {
             alLink(phi_s0, phi_s1);
-            phi_s1->next = alHeapDBAlloc(NULL, 0, &Sound_ALHeap, 1, 0x270);
+            phi_s1->next = alHeapDBAlloc(NULL, 0, &gALHeap, 1, 0x270);
         }
 
-        phi_s1[2].next = alHeapDBAlloc(0, 0, &Sound_ALHeap, 1, 0x270);
+        phi_s1[2].next = alHeapDBAlloc(0, 0, &gALHeap, 1, 0x270);
         D_8016D9A8.unk0 = 1U;
     }
     *arg0 = &D_8016D9A8;
@@ -46,13 +43,14 @@ void Sound_SetEventMesg(void) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_Tick.s")
+
 #ifdef NON_MATCHING
 void func_800028D0(void) {
     uint8_t index;
 
     osRecvMesg(&D_801377D0, 0, 1);
     D_8016E718 = (D_800C3838 - 1) % 3;
-    osAiSetNextBuffer(Sound_AIBuffers[D_8016E718], D_800C383C[D_8016E718] << 2);
+    osAiSetNextBuffer(gAIBuffers[D_8016E718], D_800C383C[D_8016E718] << 2);
     for (index = 0; index < D_800C3830; index++) {
         if (D_800C3830 > 0) {
             for (index = 0; index < D_800C3830; index++) {
@@ -70,6 +68,7 @@ void func_800028D0(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800028D0.s")
 #endif
+
 void func_800029EC(void) {
     osWritebackDCacheAll();
     osSpTaskLoad(D_8016E6F0);
@@ -85,39 +84,43 @@ void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/BGM_Play.s")
+
 #ifdef NON_MATCHING
 void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 arg4, uint8_t state, uint16_t arg6, uint16_t arg7) {
     gSFX_ChannelStates[chan] = state;
     D_80108DE0[chan] = arg6;
-    gSFXCurrentIndex[chan] = SFX_ID;
-    D_80104090[chan] = SFX2ByteArray[SFX_ID][1];
+    gSFX_CurrentIndex[chan] = SFX_ID;
+    D_80104090[chan] = gSFX_2ByteArray[SFX_ID][1];
     D_8010CDE8[chan] = arg7;
     D_801069D8[chan] = arg4;
     if ((-1 < arg3) && (arg3 < 257)) {
-        gSFX_Volumes[chan] = SFX2ByteArray[SFX_ID][0] * arg3;
+        gSFX_Volumes[chan] = gSFX_2ByteArray[SFX_ID][0] * arg3;
         return;
     }
-    gSFX_Volumes[chan] = SFX2ByteArray[SFX_ID][0] << 8;
+    gSFX_Volumes[chan] = gSFX_2ByteArray[SFX_ID][0] << 8;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
+
 #ifdef NON_MATCHING
 int32_t SFX_Stop(uint16_t id) {
     uint8_t index;
-    for (index = 0; gSFXCurrentIndex[index] != id || gSFX_ChannelStates[index] == 0; index++) {
+    for (index = 0; gSFX_CurrentIndex[index] != id || gSFX_ChannelStates[index] == 0; index++) {
         if (index > 3) {
             return -1;
         }
     }
 
-    alSeqpStop((ALSeqPlayer*)SFX_pALCPlayers[index]);
+    alSeqpStop((ALSeqPlayer*)gPALCPlayers[index]);
     return index;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Stop.s")
 #endif
+
 // main SFX playing wrapper
 void SFX_Play_1(uint32_t id) {
     SFX_Play_0(id, -1, -1, 0x81, 0xFF, 0);
@@ -272,14 +275,14 @@ void BGM_SFX_Stop(void) {
 }
 
 void BGM_Stop(void) {
-    alSeqpStop(BGM_pALCPlayer);
+    alSeqpStop(gBGM_pALCPlayer);
     bssStart = 0;
 }
 
 void SFX_StopAll(void) {
     uint8_t index;
     for (index = 0; index < 4; index++) {
-        alSeqpStop(SFX_pALCPlayers[index]);
+        alSeqpStop(gPALCPlayers[index]);
         gSFX_ChannelStates[index] = 0;
     }
 }

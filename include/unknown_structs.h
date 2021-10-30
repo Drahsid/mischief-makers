@@ -5,12 +5,6 @@
 #include <ultra64.h>
 
 typedef struct {
-    uint8_t unk_0x000[0xBC6];
-    uint8_t unk_0xBC6;
-    uint8_t unk_0xBC7;
-} struct_func_800188CC_gActors; // struct used in sound test
-
-typedef struct {
     uint8_t unk_0x00[0x2880];
     uint16_t unk_0x2880;
     uint16_t unk_0x2882;

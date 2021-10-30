@@ -1,7 +1,7 @@
-#include <actor.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "actor.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_8001DBA0(uint16_t* arg0, uint16_t index) {

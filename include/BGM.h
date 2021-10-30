@@ -1,6 +1,7 @@
-// BGM IDs, uses names from OST
 #ifndef BGM_H
 #define BGM_H
+
+// BGM IDs, uses names from OST
 
 #define BGM_OBAKESONG     0x00 // OBAKESONG バブー王とおばけねんどろ
 #define BGM_NEO           0x01 // NEO コチコチ山のねんどろ

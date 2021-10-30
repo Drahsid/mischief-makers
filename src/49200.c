@@ -1,24 +1,33 @@
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
+
 #ifdef NON_MATCHING
-uint16_t func_80048600(uint16_t i) {
+uint16_t func_80048600(uint16_t index) {
     uint16_t ret;
+
     if ((D_801370CC & gButton_DLeft) == 0) {
         ret = 0;
-        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[i].flag & 0x20))
+        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[index].flag & 0x20)) {
             ret = 0x82;
+        }
     }
     else {
         ret = 1;
-        if (gActors[i].flag & 0x20)
+        if (gActors[index].flag & 0x20) {
             ret = 0x81;
+        }
     }
-    if (D_801370CC & gButton_DDown)
+
+    if (D_801370CC & gButton_DDown) {
         ret |= 0x10;
-    if (D_801370CC & gButton_DUp)
+    }
+
+    if (D_801370CC & gButton_DUp) {
         ret |= 0x20;
+    }
+
     return ret;
 }
 #else
@@ -33,20 +42,27 @@ uint16_t func_80048600(uint16_t i) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
-int32_t D_800D5794[19] = {0x4000,  0x20000, 0x20000, 0x10000, 0x8000,  0x38000, 0x38000, 0x38000, 0x28000, 0x2666,
-                          0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000};
+int32_t D_800D5794[19] = {
+    0x4000,  0x20000, 0x20000, 0x10000, 0x8000,  0x38000, 0x38000, 0x38000, 0x28000, 0x2666,
+    0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000
+};
 
 int32_t func_80048C94(int32_t arg0) {
     return D_800D5794[arg0] * gPlayerActor.unk_0x120;
 }
 
 int32_t func_80048CE4() {
-    if (gPlayerActor.unk_0xD1 == 1)
+    if (gPlayerActor.unk_0xD1 == 1) {
         return 1;
-    if (gPlayerActor.unk_0xD1 < 46)
+    }
+
+    if (gPlayerActor.unk_0xD1 < 46) {
         return 0;
-    if (gPlayerActor.unk_0xD1 < 55)
+    }
+
+    if (gPlayerActor.unk_0xD1 < 55) {
         return 2;
+    }
 
     return 3;
 }
@@ -65,6 +81,7 @@ int32_t func_80049040(uint16_t index) {
     gActors[index].flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK14);
     gActors[index].flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23),
         gActors[index].flag |= ACTOR_FLAG_UNK17; // whitespace memes
+
     return 1;
 }
 

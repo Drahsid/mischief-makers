@@ -83,14 +83,14 @@ extern uint8_t gSFX_ChannelStates[];
 extern int16_t gSFX_Volumes[];
 extern uint16_t gInputHistoryPress[64]; // buffer of controller inputs
 extern Gfx* gDListHead;
-extern OSContStatus OSgContStatArray[4];
+extern OSContStatus gOSContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
 extern Gfx_Data gDListTail[2];
 extern uint32_t gPlayerControllerIndex;
 extern uint16_t gButtonCur;
 extern UNK_TYPE gTickDelta;
-extern ALCSPlayer* BGM_pALCPlayer;
+extern ALCSPlayer* gBGM_pALCPlayer;
 extern uint64_t gYellowGemBitfeild;
 extern uint8_t gWorldProgress;
 extern uint16_t gContinueChoice;
@@ -205,24 +205,20 @@ extern char* D_800BE84C[33];    // BGM titles left in data.
 extern char** D_800BEA4C[32];   // instrument names, and variations.
 extern char* D_800C1694[294];   // could help add to SFX.h
 extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
-extern char* SfxLabels[224];    // may be wrong.
+extern char* gSFX_Labels[224];    // may be wrong.
 extern uint16_t D_800C26DC[293];
-extern uint8_t SFX2ByteArray[294][2]; // table of volume and length(?) of SFX.
+extern uint8_t gSFX_2ByteArray[294][2]; // table of volume and length(?) of SFX.
 extern int32_t D_800C382C; //AI_LEN >>2
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
 extern int16_t D_800C383C[];
-extern s32 ALFX_params[44];
-
+extern int32_t gALFX_Params[44];
 extern UNK_TYPE D_800C3908;
 extern Sprite gSprite;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
-
-extern uint16_t gTimeRecords[64];         // records for stage times.
-extern uint16_t GameSave_DefaultName[11]; // contains default "Start" filename
-extern uint16_t nameEntrySpace[11];
+extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
 extern uint8_t D_800C5010[];
@@ -239,7 +235,7 @@ extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
 extern UNK_TYPE D_800C8EF0;
 extern char D_800C8F68[]; // PRESS START
-extern char D_800C8F74[]; //@1997 TREASURE/ENIX
+extern char D_800C8F74[]; // @1997 TREASURE/ENIX
 extern char D_800C8F88[]; // LICENCED TO NINTENDO
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
@@ -260,7 +256,7 @@ extern uint16_t D_800CA248;
 extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
 extern UNK_TYPE D_800CA2B0;
-extern uint16_t* D_800C96A0[5]; //"perfect","excellent","very good","   good   ","try harder"
+extern uint16_t* D_800C96A0[5]; // "perfect","excellent","very good","   good   ","try harder"
 extern uint16_t* D_800CBDFC;
 extern uint16_t* D_800CBE0C;
 extern int16_t D_800CBF40;
@@ -271,7 +267,7 @@ extern uint16_t D_800CBF58;
 extern int16_t D_800CC228[256];
 extern int8_t D_800CC428;
 extern uint16_t D_800CC6EC[88][8];
-extern uint8_t D_800CCFDC[88]; // Stage BGM indecies
+extern uint8_t D_800CCFDC[88]; // Stage BGM indices
 extern int32_t D_800CEC0C;
 extern uint8_t D_800D16AA[]; // right in the middle of a pointer array?
 extern int16_t D_800D16C4;
@@ -451,21 +447,18 @@ extern uint64_t D_800EF210[11]; //D_8016e6f0->ucode_data
 extern int16_t D_800EF4D4;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
-extern uint16_t gSFXCurrentIndex[4]; // holds current SFX indicies per channel
+extern uint16_t gSFX_CurrentIndex[4]; // holds current SFX indicies per channel
 extern int32_t D_800F4540;
 extern int32_t D_800F46D8;
 extern uint8_t D_80104090[];
-extern struct_func_80021270_D_80104098 D_80104098;
 extern uint16_t D_80106918;
 extern uint16_t D_801069B8;
 extern ALPan D_801069D8[];
 extern int16_t D_80108DE0[];
-
 extern uint32_t D_80103480;
 extern uint32_t D_80103616;
 extern uint32_t D_801037AA;
 extern uint32_t D_80103944;
-
 extern uint16_t D_8010CDE8[];
 extern uint8_t D_8011CDF0[];
 extern uint8_t D_8011CF18[];
@@ -498,7 +491,7 @@ extern OSTask* D_8012AC84;
 extern OSTask D_8012AC88[2];
 extern OSViMode* D_8012AD08;
 extern OSViMode D_8012AD10;
-extern OSContStatus OSgContStatArray[4];
+extern OSContStatus gOSContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
 extern OSMesgQueue gContMesgq;
@@ -536,20 +529,15 @@ extern OSIoMesg D_801378C8;
 extern OSIoMesg D_801378E0[48];
 extern OSTask* D_80137D60[2];
 extern Acmd* D_80137D68[2];
-extern void* Sound_AIBuffers[3];
-extern ALHeap Sound_ALHeap;
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0;
 extern uint8_t D_80137DA8[220160]; // ALHeap base
 extern ALLink D_8016D9CC;
 extern ALLink D_8016D9B8;
 extern UNK_TYPE D_8016DEB8;
-extern ALGlobals Sound_ALGlobals;
-extern ALSynConfig ALGlobals_SynConfig;
 extern ALBankFile* D_8016DF34;
 extern ALBank* D_8016DF38;
 extern ALBank* D_8016DF3C;
-extern ALCSPlayer* BGM_pALCPlayer;
 extern ALCSeq D_8016E1E8;
 extern ALCSeq* D_8016E2E0;
 extern ALCSeq D_8016E2E8[4];
@@ -617,7 +605,7 @@ extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
 extern uint16_t D_801781DC;
 extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
-extern uint64_t YelloGemBitfeildTemp;
+extern uint64_t gYellowGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
 extern int32_t D_801782B0;

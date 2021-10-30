@@ -1,7 +1,7 @@
-#include <actor.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "actor.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014AF0.s")

@@ -1,6 +1,6 @@
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_800121D0(void) {

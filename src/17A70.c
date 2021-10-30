@@ -1,8 +1,8 @@
 #include "BGM.h"
 #include "GameSave.h"
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_80016E70(uint16_t index) {
@@ -408,7 +408,8 @@ char D_800C8F68[] = "PRESS START";
 char D_800C8F74[] = "@1997 TREASURE/ENIX";
 char D_800C8F88[] = "LICENED BY NINTENDO";
 
-void func_80017F08(void) { // prints "Press start" and copyright info
+// prints "Press start" and copyright info
+void func_80017F08(void) {
     func_80017770();
     func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0 / 4), (0x1F - D_801781A0 / 4), 0x1FU));
     func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
@@ -826,25 +827,33 @@ void StageSelect_Tick(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019520.s")
-/*
+
+#ifdef NON_MATCHING
 void CalculateFestivalTime(void){
-  int32_t TimeA, TimeB, TimeC, TimeD;
-  if(gCurrentStage==33){ //is it "the day of"
-    TimeA=func_80019520(gFestivalRecords[2]);
-    TimeB=func_80019520(gFestivalRecords[1]);
-    TimeC=func_80019520(gFestivalRecords[0]);
-    TimeD=func_80019520(gFestivalRecords[5]);
-    gStageTime=TimeD+TimeC+TimeB+TimeA;
-    if(gFestivalRecords[3]<1800) gStageTime -= gFestivalRecords[3]       + 1800;
-    if(gFestivalRecords[4]<1800) gStageTime += gFestivalRecords[4] * -10 + 1800;
-    if(gFestivalRecords[6]<1800) gStageTime += gFestivalRecords[6] * -10 + 1800;
+    int32_t time0;
+    int32_t time1;
+    int32_t time2;
+    int32_t time3;
+
+    // is it "the day of"
+    if(gCurrentStage == 33) {
+        time0 = func_80019520(gFestivalRecords[2]);
+        time1 = func_80019520(gFestivalRecords[1]);
+        time2 = func_80019520(gFestivalRecords[0]);
+        time3 = func_80019520(gFestivalRecords[5]);
+        gStageTime = time0 + time1 + time2 + time3;
+        if(gFestivalRecords[3] < 1800) gStageTime -= gFestivalRecords[3]       + 1800;
+        if(gFestivalRecords[4] < 1800) gStageTime += gFestivalRecords[4] * -10 + 1800;
+        if(gFestivalRecords[6] < 1800) gStageTime += gFestivalRecords[6] * -10 + 1800;
     }
-    gGamePaused=0;
-    gGameState=12; //transitional state
-    gGameSubState=8;
+
+    gGamePaused = 0;
+    gGameState = 12; // transitional state
+    gGameSubState = 8;
 }
-*/
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/CalculateFestivalTime.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 
@@ -877,81 +886,90 @@ void func_80019EC4(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A584.s")
 
 uint16_t gTimesToBeat[] = {
-    0,
-    0,
-    840,
-    1020,
-    1500,
-    480,
-    1932,
-    2160,
-    1320,
-    2580,
-    /*[10]*/ 1740,
-    720,
-    2160,
-    1560,
-    660,
-    1000,
-    720,
-    1620,
-    1680,
-    /*[20]*/ 1500,
-    1500,
-    6660,
-    0,
-    1920,
-    1800,
-    3000,
-    4320,
-    1320,
-    /*[30]*/ 3600,
-    1080,
-    2220,
-    9360,
-    660,
-    3720,
-    0,
-    1620,
-    1680,
-    19200,
-    /*[40]*/ 2580,
-    1800,
-    960,
-    4920,
-    2340,
-    2220,
-    2040,
-    3480,
-    0,
-    5280,
-    /*[50]*/ 1680,
-    3873,
-    1020,
-    4800,
-    3300,
-    0,
-    4500,
-    5160};
+    /* 0x01 */ 0,
+    /* 0x02 */ 0,
+    /* 0x03 */ 840,
+    /* 0x04 */ 1020,
+    /* 0x05 */ 1500,
+    /* 0x06 */ 480,
+    /* 0x07 */ 1932,
+    /* 0x08 */ 2160,
+    /* 0x09 */ 1320,
+    /* 0x0A */ 2580,
+    /* 0x0B */ 1740,
+    /* 0x0C */ 720,
+    /* 0x0D */ 2160,
+    /* 0x0E */ 1560,
+    /* 0x0F */ 660,
+    /* 0x10 */ 1000,
+    /* 0x11 */ 720,
+    /* 0x12 */ 1620,
+    /* 0x13 */ 1680,
+    /* 0x14 */ 1500,
+    /* 0x15 */ 1500,
+    /* 0x16 */ 6660,
+    /* 0x17 */ 0,
+    /* 0x18 */ 1920,
+    /* 0x19 */ 1800,
+    /* 0x1A */ 3000,
+    /* 0x1B */ 4320,
+    /* 0x1C */ 1320,
+    /* 0x1D */ 3600,
+    /* 0x1E */ 1080,
+    /* 0x1F */ 2220,
+    /* 0x20 */ 9360,
+    /* 0x21 */ 660,
+    /* 0x22 */ 3720,
+    /* 0x23 */ 0,
+    /* 0x24 */ 1620,
+    /* 0x25 */ 1680,
+    /* 0x26 */ 19200,
+    /* 0x27 */ 2580,
+    /* 0x28 */ 1800,
+    /* 0x29 */ 960,
+    /* 0x2A */ 4920,
+    /* 0x2B */ 2340,
+    /* 0x2C */ 2220,
+    /* 0x2D */ 2040,
+    /* 0x2E */ 3480,
+    /* 0x2F */ 0,
+    /* 0x30 */ 5280,
+    /* 0x31 */ 1680,
+    /* 0x32 */ 3873,
+    /* 0x33 */ 1020,
+    /* 0x34 */ 4800,
+    /* 0x35 */ 3300,
+    /* 0x36 */ 0,
+    /* 0x37 */ 4500,
+    /* 0x38 */ 5160
+};
 
-int16_t Get_TimeRank(uint16_t t, uint16_t s) {
-    if (t < gTimesToBeat[s])
+int16_t Stage_GetTimeRank(uint16_t t, uint16_t s) {
+    if (t < gTimesToBeat[s]) {
         return 0;
-    if (t < (gTimesToBeat[s] + 1800))
+    }
+
+    if (t < (gTimesToBeat[s] + 1800)) {
         return 1;
-    if (t < (gTimesToBeat[s] + 7200))
+    }
+
+    if (t < (gTimesToBeat[s] + 7200)) {
         return 2;
-    if ((t < (gTimesToBeat[s] + 18000)) && (t < 36000))
+    }
+
+    if (t < (gTimesToBeat[s] + 18000) && t < 36000) {
         return 3;
+    }
+
     return 4;
 }
 
 void func_8001A7E0(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
-    func_8008379C(arg0, arg1, D_800C9694[Get_TimeRank(time, stage)], arg4);
+    func_8008379C(arg0, arg1, D_800C9694[Stage_GetTimeRank(time, stage)], arg4);
 }
 
 void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, int16_t arg4) {
-    func_80083810(arg0, arg1, D_800C96A0[Get_TimeRank(time, stage)], arg4);
+    func_80083810(arg0, arg1, D_800C96A0[Stage_GetTimeRank(time, stage)], arg4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001A890.s")
@@ -961,7 +979,7 @@ void func_8001A838(int16_t arg0, int16_t arg1, uint16_t time, uint16_t stage, in
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Record_PrintTime.s")
 
 void func_8001B004(void) {
-    Record_PrintTime(9, 6, 0xffff);
+    Record_PrintTime(9, 6, 0xFFFF);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/World_IncrementProgress.s")
@@ -1010,25 +1028,26 @@ void GameSave_Update(void) {
     if (uVar4 == uVar2) {
         gWorldProgress = (char)uVar2 + 1;
     }
-    gGameSave_RedGems[gSaveSlotIndex] = gRedGems;
-    gGameSave_YellowGems[gSaveSlotIndex] = YellowGem_Count();
-    gGameSave_PlayTime[gSaveSlotIndex] = (uint64_t)gPlayTime;
+    gFileRedGems[gSaveSlotIndex] = gRedGems;
+    gFileYellowGems[gSaveSlotIndex] = YellowGem_Count();
+    gFilePlayTimes[gSaveSlotIndex] = (uint64_t)gPlayTime;
     func_80005770();
     gWorldProgress = bVar1;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameSave_Update.s")
 #endif
+
 void func_8001B3D0(void) {
     uint16_t uVar1;
     uint32_t uVar2;
 
     gWorldProgress = (uint8_t)gCurrentStage;
-    gGameSave_RedGems[gSaveSlotIndex] = gRedGems;
+    gFileRedGems[gSaveSlotIndex] = gRedGems;
     uVar1 = YellowGem_Count();
     uVar2 = (uint32_t)gSaveSlotIndex;
-    gGameSave_YellowGems[uVar2] = uVar1;
-    gGameSave_PlayTime[uVar2] = (uint64_t)gPlayTime;
+    gFileYellowGems[uVar2] = uVar1;
+    gFilePlayTimes[uVar2] = (uint64_t)gPlayTime;
     func_80005770();
 }
 

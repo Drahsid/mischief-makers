@@ -1,9 +1,9 @@
-#include <Alphabet.h>
-#include <SFX.h>
-#include <actor.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "Alphabet.h"
+#include "SFX.h"
+#include "actor.h"
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
@@ -14,35 +14,35 @@
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #ifdef NON_MATCHING
-void func_8001E814(int16_t indexL, int16_t indexR) {
-    if ((gActors[indexL].unk_0xEC == 0) && (gActors[indexL].unk_0xF0 == 0)) {
-        gActors[indexR].unk_0xF8 = func_8001E5E0(indexL, indexR, 0x2000);
-        gActors[indexR].unk_0xFC = func_8001E6F4(indexL, indexR, 0x2000);
+void func_8001E814(int16_t index0, int16_t index1) {
+    if ((gActors[index0].unk_0xEC == 0) && (gActors[index0].unk_0xF0 == 0)) {
+        gActors[index1].unk_0xF8 = func_8001E5E0(index0, index1, 0x2000);
+        gActors[index1].unk_0xFC = func_8001E6F4(index0, index1, 0x2000);
     }
     else {
-        gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xEC;
-        gActors[indexR].unk_0xFC = gActors[indexL].unk_0xF0;
+        gActors[index1].unk_0xF8 = gActors[index0].unk_0xEC;
+        gActors[index1].unk_0xFC = gActors[index0].unk_0xF0;
     }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
 #endif
 
-void func_8001E8E4(uint16_t indexL, uint16_t indexR) {
-    if ((gActors[indexL].flag & ACTOR_FLAG_FLIPPED) == 0) {
-        gActors[indexR].unk_0xF8 = gActors[indexL].unk_0xF8;
+void func_8001E8E4(uint16_t index0, uint16_t index1) {
+    if ((gActors[index0].flag & ACTOR_FLAG_FLIPPED) == 0) {
+        gActors[index1].unk_0xF8 = gActors[index0].unk_0xF8;
     }
     else {
-        gActors[indexR].unk_0xF8 = -gActors[indexL].unk_0xF8;
+        gActors[index1].unk_0xF8 = -gActors[index0].unk_0xF8;
     }
-    gActors[indexR].unk_0xFC = gActors[indexL].unk_0xFC;
+    gActors[index1].unk_0xFC = gActors[index0].unk_0xFC;
 }
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_8001E964(uint16_t indexL, uint16_t indexR) {
-    Actor* actor0 = &gActors[indexL];
-    Actor* actor1 = &gActors[indexR];
+void func_8001E964(uint16_t index0, uint16_t index1) {
+    Actor* actor0 = &gActors[index0];
+    Actor* actor1 = &gActors[index1];
 
     if (actor0->pos.x < actor1->pos.x) {
         actor0->unk_0xF8 = -actor1->unk_0xF8;
@@ -58,19 +58,19 @@ void func_8001E964(uint16_t indexL, uint16_t indexR) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E9DC.s")
 
-void func_8001EADC(uint16_t indexL, uint16_t indexR) {
-    Actor* actor = &gActors[indexR];
+void func_8001EADC(uint16_t index0, uint16_t index1) {
+    Actor* actor = &gActors[index1];
 
     if (actor->unk_0xDE == 11 || actor->unk_0xDE == 14 || actor->unk_0xDE == 15) {
         actor->unk_0x98 &= ~2;
 
-        actor = &gActors[indexL];
+        actor = &gActors[index0];
         actor->unk_0x98 ^= 3;
         actor->unk_0xDC = actor->unk_0xDA;
         actor->unk_0xDD = actor->unk_0xDB;
     }
     else {
-        func_8001E9DC(indexL, indexR);
+        func_8001E9DC(index0, index1);
     }
 }
 
@@ -78,10 +78,10 @@ void func_8001EADC(uint16_t indexL, uint16_t indexR) {
 /* This function is related to hit / knockback effects?
  * Differences are regalloc, behaviorally the same
  */
-void func_8001EB8C(uint16_t indexL, uint16_t indexR) {
-    gActors[indexR].unk_0xDC = gActors[indexL].unk_0xDA;
-    gActors[indexR].unk_0xDD = gActors[indexL].unk_0xDB;
-    D_800CA1C0[gActors[indexL].unk_0xDB](indexL, indexR);
+void func_8001EB8C(uint16_t index0, uint16_t index1) {
+    gActors[index1].unk_0xDC = gActors[index0].unk_0xDA;
+    gActors[index1].unk_0xDD = gActors[index0].unk_0xDB;
+    D_800CA1C0[gActors[index0].unk_0xDB](index0, index1);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EB8C.s")
@@ -195,7 +195,7 @@ void func_80020024(void) {
     func_80047C98(); // level objects
 
     if ((gDebugBitfeild & 0x4000)) {
-        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFXCurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
+        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFX_CurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -216,13 +216,14 @@ void func_80020024(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-
-void YellowGem_PrintProgress(void) { // Print "Got it" or "Not Yet"
+// Print "Got it" or "Not Yet"
+void YellowGem_PrintProgress(void) {
     if (YellowGem_GetFlag(gCurrentStage))
         func_800836A0(9, 1, &Alpha_GotIt, 0);
     else
         func_800836A0(9, 1, &Alpha_NotYet, 0);
 }
+
 #ifdef NON_MATCHING
 void func_80020844(void) { // resets sound levels after exiting pause menu?
     uint16_t i;
@@ -239,20 +240,23 @@ void func_80020844(void) { // resets sound levels after exiting pause menu?
 void func_800208D4(void) {
     uint16_t index;
 
-    for (index = 0xC8; index < 0xCC; index++)
+    for (index = 0xC8; index < 0xCC; index++) {
         gActors[index].flag = 0;
+    }
+
     gBgmVolume = D_800EF4D4;
     gGameSubState = 0;
     gGamePaused = 0;
 }
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
 
 void func_80020A54(void) {
-    uint16_t i;
-    for (i = 200; i < 204; i++)
-        gActors[i].flag = 0;
+    uint16_t index;
+
+    for (index = 200; index < 204; index++) {
+        gActors[index].flag = 0;
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_Tick.s")
@@ -264,14 +268,15 @@ void GamePlay_Tick(void) {
     func_800457C8(); // this function dmas sprite data for things like gems
     gTickDelta = osGetTime() - time;
 
-    if (gGamePaused)
+    if (gGamePaused) {
         PauseGame_Tick();
-    else
+    }
+    else {
         func_80020024();
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
-
 
 #ifdef NON_MATCHING
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
@@ -369,8 +374,9 @@ void AttractMode_Tick(void) {
  * why didn't they just give the text an outline?
  */
 void func_80021620(void) {
-    if ((gButtonPress & gButton_RTrig))
+    if ((gButtonPress & gButton_RTrig)) {
         D_800BE6B8._s ^= 0xFF;
+    }
 }
 
 void func_80021658(void) {}

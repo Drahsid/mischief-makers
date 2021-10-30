@@ -77,6 +77,7 @@ nuke:
 
 clean:
 	rm -rf build
+
 setup:
 	$(PYTHON) tools/splat/split.py $(BASENAME).yaml
 

@@ -1,7 +1,7 @@
 #include "BGM.h"
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
+#include "data_symbols.h"
+#include "function_symbols.h"
+#include "inttypes.h"
 #include <ultra64.h>
 
 void func_80012C50(uint16_t index, uint16_t arg1, uint16_t arg2) {
