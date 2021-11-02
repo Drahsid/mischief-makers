@@ -406,12 +406,12 @@ void Intro_Tick(void) {
 
 char D_800C8F68[] = "PRESS START";
 char D_800C8F74[] = "@1997 TREASURE/ENIX";
-char D_800C8F88[] = "LICENED BY NINTENDO";
+char D_800C8F88[] = "LICENSED TO NINTENDO";
 
 // prints "Press start" and copyright info
 void func_80017F08(void) {
     func_80017770();
-    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0 / 4), (0x1F - D_801781A0 / 4), 0x1FU));
+    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0[0] / 4), (0x1F - D_801781A0[0] / 4), 0x1FU));
     func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
     func_800276DC(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
 }
@@ -521,7 +521,7 @@ void TitleScreen_Tick(void) {
         // some actors are referenced by a pointer, probably Actor* local vars?
         case 24: {
             gActors[7].rgba.b = 0;
-            D_801781A0 = 0;
+            D_801781A0[0] = 0;
 
             func_800273FC(16, 0x800, 0x70, 0xFF68, 0);
             gActors[16].unk_0x94 |= 0x100;
@@ -600,7 +600,7 @@ void TitleScreen_Tick(void) {
                     buttonPress = gButtonPress;
                 }
             }
-
+            //start attract mode when BGM timer finishes
             if ((D_80137DA0 >= 0x1141 || (buttonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
                 gActors[51].unk_0x94 |= 0x10;

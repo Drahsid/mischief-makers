@@ -114,7 +114,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930E4.s")
+void func_800930E4(uint32_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930EC.s")
 

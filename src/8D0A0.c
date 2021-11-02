@@ -31,7 +31,12 @@ void func_8008C4E0(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CDC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CF10.s")
+void func_8008CF10(uint16_t index){
+    gActors[index].unk_0xAE=8;
+    gActors[index].unk_0xB0=-14;
+    gActors[index].unk_0xAA=-8;
+    gActors[index].unk_0xAC=8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CF60.s")
 
@@ -61,9 +66,15 @@ void func_8008C4E0(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D958.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D960.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D99C.s")
+void func_8008D960(uint16_t index){
+    if(func_8008D418(index)==0)func_8008CF10(index);
+}
+void func_8008D99C(uint16_t index){
+    if(func_8008D418(index)==0){
+        func_8008CF10(index);
+        if(gActors[index].unk_0x118==0x0)func_8008CF60(index);
+        }
+}
 
 uint32_t func_8008DA24(uint16_t arg0) {
     return func_8008D480(arg0);
@@ -85,13 +96,16 @@ void StartContinueMode(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/Check_For_Player_Death.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DE20.s")
+void func_8008DE20(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DE28.s")
+void func_8008DE28(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DE30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DEBC.s")
+void func_8008DEBC(uint16_t index){
+    if(0x60<D_800D28E4) gActors[index].flag = 0;
+    else D_800D28FC |= 0x200;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DF20.s")
 

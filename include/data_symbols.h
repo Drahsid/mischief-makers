@@ -203,6 +203,8 @@ extern int32_t D_800BE730;
 extern UNK_TYPE D_800BE73C;
 extern char* D_800BE84C[33];    // BGM titles left in data.
 extern char** D_800BEA4C[32];   // instrument names, and variations.
+extern uint8_t* D_800C0A54[33]; //contains instrument data for each song 
+extern uint8_t D_800C0AD8[33][18]; // Music track data {vol>>8,unknown>>0xc,instrumentFXMix[16]}
 extern char* D_800C1694[294];   // could help add to SFX.h
 extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
 extern char* gSFX_Labels[224];    // may be wrong.
@@ -228,11 +230,19 @@ extern uint16_t gNameEntryRow2ENG[18]; // Japan version had 3 character sets to 
 extern uint16_t gNameEntryRow3ENG[18]; // one is still readable, but the other seems lost.
 extern uint16_t gNameEntryRow4ENG[18];
 extern UNK_TYPE D_800C71A0;
-extern UNK_TYPE D_800C7E14;
+extern u16 D_800C7E14[16]; //"G......AME......OV...E...R"
+extern char*D_800C81E4[22]; //used by stage select in building menu.
 extern UNK_TYPE D_800C823C;
 extern uint16_t D_800C8378[64];
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
+extern uint16_t* D_800C8C10[10]; //lv1 names
+extern uint16_t* D_800C8C38[11]; //lv2 names
+extern uint16_t* D_800C8C64[12]; //lv3 names
+extern uint16_t* D_800C8C94[11]; //lv4 names
+extern uint16_t* D_800C8CC0[10]; //lv5 names
+extern uint16_t** D_800C8CE8[5]; //all stage names
+extern char** D_800C8E58[5]; //debug stage select labels (ascii)
 extern UNK_TYPE D_800C8EF0;
 extern char D_800C8F68[]; // PRESS START
 extern char D_800C8F74[]; // @1997 TREASURE/ENIX
@@ -240,9 +250,11 @@ extern char D_800C8F88[]; // LICENCED TO NINTENDO
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
 extern UNK_TYPE D_800C9080;
-extern UNK_TYPE D_800C94CC;
-extern UNK_TYPE D_800C94D0;
-extern UNK_TYPE D_800C94DA;
+extern uint16_t gSoundTest_SFXEntries[294];
+extern char D_800C94CC[4]; //"BGM"
+extern char D_800C94D0[5]; //"S.E."
+extern int16_t D_800C94D8[2][2]; //only [x][1] is used
+extern char* D_800C9680[5]; //'rank' letters
 extern int16_t D_800C9694[5];
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
@@ -257,8 +269,8 @@ extern uint16_t D_800CA24C;
 extern uint16_t D_800CA250;
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800C96A0[5]; // "perfect","excellent","very good","   good   ","try harder"
-extern uint16_t* D_800CBDFC;
-extern uint16_t* D_800CBE0C;
+extern uint16_t* D_800CBDFC[4]; //attract mode button inputs {time, input}
+extern uint16_t* D_800CBE0C[4]; //the first for held buttons, second for tapped.
 extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern int16_t D_800CBF50;
@@ -266,10 +278,27 @@ extern uint16_t D_800CBF54;
 extern uint16_t D_800CBF58;
 extern int16_t D_800CC228[256];
 extern int8_t D_800CC428;
-extern uint16_t D_800CC6EC[88][8];
+extern int16_t D_800CC6EC[88][8];
+extern int16_t D_800CCC6C[55][8];
 extern uint8_t D_800CCFDC[88]; // Stage BGM indices
-extern int32_t D_800CEC0C;
-extern uint8_t D_800D16AA[]; // right in the middle of a pointer array?
+extern uint8_t D_800CD034[88];
+extern uint32_t D_800CD08C[88][4]; // Romcopy tables for actor func tables
+extern uint32_t D_800CD60C[88][4];
+extern uint32_t D_800CDD8C[88][4];
+extern uint32_t D_800CE10C[88][4];
+extern uint32_t D_800CE68C[88][4];
+extern uint32_t D_800CEC0C; //offset subtracted from some romcopy's (0x04000000)
+extern uint32_t D_800CEC10[88][2]; //another romcopy lookup uses D_800CEC0C's offset.
+extern uint32_t D_800CEED0; //offset subtracted from some romcopy's (0x03000000)
+extern uint32_t D_800CEED4[132][2]; //another romcopy lookup uses D_800CEED0's offset.
+extern uint32_t D_800CF5B8; //offset subtracted from some romcopy's (0x03000000)
+extern uint32_t D_800CF5BC[88][2]; //another romcopy lookup uses D_800CF5B8's offset.
+extern uint32_t D_800CF87C; //offset subtracted from some romcopy's (0x03000000)
+extern uint32_t D_800CF880[88][2]; //another romcopy lookup uses D_800CF87C's offset.
+extern uint32_t D_800CFB40; //offset subtracted from some romcopy's (0x02000000)
+extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's offset.
+extern uint32_t D_800CFE04[88][12];
+extern void* D_800D0E84[88][6];
 extern int16_t D_800D16C4;
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
@@ -300,7 +329,10 @@ extern uint16_t D_800D2978[];
 extern int16_t D_800D36DC[16];
 extern int16_t D_800D36FC[16];
 extern uint16_t D_800D3770[];
-extern uint16_t D_800D3888[];
+extern uint16_t D_800D3888[24];
+extern int16_t D_800D38B8[140][2];
+extern int16_t D_800D3AE8[70];
+extern int16_t D_800D3B74;
 extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
@@ -462,12 +494,10 @@ extern uint32_t D_80103944;
 extern uint16_t D_8010CDE8[];
 extern uint8_t D_8011CDF0[];
 extern uint8_t D_8011CF18[];
-extern struct_func_80021270_D_80104098 D_80104098;
-extern uint16_t D_80106918;
-extern uint16_t D_801069B8;
-extern struct_D_801069E0 D_801069E0[]; // seems to be the sprite objects (not the collision,) of level objects
-extern UNK_TYPE D_8011D970;
-extern UNK_TYPE D_8011DDF0;
+extern struct_D_80104098 D_80104098[66];
+extern struct_D_801069E0 D_801069E0[64]; // seems to be the sprite objects (not the collision,) of level objects
+extern u64 D_8011D970[128]; //D_8012AC84->dram_stack
+extern u64 D_8011DDF0[436]; //D_8012AC84->yeild_data_ptr
 extern uint16_t gInputHistoryHold[];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
@@ -506,23 +536,22 @@ extern UNK_TYPE D_80137458;
 extern UNK_POINTER D_8013746C;
 extern uint16_t D_8013747C;
 extern uint32_t D_80137420;
-extern uint16_t D_80137480;
-extern uint32_t D_801376A0;
-extern uint8_t D_801376A8;
-extern uint8_t D_801376A9;
-extern uint8_t D_801376AD;
-extern uint8_t D_801376B1;
-extern uint8_t D_801376B5;
-extern uint8_t D_801376B8;
-extern uint8_t D_801376B9;
-extern uint8_t D_801376BC;
-extern uint8_t D_801376BD;
+
+extern uint16_t D_80137480; 
+extern void* D_801376A0;
+extern uint8_t D_801376A8[4];
+extern uint8_t D_801376AC[4];
+extern uint8_t D_801376B0[4];
+extern uint8_t D_801376B4[4];
+extern uint8_t D_801376B8[4];
+extern uint8_t D_801376BC[4];
 extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
 extern int32_t D_801376E4;
 extern int32_t D_801376E8;
 extern OSMesgQueue D_801377B8;
 extern OSMesgQueue D_801377D0;
+extern u8 D_80137798; //BGM_play() requires this to be non-zero.
 extern OSMesg D_80137800[48];
 extern OSMesg D_801378C0;
 extern OSIoMesg D_801378C8;
@@ -530,7 +559,7 @@ extern OSIoMesg D_801378E0[48];
 extern OSTask* D_80137D60[2];
 extern Acmd* D_80137D68[2];
 extern uint16_t D_80137D90;
-extern uint32_t D_80137DA0;
+extern uint32_t D_80137DA0; // current BGM playtime? Attact mode starts when this is >0x1140
 extern uint8_t D_80137DA8[220160]; // ALHeap base
 extern ALLink D_8016D9CC;
 extern ALLink D_8016D9B8;
@@ -538,6 +567,7 @@ extern UNK_TYPE D_8016DEB8;
 extern ALBankFile* D_8016DF34;
 extern ALBank* D_8016DF38;
 extern ALBank* D_8016DF3C;
+extern ALCSPlayer D_8016DF68;
 extern ALCSeq D_8016E1E8;
 extern ALCSeq* D_8016E2E0;
 extern ALCSeq D_8016E2E8[4];
@@ -593,8 +623,7 @@ extern uint16_t D_80178164;
 extern uint16_t D_80178166;
 extern UNK_TYPE D_80178170;
 extern UNK_TYPE D_80178188;
-extern uint8_t D_801781A0;
-extern int32_t D_801781A1;
+extern uint8_t D_801781A0[8]; //set to 0x3f, only first 2 entries used.
 extern int16_t D_801781C0[];
 extern uint16_t D_801781C8;
 extern uint16_t D_801781CA;

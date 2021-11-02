@@ -23,7 +23,7 @@ void func_80012CD4(void) {
         gActors[index].flag = 0;
     }
 
-    func_80027D94(0x33, &D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
+    func_80027D94(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
     func_800273FC(48, 0x262, 0xFFFE, 3, 0x402);
 
     actor->unk_0x94 |= 0x100F;
@@ -67,4 +67,4 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
     SFX_Play_1(0x134);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/13850/GamePlay_Tick_Continue.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/gameover/GamePlay_Tick_Continue.s")

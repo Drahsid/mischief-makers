@@ -36,28 +36,23 @@ void func_800821B0(void) {
 #ifdef NON_MATCHING
 // regalloc, missing instructions, temp for D_800BE6A4 & 0x7FFF is early
 void func_800822B8(void) {
-    uint16_t phi_v0;
+
 
     if (D_80178460 != 0) {
         func_80001264();
 
         if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 0) {
             if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 1) {
-                phi_v0 = D_800BE6A4 & 0x7FFF;
             }
             else {
                 func_80098B50(0x801C4400, 0x8027BEE8, 0x1000);
-                phi_v0 = D_800BE6A4 & 0x7FFF;
             }
         }
         else {
             func_80098B50(0x801C4400, 0x8027AEE8, 0x1000);
             if (!D_800BE6A4) {}
-
-            phi_v0 = D_800BE6A4 & 0x7FFF;
         }
-
-        D_800BE6A4 = phi_v0;
+        D_800BE6A4 &= 0x7FFF;
     }
 }
 #else

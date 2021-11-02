@@ -180,7 +180,6 @@ void func_80003540(int16_t arg0, int16_t arg1, int8_t* arg2, int16_t* arg3) {
         *arg3 = (0x200 - temp);
     else
         *arg3 = 0;
-    }
 }
 
 int32_t func_800035F8(uint32_t SFX_ID, uint16_t i) {

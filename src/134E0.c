@@ -15,7 +15,11 @@ uint8_t func_800128F0(int32_t x, int32_t y) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_800128F0.s")
 #endif
-
+/*
+uint8_t func_80012944(int32_t x, int32_t y) {
+    if((y&0xf)<(x&0xf)) return 255;
+    return 0;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_80012944.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_80012970.s")

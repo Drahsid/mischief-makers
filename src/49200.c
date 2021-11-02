@@ -284,7 +284,7 @@ void func_8004B0A0(uint16_t index) {
         }
     }
 
-    if (func_8005D418(index) != 0) {
+    if (func_8005D418(index)) {
         actor->unk_0xD0_h = (uint16_t)3;
     }
 }

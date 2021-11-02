@@ -397,7 +397,7 @@ void func_800012F0(void) {
             gGamePaused = 1;
         }
 
-        if (gGamePaused && gGameSubState == 0x10) {
+        if (gGamePaused != 0 && gGameSubState == 0x10) {
             if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
                 if ((gDebugBitfeild & 0x100) != 0) {
@@ -413,19 +413,13 @@ void func_800012F0(void) {
             if (gActors->health >= 0) {
                 gGamePaused = 1;
                 gDebugBitfeild &= 0xFFEF;
-                if (gDebugBitfeild & 0x100) {
+                if ((gDebugBitfeild & 0x100) != 0) {
                     gGameSubState = 0x10;
                 }
                 else {
-                    sVar1 = -1;
-                    if ((contStatArray[3].errno & CONT_NO_RESPONSE_ERROR) == 0) {
-                        sVar1 = 3;
-                    }
+                    gGameSubState = 0;
                 }
-                else sVar1 = 2;
             }
-            else
-                sVar1 = 1;
         }
         if (gGamePaused == 0) {
             DebugText_Reset();
@@ -500,69 +494,69 @@ void func_8000147C(void) {
     DebugText_Tick();
 }
 
-    void GameState_Tick(void) {
-        switch (gGameState) {
-            case GAMESTATE_SOFTRESET: {
-                func_80022F48(); // soft reset
-                break;
-            }
-            case GAMESTATE_INTRO: {
-                Intro_Tick(); // intro
-                break;
-            }
-            case GAMESTATE_TITLESCREEN: {
-                TitleScreen_Tick(); // titlescreen
-                break;
-            }
-            case GAMESTATE_DEBUG_SOUNDTEST: {
-                SoundTest_Tick(); // sound test
-                break;
-            }
-            case GAMESTATE_DEBUG_STAGESELECT: {
-                StageSelect_Tick(); // debug level select
-                break;
-            }
-            case GAMESTATE_LOADING: {
-                func_800232A4(); // loading stage
-                break;
-            }
-            case GAMESTATE_GAMEPLAY: {
-                GamePlay_Tick(); // stage update
-                break;
-            }
-            case GAMESTATE_CONTINUE: {
-                GamePlay_Tick_Continue(); // game over
-                break;
-            }
-            case GAMESTATE_UNKNOWN0: {
-                func_80388000(); // unknown
-                break;
-            }
-            case GAMESTATE_UNKNOWN1: {
-                func_80388008(); // unknown
-                break;
-            }
-            case GAMESTATE_ATTRACT: {
-                AttractMode_Tick(); // demo mode
-                break;
-            }
-            case GAMESTATE_FILESELECT: {
-                func_80007C8C(); // fileselect
-                break;
-            }
-            case GAMESTATE_TRANSITION: {
-                func_8001B460(); // transition
-                break;
-            }
-            case GAMESTATE_UNKNOWN2: {
-                func_8001D654(); // level select (best times?)
-                break;
-            }
-            default: {
-                break; // applies for case 13?
-            }
+void GameState_Tick(void) {
+    switch (gGameState) {
+        case GAMESTATE_SOFTRESET: {
+            func_80022F48(); // soft reset
+            break;
+        }
+        case GAMESTATE_INTRO: {
+            Intro_Tick(); // intro
+            break;
+        }
+        case GAMESTATE_TITLESCREEN: {
+            TitleScreen_Tick(); // titlescreen
+            break;
+        }
+        case GAMESTATE_DEBUG_SOUNDTEST: {
+            SoundTest_Tick(); // sound test
+            break;
+        }
+        case GAMESTATE_DEBUG_STAGESELECT: {
+            StageSelect_Tick(); // debug level select
+            break;
+        }
+        case GAMESTATE_LOADING: {
+            func_800232A4(); // loading stage
+            break;
+        }
+        case GAMESTATE_GAMEPLAY: {
+            GamePlay_Tick(); // stage update
+            break;
+        }
+        case GAMESTATE_CONTINUE: {
+            GamePlay_Tick_Continue(); // game over
+            break;
+        }
+        case GAMESTATE_UNKNOWN0: {
+            func_80388000(); // supposed to be dma'd in from rom:0xf00D0
+            break;
+        }
+        case GAMESTATE_UNKNOWN1: {
+            func_80388008(); // same as above. look to be NOOPs.
+            break;
+        }
+        case GAMESTATE_ATTRACT: {
+            AttractMode_Tick(); // demo mode
+            break;
+        }
+        case GAMESTATE_FILESELECT: {
+            func_80007C8C(); // fileselect
+            break;
+        }
+        case GAMESTATE_TRANSITION: {
+            func_8001B460(); // transition
+            break;
+        }
+        case GAMESTATE_UNKNOWN2: {
+            func_8001D654(); // level select (best times?)
+            break;
+        }
+        default: {
+            break; // applies for case 13?
         }
     }
+}
 
 // this is a linear congruential algorithm for prng
 uint16_t Rand(void) {

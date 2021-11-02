@@ -2,6 +2,7 @@
 #define ACTOR_H
 
 #include "common.h"
+#include <ultra64.h>
 
 enum {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
@@ -103,7 +104,7 @@ typedef void (*ActorFunc)(uint16_t index);
  */
 
 typedef struct {
-    /* 0x000 */ uint8_t unk_0x00[0x80];
+    /* 0x000 */ Mtx Mtxs[2]; //one for each FB
     /* 0x080 */ int32_t flag;
     /* 0x084 */ uint16_t unk_0x84;
     /* 0x086 */ uint8_t unk_0x86;
@@ -203,14 +204,13 @@ typedef struct {
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ uint32_t unk_0x160;
     /* 0x164 */ uint32_t unk_0x164;
-    /* 0x168 */ uint32_t unk_0x168;
-    /* 0x16C */ uint32_t unk_0x16C;
+    /* 0x168 */ int32_t unk_0x168;
+    /* 0x16C */ int32_t unk_0x16C;
     union {
         struct {
             /* 0x170 */ int8_t unk_0x170;
             /* 0x171 */ int8_t unk_0x171;
-            /* 0x172 */ int8_t unk_0x172;
-            /* 0x173 */ int8_t unk_0x173;
+            /* 0x172 */ uint16_t unk_0x172;
         };
         /* 0x170 */ uint32_t unk_0x170_w;
     };
@@ -234,7 +234,7 @@ typedef struct {
         };
     };
     /* 0x188 */ uint32_t unk_0x188;
-    /* 0x18C */ uint32_t unk_0x18C;
+    /* 0x18C */ uint32_t unk_0x18C; //pointer to sprite?
     /* 0x190 */ uint32_t unk_0x190;
     /* 0x194 */ uint8_t unk_0x194[4];
 } Actor; /* sizeof = 0x198 */
@@ -250,7 +250,7 @@ typedef struct {
 } ActorInit; /* sizeof = 0x0E */
 
 // Might be u16, u16 (index0, index1)
-typedef void (*Actor_func_8001EB8Cfn)(int32_t, int32_t);
+typedef void (*Actor_func_8001EB8Cfn)(int16_t, int16_t);
 
 extern Actor gActors[];
 extern ActorFunc gActorFuncTable[];

@@ -349,8 +349,8 @@ void AttractMode_Tick(void) {
         func_800232A4(&gAttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
-        D_80104098.unk_0x2920 = 0;
-        D_80104098.unk_0x2880 = 0;
+        D_80104098[65].unk_0x80 = 0;
+        D_80104098[64].unk_0x80 = 0;
         func_8002092C();
         D_80103944 = 0;
         D_801037AA = 0;

@@ -17,8 +17,8 @@ void func_80022D10(void) {
     D_800BE6E4 = 0;
     D_800BE6E8 = 0;
     D_800BE6EC = 0;
-    gButton_B = 0x4000;
-    gButton_A = 0x8000;
+    gButton_B = B_BUTTON;
+    gButton_A = A_BUTTON;
     gCurrentFramebufferIndex = 0;
     gAttractModeIndex = 0;
     gGameState = GAMESTATE_SOFTRESET;
@@ -71,10 +71,23 @@ void func_80022F48(void) {
     gGameSubState = 0;
     return;
 }
+void func_800230B8(void){
+    uint16_t i;
+    for(i=0;i<ACTOR_COUNT2;i++){
+        gActors[i].flag=0;
+        gActors[i].unk_0xE8=0;
+    }
+    for(i=0;i<64;i++){
+        D_801069E0[i].unk_0x80=0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800230B8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002312C.s")
+void func_8002312C(void){
+    uint16_t i;
+    for(i=0;i<66;i++){
+        D_80104098[i].unk_0x80=0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80023168.s")
 
@@ -85,37 +98,37 @@ void func_800232A4(void) {
     int32_t temp_t8_2;
     int32_t temp_v0;
     uint16_t temp_t8_3;
-    int32_t phi_v0;
+    int16_t phi_v0;
     int32_t phi_v0_2;
 
-    for (phi_v0 = 0; phi_v0 < 4; phi_v0 = (phi_v0 + 1) & 0xFFFF) {
-        (&D_801376BC)[phi_v0] = (uint8_t)1;
-        (&D_801376B8)[phi_v0] = (uint8_t)1;
-        (&D_801376A8)[phi_v0] = (uint8_t)0;
-        *((uint8_t*)0x801376AC + phi_v0) = (uint8_t)0;
-        *((uint8_t*)0x801376B0 + phi_v0) = (uint8_t)0;
-        *((uint8_t*)0x801376B4 + phi_v0) = (uint8_t)0xFF;
+    for (phi_v0 = 0; phi_v0 < 4; phi_v0++) {
+        D_801376BC[phi_v0] = 1;
+        D_801376B8[phi_v0] = 1;
+        D_801376A8[phi_v0] = 0;
+        D_801376AC[phi_v0]=0;
+        D_801376B0[phi_v0]=0;
+        D_801376B4[phi_v0]=255;
     }
 
     D_800BE6F0 = (uint8_t)0xFF;
-    D_800BE63C = (int16_t)gPlayerActorp->health;
+    D_800BE63C = gPlayerActorp->health;
     D_800BE6C0 = -8;
     gDebugBitfeild = 4;
 
-    for (phi_v0 = 0; phi_v0 < 8; phi_v0 = (phi_v0 + 1) & 0xFFFF) {
-        ((uint16_t*)&D_80137480)[phi_v0] = (uint16_t)0;
+    for (phi_v0 = 0; phi_v0 < 8; phi_v0++) {
+        D_80137480[phi_v0] = 0;
     }
 
-    temp_t8_2 = 0 & 0xFFFF;
+    
     D_801373E0->unk_0x078 = 0;
-    D_800D5820 = (uint16_t)0;
-    D_800BE5F4 = temp_t8_2;
-    D_800CA230 = (int16_t)temp_t8_2;
-    D_80137D90 = (int16_t)temp_t8_2;
-    D_800BE6FC = (int16_t)temp_t8_2;
-    D_800BE58C = (int16_t)temp_t8_2;
-    D_800BE588 = (int16_t)temp_t8_2;
-    gPlayerActorp->unk_0xD0 = (uint16_t)temp_t8_2;
+    D_800D5820 = 0;
+    D_800BE5F4 = 0;
+    D_800CA230 = 0;
+    D_80137D90 = 0;
+    D_800BE6FC = 0;
+    D_800BE58C = 0;
+    D_800BE588 = 0;
+    gPlayerActorp->unk_0xD0 = 0;
     D_800BE564 = temp_t8_2 & 0xFFFF;
     temp_t6_2 = D_800BE564;
     D_800BE560 = (uint32_t)temp_t6_2;
@@ -132,10 +145,9 @@ void func_800232A4(void) {
     gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;
     gPlayerPosYMirror = gPlayerVelXMirror;
     gPlayerPosXMirror._w = gPlayerPosYMirror._w;
-    temp_v0 = gPlayerPosXMirror._w;
-    gPlayerActorp->pos.y = temp_v0;
-    gPlayerActorp->pos.x = temp_v0;
-    D_800BE6A4 = (uint16_t)temp_v0;
+    gPlayerActorp->pos.y = gPlayerPosXMirror._w;
+    gPlayerActorp->pos.x = gPlayerPosXMirror._w;
+    D_800BE6A4 = (uint16_t)gPlayerPosXMirror._w;
     temp_t8_3 = D_800BE6A4;
     D_800BE590 = temp_t8_3;
     D_800BE594 = temp_t8_3;
