@@ -173,7 +173,7 @@ extern void func_80019688();
 extern void func_800197A0();
 extern void func_8001983C();
 extern void func_800198B4();
-extern void func_800199DC();
+extern void func_800199DC(uint16_t);
 extern void func_80019A80();
 extern void func_80019E48();
 extern void func_80019EC4();

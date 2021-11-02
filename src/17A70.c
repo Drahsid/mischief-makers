@@ -858,9 +858,9 @@ void CalculateFestivalTime(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001983C.s")
-
+//print the selected level name
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800198B4.s")
-
+//print the selected stage name
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800199DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019A80.s")

@@ -236,6 +236,7 @@ extern UNK_TYPE D_800C823C;
 extern uint16_t D_800C8378[64];
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
+extern uint16_t* D_800C8BE4[5]; //level Names
 extern uint16_t* D_800C8C10[10]; //lv1 names
 extern uint16_t* D_800C8C38[11]; //lv2 names
 extern uint16_t* D_800C8C64[12]; //lv3 names
@@ -615,7 +616,7 @@ extern uint16_t D_80178154;
 extern uint16_t D_80178156;
 extern uint16_t D_80178158;
 extern uint16_t D_8017815A;
-extern uint16_t D_8017815C;
+extern uint16_t D_8017815C; //selected world?
 extern uint16_t D_80178164;
 extern uint16_t D_80178160;
 extern uint16_t D_80178162;
@@ -664,5 +665,5 @@ extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern volatile uint16_t D_80380400[256];
 extern uint16_t gFramebuffer1[320][240]; // framebuffer
-
+extern UNK_TYPE D_801C4400; //marina sprite data?
 #endif

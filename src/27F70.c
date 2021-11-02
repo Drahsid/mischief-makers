@@ -45,7 +45,7 @@ void func_80027510(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, u
     actor->unk_0xE8 = (uint32_t)arg1;
     actor->unk_0xE6 = 1;
 }
-
+//takes 16-bit color vales, returns 32-bit?
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80027588.s")
 
 void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, int32_t arg5) {
@@ -1469,8 +1469,8 @@ void func_80042AEC(uint16_t i) {
 
 #ifdef NON_MATCHING
 void func_80042B2C(uint16_t index) {
-    if (0 <= gActors[index].unk_0x110) {
-        gActors[index].unk_0xD0_h -= 2;
+    if (0.0 <= gActors[index].unk_0x110) {
+        gActors[index].unk_0xD0_h += -2;
     }
     else {
         gActors[index].flag = 0;

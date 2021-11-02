@@ -10,7 +10,7 @@ void func_800235E0(void) {
     D_800BE72C = 0;
     D_800BE730 = 0;
 }
-/*
+/*\
 void func_800235F4(void){
     int x;
     D_800BE72C+=D_800BE730;
@@ -194,7 +194,14 @@ void func_80024584(void) {
 
 void func_800245AC(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800245B4.s")
+void func_800245B4(void){
+    D_800BE578 = 2;
+    D_800BE580 = -0xc;
+    D_800BE57C = 2;
+    D_800BE584 = -0xc;
+    D_80104098[64].unk_0x80=0;
+    D_80104098[65].unk_0x80=0;
+}
 
 void func_800245F0(void) {}
 
@@ -228,7 +235,10 @@ void func_80024D5C(void) {
     D_800BE588 = 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024D6C.s")
+void func_80024D6C(){
+    D_800BE73C=(D_800BE558._hi-D_800BE560._hi)*0x10000;
+    func_8002488C();
+}
 
 void func_80024DA8(void) {
     D_800BE544 = 0x8000;
@@ -285,11 +295,8 @@ void func_8002515C(void) {
 }
 
 void func_80025184(void) {
-    int16_t temp_v0;
-
-    temp_v0 = D_800BE558._hi;
-    D_800BE578 = (int16_t)(((int32_t)temp_v0 / 4) & 0x1FF);
-    D_800BE57C = (int16_t)(((int32_t)temp_v0 / 8) & 0x1FF);
+    D_800BE578 = (int16_t)(((int32_t)D_800BE558._hi / 4) & 0x1FF);
+    D_800BE57C = (int16_t)(((int32_t)D_800BE558._hi / 8) & 0x1FF);
 }
 
 void func_800251CC(void) {
