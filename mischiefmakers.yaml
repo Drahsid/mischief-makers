@@ -56,7 +56,7 @@ segments:
       - [0x8D0A0, c]
       - [0x8F080, c]
       - [0x97770, c]
-      - [0x99750, asm]
+      - [0x99750, asm] # A single function which decompresses (?) Marina's sprite data to some address?
       #start of libultra funcs
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
