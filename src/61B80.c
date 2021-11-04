@@ -116,5 +116,5 @@ void func_80061350(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80065178.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80065218.s")
-
+//Ms. hint's behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80065270.s")

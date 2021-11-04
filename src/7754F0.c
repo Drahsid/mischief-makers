@@ -201,10 +201,10 @@ void func_80775FF8(uint16_t index1) {
         gActors[index0].unk_0x94 = 0xA01;
         gActors[index0].flag = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_UNK3);
         gActors[index0].unk_0x18C = &D_800D8668;
-        gActors[index0].unk_0x150 = 0x100000;
+        gActors[index0].unk_0x150._w = 0x100000;
         gActors[index0].unk_0xB4 = temp;
         gActors[index0].unk_0xB8 = temp;
-        gActors[index0].unk_0x154 = gActors[index1].unk_0x160;
+        gActors[index0].unk_0x154._w = gActors[index1].unk_0x160;
         gActors[index0].unk_0x158 = 0x20000;
         gActors[index0].unk_0x15C = 0x14;
     }
@@ -329,7 +329,7 @@ void func_80778768(uint32_t index) {
 
         gActors[index].unk_0xEC = 0;
 
-        if (gActors[index].unk_0x150 & 0x80000000) {
+        if (gActors[index].unk_0x150._w & 0x80000000) {
             gActors[index].unk_0xD0_h = 0x430;
         }
 

@@ -20,6 +20,7 @@ typedef struct {
     /* 0x9C */ int32_t unk_0x9C; //unused?
 } struct_D_80104098;/* sizeof 0xA0 */
 
+//likely the gem objects.
 typedef struct {
     /* 0x00 */ Mtx Mtxs[2]; //one for each FB
     /* 0x80 */ uint16_t unk_0x80;

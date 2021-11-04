@@ -30,9 +30,6 @@ extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
 extern uint16_t D_800BE4D4;
 extern uint16_t D_800BE4D8;
-extern uint16_t D_800BE4E0;
-extern uint16_t D_800BE4E4;
-extern int16_t D_800BE4EC;
 extern uint16_t gButtonHold;
 extern uint16_t gButtonPress;
 extern uint16_t gButton_Start;
@@ -140,7 +137,7 @@ extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
 extern uint16_t gRNGSeed;
-extern uint16_t D_800BE5D0;
+extern uint16_t D_800BE5D0; //current scene - determines DMA's and camera behavior.
 extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
@@ -233,7 +230,7 @@ extern UNK_TYPE D_800C71A0;
 extern u16 D_800C7E14[16]; //"G......AME......OV...E...R"
 extern char*D_800C81E4[22]; //used by stage select in building menu.
 extern UNK_TYPE D_800C823C;
-extern uint16_t D_800C8378[64];
+extern uint16_t D_800C8378[64]; //holds the scene indecies for each stage.
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
 extern uint16_t* D_800C8BE4[5]; //level Names

@@ -75,7 +75,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDFC.s")
-
+//file spit? Seems to be start of dialouge funcs.
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DE30.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DEFC.s")

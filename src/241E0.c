@@ -5,7 +5,7 @@
 #include "function_symbols.h"
 #include "inttypes.h"
 #include <ultra64.h>
-
+//these look to be camera functions, some that are level-specific.
 void func_800235E0(void) {
     D_800BE72C = 0;
     D_800BE730 = 0;
@@ -45,14 +45,14 @@ void func_80023798(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800237F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023894.s")
-
+//"tightrope ride" camera funcs
 void func_80023948(void) {
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023968.s")
-
+//"Lava Rafts" camera func
 void func_80023A08(void) {
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
@@ -61,7 +61,7 @@ void func_80023A08(void) {
 
 void func_80023A34(void) {
     func_800237F0();
-    if ((gDebugBitfeild & 0xA400) == 0) {
+    if ((gDebugBitfeild & 0xA400) == 0) { //this freezes the camera otherwise
         D_800BE544 = 0x8000;
         gScreenPosTargetX._w = (int32_t)(gPlayerPosXMirror._w + 0x200000);
         gScreenPosTargetY._w = (int32_t)gPlayerPosYMirror._w;
@@ -150,7 +150,7 @@ void func_80023EB4(void) {
     func_80023E98();
     D_800BE674 = 1;
 }
-
+//2 of the Mt. Snow levels
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023EDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023F5C.s")
@@ -172,18 +172,26 @@ void func_80024074(void) {
     D_800BE730 = 0;
     D_800BE638 = 0;
 }
-
+//looks like this does the "seasick climb" effect
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800240E8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024428.s")
-
+//Camera funcs for "Vertigo!"
 void func_800244F8(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
     D_800BE710 = 1;
     D_800BE72C = 0;
 }
+/*
+void func_80024528(){
+    int32_t rot=D_800BE72C;
+    if(D_800BE72C<0) rot=D_800BE72C+0xFFFF;
+    rot=rot>>0x10;
+    gUpX=D_800BCCD0[rot - 0x100 & 0x3FF];
+    gUpY=D_800BCCD0[rot & 0x3FF];
 
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024528.s")
 
 void func_80024584(void) {
@@ -208,7 +216,7 @@ void func_800245F0(void) {}
 void func_800245F8(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024600.s")
-
+//these 2 are Beastecor boss camera funcs
 void func_80024624(void) {
     D_800BE588 = 2;
     D_800BE704 = 1;
@@ -239,7 +247,7 @@ void func_80024D6C(){
     D_800BE73C=(D_800BE558._hi-D_800BE560._hi)*0x10000;
     func_8002488C();
 }
-
+//camera funcs for "Bee's the one"
 void func_80024DA8(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
@@ -265,7 +273,7 @@ void func_80024DD8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024E18.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024EA0.s")
-
+//Splashscreen camera funcs.
 void func_80025084(void) {}
 
 void func_8002508C(void) {}
@@ -275,13 +283,13 @@ void func_80025094(void) {
     D_800BE58C = 1;
     D_800BE584 = -0x4C;
     D_8013746C = &D_800C71A0;
-    if (D_800BE5D0 != 0x16) {
+    if (D_800BE5D0 != 0x16) { //if we aren't on "Trapped!?"
         gEyeX = -128.0f;
         gEyeY = 128.0f;
     }
     func_800235E0();
 }
-
+//used for Merco's fight
 void func_80025114(void) {
     func_800235F4();
     if ((D_800BE4E0 & 1))
@@ -314,6 +322,7 @@ void func_800252BC(void) {
     D_800CBF58 = 2;
     func_800235E0();
 }
+//used for Phoenix Gamma
 void func_800252F8(void){
     func_800235F4();
     if(D_800CBF58 == 2){
@@ -435,7 +444,7 @@ void func_80025578(void) {
 }
 //stage init?
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s") 
-
+//multiple romcopy funcs
 void func_80025B7C(void) {
     func_8002694C(D_800BE5D0);
     func_80026A18(D_800BE5D0);

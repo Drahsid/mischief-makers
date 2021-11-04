@@ -436,7 +436,7 @@ void func_80046A30(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046B4C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
-
+//press z to skip cutscene?
 int32_t func_80046E6C(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;

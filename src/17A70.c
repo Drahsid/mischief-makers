@@ -1,4 +1,5 @@
 #include "BGM.h"
+#include "SFX.h"
 #include "GameSave.h"
 #include "data_symbols.h"
 #include "function_symbols.h"
@@ -555,7 +556,7 @@ void TitleScreen_Tick(void) {
 
             if (gActors[51].rgba.a == 7) {
                 gActors[51].flag = 0;
-                gActors[51].unk_0x154 = 0x10040;
+                gActors[51].unk_0x154._w = 0x10040;
                 gGameSubState += 1;
             }
             else {
@@ -565,11 +566,11 @@ void TitleScreen_Tick(void) {
             break;
         }
         case 26: {
-            gActors[51].unk_0x154--;
+            gActors[51].unk_0x154._w--;
             func_8001809C();
 
-            if (gActors[51].unk_0x154 == 0x10000) {
-                SFX_Play_1(0x21U);
+            if (gActors[51].unk_0x154._w == 0x10000) {
+                SFX_Play_1(SFX_MARINA_TITLE);
             }
 
             // test to toggle sound test
@@ -586,7 +587,7 @@ void TitleScreen_Tick(void) {
 
             buttonPress = gButtonPress;
             if ((gButtonPress & gButton_Start) != 0) {
-                SFX_Play_1(0x23U);
+                SFX_Play_1(SFX_MENU_DING);
                 func_80003F24(1, 0x40);
 
                 D_80178166 = 0;
@@ -724,7 +725,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t6 & 0xFF) == 0xFF) {
                     gActors.unk_0xBC6 = (uint8_t)0x15U;
                 }
-                SFX_Play_2(0x22);
+                SFX_Play_2(SFX_MENU_BLIP);
             }
 
             func_80017680(gButton_DDown, &D_800F0406);
@@ -735,7 +736,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t8 & 0xFF) == 0x16) {
                     gActors.unk_0xBC6 = (uint8_t)0U;
                 }
-                SFX_Play_2(0x22);
+                SFX_Play_2(SFX_MENU_BLIP);
             }
 
             func_80017680(gButton_DLeft, &D_800F059E);
@@ -745,7 +746,7 @@ void StageSelect_Tick(void) {
                 temp_a2 = *temp_v1;
                 if (((int32_t)temp_a2) > 0) {
                     *temp_v1 = (uint8_t)(temp_a2 - 1);
-                    SFX_Play_2(0x22);
+                    SFX_Play_2(SFX_MENU_BLIP);
                 }
             }
 
@@ -757,7 +758,7 @@ void StageSelect_Tick(void) {
                 temp_a2_2 = *temp_v1_2;
                 if (((int32_t)(temp_a2_2 & 0xFF)) < ((*((&D_800C823C) + (temp_v0_2 * 2))) - 1)) {
                     *temp_v1_2 = (uint8_t)(temp_a2_2 + 1);
-                    SFX_Play_2(0x22, &D_800C823C, temp_a2_2);
+                    SFX_Play_2(SFX_MENU_BLIP);
                 }
             }
 

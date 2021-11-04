@@ -112,8 +112,8 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x160 = 0;
     gActors[index].unk_0x15C = 0;
     gActors[index].unk_0x158 = 0;
-    gActors[index].unk_0x154 = 0;
-    gActors[index].unk_0x150 = 0;
+    gActors[index].unk_0x154._w = 0;
+    gActors[index].unk_0x150._w = 0;
     gActors[index].unk_0x10C = 0;
     gActors[index].unk_0x108 = 0;
     gActors[index].unk_0x104 = 0;

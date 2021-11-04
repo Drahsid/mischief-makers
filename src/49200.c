@@ -106,13 +106,13 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
-    actor->unk_0x150 = func_8005C6D0(actor->unk_0xF0) - 4;
-    if (actor->unk_0x150 <= 0) {
-        actor->unk_0x150 = 1;
+    actor->unk_0x150._w = func_8005C6D0(actor->unk_0xF0) - 4;
+    if (actor->unk_0x150._w <= 0) {
+        actor->unk_0x150._w = 1;
     }
 
     actor->unk_0xF0 = 0;
-    actor->unk_0x150 *= 3;
+    actor->unk_0x150._w *= 3;
     if (arg1 >= 0) {
         actor->unk_0x17C = arg1;
         if (arg2 < actor->unk_0xB0) {
@@ -144,7 +144,7 @@ uint32_t func_80049460(uint16_t index) {
             }
 
             if (gActors[index].unk_0xD1 != 0x16) {
-                gActors[index].unk_0x150 = 0;
+                gActors[index].unk_0x150._w = 0;
             }
 
             gActors[index].unk_0xD0_h = 0x1F;
@@ -166,7 +166,7 @@ uint32_t func_80049460(uint16_t index) {
             }
 
             if (gActors[index].unk_0xD1 != 0x16) {
-                gActors[index].unk_0x150 = 0;
+                gActors[index].unk_0x150._w = 0;
             }
 
             gActors[index].unk_0xD0_h = 0x1F;
@@ -219,7 +219,7 @@ void func_8004A918(uint16_t index) {
     actor = &gActors[index];
 
     actor->unk_0x12E |= 0x41;
-    actor->flag = actor->unk_0x150;
+    actor->flag = actor->unk_0x150._w;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004A960.s")
@@ -265,14 +265,14 @@ void func_8004B0A0(uint16_t index) {
     }
 
     if (actor->unk_0x171 == 1) {
-        temp_v0 = actor->unk_0x150;
+        temp_v0 = actor->unk_0x150._w;
         actor->unk_0x170 = 0;
 
         if (temp_v0 == 0) {
             actor->unk_0x171 = 2;
         }
         else {
-            actor->unk_0x150 = temp_v0 - 1;
+            actor->unk_0x150._w = temp_v0 - 1;
         }
     }
 
@@ -377,7 +377,7 @@ void func_8004EAE4(uint16_t index) {
 
     phi_a3 = 0;
     if (((gButtonHold & gButton_DRight) != 0) &&
-        (((gActors[index].unk_0x150 == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150 < 9) == 0)))) {
+        (((gActors[index].unk_0x150._w == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150._w < 9) == 0)))) {
         gActors[index].unk_0x84++;
         phi_a3 = 1;
         if (gActors[index].unk_0x15C < (gActors[index].unk_0x84 & 0xFFFF)) {
@@ -387,7 +387,7 @@ void func_8004EAE4(uint16_t index) {
     }
 
     phi_a3++;
-    if (((gButtonHold & gButton_DLeft) != 0) && (((gActors[index].unk_0x150 == 0)) || (((gActors[index].unk_0x150 < 9) == 0)))) {
+    if (((gButtonHold & gButton_DLeft) != 0) && (((gActors[index].unk_0x150._w == 0)) || (((gActors[index].unk_0x150._w < 9) == 0)))) {
         gActors[index].unk_0x84--;
         if ((gActors[index].unk_0x84 & 0xFFFF) < gActors[index].unk_0x158) {
             gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x15C;
@@ -395,11 +395,11 @@ void func_8004EAE4(uint16_t index) {
     }
 
     if (phi_a3 == 0) {
-        gActors[index].unk_0x150 = 0;
+        gActors[index].unk_0x150._w = 0;
         return;
     }
 
-    gActors[index].unk_0x150 += 1;
+    gActors[index].unk_0x150._w++;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004EAE4.s")
@@ -600,7 +600,7 @@ void func_8004ED10(uint16_t index) {
         D_800BE5E8 = gActors[index].unk_0xEC;
         D_800BE5EC = gActors[index].unk_0xF0;
 
-        if (D_800BE5D0 == 0x46) {
+        if (D_800BE5D0 == 0x46) { //play the fall whistle sound if falling in "freefall"
             if (gActors[index].unk_0xF0 <= -294912.0) {
                 if (D_801373E0.unk_0x44 == 0) {
                     if (func_8000334C(0x3E) >= 0) {

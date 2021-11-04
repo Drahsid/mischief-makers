@@ -186,11 +186,11 @@ void func_80006DF4(uint16_t index) {
     gActors[temp + 1].unk_0xBC -= 8.0f;
     gActors[temp + 1].unk_0xC0 -= 8.0f;
 }
-
+//sets selected stage
 #ifdef NON_MATCHING
 void func_80006E60(void) {
     gCurrentStage = gWorldProgress;
-    D_800BE5D0 = D_800C8378[gWorldProgress];
+    D_800BE5D0 = D_800C8378[gWorldProgress]; //array of scene indecies
     D_800D28E4 = D_800C83F8[gWorldProgress];
     func_80043918();
     D_800CBF40 = 1;

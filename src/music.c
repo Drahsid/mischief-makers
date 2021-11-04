@@ -122,36 +122,36 @@ int32_t SFX_Stop(uint16_t id) {
 #endif
 
 // main SFX playing wrapper
-void SFX_Play_1(uint32_t id) {
+int32_t SFX_Play_1(uint32_t id) {
     SFX_Play_0(id, -1, -1, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_2(uint32_t id) {
+int32_t SFX_Play_2(uint32_t id) {
     SFX_Play_0(id, -1, -1, 0x91, 0xFF, 0);
 }
 
-void SFX_Play_3(uint32_t id, int16_t arg1) {
+int32_t SFX_Play_3(uint32_t id, int16_t arg1) {
     SFX_Play_0(id, arg1, -1, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_4(uint32_t id, int8_t arg1) {
-    SFX_Play_0(id, -1, arg1, 0x81U, 0xFFU, 0U);
+int32_t SFX_Play_4(uint32_t id, int8_t arg1) {
+    return SFX_Play_0(id, -1, arg1, 0x81U, 0xFFU, 0U);
 }
 
-void SFX_Play_5(uint32_t id, int16_t arg1, int8_t arg2) {
-    SFX_Play_0(id, arg1, arg2, 0x81, 0xFF, 0);
+int32_t SFX_Play_5(uint32_t id, int16_t arg1, int8_t arg2) {
+    return SFX_Play_0(id, arg1, arg2, 0x81, 0xFF, 0);
 }
 
-void SFX_Play_6(uint32_t id, int16_t arg1, int8_t arg2) {
-    SFX_Play_0(id, arg1, arg2, 0x91, 0xFF, 0);
+int32_t SFX_Play_6(uint32_t id, int16_t arg1, int8_t arg2) {
+    return SFX_Play_0(id, arg1, arg2, 0x91, 0xFF, 0);
 }
 
-void SFX_Play_7(uint32_t id, int16_t arg1, int8_t arg2) {
-    SFX_Play_0(id, arg1, arg2, 0x92, 0xFF, 0);
+int32_t SFX_Play_7(uint32_t id, int16_t arg1, int8_t arg2) {
+    return SFX_Play_0(id, arg1, arg2, 0x92, 0xFF, 0);
 }
 
-void SFX_Play_8(uint32_t id, int16_t arg1, int8_t arg2) {
-    SFX_Play_0(id, arg1, arg2, 0x93, 0xFF, 0);
+int32_t SFX_Play_8(uint32_t id, int16_t arg1, int8_t arg2) {
+    return SFX_Play_0(id, arg1, arg2, 0x93, 0xFF, 0);
 }
 
 void func_80003540(int16_t arg0, int16_t arg1, int8_t* arg2, int16_t* arg3) {
@@ -239,8 +239,24 @@ int32_t func_80003778(uint32_t SFX_ID, uint16_t i) {
         return SFX_Play_0(SFX_ID, val_b, val_a, 0x91, 0xFF, 0);
     }
 }
+//used for gem collision func.
+int32_t func_80003828(uint32_t SFX_ID, uint16_t i){
+    int8_t val_a;
+    int16_t val_b;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80003828.s")
+    if ((D_801069E0[i].pos.x < -383) || (D_801069E0[i].pos.x >= 384)) {
+        return -1;
+    }
+
+    func_80003540(D_801069E0[i].pos.x, D_801069E0[i].pos.y, &val_a, &val_b);
+
+    if (val_b < 128) {
+        return -1;
+    }
+    else {
+        return SFX_Play_0(SFX_ID, val_b, val_a, 0x81, 0xFF, 0);
+    }
+}
 
 int32_t func_800038C8(uint32_t SFX_ID, uint16_t index, uint16_t arg2) {
     int8_t val_a;
@@ -274,14 +290,14 @@ void BGM_SFX_Stop(void) {
 }
 
 void BGM_Stop(void) {
-    alSeqpStop(gBGM_pALCPlayer);
+    alSeqpStop((ALSeqPlayer*)gBGM_pALCPlayer);
     bssStart = 0;
 }
 
 void SFX_StopAll(void) {
     uint8_t index;
     for (index = 0; index < 4; index++) {
-        alSeqpStop(gPALCPlayers[index]);
+        alSeqpStop((ALSeqPlayer*)gPALCPlayers[index]);
         gSFX_ChannelStates[index] = 0;
     }
 }

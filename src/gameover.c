@@ -56,7 +56,7 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
             func_80027510(index, &D_800E13DC, 0, 0xA0, 0x403);
             gActors[index].unk_0x94 |= 0x200;
             gActors[index].unk_0x18C = (uint32_t)&gSpriteData_RedGem;
-            gActors[index].unk_0x154 = 0xC0;
+            gActors[index].unk_0x154._w = 0xC0;
             gActors[index].unk_0x158 = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
         }
 
@@ -64,7 +64,7 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
         gGameSubState = 6;
         return;
     }
-    SFX_Play_1(0x134);
+    SFX_Play_1(0x134); //"wrong answer" buzzer
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/gameover/GamePlay_Tick_Continue.s")

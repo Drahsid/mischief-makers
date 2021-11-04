@@ -20,7 +20,7 @@ void func_8009705C(uint16_t index) {
     gActors[index].pos.x = 0xFFDF;
     gActors[index].pos.y = 0xFFFC;
     gActors[index].pos.z = 0x80;
-    gActors[index].unk_0x154 = 0x6000;
+    gActors[index].unk_0x154._w = 0x6000;
     gActors[index].unk_0x114 = 0.8; // seen as rodata
 }
 #else

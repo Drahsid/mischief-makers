@@ -141,7 +141,7 @@ typedef struct {
         };
         /* 0x0D0 */ uint16_t unk_0xD0_h;
     };
-    /* 0x0D2 */ uint16_t unk_0xD2;
+    /* 0x0D2 */ uint16_t unk_0xD2; //actor type?
     /* 0x0D4 */ uint16_t unk_0xD4;
     /* 0x0D6 */ uint16_t unk_0xD6;
     /* 0x0D8 */ uint16_t unk_0xD8;
@@ -166,7 +166,7 @@ typedef struct {
     /* 0x0FC */ uint32_t unk_0xFC;
     /* 0x100 */ uint32_t unk_0x100;
     /* 0x104 */ int32_t unk_0x104;
-    /* 0x108 */ int32_t unk_0x108;
+    /* 0x108 */ s2_w unk_0x108;
     /* 0x10C */ uint32_t unk_0x10C;
     /* 0x110 */ float unk_0x110;
     /* 0x114 */ float unk_0x114;
@@ -198,13 +198,13 @@ typedef struct {
     /* 0x144 */ float unk_0x144;
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
-    /* 0x150 */ int32_t unk_0x150;
-    /* 0x154 */ uint32_t unk_0x154; // s2_w - lower short called sometimes.
+    /* 0x150 */ s2_w unk_0x150;
+    /* 0x154 */ s2_w unk_0x154; // s2_w - lower short called sometimes.
     /* 0x158 */ int32_t unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ uint32_t unk_0x160;
     /* 0x164 */ uint32_t unk_0x164;
-    /* 0x168 */ int32_t unk_0x168;
+    /* 0x168 */ int32_t unk_0x168; //bombs use as fuse?
     /* 0x16C */ int32_t unk_0x16C;
     union {
         struct {
