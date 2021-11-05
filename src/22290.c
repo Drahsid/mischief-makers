@@ -3,14 +3,14 @@
 #include "inttypes.h"
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80021690.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawRectange.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_8002170C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterboxStandard.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800218FC.s")
-
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterbox.s")
+//file break? Above deals with drawing the letterbox
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022470.s")
-
+//another file break? the above dealts with updating the health bar.
 void func_80022D10(void) {
     func_80043478();
     D_800BE668 = 0x32;
@@ -111,7 +111,7 @@ void func_800232A4(void) {
     }
 
     D_800BE6F0 = (uint8_t)0xFF;
-    D_800BE63C = gPlayerActorp->health;
+    gHPDisplayed = gPlayerActorp->health;
     D_800BE6C0 = -8;
     gDebugBitfeild = 4;
 
@@ -129,11 +129,11 @@ void func_800232A4(void) {
     D_800BE58C = 0;
     D_800BE588 = 0;
     gPlayerActorp->unk_0xD0 = 0;
-    D_800BE564 = temp_t8_2 & 0xFFFF;
-    temp_t6_2 = D_800BE564;
-    D_800BE560 = (uint32_t)temp_t6_2;
-    D_800BE55C = temp_t6_2;
-    D_800BE558 = temp_t6_2;
+    gScreenPosNextY = temp_t8_2 & 0xFFFF;
+    temp_t6_2 = gScreenPosNextY;
+    gScreenPosNextX = (uint32_t)temp_t6_2;
+    gScreenPosCurrentY = temp_t6_2;
+    gScreenPosCurrentX = temp_t6_2;
     gScreenPosTargetY = temp_t6_2;
     gScreenPosTargetX = temp_t6_2;
     D_800BE618 = temp_t6_2;
@@ -152,8 +152,8 @@ void func_800232A4(void) {
     D_800BE590 = temp_t8_3;
     D_800BE594 = temp_t8_3;
     gStageTimeReal = temp_t8_3;
-    D_800BE4E0 = temp_t8_3;
-    D_800BE4E4 = temp_t8_3;
+    gSceneFrames = temp_t8_3;
+    gSceneFramesReal = temp_t8_3;
     D_8013747C = temp_t8_3;
     D_800BE674 = temp_t8_3;
     D_800BE66C = temp_t8_3;
@@ -173,7 +173,7 @@ void func_800232A4(void) {
     func_80025C38();
     gStageTime = 0;
     D_800D294C = (uint16_t)0;
-    func_80010C20(D_800BE5D0); // collision?
+    func_80010C20(gCurrentScene); // collision?
     GamePlay_Tick();
     func_80047CCC();
     func_80047C98();

@@ -106,7 +106,7 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
-    actor->unk_0x150._w = func_8005C6D0(actor->unk_0xF0) - 4;
+    actor->unk_0x150._w = ABS_8005C6D0(actor->unk_0xF0) - 4;
     if (actor->unk_0x150._w <= 0) {
         actor->unk_0x150._w = 1;
     }
@@ -293,7 +293,7 @@ void func_8004B18C(uint16_t index) {
         phi_a1 = -phi_a1;
     }
 
-    actor->unk_0xEC = func_8002981C(actor->unk_0xEC, phi_a1, func_8005C6D0(phi_a1) / 8);
+    actor->unk_0xEC = func_8002981C(actor->unk_0xEC, phi_a1, ABS_8005C6D0(phi_a1) / 8);
     func_8005D370(index, 0x1D);
 
     if (actor->unk_0x170 == 0 && (actor->unk_0x171 == 2 || actor->unk_0x171 == 8)) {
@@ -499,28 +499,28 @@ void func_8004ED10(uint16_t index) {
 
         if (D_801373E0.unk_0x50 != 0) {
             func_80083A04(D_801373E0.unk_0x50, -0x20, 0x40);
-            if ((D_800BE4E0 & 0x7F) == 0) {
+            if ((gSceneFrames & 0x7F) == 0) {
                 D_801373E0.unk_0x50 = 0;
             }
         }
 
         if (D_801373E0.unk_0x54 != 0) {
             func_80083A04(D_801373E0.unk_0x54, -0x20, 0x30);
-            if ((D_800BE4E0 & 0x7F) == 0) {
+            if ((gSceneFrames & 0x7F) == 0) {
                 D_801373E0.unk_0x54 = 0;
             }
         }
 
         if (D_801373E0.unk_0x58 != 0) {
             func_80083A04(D_801373E0.unk_0x58, -0x20, 0x20);
-            if ((D_800BE4E0 & 0x7F) == 0) {
+            if ((gSceneFrames & 0x7F) == 0) {
                 D_801373E0.unk_0x58 = 0;
             }
         }
 
         if (D_801373E0.unk_0x5C != 0) {
             func_80083A04(D_801373E0.unk_0x5C, -0x20, 0x10);
-            if ((D_800BE4E0 & 0x7F) == 0) {
+            if ((gSceneFrames & 0x7F) == 0) {
                 D_801373E0.unk_0x5C = 0;
             }
         }
@@ -595,12 +595,12 @@ void func_8004ED10(uint16_t index) {
         gActors[index].unk_0xB4 = D_800EF630 * gActors[index].unk_0x124;
         gActors[index].unk_0xB8 = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
 
-        D_800BE5D8 = gActors[index].pos.x_w + D_800BE558;
-        D_800BE5DC = gActors[index].pos.y_w + D_800BE55C;
+        D_800BE5D8 = gActors[index].pos.x_w + gScreenPosCurrentX;
+        D_800BE5DC = gActors[index].pos.y_w + gScreenPosCurrentY;
         D_800BE5E8 = gActors[index].unk_0xEC;
         D_800BE5EC = gActors[index].unk_0xF0;
 
-        if (D_800BE5D0 == 0x46) { //play the fall whistle sound if falling in "freefall"
+        if (gCurrentScene == 0x46) { //play the fall whistle sound if falling in "freefall"
             if (gActors[index].unk_0xF0 <= -294912.0) {
                 if (D_801373E0.unk_0x44 == 0) {
                     if (func_8000334C(0x3E) >= 0) {

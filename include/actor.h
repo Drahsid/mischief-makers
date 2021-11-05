@@ -216,7 +216,7 @@ typedef struct {
     };
     /* 0x174 */ uint32_t unk_0x174;
     /* 0x178 */ uint32_t unk_0x178;
-    /* 0x17C */ uint32_t unk_0x17C;
+    /* 0x17C */ uint32_t unk_0x17C; //also used as pointer for color blend func.
     union {
         struct {
             /* 0x180 */ uint8_t unk_0x180;
@@ -234,7 +234,15 @@ typedef struct {
         };
     };
     /* 0x188 */ uint32_t unk_0x188;
-    /* 0x18C */ uint32_t unk_0x18C; //pointer to sprite?
+    union {
+        /* 0x18C */ void* unk_0x18C; 
+        /* 0x18C */ uint32_t unk_0x18C_w; // sometimes increments
+        struct {
+            /* 0x18C */ int8_t unk_0x18C_b;
+            /* 0x18D */ int8_t unk_0x18D_b;
+            /* 0x18E */ uint16_t unk_0x18E;
+            };
+        };
     /* 0x190 */ uint32_t unk_0x190;
     /* 0x194 */ uint8_t unk_0x194[4];
 } Actor; /* sizeof = 0x198 */
@@ -252,7 +260,7 @@ typedef struct {
 // Might be u16, u16 (index0, index1)
 typedef void (*Actor_func_8001EB8Cfn)(int16_t, int16_t);
 
-extern Actor gActors[];
+extern Actor gActors[0xD0];
 extern ActorFunc gActorFuncTable[];
 extern Actor_func_8001EB8Cfn D_800CA1C0[];
 

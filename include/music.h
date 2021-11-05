@@ -6,8 +6,8 @@
 #include "inttypes.h"
 #include <ultra64.h>
 
-extern ALCSPlayer gALCPlayers[4];
-extern ALCSPlayer* gPALCPlayers[4];
+extern ALCSPlayer gSFXPlayers[4];
+extern ALCSPlayer* gSFXPlayersp[4];
 extern void* gAIBuffers[3];
 extern ALHeap gALHeap;
 extern ALGlobals gALGlobals;

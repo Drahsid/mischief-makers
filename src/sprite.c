@@ -27,8 +27,7 @@ int32_t D_800C4EC4 = 40;
 uint32_t D_800C4EC8 = 1;
 double gSpriteScaleX = 1.0;
 double gSpriteScaleY = 1.0;
-int32_t D_800c4EE0[] = {1, 1, 1, 1, 1, 2, 2, 2};
-int32_t D_800c4F00[] = {-2, -1, 0, 1, 2, -1, 0, 1};
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
@@ -123,4 +122,3 @@ void Sprite_Update(Gfx** dlistp) {
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004910.s")

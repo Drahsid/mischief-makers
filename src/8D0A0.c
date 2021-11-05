@@ -1,3 +1,4 @@
+#include "SFX.h"
 #include "common.h"
 #include "data_symbols.h"
 #include "function_symbols.h"
@@ -24,7 +25,19 @@ void func_8008C4E0(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008C710.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CA90.s")
-
+/*
+void func_8008CC00(void){
+    D_800BE5F4=5;    
+    gPlayerActor.pos.x=gActors[16].pos.x;
+    gPlayerActor.pos.y=gActors[16].pos.y;
+    gPlayerPosXMirror._hi = gScreenPosCurrentX._hi+ gActors[16].pos.x;
+    gPlayerPosYMirror._hi = gScreenPosCurrentY._hi+ gActors[16].pos.y;
+    gPlayerActor.flag= gPlayerActor.flag & ~0x20 | gActors[16].flag & 0x20;
+    D_800D294C=0;
+    gActors[16].flag=0;
+    gActors[16].unk_0xD0_h=0;
+    
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CC00.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CC90.s")
@@ -60,7 +73,7 @@ void func_8008CF10(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D510.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D728.s")
+void func_8008D728(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D730.s")
 
@@ -100,7 +113,14 @@ void func_8008DE20(uint16_t x){}
 
 void func_8008DE28(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DE30.s")
+void func_8008DE30(uint16_t index){
+    Actor* actorp;
+    SFX_Stop(SFX_MARINA_OW1);
+    SFX_Stop(SFX_MARINA_YELL1);
+    actorp = &gActors[index];
+    if(actorp->unk_0xF0>-0x68000) actorp->unk_0xF0-=0x3200;
+    if(actorp->pos.y<-0x100) actorp->unk_0xD0_h=64;
+}
 
 void func_8008DEBC(uint16_t index){
     if(0x60<D_800D28E4) gActors[index].flag = 0;

@@ -239,15 +239,15 @@ void Intro_Tick(void) {
         case 0: {
             func_80003A38();
 
-            D_800BE5D0 = 0x15;
+            gCurrentScene = 0x15;
 
             func_80025C38();
-            func_80010C20(D_800BE5D0);
+            func_80010C20(gCurrentScene);
 
             (&D_80380200)[2] = 1; // volatile?
             (&D_80380200)[1] = 1; // volatile?
 
-            func_800273FC(0x30, 0x2000, 0, 4, 0);
+            Text_SpawnAt2(0x30, 0x2000, 0, 4, 0);
 
             D_800F4224 |= 0x200;
             D_800F4210 |= 0x30000000;
@@ -267,7 +267,7 @@ void Intro_Tick(void) {
         case 1: {
             func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F42E4++ == 0) {
                     gGameSubState++;
                     D_800F42E8 = 0x80;
@@ -284,9 +284,9 @@ void Intro_Tick(void) {
         case 3: {
             func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F42E4-- + 0x1F) == 0) {
-                    func_800273FC(0x30U, 0x2000U, 0U, 4U, (uint16_t)0);
+                    Text_SpawnAt2(0x30U, 0x2000U, 0U, 4U, (uint16_t)0);
 
                     D_800F4224 = D_800F4224 | 0x200;
                     D_800F4210 = D_800F4210 | 0x30000000;
@@ -308,7 +308,7 @@ void Intro_Tick(void) {
         case 10: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F42E4++ == 0) {
                     gGameSubState++;
                     D_800F42E8 = 0x80;
@@ -325,11 +325,11 @@ void Intro_Tick(void) {
         case 12: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F42E4-- + 0x1F) {
                     D_800F4210 = 0;
 
-                    func_800273FC(0x31U, 0x2002U, 0U, 8U, (uint16_t)0);
+                    Text_SpawnAt2(0x31U, 0x2002U, 0U, 8U, (uint16_t)0);
 
                     D_800F43BC |= 0x200;
                     D_800F43A8 |= 0x30000000;
@@ -351,7 +351,7 @@ void Intro_Tick(void) {
         case 13: {
             func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F447C++ == 0) {
                     gGameSubState++;
                     D_800F4480 = 0x80;
@@ -368,7 +368,7 @@ void Intro_Tick(void) {
         case 15: {
             func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F447C-- + 0x1F) == 0) {
                     D_800F43A8 = 0;
                     gGameSubState++;
@@ -385,7 +385,7 @@ void Intro_Tick(void) {
             D_800F43A8 = 0;
             gCurrentStage = 0;
             gWorldProgress = 0;
-            D_800BE5D0 = 0xB;
+            gCurrentScene = 0xB;
             D_800D28E4 = 0x59;
             gSaveSlotIndex = 0;
             gGameState = GAMESTATE_TRANSITION;
@@ -412,9 +412,9 @@ char D_800C8F88[] = "LICENSED TO NINTENDO";
 // prints "Press start" and copyright info
 void func_80017F08(void) {
     func_80017770();
-    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0[0] / 4), (0x1F - D_801781A0[0] / 4), 0x1FU));
-    func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
-    func_800276DC(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
+    Text_PrintASCII(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, Text_ConvertColor(0U, (0x1F - D_801781A0[0] / 4), (0x1F - D_801781A0[0] / 4), 0x1FU));
+    Text_PrintASCII(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, Text_ConvertColor(2U, 0x1FU, 0x1FU, 0x18U));
+    Text_PrintASCII(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, Text_ConvertColor(2U, 0x1FU, 0x1FU, 0x18U));
 }
 
 
@@ -462,7 +462,7 @@ void TitleScreen_Tick(void) {
             gSPDisplayList(gDListHead++, &D_800C8EF0);
             func_800230B8(&gDListHead);
             func_80017FE8(0x33);
-            D_800BE5D0 = 8;
+            gCurrentScene = 8;
             gGameSubState += 1;
         }
         default: {
@@ -488,19 +488,19 @@ void TitleScreen_Tick(void) {
         }
         // OK
         case 20: {
-            func_8002670C(D_800BE5D0);
+            func_8002670C(gCurrentScene);
             gGameSubState += 1;
             break;
         }
         // OK
         case 21: {
-            func_80026784(D_800BE5D0);
+            func_80026784(gCurrentScene);
             gGameSubState += 1;
             break;
         }
         // OK
         case 22: {
-            func_80026428(D_800BE5D0);
+            func_80026428(gCurrentScene);
             gGameSubState += 1;
             break;
         }
@@ -515,7 +515,7 @@ void TitleScreen_Tick(void) {
             D_800BE6E8 = 1;
             D_800BE6EC = 0;
             D_800BE70C = 1;
-            func_80010C20(D_800BE5D0);
+            func_80010C20(gCurrentScene);
             gGameSubState += 1;
             break;
         }
@@ -524,11 +524,11 @@ void TitleScreen_Tick(void) {
             gActors[7].rgba.b = 0;
             D_801781A0[0] = 0;
 
-            func_800273FC(16, 0x800, 0x70, 0xFF68, 0);
+            Text_SpawnAt2(16, 0x800, 0x70, 0xFF68, 0);
             gActors[16].unk_0x94 |= 0x100;
             gActors[16].rgba.a = 0x80;
 
-            func_800273FC(17, 0x1000, 0xFF88, 0xFF68, 0);
+            Text_SpawnAt2(17, 0x1000, 0xFF88, 0xFF68, 0);
             gActors[17].unk_0x94 |= 0x100;
             gActors[17].rgba.a = 0x80;
 
@@ -676,6 +676,8 @@ void TitleScreen_Tick(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
 #endif
+#define gSoundTest_SelectedBGM gActors[2].unk_0xEC
+#define gSoundTest_SelectedSFX gActors[3].unk_0xEC
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_Tick.s")
 
@@ -766,7 +768,7 @@ void StageSelect_Tick(void) {
             temp_t3 = (*((&D_80178170) + temp_v0_3)) + (*((&D_80178188) + temp_v0_3));
             temp_t8_2 = (temp_t3 & 0xFFFF) * 2;
             gCurrentStage = temp_t3;
-            D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
+            gCurrentScene = *((&D_800C8378) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {
@@ -811,7 +813,7 @@ void StageSelect_Tick(void) {
         }
 
         gActors.unk_0xBC6 = (uint8_t)0U;
-        D_800BE5D0 = 0;
+        gCurrentScene = 0;
         StageSelect_Print((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
         D_801376BD = (uint8_t)0;
         D_801376B9 = (uint8_t)1;
@@ -992,8 +994,8 @@ void func_8001B004(void) {
 void func_8001B1F8(void) {
     World_IncrementProgress();
     func_8001B1A0();
-    D_80178160 = (uint16_t)D_8017815C;
-    D_8017815A = (int16_t)D_80178156;
+    D_80178160 = (uint16_t)gSelectedWorld;
+    D_8017815A = (int16_t)gWorldMapSelectedStage;
 }
 
 void func_8001B23C() {}
@@ -1052,7 +1054,7 @@ void func_8001B3D0(void) {
     func_80005770();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Worldmap_Tick.s")
 
 void YellowGem_SetFlag(void) {
     gYellowGemBitfeild |= (uint64_t)1 << (uint16_t)gCurrentStage;
@@ -1066,9 +1068,9 @@ uint64_t YellowGem_GetFlag(uint16_t arg0) {
 
 #ifdef NON_MATCHING
 void func_8001C834(void) {
-    func_800273FC(0x32, 0, 0xFFFC, 0x33, 1);
+    Text_SpawnAt2(0x32, 0, 0xFFFC, 0x33, 1);
     D_800F4540 |= 0x50000000;
-    func_800273FC(0x33, 0, 0xFFFC, 0xFFF7, 1);
+    Text_SpawnAt2(0x33, 0, 0xFFFC, 0xFFF7, 1);
     D_800F46D8 |= 0x70000000;
 }
 #else

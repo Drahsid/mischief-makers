@@ -65,11 +65,11 @@ void func_800972DC(void) {
     gActors[80].unk_0x84 = 0x2d0;
     gActors[80].unk_0xB4 = 20.0;
     gActors[80].unk_0xB8 = 20.0;
-    gActors[80].unk_0x18C = &D_800D8588;
+    gActors[80].unk_0x18C = D_800D8588;
     gActors[80].pos.x_1 = 0;
     gActors[80].pos.y_1 = 0;
     gActors[80].pos.z_1 = 0x90;
-    func_8002AEB4(80, 0);
+    Actor_Grayscale(80, 0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_800972DC.s")
@@ -86,7 +86,7 @@ void func_80097384(uint16_t index) {
     gActors[index].pos.x = 0x0;
     gActors[index].pos.y = 0x0;
     gActors[index].pos.z = 0x40;
-    func_8002AEB4(index, 127);
+    Actor_Grayscale(index, 127);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097428.s")

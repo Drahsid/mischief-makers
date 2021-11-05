@@ -131,7 +131,7 @@ void func_80020024(void) {
     uint16_t* phi_s3;
     int32_t phi_s4;
 
-    D_800BE4E0++;
+    gSceneFrames++;
     gStageTimeReal++;
 
     phi_s0 = 36000; // probably a fake match, but it is obvious that s0 or s4 is reused somewhere before the loop at the bottom
@@ -143,18 +143,18 @@ void func_80020024(void) {
 
     if ((gDebugBitfeild & 2) != 0) {
         if ((gButtonPress & gButton_LTrig) != 0) {
-            if (D_800BE6B4 != 1) {
-                D_800BE6B4--;
+            if (gDebugthrottle != 1) {
+                gDebugthrottle--;
                 D_801781DC = 0;
             }
         }
 
-        if (((gButtonPress & gButton_RTrig) != 0) && (D_800BE6B4 != 0x32)) {
-            D_800BE6B4++;
+        if (((gButtonPress & gButton_RTrig) != 0) && (gDebugthrottle != 0x32)) {
+            gDebugthrottle++;
             D_801781DC = 0;
         }
 
-        if ((D_800BE4E4 % D_800BE6B4) == 0) {
+        if ((gSceneFramesReal % gDebugthrottle) == 0) {
             gButtonPress |= D_801781DC;
             D_801781DC = 0;
         }
@@ -195,7 +195,7 @@ void func_80020024(void) {
     func_80047C98(); // level objects
 
     if ((gDebugBitfeild & 0x4000)) {
-        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFX_CurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
+        phi_s2 = gSFX_ChannelStates, phi_s3 = gSFXCurrentIndex, phi_s1 = gSFX_Volumes; // Whitespace memes
         phi_s0 = 0x3C;
         phi_s4 = 0x30;
         do {
@@ -244,7 +244,7 @@ void func_800208D4(void) {
         gActors[index].flag = 0;
     }
 
-    gBgmVolume = D_800EF4D4;
+    gBgmVolume = gBgmVolumeTemp;
     gGameSubState = 0;
     gGamePaused = 0;
 }
@@ -276,7 +276,7 @@ void GamePlay_Tick(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/AttractMode_PlayInput.s")
 
 #ifdef NON_MATCHING
 /* Behavior is mostly the same (besides softlocking when the game state should change out of demo mode)
@@ -298,18 +298,18 @@ void AttractMode_Tick(void) {
                 D_80103944 -= 3;
             }
 
-            func_80021098(&gGameSubState);
-            D_800CA234 -= -1;
-            if ((D_800CA234 == 0 || ((gButtonPress & gButton_Start) != 0)) && (D_80103450 == 0)) {
-                func_80003F24(1, 0x40, &D_800CA234);
+            AttractMode_PlayInput(&gGameSubState);
+            gAttractModeTimer -= -1;
+            if ((gAttractModeTimer == 0 || ((gButtonPress & gButton_Start) != 0)) && (D_80103450 == 0)) {
+                func_80003F24(1, 0x40, &gAttractModeTimer);
                 gGameSubState += 1;
-                D_800CA234 = 0x40;
+                gAttractModeTimer = 0x40;
             }
         }
         else if (gGameSubState == 2) {
-            func_80021098(&gGameSubState);
-            D_800CA234 += 1;
-            if (D_800CA234 == 0x30) {
+            AttractMode_PlayInput(&gGameSubState);
+            gAttractModeTimer += 1;
+            if (gAttractModeTimer == 0x30) {
                 D_80103918 = 0xB;
                 D_80103780 = 0xB;
                 D_801035E8 = 0xB;
@@ -318,7 +318,7 @@ void AttractMode_Tick(void) {
             }
         }
         else if (gGameSubState == 3) {
-            func_80021098(&gGameSubState);
+            AttractMode_PlayInput(&gGameSubState);
             if (D_801037AA == D_80103944) {
                 gAttractModeIndex += 1;
                 D_80137D90 = 0;
@@ -339,29 +339,29 @@ void AttractMode_Tick(void) {
         }
 
         gCurrentStage = (&D_800CA2B0)[gAttractModeIndex];
-        D_800BE5D0 = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
+        gCurrentScene = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
         D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)gCurrentStage * 2);
-        D_800CA234 = 0xA00;
+        gAttractModeTimer = 0xA00;
         D_800D2908 = 1;
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&gAttractModeIndex, &gCurrentStage, &D_800CA234, &gGameSubState);
+        func_800232A4(&gAttractModeIndex, &gCurrentStage, &gAttractModeTimer, &gGameSubState);
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
-        D_80104098[65].unk_0x80 = 0;
-        D_80104098[64].unk_0x80 = 0;
+        HealthFace.unk_0x80 = 0;
+        HealthBar.unk_0x80 = 0;
         func_8002092C();
         D_80103944 = 0;
         D_801037AA = 0;
         D_80103616 = 0;
         D_80103480 = 0;
-        D_800CA23C = 0;
-        D_800CA240 = 0;
-        D_800CA248 = 0;
+        gAttractModeInputHoldIndex = 0;
+        gAttractModeInputHold = 0;
+        gAttractModeInputIndex = 0;
         D_800CA24C = 0;
-        D_800CA244 = *(uint16_t*)(&D_800CBDFC)[gAttractModeIndex];
-        D_800CA250 = *(uint16_t*)(&D_800CBE0C)[gAttractModeIndex];
+        gAttractModeInputHoldTimer = *(uint16_t*)(&gAttractModeHoldInputs)[gAttractModeIndex];
+        gAttractModeInputTimer = *(uint16_t*)(&gAttractModePressInputs)[gAttractModeIndex];
     }
 }
 #else

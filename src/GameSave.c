@@ -133,7 +133,7 @@ void GameSave_Erase(void) {
 }
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
-    func_80027510(index, &D_800E13DC, pos_x, pos_y, 0);
+    Text_SpawnIcon(index, &D_800E13DC, pos_x, pos_y, 0);
     gActors[index].unk_0x94 |= 0x200;
     gActors[index].unk_0x18C = arg3;
 }
@@ -142,8 +142,8 @@ void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3)
 #ifdef NON_MATCHING
 void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
     uint16_t* red_gems = &gFileRedGems[arg3];
-    func_80027800(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
-    func_80027800(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
+    Text_Print2Digits(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
+    Text_Print2Digits(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800058E0.s")
@@ -190,7 +190,7 @@ void func_80006DF4(uint16_t index) {
 #ifdef NON_MATCHING
 void func_80006E60(void) {
     gCurrentStage = gWorldProgress;
-    D_800BE5D0 = D_800C8378[gWorldProgress]; //array of scene indecies
+    gCurrentScene = D_800C8378[gWorldProgress]; //array of scene indecies
     D_800D28E4 = D_800C83F8[gWorldProgress];
     func_80043918();
     D_800CBF40 = 1;
@@ -202,49 +202,67 @@ void func_80006E60(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006EDC.s")
+//menus use gActors' fields rather than their own variables.
+#define NameEntryLanguage gActors[185].unk_0xA0
+#define NameEntryCurrentChar gActors[184].unk_0xA0
+#define nameEntrySelectedColumn gActors[177].unk_0xA0
+#define nameEntrySelectedRow gActors[178].unk_0xA0
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800072A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_ConfirmName.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800073CC.s")
+//prints hirgana keyboard
+/*
+uint16_t NameEntry_PrintKeyboardHIRA(uint16_t index){
+    Text_SpawnAt2(index,0x11e,0x80,0x44,0);
+    gActors[index+1].flag=0;
+    index=Text_PrintAlphaAtColor(index+2,D_800C52B0,0x40,0x44,0,0x80,0,0);
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    index= Text_PrintAlphaAt(index+1, gNameEntryRow0HIRA,0xff80,0x30,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow1HIRA,0xff80,0x20,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow2HIRA,0xff80,0x10,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow3HIRA,0xff80,0,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow4HIRA,0xff80,0xffF0,0);
+    gActors[index++].flag=0;
+    return index;
+}*/
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboardHIRA.s")
 
 void func_80007578(void) {
     SFX_Play_2(SFX_MENU_BLIP);
-    gNameEntryLanguage = 0;
-    func_800073CC(0xC);
+    NameEntryLanguage = 0;
+    NameEntry_PrintKeyboardHIRA(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800075A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboardKATA.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
 
-#ifdef NON_MATCHING
-// compiler refuses to recognize symbols
 void NameEntry_IsMaxed(void) {
     if (NameEntryCurrentChar == 10) {
         nameEntrySelectedColumn = 2;
         nameEntrySelectedRow = 5;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
 // Original Japanese version has 3 different character sets for name entry. All other regions have 1
 #ifdef NON_MATCHING
 void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
-    if (gNameEntryCurrentChar < 10) {
-        if (gNameEntryLanguage == 0) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Hiragana[gNameEntrySelectedColumn];
+    if (NameEntryCurrentChar != 10) {
+        if (NameEntryLanguage == 0) {
+            gNameEntrySpace[NameEntryCurrentChar] = Hiragana[nameEntrySelectedColumn];
         }
-        else if (gNameEntryLanguage == 1) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Katakana[gNameEntrySelectedColumn];
+        if (NameEntryLanguage == 1) {
+            gNameEntrySpace[NameEntryCurrentChar] = Katakana[nameEntrySelectedColumn];
         }
-        else if (gNameEntryLanguage == 2) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
+        if (NameEntryLanguage == 2) {
+            gNameEntrySpace[NameEntryCurrentChar] = Eng[nameEntrySelectedColumn];
         }
         SFX_Play_1(SFX_MENU_DING);
         SFX_Play_1(0x10D);

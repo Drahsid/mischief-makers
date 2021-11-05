@@ -7,8 +7,9 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E790.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E918.s")
+void func_8008E918(uint16_t index){
+    func_80081790(index,&D_800E8BEC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E948.s")
 
@@ -111,7 +112,12 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80092F2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80092FD4.s")
-
+/*
+uint32_t func_800930AC(uint16_t x){
+    uint32_t ret =func_80092FD4(x);
+    if(ret) ret = func_8005DFC8(0);
+    return ret;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930AC.s")
 
 void func_800930E4(uint32_t x){}
@@ -158,7 +164,13 @@ void func_800930E4(uint32_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095928.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A10.s")
+void func_80095A10(uint16_t index){
+    gActors[index].unk_0x118+=gActors[index].unk_0x114;
+    if(gActors[index].unk_0x118>360){
+        gActors[index].unk_0x118-=360;
+        SFX_Play_2(0x116); //dash sound
+        }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A8C.s")
 

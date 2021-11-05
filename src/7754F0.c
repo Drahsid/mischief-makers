@@ -200,7 +200,7 @@ void func_80775FF8(uint16_t index1) {
         gActors[index0].pos.z = gActors[index1].pos.z + 0x10;
         gActors[index0].unk_0x94 = 0xA01;
         gActors[index0].flag = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_UNK3);
-        gActors[index0].unk_0x18C = &D_800D8668;
+        gActors[index0].unk_0x18C = D_800D8668;
         gActors[index0].unk_0x150._w = 0x100000;
         gActors[index0].unk_0xB4 = temp;
         gActors[index0].unk_0xB8 = temp;
@@ -241,7 +241,7 @@ void func_807760F8(uint16_t index) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_807761D4.s")
-
+//might invole controlling Teran in world 4
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_807766FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_80777468.s")

@@ -9,7 +9,7 @@
 typedef uint32_t UNK_TYPE;
 typedef uint32_t UNK_POINTER;
 
-extern float D_800BCCD0[1024]; // looks to be a lookup table of values from 1.0 to -1.0. decends and ascends several times
+extern float gSineLookup[1024]; // looks to be a lookup table of values from 1.0 to -1.0. decends and ascends several times
 extern float D_800BDCD0[512];  // second lookup table, 1.0 to -0.99998. unused?
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;
@@ -63,17 +63,17 @@ extern int32_t D_800C4EC4;
 extern uint32_t D_800C4EC8;
 extern double gSpriteScaleX;
 extern double gSpriteScaleY;
-extern uint16_t gTimeRecords[64]; // records for stage times.
 extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
-extern ActorInit gActorInit[];
-extern int32_t gActorInitFlags[];
+extern ActorInit gActorInit[125];
+extern int32_t gActorInitFlags[125];
 extern uint16_t gAttractModeIndex;
 extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800E5AC0[];
+extern UNK_TYPE D_800E8BEC;
 extern uint8_t bssStart; // also deals with sound state.
 extern int16_t gBgmVolume;
 extern uint8_t gSFX_ChannelStates[];
@@ -99,34 +99,26 @@ extern ActorFunc gActorFuncTable_80192000[];
 extern ActorFunc gActorFuncTable_8019B000[];
 extern ActorFunc gActorFuncTable_801A6800[];
 extern ActorFunc gActorFuncTable_801B0800[];
-extern uint8_t gNameEntryLanguage;
-extern uint8_t gNameEntrySelectedColumn;
-extern uint8_t gNameEntrySelectedRow;
-extern uint8_t gNameEntryCurrentChar;
 extern uint8_t gSpriteData_YellowGem[];
 extern uint8_t gSpriteData_RedGem[];
 extern uint8_t gSpriteData_BlueGem[];
 extern ActorFunc gActorFuncTable_801B0800[];
-extern uint8_t gNameEntryLanguage;
-extern uint8_t gNameEntrySelectedColumn;
-extern uint8_t gNameEntrySelectedRow;
-extern uint8_t gNameEntryCurrentChar;
 extern uint32_t gPlayTime;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t D_800BE4D0;
 extern uint16_t D_800BE4D4;
-extern uint16_t D_800BE4E0;
-extern uint16_t D_800BE4E4;
+extern uint16_t gSceneFrames; //pair of frame counters. get modulo'd a lot for animations
+extern uint16_t gSceneFramesReal; //like gStageTime and gStageTimeReal, the latter doesn't pause
 extern int16_t D_800BE4EC;
 extern uint16_t D_800BE538;
 extern uint16_t D_800BE544;
 extern s2_w gScreenPosTargetX; // these few seem to be screen position related
 extern s2_w gScreenPosTargetY;
-extern s2_w D_800BE558;
-extern s2_w D_800BE55C;
-extern s2_w D_800BE560;
-extern s2_w D_800BE564;
+extern s2_w gScreenPosCurrentX;
+extern s2_w gScreenPosCurrentY;
+extern s2_w gScreenPosNextX;
+extern s2_w gScreenPosNextY;
 extern int16_t D_800BE568;
 extern int16_t D_800BE578;
 extern int16_t D_800BE57C;
@@ -137,7 +129,7 @@ extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
 extern uint16_t gRNGSeed;
-extern uint16_t D_800BE5D0; //current scene - determines DMA's and camera behavior.
+extern uint16_t gCurrentScene; //current scene - determines DMA's and camera behavior.
 extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
@@ -148,10 +140,10 @@ extern uint16_t D_800BE5FC;
 extern UNK_TYPE D_800BE610;
 extern UNK_TYPE D_800BE614;
 extern UNK_TYPE D_800BE618;
-extern uint16_t D_800BE62C;
-extern uint16_t D_800BE630;
+extern uint16_t gScreenXLock;
+extern uint16_t gScreenYLock;
 extern int16_t D_800BE638;
-extern int16_t D_800BE63C;
+extern int16_t gHPDisplayed;
 extern int16_t D_800BE668;
 extern uint16_t D_800BE66C;
 extern uint16_t D_800BE670;
@@ -173,12 +165,12 @@ extern int16_t D_800BE6A8;
  * B unknown
  * C unknown
  * D Ortho / perspective view
- * E L and R change gameplay speed (60 / D_800BE6B4 fps)
+ * E L and R change gameplay speed (60 / gDebugthrottle fps)
  * F unknown (func_8002167C is just jr ra)
  */
 extern uint16_t gDebugBitfeild;
 extern float D_800BE6B0;    // 90.0f, never used, AFAIK
-extern uint16_t D_800BE6B4; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
+extern uint16_t gDebugthrottle; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
 extern b2_s D_800BE6B8;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -195,13 +187,13 @@ extern int32_t D_800BE71C;
 extern int32_t D_800BE720;
 extern int32_t D_800BE724;
 extern int32_t D_800BE728;
-extern int32_t D_800BE72C;
-extern int32_t D_800BE730;
+extern int32_t gCameraRot;
+extern int32_t gCameraRotDelta;
 extern UNK_TYPE D_800BE73C;
-extern char* D_800BE84C[33];    // BGM titles left in data.
+extern char* BGMNames[33];    // BGM titles left in data.
 extern char** D_800BEA4C[32];   // instrument names, and variations.
 extern uint8_t* D_800C0A54[33]; //contains instrument data for each song 
-extern uint8_t D_800C0AD8[33][18]; // Music track data {vol>>8,unknown>>0xc,instrumentFXMix[16]}
+extern uint8_t gBGMVolsFxs[33][18]; // Music track data {vol>>8,unknown>>0xc,instrumentFXMix[16]}
 extern char* D_800C1694[294];   // could help add to SFX.h
 extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
 extern char* gSFX_Labels[224];    // may be wrong.
@@ -221,6 +213,14 @@ extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
 extern uint8_t D_800C5010[];
+extern uint16_t gNameEntryRow0HIRA[];
+extern uint16_t gNameEntryRow1HIRA[];
+extern uint16_t gNameEntryRow2HIRA[];
+extern uint16_t gNameEntryRow3HIRA[];
+extern uint16_t gNameEntryRow4HIRA[];
+extern uint16_t D_800C52A4[];
+extern uint16_t D_800C52B0[];
+extern uint16_t D_800C52BC[];
 extern uint16_t gNameEntryRow0ENG[18]; // arrays with the english name entry characters
 extern uint16_t gNameEntryRow1ENG[18]; // there are 2 more like this for other languages
 extern uint16_t gNameEntryRow2ENG[18]; // Japan version had 3 character sets to select with L/R
@@ -251,29 +251,29 @@ extern UNK_TYPE D_800C9080;
 extern uint16_t gSoundTest_SFXEntries[294];
 extern char D_800C94CC[4]; //"BGM"
 extern char D_800C94D0[5]; //"S.E."
-extern int16_t D_800C94D8[2][2]; //only [x][1] is used
+extern int16_t soundtest_IconPos[2][2]; //only [x][1] is used
 extern char* D_800C9680[5]; //'rank' letters
 extern int16_t D_800C9694[5];
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
 extern uint32_t D_800C9FCC[];
 extern uint16_t D_800CA230;
-extern uint16_t D_800CA234;
-extern uint16_t D_800CA23C;
-extern uint16_t D_800CA240;
-extern uint16_t D_800CA244;
-extern uint16_t D_800CA248;
+extern uint16_t gAttractModeTimer;
+extern uint16_t gAttractModeInputHoldIndex;
+extern uint16_t gAttractModeInputHold;
+extern uint16_t gAttractModeInputHoldTimer;
+extern uint16_t gAttractModeInputIndex;
 extern uint16_t D_800CA24C;
-extern uint16_t D_800CA250;
+extern uint16_t gAttractModeInputTimer;
 extern UNK_TYPE D_800CA2B0;
 extern uint16_t* D_800C96A0[5]; // "perfect","excellent","very good","   good   ","try harder"
-extern uint16_t* D_800CBDFC[4]; //attract mode button inputs {time, input}
-extern uint16_t* D_800CBE0C[4]; //the first for held buttons, second for tapped.
+extern uint16_t* gAttractModeHoldInputs[4]; //attract mode button inputs {time, input}
+extern uint16_t* gAttractModePressInputs[4]; //the first for held buttons, second for tapped.
 extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern int16_t D_800CBF50;
 extern uint16_t D_800CBF54;
-extern uint16_t D_800CBF58;
+extern uint16_t gLetterboxMode;
 extern int16_t D_800CC228[256];
 extern int8_t D_800CC428;
 extern int16_t D_800CC6EC[88][8];
@@ -474,10 +474,10 @@ extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern uint64_t D_800EF210[11]; //D_8016e6f0->ucode_data
-extern int16_t D_800EF4D4;
+extern int16_t gBgmVolumeTemp;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
-extern uint16_t gSFX_CurrentIndex[4]; // holds current SFX indicies per channel
+extern uint16_t gSFXCurrentIndex[4]; // holds current SFX indicies per channel
 extern int32_t D_800F4540;
 extern int32_t D_800F46D8;
 extern uint8_t D_80104090[];
@@ -504,7 +504,7 @@ extern OSMesg D_8012A678[8];
 extern OSThread idleThread;
 extern OSThread mainThread;
 extern OSThread rmonThread;
-extern OSMesgQueue D_8012ABA8;
+extern OSMesgQueue gDMAMsgQ;
 extern OSMesgQueue D_8012ABC0;
 extern OSMesgQueue D_8012ABD8;
 extern OSMesgQueue D_8012ABF0;
@@ -517,8 +517,8 @@ extern OSMesg D_8012AC74;
 extern OSMesg D_8012AC80;
 extern OSTask* D_8012AC84;
 extern OSTask D_8012AC88[2];
-extern OSViMode* D_8012AD08;
-extern OSViMode D_8012AD10;
+extern OSViMode* gOSViModep;
+extern OSViMode gOSViMode;
 extern OSContStatus gOSContStatArray[4];
 extern OSContPad gConpadArrayA[4];
 extern OSContPad gConpadArrayB[4];
@@ -549,6 +549,7 @@ extern int32_t D_801376E4;
 extern int32_t D_801376E8;
 extern OSMesgQueue D_801377B8;
 extern OSMesgQueue D_801377D0;
+extern uint32_t D_80137794; //800c0ad8[x][1]<<0XC. Unused?
 extern u8 D_80137798; //BGM_play() requires this to be non-zero.
 extern OSMesg D_80137800[48];
 extern OSMesg D_801378C0;
@@ -585,6 +586,11 @@ extern UNK_TYPE D_8016EF20;
 extern uint32_t D_80171ADC[2][2];
 extern UNK_TYPE D_80171D30;
 extern uint8_t D_80171B19;
+extern uint16_t D_80171B1A;
+extern uint16_t D_80171B1C;
+extern uint16_t D_80171B1E;
+extern uint16_t D_80171B20;
+extern uint16_t D_80171B22;
 extern UNK_TYPE D_80171B30;
 extern UNK_TYPE D_80171C30;
 extern UNK_TYPE D_80171F10;
@@ -610,10 +616,10 @@ extern uint16_t gCurrentStage;
 extern uint16_t D_80178150;
 extern uint16_t D_80178152;
 extern uint16_t D_80178154;
-extern uint16_t D_80178156;
+extern uint16_t gWorldMapSelectedStage;
 extern uint16_t D_80178158;
 extern uint16_t D_8017815A;
-extern uint16_t D_8017815C; //selected world?
+extern uint16_t gSelectedWorld; //selected world?
 extern uint16_t D_80178164;
 extern uint16_t D_80178160;
 extern uint16_t D_80178162;

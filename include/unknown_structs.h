@@ -4,13 +4,14 @@
 #include "inttypes.h"
 #include <ultra64.h>
 
+//UI objects? last 2 are the health gauge and portrait
 typedef struct {
     /* 0x00 */ Mtx Mtxs[2]; //one for each FB
     /* 0x80 */ uint16_t unk_0x80;
     /* 0x82 */ uint16_t unk_0x82;
-    /* 0x84 */ int16_t unk_0x84;
+    /* 0x84 */ int16_t posX;
     /* 0x86 */ int16_t unk_0x86; //align?
-    /* 0x88 */ int16_t unk_0x88; 
+    /* 0x88 */ int16_t posY; 
     /* 0x8A */ int16_t unk_0x8A; //align? these 2 may be unions.
     /* 0x8C */ float unk_0x8C;
     /* 0x90 */ float unk_0x90;
@@ -19,6 +20,8 @@ typedef struct {
     /* 0x98 */ void* unk_0x98;
     /* 0x9C */ int32_t unk_0x9C; //unused?
 } struct_D_80104098;/* sizeof 0xA0 */
+#define HealthBar D_80104098[64]
+#define HealthFace D_80104098[65]
 
 //likely the gem objects.
 typedef struct {

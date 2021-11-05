@@ -182,14 +182,14 @@ void Thread_IdleProc(void* arg0) {
     if (osTvType == OS_TV_MPAL) {
         osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Framebuffer_Clear();
-        D_8012AD10 = osViModeTable[OS_VI_MPAL_LAN1];
-        D_8012AD08 = &osViModeTable[OS_VI_MPAL_LAN1];
+        gOSViMode = osViModeTable[OS_VI_MPAL_LAN1];
+        gOSViModep = &osViModeTable[OS_VI_MPAL_LAN1];
     }
     else {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
         Framebuffer_Clear();
-        D_8012AD10 = osViModeTable[OS_VI_NTSC_LAN1];
-        D_8012AD08 = &osViModeTable[OS_VI_NTSC_LAN1];
+        gOSViMode = osViModeTable[OS_VI_NTSC_LAN1];
+        gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
     }
 
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &D_8012A678, 8);
@@ -201,7 +201,7 @@ void Thread_IdleProc(void* arg0) {
 
     while (1) {}
 }
-//set D_8012AD08->comRegs.hStart and  D_8012AD08->feildregs[].vScale
+//set gOSViModep->comRegs.hStart and  gOSViModep->feildregs[].vScale
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
 // main update setup
@@ -237,7 +237,7 @@ void Thread_MainProc(int32_t arg0) {
     uint16_t* framebuffer;
 
     Sound_InitPlayers();
-    osCreateMesgQueue(&D_8012ABA8, &D_8012AC68, 1);
+    osCreateMesgQueue(&gDMAMsgQ, &D_8012AC68, 1);
     osCreateMesgQueue(&D_8012ABD8, &D_8012AC70, 1);
     osSetEventMesg(OS_EVENT_SP, &D_8012ABD8, D_8012AC80);
     Sound_SetEventMesg();
@@ -273,12 +273,12 @@ void Thread_MainProc(int32_t arg0) {
         D_8012AC84->t.output_buff_size = NULL;
         D_8012AC84->t.ucode_size = 0x1000;
         D_8012AC84->t.ucode_data_size = 0x800;
-        D_8012AC84->t.dram_stack = (uint64_t*)&D_8011D970;
-        D_8012AC84->t.dram_stack_size = 0x400;
+        D_8012AC84->t.dram_stack = D_8011D970;
+        D_8012AC84->t.dram_stack_size = sizeof(D_8011D970);
         D_8012AC84->t.data_ptr = gDListTail[gCurrentFramebufferIndex].dlist;
         D_8012AC84->t.data_size = (uint32_t)((gDListHead - gDListTail[gCurrentFramebufferIndex].dlist) * sizeof(Gfx));
-        D_8012AC84->t.yield_data_ptr = (uint64_t*)&D_8011DDF0;
-        D_8012AC84->t.yield_data_size = 0xDA0;
+        D_8012AC84->t.yield_data_ptr = D_8011DDF0;
+        D_8012AC84->t.yield_data_size = sizeof(D_8011DDF0);
 
         osWritebackDCacheAll();
         osSpTaskLoad(D_8012AC84);
@@ -292,7 +292,7 @@ void Thread_MainProc(int32_t arg0) {
         osRecvMesg(&D_8012ABF0, NULL, 1);
         func_800029EC();
         osViSwapBuffer(framebuffer);
-        func_80010898();
+        lookAt_Tick();
 
         // D_8012ABC0 is probably the retrace/vsync queue
         if (MQ_IS_FULL(&D_8012ABC0)) {
@@ -375,20 +375,20 @@ int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;
     OSMesg mesg;
     osInvalDCache(vaddr, nbytes);
-    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
-    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &gDMAMsgQ);
+    return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
 
 int32_t func_80001264(void) {
     OSMesg mesg;
-    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+    return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
 
 // same as above, no osRecvMesg. used once.
 int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;
     osInvalDCache(vaddr, nbytes);
-    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &gDMAMsgQ);
 }
 
 void func_800012F0(void) {
@@ -433,7 +433,7 @@ void func_800012F0(void) {
 
 // main update
 void func_8000147C(void) {
-    D_800BE4E4 += 1;
+    gSceneFramesReal += 1;
     if (gPlayTime < 0x1EE627FF) {
         gPlayTime++;
     }
@@ -470,7 +470,7 @@ void func_8000147C(void) {
 
     Rand(); // update rng
     func_800822B8();
-    func_800218FC();
+    Gfx_DrawLetterbox();
     func_8000F290();
     func_80009BE0();
 
@@ -545,7 +545,7 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_TRANSITION: {
-            func_8001B460(); // transition
+            Worldmap_Tick(); // transition
             break;
         }
         case GAMESTATE_UNKNOWN2: {

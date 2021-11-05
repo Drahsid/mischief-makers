@@ -23,6 +23,7 @@ segments:
       - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
+      - [0x05510, c] #may be decompression/decryption func
       - [0x05A70, c, GameSave]
       - [0x0A540, c]
       - [0x11820, c]
@@ -244,6 +245,7 @@ segments:
       #- [0xEDC70, .rodata, DebugText] # strings and doubles
       #- [0xEDCE0, .rodata, 84BB0]
       - [0xEF880, bin] # "RSP SW Version:" ...
+      # - [0xF00DO,c] # a few NOOPs the game SHOULD load in.
       - [0x7754F0, c] # includes actor functions from func_80016E70
 
   - type: bin # more data

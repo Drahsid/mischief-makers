@@ -325,10 +325,10 @@ int32_t func_80045F08(int32_t arg0) {
 void func_80045F14(uint16_t* arg0) {
     gScreenPosTargetX._w = arg0[0];
     gScreenPosTargetY._w = arg0[1];
-    D_800BE558 = gScreenPosTargetX._w;
-    D_800BE55C = gScreenPosTargetY._w;
-    D_800BE560._hi = D_800BE558;
-    D_800BE564._hi = D_800BE55C;
+    gScreenPosCurrentX = gScreenPosTargetX._w;
+    gScreenPosCurrentY = gScreenPosTargetY._w;
+    gScreenPosNextX._hi = gScreenPosCurrentX;
+    gScreenPosNextY._hi = gScreenPosCurrentY;
     D_800D2920 = arg0[2];
     D_800D2924 = arg0[3];
     D_800D2918 = arg0[4];
@@ -381,7 +381,7 @@ void func_80046274(int32_t arg0, int32_t arg1) {}
 
 void func_800463C0(void) {
     func_800462F0();
-    D_800BE568 = D_800BE558._hi - 0x90;
+    D_800BE568 = gScreenPosCurrentX._hi - 0x90;
 }
 
 #ifdef NON_MATCHING
@@ -437,7 +437,7 @@ void func_80046A30(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
 //press z to skip cutscene?
-int32_t func_80046E6C(void) {
+int32_t Cutscene_Skip(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x63;
@@ -492,7 +492,7 @@ void func_800475EC(void) {
     int16_t temp_v1;
     int32_t temp_a0;
 
-    temp_v0 = D_800BE558 - D_800BE560;
+    temp_v0 = gScreenPosCurrentX - gScreenPosNextX;
     if ((int32_t)temp_v0 >= 0) {
         D_800D2914 = (int16_t)(D_800D2914 - temp_v0);
     }
@@ -517,7 +517,7 @@ void func_80047674(void) {}
 
 void func_80047958(void) {
     uint16_t temp = D_800D28F0 - 0x1F;
-    D_800BE5D0 = (uint16_t)(*((&D_800D28D0) + temp));
+    gCurrentScene = (uint16_t)(*((&D_800D28D0) + temp));
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }

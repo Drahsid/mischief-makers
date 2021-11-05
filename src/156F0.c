@@ -15,7 +15,10 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015094.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800150FC.s")
-
+/*
+void func_80015174(uint16_t index){
+    func_80014FD0(index,gActors[index].pos.x+gScreenPosCurrentX._hi&0xf);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015174.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800151D8.s")
@@ -53,17 +56,33 @@ void func_80016CB4(void) {
 
     if ((D_80137458 & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
-            if ((gActors[index].flag & ACTOR_FLAG_ACTIVE) != 0) {
+            if ((gActors[index].flag & ACTOR_FLAG_ACTIVE)) {
                 func_800160EC(index);
                 gActors[index].unk_0x98 &= ~(1 << 19);
             }
         }
-        gPlayerPosXMirror._w = gActors[index].pos.x_w + D_800BE558._w; // are these s2w?
-        gPlayerPosYMirror._w = gActors[index].pos.y_w + D_800BE55C._w;
+        gPlayerPosXMirror._w = gActors[index].pos.x_w + gScreenPosCurrentX._w;
+        gPlayerPosYMirror._w = gActors[index].pos.y_w + gScreenPosCurrentY._w;
     }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80016CB4.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80016D94.s")
+void func_80016D94(){
+    int32_t x,y;
+    uint16_t index;
+    x= gScreenPosNextX._w - gScreenPosCurrentX._w;
+    y= gScreenPosNextY._w - gScreenPosCurrentY._w;
+    for(index=1;index<ACTOR_COUNT1;index++){
+        if( (gActors[index].flag & 2) && ((gActors[index].flag & 8)==0)){
+            gActors[index].pos.x_w+=x;
+            gActors[index].pos.y_w+=y;
+            if((gActors[index].flag & 4)&&
+            ((gActors[index].pos.x<-0xd0||gActors[index].pos.x>0xd0)||
+            (gActors[index].pos.y<-0xa0||gActors[index].pos.y>0xa0)))
+                gActors[index].flag=0;
+        }
+    }
+}
+

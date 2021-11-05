@@ -5,10 +5,17 @@
 #include "function_symbols.h"
 #include "inttypes.h"
 #include <ultra64.h>
-
+/*
+void func_80025E00(void){
+    D_801376DC=&D_80200400;
+    RomCopy_A(0x1E6900,&D_80267CD0,0X2E240);
+    D_801376E0=&D_80200400+func_80004910(&D_80267CD0,&D_80200400);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E00.s")
+
 // romcopies 0x34400 bytes from rom:0x214b40 to ram:0x80296000
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
+
 //RomCopies gActorFuncTable_80192000 based on u32[4] lookup.
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025EC4.s")
 

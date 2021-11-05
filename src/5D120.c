@@ -9,12 +9,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C5E0.s")
 
-int32_t func_8005C6D0(int32_t x){
+int32_t ABS_8005C6D0(int32_t x){
     if(x<0)x=-x;
     return x;
 }
 
-float func_8005C6E4(float x){
+float FABS_8005C6E4(float x){
     if(x<0)x=-x;
     return x;
 }

@@ -48,54 +48,46 @@ void func_800122B0(void) {
     gInputHistoryHold[0] = gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
     gInputHistoryPress[0] = gButtonPress & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
 }
-
+//lock player and camera in x.
 void func_800123AC(void) {
-    int32_t temp = gPlayerPosXMirror._hi - D_800BE558._hi;
+    int32_t temp = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
     if (temp < -0x90) {
-        gPlayerPosXMirror._hi = D_800BE558._hi - 0x90;
+        gPlayerPosXMirror._hi = gScreenPosCurrentX._hi - 0x90;
         gPlayerActorp->pos.x = -0x90;
     }
     else if (temp >= 0x91) {
-        gPlayerPosXMirror._hi = D_800BE558._hi + 0x90;
+        gPlayerPosXMirror._hi = gScreenPosCurrentX._hi + 0x90;
         gPlayerActorp->pos.x = 0x90;
     }
     else {
-        gPlayerActorp->pos.x = gPlayerPosXMirror._hi - D_800BE558._hi;
+        gPlayerActorp->pos.x = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
     }
 }
 
 void func_80012418(void) {
-    gPlayerActor.pos.y = gPlayerPosYMirror._hi - D_800BE55C._hi;
+    gPlayerActor.pos.y = gPlayerPosYMirror._hi - gScreenPosCurrentY._hi;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012634.s")
 
-#ifdef NON_MATCHING
-/* Differences come from when we read D_800BE558 and D_800BE55C
- * The code reads them as 16 bit, then 32 bit
- * I am not sure how to replicate, since what I have currently written gets optimized out
- */
 void func_80012830(void) {
-    D_800BE560._hi = D_800BE558;
-    D_800BE560._w = D_800BE558;
-    if (D_800BE62C != 0) {
+    gScreenPosNextX._hi = gScreenPosCurrentX._hi;
+    gScreenPosNextX._w = gScreenPosCurrentX._w;
+    if (gScreenXLock) {
         func_800123AC();
     }
     else {
         func_80012438();
     }
 
-    D_800BE564._hi = D_800BE55C;
-    D_800BE564._w = D_800BE55C;
-    if (D_800BE630 != 0) {
+    gScreenPosNextY._hi = gScreenPosCurrentY._hi;
+    gScreenPosNextY._w = gScreenPosCurrentY._w;
+    if (gScreenYLock) {
         func_80012418();
     }
     else {
         func_80012634();
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012830.s")
-#endif

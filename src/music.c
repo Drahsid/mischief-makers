@@ -2,8 +2,8 @@
 
 // While this script contains general sound functions, it is named music.c after Assert found in code.
 
-ALCSPlayer gALCPlayers[4];
-ALCSPlayer* gPALCPlayers[4];
+ALCSPlayer gSFXPlayers[4];
+ALCSPlayer* gSFXPlayersp[4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Audio_dmaCallBack.s")
 
@@ -89,7 +89,7 @@ void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
 void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 arg4, uint8_t state, uint16_t arg6, uint16_t arg7) {
     gSFX_ChannelStates[chan] = state;
     D_80108DE0[chan] = arg6;
-    gSFX_CurrentIndex[chan] = SFX_ID;
+    gSFXCurrentIndex[chan] = SFX_ID;
     D_80104090[chan] = gSFX_2ByteArray[SFX_ID][1];
     D_8010CDE8[chan] = arg7;
     D_801069D8[chan] = arg4;
@@ -107,14 +107,13 @@ void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 
 
 #ifdef NON_MATCHING
 int32_t SFX_Stop(uint16_t id) {
-    uint8_t index;
-    for (index = 0; gSFX_CurrentIndex[index] != id || gSFX_ChannelStates[index] == 0; index++) {
-        if (index > 3) {
+    int8_t index=0;
+    while(gSFX_ChannelStates[index] == 0||gSFXCurrentIndex[index] != id) {
+        if (3<++index) {
             return -1;
         }
     }
-
-    alSeqpStop((ALSeqPlayer*)gPALCPlayers[index]);
+    alSeqpStop((ALSeqPlayer*)gSFXPlayersp[index]);
     return index;
 }
 #else
@@ -297,7 +296,7 @@ void BGM_Stop(void) {
 void SFX_StopAll(void) {
     uint8_t index;
     for (index = 0; index < 4; index++) {
-        alSeqpStop((ALSeqPlayer*)gPALCPlayers[index]);
+        alSeqpStop((ALSeqPlayer*)gSFXPlayersp[index]);
         gSFX_ChannelStates[index] = 0;
     }
 }
