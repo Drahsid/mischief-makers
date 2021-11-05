@@ -2,6 +2,11 @@
 #include "function_symbols.h"
 #include "inttypes.h"
 #include <ultra64.h>
+/*
+void Gfx_DrawRectange(uint16_t col,uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2){
+    gDPSetFillColor(gDListHead++,col<<0x10|col);
+    gDPFillRectangle(gDListHead++,x1&0x3FFF,y1&0x3FFF,x2&0x3FFF,y2&0x3FFF);
+}*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawRectange.s")
 
@@ -10,7 +15,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterbox.s")
 //file break? Above deals with drawing the letterbox
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022470.s")
-//another file break? the above dealts with updating the health bar.
+//another file break? the above deals with updating the health bar.
 void func_80022D10(void) {
     func_80043478();
     D_800BE668 = 0x32;

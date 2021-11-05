@@ -57,24 +57,36 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
     actor->flag |= ACTOR_FLAG_UNK3;
     actor->unk_0x18C = arg5;
 }
-//prints ASCII text
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintASCII.s") 
 
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintASCII.s") 
+/*
+uint16_t Text_Print2Digits(uint16_t index, int32_t N, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, int32_t arg5){
+    uint16_t N2;
+    for(N=N;9<N;N-=10) N2++;
+    func_80027644(index,N2*2+0x2D2,pos_x,pos_y,pos_z,arg5);
+    func_80027644(index+1,N*2+0x2D2,pos_x+9,pos_y,pos_z,arg5);
+    return index+2;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_Print2Digits.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_Print3Digits.s")
 
 #ifdef NON_MATCHING
-uint8_t Text_GetWidth(uint16_t* arg0) {
+uint16_t Text_GetWidth(uint16_t* arg0) {
     if (ALPHA_LOWER_A > *arg0)
         return 6;
     if (*arg0 == 0xC000)
         return 7;
-    return D_800D16AA[*arg0];
+    return D_800D16AA[*arg0];//wrong lookup. need to find the real address.
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_GetWidth.s")
 #endif
+/*
+uint16_t Text_getKerning(uint16_t* TXT){
+    return Text_GetWidth(TXT)+Text_GetWidth(TXT+1);
+}*/
+
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_getKerning.s")
 
 uint16_t Text_ZeroFlagActors(uint16_t index, uint16_t* TXT){
@@ -85,16 +97,62 @@ uint16_t Text_ZeroFlagActors(uint16_t index, uint16_t* TXT){
     }
     return index;
 }
+uint16_t Text_PrintAlphaAt(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16_t pos_y,uint16_t pos_z){
+    uint16_t C = *TXT;
+    while(C!=ALPHA_NULL){
+        if(C){
+            Text_SpawnAt(index, pos_x, pos_y, pos_z);
+            gActors[index].flag|=8;
+            gActors[index++].unk_0x84 = *TXT *2+0x2D2;
+            pos_x+= Text_getKerning(TXT);
+        }
+        else pos_x+=14;
+        C=*++TXT;
+    }
+    return index;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintAlphaAt.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintAlphaAtColor.s")
+uint16_t Text_PrintAlphaAtColor(uint16_t index,uint16_t *TXT,uint16_t pos_x,uint16_t pos_y,uint16_t pos_z,uint8_t r,uint8_t g,uint8_t b){
+    uint16_t C = *TXT;
+    while(C!=ALPHA_NULL){
+        if(C){
+            Text_SpawnAt(index, pos_x, pos_y, pos_z);
+            gActors[index].flag|=8;
+            gActors[index].unk_0x84 = *TXT *2+0x2D2;
+                if ((r | g | b)) {
+                    gActors[index].rgba.r = r;
+                    gActors[index].unk_0x94 |= 0x10;
+                    gActors[index].rgba.g = g;
+                    gActors[index].rgba.b = b;
+                }
+            index++;
+            pos_x+= Text_getKerning(TXT);
+        }
+        else pos_x+=14;
+        C=*++TXT;
+    }
+    return index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintAlphaAtColorScale.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintAlphaAt2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_PrintAlphaAt3.s")
+uint16_t Text_PrintAlphaAt3(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16_t pos_y,uint16_t pos_z){
+    uint16_t C = *TXT;
+    while(C!=ALPHA_NULL){
+        if(C){
+            Text_SpawnAt(index, pos_x, pos_y, pos_z);
+            gActors[index].flag|=8;
+            gActors[index].unk_0x84 = *TXT *2+0x2D2;
+        }
+        else gActors[index].flag=0;
+        index++;
+        C=*++TXT;
+        pos_x+=16;
+    }
+    return index;
+}
 //File break? above func seems to be last one text-related.
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028260.s")
 
@@ -527,19 +585,15 @@ void func_8002ACFC(uint16_t i, int16_t x, int16_t y) {
 #ifdef NON_MATCHING
 uint8_t func_8002AE44(int16_t x, int16_t y) {
     if (-1 < y) {
-        y += x;
-
+        y = x+y;
         if (255 < y) {
             return 255;
         }
-
         return y;
     }
-
     if (x <= -y) {
         return 0;
     }
-
     return x + y;
 }
 
@@ -624,7 +678,6 @@ void func_8002B330(uint16_t i) {
 
 #ifdef NON_MATCHING
 void func_8002B400(uint16_t i) {
-    uint8_t c;
 
     if (gSceneFrames & 4) {
         gActors[i].rgba.r = func_8002B010(i, gActors[i].rgba.r, 64);
@@ -633,9 +686,7 @@ void func_8002B400(uint16_t i) {
     }
     else {
         gActors[i].rgba.r = 0;
-        c = func_8002B010(i, gActors[i].rgba.g, -64);
-        gActors[i].rgba.g = c;
-        gActors[i].rgba.b = c;
+        gActors[i].rgba.g =  gActors[i].rgba.b = func_8002B010(i, gActors[i].rgba.g, -64);
     }
 }
 #else
@@ -1143,7 +1194,9 @@ void func_800348E4(uint16_t index){
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800348E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800349C0.s")
+void func_800349C0(uint16_t index,uint16_t x){
+    if(gActors[index].unk_0xD6==0)gActors[index].unk_0xD4=x;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80034A0C.s")
 void func_80034D14(uint16_t i){
@@ -1197,6 +1250,7 @@ uint32_t func_800358CC(uint16_t i , uint16_t x){return 0;}
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80035C44.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80035D34.s")
+//clanpot inventory behavior?
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80035E90.s")
 /*

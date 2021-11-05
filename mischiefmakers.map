@@ -5981,7 +5981,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800e13dc                D_800E13DC = 0x800e13dc
                 0x00000000800d1798                D_800D1798 = 0x800d1798
                 0x0000000080101958                D_80101958 = 0x80101958
-                0x00000000800bccd0                gSineLookup = 0x800bccd0
+                0x00000000800bccd0                gCosineLookup = 0x800bccd0
                 0x0000000080171b1a                D_80171B1A = 0x80171b1a
                 0x0000000080171b1c                D_80171B1C = 0x80171b1c
                 0x0000000080171b1e                D_80171B1E = 0x80171b1e

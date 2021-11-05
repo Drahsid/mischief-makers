@@ -9,7 +9,7 @@
 typedef uint32_t UNK_TYPE;
 typedef uint32_t UNK_POINTER;
 
-extern float gSineLookup[1024]; // looks to be a lookup table of values from 1.0 to -1.0. decends and ascends several times
+extern float gCosineLookup[1024]; // returns cos((x&0x3FF/256)*90 degrees)
 extern float D_800BDCD0[512];  // second lookup table, 1.0 to -0.99998. unused?
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;

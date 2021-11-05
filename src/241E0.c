@@ -16,8 +16,8 @@ void Camera_ApplyRotate(void){
     gCameraRot+=gCameraRotDelta;
     x=gCameraRot;
     if(gCameraRot<0) x=gCameraRot+0xFFFF;
-    gUpX =gSineLookup[(x >> 0x10) - 0x100U & 0x3ff];
-    gUpY =gSineLookup[x >> 0x10 & 0x3ff];
+    gUpX =gCosineLookup[(x >> 0x10) - 0x100U & 0x3ff];
+    gUpY =gCosineLookup[x >> 0x10 & 0x3ff];
 }*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/Camera_ApplyRotate.s")
@@ -188,8 +188,8 @@ void CameraTick_Vertigo(){
     int32_t rot=gCameraRot;
     if(gCameraRot<0) rot=gCameraRot+0xFFFF;
     rot=rot>>0x10;
-    gUpX=gSineLookup[rot - 0x100 & 0x3FF];
-    gUpY=gSineLookup[rot & 0x3FF];
+    gUpX=gCosineLookup[rot - 0x100 & 0x3FF];
+    gUpY=gCosineLookup[rot & 0x3FF];
 
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Vertigo.s")
