@@ -1,7 +1,4 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
@@ -208,7 +205,7 @@ void Thread_IdleProc(void* arg0) {
 void func_80000A84(uint16_t buffer_index) {
     uint16_t* framebuffer;
 
-    D_8012AC84 = &D_8012AC88[buffer_index];
+    gGFXTaskp = &gGFXTasks[buffer_index];
     D_800EF4F4 = gDListTail[buffer_index].unk_0x00;
     gDListHead = D_800EF4F4 + 48;
 
@@ -263,26 +260,26 @@ void Thread_MainProc(int32_t arg0) {
             osContStartReadData(&D_8012AC08);
         }
 
-        D_8012AC84->t.type = M_GFXTASK;
-        D_8012AC84->t.flags = 0;
-        D_8012AC84->t.ucode_boot = (uint64_t*)rspbootTextStart;
-        D_8012AC84->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
-        D_8012AC84->t.ucode = (uint64_t*)gspFast3DTextStart;
-        D_8012AC84->t.ucode_data = (uint64_t*)gspFast3DDataStart;
-        D_8012AC84->t.output_buff = NULL;
-        D_8012AC84->t.output_buff_size = NULL;
-        D_8012AC84->t.ucode_size = 0x1000;
-        D_8012AC84->t.ucode_data_size = 0x800;
-        D_8012AC84->t.dram_stack = D_8011D970;
-        D_8012AC84->t.dram_stack_size = sizeof(D_8011D970);
-        D_8012AC84->t.data_ptr = gDListTail[gCurrentFramebufferIndex].dlist;
-        D_8012AC84->t.data_size = (uint32_t)((gDListHead - gDListTail[gCurrentFramebufferIndex].dlist) * sizeof(Gfx));
-        D_8012AC84->t.yield_data_ptr = D_8011DDF0;
-        D_8012AC84->t.yield_data_size = sizeof(D_8011DDF0);
+        gGFXTaskp->t.type = M_GFXTASK;
+        gGFXTaskp->t.flags = 0;
+        gGFXTaskp->t.ucode_boot = (uint64_t*)rspbootTextStart;
+        gGFXTaskp->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
+        gGFXTaskp->t.ucode = (uint64_t*)gspFast3DTextStart;
+        gGFXTaskp->t.ucode_data = (uint64_t*)gspFast3DDataStart;
+        gGFXTaskp->t.output_buff = NULL;
+        gGFXTaskp->t.output_buff_size = NULL;
+        gGFXTaskp->t.ucode_size = 0x1000;
+        gGFXTaskp->t.ucode_data_size = 0x800;
+        gGFXTaskp->t.dram_stack = D_8011D970;
+        gGFXTaskp->t.dram_stack_size = sizeof(D_8011D970);
+        gGFXTaskp->t.data_ptr = gDListTail[gCurrentFramebufferIndex].dlist;
+        gGFXTaskp->t.data_size = (uint32_t)((gDListHead - gDListTail[gCurrentFramebufferIndex].dlist) * sizeof(Gfx));
+        gGFXTaskp->t.yield_data_ptr = D_8011DDF0;
+        gGFXTaskp->t.yield_data_size = sizeof(D_8011DDF0);
 
         osWritebackDCacheAll();
-        osSpTaskLoad(D_8012AC84);
-        osSpTaskStartGo(D_8012AC84);
+        osSpTaskLoad(gGFXTaskp);
+        osSpTaskStartGo(gGFXTaskp);
         Sound_Tick();
         func_800028D0();
 
@@ -290,7 +287,7 @@ void Thread_MainProc(int32_t arg0) {
 
         func_80000A84(gCurrentFramebufferIndex);
         osRecvMesg(&D_8012ABF0, NULL, 1);
-        func_800029EC();
+        Sound_StartTask();
         osViSwapBuffer(framebuffer);
         lookAt_Tick();
 
@@ -299,7 +296,7 @@ void Thread_MainProc(int32_t arg0) {
             Sound_Tick();
             func_800028D0();
             osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
-            func_800029EC();
+            Sound_StartTask();
         }
 
         osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
@@ -393,16 +390,16 @@ int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
 
 void func_800012F0(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        if ((gDebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
+        if ((gDebugBitfeild & 0x200) && gGamePaused == 0) {
             gGamePaused = 1;
         }
 
         if (gGamePaused != 0 && gGameSubState == 0x10) {
-            if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
+            if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                if ((gDebugBitfeild & 0x100) != 0) {
-                    func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
-                    func_800208D4();
+                if ((gDebugBitfeild & 0x100)) {
+                    PauseGame_RestoreVolume(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
+                    PauseGame_Unpause();
                 }
                 else {
                     gGameSubState = 0x20;
@@ -434,7 +431,7 @@ void func_800012F0(void) {
 // main update
 void func_8000147C(void) {
     gSceneFramesReal += 1;
-    if (gPlayTime < 0x1EE627FF) {
+    if (gPlayTime < 518399999) {
         gPlayTime++;
     }
 
@@ -471,7 +468,7 @@ void func_8000147C(void) {
     Rand(); // update rng
     func_800822B8();
     Gfx_DrawLetterbox();
-    func_8000F290();
+    Gfx_DrawLifeBar();
     func_80009BE0();
 
     if ((gDebugBitfeild & 1)) {
@@ -490,7 +487,7 @@ void func_8000147C(void) {
         func_80021660();
     }
 
-    func_80021620();
+    DebugText_BorW();
     DebugText_Tick();
 }
 
@@ -517,7 +514,7 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_LOADING: {
-            func_800232A4(); // loading stage
+            GamePlay_Load(); // loading stage
             break;
         }
         case GAMESTATE_GAMEPLAY: {
@@ -529,11 +526,11 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_UNKNOWN0: {
-            func_80388000(); // supposed to be dma'd in from rom:0xf00D0
+            Gamestate8_Tick(); // supposed to be dma'd in from rom:0xf00D0
             break;
         }
         case GAMESTATE_UNKNOWN1: {
-            func_80388008(); // same as above. look to be NOOPs.
+            Gamestate9_Tick(); // same as above. NOOPs.
             break;
         }
         case GAMESTATE_ATTRACT: {

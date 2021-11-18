@@ -27,7 +27,7 @@ extern void func_8000565C();
 extern void func_80005770();
 extern void func_80005828();
 extern void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3);
-extern void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4);
+extern void GameSave_PrintRedGems(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4);
 extern void func_800059A4();
 extern void func_80005B68();
 extern void func_80005C3C();

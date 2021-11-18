@@ -1,5 +1,7 @@
 #include "common.h"
 
+//these seem to directly call specific entrires in gActorFuncTable_8019B000
+//also suggests some of these take 2 u16 arguments.
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D630.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D664.s")
@@ -75,19 +77,26 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDFC.s")
-//file spit? Seems to be start of dialouge funcs.
+
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DE30.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DEFC.s")
-//int16_t func_8005DF30(){return D_801783F8;}
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF30.s")
+int16_t func_8005DF30(){return D_801783F8[0];}
 
+/*
+void func_8005DF40(int16_t x, int16_t y){
+    D_801783F4[0]=x;
+    D_801783F4[1]=y;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF5C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DFC8.s")
-
+/*
+void func_8005E09C(uint32_t i,int16_t x){
+    D_801783F8[i]=x;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E09C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E0B0.s")

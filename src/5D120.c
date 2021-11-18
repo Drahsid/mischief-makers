@@ -1,7 +1,6 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+
+
+#include "common.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C520.s")
 

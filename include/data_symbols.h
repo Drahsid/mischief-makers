@@ -2,14 +2,12 @@
 #define DATA_SYMBOLS_H
 
 #include "actor.h"
+#include "structs.h"
+#include "common.h"
 #include "inttypes.h"
-#include "unknown_structs.h"
 #include <ultra64.h>
 
-typedef uint32_t UNK_TYPE;
-typedef uint32_t UNK_POINTER;
-
-extern float gCosineLookup[1024]; // returns cos((x&0x3FF/256)*90 degrees)
+extern float gCosineLookup[1024]; // returns cos((n&0x3FF/256)*90 degrees)
 extern float D_800BDCD0[512];  // second lookup table, 1.0 to -0.99998. unused?
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;
@@ -71,13 +69,11 @@ extern uint16_t gAttractModeIndex;
 extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
-extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
+extern ActorFunc gActorFuncTable_800D7F00[74]; // TODO: Investigate
+extern int16_t D_800E2600[66];
 extern ActorFunc gActorFuncTable_800E5AC0[];
 extern UNK_TYPE D_800E8BEC;
-extern uint8_t bssStart; // also deals with sound state.
-extern int16_t gBgmVolume;
-extern uint8_t gSFX_ChannelStates[];
-extern int16_t gSFX_Volumes[];
+extern uint16_t LifeBar_Colors[]; //16-bit colors. may be structure.
 extern uint16_t gInputHistoryPress[64]; // buffer of controller inputs
 extern Gfx* gDListHead;
 extern OSContStatus gOSContStatArray[4];
@@ -95,14 +91,13 @@ extern uint16_t gRedGems;
 extern uint16_t gCurrentStage;
 extern uint16_t gStageTime; // pauses for cutscene, loading
 extern uint16_t gStageTimeReal;
-extern ActorFunc gActorFuncTable_80192000[];
-extern ActorFunc gActorFuncTable_8019B000[];
-extern ActorFunc gActorFuncTable_801A6800[];
-extern ActorFunc gActorFuncTable_801B0800[];
+extern ActorFunc gActorFuncTable_80192000[64]; // proceeded by 0xBF00 bytes for DMA'd code/data
+extern ActorFunc gActorFuncTable_8019B000[64]; // proceeded by 0xB700 bytes for DMA'd code/data
+extern ActorFunc gActorFuncTable_801A6800[64]; // proceeded by 0x9F00 bytes for DMA'd code/data
+extern ActorFunc gActorFuncTable_801B0800[64]; // proceeded by 0x8F00 bytes for DMA'd code/data
 extern uint8_t gSpriteData_YellowGem[];
 extern uint8_t gSpriteData_RedGem[];
 extern uint8_t gSpriteData_BlueGem[];
-extern ActorFunc gActorFuncTable_801B0800[];
 extern uint32_t gPlayTime;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
@@ -129,12 +124,12 @@ extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
 extern uint16_t gRNGSeed;
-extern uint16_t gCurrentScene; //current scene - determines DMA's and camera behavior.
+extern uint16_t gCurrentScene; //current scene - determines DMA's, bgm and camera behavior.
 extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
 extern int16_t D_800BE5F0;
-extern int32_t D_800BE5F4;
+extern int32_t D_800BE5F4; //gotta be some kinda {s32,u8[4]} union.
 extern int16_t D_800BE5F8;
 extern uint16_t D_800BE5FC;
 extern UNK_TYPE D_800BE610;
@@ -170,7 +165,7 @@ extern int16_t D_800BE6A8;
  */
 extern uint16_t gDebugBitfeild;
 extern float D_800BE6B0;    // 90.0f, never used, AFAIK
-extern uint16_t gDebugthrottle; // seems to be the update rate (not framerate,) 1 is every frame, 2 is every other frame, etc. doesn't effect Marina unless the bit in gDebugBitfeild is set
+extern uint16_t gDebugthrottle; 
 extern b2_s D_800BE6B8;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -190,21 +185,7 @@ extern int32_t D_800BE728;
 extern int32_t gCameraRot;
 extern int32_t gCameraRotDelta;
 extern UNK_TYPE D_800BE73C;
-extern char* BGMNames[33];    // BGM titles left in data.
-extern char** D_800BEA4C[32];   // instrument names, and variations.
-extern uint8_t* D_800C0A54[33]; //contains instrument data for each song 
-extern uint8_t gBGMVolsFxs[33][18]; // Music track data {vol>>8,unknown>>0xc,instrumentFXMix[16]}
-extern char* D_800C1694[294];   // could help add to SFX.h
-extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
-extern char* gSFX_Labels[224];    // may be wrong.
-extern uint16_t D_800C26DC[293];
-extern uint8_t gSFX_2ByteArray[294][2]; // table of volume and length(?) of SFX.
-extern int32_t D_800C382C; //AI_LEN >>2
-extern UNK_TYPE D_800C3830;
-extern UNK_TYPE D_800C3834;
-extern UNK_TYPE D_800C3838;
-extern int16_t D_800C383C[];
-extern int32_t gALFX_Params[44];
+
 extern UNK_TYPE D_800C3908;
 extern Sprite gSprite;
 extern double gSpriteScaleX;
@@ -213,11 +194,11 @@ extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
 extern uint8_t D_800C5010[];
-extern uint16_t gNameEntryRow0HIRA[];
-extern uint16_t gNameEntryRow1HIRA[];
-extern uint16_t gNameEntryRow2HIRA[];
-extern uint16_t gNameEntryRow3HIRA[];
-extern uint16_t gNameEntryRow4HIRA[];
+extern uint16_t gNameEntryRow0HIRA[18];
+extern uint16_t gNameEntryRow1HIRA[18];
+extern uint16_t gNameEntryRow2HIRA[18];
+extern uint16_t gNameEntryRow3HIRA[18];
+extern uint16_t gNameEntryRow4HIRA[18];
 extern uint16_t D_800C52A4[];
 extern uint16_t D_800C52B0[];
 extern uint16_t D_800C52BC[];
@@ -273,15 +254,17 @@ extern int16_t D_800CBF40;
 extern uint16_t D_800CBF44;
 extern int16_t D_800CBF50;
 extern uint16_t D_800CBF54;
-extern uint16_t gLetterboxMode;
+extern uint16_t gLetterboxMode; //0: Normal (4:3 overscan cutoff) 1: Beastector (horizontal scaling) 2: Phoneix Gamma (vertical scaling)
 extern int16_t D_800CC228[256];
 extern int8_t D_800CC428;
-extern int16_t D_800CC6EC[88][8];
-extern int16_t D_800CCC6C[55][8];
-extern uint8_t D_800CCFDC[88]; // Stage BGM indices
+extern void (*Scene_CameraInits[88])(void); //each scene's CameraInit function
+extern void (*Scene_CameraFuncs[88])(void); //each scene's CameraTick function
+extern int16_t D_800CC6EC[88][8]; //{D_800BE568,D_800BE56C,D_800BE574,D_800BE570,gScreenX,gPlayeractor.pos.x,gScreenY,gPlayeractor.pos.y}
+extern int16_t D_800CCC6C[88][5];
+extern uint8_t gSceneBGMs[88]; // Scene BGM indices
 extern uint8_t D_800CD034[88];
 extern uint32_t D_800CD08C[88][4]; // Romcopy tables for actor func tables
-extern uint32_t D_800CD60C[88][4];
+extern uint32_t D_800CD60C[88][4]; // {Romaddr of tables, Romaddr of tables+sizeof(), Romaddr of code, Romaddr of code+sizeof()}
 extern uint32_t D_800CDD8C[88][4];
 extern uint32_t D_800CE10C[88][4];
 extern uint32_t D_800CE68C[88][4];
@@ -298,6 +281,8 @@ extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's of
 extern uint32_t D_800CFE04[88][12];
 extern void* D_800D0E84[88][6];
 extern int16_t D_800D16C4;
+extern int32_t D_800D2504[2][2];
+extern int32_t D_800D2514[7][6];
 extern uint8_t D_800D28D0;
 extern uint16_t D_800D28E4;
 extern uint16_t D_800D28E8;
@@ -308,7 +293,7 @@ extern int16_t D_800D28F8;
 extern uint32_t D_800D28FC;
 extern int16_t D_800D2900;
 extern uint16_t D_800D2908;
-extern uint16_t D_800D2914;
+extern int16_t D_800D2914;
 extern uint16_t D_800D2918;
 extern uint16_t D_800D291C;
 extern uint16_t D_800D2920;
@@ -328,20 +313,19 @@ extern int16_t D_800D36DC[16];
 extern int16_t D_800D36FC[16];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D3888[24];
-extern int16_t D_800D38B8[140][2];
-extern int16_t D_800D3AE8[70];
+extern int16_t D_800D38B8[140][2];//coords for "scene transition" portaits.
+extern int16_t D_800D3AE8[70]; //indecies for "scene transition" portaits.
 extern int16_t D_800D3B74;
 extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
 extern uint32_t D_800D4184[82]; // pointer array?
+extern uint16_t D_800D46A8[18];
 extern int32_t D_800D5794[19];
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
 extern uint16_t D_800D5824;
-extern ActorFunc gActorFuncTable_800D7F00[]; // TODO: Investigate
-extern UNK_TYPE gData_RedGem;                // sprite data for red gem?
 extern UNK_TYPE D_800D8668;
 extern UNK_TYPE D_800D8750;
 extern UNK_TYPE D_800D87C8;
@@ -349,7 +333,7 @@ extern UNK_TYPE D_800D8840;
 extern UNK_TYPE D_800D8930;
 extern UNK_TYPE D_800D89A8;
 extern UNK_TYPE D_800D8A20;
-extern UNK_TYPE D_800D8A98;
+extern UNK_TYPE gSpriteData_GreenGem;
 extern UNK_TYPE D_800D8B10;
 extern UNK_TYPE D_800D8B88;
 extern UNK_TYPE D_800D8C00;
@@ -463,7 +447,7 @@ extern int16_t D_800E02A2;
 extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
 extern UNK_TYPE D_800E1380;
-extern UNK_TYPE D_800E13DC;
+extern UNK_TYPE gIcon_YellowGem;
 extern UNK_TYPE D_800E1C00;
 extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
@@ -473,7 +457,7 @@ extern Gfx D_800E3930[];
 extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
-extern uint64_t D_800EF210[11]; //D_8016e6f0->ucode_data
+extern uint64_t D_800EF210[11]; //Sound_OSTaskp->ucode_data
 extern int16_t gBgmVolumeTemp;
 extern Gfx* D_800EF4F4; // I don't think this is actually a Gfx*
 extern int16_t D_800EF500[];
@@ -492,10 +476,15 @@ extern uint32_t D_80103944;
 extern uint16_t D_8010CDE8[];
 extern uint8_t D_8011CDF0[];
 extern uint8_t D_8011CF18[];
-extern struct_D_80104098 D_80104098[66];
+extern struct_D_80104098 D_80104098[66]; // last 2 are data for marina's healthbar and head thereof
 extern struct_D_801069E0 D_801069E0[64]; // seems to be the sprite objects (not the collision,) of level objects
-extern u64 D_8011D970[128]; //D_8012AC84->dram_stack
-extern u64 D_8011DDF0[436]; //D_8012AC84->yeild_data_ptr
+extern u64 D_8011D970[128]; //gGFXTaskp->dram_stack
+extern u64 D_8011DDF0[436]; //gGFXTaskp->yeild_data_ptr
+extern uint16_t D_8011D3D0[144];
+extern uint16_t D_8011D4F0[144];
+extern uint16_t D_8011D610[144];
+extern uint16_t D_8011D730[144];
+extern uint16_t D_8011D850[144];
 extern uint16_t gInputHistoryHold[];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
@@ -515,8 +504,8 @@ extern OSMesg D_8012AC6C;
 extern OSMesg D_8012AC70;
 extern OSMesg D_8012AC74;
 extern OSMesg D_8012AC80;
-extern OSTask* D_8012AC84;
-extern OSTask D_8012AC88[2];
+extern OSTask* gGFXTaskp;
+extern OSTask gGFXTasks[2];
 extern OSViMode* gOSViModep;
 extern OSViMode gOSViMode;
 extern OSContStatus gOSContStatArray[4];
@@ -547,42 +536,9 @@ extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
 extern int32_t D_801376E4;
 extern int32_t D_801376E8;
-extern OSMesgQueue D_801377B8;
-extern OSMesgQueue D_801377D0;
-extern uint32_t D_80137794; //800c0ad8[x][1]<<0XC. Unused?
-extern u8 D_80137798; //BGM_play() requires this to be non-zero.
-extern OSMesg D_80137800[48];
-extern OSMesg D_801378C0;
-extern OSIoMesg D_801378C8;
-extern OSIoMesg D_801378E0[48];
-extern OSTask* D_80137D60[2];
-extern Acmd* D_80137D68[2];
-extern uint16_t D_80137D90;
-extern uint32_t D_80137DA0; // current BGM playtime? Attact mode starts when this is >0x1140
-extern uint8_t D_80137DA8[220160]; // ALHeap base
-extern ALLink D_8016D9CC;
-extern ALLink D_8016D9B8;
-extern UNK_TYPE D_8016DEB8;
-extern ALBankFile* D_8016DF34;
-extern ALBank* D_8016DF38;
-extern ALBank* D_8016DF3C;
-extern ALCSPlayer D_8016DF68;
-extern ALCSeq D_8016E1E8;
-extern ALCSeq* D_8016E2E0;
-extern ALCSeq D_8016E2E8[4];
-extern ALCSeq* D_8016E6C8[4];
-extern u8* D_8016E6E0[4];
-extern OSTask* D_8016E6F0;
-extern ALInstrument* D_8016E6F8;
-extern ALSound* D_8016E6FC;
-extern ALEnvelope* D_8016E700;
-extern ALKeyMap* D_8016E704;
-extern Acmd* D_8016E708;
-extern float D_8016E70C; //ALGlobals_ALsynConfig.outputrate * 1 / 60.0
-extern uint32_t D_8016E718;
-extern OSIoMesg D_8016E748[9];
+
 extern Bitmap gSpriteBitmaps[2][56];
-extern UNK_TYPE D_8016EF20;
+extern uint64_t D_8016EF20[2][696]; //sprite.rsp_dl
 extern uint32_t D_80171ADC[2][2];
 extern UNK_TYPE D_80171D30;
 extern uint8_t D_80171B19;
@@ -619,7 +575,7 @@ extern uint16_t D_80178154;
 extern uint16_t gWorldMapSelectedStage;
 extern uint16_t D_80178158;
 extern uint16_t D_8017815A;
-extern uint16_t gSelectedWorld; //selected world?
+extern uint16_t gSelectedWorld;
 extern uint16_t D_80178164;
 extern uint16_t D_80178160;
 extern uint16_t D_80178162;
@@ -636,33 +592,16 @@ extern uint16_t D_801781CE;
 extern uint16_t D_801781D0;
 extern uint16_t D_801781D2;
 extern uint16_t D_801781D4;
-extern uint16_t D_801781DC;
+extern uint16_t gThrottleInput[2]; //button buffer for throttle mode
 extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
 extern uint64_t gYellowGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
 extern int32_t D_801782B0;
 extern uint16_t D_801782C0;
+extern int16_t D_801783F4[2];
+extern int16_t D_801783F8[16];
 extern uint16_t D_80178460;
-extern UNK_TYPE D_801850B0;
-extern UNK_TYPE D_801850B8;
-extern uint8_t D_80185518;
-extern uint8_t D_80185519;
-extern UNK_TYPE D_8018551C;
-extern UNK_POINTER D_80185520;
-extern UNK_TYPE D_80189A58;
-extern int32_t D_801AA120;
-extern int16_t D_801AFE90[];
-extern float D_801B0080;
-extern float D_801B0088;
-extern float D_801B00A0;
-extern float D_801B01C0;
-extern float D_801B01C8;
-extern ActorFunc gActorFuncTable_801B0800[];
-extern uint8_t gNameEntryLanguage;
-extern uint8_t gNameEntrySelectedColumn;
-extern uint8_t gNameEntrySelectedRow;
-extern uint8_t gNameEntryCurrentChar;
 extern uint16_t gFramebuffer0[320][240]; // framebuffer
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)

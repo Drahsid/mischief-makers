@@ -1,10 +1,5 @@
-#include "BGM.h"
-#include "SFX.h"
+#include "common.h"
 #include "GameSave.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
 
 void func_80016E70(uint16_t index) {
     uint8_t temp_t8 = gActors[index].unk_0xD2 & 0xFFFF;
@@ -200,7 +195,7 @@ void func_8001751C(void) {
         for (index = 1; index < ACTOR_COUNT2; index++) {
             actor = gActors + index;
 
-            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0 && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
+            if ((actor->flag & ACTOR_FLAG_ACTIVE) && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
                 if (actor->unk_0xD2 < 0x100) {
                     gActorFuncTable[actor->unk_0xD2](index);
                 }
@@ -214,7 +209,7 @@ void func_8001751C(void) {
         for (index = 1; index < ACTOR_COUNT2; index++) {
             actor = gActors + index;
 
-            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0) {
+            if ((actor->flag & ACTOR_FLAG_ACTIVE)) {
                 if (actor->unk_0xD2 < 0x100) {
                     gActorFuncTable[actor->unk_0xD2](index);
                 }
@@ -241,7 +236,7 @@ void Intro_Tick(void) {
 
             gCurrentScene = 0x15;
 
-            func_80025C38();
+            InitScene();
             func_80010C20(gCurrentScene);
 
             (&D_80380200)[2] = 1; // volatile?
@@ -435,8 +430,8 @@ void func_80017FE8(uint16_t index) {
     actor->rgba.b = 0xFF;
     actor->rgba.g = 0xFF;
     actor->rgba.r = 0xFF;
-    actor->unk_0xB4 = 18.0f;
-    actor->unk_0xB8 = 12.0f;
+    actor->ScaleX = 18.0f;
+    actor->ScaleY = 12.0f;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")
@@ -676,8 +671,8 @@ void TitleScreen_Tick(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
 #endif
-#define gSoundTest_SelectedBGM gActors[2].unk_0xEC
-#define gSoundTest_SelectedSFX gActors[3].unk_0xEC
+#define gSoundTest_SelectedBGM gActors[2].vel.x_w
+#define gSoundTest_SelectedSFX gActors[3].vel.x_w
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_Tick.s")
 
@@ -1079,7 +1074,7 @@ void func_8001C834(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C8B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C97C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/printIcon_YellowGem.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001CA68.s")
 

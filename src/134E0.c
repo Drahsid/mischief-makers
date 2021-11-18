@@ -1,7 +1,4 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 uint8_t func_800128E0(int32_t x, int32_t y) {
     return 255;

@@ -1,13 +1,11 @@
 #include "BGM.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
 
+
+#include "common.h"
 void Continue_DrawRedGem(uint16_t index, uint16_t arg1, uint16_t arg2) {
     Actor* actor;
 
-    Text_SpawnIcon(index, &D_800E13DC, arg1, arg2, 0x403);
+    Text_SpawnIcon(index, &gIcon_YellowGem, arg1, arg2, 0x403);
     actor = &gActors[index];
     actor->unk_0x94 |= 0x200;
     actor->unk_0x18C = gSpriteData_RedGem;
@@ -27,9 +25,9 @@ void GameOver(void) {
     Text_SpawnAt2(48, 0x262, 0xFFFE, 3, 0x402);
 
     actor->unk_0x94 |= 0x100F;
-    actor->unk_0xB4 = 6.0f;
+    actor->ScaleX = 6.0f;
     actor->unk_0x12C_f = 6.0f;
-    actor->unk_0xBC = 90.0f;
+    actor->RotateX = 90.0f;
     actor->rgba.a = 0;
 
     BGM_Play(BGM_INT);
@@ -53,7 +51,7 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
         }
 
         for (index = 0x41; index < 0x4B; index++) {
-            Text_SpawnIcon(index, &D_800E13DC, 0, 0xA0, 0x403);
+            Text_SpawnIcon(index, &gIcon_YellowGem, 0, 0xA0, 0x403);
             gActors[index].unk_0x94 |= 0x200;
             gActors[index].unk_0x18C_w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
             gActors[index].unk_0x154._w = 0xC0;

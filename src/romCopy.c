@@ -1,10 +1,6 @@
 #include "BGM.h"
-#include "actor.h"
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+
 /*
 void func_80025E00(void){
     D_801376DC=&D_80200400;
@@ -17,15 +13,15 @@ void func_80025E00(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
 
 //RomCopies gActorFuncTable_80192000 based on u32[4] lookup.
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025EC4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025F70.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_8002601C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_800260C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/romcopy_actorFuncs4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026174.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_Funcs1.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026220.s")
 

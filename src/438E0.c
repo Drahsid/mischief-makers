@@ -1,7 +1,4 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 void func_80042CE0(void) {}
 
@@ -206,9 +203,9 @@ void func_80043D30(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004400C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800441F4.s")
-
+//file break? similar instructions below.
 void func_80044360(void) {
-    D_801069E0[D_801782C0].unk_0x80 = 10;
+    D_801069E0[D_801782C0].Active = 10;
     D_801069E0[D_801782C0].texture = NULL;
 }
 
@@ -220,14 +217,14 @@ void func_80044360(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800446F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/YellowGem_MakeStaticGem.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800447AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044884.s")
 
 void func_8004495C(void) {
-    D_801069E0[D_801782C0].unk_0x80 = D_800D3770[D_800D37A4];
+    D_801069E0[D_801782C0].Active = D_800D3770[D_800D37A4];
     D_801069E0[D_801782C0].texture = 0x80203440;
 }
 
@@ -280,7 +277,7 @@ void func_8004495C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045188.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
-
+//file break? above is last func dealing with D_801069E0
 void func_80045500(void) {
     uint16_t index;
     for (index = 0; index < 16; index++) {
@@ -322,17 +319,18 @@ int32_t func_80045F08(int32_t arg0) {
 }
 
 #ifdef NON_MATCHING
-void func_80045F14(uint16_t* arg0) {
-    gScreenPosTargetX._w = arg0[0];
-    gScreenPosTargetY._w = arg0[1];
-    gScreenPosCurrentX = gScreenPosTargetX._w;
-    gScreenPosCurrentY = gScreenPosTargetY._w;
-    gScreenPosNextX._hi = gScreenPosCurrentX;
-    gScreenPosNextY._hi = gScreenPosCurrentY;
+uint16_t* func_80045F14(uint16_t* arg0) {
+    gScreenPosTargetX._hi = arg0[0];
+    gScreenPosTargetY._hi = arg0[1];
+    gScreenPosCurrentX._hi = gScreenPosTargetX._w;
+    gScreenPosCurrentY._hi = gScreenPosTargetY._w;
+    gScreenPosNextX._hi = gScreenPosCurrentX._hi;
+    gScreenPosNextY._hi = gScreenPosCurrentY._hi;
     D_800D2920 = arg0[2];
     D_800D2924 = arg0[3];
     D_800D2918 = arg0[4];
     D_800D291C = arg0[5];
+    return arg0+6
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045F14.s")
@@ -368,7 +366,7 @@ void func_80046218(uint16_t arg0, uint16_t arg1) {
     D_800D28E4 = 0x64;
     D_800D28EC = 0;
 
-    if (arg1 != 0) {
+    if (arg1) {
         D_800D28FC |= 1;
     }
 }
@@ -430,13 +428,13 @@ void func_80046A30(void) {
         }
     }
 }
-
+//smash to black?
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A9C.s")
-
+//"expanding squares" transition effect
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046B4C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
-//press z to skip cutscene?
+
 int32_t Cutscene_Skip(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
@@ -448,7 +446,7 @@ int32_t Cutscene_Skip(void) {
     return 0;
 }
 
-
+//scene tranistion out
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")
 
 void func_800472D4(void) {
@@ -494,7 +492,7 @@ void func_800475EC(void) {
 
     temp_v0 = gScreenPosCurrentX - gScreenPosNextX;
     if ((int32_t)temp_v0 >= 0) {
-        D_800D2914 = (int16_t)(D_800D2914 - temp_v0);
+        D_800D2914 -= temp_v0;
     }
 
     temp_v1 = D_800D2914;
@@ -514,7 +512,7 @@ void func_80047674(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004767C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047714.s")
-
+//looks like it changes the scne index for "the day of"
 void func_80047958(void) {
     uint16_t temp = D_800D28F0 - 0x1F;
     gCurrentScene = (uint16_t)(*((&D_800D28D0) + temp));

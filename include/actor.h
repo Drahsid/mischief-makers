@@ -1,8 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "common.h"
-#include <ultra64.h>
+#include "structs.h"
 
 enum {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
@@ -31,7 +30,7 @@ enum {
     ACTOR_FLAG_UNK22 = (1 << 22),
     ACTOR_FLAG_UNK23 = (1 << 23),
     ACTOR_FLAG_UNK24 = (1 << 24),
-    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see func_8004ED10)
+    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see ActorTick_Marina)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
     ACTOR_FLAG_UNK27 = (1 << 27),
     ACTOR_FLAG_UNK28 = (1 << 28),
@@ -125,13 +124,13 @@ typedef struct {
     /* 0x0AE */ int16_t unk_0xAE;
     /* 0x0B0 */ int16_t unk_0xB0;
     /* 0x0B2 */ int16_t unk_0xB2;
-    /* 0x0B4 */ float unk_0xB4;
-    /* 0x0B8 */ float unk_0xB8;
-    /* 0x0BC */ float unk_0xBC;
-    /* 0x0C0 */ float unk_0xC0;
-    /* 0x0C4 */ float unk_0xC4;
-    /* 0x0C8 */ uint16_t unk_0xC8;
-    /* 0x0CA */ uint16_t unk_0xCA;
+    /* 0x0B4 */ float ScaleX;
+    /* 0x0B8 */ float ScaleY;
+    /* 0x0BC */ float RotateX;
+    /* 0x0C0 */ float RotateY; 
+    /* 0x0C4 */ float RotateZ;
+    /* 0x0C8 */ int16_t unk_0xC8;
+    /* 0x0CA */ int16_t unk_0xCA;
     /* 0x0CC */ uint16_t unk_0xCC;
     /* 0x0CE */ uint16_t unk_0xCE;
     union {
@@ -159,9 +158,7 @@ typedef struct {
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
     /* 0x0E8 */ uint32_t unk_0xE8; // This is a pointer!
-    /* 0x0EC */ int32_t unk_0xEC;
-    /* 0x0F0 */ int32_t unk_0xF0;
-    /* 0x0F4 */ uint32_t unk_0xF4;
+    /* 0x0EC */ Vec3i_union vel;
     /* 0x0F8 */ uint32_t unk_0xF8;
     /* 0x0FC */ uint32_t unk_0xFC;
     /* 0x100 */ uint32_t unk_0x100;
@@ -169,8 +166,8 @@ typedef struct {
     /* 0x108 */ s2_w unk_0x108;
     /* 0x10C */ uint32_t unk_0x10C;
     /* 0x110 */ float unk_0x110;
-    /* 0x114 */ float unk_0x114;
-    /* 0x118 */ float unk_0x118;
+    /* 0x114 */ float unk_0x114; 
+    /* 0x118 */ float unk_0x118; 
     /* 0x11C */ float unk_0x11C;
     /* 0x120 */ float unk_0x120;
     /* 0x124 */ float unk_0x124;
@@ -181,7 +178,7 @@ typedef struct {
             /* 0x12E */ uint8_t unk_0x12E;
             /* 0x12F */ uint8_t unk_0x12F;
         };
-        /* 0x12C */ float unk_0x12C_f; // used as float in Actor_Spawn?
+        /* 0x12C */ float unk_0x12C_f; // used as float in Actor_Spawn? ScaleZ sometimes
     };
     /* 0x130 */ float unk_0x130;
     /* 0x134 */ float unk_0x134;
@@ -266,6 +263,7 @@ extern Actor_func_8001EB8Cfn D_800CA1C0[];
 
 #define gPlayerActorp (gActors)
 #define gPlayerActor  gActors[0]
+#define gPlayerActorScale  gActors[0].unk_0x120
 #define ACTOR_COUNT0  0x90
 #define ACTOR_COUNT1  0xC0
 #define ACTOR_COUNT2  0xD0

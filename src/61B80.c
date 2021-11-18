@@ -1,9 +1,9 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
 
-void func_80060F80(uint16_t x){}
+void ActorTick_0(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80060F88.s")
 

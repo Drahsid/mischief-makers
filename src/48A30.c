@@ -1,6 +1,6 @@
 #include "actor.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+#include "common.h"
+
 #include "inttypes.h"
 #include <ultra64.h>
 

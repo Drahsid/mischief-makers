@@ -1,12 +1,12 @@
 #include "SFX.h"
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
 
-void func_8008C4A0(uint32_t x) {}
-void func_8008C4A8(uint32_t x) {}
+void ActorTick_15(uint32_t x) {}
+void ActorTick_16(uint32_t x) {}
 void func_8008C4B0(uint32_t x, uint32_t y, uint32_t z) {}
 void func_8008C4C0(uint32_t x) {}
 void func_8008C4C8(uint32_t x) {}
@@ -17,7 +17,7 @@ void func_8008C4E0(uint16_t index) {
     gActors[index].rgba.b = 0;
     gActors[index].rgba.g = 0;
     gActors[index].rgba.r = 0;
-    D_80137420 = 0;
+    D_801373E0.unk_0x40_w = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008C528.s")
@@ -77,7 +77,7 @@ void func_8008D728(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D730.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008D958.s")
+void func_8008D958(uint16_t x){}
 
 void func_8008D960(uint16_t index){
     if(func_8008D418(index)==0)func_8008CF10(index);
@@ -101,9 +101,9 @@ void StartContinueMode(uint16_t index) {
         gActors[index].unk_0xD0_h = 0;
         gGameState = GAMESTATE_CONTINUE;
         gGameSubState = 0;
-        gActors[index].unk_0xEC = 0;
-        gActors[index].unk_0xF0 = 0;
-        gActors[index].unk_0xF4 = 0;
+        gActors[index].vel.x_w = 0;
+        gActors[index].vel.y_w = 0;
+        gActors[index].vel.z_w = 0;
     }
 }
 
@@ -118,7 +118,7 @@ void func_8008DE30(uint16_t index){
     SFX_Stop(SFX_MARINA_OW1);
     SFX_Stop(SFX_MARINA_YELL1);
     actorp = &gActors[index];
-    if(actorp->unk_0xF0>-0x68000) actorp->unk_0xF0-=0x3200;
+    if(actorp->vel.y_w>-0x68000) actorp->vel.y_w-=0x3200;
     if(actorp->pos.y<-0x100) actorp->unk_0xD0_h=64;
 }
 
@@ -130,7 +130,37 @@ void func_8008DEBC(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008DF20.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E1A0.s")
+//Version of Marina when she hits the boulder in "Rolling Rock"
+/*
+void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
+    s32 n;
+    D_800BE5F4=4;
+    if(index==0)index=16; //don't overwrite player actor
+    gPlayerActor.unk_0xD2=0x70;
+    Actor_Spawn(index);
+    gActors[index].flag=2;
+    gActors[index].pos.x=gPlayerActor.pos.x;
+    gActors[index].pos.y=gPlayerActor.pos.y;
+    n=gPlayerActor.vel.x_w;
+    if(gPlayerActor.vel.x_w<0) n=gPlayerActor.vel.x_w+1;
+    gActors[index].vel.x_w=n>>1;
+}*/
+#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorSpawn_MarinaOhNo.s")
+/*
+void ActorTick_MarinaOhNo(uint16_t index){
+    Actor* actor= &gActors[index];
+    D_800BE5F4=4;
+    func_8008DF20(index);
+    if(actor->unk_0xD0_h==16){
+        D_800BE5F4=4;
+        actor->unk_0xD0_h=0x30;
+        actor->unk_0x18C=D_800D46A8;
+        actor->vel.y_w=0x20000;
+        actor->unk_0x118=1.0;
+    }
+    SFX_Stop(SFX_MARINA_OW1);
+    SFX_Stop(SFX_MARINA_YELL1);
+    SFX_Play_1(SFX_MARINA_OHNO); //...thus the name
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E310.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E3C0.s")
+}*/
+#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorTick_MarinaOhNo.s")

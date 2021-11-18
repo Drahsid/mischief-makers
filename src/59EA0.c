@@ -26,7 +26,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005A930.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005ACA8.s")
+void func_8005ACA8(uint16_t index){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005ACB0.s")
 

@@ -1,7 +1,7 @@
 #include "SFX.h"
 #include "actor.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
 
@@ -41,7 +41,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80052004.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80052780.s")
+void func_80052780(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005278C.s")
 
@@ -142,7 +142,7 @@ int32_t Actor_AddHP(uint16_t index, int16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058924.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005896C.s")
+void func_8005896C(uint16_t x, uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058978.s")
 
@@ -161,7 +161,11 @@ int32_t Actor_AddHP(uint16_t index, int16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058E44.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058EB0.s")
-
+/*
+void func_80058F54(uint16_t index){
+    gActors[index].unk_0xD0_h=42;
+    gActors[index].unk_0xF8=gActors[index].vel.x_w;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058F54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058F9C.s")

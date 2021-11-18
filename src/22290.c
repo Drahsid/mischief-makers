@@ -1,20 +1,20 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+
+
+#include "common.h"
 /*
-void Gfx_DrawRectange(uint16_t col,uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2){
-    gDPSetFillColor(gDListHead++,col<<0x10|col);
+void Gfx_DrawRectange(uint16_t col,uint32_t x1,uint32_t y1,uint32_t x2,uint32_t y2){
+    gDPSetFillColor(gDListHead++,(uint32_t)(col<<0x10|col));
     gDPFillRectangle(gDListHead++,x1&0x3FFF,y1&0x3FFF,x2&0x3FFF,y2&0x3FFF);
 }*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawRectange.s")
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterboxStandard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterbox.s")
 //file break? Above deals with drawing the letterbox
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022470.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/LifeBar_Tick.s")
 //another file break? the above deals with updating the health bar.
 void func_80022D10(void) {
     func_80043478();
@@ -83,14 +83,14 @@ void func_800230B8(void){
         gActors[i].unk_0xE8=0;
     }
     for(i=0;i<64;i++){
-        D_801069E0[i].unk_0x80=0;
+        D_801069E0[i].Active=0;
     }
 }
 
 void func_8002312C(void){
     uint16_t i;
     for(i=0;i<66;i++){
-        D_80104098[i].unk_0x80=0;
+        D_80104098[i].Active=0;
     }
 }
 
@@ -98,21 +98,21 @@ void func_8002312C(void){
 
 #ifdef NON_MATCHING
 // Needs regalloc fixes, and reordering related to a structure
-void func_800232A4(void) {
+void GamePlay_Load(void) {
     int32_t temp_t6_2;
     int32_t temp_t8_2;
     int32_t temp_v0;
     uint16_t temp_t8_3;
-    int16_t phi_v0;
+    int16_t index;
     int32_t phi_v0_2;
 
-    for (phi_v0 = 0; phi_v0 < 4; phi_v0++) {
-        D_801376BC[phi_v0] = 1;
-        D_801376B8[phi_v0] = 1;
-        D_801376A8[phi_v0] = 0;
-        D_801376AC[phi_v0]=0;
-        D_801376B0[phi_v0]=0;
-        D_801376B4[phi_v0]=255;
+    for (index = 0; index < 4; index++) {
+        D_801376BC[index] = 1;
+        D_801376B8[index] = 1;
+        D_801376A8[index] = 0;
+        D_801376AC[index]=0;
+        D_801376B0[index]=0;
+        D_801376B4[index]=255;
     }
 
     D_800BE6F0 = (uint8_t)0xFF;
@@ -120,8 +120,8 @@ void func_800232A4(void) {
     D_800BE6C0 = -8;
     gDebugBitfeild = 4;
 
-    for (phi_v0 = 0; phi_v0 < 8; phi_v0++) {
-        D_80137480[phi_v0] = 0;
+    for (index = 0; index < 8; index++) {
+        D_80137480[index] = 0;
     }
 
     
@@ -175,7 +175,7 @@ void func_800232A4(void) {
         D_800D2908 = (uint16_t)0;
     }
 
-    func_80025C38();
+    InitScene();
     gStageTime = 0;
     D_800D294C = (uint16_t)0;
     func_80010C20(gCurrentScene); // collision?
@@ -188,5 +188,5 @@ void func_800232A4(void) {
     gGameSubState = 0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_800232A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/22290/GamePlay_Load.s")
 #endif

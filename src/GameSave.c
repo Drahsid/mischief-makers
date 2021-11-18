@@ -1,9 +1,7 @@
 #include "GameSave.h"
-#include "Alphabet.h"
+#include "common.h"
 #include "SFX.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include <ultra64.h>
+
 
 char gEEPROMID[8] = "TREA0722";
 
@@ -47,7 +45,7 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
     }
     return 0;
 }
-
+//seems to check festival records and default them at certain conditions.
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
 
 #ifdef NON_MATCHING
@@ -133,20 +131,20 @@ void GameSave_Erase(void) {
 }
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
-    Text_SpawnIcon(index, &D_800E13DC, pos_x, pos_y, 0);
+    Text_SpawnIcon(index, &gIcon_YellowGem, pos_x, pos_y, 0);
     gActors[index].unk_0x94 |= 0x200;
     gActors[index].unk_0x18C = arg3;
 }
 
 // Differences related to implicit casts
 #ifdef NON_MATCHING
-void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
+void GameSave_PrintRedGems(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
     uint16_t* red_gems = &gFileRedGems[arg3];
     Text_Print2Digits(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
     Text_Print2Digits(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800058E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_PrintRedGems.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800059A4.s")
@@ -162,7 +160,6 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 #ifdef NON_MATCHING
 void func_80006B1C(uint16_t i) {
     uint16_t j;
-    i &= 0xFFFF;
     for (j = i + 0xab; j < i + 0xBD; j++) {
         gActors[j].flag = 0;
     }
@@ -181,10 +178,10 @@ void func_80006B1C(uint16_t i) {
 
 void func_80006DF4(uint16_t index) {
     uint32_t temp = index; // int promotion magic??
-    gActors[temp].unk_0xBC += 8.0f;
-    gActors[temp].unk_0xC0 += 8.0f;
-    gActors[temp + 1].unk_0xBC -= 8.0f;
-    gActors[temp + 1].unk_0xC0 -= 8.0f;
+    gActors[temp].RotateX += 8.0f;
+    gActors[temp].RotateY += 8.0f;
+    gActors[temp + 1].RotateX -= 8.0f;
+    gActors[temp + 1].RotateY -= 8.0f;
 }
 //sets selected stage
 #ifdef NON_MATCHING
@@ -210,8 +207,7 @@ void func_80006E60(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_ConfirmName.s")
 
-//prints hirgana keyboard
-/*
+#ifdef NON_MATCHING
 uint16_t NameEntry_PrintKeyboardHIRA(uint16_t index){
     Text_SpawnAt2(index,0x11e,0x80,0x44,0);
     gActors[index+1].flag=0;
@@ -227,8 +223,10 @@ uint16_t NameEntry_PrintKeyboardHIRA(uint16_t index){
     index= Text_PrintAlphaAt(index, gNameEntryRow4HIRA,0xff80,0xffF0,0);
     gActors[index++].flag=0;
     return index;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboardHIRA.s")
+#endif
 
 void func_80007578(void) {
     SFX_Play_2(SFX_MENU_BLIP);

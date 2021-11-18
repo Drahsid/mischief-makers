@@ -14,12 +14,15 @@ segments:
   - name: boot
     type: bin
     start: 0x40
+    vram: 0xA4000040
+    subsegments:
+    - [0x0040, hasm, boot]
   - name: main
     type: code
     start: 0x1000
     vram: 0x80000400
     subsegments:
-      - [0x01000, asm, entrypoint]
+      - [0x01000, hasm, entrypoint]
       - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
@@ -53,13 +56,13 @@ segments:
       - [0x80D90, c]
       - [0x82920, c]
       - [0x82DB0, c]
-      - [0x82F80, asm] # likey deals with text defined in Alphabet.h
+      - [0x82F80, c] # likey deals with text defined in Alphabet.h
       - [0x844E0, c, DebugText] # looks to provide text/ transform data for sprite.c. unique struct.
-      - [0x84BB0, asm]
+      - [0x84BB0, c]
       - [0x8D0A0, c]
       - [0x8F080, c]
-      - [0x97770, c]
-      - [0x99750, asm] # A single function which decompresses (?) Marina's sprite data to some address?
+      - [0x97770, c] # Level clear sequence
+      - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
       #start of libultra funcs
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
@@ -120,7 +123,7 @@ segments:
       - [0xA6A90, asm, os/interrupt]
       - [0xA6AD0, asm, os/exceptasm]
       - [0xA79B0, asm, os/setfpccsr]
-      - [0xA79C0, asm, rsp/sprawread]
+      - [0xA79C0, asm, io/sirawread]
       - [0xA7A80, asm, io/sirawwrite]
       - [0xA7B10, asm, os/writebackdcache]
       - [0xA7B90, asm, os/invalicache]
@@ -140,6 +143,7 @@ segments:
       - [0xA9550, asm, host/rdbsend]
       - [0xA9860, asm, rmon/rmonmisc]
       - [0xA9A10, asm, rmon/rmonsio]
+      - [0xA9C60, asm, io/sprawread]
       - [0xA9D20, asm, rmon/rmonmem]
       - [0xAA700, asm, rmon/rmonbrk]
       - [0xAB380, asm, os/probetlb]
@@ -213,7 +217,11 @@ segments:
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
       - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
-
+      - [0xEC6C0, bin]
+      - [0xEDC70, .rodata, DebugText] # strings
+      - [0xEDCC0, bin, Debugtext] #doubles (why not part of rodata?)
+      - [0xEDCE0, bin]
+      #- [0xEE100, rodata, 97770]
 
       # libultra
       #- [0xEE200, rodata, io/viswapbuf]
@@ -241,15 +249,126 @@ segments:
       #- [0xEF540, rodata, audio/seq]
       #- [0xEF550, rodata, audio/reverb]
       #- [0xEF5B0, rodata, libc/xldtob]
-      - [0xEC6C0, bin]
-      #- [0xEDC70, .rodata, DebugText] # strings and doubles
+
       #- [0xEDCE0, .rodata, 84BB0]
       - [0xEF880, bin] # "RSP SW Version:" ...
-      # - [0xF00DO,c] # a few NOOPs the game SHOULD load in.
+  - type: code
+    start: 0xF00D0
+    vram: 0x80388000
+    overlay: true
+    subsegments:
+      - [0xF00D0,c] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
+  - [0xF0100,bin] # romcopied in the same func as above.
+  - [0xF01C0,bin]
+  #- [0x6D1C00, asm]
+  - type: code
+    start: 0x766080
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x766080, bin]
+  - type: code
+    start: 0x766110
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x766110, c]
+      - [0x76EC30, bin, 766110]
+  - type: code
+    start: 0x76F390
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76F390, bin]
+  - type: code
+    start: 0x76F3A0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76F3A0, c]
+      - [0x76FD40, bin, 76F3A0]
+  - type: code
+    start: 0x76FD60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76FD60, bin]
+  - type: code
+    start: 0x76FDD0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76FDD0, c]
+      - [0x774520, bin, 79FDD0]
+  - type: code
+    start: 0x775460
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x775460, bin]
+  - type: code
+    start: 0x7754F0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
       - [0x7754F0, c] # includes actor functions from func_80016E70
+      - [0x77EA60,bin,7754F0]
+
+  - type: code
+    start: 0x77F240
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x77F240, bin]
+  - type: code
+    start: 0x77F260
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x77F260, c] 
+      - [0x784710, bin, 77F260]
+  - type: code
+    start: 0x7854B0
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x7854B0, bin]
+  - type: code
+    start: 0x7854D0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x7854D0, c]
+      - [0x789D70, bin, 7854D0]
+  - type: code
+    start: 0x78B430
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78B430, bin]
+  - type: code
+    start: 0x78B440
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78B440, c]
+      - [0x78C9E0, bin,78B440]
+  - type: code
+    start: 0x78CB60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78CB60, bin]
+  - type: code
+    start: 0x78CBF0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78CBF0, c]
+      - [0x7958C0, bin, 78CBF0]
 
   - type: bin # more data
-    start: 0x77EA60
+    start: 0x7969B0
   # display lists / vtxs / etc
   - [0x79EC60, bin]
   - [0x79EE60, bin]
@@ -272,5 +391,71 @@ segments:
   - [0x7A0CB0, bin]
   - [0x7A0DF8, bin]
   - [0x7A0F40, bin]
+  #call lists and code segments loaded per scene
+  - type: code
+    start: 0x7C6AB0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7C6AB0, data]
+  - type: code
+    start: 0x7C6AE0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7C6AE0, c]
+     - [0x7C9800, bin,7C6AE0]
+  - type: code
+    start: 0x7CE060
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7CE060, data]
+  - type: code
+    start: 0x7CE090
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7CE090, c]
+     - [0x7D0390, bin,7CE090]
+  - type: code
+    start: 0x7D3F60
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7D3F60, data]
+  - type: code
+    start: 0x7D40F0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7D40F0, c]
+     - [0x7D6940, bin,7D40F0]
+  - type: code
+    start: 0x7DAAA0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7DAAA0, data]
+  - type: code
+    start: 0x7DAB00
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7DAB00, c]
+     - [0x7DC230, bin,7DAB00]
+  - type: code
+    start: 0x7EA710
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+    - [0x7EA710, data]
+  - type: code
+    start: 0x7EA730
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+    - [0x7EA730, c]
+    - [0x7EADE0, bin,7EA730]
   - [0x7EAFD0, bin, trailer] # 0xff to end
   - [0x800000]

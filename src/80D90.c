@@ -1,7 +1,4 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 void func_80080190(uint16_t index){
     gActors[index].unk_0x98&=~0x200600;

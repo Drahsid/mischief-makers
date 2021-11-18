@@ -1,7 +1,6 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+
+
+#include "common.h"
 
 void func_800121D0(void) {
     uint16_t index = gPlayerActorp->healthu;

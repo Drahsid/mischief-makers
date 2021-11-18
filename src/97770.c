@@ -1,8 +1,10 @@
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
+
+//This script deals with the "Level clear" sequence.
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80096B70.s")
 
@@ -63,8 +65,8 @@ void func_800972DC(void) {
     gActors[80].unk_0x94 = 0x900;
     gActors[80].flag = 3;
     gActors[80].unk_0x84 = 0x2d0;
-    gActors[80].unk_0xB4 = 20.0;
-    gActors[80].unk_0xB8 = 20.0;
+    gActors[80].ScaleX = 20.0;
+    gActors[80].ScaleY = 20.0;
     gActors[80].unk_0x18C = D_800D8588;
     gActors[80].pos.x_1 = 0;
     gActors[80].pos.y_1 = 0;
@@ -95,7 +97,7 @@ void func_80097384(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_800977B8.s")
 #ifdef NON_MATCHING
-void func_80097968(void) {
+void LevelClear_SkipScene(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28E4 = 100;
         Actor_ZeroFlag_48_144();
@@ -114,16 +116,16 @@ void func_80097968(void) {
         gActors[193].pos.y = 0;
         gActors[193].pos.z = 0xc0;
         gActors[193].unk_0x84 = 0x2d0;
-        gActors[193].unk_0xB4 = 20.0;
-        gActors[193].unk_0xB8 = 20.0;
+        gActors[193].ScaleX = 20.0;
+        gActors[193].ScaleY = 20.0;
         func_8005DFC8(0);
         D_800D16C4 = 0;
         SFX_StopAll();
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097968.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/97770/LevelClear_SkipScene.s")
 #endif
 
-// this may be part of the "level clear" sequence.
-#pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097A74.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/97770/ActorTick_LevelClear.s")

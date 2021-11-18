@@ -1,10 +1,5 @@
 #include "BGM.h"
-#include "actor.h"
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
 //these look to be camera functions, some that are level-specific.
 void Camera_RotateReset(void) {
     gCameraRot = 0;
@@ -70,21 +65,21 @@ void CameraTick_MagmaRafts(void) {
 }
 
 void func_80023AA4(void){
-    HealthBar.unk_0x80=0;
-    HealthFace.unk_0x80=0;
+    HealthBar.Active=0;
+    HealthFace.Active=0;
     D_800CA230=1;
 }
 
 void func_80023AC4(void) {}
-
+//camera func for "Scene 3"
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023ACC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023AFC.s")
-
+//camera func for "Scene 4"
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023BC0.s")
 
 void func_80023BF8(void) {}
-
+//camera funcs for "migen brawl"
 void func_80023C00(void) {
     D_800BE578 = 2;
     D_800BE57C = 2;
@@ -207,8 +202,8 @@ void func_800245B4(void){
     D_800BE580 = -0xc;
     D_800BE57C = 2;
     D_800BE584 = -0xc;
-    HealthBar.unk_0x80=0;
-    HealthFace.unk_0x80=0;
+    HealthBar.Active=0;
+    HealthFace.Active=0;
 }
 
 void func_800245F0(void) {}
@@ -216,7 +211,7 @@ void func_800245F0(void) {}
 void func_800245F8(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024600.s")
-//these 2 are Beastecor boss camera funcs
+
 void CameraInit_Beastector(void) {
     D_800BE588 = 2;
     D_800BE704 = 1;
@@ -306,23 +301,23 @@ void func_80025184(void) {
     D_800BE578 = (int16_t)(((int32_t)gScreenPosCurrentX._hi / 4) & 0x1FF);
     D_800BE57C = (int16_t)(((int32_t)gScreenPosCurrentX._hi / 8) & 0x1FF);
 }
-
+// camera funcs for cave stages
 void func_800251CC(void) {
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800251E8.s")
-
+//"aster's tryke" camera tick
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80025254.s")
 
-void func_800252BC(void) {
+void CameraInit_PhoenixGamma(void) {
     D_800BE704 = 1;
     D_800BE708 = 1;
     gLetterboxMode = 2;
     Camera_RotateReset();
 }
-//used for Phoenix Gamma
+
 void CameraTick_PhoenixGamma(void){
     Camera_ApplyRotate();
     if(gLetterboxMode == 2){
@@ -344,10 +339,10 @@ void func_80025380(void) {
 }
 
 void func_800253A8(void) {}
-
+// determines lifebar's position?
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
 
-uint8_t D_800CCFC[] = {
+uint8_t gSceneBGMs[] = {
     BGM_ESPERANCE,
     BGM_VOLCANIC,
     0xff,
@@ -437,15 +432,15 @@ uint8_t D_800CCFC[] = {
     BGM_REVENGE,
     BGM_TO1};
 
-void func_80025578(void) {
-    if (D_800CCFDC[gCurrentScene] != 255) {
-        BGM_Play(D_800CCFDC[gCurrentScene]);
+void PlaySceneBGM(void) {
+    if (gSceneBGMs[gCurrentScene] != 255) {
+        BGM_Play(gSceneBGMs[gCurrentScene]);
     }
 }
 //stage init?
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s") 
 //multiple romcopy funcs
-void func_80025B7C(void) {
+void LoadSceneFiles(void) {
     func_8002694C(gCurrentScene);
     func_80026A18(gCurrentScene);
     func_80026B04(gCurrentScene);
@@ -470,4 +465,4 @@ void func_80025BFC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80025C38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/InitScene.s")

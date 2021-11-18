@@ -1,8 +1,4 @@
-#include "actor.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 void func_8001DBA0(uint16_t* arg0, uint16_t index) {
     gActors[index].unk_0xD2 = arg0[5];
@@ -60,8 +56,8 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].unk_0xE8 = (uint32_t)&D_800E1380;
     }
 
-    gActors[index].unk_0xB4 = 1.0;
-    gActors[index].unk_0xB8 = 1.0;
+    gActors[index].ScaleX = 1.0;
+    gActors[index].ScaleY = 1.0;
 
     // OK (except regalloc)
     gActors[index].unk_0x14C = 0;
@@ -85,9 +81,9 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].rgba.a = 0xFF;
     gActors[index].unk_0xE6 = 1;
     gActors[index].unk_0xDE = 1;
-    gActors[index].unk_0xC4 = 0.0;
-    gActors[index].unk_0xC0 = 0.0;
-    gActors[index].unk_0xBC = 0.0;
+    gActors[index].RotateZ = 0.0;
+    gActors[index].RotateY = 0.0;
+    gActors[index].RotateX = 0.0;
     gActors[index].unk_0xD6 = (int8_t)0;
     gActors[index].unk_0xD4 = (int8_t)0;
     gActors[index].unk_0xD0_h = (int8_t)0;
@@ -120,9 +116,9 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x100 = 0;
     gActors[index].unk_0xFC = 0;
     gActors[index].unk_0xF8 = 0;
-    gActors[index].unk_0xF4 = 0;
-    gActors[index].unk_0xF0 = 0;
-    gActors[index].unk_0xEC = 0;
+    gActors[index].vel.z_w = 0;
+    gActors[index].vel.y_w = 0;
+    gActors[index].vel.x_w = 0;
     gActors[index].unk_0xE2 = 0;
     gActors[index].unk_0xDF = 0;
     gActors[index].unk_0xDD = 0;

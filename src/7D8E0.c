@@ -1,8 +1,8 @@
 #include "BGM.h"
 #include "actor.h"
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
 //parses ints to base 10 equivalent

@@ -1,7 +1,5 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
+
 
 /*
 Sprite gSprite ={
@@ -70,12 +68,12 @@ void Sprite_Finish(Gfx** dlistp) {
     *dlistp = dlist - 1;
 }
 
-void Sprite_SetPosition(int32_t arg0, uint32_t arg1) {
+void Sprite_SetSize(int32_t arg0, uint32_t arg1) {
     D_800C4EC4 = arg0;
     D_800C4EC8 = arg1;
 }
 
-void func_8000474C(int32_t arg0, uint32_t arg1) {
+void Sprite_SetPosition(int32_t arg0, uint32_t arg1) {
     D_800C4EBC = arg0;
     D_800C4EC0 = arg1;
 }

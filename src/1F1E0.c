@@ -1,27 +1,25 @@
 #include "Alphabet.h"
 #include "SFX.h"
 #include "actor.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "music.h"
+#include "common.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
-// BUG: This function writes to unallocated stack space!
+
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #ifdef NON_MATCHING
 void func_8001E814(int16_t index0, int16_t index1) {
-    if ((gActors[index0].unk_0xEC == 0) && (gActors[index0].unk_0xF0 == 0)) {
+    if ((gActors[index0].vel.x_w == 0) && (gActors[index0].vel.y_w == 0)) {
         gActors[index1].unk_0xF8 = func_8001E5E0(index0, index1, 0x2000);
         gActors[index1].unk_0xFC = func_8001E6F4(index0, index1, 0x2000);
     }
     else {
-        gActors[index1].unk_0xF8 = gActors[index0].unk_0xEC;
-        gActors[index1].unk_0xFC = gActors[index0].unk_0xF0;
+        gActors[index1].unk_0xF8 = gActors[index0].vel.x_w;
+        gActors[index1].unk_0xFC = gActors[index0].vel.y_w;
     }
 }
 #else
@@ -124,7 +122,7 @@ void func_8001FFA8(void) {
     D_800D291C = D_801781D4;
 }
 
-void func_80020024(void) {
+void GamePlay_Tick_Active(void) {
     int32_t phi_s0;
     int16_t* phi_s1;
     uint8_t* phi_s2;
@@ -141,25 +139,25 @@ void func_80020024(void) {
 
     func_800122B0(); // input history
 
-    if ((gDebugBitfeild & 2) != 0) {
-        if ((gButtonPress & gButton_LTrig) != 0) {
+    if ((gDebugBitfeild & 2)) { //debug game speed throttle
+        if ((gButtonPress & gButton_LTrig)) {
             if (gDebugthrottle != 1) {
                 gDebugthrottle--;
-                D_801781DC = 0;
+                gThrottleInput[0] = 0;
             }
         }
 
-        if (((gButtonPress & gButton_RTrig) != 0) && (gDebugthrottle != 0x32)) {
+        if (((gButtonPress & gButton_RTrig)) && (gDebugthrottle != 50)) {
             gDebugthrottle++;
-            D_801781DC = 0;
+            gThrottleInput[0] = 0;
         }
 
         if ((gSceneFramesReal % gDebugthrottle) == 0) {
-            gButtonPress |= D_801781DC;
-            D_801781DC = 0;
+            gButtonPress |= gThrottleInput[0];
+            gThrottleInput[0] = 0;
         }
         else {
-            D_801781DC |= gButtonPress;
+            gThrottleInput[0] |= gButtonPress; //save button inputs and wait for the next "frame"
             return;
         }
     }
@@ -174,7 +172,7 @@ void func_80020024(void) {
     func_8001107C(); // foreground layer of background?
 
     if (D_800CA230 == 0) {
-        func_8004ED10(0);    // spawns/updates the player
+        ActorTick_Marina(0);    // spawns/updates the player
         func_8008C528(0x41); // unknown
     }
 
@@ -186,7 +184,7 @@ void func_80020024(void) {
     func_8005C8A4(); // camera quake
     func_8001FF50(); // update actor flags
     func_8005F6D4(); // text
-    func_80022470(); // ui (blinking, health bar)
+    LifeBar_Tick(); // ui (blinking, health bar)
 
     if (gGameState == GAMESTATE_GAMEPLAY) {
         func_80047CCC(); // scene init
@@ -225,7 +223,7 @@ void YellowGem_PrintProgress(void) {
 }
 
 #ifdef NON_MATCHING
-void func_80020844(void) { // resets sound levels after exiting pause menu?
+void PauseGame_RestoreVolume(void) { // resets sound levels after exiting pause menu?
     uint16_t i;
     for (i = 0; i < 4; i++)
         SFX_Volumes[i] = D_801781C0[i];
@@ -234,10 +232,10 @@ void func_80020844(void) { // resets sound levels after exiting pause menu?
         gActors[i].flag = 0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020844.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_RestoreVolume.s")
 #endif
 
-void func_800208D4(void) {
+void PauseGame_Unpause(void) {
     uint16_t index;
 
     for (index = 0xC8; index < 0xCC; index++) {
@@ -272,7 +270,7 @@ void GamePlay_Tick(void) {
         PauseGame_Tick();
     }
     else {
-        func_80020024();
+        GamePlay_Tick_Active();
     }
 }
 
@@ -346,11 +344,11 @@ void AttractMode_Tick(void) {
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        func_800232A4(&gAttractModeIndex, &gCurrentStage, &gAttractModeTimer, &gGameSubState);
+        GamePlay_Load(&gAttractModeIndex, &gCurrentStage, &gAttractModeTimer, &gGameSubState);
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
-        HealthFace.unk_0x80 = 0;
-        HealthBar.unk_0x80 = 0;
+        HealthFace.Active = 0;
+        HealthBar.Active = 0;
         func_8002092C();
         D_80103944 = 0;
         D_801037AA = 0;
@@ -373,7 +371,7 @@ void AttractMode_Tick(void) {
  * will need to investigate further, but it seems to just be an i8 color
  * why didn't they just give the text an outline?
  */
-void func_80021620(void) {
+void DebugText_BorW(void) {
     if ((gButtonPress & gButton_RTrig)) {
         D_800BE6B8._s ^= 0xFF;
     }
@@ -383,7 +381,6 @@ void func_80021658(void) {}
 
 void func_80021660(void) {}
 
-// BUG: This function writes to unallocated stack space!
 void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {}
 
 void func_8002167C(void) {}

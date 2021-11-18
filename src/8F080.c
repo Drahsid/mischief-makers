@@ -1,6 +1,6 @@
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
+
+
 #include "inttypes.h"
 #include <ultra64.h>
 
@@ -27,7 +27,11 @@ void func_8008E918(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008EFA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008F094.s")
+uint32_t func_8008F094(uint16_t index,uint16_t dmg){
+    gActors[index].health-=dmg;
+    if(gActors[index].health&0x8000)gActors[index].health=0;
+    return func_8008EFA8(index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008F108.s")
 
@@ -121,8 +125,8 @@ uint32_t func_800930AC(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930AC.s")
 
 void func_800930E4(uint32_t x){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930EC.s")
+//displays Calina's Henshin text
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/CalinaChange_PrintText.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800931CC.s")
 
@@ -162,9 +166,9 @@ void func_800930E4(uint32_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800955F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095928.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/ActorTick_CalinaDialouge.s")
 
-void func_80095A10(uint16_t index){
+void CalinaChange_WandSpin(uint16_t index){
     gActors[index].unk_0x118+=gActors[index].unk_0x114;
     if(gActors[index].unk_0x118>360){
         gActors[index].unk_0x118-=360;
@@ -172,7 +176,7 @@ void func_80095A10(uint16_t index){
         }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/ActorTick_CalinaChange.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095FC8.s")
 
@@ -194,15 +198,15 @@ void func_80095A10(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969F4.s")
+void func_800969F4(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969FC.s")
+void func_800969FC(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A04.s")
+void func_80096A04(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A0C.s")
+void func_80096A0C(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A14.s")
+void func_80096A14(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
 

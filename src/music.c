@@ -1,5 +1,5 @@
 #include "music.h"
-
+#include "common.h"
 // While this script contains general sound functions, it is named music.c after Assert found in code.
 
 ALCSPlayer gSFXPlayers[4];
@@ -54,7 +54,7 @@ void func_800028D0(void) {
     for (index = 0; index < D_800C3830; index++) {
         if (D_800C3830 > 0) {
             for (index = 0; index < D_800C3830; index++) {
-                osRecvMesg(&D_801377B8, 0, 0);
+                osRecvMesg(&Sound_DMAmesgQA, 0, 0);
             }
         }
     }
@@ -69,18 +69,18 @@ void func_800028D0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_800028D0.s")
 #endif
 
-void func_800029EC(void) {
+void Sound_StartTask(void) {
     osWritebackDCacheAll();
-    osSpTaskLoad(D_8016E6F0);
-    osSpTaskStartGo(D_8016E6F0);
+    osSpTaskLoad(Sound_OSTaskp);
+    osSpTaskStartGo(Sound_OSTaskp);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002A2C.s")
 
 void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     osWritebackDCacheAll();
-    osPiStartDma(&D_801378C8, 0, 0, devaddr, vaddr, nbytes, &D_801377B8);
-    osRecvMesg(&D_801377B8, 0, 1);
+    osPiStartDma(&D_801378C8, 0, 0, devaddr, vaddr, nbytes, &Sound_DMAmesgQA);
+    osRecvMesg(&Sound_DMAmesgQA, 0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/BGM_Play.s")
@@ -181,7 +181,7 @@ void func_80003540(int16_t arg0, int16_t arg1, int8_t* arg2, int16_t* arg3) {
         *arg3 = 0;
 }
 
-int32_t func_800035F8(uint32_t SFX_ID, uint16_t i) {
+int32_t SFX_ActorPanXY(uint32_t SFX_ID, uint16_t i) {
     int8_t val_a;
     int16_t val_b;
 
@@ -203,7 +203,7 @@ int32_t func_800035F8(uint32_t SFX_ID, uint16_t i) {
     }
 }
 
-int32_t func_800036C8(uint32_t SFX_ID, uint16_t i) {
+int32_t SFX_ActorPanX(uint32_t SFX_ID, uint16_t i) {
     int8_t val_a;
     int16_t val_b;
 
@@ -221,7 +221,7 @@ int32_t func_800036C8(uint32_t SFX_ID, uint16_t i) {
     }
 }
 
-int32_t func_80003778(uint32_t SFX_ID, uint16_t i) {
+int32_t SFX_ActorPanX2(uint32_t SFX_ID, uint16_t i) {
     int8_t val_a;
     int16_t val_b;
 

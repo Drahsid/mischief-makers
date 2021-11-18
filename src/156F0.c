@@ -1,9 +1,6 @@
-#include "actor.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
+//update positions of actors.
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014AF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014C44.s")
@@ -11,16 +8,25 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014F14.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014FD0.s")
-
+/*
+void func_80015094(uint16_t index){
+    if((gActors[index].unk_0xA0&0xf ==0) &&(gActors[index].unk_0xA0&0xC0)) func_80014FD0(index,16);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015094.s")
-
+/*
+void func_800150FC(uint16_t index){
+    func_80014FD0(index,(gActors[index].pos.x+gScreenPosCurrentX._hi&0xf)>>1);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800150FC.s")
 /*
 void func_80015174(uint16_t index){
     func_80014FD0(index,gActors[index].pos.x+gScreenPosCurrentX._hi&0xf);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015174.s")
-
+/*
+void func_800151D8(uint16_t index){
+    func_80014FD0(index,((gActors[index].pos.x+gScreenPosCurrentX._hi&0xf)>>1) +8);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800151D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015250.s")
