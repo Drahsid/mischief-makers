@@ -65,7 +65,7 @@ void func_801927CC_6F9A5C(uint8_t a){
 uint32_t func_801927F4_6F9A84(){
     return func_80192684_6F9914(50);
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/6F9390/func_801927F4_6F9A84.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/6F9390/func_80192814_6F9AA4.s")
 
@@ -85,14 +85,14 @@ void func_80192A80_6F9D10(){
     gActors[51].rgba.g=0;
     gActors[51].rgba.b=0;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/6F9390/func_80192A80_6F9D10.s")
+
 void func_80192A98_6F9D28(){
     gActors[51].rgba.r=0xff;
     gActors[51].rgba.g=0xff;
     gActors[51].rgba.b=0xff;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/6F9390/func_80192A98_6F9D28.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/6F9390/func_80192AB4_6F9D44.s")
 

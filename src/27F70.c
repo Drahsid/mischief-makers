@@ -164,7 +164,7 @@ void func_800282F0(int16_t x,int16_t y){
     if(gPlayerActor.health<0) gPlayerActor.health=0;
 
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800282F0.s")
+
 
 void func_80028380(void) {
     gPlayerActor.flag = 0;
@@ -290,14 +290,14 @@ void func_80028AE8(uint16_t i) {
 void func_80028B1C(uint16_t index){
     func_800289E4(index,D_800D36DC,ABS_800289cc(gActors[index].pos.x-gPlayerActor.pos.x));
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028B1C.s")
+
 
 void func_80028B90(uint16_t index){
     uint16_t other = gActors[index].unk_0xD6;
     if(gActors[index].pos.x<gActors[other].pos.x) gActors[index].unk_0xF8= -gActors[other].unk_0xF8;
     else gActors[index].unk_0xF8= gActors[other].unk_0xF8;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028B90.s")
+
 
 void func_80028C00(uint16_t x) {}
 

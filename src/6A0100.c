@@ -74,7 +74,7 @@ int32_t func_80195018_6A3018(uint32_t SFX_ID,uint16_t x){
 void func_801968F8_6A48F8(uint16_t x){
     gActors[51].flag=0;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/6A0100/func_801968F8_6A48F8.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/6A0100/func_80196908_6A4908.s")
 

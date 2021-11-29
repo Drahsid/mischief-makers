@@ -82,7 +82,7 @@ void func_801AA590_782EF0(){
     func_801AA440_782DA0(0x81);
     func_801AA440_782DA0(0x82);
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA590_782EF0.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA5B8_782F18.s")
 

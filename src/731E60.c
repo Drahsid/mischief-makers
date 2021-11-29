@@ -117,7 +117,7 @@ void func_801A0F5C_737CBC(uint16_t index){
     func_8019FCF0_736A50(index);
     gActors[index].unk_0x98&= ~0x00200600;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/731E60/func_801A0F5C_737CBC.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/731E60/func_801A0FC0_737D20.s")
 

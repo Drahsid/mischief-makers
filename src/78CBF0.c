@@ -44,7 +44,7 @@ void func_801A821C_78E50C(u16 arg0) {
         func_801A7CA4_78DF94(arg0);
     }
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/78CBF0/func_801A821C_78E50C.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/78CBF0/func_801A8284_78E574.s")
 

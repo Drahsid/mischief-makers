@@ -213,7 +213,7 @@ void func_800245F8(void) {}
 void func_80024600(){
     D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)<<0x10;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024600.s")
+
 
 void CameraInit_Beastector(void) {
     D_800BE588 = 2;

@@ -39,13 +39,13 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/742CB0/func_8019C6DC_74428C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/742CB0/func_8019C828_7443D8.s")
+
 f32 func_8019C948_7444F8(f32 f1, f32 f2, s32 i) {
     f32 f3 = (f32) i;
     if (f3 == 0.0f) return f2;
     return ((f2 - f1) / f3) + f1;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/742CB0/func_8019C948_7444F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/742CB0/func_8019C984_744534.s")
 

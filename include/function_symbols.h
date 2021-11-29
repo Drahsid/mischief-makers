@@ -465,7 +465,7 @@ extern void func_8002A658();
 extern void func_8002A898();
 extern int32_t func_8002A900(uint16_t, uint16_t);
 extern int32_t func_8002A990(uint16_t, uint16_t);
-extern void func_8002AA20();
+extern void func_8002AA20(uint16_t, uint16_t);
 extern void func_8002ABE4(uint16_t, int16_t);
 extern void func_8002AC30(uint16_t, int16_t);
 extern void func_8002AC7C(uint16_t, int16_t, int16_t);

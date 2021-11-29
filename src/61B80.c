@@ -35,7 +35,7 @@ void func_800615BC(uint16_t index){
         gActors[index].unk_0xD0_h-=2;
     }
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800615BC.s")
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80061624.s")
 
