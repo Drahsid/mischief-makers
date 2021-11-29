@@ -70,7 +70,7 @@ segments:
       - [0x9A3C0, asm, os/vimgr]
       - [0x9A820, asm, os/visetmode]
       - [0x9A8F0, asm, os/pimgr]
-      - [0x9AC20, asm, rmon/Thread_RmonProc]
+      - [0x9AC20, asm, rmon/rmonmain]
       - [0x9B060, asm, os/setthreadpri]
       - [0x9B190, asm, os/virtualtophysical]
       - [0x9B250, asm, os/createmesgqueue]
@@ -260,7 +260,345 @@ segments:
       - [0xF00D0,c] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
   - [0xF0100,bin] # romcopied in the same func as above.
   - [0xF01C0,bin]
-  #- [0x6D1C00, asm]
+  - [0x1E6900,bin] # loaded by func_80025E00
+  - [0x214B40,bin]
+  - [0x248F40,bin]
+  - [0x3fab30,bin] # loaded by func_800197A0
+  - [0x40AC70,bin] # blank.
+  - [0x40AC80,bin]
+  - [0x4A0910,bin] # ROM adresses load 2 at a time by func_800821B0 (-0x04BF5380)
+  #actor properties for Intermission scenes
+  - [0x4A15A0,bin]
+  - [0x4A15B0,bin]
+  - [0x4A15CC,bin]
+  - [0x4A15DC,bin]
+  - [0x4A162C,bin] #"freefall" for some reason.
+  - [0x4A1F84,bin]
+  - [0x4A1FB8,bin] #default - no actors
+  - [0x4A1FBC,bin] 
+  #more romcopied bits. looks to be compressed data
+  - [0x4A1FC0,bin]
+#call lists and code segments loaded per scene by RomCopy_Funcs
+  - type: code #migen brawl
+    start: 0x67DBA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x67DBA0, bin]
+  - type: code
+    start: 0x67DC20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x67DC20, c]
+      - [0x686BB0,bin,67DC20]
+  - type: code #cerberus alpha
+    start: 0x68A090
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x68A090, bin]
+  - type: code
+    start: 0x68A100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x68A100, c]
+      - [0x69BD30,bin,68A100] 
+  - type: code #sasquatch beta
+    start: 0x6A00C0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6A00C0, bin]
+  - type: code
+    start: 0x6A0100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6A0100, c]
+      - [0x6A7C00,bin,6A0100]
+  - type: code #phoenix gamma
+    start: 0x6AAA80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6AAA80, bin]
+  - type: code
+    start: 0x6AAAF0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6AAAF0, c]
+      - [0x6B9AB0,bin,6AAAF0]
+      #- [0x6BC890,rodata,6AAAF0]
+  - type: code
+    start: 0x6BCD80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6BCD80, bin]
+  - type: code
+    start: 0x6BCDD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6BCDD0, c]
+      - [0x6CBC50,bin,6BCDD0]
+  - type: code
+    start: 0x6D1BF0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D1BF0, bin]
+  - type: code
+    start: 0x6D1C00
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D1C00, c]
+      - [0x6D2710,bin,6D1C00]
+  - type: code
+    start: 0x6D2750
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D2750, bin]
+  - type: code
+    start: 0x6D2780
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D2780, c]
+      - [0x6D9460,bin,6D2780]
+  - type: code
+    start: 0x6D9FB0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D9FB0, bin]
+  - type: code
+    start: 0x6DA010
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6DA010, c]
+      - [0x6E22E0,bin,6DA010]
+  - type: code
+    start: 0x6E2AE0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6E2AE0, bin]
+  - type: code
+    start: 0x6E2B20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6E2B20, c]
+      - [0x6EDBB0,bin,6E2B20]
+  - type: code
+    start: 0x6EE550
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6EE550, bin]
+  - type: code
+    start: 0x6EE580
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6EE580, c]
+      - [0x6F38C0,bin,6EE580]
+  - type: code
+    start: 0x6F3DA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F3DA0, bin]
+  - type: code
+    start: 0x6F3DD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F3DD0, c]
+      - [0x6F7800,bin,6F3DD0]
+  - type: code
+    start: 0x6F7B20
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F7B20, bin]
+  - type: code
+    start: 0x6F7B30
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F7B30, c]
+      - [0x6F91F0,bin,6F7B30]
+  - type: code
+    start: 0x6F9330
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F9330, bin]
+  - type: code
+    start: 0x6F9390
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F9390, c]
+      - [0x711300,bin,6F9390]
+  - type: code
+    start: 0x713600
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x713600, bin]
+  - type: code
+    start: 0x713630
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x713630, c]
+      - [0x719150,bin,713630]
+
+#call lists and code segments loaded per scene by RomCopy_Funcs2
+  - type: code
+    start: 0x719700
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x719700, bin]
+  - type: code
+    start: 0x719720 #"merco!"
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x719720, c]
+      - [0x721E40,bin,719720]
+      #- [0x7228D0,rodata,719720]
+  - type: code
+    start: 0x722A30
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x722A30, bin]
+  - type: code
+    start: 0x722A50
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x722A50, c]
+      - [0x72AA70,bin,722A50]
+  - type: code
+    start: 0x72B120
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x72B120, bin] #"Taurus!"
+  - type: code
+    start: 0x72B140
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x72B140, c]
+      - [0x731860,bin,72B140]
+      #- [0x731C10,rodata,72B140]
+  - type: code
+    start: 0x731DD0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x731DD0, bin]
+  - type: code
+    start: 0x731E60
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x731E60, c]
+      - [0x73B4D0,bin,731E60]
+  - type: code
+    start: 0x73D070
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x73D070, bin]
+  - type: code
+    start: 0x73D090
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x73D090, c]
+      - [0x742870,bin,73D090]
+  - type: code
+    start: 0x742CA0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x742CA0, bin]
+  - type: code
+    start: 0x742CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x742CB0, c]
+      - [0x748AB0,bin,742CB0]
+  - type: code
+    start: 0x749C90
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x749C90, bin]
+  - type: code
+    start: 0x749CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x749CB0, c]
+      - [0x751950,bin,749CB0]      
+  - type: code
+    start: 0x753860
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x753860, bin]
+  - type: code
+    start: 0x753880
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x753880, c]
+      - [0x753FD0,bin,753880]
+      #- [0x7544E0,rodata,753880]
+  - type: code
+    start: 0x754570
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x754570, bin]
+  - type: code
+    start: 0x7545A0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x7545A0, c]
+      - [0x75C6F0,bin,7545A0]
+  - type: code
+    start: 0x75D630
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x75D630, bin]
+  - type: code
+    start: 0x75D660
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x75D660, c]
+      - [0x763EA0,bin,75D660]
+
+#call lists and code segments loaded per scene by RomCopy_ActorFuncs3
   - type: code
     start: 0x766080
     vram: 0x801A6800
@@ -274,6 +612,7 @@ segments:
     subsegments:
       - [0x766110, c]
       - [0x76EC30, bin, 766110]
+      #- [0x76F150, rodata, 766110]
   - type: code
     start: 0x76F390
     vram: 0x801A6800
@@ -311,9 +650,8 @@ segments:
     vram: 0x801A6900
     overlay: true
     subsegments:
-      - [0x7754F0, c] # includes actor functions from func_80016E70
+      - [0x7754F0, c]
       - [0x77EA60,bin,7754F0]
-
   - type: code
     start: 0x77F240
     vram: 0x801A6800
@@ -366,32 +704,126 @@ segments:
     subsegments:
       - [0x78CBF0, c]
       - [0x7958C0, bin, 78CBF0]
-
-  - type: bin # more data
+      #- [0x7963E0, rodata, 78CBF0]
+# loaded by romcopy_actorfuncs4
+  - type: code
     start: 0x7969B0
-  # display lists / vtxs / etc
-  - [0x79EC60, bin]
-  - [0x79EE60, bin]
-  - [0x79EF58, bin]
-  - [0x79F050, bin]
-  - [0x79F148, bin]
-  - [0x79F240, bin]
-  - [0x79F338, bin]
-  - [0x79F430, bin]
-  - [0x79F578, bin]
-  - [0x79F6C0, bin]
-  - [0x79F808, bin]
-  - [0x79F950, bin]
-  - [0x79FA98, bin]
-  - [0x79FBE0, bin]
-  - [0x7A0790, bin]
-  - [0x7A08D8, bin]
-  - [0x7A0A20, bin]
-  - [0x7A0B68, bin]
-  - [0x7A0CB0, bin]
-  - [0x7A0DF8, bin]
-  - [0x7A0F40, bin]
-  #call lists and code segments loaded per scene
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7969B0, bin]
+  - type: code
+    start: 0x7969D0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7969D0, c]
+      - [0x7984C0, bin, 7969D0]
+  - type: code
+    start: 0x7986D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7986D0, bin]
+  - type: code
+    start: 0x798740
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x798740, c]
+      - [0x79DC30, bin, 798740]
+  - type: code
+    start: 0x7A13D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A13D0, bin]
+  - type: code
+    start: 0x7A1410
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A1410, c]
+      - [0x7A69A0, bin, 7A1410]
+  - type: code
+    start: 0x7A6E60
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A6E60, bin]
+  - type: code
+    start: 0x7A6E80
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A6E80, c]
+      - [0x7AB410, bin, 7A6E80]
+  - type: code
+    start: 0x7AC7F0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7AC7F0, bin]
+  - type: code
+    start: 0x7AC820
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7AC820, c]
+      - [0x7B3240, bin, 7AC820]
+  - type: code
+    start: 0x7B3FC0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B3FC0, bin]
+  - type: code
+    start: 0x7B3FE0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B3FE0, c]
+      - [0x7B79F0, bin, 7B3FE0]
+  - type: code
+    start: 0x7B8760
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B8760, bin]
+  - type: code
+    start: 0x7B87B0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B87B0, c]
+      - [0x7BC2B0, bin, 7B87B0]
+  - type: code
+    start: 0x7BC840
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7BC850
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7BC850, c]
+      - [0x7C0640, bin, 7BC850]
+  - type: code
+    start: 0x7C0AB0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7C0B20
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7C0B20, c]
+      - [0x7C67A0, bin, 7C0B20]
+  #call lists and code segments loaded per scene by RomCopy_Funcs1
   - type: code
     start: 0x7C6AB0
     vram: 0x801B9800
@@ -457,5 +889,6 @@ segments:
     subsegments:
     - [0x7EA730, c]
     - [0x7EADE0, bin,7EA730]
+    #- [0x7EAFA0, rodata,7EA730]
   - [0x7EAFD0, bin, trailer] # 0xff to end
   - [0x800000]

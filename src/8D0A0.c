@@ -1,9 +1,4 @@
-#include "SFX.h"
 #include "common.h"
-
-
-#include "inttypes.h"
-#include <ultra64.h>
 
 void ActorTick_15(uint32_t x) {}
 void ActorTick_16(uint32_t x) {}
@@ -136,7 +131,7 @@ void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     s32 n;
     D_800BE5F4=4;
     if(index==0)index=16; //don't overwrite player actor
-    gPlayerActor.unk_0xD2=0x70;
+    gPlayerActor.actorType=0x70;
     Actor_Spawn(index);
     gActors[index].flag=2;
     gActors[index].pos.x=gPlayerActor.pos.x;

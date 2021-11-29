@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_8001DBA0(uint16_t* arg0, uint16_t index) {
-    gActors[index].unk_0xD2 = arg0[5];
+    gActors[index].actorType = arg0[5];
     Actor_Spawn(index);
     gActors[index].pos.x = arg0[1] - gScreenPosCurrentX._hi;
     gActors[index].pos.y = arg0[2] - gScreenPosCurrentY._hi;
@@ -12,7 +12,7 @@ void func_8001DBA0(uint16_t* arg0, uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1E7A0/func_8001DC60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1E7A0/func_8001DE30.s")
-
+//above seem to deal with intermission actor lists.
 #ifdef NON_MATCHING
 // https://decomp.me/scratch/QZfDW
 void Actor_Spawn(uint16_t index) {
@@ -23,22 +23,22 @@ void Actor_Spawn(uint16_t index) {
      * Float instructions should be below this ifelse block
      * flag and unk_0xE8 rvalues may be loaded incorrectly
      */
-    if (gActors[index].unk_0xD2 < 0x100) {
-        // actorInit = (((unk_0xD2 * 7) & 0xFFFF) * 2) + &gActorInit;
-        gActors[index].unk_0xA2 = -gActorInit[gActors[index].unk_0xD2].unk_0x0;
-        gActors[index].unk_0xA8 = -gActorInit[gActors[index].unk_0xD2].unk_0x2;
-        gActors[index].unk_0xAA = -gActorInit[gActors[index].unk_0xD2].unk_0x4;
-        gActors[index].unk_0xB0 = -gActorInit[gActors[index].unk_0xD2].unk_0x6;
+    if (gActors[index].actorType < 0x100) {
+        // actorInit = (((actorType * 7) & 0xFFFF) * 2) + &gActorInit;
+        gActors[index].unk_0xA2 = -gActorInit[gActors[index].actorType].unk_0x0;
+        gActors[index].unk_0xA8 = -gActorInit[gActors[index].actorType].unk_0x2;
+        gActors[index].unk_0xAA = -gActorInit[gActors[index].actorType].unk_0x4;
+        gActors[index].unk_0xB0 = -gActorInit[gActors[index].actorType].unk_0x6;
 
-        gActors[index].unk_0xA4 = gActorInit[gActors[index].unk_0xD2].unk_0x0;
-        gActors[index].unk_0xA6 = gActorInit[gActors[index].unk_0xD2].unk_0x2;
-        gActors[index].unk_0xAC = gActorInit[gActors[index].unk_0xD2].unk_0x4;
-        gActors[index].unk_0xAE = gActorInit[gActors[index].unk_0xD2].unk_0x6;
+        gActors[index].unk_0xA4 = gActorInit[gActors[index].actorType].unk_0x0;
+        gActors[index].unk_0xA6 = gActorInit[gActors[index].actorType].unk_0x2;
+        gActors[index].unk_0xAC = gActorInit[gActors[index].actorType].unk_0x4;
+        gActors[index].unk_0xAE = gActorInit[gActors[index].actorType].unk_0x6;
 
-        gActors[index].health = gActorInit[gActors[index].unk_0xD2].health;
-        gActors[index].unk_0xE4 = gActorInit[gActors[index].unk_0xD2].unk_0xA;
-        gActors[index].flag = gActorInitFlags[gActors[index].unk_0xD2]; // ((gActors[index].unk_0xD2 * 4) + 0x800D0000)->unk - 0x6228;
-        gActors[index].unk_0xE8 = D_800C9FCC[gActors[index].unk_0xD2];
+        gActors[index].health = gActorInit[gActors[index].actorType].health;
+        gActors[index].unk_0xE4 = gActorInit[gActors[index].actorType].unk_0xA;
+        gActors[index].flag = gActorInitFlags[gActors[index].actorType]; // ((gActors[index].actorType * 4) + 0x800D0000)->unk - 0x6228;
+        gActors[index].unk_0xE8 = D_800C9FCC[gActors[index].actorType];
     }
     else {
         // OK
@@ -93,13 +93,13 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0xC8 = (int8_t)0;
 
     // OK
-    gActors[index].unk_0x190 = 0;
+    gActors[index].unk_0x190 = NULL;
     gActors[index].unk_0x18C = NULL;
     gActors[index].unk_0x188 = 0;
     gActors[index].unk_0x184_w = 0;
     gActors[index].unk_0x180_w = 0;
     gActors[index].unk_0x17C = 0;
-    gActors[index].unk_0x178 = 0;
+    gActors[index].unk_0x178 = NULL;
     gActors[index].unk_0x174 = 0;
     gActors[index].unk_0x170_w = 0;
     gActors[index].unk_0x16C = 0;
@@ -112,7 +112,7 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x150._w = 0;
     gActors[index].unk_0x10C = 0;
     gActors[index].unk_0x108 = 0;
-    gActors[index].unk_0x104 = 0;
+    gActors[index].unk_0x104._w = 0;
     gActors[index].unk_0x100 = 0;
     gActors[index].unk_0xFC = 0;
     gActors[index].unk_0xF8 = 0;

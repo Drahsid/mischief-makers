@@ -227,8 +227,8 @@ void func_8004AA64(uint16_t index) {
         gActors[index].unk_0x142 = 0;
         gActors[index].unk_0x141 = 0;
         gActors[index].unk_0x180_w = 0;
-        *(((uint8_t*)(&D_801373E0)) + 0x13) = 0;
-        *(((uint8_t*)(&D_801373E0)) + 0x12) = 0x64;
+        D_801373E0.unk_0x13 = 0;
+        D_801373E0.unk_0x12 = 100;
         gActors[index].unk_0x12F = 0;
         gActors[index].vel.y_w = 0;
         gActors[index].vel.x_w = 0;
@@ -243,7 +243,7 @@ void func_8004AA64(uint16_t index) {
     func_8005D370(index, 1);
     gActors[index].unk_0xD0_h = 3;
 }
-
+//deals with marina's idle state
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004AB3C.s")
 
 void func_8004B0A0(uint16_t index) {
@@ -252,7 +252,7 @@ void func_8004B0A0(uint16_t index) {
 
     actor = &gActors[index];
     actor->unk_0x12C = 7;
-    actor->vel.x_w = func_8002981C(actor->vel.x_w, 0, func_80048C94(0));
+    actor->vel.x_w = ModInRange_i(actor->vel.x_w, 0, func_80048C94(0));
 
     if (actor->unk_0xD0 == 0) {
         func_8005A4B0(index, 1.0f);
@@ -290,7 +290,7 @@ void func_8004B18C(uint16_t index) {
         phi_a1 = -phi_a1;
     }
 
-    actor->vel.x_w = func_8002981C(actor->vel.x_w, phi_a1, ABS_8005C6D0(phi_a1) / 8);
+    actor->vel.x_w = ModInRange_i(actor->vel.x_w, phi_a1, ABS_8005C6D0(phi_a1) / 8);
     func_8005D370(index, 0x1D);
 
     if (actor->unk_0x170 == 0 && (actor->unk_0x171 == 2 || actor->unk_0x171 == 8)) {
@@ -312,16 +312,16 @@ void func_8004B290(uint16_t index) {
     }
 
     v0 = func_80048C94(0);
-    v0 = func_8002981C(gActors[index].vel.x_w, 0, v0 * 2);
+    v0 = ModInRange_i(gActors[index].vel.x_w, 0, v0 * 2);
 
     gActors[index].vel.x_w = v0;
     if (v0 != 0) {
         gActors[index].unk_0x183 = 4;
-        return;
     }
-
-    gActors[index].flag |= ACTOR_FLAG_UNK14;
-    gActors[index].unk_0xD0_h = 3;
+    else{
+        gActors[index].flag |= ACTOR_FLAG_UNK14;
+        gActors[index].unk_0xD0_h = 3;
+    }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004B344.s")
@@ -450,7 +450,7 @@ void ActorTick_Marina(uint16_t index) {
         D_801373E0.unk_0x70 = 0;
         gActors[index].pos.z_w = 0;
 
-        D_800D57E0 = func_8002981C(D_800D57E0, 0x6000, 0x400);
+        D_800D57E0 = ModInRange_i(D_800D57E0, 0x6000, 0x400);
 
         if (gActors[index].unk_0x12F < 4) {
             gActors[index].unk_0x12F++;
@@ -568,7 +568,7 @@ void ActorTick_Marina(uint16_t index) {
              */
             // held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) -
             // gActors[index].unk_0xD6) * 8) + gActors;
-            gActors[gActors[index].unk_0xD6].unk_0x104 += gActors[index].vel.x_w;
+            gActors[gActors[index].unk_0xD6].unk_0x104._w += gActors[index].vel.x_w;
             gActors[gActors[index].unk_0xD6].unk_0x108 += gActors[index].vel.y_w;
         }
 
@@ -597,7 +597,7 @@ void ActorTick_Marina(uint16_t index) {
         D_800BE5E8 = gActors[index].vel.x_w;
         D_800BE5EC = gActors[index].vel.y_w;
 
-        if (gCurrentScene == 0x46) { //play the fall whistle sound if falling in "freefall"
+        if (gCurrentScene == SCENE_FREEFALL) { //play the fall whistle sound if falling in "freefall"
             if (gActors[index].vel.y_w <= -294912.0) {
                 if (D_801373E0.FallBool == 0) {
                     if (func_8000334C(0x3E) >= 0) {

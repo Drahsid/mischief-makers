@@ -1,7 +1,6 @@
 
 
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 void ActorTick_0(uint16_t x){}
 
@@ -11,10 +10,10 @@ void ActorTick_0(uint16_t x){}
 /*
 void func_80061350(uint16_t index){
     if(index==ACTOR_COUNT0){
-        gActors[ACTOR_COUNT0].rgba.r = func_8002981C(gActors[ACTOR_COUNT0].rgba.r,0,4);
-        gActors[ACTOR_COUNT0].rgba.g = func_8002981C(gActors[ACTOR_COUNT0].rgba.g,0,4);
-        gActors[ACTOR_COUNT0].rgba.b = func_8002981C(gActors[ACTOR_COUNT0].rgba.b,0,4);
-        gActors[ACTOR_COUNT0].rgba.a = func_8002981C(gActors[ACTOR_COUNT0].rgba.a,0x60,4);
+        gActors[ACTOR_COUNT0].rgba.r = ModInRange_i(gActors[ACTOR_COUNT0].rgba.r,0,4);
+        gActors[ACTOR_COUNT0].rgba.g = ModInRange_i(gActors[ACTOR_COUNT0].rgba.g,0,4);
+        gActors[ACTOR_COUNT0].rgba.b = ModInRange_i(gActors[ACTOR_COUNT0].rgba.b,0,4);
+        gActors[ACTOR_COUNT0].rgba.a = ModInRange_i(gActors[ACTOR_COUNT0].rgba.a,0x60,4);
     }
     else{
         gActors[index].rgba.r = gActors[ACTOR_COUNT0].rgba.r;
@@ -30,8 +29,13 @@ void func_80061350(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800614D4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80061554.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800615BC.s")
+void func_800615BC(uint16_t index){
+    if(--gActors[index].rgba.a==0){
+        gActors[index].flag &= ~1;
+        gActors[index].unk_0xD0_h-=2;
+    }
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800615BC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80061624.s")
 
@@ -104,7 +108,7 @@ void func_80061350(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800648C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064AA0.s")
-
+//"stage clear" fanfare behavior ?
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064B60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064CB4.s")

@@ -2,9 +2,9 @@
 #include "GameSave.h"
 
 void func_80016E70(uint16_t index) {
-    uint8_t temp_t8 = gActors[index].unk_0xD2 & 0xFFFF;
+    uint8_t temp_t8 = gActors[index].actorType & 0xFFFF;
 
-    switch (gActors[index].unk_0xD2 >> 8) {
+    switch (gActors[index].actorType >> 8) {
         case 1: {
             gActorFuncTable_801B0800[temp_t8](index);
             break;
@@ -196,8 +196,8 @@ void func_8001751C(void) {
             actor = gActors + index;
 
             if ((actor->flag & ACTOR_FLAG_ACTIVE) && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
-                if (actor->unk_0xD2 < 0x100) {
-                    gActorFuncTable[actor->unk_0xD2](index);
+                if (actor->actorType < 0x100) {
+                    gActorFuncTable[actor->actorType](index);
                 }
                 else {
                     func_80016E70(index);
@@ -210,8 +210,8 @@ void func_8001751C(void) {
             actor = gActors + index;
 
             if ((actor->flag & ACTOR_FLAG_ACTIVE)) {
-                if (actor->unk_0xD2 < 0x100) {
-                    gActorFuncTable[actor->unk_0xD2](index);
+                if (actor->actorType < 0x100) {
+                    gActorFuncTable[actor->actorType](index);
                 }
                 else {
                     func_80016E70(index);
@@ -220,9 +220,28 @@ void func_8001751C(void) {
         }
     }
 }
-
+//file break?
+/*
+uint32_t func_80017680(uint16_t button, uint8_t* sel){
+    if((gButtonHold&button)==0) *sel=0;
+    else{
+        if(*sel != 33) *sel++;
+        else *sel=32;
+    }
+    if((gButtonPress&button==0) && (*sel!=33)) return 0;
+    return 1;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017680.s")
-
+/*
+uint32_t func_800176F8(uint16_t button, uint8_t* sel){
+    if((gButtonHold&button)==0) *sel=0;
+    else{
+        if(*sel != 20) *sel++;
+        else *sel=16;
+    }
+    if((gButtonPress&button==0) && (*sel!=20)) return 0;
+    return 1;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800176F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
@@ -234,7 +253,7 @@ void Intro_Tick(void) {
         case 0: {
             func_80003A38();
 
-            gCurrentScene = 0x15;
+            gCurrentScene = SCENE_SPLASHSCREEN;
 
             InitScene();
             func_80010C20(gCurrentScene);
@@ -380,7 +399,7 @@ void Intro_Tick(void) {
             D_800F43A8 = 0;
             gCurrentStage = 0;
             gWorldProgress = 0;
-            gCurrentScene = 0xB;
+            gCurrentScene = SCENE_INTRO;
             D_800D28E4 = 0x59;
             gSaveSlotIndex = 0;
             gGameState = GAMESTATE_TRANSITION;
@@ -416,10 +435,11 @@ void func_80017F08(void) {
 // cp1 stuff is producing a flipped pair of instructions
 #ifdef NON_MATCHING
 void func_80017FE8(uint16_t index) {
-    Actor* actor = &gActors[index];
+    Actor* actor;
 
-    actor->unk_0xD2 = 0;
+    gActors[index].actorType = 0;
     Actor_Spawn(index);
+    actor = &gActors[index];
     actor->pos.x = -2;
     actor->pos.y = 4;
     actor->unk_0x84 = 0x2D0;
@@ -457,7 +477,7 @@ void TitleScreen_Tick(void) {
             gSPDisplayList(gDListHead++, &D_800C8EF0);
             func_800230B8(&gDListHead);
             func_80017FE8(0x33);
-            gCurrentScene = 8;
+            gCurrentScene = SCENE_TITLE;
             gGameSubState += 1;
         }
         default: {
@@ -527,7 +547,7 @@ void TitleScreen_Tick(void) {
             gActors[17].unk_0x94 |= 0x100;
             gActors[17].rgba.a = 0x80;
 
-            gActors[48].unk_0xD2 = 0;
+            gActors[48].actorType = 0;
             actor2_Spawn(48);
             gActors[48].unk_0x94 |= 0x200;
             gActors[48].flag |= (ACTOR_FLAG_UNK28 | ACTOR_FLAG_UNK29); // 0x30000000;
@@ -569,8 +589,8 @@ void TitleScreen_Tick(void) {
             }
 
             // test to toggle sound test
-            if (((gButtonHold & gButton_A) != 0) && ((gButtonHold & gButton_CLeft) != 0) && ((gButtonHold & gButton_CRight) != 0) &&
-                ((gButtonHold & gButton_LTrig) != 0) && ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) &&
+            if (((gButtonHold & gButton_A)) && ((gButtonHold & gButton_CLeft)) && ((gButtonHold & gButton_CRight)) &&
+                ((gButtonHold & gButton_LTrig)) && ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) &&
                 ((gButtonHold & gButton_CUp) == 0) && ((gButtonHold & gButton_RTrig) == 0)) {
                 gActors[7].rgba.b = 1;
             }

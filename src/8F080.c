@@ -1,12 +1,10 @@
 #include "common.h"
 
 
-#include "inttypes.h"
-#include <ultra64.h>
-
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E790.s")
+
 void func_8008E918(uint16_t index){
     func_80081790(index,&D_800E8BEC);
 }
@@ -196,7 +194,9 @@ void CalinaChange_WandSpin(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009691C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969CC.s")
+void func_800969CC(uint16_t x){
+    func_80090558(x);
+}
 
 void func_800969F4(uint16_t x){}
 
@@ -208,31 +208,22 @@ void func_80096A0C(uint16_t x){}
 
 void func_80096A14(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
+void func_80096A1C(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 1;
+    func_8008FB20(index);
+}
 
-#ifdef NON_MATCHING
 void func_80096A70(uint16_t index) {
     gActors[index + 1].unk_0xD8 = 2;
-    func_800902B0(index);
+    func_8008FD08(index);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A70.s")
-#endif
 
-#ifdef NON_MATCHING
 void func_80096AC4(uint16_t index) {
     gActors[index + 1].unk_0xD8 = 3;
+    func_80090064(index);
+}
+
+void func_80096B18(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 5;
     func_800902B0(index);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096AC4.s")
-#endif
-
-#ifdef NON_MATCHING
-void func_80096B18(float f1, float f2, uint16_t index) {
-    gActors[index + 1].unk_0xD8 = 5;
-    func_800902B0(f1, f2, index);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096B18.s")
-#endif

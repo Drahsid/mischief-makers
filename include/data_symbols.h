@@ -184,7 +184,7 @@ extern int32_t D_800BE724;
 extern int32_t D_800BE728;
 extern int32_t gCameraRot;
 extern int32_t gCameraRotDelta;
-extern UNK_TYPE D_800BE73C;
+extern s2_w D_800BE73C;
 
 extern UNK_TYPE D_800C3908;
 extern Sprite gSprite;
@@ -281,9 +281,10 @@ extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's of
 extern uint32_t D_800CFE04[88][12];
 extern void* D_800D0E84[88][6];
 extern int16_t D_800D16C4;
+extern ClanpotItem D_800D22BC[32]; //stacked in reverse order for some reason.
 extern int32_t D_800D2504[2][2];
 extern int32_t D_800D2514[7][6];
-extern uint8_t D_800D28D0;
+extern uint8_t D_800D28D0[20];
 extern uint16_t D_800D28E4;
 extern uint16_t D_800D28E8;
 extern int32_t D_800D28EC;
@@ -298,7 +299,6 @@ extern uint16_t D_800D2918;
 extern uint16_t D_800D291C;
 extern uint16_t D_800D2920;
 extern uint16_t D_800D2924;
-extern int32_t D_800D2928;
 extern int32_t D_800D2928;
 extern int32_t D_800D2938;
 extern uint16_t D_800D294C;
@@ -454,6 +454,7 @@ extern UNK_TYPE D_800E1F64;
 extern UNK_TYPE D_800E3584;
 extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[];
+extern float D_800E90E8[64];
 extern UNK_TYPE D_800E9850;
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
@@ -552,16 +553,16 @@ extern UNK_TYPE D_80171C30;
 extern UNK_TYPE D_80171F10;
 extern Mtx* D_801780F0;
 extern Mtx* D_801780F4;
-extern UNK_POINTER D_80178104;
-extern UNK_POINTER D_80178108;
-extern UNK_POINTER D_8017810C;
-extern UNK_POINTER D_80178110;
-extern UNK_POINTER D_80178114;
-extern UNK_POINTER D_80178118;
-extern UNK_POINTER D_8017811C;
-extern UNK_POINTER D_80178120;
-extern UNK_POINTER D_80178124;
-extern UNK_POINTER D_80178128;
+extern UNK_POINTER* D_80178104;
+extern UNK_POINTER* D_80178108;
+extern UNK_POINTER* D_8017810C;
+extern UNK_POINTER* D_80178110;
+extern UNK_POINTER* D_80178114;
+extern UNK_POINTER* D_80178118;
+extern UNK_POINTER* D_8017811C;
+extern UNK_POINTER* D_80178120;
+extern UNK_POINTER* D_80178124;
+extern UNK_POINTER* D_80178128;
 extern uint16_t D_80178130; // continue timer?
 extern uint8_t D_80178132;
 extern uint8_t D_80178133;
@@ -607,5 +608,5 @@ extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
 extern volatile uint16_t D_80380400[256];
 extern uint16_t gFramebuffer1[320][240]; // framebuffer
-extern UNK_TYPE D_801C4400; //marina sprite data?
+extern UNK_TYPE D_801C4400; //adress of some buffer
 #endif

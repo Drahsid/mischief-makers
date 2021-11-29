@@ -144,7 +144,7 @@ void GamePlay_Load(void) {
     D_800BE618 = temp_t6_2;
     D_800BE614 = temp_t6_2;
     D_800BE610 = temp_t6_2;
-    D_800BE73C = temp_t6_2;
+    D_800BE73C._w = temp_t6_2;
     D_800BE5F0 = (int16_t)temp_t6_2;
     gPlayerVelYMirror = (int32_t)D_800BE5F0;
     gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;

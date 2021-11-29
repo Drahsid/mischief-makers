@@ -190,9 +190,9 @@ void Thread_IdleProc(void* arg0) {
     }
 
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &D_8012A678, 8);
-    osCreateThread(&rmonThread, 0, &Thread_RmonProc, NULL, &D_80129670, OS_PRIORITY_RMON);
+    osCreateThread(&rmonThread, 0, rmonMain, NULL, &D_80129670, OS_PRIORITY_RMON);
     osStartThread(&rmonThread);
-    osCreateThread(&mainThread, 3, &Thread_MainProc, arg0, &D_80128670, 10);
+    osCreateThread(&mainThread, 3, Thread_MainProc, arg0, &D_80128670, 10);
     osStartThread(&mainThread);
     osSetThreadPri(0, 0);
 

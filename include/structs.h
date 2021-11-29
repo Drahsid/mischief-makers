@@ -124,8 +124,8 @@ typedef struct {
     /* 0x12 */ uint8_t unk_0x12;
     /* 0x13 */ uint8_t unk_0x13;
     /* 0x14 */ uint8_t unk_0x14[12];
-    /* 0x20 */ uint16_t unk_0x20[2]; //unused button history?
-    /* 0x24 */ uint16_t unk_0x24[2]; //unused button history?
+    /* 0x20 */ s2_w unk_0x20; //unused button history?
+    /* 0x24 */ s2_w unk_0x24; //unused button history?
     /* 0x28 */ uint8_t unk_0x28[24]; //unused?
     /* 0x40 */ union{
         uint32_t unk_0x40_w;
@@ -159,5 +159,12 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } Gfx_Data; /* sizeof = 0x6180 */
 
+typedef struct{
+    /*0x00*/ uint16_t flags;
+    /*0x02*/ uint16_t ActorFeild0x110;
+    /*0x04*/ uint16_t ActorFeild0xD8;
+    /*0x06*/ uint16_t unk_0x6;
+    /*0x08*/ uint16_t ActorType;
+}ClanpotItem;
 
 #endif

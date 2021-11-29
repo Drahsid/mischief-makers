@@ -26,7 +26,7 @@ void func_800121D0(void) {
 }
 
 void func_80012288(void) {
-    gPlayerActor.unk_0xD2 = 0x16;
+    gPlayerActor.actorType = 0x16;
     func_800121D0();
 }
 

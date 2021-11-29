@@ -30,15 +30,36 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084F38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085108.s")
+uint32_t func_80085108(uint16_t index){
+    if((gActors[index].vel.y_w<1)&&(gActors[index].unk_0x98&0x20)){
+        gActors[index].unk_0xD0_h=1;
+        gActors[index].flag&= ~0x20000;
+        gActors[index].flag|=0x10000;
+        gActors[index].vel.x_w=0;
+        gActors[index].vel.y_w=0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085194.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800852CC.s")
+void func_800852CC(uint16_t x){
+    func_80085108(x);
+    func_80085194(x);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085300.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085350.s")
+void func_80085350(uint16_t index){
+    if(gActors[index].unk_0x98&0x200){
+        gActors[index].unk_0xD0_h=2;
+        gActors[index].flag= 0x20003;
+        gActors[index].vel.x_w=0;
+        gActors[index].vel.y_w=0;
+        SFX_ActorPanX(0x2f,index);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800853C8.s")
 
@@ -53,13 +74,30 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085AE4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085BAC.s")
-
+extern float D_800E3DBC[8];
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085D00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085E60.s")
+void func_80085E60(uint16_t index){
+    float f=D_800E3DBC[gActors[index].unk_0xD8];
+    gActors[index].ScaleX=f;
+    gActors[index].ScaleY=f;
+}
 
+extern uint32_t D_800E3DE4[8][2];
+/* regalloc?
+void func_80085EB0(uint16_t index){
+    gActors[index].unk_0xF8=D_800E3DE4[gActors[index].unk_0xD8][0];
+    gActors[index].unk_0xFC=D_800E3DE4[gActors[index].unk_0xD8][1];
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085EB0.s")
-
+extern int32_t D_80182020[64];
+/*
+void func_80085F08(uint16_t index){
+    uint16_t i;
+    for(i=0;i<64;i++) D_80182020[i]=-1;
+    gActors[index].unk_0x174=0;
+    gActors[index].unk_0x178=0;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085F08.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085F78.s")
@@ -143,9 +181,11 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089418.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800896AC.s")
-
+//spawns the actor when digging
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089814.s")
+extern uint32_t* D_800E4440[6]; //common loot pools for digging spots.
 
+//check if "digging spot" actor has unique loot or an index to the above.
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089984.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089A10.s")
@@ -160,6 +200,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008A50C.s")
 
+//behavior for digging spots?
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008A6E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008AA28.s")

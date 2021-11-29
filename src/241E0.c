@@ -210,7 +210,10 @@ void func_800245F0(void) {}
 
 void func_800245F8(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024600.s")
+void func_80024600(){
+    D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)<<0x10;
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024600.s")
 
 void CameraInit_Beastector(void) {
     D_800BE588 = 2;
@@ -239,7 +242,7 @@ void CameraInit_ClanceWar2(void) {
 }
 
 void CameraTick_ClanceWar2(){
-    D_800BE73C=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)*0x10000;
+    D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)*0x10000;
     func_8002488C();
 }
 //camera funcs for "Bee's the one"
@@ -272,19 +275,19 @@ void func_80024DD8(void) {
 void func_80025084(void) {}
 
 void func_8002508C(void) {}
-
+//camera funcs for "trapped" and "Merco"
 void func_80025094(void) {
     D_800BE588 = 0;
     D_800BE58C = 1;
     D_800BE584 = -0x4C;
     D_8013746C = &D_800C71A0;
-    if (gCurrentScene != 0x16) { //if we aren't on "Trapped!?"
+    if (gCurrentScene != SCENE_TRAPPED) { //if we aren't on "Trapped!?"
         gEyeX = -128.0f;
         gEyeY = 128.0f;
     }
     Camera_RotateReset();
 }
-//used for Merco's fight
+
 void func_80025114(void) {
     Camera_ApplyRotate();
     if ((gSceneFrames & 1))
@@ -331,7 +334,7 @@ void CameraTick_PhoenixGamma(void){
         }
     }
 }
-
+//Camera funcs for "Monolith" Leo
 void func_80025380(void) {
     D_800BE578 = 2;
     D_800BE580 = -0xC;

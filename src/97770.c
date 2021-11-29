@@ -12,7 +12,7 @@
 
 #ifdef NON_MATCHING
 void func_8009705C(uint16_t index) {
-    gActors[index].unk_0xD2 = 0x75;
+    gActors[index].actorType = 0x75;
     Actor_Spawn(index);
     gActors[index].unk_0xD0_h = 0x1000;
     gActors[index].unk_0x94 = 0x100;
@@ -30,7 +30,7 @@ void func_8009705C(uint16_t index) {
 #endif
 
 void func_80097108(uint16_t index) {
-    gActors[index].unk_0xD2 = 0x75;
+    gActors[index].actorType = 0x75;
     Actor_Spawn(index);
     gActors[index].unk_0xD0_h = 0x2000;
     gActors[index].unk_0x94 = 0x110;
@@ -43,7 +43,7 @@ void func_80097108(uint16_t index) {
 }
 
 void func_800971A0(uint16_t index) {
-    gActors[index].unk_0xD2 = 0x75;
+    gActors[index].actorType = 0x75;
     Actor_Spawn(index);
     gActors[index].unk_0xD0_h = 0x100;
     gActors[index].unk_0x94 = 0x900;
@@ -60,7 +60,7 @@ void func_800971A0(uint16_t index) {
 
 #ifdef NON_MATCHING
 void func_800972DC(void) {
-    gActors[80].unk_0xD2 = 0x75;
+    gActors[80].actorType = 0x75;
     Actor_Spawn(80);
     gActors[80].unk_0x94 = 0x900;
     gActors[80].flag = 3;
@@ -78,7 +78,7 @@ void func_800972DC(void) {
 #endif
 
 void func_80097384(uint16_t index) {
-    gActors[index].unk_0xD2 = 0x75;
+    gActors[index].actorType = 0x75;
     Actor_Spawn(index);
     gActors[index].unk_0xD0_h = 0xC000;
     gActors[index].unk_0x94 = 0x900;
@@ -106,7 +106,7 @@ void LevelClear_SkipScene(void) {
         Actor_ZeroFlagRange(0x90, 0xC0);
         Actor_ZeroFlag_192_199();
         func_800286C8();
-        gActors[193].unk_0xD2 = 0x34;
+        gActors[193].actorType = 0x34;
         Actor_Spawn(193);
         gActors[193].unk_0x94 = 0x911;
         gActors[193].flag = 11;

@@ -522,10 +522,13 @@ void func_80072620(uint16_t index){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072628.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800728E8.s")
+void func_800728E8(uint16_t x){
+    func_80072628(x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072910.s")
-
+void func_80072910(uint16_t x){
+    func_80072628(x);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072938.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072A28.s")
@@ -609,7 +612,10 @@ void ActorTick_2(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800740C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800742B8.s")
+uint16_t func_800742B8(uint16_t x){
+    if(x&1) return func_800284B8(1,16);
+    else return func_800284B8(0x70,0x7A);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800742FC.s")
 

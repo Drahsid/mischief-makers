@@ -40,7 +40,7 @@ s32 func_8002653C(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_8002653C.s")
 #endif
-
+//seems to load data for intermission scenes.
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026584.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_800265FC.s")

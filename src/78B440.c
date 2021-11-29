@@ -1,8 +1,10 @@
 #include "common.h"
-
-#pragma GLOBAL_ASM("asm/nonmatchings/78B440/func_801A6900_78B440.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/78B440/func_801A6908_78B448.s")
+//"trapped" and "merco" scene funcs
+void func_801A6900_78B440(uint16_t x){}
+void func_801A6908_78B448(uint16_t index){
+    gActors[index].vel.x_w=ModInRange_i(gActors[index].vel.x_w,0,0x2000);
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/78B440/func_801A6908_78B448.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/78B440/func_801A6968_78B4A8.s")
 

@@ -214,7 +214,6 @@ void GamePlay_Tick_Active(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/RedGem_PrintPause.s")
 
-// Print "Got it" or "Not Yet"
 void YellowGem_PrintProgress(void) {
     if (YellowGem_GetFlag(gCurrentStage))
         func_800836A0(9, 1, &Alpha_GotIt, 0);
@@ -296,7 +295,7 @@ void AttractMode_Tick(void) {
                 D_80103944 -= 3;
             }
 
-            AttractMode_PlayInput(&gGameSubState);
+            AttractMode_PlayInput();
             gAttractModeTimer -= -1;
             if ((gAttractModeTimer == 0 || ((gButtonPress & gButton_Start) != 0)) && (D_80103450 == 0)) {
                 func_80003F24(1, 0x40, &gAttractModeTimer);
@@ -305,7 +304,7 @@ void AttractMode_Tick(void) {
             }
         }
         else if (gGameSubState == 2) {
-            AttractMode_PlayInput(&gGameSubState);
+            AttractMode_PlayInput();
             gAttractModeTimer += 1;
             if (gAttractModeTimer == 0x30) {
                 D_80103918 = 0xB;
@@ -316,7 +315,7 @@ void AttractMode_Tick(void) {
             }
         }
         else if (gGameSubState == 3) {
-            AttractMode_PlayInput(&gGameSubState);
+            AttractMode_PlayInput();
             if (D_801037AA == D_80103944) {
                 gAttractModeIndex += 1;
                 D_80137D90 = 0;
@@ -336,15 +335,15 @@ void AttractMode_Tick(void) {
             gAttractModeIndex = 0;
         }
 
-        gCurrentStage = (&D_800CA2B0)[gAttractModeIndex];
-        gCurrentScene = *(uint16_t*)(&D_800C8378 + (uint32_t)gCurrentStage * 2);
-        D_800D28E4 = *(uint16_t*)(&D_800C83F8 + (uint32_t)gCurrentStage * 2);
+        gCurrentStage = attractModeStages[gAttractModeIndex];
+        gCurrentScene = gStageScenes[gCurrentStage];
+        D_800D28E4 = D_800C83F8[gCurrentStage];
         gAttractModeTimer = 0xA00;
         D_800D2908 = 1;
         gPlayerActor.health = 1000;
         D_800BE668 = 0x32;
         D_800BE5A4 = 0x1234;
-        GamePlay_Load(&gAttractModeIndex, &gCurrentStage, &gAttractModeTimer, &gGameSubState);
+        GamePlay_Load();
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
         HealthFace.Active = 0;
@@ -358,8 +357,8 @@ void AttractMode_Tick(void) {
         gAttractModeInputHold = 0;
         gAttractModeInputIndex = 0;
         D_800CA24C = 0;
-        gAttractModeInputHoldTimer = *(uint16_t*)(&gAttractModeHoldInputs)[gAttractModeIndex];
-        gAttractModeInputTimer = *(uint16_t*)(&gAttractModePressInputs)[gAttractModeIndex];
+        gAttractModeInputHoldTimer = gAttractModeHoldInputs[gAttractModeIndex];
+        gAttractModeInputTimer = gAttractModePressInputs[gAttractModeIndex];
     }
 }
 #else

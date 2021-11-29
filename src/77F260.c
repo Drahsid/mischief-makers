@@ -19,15 +19,27 @@ void func_801A6A5C_77F3BC(void) {}
 void func_801A7048_77F9A8(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7050_77F9B0.s")
-
+//print Leo cloud text
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7230_77FB90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7538_77FE98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7688_77FFE8.s")
-
+//spawn gem from Leo cloud?
+/*
+void func_801A7838_780198(uint16_t index, uint16_t gemflag){
+    uint16_t Gemindex;
+    Actor* gemActor;
+    gActors[index].flag=0;
+    Gemindex=Gem_ActorSpawn(index,gemflag);
+    if(Gemindex){
+        gemActor=&gActors[Gemindex];
+        gemActor->vel.x_w=gActors[index].vel.x_w/3;
+        gemActor->vel.y_w=gActors[index].vel.y_w/3;
+    }
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7838_780198.s")
-
+//Leo cloud behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A7948_7802A8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801A8254_780BB4.s")
@@ -66,7 +78,11 @@ void func_801A8740_7810A0(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA440_782DA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA590_782EF0.s")
+void func_801AA590_782EF0(){
+    func_801AA440_782DA0(0x81);
+    func_801AA440_782DA0(0x82);
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA590_782EF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/77F260/func_801AA5B8_782F18.s")
 

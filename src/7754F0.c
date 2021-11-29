@@ -27,7 +27,7 @@ void func_801A6908_7754F8(uint16_t index, uint8_t arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801A69CC_7755BC.s")
 void func_801A6CB0_7758A0(void) {
-    uint8_t a = func_8002981C(gActors[50].rgba.a, 0xFF, 1);
+    uint8_t a = ModInRange_i(gActors[50].rgba.a, 0xFF, 1);
     uint64_t rgb = (0xFF - a) / 2; // why does this match??
 
     gActors[50].rgba.a = a;
@@ -197,7 +197,7 @@ void func_801A7AB8_7766A8(uint16_t index) {
 /*
 void func_801AA224_778E14(uint16_t index0, uint16_t index1) {
     Actor* actor = &gActors[index1];
-    actor->unk_0xD2 = 0x45;
+    actor->actorType = 0x45;
     Actor_Spawn(index1);
     actor->pos.x = gActors[index0].pos.x;
     actor->pos.y = gActors[index0].pos.y;
@@ -213,9 +213,9 @@ void func_801AA224_778E14(uint16_t index0, uint16_t index1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AA964_779554.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AAA2C_77961C.s")
+void func_801AAA2C_77961C(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AAA34_779624.s")
+void func_801AAA34_779624(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AAA3C_77962C.s")
 
@@ -263,7 +263,7 @@ void func_801AA224_778E14(uint16_t index0, uint16_t index1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AD438_77C028.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AD918_77C508.s")
+void func_801AD918_77C508(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AD920_77C510.s")
 
@@ -307,7 +307,7 @@ void func_801AE258_77CE48(uint16_t x){}
 void func_801AF6AC_77E29C(uint16_t x){}
 
 func_801AF6B4_77E2A4(uint16_t index){
-    gActors[index].unk_0xD2=0x1d;
+    gActors[index].actorType=0x1d;
     Actor_Spawn(index);
     gActors[index].unk_0x94=0x1817;
     gActors[index].unk_0x84=0x262;
@@ -318,8 +318,6 @@ func_801AF6B4_77E2A4(uint16_t index){
     gActors[index].ScaleX=8.0;
     gActors[index].RotateX=45.0;
 }
-
-
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7754F0/func_801AF750_77E340.s")
 

@@ -75,7 +75,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/7854D0/func_801A92D4_787EA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7854D0/func_801A9340_787F10.s")
-
+//General's big beam?
 #pragma GLOBAL_ASM("asm/nonmatchings/7854D0/func_801A93BC_787F8C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7854D0/func_801A95C4_788194.s")

@@ -396,10 +396,10 @@ int32_t func_800463F0(void){
 
 void func_80046434(void) {
     if (gPlayerActor.flag & 0x20) {
-        D_801782B0 = func_8002981C(D_801782B0, 0xFFD00000, 0x80000);
+        D_801782B0 = ModInRange_i(D_801782B0, 0xFFD00000, 0x80000);
     }
     else {
-        D_801782B0 = func_8002981C(D_801782B0, 0x300000, 0x80000);
+        D_801782B0 = ModInRange_i(D_801782B0, 0x300000, 0x80000);
     }
 }
 
@@ -512,10 +512,10 @@ void func_80047674(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004767C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047714.s")
-//looks like it changes the scne index for "the day of"
+//changes the scene index for "the day of"
 void func_80047958(void) {
     uint16_t temp = D_800D28F0 - 0x1F;
-    gCurrentScene = (uint16_t)(*((&D_800D28D0) + temp));
+    gCurrentScene = (uint16_t)D_800D28D0[temp];
     gGameState = GAMESTATE_LOADING;
     gGameSubState = 0;
 }

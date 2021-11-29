@@ -10,7 +10,7 @@
 
 /*
 void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,uint16_t j,uint32_t q){
-    gActors[index].unk_0xD2=0x28;
+    gActors[index].actorType=0x28;
     Actor_Spawn(index);
     gActors[index].flag|=10;
     gActors[index].pos.x=x;
@@ -23,7 +23,7 @@ void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,u
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CD68.s")
 
 void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
-    gActors[index].unk_0xD2=0x28;
+    gActors[index].actorType=0x28;
     Actor_Spawn(index);
     gActors[index].flag|=10;
     gActors[index].pos.x=x;
@@ -31,9 +31,9 @@ void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
     gActors[index].unk_0x150._w=i;
     gActors[index].unk_0x154._w=arg1;
 }
-
+//spawn dialouge portait?
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CEB8.s")
-
+//has 7 args sometimes?
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CFE0.s")
 
 uint32_t func_8007D0DC(uint16_t x,void* p,uint16_t y,uint16_t z,uint16_t q){
@@ -41,7 +41,16 @@ uint32_t func_8007D0DC(uint16_t x,void* p,uint16_t y,uint16_t z,uint16_t q){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D0F4.s")
-
+/*
+uint16_t func_8007D1E8(uint16_t x,void* p,uint16_t y,uint16_t z,uint16_t q ,void* r){
+    uint32_t g = func_8007D0DC(x,p,y,z,q);
+    if(g){
+        gActors[g].unk_0x94= gActors[g].unk_0x94 | 0x200 & ~0x0100;
+        if(r) gActors[g].unk_0x18C=r;
+        else gActors[g].unk_0x18C=&D_800D9AE4;
+    }
+    return g;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D1E8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D290.s")
