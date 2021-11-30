@@ -38,7 +38,7 @@ void Text_SpawnIcon(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, 
 
     Text_SpawnAt(index, pos_x, pos_y, pos_z);
     actor = &gActors[index];
-    actor->unk_0xE8 = (uint32_t)arg1;
+    actor->unk_0xE8p = arg1;
     actor->unk_0xE6 = 1;
 }
 //takes 16-bit color vales, returns 32-bit?
@@ -1081,7 +1081,7 @@ uint16_t func_80030F94(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
         gActors[index].unk_0x188=gActors[index].pos.y_w;
         gActors[index].unk_0x148=240.0;
         if(p==&D_800E1380) gActors[index].unk_0xE6 = 0x1E0;
-        else gActors[index].unk_0xE8=p;
+        else gActors[index].unk_0xE8p=p;
     }
     return index;
 }

@@ -157,7 +157,10 @@ typedef struct {
     /* 0x0E2 */ uint16_t unk_0xE2;
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
-    /* 0x0E8 */ uint32_t unk_0xE8; // This is a pointer!
+    union{
+    /* 0x0E8 */ uint32_t unk_0xE8;
+    /* 0x0E8 */ void* unk_0xE8p; 
+    };
     /* 0x0EC */ Vec3i_union vel;
     /* 0x0F8 */ uint32_t unk_0xF8;
     /* 0x0FC */ uint32_t unk_0xFC;
@@ -246,7 +249,7 @@ typedef struct {
             };
         };
     /* 0x190 */ void* unk_0x190;
-    /* 0x194 */ uint8_t unk_0x194[4];
+    /* 0x194 */ uint8_t unk_0x194[4]; //unused field?
 } Actor; /* sizeof = 0x198 */
 
 typedef struct {

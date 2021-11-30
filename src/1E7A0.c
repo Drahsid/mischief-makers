@@ -53,7 +53,7 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].health = 10;
         gActors[index].unk_0xE4 = 10;
         gActors[index].flag = ACTOR_FLAG_ENABLED;
-        gActors[index].unk_0xE8 = (uint32_t)&D_800E1380;
+        gActors[index].unk_0xE8p = &D_800E1380;
     }
 
     gActors[index].ScaleX = 1.0;

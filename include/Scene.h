@@ -69,7 +69,7 @@
 #define SCENE_CLANCEWAR2    	0x4d
 #define SCENE_BEESTHEONE    	0x4e
 #define SCENE_INNERSTRUGGLE	    0x4f
-#define SCENE_UNK80	            0x50 //crash.
+#define SCENE_UNK80	            0x50 //crash. data suggest more stages were planned for world 5.
 #define SCENE_MERCO	            0x55
 #define SCENE_UNK86	            0x56 //loads "trapped"'s map with marina below. uses "Merco"'s camera effect
 
