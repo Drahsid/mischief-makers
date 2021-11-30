@@ -5,7 +5,7 @@ ASM_DIRS  = asm asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger as
 			asm/data asm/data/os asm/data/io asm/data/audio asm/data/rmon asm/data/libc asm/data/host asm/data/logger asm/data/gu asm/data/sp
 BIN_DIRS  = assets
 SRC_DIR   = src
-SRC_DIRS  = $(SRC_DIR)
+SRC_DIRS  = $(SRC_DIR) $(SRC_DIR)/ActorFuncs1 $(SRC_DIR)/ActorFuncs2 $(SRC_DIR)/ActorFuncs3 $(SRC_DIR)/ActorFuncs4 $(SRC_DIR)/ActorFuncs5 
 TOOLS_DIR := tools
 
 S_FILES   = $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))

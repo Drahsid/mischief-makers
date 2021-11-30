@@ -237,31 +237,643 @@ segments:
       #- [0xEF5B0, rodata, libc/xldtob]
       - [0xEC6C0, bin]
       - [0xEF880, bin] # "RSP SW Version:" ...
-      - [0x7754F0, c] # includes actor functions from func_80016E70
+  - type: code
+    start: 0xF00D0
+    vram: 0x80388000
+    overlay: true
+    subsegments:
+      - [0xF00D0,c] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
+  - [0xF0100,bin] # romcopied in the same func as above.
+  - [0xF01C0,bin]
+  - [0x1E6900,bin] # loaded by func_80025E00
+  - [0x214B40,bin]
+  - [0x248F40,bin]
+  - [0x3fab30,bin] # loaded by func_800197A0
+  - [0x40AC70,bin] # blank.
+  - [0x40AC80,bin]
+  - [0x4A0910,bin] # ROM adresses load 2 at a time by func_800821B0 (-0x04BF5380)
+  #actor properties for Intermission scenes
+  - [0x4A15A0,bin]
+  - [0x4A15B0,bin]
+  - [0x4A15CC,bin]
+  - [0x4A15DC,bin]
+  - [0x4A162C,bin] #"freefall" for some reason.
+  - [0x4A1F84,bin]
+  - [0x4A1FB8,bin] #default - no actors
+  - [0x4A1FBC,bin] 
+  #more romcopied bits. looks to be compressed data
+  - [0x4A1FC0,bin]
+#call lists and code segments loaded per scene by RomCopy_Funcs
+  - type: code 
+    start: 0x67DBA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x67DBA0, bin]
+  - type: code
+    start: 0x67DC20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x67DC20, c,ActorFuncs1/MigenBrawl]
+      - [0x686BB0,bin,ActorFuncs1/MigenBrawl]
+  - type: code 
+    start: 0x68A090
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x68A090, bin]
+  - type: code
+    start: 0x68A100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x68A100, c,ActorFuncs1/CerberusAlpha]
+      - [0x69BD30,bin,ActorFuncs1/CerberusAlpha] 
+  - type: code 
+    start: 0x6A00C0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6A00C0, bin]
+  - type: code
+    start: 0x6A0100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6A0100, c,ActorFuncs1/SasquatchBeta]
+      - [0x6A7C00,bin,ActorFuncs1/SasquatchBeta]
+  - type: code 
+    start: 0x6AAA80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6AAA80, bin]
+  - type: code
+    start: 0x6AAAF0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6AAAF0, c,ActorFuncs1/PhoenixGamma]
+      - [0x6B9AB0,bin,ActorFuncs1/PhoenixGamma]
+      #- [0x6BC890,rodata,ActorFuncs1/PhoenixGamma]
+  - type: code
+    start: 0x6BCD80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6BCD80, bin]
+  - type: code
+    start: 0x6BCDD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6BCDD0, c,ActorFuncs1/FinalBattle]
+      - [0x6CBC50,bin,ActorFuncs1/FinalBattle]
+  - type: code
+    start: 0x6D1BF0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D1BF0, bin]
+  - type: code
+    start: 0x6D1C00
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D1C00, c,ActorFuncs1/MeetMarina]
+      - [0x6D2710,bin,ActorFuncs1/MeetMarina]
+  - type: code
+    start: 0x6D2750
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D2750, bin]
+  - type: code
+    start: 0x6D2780
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D2780, c,ActorFuncs1/intro]
+      - [0x6D9460,bin,ActorFuncs1/intro]
+  - type: code
+    start: 0x6D9FB0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D9FB0, bin]
+  - type: code
+    start: 0x6DA010
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6DA010, c,ActorFuncs1/DemoWorld1]
+      - [0x6E22E0,bin,ActorFuncs1/DemoWorld1]
+  - type: code
+    start: 0x6E2AE0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6E2AE0, bin]
+  - type: code
+    start: 0x6E2B20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6E2B20, c,ActorFuncs1/DemoWorld3]
+      - [0x6EDBB0,bin,ActorFuncs1/DemoWorld3]
+  - type: code
+    start: 0x6EE550
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6EE550, bin]
+  - type: code
+    start: 0x6EE580
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6EE580, c,ActorFuncs1/DemoWorld4]
+      - [0x6F38C0,bin,ActorFuncs1/DemoWorld4]
+  - type: code
+    start: 0x6F3DA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F3DA0, bin]
+  - type: code
+    start: 0x6F3DD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F3DD0, c,ActorFuncs1/DemoWorld5]
+      - [0x6F7800,bin,ActorFuncs1/DemoWorld5]
+  - type: code
+    start: 0x6F7B20
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F7B20, bin]
+  - type: code
+    start: 0x6F7B30
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F7B30, c,ActorFuncs1/DemoFinal]
+      - [0x6F91F0,bin,ActorFuncs1/DemoFinal]
+  - type: code
+    start: 0x6F9330
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F9330, bin]
+  - type: code
+    start: 0x6F9390
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F9390, c,ActorFuncs1/Ending]
+      - [0x711300,bin,ActorFuncs1/Ending]
+  - type: code
+    start: 0x713600
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x713600, bin]
+  - type: code
+    start: 0x713630
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x713630, c,ActorFuncs1/General]
+      - [0x719150,bin,ActorFuncs1/General]
 
-  - type: bin # more data
-    start: 0x77EA60
-  # display lists / vtxs / etc
-  - [0x79EC60, bin]
-  - [0x79EE60, bin]
-  - [0x79EF58, bin]
-  - [0x79F050, bin]
-  - [0x79F148, bin]
-  - [0x79F240, bin]
-  - [0x79F338, bin]
-  - [0x79F430, bin]
-  - [0x79F578, bin]
-  - [0x79F6C0, bin]
-  - [0x79F808, bin]
-  - [0x79F950, bin]
-  - [0x79FA98, bin]
-  - [0x79FBE0, bin]
-  - [0x7A0790, bin]
-  - [0x7A08D8, bin]
-  - [0x7A0A20, bin]
-  - [0x7A0B68, bin]
-  - [0x7A0CB0, bin]
-  - [0x7A0DF8, bin]
-  - [0x7A0F40, bin]
+#call lists and code segments loaded per scene by RomCopy_Funcs2
+  - type: code
+    start: 0x719700
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x719700, bin]
+  - type: code
+    start: 0x719720 
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x719720, c,ActorFuncs2/Merco]
+      - [0x721E40,bin,ActorFuncs2/Merco]
+      #- [0x7228D0,rodata,ActorFuncs2/Merco]
+  - type: code
+    start: 0x722A30
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x722A30, bin]
+  - type: code
+    start: 0x722A50
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x722A50, c,ActorFuncs2/Lunar]
+      - [0x72AA70,bin,ActorFuncs2/Lunar]
+  - type: code
+    start: 0x72B120
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x72B120, bin] 
+  - type: code
+    start: 0x72B140
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x72B140, c,ActorFuncs2/Taurus]
+      - [0x731860,bin,ActorFuncs2/Taurus]
+      #- [0x731C10,rodata,ActorFuncs2/Taurus]
+  - type: code
+    start: 0x731DD0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x731DD0, bin]
+  - type: code
+    start: 0x731E60
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x731E60, c,ActorFuncs2/General]
+      - [0x73B4D0,bin,ActorFuncs2/General]
+  - type: code
+    start: 0x73D070
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x73D070, bin]
+  - type: code
+    start: 0x73D090
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x73D090, c,ActorFuncs2/WorminUp]
+      - [0x742870,bin,ActorFuncs2/WorminUp]
+  - type: code
+    start: 0x742CA0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x742CA0, bin]
+  - type: code
+    start: 0x742CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x742CB0, c,ActorFuncs2/Flambee]
+      - [0x748AB0,bin,ActorFuncs2/Flambee]
+  - type: code
+    start: 0x749C90
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x749C90, bin]
+  - type: code
+    start: 0x749CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x749CB0, c,ActorFuncs2/ChillyDog]
+      - [0x751950,bin,ActorFuncs2/ChillyDog]      
+  - type: code
+    start: 0x753860
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x753860, bin]
+  - type: code
+    start: 0x753880
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x753880, c,ActorFuncs2/Festival]
+      - [0x753FD0,bin,ActorFuncs2/Festival]
+      #- [0x7544E0,rodata,ActorFuncs2/Festival]
+  - type: code
+    start: 0x754570
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x754570, bin]
+  - type: code
+    start: 0x7545A0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x7545A0, c,ActorFuncs2/ToadlyRaw]
+      - [0x75C6F0,bin,ActorFuncs2/ToadlyRaw]
+  - type: code
+    start: 0x75D630
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x75D630, bin]
+  - type: code
+    start: 0x75D660
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x75D660, c,ActorFuncs2/MoleyCow]
+      - [0x763EA0,bin,ActorFuncs2/MoleyCow]
+
+#call lists and code segments loaded per scene by RomCopy_ActorFuncs3
+  - type: code
+    start: 0x766080
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x766080, bin]
+  - type: code
+    start: 0x766110
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x766110, c,ActorFuncs3/World1]
+      - [0x76EC30, bin, ActorFuncs3/World1]
+      #- [0x76F150, rodata, ActorFuncs3/World1]
+  - type: code
+    start: 0x76F390
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76F390, bin]
+  - type: code
+    start: 0x76F3A0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76F3A0, c,ActorFuncs3/World2]
+      - [0x76FD40, bin,ActorFuncs3/World2]
+  - type: code
+    start: 0x76FD60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76FD60, bin]
+  - type: code
+    start: 0x76FDD0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76FDD0, c,ActorFuncs3/World3]
+      - [0x774520, bin,ActorFuncs3/World3]
+  - type: code
+    start: 0x775460
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x775460, bin]
+  - type: code
+    start: 0x7754F0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x7754F0, c,ActorFuncs3/World4]
+      - [0x77EA60,bin,ActorFuncs3/World4]
+  - type: code
+    start: 0x77F240
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x77F240, bin]
+  - type: code
+    start: 0x77F260
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x77F260, c,ActorFuncs3/World4B] 
+      - [0x784710, bin, ActorFuncs3/World4B]
+  - type: code
+    start: 0x7854B0
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x7854B0, bin]
+  - type: code
+    start: 0x7854D0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x7854D0, c,ActorFuncs3/World5]
+      - [0x789D70, bin, ActorFuncs3/World5]
+  - type: code
+    start: 0x78B430
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78B430, bin]
+  - type: code
+    start: 0x78B440
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78B440, c,ActorFuncs3/World5B]
+      - [0x78C9E0, bin,ActorFuncs3/World5B]
+  - type: code
+    start: 0x78CB60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78CB60, bin]
+  - type: code
+    start: 0x78CBF0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78CBF0, c,ActorFuncs3/Festival]
+      - [0x7958C0, bin, ActorFuncs3/Festival]
+      #- [0x7963E0, rodata, ActorFuncs3/Festival]
+#call lists and code segments loaded per scene by romcopy_actorFuncs4
+  - type: code
+    start: 0x7969B0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7969B0, bin]
+  - type: code
+    start: 0x7969D0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7969D0, c,ActorFuncs4/World1]
+      - [0x7984C0, bin, ActorFuncs4/World1]
+  - type: code
+    start: 0x7986D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7986D0, bin]
+  - type: code
+    start: 0x798740
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x798740, c,ActorFuncs4/World2]
+      - [0x79DC30, bin, ActorFuncs4/World2]
+  - type: code
+    start: 0x7A13D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A13D0, bin]
+  - type: code
+    start: 0x7A1410
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A1410, c,ActorFuncs4/World3]
+      - [0x7A69A0, bin, ActorFuncs4/World3]
+  - type: code
+    start: 0x7A6E60
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A6E60, bin]
+  - type: code
+    start: 0x7A6E80
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A6E80, c,ActorFuncs4/Festival]
+      - [0x7AB410, bin, ActorFuncs4/Festival]
+  - type: code
+    start: 0x7AC7F0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7AC7F0, bin]
+  - type: code
+    start: 0x7AC820
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7AC820, c,ActorFuncs4/Festival2]
+      - [0x7B3240, bin, ActorFuncs4/Festival2]
+  - type: code
+    start: 0x7B3FC0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B3FC0, bin]
+  - type: code
+    start: 0x7B3FE0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B3FE0, c,ActorFuncs4/Festival3]
+      - [0x7B79F0, bin, ActorFuncs4/Festival3]
+  - type: code
+    start: 0x7B8760
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B8760, bin]
+  - type: code
+    start: 0x7B87B0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B87B0, c,ActorFuncs4/World4]
+      - [0x7BC2B0, bin, ActorFuncs4/World4]
+  - type: code
+    start: 0x7BC840
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7BC850
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7BC850, c,ActorFuncs4/Festival4]
+      - [0x7C0640, bin, ActorFuncs4/Festival4]
+  - type: code
+    start: 0x7C0AB0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7C0B20
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7C0B20, c,ActorFuncs4/World5]
+      - [0x7C67A0, bin, ActorFuncs4/World5]
+#call lists and code segments loaded per scene by romcopy_actorFuncs5      
+  - type: code
+    start: 0x7C6AB0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7C6AB0, data]
+  - type: code
+    start: 0x7C6AE0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7C6AE0, c,ActorFuncs5/World1]
+     - [0x7C9800, bin,ActorFuncs5/World1]
+  - type: code
+    start: 0x7CE060
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7CE060, data]
+  - type: code
+    start: 0x7CE090
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7CE090, c,ActorFuncs5/World2]
+     - [0x7D0390, bin,ActorFuncs5/World2]
+  - type: code
+    start: 0x7D3F60
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7D3F60, data]
+  - type: code
+    start: 0x7D40F0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7D40F0, c,ActorFuncs5/World3]
+     - [0x7D6940, bin,ActorFuncs5/World3]
+  - type: code
+    start: 0x7DAAA0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7DAAA0, data]
+  - type: code
+    start: 0x7DAB00
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7DAB00, c,ActorFuncs5/Festival]
+     - [0x7DC230, bin,ActorFuncs5/Festival]
+  - type: code
+    start: 0x7EA710
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+    - [0x7EA710, data]
+  - type: code
+    start: 0x7EA730
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+    - [0x7EA730, c,ActorFuncs5/World4]
+    - [0x7EADE0, bin,ActorFuncs5/World4]
+    #- [0x7EAFA0, rodata,ActorFuncs5/World4]
   - [0x7EAFD0, bin, trailer] # 0xff to end
   - [0x800000]

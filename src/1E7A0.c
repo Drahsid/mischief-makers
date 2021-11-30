@@ -1,8 +1,4 @@
-#include <actor.h>
-#include <data_symbols.h>
-#include <function_symbols.h>
-#include <inttypes.h>
-#include <ultra64.h>
+#include "common.h"
 
 void func_8001DBA0(uint16_t* arg0, uint16_t index) {
     gActors[index].unk_0xD2 = arg0[5];
@@ -56,8 +52,8 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].unk_0xB0 = -0x10;
         gActors[index].health = 10;
         gActors[index].unk_0xE4 = 10;
-        gActors[index].flag = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[index].unk_0xE8 = (uint32_t)&D_800E1380;
+        gActors[index].flag = ACTOR_FLAG_ENABLED;
+        gActors[index].unk_0xE8p = &D_800E1380;
     }
 
     gActors[index].unk_0xB4 = 1.0;

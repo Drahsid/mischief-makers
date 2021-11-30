@@ -148,10 +148,11 @@ typedef struct {
     /* 0x0E2 */ uint16_t unk_0xE2;
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
-    /* 0x0E8 */ uint32_t unk_0xE8; // This is a pointer!
-    /* 0x0EC */ int32_t unk_0xEC;
-    /* 0x0F0 */ int32_t unk_0xF0;
-    /* 0x0F4 */ uint32_t unk_0xF4;
+    union{
+    /* 0x0E8 */ uint32_t unk_0xE8;
+    /* 0x0E8 */ void* unk_0xE8p; 
+    };
+    /* 0x0EC */ Vec3i_union vel;
     /* 0x0F8 */ uint32_t unk_0xF8;
     /* 0x0FC */ uint32_t unk_0xFC;
     /* 0x100 */ uint32_t unk_0x100;
@@ -225,9 +226,17 @@ typedef struct {
         };
     };
     /* 0x188 */ uint32_t unk_0x188;
-    /* 0x18C */ uint32_t unk_0x18C;
-    /* 0x190 */ uint32_t unk_0x190;
-    /* 0x194 */ uint8_t unk_0x194[4];
+    union {
+        /* 0x18C */ void* unk_0x18C; 
+        /* 0x18C */ uint32_t unk_0x18C_w; // sometimes increments
+        struct {
+            /* 0x18C */ int8_t unk_0x18C_b;
+            /* 0x18D */ int8_t unk_0x18D_b;
+            /* 0x18E */ uint16_t unk_0x18E;
+            };
+        };
+    /* 0x190 */ void* unk_0x190;
+    /* 0x194 */ uint8_t unk_0x194[4]; //unused field?
 } Actor; /* sizeof = 0x198 */
 
 typedef struct {
