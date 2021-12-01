@@ -182,11 +182,11 @@ void func_80085F08(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800896AC.s")
 //spawns the actor when digging
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089814.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/DiggingSpot_SpawnActor.s")
 extern uint32_t* D_800E4440[6]; //common loot pools for digging spots.
 
 //check if "digging spot" actor has unique loot or an index to the above.
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089984.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/DiggingSpot_SpawnPoolCheck.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089A10.s")
 

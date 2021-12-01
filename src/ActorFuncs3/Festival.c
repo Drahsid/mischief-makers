@@ -64,7 +64,9 @@ void func_801A9508_78F7F8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801A9510_78F800.s")
 
 void func_801A9690_78F980(uint16_t x){}
-void func_801A9698_78F988(uint16_t index){gActors[index].flag=0;}
+void func_801A9698_78F988(uint16_t index){
+    gActors[index].flag=0;
+}
 void func_801A96CC_78F9BC(uint16_t x){}
 void func_801A96D4_78F9C4(uint16_t x){}
 
@@ -92,7 +94,9 @@ void func_801A96D4_78F9C4(uint16_t x){}
 
 uint8_t D_80178292;
 
-void func_801AA2FC_7905EC(uint16_t x, uint16_t y) {D_80178292 = 0;}
+void func_801AA2FC_7905EC(uint16_t x, uint16_t y){
+    D_80178292 = 0;
+    }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AA310_790600.s")
 
 void func_801AA368_790658(void) {}

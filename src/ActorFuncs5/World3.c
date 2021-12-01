@@ -56,7 +56,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BBE90_7D6680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BC010_7D6800.s")
+void func_801BC010_7D6800(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BC01C_7D680C.s")
 

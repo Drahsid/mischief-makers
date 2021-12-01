@@ -17,19 +17,19 @@ void Camera_ApplyRotate(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/Camera_ApplyRotate.s")
 
-void func_80023668(void) {}
+void CameraInit_Scene63(void) {}
 
-void func_80023670(void) {}
+void CameraTick_Scene63(void) {}
 
-void func_80023678(void) {
+void CameraInit_World1(void) {
     D_800BE578 = 2;
     D_800BE6FC = 1;
     D_800BE584 = -0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800236A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World1.s")
 
-void func_80023798(void) {
+void CameraInit_World2(void) {
     D_800BE578 = (int16_t)((int32_t)gScreenPosCurrentX._hi / 2);
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
@@ -37,9 +37,9 @@ void func_80023798(void) {
     D_800BE70C = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800237F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023894.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_WesternWorld.s")
 //"tightrope ride" camera funcs
 void CameraInit_TightropeRide(void) {
     D_800BE580 = -0xC;
@@ -55,7 +55,7 @@ void CameraInit_MagmaRafts(void) {
 }
 
 void CameraTick_MagmaRafts(void) {
-    func_800237F0();
+    CameraTick_World2();
     if ((gDebugBitfeild & 0xA400) == 0) { //this freezes the camera otherwise
         D_800BE544 = 0x8000;
         gScreenPosTargetX._w = (int32_t)(gPlayerPosXMirror._w + 0x200000);
@@ -64,36 +64,36 @@ void CameraTick_MagmaRafts(void) {
     }
 }
 
-void func_80023AA4(void){
+void CameraInit_scene02(void){
     HealthBar.Active=0;
     HealthFace.Active=0;
     D_800CA230=1;
 }
 
-void func_80023AC4(void) {}
+void CameraTick_scene02(void) {}
 //camera func for "Scene 3"
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023ACC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene03.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023AFC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_scene03.s")
 //camera func for "Scene 4"
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023BC0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene04.s")
 
-void func_80023BF8(void) {}
+void CameraTick_Scene04(void) {}
 //camera funcs for "migen brawl"
-void func_80023C00(void) {
+void cameraInit_MigenBrawl(void) {
     D_800BE578 = 2;
     D_800BE57C = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023C18.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/cameraTick_MigenBrawl.s")
 
-void func_80023D48(void) {
+void CameraInit_Scene07(void) {
     D_800BE544 = 0x30;
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
 
-void func_80023D70(void) {
+void CameraTick_Scene07(void) {
     D_800BE578 = gScreenPosCurrentX._hi;
     D_800BE580 = gScreenPosCurrentY._hi + 0x60;
 }
@@ -112,37 +112,37 @@ void func_80023DBC(void) {
     D_800BE674 = 1;
 }
 
-void func_80023DF0(void) {}
+void CameraTick_Lunar(void) {}
 
-void func_80023DF8(void) {
+void CameraInit_Intro(void) {
     D_800BE578 = 2;
     D_800BE580 = -0xC;
 }
 
-void func_80023E14(void) {}
+void CameraTick_Intro(void) {}
 
-void func_80023E1C(void) {
+void CameraInit_World3B(void) {
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
 
-void func_80023E38(void) {}
+void CameraTick_World3B(void) {}
 
-void func_80023E40(void) {}
+void CameraInit_TheDayBefore(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023E48.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_TheDayBefore.s")
 
-void func_80023E6C(void) {}
+void CameraInit_Scene34(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023E74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Scene34.s")
 
-void func_80023E98(void) {
+void CameraInit_World3(void) {
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
 
-void func_80023EB4(void) {
-    func_80023E98();
+void CameraInit_SnowstormMaze(void) {
+    CameraInit_World3();
     D_800BE674 = 1;
 }
 //2 of the Mt. Snow levels
@@ -167,11 +167,11 @@ void CameraInit_SeasickClimb(void) {
     gCameraRotDelta = 0;
     D_800BE638 = 0;
 }
-//looks like this does the "seasick climb" effect
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_SeasickClimb_Rocking.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_SeasickClimb.s")
-//Camera funcs for "Vertigo!"
+
 void CameraInit_Vertigo(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
@@ -210,7 +210,7 @@ void func_800245F0(void) {}
 
 void func_800245F8(void) {}
 
-void func_80024600(){
+void CameraTick_AthleticGames(){
     D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)<<0x10;
 }
 
@@ -225,7 +225,7 @@ void CameraInit_Beastector(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Beastector.s")
 
-void func_80024854(void) {
+void CameraInit_CounterAttack(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
     D_800BE708 = 1;
@@ -235,7 +235,7 @@ void func_80024854(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002488C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800249B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_CounterAttack.s")
 
 void CameraInit_ClanceWar2(void) {
     D_800BE588 = 3;
@@ -246,7 +246,7 @@ void CameraTick_ClanceWar2(){
     func_8002488C();
 }
 //camera funcs for "Bee's the one"
-void func_80024DA8(void) {
+void CameraInit_BeesTheOne(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
     D_800BE708 = 1;
@@ -272,23 +272,23 @@ void func_80024DD8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_BeesTheOne.s")
 //Splashscreen camera funcs.
-void func_80025084(void) {}
+void CameraInit_Splashscreen(void) {}
 
-void func_8002508C(void) {}
+void CameraTick_Splashscreen(void) {}
 //camera funcs for "trapped" and "Merco"
-void func_80025094(void) {
+void CameraInit_Merco_Trapped(void) {
     D_800BE588 = 0;
     D_800BE58C = 1;
     D_800BE584 = -0x4C;
     D_8013746C = &D_800C71A0;
-    if (gCurrentScene != SCENE_TRAPPED) { //if we aren't on "Trapped!?"
+    if (gCurrentScene != SCENE_TRAPPED) { 
         gEyeX = -128.0f;
         gEyeY = 128.0f;
     }
     Camera_RotateReset();
 }
 
-void func_80025114(void) {
+void CameraTick_Merco_Trapped(void) {
     Camera_ApplyRotate();
     if ((gSceneFrames & 1))
         D_800BE57C++;
@@ -305,14 +305,14 @@ void func_80025184(void) {
     D_800BE57C = (int16_t)(((int32_t)gScreenPosCurrentX._hi / 8) & 0x1FF);
 }
 // camera funcs for cave stages
-void func_800251CC(void) {
+void CameraInit_World4B(void) {
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800251E8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World4B.s")
 //"aster's tryke" camera tick
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80025254.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_AstersTryke.s")
 
 void CameraInit_PhoenixGamma(void) {
     D_800BE704 = 1;
@@ -335,13 +335,13 @@ void CameraTick_PhoenixGamma(void){
     }
 }
 //Camera funcs for "Monolith" Leo
-void func_80025380(void) {
+void CameraInit_Leo(void) {
     D_800BE578 = 2;
     D_800BE580 = -0xC;
     D_800BE70C = 4;
 }
 
-void func_800253A8(void) {}
+void CameraTick_Leo(void) {}
 // determines lifebar's position?
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
 

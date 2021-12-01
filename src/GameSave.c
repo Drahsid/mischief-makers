@@ -187,7 +187,7 @@ void func_80006DF4(uint16_t index) {
 #ifdef NON_MATCHING
 void func_80006E60(void) {
     gCurrentStage = gWorldProgress;
-    gCurrentScene = D_800C8378[gWorldProgress]; //array of scene indecies
+    gCurrentScene = gStageScenes[gWorldProgress]; //array of scene indecies
     D_800D28E4 = D_800C83F8[gWorldProgress];
     func_80043918();
     D_800CBF40 = 1;
@@ -271,4 +271,4 @@ void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_EnterChar.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007C8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/FileSelect_Tick.s")

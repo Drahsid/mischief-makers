@@ -48,7 +48,7 @@ void func_800122B0(void) {
     gInputHistoryPress[0] = gButtonPress & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A);
 }
 //lock player and camera in x.
-void func_800123AC(void) {
+void ActorMarina_ScreenXLock(void) {
     int32_t temp = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
     if (temp < -0x90) {
         gPlayerPosXMirror._hi = gScreenPosCurrentX._hi - 0x90;
@@ -63,30 +63,30 @@ void func_800123AC(void) {
     }
 }
 
-void func_80012418(void) {
+void ActorMarina_ScreenYLock(void) {
     gPlayerActor.pos.y = gPlayerPosYMirror._hi - gScreenPosCurrentY._hi;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012438.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/ActorMarina_ScreenXScroll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/func_80012634.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/ActorMarina_ScreenYScroll.s")
 
-void func_80012830(void) {
+void ActorMarina_ScreenScroll(void) {
     gScreenPosNextX._hi = gScreenPosCurrentX._hi;
     gScreenPosNextX._w = gScreenPosCurrentX._w;
     if (gScreenXLock) {
-        func_800123AC();
+        ActorMarina_ScreenXLock();
     }
     else {
-        func_80012438();
+        ActorMarina_ScreenXScroll();
     }
 
     gScreenPosNextY._hi = gScreenPosCurrentY._hi;
     gScreenPosNextY._w = gScreenPosCurrentY._w;
     if (gScreenYLock) {
-        func_80012418();
+        ActorMarina_ScreenYLock();
     }
     else {
-        func_80012634();
+        ActorMarina_ScreenYScroll();
     }
 }

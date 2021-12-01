@@ -431,9 +431,9 @@ void func_80046A30(void) {
 //smash to black?
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046A9C.s")
 //"expanding squares" transition effect
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046B4C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/transition_expandingSqares.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/Transition_fadeIn.s")
 
 int32_t Cutscene_Skip(void) {
     if (gButtonPress & gButton_ZTrig) {
@@ -456,7 +456,7 @@ void func_800472D4(void) {
 }
 
 void func_8004732C(void) {
-    if (func_80046D5C())
+    if (Transition_fadeIn())
         func_800472D4();
 }
 
@@ -523,7 +523,7 @@ void func_80047958(void) {
 #ifdef NON_MATCHING
 void func_80047994() {
     D_800BE4EC = 1;
-    if (func_80046B4C()) {
+    if (transition_expandingSqares()) {
         D_800D2938 = 0;
         func_80020A54();
         func_80028744();

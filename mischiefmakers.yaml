@@ -318,6 +318,7 @@ segments:
     subsegments:
       - [0x6A0100, c,ActorFuncs1/SasquatchBeta]
       - [0x6A7C00,bin,ActorFuncs1/SasquatchBeta]
+      #- [0x6AA570,.rodata,ActorFuncs1/SasquatchBeta]
   - type: code 
     start: 0x6AAA80
     vram: 0x80192000
@@ -358,6 +359,7 @@ segments:
     subsegments:
       - [0x6D1C00, c,ActorFuncs1/MeetMarina]
       - [0x6D2710,bin,ActorFuncs1/MeetMarina]
+      #- [0x6D2710,.rodata,ActorFuncs1/MeetMarina]
   - type: code
     start: 0x6D2750
     vram: 0x80192000
@@ -449,6 +451,7 @@ segments:
     subsegments:
       - [0x6F9390, c,ActorFuncs1/Ending]
       - [0x711300,bin,ActorFuncs1/Ending]
+      #- [0x7129A0,.rodata,ActorFuncs1/Ending]
   - type: code
     start: 0x713600
     vram: 0x80192000
@@ -862,7 +865,7 @@ segments:
     overlay: true
     subsegments:
      - [0x7D40F0, c,ActorFuncs5/World3]
-     - [0x7D6940, bin,ActorFuncs5/World3]
+     - [0x7D6930, bin,ActorFuncs5/World3]
   - type: code
     start: 0x7DAAA0
     vram: 0x801B9800

@@ -15,7 +15,7 @@ void func_80009BE0(void) {}
 //draws static gems?
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_8000DD6C.s")
 //draws the transition portrait tiles
-#pragma GLOBAL_ASM("asm/nonmatchings/A540/func_8000EA88.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/A540/Gfx_DrawPortraits.s")
 //Draws the health guage
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/Gfx_DrawLifeBar.s")
 

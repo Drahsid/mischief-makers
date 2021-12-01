@@ -1,20 +1,34 @@
 #include "common.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80192100_6A0100.s")
-
+//float in rodata
+#ifdef NON_MATXCHING
+void func_801922CC_6A02CC(uint16_t index){
+    gActors[index].flag=0;
+    func_8003F138(0.4f,gActors[index].pos.x,gActors[index].pos.y,0);
+    SFX_Play_1(0x43);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_801922CC_6A02CC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80192338_6A0338.s")
-
+#endif
+void func_80192338_6A0338(uint16_t x){}
+/*
+void func_80192340_6A0340(uint16_t x){
+    if(gActors[79].flag==0){
+        gActors[79].actorType=0x1406;
+        Actor_Spawn(79);
+        gActors[79].flag=2;
+    }
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80192340_6A0340.s")
-
+//cannon shot behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80192394_6A0394.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_801930A4_6A10A4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80193120_6A1120.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80193394_6A1394.s")
+void func_80193394_6A1394(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_8019339C_6A139C.s")
 

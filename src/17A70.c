@@ -1,7 +1,7 @@
 #include "common.h"
 #include "GameSave.h"
 
-void func_80016E70(uint16_t index) {
+void Actors_Tick_Overlayed(uint16_t index) {
     uint8_t temp_t8 = gActors[index].actorType & 0xFFFF;
 
     switch (gActors[index].actorType >> 8) {
@@ -200,7 +200,7 @@ void func_8001751C(void) {
                     gActorFuncTable[actor->actorType](index);
                 }
                 else {
-                    func_80016E70(index);
+                    Actors_Tick_Overlayed(index);
                 }
             }
         }
@@ -214,7 +214,7 @@ void func_8001751C(void) {
                     gActorFuncTable[actor->actorType](index);
                 }
                 else {
-                    func_80016E70(index);
+                    Actors_Tick_Overlayed(index);
                 }
             }
         }
@@ -424,7 +424,7 @@ char D_800C8F74[] = "@1997 TREASURE/ENIX";
 char D_800C8F88[] = "LICENSED TO NINTENDO";
 
 // prints "Press start" and copyright info
-void func_80017F08(void) {
+void Title_Copyright(void) {
     func_80017770();
     Text_PrintASCII(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, Text_ConvertColor(0U, (0x1F - D_801781A0[0] / 4), (0x1F - D_801781A0[0] / 4), 0x1FU));
     Text_PrintASCII(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, Text_ConvertColor(2U, 0x1FU, 0x1FU, 0x18U));
@@ -567,7 +567,7 @@ void TitleScreen_Tick(void) {
             break;
         }
         case 25: {
-            func_80017F08();
+            Title_Copyright();
 
             if (gActors[51].rgba.a == 7) {
                 gActors[51].flag = 0;
@@ -598,7 +598,7 @@ void TitleScreen_Tick(void) {
                 gActors[7].rgba.b = 0;
             }
 
-            func_80017F08();
+            Title_Copyright();
 
             buttonPress = gButtonPress;
             if ((gButtonPress & gButton_Start) != 0) {
@@ -633,7 +633,7 @@ void TitleScreen_Tick(void) {
         // OK (besides regalloc)
         case 27: {
             func_8001809C();
-            func_80017F08();
+            Title_Copyright();
 
             if (gActors[51].rgba.a == 0xFF) {
                 D_80137D90 = 0;
@@ -783,7 +783,7 @@ void StageSelect_Tick(void) {
             temp_t3 = (*((&D_80178170) + temp_v0_3)) + (*((&D_80178188) + temp_v0_3));
             temp_t8_2 = (temp_t3 & 0xFFFF) * 2;
             gCurrentStage = temp_t3;
-            gCurrentScene = *((&D_800C8378) + temp_t8_2);
+            gCurrentScene = *((&gStageScenes) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {

@@ -187,7 +187,7 @@ int32_t func_800283BC(uint32_t SFX, uint16_t index){
 void func_800284B0(uint16_t x) {}
 
 #ifdef NON_MATCHING
-uint16_t func_800284B8(uint16_t x, uint16_t y) {
+uint16_t Actor_GetInactiveInRange(uint16_t x, uint16_t y) {
 
     while (1) {
         if (y <= x) return 0;
@@ -197,15 +197,15 @@ uint16_t func_800284B8(uint16_t x, uint16_t y) {
     
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800284B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Actor_GetInactiveInRange.s")
 #endif
 
-uint16_t func_80028528(void) {
-    return func_800284B8(ACTOR_COUNT0, ACTOR_COUNT1);
+uint16_t Actor_GetInactiveInRange_144_192(void) {
+    return Actor_GetInactiveInRange(ACTOR_COUNT0, ACTOR_COUNT1);
 }
 
 uint16_t func_8002854C(uint16_t T,int16_t pos_x,int16_t pos_y,int16_t pos_z){
-    uint16_t index = func_800284B8(ACTOR_COUNT0, ACTOR_COUNT1);
+    uint16_t index = Actor_GetInactiveInRange(ACTOR_COUNT0, ACTOR_COUNT1);
     if(index){
         gActors[index].actorType=T;
         Actor_Spawn(index);
@@ -945,7 +945,7 @@ void RedGem_Clamp(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F6D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/ActorTick_RedGemRing.s")
 
 #ifdef NON_MATCHING
 void GemCollision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int16_t arg4) {
@@ -1017,7 +1017,7 @@ void GemCollision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int1
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80030008.s")
 //behavoir for gem actor
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800303A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/ActorTick_Gem.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80030964.s")
 
@@ -1114,41 +1114,41 @@ uint16_t func_800310A4(uint16_t i, uint16_t c, uint32_t x, uint32_t y, uint32_t 
 
 
 void func_8003119C(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    func_80030F94(func_800284B8(16, 45), arg0, arg1, arg2, arg3);
+    func_80030F94(Actor_GetInactiveInRange(16, 45), arg0, arg1, arg2, arg3);
 }
 
 void func_800311EC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    func_800310A4(func_800284B8(16, 45), arg0, arg1, arg2, arg3);
+    func_800310A4(Actor_GetInactiveInRange(16, 45), arg0, arg1, arg2, arg3);
 }
 
 void func_8003123C(void* p, int32_t x, int32_t y, int32_t z) {
-    func_80030F94(func_80028528(), p, x, y, z);
+    func_80030F94(Actor_GetInactiveInRange_144_192(), p, x, y, z);
 }
 
 uint16_t func_80031284(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(func_80028528(), arg0, arg1, arg2, arg3);
+    return func_800310A4(Actor_GetInactiveInRange_144_192(), arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_800312CC(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_80030F94(func_800284B8(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
+    return func_80030F94(Actor_GetInactiveInRange(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_80031324(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(func_800284B8(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
+    return func_800310A4(Actor_GetInactiveInRange(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_8003137C(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_80030F94(func_80028528() | 0x8000, arg0, arg1, arg2, arg3);
+    return func_80030F94(Actor_GetInactiveInRange_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_800313CC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(func_80028528() | 0x8000, arg0, arg1, arg2, arg3);
+    return func_800310A4(Actor_GetInactiveInRange_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003141C.s")
 
 uint16_t func_80031CAC(uint16_t arg0, int32_t x, int32_t y, int32_t z) {
-    uint16_t index = func_80028528();
+    uint16_t index = Actor_GetInactiveInRange_144_192();
 
     if (index) {
         gActors[index].actorType = 0x34;
@@ -1222,7 +1222,7 @@ void func_800338F4(int16_t arg0, int16_t arg1, int16_t arg2) {
 
 uint16_t D_800D2294[4] = { 0x136, 0x138, 0x13A, 0x13A };
 //spawn notes while idling
-void func_80033948(int16_t arg0, int16_t arg1, int16_t arg2) {
+void ActorMarina_Idle_SpawnNotes(int16_t arg0, int16_t arg1, int16_t arg2) {
     if ((gSceneFrames & 0x0F) == 0) {
         func_800337F4(arg0, arg1, arg2, D_800D2294[Rand() & 3]);
     }
@@ -1443,14 +1443,14 @@ void func_8003A9B8(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003C328.s")
 /*
 uint16_t func_8003D518(int16_t a,void* p,int32_t x,int32_t y,int32_t z){
-    if(a) return func_80030F94(func_800284B8(0x90,0xc0), p, x, y, z);
-    else return func_80030F94(func_800284B8(0x10,0x2d), p, x, y, z);
+    if(a) return func_80030F94(Actor_GetInactiveInRange(0x90,0xc0), p, x, y, z);
+    else return func_80030F94(Actor_GetInactiveInRange(0x10,0x2d), p, x, y, z);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003D518.s")
 /*
 uint16_t func_8003D5A0(int16_t a,uint16_t p,int32_t x,int32_t y,int32_t z){
-    if(a) return func_800310A4(func_800284B8(0x90,0xc0), p, x, y, z);
-    else return func_800310A4(func_800284B8(0x10,0x2d), p, x, y, z);
+    if(a) return func_800310A4(Actor_GetInactiveInRange(0x90,0xc0), p, x, y, z);
+    else return func_800310A4(Actor_GetInactiveInRange(0x10,0x2d), p, x, y, z);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003D5A0.s")
 /*

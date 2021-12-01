@@ -44,7 +44,7 @@ int32_t D_800D5794[19] = {
     0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000
 };
 
-int32_t func_80048C94(int32_t arg0) {
+int32_t ActorMarina_VelByScale(int32_t arg0) {
     return D_800D5794[arg0] * gPlayerActorScale;
 }
 
@@ -252,7 +252,7 @@ void func_8004B0A0(uint16_t index) {
 
     actor = &gActors[index];
     actor->unk_0x12C = 7;
-    actor->vel.x_w = ModInRange_i(actor->vel.x_w, 0, func_80048C94(0));
+    actor->vel.x_w = ModInRange_i(actor->vel.x_w, 0, ActorMarina_VelByScale(0));
 
     if (actor->unk_0xD0 == 0) {
         func_8005A4B0(index, 1.0f);
@@ -285,7 +285,7 @@ void func_8004B18C(uint16_t index) {
     actor = &gActors[index];
     actor->unk_0x12C = 7;
 
-    phi_a1 = func_80048C94(1);
+    phi_a1 = ActorMarina_VelByScale(1);
     if ((actor->flag & ACTOR_FLAG_FLIPPED) != 0) {
         phi_a1 = -phi_a1;
     }
@@ -311,7 +311,7 @@ void func_8004B290(uint16_t index) {
         gActors[index].unk_0xD0 = 1;
     }
 
-    v0 = func_80048C94(0);
+    v0 = ActorMarina_VelByScale(0);
     v0 = ModInRange_i(gActors[index].vel.x_w, 0, v0 * 2);
 
     gActors[index].vel.x_w = v0;

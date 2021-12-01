@@ -48,6 +48,6 @@ extern void func_800078A4();
 extern void func_80007A90();
 extern void func_80007ABC();
 extern void NameEntry_EnterChar(uint16_t* lang1, uint16_t* lang2, uint16_t* Eng);
-extern void func_80007C8C();
+extern void FileSelect_Tick();
 
 #endif

@@ -91,7 +91,7 @@ uint32_t func_801A97D8_772CA8(uint16_t x, uint16_t y){return 0;}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801AAC54_774124.s")
 
 void func_801AACFC_7741CC(void) {
-    func_800284B8(0x70, 0x88);
+    Actor_GetInactiveInRange(0x70, 0x88);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801AAD20_7741F0.s")
 

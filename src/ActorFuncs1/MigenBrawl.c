@@ -171,7 +171,7 @@ void func_80197F98_683AB8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198708_684228.s")
 
 void func_8019882C_68434C(void) {
-    func_800284B8(0x67, 0x68);
+    Actor_GetInactiveInRange(0x67, 0x68);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198850_684370.s")

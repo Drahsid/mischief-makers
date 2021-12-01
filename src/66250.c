@@ -613,8 +613,8 @@ void ActorTick_2(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800740C8.s")
 
 uint16_t func_800742B8(uint16_t x){
-    if(x&1) return func_800284B8(1,16);
-    else return func_800284B8(0x70,0x7A);
+    if(x&1) return Actor_GetInactiveInRange(1,16);
+    else return Actor_GetInactiveInRange(0x70,0x7A);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800742FC.s")

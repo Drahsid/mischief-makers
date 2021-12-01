@@ -166,7 +166,7 @@ void GamePlay_Tick_Active(void) {
     func_8001F88C(); // unknown, does something with actors
     func_80014AF0(); // physics
     func_80016CB4(); // collision
-    func_80012830(); // camera
+    ActorMarina_ScreenScroll(); // camera
     func_80016D94(); // offsets objects from the camera so that they are in the correct relative position
     func_8001EC1C(); // interaction with objects
     func_8001107C(); // foreground layer of background?

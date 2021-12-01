@@ -208,8 +208,14 @@ typedef struct {
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ uint32_t unk_0x160;
     /* 0x164 */ uint32_t unk_0x164;
+    union{
     /* 0x168 */ int32_t unk_0x168; //bombs use as fuse?
+    /* 0x168 */ void* unk_0x168p;
+    };
+    union{
     /* 0x16C */ int32_t unk_0x16C;
+    /* 0x16C */ void* unk_0x16Cp;
+    };
     union {
         struct {
             /* 0x170 */ int8_t unk_0x170;

@@ -211,7 +211,7 @@ extern UNK_TYPE D_800C71A0;
 extern u16 D_800C7E14[16]; //"G......AME......OV...E...R"
 extern char*D_800C81E4[22]; //used by stage select in building menu.
 extern UNK_TYPE D_800C823C;
-extern uint16_t D_800C8378[64]; //holds the scene indecies for each stage.
+extern uint16_t gStageScenes[64]; //holds the scene indecies for each stage.
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
 extern uint16_t* D_800C8BE4[5]; //level Names

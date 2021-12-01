@@ -4,7 +4,7 @@
 
 void ActorTick_0(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80060F88.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorTick_3DIcon.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800612D8.s")
 /*

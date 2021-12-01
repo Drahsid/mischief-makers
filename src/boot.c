@@ -457,12 +457,12 @@ void func_8000147C(void) {
     }
 
     if (D_8013747C != 0) {
-        func_8000EA88();
+        Gfx_DrawPortraits();
         func_80009BE8(&D_80171F10);
     }
     else {
         func_80009BE8(&D_80171F10);
-        func_8000EA88();
+        Gfx_DrawPortraits();
     }
 
     Rand(); // update rng
@@ -538,7 +538,7 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_FILESELECT: {
-            func_80007C8C(); // fileselect
+            FileSelect_Tick(); // fileselect
             break;
         }
         case GAMESTATE_TRANSITION: {
