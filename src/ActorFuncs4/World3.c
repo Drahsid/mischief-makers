@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B0900_7A1410.s")
+void func_801B0900_7A1410(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B090C_7A141C.s")
 
@@ -76,7 +76,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4B64_7A5674.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4CD0_7A57E0.s")
+void func_801B4CD0_7A57E0(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4CD8_7A57E8.s")
 

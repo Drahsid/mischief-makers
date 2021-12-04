@@ -60,13 +60,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2F9C_7C31BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2FD8_7C31F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2FE0_7C3200.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2FE8_7C3208.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2FF0_7C3210.s")
+void func_801B2FD8_7C31F8(uint16_t x){}
+void func_801B2FE0_7C3200(uint16_t x){}
+void func_801B2FE8_7C3208(uint16_t x){}
+void func_801B2FF0_7C3210(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World5/func_801B2FF8_7C3218.s")
 

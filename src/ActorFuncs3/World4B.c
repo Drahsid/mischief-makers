@@ -15,8 +15,8 @@ void func_801A6908_77F268(uint16_t index){
     gActors[index].unk_0x84=0xE6;
     gActors[index].rgba.a=0x40;
     gActors[index].unk_0x18C=&D_801AC0DC_784A3C;
-    gActors[index].ScaleX=12.0;
-    gActors[index].ScaleY=12.0;
+    gActors[index].scaleX=12.0;
+    gActors[index].scaleY=12.0;
 }
 
 void func_801A69B0_77F310(uint16_t index){
@@ -51,20 +51,22 @@ void func_801A7048_77F9A8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A7538_77FE98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A7688_77FFE8.s")
-//spawn gem from Leo cloud?
+//spawn gem from Leo cloud. issue with stack?
 #ifdef NON_MATCHING
 void func_801A7838_780198(uint16_t index, uint16_t gemflag){
     uint16_t Gemindex;
     Actor* gemActor;
     gActors[index].flag=0;
-    Gemindex=Gem_ActorSpawn(index,gemflag);
+    Gemindex=Gem_ActorSpawn(index,gemflag,0);
     if(Gemindex){
         gemActor=&gActors[Gemindex];
         gemActor->vel.x_w=gActors[index].vel.x_w/3;
         gemActor->vel.y_w=gActors[index].vel.y_w/3;
     }
+    
 }
 #else
+extern void func_801A7838_780198(uint16_t index, uint16_t gemflag);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A7838_780198.s")
 #endif
 //Leo cloud behavior?
@@ -99,8 +101,8 @@ void func_801A8604_780F64(){
     gActors[143].unk_0x84=0x2D0;
     gActors[143].pos.z=0xE0;
     gActors[143].unk_0x154._w=4;
-    gActors[143].ScaleX=20.0;
-    gActors[143].ScaleY=20.0;
+    gActors[143].scaleX=20.0;
+    gActors[143].scaleY=20.0;
 }
 
 void func_801A866C_780FCC(uint16_t x){
@@ -137,7 +139,7 @@ void func_801A8740_7810A0(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A9098_7819F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A93B8_781D18.s")
-extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
+
 #ifdef NON_MATCHING
 void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i){
     uint16_t index2=func_80031284(i,x,y,1);
@@ -150,6 +152,7 @@ void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i){
     }
 }
 #else
+extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA240_782BA0.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA2E4_782C44.s")
@@ -163,9 +166,10 @@ void func_801AA3A4_782D04(uint16_t index){
     gActors[index].pos.y=0;
     gActors[index].pos.z=0xFE00;
     gActors[index].rgba.r=0x80;
-    gActors[index].ScaleX=8.0;
-    gActors[index].RotateX=45.0;
+    gActors[index].scaleX=8.0;
+    gActors[index].rotateX=45.0;
 }
+extern void func_801AA440_782DA0(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA440_782DA0.s")
 
 void func_801AA590_782EF0(){

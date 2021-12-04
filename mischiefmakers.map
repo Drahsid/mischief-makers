@@ -2276,9 +2276,9 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080023a34                CameraTick_MagmaRafts
                 0x0000000080023aa4                CameraInit_scene02
                 0x0000000080023ac4                CameraTick_scene02
-                0x0000000080023acc                CameraInit_scene03
+                0x0000000080023acc                CameraInit_Scene03
                 0x0000000080023afc                CameraTick_scene03
-                0x0000000080023bc0                CameraInit_scene04
+                0x0000000080023bc0                CameraInit_Scene04
                 0x0000000080023bf8                CameraTick_Scene04
                 0x0000000080023c00                cameraInit_MigenBrawl
                 0x0000000080023c18                cameraTick_MigenBrawl
@@ -2296,7 +2296,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080023e48                CameraTick_TheDayBefore
                 0x0000000080023e6c                CameraInit_Scene34
                 0x0000000080023e74                CameraTick_Scene34
-                0x0000000080023e98                CameraTick_World2
+                0x0000000080023e98                CameraInit_World3
                 0x0000000080023eb4                CameraInit_SnowstormMaze
                 0x0000000080023edc                func_80023EDC
                 0x0000000080023f5c                func_80023F5C
@@ -4281,6 +4281,7 @@ LOAD build/assets/trailer.bin.o
  .text          0x00000000800997c0      0x460 build/asm/os/vimgr.s.o
                 0x00000000800997c0                osCreateViManager
                 0x00000000800999c0                viMgrMain
+                0x0000000080099ba0                func_80099BA0
  build/asm/os/visetmode.s.o(.text)
  .text          0x0000000080099c20       0xd0 build/asm/os/visetmode.s.o
                 0x0000000080099c20                osViSetMode
@@ -4288,18 +4289,21 @@ LOAD build/assets/trailer.bin.o
  .text          0x0000000080099cf0      0x330 build/asm/os/pimgr.s.o
                 0x0000000080099cf0                osCreatePiManager
                 0x0000000080099f1c                ramromMain
+                0x000000008009a000                func_8009A000
  build/asm/rmon/rmonmain.s.o(.text)
  .text          0x000000008009a020      0x440 build/asm/rmon/rmonmain.s.o
                 0x000000008009a020                __rmonSendHeader
                 0x000000008009a0cc                __rmonSendReply
                 0x000000008009a17c                __rmonSendData
                 0x000000008009a2b8                rmonMain
+                0x000000008009a43c                func_8009A43C
  build/asm/os/setthreadpri.s.o(.text)
  .text          0x000000008009a460      0x130 build/asm/os/setthreadpri.s.o
                 0x000000008009a460                osSetThreadPri
  build/asm/os/virtualtophysical.s.o(.text)
  .text          0x000000008009a590       0xc0 build/asm/os/virtualtophysical.s.o
                 0x000000008009a590                osVirtualToPhysical
+                0x000000008009a634                func_8009A634
  build/asm/os/createmesgqueue.s.o(.text)
  .text          0x000000008009a650       0xa0 build/asm/os/createmesgqueue.s.o
                 0x000000008009a650                osCreateMesgQueue
@@ -4315,24 +4319,29 @@ LOAD build/assets/trailer.bin.o
  build/asm/os/contreaddata.s.o(.text)
  .text          0x000000008009aa80      0x290 build/asm/os/contreaddata.s.o
                 0x000000008009aa80                osContStartReadData
+                0x000000008009ab50                func_8009AB50
                 0x000000008009ab58                osContGetReadData
                 0x000000008009ac14                __osPackReadData
  build/asm/os/recvmesg.s.o(.text)
  .text          0x000000008009ad10      0x190 build/asm/os/recvmesg.s.o
                 0x000000008009ad10                osRecvMesg
+                0x000000008009ae88                func_8009AE88
  build/asm/os/writebackchacheall.s.o(.text)
  .text          0x000000008009aea0       0x30 build/asm/os/writebackchacheall.s.o
                 0x000000008009aea0                osWritebackDCacheAll
  build/asm/io/taskload.s.o(.text)
  .text          0x000000008009aed0      0xb00 build/asm/io/taskload.s.o
                 0x000000008009aed0                _VirtualToPhysicalTask
+                0x000000008009b00c                func_8009B00C
                 0x000000008009b014                osSpTaskLoad
                 0x000000008009b294                osSpTaskStartGo
                 0x000000008009b2e0                osContInit
+                0x000000008009b4f0                func_8009B4F0
                 0x000000008009b4f8                __osContGetInitData
                 0x000000008009b5dc                __osPackRequestData
                 0x000000008009b6e0                osInvalDCache
                 0x000000008009b790                osPiStartDma
+                0x000000008009b9c0                func_8009B9C0
  build/asm/io/assert.s.o(.text)
  .text          0x000000008009b9d0       0x50 build/asm/io/assert.s.o
                 0x000000008009b9d0                __assert
@@ -4347,6 +4356,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/audio/heapalloc.s.o(.text)
  .text          0x000000008009bb30      0x150 build/asm/audio/heapalloc.s.o
                 0x000000008009bb30                alHeapDBAlloc
+                0x000000008009bc74                func_8009BC74
  build/asm/audio/heapinit.s.o(.text)
  .text          0x000000008009bc80       0x60 build/asm/audio/heapinit.s.o
                 0x000000008009bc80                alHeapInit
@@ -4362,6 +4372,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/aisetfreq.s.o(.text)
  .text          0x000000008009c150      0x2d0 build/asm/io/aisetfreq.s.o
                 0x000000008009c150                osAiSetFrequency
+                0x000000008009c414                func_8009C414
  build/asm/audio/csplayer.s.o(.text)
  .text          0x000000008009c420     0x1e80 build/asm/audio/csplayer.s.o
                 0x000000008009c420                alCSPNew
@@ -4383,6 +4394,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008009ce1c                L8009CE1C_9DA1C
                 0x000000008009ce4c                L8009CE4C_9DA4C
                 0x000000008009ce54                L8009CE54_9DA54
+                0x000000008009ced0                func_8009CED0
                 0x000000008009ced8                __CSPPostNextSeqEvent
                 0x000000008009cf78                __CSPHandleNextSeqEvent
                 0x000000008009cfec                L8009CFEC_9DBEC
@@ -4401,6 +4413,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008009de1c                L8009DE1C_9EA1C
                 0x000000008009de40                __CSPHandleMetaMsg
                 0x000000008009e108                __CSPRepostEvent
+                0x000000008009e228                func_8009E228
                 0x000000008009e230                __setUsptFromTempo
  build/asm/audio/seqpsetbank.s.o(.text)
  .text          0x000000008009e2a0       0x50 build/asm/audio/seqpsetbank.s.o
@@ -4408,6 +4421,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/os/sendmsg.s.o(.text)
  .text          0x000000008009e2f0      0x1e0 build/asm/os/sendmsg.s.o
                 0x000000008009e2f0                osSendMesg
+                0x000000008009e478                func_8009E478
                 0x000000008009e480                alSeqpSetVol
  build/asm/audio/seqpsetfxmix.s.o(.text)
  .text          0x000000008009e4d0       0x70 build/asm/audio/seqpsetfxmix.s.o
@@ -4416,13 +4430,18 @@ LOAD build/assets/trailer.bin.o
  .text          0x000000008009e540      0x930 build/asm/audio/sl.s.o
                 0x000000008009e540                alSynNew
                 0x000000008009e938                alAudioFrame
+                0x000000008009eb98                func_8009EB98
                 0x000000008009eba0                __allocParam
+                0x000000008009ebf8                func_8009EBF8
                 0x000000008009ec00                __freeParam
                 0x000000008009ec34                _collectPVoices
                 0x000000008009ec98                _freePVoice
                 0x000000008009ecd8                _timeToSamplesNoRound
+                0x000000008009ed38                func_8009ED38
                 0x000000008009ed40                _timeToSamples
+                0x000000008009ed7c                func_8009ED7C
                 0x000000008009ed84                __nextSampleTime
+                0x000000008009ee60                func_8009EE60
  build/asm/audio/seqpgetstate.s.o(.text)
  .text          0x000000008009ee70       0x20 build/asm/audio/seqpgetstate.s.o
                 0x000000008009ee70                alSeqpGetState
@@ -4433,11 +4452,14 @@ LOAD build/assets/trailer.bin.o
                 0x000000008009ee90                alCSeqNew
                 0x000000008009f01c                alCSeqNextEvent
                 0x000000008009f1ac                __alCSeqNextDelta
+                0x000000008009f280                func_8009F280
                 0x000000008009f288                __alCSeqGetTrackEvent
+                0x000000008009f6cc                func_8009F6CC
                 0x000000008009f6d4                alCSeqTicksToSec
                 0x000000008009f740                func_8009F740
                 0x000000008009f748                func_8009F748
                 0x000000008009f750                alCSeqSecToTicks
+                0x000000008009f858                func_8009F858
                 0x000000008009f860                alSeqGetTicks_8009f860
                 0x000000008009f868                func_8009F868
                 0x000000008009f870                func_8009F870
@@ -4445,7 +4467,9 @@ LOAD build/assets/trailer.bin.o
                 0x000000008009f9ac                alCSeqSetLoc
                 0x000000008009fa60                alCSeqGetLoc
                 0x000000008009fb14                __getTrackByte
+                0x000000008009fd00                func_8009FD00
                 0x000000008009fd08                __readVarLen
+                0x000000008009fd94                func_8009FD94
  build/asm/audio/seqpsetseq.s.o(.text)
  .text          0x000000008009fda0       0x50 build/asm/audio/seqpsetseq.s.o
                 0x000000008009fda0                alSeqpSetSeq
@@ -4453,6 +4477,7 @@ LOAD build/assets/trailer.bin.o
  .text          0x000000008009fdf0      0x150 build/asm/audio/seqpplay.s.o
                 0x000000008009fdf0                alSeqpPlay
                 0x000000008009fe30                osAiSetNextBuffer
+                0x000000008009ff34                func_8009FF34
  build/asm/audio/seqpstop.s.o(.text)
  .text          0x000000008009ff40       0x40 build/asm/audio/seqpstop.s.o
                 0x000000008009ff40                alSeqpStop
@@ -4473,6 +4498,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a00bc                drawbitmap
                 0x00000000800a295c                spInit
                 0x00000000800a2b7c                spDraw
+                0x00000000800a4038                func_800A4038
                 0x00000000800a4040                spFinish
  build/asm/sp/clearattribute.s.o(.text)
  .text          0x00000000800a4170       0x20 build/asm/sp/clearattribute.s.o
@@ -4492,24 +4518,34 @@ LOAD build/assets/trailer.bin.o
  build/asm/libc/ll.s.o(.text)
  .text          0x00000000800a4280      0x370 build/asm/libc/ll.s.o
                 0x00000000800a4280                __ull_rshift
+                0x00000000800a42b4                func_800A42B4
                 0x00000000800a42bc                __ull_rem
+                0x00000000800a4300                func_800A4300
                 0x00000000800a4308                __ull_div
+                0x00000000800a434c                func_800A434C
                 0x00000000800a4354                __ll_lshift
+                0x00000000800a4388                func_800A4388
                 0x00000000800a4390                func_800A4390
                 0x00000000800a43dc                __ll_div
+                0x00000000800a4440                func_800A4440
                 0x00000000800a4448                __ll_mul
+                0x00000000800a4480                func_800A4480
                 0x00000000800a4488                func_800A4488
                 0x00000000800a44f8                __ll_mod
+                0x00000000800a45a4                func_800A45A4
                 0x00000000800a45ac                func_800A45AC
  build/asm/eeprom/conteepromprobe.s.o(.text)
  .text          0x00000000800a45f0       0x80 build/asm/eeprom/conteepromprobe.s.o
                 0x00000000800a45f0                osEepromProbe
+                0x00000000800a4664                func_800A4664
  build/asm/eeprom/conteepromlongread.s.o(.text)
  .text          0x00000000800a4670      0x150 build/asm/eeprom/conteepromlongread.s.o
                 0x00000000800a4670                osEepromLongRead
+                0x00000000800a47b4                func_800A47B4
  build/asm/eeprom/conteepromlongwrite.s.o(.text)
  .text          0x00000000800a47c0      0x150 build/asm/eeprom/conteepromlongwrite.s.o
                 0x00000000800a47c0                osEepromLongWrite
+                0x00000000800a4904                func_800A4904
  build/asm/gu/perspective.s.o(.text)
  .text          0x00000000800a4910      0x300 build/asm/gu/perspective.s.o
                 0x00000000800a4910                guPerspectiveF
@@ -4537,26 +4573,34 @@ LOAD build/assets/trailer.bin.o
  build/asm/libc/sprintf.s.o(.text)
  .text          0x00000000800a5640       0xd0 build/asm/libc/sprintf.s.o
                 0x00000000800a5640                sprintf
+                0x00000000800a56b4                func_800A56B4
                 0x00000000800a56bc                proutSprintf
+                0x00000000800a56fc                func_800A56FC
  build/asm/gu/sqrt.s.o(.text)
  .text          0x00000000800a5710       0x10 build/asm/gu/sqrt.s.o
                 0x00000000800a5710                sqrtf
  build/asm/os/gettime.s.o(.text)
  .text          0x00000000800a5720       0xd0 build/asm/os/gettime.s.o
                 0x00000000800a5720                osGetTime
+                0x00000000800a57dc                func_800A57DC
  build/asm/error/kmcprint.s.o(.text)
  .text          0x00000000800a57f0      0x440 build/asm/error/kmcprint.s.o
                 0x00000000800a57f0                __osSyncVPrintf
+                0x00000000800a587c                func_800A587C
                 0x00000000800a5884                rmonPutchar
                 0x00000000800a58fc                func_800A58FC
                 0x00000000800a5904                msp_proutSyncPrintf
+                0x00000000800a5b2c                func_800A5B2C
                 0x00000000800a5b34                kmcErrorHandler
                 0x00000000800a5bbc                rmonPrintf
  build/asm/libc/string.s.o(.text)
  .text          0x00000000800a5c30      0x100 build/asm/libc/string.s.o
                 0x00000000800a5c30                strchr
+                0x00000000800a5c80                func_800A5C80
                 0x00000000800a5c88                strlen
+                0x00000000800a5ccc                func_800A5CCC
                 0x00000000800a5cd4                memcpy
+                0x00000000800a5d24                func_800A5D24
  build/asm/io/vi.s.o(.text)
  .text          0x00000000800a5d30      0x160 build/asm/io/vi.s.o
                 0x00000000800a5d30                __osViInit
@@ -4580,10 +4624,12 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a68c8                L800A68C8_A74C8
                 0x00000000800a690c                L800A690C_A750C
                 0x00000000800a6994                send_mesg
+                0x00000000800a6a58                func_800A6A58
                 0x00000000800a6a90                __osEnqueueAndYield
                 0x00000000800a6b9c                __osEnqueueThread
                 0x00000000800a6be8                __osPopThread
                 0x00000000800a6c00                __osDispatchThread
+                0x00000000800a6d80                func_800A6D80
                 0x00000000800a6d90                __osSetSR
                 0x00000000800a6da0                __osGetSR
  build/asm/os/setfpccsr.s.o(.text)
@@ -4592,9 +4638,11 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/sirawread.s.o(.text)
  .text          0x00000000800a6dc0       0xc0 build/asm/io/sirawread.s.o
                 0x00000000800a6dc0                __osSiRawReadIo
+                0x00000000800a6e74                func_800A6E74
  build/asm/io/sirawwrite.s.o(.text)
  .text          0x00000000800a6e80       0x90 build/asm/io/sirawwrite.s.o
                 0x00000000800a6e80                __osSiRawWriteIo
+                0x00000000800a6f04                func_800A6F04
  build/asm/os/writebackdcache.s.o(.text)
  .text          0x00000000800a6f10       0x80 build/asm/os/writebackdcache.s.o
                 0x00000000800a6f10                osWritebackDCache
@@ -4607,6 +4655,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/pirawread.s.o(.text)
  .text          0x00000000800a7070       0xe0 build/asm/io/pirawread.s.o
                 0x00000000800a7070                osPiRawReadIo
+                0x00000000800a7140                func_800A7140
  build/asm/libc/bzero.s.o(.text)
  .text          0x00000000800a7150       0xc0 build/asm/libc/bzero.s.o
                 0x00000000800a7150                _bzero
@@ -4618,6 +4667,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a72f8                __osTimerInterrupt
                 0x00000000800a75b0                __osSetTimerIntr
                 0x00000000800a763c                __osInsertTimer
+                0x00000000800a7800                func_800A7800
  build/asm/os/getthreadpri.s.o(.text)
  .text          0x00000000800a7810       0x30 build/asm/os/getthreadpri.s.o
                 0x00000000800a7810                osGetThreadPri
@@ -4635,9 +4685,11 @@ LOAD build/assets/trailer.bin.o
  build/asm/pi/cartrominit.s.o(.text)
  .text          0x00000000800a7bf0      0x110 build/asm/pi/cartrominit.s.o
                 0x00000000800a7bf0                osCartRomInit
+                0x00000000800a7cf4                func_800A7CF4
  build/asm/pi/leodiskinit.s.o(.text)
  .text          0x00000000800a7d00      0x120 build/asm/pi/leodiskinit.s.o
                 0x00000000800a7d00                osLeoDiskInit
+                0x00000000800a7e10                func_800A7E10
  build/asm/io/piacs.s.o(.text)
  .text          0x00000000800a7e20       0xe0 build/asm/io/piacs.s.o
                 0x00000000800a7e20                __osPiCreateAccessQueue
@@ -4646,9 +4698,11 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/pirawdma.s.o(.text)
  .text          0x00000000800a7f00      0x1e0 build/asm/io/pirawdma.s.o
                 0x00000000800a7f00                osPiRawStartDma
+                0x00000000800a80d0                func_800A80D0
  build/asm/io/epirawdma.s.o(.text)
  .text          0x00000000800a80e0      0x3a0 build/asm/io/epirawdma.s.o
                 0x00000000800a80e0                osEPiRawStartDma
+                0x00000000800a846c                func_800A846C
  build/asm/pi/devmgr.s.o(.text)
  .text          0x00000000800a8480      0x4d0 build/asm/pi/devmgr.s.o
                 0x00000000800a8480                __osDevMgrMain
@@ -4658,46 +4712,62 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a8860                L800A8860_A9460
                 0x00000000800a88ac                L800A88AC_A94AC
                 0x00000000800a88d0                L800A88D0_A94D0
+                0x00000000800a8930                func_800A8930
  build/asm/host/rdbsend.s.o(.text)
  .text          0x00000000800a8950      0x310 build/asm/host/rdbsend.s.o
                 0x00000000800a8950                __osRdbSend
+                0x00000000800a8c4c                func_800A8C4C
  build/asm/rmon/rmonmisc.s.o(.text)
  .text          0x00000000800a8c60      0x1b0 build/asm/rmon/rmonmisc.s.o
                 0x00000000800a8c60                __rmonSetFault
+                0x00000000800a8cb8                func_800A8CB8
                 0x00000000800a8cc0                __rmonInit
                 0x00000000800a8da4                func_800A8DA4
                 0x00000000800a8db4                func_800A8DB4
                 0x00000000800a8dbc                __rmonSetComm
+                0x00000000800a8e04                func_800A8E04
  build/asm/rmon/rmonsio.s.o(.text)
  .text          0x00000000800a8e10      0x250 build/asm/rmon/rmonsio.s.o
                 0x00000000800a8e10                __rmonSendFault
                 0x00000000800a8ea0                __rmonIOflush
                 0x00000000800a8f04                __rmonIOputw
                 0x00000000800a8f88                __rmonIOhandler
+                0x00000000800a9044                func_800A9044
  build/asm/io/sprawread.s.o(.text)
  .text          0x00000000800a9060       0xc0 build/asm/io/sprawread.s.o
                 0x00000000800a9060                __osSpRawReadIo
+                0x00000000800a9114                func_800A9114
  build/asm/rmon/rmonmem.s.o(.text)
  .text          0x00000000800a9120      0x9e0 build/asm/rmon/rmonmem.s.o
                 0x00000000800a9120                __rmonWriteWordTo
                 0x00000000800a9170                __rmonReadWordAt
+                0x00000000800a91cc                func_800A91CC
                 0x00000000800a91d4                __rmonMemcpy
                 0x00000000800a9210                __rmonCopyWords
                 0x00000000800a924c                func_800A924C
                 0x00000000800a9290                __rmonReadMem
+                0x00000000800a94b4                func_800A94B4
                 0x00000000800a94bc                __rmonWriteMem
+                0x00000000800a970c                func_800A970C
                 0x00000000800a9714                __rmonListProcesses
-                0x00000000800a97a4                func_800A97A4
+                0x00000000800a979c                func_800A979C
+                0x00000000800a97a4                __rmonListBreak
+                0x00000000800a97b8                func_800A97B8
                 0x00000000800a97c0                __rmonGetExeName
+                0x00000000800a9874                func_800A9874
                 0x00000000800a987c                __rmonGetRegionCount
+                0x00000000800a98fc                func_800A98FC
                 0x00000000800a9904                __rmonGetRegions
+                0x00000000800a9af0                func_800A9AF0
  build/asm/rmon/rmonbrk.s.o(.text)
  .text          0x00000000800a9b00      0xc80 build/asm/rmon/rmonbrk.s.o
                 0x00000000800a9b00                SetTempBreakpoint
                 0x00000000800a9bc8                ClearTempBreakpoint
                 0x00000000800a9cec                __rmonSetBreak
+                0x00000000800a9ee0                func_800A9EE0
                 0x00000000800a9ef0                func_800A9EF0
                 0x00000000800a9f0c                __rmonClearBreak
+                0x00000000800aa074                func_800AA074
                 0x00000000800aa07c                __rmonGetBranchTarget
                 0x00000000800aa0f0                L800AA0F0_AACF0
                 0x00000000800aa190                L800AA190_AAD90
@@ -4708,8 +4778,10 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800aa224                L800AA224_AAE24
                 0x00000000800aa25c                L800AA25C_AAE5C
                 0x00000000800aa2e0                L800AA2E0_AAEE0
+                0x00000000800aa2fc                func_800AA2FC
                 0x00000000800aa304                func_800AA304
                 0x00000000800aa3b4                __rmonSetSingleStep
+                0x00000000800aa47c                func_800AA47C
                 0x00000000800aa48c                __rmonGetExceptionStatus
                 0x00000000800aa4d0                func_800AA4D0
                 0x00000000800aa4d8                rmonSendBreakMessage
@@ -4728,6 +4800,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/si/sirawdma.s.o(.text)
  .text          0x00000000800aa920       0xf0 build/asm/si/sirawdma.s.o
                 0x00000000800aa920                __osSiRawStartDma
+                0x00000000800aaa04                func_800AAA04
  build/asm/libc/bcopy.s.o(.text)
  .text          0x00000000800aaa10      0x380 build/asm/libc/bcopy.s.o
                 0x00000000800aaa10                _bcopy
@@ -4736,21 +4809,27 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/spsetpc.s.o(.text)
  .text          0x00000000800aad90       0x40 build/asm/io/spsetpc.s.o
                 0x00000000800aad90                __osSpSetPc
+                0x00000000800aadc8                func_800AADC8
  build/asm/io/sprawdma.s.o(.text)
  .text          0x00000000800aadd0      0x130 build/asm/io/sprawdma.s.o
                 0x00000000800aadd0                __osSpRawStartDma
+                0x00000000800aaef4                func_800AAEF4
  build/asm/io/sp.s.o(.text)
  .text          0x00000000800aaf00       0x40 build/asm/io/sp.s.o
                 0x00000000800aaf00                __osSpDeviceBusy
+                0x00000000800aaf30                func_800AAF30
  build/asm/os/settimer.s.o(.text)
  .text          0x00000000800aaf40      0x110 build/asm/os/settimer.s.o
                 0x00000000800aaf40                osSetTimer
+                0x00000000800ab03c                func_800AB03C
  build/asm/os/jammesg.s.o(.text)
  .text          0x00000000800ab050      0x190 build/asm/os/jammesg.s.o
                 0x00000000800ab050                osJamMesg
+                0x00000000800ab1d8                func_800AB1D8
  build/asm/io/piint.s.o(.text)
  .text          0x00000000800ab1e0       0x40 build/asm/io/piint.s.o
                 0x00000000800ab1e0                osPiGetCmdQueue
+                0x00000000800ab204                func_800AB204
                 0x00000000800ab214                func_800AB214
  build/asm/io/break.s.o(.text)
  .text          0x00000000800ab220       0x10 build/asm/io/break.s.o
@@ -4781,6 +4860,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800abb4c                L800ABB4C_AC74C
                 0x00000000800abba0                L800ABBA0_AC7A0
                 0x00000000800abbc0                L800ABBC0_AC7C0
+                0x00000000800abc1c                func_800ABC1C
                 0x00000000800abc24                __postNextSeqEvent
                 0x00000000800abd2c                __handleNextSeqEvent
                 0x00000000800abe34                __handleMIDIMsg
@@ -4798,14 +4878,21 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800aca98                L800ACA98_AD698
                 0x00000000800acacc                __handleMetaMsg
                 0x00000000800acb6c                __mapVoice
+                0x00000000800acc00                func_800ACC00
                 0x00000000800acc08                __unmapVoice
                 0x00000000800accf4                __lookupVoice
+                0x00000000800acd74                func_800ACD74
                 0x00000000800acd7c                __lookupSoundQuick
+                0x00000000800acf28                func_800ACF28
                 0x00000000800acf38                __vsVol
+                0x00000000800acfdc                func_800ACFDC
                 0x00000000800acfe4                __vsDelta
+                0x00000000800ad018                func_800AD018
                 0x00000000800ad028                __vsPan
+                0x00000000800ad09c                func_800AD09C
                 0x00000000800ad0a4                __seqpReleaseVoice
                 0x00000000800ad21c                __voiceNeedsNoteKill
+                0x00000000800ad334                func_800AD334
                 0x00000000800ad33c                __initFromBank
                 0x00000000800ad424                __setInstChanState
                 0x00000000800ad48c                func_800AD48C
@@ -4818,7 +4905,9 @@ LOAD build/assets/trailer.bin.o
  .text          0x00000000800ad740      0x420 build/asm/audio/event.s.o
                 0x00000000800ad740                alEvtqNew
                 0x00000000800ad7dc                alEvtqNextEvent
+                0x00000000800ad878                func_800AD878
                 0x00000000800ad880                alEvtqPostEvent
+                0x00000000800ada04                func_800ADA04
                 0x00000000800ada0c                alEvtqFlush
                 0x00000000800ada90                alEvtqFlushType
  build/asm/audio/synaddplayer.s.o(.text)
@@ -4839,10 +4928,13 @@ LOAD build/assets/trailer.bin.o
  build/asm/audio/synallocvoice.s.o(.text)
  .text          0x00000000800adf70      0x360 build/asm/audio/synallocvoice.s.o
                 0x00000000800adf70                alSynAllocVoice
+                0x00000000800ae190                func_800AE190
                 0x00000000800ae1a0                _allocatePVoice
+                0x00000000800ae2bc                func_800AE2BC
  build/asm/audio/cents2ratio.s.o(.text)
  .text          0x00000000800ae2d0       0xa0 build/asm/audio/cents2ratio.s.o
                 0x00000000800ae2d0                alCents2Ratio
+                0x00000000800ae35c                func_800AE35C
  build/asm/audio/synstartvoiceparam.s.o(.text)
  .text          0x00000000800ae370      0x150 build/asm/audio/synstartvoiceparam.s.o
                 0x00000000800ae370                alSynStartVoiceParams
@@ -4872,17 +4964,23 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800af124                alMainBusNew
                 0x00000000800af18c                alSaveNew
                 0x00000000800af1e0                alSynAllocFX
+                0x00000000800af2d0                func_800AF2D0
  build/asm/audio/mainbus.s.o(.text)
  .text          0x00000000800af2e0      0x230 build/asm/audio/mainbus.s.o
                 0x00000000800af2e0                alMainBusPull
+                0x00000000800af488                func_800AF488
                 0x00000000800af490                alMainBusParam
+                0x00000000800af500                func_800AF500
  build/asm/audio/load.s.o(.text)
  .text          0x00000000800af510     0x2ae0 build/asm/audio/load.s.o
                 0x00000000800af510                alAdpcmPull
+                0x00000000800afbb0                func_800AFBB0
                 0x00000000800afbb8                alRaw16Pull
+                0x00000000800b01ec                func_800B01EC
                 0x00000000800b01f4                alLoadParam
                 0x00000000800b0504                func_800B0504
                 0x00000000800b06f0                alResamplePull
+                0x00000000800b09b8                func_800B09B8
                 0x00000000800b09c0                alResampleParam
                 0x00000000800b0a10                L800B0A10_B1610
                 0x00000000800b0a24                L800B0A24_B1624
@@ -4890,6 +4988,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b0ac8                L800B0AC8_B16C8
                 0x00000000800b0ae4                L800B0AE4_B16E4
                 0x00000000800b0af8                L800B0AF8_B16F8
+                0x00000000800b0b48                func_800B0B48
                 0x00000000800b0b50                alEnvmixerPull
                 0x00000000800b0c68                L800B0C68_B1868
                 0x00000000800b0e4c                L800B0E4C_B1A4C
@@ -4897,29 +4996,44 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b1124                L800B1124_B1D24
                 0x00000000800b1170                L800B1170_B1D70
                 0x00000000800b11ac                L800B11AC_B1DAC
+                0x00000000800b12d0                func_800B12D0
                 0x00000000800b12d8                alEnvmixerParam
+                0x00000000800b147c                func_800B147C
                 0x00000000800b1484                _pullSubFrame
+                0x00000000800b18bc                func_800B18BC
                 0x00000000800b18c4                _frexpf
+                0x00000000800b1a14                func_800B1A14
                 0x00000000800b1a1c                _ldexpf
+                0x00000000800b1a5c                func_800B1A5C
                 0x00000000800b1a64                _getRate
+                0x00000000800b1d4c                func_800B1D4C
                 0x00000000800b1d5c                _getVol
+                0x00000000800b1e48                func_800B1E48
                 0x00000000800b1e50                alAuxBusPull
+                0x00000000800b1f68                func_800B1F68
                 0x00000000800b1f70                alAuxBusParam
+                0x00000000800b1fe0                func_800B1FE0
  build/asm/audio/save.s.o(.text)
  .text          0x00000000800b1ff0      0x1e0 build/asm/audio/save.s.o
                 0x00000000800b1ff0                alSavePull
+                0x00000000800b214c                func_800B214C
                 0x00000000800b2154                alSaveParam
+                0x00000000800b21c4                func_800B21C4
  build/asm/ai/ai.s.o(.text)
  .text          0x00000000800b21d0       0x50 build/asm/ai/ai.s.o
                 0x00000000800b21d0                __osAiDeviceBusy
+                0x00000000800b2204                func_800B2204
  build/asm/eeprom/conteepwrite.s.o(.text)
  .text          0x00000000800b2220      0x520 build/asm/eeprom/conteepwrite.s.o
                 0x00000000800b2220                osEepromWrite
+                0x00000000800b23dc                func_800B23DC
                 0x00000000800b23e4                __osPackEepWriteData
                 0x00000000800b24fc                __osEepStatus
+                0x00000000800b272c                func_800B272C
  build/asm/eeprom/conteepread.s.o(.text)
  .text          0x00000000800b2740      0x320 build/asm/eeprom/conteepread.s.o
                 0x00000000800b2740                osEepromRead
+                0x00000000800b2940                func_800B2940
                 0x00000000800b2948                __osPackEepReadData
  build/asm/gu/Mtxutil.s.o(.text)
  .text          0x00000000800b2a60      0x340 build/asm/gu/Mtxutil.s.o
@@ -4930,13 +5044,16 @@ LOAD build/assets/trailer.bin.o
  build/asm/gu/cosf.s.o(.text)
  .text          0x00000000800b2da0      0x240 build/asm/gu/cosf.s.o
                 0x00000000800b2da0                __cosf
+                0x00000000800b2fcc                func_800B2FCC
  build/asm/gu/sinf.s.o(.text)
  .text          0x00000000800b2fe0      0x280 build/asm/gu/sinf.s.o
                 0x00000000800b2fe0                __sinf
+                0x00000000800b3250                func_800B3250
  build/asm/gu/normalize.s.o(.text)
  .text          0x00000000800b3260     0x16b0 build/asm/gu/normalize.s.o
                 0x00000000800b3260                guNormalize
                 0x00000000800b3310                _Putfld
+                0x00000000800b3b94                func_800B3B94
                 0x00000000800b3ba4                func_800B3BA4
                 0x00000000800b3c58                L800B3C58_B4858
                 0x00000000800b3cac                L800B3CAC_B48AC
@@ -4948,6 +5065,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b44fc                L800B44FC_B50FC
                 0x00000000800b4550                __osDefaultHandler
                 0x00000000800b45b0                string_to_u32
+                0x00000000800b4618                func_800B4618
                 0x00000000800b4620                send_packet
                 0x00000000800b469c                clear_IP6
                 0x00000000800b4714                send
@@ -4955,12 +5073,14 @@ LOAD build/assets/trailer.bin.o
  build/asm/host/readhost.s.o(.text)
  .text          0x00000000800b4910       0xf0 build/asm/host/readhost.s.o
                 0x00000000800b4910                osReadHost
+                0x00000000800b49f0                func_800B49F0
  build/asm/host/initrdb.s.o(.text)
  .text          0x00000000800b4a00       0xb0 build/asm/host/initrdb.s.o
                 0x00000000800b4a00                osInitRdb
  build/asm/io/leointerrupt.s.o(.text)
  .text          0x00000000800b4ab0      0x960 build/asm/io/leointerrupt.s.o
                 0x00000000800b4ab0                __osLeoInterrupt
+                0x00000000800b51d4                func_800B51D4
                 0x00000000800b51fc                __osLeoAbnormalResume
                 0x00000000800b52f4                __osLeoResume
  build/asm/os/destroythread.s.o(.text)
@@ -4969,6 +5089,7 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/si.s.o(.text)
  .text          0x00000000800b5530       0x40 build/asm/io/si.s.o
                 0x00000000800b5530                __osSiDeviceBusy
+                0x00000000800b5560                func_800B5560
  build/asm/os/setcompare.s.o(.text)
  .text          0x00000000800b5570       0x10 build/asm/os/setcompare.s.o
                 0x00000000800b5570                __osSetCompare
@@ -4978,9 +5099,11 @@ LOAD build/assets/trailer.bin.o
  build/asm/io/epirawwrite.s.o(.text)
  .text          0x00000000800b55f0       0xb0 build/asm/io/epirawwrite.s.o
                 0x00000000800b55f0                __osEPiRawWriteIo
+                0x00000000800b5694                func_800B5694
  build/asm/io/epirawread.s.o(.text)
  .text          0x00000000800b56a0       0xe0 build/asm/io/epirawread.s.o
                 0x00000000800b56a0                __osEPiRawReadIo
+                0x00000000800b5774                func_800B5774
  build/asm/os/setglobalintmask.s.o(.text)
  .text          0x00000000800b5780       0x60 build/asm/os/setglobalintmask.s.o
                 0x00000000800b5780                __osSetGlobalIntMask
@@ -4989,11 +5112,14 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b57e0                osYieldThread
  build/asm/rmon/rmoncmds.s.o(.text)
  .text          0x00000000800b5840       0xc0 build/asm/rmon/rmoncmds.s.o
-                0x00000000800b5840                func_800B5840
+                0x00000000800b5840                NotImplemented
+                0x00000000800b5854                func_800B5854
                 0x00000000800b585c                __rmonExecute
+                0x00000000800b58f4                func_800B58F4
  build/asm/io/sprawwriteio.s.o(.text)
  .text          0x00000000800b5900       0x90 build/asm/io/sprawwriteio.s.o
                 0x00000000800b5900                __osSpRawWriteIo
+                0x00000000800b5984                func_800B5984
  build/asm/rmon/rmonregs.s.o(.text)
  .text          0x00000000800b5990      0xcf0 build/asm/rmon/rmonregs.s.o
                 0x00000000800b5990                LoadStoreSU
@@ -5001,25 +5127,42 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b5ab8                SetUpForRCPop
                 0x00000000800b5b68                CleanupFromRCPop
                 0x00000000800b5c18                __rmonGetGRegisters
+                0x00000000800b5d7c                func_800B5D7C
                 0x00000000800b5d84                __rmonSetGRegisters
+                0x00000000800b5edc                func_800B5EDC
                 0x00000000800b5ee4                __rmonGetFRegisters
+                0x00000000800b5fa0                func_800B5FA0
                 0x00000000800b5fa8                __rmonSetFRegisters
+                0x00000000800b6060                func_800B6060
                 0x00000000800b6068                rmonGetRcpRegister
+                0x00000000800b60d4                func_800B60D4
                 0x00000000800b60dc                __rmonGetSRegs
+                0x00000000800b6248                func_800B6248
                 0x00000000800b6250                __rmonSetSRegs
+                0x00000000800b6368                func_800B6368
                 0x00000000800b6370                __rmonGetVRegs
+                0x00000000800b64a0                func_800B64A0
                 0x00000000800b64a8                __rmonSetVRegs
+                0x00000000800b6574                func_800B6574
                 0x00000000800b657c                __rmonGetRegisterContents
+                0x00000000800b6664                func_800B6664
  build/asm/rmon/rmontask.s.o(.text)
  .text          0x00000000800b6680      0xb70 build/asm/rmon/rmontask.s.o
                 0x00000000800b6680                __rmonMaskIdleThreadInts
                 0x00000000800b670c                __rmonGetTCB
+                0x00000000800b6794                func_800B6794
                 0x00000000800b679c                __rmonStopUserThreads
+                0x00000000800b68d8                func_800B68D8
                 0x00000000800b68e0                __rmonListThreads
+                0x00000000800b6a1c                func_800B6A1C
                 0x00000000800b6a24                __rmonGetThreadStatus
+                0x00000000800b6d34                func_800B6D34
                 0x00000000800b6d3c                __rmonThreadStatus
+                0x00000000800b6db0                func_800B6DB0
                 0x00000000800b6db8                __rmonStopThread
+                0x00000000800b6f18                func_800B6F18
                 0x00000000800b6f20                __rmonRunThread
+                0x00000000800b71e4                func_800B71E4
  build/asm/os/getactivequeue.s.o(.text)
  .text          0x00000000800b71f0       0x20 build/asm/os/getactivequeue.s.o
                 0x00000000800b71f0                __osGetActiveQueue
@@ -5030,11 +5173,14 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b7210                alSeqNew
                 0x00000000800b73ac                alSeqNextEvent
                 0x00000000800b76b8                __alSeqNextDelta
+                0x00000000800b7730                func_800B7730
                 0x00000000800b7738                alSeqTicksToSec
                 0x00000000800b778c                func_800B778C
                 0x00000000800b7794                func_800B7794
                 0x00000000800b779c                alSeqSecToTicks
+                0x00000000800b788c                func_800B788C
                 0x00000000800b7894                alSeqNewMarker
+                0x00000000800b7a18                func_800B7A18
                 0x00000000800b7a20                alSeqGetTicks
                 0x00000000800b7a28                func_800B7A28
                 0x00000000800b7a30                func_800B7A30
@@ -5043,9 +5189,13 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b7a60                alSeqGetLoc
                 0x00000000800b7a80                func_800B7A80
                 0x00000000800b7a88                read8
+                0x00000000800b7ab0                func_800B7AB0
                 0x00000000800b7ab8                read16
+                0x00000000800b7b08                func_800B7B08
                 0x00000000800b7b10                read32
+                0x00000000800b7ba8                func_800B7BA8
                 0x00000000800b7bb0                readVarLen
+                0x00000000800b7c40                func_800B7C40
  build/asm/audio/synsetpriority.s.o(.text)
  .text          0x00000000800b7c50       0xb0 build/asm/audio/synsetpriority.s.o
                 0x00000000800b7c50                alSynSetPriority
@@ -5055,7 +5205,9 @@ LOAD build/assets/trailer.bin.o
  build/asm/audio/reverb.s.o(.text)
  .text          0x00000000800b7d00     0x1290 build/asm/audio/reverb.s.o
                 0x00000000800b7d00                alFxPull
+                0x00000000800b8258                func_800B8258
                 0x00000000800b8260                alFxParam
+                0x00000000800b828c                func_800B828C
                 0x00000000800b8294                alFxParamHdl
                 0x00000000800b8320                L800B8320_B8F20
                 0x00000000800b8354                L800B8354_B8F54
@@ -5065,18 +5217,26 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800b840c                L800B840C_B900C
                 0x00000000800b847c                L800B847C_B907C
                 0x00000000800b84f8                L800B84F8_B90F8
+                0x00000000800b858c                func_800B858C
                 0x00000000800b8594                _loadOutputBuffer
+                0x00000000800b8888                func_800B8888
                 0x00000000800b8890                _loadBuffer
+                0x00000000800b8b14                func_800B8B14
                 0x00000000800b8b1c                _saveBuffer
+                0x00000000800b8d78                func_800B8D78
                 0x00000000800b8d80                _filterBuffer
+                0x00000000800b8e90                func_800B8E90
                 0x00000000800b8e98                _doModFunc
+                0x00000000800b8f7c                func_800B8F7C
  build/asm/libc/xstdio.s.o(.text)
  .text          0x00000000800b8f90      0x330 build/asm/libc/xstdio.s.o
                 0x00000000800b8f90                _Litob
  build/asm/libc/xldtob.s.o(.text)
  .text          0x00000000800b92c0      0xed0 build/asm/libc/xldtob.s.o
                 0x00000000800b92c0                _Ldtob
+                0x00000000800b98fc                func_800B98FC
                 0x00000000800b9904                _ldunscale
+                0x00000000800b99ec                func_800B99EC
                 0x00000000800b9a08                _Genld
  build/asm/logger/ultralog.s.o(.text)
  .text          0x00000000800ba190      0x4c0 build/asm/logger/ultralog.s.o
@@ -5099,10 +5259,13 @@ LOAD build/assets/trailer.bin.o
  build/asm/libc/ldiv.s.o(.text)
  .text          0x00000000800ba7f0      0x1f0 build/asm/libc/ldiv.s.o
                 0x00000000800ba7f0                ldiv
+                0x00000000800ba88c                func_800BA88C
                 0x00000000800ba894                lldiv
+                0x00000000800ba9d0                func_800BA9D0
  build/asm/os/rspboot.s.o(.text)
  .text          0x00000000800ba9e0      0x230 build/asm/os/rspboot.s.o
                 0x00000000800ba9e0                func_800BA9E0
+                0x00000000800baab0                rspbootTextEnd
                 0x00000000800bac10                main_TEXT_END = .
                 0x00000000800bac10                main_DATA_START = .
                 0x00000000800bac10                BB810_bin = .
@@ -13526,7 +13689,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a5fc8                __osException = 0x800a5fc8
                 0x00000000800a6d80                __osCleanupThread = 0x800a6d80
                 0x00000000800ba9e0                rspbootTextStart = 0x800ba9e0
-                0x00000000800baab0                rspbootTextEnd = 0x800baab0
                 0x00000000800bbeb0                aspMainTextStart = 0x800bbeb0
                 0x00000000800e9778                osViClock = 0x800e9778
                 0x00000000800e9780                __OSGlobalIntMask = 0x800e9780
@@ -13547,7 +13709,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea620                __osTimerList = 0x800ea620
                 0x00000000800ea630                __osPiAccessQueueEnabled = 0x800ea630
                 0x00000000800ea640                __osRdb_IP6_Empty = 0x800ea640
-                0x00000000800ea7f0                eqpower = 0x800ea7f0
                 0x00000000800ea930                spaces = 0x800ea930
                 0x00000000800ea954                zeroes = 0x800ea954
                 0x00000000800ea980                osViModeNtscLan1 = 0x800ea980
@@ -13574,10 +13735,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800eda18                cseq_rodata_0008 = 0x800eda18
                 0x00000000800eda70                perspective_rodata_0000 = 0x800eda70
                 0x00000000800edac4                __osCauseTable_pt = 0x800edac4
-                0x00000000800edaf0                sprawread_rodata_0000 = 0x800edaf0
-                0x00000000800edb08                sprawread_rodata_0018 = 0x800edb08
-                0x00000000800edb1c                sprawread_rodata_002C = 0x800edb1c
-                0x00000000800edb2c                sprawread_rodata_003C = 0x800edb2c
                 0x00000000800edb40                sirawwrite_rodata_0000 = 0x800edb40
                 0x00000000800edb58                sirawwrite_rodata_0018 = 0x800edb58
                 0x00000000800edcd8                rmonmem_rodata_0098 = 0x800edcd8
@@ -13906,7 +14063,12 @@ LOAD build/assets/trailer.bin.o
                 0x000000008016df34                Sound_AlBankFilep = 0x8016df34
                 0x000000008012ac88                gGFXTasks = 0x8012ac88
                 0x000000008012ac84                gGFXTaskp = 0x8012ac84
+                0x00000000800ea7f0                eqpower = 0x800ea7f0
+                0x00000000800c382c                Sound_AI_LEN_Rsh2 = 0x800c382c
                 0x00000000801781dc                gThrottleInput = 0x801781dc
+                0x00000000800d293c                gActivePortraits = 0x800d293c
+                0x00000000800edb1c                sprawread_rodata_002C = 0x800edb1c
+                0x00000000800edb2c                sprawread_rodata_003C = 0x800edb2c
                 0x0000000080124670                D_80124670 = 0x80124670
                 0x0000000080126670                D_80126670 = 0x80126670
                 0x000000008012ac38                D_8012AC38 = 0x8012ac38
@@ -13960,7 +14122,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c3834                D_800C3834 = 0x800c3834
                 0x00000000800c3838                D_800C3838 = 0x800c3838
                 0x000000008016e724                D_8016E724 = 0x8016e724
-                0x00000000800c382c                D_800C382C = 0x800c382c
                 0x00000000800c383c                D_800C383C = 0x800c383c
                 0x00000000800ef210                D_800EF210 = 0x800ef210
                 0x000000008016e6f8                D_8016E6F8 = 0x8016e6f8
@@ -14771,7 +14932,6 @@ LOAD build/assets/trailer.bin.o
                 0x00000000801782b4                D_801782B4 = 0x801782b4
                 0x00000000800d2964                D_800D2964 = 0x800d2964
                 0x00000000800d38b8                D_800D38B8 = 0x800d38b8
-                0x00000000800d293c                D_800D293C = 0x800d293c
                 0x00000000800d2944                D_800D2944 = 0x800d2944
                 0x00000000800ebd40                jtbl_800EBD40 = 0x800ebd40
                 0x00000000800d2940                D_800D2940 = 0x800d2940
@@ -15433,6 +15593,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ea5e0                D_800EA5E0 = 0x800ea5e0
                 0x00000000800e977c                D_800E977C = 0x800e977c
                 0x00000000800ea614                D_800EA614 = 0x800ea614
+                0x00000000800edaf0                D_800EDAF0 = 0x800edaf0
+                0x00000000800edb08                D_800EDB08 = 0x800edb08
                 0x00000000800edb70                D_800EDB70 = 0x800edb70
                 0x00000000800edb80                D_800EDB80 = 0x800edb80
                 0x00000000800ea4ec                D_800EA4EC = 0x800ea4ec

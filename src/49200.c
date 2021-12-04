@@ -353,7 +353,7 @@ void func_8004E1DC(int32_t arg0) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E1E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E4E0.s")
-
+//animation test? set gplayeractor.unk_0xd1 to 3A
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E6FC.s")
 
 #ifdef NON_MATCHING
@@ -589,8 +589,8 @@ void ActorTick_Marina(uint16_t index) {
         gActors[index].unk_0x98 &= 0xFFDFF9FF;
         D_801373E0.unk_0x7C++;
 
-        gActors[index].ScaleX = D_800EF630 * gActors[index].unk_0x124;
-        gActors[index].ScaleY = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
+        gActors[index].scaleX = D_800EF630 * gActors[index].unk_0x124;
+        gActors[index].scaleY = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
 
         D_800BE5D8 = gActors[index].pos.x_w + gScreenPosCurrentX;
         D_800BE5DC = gActors[index].pos.y_w + gScreenPosCurrentY;

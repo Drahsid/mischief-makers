@@ -82,13 +82,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2CAC_7AEBCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2F50_7AEE70.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2F58_7AEE78.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2F60_7AEE80.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2F68_7AEE88.s")
+void func_801B2F50_7AEE70(uint16_t x){}
+void func_801B2F58_7AEE78(uint16_t x){}
+void func_801B2F60_7AEE80(uint16_t x){}
+void func_801B2F68_7AEE88(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B2F70_7AEE90.s")
 

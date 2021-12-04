@@ -7,8 +7,8 @@
 #define SCENE_UNK03	            0x3
 #define SCENE_UNK04	            0x4
 #define SCENE_MIGENBRAWL    	0x5
-#define SCENE_ENDING        	0x6
-#define SCENE_UNK07	            0x7
+#define SCENE_ENDING            0x6
+#define SCENE_UNK07             0x7
 #define SCENE_TITLE	            0x8
 #define SCENE_LUNAR	            0x9
 #define SCENE_TAURUS        	0xa
@@ -56,20 +56,20 @@
 #define SCENE_HOTRUSH	        0x3c
 #define SCENE_TIGHTROPERIDE	    0x3d
 #define SCENE_MAGMARAFTS    	0x3e
-#define SCENE_UNK63         	0x3f //loads "clance war" map data with HoM background and Marina below.
-#define SCENE_DEMOWORLD4    	0x40
+#define SCENE_UNK63             0x3f //loads "clance war" map data with HoM background and Marina below.
+#define SCENE_DEMOWORLD4        0x40
 #define SCENE_DEMOWORLD5    	0x41
 #define SCENE_DEMOFINAL	        0x42
 #define SCENE_BLOCKMANRISES 	0x43
 #define SCENE_MEETCALINA    	0x44
 #define SCENE_VERTIGO	        0x45
-#define SCENE_FREEFALL	        0x46
+#define SCENE_FREEFALL          0x46
 #define SCENE_CLANBALLLIFT      0x47
 #define SCENE_CLANPOTSHAKE      0x48
-#define SCENE_CLANCEWAR2    	0x4d
-#define SCENE_BEESTHEONE    	0x4e
-#define SCENE_INNERSTRUGGLE	    0x4f
-#define SCENE_UNK80	            0x50 //crash. data suggest more stages were planned for world 5.
-#define SCENE_MERCO	            0x55
-#define SCENE_UNK86	            0x56 //loads "trapped"'s map with marina below. uses "Merco"'s camera effect
+#define SCENE_CLANCEWAR2        0x4d
+#define SCENE_BEESTHEONE        0x4e
+#define SCENE_INNERSTRUGGLE     0x4f
+#define SCENE_UNK80             0x50 //crash. data suggest more stages were planned for world 5.
+#define SCENE_MERCO             0x55
+#define SCENE_UNK86             0x56 //loads "trapped"'s map with marina below. uses "Merco"'s camera effect
 

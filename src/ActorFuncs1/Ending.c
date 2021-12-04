@@ -41,11 +41,17 @@ void func_80192634_6F98C4(uint16_t index, uint8_t a){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801926E4_6F9974.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019270C_6F999C.s")
+void func_8019270C_6F999C(uint16_t x){
+    func_801925EC_6F987C(0x31,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192734_6F99C4.s")
+void func_80192734_6F99C4(uint8_t x){
+    func_80192634_6F98C4(0x31,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019275C_6F99EC.s")
+uint32_t func_8019275C_6F99EC(){
+    return func_80192684_6F9914(0x31);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019277C_6F9A0C.s")
 
@@ -61,16 +67,41 @@ uint32_t func_801927F4_6F9A84(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192814_6F9AA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192930_6F9BC0.s")
-
+//encapsulated together for similar issue - loads base of gActors instead of relevant entry first.
+#ifdef NON_MATCHING
+void func_801929C8_6F9C58(uint16_t x){
+    gActors[51].unk_0xD0_h=2;
+    gActors[51].unk_0x150._w=x;
+}
+void func_801929E8_6F9C78(uint16_t x){
+    gActors[51].unk_0xD0_h=4;
+    gActors[51].unk_0x150._w=x;
+}
+void func_80192A08_6F9C98(uint16_t x){
+    gActors[51].unk_0xD0_h=4;
+    gActors[51].unk_0x150._w=x;
+}
+void func_80192A28_6F9CB8(uint16_t x){
+    gActors[51].unk_0xD0_h=2;
+    gActors[51].unk_0x150._w=x;
+}
+void func_80192A48_6F9CD8(uint8_t x){
+    gActors[51].unk_0xD0_h=1;
+    gActors[51].rgba.a=x;
+    gActors[51].unk_0x154._w=(uint32_t)x*1000;
+}
+#else
+extern void func_801929C8_6F9C58(uint16_t x);
+extern void func_801929E8_6F9C78(uint16_t x);
+extern void func_80192A08_6F9C98(uint16_t x);
+extern void func_80192A28_6F9CB8(uint16_t x);
+extern void func_80192A48_6F9CD8(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801929C8_6F9C58.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801929E8_6F9C78.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A08_6F9C98.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A28_6F9CB8.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A48_6F9CD8.s")
+#endif
 
 void func_80192A80_6F9D10(){
     gActors[51].rgba.r=0;
@@ -83,45 +114,122 @@ void func_80192A98_6F9D28(){
     gActors[51].rgba.g=0xff;
     gActors[51].rgba.b=0xff;
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192AB4_6F9D44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192C34_6F9EC4.s")
+void func_80192C34_6F9EC4(uint16_t x, uint16_t index,uint32_t q){
+    gActors[index].actorType=0x2c11;
+    Actor_Spawn(index);
+    gActors[index].pos.x=0;
+    gActors[index].pos.y=0;
+    gActors[index].pos.z=0;
+    gActors[index].unk_0x154._w=q;
+}
 
+#ifdef NON_MATCHING
+void func_80192CAC_6F9F3C(uint16_t index){
+    gActors[index].unk_0x154._w+=2;
+}
+#else
+extern void func_80192CAC_6F9F3C(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192CAC_6F9F3C.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192CEC_6F9F7C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192E2C_6FA0BC.s")
 
+#ifdef NON_MATCHING
+void func_80193278_6FA508(uint16_t x){
+    gActors[52].actorType=0x2C12;
+    Actor_Spawn(52);
+    gActors[52].flag=2;
+
+    gActors[53].actorType=0x2C13;
+    Actor_Spawn(53);
+    gActors[53].flag=2;
+}
+#else
+extern void func_80193278_6FA508(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193278_6FA508.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801932D0_6FA560.s")
+void func_801932D0_6FA560(uint16_t other,uint16_t index,uint16_t type,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  gActors[index].actorType = type;
+  Actor_Spawn(index);
+  gActors[index].pos.x_w = 0;
+  gActors[index].pos.y_w = 0;
+  gActors[index].pos.z_w = 0;
+  gActors[index].flag = 2;
+  gActors[index].unk_0x84 = unk84;
+  gActors[index].pos.x = x;
+  gActors[index].pos.y = y;
+  gActors[index].pos.z = z;
+  gActors[index].unk_0xD0_h =gActors[other].unk_0xD0_h&0xff00;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019339C_6FA62C.s")
+void func_8019339C_6FA62C(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c04,unk84,x,y,z);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801933F8_6FA688.s")
+void func_801933F8_6FA688(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c05,unk84,x,y,z);
+}
+void func_80193454_6FA6E4(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c06,unk84,x,y,z);
+}
+void func_801934B0_6FA740(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c07,unk84,x,y,z);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193454_6FA6E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801934B0_6FA740.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019350C_6FA79C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193568_6FA7F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801935C4_6FA854.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193618_6FA8A8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193674_6FA904.s")
-
+void func_8019350C_6FA79C(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c08,unk84,x,y,z);
+}
+void func_80193568_6FA7F8(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c09,unk84,x,y,z);
+}
+void func_801935C4_6FA854(uint16_t other,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,81,0x2c0A,0,0,0,z);
+  gActors[81].unk_0xD0_h=0;
+}
+void func_80193618_6FA8A8(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c0B,unk84,x,y,z);
+}
+void func_80193674_6FA904(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x1D,unk84,x,y,z);
+}
+#ifdef NON_MATCHING
+void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z){
+  gActors[index].actorType = 0x2C00;
+  Actor_Spawn(index);
+  gActors[index].pos.z = z;
+}
+#else
+extern void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801936D0_6FA960.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193740_6FA9D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193778_6FAA08.s")
+void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t unk84,int32_t x,int32_t y,int32_t z){
+  gActors[index].actorType = 0x2c05;
+  Actor_Spawn(index);
+  gActors[index].flag = 2;
+  gActors[index].unk_0x84 = unk84;
+  gActors[index].pos.x_w = x;
+  gActors[index].pos.y_w = y;
+  gActors[index].pos.z_w = z;
+  gActors[index].unk_0xD0_h =gActors[other].unk_0xD0_h&0xff00;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019383C_6FAACC.s")
+void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t unk84,int32_t x,int32_t y,int32_t z){
+  gActors[index].actorType = 0x2c06;
+  Actor_Spawn(index);
+  gActors[index].flag = 2;
+  gActors[index].unk_0x84 = unk84;
+  gActors[index].pos.x_w = x;
+  gActors[index].pos.y_w = y;
+  gActors[index].pos.z_w = z;
+  gActors[index].unk_0xD0_h =gActors[other].unk_0xD0_h&0xff00;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193900_6FAB90.s")
 
@@ -524,8 +632,11 @@ void func_801A972C_7109BC(uint16_t x) {
 void func_801A9740_7109D0(uint16_t x) {
     gActors[56].unk_0xD0_h = 0x1A0;
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9754_7109E4.s")
-
+void func_801A9754_7109E4(uint16_t index){
+    gActors[index].flag=0;
+    gActors[index].actorType=0;
+    func_80081720(index,&D_800E5E48,3);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A97B8_710A48.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A97E8_710A78.s")

@@ -14,7 +14,7 @@ void DebugText_Reset(void) {
     }
 }
 #ifdef NON_MATCHING
-void DebugText_SetData(uint8_t* TXT, int posX, int posY, uint8_t R, uint8_t G, uint8_t B, uint8_t A, float ScaleX, float ScaleY){
+void DebugText_SetData(uint8_t* TXT, int posX, int posY, uint8_t R, uint8_t G, uint8_t B, uint8_t A, float scaleX, float scaleY){
     uint8_t c;
     uint16_t i;
     if(DebugText_Count<41){
@@ -25,8 +25,8 @@ void DebugText_SetData(uint8_t* TXT, int posX, int posY, uint8_t R, uint8_t G, u
         DebugText_TransformArray[DebugText_Count].color.g=G;
         DebugText_TransformArray[DebugText_Count].color.b=B;
         DebugText_TransformArray[DebugText_Count].color.a=A;
-        DebugText_TransformArray[DebugText_Count].ScaleX=ScaleX;
-        DebugText_TransformArray[DebugText_Count].ScaleY=ScaleY;
+        DebugText_TransformArray[DebugText_Count].scaleX=scaleX;
+        DebugText_TransformArray[DebugText_Count].scaleY=scaleY;
         for(i=0;i<80;i++){
             DebugText_TransformArray[DebugText_Count].text[i]=*TXT;
             c=*TXT++;
@@ -129,7 +129,7 @@ void DebugText_Tick(void){
             Sprite_SetSize(strlen(T->text)+1,1);
             Sprite_SetPosition(T->posX+0xA0, 0x78-T->posY);
             Sprite_SetColor(T->color.r,T->color.g,T->color.b,T->color.a);
-            Sprite_SetScale(T->ScaleX,T->ScaleY);
+            Sprite_SetScale(T->scaleX,T->scaleY);
             Sprite_Update(&G,T->text);
         }
         T++;

@@ -178,10 +178,10 @@ void func_80006B1C(uint16_t i) {
 
 void func_80006DF4(uint16_t index) {
     uint32_t temp = index; // int promotion magic??
-    gActors[temp].RotateX += 8.0f;
-    gActors[temp].RotateY += 8.0f;
-    gActors[temp + 1].RotateX -= 8.0f;
-    gActors[temp + 1].RotateY -= 8.0f;
+    gActors[temp].rotateX += 8.0f;
+    gActors[temp].rotateY += 8.0f;
+    gActors[temp + 1].rotateX -= 8.0f;
+    gActors[temp + 1].rotateY -= 8.0f;
 }
 //sets selected stage
 #ifdef NON_MATCHING

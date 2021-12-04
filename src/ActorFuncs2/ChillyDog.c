@@ -14,17 +14,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BC9C_74A84C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD00_74A8B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD08_74A8B8.s")
+void func_8019BD00_74A8B0(uint16_t x){}
+void func_8019BD08_74A8B8(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD10_74A8C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD38_74A8E8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD40_74A8F0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD48_74A8F8.s")
+void func_8019BD38_74A8E8(uint16_t x){}
+void func_8019BD40_74A8F0(uint16_t x){}
+void func_8019BD48_74A8F8(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019BD50_74A900.s")
 

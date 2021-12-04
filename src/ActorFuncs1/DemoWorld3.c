@@ -8,7 +8,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld3/func_80193594_6E3FB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld3/func_801937E8_6E4208.s")
+void func_801937E8_6E4208(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld3/func_801937F0_6E4210.s")
 

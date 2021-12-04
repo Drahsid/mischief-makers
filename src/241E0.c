@@ -1,11 +1,11 @@
 #include "BGM.h"
 #include "common.h"
-//these look to be camera functions, some that are level-specific.
+//tcamera functions, some that are level-specific.
 void Camera_RotateReset(void) {
     gCameraRot = 0;
     gCameraRotDelta = 0;
 }
-/*\
+#ifdef NON_MATCHING
 void Camera_ApplyRotate(void){
     int x;
     gCameraRot+=gCameraRotDelta;
@@ -13,12 +13,12 @@ void Camera_ApplyRotate(void){
     if(gCameraRot<0) x=gCameraRot+0xFFFF;
     gUpX =gCosineLookup[(x >> 0x10) - 0x100U & 0x3ff];
     gUpY =gCosineLookup[x >> 0x10 & 0x3ff];
-}*/
-
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/Camera_ApplyRotate.s")
+#endif
 
 void CameraInit_Scene63(void) {}
-
 void CameraTick_Scene63(void) {}
 
 void CameraInit_World1(void) {
@@ -40,14 +40,14 @@ void CameraInit_World2(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World2.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_WesternWorld.s")
-//"tightrope ride" camera funcs
+
 void CameraInit_TightropeRide(void) {
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_TightropeRide.s")
-//"Magma Rafts" camera func
+
 void CameraInit_MagmaRafts(void) {
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
@@ -58,8 +58,8 @@ void CameraTick_MagmaRafts(void) {
     CameraTick_World2();
     if ((gDebugBitfeild & 0xA400) == 0) { //this freezes the camera otherwise
         D_800BE544 = 0x8000;
-        gScreenPosTargetX._w = (int32_t)(gPlayerPosXMirror._w + 0x200000);
-        gScreenPosTargetY._w = (int32_t)gPlayerPosYMirror._w;
+        gScreenPosTargetX._w = (gPlayerPosXMirror._w + 0x200000);
+        gScreenPosTargetY._w = gPlayerPosYMirror._w;
         D_800BE704 = 1;
     }
 }
@@ -71,15 +71,15 @@ void CameraInit_scene02(void){
 }
 
 void CameraTick_scene02(void) {}
-//camera func for "Scene 3"
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene03.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_scene03.s")
-//camera func for "Scene 4"
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene04.s")
 
 void CameraTick_Scene04(void) {}
-//camera funcs for "migen brawl"
+
 void cameraInit_MigenBrawl(void) {
     D_800BE578 = 2;
     D_800BE57C = 2;
@@ -178,7 +178,7 @@ void CameraInit_Vertigo(void) {
     D_800BE710 = 1;
     gCameraRot = 0;
 }
-/*
+#ifdef NON_MATCHING
 void CameraTick_Vertigo(){
     int32_t rot=gCameraRot;
     if(gCameraRot<0) rot=gCameraRot+0xFFFF;
@@ -186,8 +186,10 @@ void CameraTick_Vertigo(){
     gUpX=gCosineLookup[rot - 0x100 & 0x3FF];
     gUpY=gCosineLookup[rot & 0x3FF];
 
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Vertigo.s")
+#endif
 
 void CameraInit_Freefall(void) {
     D_800BE70C = 3;
@@ -245,7 +247,7 @@ void CameraTick_ClanceWar2(){
     D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)*0x10000;
     func_8002488C();
 }
-//camera funcs for "Bee's the one"
+
 void CameraInit_BeesTheOne(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
@@ -271,11 +273,11 @@ void func_80024DD8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024E18.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_BeesTheOne.s")
-//Splashscreen camera funcs.
+
 void CameraInit_Splashscreen(void) {}
 
 void CameraTick_Splashscreen(void) {}
-//camera funcs for "trapped" and "Merco"
+
 void CameraInit_Merco_Trapped(void) {
     D_800BE588 = 0;
     D_800BE58C = 1;
@@ -311,7 +313,7 @@ void CameraInit_World4B(void) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World4B.s")
-//"aster's tryke" camera tick
+
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_AstersTryke.s")
 
 void CameraInit_PhoenixGamma(void) {

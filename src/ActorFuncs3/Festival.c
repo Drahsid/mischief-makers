@@ -177,19 +177,95 @@ void func_801AA370_790660(void) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ACF40_793230.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD0AC_79339C.s")
-
+//tally points earned.
+#ifdef NON_MATCHING
+void func_801AD37C_79366C(uint16_t index,uint16_t instant){
+    if(gActors[index].unk_0x160==0){
+        gFestivalPointsWhite+=gActors[index].unk_0x154._w;
+        gFestivalPointsRed+=gActors[index].unk_0x158;
+        gActors[index].unk_0x160=1;
+    }
+    if(instant){
+        gActors[62].unk_0x158=gFestivalPointsWhite;
+        gActors[64].unk_0x158=gFestivalPointsRed;
+    }
+    else{
+        gActors[62].unk_0x158=ModInRange_i(gActors[62].unk_0x158,gFestivalPointsWhite,1);
+        gActors[64].unk_0x158=ModInRange_i(gActors[64].unk_0x158,gFestivalPointsRed,1);
+        if (((gActors[index].unk_0x170_w != gActors[62].unk_0x158) || (gActors[index].unk_0x174 != gActors[64].unk_0x158))
+          && ((gSceneFrames & 3) == 0)){
+            SFX_Play_1(0x139);
+            }
+        gActors[index].unk_0x170_w=gActors[62].unk_0x158;
+        gActors[index].unk_0x174=gActors[64].unk_0x158;
+    }
+}
+#else
+extern void func_801AD37C_79366C(uint16_t index,uint16_t instant);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD37C_79366C.s")
-
+#endif
+//flashing letters
+#ifdef NON_MATCHING
+void func_801AD4F4_7937E4(uint16_t index){
+  uint8_t b,g,r;
+  switch(gSceneFrames & 7) {
+  case 0:
+    r = 0;
+    g = 0;
+    b = 0;
+    break;
+  case 1:
+    b = 0xff;
+    r = 0;
+    g = 0;
+    break;
+  case 2:
+    g = 0xff;
+    r = 0;
+    b = 0;
+    break;
+  case 3:
+    b = 0xff;
+    g = 0xff;
+    r = 0;
+    break;
+  case 4:
+    r = 0xff;
+    g = 0;
+    b = 0;
+    break;
+  case 5:
+    b = 0xff;
+    r = 0xff;
+    g = 0;
+    break;
+  case 6:
+    g = 0xff;
+    r = 0xff;
+    b = 0;
+    break;
+  case 7:
+    b = 0xff;
+    g = 0xff;
+    r = 0xff;
+  }
+  gActors[index].rgba.r = r;
+  gActors[index].rgba.g = g;
+  gActors[index].rgba.b = b;
+}
+#else
+void func_801AD4F4_7937E4(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD4F4_7937E4.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD628_793918.s")
-
+//check the scores at the end.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD658_793948.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD71C_793A0C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD840_793B30.s")
-
+//some debug object?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD9B0_793CA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ADE64_794154.s")

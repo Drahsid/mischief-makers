@@ -56,8 +56,8 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].unk_0xE8p = &D_800E1380;
     }
 
-    gActors[index].ScaleX = 1.0;
-    gActors[index].ScaleY = 1.0;
+    gActors[index].scaleX = 1.0;
+    gActors[index].scaleY = 1.0;
 
     // OK (except regalloc)
     gActors[index].unk_0x14C = 0;
@@ -81,9 +81,9 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].rgba.a = 0xFF;
     gActors[index].unk_0xE6 = 1;
     gActors[index].unk_0xDE = 1;
-    gActors[index].RotateZ = 0.0;
-    gActors[index].RotateY = 0.0;
-    gActors[index].RotateX = 0.0;
+    gActors[index].rotateZ = 0.0;
+    gActors[index].rotateY = 0.0;
+    gActors[index].rotateX = 0.0;
     gActors[index].unk_0xD6 = (int8_t)0;
     gActors[index].unk_0xD4 = (int8_t)0;
     gActors[index].unk_0xD0_h = (int8_t)0;

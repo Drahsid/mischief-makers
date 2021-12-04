@@ -450,8 +450,8 @@ void func_80017FE8(uint16_t index) {
     actor->rgba.b = 0xFF;
     actor->rgba.g = 0xFF;
     actor->rgba.r = 0xFF;
-    actor->ScaleX = 18.0f;
-    actor->ScaleY = 12.0f;
+    actor->scaleX = 18.0f;
+    actor->scaleY = 12.0f;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")

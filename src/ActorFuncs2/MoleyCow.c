@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019B100_75D660.s")
+func_8019B100_75D660(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019B108_75D668.s")
 

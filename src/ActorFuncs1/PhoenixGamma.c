@@ -1,10 +1,27 @@
 #include "common.h"
 
+uint16_t D_801A10C0_6B9AB0=0;
+uint16_t D_801A10C4_6B9AB4=0;
+int16_t D_801A10C8_6B9AB8=0;
+uint16_t D_801A10E8_6B9AD8=0;
+
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80192100_6AAAF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_801921DC_6AABCC.s")
+void func_801921DC_6AABCC(uint16_t index){
+    if(gActors[index].unk_0xD0_h&1){
+        gActors[index].rgba.r=0x3f;
+        gActors[index].rgba.g=0x7f;
+        gActors[index].rgba.b=0;
+    }
+    else{
+        gActors[index].rgba.r=0x4f;
+        gActors[index].rgba.g=0x7f;
+        gActors[index].rgba.b=0x4F;    
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019224C_6AAC3C.s")
+void func_8019224C_6AAC3C(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80192254_6AAC44.s")
 
@@ -53,7 +70,9 @@
 void func_801959F8_6AE3E8(uint16_t x){}
 void func_80195A00_6AE3F0(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80195A08_6AE3F8.s")
+void func_80195A08_6AE3F8(){
+  D_801A10E8_6B9AD8=0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80195A14_6AE404.s")
 
@@ -112,8 +131,16 @@ void func_80195A00_6AE3F0(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80197C48_6B0638.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80197E74_6B0864.s")
-
+//shade based on z distance.
+#ifdef NON_MATCHING
+void func_80197F34_6B0924(uint16_t index){
+    int32_t z=-gActors[index].pos.z/2;
+    gActors[index].rgba.r=gActors[index].rgba.g=gActors[index].rgba.b=z;
+}
+#else
+extern void func_80197F34_6B0924(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80197F34_6B0924.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80197F90_6B0980.s")
 
@@ -132,18 +159,23 @@ void func_80195A00_6AE3F0(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A4A0_6B2E90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A518_6B2F08.s")
-
+//"Beast Change!"
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A628_6B3018.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A7F4_6B31E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A984_6B3374.s")
+void func_8019A984_6B3374(uint16_t x){
+    gScreenPosTargetY._hi+=0x20;
+    gEyeZ+=1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019A9BC_6B33AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019AB1C_6B350C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019AB98_6B3588.s")
+void func_8019AB98_6B3588(uint16_t x){
+    gActors[138].flag=0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019ABA8_6B3598.s")
 
@@ -211,16 +243,19 @@ void func_80195A00_6AE3F0(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019DBA4_6B6594.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019DCF4_6B66E4.s")
+void func_8019DCF4_6B66E4(uint16_t index){
+    gActors[index].pos.x=gActors[53].pos.x;
+    gActors[index].pos.y=gActors[53].pos.y+48;
+    gActors[index].pos.z_w=gActors[58].pos.z_w-0x1000;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019DD4C_6B673C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019FC10_6B8600.s")
-//"no hit" check
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019FF64_6B8954.s")
 
 void func_801A0344_6B8D34(uint16_t x){}
-
 void func_801A034C_6B8D3C(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_801A0354_6B8D44.s")

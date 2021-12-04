@@ -89,7 +89,7 @@ void func_80192F30_6BDC00(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80193024_6BDCF4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801932DC_6BDFAC.s")
-
+//debug func?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80193B50_6BE820.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80193EFC_6BEBCC.s")
@@ -134,21 +134,19 @@ void func_80192F30_6BDC00(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196854_6C1524.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196BE8_6C18B8.s")
+void func_80196BE8_6C18B8(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196BF0_6C18C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196C78_6C1948.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196D60_6C1A30.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196E88_6C1B58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801970F8_6C1DC8.s")
+void func_801970F8_6C1DC8(uint16_t x){}
+void func_80197100_6C1DD0(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80197100_6C1DD0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80197108_6C1DD8.s")
+uint32_t func_80197108_6C1DD8(){return 0x32;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80197110_6C1DE0.s")
 
@@ -280,11 +278,9 @@ uint32_t func_8019DAAC_6C877C(uint16_t x){
     if((gActors[193].rgba.a==255)&&(x<gActors[193].unk_0x150._w)) return 1;
     return 0;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019DAAC_6C877C.s")
 //aim camera while holding fist?
-extern void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4);
-//RegAlloc?
 #ifdef NON_MATCHING
+//RegAlloc?
 void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4){
   gAtX=(gActors[i2].pos.x+gActors[i1].pos.x)/2;
   gAtY=(gActors[i4].pos.y+gActors[i3].pos.y)/2;
@@ -292,6 +288,7 @@ void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4){
   gEyeY =gAtY + 4.0f;
 }
 #else
+extern void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019DAF0_6C87C0.s")
 #endif
 
@@ -305,8 +302,8 @@ void func_8019DBEC_6C88BC(uint16_t index){
     gActors[index].pos.z=0x80;
     gActors[index].unk_0x84=0xE6;
     gActors[index].rgba.a=64;
-    gActors[index].ScaleX=12.0;
-    gActors[index].ScaleY=12.0;
+    gActors[index].scaleX=12.0;
+    gActors[index].scaleY=12.0;
 }
 
 void func_8019DC88_6C8958(){
@@ -317,7 +314,6 @@ void func_8019DC88_6C8958(){
 }
 
 void func_8019DCB8_6C8988(){
-
     gActors[122].unk_0x94=0;
     gActors[123].unk_0x94=0;
     gActors[122].flag&=~1;

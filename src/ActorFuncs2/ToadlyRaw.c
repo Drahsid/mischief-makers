@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ToadlyRaw/func_8019B100_7545A0.s")
+void func_8019B100_7545A0(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ToadlyRaw/func_8019B108_7545A8.s")
 
@@ -54,7 +54,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ToadlyRaw/func_801A0990_759E30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ToadlyRaw/func_801A0A68_759F08.s")
+void func_801A0A68_759F08(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ToadlyRaw/func_801A0A70_759F10.s")
 

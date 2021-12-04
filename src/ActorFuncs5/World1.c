@@ -9,8 +9,17 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World1/func_801BA008_7C71E8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World1/func_801BA38C_7C756C.s")
-
+#ifdef NON_MATCHING
+void func_801BA694_7C7874(){
+  gActors[140].unk_0x94 |= 0x10;
+  gActors[140].rgba.r = 0x30;
+  gActors[140].rgba.g = 0x70;
+  gActors[140].rgba.b = 0x58;
+}
+#else
+extern void func_801BA694_7C7874();
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World1/func_801BA694_7C7874.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World1/func_801BA6C4_7C78A4.s")
 

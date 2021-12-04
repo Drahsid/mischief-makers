@@ -29,8 +29,18 @@ void func_80080190(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_80081644.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800816AC.s")
-
+#ifdef NON_MATCHING
+void func_80081720(uint16_t index, int16_t* p, uint32_t flag){
+    int16_t s=*p;
+    while(s!=0x7FFF){
+        p+=5;
+        gActors[s+index].flag&=-flag+1;
+        s=*p;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_80081720.s")
+#endif
 void func_80081790(uint16_t index, void*p){
     gActors[index].unk_0x174=(uint32_t)p;
     gActors[index].unk_0x16C=0;

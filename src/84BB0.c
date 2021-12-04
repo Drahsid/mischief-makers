@@ -79,8 +79,8 @@ extern float D_800E3DBC[8];
 
 void func_80085E60(uint16_t index){
     float f=D_800E3DBC[gActors[index].unk_0xD8];
-    gActors[index].ScaleX=f;
-    gActors[index].ScaleY=f;
+    gActors[index].scaleX=f;
+    gActors[index].scaleY=f;
 }
 
 extern uint32_t D_800E3DE4[8][2];

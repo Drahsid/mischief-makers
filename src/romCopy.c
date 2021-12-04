@@ -1,14 +1,15 @@
 #include "BGM.h"
 #include "common.h"
 
-/*
+#ifdef NON_MATCHING
 void func_80025E00(void){
     D_801376DC=&D_80200400;
     RomCopy_A(0x1E6900,&D_80267CD0,0X2E240);
     D_801376E0=&D_80200400+func_80004910(&D_80267CD0,&D_80200400);
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E00.s")
-
+#endif
 // romcopies 0x34400 bytes from rom:0x214b40 to ram:0x80296000
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
 
@@ -31,7 +32,7 @@ void func_80025E00(void){
 
 #ifdef NON_MATCHING
 // the subtraction gets optimized out...
-s32 func_8002653C(void) {
+int32_t func_8002653C(void) {
     int32_t phi_a0 = 0x41E53F8;
     phi_a0 -= 0x4000000;
 

@@ -15,11 +15,22 @@ void func_80082024(uint16_t index){
     actor->unk_0x98&= ~0x00200600;
 }
 
-
+#ifdef NON_MATCHING
+void func_80082088(uint16_t index){
+  if (index == 0x40) gActors[64].pos.z = 0x10;
+  if (index == 0x50) gActors[80].pos.z = 0xfeff;
+  if (index == 0x60) gActors[96].pos.z = 0xff7f;
+  func_80081FC8(index);
+  if (gActors[index].unk_0xD0_h == 0) {
+    func_80081D20(index);
+    gActors[index].unk_0xD0_h++;
+  }
+  func_80082024(index);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/82920/func_80082088.s")
-/*
+#endif
 void func_80082184(uint16_t i){
     func_80081E38(i);
-}*/
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/82920/func_80082184.s")

@@ -36,15 +36,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2638_79A478.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2808_79A648.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2810_79A650.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2818_79A658.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2820_79A660.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2828_79A668.s")
+void func_801B2808_79A648(uint16_t x){}
+void func_801B2810_79A650(uint16_t x){}
+void func_801B2818_79A658(uint16_t x){}
+void func_801B2820_79A660(uint16_t x){}
+void func_801B2828_79A668(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B2830_79A670.s")
 

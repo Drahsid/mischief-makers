@@ -86,21 +86,21 @@ typedef struct {
     int32_t posX;
     int32_t posY;
     RGBA32 color;
-    float ScaleX;
-    float ScaleY;
+    float scaleX;
+    float scaleY;
 } TextTransform;
 
 //UI objects? last 2 are the health gauge and its portrait
 typedef struct {
-    /* 0x00 */ Mtx Mtxs[2]; //one for each FB
+    /* 0x00 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x80 */ uint16_t Active;
     /* 0x82 */ uint16_t unk_0x82;
     /* 0x84 */ int16_t posX;
     /* 0x86 */ int16_t unk_0x86; //align?
     /* 0x88 */ int16_t posY; 
     /* 0x8A */ int16_t unk_0x8A; //align? these 2 may be unions.
-    /* 0x8C */ float ScaleX;
-    /* 0x90 */ float ScaleY;
+    /* 0x8C */ float scaleX;
+    /* 0x90 */ float scaleY;
     /* 0x94 */ int8_t alpha;
     /* 0x95 */ int8_t unk_0x95[3]; //this is Definitely align.
     /* 0x98 */ void* texture;
@@ -111,7 +111,7 @@ typedef struct {
 
 //likely the gem objects.
 typedef struct {
-    /* 0x00 */ Mtx Mtxs[2]; //one for each FB
+    /* 0x00 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x80 */ uint16_t Active;
     /* 0x82 */ uint16_t unk_0x82; //may be align
     /* 0x84 */ Vec2i_union pos;
@@ -120,8 +120,15 @@ typedef struct {
 
 //seems to handle some of the player actor data.
 typedef struct {
-    /* 0x00 */ uint8_t unk_0x00[0x12];
-    /* 0x12 */ uint8_t unk_0x12;
+    /* 0x00 */ int32_t unk_0x00[2];
+    /* 0x08 */ int16_t unk_0x8;
+    /* 0x0A */ int8_t unk_0xA;
+    /* 0x0B */ int8_t unk_0xB;
+    /* 0x0C */ int16_t unk_0xC;
+    /* 0x0E */ int16_t unk_0xE;
+    /* 0x10 */ int8_t unk_0x10;
+    /* 0x10 */ int8_t unk_0x11;
+    /* 0x12 */ int8_t unk_0x12; //shake timer?
     /* 0x13 */ uint8_t unk_0x13;
     /* 0x14 */ uint8_t unk_0x14[12];
     /* 0x20 */ s2_w unk_0x20; //unused button history?

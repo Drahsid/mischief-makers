@@ -341,10 +341,10 @@ void func_8006C5A4(uint16_t index) {
         func_80066A10(index);
 
         if ((actor->flag & ACTOR_FLAG_FLIPPED) != 0) {
-            actor->unk_0x148 = -actor->ScaleX;
+            actor->unk_0x148 = -actor->scaleX;
         }
         else {
-            actor->unk_0x148 = actor->ScaleX;
+            actor->unk_0x148 = actor->scaleX;
         }
 
         if (((actor->unk_0x98 & 0x200) == 0) && (gPlayerActorIndex != index)) {
@@ -553,7 +553,7 @@ void func_80072F54(uint16_t index){
             gActors[index].flag=2;
             gActors[index].vel.x_w=0;
             gActors[index].vel.y_w=0;
-            gActors[index].RotateZ=0.0f;
+            gActors[index].rotateZ=0.0f;
     }
     else {func_80072E54(index);}
 }*/

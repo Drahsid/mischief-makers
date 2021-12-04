@@ -1,18 +1,14 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80192100_6DA010.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80192108_6DA018.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80192110_6DA020.s")
+void func_80192100_6DA010(uint16_t x){}
+void func_80192108_6DA018(uint16_t x){}
+void func_80192110_6DA020(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80192118_6DA028.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80193448_6DB358.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80193450_6DB360.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80193458_6DB368.s")
+void func_80193448_6DB358(uint16_t x){}
+void func_80193450_6DB360(uint16_t x){}
+void func_80193458_6DB368(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_80193460_6DB370.s")
 
@@ -80,8 +76,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_8019A038_6E1F48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_8019A3AC_6E22BC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_8019A3B4_6E22C4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/DemoWorld1/func_8019A3BC_6E22CC.s")
+void func_8019A3AC_6E22BC(uint16_t x){}
+void func_8019A3B4_6E22C4(uint16_t x){}
+void func_8019A3BC_6E22CC(uint16_t x){}

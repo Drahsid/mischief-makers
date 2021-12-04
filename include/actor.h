@@ -103,7 +103,7 @@ typedef void (*ActorFunc)(uint16_t index);
  */
 
 typedef struct {
-    /* 0x000 */ Mtx Mtxs[2]; //one for each FB
+    /* 0x000 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x080 */ int32_t flag;
     /* 0x084 */ uint16_t unk_0x84;
     /* 0x086 */ uint8_t unk_0x86;
@@ -124,11 +124,11 @@ typedef struct {
     /* 0x0AE */ int16_t unk_0xAE;
     /* 0x0B0 */ int16_t unk_0xB0;
     /* 0x0B2 */ int16_t unk_0xB2;
-    /* 0x0B4 */ float ScaleX;
-    /* 0x0B8 */ float ScaleY;
-    /* 0x0BC */ float RotateX;
-    /* 0x0C0 */ float RotateY; 
-    /* 0x0C4 */ float RotateZ;
+    /* 0x0B4 */ float scaleX;
+    /* 0x0B8 */ float scaleY;
+    /* 0x0BC */ float rotateX;
+    /* 0x0C0 */ float rotateY; 
+    /* 0x0C4 */ float rotateZ;
     /* 0x0C8 */ int16_t unk_0xC8;
     /* 0x0CA */ int16_t unk_0xCA;
     /* 0x0CC */ uint16_t unk_0xCC;
@@ -154,7 +154,7 @@ typedef struct {
         /* 0x0E0 */ int16_t health;
         /* 0x0E0 */ uint16_t healthu;
     };
-    /* 0x0E2 */ uint16_t unk_0xE2;
+    /* 0x0E2 */ uint16_t unk_0xE2; //sometimes used as damage delta.
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
     union{
@@ -234,7 +234,7 @@ typedef struct {
             /* 0x182 */ uint8_t unk_0x182;
             /* 0x183 */ uint8_t unk_0x183;
         };
-        /* 0x180 */ uint32_t unk_0x180_w;
+        /* 0x180 */ int32_t unk_0x180_w;
         /* 0x180 */ uint16_t unk_0x180_h[2];
     };
     union {
@@ -255,7 +255,7 @@ typedef struct {
             };
         };
     /* 0x190 */ void* unk_0x190;
-    /* 0x194 */ uint8_t unk_0x194[4]; //unused field?
+    /* 0x194 */ uint8_t unk_0x194[4]; //align?
 } Actor; /* sizeof = 0x198 */
 
 typedef struct {

@@ -41,7 +41,7 @@ void func_801A7620_776210(uint16_t index) {
         gActors[index].flag ^= ACTOR_FLAG_FLIPPED;
     }
 
-    gActors[index].unk_0x148 = gActors[index].ScaleX * 1.0f;
+    gActors[index].unk_0x148 = gActors[index].scaleX * 1.0f;
 
     if (gActors[index].flag & ACTOR_FLAG_FLIPPED) {
         gActors[index].unk_0x148 = -gActors[index].unk_0x148;
@@ -238,13 +238,14 @@ uint32_t func_801AAA3C_77962C(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AB8E8_77A4D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AB9D8_77A5C8.s")
-extern void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2);
+
 //EXPLOSIONS!?
 #ifdef NON_MATCHING
 void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2){
     func_8003DF78(f1,x,f1,f2);
 }
 #else
+extern void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABAC8_77A6B8.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABB00_77A6F0.s")
@@ -338,8 +339,8 @@ func_801AF6B4_77E2A4(uint16_t index){
     gActors[index].pos.y=0;
     gActors[index].pos.z=0xFE00;
     gActors[index].rgba.r=0x80;
-    gActors[index].ScaleX=8.0;
-    gActors[index].RotateX=45.0;
+    gActors[index].scaleX=8.0;
+    gActors[index].rotateX=45.0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AF750_77E340.s")

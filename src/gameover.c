@@ -25,9 +25,9 @@ void GameOver(void) {
     Text_SpawnAt2(48, 0x262, 0xFFFE, 3, 0x402);
 
     actor->unk_0x94 |= 0x100F;
-    actor->ScaleX = 6.0f;
+    actor->scaleX = 6.0f;
     actor->unk_0x12C_f = 6.0f;
-    actor->RotateX = 90.0f;
+    actor->rotateX = 90.0f;
     actor->rgba.a = 0;
 
     BGM_Play(BGM_INT);

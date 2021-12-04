@@ -65,8 +65,8 @@ void func_800972DC(void) {
     gActors[80].unk_0x94 = 0x900;
     gActors[80].flag = 3;
     gActors[80].unk_0x84 = 0x2d0;
-    gActors[80].ScaleX = 20.0;
-    gActors[80].ScaleY = 20.0;
+    gActors[80].scaleX = 20.0;
+    gActors[80].scaleY = 20.0;
     gActors[80].unk_0x18C = D_800D8588;
     gActors[80].pos.x_1 = 0;
     gActors[80].pos.y_1 = 0;
@@ -116,8 +116,8 @@ void LevelClear_SkipScene(void) {
         gActors[193].pos.y = 0;
         gActors[193].pos.z = 0xc0;
         gActors[193].unk_0x84 = 0x2d0;
-        gActors[193].ScaleX = 20.0;
-        gActors[193].ScaleY = 20.0;
+        gActors[193].scaleX = 20.0;
+        gActors[193].scaleY = 20.0;
         func_8005DFC8(0);
         D_800D16C4 = 0;
         SFX_StopAll();

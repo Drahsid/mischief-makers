@@ -71,6 +71,7 @@ extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800D7F00[74]; // TODO: Investigate
 extern int16_t D_800E2600[66];
+extern int16_t D_800E5E48[66];
 extern ActorFunc gActorFuncTable_800E5AC0[];
 extern UNK_TYPE D_800E8BEC;
 extern uint16_t LifeBar_Colors[]; //16-bit colors. may be structure.
@@ -124,7 +125,7 @@ extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
 extern uint16_t gRNGSeed;
-extern uint16_t gCurrentScene; //current scene - determines DMA's, bgm and camera behavior.
+extern uint16_t gCurrentScene; //determines DMA's, bgm and camera behavior.
 extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
@@ -132,9 +133,10 @@ extern int16_t D_800BE5F0;
 extern int32_t D_800BE5F4; //gotta be some kinda {s32,u8[4]} union.
 extern int16_t D_800BE5F8;
 extern uint16_t D_800BE5FC;
-extern UNK_TYPE D_800BE610;
+extern UNK_TYPE D_800BE610; //these 4 are zero'd, but unused
 extern UNK_TYPE D_800BE614;
 extern UNK_TYPE D_800BE618;
+extern UNK_TYPE D_800BE620;
 extern uint16_t gScreenXLock;
 extern uint16_t gScreenYLock;
 extern int16_t D_800BE638;
@@ -164,7 +166,7 @@ extern int16_t D_800BE6A8;
  * F unknown (func_8002167C is just jr ra)
  */
 extern uint16_t gDebugBitfeild;
-extern float D_800BE6B0;    // 90.0f, never used, AFAIK
+extern float D_800BE6B0;    // 90.0f, never used.
 extern uint16_t gDebugthrottle; 
 extern b2_s D_800BE6B8;
 extern int32_t D_800BE6C0;
@@ -318,6 +320,7 @@ extern int16_t D_800D3AE8[70]; //indecies for "scene transition" portaits.
 extern int16_t D_800D3B74;
 extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
+extern UNK_TYPE D_800D85A8;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
 extern uint32_t D_800D4184[82]; // pointer array?
@@ -598,6 +601,13 @@ extern uint16_t gStageTime; // pauses for cutscene, loading capped at 36000
 extern uint64_t gYellowGemBitfeildTemp;
 extern uint16_t D_801781F8;
 extern uint16_t gStageTimeReal;
+extern uint16_t gFestivalEventState; //looks like this starts the festival variables.
+extern uint16_t gFestivalCurrentEvent; //current festival event
+extern uint16_t gFestivalFouls; //False starts
+extern uint8_t gFestivalEventsComplete;
+extern uint16_t gFestivalPointsRed;
+extern uint16_t gFestivalPointsWhite;
+extern uint8_t gFestivalEventsBools[10];
 extern int32_t D_801782B0;
 extern uint16_t D_801782C0;
 extern int16_t D_801783F4[2];

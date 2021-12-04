@@ -17,13 +17,17 @@ float FABS_8005C6E4(float x){
     if(x<0)x=-x;
     return x;
 }
-/*
-int32_t func_8005C708(int32_t x){
-    int32_t ret = Rand();
-    if(x!=0)ret=ret % x;
+#ifdef NON_MATCHING
+uint32_t func_8005C708(uint32_t x){
+    int32_t ret;
+    uint8_t r = Rand();
+    ret=r;
+    if(x!=0)ret=r % x;
     return ret;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C708.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C774.s")
 /*

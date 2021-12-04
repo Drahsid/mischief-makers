@@ -889,8 +889,8 @@ void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
     gActors[index].unk_0xDF = 0;
     gActors[index].unk_0xDA = 4;
     gActors[index].unk_0xDB = 4;
-    gActors[index].ScaleX = temp;
-    gActors[index].ScaleY = temp;
+    gActors[index].scaleX = temp;
+    gActors[index].scaleY = temp;
 
     func_8002ABE4(index, 4);
     func_8002AC30(index, 8);
@@ -927,7 +927,7 @@ void func_8002ED48(uint16_t index, int16_t x, int16_t y) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002EDC8.s")
-
+//3rd unused arg.
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Gem_ActorSpawn.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F154.s")
@@ -1255,9 +1255,9 @@ void func_80033DE4(uint16_t index){
 /* How do I const floats?
 void func_800348E4(uint16_t index){
     gActors[index].rgba.a=ModInRange_i(gActors[index].rgba.a,0,2);
-    gActors[index].ScaleX=ModInRange_i(gActors[index].ScaleX,-0.01f,gActors[index].unk_0x114);
-    gActors[index].ScaleY=ModInRange_i(gActors[index].ScaleY,-0.01f,gActors[index].unk_0x118);
-    if((gActors[index].rgba.a==0)||(gActors[index].ScaleX<0.0)||(gActors[index].ScaleY<0.0)){
+    gActors[index].scaleX=ModInRange_i(gActors[index].scaleX,-0.01f,gActors[index].unk_0x114);
+    gActors[index].scaleY=ModInRange_i(gActors[index].scaleY,-0.01f,gActors[index].unk_0x118);
+    if((gActors[index].rgba.a==0)||(gActors[index].scaleX<0.0)||(gActors[index].scaleY<0.0)){
         gActors[index].flag=0;
     }
 }*/
@@ -1269,8 +1269,8 @@ void func_800349C0(uint16_t index,uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80034A0C.s")
 void func_80034D14(uint16_t i){
-    gActors[i].ScaleX=gActors[i].unk_0x168 /1000.0f;
-    gActors[i].ScaleY=gActors[i].unk_0x16C /1000.0f;
+    gActors[i].scaleX=gActors[i].unk_0x168 /1000.0f;
+    gActors[i].scaleY=gActors[i].unk_0x16C /1000.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/clanpot_moveitems.s")
@@ -1468,7 +1468,7 @@ u32 func_8003D628(u16 x){
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003D68C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003D794.s")
-
+//"Escaped from trouble!" "Go to the Next Area!"
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003DBD0.s")
 //explosion effect?
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003DF78.s")
@@ -1676,7 +1676,7 @@ void func_8004178C(uint16_t index, uint16_t* pos) {
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8004178C.s")
 #endif
 
-int32_t func_8004185c(uint16_t index) {
+int32_t func_8004185C(uint16_t index) {
     if (gActors[index].unk_0xD0_h == 2) {
         return 1;
     }

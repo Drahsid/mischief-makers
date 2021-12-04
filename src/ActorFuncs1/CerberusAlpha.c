@@ -291,7 +291,7 @@ void func_80197288_68F288(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80199EF0_691EF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80199F50_691F50.s")
+void func_80199F50_691F50(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80199F58_691F58.s")
 
@@ -341,7 +341,7 @@ void func_8019BCE0_693CE0(void){
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019BD5C_693D5C.s")
-//lunar yells "best change!" here.
+//lunar yells "Beast change!" here.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019BF2C_693F2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019C070_694070.s")
@@ -419,7 +419,7 @@ uint32_t func_801A2010_69A010(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A2184_69A184.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A2234_69A234.s")
-extern void func_801A22AC_69A2AC(uint16_t index);
+
 #ifdef NON_MATCHING
 void func_801A22AC_69A2AC(uint16_t index){
   gPlayerActor.pos.x_w= gActors[index+1].pos.x_w;
@@ -430,6 +430,7 @@ void func_801A22AC_69A2AC(uint16_t index){
   gPlayerActor.pos.z_w= gActors[index+1].pos.z_w + 1;
 }
 #else
+extern void func_801A22AC_69A2AC(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A22AC_69A2AC.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A233C_69A33C.s")
