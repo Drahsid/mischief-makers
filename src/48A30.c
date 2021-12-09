@@ -29,7 +29,7 @@ void func_80047E38(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/48A30/func_80048320.s")
 
 void func_800483B4(uint16_t index){
-    if(gActors[index].unk_0xD1==3)gActors[index].unk_0x150._w=600;
+    if(gActors[index].actorState_b[1]==3)gActors[index].unk_0x150._w=600;
     D_800BE5F4=1;
 }
 

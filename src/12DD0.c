@@ -26,7 +26,7 @@ void func_800121D0(void) {
 }
 
 void func_80012288(void) {
-    gPlayerActor.actorType = 0x16;
+    gPlayerActor.actorType = ACTORTYPE_MARINA;
     func_800121D0();
 }
 

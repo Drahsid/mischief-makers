@@ -37,14 +37,12 @@ void func_80192D44_68AD44(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80192EC4_68AEC4.s")
 
 void func_801932C4_68B2C4(uint16_t x){
-  gActors[72].actorType=0xF05;
-  Actor_Spawn(72);
+  ACTORINIT(72,0xF05);
   gActors[72].rgba.a=0xF0;
 }
 #ifdef NON_MATCHING
 void func_801932FC_68B2FC(){
-  gActors[72].actorType=0;
-  Actor_Spawn(72);
+  ACTORINIT(72,0);
   gActors[72].flag=2;
   gActors[72].unk_0x94=0x319;
   
@@ -149,7 +147,7 @@ void func_80195CA8_68DCA8(uint16_t index){
   gActors[index].flag|=0x200;
   gActors[index].unk_0xE4=100;
   gActors[index].unk_0xDA=4, gActors[index].unk_0xDB=3; //yes, this works.
-  gActors[index].unk_0xFC=0x30000;
+  gActors[index].unk_0xFC._w=0x30000;
   func_8002ABE4(index,12);
 }
 
@@ -173,18 +171,18 @@ void func_80196898_68E898(uint16_t index){
 }
 
 void func_801968F0_68E8F0(uint16_t index){
-  if(gActors[index].pos.z<gActors[96].pos.z) gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,0x10000,0x1000);
-  else gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,-0x10000,0x1000);
+  if(gActors[index].pos.z<gActors[96].pos.z) MODi(gActors[index].vel.z_w,0x10000,0x1000);
+  else MODi(gActors[index].vel.z_w,-0x10000,0x1000);
 }
 
 void func_8019698C_68E98C(uint16_t index){
-  if(gActors[index].pos.z<-0x60) gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,0x20000,0x4000);
-  else gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,-0x20000,0x4000);
+  if(gActors[index].pos.z<-0x60) MODi(gActors[index].vel.z_w,0x20000,0x4000);
+  else MODi(gActors[index].vel.z_w,-0x20000,0x4000);
 }
 
 void func_80196A20_68EA20(uint16_t index){
-  if(gActors[index].pos.z<0x60) gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,0x20000,0x4000);
-  else gActors[index].vel.z_w=ModInRange_i(gActors[index].vel.z_w,-0x20000,0x4000);
+  if(gActors[index].pos.z<0x60) MODi(gActors[index].vel.z_w,0x20000,0x4000);
+  else MODi(gActors[index].vel.z_w,-0x20000,0x4000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80196AB4_68EAB4.s")
@@ -195,8 +193,8 @@ extern uint32_t func_80196C64_68EC64(uint16_t index,int32_t x,int32_t vTrue,int3
 #ifdef NON_MATCHING
 uint32_t func_80196C64_68EC64(uint16_t index,int32_t x,int32_t vTrue,int32_t vFalse,int32_t vMax){
   int16_t pos = x-gActors[index].pos.x;
-  if(pos<0) gActors[index].vel.x_w=ModInRange_i(gActors[index].vel.x_w,vTrue,vMax);
-  else gActors[index].vel.x_w=ModInRange_i(gActors[index].vel.x_w,vFalse,vMax);
+  if(pos<0) MODi(gActors[index].vel.x_w,vTrue,vMax);
+  else MODi(gActors[index].vel.x_w,vFalse,vMax);
   if((pos>-12)&&(pos<12)) return 1;
   return 0;
 }
@@ -408,7 +406,7 @@ void func_801A1CCC_699CCC(uint16_t x){}
 
 uint32_t func_801A2010_69A010(uint16_t index){
   if(gButtonPress&gButton_A){
-    gActors[index].unk_0xD0_h=32;
+    gActors[index].actorState=32;
     return 1;
     }
   return 0;
@@ -448,8 +446,7 @@ void func_801A3304_69B304(uint16_t x){}
 void func_801A330C_69B30C(uint16_t x){}
 
 void func_801A3314_69B314(uint16_t x){
-  gActors[120].actorType=0xF13;
-  Actor_Spawn(120);
+  ACTORINIT(120,0XF13);
   gActors[120].unk_0x94=0x108;
   gActors[120].flag=0x1023;
   gActors[120].unk_0x84=0x1812;

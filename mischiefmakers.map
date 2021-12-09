@@ -2487,7 +2487,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002acfc                func_8002ACFC
                 0x000000008002ad7c                func_8002AD7C
                 0x000000008002ae44                func_8002AE44
-                0x000000008002aeb4                Actor_Grayscale
+                0x000000008002aeb4                Actor_Shade
                 0x000000008002aef8                func_8002AEF8
                 0x000000008002af7c                func_8002AF7C
                 0x000000008002b010                func_8002B010
@@ -2627,7 +2627,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080034ca8                L80034CA8_358A8
                 0x0000000080034cc0                L80034CC0_358C0
                 0x0000000080034d14                func_80034D14
-                0x0000000080034d80                clanpot_moveitems
+                0x0000000080034d80                ActorClanpot_InitItems
                 0x0000000080034e10                func_80034E10
                 0x000000008003510c                func_8003510C
                 0x00000000800351c8                func_800351C8

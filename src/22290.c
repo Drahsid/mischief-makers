@@ -133,7 +133,7 @@ void GamePlay_Load(void) {
     D_800BE6FC = 0;
     D_800BE58C = 0;
     D_800BE588 = 0;
-    gPlayerActorp->unk_0xD0 = 0;
+    gPlayerActorp->actorState_b[0] = 0;
     gScreenPosNextY = temp_t8_2 & 0xFFFF;
     temp_t6_2 = gScreenPosNextY;
     gScreenPosNextX = (uint32_t)temp_t6_2;

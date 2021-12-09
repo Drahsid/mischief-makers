@@ -11,8 +11,7 @@ extern uint16_t D_801A20F4,D_801A20F6; //shake counts - Head and stinger
 
 
 void func_8019B100_742CB0(uint16_t x){
-    gActors[48].actorType = 0x1d;
-    Actor_Spawn(48);
+    ACTORINIT(48,0X1D);
     gActors[48].unk_0x94 = 0xa01;
     gActors[48].flag=0xB;
     gActors[48].unk_0x84 = 0x2d0;
@@ -40,7 +39,7 @@ void func_8019B100_742CB0(uint16_t x){
 #ifdef NON_MATCHING
 extern UNK_TYPE D_801A0F8C_7483BC;
 void func_8019B990_743540(uint16_t index){
-    if(gActors[index].unk_0xD0_h) func_800819A8(index,&D_801A0F8C_7483BC);
+    if(gActors[index].actorState) func_800819A8(index,&D_801A0F8C_7483BC);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019B990_743540.s")
@@ -120,12 +119,10 @@ void func_8019CBC4_744774(uint16_t index){
 }
 
 int32_t func_8019CC9C_74484C(uint16_t index){
-    if(gActors[index+7].unk_0x180_w < D_801A20E8[1])
-        gActors[index].vel.y_w= ModInRange_i(gActors[index].vel.y_w,0x10000,0x1000);
-    else gActors[index].vel.y_w= ModInRange_i(gActors[index].vel.y_w,-0x10000,0x1000);
+    if(gActors[index+7].unk_0x180_w < D_801A20E8[1]) MODi(gActors[index].vel.y_w,0x10000,0x1000);
+    else MODi(gActors[index].vel.y_w,-0x10000,0x1000);
     return gActors[index].vel.y_w;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019CC9C_74484C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019CD78_744928.s")
 
@@ -137,7 +134,7 @@ int32_t func_8019CC9C_74484C(uint16_t index){
 
 uint32_t func_8019D0D8_744C88(uint16_t index){
     if((gActors[index+3].unk_0x98&2)&&(gActors[index+3].unk_0xDD==19)){
-        gActors[index].unk_0xD0_h=0x110;
+        gActors[index].actorState=0x110;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
         gActors[index+5].health=0;
@@ -149,7 +146,7 @@ uint32_t func_8019D0D8_744C88(uint16_t index){
 
 uint32_t func_8019D184_744D34(uint16_t index){
     if((gActors[index+5].unk_0x98&2)&&(gActors[index+5].unk_0xDD==19)){
-        gActors[index].unk_0xD0_h=0x110;
+        gActors[index].actorState=0x110;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
         gActors[index+5].health=0;
@@ -161,7 +158,7 @@ uint32_t func_8019D184_744D34(uint16_t index){
 
 uint32_t func_8019D230_744DE0(uint16_t index){
     if((gActors[index].vel.y_w<0)&&(gActors[index].unk_0x98&0x8000)){
-        gActors[index].unk_0xD0_h=0x120;
+        gActors[index].actorState=0x120;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
         gActors[index+5].health=0;
@@ -198,8 +195,7 @@ extern uint32_t func_8019D414_744FC4(uint16_t index, int16_t x);
 void func_8019D4C0_745070(uint16_t index){
     uint16_t droneIndex=Actor_GetInactiveInRange(0x70,0x80);
     if(droneIndex){
-        gActors[droneIndex].actorType = ACTORTYPE_DRONEBEE;
-        Actor_Spawn(droneIndex);
+        ACTORINIT(droneIndex,ACTORTYPE_DRONEBEE);
         gActors[droneIndex].pos.x_w=gActors[index+5].pos.x_w;
         gActors[droneIndex].pos.y_w=gActors[index+5].pos.y_w;
         gActors[droneIndex].pos.z=gActors[index+5].pos.z+-1;
@@ -217,8 +213,8 @@ void func_8019D588_745138(uint16_t index){
     gActors[index+3].unk_0xA8=0;
     gActors[index+3].unk_0xDA=129;
     gActors[index+3].unk_0xDB=4;
-    gActors[index+3].unk_0xF8=0x60000;
-    gActors[index+3].unk_0xFC=0x30000;
+    gActors[index+3].unk_0xF8._w=0x60000;
+    gActors[index+3].unk_0xFC._w=0x30000;
     gActors[index+3].unk_0xE4=10;
 }
 
@@ -255,8 +251,8 @@ void func_8019D884_745434(uint16_t index){
 void func_8019D8C8_745478(uint16_t index){
     uint16_t i=index+5; 
     gActors[i].flag|=0x200;
-    gActors[i].unk_0xF8=0x60000;
-    gActors[i].unk_0xFC=0;
+    gActors[i].unk_0xF8._w=0x60000;
+    gActors[i].unk_0xFC._w=0;
     gActors[i].unk_0xDA=128;
     gActors[i].unk_0xDB=8;
     gActors[i].unk_0xE4=100;
@@ -270,10 +266,10 @@ void func_8019D978_745528(uint16_t index){
     uint16_t i=index+9;
     uint16_t x=gScreenPosCurrentX._hi + gActors[i].pos.x;
     uint16_t y=gScreenPosCurrentY._hi + gActors[i].pos.y;
-    if(D_801A20F0>x) gActors[index].vel.x_w= ModInRange_i(gActors[index].vel.x_w,0x20000,0x1000);
-    else gActors[index].vel.x_w= ModInRange_i(gActors[index].vel.x_w,-0x20000,0x1000);
-    if(D_801A20F2>y) gActors[index].vel.y_w= ModInRange_i(gActors[index].vel.y_w,0x20000,0x1000);
-    else gActors[index].vel.y_w= ModInRange_i(gActors[index].vel.y_w,-0x20000,0x1000);
+    if(D_801A20F0>x) MODi(gActors[index].vel.x_w,0x20000,0x1000);
+    else MODi(gActors[index].vel.x_w,-0x20000,0x1000);
+    if(D_801A20F2>y) MODi(gActors[index].vel.y_w,0x20000,0x1000);
+    else MODi(gActors[index].vel.y_w,-0x20000,0x1000);
 }
 #else
 extern void func_8019D978_745528(uint16_t index);
@@ -284,8 +280,7 @@ void func_8019DA80_745630(uint16_t index){
     uint16_t i,j;
     for(i=0;i<8;i++){
         j=i+0x70;
-        gActors[j].actorType = ACTORTYPE_DRONEBEE+1;
-        Actor_Spawn(j);
+        ACTORINIT(j,ACTORTYPE_DRONEBEE+1);
         gActors[j].pos.x_w=gActors[index].pos.x_w;
         gActors[j].pos.y_w=gActors[index].pos.y_w;
         gActors[j].pos.z=gActors[index].pos.z-1;
@@ -354,8 +349,8 @@ extern void func_8019E180_745D30(uint16_t index,int16_t* p, uint16_t c);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_801A0650_748200.s")
 
 void func_801A0740_7482F0(uint16_t index){
-    gActors[index].pos.x=gActors[index].unk_0x160-gScreenPosCurrentX._hi;
-    gActors[index].pos.y=gActors[index].unk_0x164-gScreenPosCurrentY._hi;
+    gActors[index].pos.x=gActors[index].unk_0x160._w-gScreenPosCurrentX._hi;
+    gActors[index].pos.y=gActors[index].unk_0x164._w-gScreenPosCurrentY._hi;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_801A079C_74834C.s")

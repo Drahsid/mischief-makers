@@ -108,12 +108,12 @@ void func_80196DE8_718318(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80197514_718A44.s")
 
 void func_80197B84_7190B4(uint16_t index){
-    if(gActors[index].unk_0xD0_h==0){
-        gActors[index].unk_0xD0_h++;
+    if(gActors[index].actorState==0){
+        gActors[index].actorState++;
         gActors[index].unk_0x94=0x100;
         gActors[index].flag=3;
         gActors[index].unk_0x84=0x168;
-        Actor_Grayscale(index,127);
+        Actor_Shade(index,127);
         gActors[index].rgba.a=0xA0;
         gActors[index].vel.z_w=0xC0000;
     }

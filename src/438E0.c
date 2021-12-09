@@ -396,10 +396,10 @@ int32_t func_800463F0(void){
 
 void func_80046434(void) {
     if (gPlayerActor.flag & 0x20) {
-        D_801782B0 = ModInRange_i(D_801782B0, 0xFFD00000, 0x80000);
+        MODi(D_801782B0, 0xFFD00000, 0x80000);
     }
     else {
-        D_801782B0 = ModInRange_i(D_801782B0, 0x300000, 0x80000);
+        MODi(D_801782B0, 0x300000, 0x80000);
     }
 }
 

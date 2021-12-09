@@ -151,8 +151,8 @@ typedef struct {
     /* 0x5C */ uint32_t DebugValD; //need to see if anything sets them in the rom funcs.
     /* 0x60 */ uint32_t unk_0x60;
     /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.unk_0x98
-    /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.unk_0xF8
-    /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.unk_0xFC
+    /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.unk_0xF8._w
+    /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.unk_0xFC._w
     /* 0x70 */ int16_t unk_0x70;
     /* 0x72 */ int16_t unk_0x72;
     /* 0x74 */ uint32_t unk_0x74;
@@ -172,6 +172,6 @@ typedef struct{
     /*0x04*/ uint16_t ActorFeild0xD8;
     /*0x06*/ uint16_t unk_0x6;
     /*0x08*/ uint16_t ActorType;
-}ClanpotItem;
+}ClanpotItem;/* sizeof = 0x0C */
 
 #endif

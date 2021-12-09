@@ -499,6 +499,7 @@ segments:
     subsegments:
       - [0x722A50, c,ActorFuncs2/Lunar]
       - [0x72AA70,bin,ActorFuncs2/Lunar]
+      #- [0x72AE00,.rodata,ActorFuncs2/Lunar]
   - type: code
     start: 0x72B120
     vram: 0x8019b000

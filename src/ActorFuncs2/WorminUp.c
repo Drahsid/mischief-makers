@@ -95,7 +95,7 @@ void func_8019EB10_740AA0(uint16_t x){
 
 uint32_t func_8019EC28_740BB8(uint16_t index){
     if(gActors[index].unk_0x98&0x40){
-        gActors[index].unk_0xD0_h=0x60;
+        gActors[index].actorState=0x60;
         return 2;
     }
     return 0;

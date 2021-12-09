@@ -5,7 +5,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/82920/func_80081E38.s")
 void func_80081FC8(uint16_t index){
-    if(gActors[index].unk_0xD0_h) func_800819A8(index,D_800E2600);
+    if(gActors[index].actorState) func_800819A8(index,D_800E2600);
 }
 
 void func_80082024(uint16_t index){
@@ -21,9 +21,9 @@ void func_80082088(uint16_t index){
   if (index == 0x50) gActors[80].pos.z = 0xfeff;
   if (index == 0x60) gActors[96].pos.z = 0xff7f;
   func_80081FC8(index);
-  if (gActors[index].unk_0xD0_h == 0) {
+  if (gActors[index].actorState == 0) {
     func_80081D20(index);
-    gActors[index].unk_0xD0_h++;
+    gActors[index].actorState++;
   }
   func_80082024(index);
 }

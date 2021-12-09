@@ -39,9 +39,11 @@ uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_80048C28.s")
 
-int32_t D_800D5794[19] = {
+int32_t D_800D5794[32] = {
     0x4000,  0x20000, 0x20000, 0x10000, 0x8000,  0x38000, 0x38000, 0x38000, 0x28000, 0x2666,
-    0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000
+    0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000, 0x6000,
+    0x28000, 0x28000, 0x28000, 0x20000, 0x38000, 0x38000, 0x38000, 0x28000, 0x30000, 0x30000,
+    0x30000, 0x20000
 };
 
 int32_t ActorMarina_VelByScale(int32_t arg0) {
@@ -49,15 +51,15 @@ int32_t ActorMarina_VelByScale(int32_t arg0) {
 }
 
 int32_t func_80048CE4() {
-    if (gPlayerActor.unk_0xD1 == 1) {
+    if (gPlayerActor.actorState_b[1] == 1) {
         return 1;
     }
 
-    if (gPlayerActor.unk_0xD1 < 46) {
+    if (gPlayerActor.actorState_b[1] < 46) {
         return 0;
     }
 
-    if (gPlayerActor.unk_0xD1 < 55) {
+    if (gPlayerActor.actorState_b[1] < 55) {
         return 2;
     }
 
@@ -128,56 +130,31 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
 uint32_t func_80049460(uint16_t index) {
     switch (func_80049300(index)) {
         case 1: {
-            if ((gActors[index].unk_0x98 & 0x80) != 0) {
-                gActors[index].unk_0x140 = 0;
-            }
+            if (gActors[index].unk_0x98 & 0x80) gActors[index].unk_0x140 = 0;
+            if (D_801373D8 & 2) gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
+            if (D_801373D8 & 1) gActors[index].flag |= ACTOR_FLAG_FLIPPED;
 
-            if ((D_801373D8 & 2) != 0) {
-                gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-            }
-
-            if ((D_801373D8 & 1) != 0) {
-                gActors[index].flag |= ACTOR_FLAG_FLIPPED;
-            }
-
-            if (gActors[index].unk_0xD1 != 0x16) {
-                gActors[index].unk_0x150._w = 0;
-            }
-
-            gActors[index].unk_0xD0_h = 0x1F;
+            if (gActors[index].actorState_b[1] != 0x16) gActors[index].unk_0x150._w = 0;
+            gActors[index].actorState = 0x1F;
 
             return 1;
             break;
         }
         case 2: {
-            if ((gActors[index].unk_0x98 & 0x80) != 0) {
-                gActors[index].unk_0x140 = 0;
-            }
+            if (gActors[index].unk_0x98 & 0x80) gActors[index].unk_0x140 = 0;
 
-            if ((D_801373D8 & 2) != 0) {
-                gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-            }
+            if (D_801373D8 & 2) gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
+            if (D_801373D8 & 1) gActors[index].flag |= ACTOR_FLAG_FLIPPED;
+            if (gActors[index].actorState_b[1] != 0x16) gActors[index].unk_0x150._w = 0;
 
-            if ((D_801373D8 & 1) != 0) {
-                gActors[index].flag |= ACTOR_FLAG_FLIPPED;
-            }
-
-            if (gActors[index].unk_0xD1 != 0x16) {
-                gActors[index].unk_0x150._w = 0;
-            }
-
-            gActors[index].unk_0xD0_h = 0x1F;
+            gActors[index].actorState = 0x1F;
 
             return 2;
             break;
         }
         case 3: {
-            if ((D_801373D8 & 0x20) != 0) {
-                gActors[index].unk_0xD0_h = 0x2D;
-            }
-            else {
-                gActors[index].unk_0xD0_h = 0x2C;
-            }
+            if (D_801373D8 & 0x20) gActors[index].actorState = 0x2D;
+            else gActors[index].actorState = 0x2C;
 
             return 3;
             break;
@@ -211,19 +188,17 @@ void func_8004A8E0(uint16_t index) {
 }
 
 void func_8004A918(uint16_t index) {
-    Actor* actor;
-
-    actor = &gActors[index];
+    Actor* actor = &gActors[index];
 
     actor->unk_0x12E |= 0x41;
     actor->flag = actor->unk_0x150._w;
 }
-
+//gPlayerActor.actorState 0
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004A960.s")
 
 void func_8004AA64(uint16_t index) {
     gActors[index].unk_0x12E |= 0x41;
-    if (gActors[index].unk_0xD0 == 0) {
+    if (gActors[index].actorState_b[0] == 0) {
         gActors[index].unk_0x142 = 0;
         gActors[index].unk_0x141 = 0;
         gActors[index].unk_0x180_w = 0;
@@ -234,47 +209,38 @@ void func_8004AA64(uint16_t index) {
         gActors[index].vel.x_w = 0;
         gActors[index].flag &= ACTOR_FLAG_FLIPPED;
         gActors[index].flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK27;
-        gActors[index].unk_0xD0 = 1;
+        gActors[index].actorState_b[0] = 1;
         gActors[index].unk_0x128 = 1.0f;
         gActors[index].unk_0x124 = 1.0f;
     }
 
     gActors[index].unk_0x17C = 0;
     func_8005D370(index, 1);
-    gActors[index].unk_0xD0_h = 3;
+    gActors[index].actorState = 3;
 }
 //deals with marina's idle state
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004AB3C.s")
 
 void func_8004B0A0(uint16_t index) {
-    int32_t temp_v0;
-    Actor* actor;
-
-    actor = &gActors[index];
+    Actor* actor = &gActors[index];
     actor->unk_0x12C = 7;
-    actor->vel.x_w = ModInRange_i(actor->vel.x_w, 0, ActorMarina_VelByScale(0));
+    MODi(actor->vel.x_w, 0, ActorMarina_VelByScale(0));
 
-    if (actor->unk_0xD0 == 0) {
+    if (actor->actorState_b[0] == 0) {
         func_8005A4B0(index, 1.0f);
         SFX_Play_1(0x25U);
         actor->unk_0x170_w = 0x2A;
-        actor->unk_0xD0++;
+        actor->actorState_b[0]++;
     }
 
     if (actor->unk_0x171 == 1) {
-        temp_v0 = actor->unk_0x150._w;
         actor->unk_0x170 = 0;
-
-        if (temp_v0 == 0) {
-            actor->unk_0x171 = 2;
-        }
-        else {
-            actor->unk_0x150._w = temp_v0 - 1;
-        }
+        if (actor->unk_0x150._w == 0) actor->unk_0x171 = 2;
+        else actor->unk_0x150._w--;
     }
 
     if (func_8005D418(index)) {
-        actor->unk_0xD0_h = (uint16_t)3;
+        actor->actorState = (uint16_t)3;
     }
 }
 
@@ -290,7 +256,7 @@ void func_8004B18C(uint16_t index) {
         phi_a1 = -phi_a1;
     }
 
-    actor->vel.x_w = ModInRange_i(actor->vel.x_w, phi_a1, ABS_8005C6D0(phi_a1) / 8);
+    MODi(actor->vel.x_w, phi_a1, ABS_8005C6D0(phi_a1) / 8);
     func_8005D370(index, 0x1D);
 
     if (actor->unk_0x170 == 0 && (actor->unk_0x171 == 2 || actor->unk_0x171 == 8)) {
@@ -298,29 +264,23 @@ void func_8004B18C(uint16_t index) {
     }
 
     if (((D_801373D8 & 3) == 0) || ((D_801373D8 & 0x80) != 0)) {
-        actor->unk_0xD0_h = 3;
+        actor->actorState = 3;
     }
 }
 
 void func_8004B290(uint16_t index) {
-    int32_t v0;
-
     gActors[index].unk_0x12C = 7;
-    if (gActors[index].unk_0xD0 == 0) {
+    if (gActors[index].actorState_b[0] == 0) {
         gActors[index].unk_0x170_w = 0x2D;
-        gActors[index].unk_0xD0 = 1;
+        gActors[index].actorState_b[0] = 1;
     }
-
-    v0 = ActorMarina_VelByScale(0);
-    v0 = ModInRange_i(gActors[index].vel.x_w, 0, v0 * 2);
-
-    gActors[index].vel.x_w = v0;
-    if (v0 != 0) {
+    MODi(gActors[index].vel.x_w, 0, ActorMarina_VelByScale(0) * 2);
+    if (gActors[index].vel.x_w != 0) {
         gActors[index].unk_0x183 = 4;
     }
     else{
         gActors[index].flag |= ACTOR_FLAG_UNK14;
-        gActors[index].unk_0xD0_h = 3;
+        gActors[index].actorState = 3;
     }
 }
 
@@ -341,21 +301,21 @@ void func_8004B290(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004D6CC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004D7BC.s")
-
+//gPlayerActor.actorState 32
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004DA6C.s")
-
+//gPlayerActor.actorState 33
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004DC44.s")
-
+//gPlayerActor.actorState 44
 void func_8004E1D4(int32_t arg0) {}
-
+//gPlayerActor.actorState 45
 void func_8004E1DC(int32_t arg0) {}
-
+//gPlayerActor.actorState 55
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E1E4.s")
-
+//gPlayerActor.actorState 56
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E4E0.s")
-//animation test? set gplayeractor.unk_0xd1 to 3A
+//animation test? set gplayeractor.actorState_b[1] to 0x3A
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004E6FC.s")
-
+//gPlayerActor.actorState 59
 #ifdef NON_MATCHING
 // Needs reordering
 void func_8004EAE4(uint16_t index) {
@@ -363,9 +323,9 @@ void func_8004EAE4(uint16_t index) {
 
     gActors[index].unk_0x12E |= 0x40;
 
-    if (gActors[index].unk_0xD0 == 0) {
+    if (gActors[index].actorState_b[0] == 0) {
         gActors[index].unk_0x170_w = 0;
-        gActors[index].unk_0xD0++;
+        gActors[index].actorState_b[0]++;
         gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x158;
     }
 
@@ -401,7 +361,7 @@ void func_8004EAE4(uint16_t index) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004EAE4.s")
 #endif
-
+//gPlayerActor.actorState 60
 void func_8004EC60(uint16_t index) {
     Actor* actor;
     uint32_t temp_v1;
@@ -439,7 +399,7 @@ void ActorTick_Marina(uint16_t index) {
     int16_t* phi_v1;
 
     if ((D_801373E0.unk_0x78 & 8) == 0) {
-        if (gActors[index].unk_0xD0_h == 0) {
+        if (gActors[index].actorState == 0) {
             func_8004A960(index);
         }
 
@@ -450,7 +410,7 @@ void ActorTick_Marina(uint16_t index) {
         D_801373E0.unk_0x70 = 0;
         gActors[index].pos.z_w = 0;
 
-        D_800D57E0 = ModInRange_i(D_800D57E0, 0x6000, 0x400);
+        MODi(D_800D57E0, 0x6000, 0x400);
 
         if (gActors[index].unk_0x12F < 4) {
             gActors[index].unk_0x12F++;
@@ -544,7 +504,7 @@ void ActorTick_Marina(uint16_t index) {
         gActors[index].unk_0x12E = 0;
 
         //(((gActors[index].unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
-        gActorFuncTable_800D3DB0[gActors[index].unk_0xD0_h](index);
+        gActorFuncTable_800D3DB0[gActors[index].actorState](index);
 
         func_80048BB0(index);
 
@@ -581,8 +541,8 @@ void ActorTick_Marina(uint16_t index) {
         }
 
         if ((gActors[index].unk_0x98 & 2) != 0) {
-            D_801373E0.unk_0x68 = gActors[index].unk_0xF8;
-            D_801373E0.unk_0x6C = gActors[index].unk_0xFC;
+            D_801373E0.unk_0x68 = gActors[index].unk_0xF8._w;
+            D_801373E0.unk_0x6C = gActors[index].unk_0xFC._w;
         }
 
         D_801373E0.unk_0x64 = gActors[index].unk_0x98;

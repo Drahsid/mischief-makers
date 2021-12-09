@@ -134,11 +134,8 @@ typedef struct {
     /* 0x0CC */ uint16_t unk_0xCC;
     /* 0x0CE */ uint16_t unk_0xCE;
     union {
-        struct {
-            /* 0x0D0 */ uint8_t unk_0xD0;
-            /* 0x0D1 */ uint8_t unk_0xD1;
-        };
-        /* 0x0D0 */ uint16_t unk_0xD0_h;
+        /* 0x0D0 */ uint16_t actorState; //used by each actor to determine behavior.
+        /* 0x0D0 */ uint8_t actorState_b[2];
     };
     /* 0x0D2 */ uint16_t actorType;
     /* 0x0D4 */ uint16_t unk_0xD4;
@@ -154,16 +151,16 @@ typedef struct {
         /* 0x0E0 */ int16_t health;
         /* 0x0E0 */ uint16_t healthu;
     };
-    /* 0x0E2 */ uint16_t unk_0xE2; //sometimes used as damage delta.
+    /* 0x0E2 */ uint16_t healthDelta; 
     /* 0x0E4 */ uint16_t unk_0xE4;
     /* 0x0E6 */ uint16_t unk_0xE6;
     union{
     /* 0x0E8 */ uint32_t unk_0xE8;
-    /* 0x0E8 */ void* unk_0xE8p; 
+    /* 0x0E8 */ uint16_t* unk_0xE8p; 
     };
     /* 0x0EC */ Vec3i_union vel;
-    /* 0x0F8 */ uint32_t unk_0xF8;
-    /* 0x0FC */ uint32_t unk_0xFC;
+    /* 0x0F8 */ s2_w unk_0xF8; //halves loaded in func_80042c10
+    /* 0x0FC */ s2_w unk_0xFC; //as args for a NOOP func.
     /* 0x100 */ uint32_t unk_0x100;
     /* 0x104 */ s2_w unk_0x104;
     /* 0x108 */ s2_w unk_0x108;
@@ -189,7 +186,7 @@ typedef struct {
     union{
         /* 0x13C */ float unk_0x13C;
         /* 0x13C */ uint16_t unk_0x13C_h[2];
-        };
+    };
     union {
         struct {
             /* 0x140 */ uint8_t unk_0x140;
@@ -206,10 +203,12 @@ typedef struct {
     /* 0x154 */ s2_w unk_0x154;
     /* 0x158 */ int32_t unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
-    /* 0x160 */ uint32_t unk_0x160;
-    /* 0x164 */ uint32_t unk_0x164;
+    /* 0x160 */ s2_w unk_0x160;
+    /* 0x164 */ s2_w unk_0x164;
     union{
     /* 0x168 */ int32_t unk_0x168; //bombs use as fuse?
+    /* 0x168 */ int16_t unk_0x168h[2]; //second entry called a few times
+    /* 0x168 */ uint16_t unk_0x168hu[2]; //and, like, twice unsigned.
     /* 0x168 */ void* unk_0x168p;
     };
     union{
@@ -225,7 +224,10 @@ typedef struct {
         /* 0x170 */ uint32_t unk_0x170_w;
     };
     /* 0x174 */ uint32_t unk_0x174;
+    union{
     /* 0x178 */ void* unk_0x178;
+    /* 0x178 */ int32_t unk_0x178_w;
+    };
     /* 0x17C */ uint32_t unk_0x17C; //also used as pointer for color blend func.
     union {
         struct {
@@ -238,7 +240,7 @@ typedef struct {
         /* 0x180 */ uint16_t unk_0x180_h[2];
     };
     union {
-        /* 0x184 */ uint32_t unk_0x184_w; // read as word in Actor_Spawn
+        /* 0x184 */ int32_t unk_0x184_w; // read as word in Actor_Spawn
         struct {
             /* 0x184 */ uint16_t unk_0x184;
             /* 0x186 */ uint16_t unk_0x186;
@@ -280,7 +282,7 @@ extern Actor_func_8001EB8Cfn D_800CA1C0[];
 //0x0A, 0x0F-0x14, 0x17, 0x19-0x1B, 0x1D, 0x1E, 0x25, 0x2B, 0x41, 0x47, 0x53
 #define ACTORTYPE_GEM 0X08
 #define ACTORTYPE_MARINA 0X16
-#define ACTORTYPE_PORTAIT 0X27
+#define ACTORTYPE_PORTRAIT 0X27
 #define ACTORTYPE_CLANBOMB 0X45
 #define ACTORTYPE_DIGGINGSPOT 0X57
 #define ACTORTYPE_MARINAOHNO 0X70

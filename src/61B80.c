@@ -10,10 +10,10 @@ void ActorTick_0(uint16_t x){}
 /*
 void func_80061350(uint16_t index){
     if(index==ACTOR_COUNT0){
-        gActors[ACTOR_COUNT0].rgba.r = ModInRange_i(gActors[ACTOR_COUNT0].rgba.r,0,4);
-        gActors[ACTOR_COUNT0].rgba.g = ModInRange_i(gActors[ACTOR_COUNT0].rgba.g,0,4);
-        gActors[ACTOR_COUNT0].rgba.b = ModInRange_i(gActors[ACTOR_COUNT0].rgba.b,0,4);
-        gActors[ACTOR_COUNT0].rgba.a = ModInRange_i(gActors[ACTOR_COUNT0].rgba.a,0x60,4);
+        MODi(gActors[ACTOR_COUNT0].rgba.r,0,4);
+        MODi(gActors[ACTOR_COUNT0].rgba.g,0,4);
+        MODi(gActors[ACTOR_COUNT0].rgba.b,0,4);
+        MODi(gActors[ACTOR_COUNT0].rgba.a,0x60,4);
     }
     else{
         gActors[index].rgba.r = gActors[ACTOR_COUNT0].rgba.r;
@@ -32,7 +32,7 @@ void func_80061350(uint16_t index){
 void func_800615BC(uint16_t index){
     if(--gActors[index].rgba.a==0){
         gActors[index].flag &= ~1;
-        gActors[index].unk_0xD0_h-=2;
+        gActors[index].actorState-=2;
     }
 }
 

@@ -5,8 +5,7 @@ extern uint16_t* D_801ABEA4_784804[36]; //Leo Cloud words. Bad,Good,Bad,Good,Ect
 void func_801A6900_77F260(uint16_t x){}
 
 void func_801A6908_77F268(uint16_t index){
-    gActors[index].actorType=0x1D;
-    Actor_Spawn(index);
+    ACTORINIT(index,0X1D);
     gActors[index].unk_0x94=0x301;
     gActors[index].flag=3;
     gActors[index].pos.x=0;
@@ -20,13 +19,12 @@ void func_801A6908_77F268(uint16_t index){
 }
 
 void func_801A69B0_77F310(uint16_t index){
-    gActors[index].actorType=0x1D;
-    Actor_Spawn(index);
+    ACTORINIT(index,0X1D);
     gActors[index].unk_0x94=0x100;
     gActors[index].flag=3;
     gActors[index].unk_0x84=0x2004;
     gActors[index].rgba.a=0xF8;
-    Actor_Grayscale(index,255);
+    Actor_Shade(index,255);
     gActors[index].pos.x=0;
     gActors[index].pos.y=0xFFB0;
     gActors[index].pos.z=0x30;
@@ -77,16 +75,16 @@ extern void func_801A7838_780198(uint16_t index, uint16_t gemflag);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A8350_780CB0.s")
 #ifdef NON_MATCHING
 void func_801A83D8_780D38(uint16_t index){
-    if(gActors[index].unk_0xD0_h==0){
-        gActors[index].unk_0xD0_h=1;
+    if(gActors[index].actorState==0){
+        gActors[index].actorState=1;
         gActors[index].flag=3;
         gActors[index].unk_0x84=0x7004;
         gActors[index].vel.y_w=0x10000;
         gActors[index].rgba.a=0;
     }
-    else if(gActors[index].unk_0xD0_h!=1) return;
-    gActors[index].vel.y_w=ModInRange_i(gActors[index].vel.y_w,0,0x800);
-    gActors[index].rgba.a=ModInRange_i(gActors[index].rgba.a,255,1);
+    else if(gActors[index].actorState!=1) return;
+    MODi(gActors[index].vel.y_w,0,0x800);
+    MODi(gActors[index].rgba.a,255,1);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A83D8_780D38.s")
@@ -94,8 +92,7 @@ void func_801A83D8_780D38(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801A849C_780DFC.s")
 
 void func_801A8604_780F64(){
-    gActors[143].actorType=0x1E05;
-    Actor_Spawn(143);
+    ACTORINIT(143,0x1E05);
     gActors[143].unk_0x94=0;
     gActors[143].flag=2;
     gActors[143].unk_0x84=0x2D0;
@@ -106,25 +103,25 @@ void func_801A8604_780F64(){
 }
 
 void func_801A866C_780FCC(uint16_t x){
-    gActors[143].unk_0xD0_h=1;
+    gActors[143].actorState=1;
     gActors[143].unk_0x94=0xB11;
     gActors[143].flag=0xb;
     gActors[143].unk_0x18C=&D_800D8588;
     gActors[143].rgba.a=255;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
-    Actor_Grayscale(143,0);
+    Actor_Shade(143,0);
 }
 
 void func_801A86D4_781034(uint16_t x){
-    gActors[143].unk_0xD0_h=2;
+    gActors[143].actorState=2;
     gActors[143].unk_0x94=0xB11;
     gActors[143].flag=0xb;
     gActors[143].unk_0x18C=&D_800D8588;
     gActors[143].rgba.a=0;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
-    Actor_Grayscale(143,0);
+    Actor_Shade(143,0);
 }
 void func_801A8738_781098(void) {}
 
@@ -158,8 +155,7 @@ extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA2E4_782C44.s")
 
 void func_801AA3A4_782D04(uint16_t index){
-    gActors[index].actorType=0x1D;
-    Actor_Spawn(index);
+    ACTORINIT(index,0x1D);
     gActors[index].unk_0x94=0x1817;
     gActors[index].unk_0x84=0x262;
     gActors[index].pos.x=0;
@@ -183,12 +179,12 @@ void func_801AA590_782EF0(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA644_782FA4.s")
 
 void func_801AB354_783CB4(uint16_t index){
-    gActors[142].pos.x=ModInRange_i(gActors[142].pos.x,gActors[index].pos.x-16,2);
-    gActors[142].pos.y=ModInRange_i(gActors[142].pos.y,gActors[index].pos.y+32,2);
+    MODi(gActors[142].pos.x,gActors[index].pos.x-16,2);
+    MODi(gActors[142].pos.y,gActors[index].pos.y+32,2);
 }
 
 void func_801AB3E0_783D40(uint16_t index){
-    gActors[index].rgba.r=ModInRange_i(gActors[index].rgba.r,63,1);
+    MODi(gActors[index].rgba.r,63,1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AB440_783DA0.s")

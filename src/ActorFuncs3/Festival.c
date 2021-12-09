@@ -180,18 +180,18 @@ void func_801AA370_790660(void) {}
 //tally points earned.
 #ifdef NON_MATCHING
 void func_801AD37C_79366C(uint16_t index,uint16_t instant){
-    if(gActors[index].unk_0x160==0){
+    if(gActors[index].unk_0x160._w==0){
         gFestivalPointsWhite+=gActors[index].unk_0x154._w;
         gFestivalPointsRed+=gActors[index].unk_0x158;
-        gActors[index].unk_0x160=1;
+        gActors[index].unk_0x160._w=1;
     }
     if(instant){
         gActors[62].unk_0x158=gFestivalPointsWhite;
         gActors[64].unk_0x158=gFestivalPointsRed;
     }
     else{
-        gActors[62].unk_0x158=ModInRange_i(gActors[62].unk_0x158,gFestivalPointsWhite,1);
-        gActors[64].unk_0x158=ModInRange_i(gActors[64].unk_0x158,gFestivalPointsRed,1);
+        MODi(gActors[62].unk_0x158,gFestivalPointsWhite,1);
+        MODi(gActors[64].unk_0x158,gFestivalPointsRed,1);
         if (((gActors[index].unk_0x170_w != gActors[62].unk_0x158) || (gActors[index].unk_0x174 != gActors[64].unk_0x158))
           && ((gSceneFrames & 3) == 0)){
             SFX_Play_1(0x139);

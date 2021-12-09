@@ -10,8 +10,7 @@
 
 /*
 void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,uint16_t j,uint32_t q){
-    gActors[index].actorType=0x28;
-    Actor_Spawn(index);
+    ACTORINIT(index,0x28);
     gActors[index].flag|=10;
     gActors[index].pos.x=x;
     gActors[index].pos.y=y;
@@ -23,8 +22,7 @@ void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,u
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CD68.s")
 
 void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
-    gActors[index].actorType=0x28;
-    Actor_Spawn(index);
+    ACTORINIT(index,0x28);
     gActors[index].flag|=10;
     gActors[index].pos.x=x;
     gActors[index].pos.y=y;

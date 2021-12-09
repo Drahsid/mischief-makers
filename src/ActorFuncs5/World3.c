@@ -13,7 +13,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801B9F3C_7D472C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801B9F70_7D4760.s")
-
+//clanpot in "Go Marzen 64?"
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BA040_7D4830.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BA084_7D4874.s")

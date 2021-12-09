@@ -32,7 +32,7 @@
 
 uint32_t func_80085108(uint16_t index){
     if((gActors[index].vel.y_w<1)&&(gActors[index].unk_0x98&0x20)){
-        gActors[index].unk_0xD0_h=1;
+        gActors[index].actorState=1;
         gActors[index].flag&= ~0x20000;
         gActors[index].flag|=0x10000;
         gActors[index].vel.x_w=0;
@@ -53,7 +53,7 @@ void func_800852CC(uint16_t x){
 
 void func_80085350(uint16_t index){
     if(gActors[index].unk_0x98&0x200){
-        gActors[index].unk_0xD0_h=2;
+        gActors[index].actorState=2;
         gActors[index].flag= 0x20003;
         gActors[index].vel.x_w=0;
         gActors[index].vel.y_w=0;
@@ -86,8 +86,8 @@ void func_80085E60(uint16_t index){
 extern uint32_t D_800E3DE4[8][2];
 /* regalloc?
 void func_80085EB0(uint16_t index){
-    gActors[index].unk_0xF8=D_800E3DE4[gActors[index].unk_0xD8][0];
-    gActors[index].unk_0xFC=D_800E3DE4[gActors[index].unk_0xD8][1];
+    gActors[index].unk_0xF8._w=D_800E3DE4[gActors[index].unk_0xD8][0];
+    gActors[index].unk_0xFC._w=D_800E3DE4[gActors[index].unk_0xD8][1];
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085EB0.s")
 extern int32_t D_80182020[64];

@@ -283,7 +283,7 @@ extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's of
 extern uint32_t D_800CFE04[88][12];
 extern void* D_800D0E84[88][6];
 extern int16_t D_800D16C4;
-extern ClanpotItem D_800D22BC[32]; //stacked in reverse order for some reason.
+extern ClanpotItem gClanpotItems[32]; //stacked in reverse order for some reason.
 extern int32_t D_800D2504[2][2];
 extern int32_t D_800D2514[7][6];
 extern uint8_t D_800D28D0[20];
@@ -305,7 +305,7 @@ extern int32_t D_800D2928;
 extern int32_t D_800D2938;
 extern uint16_t D_800D294C;
 extern uint16_t gPlayerActorIndex;
-extern uint16_t D_800D2954;
+extern uint16_t TeranFlag;
 extern uint16_t D_800D2968;
 extern int16_t D_800D296C;
 extern int16_t D_800D2970;
@@ -325,7 +325,7 @@ extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
 extern uint32_t D_800D4184[82]; // pointer array?
 extern uint16_t D_800D46A8[18];
-extern int32_t D_800D5794[19];
+extern int32_t D_800D5794[32]; //table for Marina's movement speeds.
 extern int32_t D_800D57E0;
 extern uint16_t D_800D5820;
 extern uint16_t D_800D5824;
@@ -450,10 +450,14 @@ extern int16_t D_800E02A2;
 extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
 extern UNK_TYPE D_800E1380;
+extern UNK_TYPE D_800E1DEC;
 extern UNK_TYPE gIcon_YellowGem;
 extern UNK_TYPE D_800E1C00;
 extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
+extern int32_t VipToPlayerX; //gives the relative position from a VIP actor (usually boss) to the player
+extern int32_t VipToPlayerY;
+extern uint16_t D_800E3580;
 extern UNK_TYPE D_800E3584;
 extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[];
@@ -489,7 +493,7 @@ extern uint16_t D_8011D4F0[144];
 extern uint16_t D_8011D610[144];
 extern uint16_t D_8011D730[144];
 extern uint16_t D_8011D850[144];
-extern uint16_t gInputHistoryHold[];
+extern uint16_t gInputHistoryHold[64];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
 extern UNK_TYPE D_80129670;

@@ -30,7 +30,7 @@ void func_8008CC00(void){
     gPlayerActor.flag= gPlayerActor.flag & ~0x20 | gActors[16].flag & 0x20;
     D_800D294C=0;
     gActors[16].flag=0;
-    gActors[16].unk_0xD0_h=0;
+    gActors[16].actorState=0;
     
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CC00.s")
@@ -93,7 +93,7 @@ uint32_t func_8008DA24(uint16_t arg0) {
 void StartContinueMode(uint16_t index) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
         gActors[index].flag = 0;
-        gActors[index].unk_0xD0_h = 0;
+        gActors[index].actorState = 0;
         gGameState = GAMESTATE_CONTINUE;
         gGameSubState = 0;
         gActors[index].vel.x_w = 0;
@@ -114,7 +114,7 @@ void func_8008DE30(uint16_t index){
     SFX_Stop(SFX_MARINA_YELL1);
     actorp = &gActors[index];
     if(actorp->vel.y_w>-0x68000) actorp->vel.y_w-=0x3200;
-    if(actorp->pos.y<-0x100) actorp->unk_0xD0_h=64;
+    if(actorp->pos.y<-0x100) actorp->actorState=64;
 }
 
 void func_8008DEBC(uint16_t index){
@@ -131,8 +131,7 @@ void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     s32 n;
     D_800BE5F4=4;
     if(index==0)index=16; //don't overwrite player actor
-    gPlayerActor.actorType=0x70;
-    Actor_Spawn(index);
+    ACTORINIT(index,ACTORTYPE_MARINAOHNO);
     gActors[index].flag=2;
     gActors[index].pos.x=gPlayerActor.pos.x;
     gActors[index].pos.y=gPlayerActor.pos.y;
@@ -146,9 +145,9 @@ void ActorTick_MarinaOhNo(uint16_t index){
     Actor* actor= &gActors[index];
     D_800BE5F4=4;
     func_8008DF20(index);
-    if(actor->unk_0xD0_h==16){
+    if(actor->actorState==16){
         D_800BE5F4=4;
-        actor->unk_0xD0_h=0x30;
+        actor->actorState=0x30;
         actor->unk_0x18C=D_800D46A8;
         actor->vel.y_w=0x20000;
         actor->unk_0x118=1.0;

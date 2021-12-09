@@ -31,9 +31,9 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/intro/func_801928B8_6D2F38.s")
 
 void func_80192920_6D2FA0(uint16_t x){
-    gActors[48].unk_0xD0_h=x;
-    gActors[49].unk_0xD0_h=x;
-    gActors[50].unk_0xD0_h=x;
+    gActors[48].actorState=x;
+    gActors[49].actorState=x;
+    gActors[50].actorState=x;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/intro/func_8019293C_6D2FBC.s")

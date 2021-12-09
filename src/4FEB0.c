@@ -1,18 +1,38 @@
-#include "SFX.h"
-#include "actor.h"
+#include "common.h"
 
-
-#include "inttypes.h"
-#include <ultra64.h>
-
+#ifdef NON_MATCHING
+uint32_t func_8004F2B0(uint16_t index){
+    if((D_801370CE&gButton_B)==0) return 0;
+    else{
+        gActors[index].flag&=~0X4040;
+        gActors[index].unk_0x140=func_80048C28(0);
+        if(D_801373D8&~0x80) return 2;
+        return 1;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F2B0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F35C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F514.s")
-
+//regalloc. redo branching?
+#ifdef NON_MATCHING
+void func_8004F5B0(uint16_t index){
+    if(gActors[index].unk_0x142==0){
+        gActors[index].unk_0x142=1;
+        return;
+    }
+    if(gActors[index].unk_0x142!=8){
+        gActors[index].unk_0x142=0;
+        return;
+    }
+    gActors[index].unk_0x142=2;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F5B0.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F614.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F7D8.s")
@@ -163,8 +183,8 @@ void func_8005896C(uint16_t x, uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058EB0.s")
 /*
 void func_80058F54(uint16_t index){
-    gActors[index].unk_0xD0_h=42;
-    gActors[index].unk_0xF8=gActors[index].vel.x_w;
+    gActors[index].actorState=42;
+    gActors[index].unk_0xF8._w=gActors[index].vel.x_w;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058F54.s")
 

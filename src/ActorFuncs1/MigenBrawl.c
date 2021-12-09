@@ -28,8 +28,7 @@ void func_80192100_67DC20(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192FE4_67EB04.s")
 #ifdef NON_MATCHING
 void func_801934F0_67F010(){
-    gActors[94].actorType=0x2F;
-    Actor_Spawn(94);
+    ACTORINIT(94,0x2F);
     gActors[94].flag|=0xA302;
     gActors[94].health=1;
     gActors[97].unk_0xAE=0x50;
@@ -52,8 +51,7 @@ void func_80193594_67F0B4(void) {}
 void func_8019359C_67F0BC(void) {}
 
 void func_801935A4_67F0C4(){
-    gActors[97].actorType=0x607;
-    Actor_Spawn(97);
+    ACTORINIT(97,0x607);
     gActors[97].flag=0x2002;
     gActors[97].unk_0xAE=0x10;
     gActors[97].unk_0xB0=-0x10;
@@ -81,8 +79,7 @@ void func_80193694_67F1B4(uint16_t index){
 }
 
 void func_80193728_67F248(uint16_t index){
-    gActors[index].actorType=0x1D;
-    Actor_Spawn(index);
+    ACTORINIT(index,0X1D);
     gActors[index].unk_0x94|=1;
 }
 
@@ -143,16 +140,16 @@ void func_80193F70_67FA90(uint16_t x,uint16_t c){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194D3C_68085C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194E64_680984.s")
-
+//rock camera up and down.
 void func_80194EE4_680A04(){
-    if(gSceneFrames&0x80) gScreenPosTargetY._w=ModInRange_i(gScreenPosTargetY._w,0x19C0000,0x1000);
-    else gScreenPosTargetY._w=ModInRange_i(gScreenPosTargetY._w,0x1A20000,0x1000);
+    if(gSceneFrames&0x80) MODi(gScreenPosTargetY._w,0x19C0000,0x1000);
+    else MODi(gScreenPosTargetY._w,0x1A20000,0x1000);
 }
 
 void func_80194F48_680A68(){
     if(gActors[55].flag&0x200){
         gActors[55].unk_0x94&=~0x10;
-        Actor_Grayscale(55,47);
+        Actor_Shade(55,47);
     }
 }
 //main behavior
@@ -188,7 +185,7 @@ void func_80198EE0_684A00(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80199094_684BB4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019911C_684C3C.s")
-//Migen sr. behavior?
+//Migen Sr. behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801992AC_684DCC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80199DA8_6858C8.s")

@@ -38,7 +38,7 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].health = gActorInit[gActors[index].actorType].health;
         gActors[index].unk_0xE4 = gActorInit[gActors[index].actorType].unk_0xA;
         gActors[index].flag = gActorInitFlags[gActors[index].actorType]; // ((gActors[index].actorType * 4) + 0x800D0000)->unk - 0x6228;
-        gActors[index].unk_0xE8 = D_800C9FCC[gActors[index].actorType];
+        gActors[index].unk_0xE8p = D_800C9FCC[gActors[index].actorType];
     }
     else {
         // OK
@@ -86,7 +86,7 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].rotateX = 0.0;
     gActors[index].unk_0xD6 = (int8_t)0;
     gActors[index].unk_0xD4 = (int8_t)0;
-    gActors[index].unk_0xD0_h = (int8_t)0;
+    gActors[index].actorState = (int8_t)0;
     gActors[index].unk_0xCE = (int8_t)0;
     gActors[index].unk_0xCC = (int8_t)0;
     gActors[index].unk_0xCA = (int8_t)0;
@@ -104,8 +104,8 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x170_w = 0;
     gActors[index].unk_0x16C = 0;
     gActors[index].unk_0x168 = 0;
-    gActors[index].unk_0x164 = 0;
-    gActors[index].unk_0x160 = 0;
+    gActors[index].unk_0x164._w = 0;
+    gActors[index].unk_0x160._w = 0;
     gActors[index].unk_0x15C = 0;
     gActors[index].unk_0x158 = 0;
     gActors[index].unk_0x154._w = 0;
@@ -114,12 +114,12 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x108 = 0;
     gActors[index].unk_0x104._w = 0;
     gActors[index].unk_0x100 = 0;
-    gActors[index].unk_0xFC = 0;
-    gActors[index].unk_0xF8 = 0;
+    gActors[index].unk_0xFC._w = 0;
+    gActors[index].unk_0xF8._w = 0;
     gActors[index].vel.z_w = 0;
     gActors[index].vel.y_w = 0;
     gActors[index].vel.x_w = 0;
-    gActors[index].unk_0xE2 = 0;
+    gActors[index].healthDelta = 0;
     gActors[index].unk_0xDF = 0;
     gActors[index].unk_0xDD = 0;
     gActors[index].unk_0xDC = 0;

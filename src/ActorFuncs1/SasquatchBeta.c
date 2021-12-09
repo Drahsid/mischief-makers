@@ -15,8 +15,7 @@ void func_80192338_6A0338(uint16_t x){}
 /*
 void func_80192340_6A0340(uint16_t x){
     if(gActors[79].flag==0){
-        gActors[79].actorType=0x1406;
-        Actor_Spawn(79);
+        ACTORINIT(79,0x1406);
         gActors[79].flag=2;
     }
 }*/

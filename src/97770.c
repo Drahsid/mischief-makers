@@ -12,9 +12,8 @@
 
 #ifdef NON_MATCHING
 void func_8009705C(uint16_t index) {
-    gActors[index].actorType = 0x75;
-    Actor_Spawn(index);
-    gActors[index].unk_0xD0_h = 0x1000;
+    ACTORINIT(index,0X75);
+    gActors[index].actorState = 0x1000;
     gActors[index].unk_0x94 = 0x100;
     gActors[index].flag = 11;
     gActors[index].unk_0x84 = 0x800;
@@ -30,9 +29,8 @@ void func_8009705C(uint16_t index) {
 #endif
 
 void func_80097108(uint16_t index) {
-    gActors[index].actorType = 0x75;
-    Actor_Spawn(index);
-    gActors[index].unk_0xD0_h = 0x2000;
+    ACTORINIT(index,0X75);
+    gActors[index].actorState = 0x2000;
     gActors[index].unk_0x94 = 0x110;
     gActors[index].flag = 11;
     gActors[index].unk_0x84 = 0x1000;
@@ -43,9 +41,8 @@ void func_80097108(uint16_t index) {
 }
 
 void func_800971A0(uint16_t index) {
-    gActors[index].actorType = 0x75;
-    Actor_Spawn(index);
-    gActors[index].unk_0xD0_h = 0x100;
+    ACTORINIT(index,0X75);
+    gActors[index].actorState = 0x100;
     gActors[index].unk_0x94 = 0x900;
     gActors[index].flag = 11;
     gActors[index].unk_0x84 = 0x2800;
@@ -60,8 +57,7 @@ void func_800971A0(uint16_t index) {
 
 #ifdef NON_MATCHING
 void func_800972DC(void) {
-    gActors[80].actorType = 0x75;
-    Actor_Spawn(80);
+    ACTORINIT(80,0X75);
     gActors[80].unk_0x94 = 0x900;
     gActors[80].flag = 3;
     gActors[80].unk_0x84 = 0x2d0;
@@ -71,16 +67,15 @@ void func_800972DC(void) {
     gActors[80].pos.x_1 = 0;
     gActors[80].pos.y_1 = 0;
     gActors[80].pos.z_1 = 0x90;
-    Actor_Grayscale(80, 0);
+    Actor_Shade(80, 0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_800972DC.s")
 #endif
 
 void func_80097384(uint16_t index) {
-    gActors[index].actorType = 0x75;
-    Actor_Spawn(index);
-    gActors[index].unk_0xD0_h = 0xC000;
+    ACTORINIT(index,0X75);
+    gActors[index].actorState = 0xC000;
     gActors[index].unk_0x94 = 0x900;
     gActors[index].flag = 11;
     gActors[index].unk_0x84 = 0xCE;
@@ -88,7 +83,7 @@ void func_80097384(uint16_t index) {
     gActors[index].pos.x = 0x0;
     gActors[index].pos.y = 0x0;
     gActors[index].pos.z = 0x40;
-    Actor_Grayscale(index, 127);
+    Actor_Shade(index, 127);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80097428.s")

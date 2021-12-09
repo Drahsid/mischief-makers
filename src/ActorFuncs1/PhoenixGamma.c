@@ -9,7 +9,7 @@ uint16_t D_801A10E8_6B9AD8=0;
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80192100_6AAAF0.s")
 
 void func_801921DC_6AABCC(uint16_t index){
-    if(gActors[index].unk_0xD0_h&1){
+    if(gActors[index].actorState&1){
         gActors[index].rgba.r=0x3f;
         gActors[index].rgba.g=0x7f;
         gActors[index].rgba.b=0;
