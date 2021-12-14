@@ -15,7 +15,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A6F98_7667A8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A721C_766A2C.s")
-
+//part of the behavior for the clancer kid jumping over fire.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A72E8_766AF8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A7424_766C34.s")

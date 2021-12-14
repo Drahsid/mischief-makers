@@ -1,13 +1,38 @@
 #include "common.h"
 
-//TODO: find in jAP version where Migen Jr. speaks.
+
+//.bss
+int16_t D_8019e570,D_8019e572,D_8019e574;
+int32_t D_8019e578,D_8019e57C;
+int16_t D_8019e580;
+
 void func_80192100_67DC20(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192108_67DC28.s")
+void func_80192108_67DC28(uint16_t x){
+    Actor* actorp;
+    uint16_t index=func_8003123C(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
+    if(index){
+        actorp =&thisActor;
+        actorp->unk_0x94=1;
+        actorp->scaleX=1.5;
+        actorp->scaleY=1.5;
+        actorp->unk_0x148=60;
+    }
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192108_67DC28.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019219C_67DCBC.s")
-
+#ifdef NON_MATCHING
+void func_8019237C_67DE9C(uint16_t x){
+    gActors[78].unk_0x180_w=60;
+    gActors[79].unk_0x180_w=8;
+    gActors[80].unk_0x180_w=0xFE;
+    gActors[78].unk_0x140_f=0;
+}
+#else
+extern void func_8019237C_67DE9C(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019237C_67DE9C.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801923B0_67DED0.s")
 

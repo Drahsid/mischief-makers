@@ -14,7 +14,7 @@ void func_8019B100_742CB0(uint16_t x){
     ACTORINIT(48,0X1D);
     gActors[48].unk_0x94 = 0xa01;
     gActors[48].flag=0xB;
-    gActors[48].unk_0x84 = 0x2d0;
+    gActors[48].graphic = 0x2d0;
     gActors[48].pos.x = 0;
     gActors[48].pos.y = 0;
     gActors[48].pos.z = 0xfff0;
@@ -35,9 +35,9 @@ void func_8019B100_742CB0(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019B770_743320.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019B87C_74342C.s")
-//once again, compiler does not recognize data.
+
 #ifdef NON_MATCHING
-extern UNK_TYPE D_801A0F8C_7483BC;
+extern int16_t D_801A0F8C_7483BC[];
 void func_8019B990_743540(uint16_t index){
     if(gActors[index].actorState) func_800819A8(index,&D_801A0F8C_7483BC);
 }
@@ -96,7 +96,7 @@ uint32_t func_8019CAB8_744668(uint16_t x){
 #ifdef NON_MATCHING
 void func_8019CAF8_7446A8(uint16_t index){
     if(gActors[index].flag&0x20){
-        gActors[index].flag&= ~0x00000020;
+        gActors[index].flag&= ~20;
         gActors[index].unk_0x138=0.0;
         gActors[index+1].unk_0x130=1.0f;
     }
@@ -285,7 +285,7 @@ void func_8019DA80_745630(uint16_t index){
         gActors[j].pos.y_w=gActors[index].pos.y_w;
         gActors[j].pos.z=gActors[index].pos.z-1;
         gActors[j].unk_0x154._w=i<<7;
-        gActors[j].unk_0x158=i*10;
+        gActors[j].unk_0x158._w=i*10;
         if(gActors[index+6].unk_0x180_w<0x200) gActors[j].unk_0x15C=1;
         else gActors[j].unk_0x15C=-1;
     }
@@ -299,7 +299,7 @@ float D_801A1A94_749644[16]={
     0.0,0.38,0.7,0.924,1.0,0.924,0.7,0.38,-0.0,-0.38,0.7,-0.924,-1.0,-0.7,-0.38
 };
 float func_8019DD64_745914(){
-    return (float)(int32_t)D_801373E0.unk_0xE*D_801A1A94_749644[D_801373E0.unk_0x10];
+    return (float)D_801A1A94_749644[D_801373E0.unk_0x10]*D_801373E0.unk_0xE;
 }
 #else
 extern float func_8019DD64_745914();
@@ -334,7 +334,12 @@ extern void func_8019E180_745D30(uint16_t index,int16_t* p, uint16_t c);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019E180_745D30.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019E1E8_745D98.s")
+void func_8019E1E8_745D98(uint16_t index){
+    if((gActors[index+6].unk_0x180_w<0x1A0)&&(gActors[index+6].unk_0x180_w>0x260)&&(func_80029B00(64,48,-48))){
+        if(D_801A20F0<gActors[index+6].unk_0x180_w) thisActor.pos.x_w+=0x28000;
+        else thisActor.pos.x_w-=0x28000;
+    }
+}
 //main BEE-havior?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019E2F0_745EA0.s")
 

@@ -150,48 +150,48 @@ extern void func_80193278_6FA508(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193278_6FA508.s")
 #endif
 
-void func_801932D0_6FA560(uint16_t other,uint16_t index,uint16_t type,uint16_t unk84,int16_t x,int16_t y,int16_t z){
+void func_801932D0_6FA560(uint16_t other,uint16_t index,uint16_t type,uint16_t graphic,int16_t x,int16_t y,int16_t z){
   ACTORINIT(index,type);
   gActors[index].pos.x_w = 0;
   gActors[index].pos.y_w = 0;
   gActors[index].pos.z_w = 0;
   gActors[index].flag = 2;
-  gActors[index].unk_0x84 = unk84;
+  gActors[index].graphic = graphic;
   gActors[index].pos.x = x;
   gActors[index].pos.y = y;
   gActors[index].pos.z = z;
   gActors[index].actorState =gActors[other].actorState&0xff00;
 }
 
-void func_8019339C_6FA62C(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c04,unk84,x,y,z);
+void func_8019339C_6FA62C(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c04,graphic,x,y,z);
 }
 
-void func_801933F8_6FA688(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c05,unk84,x,y,z);
+void func_801933F8_6FA688(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c05,graphic,x,y,z);
 }
-void func_80193454_6FA6E4(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c06,unk84,x,y,z);
+void func_80193454_6FA6E4(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c06,graphic,x,y,z);
 }
-void func_801934B0_6FA740(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c07,unk84,x,y,z);
+void func_801934B0_6FA740(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c07,graphic,x,y,z);
 }
 
-void func_8019350C_6FA79C(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c08,unk84,x,y,z);
+void func_8019350C_6FA79C(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c08,graphic,x,y,z);
 }
-void func_80193568_6FA7F8(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c09,unk84,x,y,z);
+void func_80193568_6FA7F8(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c09,graphic,x,y,z);
 }
 void func_801935C4_6FA854(uint16_t other,int16_t x,int16_t y,int16_t z){
   func_801932D0_6FA560(other,81,0x2c0A,0,0,0,z);
   gActors[81].actorState=0;
 }
-void func_80193618_6FA8A8(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x2c0B,unk84,x,y,z);
+void func_80193618_6FA8A8(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x2c0B,graphic,x,y,z);
 }
-void func_80193674_6FA904(uint16_t other,uint16_t index,uint16_t unk84,int16_t x,int16_t y,int16_t z){
-  func_801932D0_6FA560(other,index,0x1D,unk84,x,y,z);
+void func_80193674_6FA904(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
+  func_801932D0_6FA560(other,index,0x1D,graphic,x,y,z);
 }
 #ifdef NON_MATCHING
 void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z){
@@ -204,20 +204,20 @@ extern void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z);
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193740_6FA9D0.s")
 
-void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t unk84,int32_t x,int32_t y,int32_t z){
+void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c05);
   gActors[index].flag = 2;
-  gActors[index].unk_0x84 = unk84;
+  gActors[index].graphic = graphic;
   gActors[index].pos.x_w = x;
   gActors[index].pos.y_w = y;
   gActors[index].pos.z_w = z;
   gActors[index].actorState =gActors[other].actorState&0xff00;
 }
 
-void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t unk84,int32_t x,int32_t y,int32_t z){
+void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c06);
   gActors[index].flag = 2;
-  gActors[index].unk_0x84 = unk84;
+  gActors[index].graphic = graphic;
   gActors[index].pos.x_w = x;
   gActors[index].pos.y_w = y;
   gActors[index].pos.z_w = z;

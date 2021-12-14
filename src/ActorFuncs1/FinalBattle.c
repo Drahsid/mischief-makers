@@ -15,7 +15,7 @@ void func_80192100_6BCDD0(uint16_t index){
 
 void func_801921E0_6BCEB0(uint16_t x){
     func_80192100_6BCDD0(81);
-    gActors[81].unk_0x84=0x83A;
+    gActors[81].graphic=0x83A;
 }
 
 
@@ -26,7 +26,7 @@ void func_801921E0_6BCEB0(uint16_t x){
 void func_8019232C_6BCFFC(uint16_t index){
     uint16_t x=index+10;
     if(gActors[index].unk_0x138!=0.0) x=index+15;
-    gActors[x].unk_0x84=0x203A;
+    gActors[x].graphic=0x203A;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019232C_6BCFFC.s")
 
@@ -35,9 +35,9 @@ void func_801923D0_6BD0A0(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801923D8_6BD0A8.s")
 void func_801924B4_6BD184(uint16_t x){
     func_80192100_6BCDD0(84);
-    gActors[84].unk_0x84=0x100E;
+    gActors[84].graphic=0x100E;
     func_80192100_6BCDD0(85);
-    gActors[85].unk_0x84=0x1016;
+    gActors[85].graphic=0x1016;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801924F4_6BD1C4.s")
@@ -48,23 +48,23 @@ void func_801924B4_6BD184(uint16_t x){
 
 void func_80192C8C_6BD95C(uint16_t x){
     func_80192100_6BCDD0(86);
-    gActors[86].unk_0x84=0x200C;
+    gActors[86].graphic=0x200C;
     func_80192100_6BCDD0(87);
-    gActors[87].unk_0x84=0x2014;
+    gActors[87].graphic=0x2014;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80192CCC_6BD99C.s")
 
 void func_80192D74_6BDA44(uint16_t x){
     func_80192100_6BCDD0(88);
-    gActors[88].unk_0x84=0x812;
+    gActors[88].graphic=0x812;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80192DA0_6BDA70.s")
 
 void func_80192E48_6BDB18(uint16_t x){
     func_80192100_6BCDD0(89);
-    gActors[89].unk_0x84=0x812;
+    gActors[89].graphic=0x812;
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80192E74_6BDB44.s")
 //shade the Mecha based on z.
@@ -123,15 +123,38 @@ void func_80192F30_6BDC00(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196530_6C1200.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019654C_6C121C.s")
-
+/*
+void func_801965D0_6C12A0(uint16_t index, uint32_t theta){
+    float f1,f2;
+    int32_t a;
+    Actor* actorp;
+    f1= COS(theta)*393216.0;
+    f2= COS(theta)*49152.0;
+    a=ABS_800289cc((int32_t)f2);
+    actorp=&thisActor;
+    MODi(actorp->vel.x_w,(int32_t)f1,a);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801965D0_6C12A0.s")
-
+/*
+void func_801966B0_6C1380(uint16_t index, uint32_t theta){
+    float f1,f2;
+    int32_t a;
+    Actor* actorp;
+    f1= SIN(theta)*393216.0;
+    f2= SIN(theta)*49152.0;
+    a=ABS_800289cc((int32_t)f2);
+    actorp=&thisActor;
+    MODi(actorp->vel.x_w,(int32_t)f1,a);
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801966B0_6C1380.s")
-//modify x velocity
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196794_6C1464.s")
-//modify y velocity
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801967F4_6C14C4.s")
 
+void func_80196794_6C1464(uint16_t index){
+    MODi(thisActor.vel.x_w,0,0xC000);
+}
+
+void func_801967F4_6C14C4(uint16_t index){
+    MODi(thisActor.vel.y_w,0,0xC000);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196854_6C1524.s")
 
 void func_80196BE8_6C18B8(uint16_t x){}
@@ -270,7 +293,7 @@ void func_8019DA3C_6C870C(uint16_t x, uint16_t y){
     gActors[193].rgba.a=0;
     gActors[193].unk_0x150._w=0;
     gActors[193].unk_0x154._w=y;
-    gActors[193].unk_0x158=x;
+    gActors[193].unk_0x158._w=x;
     Actor_Shade(193,0);
 }
 
@@ -299,7 +322,7 @@ void func_8019DBEC_6C88BC(uint16_t index){
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;
     gActors[index].pos.z=0x80;
-    gActors[index].unk_0x84=0xE6;
+    gActors[index].graphic=0xE6;
     gActors[index].rgba.a=64;
     gActors[index].scaleX=12.0;
     gActors[index].scaleY=12.0;
@@ -328,15 +351,15 @@ void func_8019DF44_6C8C14(uint16_t index){
 }
 void func_8019DFB0_6C8C80(uint16_t x){
     func_8019DF44_6C8C14(118);
-    gActors[118].unk_0x84=0x200A;
+    gActors[118].graphic=0x200A;
     func_8019DF44_6C8C14(119);
-    gActors[119].unk_0x84=0x200C;
+    gActors[119].graphic=0x200C;
     func_8019DF44_6C8C14(120);
-    gActors[120].unk_0x84=0x2014;
+    gActors[120].graphic=0x2014;
 }
 void func_8019E004_6C8CD4(uint16_t x){
     func_8019DF44_6C8C14(121);
-    gActors[121].unk_0x84=0x203A;
+    gActors[121].graphic=0x203A;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019E030_6C8D00.s")

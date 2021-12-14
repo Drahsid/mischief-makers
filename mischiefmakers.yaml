@@ -595,6 +595,7 @@ segments:
     subsegments:
       - [0x7545A0, c,ActorFuncs2/ToadlyRaw]
       - [0x75C6F0,bin,ActorFuncs2/ToadlyRaw]
+      #- [0x75D290,.rodata,ActorFuncs2/ToadlyRaw]
   - type: code
     start: 0x75D630
     vram: 0x8019b000
@@ -608,6 +609,7 @@ segments:
     subsegments:
       - [0x75D660, c,ActorFuncs2/MoleyCow]
       - [0x763EA0,bin,ActorFuncs2/MoleyCow]
+      #- [0x765B20,.rodata,ActorFuncs2/MoleyCow]
 
 #call lists and code segments loaded per scene by RomCopy_ActorFuncs3
   - type: code
@@ -810,6 +812,7 @@ segments:
     subsegments:
       - [0x7B87B0, c,ActorFuncs4/World4]
       - [0x7BC2B0, bin, ActorFuncs4/World4]
+      #- [0x7BC6A0, rodata, ActorFuncs4/World4]
   - type: code
     start: 0x7BC840
     vram: 0x801B0800

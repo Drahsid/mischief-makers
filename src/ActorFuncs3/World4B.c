@@ -11,7 +11,7 @@ void func_801A6908_77F268(uint16_t index){
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;
     gActors[index].pos.z=0x80;
-    gActors[index].unk_0x84=0xE6;
+    gActors[index].graphic=0xE6;
     gActors[index].rgba.a=0x40;
     gActors[index].unk_0x18C=&D_801AC0DC_784A3C;
     gActors[index].scaleX=12.0;
@@ -22,7 +22,7 @@ void func_801A69B0_77F310(uint16_t index){
     ACTORINIT(index,0X1D);
     gActors[index].unk_0x94=0x100;
     gActors[index].flag=3;
-    gActors[index].unk_0x84=0x2004;
+    gActors[index].graphic=0x2004;
     gActors[index].rgba.a=0xF8;
     Actor_Shade(index,255);
     gActors[index].pos.x=0;
@@ -78,7 +78,7 @@ void func_801A83D8_780D38(uint16_t index){
     if(gActors[index].actorState==0){
         gActors[index].actorState=1;
         gActors[index].flag=3;
-        gActors[index].unk_0x84=0x7004;
+        gActors[index].graphic=0x7004;
         gActors[index].vel.y_w=0x10000;
         gActors[index].rgba.a=0;
     }
@@ -95,7 +95,7 @@ void func_801A8604_780F64(){
     ACTORINIT(143,0x1E05);
     gActors[143].unk_0x94=0;
     gActors[143].flag=2;
-    gActors[143].unk_0x84=0x2D0;
+    gActors[143].graphic=0x2D0;
     gActors[143].pos.z=0xE0;
     gActors[143].unk_0x154._w=4;
     gActors[143].scaleX=20.0;
@@ -157,7 +157,7 @@ extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
 void func_801AA3A4_782D04(uint16_t index){
     ACTORINIT(index,0x1D);
     gActors[index].unk_0x94=0x1817;
-    gActors[index].unk_0x84=0x262;
+    gActors[index].graphic=0x262;
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;
     gActors[index].pos.z=0xFE00;

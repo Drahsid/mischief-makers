@@ -55,7 +55,7 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
             gActors[index].unk_0x94 |= 0x200;
             gActors[index].unk_0x18C_w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
             gActors[index].unk_0x154._w = 0xC0;
-            gActors[index].unk_0x158 = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
+            gActors[index].unk_0x158._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
         }
 
         D_80178130 = 0x180;

@@ -105,7 +105,7 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
     actor->flag |= ACTOR_FLAG_UNK16;
     arg2 = ((float)arg2 * gActors->unk_0x120);
 
-    actor->unk_0x150._w = ABS_8005C6D0(actor->vel.y_w) - 4;
+    actor->unk_0x150._w = ABS(actor->vel.y_w) - 4;
     if (actor->unk_0x150._w <= 0) {
         actor->unk_0x150._w = 1;
     }
@@ -256,7 +256,7 @@ void func_8004B18C(uint16_t index) {
         phi_a1 = -phi_a1;
     }
 
-    MODi(actor->vel.x_w, phi_a1, ABS_8005C6D0(phi_a1) / 8);
+    MODi(actor->vel.x_w, phi_a1, ABS(phi_a1) / 8);
     func_8005D370(index, 0x1D);
 
     if (actor->unk_0x170 == 0 && (actor->unk_0x171 == 2 || actor->unk_0x171 == 8)) {
@@ -326,28 +326,28 @@ void func_8004EAE4(uint16_t index) {
     if (gActors[index].actorState_b[0] == 0) {
         gActors[index].unk_0x170_w = 0;
         gActors[index].actorState_b[0]++;
-        gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x158;
+        gActors[index].graphic = (uint16_t)gActors[index].unk_0x158._w;
     }
 
     func_80083A04(
-        gActors[index].unk_0x84 - gActors[index].unk_0x158, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
+        gActors[index].graphic - gActors[index].unk_0x158._w, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
 
     phi_a3 = 0;
     if (((gButtonHold & gButton_DRight) != 0) &&
         (((gActors[index].unk_0x150._w == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150._w < 9) == 0)))) {
-        gActors[index].unk_0x84++;
+        gActors[index].graphic++;
         phi_a3 = 1;
-        if (gActors[index].unk_0x15C < (gActors[index].unk_0x84 & 0xFFFF)) {
-            gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x158;
+        if (gActors[index].unk_0x15C < (gActors[index].graphic & 0xFFFF)) {
+            gActors[index].graphic = (uint16_t)gActors[index].unk_0x158._w;
             phi_a3 = 1;
         }
     }
 
     phi_a3++;
     if (((gButtonHold & gButton_DLeft) != 0) && (((gActors[index].unk_0x150._w == 0)) || (((gActors[index].unk_0x150._w < 9) == 0)))) {
-        gActors[index].unk_0x84--;
-        if ((gActors[index].unk_0x84 & 0xFFFF) < gActors[index].unk_0x158) {
-            gActors[index].unk_0x84 = (uint16_t)gActors[index].unk_0x15C;
+        gActors[index].graphic--;
+        if ((gActors[index].graphic & 0xFFFF) < gActors[index].unk_0x158._w) {
+            gActors[index].graphic = (uint16_t)gActors[index].unk_0x15C;
         }
     }
 

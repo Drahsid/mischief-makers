@@ -442,7 +442,7 @@ void func_80017FE8(uint16_t index) {
     actor = &gActors[index];
     actor->pos.x = -2;
     actor->pos.y = 4;
-    actor->unk_0x84 = 0x2D0;
+    actor->graphic = 0x2D0;
     actor->unk_0x94 |= 0x801;
     actor->pos.z = 0x100;
     actor->unk_0x188 = 0;

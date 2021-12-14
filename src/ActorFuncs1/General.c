@@ -112,7 +112,7 @@ void func_80197B84_7190B4(uint16_t index){
         gActors[index].actorState++;
         gActors[index].unk_0x94=0x100;
         gActors[index].flag=3;
-        gActors[index].unk_0x84=0x168;
+        gActors[index].graphic=0x168;
         Actor_Shade(index,127);
         gActors[index].rgba.a=0xA0;
         gActors[index].vel.z_w=0xC0000;

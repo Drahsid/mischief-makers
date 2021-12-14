@@ -16,7 +16,7 @@ void func_8009705C(uint16_t index) {
     gActors[index].actorState = 0x1000;
     gActors[index].unk_0x94 = 0x100;
     gActors[index].flag = 11;
-    gActors[index].unk_0x84 = 0x800;
+    gActors[index].graphic = 0x800;
     gActors[index].rgba.a = 0;
     gActors[index].pos.x = 0xFFDF;
     gActors[index].pos.y = 0xFFFC;
@@ -33,7 +33,7 @@ void func_80097108(uint16_t index) {
     gActors[index].actorState = 0x2000;
     gActors[index].unk_0x94 = 0x110;
     gActors[index].flag = 11;
-    gActors[index].unk_0x84 = 0x1000;
+    gActors[index].graphic = 0x1000;
     gActors[index].rgba.a = 0;
     gActors[index].pos.x = 0x1e;
     gActors[index].pos.y = 0xFFD8;
@@ -45,7 +45,7 @@ void func_800971A0(uint16_t index) {
     gActors[index].actorState = 0x100;
     gActors[index].unk_0x94 = 0x900;
     gActors[index].flag = 11;
-    gActors[index].unk_0x84 = 0x2800;
+    gActors[index].graphic = 0x2800;
     gActors[index].rgba.a = 0;
     gActors[index].pos.x = 0x0;
     gActors[index].pos.z = 0x80;
@@ -60,7 +60,7 @@ void func_800972DC(void) {
     ACTORINIT(80,0X75);
     gActors[80].unk_0x94 = 0x900;
     gActors[80].flag = 3;
-    gActors[80].unk_0x84 = 0x2d0;
+    gActors[80].graphic = 0x2d0;
     gActors[80].scaleX = 20.0;
     gActors[80].scaleY = 20.0;
     gActors[80].unk_0x18C = D_800D8588;
@@ -78,7 +78,7 @@ void func_80097384(uint16_t index) {
     gActors[index].actorState = 0xC000;
     gActors[index].unk_0x94 = 0x900;
     gActors[index].flag = 11;
-    gActors[index].unk_0x84 = 0xCE;
+    gActors[index].graphic = 0xCE;
     gActors[index].rgba.a = 0;
     gActors[index].pos.x = 0x0;
     gActors[index].pos.y = 0x0;
@@ -110,7 +110,7 @@ void LevelClear_SkipScene(void) {
         gActors[193].pos.x = 0;
         gActors[193].pos.y = 0;
         gActors[193].pos.z = 0xc0;
-        gActors[193].unk_0x84 = 0x2d0;
+        gActors[193].graphic = 0x2d0;
         gActors[193].scaleX = 20.0;
         gActors[193].scaleY = 20.0;
         func_8005DFC8(0);

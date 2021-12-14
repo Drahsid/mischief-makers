@@ -166,6 +166,7 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } Gfx_Data; /* sizeof = 0x6180 */
 
+//inventory of stage's clanpot. item stored from last index upward. gClanpotItems may be a {ClanpotItem[32],u16[160]} union.
 typedef struct{
     /*0x00*/ uint16_t flags;
     /*0x02*/ uint16_t ActorFeild0x110;

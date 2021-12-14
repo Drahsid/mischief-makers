@@ -41,7 +41,7 @@ void func_8019B738_732498(uint16_t index){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019B764_7324C4.s")
-
+extern uint32_t func_8019B930_732690(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019B930_732690.s")
 
 void func_8019BA78_7327D8(uint16_t index){
@@ -227,7 +227,7 @@ void func_801A1024_737D84(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_801A2920_739680.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_801A3290_739FF0.s")
-
+//in Japanese version, Marina has a speech bubble of the shaken weapon's new effect.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_801A3664_73A3C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_801A37C0_73A520.s")

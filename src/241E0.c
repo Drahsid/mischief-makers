@@ -5,14 +5,13 @@ void Camera_RotateReset(void) {
     gCameraRot = 0;
     gCameraRotDelta = 0;
 }
+//common, enigmatic div func. 
 #ifdef NON_MATCHING
 void Camera_ApplyRotate(void){
-    int x;
+
     gCameraRot+=gCameraRotDelta;
-    x=gCameraRot;
-    if(gCameraRot<0) x=gCameraRot+0xFFFF;
-    gUpX =gCosineLookup[(x >> 0x10) - 0x100U & 0x3ff];
-    gUpY =gCosineLookup[x >> 0x10 & 0x3ff];
+    gUpX =SIN(gCameraRot/0x20000);
+    gUpY =COS(gCameraRot/0x20000);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/241E0/Camera_ApplyRotate.s")

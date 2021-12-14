@@ -46,7 +46,7 @@ void func_801932FC_68B2FC(){
   gActors[72].flag=2;
   gActors[72].unk_0x94=0x319;
   
-  gActors[72].unk_0x84=0x164;
+  gActors[72].graphic=0x164;
   gActors[72].unk_0x18C=D_800D8588;
   gActors[72].rgba.a=0xC0;
   gActors[72].unk_0x114=576.0;
@@ -449,7 +449,7 @@ void func_801A3314_69B314(uint16_t x){
   ACTORINIT(120,0XF13);
   gActors[120].unk_0x94=0x108;
   gActors[120].flag=0x1023;
-  gActors[120].unk_0x84=0x1812;
+  gActors[120].graphic=0x1812;
   gActors[120].pos.x=0x40;
   gActors[120].pos.y=0;
   gActors[120].pos.z=0;

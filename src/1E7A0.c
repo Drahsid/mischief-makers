@@ -107,7 +107,7 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x164._w = 0;
     gActors[index].unk_0x160._w = 0;
     gActors[index].unk_0x15C = 0;
-    gActors[index].unk_0x158 = 0;
+    gActors[index].unk_0x158._w = 0;
     gActors[index].unk_0x154._w = 0;
     gActors[index].unk_0x150._w = 0;
     gActors[index].unk_0x10C = 0;
@@ -133,7 +133,7 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].pos.z_w = phi_a0;
     gActors[index].pos.y_1 = phi_a0;
     gActors[index].pos.x_1 = phi_a0;
-    gActors[index].unk_0x84 = phi_a0;
+    gActors[index].graphic = phi_a0;
     gActors[index].unk_0xA0 = phi_a0;
     gActors[index].rgba.b = phi_a0;
     gActors[index].rgba.g = phi_a0;

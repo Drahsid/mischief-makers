@@ -182,22 +182,22 @@ void func_801AA370_790660(void) {}
 void func_801AD37C_79366C(uint16_t index,uint16_t instant){
     if(gActors[index].unk_0x160._w==0){
         gFestivalPointsWhite+=gActors[index].unk_0x154._w;
-        gFestivalPointsRed+=gActors[index].unk_0x158;
+        gFestivalPointsRed+=gActors[index].unk_0x158._w;
         gActors[index].unk_0x160._w=1;
     }
     if(instant){
-        gActors[62].unk_0x158=gFestivalPointsWhite;
-        gActors[64].unk_0x158=gFestivalPointsRed;
+        gActors[62].unk_0x158._w=gFestivalPointsWhite;
+        gActors[64].unk_0x158._w=gFestivalPointsRed;
     }
     else{
-        MODi(gActors[62].unk_0x158,gFestivalPointsWhite,1);
-        MODi(gActors[64].unk_0x158,gFestivalPointsRed,1);
-        if (((gActors[index].unk_0x170_w != gActors[62].unk_0x158) || (gActors[index].unk_0x174 != gActors[64].unk_0x158))
+        MODi(gActors[62].unk_0x158._w,gFestivalPointsWhite,1);
+        MODi(gActors[64].unk_0x158._w,gFestivalPointsRed,1);
+        if (((gActors[index].unk_0x170_w != gActors[62].unk_0x158._w) || (gActors[index].unk_0x174 != gActors[64].unk_0x158._w))
           && ((gSceneFrames & 3) == 0)){
             SFX_Play_1(0x139);
             }
-        gActors[index].unk_0x170_w=gActors[62].unk_0x158;
-        gActors[index].unk_0x174=gActors[64].unk_0x158;
+        gActors[index].unk_0x170_w=gActors[62].unk_0x158._w;
+        gActors[index].unk_0x174=gActors[64].unk_0x158._w;
     }
 }
 #else

@@ -105,12 +105,11 @@ typedef void (*ActorFunc)(uint16_t index);
 typedef struct {
     /* 0x000 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x080 */ int32_t flag;
-    /* 0x084 */ uint16_t unk_0x84;
-    /* 0x086 */ uint8_t unk_0x86;
-    /* 0x087 */ uint8_t unk_0x87;
+    /* 0x084 */ uint16_t graphic;
+    /* 0x086 */ uint16_t unk_0x86; //align.
     /* 0x088 */ Vec3i_union pos;
     /* 0x094 */ uint16_t unk_0x94;
-    /* 0x096 */ uint16_t unk_0x96;
+    /* 0x096 */ uint16_t unk_0x96; //align.
     /* 0x098 */ int32_t unk_0x98;
     /* 0x09C */ RGBA32 rgba;
     /* 0x0A0 */ uint8_t unk_0xA0;
@@ -123,7 +122,7 @@ typedef struct {
     /* 0x0AC */ int16_t unk_0xAC;
     /* 0x0AE */ int16_t unk_0xAE;
     /* 0x0B0 */ int16_t unk_0xB0;
-    /* 0x0B2 */ int16_t unk_0xB2;
+    /* 0x0B2 */ int16_t unk_0xB2; //align.
     /* 0x0B4 */ float scaleX;
     /* 0x0B8 */ float scaleY;
     /* 0x0BC */ float rotateX;
@@ -201,7 +200,7 @@ typedef struct {
     /* 0x14C */ float unk_0x14C;
     /* 0x150 */ s2_w unk_0x150;
     /* 0x154 */ s2_w unk_0x154;
-    /* 0x158 */ int32_t unk_0x158;
+    /* 0x158 */ s2_w unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ s2_w unk_0x160;
     /* 0x164 */ s2_w unk_0x164;

@@ -84,7 +84,7 @@ void func_801A77AC_77639C(uint16_t index) {
             gActors[index].actorState = 0x130;
             gActors[index].flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK15);
             gActors[index].unk_0x120 = ((float)gActors[index].vel.x_w * 1.5);
-            gActors[index].unk_0x158 = 0x6000;
+            gActors[index].unk_0x158._w = 0x6000;
             gActors[index].unk_0x15C = 0;
             gActors[index].unk_0x160._w = 0;
             gActors[index].unk_0x164._w = -1;
@@ -107,7 +107,7 @@ void func_801A78DC_7764CC(uint16_t index) {
         }
         else {
             gActors[index].actorState = 0x3B0;
-            gActors[index].unk_0x158 = 0;
+            gActors[index].unk_0x158._w = 0;
             gActors[index].unk_0x118 = -1.0f;
             gActors[index].unk_0x11C = 0.0f;
             func_801A7620_776210(index);
@@ -161,7 +161,7 @@ void func_801A8008_776BF8(uint16_t other){
     if(index){
         ACTORINIT(index,0x1D04);
         actorp=&gActors[other];
-        gActors[index].unk_0x84=0x13c;
+        gActors[index].graphic=0x13c;
         gActors[index].pos.x=actorp->pos.x;
         gActors[index].pos.z=actorp->pos.z+16;
         gActors[index].unk_0x94=0xA01;
@@ -170,7 +170,7 @@ void func_801A8008_776BF8(uint16_t other){
         gActors[index].unk_0x150._w=0x100000;
         gActors[index].scaleX=0.8; //.rodata
         gActors[index].scaleY=0.8;
-        gActors[index].unk_0x158=0x20000;
+        gActors[index].unk_0x158._w=0x20000;
         gActors[index].unk_0x15C=20;
         gActors[index].unk_0x154._w=actorp->unk_0x160._w;
     }
@@ -365,7 +365,7 @@ void func_801AF6AC_77E29C(uint16_t x){}
 func_801AF6B4_77E2A4(uint16_t index){
     ACTORINIT(index,0X1D);
     gActors[index].unk_0x94=0x1817;
-    gActors[index].unk_0x84=0x262;
+    gActors[index].graphic=0x262;
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;
     gActors[index].pos.z=0xFE00;
@@ -380,5 +380,6 @@ void func_801AF8A0_77E490(){
     func_801AF750_77E340(0x81);
     func_801AF750_77E340(0x82);
 }
-
+//"7 clancer kids" - Leo Shoots Marina.
+//uh.. spoilers.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AF8C8_77E4B8.s")
