@@ -1,5 +1,8 @@
 #include "common.h"
-
+#define MigenJrActor gActors[48]
+#define MigenSrActor gActors[98]
+#define ACTORTYPE_MIGENJR 0x600
+#define ACTORTYPE_MIGENSR 0x604
 
 //.bss
 int16_t D_8019e570,D_8019e572,D_8019e574;

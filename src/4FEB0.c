@@ -40,7 +40,7 @@ void func_8004F5B0(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FB30.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FC68.s")
-
+//main shake function?
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FDF8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800500B0.s")

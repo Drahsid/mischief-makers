@@ -887,7 +887,7 @@ void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
     func_8002AC30(index, 8);
 
     gActors[index].health = 1;
-    gActors[index].unk_0xE4 = 30;
+    gActors[index].attackDmg = 30;
     gActors[index].pos.x = x;
     gActors[index].pos.y = y;
     gActors[index].vel.x_w = A;
@@ -1210,7 +1210,7 @@ void func_80031DDC(uint16_t index) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80031DDC.s")
 #endif
-
+//29 args. used by "cerberus Alpha"
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80031E38.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800320F8.s")

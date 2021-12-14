@@ -36,7 +36,7 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].unk_0xAE = gActorInit[gActors[index].actorType].unk_0x6;
 
         gActors[index].health = gActorInit[gActors[index].actorType].health;
-        gActors[index].unk_0xE4 = gActorInit[gActors[index].actorType].unk_0xA;
+        gActors[index].attackDmg = gActorInit[gActors[index].actorType].unk_0xA;
         gActors[index].flag = gActorInitFlags[gActors[index].actorType]; // ((gActors[index].actorType * 4) + 0x800D0000)->unk - 0x6228;
         gActors[index].unk_0xE8p = D_800C9FCC[gActors[index].actorType];
     }
@@ -51,7 +51,7 @@ void Actor_Spawn(uint16_t index) {
         gActors[index].unk_0xAE = 0x10;
         gActors[index].unk_0xB0 = -0x10;
         gActors[index].health = 10;
-        gActors[index].unk_0xE4 = 10;
+        gActors[index].attackDmg = 10;
         gActors[index].flag = ACTOR_FLAG_ENABLED;
         gActors[index].unk_0xE8p = &D_800E1380;
     }

@@ -1,5 +1,9 @@
 #include "common.h"
+#define TeranActor gActors[48]
+#define JumpCount unk_0x160._w
+#define JumpDelay unk_0x164._w
 
+#define ACTORTYPE_TERANPLAYER 0X1D02
 
 //loaded during Teran's rescue stages
 void func_801A6900_7754F0(int32_t arg0) {}
@@ -172,14 +176,27 @@ void func_801A8008_776BF8(uint16_t other){
         gActors[index].scaleY=0.8;
         gActors[index].unk_0x158._w=0x20000;
         gActors[index].unk_0x15C=20;
-        gActors[index].unk_0x154._w=actorp->unk_0x160._w;
+        gActors[index].unk_0x154._w=actorp->JumpCount;
     }
 }
 #else
 extern void func_801A8008_776BF8(uint16_t other);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A8008_776BF8.s")
 #endif
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A8108_776CF8.s")
+//increment jumping. causes crash at 27 jumps
+void func_801A8108_776CF8(uint16_t index){
+    if(-1<thisActor.JumpDelay) thisActor.JumpDelay--;
+    if((gButtonPress&gButton_A)&&(thisActor.JumpCount<3)&&(thisActor.JumpDelay<0)){
+        thisActor.actorState=0x131;
+        thisActor.unk_0x124=1.0;
+        thisActor.vel.y_w=0x40000;
+        thisActor.unk_0x158._w=0;
+        thisActor.JumpCount++;
+        thisActor.JumpDelay=8;
+        SFX_ActorPanX(0x118,index);
+        func_801A8008_776BF8(index);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A81E4_776DD4.s")
 

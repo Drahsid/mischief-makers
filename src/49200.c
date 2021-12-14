@@ -287,7 +287,7 @@ void func_8004B290(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004B344.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004B878.s")
-
+//marina's Down-A dash
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004BB08.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004BEF8.s")

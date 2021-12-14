@@ -215,7 +215,7 @@ void func_8019D588_745138(uint16_t index){
     gActors[index+3].unk_0xDB=4;
     gActors[index+3].unk_0xF8._w=0x60000;
     gActors[index+3].unk_0xFC._w=0x30000;
-    gActors[index+3].unk_0xE4=10;
+    gActors[index+3].attackDmg=10;
 }
 
 void func_8019D60C_7451BC(uint16_t index){
@@ -255,7 +255,7 @@ void func_8019D8C8_745478(uint16_t index){
     gActors[i].unk_0xFC._w=0;
     gActors[i].unk_0xDA=128;
     gActors[i].unk_0xDB=8;
-    gActors[i].unk_0xE4=100;
+    gActors[i].attackDmg=100;
 }
 void func_8019D930_7454E0(uint16_t index){
     uint16_t i=index+5; 

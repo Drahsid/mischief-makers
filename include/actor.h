@@ -150,8 +150,8 @@ typedef struct {
         /* 0x0E0 */ int16_t health;
         /* 0x0E0 */ uint16_t healthu;
     };
-    /* 0x0E2 */ uint16_t healthDelta; 
-    /* 0x0E4 */ uint16_t unk_0xE4;
+    /* 0x0E2 */ int16_t healthDelta; 
+    /* 0x0E4 */ int16_t attackDmg;
     /* 0x0E6 */ int16_t unk_0xE6;
     union{
     /* 0x0E8 */ uint32_t unk_0xE8;

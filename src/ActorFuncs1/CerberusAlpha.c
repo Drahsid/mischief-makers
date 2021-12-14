@@ -1,14 +1,24 @@
 #include "common.h"
+#define CatActor gActors[96]
+#define LunarActor gActors[143]
+#define ACTORTYPE_CAT 0XF01
+#define ACTORTYPE_LUNAR 0XF03
+
+//.data (incomplete)
+int16_t D_801A3D30_69BD30=0;
+uint16_t D_801A3D34_69BD34=0;
+int32_t D_801A3D38_69BD38=0; //missle cooldown?
+
 //.bss
-uint16_t D_801A80C0, D_801A80C2, D_801A80C4,D_801A80C6;
+uint16_t D_801A80C0, D_801A80C2, D_801A80C4,D_801A80C6; //phase 1 attack,?,?,?
 int16_t D_801A80C8, D_801A80CA, D_801A80CC; //missles loaded, cooldown, ?
-float D_801A80D0;
-uint32_t D_801A80D4,D_801A80D8;
-int16_t D_801A80DC, D_801A80DE;
+float D_801A80D0; //something with big laser (breadth?)
+uint32_t D_801A80D4,D_801A80D8; //big laser rotate?, big laser charge
+int16_t D_801A80DC, D_801A80DE; //machine gun ammo,?
 uint32_t D_801A80E0;
 uint16_t D_801A80E4;
-int16_t D_801A80E6,D_801A80E8;
-uint16_t D_801A80EA,D_801A80EC;
+int16_t D_801A80E6,D_801A80E8; //cat jump,?
+uint16_t D_801A80EA,D_801A80EC; //cat rocket index, ?
 int16_t D_801A80EE,D_801A80F0,D_801A80F2;
 
 
@@ -101,11 +111,29 @@ void func_801932FC_68B2FC(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801932FC_68B2FC.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80193364_68B364.s")
-
+extern void func_80193584_68B584(uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80193584_68B584.s")
-
+//branching issue?
+#ifdef NON_MATCHING
+void func_80193DB4_68BDB4(uint16_t index){
+  if(thisActor.actorState==0){
+    thisActor.actorState++;
+    thisActor.unk_0x94=0x109;
+    thisActor.flag=0xB;
+    thisActor.graphic=200;
+    thisActor.unk_0x150._w=gActors[72].pos.x_w;
+    thisActor.unk_0x154._w=gActors[72].pos.y_w;
+    gActors[144].rgba.r=0xC0;
+    func_800283BC(0x99,index); //laser blast noise
+  }
+  if(thisActor.actorState!=1) return;
+  func_80193584_68B584(index);
+  if(D_801A80D0<0.0f) thisActor.flag=0;
+}
+#else
+extern void func_80193DB4_68BDB4(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80193DB4_68BDB4.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80193EA8_68BEA8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80193EF8_68BEF8.s")
@@ -129,8 +157,11 @@ void func_801945CC_68C5CC(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80194858_68C858.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801949B4_68C9B4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80194ABC_68CABC.s")
+void func_80194ABC_68CABC(uint16_t index){
+  if(--thisActor.unk_0x104._w<0) thisActor.flag&=~0x200;
+  thisActor.rgba.g+=6;
+  thisActor.rgba.b+=8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80194B28_68CB28.s")
 
@@ -180,7 +211,7 @@ void func_8019589C_68D89C(uint16_t index, int16_t x, int16_t y, int16_t x2,int16
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195AD4_68DAD4.s")
 
 uint32_t func_80195C14_68DC14(uint16_t index, uint32_t flag){
-  int32_t z = gActors[index].pos.z_w-gActors[96].pos.z_w;
+  int32_t z = gActors[index].pos.z_w-CatActor.pos.z_w;
   if((z<0x80000)&&(z>-0x80000)){
     gActors[index].flag|=flag;
     return 1;
@@ -191,7 +222,7 @@ uint32_t func_80195C14_68DC14(uint16_t index, uint32_t flag){
 
 void func_80195CA8_68DCA8(uint16_t index){
   gActors[index].flag|=0x200;
-  gActors[index].unk_0xE4=100;
+  gActors[index].attackDmg=100;
   gActors[index].unk_0xDA=4, gActors[index].unk_0xDB=3; //yes, this works.
   gActors[index].unk_0xFC._w=0x30000;
   func_8002ABE4(index,12);
@@ -199,10 +230,15 @@ void func_80195CA8_68DCA8(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195D28_68DD28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195DCC_68DDCC.s")
+void func_80195DCC_68DDCC(){
+  gActors[54].flag&=~0x1700;
+  gActors[57].flag&=~0x1700;
+  gActors[67].flag&=~0x1700;
+  gActors[70].flag&=~0x1700;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195E0C_68DE0C.s")
-
+extern void func_80195EA4_68DEA4(uint16_t x, uint16_t y);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195EA4_68DEA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195F04_68DF04.s")
@@ -217,7 +253,7 @@ void func_80196898_68E898(uint16_t index){
 }
 
 void func_801968F0_68E8F0(uint16_t index){
-  if(gActors[index].pos.z<gActors[96].pos.z) MODi(gActors[index].vel.z_w,0x10000,0x1000);
+  if(gActors[index].pos.z<CatActor.pos.z) MODi(gActors[index].vel.z_w,0x10000,0x1000);
   else MODi(gActors[index].vel.z_w,-0x10000,0x1000);
 }
 
@@ -427,7 +463,7 @@ void func_8019C404_694404(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019CD94_694D94.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019CDC0_694DC0.s")
-//main behavior?
+//Lunar main behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019CE7C_694E7C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019F5B4_6975B4.s")
@@ -513,8 +549,7 @@ uint32_t func_801A35FC_69B5FC(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A363C_69B63C.s")
 
 int32_t func_801A37E8_69B7E8(uint16_t index){
-  return func_800294E0 (gActors[143].pos.x - gActors[index].pos.x,
-   gActors[143].pos.y - gActors[index].pos.y) <<16;
+  return func_800294E0 (LunarActor.pos.x - gActors[index].pos.x,LunarActor.pos.y - gActors[index].pos.y) <<16;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A3858_69B858.s")

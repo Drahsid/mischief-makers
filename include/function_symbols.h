@@ -903,7 +903,7 @@ extern void func_8004F614();
 extern void func_8004F7D8();
 extern void func_8004FB30();
 extern void func_8004FC68();
-extern void func_8004FDF8();
+extern void func_8004FDF8(uint16_t);
 extern void func_800500B0(uint16_t);
 extern void func_8005060C(uint16_t);
 extern void func_8005074C();
