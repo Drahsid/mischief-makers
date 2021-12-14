@@ -1,7 +1,31 @@
 #include "common.h"
 
 //update positions of actors.
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014AF0.s")
+void func_80014AF0(void){
+    uint16_t index;
+    if(D_800BE6F8) D_800BE6F8--;
+    if(D_800BE670){
+        for(index=0;index<ACTOR_COUNT1;index++){
+            if((thisActor.flag&2)&&(thisActor.flag&0x4000000)){
+                thisActor.pos.x_w+=thisActor.vel.x_w;
+                thisActor.pos.y_w+=thisActor.vel.y_w;
+                thisActor.pos.z_w+=thisActor.vel.z_w;
+            }
+        }
+    }
+    else{
+        for(index=0;index<ACTOR_COUNT1;index++){
+            if((thisActor.flag&2)){
+                thisActor.pos.x_w+=thisActor.vel.x_w;
+                thisActor.pos.y_w+=thisActor.vel.y_w;
+                thisActor.pos.z_w+=thisActor.vel.z_w;
+            }
+        }
+    }
+    gPlayerPosXMirror._w=gPlayerActor.pos.x_w+gScreenPosCurrentX._w;
+    gPlayerPosYMirror._w=gPlayerActor.pos.y_w+gScreenPosCurrentY._w;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014C44.s")
 
@@ -35,7 +59,10 @@ void func_800151D8(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015330.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800153A8.s")
+void func_800153A8(uint16_t index){
+    if(thisActor.unk_0xA0==0) thisActor.unk_0x98|=0x40;
+    else func_80014FD0(index,0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015418.s")
 

@@ -174,6 +174,7 @@ extern uint8_t D_800BE6E4;
 extern uint8_t D_800BE6E8;
 extern uint8_t D_800BE6EC;
 extern int8_t D_800BE6F0;
+extern uint16_t D_800BE6F8;
 extern int16_t D_800BE6FC;
 extern uint16_t D_800BE704;
 extern uint16_t D_800BE708;
@@ -460,7 +461,7 @@ extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
 extern int32_t VipToPlayerX; //gives the relative position from a VIP actor (usually boss) to the player
 extern int32_t VipToPlayerY;
-extern uint16_t D_800E3580;
+extern uint16_t gVIPActor;
 extern UNK_TYPE D_800E3584;
 extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[];

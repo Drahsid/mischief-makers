@@ -191,11 +191,11 @@ void func_8001751C(void) {
     uint16_t index;
 
     // if actors are not supposed to process
-    if (D_800BE670 != 0) {
+    if (D_800BE670) {
         for (index = 1; index < ACTOR_COUNT2; index++) {
             actor = gActors + index;
 
-            if ((actor->flag & ACTOR_FLAG_ACTIVE) && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
+            if ((actor->flag & ACTOR_FLAG_ACTIVE) && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE)) {
                 if (actor->actorType < 0x100) {
                     gActorFuncTable[actor->actorType](index);
                 }
@@ -600,24 +600,17 @@ void TitleScreen_Tick(void) {
 
             Title_Copyright();
 
-            buttonPress = gButtonPress;
-            if ((gButtonPress & gButton_Start) != 0) {
+            if (gButtonPress & gButton_Start) {
                 SFX_Play_1(SFX_MENU_DING);
                 func_80003F24(1, 0x40);
 
                 D_80178166 = 0;
 
-                if (gActors[7].rgba.b != 0) {
-                    gGameSubState = 0x30;
-                    buttonPress = gButtonPress;
-                }
-                else {
-                    gGameSubState = 0x20;
-                    buttonPress = gButtonPress;
-                }
+                if (gActors[7].rgba.b) gGameSubState = 0x30;
+                else gGameSubState = 0x20;
             }
             //start attract mode when BGM timer finishes
-            if ((D_80137DA0 >= 0x1141 || (buttonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
+            if ((D_80137DA0 >= 0x1141 || (gButtonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
                 gActors[51].unk_0x94 |= 0x10;
                 gActors[51].flag = ACTOR_FLAG_ENABLED;

@@ -420,13 +420,24 @@ void func_800299B0(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029A7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029B00.s")
+uint32_t func_80029B00(int16_t x,int16_t yHi,int16_t yLo){
+    if(((VipToPlayerX<x)&&(VipToPlayerX>-x))&&((VipToPlayerY<yHi)&&(VipToPlayerY>yLo)))
+      return 1;
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029B74.s")
+uint32_t func_80029B74(int16_t x){
+    if((VipToPlayerX<x)&&(VipToPlayerX>-x)) return 1;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029BB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029C44.s")
+uint32_t func_80029C44(int16_t xHi,int16_t xLo,int16_t yHi,int16_t yLo){
+    if(((VipToPlayerX>xHi)&&(VipToPlayerX<xLo))&&((VipToPlayerY<yHi)&&(VipToPlayerY>yLo)))
+      return 1;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029CC0.s")
 

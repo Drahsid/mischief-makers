@@ -48,8 +48,12 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800679DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067B18.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067E50.s")
+void func_80067E50(uint16_t index, void*p){
+    if(thisActor.unk_0xE6==0){
+        thisActor.unk_0xE8p=p;
+        thisActor.unk_0xE6=1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067E9C.s")
 

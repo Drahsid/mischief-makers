@@ -1,4 +1,16 @@
 #include "common.h"
+//.bss
+uint16_t D_801A80C0, D_801A80C2, D_801A80C4,D_801A80C6;
+int16_t D_801A80C8, D_801A80CA, D_801A80CC; //missles loaded, cooldown, ?
+float D_801A80D0;
+uint32_t D_801A80D4,D_801A80D8;
+int16_t D_801A80DC, D_801A80DE;
+uint32_t D_801A80E0;
+uint16_t D_801A80E4;
+int16_t D_801A80E6,D_801A80E8;
+uint16_t D_801A80EA,D_801A80EC;
+int16_t D_801A80EE,D_801A80F0,D_801A80F2;
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80192100_68A100.s")
 
@@ -8,9 +20,28 @@ int32_t func_8019226C_68A26C(uint16_t SFX_ID, uint16_t index){
   return SFX_ActorPanX(SFX_ID,index);
 }
 #else
+extern int32_t func_8019226C_68A26C(uint16_t SFX_ID, uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019226C_68A26C.s")
 #endif
+#ifdef NON_MATCHING
+void func_801922A0_68A2A0(uint16_t x){
+    ACTORINIT(193,0xF0A);
+    gActors[193].flag=0xB;
+    gActors[193].unk_0x94=0xB11;
+    gActors[193].graphic=0x2D0;
+    gActors[193].pos.x=0;
+    gActors[193].pos.y=0;
+    gActors[193].pos.x=128;
+    gActors[193].scaleX=20.0;
+    gActors[193].scaleY=20.0;
+    gActors[193].unk_0x18C=&D_800D8588;
+
+}
+#else
+extern void func_801922A0_68A2A0(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801922A0_68A2A0.s")
+#endif
+
 void func_8019231C_68A31C(uint16_t x){
     gActors[193].flag=0;
 }
@@ -18,16 +49,31 @@ void func_8019231C_68A31C(uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019232C_68A32C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019245C_68A45C.s")
+void func_8019245C_68A45C(){
+  D_801A80DE=1;
+  D_801A80EE=480;
+  D_801A80F0=320;
+  D_801A80F2=704;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80192490_68A490.s")
+void func_80192490_68A490(){
+  D_801A80DE=2;
+  D_801A80EE=480;
+  D_801A80F0=416;
+  D_801A80F2=768;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801924C4_68A4C4.s")
+void func_801924C4_68A4C4(){
+  D_801A80DE=3;
+  D_801A80EE=480;
+  D_801A80F0=480;
+  D_801A80F2=704;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801924F4_68A4F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801925F4_68A5F4.s")
-
+//load/spawn missle
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80192AFC_68AAFC.s")
 
 void func_80192D44_68AD44(uint16_t x){}
