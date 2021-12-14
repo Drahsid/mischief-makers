@@ -909,7 +909,7 @@ void func_8002ED48(uint16_t index, int16_t x, int16_t y) {
 
 uint16_t Gem_ActorSpawn(uint16_t index,uint16_t flags, uint16_t x){
     uint16_t gemIndex;
-    if(((flags&3)==2)&&YellowGem_GetFlag(gCurrentStage)) return 0;
+    if(((flags&GEMFLAG_GREEN)==GEMFLAG_YELLOW)&&YellowGem_GetFlag(gCurrentStage)) return 0;
     gemIndex= Actor_GetInactiveInRange(122,130);
     if(gemIndex){
         ACTORINIT(gemIndex,ACTORTYPE_GEM);
@@ -917,8 +917,8 @@ uint16_t Gem_ActorSpawn(uint16_t index,uint16_t flags, uint16_t x){
         gActors[gemIndex].unk_0x110=flags;
         gActors[gemIndex].pos.x=thisActor.pos.x;
         gActors[gemIndex].pos.y=thisActor.pos.y;
-        if(flags&0x10) gActors[gemIndex].vel.y_w=0x40000;
-        if(flags&0x20) gActors[gemIndex].unk_0x150._w=120;
+        if(flags&GEMFLAG_BOUNCE) gActors[gemIndex].vel.y_w=0x40000;
+        if(flags&GEMFLAG_UNK) gActors[gemIndex].unk_0x150._w=120;
         SFX_ActorPanX(SFX_GEM_APPEAR,index);
     }
     return gemIndex;
@@ -933,7 +933,7 @@ uint16_t YellowGem_NoHit(uint16_t index){
     uint16_t gemIndex=0;
     if((-1<D_800D2958)&&(YellowGem_GetFlag(gCurrentStage)==0)){
         func_8003FE4C(1.0,gPlayerActor.pos.x,gPlayerActor.pos.y+0x30,2);
-        gemIndex=Gem_ActorSpawn(index,0x32,0);
+        gemIndex=Gem_ActorSpawn(index,GEMFLAG_YELLOW|GEMFLAG_BOUNCE|GEMFLAG_UNK,0);
         if(gemIndex){
             gActors[gemIndex].actorType=0x3D;
             gActors[gemIndex].pos.x=gPlayerActor.pos.x;

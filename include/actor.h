@@ -290,6 +290,15 @@ extern Actor_func_8001EB8Cfn D_800CA1C0[];
 #define ACTORTYPE_MSHINT 0X7A
 #define ACTORTYPE_REDGEMRING 0X7B
 
+//flags used by Gem_ActorSpawn
+#define GEMFLAG_RED 0
+#define GEMFLAG_BLUE 1
+#define GEMFLAG_YELLOW 2
+#define GEMFLAG_GREEN 3
+#define GEMFLAG_BOUNCE 0X10
+#define GEMFLAG_UNK 0X20
+
+
 #define gPlayerActorp (gActors)
 #define gPlayerActor  gActors[0]
 #define gPlayerActorScale  gActors[0].unk_0x120

@@ -144,7 +144,7 @@ void func_801966B0_6C1380(uint16_t index, uint32_t theta){
     f2= SIN(theta)*49152.0;
     a=ABS_800289cc((int32_t)f2);
     actorp=&thisActor;
-    MODi(actorp->vel.x_w,(int32_t)f1,a);
+    MODi(actorp->vel.y_w,(int32_t)f1,a);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801966B0_6C1380.s")
 
@@ -155,11 +155,20 @@ void func_80196794_6C1464(uint16_t index){
 void func_801967F4_6C14C4(uint16_t index){
     MODi(thisActor.vel.y_w,0,0xC000);
 }
+//controlling the fist?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196854_6C1524.s")
 
 void func_80196BE8_6C18B8(uint16_t x){}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196BF0_6C18C0.s")
+//spawn a gem if beaten on ground.
+void func_80196BF0_6C18C0(uint16_t index, uint16_t gemflags,int32_t vx){
+    uint16_t gemIndex=func_8002F154(index,gemflags,0);
+    if(gemIndex){
+        gActors[gemIndex].vel.x_w=vx;
+        gActors[gemIndex].vel.y_w=0x38000;
+        gActors[gemIndex].pos.y+=0x20;
+        
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80196C78_6C1948.s")
 
