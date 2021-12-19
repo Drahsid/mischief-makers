@@ -22,7 +22,6 @@ void func_80192108_67DC28(uint16_t x){
         actorp->unk_0x148=60;
     }
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192108_67DC28.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019219C_67DCBC.s")
 #ifdef NON_MATCHING

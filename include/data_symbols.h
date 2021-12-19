@@ -8,7 +8,7 @@
 #include <ultra64.h>
 
 extern float gCosineLookup[1024]; // returns cos((n&0x3FF/256)*90 degrees)
-extern float D_800BDCD0[512];  // second lookup table, 1.0 to -0.99998. unused?
+extern float gUnusedFloatTable[512];  // second lookup table, 1.0 to -0.99998. unused?
 extern UNK_TYPE D_0040AC80;
 extern UNK_TYPE D_05095C98;
 extern uint16_t gGamePaused;
