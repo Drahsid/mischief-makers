@@ -22,7 +22,7 @@ void func_8008C4E0(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CA90.s")
 /*
 void func_8008CC00(void){
-    D_800BE5F4=5;    
+    D_800BE5F4._w=5;    
     gPlayerActor.pos.x=gActors[16].pos.x;
     gPlayerActor.pos.y=gActors[16].pos.y;
     gPlayerPosXMirror._hi = gScreenPosCurrentX._hi+ gActors[16].pos.x;
@@ -129,7 +129,7 @@ void func_8008DEBC(uint16_t index){
 /*
 void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     s32 n;
-    D_800BE5F4=4;
+    D_800BE5F4._w=4;
     if(index==0)index=16; //don't overwrite player actor
     ACTORINIT(index,ACTORTYPE_MARINAOHNO);
     gActors[index].flag=2;
@@ -143,10 +143,10 @@ void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
 /*
 void ActorTick_MarinaOhNo(uint16_t index){
     Actor* actor= &gActors[index];
-    D_800BE5F4=4;
+    D_800BE5F4._w=4;
     func_8008DF20(index);
     if(actor->actorState==16){
-        D_800BE5F4=4;
+        D_800BE5F4._w=4;
         actor->actorState=0x30;
         actor->unk_0x18C=D_800D46A8;
         actor->vel.y_w=0x20000;

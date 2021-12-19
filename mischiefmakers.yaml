@@ -63,7 +63,7 @@ segments:
       - [0x8F080, c]
       - [0x97770, c] # Level clear sequence
       - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
-      #start of libultra funcs
+      #start of libultra funcs. compiler flags: -g -O2 -mips2 -g1?
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
       - [0x99B50, asm, os/initalize]
@@ -209,10 +209,28 @@ segments:
       - [0xBB310, asm, os/stopthread]
       - [0xBB3F0, asm, libc/ldiv]
       - [0xBB5E0, asm, os/rspboot]
+      - [0xBB6B0, bin, gspboot]
+      - [0xBCAB0, bin, aspboot]
       # I dunno how to correctly find data/rodata, so these splits are very bad
-      - [0xBB810, bin] # .data, possibly some rodata from boot
+      - [0xBD8D0, data,cosineTable]
+      - [0xBE8D0, data,floatTable]      
+      - [0xBF0D0, bin] # general globals
+      #- [0xBF350, bin] # BGM/instrument name lists
+      #- [0xBF5E4, bin] # BGM instrument settings
+      #- [0xC192C, bin] # SFX names? might be for base sounds. also seqp_bank indecies.
+      #- [0xC32DC, bin] # more music.c data
+      #- [0xC4508, bin] # sprite.c data
+      - [0xC5AE0, bin] # decompress keys(?)
+      - [0xC5B20, bin] # gamesave.c data
+      - [0xC5FC0, bin] # misc. to discern later.
       - [0xEB7E8, .rodata, boot] # end at 0xEB824
       - [0xEB830, rodata]
+      #- [0xEB830, rodata,music] # includes sfx/bgm/instrument names.
+      - [0xEBB10, .rodata, GameSave]
+      - [0xEBBC0, .rodata, A540]
+      - [0xEBBE0, .rodata, 11820]
+      - [0xEBC00, rodata]
+      #- [0xEBC00, .rodata, gameover] #generates wrong offset
       - [0xEBC50, .rodata, 17A70]
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
@@ -266,7 +284,7 @@ segments:
   - [0x248F40,bin]
   - [0x3fab30,bin] # loaded by func_800197A0
   - [0x40AC70,bin] # blank.
-  - [0x40AC80,bin]
+  - [0x40AC80,bin] # start of data refernced in table below (marina graphics?) (TODO: split all the entries.)
   - [0x4A0910,bin] # ROM adresses load 2 at a time by func_800821B0 (-0x04BF5380)
   #actor properties for Intermission scenes
   - [0x4A15A0,bin]
@@ -285,7 +303,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x67DBA0, bin]
+      - [0x67DBA0, data]
   - type: code
     start: 0x67DC20
     vram: 0x80192100

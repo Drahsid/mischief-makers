@@ -394,11 +394,11 @@ void func_800012F0(void) {
             gGamePaused = 1;
         }
 
-        if (gGamePaused != 0 && gGameSubState == 0x10) {
+        if (gGamePaused && gGameSubState == 0x10) {
             if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
                 if ((gDebugBitfeild & 0x100)) {
-                    PauseGame_RestoreVolume(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
+                    PauseGame_RestoreVolume();
                     PauseGame_Unpause();
                 }
                 else {
@@ -406,11 +406,11 @@ void func_800012F0(void) {
                 }
             }
         }
-        else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
+        else if ((gButtonPress & gButton_Start) && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
             if (gActors->health >= 0) {
                 gGamePaused = 1;
-                gDebugBitfeild &= 0xFFEF;
-                if ((gDebugBitfeild & 0x100) != 0) {
+                gDebugBitfeild &=~0x10;
+                if (gDebugBitfeild & 0x100) {
                     gGameSubState = 0x10;
                 }
                 else {

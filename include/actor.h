@@ -184,7 +184,7 @@ typedef struct {
     /* 0x138 */ float unk_0x138;
     union{
         /* 0x13C */ float unk_0x13C;
-        /* 0x13C */ uint16_t unk_0x13C_h[2];
+        /* 0x13C */ int16_t unk_0x13C_h[2];
     };
     union {
         struct {
@@ -227,16 +227,19 @@ typedef struct {
     /* 0x178 */ void* unk_0x178;
     /* 0x178 */ int32_t unk_0x178_w;
     };
-    /* 0x17C */ uint32_t unk_0x17C; //also used as pointer for color blend func.
+    union{
+    /* 0x17C */ uint32_t unk_0x17C; 
+    /* 0x17C */ uint8_t unk_0x17C_bu[4]; 
+    /* 0x17C */ int8_t unk_0x17C_b[4]; 
+    /* 0x17C */ float unk_0x17C_f; 
+    /* 0x17C */ int16_t unk_0x17C_h[2]; 
+    /* 0x17C */ void* unk_0x17Cp; //also used as pointer for color blend func.
+    };
     union {
-        struct {
-            /* 0x180 */ uint8_t unk_0x180;
-            /* 0x181 */ uint8_t unk_0x181;
-            /* 0x182 */ uint8_t unk_0x182;
-            /* 0x183 */ uint8_t unk_0x183;
-        };
+        /* 0x180 */ void* unk_0x180_p;
         /* 0x180 */ int32_t unk_0x180_w;
         /* 0x180 */ uint16_t unk_0x180_h[2];
+        /* 0x180 */ uint8_t unk_0x180_b[4];
     };
     union {
         /* 0x184 */ int32_t unk_0x184_w; // read as word in Actor_Spawn

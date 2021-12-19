@@ -1562,8 +1562,33 @@ void Crosshair_CopyCoords(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F6A4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F7A0.s")
-
+#ifdef NON_MATCHING
+const double D_800EBC68=0.15000000000000002;
+const double D_800EBC70=-0.013499999999999998;
+uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
+    uint16_t index = func_80031284(0x132U, x, y, z + 1);
+    if (index) {
+        thisActor.unk_0x94 = 1;
+        thisActor.scaleX = scale;
+        thisActor.scaleY = scale;
+        thisActor.unk_0x110 = (scale * D_800EBC68);
+        thisActor.unk_0x114 = (scale * D_800EBC68);
+        thisActor.vel.y_w = 0x20000;
+        thisActor.unk_0x15C = -0x2000;
+        thisActor.unk_0x118 = (scale * D_800EBC70);
+        thisActor.unk_0x11C = (scale * D_800EBC70);
+        thisActor.unk_0x17Cp= func_80030A24;
+        thisActor.unk_0x148 = 24.0;
+        Actor_Shade(index, 0x40U);
+        thisActor.unk_0x104._w = -4;
+        thisActor.unk_0x154._w = -4;
+        thisActor.vel.z_w = 0x20000;
+    }
+    return index;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F8B0.s")
+#endif
 
 void func_8003F9CC(float f, uint16_t a, uint16_t b, uint32_t c) {}
 

@@ -130,7 +130,7 @@ extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
 extern int16_t D_800BE5F0;
-extern int32_t D_800BE5F4; //gotta be some kinda {s32,u8[4]} union.
+extern b4_w D_800BE5F4; 
 extern int16_t D_800BE5F8;
 extern uint16_t D_800BE5FC;
 extern UNK_TYPE D_800BE610; //these 4 are zero'd, but unused
@@ -202,6 +202,11 @@ extern uint16_t gNameEntryRow1HIRA[18];
 extern uint16_t gNameEntryRow2HIRA[18];
 extern uint16_t gNameEntryRow3HIRA[18];
 extern uint16_t gNameEntryRow4HIRA[18];
+extern uint16_t gNameEntryRow0KATA[18];
+extern uint16_t gNameEntryRow1KATA[18];
+extern uint16_t gNameEntryRow2KATA[18];
+extern uint16_t gNameEntryRow3KATA[18];
+extern uint16_t gNameEntryRow4KATA[18];
 extern uint16_t D_800C52A4[];
 extern uint16_t D_800C52B0[];
 extern uint16_t D_800C52BC[];

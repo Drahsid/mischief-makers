@@ -324,13 +324,13 @@ uint16_t* func_80045F14(uint16_t* arg0) {
     gScreenPosTargetY._hi = arg0[1];
     gScreenPosCurrentX._hi = gScreenPosTargetX._w;
     gScreenPosCurrentY._hi = gScreenPosTargetY._w;
-    gScreenPosNextX._hi = gScreenPosCurrentX._hi;
-    gScreenPosNextY._hi = gScreenPosCurrentY._hi;
+    gScreenPosNextX._hi = gScreenPosTargetX._hi;
+    gScreenPosNextY._hi = gScreenPosTargetY._hi;
     D_800D2920 = arg0[2];
     D_800D2924 = arg0[3];
     D_800D2918 = arg0[4];
     D_800D291C = arg0[5];
-    return arg0+6
+    return arg0+6;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045F14.s")
@@ -341,7 +341,7 @@ uint16_t* func_80045F14(uint16_t* arg0) {
 void func_80046148(void) {
     func_80045FA4();
     gPlayerActorp->flag &= ~ACTOR_FLAG_DRAW;
-    D_800BE5F4 = 4;
+    D_800BE5F4._w = 4;
 }
 
 void func_80046188(int32_t arg0, int32_t arg1) {
@@ -474,7 +474,7 @@ void func_8004735C(uint16_t arg0, int32_t arg1) {
         D_800D28FC = temp_t7 & ~6;
         func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
         gPlayerActorp->flag |= arg1;
-        D_800BE5F4 = 5;
+        D_800BE5F4._w = 5;
         D_800D28E8 = arg0;
     }
 }

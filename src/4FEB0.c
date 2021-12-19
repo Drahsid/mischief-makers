@@ -2,13 +2,13 @@
 
 #ifdef NON_MATCHING
 uint32_t func_8004F2B0(uint16_t index){
-    if((D_801370CE&gButton_B)==0) return 0;
-    else{
-        gActors[index].flag&=~0X4040;
-        gActors[index].unk_0x140=func_80048C28(0);
+    if(D_801370CE&gButton_B){
+        thisActor.flag&=~0X4040;
+        thisActor.unk_0x140=func_80048C28(0);
         if(D_801373D8&~0x80) return 2;
         return 1;
     }
+    return 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F2B0.s")
@@ -20,15 +20,9 @@ uint32_t func_8004F2B0(uint16_t index){
 //regalloc. redo branching?
 #ifdef NON_MATCHING
 void func_8004F5B0(uint16_t index){
-    if(gActors[index].unk_0x142==0){
-        gActors[index].unk_0x142=1;
-        return;
-    }
-    if(gActors[index].unk_0x142!=8){
-        gActors[index].unk_0x142=0;
-        return;
-    }
-    gActors[index].unk_0x142=2;
+    if (thisActor.unk_0x142 == 0) thisActor.unk_0x142 = 1;
+    else if (thisActor.unk_0x142 != 8) thisActor.unk_0x142 = 0;
+    else thisActor.unk_0x142 = 2;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F5B0.s")
@@ -135,16 +129,41 @@ void func_8005552C(uint16_t x,uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80057268.s")
 
 int32_t Actor_AddHP(uint16_t index, int16_t x){
- if(gActors[index].health<0) return -1;
- gActors[index].health+=x;
- if(gActors[index].health>3000){
-     gActors[index].health=3000;
+ if(thisActor.health<0) return -1;
+ thisActor.health+=x;
+ if(thisActor.health>3000){
+     thisActor.health=3000;
      return 2;
  }
  return 1;
 }
-
+#ifdef NON_MATCHING
+int32_t func_8005739C(uint16_t index, int16_t HP){
+    if(index==0){
+        if(gPlayerActor.unk_0xDC) gPlayerActor.unk_0x13C_h[1]=0;
+        else gPlayerActor.unk_0x13C_h[1]=HP/2;
+    }
+    if(HP!=0){
+        if(thisActor.health<1){
+            if(index) return 3;
+            if(thisActor.health==0) return 3;
+        gPlayerActor.health=thisActor.health-HP;
+        }
+        else{
+            thisActor.health-=HP;
+            if(thisActor.health<0){
+                thisActor.health=0;
+                if(index) return 3;
+                else return 2;
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005739C.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800574B4.s")
 
@@ -178,14 +197,26 @@ void func_8005896C(uint16_t x, uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058D3C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058E44.s")
-
+void func_80058E44(uint16_t index,uint16_t x){
+    func_80058924(index);
+    thisActor.unk_0xF8._w=-thisActor.unk_0xF8._w;
+    thisActor.unk_0xFC._w=thisActor.unk_0xFC._w; //...but why?
+    thisActor.actorState=43;
+}
+#ifdef NON_MATCHING
+void func_80058EB0(uint16_t index,uint16_t x){
+    if((thisActor.flag<<6)<0) func_8004F514(index,thisActor.unk_0xD6);
+    func_80058924(index);
+    thisActor.unk_0x150._w=thisActor.flag&=~0x1501;
+    thisActor.actorState_b[0]=4,thisActor.actorState_b[1]=1;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058EB0.s")
-/*
-void func_80058F54(uint16_t index){
-    gActors[index].actorState=42;
-    gActors[index].unk_0xF8._w=gActors[index].vel.x_w;
-}*/
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058F54.s")
+#endif
+
+void func_80058F54(uint16_t index,uint16_t x){
+    thisActor.unk_0xF8._w=thisActor.vel.x_w;
+    thisActor.actorState=42;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80058F9C.s")

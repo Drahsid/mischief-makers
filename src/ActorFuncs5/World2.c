@@ -8,7 +8,7 @@ void func_801B99AC_7CE13C(int16_t x,int16_t y){
   gPlayerPosYMirror._hi = gScreenPosCurrentY._hi + y;
   gPlayerActor.pos.x = x;
   gPlayerActor.pos.y = y;
-  D_800BE5F4 = 10;
+  D_800BE5F4._w = 10;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World2/func_801B9A0C_7CE19C.s")

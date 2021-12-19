@@ -276,7 +276,7 @@ void func_8004B290(uint16_t index) {
     }
     MODi(gActors[index].vel.x_w, 0, ActorMarina_VelByScale(0) * 2);
     if (gActors[index].vel.x_w != 0) {
-        gActors[index].unk_0x183 = 4;
+        gActors[index].unk_0x180_b[3] = 4;
     }
     else{
         gActors[index].flag |= ACTOR_FLAG_UNK14;
@@ -419,8 +419,8 @@ void ActorTick_Marina(uint16_t index) {
         D_801370CC = gButtonHold;
         D_801370CE = gButtonPress;
 
-        if (D_800BE5F4 != 0) {
-            if ((uint8_t)D_800BE5F4 == 2) {
+        if (D_800BE5F4._w != 0) {
+            if (D_800BE5F4._w&0xFF == 2) {
                 func_800485AC(index, &D_801370CE, &D_801370CC);
             }
             else {
@@ -537,7 +537,7 @@ void ActorTick_Marina(uint16_t index) {
         func_8005BFA4(index);
 
         if (func_8005C5E0(index) == 1 && gActors[index].unk_0x13C >= 0x1F) {
-            gActors[index].unk_0x183 = 6;
+            gActors[index].unk_0x180_b[3] = 6;
         }
 
         if ((gActors[index].unk_0x98 & 2) != 0) {

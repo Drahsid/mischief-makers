@@ -44,6 +44,13 @@ typedef struct {
 } b2_s;
 
 typedef struct {
+    union{
+        uint8_t _b[4];
+        int32_t _w;
+    };
+} b4_w;/* sizeof = 0x04 */
+
+typedef struct {
     union {
         /* 0x00 */ int16_t x;
         /* 0x00 */ int32_t x_w;

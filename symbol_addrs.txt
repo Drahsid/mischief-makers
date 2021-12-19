@@ -999,6 +999,7 @@ CameraTick_World4A = 0x80025184; // type:func size:0x48 rom:0x25d84
 CameraInit_Merco_Trapped = 0x80025094; // type:func size:0x80 rom:0x25c94
 CameraTick_BeesTheOne = 0x80024ea0; // type:func size:0x1e4 rom:0x25aa0
 gCosineLookup = 0x800bccd0; // type:data size:0x1000 rom:0xbd8d0
+gUnusedFloatTable = 0x800bdcd0; // type:data size:0x800 rom:0xbe8d0
 gInputHistoryHold = 0x801225f0; // type:data size:0x80
 func_800457C8 = 0x800457c8; // type:func size:0x5bc rom:0x463c8
 gSound_currentBuffer = 0x8016e718; // type:data size:0x4
