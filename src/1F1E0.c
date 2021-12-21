@@ -179,7 +179,7 @@ void GamePlay_Tick_Active(void) {
     func_8001FF30(); // sets a value in the player
     func_8001DE30(); // unknown, does something with camera
     func_8008CA90(); // unknown, does something with actors
-    func_8001751C(); // actors
+    Actors_Tick(); // actors
     func_80014C44(); // clamp to world bounds?
     func_8005C8A4(); // camera quake
     func_8001FF50(); // update actor flags

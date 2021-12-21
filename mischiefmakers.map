@@ -2062,7 +2062,7 @@ LOAD build/assets/trailer.bin.o
  build/src/17A70.c.o(.text)
  .text          0x0000000080016e70     0x6d30 build/src/17A70.c.o
                 0x0000000080016e70                Actors_Tick_Overlayed
-                0x000000008001751c                func_8001751C
+                0x000000008001751c                Actors_Tick
                 0x0000000080017680                func_80017680
                 0x00000000800176f8                func_800176F8
                 0x0000000080017770                func_80017770

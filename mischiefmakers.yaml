@@ -586,6 +586,7 @@ segments:
     subsegments:
       - [0x749CB0, c,ActorFuncs2/ChillyDog]
       - [0x751950,bin,ActorFuncs2/ChillyDog]      
+      #- [0x753420,.rodata,ActorFuncs2/ChillyDog]      
   - type: code
     start: 0x753860
     vram: 0x8019b000

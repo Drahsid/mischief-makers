@@ -186,7 +186,7 @@ void Actors_Tick_Overlayed(uint16_t index) {
     }
 }
 
-void func_8001751C(void) {
+void Actors_Tick(void) {
     Actor* actor; // this is probably a fake match but I prefer this syntax over gActors[index]
     uint16_t index;
 

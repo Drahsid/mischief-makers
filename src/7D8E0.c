@@ -30,9 +30,32 @@ void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
 //has 7 args sometimes?
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CFE0.s")
 //this is wherein the japanese version text would appear over actors' heads (i.e. Migen Jr)
-//0x8007CECC in JAP
-uint16_t func_8007D0DC(uint16_t index,uint16_t* txt,int16_t x,int16_t y,int16_t z){
+//0x8007CECC in JPN
+uint16_t func_8007D0DC(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
+    #ifdef VER_JPN
+    uint16_t index= Actor_GetInactiveInRange(140,144);
+    if(index){
+        ACTORINIT(index,ACTORTYPE_TEXTBUBBLE);
+        thisActor.unk_0x94=0x901;
+        thisActor.flag=2;
+        thisActor.rgba.a=0;
+        thisActor.unk_0x114=z&0x7FFF;
+        thisActor.unk_0x118=z&0x8000;
+        thisActor.pos.z_w=0x80000;
+        thisActor.unk_0x158._w=x;
+        thisActor.pos.x=x;
+        thisActor.unk_0x15C._w=y;
+        thisActor.pos.y=y;
+        thisActor.scaleX=0.0;
+        thisActor.scaleY=0.0;
+        thisActor.scaleX=0.0;
+        thisActor.unk_0x150._w=txt;
+        thisActor.unk_0x154._w=i;
+    }
+    return index;
+    #else
     return 0;
+    #endif
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D0F4.s")
@@ -121,5 +144,5 @@ uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,flo
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F078.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F37C.s")
-
+//actor tick for japan-only speech bubbles
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F560.s")

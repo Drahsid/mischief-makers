@@ -270,8 +270,8 @@ typedef struct {
     /* 0x0C */ uint16_t unk_0xC;
 } ActorInit; /* sizeof = 0x0E */
 
-// Might be u16, u16 (index0, index1)
-typedef u32 (*ActorFunc_2Arg)(uint16_t, uint16_t);
+
+typedef void (*ActorFunc_2Arg)(uint16_t, uint16_t);
 
 extern Actor gActors[0xD0];
 extern ActorFunc gActorFuncTable[];
@@ -287,6 +287,7 @@ typedef union{
 #define ACTORTYPE_GEM 0X08
 #define ACTORTYPE_MARINA 0X16
 #define ACTORTYPE_PORTRAIT 0X27
+#define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, construtor is dummied out.
 #define ACTORTYPE_CLANBOMB 0X45
 #define ACTORTYPE_DIGGINGSPOT 0X57
 #define ACTORTYPE_MARINAOHNO 0X70

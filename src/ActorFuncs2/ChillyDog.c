@@ -1,4 +1,5 @@
 #include "common.h"
+//no .bss - seems the values are stored in the dog's actor segments?
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_8019B100_749CB0.s")
 
@@ -72,12 +73,25 @@ void func_8019BD48_74A8F8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A1E44_7509F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A1FB8_750B68.s")
-
+#ifdef NON_MATCHING
+uint32_t func_801A202C_750BDC(uint16_t x){
+    return func_8002877C(x)!=0;
+}
+#else
+extern uint32_t func_801A202C_750BDC(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A202C_750BDC.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A206C_750C1C.s")
-
+#ifdef NON_MATCHING
+uint32_t func_801A20FC_750CAC(uint16_t index){
+    if((0<thisActor.vel.y_w)&&(thisActor.unk_0x98&0x10))return 1;
+    return 0;
+}
+#else
+extern uint32_t func_801A20FC_750CAC(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A20FC_750CAC.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/ChillyDog/func_801A2170_750D20.s")
 
