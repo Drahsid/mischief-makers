@@ -90,7 +90,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B34D4_7A9A54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B3BC4_7AA144.s")
+void func_801B3BC4_7AA144(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B3BCC_7AA14C.s")
 

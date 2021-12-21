@@ -16,7 +16,8 @@
         gActors[i].actorType=t;\
         Actor_Spawn(i)
 #define thisActor gActors[index]
-#define ALPHAINDEX(x) x*2+0x2d2 //some calulation at the end. probably for graphic's index
+#define ALPHAINDEX(x) x*2+0x2d2 //get the letter's graphic index.
 #define COS(x) gCosineLookup[x&0x3ff]
 #define SIN(x) gCosineLookup[x-0x100&0x3ff] //cos(x-pi/2)=sin(x)
+#define NEGSIN(x) gCosineLookup[x+0x100&0x3ff]//cos(x+pi/2)=-sin(x)
 #endif

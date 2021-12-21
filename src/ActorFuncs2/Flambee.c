@@ -208,9 +208,9 @@ extern void func_8019D4C0_745070(uint16_t index);
 
 void func_8019D588_745138(uint16_t index){
     gActors[index+3].flag|=0x1200;
-    gActors[index+3].unk_0xA2=-14, gActors[index+3].unk_0xA4=14; //yes, this is needed.
-    gActors[index+3].unk_0xA6=16;
-    gActors[index+3].unk_0xA8=0;
+    gActors[index+3].hitboxAX0=-14, gActors[index+3].hitboxAX1=14; //yes, this is needed.
+    gActors[index+3].hitboxAY0=16;
+    gActors[index+3].hitboxAY1=0;
     gActors[index+3].unk_0xDA=129;
     gActors[index+3].unk_0xDB=4;
     gActors[index+3].unk_0xF8._w=0x60000;

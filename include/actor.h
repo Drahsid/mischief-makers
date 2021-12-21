@@ -44,6 +44,7 @@ enum {
 
 typedef void (*ActorFunc)(uint16_t index);
 
+
 /*
  * Struct notes from 1.0 (99% based on observation and not code)
  * Observation is primarily on Marina and Teran, so other actors are likely to be espescially different
@@ -113,15 +114,15 @@ typedef struct {
     /* 0x098 */ int32_t unk_0x98;
     /* 0x09C */ RGBA32 rgba;
     /* 0x0A0 */ uint8_t unk_0xA0;
-    /* 0x0A1 */ uint8_t unk_0xA1;
-    /* 0x0A2 */ int16_t unk_0xA2;
-    /* 0x0A4 */ int16_t unk_0xA4;
-    /* 0x0A6 */ int16_t unk_0xA6;
-    /* 0x0A8 */ int16_t unk_0xA8;
-    /* 0x0AA */ int16_t unk_0xAA;
-    /* 0x0AC */ int16_t unk_0xAC;
-    /* 0x0AE */ int16_t unk_0xAE;
-    /* 0x0B0 */ int16_t unk_0xB0;
+    /* 0x0A1 */ uint8_t unk_0xA1;  //align.
+    /* 0x0A2 */ int16_t hitboxAX0;  //physics hitboxx?
+    /* 0x0A4 */ int16_t hitboxAX1;
+    /* 0x0A6 */ int16_t hitboxAY0;
+    /* 0x0A8 */ int16_t hitboxAY1;
+    /* 0x0AA */ int16_t hitboxBX0; //damage hitbox?
+    /* 0x0AC */ int16_t hitboxBX1;
+    /* 0x0AE */ int16_t hitboxBY0;
+    /* 0x0B0 */ int16_t hitboxBY1;
     /* 0x0B2 */ int16_t unk_0xB2; //align.
     /* 0x0B4 */ float scaleX;
     /* 0x0B8 */ float scaleY;
@@ -152,11 +153,8 @@ typedef struct {
     };
     /* 0x0E2 */ int16_t healthDelta; 
     /* 0x0E4 */ int16_t attackDmg;
-    /* 0x0E6 */ int16_t unk_0xE6;
-    union{
-    /* 0x0E8 */ uint32_t unk_0xE8;
-    /* 0x0E8 */ uint16_t* unk_0xE8p; 
-    };
+    /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
+    /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
     /* 0x0EC */ Vec3i_union vel;
     /* 0x0F8 */ s2_w unk_0xF8; //halves loaded in func_80042c10
     /* 0x0FC */ s2_w unk_0xFC; //as args for a NOOP func.
@@ -273,11 +271,15 @@ typedef struct {
 } ActorInit; /* sizeof = 0x0E */
 
 // Might be u16, u16 (index0, index1)
-typedef void (*Actor_func_8001EB8Cfn)(int16_t, int16_t);
+typedef u32 (*ActorFunc_2Arg)(uint16_t, uint16_t);
 
 extern Actor gActors[0xD0];
 extern ActorFunc gActorFuncTable[];
-extern Actor_func_8001EB8Cfn D_800CA1C0[];
+extern ActorFunc_2Arg D_800CA1C0[];
+typedef union{
+    ActorFunc oneArg;
+    ActorFunc_2Arg twoArg;
+}ActorFunc_u;
 
 //todo: populate with all confirmed actor types
 //note: The following actor types have NOOPS as ticks, and may be unused:

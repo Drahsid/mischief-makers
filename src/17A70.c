@@ -10,11 +10,11 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 2: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 3: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 4: {
@@ -26,7 +26,7 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 6: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 7: {
@@ -38,23 +38,23 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 9: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 10: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 11: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 12: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 13: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 14: {
@@ -62,51 +62,51 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 15: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 16: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 17: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 18: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 19: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 20: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 21: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 22: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 23: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 24: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 25: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 26: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 27: {
@@ -114,47 +114,47 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 28: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 29: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 30: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 31: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 32: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 33: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 34: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 35: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 36: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 37: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 38: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 39: {
@@ -174,11 +174,11 @@ void Actors_Tick_Overlayed(uint16_t index) {
             break;
         }
         case 43: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 44: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
         }
         default: {
             break;
@@ -555,10 +555,10 @@ void TitleScreen_Tick(void) {
             gActors[48].unk_0x180 = 0x80349728;
             gActors[48].unk_0x188 = 0xE;
             gActors[48].pos.x = 0x2A;
-            gActors[48].unk_0xAA = 0xE0;
-            gActors[48].unk_0xAC = 1;
-            gActors[48].unk_0xAE = 8;
-            gActors[48].unk_0xB0 = 0xD;
+            gActors[48].hitboxBX0 = 0xE0;
+            gActors[48].hitboxBX1 = 1;
+            gActors[48].hitboxBY0 = 8;
+            gActors[48].hitboxBY1 = 0xD;
 
             gActors[49].flag = 0;
             gActors[50].flag = 0;

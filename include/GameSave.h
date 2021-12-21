@@ -16,7 +16,7 @@ extern uint16_t gFileYellowGems[2];
 extern uint64_t gFilePlayTimes[2]; // may be {u64;u32[2]} union.
 extern uint32_t gFestivalRecords[7];
 
-extern uint16_t func_80004E70(int32_t lhs, uint32_t offset);
+extern uint16_t func_80004E70(uint32_t lhs, uint32_t offset);
 extern int32_t func_80004E90(uint32_t arg0);
 extern int32_t IsOver999(uint32_t x);
 extern void func_80004F24();

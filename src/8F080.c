@@ -190,7 +190,9 @@ void CalinaChange_WandSpin(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009685C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800968EC.s")
+void func_800968EC(uint16_t x){
+    func_800819A8(x, D_800E9654);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009691C.s")
 

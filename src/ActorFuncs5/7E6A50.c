@@ -4,7 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B996C_7E6ABC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B99F4_7E6B44.s")
+void func_801B99F4_7E6B44(uint16_t x){
+    D_800BE73C._w=0x60000;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B9A08_7E6B58.s")
 

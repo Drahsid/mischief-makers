@@ -392,7 +392,7 @@ void func_8019EB80_6C9850(uint16_t index){
     gActors[index].unk_0x94=0x8100;
     gActors[index].flag=3;
     gActors[index].pos.z=0xA0;
-    gActors[index].unk_0xE6=1;
+    gActors[index].graphicTime=1;
     gActors[index].rgba.a=0;
 }
 //compiler refuses to aknowledge adresses for actorp->unk_0xE8 for these 3.
@@ -410,7 +410,7 @@ void func_8019ECEC_6C99BC(uint16_t index){
     actorp->pos.x=0x60;
     actorp->vel.x_w=0xFFFC0000;
     actorp->vel.y_w=0x30000;
-    actorp->unk_0xE8p=&D_801A68CC_6D159C;
+    actorp->graphicList=&D_801A68CC_6D159C;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019ECEC_6C99BC.s")

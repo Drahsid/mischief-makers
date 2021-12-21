@@ -11,6 +11,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_80096E14.s")
 
 #ifdef NON_MATCHING
+const float D_800ED508=0.8f; //rodata
 void func_8009705C(uint16_t index) {
     ACTORINIT(index,0X75);
     gActors[index].actorState = 0x1000;
@@ -21,8 +22,8 @@ void func_8009705C(uint16_t index) {
     gActors[index].pos.x = 0xFFDF;
     gActors[index].pos.y = 0xFFFC;
     gActors[index].pos.z = 0x80;
+    gActors[index].unk_0x114 = D_800ED508;
     gActors[index].unk_0x154._w = 0x6000;
-    gActors[index].unk_0x114 = 0.8; // seen as rodata
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/97770/func_8009705C.s")
@@ -101,8 +102,7 @@ void LevelClear_SkipScene(void) {
         Actor_ZeroFlagRange(0x90, 0xC0);
         Actor_ZeroFlag_192_199();
         func_800286C8();
-        gActors[193].actorType = 0x34;
-        Actor_Spawn(193);
+        ACTORINIT(193,0x34);
         gActors[193].unk_0x94 = 0x911;
         gActors[193].flag = 11;
         gActors[193].rgba.b = 0x40;

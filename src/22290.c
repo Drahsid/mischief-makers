@@ -80,7 +80,7 @@ void func_800230B8(void){
     uint16_t i;
     for(i=0;i<ACTOR_COUNT2;i++){
         gActors[i].flag=0;
-        gActors[i].unk_0xE8=0;
+        gActors[i].graphicList=NULL;
     }
     for(i=0;i<64;i++){
         D_801069E0[i].Active=0;

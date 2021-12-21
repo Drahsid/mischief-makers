@@ -92,9 +92,9 @@ extern uint16_t gRedGems;
 extern uint16_t gCurrentStage;
 extern uint16_t gStageTime; // pauses for cutscene, loading
 extern uint16_t gStageTimeReal;
-extern ActorFunc gActorFuncTable_80192000[64]; // proceeded by 0xBF00 bytes for DMA'd code/data
-extern ActorFunc gActorFuncTable_8019B000[64]; // proceeded by 0xB700 bytes for DMA'd code/data
-extern ActorFunc gActorFuncTable_801A6800[64]; // proceeded by 0x9F00 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_80192000[64]; // proceeded by 0xBF00 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_8019B000[64]; // proceeded by 0xB700 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_801A6800[64]; // proceeded by 0x9F00 bytes for DMA'd code/data
 extern ActorFunc gActorFuncTable_801B0800[64]; // proceeded by 0x8F00 bytes for DMA'd code/data
 extern uint8_t gSpriteData_YellowGem[];
 extern uint8_t gSpriteData_RedGem[];
@@ -325,11 +325,19 @@ extern uint16_t D_800D3888[24];
 extern int16_t D_800D38B8[140][2];//coords for "scene transition" portaits.
 extern int16_t D_800D3AE8[70]; //indecies for "scene transition" portaits.
 extern int16_t D_800D3B74;
+extern uint16_t D_800D81AC[];
 extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern UNK_TYPE D_800D85A8;
 extern uint16_t D_800D37A4;
 extern UNK_TYPE D_800D4000;
+extern int8_t D_800D401C[5][4];
+extern int8_t D_800D4030[5][4];
+extern int8_t D_800D4044[5][4];
+extern int8_t D_800D4058[5][4];
+extern int8_t D_800D406C[5][4];
+extern int8_t D_800D4080[5][4];
+extern int8_t (*D_800D4094[6])[4];
 extern uint32_t D_800D4184[82]; // pointer array?
 extern uint16_t D_800D46A8[18];
 extern int32_t D_800D5794[32]; //table for Marina's movement speeds.
@@ -459,6 +467,11 @@ extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
 extern UNK_TYPE D_800E1380;
 extern UNK_TYPE D_800E154C;
+extern uint16_t D_800E1700[];
+extern uint16_t D_800E1750[];
+extern uint16_t D_800E223C[];
+extern uint16_t D_800E2250[];
+extern uint16_t D_800E2274[];
 extern UNK_TYPE D_800E1DEC;
 extern UNK_TYPE gIcon_YellowGem;
 extern UNK_TYPE D_800E1C00;
@@ -472,6 +485,7 @@ extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[];
 extern float D_800E90E8[64];
 extern UNK_TYPE D_800E9850;
+extern uint16_t D_800E9654[];
 extern UNK_TYPE D_800EA110;
 extern UNK_TYPE D_800EA500;
 extern uint64_t D_800EF210[11]; //Sound_OSTaskp->ucode_data
@@ -623,9 +637,11 @@ extern uint16_t gFestivalPointsWhite;
 extern uint8_t gFestivalEventsBools[10];
 extern int32_t D_801782B0;
 extern uint16_t D_801782C0;
-extern int16_t D_801783F4[2];
+extern int16_t D_801783F4;
+extern int16_t D_801783F6;
 extern int16_t D_801783F8[16];
 extern uint16_t D_80178460;
+extern uint32_t D_801826A0[];
 extern uint16_t gFramebuffer0[320][240]; // framebuffer
 extern UNK_TYPE D_802C9F70;
 extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)

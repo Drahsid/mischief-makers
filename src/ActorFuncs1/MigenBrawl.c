@@ -1,13 +1,19 @@
 #include "common.h"
 #define MigenJrActor gActors[48]
+#define MigenJrHeadActor gActors[80]
 #define MigenSrActor gActors[98]
 #define ACTORTYPE_MIGENJR 0x600
+#define ACTORTYPE_MIGENJRBREATH 0x601
+#define ACTORTYPE_MIGENTHEO 0x602
 #define ACTORTYPE_MIGENSR 0x604
+#define ACTORTYPE_MIGENSRBALL 0x606
+#define ACTORTYPE_MIGENJRFIREBALL 0x609
+#define ACTORTYPE_MIGENGEM 0x60B //the green gem that heals migen Jr.
 
 //.bss
-int16_t D_8019e570,D_8019e572,D_8019e574;
-int32_t D_8019e578,D_8019e57C;
-int16_t D_8019e580;
+int16_t D_8019e570,D_8019e572,D_8019e574; //red gems in face,blue gems in ground,fireball catch gems (16th is green.)
+int32_t D_8019e578,D_8019e57C; //both written, never read.
+int16_t D_8019e580; //punch timer?
 
 void func_80192100_67DC20(uint16_t x){}
 
@@ -43,29 +49,29 @@ extern void func_8019237C_67DE9C(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801927DC_67E2FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192820_67E340.s")
-
+//flash from spitting fireball
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801928A8_67E3C8.s")
-
+//breath attack
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801929C0_67E4E0.s")
-
+//breath flame behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192C4C_67E76C.s")
-
+//spawn fireball
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192E68_67E988.s")
-
+//Fireball behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80192FE4_67EB04.s")
 #ifdef NON_MATCHING
 void func_801934F0_67F010(){
     ACTORINIT(94,0x2F);
     gActors[94].flag|=0xA302;
     gActors[94].health=1;
-    gActors[97].unk_0xAE=0x50;
-    gActors[97].unk_0xB0=-0x20;
-    gActors[97].unk_0xAA=-0x50;
-    gActors[97].unk_0xAC=0x50;
-    gActors[97].unk_0xA6=-0x20;
-    gActors[97].unk_0xA8=-0x80;
-    gActors[97].unk_0xA2=-0x100;
-    gActors[97].unk_0xA4=0x100;
+    gActors[97].hitboxBY0=0x50;
+    gActors[97].hitboxBY1=-0x20;
+    gActors[97].hitboxBX0=-0x50;
+    gActors[97].hitboxBX1=0x50;
+    gActors[97].hitboxAY0=-0x20;
+    gActors[97].hitboxAY1=-0x80;
+    gActors[97].hitboxAX0=-0x100;
+    gActors[97].hitboxAX1=0x100;
     gActors[97].unk_0xDA=0;
     gActors[97].unk_0xDB=19;
     gActors[97].pos.x=0;
@@ -80,28 +86,28 @@ void func_8019359C_67F0BC(void) {}
 void func_801935A4_67F0C4(){
     ACTORINIT(97,0x607);
     gActors[97].flag=0x2002;
-    gActors[97].unk_0xAE=0x10;
-    gActors[97].unk_0xB0=-0x10;
-    gActors[97].unk_0xAA=-0x100;
-    gActors[97].unk_0xAC=0x100;
+    gActors[97].hitboxBY0=0x10;
+    gActors[97].hitboxBY1=-0x10;
+    gActors[97].hitboxBX0=-0x100;
+    gActors[97].hitboxBX1=0x100;
     
 }
 
 void func_80193600_67F120(uint16_t index){
-    gActors[index].unk_0xAE=8;
-    gActors[index].unk_0xB0=-0x18;
+    gActors[index].hitboxBY0=8;
+    gActors[index].hitboxBY1=-0x18;
     func_8002ACFC(index,-14,20);
-    gActors[index].unk_0xA6=18;
-    gActors[index].unk_0xA8=-8;
+    gActors[index].hitboxAY0=18;
+    gActors[index].hitboxAY1=-8;
     func_8002AC7C(index,-12,10);
 }
 
 void func_80193694_67F1B4(uint16_t index){
-    gActors[index].unk_0xAE=16;
-    gActors[index].unk_0xB0=-12;
+    gActors[index].hitboxBY0=16;
+    gActors[index].hitboxBY1=-12;
     func_8002ACFC(index,-4,26);
-    gActors[index].unk_0xA6=12;
-    gActors[index].unk_0xA8=-12;
+    gActors[index].hitboxAY0=12;
+    gActors[index].hitboxAY1=-12;
     func_8002AC7C(index,-16,6);
 }
 
@@ -160,13 +166,23 @@ void func_80193F70_67FA90(uint16_t x,uint16_t c){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194B10_680630.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194B68_680688.s")
+void func_80194B68_680688(){
+    D_801376BC[0]=1;
+    D_801376BC[2]=1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194B80_6806A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194D3C_68085C.s")
 
+#ifdef NON_MATCHING
+void func_80194E64_680984(uint16_t index, uint16_t x){
+    thisActor.unk_0x110=x+((thisActor.health/30)-(Rand()&47))-20;
+}
+#else
+extern void func_80194E64_680984(uint16_t index, uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194E64_680984.s")
+#endif
 //rock camera up and down.
 void func_80194EE4_680A04(){
     if(gSceneFrames&0x80) MODi(gScreenPosTargetY._w,0x19C0000,0x1000);
@@ -190,31 +206,40 @@ void func_80197F90_683AB0(uint16_t x){}
 void func_80197F98_683AB8(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80197FA0_683AC0.s")
-
+//theo behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019809C_683BBC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198708_684228.s")
 
-void func_8019882C_68434C(void) {
-    Actor_GetInactiveInRange(0x67, 0x68);
+uint16_t func_8019882C_68434C(void) {
+    return Actor_GetInactiveInRange(0x67, 0x68);
 }
-
+//migen Sr. energy ball spawn
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198850_684370.s")
-
+//migen Sr. energy ball behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019893C_68445C.s")
 
 void func_80198ED8_6849F8(uint16_t x){}
 void func_80198EE0_684A00(uint16_t x){}
+//migen Sr. teleports.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198EE8_684A08.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198F70_684A90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80199094_684BB4.s")
+void func_80199094_684BB4(uint16_t index){
+    uint16_t other=index+1;
+    gActors[other].rgba.a=thisActor.rgba.a;
+    gActors[other].scaleX=thisActor.scaleX;
+    gActors[other].scaleY=thisActor.scaleY;
+    gActors[other].pos.x=thisActor.pos.x;
+    gActors[other].pos.y=thisActor.pos.y;
+    gActors[other].pos.z_w=thisActor.pos.z_w+-1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019911C_684C3C.s")
 //Migen Sr. behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_801992AC_684DCC.s")
-
+//Migen Sr. heals son.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80199DA8_6858C8.s")
 
 void func_80199F54_685A74(uint16_t x){}

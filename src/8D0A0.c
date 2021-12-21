@@ -40,10 +40,10 @@ void func_8008CC00(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CDC4.s")
 
 void func_8008CF10(uint16_t index){
-    gActors[index].unk_0xAE=8;
-    gActors[index].unk_0xB0=-14;
-    gActors[index].unk_0xAA=-8;
-    gActors[index].unk_0xAC=8;
+    gActors[index].hitboxBY0=8;
+    gActors[index].hitboxBY1=-14;
+    gActors[index].hitboxBX0=-8;
+    gActors[index].hitboxBX1=8;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CF60.s")

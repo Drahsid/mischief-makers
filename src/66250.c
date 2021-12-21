@@ -48,22 +48,33 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800679DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067B18.s")
+
 void func_80067E50(uint16_t index, void*p){
-    if(thisActor.unk_0xE6==0){
-        thisActor.unk_0xE8p=p;
-        thisActor.unk_0xE6=1;
-    }
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=p,thisActor.graphicTime=1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067E9C.s")
+void func_80067E9C(uint16_t index){
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=D_800E1700,thisActor.graphicTime=1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067EF0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067F44.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067F98.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067FEC.s")
+void func_80067EF0(uint16_t index){
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=D_800E1750,thisActor.graphicTime=1;
+}
+void func_80067F44(uint16_t index){
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=D_800E223C,thisActor.graphicTime=1;
+}
+void func_80067F98(uint16_t index){
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=D_800E2274,thisActor.graphicTime=1;
+}
+void func_80067FEC(uint16_t index){
+    if(thisActor.graphicTime==0)
+        thisActor.graphicList=D_800E2250,thisActor.graphicTime=1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80068040.s")
 
@@ -732,12 +743,31 @@ uint16_t func_800742B8(uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8007951C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079760.s")
+void func_80079760(u16 index) {
+    s32 x;
+    func_80078F54(index);
+    if (thisActor.flag & 0x20) x = 0x2000000;
+    else x = 0;
+    thisActor.unk_0x168 = func_800298D0(x, thisActor.unk_0x168, 0x180000);
+    MODi(thisActor.vel.x_w, 0, thisActor.unk_0x158._w + 0x80);
+    MODi(thisActor.vel.y_w, 0, thisActor.unk_0x15C + 0x80);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079810.s")
-
+#ifdef NON_MATCHING
+void func_800798EC(uint16_t index){
+    thisActor.flag&=~0x20000;
+    thisActor.actorState=0x30;
+    thisActor.graphicTime=1;
+    thisActor.graphicList=&D_800D81AC;
+    thisActor.flag|=0x10000;
+    thisActor.vel.x_w/=2;
+    thisActor.vel.y_w=0;
+    thisActor.unk_0x154._w=0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800798EC.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079984.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079AB4.s")

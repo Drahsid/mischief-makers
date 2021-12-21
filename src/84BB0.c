@@ -16,7 +16,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084734.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008486C.s")
+void func_8008486C(uint16_t x) {
+    func_800846A8(x), func_80084734(x);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800848A0.s")
 
@@ -174,7 +176,16 @@ void func_80085F08(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089084.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800891EC.s")
+void func_800891EC(u16 index) {
+    Actor* actorp;
+    uint16_t other = func_8003123C(&D_800E1380, thisActor.pos.x, thisActor.pos.y + 0xC, thisActor.pos.z + 1);
+    if (other) {
+        actorp = &gActors[other];
+        actorp->graphic = 0x16E;
+        actorp->vel.x_w = -0x200;
+        actorp->unk_0x154._w = -4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089298.s")
 
@@ -233,7 +244,11 @@ extern uint32_t* D_800E4440[6]; //common loot pools for digging spots.
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008BC5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008BFB0.s")
+void func_8008BFB0(void) {
+    u16 i;
+    for(i=0;i<4;i++)
+     D_801826A0[i]=0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008BFE4.s")
 

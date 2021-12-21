@@ -178,15 +178,15 @@ void func_80194ABC_68CABC(uint16_t index){
 //one stinkin' regAlloc.
 void func_80195808_68D808(uint16_t index, int16_t x, int16_t y, int16_t x2,int16_t y2){
   if(gActors[index].flag&0x20){
-      gActors[index].unk_0xAA=-x;
-      gActors[index].unk_0xAC=-y;
+      gActors[index].hitboxBX0=-x;
+      gActors[index].hitboxBX1=-y;
   }
   else{
-      gActors[index].unk_0xAA=y;
-      gActors[index].unk_0xAC=x;
+      gActors[index].hitboxBX0=y;
+      gActors[index].hitboxBX1=x;
   }
-  gActors[index].unk_0xAE=x2;
-  gActors[index].unk_0xB0=y2;
+  gActors[index].hitboxBY0=x2;
+  gActors[index].hitboxBY1=y2;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195808_68D808.s")
@@ -194,15 +194,15 @@ void func_80195808_68D808(uint16_t index, int16_t x, int16_t y, int16_t x2,int16
 
 void func_8019589C_68D89C(uint16_t index, int16_t x, int16_t y, int16_t x2,int16_t y2){
   if(gActors[index].flag&0x20){
-      gActors[index].unk_0xA2=-y;
-      gActors[index].unk_0xA4=-x;
+      gActors[index].hitboxAX0=-y;
+      gActors[index].hitboxAX1=-x;
   }
   else{
-      gActors[index].unk_0xA2=x;
-      gActors[index].unk_0xA4=y;
+      gActors[index].hitboxAX0=x;
+      gActors[index].hitboxAX1=y;
   }
-  gActors[index].unk_0xA6=x2;
-  gActors[index].unk_0xA8=y2;
+  gActors[index].hitboxAY0=x2;
+  gActors[index].hitboxAY1=y2;
 }
 
 

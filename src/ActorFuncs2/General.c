@@ -5,24 +5,24 @@ void func_8019B100_731E60(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019B108_731E68.s")
 
 void func_8019B21C_731F7C(uint16_t index){
-    gActors[index].unk_0xAE=28;
-    gActors[index].unk_0xB0=-4;
-    gActors[index].unk_0xAA=-12;
-    gActors[index].unk_0xAC=12;
+    gActors[index].hitboxBY0=28;
+    gActors[index].hitboxBY1=-4;
+    gActors[index].hitboxBX0=-12;
+    gActors[index].hitboxBX1=12;
 }
 
 void func_8019B270_731FD0(uint16_t index){
     gActors[index].flag|=0x2400;
     gActors[index].unk_0xDA = 4;
     gActors[index].unk_0xDB = 6;
-    gActors[index].unk_0xAE=16;
-    gActors[index].unk_0xB0=-16;
-    gActors[index].unk_0xAA=-20;
-    gActors[index].unk_0xAC=20;
-    gActors[index].unk_0xA6=22;
-    gActors[index].unk_0xA8=-22;
-    gActors[index].unk_0xA2=-26;
-    gActors[index].unk_0xA4=26;
+    gActors[index].hitboxBY0=16;
+    gActors[index].hitboxBY1=-16;
+    gActors[index].hitboxBX0=-20;
+    gActors[index].hitboxBX1=20;
+    gActors[index].hitboxAY0=22;
+    gActors[index].hitboxAY1=-22;
+    gActors[index].hitboxAX0=-26;
+    gActors[index].hitboxAX1=26;
 }
 
 void func_8019B300_732060(uint16_t index, uint16_t index1){
@@ -58,10 +58,10 @@ void func_8019BA78_7327D8(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019BDF4_732B54.s")
 
 void func_8019C0A0_732E00(uint16_t index){
-    gActors[index].unk_0xAE=8;
-    gActors[index].unk_0xB0=-40;
-    gActors[index].unk_0xAA=-16;
-    gActors[index].unk_0xAC=16;
+    gActors[index].hitboxBY0=8;
+    gActors[index].hitboxBY1=-40;
+    gActors[index].hitboxBX0=-16;
+    gActors[index].hitboxBX1=16;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019C0F4_732E54.s")
@@ -139,10 +139,10 @@ void func_8019DD08_734A68(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019ED3C_735A9C.s")
 
 void func_8019EFBC_735D1C(uint16_t index){
-    gActors[index].unk_0xAE=8;
-    gActors[index].unk_0xB0=-24;
-    gActors[index].unk_0xAA=-8;
-    gActors[index].unk_0xAC=8;
+    gActors[index].hitboxBY0=8;
+    gActors[index].hitboxBY1=-24;
+    gActors[index].hitboxBX0=-8;
+    gActors[index].hitboxBX1=8;
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019F00C_735D6C.s")
 

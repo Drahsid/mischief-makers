@@ -114,8 +114,8 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
     actor->unk_0x150._w *= 3;
     if (arg1 >= 0) {
         actor->unk_0x17C = arg1;
-        if (arg2 < actor->unk_0xB0) {
-            actor->pos.y = (actor->pos.y + actor->unk_0xB0) - arg2;
+        if (arg2 < actor->hitboxBY1) {
+            actor->pos.y = (actor->pos.y + actor->hitboxBY1) - arg2;
         }
     }
 
@@ -283,8 +283,117 @@ void func_8004B290(uint16_t index) {
         gActors[index].actorState = 3;
     }
 }
+#ifdef NON_MATCHING
+void func_8004B344(uint16_t index) { //regalloc, stack. 99.48% matching
+    s32 sp38[6];
+    s32 temp_v1;
+    s16 phi_a0;
 
+    thisActor.unk_0x12C = 2U;
+    if (thisActor.actorState_b[0] == 0) {
+        thisActor.unk_0x150._w = 0x10;
+        if (D_801373F0 == 4) {
+            thisActor.vel.x_w = (D_801373EE / 100) * ActorMarina_VelByScale(5) + ActorMarina_VelByScale(9);
+            if (ActorMarina_VelByScale(10) < thisActor.vel.x_w) {
+                thisActor.vel.x_w = ActorMarina_VelByScale(0xA);
+            }
+            thisActor.actorState_b[0] = 2U;
+            if (thisActor.flag & 0x20) {
+                thisActor.actorState_b[0] |= 0x80;
+            }
+        }
+        if (D_801373F0 == 0xC) {
+            thisActor.vel.x_w = -((D_801373EE / 100) * ActorMarina_VelByScale(5) + ActorMarina_VelByScale(9));
+            if (thisActor.vel.x_w < -ActorMarina_VelByScale(0xA)) {thisActor.vel.x_w = -ActorMarina_VelByScale(0xA);}
+            thisActor.actorState_b[0] = 1U;
+            if ((thisActor.flag & 0x20) == 0) {
+                thisActor.actorState_b[0]|= 0x80;
+            }
+        }
+        thisActor.unk_0xDA = 0;
+        thisActor.unk_0xDB = 0x15;
+        thisActor.attackDmg = 0;
+        thisActor.hitboxAY0 = thisActor.hitboxBY0 - 2;
+        thisActor.hitboxAY1 = thisActor.hitboxBY1 + 8;
+        if ((thisActor.actorState_b[0] & 0x80) == 0) {
+            if ((thisActor.flag & 0x20) == 0) {
+                thisActor.hitboxAX0 = 0;
+                thisActor.hitboxAX1 = thisActor.hitboxBX1 + 1;
+            } else {
+                thisActor.hitboxAX1 = 0;
+                thisActor.hitboxAX0 = thisActor.hitboxBX0 - 1;
+            }
+            thisActor.unk_0x170_w = 0x47;
+        } else {
+            if ((thisActor.flag & 0x20) == 0) {
+                thisActor.hitboxAX1 = 0;
+                thisActor.hitboxAX0 = (thisActor.hitboxBX0 - 1);
+            } else {
+                thisActor.hitboxAX0 = 0;
+                thisActor.hitboxAX1 = (thisActor.hitboxBX1 + 1);
+            }
+            thisActor.unk_0x170_w = 0x4A;
+        }
+        func_8005C098(index, 1);
+        thisActor.unk_0x17C = 0;
+        thisActor.unk_0x17C_b[1] = 2;
+        thisActor.unk_0x182 = (s8) D_801373F0;
+        D_801373F2 = 0x14;
+        D_801373F3 = 1;
+    }
+    if (((s8) thisActor.unk_0x170 == 0) && ((thisActor.unk_0x171 == 0) || (thisActor.unk_0x171 == 3))) {
+        D_801370D2 = 0;
+        func_8005C250(index);
+    }
+    if ((D_801373D8 & 0x10)) {
+        thisActor.actorState = 9;
+    } else {
+        if (--thisActor.unk_0x150._w == 0xA) {
+            SFX_Play_1(0x27);
+            sp38[1] = thisActor.pos.y+thisActor.hitboxBY1;
+            sp38[3] = 0x16C;
+            sp38[4] = 0;
+            sp38[0] = thisActor.pos.x;
+            sp38[2] = thisActor.pos.z;
+            gActors[func_80059F30(index, sp38, 0.2, 0xF)].scaleY /= 2;
+        }
+        if (thisActor.unk_0x150._w < 0xA) {
+            thisActor.unk_0x12C |= 4;
+        }
+        if (thisActor.unk_0x150._w < 8) {
+            MODi(thisActor.vel.x_w, 0, ActorMarina_VelByScale(0));
+        }
+        if (ABS(thisActor.vel.x_w) >= 0x30000) {
+            if (ABS(thisActor.hitboxAX0) < ABS(thisActor.hitboxAX1)) {
+                phi_a0 = (thisActor.pos.x + thisActor.hitboxAX1 + 1);
+            } else {
+                phi_a0 = (thisActor.pos.x + thisActor.hitboxAX0  - 1);
+            }
+            if ((func_80012AB4(phi_a0, thisActor.pos.y) & 0x80)) {
+                thisActor.actorState_b[0] = 1U;
+                thisActor.actorState_b[1] = 0x11;
+                thisActor.vel.x_w =-thisActor.vel.x_w *.75;
+            } else {
+                thisActor.flag |= 0x80;
+                goto block_40;
+            }
+        } else {
+block_40:
+            if (thisActor.unk_0x150._w == 0) {
+                if (ABS(thisActor.vel.x_w)>ActorMarina_VelByScale(5)) {
+                    thisActor.unk_0x150._w = 1;
+                } else {
+                    thisActor.flag &=~0x80;
+                    thisActor.flag |= 0x40;
+                    thisActor.actorState = 3;
+                }
+            }
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004B344.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/49200/func_8004B878.s")
 //marina's Down-A dash

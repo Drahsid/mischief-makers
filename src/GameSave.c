@@ -21,7 +21,7 @@ uint16_t gDefaultFileName[11] = {
 // This function gets the lower 4 bits of the word lhs + (offset)
 // Difference is flipped instructions
 #ifdef NON_MATCHING
-uint16_t func_80004E70(int32_t lhs, uint32_t offset) {
+uint16_t func_80004E70(uint32_t lhs, int32_t offset) {
     return lhs & (0xF << (offset * 4)) >> (offset * 4);
 }
 #else

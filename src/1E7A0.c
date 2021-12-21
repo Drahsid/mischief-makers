@@ -25,35 +25,35 @@ void Actor_Spawn(uint16_t index) {
      */
     if (gActors[index].actorType < 0x100) {
         // actorInit = (((actorType * 7) & 0xFFFF) * 2) + &gActorInit;
-        gActors[index].unk_0xA2 = -gActorInit[gActors[index].actorType].unk_0x0;
-        gActors[index].unk_0xA8 = -gActorInit[gActors[index].actorType].unk_0x2;
-        gActors[index].unk_0xAA = -gActorInit[gActors[index].actorType].unk_0x4;
-        gActors[index].unk_0xB0 = -gActorInit[gActors[index].actorType].unk_0x6;
+        gActors[index].hitboxAX0 = -gActorInit[gActors[index].actorType].unk_0x0;
+        gActors[index].hitboxAY1 = -gActorInit[gActors[index].actorType].unk_0x2;
+        gActors[index].hitboxBX0 = -gActorInit[gActors[index].actorType].unk_0x4;
+        gActors[index].hitboxBY1 = -gActorInit[gActors[index].actorType].unk_0x6;
 
-        gActors[index].unk_0xA4 = gActorInit[gActors[index].actorType].unk_0x0;
-        gActors[index].unk_0xA6 = gActorInit[gActors[index].actorType].unk_0x2;
-        gActors[index].unk_0xAC = gActorInit[gActors[index].actorType].unk_0x4;
-        gActors[index].unk_0xAE = gActorInit[gActors[index].actorType].unk_0x6;
+        gActors[index].hitboxAX1 = gActorInit[gActors[index].actorType].unk_0x0;
+        gActors[index].hitboxAY0 = gActorInit[gActors[index].actorType].unk_0x2;
+        gActors[index].hitboxBX1 = gActorInit[gActors[index].actorType].unk_0x4;
+        gActors[index].hitboxBY0 = gActorInit[gActors[index].actorType].unk_0x6;
 
         gActors[index].health = gActorInit[gActors[index].actorType].health;
         gActors[index].attackDmg = gActorInit[gActors[index].actorType].unk_0xA;
         gActors[index].flag = gActorInitFlags[gActors[index].actorType]; // ((gActors[index].actorType * 4) + 0x800D0000)->unk - 0x6228;
-        gActors[index].unk_0xE8p = D_800C9FCC[gActors[index].actorType];
+        gActors[index].graphicList = D_800C9FCC[gActors[index].actorType];
     }
     else {
         // OK
-        gActors[index].unk_0xA2 = -0x10;
-        gActors[index].unk_0xA4 = 0x10;
-        gActors[index].unk_0xA6 = 0x10;
-        gActors[index].unk_0xA8 = -0x10;
-        gActors[index].unk_0xAA = -0x10;
-        gActors[index].unk_0xAC = 0x10;
-        gActors[index].unk_0xAE = 0x10;
-        gActors[index].unk_0xB0 = -0x10;
+        gActors[index].hitboxAX0 = -0x10;
+        gActors[index].hitboxAX1 = 0x10;
+        gActors[index].hitboxAY0 = 0x10;
+        gActors[index].hitboxAY1 = -0x10;
+        gActors[index].hitboxBX0 = -0x10;
+        gActors[index].hitboxBX1 = 0x10;
+        gActors[index].hitboxBY0 = 0x10;
+        gActors[index].hitboxBY1 = -0x10;
         gActors[index].health = 10;
         gActors[index].attackDmg = 10;
         gActors[index].flag = ACTOR_FLAG_ENABLED;
-        gActors[index].unk_0xE8p = &D_800E1380;
+        gActors[index].graphicList = &D_800E1380;
     }
 
     gActors[index].scaleX = 1.0;
@@ -79,7 +79,7 @@ void Actor_Spawn(uint16_t index) {
 
     // weird float stuff?
     gActors[index].rgba.a = 0xFF;
-    gActors[index].unk_0xE6 = 1;
+    gActors[index].graphicTime = 1;
     gActors[index].unk_0xDE = 1;
     gActors[index].rotateZ = 0.0;
     gActors[index].rotateY = 0.0;

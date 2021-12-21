@@ -21,7 +21,7 @@ void Text_SpawnLetter(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t po
 
     Text_SpawnAt(index, pos_x, pos_y, pos_z);
     actor = &gActors[index];
-    actor->unk_0xE6 = 0;
+    actor->graphicTime = 0;
     actor->graphic = arg1;
 
     if ((r | g | b)) {
@@ -37,8 +37,8 @@ void Text_SpawnIcon(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, 
 
     Text_SpawnAt(index, pos_x, pos_y, pos_z);
     actor = &gActors[index];
-    actor->unk_0xE8p = arg1;
-    actor->unk_0xE6 = 1;
+    actor->graphicList = arg1;
+    actor->graphicTime = 1;
 }
 //takes 16-bit color vales, returns 32-bit?
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Text_ConvertColor.s")
@@ -544,9 +544,9 @@ int32_t func_8002A4FC(uint16_t i) {
 /*
 int32_t func_8002A900(uint16_t A, uint16_t B){
     int32_t x,y;
-    x=gActors[A].unk_0xAC+gActors[A].unk_0xAA;
+    x=gActors[A].hitboxBX1+gActors[A].hitboxBX0;
     if(x<0)x++;
-    y=gActors[B].unk_0xAC+gActors[B].unk_0xAA;
+    y=gActors[B].hitboxBX1+gActors[B].hitboxBX0;
     if(y<0)y++;
     return ((x>>1)+gActors[B].pos.x+(y>>1))-gActors[A].pos.x;
 }*/
@@ -554,9 +554,9 @@ int32_t func_8002A900(uint16_t A, uint16_t B){
 /*
 int32_t func_8002A990(uint16_t A, uint16_t B){
     int32_t x,y;
-    x=gActors[A].unk_0xAE+gActors[A].unk_0xBO;
+    x=gActors[A].hitboxBY0+gActors[A].unk_0xBO;
     if(x<0)x++;
-    y=gActors[B].unk_0xAE+gActors[B].unk_0xBO;
+    y=gActors[B].hitboxBY0+gActors[B].unk_0xBO;
     if(y<0)y++;
     return ((x>>1)+gActors[B].pos.y+(y>>1))-gActors[A].pos.y;
 }*/
@@ -564,38 +564,38 @@ int32_t func_8002A990(uint16_t A, uint16_t B){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AA20.s")
 void func_8002ABE4(uint16_t i, int16_t x) {
-    gActors[i].unk_0xA6 = x;
-    gActors[i].unk_0xA8 = -x;
-    gActors[i].unk_0xA2 = -x;
-    gActors[i].unk_0xA4 = x;
+    gActors[i].hitboxAY0 = x;
+    gActors[i].hitboxAY1 = -x;
+    gActors[i].hitboxAX0 = -x;
+    gActors[i].hitboxAX1 = x;
 }
 
 void func_8002AC30(uint16_t i, int16_t x) {
-    gActors[i].unk_0xAE = x;
-    gActors[i].unk_0xB0 = -x;
-    gActors[i].unk_0xAA = -x;
-    gActors[i].unk_0xAC = x;
+    gActors[i].hitboxBY0 = x;
+    gActors[i].hitboxBY1 = -x;
+    gActors[i].hitboxBX0 = -x;
+    gActors[i].hitboxBX1 = x;
 }
 
 void func_8002AC7C(uint16_t i, int16_t x, int16_t y) {
     if (gActors[i].flag & 0x20) {
-        gActors[i].unk_0xA4 = -x;
-        gActors[i].unk_0xA2 = -y;
+        gActors[i].hitboxAX1 = -x;
+        gActors[i].hitboxAX0 = -y;
     }
     else {
-        gActors[i].unk_0xA2 = x;
-        gActors[i].unk_0xA4 = y;
+        gActors[i].hitboxAX0 = x;
+        gActors[i].hitboxAX1 = y;
     }
 }
 
 void func_8002ACFC(uint16_t i, int16_t x, int16_t y) {
     if (gActors[i].flag & 0x20) {
-        gActors[i].unk_0xAC = -x;
-        gActors[i].unk_0xAA = -y;
+        gActors[i].hitboxBX1 = -x;
+        gActors[i].hitboxBX0 = -y;
     }
     else {
-        gActors[i].unk_0xAA = x;
-        gActors[i].unk_0xAC = y;
+        gActors[i].hitboxBX0 = x;
+        gActors[i].hitboxBX1 = y;
     }
 }
 
@@ -833,10 +833,10 @@ void func_8002C6DC(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002D040.s")
 /*
 void ActorTick_1(uint16_t index){
-    gActors[index].unk_0xA6+=2;
-    gActors[index].unk_0xA8-=2;
-    gActors[index].unk_0xA2-=2;
-    gActors[index].unk_0xA4+=2;
+    gActors[index].hitboxAY0+=2;
+    gActors[index].hitboxAY1-=2;
+    gActors[index].hitboxAX0-=2;
+    gActors[index].hitboxAX1+=2;
     if(gActors[index].unk_0x110==0.0)gActors[index].flag=0;
     else gActors[index].unk_0x110-=1.0;
 }*/
@@ -1047,8 +1047,8 @@ void func_800309C0(uint16_t index){
     if(gActors[index].actorState==0){
         gActors[index].actorState++;
         gActors[index].flag=ACTOR_FLAG_ENABLED;
-        gActors[index].unk_0xE8p=&D_800E1DEC;
-        gActors[index].unk_0xE6=1;
+        gActors[index].graphicList=&D_800E1DEC;
+        gActors[index].graphicTime=1;
     }
 }
 
@@ -1110,8 +1110,8 @@ uint16_t func_80030F94(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
         gActors[index].unk_0x184_w=gActors[index].pos.x_w;
         gActors[index].unk_0x188=gActors[index].pos.y_w;
         gActors[index].unk_0x148=240.0;
-        if(p==&D_800E1380) gActors[index].unk_0xE6 = 0x1E0;
-        else gActors[index].unk_0xE8p=p;
+        if(p==&D_800E1380) gActors[index].graphicTime = 0x1E0;
+        else gActors[index].graphicList=p;
     }
     return index;
 }
@@ -1344,17 +1344,17 @@ int16_t func_8003526C(uint16_t index, uint16_t arg1, uint16_t arg2, uint16_t arg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80035524.s")
 void func_80035824(uint16_t i){
-    gActors[i].unk_0xA6=0x14;
-    gActors[i].unk_0xA8=6;
-    gActors[i].unk_0xA2=-8;
-    gActors[i].unk_0xA4=8;
+    gActors[i].hitboxAY0=0x14;
+    gActors[i].hitboxAY1=6;
+    gActors[i].hitboxAX0=-8;
+    gActors[i].hitboxAX1=8;
 }
 
 void func_80035878(uint16_t i){
-    gActors[i].unk_0xAE=14;
-    gActors[i].unk_0xB0=-10;
-    gActors[i].unk_0xAA=-8;
-    gActors[i].unk_0xAC=8;
+    gActors[i].hitboxBY0=14;
+    gActors[i].hitboxBY1=-10;
+    gActors[i].hitboxBX0=-8;
+    gActors[i].hitboxBX1=8;
 }
 
 uint32_t func_800358CC(uint16_t i , uint16_t x){return 0;}
@@ -1528,10 +1528,9 @@ u32 func_8003D628(u16 x){
 //crosshair functions
 /*
 void Crosshair_CopyCoords(uint16_t index){
-    uint32_t parent = (uint16_t)gActors[index].unk_0x150._lo;
-    gActors[index].pos.x_w = gActors[parent].pos.x_w;
-    gActors[index].pos.y_w = gActors[parent].pos.y_w;
-    gActors[index].pos.z_w = gActors[parent].pos.z_w + 0x200000;
+    gActors[index].pos.x_w = gActors[gActors[index].unk_0x150._lo].pos.x_w;
+    gActors[index].pos.y_w = gActors[gActors[index].unk_0x150._lo].pos.y_w;
+    gActors[index].pos.z_w = gActors[gActors[index].unk_0x150._lo].pos.z_w + 0x200000;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/Crosshair_CopyCoords.s")
 
@@ -1591,7 +1590,7 @@ uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
 #endif
 
 void func_8003F9CC(float f, uint16_t a, uint16_t b, uint32_t c) {}
-
+//generate a puff of smoke
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F9E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FB20.s")

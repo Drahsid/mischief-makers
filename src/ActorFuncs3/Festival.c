@@ -110,7 +110,7 @@ void func_801AA370_790660(void) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AAB78_790E68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AAFC4_7912B4.s")
+void func_801AAFC4_7912B4(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AAFCC_7912BC.s")
 

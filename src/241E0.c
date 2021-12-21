@@ -129,11 +129,15 @@ void CameraTick_World3B(void) {}
 
 void CameraInit_TheDayBefore(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_TheDayBefore.s")
+void CameraTick_TheDayBefore(){
+    D_800BE73C._w = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
+}
 
 void CameraInit_Scene34(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Scene34.s")
+void CameraTick_Scene34(void) {
+    D_800BE73C._w = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
+}
 
 void CameraInit_World3(void) {
     D_800BE57C = 2;
