@@ -6,21 +6,21 @@ void func_801A6900_77F260(uint16_t x){}
 
 void func_801A6908_77F268(uint16_t index){
     ACTORINIT(index,0X1D);
-    gActors[index].unk_0x94=0x301;
+    gActors[index].flag2=0x301;
     gActors[index].flag=3;
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;
     gActors[index].pos.z=0x80;
     gActors[index].graphic=0xE6;
     gActors[index].rgba.a=0x40;
-    gActors[index].unk_0x18C=&D_801AC0DC_784A3C;
+    gActors[index].unk_0x18C._p=&D_801AC0DC_784A3C;
     gActors[index].scaleX=12.0;
     gActors[index].scaleY=12.0;
 }
 
 void func_801A69B0_77F310(uint16_t index){
     ACTORINIT(index,0X1D);
-    gActors[index].unk_0x94=0x100;
+    gActors[index].flag2=0x100;
     gActors[index].flag=3;
     gActors[index].graphic=0x2004;
     gActors[index].rgba.a=0xF8;
@@ -93,7 +93,7 @@ void func_801A83D8_780D38(uint16_t index){
 
 void func_801A8604_780F64(){
     ACTORINIT(143,0x1E05);
-    gActors[143].unk_0x94=0;
+    gActors[143].flag2=0;
     gActors[143].flag=2;
     gActors[143].graphic=0x2D0;
     gActors[143].pos.z=0xE0;
@@ -104,9 +104,9 @@ void func_801A8604_780F64(){
 
 void func_801A866C_780FCC(uint16_t x){
     gActors[143].actorState=1;
-    gActors[143].unk_0x94=0xB11;
+    gActors[143].flag2=0xB11;
     gActors[143].flag=0xb;
-    gActors[143].unk_0x18C=&D_800D8588;
+    gActors[143].unk_0x18C._p=&D_800D8588;
     gActors[143].rgba.a=255;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
@@ -115,9 +115,9 @@ void func_801A866C_780FCC(uint16_t x){
 
 void func_801A86D4_781034(uint16_t x){
     gActors[143].actorState=2;
-    gActors[143].unk_0x94=0xB11;
+    gActors[143].flag2=0xB11;
     gActors[143].flag=0xb;
-    gActors[143].unk_0x18C=&D_800D8588;
+    gActors[143].unk_0x18C._p=&D_800D8588;
     gActors[143].rgba.a=0;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
@@ -141,7 +141,7 @@ void func_801A8740_7810A0(void) {}
 void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i){
     uint16_t index2=func_80031284(i,x,y,1);
     if(index2){
-        gActors[index2].unk_0x94=0x8110;
+        gActors[index2].flag2=0x8110;
         gActors[index2].unk_0x148=0.0;
         gActors[index2].rgba.r=gActors[index].rgba.r;
         gActors[index2].rgba.g=gActors[index].rgba.g;
@@ -156,7 +156,7 @@ extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
 
 void func_801AA3A4_782D04(uint16_t index){
     ACTORINIT(index,0x1D);
-    gActors[index].unk_0x94=0x1817;
+    gActors[index].flag2=0x1817;
     gActors[index].graphic=0x262;
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;

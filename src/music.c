@@ -33,9 +33,81 @@ void Audio_DmaNew(void** arg0) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/func_80001A80.s")
-
+#ifdef NON_MATCHING
+void Sound_InitPlayers(void){
+uint8_t i;
+  
+  osCreateMesgQueue(&Sound_DMAmesgQA,D_80137800,0x30);
+  osCreateMesgQueue(&Sound_DMAmesgQB,&D_8016E740,1);
+  gBgmInited = 1;
+  gBGM_pALCPlayer = &BGM_ALCPlayer;
+  D_8016E2E0 = &D_8016E1E8;
+  bssStart = 0;
+  for(i=0;i<4;i++){
+    gSFXPlayersp[i] = gSFXPlayers + i;
+    D_8016E6C8[i] = D_8016E2E8 + i;
+    gSFX_ChannelStates[i] = 0;
+  }
+  alHeapInit(&gALHeap,gALHeapBase,0x35c00);
+  Sound_Acmdps[0] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x3800);
+  Sound_Acmdps[1] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x3800);
+  Sound_osTaskps[0] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x40);
+  Sound_osTaskps[1] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x40);
+  gAIBuffers[0] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
+  gAIBuffers[1] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
+  gAIBuffers[2] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
+  D_8016E714 = 0x11790;
+  Sound_AlBankFilep = alHeapDBAlloc(NULL,0,&gALHeap,1,0x11790);
+  Sound_DMA(0x4b9990,Sound_AlBankFilep,D_8016E714);
+  D_8016E714 = 4;
+  PTR_8016e6f4 = alHeapDBAlloc(NULL,0,&gALHeap,1,4);
+  Sound_DMA(0x6413b0,PTR_8016e6f4,D_8016E714);
+  D_8016E714 = PTR_8016e6f4->seqCount * 8 + 4;
+  PTR_8016e6f4 = alHeapDBAlloc(NULL,0,&gALHeap,1,D_8016E714);
+  Sound_DMA(0x6413b0,PTR_8016e6f4,D_8016E714);
+  alSeqFileNew(PTR_8016e6f4,(u8 *)0x6413b0);
+  ALGlobals_ALsynConfig.outputrate = osAiSetFrequency(0x5622);
+  D_8016E70C = ((float)ALGlobals_ALsynConfig.outputrate * 1.0) / 60.0;
+  D_8016E71C = D_8016E70C;
+  if (D_8016E71C < D_8016E70C) D_8016E71C++;
+  if (D_8016E71C & 0xf) D_8016E71C = (D_8016E71C & 0xfffffff0U) + 0x10;
+  INT_8016e720 = D_8016E71C + -0x10;
+  ALGlobals_ALsynConfig.maxVVoices = 0x14;
+  ALGlobals_ALsynConfig.maxPVoices = 0x14;
+  ALGlobals_ALsynConfig.maxUpdates = 0x90;
+  ALGlobals_ALsynConfig.dmaproc = Audio_DmaNew;
+  ALGlobals_ALsynConfig.fxType = AL_FX_CUSTOM;
+  ALGlobals_ALsynConfig.heap = &gALHeap;
+  ALGlobals_ALsynConfig.params = AlFX_params;
+  alInit(&gALGlobals,&ALGlobals_ALsynConfig);
+  Sound_ALSeqPConfig.maxVoices = 0x1e;
+  Sound_ALSeqPConfig.maxEvents = 0x40;
+  Sound_ALSeqPConfig.maxChannels = 0x14;
+  Sound_ALSeqPConfig.heap = &gALHeap;
+  Sound_ALSeqPConfig.initOsc = NULL;
+  Sound_ALSeqPConfig.updateOsc = NULL;
+  Sound_ALSeqPConfig.stopOsc = NULL;
+  alCSPNew(gBGM_pALCPlayer,&Sound_ALSeqPConfig);
+  for(i=0;i<4;i++){
+    alCSPNew(gSFXPlayersp[i],&Sound_ALSeqPConfig);
+  }
+  alBnkfNew(Sound_AlBankFilep,(u8 *)0x4cb120);
+  Sound_ALBankps[0] = Sound_AlBankFilep->BankArray[0];
+  Sound_ALBankps[1] = Sound_AlBankFilep->BankArray[1];
+  Sound_ALBankps[2] = Sound_AlBankFilep->BankArray[2];
+  Sound_ALBankps[3] = Sound_AlBankFilep->BankArray[3];
+  alSeqpSetBank((ALSeqPlayer *)gBGM_pALCPlayer,Sound_ALBankps[0]);
+  for(i=0;i<4;i++) {
+    alSeqpSetBank((ALSeqPlayer *)gSFXPlayersp[i],Sound_ALBankps[1]);
+  }
+  PTR_8016e6d8 = alHeapDBAlloc(NULL,0,&gALHeap,1,0x3400);
+  for(i=0;i<4;i++) {
+    D_8016E6E0[i] = alHeapDBAlloc(NULL,0,&gALHeap,1,0x500);
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_InitPlayers.s")
-
+#endif
 void Sound_SetEventMesg(void) {
     osCreateMesgQueue(&D_801377D0, &D_801378C0, 1);
     osSetEventMesg(OS_EVENT_SP, &D_801377D0, 0);
@@ -45,7 +117,7 @@ void Sound_SetEventMesg(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_Tick.s")
 
 #ifdef NON_MATCHING
-void func_800028D0(void) {
+void Sound_NextBuffer(void) {
     uint8_t index;
 
     osRecvMesg(&D_801377D0, 0, 1);
@@ -66,7 +138,7 @@ void func_800028D0(void) {
     D_8016DEB8++;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_800028D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_NextBuffer.s")
 #endif
 
 void Sound_StartTask(void) {

@@ -60,7 +60,7 @@ void func_800151D8(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015330.s")
 
 void func_800153A8(uint16_t index){
-    if(thisActor.unk_0xA0==0) thisActor.unk_0x98|=0x40;
+    if(thisActor.unk_0xA0==0) thisActor.flag3|=0x40;
     else func_80014FD0(index,0);
 }
 
@@ -91,7 +91,7 @@ void func_80016CB4(void) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
             if ((gActors[index].flag & ACTOR_FLAG_ACTIVE)) {
                 func_800160EC(index);
-                gActors[index].unk_0x98 &= ~(1 << 19);
+                gActors[index].flag3 &= ~(1 << 19);
             }
         }
         gPlayerPosXMirror._w = gActors[index].pos.x_w + gScreenPosCurrentX._w;

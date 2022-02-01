@@ -12,14 +12,14 @@ extern uint16_t D_801A20F4,D_801A20F6; //shake counts - Head and stinger
 
 void func_8019B100_742CB0(uint16_t x){
     ACTORINIT(48,0X1D);
-    gActors[48].unk_0x94 = 0xa01;
+    gActors[48].flag2 = 0xa01;
     gActors[48].flag=0xB;
     gActors[48].graphic = 0x2d0;
     gActors[48].pos.x = 0;
     gActors[48].pos.y = 0;
     gActors[48].pos.z = 0xfff0;
-    gActors[48].unk_0x188 = NULL;
-    gActors[48].unk_0x18C = &D_800D85A8;
+    gActors[48].unk_0x188._p = NULL;
+    gActors[48].unk_0x18C._p = &D_800D85A8;
     gActors[48].rgba.a = 0x80;
     gActors[48].scaleX = 19.0;
     gActors[48].scaleY = 13.0;
@@ -112,14 +112,14 @@ extern void func_8019CAF8_7446A8(uint16_t index);
 #endif
 
 void func_8019CBC4_744774(uint16_t index){
-    if(gActors[index+6].unk_0x180_w < 0x200){
+    if(gActors[index+6].unk_0x180._w < 0x200){
         if (gActors[index].flag&0x20) func_8019CAF8_7446A8(index);
         }
     else if((gActors[index].flag&0x20)==0) func_8019CAF8_7446A8(index);
 }
 
 int32_t func_8019CC9C_74484C(uint16_t index){
-    if(gActors[index+7].unk_0x180_w < D_801A20E8[1]) MODi(gActors[index].vel.y_w,0x10000,0x1000);
+    if(gActors[index+7].unk_0x180._w < D_801A20E8[1]) MODi(gActors[index].vel.y_w,0x10000,0x1000);
     else MODi(gActors[index].vel.y_w,-0x10000,0x1000);
     return gActors[index].vel.y_w;
 }
@@ -133,7 +133,7 @@ int32_t func_8019CC9C_74484C(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_8019D028_744BD8.s")
 
 uint32_t func_8019D0D8_744C88(uint16_t index){
-    if((gActors[index+3].unk_0x98&2)&&(gActors[index+3].unk_0xDD==19)){
+    if((gActors[index+3].flag3&2)&&(gActors[index+3].unk_0xDD==19)){
         gActors[index].actorState=0x110;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
@@ -145,7 +145,7 @@ uint32_t func_8019D0D8_744C88(uint16_t index){
 }
 
 uint32_t func_8019D184_744D34(uint16_t index){
-    if((gActors[index+5].unk_0x98&2)&&(gActors[index+5].unk_0xDD==19)){
+    if((gActors[index+5].flag3&2)&&(gActors[index+5].unk_0xDD==19)){
         gActors[index].actorState=0x110;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
@@ -157,7 +157,7 @@ uint32_t func_8019D184_744D34(uint16_t index){
 }
 
 uint32_t func_8019D230_744DE0(uint16_t index){
-    if((gActors[index].vel.y_w<0)&&(gActors[index].unk_0x98&0x8000)){
+    if((gActors[index].vel.y_w<0)&&(gActors[index].flag3&0x8000)){
         gActors[index].actorState=0x120;
         gActors[index].unk_0xD4=60;
         gActors[index+3].health=0;
@@ -234,7 +234,7 @@ void func_8019D7D0_745380(uint16_t index){
     uint16_t index0=index+9;
     uint16_t other=gActors[index0].unk_0xD6;
     gActors[other].unk_0xD6=index+9;
-    gActors[other].unk_0x98|=0x200;
+    gActors[other].flag3|=0x200;
     gActors[other].unk_0x104._w=gActors[index0].pos.x_w;
     gActors[other].unk_0x108._w=gActors[index0].pos.y_w;
     gActors[other].unk_0x10C=gActors[index0].pos.z_w-1;
@@ -286,7 +286,7 @@ void func_8019DA80_745630(uint16_t index){
         gActors[j].pos.z=gActors[index].pos.z-1;
         gActors[j].unk_0x154._w=i<<7;
         gActors[j].unk_0x158._w=i*10;
-        if(gActors[index+6].unk_0x180_w<0x200) gActors[j].unk_0x15C=1;
+        if(gActors[index+6].unk_0x180._w<0x200) gActors[j].unk_0x15C=1;
         else gActors[j].unk_0x15C=-1;
     }
 }
@@ -335,8 +335,8 @@ extern void func_8019E180_745D30(uint16_t index,int16_t* p, uint16_t c);
 #endif
 
 void func_8019E1E8_745D98(uint16_t index){
-    if((gActors[index+6].unk_0x180_w<0x1A0)&&(gActors[index+6].unk_0x180_w>0x260)&&(func_80029B00(64,48,-48))){
-        if(D_801A20F0<gActors[index+6].unk_0x180_w) thisActor.pos.x_w+=0x28000;
+    if((gActors[index+6].unk_0x180._w<0x1A0)&&(gActors[index+6].unk_0x180._w>0x260)&&(func_80029B00(64,48,-48))){
+        if(D_801A20F0<gActors[index+6].unk_0x180._w) thisActor.pos.x_w+=0x28000;
         else thisActor.pos.x_w-=0x28000;
     }
 }

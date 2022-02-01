@@ -82,8 +82,8 @@ void func_8019E918_7408A8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/WorminUp/func_8019EA00_740990.s")
 
 void func_8019EA6C_7409FC(uint16_t index){
-    if(gPlayerActor.flag&0x20) gActors[index].unk_0x18C_w  &=~0x10;
-    else gActors[index].unk_0x18C_w |=0x10;
+    if(gPlayerActor.flag&0x20) gActors[index].unk_0x18C._w  &=~0x10;
+    else gActors[index].unk_0x18C._w |=0x10;
     func_8019D780_73F710(index);
 }
 
@@ -94,7 +94,7 @@ void func_8019EB10_740AA0(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/WorminUp/func_8019EB34_740AC4.s")
 
 uint32_t func_8019EC28_740BB8(uint16_t index){
-    if(gActors[index].unk_0x98&0x40){
+    if(gActors[index].flag3&0x40){
         gActors[index].actorState=0x60;
         return 2;
     }

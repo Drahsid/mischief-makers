@@ -109,9 +109,9 @@ typedef struct {
     /* 0x084 */ uint16_t graphic;
     /* 0x086 */ uint16_t unk_0x86; //align.
     /* 0x088 */ Vec3i_union pos;
-    /* 0x094 */ uint16_t unk_0x94;
+    /* 0x094 */ uint16_t flag2;
     /* 0x096 */ uint16_t unk_0x96; //align.
-    /* 0x098 */ int32_t unk_0x98;
+    /* 0x098 */ int32_t flag3;
     /* 0x09C */ RGBA32 rgba;
     /* 0x0A0 */ uint8_t unk_0xA0;
     /* 0x0A1 */ uint8_t unk_0xA1;  //align.
@@ -158,7 +158,7 @@ typedef struct {
     /* 0x0EC */ Vec3i_union vel;
     /* 0x0F8 */ s2_w unk_0xF8; //halves loaded in func_80042c10
     /* 0x0FC */ s2_w unk_0xFC; //as args for a NOOP func.
-    /* 0x100 */ uint32_t unk_0x100;
+    /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used?
     /* 0x104 */ s2_w unk_0x104;
     /* 0x108 */ s2_w unk_0x108;
     /* 0x10C */ uint32_t unk_0x10C;
@@ -169,30 +169,13 @@ typedef struct {
     /* 0x120 */ float unk_0x120;
     /* 0x124 */ float unk_0x124;
     /* 0x128 */ float unk_0x128;
-    union {
-        struct {
-            /* 0x12C */ uint16_t unk_0x12C;
-            /* 0x12E */ uint8_t unk_0x12E;
-            /* 0x12F */ uint8_t unk_0x12F;
-        };
-        /* 0x12C */ float unk_0x12C_f; // used as float in Actor_Spawn? ScaleZ sometimes
-    };
+    /* 0x12C */ word_u unk_0x12C;
+    //beyond this seems to be unions for purposes that vary between actor types.
     /* 0x130 */ float unk_0x130;
     /* 0x134 */ float unk_0x134;
     /* 0x138 */ float unk_0x138;
-    union{
-        /* 0x13C */ float unk_0x13C;
-        /* 0x13C */ int16_t unk_0x13C_h[2];
-    };
-    union {
-        struct {
-            /* 0x140 */ uint8_t unk_0x140;
-            /* 0x141 */ uint8_t unk_0x141;
-            /* 0x142 */ uint16_t unk_0x142;
-        };
-        /* 0x140 */ float unk_0x140_f; // used as float in Actor_Spawn?
-        /* 0x140 */ uint16_t unk_0x140_h[2];
-    };
+    /* 0x13C */ word_u unk_0x13C;
+    /* 0x138 */ word_u unk_0x140;
     /* 0x144 */ float unk_0x144;
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
@@ -202,60 +185,16 @@ typedef struct {
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ s2_w unk_0x160;
     /* 0x164 */ s2_w unk_0x164;
-    union{
-    /* 0x168 */ int32_t unk_0x168; //bombs use as fuse?
-    /* 0x168 */ int16_t unk_0x168h[2]; //second entry called a few times
-    /* 0x168 */ uint16_t unk_0x168hu[2]; //and, like, twice unsigned.
-    /* 0x168 */ void* unk_0x168p;
-    };
-    union{
-    /* 0x16C */ int32_t unk_0x16C;
-    /* 0x16C */ void* unk_0x16Cp;
-    };
-    union {
-        struct {
-            /* 0x170 */ int8_t unk_0x170;
-            /* 0x171 */ int8_t unk_0x171;
-            /* 0x172 */ uint16_t unk_0x172;
-        };
-        /* 0x170 */ uint32_t unk_0x170_w;
-    };
+    /* 0x168 */ word_u unk_0x168;
+    /* 0x168 */ word_u unk_0x16C;
+    /* 0x170 */ word_u unk_0x170;
     /* 0x174 */ uint32_t unk_0x174;
-    union{
-    /* 0x178 */ void* unk_0x178;
-    /* 0x178 */ int32_t unk_0x178_w;
-    };
-    union{
-    /* 0x17C */ uint32_t unk_0x17C; 
-    /* 0x17C */ uint8_t unk_0x17C_bu[4]; 
-    /* 0x17C */ int8_t unk_0x17C_b[4]; 
-    /* 0x17C */ float unk_0x17C_f; 
-    /* 0x17C */ int16_t unk_0x17C_h[2]; 
-    /* 0x17C */ void* unk_0x17Cp; //also used as pointer for color blend func.
-    };
-    union {
-        /* 0x180 */ void* unk_0x180_p;
-        /* 0x180 */ int32_t unk_0x180_w;
-        /* 0x180 */ uint16_t unk_0x180_h[2];
-        /* 0x180 */ uint8_t unk_0x180_b[4];
-    };
-    union {
-        /* 0x184 */ int32_t unk_0x184_w; // read as word in Actor_Spawn
-        struct {
-            /* 0x184 */ uint16_t unk_0x184;
-            /* 0x186 */ uint16_t unk_0x186;
-        };
-    };
-    /* 0x188 */ uint32_t unk_0x188;
-    union {
-        /* 0x18C */ void* unk_0x18C; 
-        /* 0x18C */ uint32_t unk_0x18C_w; // sometimes increments
-        struct {
-            /* 0x18C */ int8_t unk_0x18C_b;
-            /* 0x18D */ int8_t unk_0x18D_b;
-            /* 0x18E */ uint16_t unk_0x18E;
-            };
-        };
+    /* 0x178 */ word_u unk_0x178;
+    /* 0x17C */ word_u unk_0x17C; 
+    /* 0x180 */ word_u unk_0x180; 
+    /* 0x184 */ word_u unk_0x184; 
+    /* 0x188 */ word_u unk_0x188;
+    /* 0x18C */ word_u unk_0x18C;
     /* 0x190 */ void* unk_0x190;
     /* 0x194 */ uint8_t unk_0x194[4]; //align?
 } Actor; /* sizeof = 0x198 */

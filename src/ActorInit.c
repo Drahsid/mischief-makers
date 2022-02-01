@@ -9,9 +9,9 @@ void func_8001DBA0(uint16_t* arg0, uint16_t index) {
     gActors[index].unk_0xD8 = arg0[4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1E7A0/func_8001DC60.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/func_8001DC60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1E7A0/func_8001DE30.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/func_8001DE30.s")
 //above seem to deal with intermission actor lists.
 #ifdef NON_MATCHING
 // https://decomp.me/scratch/QZfDW
@@ -63,12 +63,12 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].unk_0x14C = 0;
     gActors[index].unk_0x148 = 0;
     gActors[index].unk_0x144 = 0;
-    gActors[index].unk_0x140_f = 0;
+    gActors[index].unk_0x140._f = 0;
     gActors[index].unk_0x13C = 0;
     gActors[index].unk_0x138 = 0;
     gActors[index].unk_0x134 = 0;
     gActors[index].unk_0x130 = 0;
-    gActors[index].unk_0x12C_f = 0;
+    gActors[index].unk_0x12C._f = 0;
     gActors[index].unk_0x128 = 0;
     gActors[index].unk_0x124 = 0;
     gActors[index].unk_0x120 = 0;
@@ -94,16 +94,16 @@ void Actor_Spawn(uint16_t index) {
 
     // OK
     gActors[index].unk_0x190 = NULL;
-    gActors[index].unk_0x18C = NULL;
-    gActors[index].unk_0x188 = 0;
-    gActors[index].unk_0x184_w = 0;
-    gActors[index].unk_0x180_w = 0;
-    gActors[index].unk_0x17C = 0;
-    gActors[index].unk_0x178 = NULL;
+    gActors[index].unk_0x18C._p = NULL;
+    gActors[index].unk_0x188._w = 0;
+    gActors[index].unk_0x184._w = 0;
+    gActors[index].unk_0x180._w = 0;
+    gActors[index].unk_0x17C._w = 0;
+    gActors[index].unk_0x178._w = 0;
     gActors[index].unk_0x174 = 0;
-    gActors[index].unk_0x170_w = 0;
-    gActors[index].unk_0x16C = 0;
-    gActors[index].unk_0x168 = 0;
+    gActors[index].unk_0x170._w = 0;
+    gActors[index].unk_0x16C._w = 0;
+    gActors[index].unk_0x168._w = 0;
     gActors[index].unk_0x164._w = 0;
     gActors[index].unk_0x160._w = 0;
     gActors[index].unk_0x15C = 0;
@@ -128,8 +128,8 @@ void Actor_Spawn(uint16_t index) {
 
     // something produces a float to u32 here
 
-    gActors[index].unk_0x98 = phi_a0;
-    gActors[index].unk_0x94 = phi_a0;
+    gActors[index].flag3 = phi_a0;
+    gActors[index].flag2 = phi_a0;
     gActors[index].pos.z_w = phi_a0;
     gActors[index].pos.y_1 = phi_a0;
     gActors[index].pos.x_1 = phi_a0;
@@ -140,5 +140,5 @@ void Actor_Spawn(uint16_t index) {
     gActors[index].rgba.r = phi_a0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1E7A0/Actor_Spawn.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/Actor_Spawn.s")
 #endif

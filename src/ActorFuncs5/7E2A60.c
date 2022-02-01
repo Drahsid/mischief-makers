@@ -5,11 +5,26 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B99B8_7E2B18.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B9A70_7E2BD0.s")
-
+#ifdef NON_MATCHING
+void func_801B9B8C_7E2CEC(int16_t x){
+    D_800D2920=x-0xB0;
+    D_800D2924=x+0xB0;
+    D_800D28E8++;
+}
+#else
+extern void func_801B9B8C_7E2CEC(int16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B9B8C_7E2CEC.s")
-
+#endif
+#ifdef NON_MATCHING
+void func_801B9BC0_7E2D20(int16_t x){
+    D_800D2920=x-0xB0;
+    D_800D2924=x+0xB0;
+    D_800D28E8--;
+}
+#else
+extern void func_801B9BC0_7E2D20(int16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B9BC0_7E2D20.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B9BF4_7E2D54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E2A60/func_801B9D38_7E2E98.s")

@@ -33,6 +33,19 @@ typedef struct {
     };
 } s2_w; /* sizeof = 0x04 */ // short[2], word
 
+//strongly suspect this union type is what Treasure used, especially in the later part of the actor scruct.
+typedef struct {
+    union {
+        /* 0x00 */ int32_t _w;
+        /* 0x00 */ void* _p;
+        /* 0x00 */ uint8_t _bu[4];
+        /* 0x00 */ int8_t _b[4];
+        /* 0x00 */ uint16_t _hu[2];
+        /* 0x00 */ int16_t _h[2];
+        /* 0x00 */ float _f;
+    };
+} word_u; /* sizeof = 0x04 */ 
+
 typedef struct {
     union {
         struct {
@@ -43,12 +56,6 @@ typedef struct {
     };
 } b2_s;
 
-typedef struct {
-    union{
-        uint8_t _b[4];
-        int32_t _w;
-    };
-} b4_w;/* sizeof = 0x04 */
 
 typedef struct {
     union {
@@ -157,7 +164,7 @@ typedef struct {
     /* 0x58 */ uint32_t DebugValC; //same with these 2 vaules.
     /* 0x5C */ uint32_t DebugValD; //need to see if anything sets them in the rom funcs.
     /* 0x60 */ uint32_t unk_0x60;
-    /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.unk_0x98
+    /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.flag3
     /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.unk_0xF8._w
     /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.unk_0xFC._w
     /* 0x70 */ int16_t unk_0x70;

@@ -281,7 +281,7 @@ void Thread_MainProc(int32_t arg0) {
         osSpTaskLoad(gGFXTaskp);
         osSpTaskStartGo(gGFXTaskp);
         Sound_Tick();
-        func_800028D0();
+        Sound_NextBuffer();
 
         gCurrentFramebufferIndex = 1 - gCurrentFramebufferIndex;
 
@@ -294,7 +294,7 @@ void Thread_MainProc(int32_t arg0) {
         // D_8012ABC0 is probably the retrace/vsync queue
         if (MQ_IS_FULL(&D_8012ABC0)) {
             Sound_Tick();
-            func_800028D0();
+            Sound_NextBuffer();
             osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
             Sound_StartTask();
         }
@@ -440,28 +440,28 @@ void func_8000147C(void) {
     func_800821B0();
     func_80009940();
     func_80082F10();
-    func_80009BE8(&D_80171B30);
+    Gfx_DrawActors(&D_80171B30);
 
     if (D_800BE674 != 0) {
         func_80082CFC();
         func_8000DD6C();
-        func_80009BE8(&D_80171D30);
+        Gfx_DrawActors(&D_80171D30);
         func_80082E04();
     }
     else {
         func_80082E04();
-        func_80009BE8(&D_80171C30);
+        Gfx_DrawActors(&D_80171C30);
         func_80082CFC();
-        func_80009BE8(&D_80171D30);
+        Gfx_DrawActors(&D_80171D30);
         func_8000DD6C();
     }
 
     if (D_8013747C != 0) {
         Gfx_DrawPortraits();
-        func_80009BE8(&D_80171F10);
+        Gfx_DrawActors(&D_80171F10);
     }
     else {
-        func_80009BE8(&D_80171F10);
+        Gfx_DrawActors(&D_80171F10);
         Gfx_DrawPortraits();
     }
 
@@ -494,7 +494,7 @@ void func_8000147C(void) {
 void GameState_Tick(void) {
     switch (gGameState) {
         case GAMESTATE_SOFTRESET: {
-            func_80022F48(); // soft reset
+            start_game(); // soft reset
             break;
         }
         case GAMESTATE_INTRO: {

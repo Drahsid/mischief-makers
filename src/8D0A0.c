@@ -20,7 +20,7 @@ void func_8008C4E0(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008C710.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CA90.s")
-/*
+#ifdef NON_MATCHING
 void func_8008CC00(void){
     D_800BE5F4._w=5;    
     gPlayerActor.pos.x=gActors[16].pos.x;
@@ -32,9 +32,10 @@ void func_8008CC00(void){
     gActors[16].flag=0;
     gActors[16].actorState=0;
     
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CC00.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CC90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CDC4.s")
@@ -126,7 +127,7 @@ void func_8008DEBC(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E1A0.s")
 //Version of Marina when she hits the boulder in "Rolling Rock"
-/*
+#ifdef NON_MATCHING
 void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     s32 n;
     D_800BE5F4._w=4;
@@ -138,9 +139,11 @@ void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     n=gPlayerActor.vel.x_w;
     if(gPlayerActor.vel.x_w<0) n=gPlayerActor.vel.x_w+1;
     gActors[index].vel.x_w=n>>1;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorSpawn_MarinaOhNo.s")
-/*
+#endif
+#ifdef NON_MATCHING
 void ActorTick_MarinaOhNo(uint16_t index){
     Actor* actor= &gActors[index];
     D_800BE5F4._w=4;
@@ -156,5 +159,7 @@ void ActorTick_MarinaOhNo(uint16_t index){
     SFX_Stop(SFX_MARINA_YELL1);
     SFX_Play_1(SFX_MARINA_OHNO); //...thus the name
 
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorTick_MarinaOhNo.s")
+#endif

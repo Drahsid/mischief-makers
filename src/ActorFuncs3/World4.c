@@ -168,9 +168,9 @@ void func_801A8008_776BF8(uint16_t other){
         gActors[index].graphic=0x13c;
         gActors[index].pos.x=actorp->pos.x;
         gActors[index].pos.z=actorp->pos.z+16;
-        gActors[index].unk_0x94=0xA01;
+        gActors[index].flag2=0xA01;
         gActors[index].flag=0xA;
-        gActors[index].unk_0x18C=&D_800D8668;
+        gActors[index].unk_0x18C._p=&D_800D8668;
         gActors[index].unk_0x150._w=0x100000;
         gActors[index].scaleX=0.8; //.rodata
         gActors[index].scaleY=0.8;
@@ -321,10 +321,10 @@ void func_801ADA84_77C674(uint16_t index){
 //Functionally the same as one below...
 #ifdef NON_MATCHING
 void func_801ADE38_77CA28(uint16_t index){
-    gActors[index].unk_0x98&=~0x00200600;
+    gActors[index].flag3&=~0x00200600;
 }
 void func_801ADE80_77CA70(uint16_t index){
-    gActors[index].unk_0x98&=~0x00200600;
+    gActors[index].flag3&=~0x00200600;
 }
 #else
 extern void func_801ADE38_77CA28(uint16_t index);
@@ -334,9 +334,9 @@ extern void func_801ADE80_77CA70(uint16_t index);
 #endif
 
 void func_801ADEC8_77CAB8(uint16_t index){
-    gActors[index].pos.x_w=gActors[gActors[index].unk_0x150._w].pos.x_w+gActors[index].unk_0x184_w;
-    gActors[index].pos.y_w=gActors[gActors[index].unk_0x150._w].pos.y_w+gActors[index].unk_0x188;
-    gActors[index].pos.z_w=gActors[gActors[index].unk_0x150._w].pos.z_w+gActors[index].unk_0x178_w;
+    gActors[index].pos.x_w=gActors[gActors[index].unk_0x150._w].pos.x_w+gActors[index].unk_0x184._w;
+    gActors[index].pos.y_w=gActors[gActors[index].unk_0x150._w].pos.y_w+gActors[index].unk_0x188._w;
+    gActors[index].pos.z_w=gActors[gActors[index].unk_0x150._w].pos.z_w+gActors[index].unk_0x178._w;
 }
 
 void func_801ADF50_77CB40(uint16_t x){}
@@ -348,7 +348,7 @@ void func_801AE060_77CC50(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AE068_77CC58.s")
 //...but THIS matches.
 void func_801AE208_77CDF8(uint16_t index){
-    gActors[index].unk_0x98&=~0x00200600;
+    gActors[index].flag3&=~0x00200600;
 }
 
 void func_801AE250_77CE40(uint16_t x){}
@@ -381,7 +381,7 @@ void func_801AF6AC_77E29C(uint16_t x){}
 
 func_801AF6B4_77E2A4(uint16_t index){
     ACTORINIT(index,0X1D);
-    gActors[index].unk_0x94=0x1817;
+    gActors[index].flag2=0x1817;
     gActors[index].graphic=0x262;
     gActors[index].pos.x=0;
     gActors[index].pos.y=0;

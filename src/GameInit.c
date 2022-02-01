@@ -1,21 +1,6 @@
-
-
 #include "common.h"
-/*
-void Gfx_DrawRectange(uint16_t col,uint32_t x1,uint32_t y1,uint32_t x2,uint32_t y2){
-    gDPSetFillColor(gDListHead++,(uint32_t)(col<<0x10|col));
-    gDPFillRectangle(gDListHead++,x1&0x3FFF,y1&0x3FFF,x2&0x3FFF,y2&0x3FFF);
-}*/
+#include "music.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawRectange.s")
-
-
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterboxStandard.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/Gfx_DrawLetterbox.s")
-//file break? Above deals with drawing the letterbox
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/LifeBar_Tick.s")
-//another file break? the above deals with updating the health bar.
 void func_80022D10(void) {
     func_80043478();
     D_800BE668 = 0x32;
@@ -29,11 +14,54 @@ void func_80022D10(void) {
     gGameState = GAMESTATE_SOFTRESET;
     gGameSubState = 0;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80022D88.s")
-
+#ifdef NON_MATCHING
+void Reset_InitB(void){
+  uint16_t i;
+  gGamePaused = 0;
+  D_80137D90 = 0;
+  D_800CBF40 = 0;
+  D_800CA230 = 0;
+  D_800BE4EC = 0;
+  D_800BE670 = 0;
+  D_800BE66C = 0;
+  D_800BE674 = 0;
+  D_8013747C = 0;
+  D_800BE6FC = 0;
+  gDebugBitfeild = 4;
+  gDebugthrottle = 1;
+  gRNGSeed = 0x1234;
+  D_800BE594 = 0;
+  D_800BE590 = 0;
+  D_800BE678 = 0;
+  D_800BE6F0 = 0xFF;
+  gHPDisplayed = gPlayerActor.health;
+  BGM_Stop();
+  SFX_StopAll();
+  func_800230B8();
+  func_8002312C();
+  func_80023168();
+  func_80010A10();
+  func_8008310C();
+  gCurrentScene = SCENE_SPLASHSCREEN;
+  InitScene();
+  func_80043918();
+  func_80010C20(gCurrentScene);
+  D_80380200[2] = 1;
+  D_80380200[1] = 1;
+  func_80028260(2,1,0,0,0);
+  func_80028260(2,2,0,0,0);
+  for(i = 0;i < 4;i++) {
+    D_801376BC[i]=1;
+    D_801376A8[i]=0xFF;
+    D_801376AC[i]=0xFF;
+    D_801376B0[i]=0xFF;
+  }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/GameInit/Reset_InitB.s")
+#endif
 // This function is called when the user soft-resets the game
-void func_80022F48(void) {
+void start_game(void) {
     if (gGameSubState != 0) {
         if (gGameSubState != 1) {
             return;
@@ -48,7 +76,7 @@ void func_80022F48(void) {
         return;
     }
 
-    func_80022D88();
+    Reset_InitB();
     func_80025E6C();
     GameSave_Initialize(0);
     GameSave_Initialize(1);
@@ -94,7 +122,7 @@ void func_8002312C(void){
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/func_80023168.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameInit/func_80023168.s")
 
 #ifdef NON_MATCHING
 // Needs regalloc fixes, and reordering related to a structure
@@ -115,7 +143,7 @@ void GamePlay_Load(void) {
         D_801376B4[index]=255;
     }
 
-    D_800BE6F0 = (uint8_t)0xFF;
+    D_800BE6F0 = 0xFF;
     gHPDisplayed = gPlayerActorp->health;
     D_800BE6C0 = -8;
     gDebugBitfeild = 4;
@@ -188,5 +216,5 @@ void GamePlay_Load(void) {
     gGameSubState = 0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/22290/GamePlay_Load.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameInit/GamePlay_Load.s")
 #endif

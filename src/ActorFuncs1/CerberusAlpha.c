@@ -37,14 +37,14 @@ extern int32_t func_8019226C_68A26C(uint16_t SFX_ID, uint16_t index);
 void func_801922A0_68A2A0(uint16_t x){
     ACTORINIT(193,0xF0A);
     gActors[193].flag=0xB;
-    gActors[193].unk_0x94=0xB11;
+    gActors[193].flag2=0xB11;
     gActors[193].graphic=0x2D0;
     gActors[193].pos.x=0;
     gActors[193].pos.y=0;
     gActors[193].pos.x=128;
     gActors[193].scaleX=20.0;
     gActors[193].scaleY=20.0;
-    gActors[193].unk_0x18C=&D_800D8588;
+    gActors[193].unk_0x18C._p=&D_800D8588;
 
 }
 #else
@@ -100,10 +100,10 @@ void func_801932C4_68B2C4(uint16_t x){
 void func_801932FC_68B2FC(){
   ACTORINIT(72,0);
   gActors[72].flag=2;
-  gActors[72].unk_0x94=0x319;
+  gActors[72].flag2=0x319;
   
   gActors[72].graphic=0x164;
-  gActors[72].unk_0x18C=D_800D8588;
+  gActors[72].unk_0x18C._p=D_800D8588;
   gActors[72].rgba.a=0xC0;
   gActors[72].unk_0x114=576.0;
 }
@@ -118,7 +118,7 @@ extern void func_80193584_68B584(uint16_t);
 void func_80193DB4_68BDB4(uint16_t index){
   if(thisActor.actorState==0){
     thisActor.actorState++;
-    thisActor.unk_0x94=0x109;
+    thisActor.flag2=0x109;
     thisActor.flag=0xB;
     thisActor.graphic=200;
     thisActor.unk_0x150._w=gActors[72].pos.x_w;
@@ -225,7 +225,7 @@ void func_80195CA8_68DCA8(uint16_t index){
   gActors[index].attackDmg=100;
   gActors[index].unk_0xDA=4, gActors[index].unk_0xDB=3; //yes, this works.
   gActors[index].unk_0xFC._w=0x30000;
-  func_8002ABE4(index,12);
+  Actor_HitboxASet(index,12);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_80195D28_68DD28.s")
@@ -249,7 +249,7 @@ extern void func_80195EA4_68DEA4(uint16_t x, uint16_t y);
 
 void func_80196898_68E898(uint16_t index){
   if(gActors[index].unk_0xD4>0) gActors[index].unk_0xD4--;
-  gActors[index].unk_0x98&=~0x00200600;
+  gActors[index].flag3&=~0x00200600;
 }
 
 void func_801968F0_68E8F0(uint16_t index){
@@ -303,30 +303,30 @@ void func_80196F48_68EF48(uint16_t index){
 
 void func_80196F98_68EF98(uint16_t x){
   func_80196F48_68EF48(54);
-  func_8002AC30(54,18);
+  Actor_HitboxBSet(54,18);
   func_80196F48_68EF48(60);
-  func_8002AC30(60,18);
+  Actor_HitboxBSet(60,18);
   func_80196F48_68EF48(56);
-  func_8002AC30(56,18);
+  Actor_HitboxBSet(56,18);
   gActors[56].flag&=~0x1000;
   func_80196F48_68EF48(58);
-  func_8002AC30(58,14);
+  Actor_HitboxBSet(58,14);
   func_80196F48_68EF48(69);
-  func_8002AC30(69,10);
+  Actor_HitboxBSet(69,10);
   func_80196F48_68EF48(71);
-  func_8002AC30(71,10);
+  Actor_HitboxBSet(71,10);
   func_80196F48_68EF48(75);
-  func_8002AC30(75,10);
+  Actor_HitboxBSet(75,10);
   func_80196F48_68EF48(77);
-  func_8002AC30(77,10);
+  Actor_HitboxBSet(77,10);
   func_80196F48_68EF48(81);
-  func_8002AC30(81,10);
+  Actor_HitboxBSet(81,10);
   func_80196F48_68EF48(83);
-  func_8002AC30(83,10);
+  Actor_HitboxBSet(83,10);
   func_80196F48_68EF48(87);
-  func_8002AC30(87,10);
+  Actor_HitboxBSet(87,10);
   func_80196F48_68EF48(89);
-  func_8002AC30(89,10);
+  Actor_HitboxBSet(89,10);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801970BC_68F0BC.s")
@@ -506,7 +506,7 @@ void func_801A22AC_69A2AC(uint16_t index){
   gPlayerPosXMirror._w=gActors[index+1].pos.x_w+ gScreenPosCurrentX._w;
   gPlayerActor.pos.y_w= gActors[index+1].pos.y_w + 0x160000;
   gPlayerPosXMirror._w=gPlayerActor.pos.y_w+ gScreenPosCurrentY._w;
-  gPlayerActor.unk_0x98|=0x20;
+  gPlayerActor.flag3|=0x20;
   gPlayerActor.pos.z_w= gActors[index+1].pos.z_w + 1;
 }
 #else
@@ -529,7 +529,7 @@ void func_801A330C_69B30C(uint16_t x){}
 
 void func_801A3314_69B314(uint16_t x){
   ACTORINIT(120,0XF13);
-  gActors[120].unk_0x94=0x108;
+  gActors[120].flag2=0x108;
   gActors[120].flag=0x1023;
   gActors[120].graphic=0x1812;
   gActors[120].pos.x=0x40;

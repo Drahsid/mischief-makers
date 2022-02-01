@@ -95,11 +95,11 @@ void GameSave_LoadRecords(void) {
     osEepromProbe(&gContMesgq);
     if (gSaveSlotIndex) {
         osEepromLongRead(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, sizeof(gTimeRecords));
     }
     else {
         osEepromLongRead(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, sizeof(gTimeRecords));
     }
     if (D_80171B19 >= 2) D_80171B19 = 0;
 
@@ -110,30 +110,30 @@ void GameSave_LoadRecords(void) {
     }
 }
 
-void func_80005770(void) {
+void GameSave_SaveRecords(void) {
     osEepromProbe(&gContMesgq);
     osEepromLongWrite(&gContMesgq, 2, gFileNames, 0x48);
 
     if (gSaveSlotIndex) {
         osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, sizeof(gTimeRecords));
     }
     else {
         osEepromLongWrite(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, sizeof(gTimeRecords));
     }
 }
 
 void GameSave_Erase(void) {
     GameSave_Initialize(gSaveSlotIndex);
     GameSave_SetDefaults();
-    func_80005770();
+    GameSave_SaveRecords();
 }
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
     Text_SpawnIcon(index, &gIcon_YellowGem, pos_x, pos_y, 0);
-    gActors[index].unk_0x94 |= 0x200;
-    gActors[index].unk_0x18C = arg3;
+    gActors[index].flag2 |= 0x200;
+    gActors[index].unk_0x18C._p = arg3;
 }
 
 // Differences related to implicit casts

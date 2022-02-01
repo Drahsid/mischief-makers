@@ -5,7 +5,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MeetMarina/func_801921D4_6D1CD4.s")
 
 void func_80192418_6D1F18(uint16_t index){
-    gActors[index].unk_0x98&=~0x00200600;
+    gActors[index].flag3&=~0x00200600;
 }
 
 void func_80192460_6D1F60(uint16_t index0,uint16_t index1){

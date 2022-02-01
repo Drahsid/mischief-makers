@@ -61,6 +61,6 @@ extern void func_801BC01C_7D680C(uint16_t,uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World3/func_801BC01C_7D680C.s")
 
 void func_801BC11C_7D690C(void) {
-    gActors[57].unk_0x168p = func_801BC010_7D6800;
-    gActors[57].unk_0x16Cp = func_801BC01C_7D680C;
+    gActors[57].unk_0x168._p = func_801BC010_7D6800;
+    gActors[57].unk_0x16C._p = func_801BC01C_7D680C;
 }

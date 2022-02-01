@@ -1862,7 +1862,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080001b38                Sound_InitPlayers
                 0x00000000800020bc                Sound_SetEventMesg
                 0x0000000080002114                Sound_Tick
-                0x00000000800028d0                func_800028D0
+                0x00000000800028d0                Sound_NextBuffer
                 0x00000000800029ec                Sound_StartTask
                 0x0000000080002a2c                func_80002A2C
                 0x0000000080002ae0                Sound_DMA
@@ -1918,7 +1918,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800050b4                GameSave_SetDefaults
                 0x0000000080005188                GameSave_CheckAndWipe
                 0x000000008000565c                GameSave_LoadRecords
-                0x0000000080005770                func_80005770
+                0x0000000080005770                GameSave_SaveRecords
                 0x0000000080005828                GameSave_Erase
                 0x0000000080005860                func_80005860
                 0x00000000800058e0                GameSave_PrintRedGems
@@ -1967,7 +1967,7 @@ LOAD build/assets/trailer.bin.o
  .text          0x0000000080009940     0x72e0 build/src/A540.c.o
                 0x0000000080009940                func_80009940
                 0x0000000080009be0                func_80009BE0
-                0x0000000080009be8                func_80009BE8
+                0x0000000080009be8                Gfx_DrawActors
                 0x000000008000d240                L8000D240_DE40
                 0x000000008000d264                L8000D264_DE64
                 0x000000008000d288                L8000D288_DE88
@@ -2253,8 +2253,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800218fc                Gfx_DrawLetterbox
                 0x0000000080022470                LifeBar_Tick
                 0x0000000080022d10                func_80022D10
-                0x0000000080022d88                func_80022D88
-                0x0000000080022f48                func_80022F48
+                0x0000000080022d88                Reset_InitB
+                0x0000000080022f48                start_game
                 0x00000000800230b8                func_800230B8
                 0x000000008002312c                func_8002312C
                 0x0000000080023168                func_80023168
@@ -2481,8 +2481,8 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002a900                func_8002A900
                 0x000000008002a990                func_8002A990
                 0x000000008002aa20                func_8002AA20
-                0x000000008002abe4                func_8002ABE4
-                0x000000008002ac30                func_8002AC30
+                0x000000008002abe4                Actor_HitboxASet
+                0x000000008002ac30                Actor_HitboxBSet
                 0x000000008002ac7c                func_8002AC7C
                 0x000000008002acfc                func_8002ACFC
                 0x000000008002ad7c                func_8002AD7C

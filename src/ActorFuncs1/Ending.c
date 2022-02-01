@@ -643,8 +643,8 @@ void func_801A9848_710AD8(uint16_t index,float f){
 
 void func_801A9CD0_710F60(uint16_t index){
     gActors[104].actorState=0x170;
-    gActors[index+2].unk_0x180_w=0;
-    gActors[index+3].unk_0x180_w=0x40000;
+    gActors[index+2].unk_0x180._w=0;
+    gActors[index+3].unk_0x180._w=0x40000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9D1C_710FAC.s")

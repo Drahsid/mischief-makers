@@ -110,7 +110,7 @@ void func_80196DE8_718318(uint16_t index){
 void func_80197B84_7190B4(uint16_t index){
     if(gActors[index].actorState==0){
         gActors[index].actorState++;
-        gActors[index].unk_0x94=0x100;
+        gActors[index].flag2=0x100;
         gActors[index].flag=3;
         gActors[index].graphic=0x168;
         Actor_Shade(index,127);

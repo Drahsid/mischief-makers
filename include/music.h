@@ -48,7 +48,10 @@ extern ALKeyMap* D_8016E704;
 extern Acmd* D_8016E708;
 extern float D_8016E70C; //ALGlobals_ALsynConfig.outputrate * 1 / 60.0
 extern uint32_t D_8016E710; // alAudioFrame().cmdLen
+extern uint32_t D_8016E714; //used as siezeof in Sound_Init
 extern uint32_t D_8016E718;
+extern uint32_t D_8016E71C;
+extern uint32_t D_8016E720;
 extern OSIoMesg D_8016E748[9];
 
 extern char* BGMNames[33];    // BGM titles left in data.

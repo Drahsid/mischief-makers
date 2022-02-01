@@ -130,7 +130,7 @@ extern uint16_t D_800BE5D4;
 extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
 extern int16_t D_800BE5F0;
-extern b4_w D_800BE5F4; 
+extern word_u D_800BE5F4; 
 extern int16_t D_800BE5F8;
 extern uint16_t D_800BE5FC;
 extern UNK_TYPE D_800BE610; //these 4 are zero'd, but unused
@@ -145,6 +145,7 @@ extern int16_t D_800BE668;
 extern uint16_t D_800BE66C;
 extern uint16_t D_800BE670;
 extern uint16_t D_800BE674;
+extern uint16_t D_800BE678;
 extern uint16_t D_800BE6A4;
 extern int16_t D_800BE6A8;
 /* a set of flags with the following properties for each bit (hi-to-lo):
@@ -173,7 +174,7 @@ extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
 extern uint8_t D_800BE6E8;
 extern uint8_t D_800BE6EC;
-extern int8_t D_800BE6F0;
+extern uint8_t D_800BE6F0;
 extern uint16_t D_800BE6F8;
 extern int16_t D_800BE6FC;
 extern uint16_t D_800BE704;
@@ -644,7 +645,7 @@ extern uint16_t D_80178460;
 extern uint32_t D_801826A0[];
 extern uint16_t gFramebuffer0[320][240]; // framebuffer
 extern UNK_TYPE D_802C9F70;
-extern volatile uint16_t D_80380200; // probably a volatile struct (see usage in Intro_Tick)
+extern volatile uint16_t D_80380200[256]; // probably a volatile struct (see usage in Intro_Tick)
 extern volatile uint16_t D_80380400[256];
 extern uint16_t gFramebuffer1[320][240]; // framebuffer
 extern UNK_TYPE D_801C4400; //adress of some buffer

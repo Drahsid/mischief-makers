@@ -322,7 +322,7 @@ void Intro_Tick(void) {
         case 10: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((gSceneFramesReal & 1) != 0) {
+            if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4++ == 0) {
                     gGameSubState++;
                     D_800F42E8 = 0x80;
@@ -339,7 +339,7 @@ void Intro_Tick(void) {
         case 12: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((gSceneFramesReal & 1) != 0) {
+            if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4-- + 0x1F) {
                     D_800F4210 = 0;
 
@@ -443,9 +443,9 @@ void func_80017FE8(uint16_t index) {
     actor->pos.x = -2;
     actor->pos.y = 4;
     actor->graphic = 0x2D0;
-    actor->unk_0x94 |= 0x801;
+    actor->flag2 |= 0x801;
     actor->pos.z = 0x100;
-    actor->unk_0x188 = 0;
+    actor->unk_0x188._w = 0;
     actor->rgba.a = 0xFF;
     actor->rgba.b = 0xFF;
     actor->rgba.g = 0xFF;
@@ -475,7 +475,7 @@ void TitleScreen_Tick(void) {
         // OK
         case 16: {
             gSPDisplayList(gDListHead++, &D_800C8EF0);
-            func_800230B8(&gDListHead);
+            func_800230B8();
             func_80017FE8(0x33);
             gCurrentScene = SCENE_TITLE;
             gGameSubState += 1;
@@ -540,20 +540,20 @@ void TitleScreen_Tick(void) {
             D_801781A0[0] = 0;
 
             Text_SpawnAt2(16, 0x800, 0x70, 0xFF68, 0);
-            gActors[16].unk_0x94 |= 0x100;
+            gActors[16].flag2 |= 0x100;
             gActors[16].rgba.a = 0x80;
 
             Text_SpawnAt2(17, 0x1000, 0xFF88, 0xFF68, 0);
-            gActors[17].unk_0x94 |= 0x100;
+            gActors[17].flag2 |= 0x100;
             gActors[17].rgba.a = 0x80;
 
             gActors[48].actorType = 0;
             actor2_Spawn(48);
-            gActors[48].unk_0x94 |= 0x200;
+            gActors[48].flag2 |= 0x200;
             gActors[48].flag |= (ACTOR_FLAG_UNK28 | ACTOR_FLAG_UNK29); // 0x30000000;
-            gActors[48].unk_0x17C = 0x80343C28;
+            gActors[48].unk_0x17C._p = 0x80343C28;
             gActors[48].unk_0x180 = 0x80349728;
-            gActors[48].unk_0x188 = 0xE;
+            gActors[48].unk_0x188._w = 0xE;
             gActors[48].pos.x = 0x2A;
             gActors[48].hitboxBX0 = 0xE0;
             gActors[48].hitboxBX1 = 1;
@@ -612,7 +612,7 @@ void TitleScreen_Tick(void) {
             //start attract mode when BGM timer finishes
             if ((D_80137DA0 >= 0x1141 || (gButtonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
-                gActors[51].unk_0x94 |= 0x10;
+                gActors[51].flag2 |= 0x10;
                 gActors[51].flag = ACTOR_FLAG_ENABLED;
                 gActors[51].rgba.b = 0x7F;
                 gActors[51].rgba.g = 0x7F;
@@ -671,7 +671,7 @@ void TitleScreen_Tick(void) {
         case 49: {
             func_800180FC();
             if (D_80178164-- == 0) {
-                func_800230B8(&D_80178164);
+                func_800230B8();
                 gActors[16].flag = ACTOR_FLAG_ENABLED;
                 gActors[17].flag = ACTOR_FLAG_ENABLED;
                 gGameState = GAMESTATE_DEBUG_SOUNDTEST;
@@ -1042,7 +1042,7 @@ void GameSave_Update(void) {
     gFileRedGems[gSaveSlotIndex] = gRedGems;
     gFileYellowGems[gSaveSlotIndex] = YellowGem_Count();
     gFilePlayTimes[gSaveSlotIndex] = (uint64_t)gPlayTime;
-    func_80005770();
+    GameSave_SaveRecords();
     gWorldProgress = bVar1;
 }
 #else
@@ -1059,7 +1059,7 @@ void func_8001B3D0(void) {
     uVar2 = (uint32_t)gSaveSlotIndex;
     gFileYellowGems[uVar2] = uVar1;
     gFilePlayTimes[uVar2] = (uint64_t)gPlayTime;
-    func_80005770();
+    GameSave_SaveRecords();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/Worldmap_Tick.s")

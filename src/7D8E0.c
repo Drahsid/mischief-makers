@@ -36,7 +36,7 @@ uint16_t func_8007D0DC(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
     uint16_t index= Actor_GetInactiveInRange(140,144);
     if(index){
         ACTORINIT(index,ACTORTYPE_TEXTBUBBLE);
-        thisActor.unk_0x94=0x901;
+        thisActor.flag2=0x901;
         thisActor.flag=2;
         thisActor.rgba.a=0;
         thisActor.unk_0x114=z&0x7FFF;
@@ -63,10 +63,10 @@ uint16_t func_8007D0DC(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
 uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,void* r){
     uint16_t index = func_8007D0DC(i,p,x,y,z);
     if(index){
-        thisActor.unk_0x94|= 0x200;
-        thisActor.unk_0x94&= ~0x0100;
-        if(r) thisActor.unk_0x18C=r;
-        else thisActor.unk_0x18C=&D_800D9AE4;
+        thisActor.flag2|= 0x200;
+        thisActor.flag2&= ~0x0100;
+        if(r) thisActor.unk_0x18C._p=r;
+        else thisActor.unk_0x18C._p=&D_800D9AE4;
     }
     return index;
 }
@@ -78,8 +78,8 @@ uint16_t func_8007D290(uint16_t i){
     if(index){
         ACTORINIT(index,0x34);
         actorp=&gActors[i];
-        if(actorp->unk_0x18C) thisActor.unk_0x94=0xA00;
-        else thisActor.unk_0x94=0x800;
+        if(actorp->unk_0x18C) thisActor.flag2=0xA00;
+        else thisActor.flag2=0x800;
         thisActor.flag=3;
         thisActor.pos.z_w=actorp->pos.z_w+1;
         thisActor.unk_0x18C=actorp->unk_0x18C;
@@ -121,7 +121,7 @@ uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,flo
     uint16_t index = Actor_GetInactiveInRange_144_192();
     if(index){
         ACTORINIT(index,0x34);
-        thisActor.unk_0x94=i&0xDFFF;
+        thisActor.flag2=i&0xDFFF;
         thisActor.flag=3;
         thisActor.graphic=0x2D0;
         thisActor.rgba.a=0xC0;

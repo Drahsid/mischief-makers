@@ -62,7 +62,7 @@ void func_8019B514_75DA74(uint16_t x){
     int16_t i;
     for(i=0;i++;i<3){
         gActors[D_801A2EA0_765400[i]].flag=0;
-        gActors[D_801A2EA0_765400[i]].unk_0x94=0;
+        gActors[D_801A2EA0_765400[i]].flag2=0;
     }
 }
 #else
@@ -127,7 +127,7 @@ void func_8019CC40_75F1A0(uint16_t index){
         gActors[index+1].unk_0x130=1.0;
         thisActor.unk_0x138=0.0;
     }
-    thisActor.unk_0x98&=~0x200600;
+    thisActor.flag3&=~0x200600;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019CD08_75F268.s")

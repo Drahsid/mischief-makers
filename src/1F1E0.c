@@ -60,10 +60,10 @@ void func_8001EADC(uint16_t index0, uint16_t index1) {
     Actor* actor = &gActors[index1];
 
     if (actor->unk_0xDE == 11 || actor->unk_0xDE == 14 || actor->unk_0xDE == 15) {
-        actor->unk_0x98 &= ~2;
+        actor->flag3 &= ~2;
 
         actor = &gActors[index0];
-        actor->unk_0x98 ^= 3;
+        actor->flag3 ^= 3;
         actor->unk_0xDC = actor->unk_0xDA;
         actor->unk_0xDD = actor->unk_0xDB;
     }
@@ -98,14 +98,14 @@ void func_8001EB8C(uint16_t index0, uint16_t index1) {
 void func_8001FF28(void) {}
 
 void func_8001FF30(void) {
-    gPlayerActorp->unk_0x98 &= 0x80600;
+    gPlayerActorp->flag3 &= 0x80600;
 }
 
 void func_8001FF50(void) {
     uint16_t index;
 
     for (index = 1; index < ACTOR_COUNT1; index++) {
-        gActors[index].unk_0x98 &= 0x380600;
+        gActors[index].flag3 &= 0x380600;
     }
 }
 

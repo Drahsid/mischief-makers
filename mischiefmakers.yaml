@@ -28,22 +28,24 @@ segments:
       - [0x04F80, c, sprite]
       - [0x05510, c] #may be decompression/decryption func
       - [0x05A70, c, GameSave]
-      - [0x0A540, c]
+      - [0x0A540, c,render]
       - [0x11820, c]
-      - [0x12DD0, c]
+      - [0x12DD0, c,PlayerActor]
       - [0x134E0, c]
       - [0x13850, c,gameover] 
       - [0x156F0, c]
       - [0x17A70, c]
-      - [0x1E7A0, c]
+      - [0x1E7A0, c,ActorInit]
       - [0x1F1E0, c]
-      - [0x22290, c]
-      - [0x241E0, c]
-      - [0x26A00, c, RomCopy]
+      - [0x22290, c,Letterbox]
+      - [0x23070, c,Lifebar]
+      - [0x23910, c,GameInit]
+      - [0x241E0, c,Scenes]
+      - [0x26A00, c,RomCopy]
       - [0x27F70, c]
       - [0x438E0, c]
       - [0x48A30, c]
-      - [0x49200, c]
+      - [0x49200, c,ActorMarina]
       - [0x4FEB0, c]
       - [0x59EA0, c]
       - [0x5D120, c]
@@ -61,7 +63,7 @@ segments:
       - [0x84BB0, c]
       - [0x8D0A0, c]
       - [0x8F080, c]
-      - [0x97770, c] # Level clear sequence
+      - [0x97770, c,LevelClear] # Level clear sequence
       - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
       #start of libultra funcs. compiler flags: -g -O2 -mips2 -g1?
       - [0x999f0, asm, io/viblack]
@@ -227,14 +229,14 @@ segments:
       - [0xEB830, rodata]
       #- [0xEB830, rodata,music] # includes sfx/bgm/instrument names.
       - [0xEBB10, .rodata, GameSave]
-      - [0xEBBC0, .rodata, A540]
+      - [0xEBBC0, .rodata, render]
       - [0xEBBE0, .rodata, 11820]
       - [0xEBC00, rodata]
       #- [0xEBC00, .rodata, gameover] #generates wrong offset
       - [0xEBC50, .rodata, 17A70]
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
-      - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
+      - [0xEC5C0, rodata, Scenes] # start for the jtbl at 0xEC6AC
       - [0xEC6C0, bin]
       #- [0xEDC70, .rodata, 82920]
       - [0xEDC70, .rodata, DebugText] # strings
@@ -276,7 +278,7 @@ segments:
     vram: 0x80388000
     overlay: true
     subsegments:
-      - [0xF00D0,c] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
+      - [0xF00D0,c,noop] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
   - [0xF0100,bin] # romcopied in the same func as above.
   - [0xF01C0,bin]
   - [0x1E6900,bin] # loaded by func_80025E00
@@ -297,6 +299,7 @@ segments:
   - [0x4A1FBC,bin] 
   #more romcopied bits. looks to be compressed data
   - [0x4A1FC0,bin]
+  - [0x4B9990,bin] #AlSoundBankFile
 #call lists and code segments loaded per scene by RomCopy_Funcs
   - type: code 
     start: 0x67DBA0
@@ -940,6 +943,7 @@ segments:
     subsegments:
      - [0x7E2A60, c,ActorFuncs5/7E2A60]
      - [0x7E5010, bin,ActorFuncs5/7E2A60]
+     - [0x7E67A0, .rodata,ActorFuncs5/7E2A60]
   - type: code
     start: 0x7E6A20
     vram: 0x801B9800

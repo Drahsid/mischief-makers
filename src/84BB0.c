@@ -33,7 +33,7 @@ void func_8008486C(uint16_t x) {
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084F38.s")
 
 uint32_t func_80085108(uint16_t index){
-    if((gActors[index].vel.y_w<1)&&(gActors[index].unk_0x98&0x20)){
+    if((gActors[index].vel.y_w<1)&&(gActors[index].flag3&0x20)){
         gActors[index].actorState=1;
         gActors[index].flag&= ~0x20000;
         gActors[index].flag|=0x10000;
@@ -54,7 +54,7 @@ void func_800852CC(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085300.s")
 
 void func_80085350(uint16_t index){
-    if(gActors[index].unk_0x98&0x200){
+    if(gActors[index].flag3&0x200){
         gActors[index].actorState=2;
         gActors[index].flag= 0x20003;
         gActors[index].vel.x_w=0;
@@ -98,7 +98,7 @@ void func_80085F08(uint16_t index){
     uint16_t i;
     for(i=0;i<64;i++) D_80182020[i]=-1;
     gActors[index].unk_0x174=0;
-    gActors[index].unk_0x178=0;
+    gActors[index].unk_0x178._w=0;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085F08.s")
 

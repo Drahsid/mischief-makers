@@ -362,13 +362,13 @@ void func_8006C5A4(uint16_t index) {
             actor->unk_0x148 = actor->scaleX;
         }
 
-        if (((actor->unk_0x98 & 0x200) == 0) && (gPlayerActorIndex != index)) {
+        if (((actor->flag3 & 0x200) == 0) && (gPlayerActorIndex != index)) {
             func_80028C00(index);
         }
     }
 
     func_80066BCC(index);
-    actor->unk_0x98 &= 0xFFDFF9FF;
+    actor->flag3 &= 0xFFDFF9FF;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C6F0.s")
@@ -748,7 +748,7 @@ void func_80079760(u16 index) {
     func_80078F54(index);
     if (thisActor.flag & 0x20) x = 0x2000000;
     else x = 0;
-    thisActor.unk_0x168 = func_800298D0(x, thisActor.unk_0x168, 0x180000);
+    thisActor.unk_0x168._w = func_800298D0(x, thisActor.unk_0x168._w, 0x180000);
     MODi(thisActor.vel.x_w, 0, thisActor.unk_0x158._w + 0x80);
     MODi(thisActor.vel.y_w, 0, thisActor.unk_0x15C + 0x80);
 }

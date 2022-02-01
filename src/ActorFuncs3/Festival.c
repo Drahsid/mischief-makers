@@ -192,11 +192,11 @@ void func_801AD37C_79366C(uint16_t index,uint16_t instant){
     else{
         MODi(gActors[62].unk_0x158._w,gFestivalPointsWhite,1);
         MODi(gActors[64].unk_0x158._w,gFestivalPointsRed,1);
-        if (((gActors[index].unk_0x170_w != gActors[62].unk_0x158._w) || (gActors[index].unk_0x174 != gActors[64].unk_0x158._w))
+        if (((gActors[index].unk_0x170._w != gActors[62].unk_0x158._w) || (gActors[index].unk_0x174 != gActors[64].unk_0x158._w))
           && ((gSceneFrames & 3) == 0)){
             SFX_Play_1(0x139);
             }
-        gActors[index].unk_0x170_w=gActors[62].unk_0x158._w;
+        gActors[index].unk_0x170._w=gActors[62].unk_0x158._w;
         gActors[index].unk_0x174=gActors[64].unk_0x158._w;
     }
 }

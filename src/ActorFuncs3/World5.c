@@ -13,7 +13,7 @@ void func_801A6BEC_7857BC(uint16_t index){
     gPlayerActor.pos.y_w=gActors[index+1].pos.y_w+0x1A0000;
     gPlayerPosYMirror._w=gPlayerActor.pos.y_w+gScreenPosCurrentY._w;
     gPlayerActor.pos.z_w=gActors[index+1].pos.z_w+1;
-    gPlayerActor.unk_0x98&=0x20;
+    gPlayerActor.flag3&=0x20;
 }*/
 extern void func_801A6BEC_7857BC(uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801A6BEC_7857BC.s")
@@ -152,7 +152,7 @@ void func_801AA15C_788D2C(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801AA15C_788D2C.s")
 /*
 void func_801AA1B0_788D80(uint16_t index){
-    if(thisActor.unk_0x98&0x40)thisActor.actorState=32;
+    if(thisActor.flag3&0x40)thisActor.actorState=32;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801AA1B0_788D80.s")
 

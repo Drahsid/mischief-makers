@@ -67,9 +67,9 @@ void ActorMarina_ScreenYLock(void) {
     gPlayerActor.pos.y = gPlayerPosYMirror._hi - gScreenPosCurrentY._hi;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/ActorMarina_ScreenXScroll.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/PlayerActor/ActorMarina_ScreenXScroll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/12DD0/ActorMarina_ScreenYScroll.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/PlayerActor/ActorMarina_ScreenYScroll.s")
 
 void ActorMarina_ScreenScroll(void) {
     gScreenPosNextX._hi = gScreenPosCurrentX._hi;

@@ -12,7 +12,7 @@ void func_80082024(uint16_t index){
     Actor* actor;
     func_80081E38(index);
     actor = &gActors[index];
-    actor->unk_0x98&= ~0x00200600;
+    actor->flag3&= ~0x00200600;
 }
 
 #ifdef NON_MATCHING

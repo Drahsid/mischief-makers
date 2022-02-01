@@ -228,7 +228,47 @@
 #define ALPHA_GAMMA        0x00D0
 #define ALPHA_APOSTROPHE_S 0x00D1
 
-// there are also some leftover japanese characters. someone who knows the dialect can cover these?
+//leftover japanese. Speech bubble text is dummied out, but still in data.
+//compiler does not like unicode.
+#ifdef UNICODE
+#define ALPHA_あ 0x0051
+#define ALPHA_い 0x0052
+#define ALPHA_う 0x0053
+#define ALPHA_え 0x0054
+#define ALPHA_お 0x0055
+#define ALPHA_か 0x0056
+#define ALPHA_き 0x0057
+#define ALPHA_く 0x0058
+#define ALPHA_け 0x0059
+#define ALPHA_こ 0x005A
+#define ALPHA_さ 0x005B
+#define ALPHA_し 0x005C
+#define ALPHA_す 0x005D
+#define ALPHA_せ 0x005E
+#define ALPHA_そ 0x005F
+#define ALPHA_た 0x0060
+#define ALPHA_ち 0x0061
+#define ALPHA_っ 0x0062
+#define ALPHA_て 0x0063
+#define ALPHA_と 0x0064
+#define ALPHA_に 0x0065
+#define ALPHA_ぬ 0x0066
+#define ALPHA_の 0x0067
+#define ALPHA_は 0x0068
+#define ALPHA_ひ 0x0069
+#define ALPHA_ふ 0x006A
+#define ALPHA_へ 0x006B
+#define ALPHA_ほ 0x006C
+#define ALPHA_ま 0x006D
+#define ALPHA_み 0x006E
+#define ALPHA_む 0x006F
+#define ALPHA_め 0x0070
+#define ALPHA_も 0x0071
+#define ALPHA_ゃ 0x0072
+#define ALPHA_め 0x0073
+
+#endif
+
 #define ALPHA_NULL 0x8FFF
 
 #endif

@@ -64,11 +64,11 @@ void func_8019C3E8_755888(uint16_t index){
     Actor* actorp;
     func_8019C368_755808(index);
     actorp =&thisActor;
-    if((actorp->vel.y_w<0)&&(actorp->unk_0x98&0x20))actorp->actorState=80;
+    if((actorp->vel.y_w<0)&&(actorp->flag3&0x20))actorp->actorState=80;
 }
 
 uint32_t func_8019C464_755904(uint16_t index){
-    if(thisActor.unk_0x98&0x40){
+    if(thisActor.flag3&0x40){
         thisActor.actorState=64;
         thisActor.flag&=~0x8A80;
         return 1;
@@ -136,7 +136,7 @@ uint16_t func_801A2894_75BD34(uint16_t index,int16_t x, int16_t y, uint16_t stat
     other=Actor_GetInactiveInRange(0x90,0xc0);
     if(other){
         ACTORINIT(other,0x1306);
-        gActors[other].unk_0x94=9;
+        gActors[other].flag2=9;
         flag=0x20;
         if(thisActor.flag&0x20) flag=0;
         gActors[other].flag=flag+2;
@@ -157,7 +157,7 @@ void func_801A2F34_75C3D4(uint16_t index, int16_t x,int16_t y,int16_t z,float sc
     Actor* actorp=&thisActor;
     uint16_t other = func_8003123C(&D_800E1380,actorp->pos.x+x,actorp->pos.y+y,1);
     if(other){
-        gActors[other].unk_0x94=0x19;
+        gActors[other].flag2=0x19;
         gActors[other].flag=3;
         gActors[other].graphic=0x188;
         gActors[other].unk_0x148=20.0;

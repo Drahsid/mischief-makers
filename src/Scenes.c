@@ -14,7 +14,7 @@ void Camera_ApplyRotate(void){
     gUpY =COS(gCameraRot/0x20000);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/Camera_ApplyRotate.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/Camera_ApplyRotate.s")
 #endif
 
 void CameraInit_Scene63(void) {}
@@ -26,7 +26,7 @@ void CameraInit_World1(void) {
     D_800BE584 = -0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World1.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_World1.s")
 
 void CameraInit_World2(void) {
     D_800BE578 = (int16_t)((int32_t)gScreenPosCurrentX._hi / 2);
@@ -36,16 +36,16 @@ void CameraInit_World2(void) {
     D_800BE70C = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World2.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_World2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_WesternWorld.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_WesternWorld.s")
 
 void CameraInit_TightropeRide(void) {
     D_800BE580 = -0xC;
     gEyeY = 32.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_TightropeRide.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_TightropeRide.s")
 
 void CameraInit_MagmaRafts(void) {
     D_800BE580 = -0xC;
@@ -71,11 +71,11 @@ void CameraInit_scene02(void){
 
 void CameraTick_scene02(void) {}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene03.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraInit_Scene03.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_scene03.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_scene03.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraInit_Scene04.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraInit_Scene04.s")
 
 void CameraTick_Scene04(void) {}
 
@@ -84,7 +84,7 @@ void cameraInit_MigenBrawl(void) {
     D_800BE57C = 2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/cameraTick_MigenBrawl.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/cameraTick_MigenBrawl.s")
 
 void CameraInit_Scene07(void) {
     D_800BE544 = 0x30;
@@ -149,11 +149,11 @@ void CameraInit_SnowstormMaze(void) {
     D_800BE674 = 1;
 }
 //2 of the Mt. Snow levels
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023EDC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80023EDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80023F5C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80023F5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_ClanballLift.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_ClanballLift.s")
 
 void CameraInit_SeasickClimb(void) {
     int32_t temp_v0 = 1;
@@ -171,9 +171,9 @@ void CameraInit_SeasickClimb(void) {
     D_800BE638 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_SeasickClimb_Rocking.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_SeasickClimb_Rocking.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_SeasickClimb.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_SeasickClimb.s")
 
 void CameraInit_Vertigo(void) {
     D_800BE70C = 3;
@@ -191,7 +191,7 @@ void CameraTick_Vertigo(){
 
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Vertigo.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_Vertigo.s")
 #endif
 
 void CameraInit_Freefall(void) {
@@ -228,7 +228,7 @@ void CameraInit_Beastector(void) {
     Camera_RotateReset();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_Beastector.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_Beastector.s")
 
 void CameraInit_CounterAttack(void) {
     D_800BE544 = 0x8000;
@@ -238,9 +238,9 @@ void CameraInit_CounterAttack(void) {
     D_800CC428 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_8002488C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_8002488C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_CounterAttack.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_CounterAttack.s")
 
 void CameraInit_ClanceWar2(void) {
     D_800BE588 = 3;
@@ -270,12 +270,12 @@ void func_80024DD8(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024DD8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80024DD8.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_80024E18.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80024E18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_BeesTheOne.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_BeesTheOne.s")
 
 void CameraInit_Splashscreen(void) {}
 
@@ -315,9 +315,9 @@ void CameraInit_World4B(void) {
     D_800BE584 = -0xC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_World4B.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_World4B.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/CameraTick_AstersTryke.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_AstersTryke.s")
 
 void CameraInit_PhoenixGamma(void) {
     D_800BE704 = 1;
@@ -348,7 +348,7 @@ void CameraInit_Leo(void) {
 
 void CameraTick_Leo(void) {}
 // determines lifebar's position?
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800253B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_800253B0.s")
 
 uint8_t gSceneBGMs[] = {
     BGM_ESPERANCE,
@@ -446,7 +446,7 @@ void PlaySceneBGM(void) {
     }
 }
 //stage init?
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s") 
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_800255B4.s") 
 //multiple romcopy funcs
 void LoadSceneFiles(void) {
     func_8002694C(gCurrentScene);
@@ -473,4 +473,4 @@ void func_80025BFC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/InitScene.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/InitScene.s")

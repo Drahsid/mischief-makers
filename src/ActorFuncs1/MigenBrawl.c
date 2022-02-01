@@ -22,7 +22,7 @@ void func_80192108_67DC28(uint16_t x){
     uint16_t index=func_8003123C(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
     if(index){
         actorp =&thisActor;
-        actorp->unk_0x94=1;
+        actorp->flag2=1;
         actorp->scaleX=1.5;
         actorp->scaleY=1.5;
         actorp->unk_0x148=60;
@@ -32,10 +32,10 @@ void func_80192108_67DC28(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019219C_67DCBC.s")
 #ifdef NON_MATCHING
 void func_8019237C_67DE9C(uint16_t x){
-    gActors[78].unk_0x180_w=60;
-    gActors[79].unk_0x180_w=8;
-    gActors[80].unk_0x180_w=0xFE;
-    gActors[78].unk_0x140_f=0;
+    gActors[78].unk_0x180._w=60;
+    gActors[79].unk_0x180._w=8;
+    gActors[80].unk_0x180._w=0xFE;
+    gActors[78].unk_0x140._f=0;
 }
 #else
 extern void func_8019237C_67DE9C(uint16_t x);
@@ -113,7 +113,7 @@ void func_80193694_67F1B4(uint16_t index){
 
 void func_80193728_67F248(uint16_t index){
     ACTORINIT(index,0X1D);
-    gActors[index].unk_0x94|=1;
+    gActors[index].flag2|=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80193790_67F2B0.s")
@@ -137,14 +137,14 @@ void func_80193728_67F248(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80193ED8_67F9F8.s")
 
 void func_80193F44_67FA64(uint16_t x,uint16_t c){
-    gActors[63].unk_0x94|=0x10;
+    gActors[63].flag2|=0x10;
     gActors[63].rgba.r=c;
     gActors[63].rgba.g=c;
     gActors[63].rgba.b=c;
 }
 
 void func_80193F70_67FA90(uint16_t x,uint16_t c){
-    gActors[63].unk_0x94&=~0x10;
+    gActors[63].flag2&=~0x10;
     gActors[63].rgba.r=c;
     gActors[63].rgba.g=c;
     gActors[63].rgba.b=c;
@@ -191,7 +191,7 @@ void func_80194EE4_680A04(){
 
 void func_80194F48_680A68(){
     if(gActors[55].flag&0x200){
-        gActors[55].unk_0x94&=~0x10;
+        gActors[55].flag2&=~0x10;
         Actor_Shade(55,47);
     }
 }
