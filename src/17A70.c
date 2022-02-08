@@ -2,9 +2,9 @@
 #include "GameSave.h"
 
 void Actors_Tick_Overlayed(uint16_t index) {
-    uint8_t temp_t8 = gActors[index].actorType & 0xFFFF;
+    uint8_t temp_t8 = thisActor.actorType & 0xFFFF;
 
-    switch (gActors[index].actorType >> 8) {
+    switch (thisActor.actorType >> 8) {
         case 1: {
             gActorFuncTable_801B0800[temp_t8](index);
             break;
@@ -187,7 +187,7 @@ void Actors_Tick_Overlayed(uint16_t index) {
 }
 
 void Actors_Tick(void) {
-    Actor* actor; // this is probably a fake match but I prefer this syntax over gActors[index]
+    Actor* actor; // this is probably a fake match but I prefer this syntax over thisActor
     uint16_t index;
 
     // if actors are not supposed to process
@@ -437,9 +437,9 @@ void Title_Copyright(void) {
 void func_80017FE8(uint16_t index) {
     Actor* actor;
 
-    gActors[index].actorType = 0;
+    thisActor.actorType = 0;
     Actor_Spawn(index);
-    actor = &gActors[index];
+    actor = &thisActor;
     actor->pos.x = -2;
     actor->pos.y = 4;
     actor->graphic = 0x2D0;

@@ -1,21 +1,16 @@
 #include "BGM.h"
 #include "common.h"
-//tcamera functions, some that are level-specific.
+//camera functions, some that are level-specific.
 void Camera_RotateReset(void) {
     gCameraRot = 0;
     gCameraRotDelta = 0;
 }
-//common, enigmatic div func. 
-#ifdef NON_MATCHING
-void Camera_ApplyRotate(void){
 
+void Camera_ApplyRotate(void){
     gCameraRot+=gCameraRotDelta;
-    gUpX =SIN(gCameraRot/0x20000);
-    gUpY =COS(gCameraRot/0x20000);
+    gUpX =SIN(gCameraRot/0x10000);
+    gUpY =COS(gCameraRot/0x10000);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/Camera_ApplyRotate.s")
-#endif
 
 void CameraInit_Scene63(void) {}
 void CameraTick_Scene63(void) {}
@@ -70,12 +65,23 @@ void CameraInit_scene02(void){
 }
 
 void CameraTick_scene02(void) {}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraInit_Scene03.s")
+void CameraInit_Scene03(void){
+    D_800BE57C=0;
+    D_800BE584=0;
+    HealthBar.Active=0;
+    HealthFace.Active=0;
+    D_800CA230=1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_scene03.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraInit_Scene04.s")
+void CameraInit_Scene04(void){
+    D_800BE57C=2;
+    D_800BE584=-12;
+    HealthBar.Active=0;
+    HealthFace.Active=0;
+    D_800CA230=1;
+}
 
 void CameraTick_Scene04(void) {}
 
@@ -149,11 +155,36 @@ void CameraInit_SnowstormMaze(void) {
     D_800BE674 = 1;
 }
 //2 of the Mt. Snow levels
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80023EDC.s")
+void func_80023EDC(void){
+        if ((gDebugBitfeild & 0xA400) == 0) {
+        D_800BE544 = 0x8000;
+        if(gPlayerActor.flag&0x20)gScreenPosTargetX._w = gPlayerPosXMirror._w - 0x300000;
+        else gScreenPosTargetX._w = gPlayerPosXMirror._w +0x300000;
+        gScreenPosTargetY._w = gPlayerPosYMirror._w+0x280000;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/func_80023F5C.s")
+void func_80023F5C(void){
+    if ((gDebugBitfeild & 0xA400) == 0) {
+        D_800BE544 = 0x8000;
+        gScreenPosTargetX._w = gPlayerPosXMirror._w;
+        if((gPlayerActor.unk_0xD6==0x31)&&(gActors[48].actorType == 0x907)&&(gActors[50].unk_0x180._w & 0x8000)){
+            D_800BE544 = 0x8000;
+            gScreenPosTargetY._w = gActors[48].pos.y_w+gScreenPosCurrentY._w + 0x180000;
+            }
+        else gScreenPosTargetY._w = gPlayerPosYMirror._w+0x280000;    
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_ClanballLift.s")
+void CameraTick_ClanballLift(void){
+    if ((gDebugBitfeild & 0xA400) == 0) {
+        D_800BE544 = 0x8000;
+        if(D_800D28E8<3)gScreenPosTargetY._w = (gPlayerPosYMirror._w + 0x280000);
+        else gScreenPosTargetY._w = gPlayerPosYMirror._w;
+        gScreenPosTargetX._w = gPlayerPosXMirror._w;
+    }
+}
+
 
 void CameraInit_SeasickClimb(void) {
     int32_t temp_v0 = 1;
@@ -472,5 +503,37 @@ void func_80025BFC(void) {
         // phi_a0[index] = phi_v1[index];
     }
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/Scenes/InitScene.s")
+void InitScene(void){
+  func_800255B4(gCurrentScene);
+  RomCopy_ActorFuncs(gCurrentScene);
+  RomCopy_ActorFuncs2(gCurrentScene);
+  RomCopy_ActorFuncs3(gCurrentScene);
+  romcopy_actorFuncs4(gCurrentScene);
+  RomCopy_ActorFuncs5(gCurrentScene);
+  func_80026584(gCurrentScene);
+  func_800265FC(gCurrentScene);
+  func_8002670C(gCurrentScene);
+  func_80026784(gCurrentScene);
+  func_800267FC(gCurrentScene);
+  func_8005DE30();
+  func_8002653C();
+  if (((gCurrentScene == SCENE_ASTERSTRYKE) || (gCurrentScene == SCENE_TAURUS)) ||
+     ((0x2d < gCurrentScene && (gCurrentScene < SCENE_3CLANCERKIDS)))) {
+    func_80026220(SCENE_RESCUEACT1);
+    func_80026428(SCENE_ASTERSTRYKE);
+  }
+  else if (((gCurrentScene == SCENE_DEMOWORLD1) || (gCurrentScene == SCENE_DEMOWORLD5)) ||(gCurrentScene == SCENE_ENDING)) {
+    func_80026220(SCENE_BLOCKMANRISES);
+    func_80026494(SCENE_DEMOWORLD1,0);
+    D_801376A4 = 0x80380400;
+  }
+  else func_80026220(gCurrentScene);
+  if (((gCurrentScene == SCENE_TRAPPED) || (gCurrentScene == SCENE_MERCO)) ||(gCurrentScene == 0x56)) {
+    func_80024DD8();
+  }
+  func_80025BFC();
+  LoadSceneFiles();
+  (*Scene_CameraInits[gCurrentScene])();
+  (*Scene_CameraFuncs[gCurrentScene])();
+  PlaySceneBGM();
+}

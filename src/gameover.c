@@ -6,7 +6,7 @@ void Continue_DrawRedGem(uint16_t index, uint16_t arg1, uint16_t arg2) {
     Actor* actor;
 
     Text_SpawnIcon(index, &gIcon_YellowGem, arg1, arg2, 0x403);
-    actor = &gActors[index];
+    actor = &thisActor;
     actor->flag2 |= 0x200;
     actor->unk_0x18C._p = gSpriteData_RedGem;
 }
@@ -18,7 +18,7 @@ void GameOver(void) {
     gActors[49].flag = gActors[50].flag = 0; // Whitespace memes
 
     for (index = 65; index < 98; index++) {
-        gActors[index].flag = 0;
+        thisActor.flag = 0;
     }
 
     Text_PrintAlphaAtColorScale(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
@@ -43,19 +43,19 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
 
         // iterates over 1 actor? is this intended?
         for (index = 0x30; index < 0x31; index++) {
-            gActors[index].flag = 0;
+            thisActor.flag = 0;
         }
 
         for (index = 0x32; index < 0x5E; index++) {
-            gActors[index].flag = 0;
+            thisActor.flag = 0;
         }
 
         for (index = 0x41; index < 0x4B; index++) {
             Text_SpawnIcon(index, &gIcon_YellowGem, 0, 0xA0, 0x403);
-            gActors[index].flag2 |= 0x200;
-            gActors[index].unk_0x18C._w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
-            gActors[index].unk_0x154._w = 0xC0;
-            gActors[index].unk_0x158._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
+            thisActor.flag2 |= 0x200;
+            thisActor.unk_0x18C._w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
+            thisActor.unk_0x154._w = 0xC0;
+            thisActor.unk_0x158._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
         }
 
         D_80178130 = 0x180;

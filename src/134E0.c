@@ -12,13 +12,14 @@ uint8_t func_800128F0(int32_t x, int32_t y) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_800128F0.s")
 #endif
-/*
-uint8_t func_80012944(int32_t x, int32_t y) {
-    if((y&0xf)<(x&0xf)) return 255;
+#ifdef NON_MATCHING
+uint8_t func_80012944(uint8_t x, uint8_t y) {
+    if((x&0xf)>(y&0xf)) return 255; //RegAlloc: t8&t9 vs t0&t1
     return 0;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_80012944.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_80012970.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_800129C8.s")

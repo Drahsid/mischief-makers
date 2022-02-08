@@ -16,10 +16,10 @@ void func_80061350(uint16_t index){
         MODi(gActors[ACTOR_COUNT0].rgba.a,0x60,4);
     }
     else{
-        gActors[index].rgba.r = gActors[ACTOR_COUNT0].rgba.r;
-        gActors[index].rgba.g = gActors[ACTOR_COUNT0].rgba.g;
-        gActors[index].rgba.b = gActors[ACTOR_COUNT0].rgba.b;
-        gActors[index].rgba.a = gActors[ACTOR_COUNT0].rgba.a;
+        thisActor.rgba.r = gActors[ACTOR_COUNT0].rgba.r;
+        thisActor.rgba.g = gActors[ACTOR_COUNT0].rgba.g;
+        thisActor.rgba.b = gActors[ACTOR_COUNT0].rgba.b;
+        thisActor.rgba.a = gActors[ACTOR_COUNT0].rgba.a;
     }
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80061350.s")
@@ -30,9 +30,9 @@ void func_80061350(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80061554.s")
 void func_800615BC(uint16_t index){
-    if(--gActors[index].rgba.a==0){
-        gActors[index].flag &= ~1;
-        gActors[index].actorState-=2;
+    if(--thisActor.rgba.a==0){
+        thisActor.flag &= ~1;
+        thisActor.actorState-=2;
     }
 }
 

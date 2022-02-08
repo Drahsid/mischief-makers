@@ -16,7 +16,9 @@ void func_801B99F4_7E6B44(uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B9F50_7E70A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B9FB4_7E7104.s")
+void func_801B9FB4_7E7104(void){
+    D_800BE56C._hi=D_800D292C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/7E6A50/func_801B9FC8_7E7118.s")
 

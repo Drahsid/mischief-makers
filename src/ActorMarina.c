@@ -6,13 +6,13 @@ uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
 
     if ((D_801370CC & gButton_DLeft) == 0) {
         ret = 0;
-        if ((D_801370CC & gButton_DRight) && (ret = 2, gActors[index].flag & 0x20)) {
+        if ((D_801370CC & gButton_DRight) && (ret = 2, thisActor.flag & 0x20)) {
             ret = 0x82;
         }
     }
     else {
         ret = 1;
-        if (gActors[index].flag & 0x20) {
+        if (thisActor.flag & 0x20) {
             ret = 0x81;
         }
     }
@@ -73,13 +73,13 @@ int32_t func_80048CE4() {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_80048F70.s")
 
 int32_t func_80049040(uint16_t index) {
-    if ((gActors[index].flag3 & 0x40) == 0) {
+    if ((thisActor.flag3 & 0x40) == 0) {
         return 0;
     }
 
-    gActors[index].flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK14);
-    gActors[index].flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23),
-        gActors[index].flag |= ACTOR_FLAG_UNK17; // whitespace memes
+    thisActor.flag &= ~(ACTOR_FLAG_UNK6 | ACTOR_FLAG_UNK14);
+    thisActor.flag &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK23),
+        thisActor.flag |= ACTOR_FLAG_UNK17; // whitespace memes
 
     return 1;
 }
@@ -89,7 +89,7 @@ int32_t func_80049040(uint16_t index) {
 #ifdef NON_MATCHING
 // Needs reordering
 int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
-    Actor* actor = &gActors[index];
+    Actor* actor = &thisActor;
 
     if (actor->vel.y_w > 0) {
         return 0;
@@ -130,31 +130,31 @@ int32_t func_800491B8(uint16_t index, uint32_t arg1, int16_t arg2) {
 uint32_t func_80049460(uint16_t index) {
     switch (func_80049300(index)) {
         case 1: {
-            if (gActors[index].flag3 & 0x80) gActors[index].unk_0x140._bu[0] = 0;
-            if (D_801373D8 & 2) gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-            if (D_801373D8 & 1) gActors[index].flag |= ACTOR_FLAG_FLIPPED;
+            if (thisActor.flag3 & 0x80) thisActor.unk_0x140._bu[0] = 0;
+            if (D_801373D8 & 2) thisActor.flag &= ~ACTOR_FLAG_FLIPPED;
+            if (D_801373D8 & 1) thisActor.flag |= ACTOR_FLAG_FLIPPED;
 
-            if (gActors[index].actorState_b[1] != 0x16) gActors[index].unk_0x150._w = 0;
-            gActors[index].actorState = 0x1F;
+            if (thisActor.actorState_b[1] != 0x16) thisActor.unk_0x150._w = 0;
+            thisActor.actorState = 0x1F;
 
             return 1;
             break;
         }
         case 2: {
-            if (gActors[index].flag3 & 0x80) gActors[index].unk_0x140._bu[0] = 0;
+            if (thisActor.flag3 & 0x80) thisActor.unk_0x140._bu[0] = 0;
 
-            if (D_801373D8 & 2) gActors[index].flag &= ~ACTOR_FLAG_FLIPPED;
-            if (D_801373D8 & 1) gActors[index].flag |= ACTOR_FLAG_FLIPPED;
-            if (gActors[index].actorState_b[1] != 0x16) gActors[index].unk_0x150._w = 0;
+            if (D_801373D8 & 2) thisActor.flag &= ~ACTOR_FLAG_FLIPPED;
+            if (D_801373D8 & 1) thisActor.flag |= ACTOR_FLAG_FLIPPED;
+            if (thisActor.actorState_b[1] != 0x16) thisActor.unk_0x150._w = 0;
 
-            gActors[index].actorState = 0x1F;
+            thisActor.actorState = 0x1F;
 
             return 2;
             break;
         }
         case 3: {
-            if (D_801373D8 & 0x20) gActors[index].actorState = 0x2D;
-            else gActors[index].actorState = 0x2C;
+            if (D_801373D8 & 0x20) thisActor.actorState = 0x2D;
+            else thisActor.actorState = 0x2C;
 
             return 3;
             break;
@@ -177,18 +177,18 @@ int32_t func_80049A04(uint16_t index) {
         return 0;
     }
 
-    new_var = *((int8_t*)(temp_a0 + gActors[index].unk_0x170._b[1]));
+    new_var = *((int8_t*)(temp_a0 + thisActor.unk_0x170._b[1]));
     return (float)(new_var << 0x10) * gActors->unk_0x120;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_80049AC0.s")
 
 void func_8004A8E0(uint16_t index) {
-    gActors[index].unk_0x12C._bu[2] = 0xFF;
+    thisActor.unk_0x12C._bu[2] = 0xFF;
 }
 
 void func_8004A918(uint16_t index) {
-    Actor* actor = &gActors[index];
+    Actor* actor = &thisActor;
 
     actor->unk_0x12C._bu[2] |= 0x41;
     actor->flag = actor->unk_0x150._w;
@@ -197,32 +197,32 @@ void func_8004A918(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004A960.s")
 
 void func_8004AA64(uint16_t index) {
-    gActors[index].unk_0x12C._bu[2] |= 0x41;
-    if (gActors[index].actorState_b[0] == 0) {
-        gActors[index].unk_0x140._hu[1] = 0;
-        gActors[index].unk_0x140._bu[1] = 0;
-        gActors[index].unk_0x180._w = 0;
+    thisActor.unk_0x12C._bu[2] |= 0x41;
+    if (thisActor.actorState_b[0] == 0) {
+        thisActor.unk_0x140._hu[1] = 0;
+        thisActor.unk_0x140._bu[1] = 0;
+        thisActor.unk_0x180._w = 0;
         D_801373E0.unk_0x13 = 0;
         D_801373E0.unk_0x12 = 100;
-        gActors[index].unk_0x12C._bu[3] = 0;
-        gActors[index].vel.y_w = 0;
-        gActors[index].vel.x_w = 0;
-        gActors[index].flag &= ACTOR_FLAG_FLIPPED;
-        gActors[index].flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK27;
-        gActors[index].actorState_b[0] = 1;
-        gActors[index].unk_0x128 = 1.0f;
-        gActors[index].unk_0x124 = 1.0f;
+        thisActor.unk_0x12C._bu[3] = 0;
+        thisActor.vel.y_w = 0;
+        thisActor.vel.x_w = 0;
+        thisActor.flag &= ACTOR_FLAG_FLIPPED;
+        thisActor.flag |= ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK27;
+        thisActor.actorState_b[0] = 1;
+        thisActor.unk_0x128 = 1.0f;
+        thisActor.unk_0x124 = 1.0f;
     }
 
-    gActors[index].unk_0x17C._w = 0;
+    thisActor.unk_0x17C._w = 0;
     func_8005D370(index, 1);
-    gActors[index].actorState = 3;
+    thisActor.actorState = 3;
 }
 //deals with marina's idle state
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004AB3C.s")
 
 void func_8004B0A0(uint16_t index) {
-    Actor* actor = &gActors[index];
+    Actor* actor = &thisActor;
     actor->unk_0x12C._hu[0] = 7;
     MODi(actor->vel.x_w, 0, ActorMarina_VelByScale(0));
 
@@ -248,7 +248,7 @@ void func_8004B18C(uint16_t index) {
     int32_t phi_a1;
     Actor* actor;
 
-    actor = &gActors[index];
+    actor = &thisActor;
     actor->unk_0x12C._hu[0] = 7;
 
     phi_a1 = ActorMarina_VelByScale(1);
@@ -269,18 +269,18 @@ void func_8004B18C(uint16_t index) {
 }
 
 void func_8004B290(uint16_t index) {
-    gActors[index].unk_0x12C._hu[0] = 7;
-    if (gActors[index].actorState_b[0] == 0) {
-        gActors[index].unk_0x170._w = 0x2D;
-        gActors[index].actorState_b[0] = 1;
+    thisActor.unk_0x12C._hu[0] = 7;
+    if (thisActor.actorState_b[0] == 0) {
+        thisActor.unk_0x170._w = 0x2D;
+        thisActor.actorState_b[0] = 1;
     }
-    MODi(gActors[index].vel.x_w, 0, ActorMarina_VelByScale(0) * 2);
-    if (gActors[index].vel.x_w != 0) {
-        gActors[index].unk_0x180._bu[3] = 4;
+    MODi(thisActor.vel.x_w, 0, ActorMarina_VelByScale(0) * 2);
+    if (thisActor.vel.x_w != 0) {
+        thisActor.unk_0x180._bu[3] = 4;
     }
     else{
-        gActors[index].flag |= ACTOR_FLAG_UNK14;
-        gActors[index].actorState = 3;
+        thisActor.flag |= ACTOR_FLAG_UNK14;
+        thisActor.actorState = 3;
     }
 }
 #ifdef NON_MATCHING
@@ -430,42 +430,42 @@ void func_8004E1DC(int32_t arg0) {}
 void func_8004EAE4(uint16_t index) {
     int16_t phi_a3;
 
-    gActors[index].unk_0x12C._bu[2] |= 0x40;
+    thisActor.unk_0x12C._bu[2] |= 0x40;
 
-    if (gActors[index].actorState_b[0] == 0) {
-        gActors[index].unk_0x170._w = 0;
-        gActors[index].actorState_b[0]++;
-        gActors[index].graphic = (uint16_t)gActors[index].unk_0x158._w;
+    if (thisActor.actorState_b[0] == 0) {
+        thisActor.unk_0x170._w = 0;
+        thisActor.actorState_b[0]++;
+        thisActor.graphic = (uint16_t)thisActor.unk_0x158._w;
     }
 
     func_80083A04(
-        gActors[index].graphic - gActors[index].unk_0x158._w, (int16_t)gActors[index].pos.x - 0x20, (int16_t)gActors[index].pos.y + 0x30, 0);
+        thisActor.graphic - thisActor.unk_0x158._w, (int16_t)thisActor.pos.x - 0x20, (int16_t)thisActor.pos.y + 0x30, 0);
 
     phi_a3 = 0;
     if (((gButtonHold & gButton_DRight) != 0) &&
-        (((gActors[index].unk_0x150._w == 0)) || (phi_a3 = 1, ((gActors[index].unk_0x150._w < 9) == 0)))) {
-        gActors[index].graphic++;
+        (((thisActor.unk_0x150._w == 0)) || (phi_a3 = 1, ((thisActor.unk_0x150._w < 9) == 0)))) {
+        thisActor.graphic++;
         phi_a3 = 1;
-        if (gActors[index].unk_0x15C < (gActors[index].graphic & 0xFFFF)) {
-            gActors[index].graphic = (uint16_t)gActors[index].unk_0x158._w;
+        if (thisActor.unk_0x15C < (thisActor.graphic & 0xFFFF)) {
+            thisActor.graphic = (uint16_t)thisActor.unk_0x158._w;
             phi_a3 = 1;
         }
     }
 
     phi_a3++;
-    if (((gButtonHold & gButton_DLeft) != 0) && (((gActors[index].unk_0x150._w == 0)) || (((gActors[index].unk_0x150._w < 9) == 0)))) {
-        gActors[index].graphic--;
-        if ((gActors[index].graphic & 0xFFFF) < gActors[index].unk_0x158._w) {
-            gActors[index].graphic = (uint16_t)gActors[index].unk_0x15C;
+    if (((gButtonHold & gButton_DLeft) != 0) && (((thisActor.unk_0x150._w == 0)) || (((thisActor.unk_0x150._w < 9) == 0)))) {
+        thisActor.graphic--;
+        if ((thisActor.graphic & 0xFFFF) < thisActor.unk_0x158._w) {
+            thisActor.graphic = (uint16_t)thisActor.unk_0x15C;
         }
     }
 
     if (phi_a3 == 0) {
-        gActors[index].unk_0x150._w = 0;
+        thisActor.unk_0x150._w = 0;
         return;
     }
 
-    gActors[index].unk_0x150._w++;
+    thisActor.unk_0x150._w++;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004EAE4.s")
@@ -475,26 +475,26 @@ void func_8004EC60(uint16_t index) {
     Actor* actor;
     uint32_t temp_v1;
 
-    actor = &gActors[index];
-    gActors[index].vel.x_w = 0;
-    gActors[index].unk_0x12C._bu[2] |= 0xC1;
-    gActors[index].vel.y_w = 0;
+    actor = &thisActor;
+    thisActor.vel.x_w = 0;
+    thisActor.unk_0x12C._bu[2] |= 0xC1;
+    thisActor.vel.y_w = 0;
 
     temp_v1 = D_801373D8;
     if ((temp_v1 & 2)) {
-        gActors[index].vel.x_w = 0x80000;
+        thisActor.vel.x_w = 0x80000;
     }
 
     if ((temp_v1 & 1)) {
-        gActors[index].vel.x_w = 0xFFF80000;
+        thisActor.vel.x_w = 0xFFF80000;
     }
 
     if ((temp_v1 & 0x20)) {
-        gActors[index].vel.y_w = 0x80000;
+        thisActor.vel.y_w = 0x80000;
     }
 
     if ((temp_v1 & 0x10)) {
-        gActors[index].vel.y_w = 0xFFF80000;
+        thisActor.vel.y_w = 0xFFF80000;
     }
 
     D_801373E0.DebugPosX = gPlayerPosXMirror._w;
@@ -508,21 +508,21 @@ void ActorTick_Marina(uint16_t index) {
     int16_t* phi_v1;
 
     if ((D_801373E0.unk_0x78 & 8) == 0) {
-        if (gActors[index].actorState == 0) {
+        if (thisActor.actorState == 0) {
             func_8004A960(index);
         }
 
         D_800BE5E4 = 0;
-        gActors[index].flag2 &= 0xF781;
-        gActors[index].rgba.r = gActors[index].rgba.g = gActors[index].rgba.b = 0; // whitespace memes
+        thisActor.flag2 &= 0xF781;
+        thisActor.rgba.r = thisActor.rgba.g = thisActor.rgba.b = 0; // whitespace memes
         D_800BE5E0 = D_800BE5E4;
         D_801373E0.unk_0x70 = 0;
-        gActors[index].pos.z_w = 0;
+        thisActor.pos.z_w = 0;
 
         MODi(D_800D57E0, 0x6000, 0x400);
 
-        if (gActors[index].unk_0x12C._bu[3] < 4) {
-            gActors[index].unk_0x12C._bu[3]++;
+        if (thisActor.unk_0x12C._bu[3] < 4) {
+            thisActor.unk_0x12C._bu[3]++;
         }
 
         D_801370CC = gButtonHold;
@@ -552,7 +552,7 @@ void ActorTick_Marina(uint16_t index) {
                 D_801370CE = 0;
                 D_801370CC = 0;
 
-                gActors[index].unk_0x12C._bu[3] = 0;
+                thisActor.unk_0x12C._bu[3] = 0;
 
                 D_801373E0.unk_0x12 = 0x64;
                 D_801373E0.unk_0x13 = 0;
@@ -594,12 +594,12 @@ void ActorTick_Marina(uint16_t index) {
         // when these two flags are set, marina looks like she's holding blockman,
         // however, blockman himself doesn't effect these
         // maybe it's the tricycle?
-        gActors[index].flag &= ~ACTOR_FLAG_UNK3;
+        thisActor.flag &= ~ACTOR_FLAG_UNK3;
         if (D_801373E0.unk_0x78 & 0x10000) {
-            gActors[index].flag |= ACTOR_FLAG_UNK3;
-            gActors[index].unk_0x12C._hu[0] &= 0xFFF8;
-            gActors[index].unk_0xDC &= 0xFFFE;
-            gActors[index].pos.x_w += D_801373E0.unk_0x60;
+            thisActor.flag |= ACTOR_FLAG_UNK3;
+            thisActor.unk_0x12C._hu[0] &= 0xFFF8;
+            thisActor.unk_0xDC &= 0xFFFE;
+            thisActor.pos.x_w += D_801373E0.unk_0x60;
         }
 
         func_80048740(index);
@@ -608,20 +608,20 @@ void ActorTick_Marina(uint16_t index) {
             func_80049AC0(index);
         }
 
-        gActors[index].flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11); //~0xA80;
-        gActors[index].unk_0x12C._hu[0] = 0;
-        gActors[index].unk_0x12C._bu[2] = 0;
+        thisActor.flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK11); //~0xA80;
+        thisActor.unk_0x12C._hu[0] = 0;
+        thisActor.unk_0x12C._bu[2] = 0;
 
-        //(((gActors[index].unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
-        gActorFuncTable_800D3DB0[gActors[index].actorState](index);
+        //(((thisActor.unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
+        gActorFuncTable_800D3DB0[thisActor.actorState](index);
 
         func_80048BB0(index);
 
-        if (gActors[index].flag & ACTOR_FLAG_ATTACHED) {
-            D_801373E0.unk_0x70 = gActors[index].unk_0xD6;
+        if (thisActor.flag & ACTOR_FLAG_ATTACHED) {
+            D_801373E0.unk_0x70 = thisActor.unk_0xD6;
 
             if (func_8005D338(index) < 0x66) {
-                gActors[gActors[index].unk_0xD6].unk_0x108 += func_80049A04(index); // return size
+                gActors[thisActor.unk_0xD6].unk_0x108 += func_80049A04(index); // return size
             }
 
             // ((((((d6 * 4) - d6) * 4) + d6) * 4) - d6) * 8
@@ -635,39 +635,39 @@ void ActorTick_Marina(uint16_t index) {
              * = 408 == 0x198
              * bruh
              */
-            // held = (((((((gActors[index].unk_0xD6 * 4) - gActors[index].unk_0xD6) * 4) + gActors[index].unk_0xD6) * 4) -
-            // gActors[index].unk_0xD6) * 8) + gActors;
-            gActors[gActors[index].unk_0xD6].unk_0x104._w += gActors[index].vel.x_w;
-            gActors[gActors[index].unk_0xD6].unk_0x108 += gActors[index].vel.y_w;
+            // held = (((((((thisActor.unk_0xD6 * 4) - thisActor.unk_0xD6) * 4) + thisActor.unk_0xD6) * 4) -
+            // thisActor.unk_0xD6) * 8) + gActors;
+            gActors[thisActor.unk_0xD6].unk_0x104._w += thisActor.vel.x_w;
+            gActors[thisActor.unk_0xD6].unk_0x108 += thisActor.vel.y_w;
         }
 
         func_8005D450(index);
         func_8005CAA8(index, &D_800D4000);
         func_8005BFA4(index);
 
-        if (func_8005C5E0(index) == 1 && gActors[index].unk_0x13C >= 0x1F) {
-            gActors[index].unk_0x180._bu[3] = 6;
+        if (func_8005C5E0(index) == 1 && thisActor.unk_0x13C >= 0x1F) {
+            thisActor.unk_0x180._bu[3] = 6;
         }
 
-        if ((gActors[index].flag3 & 2) != 0) {
-            D_801373E0.unk_0x68 = gActors[index].unk_0xF8._w;
-            D_801373E0.unk_0x6C = gActors[index].unk_0xFC._w;
+        if ((thisActor.flag3 & 2) != 0) {
+            D_801373E0.unk_0x68 = thisActor.unk_0xF8._w;
+            D_801373E0.unk_0x6C = thisActor.unk_0xFC._w;
         }
 
-        D_801373E0.unk_0x64 = gActors[index].flag3;
-        gActors[index].flag3 &= 0xFFDFF9FF;
+        D_801373E0.unk_0x64 = thisActor.flag3;
+        thisActor.flag3 &= 0xFFDFF9FF;
         D_801373E0.unk_0x7C++;
 
-        gActors[index].scaleX = D_800EF630 * gActors[index].unk_0x124;
-        gActors[index].scaleY = (&D_800EF630)[-0x274] * gActors[index].unk_0x128; // -0x9D0 (I don't know how this is produced?)
+        thisActor.scaleX = D_800EF630 * thisActor.unk_0x124;
+        thisActor.scaleY = (&D_800EF630)[-0x274] * thisActor.unk_0x128; // -0x9D0 (I don't know how this is produced?)
 
-        D_800BE5D8 = gActors[index].pos.x_w + gScreenPosCurrentX;
-        D_800BE5DC = gActors[index].pos.y_w + gScreenPosCurrentY;
-        D_800BE5E8 = gActors[index].vel.x_w;
-        D_800BE5EC = gActors[index].vel.y_w;
+        D_800BE5D8 = thisActor.pos.x_w + gScreenPosCurrentX;
+        D_800BE5DC = thisActor.pos.y_w + gScreenPosCurrentY;
+        D_800BE5E8 = thisActor.vel.x_w;
+        D_800BE5EC = thisActor.vel.y_w;
 
         if (gCurrentScene == SCENE_FREEFALL) { //play the fall whistle sound if falling in "freefall"
-            if (gActors[index].vel.y_w <= -294912.0) {
+            if (thisActor.vel.y_w <= -294912.0) {
                 if (D_801373E0.FallBool == 0) {
                     if (func_8000334C(0x3E) >= 0) {
                         D_801373E0.FallBool = 1;

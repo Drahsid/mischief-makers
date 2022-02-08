@@ -9,9 +9,9 @@ void func_8008C4D0(uint32_t x) {}
 void func_8008C4D8(uint32_t x) {}
 
 void func_8008C4E0(uint16_t index) {
-    gActors[index].rgba.b = 0;
-    gActors[index].rgba.g = 0;
-    gActors[index].rgba.r = 0;
+    thisActor.rgba.b = 0;
+    thisActor.rgba.g = 0;
+    thisActor.rgba.r = 0;
     D_801373E0.unk_0x40_w = 0;
 }
 
@@ -41,10 +41,10 @@ void func_8008CC00(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CDC4.s")
 
 void func_8008CF10(uint16_t index){
-    gActors[index].hitboxBY0=8;
-    gActors[index].hitboxBY1=-14;
-    gActors[index].hitboxBX0=-8;
-    gActors[index].hitboxBX1=8;
+    thisActor.hitboxBY0=8;
+    thisActor.hitboxBY1=-14;
+    thisActor.hitboxBX0=-8;
+    thisActor.hitboxBX1=8;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CF60.s")
@@ -81,7 +81,7 @@ void func_8008D960(uint16_t index){
 void func_8008D99C(uint16_t index){
     if(func_8008D418(index)==0){
         func_8008CF10(index);
-        if(gActors[index].unk_0x118==0x0)func_8008CF60(index);
+        if(thisActor.unk_0x118==0x0)func_8008CF60(index);
         }
 }
 
@@ -93,13 +93,13 @@ uint32_t func_8008DA24(uint16_t arg0) {
 
 void StartContinueMode(uint16_t index) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        gActors[index].flag = 0;
-        gActors[index].actorState = 0;
+        thisActor.flag = 0;
+        thisActor.actorState = 0;
         gGameState = GAMESTATE_CONTINUE;
         gGameSubState = 0;
-        gActors[index].vel.x_w = 0;
-        gActors[index].vel.y_w = 0;
-        gActors[index].vel.z_w = 0;
+        thisActor.vel.x_w = 0;
+        thisActor.vel.y_w = 0;
+        thisActor.vel.z_w = 0;
     }
 }
 
@@ -113,13 +113,13 @@ void func_8008DE30(uint16_t index){
     Actor* actorp;
     SFX_Stop(SFX_MARINA_OW1);
     SFX_Stop(SFX_MARINA_YELL1);
-    actorp = &gActors[index];
+    actorp = &thisActor;
     if(actorp->vel.y_w>-0x68000) actorp->vel.y_w-=0x3200;
     if(actorp->pos.y<-0x100) actorp->actorState=64;
 }
 
 void func_8008DEBC(uint16_t index){
-    if(0x60<D_800D28E4) gActors[index].flag = 0;
+    if(0x60<D_800D28E4) thisActor.flag = 0;
     else D_800D28FC |= 0x200;
 }
 
@@ -133,19 +133,19 @@ void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
     D_800BE5F4._w=4;
     if(index==0)index=16; //don't overwrite player actor
     ACTORINIT(index,ACTORTYPE_MARINAOHNO);
-    gActors[index].flag=2;
-    gActors[index].pos.x=gPlayerActor.pos.x;
-    gActors[index].pos.y=gPlayerActor.pos.y;
+    thisActor.flag=2;
+    thisActor.pos.x=gPlayerActor.pos.x;
+    thisActor.pos.y=gPlayerActor.pos.y;
     n=gPlayerActor.vel.x_w;
     if(gPlayerActor.vel.x_w<0) n=gPlayerActor.vel.x_w+1;
-    gActors[index].vel.x_w=n>>1;
+    thisActor.vel.x_w=n>>1;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorSpawn_MarinaOhNo.s")
 #endif
 #ifdef NON_MATCHING
 void ActorTick_MarinaOhNo(uint16_t index){
-    Actor* actor= &gActors[index];
+    Actor* actor= &thisActor;
     D_800BE5F4._w=4;
     func_8008DF20(index);
     if(actor->actorState==16){

@@ -4,8 +4,8 @@
 //float in rodata
 #ifdef NON_MATXCHING
 void func_801922CC_6A02CC(uint16_t index){
-    gActors[index].flag=0;
-    func_8003F138(0.4f,gActors[index].pos.x,gActors[index].pos.y,0);
+    thisActor.flag=0;
+    func_8003F138(0.4f,thisActor.pos.x,thisActor.pos.y,0);
     SFX_Play_1(0x43);
 }
 #else

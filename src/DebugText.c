@@ -43,14 +43,14 @@ void DebugText_PrintIntHex(int32_t i, int32_t posX, int32_t posY) {
     char txt[80];
 
     sprintf(txt, "%08X", i);
-    DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
+    DebugText_SetData(txt, posX, posY, gDebugBorW._lo, gDebugBorW._lo, gDebugBorW._lo, 0xff, 1.0, 1.0);
 }
 
 void DebugText_PrintInt(int32_t i, int32_t posX, int32_t posY) {
     char txt[80];
 
     sprintf(txt, "%04d", i);
-    DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
+    DebugText_SetData(txt, posX, posY, gDebugBorW._lo, gDebugBorW._lo, gDebugBorW._lo, 0xff, 1.0, 1.0);
 }
 
 void DebugText_PrintFloat(float f, int32_t posX, int32_t posY) {
@@ -88,7 +88,7 @@ void DebugText_PrintShortHexBlack(int16_t i, int32_t posX, int32_t posY) {
     char txt[84];
 
     sprintf(txt, "%04X", (uint32_t)i);
-    DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
+    DebugText_SetData(txt, posX, posY, gDebugBorW._lo, gDebugBorW._lo, gDebugBorW._lo, 0xff, 1.0, 1.0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/DebugText/DebugText_PrintShortHexBlack.s")
@@ -107,7 +107,7 @@ void DebugText_PrintDeltaTime(int posX, int posY){
     char txt[80];
     delta*=(D_800ED0C0/D_800ED0C8);
     sprintf(txt, "%03d", delta);
-    DebugText_SetData(txt, posX, posY, D_800BE6B8._lo, D_800BE6B8._lo, D_800BE6B8._lo, 0xff, 1.0, 1.0);
+    DebugText_SetData(txt, posX, posY, gDebugBorW._lo, gDebugBorW._lo, gDebugBorW._lo, 0xff, 1.0, 1.0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/DebugText/DebugText_PrintDeltaTime.s")
@@ -120,7 +120,7 @@ void DebugText_Tick(void){
     Gfx* G = gDListHead;
     Sprite_Init(&G);
     Sprite_SetTransparent(0);
-    Sprite_SetColor(D_800BE6B8._lo,D_800BE6B8._lo,D_800BE6B8._lo,0xFF);
+    Sprite_SetColor(gDebugBorW._lo,gDebugBorW._lo,gDebugBorW._lo,0xFF);
     Sprite_SetScale(0.0,1.0);
     Sprite_SetTransparent(1);
     T=DebugText_TransformArray;

@@ -26,7 +26,7 @@ segments:
       - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
-      - [0x05510, c] #may be decompression/decryption func
+      - [0x05510, c,decodeA] #may be decompression/decryption func
       - [0x05A70, c, GameSave]
       - [0x0A540, c,render]
       - [0x11820, c]
@@ -57,9 +57,9 @@ segments:
       - [0x805E0, c]
       - [0x80D90, c]
       - [0x82920, c]
-      - [0x82DB0, c]
+      - [0x82DB0, c,MarinaGraphics]
       - [0x82F80, c] # likey deals with text defined in Alphabet.h
-      - [0x844E0, c, DebugText] # looks to provide text/ transform data for sprite.c. unique struct.
+      - [0x844E0, c, DebugText]
       - [0x84BB0, c]
       - [0x8D0A0, c]
       - [0x8F080, c]
@@ -117,7 +117,7 @@ segments:
       - [0xA5D10, asm, gu/scale]
       - [0xA5DD0, asm, gu/lookat]
       - [0xA6240, asm, libc/sprintf]
-      - [0xA6310, asm, gu/sqrt]
+      - [0xA6310, hasm, gu/sqrt]
       - [0xA6320, asm, os/gettime]
       - [0xA63F0, asm, error/kmcprint]
       - [0xA6830, asm, libc/string]
@@ -189,7 +189,7 @@ segments:
       - [0xB56B0, asm, io/leointerrupt]
       - [0xB6010, asm, os/destroythread]
       - [0xB6130, asm, io/si]
-      - [0xB6170, asm, os/setcompare]
+      - [0xB6170, hasm, os/setcompare]
       - [0xB6180, asm, os/resetglobalintmask]
       - [0xB61F0, asm, io/epirawwrite]
       - [0xB62A0, asm, io/epirawread]
@@ -206,7 +206,7 @@ segments:
       - [0xB9B90, asm, libc/xstdio]
       - [0xB9EC0, asm, libc/xldtob]
       - [0xBAD90, asm, logger/ultralog]
-      - [0xBB250, asm, os/getcause]
+      - [0xBB250, hasm, os/getcause]
       - [0xBB260, asm, rmon/rmonrcp]
       - [0xBB310, asm, os/stopthread]
       - [0xBB3F0, asm, libc/ldiv]
@@ -214,15 +214,15 @@ segments:
       - [0xBB6B0, bin, gspboot]
       - [0xBCAB0, bin, aspboot]
       # I dunno how to correctly find data/rodata, so these splits are very bad
-      - [0xBD8D0, data,cosineTable]
-      - [0xBE8D0, data,floatTable]      
+      - [0xBD8D0, .data,cosineTable]
+      - [0xBE8D0, .data,floatTable]      
       - [0xBF0D0, bin] # general globals
-      #- [0xBF350, bin] # BGM/instrument name lists
+      - [0xBF350, bin] # BGM/instrument name lists
       #- [0xBF5E4, bin] # BGM instrument settings
       #- [0xC192C, bin] # SFX names? might be for base sounds. also seqp_bank indecies.
       #- [0xC32DC, bin] # more music.c data
       #- [0xC4508, bin] # sprite.c data
-      - [0xC5AE0, bin] # decompress keys(?)
+      - [0xC5AE0, .data,decodeA] # decompress keys(?)
       - [0xC5B20, bin] # gamesave.c data
       - [0xC5FC0, bin] # misc. to discern later.
       - [0xEB7E8, .rodata, boot] # end at 0xEB824
@@ -287,7 +287,7 @@ segments:
   - [0x3fab30,bin] # loaded by func_800197A0
   - [0x40AC70,bin] # blank.
   - [0x40AC80,bin] # start of data refernced in table below (marina graphics?) (TODO: split all the entries.)
-  - [0x4A0910,bin] # ROM adresses load 2 at a time by func_800821B0 (-0x04BF5380)
+  - [0x4A0910,bin] # ROM adresses load 2 at a time by MarinaGraphics_Load (-0x04BF5380)
   #actor properties for Intermission scenes
   - [0x4A15A0,bin]
   - [0x4A15B0,bin]
@@ -300,6 +300,7 @@ segments:
   #more romcopied bits. looks to be compressed data
   - [0x4A1FC0,bin]
   - [0x4B9990,bin] #AlSoundBankFile
+  - [0x4CB120,bin]
 #call lists and code segments loaded per scene by RomCopy_Funcs
   - type: code 
     start: 0x67DBA0
@@ -320,7 +321,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x68A090, bin]
+      - [0x68A090, data]
   - type: code
     start: 0x68A100
     vram: 0x80192100
@@ -334,7 +335,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6A00C0, bin]
+      - [0x6A00C0, data]
   - type: code
     start: 0x6A0100
     vram: 0x80192100
@@ -348,7 +349,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6AAA80, bin]
+      - [0x6AAA80, data]
   - type: code
     start: 0x6AAAF0
     vram: 0x80192100
@@ -362,7 +363,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6BCD80, bin]
+      - [0x6BCD80, data]
   - type: code
     start: 0x6BCDD0
     vram: 0x80192100
@@ -376,7 +377,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6D1BF0, bin]
+      - [0x6D1BF0, data]
   - type: code
     start: 0x6D1C00
     vram: 0x80192100
@@ -389,7 +390,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6D2750, bin]
+      - [0x6D2750, data]
   - type: code
     start: 0x6D2780
     vram: 0x80192100
@@ -403,7 +404,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6D9FB0, bin]
+      - [0x6D9FB0, data]
   - type: code
     start: 0x6DA010
     vram: 0x80192100
@@ -416,7 +417,7 @@ segments:
     vram: 0x80192000
     overlay: true
     subsegments:
-      - [0x6E2AE0, bin]
+      - [0x6E2AE0, data]
   - type: code
     start: 0x6E2B20
     vram: 0x80192100

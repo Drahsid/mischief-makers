@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80080190(uint16_t index){
-    gActors[index].flag3&=~0x200600;
+    thisActor.flag3&=~0x200600;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800801D8.s")
@@ -42,10 +42,10 @@ void func_80081720(uint16_t index, int16_t* p, uint32_t flag){
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_80081720.s")
 #endif
 void func_80081790(uint16_t index, void*p){
-    gActors[index].unk_0x174=(uint32_t)p;
-    gActors[index].unk_0x16C._w=0;
-    gActors[index].unk_0x124=0.0;
-    gActors[index].unk_0x11C=0.0;
+    thisActor.unk_0x174=(uint32_t)p;
+    thisActor.unk_0x16C._w=0;
+    thisActor.unk_0x124=0.0;
+    thisActor.unk_0x11C=0.0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800817D8.s")

@@ -2,7 +2,7 @@
 
 void func_801A6900_78B440(uint16_t x){}
 void func_801A6908_78B448(uint16_t index){
-    MODi(gActors[index].vel.x_w,0,0x2000);
+    MODi(thisActor.vel.x_w,0,0x2000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5B/func_801A6968_78B4A8.s")

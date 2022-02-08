@@ -70,6 +70,16 @@ extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800D7F00[74]; // TODO: Investigate
+extern int16_t D_800E24EC[10];
+extern int16_t D_800E2500[10];
+extern int16_t D_800E2514[10];
+extern int16_t D_800E2528[20];
+extern int16_t D_800E2550[10];
+extern int16_t D_800E2564[10];
+extern int16_t D_800E2578[6];
+extern int16_t D_800E2584[10];
+extern int16_t D_800E2598[12];
+extern int16_t D_800E25B0[40];
 extern int16_t D_800E2600[66];
 extern int16_t D_800E5E48[66];
 extern ActorFunc gActorFuncTable_800E5AC0[];
@@ -116,6 +126,7 @@ extern s2_w gScreenPosCurrentY;
 extern s2_w gScreenPosNextX;
 extern s2_w gScreenPosNextY;
 extern int16_t D_800BE568;
+extern s2_w D_800BE56C;
 extern int16_t D_800BE578;
 extern int16_t D_800BE57C;
 extern int16_t D_800BE580;
@@ -124,6 +135,8 @@ extern int16_t D_800BE588;
 extern int16_t D_800BE58C;
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
+extern int32_t D_800BE59C;
+extern int32_t D_800BE5A0;
 extern uint16_t gRNGSeed;
 extern uint16_t gCurrentScene; //determines DMA's, bgm and camera behavior.
 extern uint16_t D_800BE5D4;
@@ -169,12 +182,12 @@ extern int16_t D_800BE6A8;
 extern uint16_t gDebugBitfeild;
 extern float D_800BE6B0;    // 90.0f, never used.
 extern uint16_t gDebugthrottle; 
-extern b2_s D_800BE6B8;
+extern b2_s gDebugBorW;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
 extern uint8_t D_800BE6E8;
 extern uint8_t D_800BE6EC;
-extern uint8_t D_800BE6F0;
+extern uint8_t gPortraitTint;
 extern uint16_t D_800BE6F8;
 extern int16_t D_800BE6FC;
 extern uint16_t D_800BE704;
@@ -197,6 +210,7 @@ extern double gSpriteScaleY;
 extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
+extern s2_w D_800C500C;
 extern uint8_t D_800C5010[];
 extern uint16_t gNameEntryRow0HIRA[18];
 extern uint16_t gNameEntryRow1HIRA[18];
@@ -302,7 +316,7 @@ extern int16_t D_800D28F4;
 extern int16_t D_800D28F8;
 extern uint32_t D_800D28FC;
 extern int16_t D_800D2900;
-extern int16_t D_800D2958; //no-hit flag, start hp if yes, -1 if no.
+extern int16_t gNoHit; //no-hit flag, start hp if yes, -1 if no.
 extern uint16_t D_800D2908;
 extern int16_t D_800D2914;
 extern uint16_t D_800D2918;
@@ -310,6 +324,7 @@ extern uint16_t D_800D291C;
 extern uint16_t D_800D2920;
 extern uint16_t D_800D2924;
 extern int32_t D_800D2928;
+extern int32_t D_800D292C;
 extern int32_t D_800D2938;
 extern uint16_t D_800D294C;
 extern uint16_t gPlayerActorIndex;
@@ -481,6 +496,8 @@ extern UNK_TYPE D_800E1F64;
 extern int32_t VipToPlayerX; //gives the relative position from a VIP actor (usually boss) to the player
 extern int32_t VipToPlayerY;
 extern uint16_t gVIPActor;
+extern uint16_t* D_800E31EC[54];
+extern UNK_TYPE D_800E334C;
 extern UNK_TYPE D_800E3584;
 extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[];
@@ -508,8 +525,8 @@ extern uint32_t D_80103944;
 extern uint16_t D_8010CDE8[];
 extern uint8_t D_8011CDF0[];
 extern uint8_t D_8011CF18[];
-extern struct_D_80104098 D_80104098[66]; // last 2 are data for marina's healthbar and head thereof
-extern struct_D_801069E0 D_801069E0[64]; // seems to be the sprite objects (not the collision,) of level objects
+extern Portrait gPortraits[66]; // last 2 are data for marina's healthbar and head thereof
+extern StaticGem gStaticGems[64]; // seems to be the sprite objects (not the collision,) of level objects
 extern u64 D_8011D970[128]; //gGFXTaskp->dram_stack
 extern u64 D_8011DDF0[436]; //gGFXTaskp->yeild_data_ptr
 extern uint16_t D_8011D3D0[144];
@@ -558,6 +575,7 @@ extern uint32_t D_80137420;
 
 extern uint16_t D_80137480; 
 extern void* D_801376A0;
+extern void* D_801376A4;
 extern uint8_t D_801376A8[4];
 extern uint8_t D_801376AC[4];
 extern uint8_t D_801376B0[4];
@@ -637,6 +655,7 @@ extern uint16_t gFestivalPointsRed;
 extern uint16_t gFestivalPointsWhite;
 extern uint8_t gFestivalEventsBools[10];
 extern int32_t D_801782B0;
+extern int32_t D_801782B4;
 extern uint16_t D_801782C0;
 extern int16_t D_801783F4;
 extern int16_t D_801783F6;

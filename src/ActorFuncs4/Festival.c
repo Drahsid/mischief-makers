@@ -56,7 +56,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B2738_7A8CB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B2854_7A8DD4.s")
+void func_801B2854_7A8DD4(uint16_t x){
+    gActors[110].unk_0x18C._p=&D_800D9AE4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B286C_7A8DEC.s")
 

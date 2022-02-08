@@ -4,7 +4,6 @@
 
 
 char gEEPROMID[8] = "TREA0722";
-
 uint16_t gTimeRecords[64] = {
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
@@ -12,14 +11,26 @@ uint16_t gTimeRecords[64] = {
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000
 };
-
 uint16_t gDefaultFileName[11] = {
     ALPHA_UPPER_S, ALPHA_LOWER_T, ALPHA_LOWER_A, ALPHA_LOWER_R, ALPHA_LOWER_T, ALPHA_SPACE,
     ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_NULL
 };
+uint32_t D_800C4FC0[10]={
+    0x10000,0x20000,0x40000,0x64,3,0x20000,3,0x40000,0,0x40000
+};
+uint16_t gNameEntrySpace[11]={
+    0,0,0,0,0,0,0,0,0,ALPHA_NULL
+};
+uint8_t D_800C5000=0;
+uint8_t GameSave_SelectedAge=0;
+uint8_t gSaveSlotIndex=0;
+
+//b2_s D_800C500C=0;
+uint16_t D_800C500E=0;
+
 
 // This function gets the lower 4 bits of the word lhs + (offset)
-// Difference is flipped instructions
+// Difference is flipped instruction. ('and t8,t7,a0' vs 'and t8,a0,t7')
 #ifdef NON_MATCHING
 uint16_t func_80004E70(uint32_t lhs, int32_t offset) {
     return lhs & (0xF << (offset * 4)) >> (offset * 4);
@@ -28,6 +39,7 @@ uint16_t func_80004E70(uint32_t lhs, int32_t offset) {
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 #endif
 
+uint8_t D_800C5010[8]={9,9,9,5,9,5,0,0};
 int32_t func_80004E90(uint32_t arg0) {
     uint16_t index;
 
@@ -132,8 +144,8 @@ void GameSave_Erase(void) {
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
     Text_SpawnIcon(index, &gIcon_YellowGem, pos_x, pos_y, 0);
-    gActors[index].flag2 |= 0x200;
-    gActors[index].unk_0x18C._p = arg3;
+    thisActor.flag2 |= 0x200;
+    thisActor.unk_0x18C._p = arg3;
 }
 
 // Differences related to implicit casts

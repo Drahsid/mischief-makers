@@ -15,7 +15,7 @@ void func_80022D10(void) {
     gGameSubState = 0;
 }
 #ifdef NON_MATCHING
-void Reset_InitB(void){
+void Reset_InitB(void){ //~96%matching
   uint16_t i;
   gGamePaused = 0;
   D_80137D90 = 0;
@@ -33,7 +33,7 @@ void Reset_InitB(void){
   D_800BE594 = 0;
   D_800BE590 = 0;
   D_800BE678 = 0;
-  D_800BE6F0 = 0xFF;
+  gPortraitTint = 0xFF;
   gHPDisplayed = gPlayerActor.health;
   BGM_Stop();
   SFX_StopAll();
@@ -46,11 +46,11 @@ void Reset_InitB(void){
   InitScene();
   func_80043918();
   func_80010C20(gCurrentScene);
-  D_80380200[2] = 1;
+  D_80380200[2] = 1; //"addiu" instead of "ori"
   D_80380200[1] = 1;
   func_80028260(2,1,0,0,0);
   func_80028260(2,2,0,0,0);
-  for(i = 0;i < 4;i++) {
+  for(i = 0;i < 4;i++) { //regAlloc
     D_801376BC[i]=1;
     D_801376A8[i]=0xFF;
     D_801376AC[i]=0xFF;
@@ -111,14 +111,14 @@ void func_800230B8(void){
         gActors[i].graphicList=NULL;
     }
     for(i=0;i<64;i++){
-        D_801069E0[i].Active=0;
+        gStaticGems[i].Active=0;
     }
 }
 
 void func_8002312C(void){
     uint16_t i;
     for(i=0;i<66;i++){
-        D_80104098[i].Active=0;
+        gPortraits[i].Active=0;
     }
 }
 
@@ -143,7 +143,7 @@ void GamePlay_Load(void) {
         D_801376B4[index]=255;
     }
 
-    D_800BE6F0 = 0xFF;
+    gPortraitTint = 0xFF;
     gHPDisplayed = gPlayerActorp->health;
     D_800BE6C0 = -8;
     gDebugBitfeild = 4;

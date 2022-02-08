@@ -105,7 +105,7 @@ void func_8001FF50(void) {
     uint16_t index;
 
     for (index = 1; index < ACTOR_COUNT1; index++) {
-        gActors[index].flag3 &= 0x380600;
+        thisActor.flag3 &= 0x380600;
     }
 }
 
@@ -238,7 +238,7 @@ void PauseGame_Unpause(void) {
     uint16_t index;
 
     for (index = 0xC8; index < 0xCC; index++) {
-        gActors[index].flag = 0;
+        thisActor.flag = 0;
     }
 
     gBgmVolume = gBgmVolumeTemp;
@@ -252,7 +252,7 @@ void func_80020A54(void) {
     uint16_t index;
 
     for (index = 200; index < 204; index++) {
-        gActors[index].flag = 0;
+        thisActor.flag = 0;
     }
 }
 
@@ -372,7 +372,7 @@ void AttractMode_Tick(void) {
  */
 void DebugText_BorW(void) {
     if ((gButtonPress & gButton_RTrig)) {
-        D_800BE6B8._s ^= 0xFF;
+        gDebugBorW._s ^= 0xFF;
     }
 }
 

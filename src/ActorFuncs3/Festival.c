@@ -65,7 +65,7 @@ void func_801A9508_78F7F8(uint16_t x){}
 
 void func_801A9690_78F980(uint16_t x){}
 void func_801A9698_78F988(uint16_t index){
-    gActors[index].flag=0;
+    thisActor.flag=0;
 }
 void func_801A96CC_78F9BC(uint16_t x){}
 void func_801A96D4_78F9C4(uint16_t x){}
@@ -180,10 +180,10 @@ void func_801AAFC4_7912B4(uint16_t x){}
 //tally points earned.
 #ifdef NON_MATCHING
 void func_801AD37C_79366C(uint16_t index,uint16_t instant){
-    if(gActors[index].unk_0x160._w==0){
-        gFestivalPointsWhite+=gActors[index].unk_0x154._w;
-        gFestivalPointsRed+=gActors[index].unk_0x158._w;
-        gActors[index].unk_0x160._w=1;
+    if(thisActor.unk_0x160._w==0){
+        gFestivalPointsWhite+=thisActor.unk_0x154._w;
+        gFestivalPointsRed+=thisActor.unk_0x158._w;
+        thisActor.unk_0x160._w=1;
     }
     if(instant){
         gActors[62].unk_0x158._w=gFestivalPointsWhite;
@@ -192,12 +192,12 @@ void func_801AD37C_79366C(uint16_t index,uint16_t instant){
     else{
         MODi(gActors[62].unk_0x158._w,gFestivalPointsWhite,1);
         MODi(gActors[64].unk_0x158._w,gFestivalPointsRed,1);
-        if (((gActors[index].unk_0x170._w != gActors[62].unk_0x158._w) || (gActors[index].unk_0x174 != gActors[64].unk_0x158._w))
+        if (((thisActor.unk_0x170._w != gActors[62].unk_0x158._w) || (thisActor.unk_0x174 != gActors[64].unk_0x158._w))
           && ((gSceneFrames & 3) == 0)){
             SFX_Play_1(0x139);
             }
-        gActors[index].unk_0x170._w=gActors[62].unk_0x158._w;
-        gActors[index].unk_0x174=gActors[64].unk_0x158._w;
+        thisActor.unk_0x170._w=gActors[62].unk_0x158._w;
+        thisActor.unk_0x174=gActors[64].unk_0x158._w;
     }
 }
 #else
@@ -249,9 +249,9 @@ void func_801AD4F4_7937E4(uint16_t index){
     g = 0xff;
     r = 0xff;
   }
-  gActors[index].rgba.r = r;
-  gActors[index].rgba.g = g;
-  gActors[index].rgba.b = b;
+  thisActor.rgba.r = r;
+  thisActor.rgba.g = g;
+  thisActor.rgba.b = b;
 }
 #else
 void func_801AD4F4_7937E4(uint16_t index);
@@ -301,7 +301,7 @@ void func_801AECB0_794FA0(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AECB8_794FA8.s")
 
 void func_801AED30_795020(uint16_t index){
-    gActors[index].unk_0x118=1.0;
+    thisActor.unk_0x118=1.0;
     func_80069E18(index);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AED88_795078.s")

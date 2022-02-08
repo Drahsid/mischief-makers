@@ -77,24 +77,24 @@ extern void func_80196A0C_717F3C(uint16_t,uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80196B28_718058.s")
 
 void func_80196BFC_71812C(uint16_t index){
-    if(gActors[index].vel.x_w>0x20000) func_80196A0C_717F3C(index,0);
+    if(thisActor.vel.x_w>0x20000) func_80196A0C_717F3C(index,0);
 }
 void func_80196C60_718190(uint16_t index){
-    if(gActors[index].vel.x_w<-0x20000) func_80196A0C_717F3C(index,0);
+    if(thisActor.vel.x_w<-0x20000) func_80196A0C_717F3C(index,0);
 }
 void func_80196CC0_7181F0(uint16_t index){
-    if(gActors[index].vel.x_w>0x20000) func_80196A0C_717F3C(index,64);
+    if(thisActor.vel.x_w>0x20000) func_80196A0C_717F3C(index,64);
 }
 
 void func_80196D24_718254(uint16_t index){
-    if(gActors[index].vel.x_w>0x20000) func_80196A0C_717F3C(index,128);
+    if(thisActor.vel.x_w>0x20000) func_80196A0C_717F3C(index,128);
 }
 
 void func_80196D88_7182B8(uint16_t index){
-    if(gActors[index].vel.x_w<-0x20000) func_80196A0C_717F3C(index,64);
+    if(thisActor.vel.x_w<-0x20000) func_80196A0C_717F3C(index,64);
 }
 void func_80196DE8_718318(uint16_t index){
-    if(gActors[index].vel.x_w<-0x20000) func_80196A0C_717F3C(index,128);
+    if(thisActor.vel.x_w<-0x20000) func_80196A0C_717F3C(index,128);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80196E48_718378.s")
@@ -108,13 +108,13 @@ void func_80196DE8_718318(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80197514_718A44.s")
 
 void func_80197B84_7190B4(uint16_t index){
-    if(gActors[index].actorState==0){
-        gActors[index].actorState++;
-        gActors[index].flag2=0x100;
-        gActors[index].flag=3;
-        gActors[index].graphic=0x168;
+    if(thisActor.actorState==0){
+        thisActor.actorState++;
+        thisActor.flag2=0x100;
+        thisActor.flag=3;
+        thisActor.graphic=0x168;
         Actor_Shade(index,127);
-        gActors[index].rgba.a=0xA0;
-        gActors[index].vel.z_w=0xC0000;
+        thisActor.rgba.a=0xA0;
+        thisActor.vel.z_w=0xC0000;
     }
 }

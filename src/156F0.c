@@ -34,22 +34,22 @@ void func_80014AF0(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80014FD0.s")
 /*
 void func_80015094(uint16_t index){
-    if((gActors[index].unk_0xA0&0xf ==0) &&(gActors[index].unk_0xA0&0xC0)) func_80014FD0(index,16);
+    if((thisActor.unk_0xA0&0xf ==0) &&(thisActor.unk_0xA0&0xC0)) func_80014FD0(index,16);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015094.s")
 /*
 void func_800150FC(uint16_t index){
-    func_80014FD0(index,(gActors[index].pos.x+gScreenPosCurrentX._hi&0xf)>>1);
+    func_80014FD0(index,(thisActor.pos.x+gScreenPosCurrentX._hi&0xf)>>1);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800150FC.s")
 /*
 void func_80015174(uint16_t index){
-    func_80014FD0(index,gActors[index].pos.x+gScreenPosCurrentX._hi&0xf);
+    func_80014FD0(index,thisActor.pos.x+gScreenPosCurrentX._hi&0xf);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015174.s")
 /*
 void func_800151D8(uint16_t index){
-    func_80014FD0(index,((gActors[index].pos.x+gScreenPosCurrentX._hi&0xf)>>1) +8);
+    func_80014FD0(index,((thisActor.pos.x+gScreenPosCurrentX._hi&0xf)>>1) +8);
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800151D8.s")
 
@@ -89,13 +89,13 @@ void func_80016CB4(void) {
 
     if ((D_80137458 & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
-            if ((gActors[index].flag & ACTOR_FLAG_ACTIVE)) {
+            if ((thisActor.flag & ACTOR_FLAG_ACTIVE)) {
                 func_800160EC(index);
-                gActors[index].flag3 &= ~(1 << 19);
+                thisActor.flag3 &= ~(1 << 19);
             }
         }
-        gPlayerPosXMirror._w = gActors[index].pos.x_w + gScreenPosCurrentX._w;
-        gPlayerPosYMirror._w = gActors[index].pos.y_w + gScreenPosCurrentY._w;
+        gPlayerPosXMirror._w = thisActor.pos.x_w + gScreenPosCurrentX._w;
+        gPlayerPosYMirror._w = thisActor.pos.y_w + gScreenPosCurrentY._w;
     }
 }
 #else
@@ -108,13 +108,13 @@ void func_80016D94(){
     x= gScreenPosNextX._w - gScreenPosCurrentX._w;
     y= gScreenPosNextY._w - gScreenPosCurrentY._w;
     for(index=1;index<ACTOR_COUNT1;index++){
-        if( (gActors[index].flag & 2) && ((gActors[index].flag & 8)==0)){
-            gActors[index].pos.x_w+=x;
-            gActors[index].pos.y_w+=y;
-            if((gActors[index].flag & 4)&&
-            ((gActors[index].pos.x<-0xd0||gActors[index].pos.x>0xd0)||
-            (gActors[index].pos.y<-0xa0||gActors[index].pos.y>0xa0)))
-                gActors[index].flag=0;
+        if( (thisActor.flag & 2) && ((thisActor.flag & 8)==0)){
+            thisActor.pos.x_w+=x;
+            thisActor.pos.y_w+=y;
+            if((thisActor.flag & 4)&&
+            ((thisActor.pos.x<-0xd0||thisActor.pos.x>0xd0)||
+            (thisActor.pos.y<-0xa0||thisActor.pos.y>0xa0)))
+                thisActor.flag=0;
         }
     }
 }

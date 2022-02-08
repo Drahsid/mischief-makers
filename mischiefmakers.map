@@ -1848,7 +1848,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080000fe0                Input_Update
                 0x0000000080001098                Input_GetFirstController
                 0x00000000800011f0                RomCopy_A
-                0x0000000080001264                func_80001264
+                0x0000000080001264                RomCopy_RecvMesg
                 0x0000000080001290                RomCopy_B
                 0x00000000800012f0                func_800012F0
                 0x000000008000147c                func_8000147C
@@ -2512,7 +2512,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002bc90                func_8002BC90
                 0x000000008002c044                func_8002C044
                 0x000000008002c140                func_8002C140
-                0x000000008002c1d8                func_8002C1D8
+                0x000000008002c1d8                ActorTick_27
                 0x000000008002c1e0                func_8002C1E0
                 0x000000008002c218                func_8002C218
                 0x000000008002c328                func_8002C328
@@ -2559,7 +2559,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002efe4                Gem_ActorSpawn
                 0x000000008002f154                func_8002F154
                 0x000000008002f1c8                YellowGem_NoHit
-                0x000000008002f2a8                func_8002F2A8
+                0x000000008002f2a8                ActorSpawn_RedGemRing
                 0x000000008002f420                func_8002F420
                 0x000000008002f6ac                RedGem_Clamp
                 0x000000008002f6d4                ActorTick_RedGemRing
@@ -3777,7 +3777,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008007ce24                func_8007CE24
                 0x000000008007ceb8                func_8007CEB8
                 0x000000008007cfe0                func_8007CFE0
-                0x000000008007d0dc                func_8007D0DC
+                0x000000008007d0dc                ActorSpawn_JPNSpeechBox
                 0x000000008007d0f4                func_8007D0F4
                 0x000000008007d1e8                func_8007D1E8
                 0x000000008007d290                func_8007D290
@@ -3848,12 +3848,12 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080081e38                func_80081E38
                 0x0000000080081fc8                func_80081FC8
                 0x0000000080082024                func_80082024
-                0x0000000080082088                func_80082088
+                0x0000000080082088                ActorTick_42
                 0x0000000080082184                func_80082184
  build/src/82DB0.c.o(.text)
  .text          0x00000000800821b0      0x1d0 build/src/82DB0.c.o
-                0x00000000800821b0                func_800821B0
-                0x00000000800822b8                func_800822B8
+                0x00000000800821b0                MarinaGraphics_Load
+                0x00000000800822b8                MarinaGraphics_Decrypt
  build/src/82F80.c.o(.text)
  .text          0x0000000080082380     0x1560 build/src/82F80.c.o
                 0x0000000080082380                func_80082380
@@ -14139,7 +14139,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080108de0                D_80108DE0 = 0x80108de0
                 0x0000000080104090                D_80104090 = 0x80104090
                 0x0000000080137d90                D_80137D90 = 0x80137d90
-                0x00000000801069e0                D_801069E0 = 0x801069e0
+                0x00000000801069e0                gStaticGems = 0x801069e0
                 0x000000008011cdf0                D_8011CDF0 = 0x8011cdf0
                 0x000000008011cf18                D_8011CF18 = 0x8011cf18
                 0x0000000080137d94                D_80137D94 = 0x80137d94
@@ -14267,8 +14267,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c5e20                D_800C5E20 = 0x800c5e20
                 0x00000000800c5da0                D_800C5DA0 = 0x800c5da0
                 0x00000000800c5ea0                D_800C5EA0 = 0x800c5ea0
-                0x0000000080104098                D_80104098 = 0x80104098
-                0x00000000800be6f0                D_800BE6F0 = 0x800be6f0
+                0x0000000080104098                 = 0x80104098
+                0x00000000800be6f0                gPortraitTint = 0x800be6f0
                 0x00000000801069bc                D_801069BC = 0x801069bc
                 0x00000000801069c0                D_801069C0 = 0x801069c0
                 0x00000000801069ba                D_801069BA = 0x801069ba
@@ -14462,7 +14462,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ca254                D_800CA254 = 0x800ca254
                 0x00000000800ca280                D_800CA280 = 0x800ca280
                 0x00000000800be668                D_800BE668 = 0x800be668
-                0x00000000800be6b8                D_800BE6B8 = 0x800be6b8
+                0x00000000800be6b8                gDebugBorW = 0x800be6b8
                 0x00000000800e3978                D_800E3978 = 0x800e3978
                 0x00000000801376b0                D_801376B0 = 0x801376b0
                 0x00000000801376a8                D_801376A8 = 0x801376a8
@@ -14617,7 +14617,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800eb8f8                D_800EB8F8 = 0x800eb8f8
                 0x00000000800eb900                D_800EB900 = 0x800eb900
                 0x00000000800eb904                D_800EB904 = 0x800eb904
-                0x00000000800d2958                D_800D2958 = 0x800d2958
+                0x00000000800d2958                gNoHit = 0x800d2958
                 0x00000000800e164c                D_800E164C = 0x800e164c
                 0x00000000800eb908                D_800EB908 = 0x800eb908
                 0x00000000800d1958                D_800D1958 = 0x800d1958

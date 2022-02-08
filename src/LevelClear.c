@@ -14,16 +14,16 @@
 const float D_800ED508=0.8f; //rodata
 void func_8009705C(uint16_t index) {
     ACTORINIT(index,0X75);
-    gActors[index].actorState = 0x1000;
-    gActors[index].flag2 = 0x100;
-    gActors[index].flag = 11;
-    gActors[index].graphic = 0x800;
-    gActors[index].rgba.a = 0;
-    gActors[index].pos.x = 0xFFDF;
-    gActors[index].pos.y = 0xFFFC;
-    gActors[index].pos.z = 0x80;
-    gActors[index].unk_0x114 = D_800ED508;
-    gActors[index].unk_0x154._w = 0x6000;
+    thisActor.actorState = 0x1000;
+    thisActor.flag2 = 0x100;
+    thisActor.flag = 11;
+    thisActor.graphic = 0x800;
+    thisActor.rgba.a = 0;
+    thisActor.pos.x = 0xFFDF;
+    thisActor.pos.y = 0xFFFC;
+    thisActor.pos.z = 0x80;
+    thisActor.unk_0x114 = D_800ED508;
+    thisActor.unk_0x154._w = 0x6000;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/LevelClear/func_8009705C.s")
@@ -31,27 +31,27 @@ void func_8009705C(uint16_t index) {
 
 void func_80097108(uint16_t index) {
     ACTORINIT(index,0X75);
-    gActors[index].actorState = 0x2000;
-    gActors[index].flag2 = 0x110;
-    gActors[index].flag = 11;
-    gActors[index].graphic = 0x1000;
-    gActors[index].rgba.a = 0;
-    gActors[index].pos.x = 0x1e;
-    gActors[index].pos.y = 0xFFD8;
-    gActors[index].pos.z = 0xFC80;
+    thisActor.actorState = 0x2000;
+    thisActor.flag2 = 0x110;
+    thisActor.flag = 11;
+    thisActor.graphic = 0x1000;
+    thisActor.rgba.a = 0;
+    thisActor.pos.x = 0x1e;
+    thisActor.pos.y = 0xFFD8;
+    thisActor.pos.z = 0xFC80;
 }
 
 void func_800971A0(uint16_t index) {
     ACTORINIT(index,0X75);
-    gActors[index].actorState = 0x100;
-    gActors[index].flag2 = 0x900;
-    gActors[index].flag = 11;
-    gActors[index].graphic = 0x2800;
-    gActors[index].rgba.a = 0;
-    gActors[index].pos.x = 0x0;
-    gActors[index].pos.z = 0x80;
-    gActors[index].rgba.g = 0x50;
-    gActors[index].rgba.b = 0x70;
+    thisActor.actorState = 0x100;
+    thisActor.flag2 = 0x900;
+    thisActor.flag = 11;
+    thisActor.graphic = 0x2800;
+    thisActor.rgba.a = 0;
+    thisActor.pos.x = 0x0;
+    thisActor.pos.z = 0x80;
+    thisActor.rgba.g = 0x50;
+    thisActor.rgba.b = 0x70;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/LevelClear/func_8009723C.s")
@@ -76,14 +76,14 @@ void func_800972DC(void) {
 
 void func_80097384(uint16_t index) {
     ACTORINIT(index,0X75);
-    gActors[index].actorState = 0xC000;
-    gActors[index].flag2 = 0x900;
-    gActors[index].flag = 11;
-    gActors[index].graphic = 0xCE;
-    gActors[index].rgba.a = 0;
-    gActors[index].pos.x = 0x0;
-    gActors[index].pos.y = 0x0;
-    gActors[index].pos.z = 0x40;
+    thisActor.actorState = 0xC000;
+    thisActor.flag2 = 0x900;
+    thisActor.flag = 11;
+    thisActor.graphic = 0xCE;
+    thisActor.rgba.a = 0;
+    thisActor.pos.x = 0x0;
+    thisActor.pos.y = 0x0;
+    thisActor.pos.z = 0x40;
     Actor_Shade(index, 127);
 }
 

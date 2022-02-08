@@ -51,26 +51,26 @@ int16_t func_8005CA98(){
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005CAA8.s")
 
 uint8_t func_8005D1B0(uint16_t index){
-    return gActors[index].unk_0xDF&3;
+    return thisActor.unk_0xDF&3;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005D1E8.s")
 uint16_t func_8005D338(uint16_t index){
-    return gActors[index].unk_0x170._hu[1]&0x1FFF;
+    return thisActor.unk_0x170._hu[1]&0x1FFF;
 }
 /*uint32_t func_8005D370(uint16_t index, int32_t x){
     uint16_t b=func_8005D338(index);
     uint16_t a=x;
-    if(x!=b) gActors[index].unk_0x170._w = a;
+    if(x!=b) thisActor.unk_0x170._w = a;
     return a!=b;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005D370.s")
 void func_8005D3D8(uint16_t index){
-    gActors[index].unk_0x170._hu[1]&=0x1fff;
+    thisActor.unk_0x170._hu[1]&=0x1fff;
 }
 
 uint16_t func_8005D418(uint16_t index){
-    return gActors[index].unk_0x170._hu[1]&0xA000;
+    return thisActor.unk_0x170._hu[1]&0xA000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005D450.s")

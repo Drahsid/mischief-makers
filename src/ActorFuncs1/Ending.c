@@ -1,5 +1,28 @@
 #include "common.h"
 
+//.bss
+int32_t D_801AC370;
+uint16_t D_801AC374;
+UNK_TYPE D_801AC378;
+uint32_t D_801AC37C;
+uint32_t D_801AC380;
+uint16_t D_801AC384;
+uint16_t D_801AC386;
+uint16_t D_801AC388;
+uint16_t D_801AC38A;
+uint32_t D_801AC38C;
+int32_t D_801AC390;
+int32_t D_801AC394;
+uint16_t D_801AC398;
+uint16_t D_801AC39A;
+uint16_t D_801AC39C;
+uint16_t D_801AC39E;
+uint16_t D_801AC3A0;
+int16_t D_801AC3A2;
+int16_t D_801AC3A4;
+int16_t D_801AC3A6;
+int8_t D_801AC3A8;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192100_6F9390.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019214C_6F93DC.s")
@@ -21,19 +44,19 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192520_6F97B0.s")
 
 void func_801925A4_6F9834(uint16_t index, uint16_t x){
-    gActors[index].actorState=2;
-    gActors[index].unk_0x150._w=x;
+    thisActor.actorState=2;
+    thisActor.unk_0x150._w=x;
 }
 
 void func_801925EC_6F987C(uint16_t index, uint16_t x){
-    gActors[index].actorState=4;
-    gActors[index].unk_0x150._w=x;
+    thisActor.actorState=4;
+    thisActor.unk_0x150._w=x;
 }
 /*
 void func_80192634_6F98C4(uint16_t index, uint8_t a){
-    gActors[index].actorState=1;
-    gActors[index].rgba.a=a;
-    gActors[index].unk_0x154._w= (uint32_t)a<<16;
+    thisActor.actorState=1;
+    thisActor.rgba.a=a;
+    thisActor.unk_0x154._w= (uint32_t)a<<16;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192634_6F98C4.s")
 
@@ -68,38 +91,36 @@ uint32_t func_801927F4_6F9A84(){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192930_6F9BC0.s")
 //encapsulated together for similar issue - loads base of gActors instead of relevant entry first.
-#ifdef NON_MATCHING
+//
 void func_801929C8_6F9C58(uint16_t x){
-    gActors[51].actorState=2;
-    gActors[51].unk_0x150._w=x;
+    uint16_t index=51;
+    thisActor.actorState=2;
+    thisActor.unk_0x150._w=x;
 }
 void func_801929E8_6F9C78(uint16_t x){
-    gActors[51].actorState=4;
-    gActors[51].unk_0x150._w=x;
+  uint16_t index=51;
+    thisActor.actorState=4;
+    thisActor.unk_0x150._w=x;
 }
 void func_80192A08_6F9C98(uint16_t x){
-    gActors[51].actorState=4;
-    gActors[51].unk_0x150._w=x;
+  uint16_t index=51;
+    thisActor.actorState=4;
+    thisActor.unk_0x150._w=x;
 }
 void func_80192A28_6F9CB8(uint16_t x){
-    gActors[51].actorState=2;
-    gActors[51].unk_0x150._w=x;
+  uint16_t index=51;
+    thisActor.actorState=2;
+    thisActor.unk_0x150._w=x;
 }
+#ifdef NON_MATCHING
 void func_80192A48_6F9CD8(uint8_t x){
-    gActors[51].actorState=1;
-    gActors[51].rgba.a=x;
-    gActors[51].unk_0x154._w=(uint32_t)x*1000;
+  uint16_t index=51;
+    thisActor.actorState=1;
+    thisActor.rgba.a=x;
+    thisActor.unk_0x154._w=x*1000;
 }
 #else
-extern void func_801929C8_6F9C58(uint16_t x);
-extern void func_801929E8_6F9C78(uint16_t x);
-extern void func_80192A08_6F9C98(uint16_t x);
-extern void func_80192A28_6F9CB8(uint16_t x);
 extern void func_80192A48_6F9CD8(uint16_t x);
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801929C8_6F9C58.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801929E8_6F9C78.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A08_6F9C98.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A28_6F9CB8.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A48_6F9CD8.s")
 #endif
 
@@ -119,15 +140,15 @@ void func_80192A98_6F9D28(){
 
 void func_80192C34_6F9EC4(uint16_t x, uint16_t index,uint32_t q){
     ACTORINIT(index,0x2c11);
-    gActors[index].pos.x=0;
-    gActors[index].pos.y=0;
-    gActors[index].pos.z=0;
-    gActors[index].unk_0x154._w=q;
+    thisActor.pos.x=0;
+    thisActor.pos.y=0;
+    thisActor.pos.z=0;
+    thisActor.unk_0x154._w=q;
 }
 
 #ifdef NON_MATCHING
 void func_80192CAC_6F9F3C(uint16_t index){
-    gActors[index].unk_0x154._w+=2;
+    thisActor.unk_0x154._w+=2;
 }
 #else
 extern void func_80192CAC_6F9F3C(uint16_t index);
@@ -152,15 +173,15 @@ extern void func_80193278_6FA508(uint16_t x);
 
 void func_801932D0_6FA560(uint16_t other,uint16_t index,uint16_t type,uint16_t graphic,int16_t x,int16_t y,int16_t z){
   ACTORINIT(index,type);
-  gActors[index].pos.x_w = 0;
-  gActors[index].pos.y_w = 0;
-  gActors[index].pos.z_w = 0;
-  gActors[index].flag = 2;
-  gActors[index].graphic = graphic;
-  gActors[index].pos.x = x;
-  gActors[index].pos.y = y;
-  gActors[index].pos.z = z;
-  gActors[index].actorState =gActors[other].actorState&0xff00;
+  thisActor.pos.x_w = 0;
+  thisActor.pos.y_w = 0;
+  thisActor.pos.z_w = 0;
+  thisActor.flag = 2;
+  thisActor.graphic = graphic;
+  thisActor.pos.x = x;
+  thisActor.pos.y = y;
+  thisActor.pos.z = z;
+  thisActor.actorState =gActors[other].actorState&0xff00;
 }
 
 void func_8019339C_6FA62C(uint16_t other,uint16_t index,uint16_t graphic,int16_t x,int16_t y,int16_t z){
@@ -196,7 +217,7 @@ void func_80193674_6FA904(uint16_t other,uint16_t index,uint16_t graphic,int16_t
 #ifdef NON_MATCHING
 void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z){
   ACTORINIT(index,0x2C00);
-  gActors[index].pos.z = z;
+  thisActor.pos.z = z;
 }
 #else
 extern void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z);
@@ -206,22 +227,22 @@ extern void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z);
 
 void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c05);
-  gActors[index].flag = 2;
-  gActors[index].graphic = graphic;
-  gActors[index].pos.x_w = x;
-  gActors[index].pos.y_w = y;
-  gActors[index].pos.z_w = z;
-  gActors[index].actorState =gActors[other].actorState&0xff00;
+  thisActor.flag = 2;
+  thisActor.graphic = graphic;
+  thisActor.pos.x_w = x;
+  thisActor.pos.y_w = y;
+  thisActor.pos.z_w = z;
+  thisActor.actorState =gActors[other].actorState&0xff00;
 }
 
 void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c06);
-  gActors[index].flag = 2;
-  gActors[index].graphic = graphic;
-  gActors[index].pos.x_w = x;
-  gActors[index].pos.y_w = y;
-  gActors[index].pos.z_w = z;
-  gActors[index].actorState =gActors[other].actorState&0xff00;
+  thisActor.flag = 2;
+  thisActor.graphic = graphic;
+  thisActor.pos.x_w = x;
+  thisActor.pos.y_w = y;
+  thisActor.pos.z_w = z;
+  thisActor.actorState =gActors[other].actorState&0xff00;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80193900_6FAB90.s")
@@ -601,10 +622,28 @@ void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A89AC_70FC3C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A8D6C_70FFFC.s")
+//decrement yellow gem counter
+#ifdef NON_MATCHING
+uint32_t func_801A9044_7102D4(void){
+  if(gActors[53].unk_0x158._w!=0){
+    gActors[53].unk_0x158._w--;
+    return 0;
 
+  }
+  else{
+    gActors[48].actorState = 0x1e00;
+    return 1;
+  }
+}
+#else
+extern uint32_t func_801A9044_7102D4(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9044_7102D4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A907C_71030C.s")
+#endif
+//increment the counter
+void func_801A907C_71030C(void){
+  uint16_t index=53;
+  thisActor.unk_0x158._w++;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9098_710328.s")
 
@@ -626,8 +665,8 @@ void func_801A9740_7109D0(uint16_t x) {
     gActors[56].actorState = 0x1A0;
 }
 void func_801A9754_7109E4(uint16_t index){
-    gActors[index].flag=0;
-    gActors[index].actorType=0;
+    thisActor.flag=0;
+    thisActor.actorType=0;
     func_80081720(index,&D_800E5E48,3);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A97B8_710A48.s")
@@ -637,7 +676,7 @@ void func_801A9754_7109E4(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9818_710AA8.s")
 
 void func_801A9848_710AD8(uint16_t index,float f){
-    gActors[index].unk_0x120=f;
+    thisActor.unk_0x120=f;
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9880_710B10.s")
 
@@ -647,10 +686,21 @@ void func_801A9CD0_710F60(uint16_t index){
     gActors[index+3].unk_0x180._w=0x40000;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9D1C_710FAC.s")
+void func_801A9D1C_710FAC(uint16_t x,uint16_t y){
+  D_801AC384=x;
+  D_801AC386=y;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9D38_710FC8.s")
+uint16_t D_801AB6E8_712978[]={0x110,0x120,0x130,0x140,0x170,0x180,0x1A0,0x1C0,0x1D0,0x200,0x230,0x240,0x250,0,0,0,0,0,0,0};
+void func_801A9D38_710FC8(uint16_t x, uint16_t y){
+  D_801AC388=x;
+  D_801AC38A=D_801AB6E8_712978[y];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9D68_710FF8.s")
+void func_801A9D68_710FF8(uint32_t x,uint32_t y){
+  uint16_t index=104; //needed to match.
+  gActors[index+2].unk_0x180._w=x;
+  gActors[index+3].unk_0x180._w=y;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9D7C_71100C.s")

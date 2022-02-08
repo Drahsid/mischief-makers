@@ -37,17 +37,38 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1828_7AD748.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1850_7AD770.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B195C_7AD87C.s")
-
+void func_801B195C_7AD87C(uint16_t x){
+    gActors[111].unk_0x18C._p=&D_800D9AE4;
+}
+#ifdef NON_MATCHING
+void func_801B1974_7AD894(uint16_t i){
+    uint16_t index;
+    int32_t x=gActors[i].unk_0x15C;
+    if(x==0){index=0x6B;}
+    else if(x==1){index=0x6D;}
+    else if(x==2){index=0x6A;}
+    else if(x==3){index=0x6C;}
+    thisActor.unk_0x18C._p=&D_800D9AE4;
+}
+#else
+extern void func_801B1974_7AD894(uint16_t i);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1974_7AD894.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1A18_7AD938.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1ADC_7AD9FC.s")
-
+float D_801B73B4_7B32D4[]={2.0,0.0,-21.0,180.0,0.0,0.0,0.0,3.0,1.0,1.0,448.0,1.0,1.0,1.0,60.0,0.0};
+#ifdef NON_MATCHING
+void func_801B1BC4_7ADAE4(uint16_t x){
+    ACTORINIT(63,0x1A08);
+    gActors[63].flag|=8;
+    gActors[63].pos.x=gActors[63].pos.y=0;
+    gActors[63].unk_0x178._p=D_801B73B4_7B32D4;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1BC4_7ADAE4.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1C24_7ADB44.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1CF0_7ADC10.s")
@@ -122,9 +143,21 @@ void func_801B2F68_7AEE88(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4504_7B0424.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B45A0_7B04C0.s")
-
+uint8_t D_801B75A8_7B34C8[]={0,1,2,30,1,225,0,3,0,115,0,9,0,1,2,152,1,128,0,3,0,60,0,0};
+#ifdef NON_MATCHING
+void func_801B4600_7B0520(uint16_t x){
+    ACTORINIT(112,0x1A07);
+    gActors[112].flag=2;
+    gActors[112].pos.x=560-gScreenPosCurrentX._hi;
+    gActors[112].pos.y=480-gScreenPosCurrentY._hi;
+    gActors[112].pos.z=-2;
+    gActors[112].unk_0x150._w=64;
+    gActors[112].unk_0x174=(uint32_t)D_801B75A8_7B34C8;
+}
+#else
+void func_801B4600_7B0520(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4600_7B0520.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B469C_7B05BC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B47DC_7B06FC.s")

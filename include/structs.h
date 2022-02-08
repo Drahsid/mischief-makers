@@ -119,9 +119,9 @@ typedef struct {
     /* 0x95 */ int8_t unk_0x95[3]; //this is Definitely align.
     /* 0x98 */ void* texture;
     /* 0x9C */ int32_t unk_0x9C; //unused?
-} struct_D_80104098;/* sizeof 0xA0 */
-#define HealthBar D_80104098[64]
-#define HealthFace D_80104098[65]
+} Portrait;/* sizeof 0xA0 */
+#define HealthBar gPortraits[64]
+#define HealthFace gPortraits[65]
 
 //likely the gem objects.
 typedef struct {
@@ -130,7 +130,7 @@ typedef struct {
     /* 0x82 */ uint16_t unk_0x82; //may be align
     /* 0x84 */ Vec2i_union pos;
     /* 0x8C */ void* texture;
-} struct_D_801069E0; /* sizeof 0x90 */
+} StaticGem; /* sizeof 0x90 */
 
 //seems to handle some of the player actor data.
 typedef struct {

@@ -33,12 +33,12 @@ void func_8008486C(uint16_t x) {
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084F38.s")
 
 uint32_t func_80085108(uint16_t index){
-    if((gActors[index].vel.y_w<1)&&(gActors[index].flag3&0x20)){
-        gActors[index].actorState=1;
-        gActors[index].flag&= ~0x20000;
-        gActors[index].flag|=0x10000;
-        gActors[index].vel.x_w=0;
-        gActors[index].vel.y_w=0;
+    if((thisActor.vel.y_w<1)&&(thisActor.flag3&0x20)){
+        thisActor.actorState=1;
+        thisActor.flag&= ~0x20000;
+        thisActor.flag|=0x10000;
+        thisActor.vel.x_w=0;
+        thisActor.vel.y_w=0;
         return 1;
     }
     return 0;
@@ -54,11 +54,11 @@ void func_800852CC(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085300.s")
 
 void func_80085350(uint16_t index){
-    if(gActors[index].flag3&0x200){
-        gActors[index].actorState=2;
-        gActors[index].flag= 0x20003;
-        gActors[index].vel.x_w=0;
-        gActors[index].vel.y_w=0;
+    if(thisActor.flag3&0x200){
+        thisActor.actorState=2;
+        thisActor.flag= 0x20003;
+        thisActor.vel.x_w=0;
+        thisActor.vel.y_w=0;
         SFX_ActorPanX(0x2f,index);
     }
 }
@@ -80,16 +80,16 @@ extern float D_800E3DBC[8];
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085D00.s")
 
 void func_80085E60(uint16_t index){
-    float f=D_800E3DBC[gActors[index].unk_0xD8];
-    gActors[index].scaleX=f;
-    gActors[index].scaleY=f;
+    float f=D_800E3DBC[thisActor.unk_0xD8];
+    thisActor.scaleX=f;
+    thisActor.scaleY=f;
 }
 
 extern uint32_t D_800E3DE4[8][2];
 /* regalloc?
 void func_80085EB0(uint16_t index){
-    gActors[index].unk_0xF8._w=D_800E3DE4[gActors[index].unk_0xD8][0];
-    gActors[index].unk_0xFC._w=D_800E3DE4[gActors[index].unk_0xD8][1];
+    thisActor.unk_0xF8._w=D_800E3DE4[thisActor.unk_0xD8][0];
+    thisActor.unk_0xFC._w=D_800E3DE4[thisActor.unk_0xD8][1];
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085EB0.s")
 extern int32_t D_80182020[64];
@@ -97,8 +97,8 @@ extern int32_t D_80182020[64];
 void func_80085F08(uint16_t index){
     uint16_t i;
     for(i=0;i<64;i++) D_80182020[i]=-1;
-    gActors[index].unk_0x174=0;
-    gActors[index].unk_0x178._w=0;
+    thisActor.unk_0x174=0;
+    thisActor.unk_0x178._w=0;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085F08.s")
 

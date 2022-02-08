@@ -260,14 +260,35 @@ void func_80069304(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069884.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069A18.s")
+void func_80069B94(uint16_t index){
+    MODi(thisActor.vel.x_w,0,0x4000);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069B94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069BF4.s")
-
+void func_80069BF4(uint16_t index){
+    MODi(thisActor.vel.x_w,0,0x400);
+}
+#ifdef NON_MATCHING
+uint16_t func_80069C54(uint16_t index){ //regAlloc?
+    if(thisActor.flag3&0x40){
+    thisActor.flag&=~0x8A80;
+    if(thisActor.unk_0x150._w<<4<0){
+        thisActor.actorState=0xF0;
+        return 1;
+        }
+    else {
+        thisActor.actorState=0x100;
+        return 1;
+        }
+    }
+    return 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069C54.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069CDC.s")
+void func_80069CDC(uint16_t x){
+func_80069C54(x);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069D04.s")
 
@@ -342,7 +363,7 @@ void func_8006C1A4(uint16_t x){}
 void func_8006C5A4(uint16_t index) {
     Actor* actor;
 
-    actor = &gActors[index];
+    actor = &thisActor;
     if (actor->actorState >= 0x51 && actor->actorState != 0xFFFF) {
         if (actor->health == 0) {
             actor->flag &= ~ACTOR_FLAG_UNK10;
@@ -415,7 +436,7 @@ uint16_t func_8006C8B8(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006CFDC.s")
 /*
 void func_8006D0EC(uint16_t index){
-    if(gActors[index].actorState) func_80035A20(index);
+    if(thisActor.actorState) func_80035A20(index);
     else{
         func_8006CD5C(index);
         func_800358DC(index);
@@ -563,12 +584,12 @@ void func_80072DD4(uint16_t index){}
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072EE0.s")
 /*
 void func_80072F54(uint16_t index){
-    if (gActors[index].actorState == 64){
-            gActors[index].unk_0x150._w &= ~0x8000000;
-            gActors[index].flag=2;
-            gActors[index].vel.x_w=0;
-            gActors[index].vel.y_w=0;
-            gActors[index].rotateZ=0.0f;
+    if (thisActor.actorState == 64){
+            thisActor.unk_0x150._w &= ~0x8000000;
+            thisActor.flag=2;
+            thisActor.vel.x_w=0;
+            thisActor.vel.y_w=0;
+            thisActor.rotateZ=0.0f;
     }
     else {func_80072E54(index);}
 }*/
@@ -580,9 +601,9 @@ void func_8007325C(uint16_t index) {
     // through in-game testing, this seems to process state changes
     func_8006C1AC(index);
 
-    if (gActors[index].actorState < 0x4000) {
+    if (thisActor.actorState < 0x4000) {
         // these seem to process being grabbed
-        gActorFuncTable_800D7F00[gActors[index].actorState / 16](index);
+        gActorFuncTable_800D7F00[thisActor.actorState / 16](index);
     }
 
     // this seems to process damage and attachments
@@ -724,14 +745,14 @@ uint16_t func_800742B8(uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80078FF0.s")
 /*void func_800791D4(uint16_t index){
-    if(gActors[index].vel.x_w<=0){
-        gActors[index].unk_0x150._w |=1;
+    if(thisActor.vel.x_w<=0){
+        thisActor.unk_0x150._w |=1;
     }
-    else{gActors[index].unk_0x150._w &= ~1;}
-    if(gActors[index].vel.y_w<=0){
-        gActors[index].unk_0x150._w |=2;
+    else{thisActor.unk_0x150._w &= ~1;}
+    if(thisActor.vel.y_w<=0){
+        thisActor.unk_0x150._w |=2;
     }
-    else{gActors[index].unk_0x150._w &= ~2;}
+    else{thisActor.unk_0x150._w &= ~2;}
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800791D4.s")
 

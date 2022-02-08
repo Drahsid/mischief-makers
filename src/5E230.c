@@ -194,11 +194,13 @@ void func_8005DF40(int16_t x, int16_t y){
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF5C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DFC8.s")
-/*
-void func_8005E09C(uint32_t i,int16_t x){
-    D_801783F8[i]=x;
-}*/
+#ifdef NON_MATCHING
+void func_8005E09C(int32_t i,int16_t x){
+    D_801783F8[i]=x; //regalloc, original doesn't push a1
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E09C.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E0B0.s")
 

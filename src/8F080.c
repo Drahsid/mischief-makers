@@ -26,8 +26,8 @@ void func_8008E918(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008EFA8.s")
 
 uint32_t func_8008F094(uint16_t index,uint16_t dmg){
-    gActors[index].health-=dmg;
-    if(gActors[index].health&0x8000)gActors[index].health=0;
+    thisActor.health-=dmg;
+    if(thisActor.health&0x8000)thisActor.health=0;
     return func_8008EFA8(index);
 }
 
@@ -167,9 +167,9 @@ void func_800930E4(uint32_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/ActorTick_CalinaDialouge.s")
 
 void CalinaChange_WandSpin(uint16_t index){
-    gActors[index].unk_0x118+=gActors[index].unk_0x114;
-    if(gActors[index].unk_0x118>360){
-        gActors[index].unk_0x118-=360;
+    thisActor.unk_0x118+=thisActor.unk_0x114;
+    if(thisActor.unk_0x118>360){
+        thisActor.unk_0x118-=360;
         SFX_Play_2(0x116); //dash sound
         }
 }

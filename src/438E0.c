@@ -186,14 +186,26 @@ void func_80043918(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043A68.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043C10.s")
-
+#ifdef NON_MATCHING
+void FUN_80043d04(uint16_t *x){
+  uint16_t j;
+  uint16_t i = *x;
+  while (i != 0xff00) {
+    j = i & 0xd7ff;
+    i = x[7];
+    *x = j;
+    x+=7;
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D04.s")
+#endif
 
-void func_80043D30(int32_t arg0) {
+void func_80043D30(uint16_t* x) {
     if (D_800D2908 == 0) {
-        func_80043D04();
+        func_80043D04(x);
     }
-    func_80043A68(arg0);
+    func_80043A68(x);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D6C.s")
@@ -205,8 +217,8 @@ void func_80043D30(int32_t arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800441F4.s")
 //file break? similar instructions below.
 void func_80044360(void) {
-    D_801069E0[D_801782C0].Active = 10;
-    D_801069E0[D_801782C0].texture = NULL;
+    gStaticGems[D_801782C0].Active = 10;
+    gStaticGems[D_801782C0].texture = NULL;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044390.s")
@@ -224,8 +236,8 @@ void func_80044360(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044884.s")
 
 void func_8004495C(void) {
-    D_801069E0[D_801782C0].Active = D_800D3770[D_800D37A4];
-    D_801069E0[D_801782C0].texture = 0x80203440;
+    gStaticGems[D_801782C0].Active = D_800D3770[D_800D37A4];
+    gStaticGems[D_801782C0].texture = 0x80203440;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800449A8.s")
@@ -277,7 +289,7 @@ void func_8004495C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045188.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
-//file break? above is last func dealing with D_801069E0
+//file break? above is last func dealing with StaticGems
 void func_80045500(void) {
     uint16_t index;
     for (index = 0; index < 16; index++) {
@@ -396,7 +408,7 @@ int32_t func_800463F0(void){
 
 void func_80046434(void) {
     if (gPlayerActor.flag & 0x20) {
-        MODi(D_801782B0, 0xFFD00000, 0x80000);
+        MODi(D_801782B0, -0x300000, 0x80000);
     }
     else {
         MODi(D_801782B0, 0x300000, 0x80000);
@@ -406,8 +418,10 @@ void func_80046434(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046498.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800465F4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004664C.s")
+void func_8004664C(void){
+    MODi(D_801782B4,0,0x10000);
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004664C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004667C.s")
 
@@ -423,8 +437,8 @@ void func_80046A30(void) {
     func_800286C8();
 
     for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
-        if ((gActors[index].flag & ACTOR_FLAG_UNK19)) {
-            gActors[index].flag = 0;
+        if ((thisActor.flag & ACTOR_FLAG_UNK19)) {
+            thisActor.flag = 0;
         }
     }
 }

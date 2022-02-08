@@ -9,15 +9,15 @@ uint16_t D_801A10E8_6B9AD8=0;
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_80192100_6AAAF0.s")
 
 void func_801921DC_6AABCC(uint16_t index){
-    if(gActors[index].actorState&1){
-        gActors[index].rgba.r=0x3f;
-        gActors[index].rgba.g=0x7f;
-        gActors[index].rgba.b=0;
+    if(thisActor.actorState&1){
+        thisActor.rgba.r=0x3f;
+        thisActor.rgba.g=0x7f;
+        thisActor.rgba.b=0;
     }
     else{
-        gActors[index].rgba.r=0x4f;
-        gActors[index].rgba.g=0x7f;
-        gActors[index].rgba.b=0x4F;    
+        thisActor.rgba.r=0x4f;
+        thisActor.rgba.g=0x7f;
+        thisActor.rgba.b=0x4F;    
     }
 }
 
@@ -134,8 +134,8 @@ void func_80195A08_6AE3F8(){
 //shade based on z distance.
 #ifdef NON_MATCHING
 void func_80197F34_6B0924(uint16_t index){
-    int32_t z=-gActors[index].pos.z/2;
-    gActors[index].rgba.r=gActors[index].rgba.g=gActors[index].rgba.b=z;
+    int32_t z=-thisActor.pos.z/2;
+    thisActor.rgba.r=thisActor.rgba.g=thisActor.rgba.b=z;
 }
 #else
 extern void func_80197F34_6B0924(uint16_t index);
@@ -244,9 +244,9 @@ void func_8019AB98_6B3588(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019DBA4_6B6594.s")
 
 void func_8019DCF4_6B66E4(uint16_t index){
-    gActors[index].pos.x=gActors[53].pos.x;
-    gActors[index].pos.y=gActors[53].pos.y+48;
-    gActors[index].pos.z_w=gActors[58].pos.z_w-0x1000;
+    thisActor.pos.x=gActors[53].pos.x;
+    thisActor.pos.y=gActors[53].pos.y+48;
+    thisActor.pos.z_w=gActors[58].pos.z_w-0x1000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/PhoenixGamma/func_8019DD4C_6B673C.s")

@@ -94,26 +94,26 @@ void func_801935A4_67F0C4(){
 }
 
 void func_80193600_67F120(uint16_t index){
-    gActors[index].hitboxBY0=8;
-    gActors[index].hitboxBY1=-0x18;
+    thisActor.hitboxBY0=8;
+    thisActor.hitboxBY1=-0x18;
     func_8002ACFC(index,-14,20);
-    gActors[index].hitboxAY0=18;
-    gActors[index].hitboxAY1=-8;
+    thisActor.hitboxAY0=18;
+    thisActor.hitboxAY1=-8;
     func_8002AC7C(index,-12,10);
 }
 
 void func_80193694_67F1B4(uint16_t index){
-    gActors[index].hitboxBY0=16;
-    gActors[index].hitboxBY1=-12;
+    thisActor.hitboxBY0=16;
+    thisActor.hitboxBY1=-12;
     func_8002ACFC(index,-4,26);
-    gActors[index].hitboxAY0=12;
-    gActors[index].hitboxAY1=-12;
+    thisActor.hitboxAY0=12;
+    thisActor.hitboxAY1=-12;
     func_8002AC7C(index,-16,6);
 }
 
 void func_80193728_67F248(uint16_t index){
     ACTORINIT(index,0X1D);
-    gActors[index].flag2|=1;
+    thisActor.flag2|=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80193790_67F2B0.s")

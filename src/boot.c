@@ -376,7 +376,7 @@ int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
 
-int32_t func_80001264(void) {
+int32_t RomCopy_RecvMesg(void) {
     OSMesg mesg;
     return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
@@ -437,7 +437,7 @@ void func_8000147C(void) {
 
     func_800012F0();
     GameState_Tick();
-    func_800821B0();
+    MarinaGraphics_Load();
     func_80009940();
     func_80082F10();
     Gfx_DrawActors(&D_80171B30);
@@ -466,7 +466,7 @@ void func_8000147C(void) {
     }
 
     Rand(); // update rng
-    func_800822B8();
+    MarinaGraphics_Decrypt();
     Gfx_DrawLetterbox();
     Gfx_DrawLifeBar();
     func_80009BE0();

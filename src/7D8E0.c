@@ -31,7 +31,7 @@ void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CFE0.s")
 //this is wherein the japanese version text would appear over actors' heads (i.e. Migen Jr)
 //0x8007CECC in JPN
-uint16_t func_8007D0DC(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
+uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
     #ifdef VER_JPN
     uint16_t index= Actor_GetInactiveInRange(140,144);
     if(index){
@@ -61,7 +61,7 @@ uint16_t func_8007D0DC(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D0F4.s")
 
 uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,void* r){
-    uint16_t index = func_8007D0DC(i,p,x,y,z);
+    uint16_t index = ActorSpawn_JPNSpeechBox(i,p,x,y,z);
     if(index){
         thisActor.flag2|= 0x200;
         thisActor.flag2&= ~0x0100;

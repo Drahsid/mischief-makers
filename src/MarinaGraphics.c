@@ -5,7 +5,7 @@
 #include <ultra64.h>
 
 #ifdef NON_MATCHING
-void func_800821B0(void) {
+void MarinaGraphics_Load(void) {
     int32_t sp28[2];
     int32_t temp_t1;
     uint16_t temp_v0;
@@ -30,16 +30,16 @@ void func_800821B0(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/82DB0/func_800821B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/MarinaGraphics/MarinaGraphics_Load.s")
 #endif
 
 #ifdef NON_MATCHING
 // regalloc, missing instructions, temp for D_800BE6A4 & 0x7FFF is early
-void func_800822B8(void) {
+void MarinaGraphics_Decrypt(void) {
 
 
-    if (D_80178460 != 0) {
-        func_80001264();
+    if (D_80178460) {
+        RomCopy_RecvMesg();
 
         if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 0) {
             if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 1) {
@@ -56,5 +56,5 @@ void func_800822B8(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/82DB0/func_800822B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/MarinaGraphics/MarinaGraphics_Decrypt.s")
 #endif

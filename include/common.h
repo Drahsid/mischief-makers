@@ -17,7 +17,11 @@
         Actor_Spawn(i)
 #define thisActor gActors[index]
 #define ALPHAINDEX(x) x*2+0x2d2 //get the letter's graphic index.
-#define COS(x) gCosineLookup[x&0x3ff]
-#define SIN(x) gCosineLookup[x-0x100&0x3ff] //cos(x-pi/2)=sin(x)
-#define NEGSIN(x) gCosineLookup[x+0x100&0x3ff]//cos(x+pi/2)=-sin(x)
+
+//in case we want to change the cosine table.
+#define COSLEN (sizeof(gCosineLookup)/sizeof(float))-1
+#define COSPiOver2 (sizeof(gCosineLookup)/sizeof(float))/4
+#define COS(x) gCosineLookup[x&COSLEN]
+#define SIN(x) gCosineLookup[x-COSPiOver2&COSLEN] //cos(x-pi/2)=sin(x)
+#define NEGSIN(x) gCosineLookup[x+COSPiOver2&COSLEN]//cos(x+pi/2)=-sin(x)
 #endif

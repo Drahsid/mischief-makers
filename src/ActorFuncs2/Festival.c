@@ -12,15 +12,15 @@ void func_8019B208_753988(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Festival/func_8019B468_753BE8.s")
 /*
 void func_8019B60C_753D8C(uint16_t index){
-    DebugText_PrintShortHexWhite((uint16_t)(D_800E3584>>0x10),gActors[index].pos.x,0);
-    if(D_800E3584&0xc0000) gActors[index].flag^=0x20;
-    else gActors[index].actorState=0x20;
+    DebugText_PrintShortHexWhite((uint16_t)(D_800E3584>>0x10),thisActor.pos.x,0);
+    if(D_800E3584&0xc0000) thisActor.flag^=0x20;
+    else thisActor.actorState=0x20;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Festival/func_8019B60C_753D8C.s")
 /*
 void func_8019B6A8_753E28(uint16_t index){
-    DebugText_PrintShortHexWhite(D_800E3584>>0x10,gActors[index].pos.x,0);
-    if(D_800E3584&0xc0000) gActors[index].actorState=16;
+    DebugText_PrintShortHexWhite(D_800E3584>>0x10,thisActor.pos.x,0);
+    if(D_800E3584&0xc0000) thisActor.actorState=16;
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Festival/func_8019B6A8_753E28.s")
 

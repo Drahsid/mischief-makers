@@ -315,11 +315,11 @@ int32_t func_80003828(uint32_t SFX_ID, uint16_t i){
     int8_t val_a;
     int16_t val_b;
 
-    if ((D_801069E0[i].pos.x < -383) || (D_801069E0[i].pos.x >= 384)) {
+    if ((gStaticGems[i].pos.x < -383) || (gStaticGems[i].pos.x >= 384)) {
         return -1;
     }
 
-    func_80003540(D_801069E0[i].pos.x, D_801069E0[i].pos.y, &val_a, &val_b);
+    func_80003540(gStaticGems[i].pos.x, gStaticGems[i].pos.y, &val_a, &val_b);
 
     if (val_b < 128) {
         return -1;
@@ -333,9 +333,9 @@ int32_t func_800038C8(uint32_t SFX_ID, uint16_t index, uint16_t arg2) {
     int8_t val_a;
     int16_t val_b;
 
-    if ((gActors[index].pos.x < -383) || (gActors[index].pos.x >= 384))
+    if ((thisActor.pos.x < -383) || (thisActor.pos.x >= 384))
         return -1;
-    func_80003540(gActors[index].pos.x, gActors[index].pos.y, &val_a, &val_b);
+    func_80003540(thisActor.pos.x, thisActor.pos.y, &val_a, &val_b);
 
     if (val_b < 128) {
         return -1;
