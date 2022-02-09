@@ -346,6 +346,7 @@ extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
 extern UNK_TYPE D_800D85A8;
 extern uint16_t D_800D37A4;
+extern void(*D_800D37BC[51])(void); //static gem funcs
 extern UNK_TYPE D_800D4000;
 extern int8_t D_800D401C[5][4];
 extern int8_t D_800D4030[5][4];
@@ -485,6 +486,7 @@ extern UNK_TYPE D_800E1380;
 extern UNK_TYPE D_800E154C;
 extern uint16_t D_800E1700[];
 extern uint16_t D_800E1750[];
+extern uint16_t D_800E1788[];
 extern uint16_t D_800E223C[];
 extern uint16_t D_800E2250[];
 extern uint16_t D_800E2274[];

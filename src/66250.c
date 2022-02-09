@@ -1,9 +1,14 @@
 #include "common.h"
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80065650.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80065724.s")
+void func_80065650(uint16_t index) {
+    func_80067E50(index, &D_800E1788);
+    if ((gSceneFrames % 17) == 0) {
+        func_800339BC((thisActor.pos.x_w - ((Rand() & 0x1F) * 0xA000)) + 0xA0000, (thisActor.pos.y_w - ((Rand() & 0x1F) * 0xC000)) + 0x120000, thisActor.pos.z_w, 0);
+    }
+}
+void func_80065724(uint16_t index){
+    func_80033E7C(index,thisActor.pos.x,thisActor.pos.y+6,thisActor.pos.z+1,0x6000,0x80000,3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800657B0.s")
 
@@ -296,7 +301,11 @@ func_80069C54(x);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069E18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069EC4.s")
+void func_80069EC4(uint16_t index, float f) {
+    thisActor.actorState = 0x90;
+    thisActor.unk_0x118 = f;
+    thisActor.unk_0x11C = 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069F10.s")
 

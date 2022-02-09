@@ -195,7 +195,7 @@ void GamePlay_Load(void) {
     func_80010A10();
     func_800230B8();
     func_80023168();
-    func_80012288();
+    ActorSpawn_Marina();
     D_800BE5D4 = 1;
     func_8008C4E0(0x41);
     func_80043918();

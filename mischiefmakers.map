@@ -1999,8 +1999,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800120c8                func_800120C8
  build/src/12DD0.c.o(.text)
  .text          0x00000000800121d0      0x710 build/src/12DD0.c.o
-                0x00000000800121d0                func_800121D0
-                0x0000000080012288                func_80012288
+                0x00000000800121d0                ActorSpawn_Player
+                0x0000000080012288                ActorSpawn_Marina
                 0x00000000800122b0                func_800122B0
                 0x00000000800123ac                ActorMarina_ScreenXLock
                 0x0000000080012418                ActorMarina_ScreenYLock
@@ -2488,7 +2488,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002ad7c                func_8002AD7C
                 0x000000008002ae44                func_8002AE44
                 0x000000008002aeb4                Actor_Shade
-                0x000000008002aef8                func_8002AEF8
+                0x000000008002aef8                Actor_ShadeBy
                 0x000000008002af7c                func_8002AF7C
                 0x000000008002b010                func_8002B010
                 0x000000008002b140                func_8002B140
@@ -2827,7 +2827,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080044468                func_80044468
                 0x0000000080044540                func_80044540
                 0x0000000080044618                func_80044618
-                0x00000000800446f0                YellowGem_MakeStaticGem
+                0x00000000800446f0                StaticGem_Make
                 0x00000000800447ac                func_800447AC
                 0x0000000080044884                func_80044884
                 0x000000008004495c                func_8004495C
@@ -4591,7 +4591,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800a58fc                func_800A58FC
                 0x00000000800a5904                msp_proutSyncPrintf
                 0x00000000800a5b2c                func_800A5B2C
-                0x00000000800a5b34                kmcErrorHandler
+                0x00000000800a5b34                osSyncPrintf
                 0x00000000800a5bbc                rmonPrintf
  build/asm/libc/string.s.o(.text)
  .text          0x00000000800a5c30      0x100 build/asm/libc/string.s.o

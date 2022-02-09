@@ -177,20 +177,17 @@ void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
 
-#ifdef NON_MATCHING
-int32_t SFX_Stop(uint16_t id) {
-    int8_t index=0;
-    while(gSFX_ChannelStates[index] == 0||gSFXCurrentIndex[index] != id) {
-        if (3<++index) {
-            return -1;
-        }
+
+int32_t SFX_Stop(int32_t id)  {
+  u8 i;
+  for(i=0; i<4; i++){
+    if ((gSFX_ChannelStates[i]) && (id == gSFXCurrentIndex[i])) {
+      alSeqpStop(gSFXPlayersp[i]);
+      return i;
     }
-    alSeqpStop((ALSeqPlayer*)gSFXPlayersp[index]);
-    return index;
+  }
+  return -1;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Stop.s")
-#endif
 
 // main SFX playing wrapper
 int32_t SFX_Play_1(uint32_t id) {

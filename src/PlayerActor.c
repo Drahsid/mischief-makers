@@ -2,7 +2,7 @@
 
 #include "common.h"
 
-void func_800121D0(void) {
+void ActorSpawn_Player(void) {
     uint16_t index = gPlayerActorp->healthu;
     Actor* player = gPlayerActorp; // required to match
 
@@ -25,9 +25,9 @@ void func_800121D0(void) {
     func_8004A960(0);
 }
 
-void func_80012288(void) {
+void ActorSpawn_Marina(void) {
     gPlayerActor.actorType = ACTORTYPE_MARINA;
-    func_800121D0();
+    ActorSpawn_Player();
 }
 
 void func_800122B0(void) {
@@ -66,9 +66,28 @@ void ActorMarina_ScreenXLock(void) {
 void ActorMarina_ScreenYLock(void) {
     gPlayerActor.pos.y = gPlayerPosYMirror._hi - gScreenPosCurrentY._hi;
 }
-
+#ifdef NON_MATCHING
+void ActorMarina_ScreenXScroll(void){ //~90% matching
+  s32 cap; //s2_w
+  
+  if (D_800BE544 == 0) func_80046498();
+  else if (D_800BE544 != 0x8000) {
+    gScreenPosTargetX._w = (gActors[D_800BE544].pos.x_w+gScreenPosCurrentX._w+ gPlayerPosXMirror._w)/2;
+    if (gScreenPosTargetX._w > gPlayerPosXMirror._w + 0x300000) gScreenPosTargetX._w = gPlayerPosXMirror._w + 0x300000;
+    if (gScreenPosTargetX._w < gPlayerPosXMirror._w - 0x300000) gScreenPosTargetX._w = gPlayerPosXMirror._w - 0x300000;
+  }
+  D_800BE61C = 0;
+  cap = ABS((gScreenPosTargetX._w - gScreenPosCurrentX._w) / D_800BE704);
+  if (cap < 0x10000) cap = 0x10000;
+  if (D_800BE548 < cap) cap = D_800BE548;
+  gScreenPosCurrentX._hi = ModInRange_i(gScreenPosCurrentX._hi,gScreenPosTargetX._hi,cap);//half of cap should be loaded here.
+  if (gScreenPosCurrentX._hi < D_800BE568._hi + 0x90) gScreenPosCurrentX._hi = D_800BE568._hi + 0x90;
+  if (gScreenPosCurrentX._hi < D_800BE56C._hi - 0x90) gScreenPosCurrentX._hi = D_800BE56C._hi - 0x90;
+  gActors[0].pos.x = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/PlayerActor/ActorMarina_ScreenXScroll.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/PlayerActor/ActorMarina_ScreenYScroll.s")
 
 void ActorMarina_ScreenScroll(void) {
