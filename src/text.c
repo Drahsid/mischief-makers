@@ -78,6 +78,8 @@ uint16_t Text_Print3Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t 
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/text/Text_Print3Digits.s")
 #endif
+//all text in Japanese is monospaced(?)
+#ifndef VER_JPN
 #ifdef NON_MATCHING
 uint16_t Text_GetWidth(uint16_t* arg0) {
     if (ALPHA_LOWER_A > *arg0)
@@ -89,12 +91,14 @@ uint16_t Text_GetWidth(uint16_t* arg0) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/text/Text_GetWidth.s")
 #endif
-/*
+#ifdef NON_MATCHING
 uint16_t Text_getKerning(uint16_t* TXT){
     return Text_GetWidth(TXT)+Text_GetWidth(TXT+1);
-}*/
-
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/text/Text_getKerning.s")
+#endif
+#endif
 
 uint16_t Text_ZeroFlagActors(uint16_t index, uint16_t* TXT){
     uint16_t C = *TXT;
@@ -104,6 +108,7 @@ uint16_t Text_ZeroFlagActors(uint16_t index, uint16_t* TXT){
     }
     return index;
 }
+//TODO: add #ifdef for monospace japanese
 uint16_t Text_PrintAlphaAt(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16_t pos_y,uint16_t pos_z){
     uint16_t C = *TXT;
     while(C!=ALPHA_NULL){
@@ -111,9 +116,14 @@ uint16_t Text_PrintAlphaAt(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16
             Text_SpawnAt(index, pos_x, pos_y, pos_z);
             thisActor.flag|=8;
             gActors[index++].graphic = ALPHAINDEX(*TXT);
+#ifdef VER_JPN
+        }
+        pos+=16;
+#else            
             pos_x+= Text_getKerning(TXT);
         }
         else pos_x+=14;
+#endif
         C=*++TXT;
     }
     return index;
@@ -133,9 +143,14 @@ uint16_t Text_PrintAlphaAtColor(uint16_t index,uint16_t *TXT,uint16_t pos_x,uint
                     thisActor.rgba.b = b;
                 }
             index++;
+#ifdef VER_JPN
+        }
+        pos+=16;
+#else            
             pos_x+= Text_getKerning(TXT);
         }
         else pos_x+=14;
+#endif
         C=*++TXT;
     }
     return index;
@@ -160,3 +175,5 @@ uint16_t Text_PrintAlphaAt3(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint1
     }
     return index;
 }
+
+#pragma GLOBAL_ASM("asm/nonmatchings/text/func_80028260.s")

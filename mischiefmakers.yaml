@@ -43,7 +43,7 @@ segments:
       - [0x241E0, c,Scenes]
       - [0x26A00, c,RomCopy]
       - [0x27F70, c,text]
-      - [0x28E60, c]
+      - [0x28EF0, c]
       - [0x438E0, c]
       - [0x44F90, c,StaticGem]
       - [0x46100, c]
@@ -68,7 +68,7 @@ segments:
       - [0x8F080, c]
       - [0x97770, c,LevelClear] # Level clear sequence
       - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
-      #start of libultra funcs. compiler flags: -g -O2 -mips2 -g1?
+      #libultra
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
       - [0x99B50, asm, os/initalize]
@@ -86,6 +86,7 @@ segments:
       - [0x9B910, asm, os/recvmesg]
       - [0x9BAA0, asm, os/writebackchacheall]
       - [0x9BAD0, asm, io/taskload]
+      - [0x9BEE0, asm, io/controller]
       - [0x9C5D0, asm, os/assert]
       - [0x9C620, asm, audio/si]
       - [0x9C730, asm, audio/heapalloc]
@@ -101,6 +102,7 @@ segments:
       - [0x9FA90, asm, audio/cseq]
       - [0xA09A0, asm, audio/seqpsetseq]
       - [0xA09F0, asm, audio/seqpplay]
+      - [0xA0A30, asm, audio/setnextbuf]
       - [0xA0B40, asm, audio/seqpstop]
       - [0xA0B80, asm, audio/saqpsetchlvol]
       - [0xA0BF0, asm, audio/saqpsetpan]
@@ -135,7 +137,8 @@ segments:
       - [0xA7C10, hasm, os/maptlbrdb]
       - [0xA7C70, asm, io/pirawread]
       - [0xA7D50, asm, libc/bzero]
-      - [0xA7E10, asm, os/timerintr]
+      - [0xA7E10, asm, os/thread]
+      - [0xA7E60, asm, os/timerintr]
       - [0xA8410, asm, os/getthreadpri]
       - [0xA8440, asm, io/vigetcurcontext]
       - [0xA8460, asm, io/vimgr]
@@ -177,6 +180,7 @@ segments:
       - [0xAF1A0, asm, audio/synsetfxmix]
       - [0xAF2A0, asm, os/setintmask]
       - [0xAF340, asm, audio/drvrNew]
+      - [0xAFDE0, asm, audio/synallocfx]
       - [0xAFEE0, asm, audio/mainbus]
       - [0xB0110, asm, audio/load]
       - [0xB12F0, asm, audio/resample]
@@ -222,7 +226,7 @@ segments:
       - [0xBB5E0, asm, os/rspboot]
       - [0xBB6B0, bin, gspboot]
       - [0xBCAB0, bin, aspboot]
-      # I dunno how to correctly find data/rodata, so these splits are very bad
+      #.data (note: sections commented out below have been problematic.)
       - [0xBD8D0, .data,cosineTable]
       - [0xBE8D0, .data,floatTable]      
       - [0xBF0D0, bin] # general globals
@@ -234,6 +238,37 @@ segments:
       - [0xC5AE0, .data,decodeA] # decompress keys(?)
       - [0xC5B20, bin] # gamesave.c data
       - [0xC5FC0, bin] # misc. to discern later.
+      #libultra 
+      - [0xEA370, bin,osDATA]
+      #- [0xEA370, .data,os/initalize]
+      #- [0xEA390, .data,os/vimgr]
+      #- [0xEA3B0, .data,io/vitbl]
+      #- [0xEB0D0, .data,os/pimgr]
+      #- [0xEB100, .data,rmon/rmonmain]
+      #- [0xEB110, .data,io/controller]
+      #- [0xEB120, .data,audio/si]
+      #- [0xEB130, .data,audio/setnextbuf]
+      #- [0xEB140, .data,sp/sprite]
+      #- [0xEB150, .data,gu/rotate]
+      #- [0xEB160, .data,error/kmcprint]
+      #- [0xEB170, .data,io/vi]
+      #- [0xEB1E0, .data,os/exceptasm]
+      #- [0xEB200, .data,os/thread]
+      #- [0xEB220, .data,os/timerintr]
+      #- [0xEB230, .data,io/piacs]
+      #- [0xEB240, .data,host/rdbsend]
+      #- [0xEB250, .data,audio/drvrNew]
+      #- [0xEB3F0, .data,audio/env]
+      #- [0xEB530, .data,libc/xprintf]
+      #- [0xEB580, .data,io/vi]
+      #- [0xEB670, .data,os/error]
+      #- [0xEB690, .data,os/kdebugserver]
+      #- [0xEB6A0, .data,host/readhost]
+      #- [0xEB6B0, .data,rmon/rmoncmds]
+      #- [0xEB788, data]
+      #- [0xEB7B0, .data,libc/xstdio]
+      #- [0xEB7E0, .data,logger/ultralog]
+      #.rodata
       - [0xEB7E8, .rodata, boot] # end at 0xEB824
       - [0xEB830, rodata]
       #- [0xEB830, rodata,music] # includes sfx/bgm/instrument names.
@@ -247,25 +282,23 @@ segments:
       - [0xEC190, bin]
       - [0xEC5C0, rodata, Scenes] # start for the jtbl at 0xEC6AC
       - [0xEC6C0, bin]
-      #- [0xEDC70, .rodata, 82920]
       - [0xEDC70, .rodata, DebugText] # strings
       - [0xEDCC0, bin, Debugtext] #doubles (why not part of rodata?)
       - [0xEDCE0, bin]
       - [0xEE100, .rodata, LevelClear]
-      - [0xEE200, bin]
-
+      - [0xEE200, bin,osRODATA]
       # libultra (not going into asms?)
       #- [0xEE200, .rodata, io/viswapbuf]
       #- [0xEE230, .rodata, os/visetmode]
-      #- [0xEE230, .rodata, rmon/rmonmain] 
+      #- [0xEE260, .rodata, rmon/rmonmain] 
       #- [0xEE2A0, .rodata, os/visetevent]
-      #- [0xEE2A0, .rodata, os/assert]
+      #- [0xEE2C0, .rodata, os/assert]
       #- [0xEE2E0, .rodata, audio/heapalloc]
       #- [0xEE530, .rodata, audio/synthesizer]
       #- [0xEE610, .rodata, audio/cseq]
       #- [0xEE620, .rodata, sp/sprite]
       #- [0xEE670, .rodata, gu/perspective]
-      #- [0xEE670, .rodata, os/exceptasm]
+      #- [0xEE680, .rodata, os/exceptasm]
       #- [0xEE6F0, .rodata, io/sirawread]
       #- [0xEE740, .rodata, io/sirawwrite]
       #- [0xEE770, .rodata, io/pirawread]
@@ -290,8 +323,8 @@ segments:
       #- [0xEF540, .rodata, audio/seq]
       #- [0xEF550, .rodata, audio/reverb]
       #- [0xEF5B0, .rodata, libc/xldtob]
-      #- [0xEF610, bin]
-      #- [0xEF880, bin] # "RSP SW Version:" ...
+      - [0xEF610, bin]
+      - [0xEF880, bin] # "RSP SW Version:" ...
       
   - type: code
     start: 0xF00D0
@@ -302,7 +335,7 @@ segments:
   - [0xF0100,bin] # romcopied in the same func as above.
   - [0xF01C0,bin]
   - [0x1E6900,bin] # loaded by func_80025E00
-  - [0x214B40,bin]
+  - [0x214B40,bin] # loaded by func_80025E6C
   - [0x248F40,bin]
   - [0x3fab30,bin] # loaded by func_800197A0
   - [0x40AC70,bin] # blank.

@@ -1,5 +1,64 @@
 #include "common.h"
 
+//.data
+uint16_t D_801AA070_711300=0;
+uint16_t D_801AA074_711304=0;
+uint16_t D_801AA078_711308=0;
+uint16_t D_801AA07C_71130C=0;
+uint16_t D_801AA080_711310=0;
+uint16_t D_801AA084_711314=0;
+//credits text
+char* D_801AA6E8_711978[]={
+  "Total Directed","Hideyuki Suganami",
+  "Based Story Write","FINAL/NAMI",
+  "Based Game Design","CHOCO-MONKEY",
+  "Enemies Programmes","Stageboss Programmes","FINAL/NAMI",
+  "Main Programmer","Masato Maegawa",
+  "Tiny Programmer","Fukuryu",
+  "Programmer","Hiroshi Matsumoto",
+  "Programmer","Mitsuna",
+  "Program Assist","KONIG Ishida",
+  "Program Assist","Keiji Fujita",
+  "Main Graphic","Makoto Ogino",
+  "Character Design","HAN",
+  "Graphic Assist","Nobuhisa Tanaka",
+  "Graphic Assist","Seiji Hasuko",
+  "Graphic Assist","Kaname Shindoh",
+  "Graphic Assist","Tsunehisa Kanagae",
+  "Music by","NON",
+  "Sound Effect","Satoshi Murata",
+  "Treasurer","Haruko Hosaka",
+  "Supervisor","Masato Maegawa",
+  "Background CG","Masahiro Katsuta","Mamiko Himuro","Satoshi Tsukamoto","Hitoshi Suenaga","Satoru Onishi",
+  "Artwork","Naoki Oishi","Takashi Otsuka",
+  "Publicity","Yoshihisa Saitoh","Hideki Yamamoto",
+  "Special Thanks","Hiroomi Tanaka","Koichi Iwase","Kan Ikeda","Kazunori Oowada","Mariko Numajiri","Ryoma Nakamura",
+    "Tomoe Suzuki","Tsuyoshi Koyama","Youko Kagaya","Wataru Harashima","Kyohei Nakaguma","Masahiro Akagi","Masahiro Kobayashi",
+    "Ryu Amimoto","Shouya Akagi","Taro Futami","Tatsuya Kiuchi",
+  "Technical Support","Sadao Yahagi","Kenjiro Kano",
+  "Quality Coordinator","Hiroshi Sato",
+  "Enix Staff","Yoshinori Yamagishi","Shinji Futami","Yasuhito Watanabe","Jun Toda","Hiroki Fujimoto","Yousuke Saito","Daisuke Kobayashi"
+    "Etsuko Shimamura","Noriko Nakanome",
+  "Assistant Producer","Shinji Wachi",
+  "Producer","Yuuchi Kikumoto",
+  "Executive Producer","Keiji Honda",
+  "Executive Producer","Yukinobu Chida",
+  "Publisher","Yasuhiro Fukushima",
+  "U.S. Coordination and Translation","Hiro Nakamura","Christian Phillips",
+  "THANK YOU FOR PLAYING.","@1997 TREASURE/ENIX"
+};
+//indecies on which/how to display the credits
+//todo: write list using these macros
+#define CREDITIMER(xx) 0x8000|xx //dec timer(?) by xx*D_801AC3A8
+#define CREDITEFFECT(xx) 0x8100|xx //activate effect xx of 33
+#define CREDITSTRING(xx) 0x8200|xx //load string from index xx
+uint16_t D_801AA87C_711B0C[408];
+/*
+void* D_801AABAC_711E3C[16]={
+  0x8022D4C8,0x8022D4C8,0x8022D4C8,0x8022D4C8,
+  0x8022D4C8,0x8022D528,0x8022D548,0x8022D568,
+  0x8022D4C8,D_800D84E8,D_800D8508,D_800D8528,
+  D_800D8548,0x8022D4C8,0x8022D4C8,0x8022D4C8};*/
 //.bss
 int32_t D_801AC370;
 uint16_t D_801AC374;
@@ -23,25 +82,67 @@ int16_t D_801AC3A4;
 int16_t D_801AC3A6;
 int8_t D_801AC3A8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192100_6F9390.s")
+extern int32_t func_801922EC_6F957C(uint32_t x,uint32_t y);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019214C_6F93DC.s")
+
+float func_80192100_6F9390(float f1,float f2, uint16_t x){
+  if(x==0) return f2;
+  return (f2-f1)/(float)x+f1;
+}
+
+int32_t func_8019214C_6F93DC(int32_t i1,int32_t i2, uint16_t x){
+  return func_80192100_6F9390(i1,i2,x);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801921A0_6F9430.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019221C_6F94AC.s")
-
+/*uint16_t func_801922A0_6F9530(uint16_t x,uint16_t y){
+return func_801922EC_6F957C(x<<16,y<<16)/0x10000;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801922A0_6F9530.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801922EC_6F957C.s")
-
+///some color-blending func?
+extern func_80192374_6F9604(uint16_t x, uint16_t* p, uint8_t r, uint8_t g, uint8_t b);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192374_6F9604.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192408_6F9698.s")
 
+#ifdef NON_MATCHING
+void func_80192490_6F9720(uint16_t index) { //decomp.me says yes, compiler says no.
+    thisActor.flag2 = 0xA41;
+    thisActor.flag = 0xB;
+    thisActor.graphic = 0x2D0;
+    thisActor.rgba.a = 0xFF;
+    thisActor.rgba.r = 0;
+    thisActor.rgba.g = 0;
+    thisActor.rgba.b = 0;
+    thisActor.pos.x = 0;
+    thisActor.pos.y = 0;
+    thisActor.unk_0x188._p = NULL;
+    thisActor.unk_0x18C._p = D_800D85A8;
+    thisActor.scaleX = 19.0;
+    thisActor.scaleY = 13.0;
+}
+#else
+extern void func_80192490_6F9720(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192490_6F9720.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192520_6F97B0.s")
+void func_80192520_6F97B0(uint16_t index) {
+    thisActor.flag2 = 0x850;
+    thisActor.flag = 0xB;
+    thisActor.graphic = 0x2802;
+    thisActor.rgba.r = 0x7F;
+    thisActor.rgba.g = 0x7F;
+    thisActor.rgba.b = 0x20;
+    thisActor.rgba.a = 0xFF;
+    thisActor.pos.x = -2;
+    thisActor.pos.y = 3;
+    thisActor.pos.z = -255;
+    thisActor.unk_0x188._p = NULL;
+}
 
 void func_801925A4_6F9834(uint16_t index, uint16_t x){
     thisActor.actorState=2;
@@ -52,13 +153,12 @@ void func_801925EC_6F987C(uint16_t index, uint16_t x){
     thisActor.actorState=4;
     thisActor.unk_0x150._w=x;
 }
-/*
+
 void func_80192634_6F98C4(uint16_t index, uint8_t a){
     thisActor.actorState=1;
     thisActor.rgba.a=a;
-    thisActor.unk_0x154._w= (uint32_t)a<<16;
-}*/
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192634_6F98C4.s")
+    thisActor.unk_0x154._w= thisActor.rgba.a*0x10000;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192684_6F9914.s")
 
@@ -90,8 +190,7 @@ uint32_t func_801927F4_6F9A84(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192814_6F9AA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192930_6F9BC0.s")
-//encapsulated together for similar issue - loads base of gActors instead of relevant entry first.
-//
+
 void func_801929C8_6F9C58(uint16_t x){
     uint16_t index=51;
     thisActor.actorState=2;
@@ -112,17 +211,13 @@ void func_80192A28_6F9CB8(uint16_t x){
     thisActor.actorState=2;
     thisActor.unk_0x150._w=x;
 }
-#ifdef NON_MATCHING
-void func_80192A48_6F9CD8(uint8_t x){
+
+void func_80192A48_6F9CD8(uint8_t a){
   uint16_t index=51;
     thisActor.actorState=1;
-    thisActor.rgba.a=x;
-    thisActor.unk_0x154._w=x*1000;
+    thisActor.rgba.a=a;
+    thisActor.unk_0x154._w=thisActor.rgba.a*1000;
 }
-#else
-extern void func_80192A48_6F9CD8(uint16_t x);
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192A48_6F9CD8.s")
-#endif
 
 void func_80192A80_6F9D10(){
     gActors[51].rgba.r=0;
@@ -317,12 +412,16 @@ void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197B44_6FEDD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197D60_6FEFF0.s")
-
+uint16_t func_80197D60_6FEFF0(void){
+  uint16_t ret= Actor_GetInactiveInRange(0x40,0x90);
+  if(ret)return ret;
+  return Actor_GetInactiveInRange(0x90,0xc0);
+}
+//processes string for credits sequence
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197DA0_6FF030.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197FB8_6FF248.s")
-
+//show credits
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801980E0_6FF370.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80198458_6FF6E8.s")
@@ -447,8 +546,111 @@ void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019F174_706404.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019F21C_7064AC.s")
+#ifdef NON_MATCHING
+void func_8019F21C_7064AC(uint16_t index){ //marina becomes human
+  int16_t sVar1;
+  uint32_t uVar2;
+  int32_t iVar4;
+  
 
+  if (true) { //not sure where ghidra got that... need to find when .rodata issue is fixed.
+    switch(thisActor.actorState) {
+    case 0x1500:
+      thisActor.actorState++;
+      D_801AA070_711300 = 0x3c;
+      func_80192A08_6F9C98(0x1e);
+      func_80026E60(0x54);
+      func_80192734_6F99C4(0x7f);
+      func_801927CC_6F9A5C(0);
+      gActors[49].pos.z = 0xff00;
+      BGM_Play(BGM_HURRY);
+      SFX_Play_1(0x3f);
+      if ((gFileAges[gSaveSlotIndex] < 16) || (60 < gFileAges[gSaveSlotIndex])) {
+        func_8019339C_6FA62C(index,0x57,0x808,0,0,0x180); //child marina
+      }
+      else func_8019339C_6FA62C(index,0x57,0x80a,0,0,0x180); //adult marina
+      break;
+    case 0x1501:
+      if (D_801AA070_711300 == 0) {
+        thisActor.actorState++;
+        D_801AA078_711308 = 300;
+        func_80193950_6FABE0(0x22);
+      }
+      break;
+    case 0x1502:
+      sVar3 = func_8005DEFC();
+      if ((sVar3 == 0) && (D_801AA070_711300 == 0)) {
+        func_801A9044_7102D4();
+        if (_DAT_801ac398 < 0x35) {
+          thisActor.actorState = 0x1520;
+          D_801AA078_711308 = 0x3c;
+          func_80192A80_6F9D10();
+          func_80192A28_6F9CB8(0x3c);
+        }
+        else {
+          thisActor.actorState = 0x1510;
+          D_801AA078_711308 = 0x3c;
+          func_801933F8_6FA688(index,0x38,0x80c,0,0,0);
+          gActors[56].rgba.A = 0;
+          thisActor.unk_0x15C._w = 0xff0000;
+          thisActor.unk_0x160._w = 0;
+          func_80193454_6FA6E4(index,0x39,0,-0x16,0x3c,0);
+          func_80193454_6FA6E4(index,0x3a,0,5,0x3c,0);
+        }
+      }
+      break;
+    case 0x1510:
+      thisActor.unk_0x15C._w = func_8019214C_6F93DC(thisActor.unk_0x15C._w,0,D_801AA070_711300);
+      thisActor.unk_0x160._w = func_8019214C_6F93DC(thisActor.unk_0x160._w,0xff0000,D_801AA070_711300);
+      gActors[87].rgba.a = thisActor.unk_0x15C._w;
+      gActors[56].rgba.a = thisActor.unk_0x160._w;
+      if (D_801AA070_711300 == 0) {
+        thisActor.actorState++;;
+        func_80193950_6FABE0(0x23);
+      }
+      break;
+    case 0x1511:
+      if (func_8005DEFC() == 0) {
+        thisActor.actorState++;;
+        D_801AA078_711308 = 0xb4;
+        SFX_Play_1(SFX_LEO_LAUGH);
+      }
+      break;
+    case 0x1512:
+      if (D_801AA070_711300 == 0) {
+        thisActor.actorState++;
+        D_801AA078_711308 = 0x3c;
+        func_80003f24(1,0x3c);
+      }
+      break;
+    case 0x1513:
+      if (D_801AA070_711300 == 0) {
+        thisActor.actorState++;
+        D_801AA078_711308 = 0x240;
+        BGM_Play(BGM_STCLR);
+      }
+      break;
+    case 0x1514:
+      if (D_801AA070_711300 == 0) {
+        D_800D28FC| 1;
+        thisActor.actorState++;
+        func_80045d84(1,0x5a);
+      }
+      break;
+    case 0x1520:
+      if (D_801AA070_711300 == 0) {
+        D_800D28FC| 1;
+        thisActor.actorState++;
+        func_80045d84(1,0x5a);
+      }
+    }
+  }
+}
+
+#else
+extern void func_8019F21C_7064AC(uint16_t index);
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019F21C_7064AC.s")
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019F608_706898.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019F704_706994.s")
@@ -555,10 +757,286 @@ void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A4C94_70BF24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A4F68_70C1F8.s")
+//Can you stop Teran?
+uint32_t func_801A4F68_70C1F8(void) {
+    uint16_t rank = Calculate_TimeRecordTotal();
+    if ((rank == ALPHAINDEX(ALPHA_UPPER_S)) || (rank == ALPHAINDEX(ALPHA_UPPER_A))) return 1;
+    return 0;
+}
+#ifdef NON_MATCHING
+void func_801A4FA4_70C234(u16 index)//Teran runs away.{
+  ushort uVar1;
+  ulonglong uVar2;
+  int iVar3;
+  bool bVar7;
+  uint uVar4;
+  s16 sVar5;
+  u16 uVar6;
+  
 
+
+  if (true) {
+    switch(gActors[index].actorState) {
+    case 0x1900:
+      gActors[index].actorState++;
+      D_801AA070_711300 = 0x3c;
+      gScreenPosTargetX._hi = 0x730;
+      gScreenPosTargetY._hi = 0x15c;
+      gScreenPosCurrentX._hi = 0x730;
+      gScreenPosCurrentY._hi = 0x15c;
+      func_801933F8_6FA688(index,0x57,0,-0xf0,-0x2e,0);
+      gActors[87].vel.x_w = 0xc000;
+      D_801373E0.unk_0x20 = 0;
+      D_801373E0.unk_0x24 = 0;
+      FUN_.rom.6F9390__801a0350(index,0x38,0x730,300,8,0x180,0x3410);
+      _DAT_801ac39a = 0x430;
+      _DAT_801ac39c = 300;
+      gActors[56].unk_0x170 = 0xa0;
+      gActors[56].unk_0x16C._w = 1;
+      FUN_.rom.6F9390__80192a08(0x3c);
+      return;
+    case 0x1901:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      gScreenPosTargetX._hi+= gActors[56].pos.x;
+      uVar2 = gActors[56].pos.x - gActors[87].pos.x);
+      if (uVar2 < 1) {
+        uVar2 = -(gActors[56].pos.x - gActors[87].pos.x);
+      }
+      if (uVar2 < 0x11) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x55;
+        FUN_.rom.6F9390__801a4c94(gActors[56].pos.x-8,gActors[56].pos.y);
+        SFX_Play_1(0x36);
+        gActors[87].graphicList = &DAT_.rom.6F9390__801ab2f4;
+        gActors[87].graphicTime = 1;
+        gActors[87].vel.x_w = -0x10000;
+        gActors[87].vel.y_w = 0x30000;
+        gActors[56].actorState = 0x4000;
+        gActors[56].vel.x_w = 0x10000;
+        gActors[56].graphicList = &D_800E1D30;
+        gActors[56].graphicTime = 1;
+      }
+      break;
+    case 0x1902:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      uVar2 = FUN_80069DA8(0x57);
+      if (gActors[56].graphicTime == 0) {
+        gActors[56].graphicList = &D_800E1D30;
+        gActors[56].graphicTime = 1;
+      }
+      if ((gActors[87].pos.y < -0x2d) && ((gActors[87].flag & 2) != 0)) {
+        if (gActors[87].actorState == 0x1901) {
+          gActors[87].actorState++;
+          uVar2 = ActorSpawn_Marina();
+          gActors[0].actorState = 0;
+          u8_ARRAY_800be5f4 = 2;
+          gActors[0].pos.x_w = gActors[87].pos.x_w;
+          D_801373E0.unk_0x20 = 0;
+          D_801373E0.unk_0x24 = 0;
+          gActors[0].pos.y_w = gActors[87].pos.y_w;
+        }
+      }
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x3c;
+        gActors[56].vel.x_w = 0;
+        gActors[56].actorState = 0x200;
+      }
+      break;
+    case 0x1903:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x3c;
+        gActors[56].actorState = 0x210;
+        gActors[56].unk_0x170 = CONCAT22(2,gActors[56].unk_0x170._h[2]);
+      }
+      break;
+    case 0x1904:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        func_80193900_6FAB90(0x14,0x25,-16);
+        func_801A9044_7102D4();
+        return;
+      }
+      break;
+    case 0x1905:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      if (FUN_8005DEFC() == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x60;
+        DAT_.rom.6F9390__801aa07c = 0x44;
+        gActors[56].unk_0x184._h[0] = 0x692;
+        gActors[56].actorState = 0xa0;
+        if (func_801A4F68_70C1F8()) ActorSpawn_Crosshair(4,0x38);
+        D_801AA080_711310 = 0;
+        DAT_.rom.6F9390__801aa084 = 0;
+      }
+      break;
+    case 0x1906:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
+        gActors[index].actorState = 0x1920;
+        D_801AA078_711308 = 0x22;
+      }
+      else {
+        if (func_801A4F68_70C1F8()) {
+          D_801373E0.unk_0x20 = gButtonHold & (gButton_B|gButton_A);
+          D_801373E0.unk_0x24 = gButtonPress & (gButton_B|gButton_A);
+          if ((D_801AA080_711310 == 0) && ((gButtonHold != 0 || (gButtonPress != 0)))) {
+            D_801AA080_711310 = 1;
+          }
+        }
+        if (D_801AA070_711300 == 0) {
+          if (D_801AA080_711310 != 1) {
+            gActors[index].actorState = 0x1910;
+            func_80193900_6FAB90(0x15,0x50,-16);
+            return;
+          }
+          gActors[index].actorState = 0x1920;
+          D_801AA078_711308 = 0x22;
+        }
+      }
+      break;
+    case 0x1910:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+
+      if (func_8005DEFC() == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x90;
+        gActors[56].actorState = 0x3b0;
+        gActors[56].unk_0x170 = CONCAT22(gActors[56].unk_0x170._hi,0x3c0);
+        gActors[56].unk_0x16C._w = 1;
+        gActors[56].field54_0x118 = 10.0;
+        gActors[56].field55_0x11c = 2.0;
+        func_801A9044_7102D4();
+        return;
+      }
+      break;
+    case 0x1911:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x3c;
+        gActors[56].actorState = 0xa0;
+        gActors[56].unk_0x184._h[0] = 0x5c0;
+      }
+      break;
+    case 0x1912:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (gActors[56].actorState == 0x61) {
+        gActors[56].actorState = 0xa0;
+      }
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x3c;
+        func_80192A28_6F9CB8(0x3c);
+        return;
+      }
+      break;
+    case 0x1913:
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState = 0x1a00;
+        Actor_ZeroFlagRange(0x38,0x80);
+        gActors[0].flag = 0;
+      }
+      break;
+    case 0x1920:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (D_801AA070_711300 == 0) {
+        if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
+          gActors[index].actorState++;
+          func_800267FC(SCENE_UNK03);
+          _DAT_801ac374 = 1;
+          func_80193900_6FAB90(1,0x50,-16mm);
+          return;
+        }
+        gActors[index].actorState = 0x1911;
+      }
+      break;
+    case 0x1921:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+
+      if (fun_8005DEFC() == 0) {
+        gActors[index].actorState++;
+        D_801373E0.unk_0x20 = (uint)gButton_DDown;
+        D_801373E0.unk_0x24 = D_801373E0.unk_0x20;
+        func_80193900_6FAB90(2,0xffffffb0,-16);
+        func_801A9044_7102D4();
+        return;
+      }
+      break;
+    case 0x1922:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      D_801373E0.unk_0x24 = 0;
+      D_801373E0.unk_0x20 = (uint)gButton_DDown;
+      if (FUN_8005defc() == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x3c;
+        D_801373E0.unk_0x20 = 0;
+        D_801373E0.unk_0x24 = 0;
+        func_801A9044_7102D4();
+        return;
+      }
+      break;
+    case 0x1923:
+      func_801A1EF8_709188(index,1);
+      uVar2 = func_801A2308_709598(index,2);
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801373E0.unk_0x20 =(gButton_DRight | gButton_DUp);
+        D_801373E0.unk_0x24 = D_801373E0.unk_0x20;
+      }
+      break;
+    case 0x1924:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      gActors[index].actorState++;
+      D_801AA078_711308 = 0x78;
+      D_801373E0.unk_0x20 = (gButton_DRight | gButton_DUp | gButton_B);
+      D_801373E0.unk_0x24 =  gButton_B;
+      break;
+    case 0x1925:
+      func_801A1EF8_709188(index,1);
+      func_801A2308_709598(index,2);
+      uVar2 = 0;
+      gActors[56].unk_0xF8 = 0x60000;
+      gActors[56].unk_0xFC = 0x60000;
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState++;
+        D_801AA078_711308 = 0x78;
+        func_80192A28_6F9CB8(0x3c);
+        uVar6 = func_801A9044_7102D4();
+        return uVar6;
+      }
+      break;
+    case 0x1926:
+      if (D_801AA070_711300 == 0) {
+        gActors[index].actorState = 0x1b00;
+        Actor_ZeroFlagRange(0x38,0x80);
+        gActors[0].flag = 0;
+      }
+    }
+  }
+  return;
+}
+#else
+extern void func_801A4FA4_70C234(uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A4FA4_70C234.s")
-
+#endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A59A8_70CC38.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A5A9C_70CD2C.s")

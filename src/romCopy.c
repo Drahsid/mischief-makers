@@ -10,9 +10,16 @@ void func_80025E00(void){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E00.s")
 #endif
-// romcopies 0x34400 bytes from rom:0x214b40 to ram:0x80296000
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
 
+#ifdef NON_MATCHING
+void func_80025E6C(void){
+    D_801376E4=0x80296000;
+    D_801376E8=0x802CA400;
+    RomCopy_A(0x214b40,0x80296000,0x34400);
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
+#endif
 //RomCopies gActorFuncTable_80192000 based on u32[4] lookup.
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs.s")
 

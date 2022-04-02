@@ -83,6 +83,7 @@ extern int16_t D_800E25B0[40];
 extern int16_t D_800E2600[66];
 extern int16_t D_800E5E48[66];
 extern ActorFunc gActorFuncTable_800E5AC0[];
+extern uint16_t* D_800E574C[];
 extern UNK_TYPE D_800E8BEC;
 extern uint16_t LifeBar_Colors[]; //16-bit colors. may be structure.
 extern uint16_t gInputHistoryPress[64]; // buffer of controller inputs
@@ -304,6 +305,7 @@ extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's of
 extern uint32_t D_800CFE04[88][12];
 extern void* D_800D0E84[88][6];
 extern int16_t D_800D16C4;
+extern uint16_t D_800D16D0[92]; //ASCII graphic indecies - loads from D_800D16D0[x-0x20]
 extern ClanpotItem gClanpotItems[32]; //stacked in reverse order for some reason.
 extern int32_t D_800D2504[2][2];
 extern int32_t D_800D2514[7][6];
@@ -484,6 +486,7 @@ extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
 extern UNK_TYPE D_800E1380;
 extern UNK_TYPE D_800E154C;
+extern uint16_t D_800E164C[18];
 extern uint16_t D_800E1700[];
 extern uint16_t D_800E1750[];
 extern uint16_t D_800E1788[];
@@ -586,8 +589,8 @@ extern uint8_t D_801376B8[4];
 extern uint8_t D_801376BC[4];
 extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
-extern int32_t D_801376E4;
-extern int32_t D_801376E8;
+extern void* D_801376E4;
+extern void* D_801376E8;
 
 extern Bitmap gSpriteBitmaps[2][56];
 extern uint64_t D_8016EF20[2][696]; //sprite.rsp_dl
@@ -666,6 +669,7 @@ extern uint16_t D_80178460;
 extern uint32_t D_801826A0[];
 extern uint16_t gFramebuffer0[320][240]; // framebuffer
 extern UNK_TYPE D_802C9F70;
+extern volatile uint8_t D_80296000[0x34400];
 extern volatile uint16_t D_80380200[256]; // probably a volatile struct (see usage in Intro_Tick)
 extern volatile uint16_t D_80380400[256];
 extern uint16_t gFramebuffer1[320][240]; // framebuffer

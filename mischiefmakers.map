@@ -13962,7 +13962,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008012ada0                gContMesgq = 0x8012ada0
                 0x00000000800ef4e0                BGM_ChanMix = 0x800ef4e0
                 0x0000000080137d70                gAIBuffers = 0x80137d70
-                0x00000000800e9770                OS_CLOCK_RATE = 0x800e9770
+                0x00000000800e9770                osClockRate = 0x800e9770
                 0x00000000800c9700                gActorInit = 0x800c9700
                 0x00000000800c3858                AlFX_params = 0x800c3858
                 0x00000000800c5004                GameSave_SelectedAge = 0x800c5004

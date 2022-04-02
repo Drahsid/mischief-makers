@@ -44,8 +44,8 @@ uint8_t i;
   D_8016E2E0 = &D_8016E1E8;
   bssStart = 0;
   for(i=0;i<4;i++){
-    gSFXPlayersp[i] = gSFXPlayers + i;
-    D_8016E6C8[i] = D_8016E2E8 + i;
+    gSFXPlayersp[i] = gSFXPlayers[i];
+    D_8016E6C8[i] = D_8016E2E8[i];
     gSFX_ChannelStates[i] = 0;
   }
   alHeapInit(&gALHeap,gALHeapBase,0x35c00);
@@ -346,10 +346,11 @@ void func_80003980(uint32_t arg0, uint16_t arg1) {
     SFX_Play_0(arg0, -1, -1, 0xC1, arg1, 0);
 }
 
-void func_800039B8(uint32_t SFX_ID, uint32_t arg1, uint32_t arg2) { // 2 unused args?
+int32_t func_800039B8(uint32_t SFX_ID, uint32_t arg1, uint32_t arg2) { // 2 unused args?
     int i = SFX_Play_0(SFX_ID, -1, -1, 0x89, 0xFF, 0);
     D_8011CDF0[i] = 127;
     D_8011CF18[i] = 64;
+    return i;
 }
 
 void BGM_SFX_Stop(void) {

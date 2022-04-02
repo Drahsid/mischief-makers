@@ -187,7 +187,7 @@ void func_80043918(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043C10.s")
 #ifdef NON_MATCHING
-void FUN_80043d04(uint16_t *x){
+void func_80043D04(uint16_t *x){
   uint16_t j;
   uint16_t i = *x;
   while (i != 0xff00) {
