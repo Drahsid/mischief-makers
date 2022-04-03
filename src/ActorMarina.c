@@ -202,8 +202,8 @@ void func_8004AA64(uint16_t index) {
         thisActor.unk_0x140._hu[1] = 0;
         thisActor.unk_0x140._bu[1] = 0;
         thisActor.unk_0x180._w = 0;
-        D_801373E0.unk_0x13 = 0;
-        D_801373E0.unk_0x12 = 100;
+        gPlayerManager.unk_0x13 = 0;
+        gPlayerManager.unk_0x12 = 100;
         thisActor.unk_0x12C._bu[3] = 0;
         thisActor.vel.y_w = 0;
         thisActor.vel.x_w = 0;
@@ -497,8 +497,8 @@ void func_8004EC60(uint16_t index) {
         thisActor.vel.y_w = 0xFFF80000;
     }
 
-    D_801373E0.DebugPosX = gPlayerPosXMirror._w;
-    D_801373E0.DebugPosY = gPlayerPosYMirror._w;
+    gPlayerManager.DebugPosX = gPlayerPosXMirror._w;
+    gPlayerManager.DebugPosY = gPlayerPosYMirror._w;
 }
 
 #ifdef NON_MATCHING
@@ -507,7 +507,7 @@ void ActorTick_Marina(uint16_t index) {
     int16_t* phi_v0;
     int16_t* phi_v1;
 
-    if ((D_801373E0.unk_0x78 & 8) == 0) {
+    if ((gPlayerManager.unk_0x78 & 8) == 0) {
         if (thisActor.actorState == 0) {
             func_8004A960(index);
         }
@@ -516,7 +516,7 @@ void ActorTick_Marina(uint16_t index) {
         thisActor.flag2 &= 0xF781;
         thisActor.rgba.r = thisActor.rgba.g = thisActor.rgba.b = 0; // whitespace memes
         D_800BE5E0 = D_800BE5E4;
-        D_801373E0.unk_0x70 = 0;
+        gPlayerManager.unk_0x70 = 0;
         thisActor.pos.z_w = 0;
 
         MODi(D_800D57E0, 0x6000, 0x400);
@@ -554,8 +554,8 @@ void ActorTick_Marina(uint16_t index) {
 
                 thisActor.unk_0x12C._bu[3] = 0;
 
-                D_801373E0.unk_0x12 = 0x64;
-                D_801373E0.unk_0x13 = 0;
+                gPlayerManager.unk_0x12 = 0x64;
+                gPlayerManager.unk_0x13 = 0;
 
                 func_800485AC(index, &D_801370CE, &D_801370CC);
             }
@@ -563,31 +563,31 @@ void ActorTick_Marina(uint16_t index) {
 
         D_801373D8 = ActorTick_Marina_SetFacing(index);
 
-        if (D_801373E0.DebugPosX) {
-            func_80083A04(D_801373E0.DebugPosX, -0x20, 0x40);
+        if (gPlayerManager.DebugPosX) {
+            func_80083A04(gPlayerManager.DebugPosX, -0x20, 0x40);
             if ((gSceneFrames & 0x7F) == 0) {
-                D_801373E0.DebugPosX = 0;
+                gPlayerManager.DebugPosX = 0;
             }
         }
 
-        if (D_801373E0.DebugPosY) {
-            func_80083A04(D_801373E0.DebugPosY, -0x20, 0x30);
+        if (gPlayerManager.DebugPosY) {
+            func_80083A04(gPlayerManager.DebugPosY, -0x20, 0x30);
             if ((gSceneFrames & 0x7F) == 0) {
-                D_801373E0.DebugPosY = 0;
+                gPlayerManager.DebugPosY = 0;
             }
         }
 
-        if (D_801373E0.DebugValC) {
-            func_80083A04(D_801373E0.DebugValC, -0x20, 0x20);
+        if (gPlayerManager.DebugValC) {
+            func_80083A04(gPlayerManager.DebugValC, -0x20, 0x20);
             if ((gSceneFrames & 0x7F) == 0) {
-                D_801373E0.DebugValC = 0;
+                gPlayerManager.DebugValC = 0;
             }
         }
 
-        if (D_801373E0.DebugValD) {
-            func_80083A04(D_801373E0.DebugValD, -0x20, 0x10);
+        if (gPlayerManager.DebugValD) {
+            func_80083A04(gPlayerManager.DebugValD, -0x20, 0x10);
             if ((gSceneFrames & 0x7F) == 0) {
-                D_801373E0.DebugValD = 0;
+                gPlayerManager.DebugValD = 0;
             }
         }
 
@@ -595,11 +595,11 @@ void ActorTick_Marina(uint16_t index) {
         // however, blockman himself doesn't effect these
         // maybe it's the tricycle?
         thisActor.flag &= ~ACTOR_FLAG_UNK3;
-        if (D_801373E0.unk_0x78 & 0x10000) {
+        if (gPlayerManager.unk_0x78 & 0x10000) {
             thisActor.flag |= ACTOR_FLAG_UNK3;
             thisActor.unk_0x12C._hu[0] &= 0xFFF8;
             thisActor.unk_0xDC &= 0xFFFE;
-            thisActor.pos.x_w += D_801373E0.unk_0x60;
+            thisActor.pos.x_w += gPlayerManager.unk_0x60;
         }
 
         func_80048740(index);
@@ -618,10 +618,10 @@ void ActorTick_Marina(uint16_t index) {
         func_80048BB0(index);
 
         if (thisActor.flag & ACTOR_FLAG_ATTACHED) {
-            D_801373E0.unk_0x70 = thisActor.unk_0xD6;
+            gPlayerManager.unk_0x70 = thisActor.actorLink;
 
             if (func_8005D338(index) < 0x66) {
-                gActors[thisActor.unk_0xD6].unk_0x108 += func_80049A04(index); // return size
+                gActors[thisActor.actorLink].unk_0x108 += func_80049A04(index); // return size
             }
 
             // ((((((d6 * 4) - d6) * 4) + d6) * 4) - d6) * 8
@@ -635,10 +635,10 @@ void ActorTick_Marina(uint16_t index) {
              * = 408 == 0x198
              * bruh
              */
-            // held = (((((((thisActor.unk_0xD6 * 4) - thisActor.unk_0xD6) * 4) + thisActor.unk_0xD6) * 4) -
-            // thisActor.unk_0xD6) * 8) + gActors;
-            gActors[thisActor.unk_0xD6].unk_0x104._w += thisActor.vel.x_w;
-            gActors[thisActor.unk_0xD6].unk_0x108 += thisActor.vel.y_w;
+            // held = (((((((thisActor.actorLink * 4) - thisActor.actorLink) * 4) + thisActor.actorLink) * 4) -
+            // thisActor.actorLink) * 8) + gActors;
+            gActors[thisActor.actorLink].pos2.x_w += thisActor.vel.x_w;
+            gActors[thisActor.actorLink].unk_0x108 += thisActor.vel.y_w;
         }
 
         func_8005D450(index);
@@ -650,13 +650,13 @@ void ActorTick_Marina(uint16_t index) {
         }
 
         if ((thisActor.flag3 & 2) != 0) {
-            D_801373E0.unk_0x68 = thisActor.unk_0xF8._w;
-            D_801373E0.unk_0x6C = thisActor.unk_0xFC._w;
+            gPlayerManager.unk_0x68 = thisActor.speedX._w;
+            gPlayerManager.unk_0x6C = thisActor.speedY._w;
         }
 
-        D_801373E0.unk_0x64 = thisActor.flag3;
+        gPlayerManager.unk_0x64 = thisActor.flag3;
         thisActor.flag3 &= 0xFFDFF9FF;
-        D_801373E0.unk_0x7C++;
+        gPlayerManager.unk_0x7C++;
 
         thisActor.scaleX = D_800EF630 * thisActor.unk_0x124;
         thisActor.scaleY = (&D_800EF630)[-0x274] * thisActor.unk_0x128; // -0x9D0 (I don't know how this is produced?)
@@ -668,17 +668,17 @@ void ActorTick_Marina(uint16_t index) {
 
         if (gCurrentScene == SCENE_FREEFALL) { //play the fall whistle sound if falling in "freefall"
             if (thisActor.vel.y_w <= -294912.0) {
-                if (D_801373E0.FallBool == 0) {
+                if (gPlayerManager.FallBool == 0) {
                     if (func_8000334C(0x3E) >= 0) {
-                        D_801373E0.FallBool = 1;
+                        gPlayerManager.FallBool = 1;
                     }
 
                     return;
                 }
             }
-            else if (D_801373E0.FallBool != 0) {
+            else if (gPlayerManager.FallBool != 0) {
                 SFX_Stop(0x3E);
-                D_801373E0.FallBool = 0;
+                gPlayerManager.FallBool = 0;
 
                 return;
             }

@@ -84,7 +84,7 @@ void Actor_Spawn(uint16_t index) {
     thisActor.rotateZ = 0.0;
     thisActor.rotateY = 0.0;
     thisActor.rotateX = 0.0;
-    thisActor.unk_0xD6 = (int8_t)0;
+    thisActor.actorLink = (int8_t)0;
     thisActor.unk_0xD4 = (int8_t)0;
     thisActor.actorState = (int8_t)0;
     thisActor.unk_0xCE = (int8_t)0;
@@ -110,12 +110,12 @@ void Actor_Spawn(uint16_t index) {
     thisActor.unk_0x158._w = 0;
     thisActor.unk_0x154._w = 0;
     thisActor.unk_0x150._w = 0;
-    thisActor.unk_0x10C = 0;
+    thisActor.pos2.z_w = 0;
     thisActor.unk_0x108 = 0;
-    thisActor.unk_0x104._w = 0;
+    thisActor.pos2.x_w = 0;
     thisActor.unk_0x100 = 0;
-    thisActor.unk_0xFC._w = 0;
-    thisActor.unk_0xF8._w = 0;
+    thisActor.speedY._w = 0;
+    thisActor.speedX._w = 0;
     thisActor.vel.z_w = 0;
     thisActor.vel.y_w = 0;
     thisActor.vel.x_w = 0;

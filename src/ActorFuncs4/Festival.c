@@ -6,15 +6,27 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0A58_7A6FD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0BFC_7A717C.s")
+void func_801B0BFC_7A717C(uint16_t x){
+    D_800D28E8=0;
+    D_800D28F0=x;
+    D_800D28E4=98;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0C20_7A71A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0CBC_7A723C.s")
+void func_801B0CBC_7A723C(uint16_t x){
+    D_800D28F0=D_800D28E4;
+    D_800D28E4=99;
+    D_800D28E8=4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0CEC_7A726C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0DA0_7A7320.s")
+void func_801B0DA0_7A7320(uint16_t x){
+    D_800D28E8=0;
+    D_800D28F0=50;
+    D_800D28E4=98;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0DC8_7A7348.s")
 
@@ -23,8 +35,23 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B11E0_7A7760.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B12F0_7A7870.s")
-
+#ifdef NON_MATCHING
+void func_801B13F8_7A7978(uint16_t x){
+    ACTORINIT(105,0x1D);
+    gActors[105].flag2 = 0x851;
+    gActors[105].flag = 0xb;
+    gActors[105].graphic = 0x2d0;    
+    gActors[105].rgba.b = 0xba;
+    gActors[105].rgba.a = 0xb2;
+    gActors[105].pos.x = 0x37;
+    gActors[105].pos.y = 0x4d;
+    gActors[105].pos.z = 1;
+    gActors[105].scaleX = 9.7f;
+    gActors[105].scaleY = 2.2f;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B13F8_7A7978.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B14A4_7A7A24.s")
 
@@ -102,7 +129,14 @@ void func_801B3BC4_7AA144(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B4298_7AA818.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B466C_7AABEC.s")
+void func_801B466C_7AABEC(uint16_t index, uint16_t* p){
+    if(thisActor.graphicTime==0){
+        thisActor.graphicList=p;
+        thisActor.graphicTime=1;
+        thisActor.unk_0x154._w=0;
+        thisActor.vel.x_w=0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B46C0_7AAC40.s")
 

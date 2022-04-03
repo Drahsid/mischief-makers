@@ -131,8 +131,14 @@ void func_801B2F68_7AEE88(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B3D84_7AFCA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B3EDC_7AFDFC.s")
-
+#ifdef NON_MATCHING
+uint16_t func_801B4048_7AFF68(uint16_t c){
+    if(c==10) c=62;
+    return ALPHAINDEX(c);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4048_7AFF68.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B407C_7AFF9C.s")
 

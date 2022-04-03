@@ -12,7 +12,7 @@ void func_8008C4E0(uint16_t index) {
     thisActor.rgba.b = 0;
     thisActor.rgba.g = 0;
     thisActor.rgba.r = 0;
-    D_801373E0.unk_0x40_w = 0;
+    gPlayerManager.unk_0x40_w = 0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008C528.s")

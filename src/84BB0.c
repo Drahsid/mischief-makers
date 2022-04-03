@@ -88,8 +88,8 @@ void func_80085E60(uint16_t index){
 extern uint32_t D_800E3DE4[8][2];
 /* regalloc?
 void func_80085EB0(uint16_t index){
-    thisActor.unk_0xF8._w=D_800E3DE4[thisActor.unk_0xD8][0];
-    thisActor.unk_0xFC._w=D_800E3DE4[thisActor.unk_0xD8][1];
+    thisActor.speedX._w=D_800E3DE4[thisActor.unk_0xD8][0];
+    thisActor.speedY._w=D_800E3DE4[thisActor.unk_0xD8][1];
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085EB0.s")
 extern int32_t D_80182020[64];

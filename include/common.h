@@ -17,6 +17,7 @@
         Actor_Spawn(i)
 #define thisActor gActors[index]
 #define ALPHAINDEX(x) x*2+0x2d2 //get the letter's graphic index.
+#define RNG(x) Rand()&x //common RNG func
 
 //in case we want to change the cosine table.
 #define COSLEN (sizeof(gCosineLookup)/sizeof(float))-1

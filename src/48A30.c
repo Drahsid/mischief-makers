@@ -4,13 +4,13 @@ void func_80047E30(uint16_t x){}
 #ifdef NON_MATCHING
 void func_80047E38(uint16_t x){
     uint16_t mask;
-    D_801370CC= D_801373E0.unk_0x20._lo;
-    D_801370CC= D_801373E0.unk_0x24._lo;
+    D_801370CC= gPlayerManager.unk_0x20._lo;
+    D_801370CC= gPlayerManager.unk_0x24._lo;
     mask=gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A;
-    gInputHistoryHold[0]= D_801373E0.unk_0x20._lo & mask;
-    gInputHistoryPress[0]= D_801373E0.unk_0x24._lo & mask;
-    D_801373E0.unk_0x20._w=0;
-    D_801373E0.unk_0x24._w=0;
+    gInputHistoryHold[0]= gPlayerManager.unk_0x20._lo & mask;
+    gInputHistoryPress[0]= gPlayerManager.unk_0x24._lo & mask;
+    gPlayerManager.unk_0x20._w=0;
+    gPlayerManager.unk_0x24._w=0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/48A30/func_80047E38.s")

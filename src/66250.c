@@ -121,9 +121,16 @@ uint32_t func_8006890C(){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800689A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800689F8.s")
+uint32_t func_800689F8(void){
+    if(func_80029B00(12,0,-48)) return 2;
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80068A30.s")
+uint32_t func_80068A30(void){
+    if(func_80029B00(12,48,0)) return 3;
+    return 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80068A68.s")
 
@@ -256,7 +263,15 @@ void func_80069304(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800695E4.s")
 
+#ifdef NON_MATCHING
+void func_800696A8(uint16_t index){
+  thisActor.flag &= ~0x9F80;
+  thisActor.actorState = 0x1c0;
+  func_8006C6F0(index);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800696A8.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069714.s")
 
@@ -753,7 +768,8 @@ uint16_t func_800742B8(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80078F54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80078FF0.s")
-/*void func_800791D4(uint16_t index){
+#ifdef NON_MATCHING
+void func_800791D4(uint16_t index){
     if(thisActor.vel.x_w<=0){
         thisActor.unk_0x150._w |=1;
     }
@@ -762,8 +778,10 @@ uint16_t func_800742B8(uint16_t x){
         thisActor.unk_0x150._w |=2;
     }
     else{thisActor.unk_0x150._w &= ~2;}
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800791D4.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079270.s")
 

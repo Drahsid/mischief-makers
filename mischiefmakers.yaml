@@ -238,6 +238,14 @@ segments:
       - [0xC5AE0, .data,decodeA] # decompress keys(?)
       - [0xC5B20, bin] # gamesave.c data
       - [0xC5FC0, bin] # misc. to discern later.
+      - [0xC88D0,.data,134E0] #a function table
+      - [0xC8910,bin,gameover]
+      - [0xC8B20,bin,156F0]
+      - [0xC8BE0,bin,17A70]
+      - [0xCCA20,data,Lifebar] #16-bit color references
+      - [0xCCB40,bin]
+
+
       #libultra 
       - [0xEA370, bin,osDATA]
       #- [0xEA370, .data,os/initalize]
@@ -847,6 +855,7 @@ segments:
     subsegments:
       - [0x7A6E80, c,ActorFuncs4/Festival]
       - [0x7AB410, bin, ActorFuncs4/Festival]
+      - [0x7ABFE0, .rodata, ActorFuncs4/Festival]
   - type: code
     start: 0x7AC7F0
     vram: 0x801B0800

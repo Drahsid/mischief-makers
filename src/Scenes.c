@@ -168,7 +168,7 @@ void func_80023F5C(void){
     if ((gDebugBitfeild & 0xA400) == 0) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX._w = gPlayerPosXMirror._w;
-        if((gPlayerActor.unk_0xD6==0x31)&&(gActors[48].actorType == 0x907)&&(gActors[50].unk_0x180._w & 0x8000)){
+        if((gPlayerActor.actorLink==0x31)&&(gActors[48].actorType == 0x907)&&(gActors[50].unk_0x180._w & 0x8000)){
             D_800BE544 = 0x8000;
             gScreenPosTargetY._w = gActors[48].pos.y_w+gScreenPosCurrentY._w + 0x180000;
             }

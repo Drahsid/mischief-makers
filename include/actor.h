@@ -139,7 +139,7 @@ typedef struct {
     };
     /* 0x0D2 */ uint16_t actorType;
     /* 0x0D4 */ uint16_t unk_0xD4;
-    /* 0x0D6 */ uint16_t unk_0xD6;
+    /* 0x0D6 */ uint16_t actorLink; //index to another actor (parent/child)?
     /* 0x0D8 */ uint16_t unk_0xD8;
     /* 0x0DA */ uint8_t unk_0xDA;
     /* 0x0DB */ uint8_t unk_0xDB;
@@ -155,13 +155,11 @@ typedef struct {
     /* 0x0E4 */ int16_t attackDmg;
     /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
     /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
-    /* 0x0EC */ Vec3i_union vel;
-    /* 0x0F8 */ s2_w unk_0xF8; //halves loaded in func_80042c10
-    /* 0x0FC */ s2_w unk_0xFC; //as args for a NOOP func.
-    /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used?
-    /* 0x104 */ s2_w unk_0x104;
-    /* 0x108 */ s2_w unk_0x108;
-    /* 0x10C */ uint32_t unk_0x10C;
+    /* 0x0EC */ Vec3i_union vel; //position delta
+    /* 0x0F8 */ s2_w speedX; //actual velocity?
+    /* 0x0FC */ s2_w speedY; 
+    /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used(speed z?)
+    /* 0x104 */ Vec3i_union pos2; //origin? teleport?
     /* 0x110 */ float unk_0x110;
     /* 0x114 */ float unk_0x114; 
     /* 0x118 */ float unk_0x118; 

@@ -4,8 +4,8 @@
 
 void func_8005C520(int8_t x, int8_t y){
     gPlayerActor.unk_0xDC|=0x40;
-    D_801373E0.unk_0xA=x;
-    D_801373E0.unk_0xB=y;
+    gPlayerManager.unk_0xA=x;
+    gPlayerManager.unk_0xB=y;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C550.s")

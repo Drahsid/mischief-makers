@@ -34,7 +34,7 @@ void func_80192108_67DC28(uint16_t x){
 void func_8019237C_67DE9C(uint16_t x){
     gActors[78].unk_0x180._w=60;
     gActors[79].unk_0x180._w=8;
-    gActors[80].unk_0x180._w=0xFE;
+    MigenJrHeadActor.unk_0x180._w=0xFE;
     gActors[78].unk_0x140._f=0;
 }
 #else
@@ -236,7 +236,7 @@ void func_80194F8C_680AAC(uint16_t index){
       return;
     case 0x1002:
       if ((gSceneFrames & 7) == 0) {
-        func_800339AC(0,gActors[80].pos.y,gActors[80].pos.z);
+        func_800339AC(0,MigenJrHeadActor.pos.y,MigenJrHeadActor.pos.z);
       }
       if (++thisActor.unk_0x150 == 0xb4) {
         ACTORINIT(100,ACTORTYPE_MIGENTHEO);
@@ -352,9 +352,9 @@ void func_80194F8C_680AAC(uint16_t index){
         return;
       }
       if ((gActors[55].flag3 & 0x400)) {
-        uVar5 = gActors[55].unk_0xF8;
+        uVar5 = gActors[55].speedX._w;
         if (gActors[66].unk_0x180 != 0) {
-          uVar5 = -gActors[55].unk_0xF8;
+          uVar5 = -gActors[55].speedX._w;
         }
         if (false) {
           MigenJrActor.flag3 = 0;
@@ -613,7 +613,7 @@ lab_80195064_caseD_421:
         else {
           SFX_ActorPanX(0x61,0x4d);
         }
-        FUN_8005ca34(-8,0x19);
+        func_8005ca34(-8,0x19);
         uVar10 = 0x31;
         //spawn blue gems
         if (0 < D_8019E572) {
@@ -733,7 +733,7 @@ lab_80195064_caseD_421:
     thisActor.unk_0x154++;
     if (thisActor.unk_0x158 != 0) thisActor.unk_0x158--;
     if ((thisActor.unk_0x154 & 1)) {
-      FUN_8005ca34(2,2);
+      func_8005ca34(2,2);
     }
     if ((thisActor.unk_0x154 & 0x40) == 0) {
       MODi(thisActor.unk_0x150,-0x4000,0x1000); 
@@ -786,7 +786,7 @@ lab_80195064_caseD_421:
     if (--thisActor.unk_0x150 < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0ac,0,0x20,0x37);
-      FUN_80081790(0x4d,&D_8019d42c);
+      func_80081790(0x4d,&D_8019d42c);
       gActors[77].unk_0x138 = 0.0;
       thisActor.unk_0x150 = 0x41;
     }
@@ -814,7 +814,7 @@ lab_80195064_caseD_421:
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0e4,0,0x10,0x34);
       SFX_Play_1(Roar deep);
-      FUN_8005ca34(-8,0x1e);
+      func_8005ca34(-8,0x1e);
       func_80193DF0_67F910(index,0x16);
       thisActor.unk_0x150 = 0x41;
     }
@@ -825,7 +825,7 @@ lab_80195064_caseD_421:
     if (((uint)gActors[49].unk_0x16C & 1) != 0) {
       thisActor.actorState++;
       gActors[100].unk_0x188|= 0x8000;
-      FUN_80081790(0x4d,&D_8019d338);
+      func_80081790(0x4d,&D_8019d338);
       thisActor.unk_0x150 = 0xb4;
     }
     func_80193CC4_67F7E4(index,0x17);
@@ -958,7 +958,7 @@ lab_80195064_caseD_421:
           return;
         }
       }
-      uVar10 = Rand() & 3;
+      uVar10 = RNG(3);
       if (uVar10 == 0) {
         thisActor.actorState = 0x70;
       }
@@ -1041,7 +1041,7 @@ lab_80196b3c:
     }
     if (((uint)gActors[77].unk_0x16C & 0x80) != 0) {
       thisActor.actorState++;
-      FUN_.rom.67DC20__801928a8(index);
+      func_801928A8_67E3C8(index);
       func_8019487C_68039C(index,0);
       gActors[63].rgba.R = 0x50;
       gActors[63].rgba.G = 0x30;
@@ -1056,7 +1056,7 @@ lab_80196b3c:
     }
     func_801929C0_67E4E0(index);
     if ((gSceneFrames & 1) != 0) {
-      FUN_8005ca34(2,2);
+      func_8005ca34(2,2);
     }
     if (gActors[79].unk_0x180 != 0) {
       MigenJrActor.flag3 = 0;
@@ -1085,13 +1085,13 @@ lab_80196b3c:
     func_80193F9C_67FABC(index);
     func_8019487C_68039C(0);
     func_801949B8_6804D8(index);
-    if (((uint)gActors[77].unk_0x16C & 0x80) != 0) {
+    if ((gActors[77].unk_0x16C & 0x80)) {
       SFX_ActorPanX(0x43,0x4d);
-      FUN_.rom.67DC20__801928a8(index);
-      FUN_.rom.67DC20__80192e68(index,0);
-      FUN_8005ca34(-8,10);
+      func_801928A8_67E3C8(index);
+      func_80192E68_67E988(index,0);
+      func_8005ca34(-8,10);
     }
-    if (((gActors[77].unk_0x16C & 1) != 0) &&(0.0 <= --thisActor.field52_0x110)) {
+    if (((gActors[77].unk_0x16C & 1)) &&(0.0 <= --thisActor.field52_0x110)) {
       thisActor.actorState = 0x4d;
       func_80193DF0_67F910(index,0x20);
     }
@@ -1112,11 +1112,11 @@ lab_80196b3c:
   case 0x53:
     func_80193F9C_67FABC(index);
     func_8019487C_68039C(0);
-    if (((uint)gActors[77].unk_0x16C & 0x80) != 0) {
+    if (gActors[77].unk_0x16C & 0x80) {
       SFX_ActorPanX(0x43,0x4d);
-      FUN_.rom.67DC20__801928a8(index);
-      FUN_.rom.67DC20__80192e68(index,1);
-      FUN_8005ca34(-8,10);
+      func_801928A8_67E3C8(index);
+      func_80192E68_67E988(index,1);
+      func_8005ca34(-8,10);
     }
     if (gActors[77].field55_0x11c < 0.0) {
       if (thisActor.actorState == 0x51) {
@@ -1155,26 +1155,26 @@ lab_80196b3c:
       if ((gActors[49].unk_0x16C & 2)) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 75;
-        gActors[55]._219_1_ = 8;
-        gActors[55]._218_1_ = 0x84;
-        gActors[55].unk_0xF8 = 0x28000;
-        gActors[55].field47_0xfc = 0x28000;
+        gActors[55].unk_0xDB = 8;
+        gActors[55].unk_0xDA = 0x84;
+        gActors[55].speedX._w = 0x28000;
+        gActors[55].speedY._w = 0x28000;
         SFX_ActorPanX(0x98,0x31);
       }
       if (((uint)gActors[49].unk_0x16C & 1)) {
-        FUN_8005ca34(-8,0x1e);
-        gActors[55].flag &= 0xffffedff;
+        func_8005ca34(-8,0x1e);
+        gActors[55].flag &= ~0x1200;
         SFX_ActorPanX(0x45,0x4d);
       }
       if (gActors[49].field55_0x11c < 0.0) {
         thisActor.actorState = 0x30;
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
         func_80194E64_680984(index,0xf);
       }
       else {
         func_80193CC4_67F7E4(index,0);
         if ((gActors[55].flag3 & 1)) {
-          gActors[55].flag &= 0xffffedff;
+          gActors[55].flag &= ~0x1200;
         }
         if (gActors[55].pos.y < -0x40) {
           gActors[55].pos.y = -0x40;
@@ -1192,7 +1192,7 @@ lab_80196b3c:
       thisActor.actorState++;
       DAT_800be6e4 = 0;
       func_80193ED8_67F9F8(3);
-      FUN_.rom.67DC20__80192100(index);
+      func_80192100_67DC20(index); //noop
       D_800be5f4 = 0x10;
     }
     break;
@@ -1202,11 +1202,11 @@ lab_80196b3c:
       thisActor.actorState = 0x30;
       DAT_800be6e4 = 1;
       thisActor.field52_0x110 = 120.0;
-      FUN_.rom.67DC20__80193e6c(3);
+      func_80193E6C_67F98C(3);
       func_80193F9C_67FABC(index);
       func_80193CC4_67F7E4(index,0);
       gActors[94].flag &= 0xffffcaff;
-      FUN_80011b30(0,4,9,2,0);
+      func_80011b30(0,4,9,2,0);
       func_80193594_67F0B4(); //noop?
       func_8019359C_67F0BC(); //noop?
       D_800be5f4 = CONCAT13(1,D_800be5f4._1_3_);
@@ -1250,22 +1250,22 @@ lab_80196b3c:
       if (((uint)gActors[49].unk_0x16C & 1) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
-        gActors[55]._219_1_ = 4;
-        gActors[55]._218_1_ = 0x84;
-        gActors[55].unk_0xF8 = 0x8000;
-        gActors[55].field47_0xfc = 0x8000;
+        gActors[55].unk_0xDB = 4;
+        gActors[55].unk_0xDA = 0x84;
+        gActors[55].speedX._w = 0x8000;
+        gActors[55].speedY._w = 0x8000;
         SFX_ActorPanX(0x96,0x31);
       }
       if ((gActors[55].flag3 & 1) != 0) {
         SFX_ActorPanX(0x2c,0x31);
         if (0 < --thisActor.unk_0x150) {
-          gActors[55].flag &= 0xffffedff;
+          gActors[55].flag &= ~0x1200;
           func_80193DF0_67F910(index,0x14);
           ActorSpawn_JPNSpeechBox(0x4e,&D_8019b15c,0,0x20,0x16);
         }
       }
       if (gActors[49].field55_0x11c < 0.0) {
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
         thisActor.actorState = 0x30;
         func_80194E64_680984(index,0x1e);
         func_80193DF0_67F910(index,0x12);
@@ -1298,45 +1298,45 @@ lab_80196b3c:
       if (((uint)gActors[49].unk_0x16C & 2) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
-        gActors[55]._219_1_ = 7;
-        gActors[55]._218_1_ = 0x84;
-        gActors[55].unk_0xF8 = 0x58000;
-        gActors[55].field47_0xfc = 0x38000;
+        gActors[55].unk_0xDB = 7;
+        gActors[55].unk_0xDA = 0x84;
+        gActors[55].speedX._w = 0x58000;
+        gActors[55].speedY._w = 0x38000;
         SFX_ActorPanX(0x98,0x31);
         gActors[63].unk_0x120 = 1.0;
       }
       if ((gActors[49].unk_0x16C & 1)) {
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
       }
       if (gActors[49].field55_0x11c < 0.0) {
         thisActor.actorState = 0x30;
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
         func_80194E64_680984(index,0xf);
       }
       else if (((gActors[55].flag3 & 1) != 0) && (gActors[55].field32_0xd6 == 0)) {
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
       }
     }
     else {
       func_80193DF0_67F910(index,0x1f);
       gPlayerActor.flag3|= 0x10000;
-      gPlayerActor.field47_0xfc = 0x20000;
+      gPlayerActor.speedY._w = 0x20000;
       DAT_800d294c = 2;
       thisActor.actorState = 0x40;
       if (gActors[66].unk_0x180 == 0) {
-        gPlayerActor.unk_0xF8 = 0x30000;
+        gPlayerActor.speedX._w = 0x30000;
       }
       else {
-        gPlayerActor.unk_0xF8 = 0xfffd0000;
+        gPlayerActor.speedX._w = -0x30000;
       }
       thisActor.field52_0x110 = 16.0;
-      gActors[55].flag &= 0xffffedff;
+      gActors[55].flag &= ~0x1200;
     }
     break;
   case 0x80:
     thisActor.actorState++;
     func_80193DF0_67F910(index,0x1e);
-    gActors[65].unk_0x180 = gActors[65].unk_0x180 + 1;
+    gActors[65].unk_0x180++;
     if (thisActor.field52_0x110 == 3.0) {
       if (gPlayerActor.pos.x < 1) {
         gActors[66].unk_0x180 = 0;
@@ -1365,22 +1365,22 @@ lab_80196b3c:
       if (((uint)gActors[49].unk_0x16C & 2) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
-        gActors[55]._218_1_ = 4;
-        gActors[55]._219_1_ = 8;
-        gActors[55].unk_0xF8 = 0x28000;
-        gActors[55].field47_0xfc = 0x28000;
+        gActors[55].unk_0xDA = 4;
+        gActors[55].unk_0xDB = 8;
+        gActors[55].speedX = 0x28000;
+        gActors[55].speedY._w = 0x28000;
         SFX_ActorPanX(0x98,0x31);
       }
       if (((uint)gActors[49].unk_0x16C & 1) == 0) {
         if (gActors[49].field55_0x11c < 0.0) {
           thisActor.actorState = 0x30;
-          gActors[55].flag &= 0xffffedff;
+          gActors[55].flag &= ~0x1200;
           func_80194E64_680984(index,0xf);
         }
         else {
           func_80193CC4_67F7E4(index,0);
           if ((gActors[55].flag3 & 1) != 0) {
-            gActors[55].flag &= 0xffffedff;
+            gActors[55].flag &= ~0x1200;
           }
           if (gActors[55].pos.y < -0x40) {
             gActors[55].pos.y = -0x40;
@@ -1390,7 +1390,7 @@ lab_80196b3c:
       else {
         SFX_ActorPanX(0x45,0x31);
         func_8005CA34(-8,8);
-        gActors[55].flag &= 0xffffedff;
+        gActors[55].flag &= ~0x1200;
         thisActor.unk_0x110-=1.0;
         if (0.0 <= thisActor.field52_0x110) {
           thisActor.actorState = 0x80;
@@ -1403,20 +1403,20 @@ lab_80196b3c:
       gPlayerActor.flag3 |= 0x10000;
       gActors[55].flag &= 0x1200;
       if (gActors[55].pos.x < gPlayerActor.pos.x) {
-        gPlayerActor.unk_0xF8 = 0x18000;
+        gPlayerActor.speedX = 0x18000;
       }
       else {
-        gPlayerActor.unk_0xF8 = 0xfffe8000;
+        gPlayerActor.speedX = 0xfffe8000;
       }
-      gPlayerActor.field47_0xfc = 0x10000;
+      gPlayerActor.speedY._w = 0x10000;
       thisActor.field52_0x110 = 8.0;
-      gActors[55].flag &= 0xffffedff;
+      gActors[55].flag &= ~0x1200;
       DAT_800d294c = 2;
     }
     break;
   case 0x90:
     thisActor.actorState++;
-    thisActor.unk_0x114 = (float)((Rand() & 3) + 4);
+    thisActor.unk_0x114 = (float)((RNG(3)) + 4);
     func_80193DF0_67F910(index,0);
     gActors[77].unk_0x138 = 0.0;
     gActors[63].unk_0x138 = 0.0;
@@ -1460,7 +1460,7 @@ lab_80197004:
       gActors[66].unk_0x180 ^= 1;
       gActors[77].unk_0x138 = 0.0;
       gActors[63].unk_0x138 = 0.0;
-      uVar10 = Rand() & 3;
+      uVar10 = RNG(3);
       if (uVar10 == 0) {
         thisActor.field52_0x110 = 20.0;
         ActorSpawn_JPNSpeechBox(0x4e,&D_8019b150,0,0x20,0x16);
@@ -1505,12 +1505,12 @@ lab_80197004:
       func_80193DF0_67F910(index,0x1e);
       ActorSpawn_Crosshair(0,0x37);
     }
-    else if ((fVar13 < 0.0) || (Rand() & 3) == 0)) {
+    else if ((fVar13 < 0.0) || (RNG(3)) == 0)) {
       if ((gActors[65].unk_0x180 & 3) == 0) {
         thisActor.actorState = 0x50;
       }
       else {
-        uVar10 = Rand() & 3;
+        uVar10 = RNG(3);
         if (uVar10) {
           if (uVar10 == 1) {
             thisActor.actorState = 0x50;
@@ -1559,7 +1559,7 @@ lab_80197004:
     if (thisActor.field52_0x110 < 0.0) {
       thisActor.actorState--;
       thisActor.field52_0x110 = 24.0;
-      if ((Rand() & 1) == 0) {
+      if (RNG(1) == 0) {
         func_80193DF0_67F910(index,0);
         ActorSpawn_JPNSpeechBox(0x4e,&D_8019b138,0,0x20,0x16);
       }
@@ -1627,7 +1627,7 @@ lab_80197004:
 lab_80195034_caseD_1003:
   func_80193ED8_67F9F8(3);
   func_80194B10_680630();
-  FUN_8003f138(0.5,gActors[63].pos.x,gActors[63].pos.y,gActors[63].pos.z_w._hi);
+  func_8003f138(0.5,gActors[63].pos.x,gActors[63].pos.y,gActors[63].pos.z_w._hi);
   SFX_Play_1(0x43);
   thisActor.actorState++;
 lab_80195034_caseD_1004:
@@ -1651,7 +1651,7 @@ lab_80195034_caseD_1004:
     gActors[77].flag3 = 0;
     return;
   }
-  if ((D_801373e0.field31_0x64 & 0x20) == 0) {
+  if ((gPlayerManager.field31_0x64 & 0x20) == 0) {
     MigenJrActor.flag3 = 0;
     gActors[49].flag3 = 0;
     gActors[55].flag3 = 0;
@@ -1685,7 +1685,7 @@ lab_80195064_caseD_419:
   func_80193F9C_67FABC(index);
   uVar10 = 0x31;
   if ((gActors[49].unk_0x16C & 1)) {
-    FUN_80081790(0x4d,&D_8019d480);
+    func_80081790(0x4d,&D_8019d480);
     thisActor.health-=100; //stop hitting yourself!
     gActors[63].rgba.R = 0x80;
     gActors[63].rgba.G = 0x80;
@@ -1699,7 +1699,7 @@ lab_80195064_caseD_419:
     if (uVar11) {
       gActors[uVar11].unk_0x130 = 80.0;
       gActors[uVar11].flag2 = |= 0x10;
-      gActors[uVar11].unk_0x14C = gActors[80].actorType;
+      gActors[uVar11].unk_0x14C = MigenJrHeadActor.actorType;
       gActors[uVar11].unk_0x134 = 0.0;
       gActors[uVar11].unk_0x13C = 0.0;
       gActors[uVar11].rgba.R = 0x7f;
@@ -1847,7 +1847,7 @@ void func_80199DA8_6858C8(uint16_t index){
     thisActor.flag2 = 0x201;
     thisActor.flag = 3;
     thisActor.graphicTime = 1;
-    thisActor.graphicList = D_800E164C;
+    thisActor.graphicList = &D_800E164C;
     thisActor.unk_0x18C._p = &gSpriteData_GreenGem;
     thisActor.scaleX = 4.0;
     Actor_Shade(index,0x7f);

@@ -2036,7 +2036,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800146f8                L800146F8_152F8
  build/src/156F0.c.o(.text)
  .text          0x0000000080014af0     0x2380 build/src/156F0.c.o
-                0x0000000080014af0                func_80014AF0
+                0x0000000080014af0                Actors_ApplyVelocity
                 0x0000000080014c44                func_80014C44
                 0x0000000080014f14                func_80014F14
                 0x0000000080014fd0                func_80014FD0
@@ -14360,7 +14360,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d2908                D_800D2908 = 0x800d2908
                 0x00000000800be6f8                D_800BE6F8 = 0x800be6f8
                 0x00000000800be670                D_800BE670 = 0x800be670
-                0x00000000801373e0                D_801373E0 = 0x801373e0
+                0x00000000801373e0                gPlayerManager = 0x801373e0
                 0x00000000801370d2                D_801370D2 = 0x801370d2
                 0x00000000801370d4                D_801370D4 = 0x801370d4
                 0x00000000801370d0                D_801370D0 = 0x801370d0

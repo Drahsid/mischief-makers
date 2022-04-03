@@ -153,7 +153,7 @@ void GamePlay_Load(void) {
     }
 
     
-    D_801373E0->unk_0x078 = 0;
+    gPlayerManager->unk_0x078 = 0;
     D_800D5820 = 0;
     D_800BE5F4._w = 0;
     D_800CA230 = 0;

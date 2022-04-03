@@ -213,8 +213,8 @@ void func_8019D588_745138(uint16_t index){
     gActors[index+3].hitboxAY1=0;
     gActors[index+3].unk_0xDA=129;
     gActors[index+3].unk_0xDB=4;
-    gActors[index+3].unk_0xF8._w=0x60000;
-    gActors[index+3].unk_0xFC._w=0x30000;
+    gActors[index+3].speedX._w=0x60000;
+    gActors[index+3].speedY._w=0x30000;
     gActors[index+3].attackDmg=10;
 }
 
@@ -232,12 +232,12 @@ void func_8019D6CC_74527C(uint16_t index){
 
 void func_8019D7D0_745380(uint16_t index){
     uint16_t index0=index+9;
-    uint16_t other=gActors[index0].unk_0xD6;
-    gActors[other].unk_0xD6=index+9;
+    uint16_t other=gActors[index0].actorLink;
+    gActors[other].actorLink=index+9;
     gActors[other].flag3|=0x200;
-    gActors[other].unk_0x104._w=gActors[index0].pos.x_w;
-    gActors[other].unk_0x108._w=gActors[index0].pos.y_w;
-    gActors[other].unk_0x10C=gActors[index0].pos.z_w-1;
+    gActors[other].pos2.x_w=gActors[index0].pos.x_w;
+    gActors[other].pos2.y_w=gActors[index0].pos.y_w;
+    gActors[other].pos2.z_w=gActors[index0].pos.z_w-1;
 }
 
 void func_8019D844_7453F4(uint16_t index){
@@ -251,8 +251,8 @@ void func_8019D884_745434(uint16_t index){
 void func_8019D8C8_745478(uint16_t index){
     uint16_t i=index+5; 
     gActors[i].flag|=0x200;
-    gActors[i].unk_0xF8._w=0x60000;
-    gActors[i].unk_0xFC._w=0;
+    gActors[i].speedX._w=0x60000;
+    gActors[i].speedY._w=0;
     gActors[i].unk_0xDA=128;
     gActors[i].unk_0xDB=8;
     gActors[i].attackDmg=100;
@@ -299,7 +299,7 @@ float D_801A1A94_749644[16]={
     0.0,0.38,0.7,0.924,1.0,0.924,0.7,0.38,-0.0,-0.38,0.7,-0.924,-1.0,-0.7,-0.38
 };
 float func_8019DD64_745914(){
-    return (float)D_801A1A94_749644[D_801373E0.unk_0x10]*D_801373E0.unk_0xE;
+    return (float)D_801A1A94_749644[gPlayerManager.unk_0x10]*gPlayerManager.unk_0xE;
 }
 #else
 extern float func_8019DD64_745914();

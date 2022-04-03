@@ -14,12 +14,12 @@ void func_8001E808(int16_t arg0, int16_t arg1) {}
 #ifdef NON_MATCHING
 void func_8001E814(int16_t index0, int16_t index1) {
     if ((gActors[index0].vel.x_w == 0) && (gActors[index0].vel.y_w == 0)) {
-        gActors[index1].unk_0xF8._w = func_8001E5E0(index0, index1, 0x2000);
-        gActors[index1].unk_0xFC._w = func_8001E6F4(index0, index1, 0x2000);
+        gActors[index1].speedX._w = func_8001E5E0(index0, index1, 0x2000);
+        gActors[index1].speedY._w = func_8001E6F4(index0, index1, 0x2000);
     }
     else {
-        gActors[index1].unk_0xF8._w = gActors[index0].vel.x_w;
-        gActors[index1].unk_0xFC._w = gActors[index0].vel.y_w;
+        gActors[index1].speedX._w = gActors[index0].vel.x_w;
+        gActors[index1].speedY._w = gActors[index0].vel.y_w;
     }
 }
 #else
@@ -28,12 +28,12 @@ void func_8001E814(int16_t index0, int16_t index1) {
 
 void func_8001E8E4(uint16_t index0, uint16_t index1) {
     if ((gActors[index0].flag & ACTOR_FLAG_FLIPPED) == 0) {
-        gActors[index1].unk_0xF8._w = gActors[index0].unk_0xF8._w;
+        gActors[index1].speedX._w = gActors[index0].speedX._w;
     }
     else {
-        gActors[index1].unk_0xF8._w = -gActors[index0].unk_0xF8._w;
+        gActors[index1].speedX._w = -gActors[index0].speedX._w;
     }
-    gActors[index1].unk_0xFC._w = gActors[index0].unk_0xFC._w;
+    gActors[index1].speedY._w = gActors[index0].speedY._w;
 }
 
 #ifdef NON_MATCHING
@@ -43,12 +43,12 @@ void func_8001E964(uint16_t index0, uint16_t index1) {
     Actor* actor1 = &gActors[index1];
 
     if (actor0->pos.x < actor1->pos.x) {
-        actor0->unk_0xF8._w = -actor1->unk_0xF8._w;
+        actor0->speedX._w = -actor1->speedX._w;
     }
     else {
-        actor0->unk_0xF8._w = actor1->unk_0xF8._w;
+        actor0->speedX._w = actor1->speedX._w;
     }
-    actor0->unk_0xFC._w = actor1->unk_0xFC._w;
+    actor0->speedY._w = actor1->speedY._w;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E964.s")
@@ -164,7 +164,7 @@ void GamePlay_Tick_Active(void) {
 
     func_800253B0(); // background
     func_8001F88C(); // unknown, does something with actors
-    func_80014AF0(); // physics
+    Actors_ApplyVelocity(); // physics
     func_80016CB4(); // collision
     ActorMarina_ScreenScroll(); // camera
     func_80016D94(); // offsets objects from the camera so that they are in the correct relative position

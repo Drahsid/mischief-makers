@@ -56,7 +56,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
     s16 phi_a0;
     s32 phi_a3;
 
-    temp_t9 = thisActor.unk_0xD6;
+    temp_t9 = thisActor.actorLink;
     func_8004F7D8(index);
     if (func_800491B8(index, 0, -0xE)) {
         thisActor.actorState = 6;
@@ -64,14 +64,14 @@ void func_80051324(u16 index) { //like, ~95% correct.
     else {
         if (thisActor.actorState_b[0] == 0) {
             thisActor.unk_0x150._w = 0x10;
-            thisActor.unk_0xF8._w = thisActor.vel.x_w;
-            thisActor.unk_0xFC._w = thisActor.vel.y_w;
+            thisActor.speedX._w = thisActor.vel.x_w;
+            thisActor.speedY._w = thisActor.vel.y_w;
             if (thisActor.actorState_b[1] == 0x13) {
                 thisActor.unk_0x150._w = 0x20;
             }
             thisActor.unk_0x158._w = 0;
             thisActor.actorState_b[0] = 1;
-            switch (D_801373E0.unk_0x10) {
+            switch (gPlayerManager.unk_0x10) {
             case 0:
                 if (( -ActorMarina_VelByScale(0x1C) * 0.25) <= thisActor.vel.y_w) {
                     thisActor.vel.y_w = ActorMarina_VelByScale(0x1C) * 1.5;
@@ -98,7 +98,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                 thisActor.unk_0xDB = 0x15;
                 thisActor.hitboxAY0 = thisActor.hitboxBY0 - 4;
                 thisActor.hitboxAY1 = thisActor.hitboxBY1 + 8;
-                if ((D_801373E0.unk_0x10 & 8) == 0) {
+                if ((gPlayerManager.unk_0x10 & 8) == 0) {
                     thisActor.hitboxAX0 = 0;
                     thisActor.hitboxAX1 = thisActor.hitboxBX1;
                     if (thisActor.vel.x_w < ActorMarina_VelByScale(0x1C)) {
@@ -134,7 +134,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
             }
             if (thisActor.unk_0x140 == 0) thisActor.unk_0x170._w++;
             func_8005C098(index, 1);
-            temp_v0_4 = D_801373E0.unk_0x10;
+            temp_v0_4 = gPlayerManager.unk_0x10;
             thisActor.flag &= ~0xC30000;
             thisActor.unk_0x17C._w = 0;
             thisActor.unk_0x17C._b[1] = 2;
@@ -143,8 +143,8 @@ void func_80051324(u16 index) { //like, ~95% correct.
             thisActor.unk_0x15C = (s32) temp_v0_4;
             if (thisActor.actorState_b[1] == 0x13) {
                 thisActor.unk_0x12C._bu[2] |= 0x40;
-                thisActor.vel.x_w = thisActor.unk_0xF8._w;
-                thisActor.vel.y_w = thisActor.unk_0xFC._w;
+                thisActor.vel.x_w = thisActor.speedX._w;
+                thisActor.vel.y_w = thisActor.speedY._w;
             }
             SFX_Play_1(0x81);
             goto block_74;
@@ -370,13 +370,13 @@ void func_8005896C(uint16_t x, uint16_t y){}
 
 void func_80058E44(uint16_t index,uint16_t x){
     func_80058924(index);
-    thisActor.unk_0xF8._w=-thisActor.unk_0xF8._w;
-    thisActor.unk_0xFC._w=thisActor.unk_0xFC._w; //...but why?
+    thisActor.speedX._w=-thisActor.speedX._w;
+    thisActor.speedY._w=thisActor.speedY._w; //...but why?
     thisActor.actorState=43;
 }
 #ifdef NON_MATCHING
 void func_80058EB0(uint16_t index,uint16_t x){
-    if((thisActor.flag<<6)<0) func_8004F514(index,thisActor.unk_0xD6);
+    if((thisActor.flag<<6)<0) func_8004F514(index,thisActor.actorLink);
     func_80058924(index);
     thisActor.unk_0x150._w=thisActor.flag&=~0x1501;
     thisActor.actorState_b[0]=4,thisActor.actorState_b[1]=1;
@@ -386,7 +386,7 @@ void func_80058EB0(uint16_t index,uint16_t x){
 #endif
 
 void func_80058F54(uint16_t index,uint16_t x){
-    thisActor.unk_0xF8._w=thisActor.vel.x_w;
+    thisActor.speedX._w=thisActor.vel.x_w;
     thisActor.actorState=42;
 }
 

@@ -176,9 +176,14 @@ uint32_t func_8019275C_6F99EC(){
     return func_80192684_6F9914(0x31);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_8019277C_6F9A0C.s")
+void func_8019277C_6F9A0C(uint16_t x){
+  func_801925A4_6F9834(0x32,x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801927A4_6F9A34.s")
+void func_801927A4_6F9A34(uint16_t x){
+  func_801925EC_6F987C(0x32,x);
+}
+
 
 void func_801927CC_6F9A5C(uint8_t a){
     func_80192634_6F98C4(0x32,a);
@@ -764,21 +769,13 @@ uint32_t func_801A4F68_70C1F8(void) {
     return 0;
 }
 #ifdef NON_MATCHING
-void func_801A4FA4_70C234(u16 index)//Teran runs away.{
-  ushort uVar1;
-  ulonglong uVar2;
-  int iVar3;
-  bool bVar7;
-  uint uVar4;
-  s16 sVar5;
-  u16 uVar6;
-  
-
+void func_801A4FA4_70C234(u16 index){//Teran runs away.
+int16_t uVar2;
 
   if (true) {
-    switch(gActors[index].actorState) {
+    switch(thisActor.actorState) {
     case 0x1900:
-      gActors[index].actorState++;
+      thisActor.actorState++;
       D_801AA070_711300 = 0x3c;
       gScreenPosTargetX._hi = 0x730;
       gScreenPosTargetY._hi = 0x15c;
@@ -786,14 +783,14 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       gScreenPosCurrentY._hi = 0x15c;
       func_801933F8_6FA688(index,0x57,0,-0xf0,-0x2e,0);
       gActors[87].vel.x_w = 0xc000;
-      D_801373E0.unk_0x20 = 0;
-      D_801373E0.unk_0x24 = 0;
-      FUN_.rom.6F9390__801a0350(index,0x38,0x730,300,8,0x180,0x3410);
+      gPlayerManager.unk_0x20 = 0;
+      gPlayerManager.unk_0x24 = 0;
+      func_801A0350_7075E0(index,0x38,0x730,300,8,0x180,0x3410);
       _DAT_801ac39a = 0x430;
       _DAT_801ac39c = 300;
       gActors[56].unk_0x170 = 0xa0;
       gActors[56].unk_0x16C._w = 1;
-      FUN_.rom.6F9390__80192a08(0x3c);
+      func_80192A08_6F9C98(0x3c);
       return;
     case 0x1901:
       func_801A1EF8_709188(index,1);
@@ -804,11 +801,11 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
         uVar2 = -(gActors[56].pos.x - gActors[87].pos.x);
       }
       if (uVar2 < 0x11) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x55;
-        FUN_.rom.6F9390__801a4c94(gActors[56].pos.x-8,gActors[56].pos.y);
+        func_801A4C94_70BF24(gActors[56].pos.x-8,gActors[56].pos.y);
         SFX_Play_1(0x36);
-        gActors[87].graphicList = &DAT_.rom.6F9390__801ab2f4;
+        gActors[87].graphicList = &D_801ab2f4;
         gActors[87].graphicTime = 1;
         gActors[87].vel.x_w = -0x10000;
         gActors[87].vel.y_w = 0x30000;
@@ -821,7 +818,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
     case 0x1902:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
-      uVar2 = FUN_80069DA8(0x57);
+      uVar2 = func_80069DA8(0x57);
       if (gActors[56].graphicTime == 0) {
         gActors[56].graphicList = &D_800E1D30;
         gActors[56].graphicTime = 1;
@@ -833,13 +830,13 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
           gActors[0].actorState = 0;
           u8_ARRAY_800be5f4 = 2;
           gActors[0].pos.x_w = gActors[87].pos.x_w;
-          D_801373E0.unk_0x20 = 0;
-          D_801373E0.unk_0x24 = 0;
+          gPlayerManager.unk_0x20 = 0;
+          gPlayerManager.unk_0x24 = 0;
           gActors[0].pos.y_w = gActors[87].pos.y_w;
         }
       }
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
         gActors[56].vel.x_w = 0;
         gActors[56].actorState = 0x200;
@@ -849,7 +846,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       func_801A1EF8_709188(index,1);
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
         gActors[56].actorState = 0x210;
         gActors[56].unk_0x170 = CONCAT22(2,gActors[56].unk_0x170._h[2]);
@@ -859,7 +856,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       func_801A1EF8_709188(index,1);
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         func_80193900_6FAB90(0x14,0x25,-16);
         func_801A9044_7102D4();
         return;
@@ -868,39 +865,39 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
     case 0x1905:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
-      if (FUN_8005DEFC() == 0) {
-        gActors[index].actorState++;
+      if (func_8005DEFC() == 0) {
+        thisActor.actorState++;
         D_801AA078_711308 = 0x60;
-        DAT_.rom.6F9390__801aa07c = 0x44;
+        D_801aa07c = 0x44;
         gActors[56].unk_0x184._h[0] = 0x692;
         gActors[56].actorState = 0xa0;
         if (func_801A4F68_70C1F8()) ActorSpawn_Crosshair(4,0x38);
         D_801AA080_711310 = 0;
-        DAT_.rom.6F9390__801aa084 = 0;
+        D_801AA084 = 0;
       }
       break;
     case 0x1906:
       func_801A1EF8_709188(index,1);
       uVar2 = func_801A2308_709598(index,2);
       if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
-        gActors[index].actorState = 0x1920;
+        thisActor.actorState = 0x1920;
         D_801AA078_711308 = 0x22;
       }
       else {
         if (func_801A4F68_70C1F8()) {
-          D_801373E0.unk_0x20 = gButtonHold & (gButton_B|gButton_A);
-          D_801373E0.unk_0x24 = gButtonPress & (gButton_B|gButton_A);
+          gPlayerManager.unk_0x20 = gButtonHold & (gButton_B|gButton_A);
+          gPlayerManager.unk_0x24 = gButtonPress & (gButton_B|gButton_A);
           if ((D_801AA080_711310 == 0) && ((gButtonHold != 0 || (gButtonPress != 0)))) {
             D_801AA080_711310 = 1;
           }
         }
         if (D_801AA070_711300 == 0) {
           if (D_801AA080_711310 != 1) {
-            gActors[index].actorState = 0x1910;
+            thisActor.actorState = 0x1910;
             func_80193900_6FAB90(0x15,0x50,-16);
             return;
           }
-          gActors[index].actorState = 0x1920;
+          thisActor.actorState = 0x1920;
           D_801AA078_711308 = 0x22;
         }
       }
@@ -910,7 +907,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       func_801A2308_709598(index,2);
 
       if (func_8005DEFC() == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x90;
         gActors[56].actorState = 0x3b0;
         gActors[56].unk_0x170 = CONCAT22(gActors[56].unk_0x170._hi,0x3c0);
@@ -925,7 +922,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       func_801A1EF8_709188(index,1);
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
         gActors[56].actorState = 0xa0;
         gActors[56].unk_0x184._h[0] = 0x5c0;
@@ -938,7 +935,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
         gActors[56].actorState = 0xa0;
       }
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
         func_80192A28_6F9CB8(0x3c);
         return;
@@ -946,7 +943,7 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       break;
     case 0x1913:
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState = 0x1a00;
+        thisActor.actorState = 0x1a00;
         Actor_ZeroFlagRange(0x38,0x80);
         gActors[0].flag = 0;
       }
@@ -956,23 +953,23 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
         if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
-          gActors[index].actorState++;
+          thisActor.actorState++;
           func_800267FC(SCENE_UNK03);
           _DAT_801ac374 = 1;
-          func_80193900_6FAB90(1,0x50,-16mm);
+          func_80193900_6FAB90(1,0x50,-16);
           return;
         }
-        gActors[index].actorState = 0x1911;
+        thisActor.actorState = 0x1911;
       }
       break;
     case 0x1921:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
 
-      if (fun_8005DEFC() == 0) {
-        gActors[index].actorState++;
-        D_801373E0.unk_0x20 = (uint)gButton_DDown;
-        D_801373E0.unk_0x24 = D_801373E0.unk_0x20;
+      if (func_8005DEFC() == 0) {
+        thisActor.actorState++;
+        gPlayerManager.unk_0x20 = (uint)gButton_DDown;
+        gPlayerManager.unk_0x24 = gPlayerManager.unk_0x20;
         func_80193900_6FAB90(2,0xffffffb0,-16);
         func_801A9044_7102D4();
         return;
@@ -981,13 +978,13 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
     case 0x1922:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
-      D_801373E0.unk_0x24 = 0;
-      D_801373E0.unk_0x20 = (uint)gButton_DDown;
-      if (FUN_8005defc() == 0) {
-        gActors[index].actorState++;
+      gPlayerManager.unk_0x24 = 0;
+      gPlayerManager.unk_0x20 = (uint)gButton_DDown;
+      if (func_8005defc() == 0) {
+        thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
-        D_801373E0.unk_0x20 = 0;
-        D_801373E0.unk_0x24 = 0;
+        gPlayerManager.unk_0x20 = 0;
+        gPlayerManager.unk_0x24 = 0;
         func_801A9044_7102D4();
         return;
       }
@@ -996,36 +993,35 @@ void func_801A4FA4_70C234(u16 index)//Teran runs away.{
       func_801A1EF8_709188(index,1);
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
-        D_801373E0.unk_0x20 =(gButton_DRight | gButton_DUp);
-        D_801373E0.unk_0x24 = D_801373E0.unk_0x20;
+        thisActor.actorState++;
+        gPlayerManager.unk_0x20 =(gButton_DRight | gButton_DUp);
+        gPlayerManager.unk_0x24 = gPlayerManager.unk_0x20;
       }
       break;
     case 0x1924:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
-      gActors[index].actorState++;
+      thisActor.actorState++;
       D_801AA078_711308 = 0x78;
-      D_801373E0.unk_0x20 = (gButton_DRight | gButton_DUp | gButton_B);
-      D_801373E0.unk_0x24 =  gButton_B;
+      gPlayerManager.unk_0x20 = (gButton_DRight | gButton_DUp | gButton_B);
+      gPlayerManager.unk_0x24 =  gButton_B;
       break;
     case 0x1925:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
       uVar2 = 0;
-      gActors[56].unk_0xF8 = 0x60000;
-      gActors[56].unk_0xFC = 0x60000;
+      gActors[56].speedX = 0x60000;
+      gActors[56].speedY = 0x60000;
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState++;
+        thisActor.actorState++;
         D_801AA078_711308 = 0x78;
         func_80192A28_6F9CB8(0x3c);
-        uVar6 = func_801A9044_7102D4();
-        return uVar6;
+        func_801A9044_7102D4();
       }
       break;
     case 0x1926:
       if (D_801AA070_711300 == 0) {
-        gActors[index].actorState = 0x1b00;
+        thisActor.actorState = 0x1b00;
         Actor_ZeroFlagRange(0x38,0x80);
         gActors[0].flag = 0;
       }

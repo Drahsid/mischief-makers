@@ -572,7 +572,7 @@ extern uint32_t gPlayTime;
 extern uint16_t D_801370CC;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;
-extern struct_D_801373E0 D_801373E0;
+extern playerManager gPlayerManager;
 extern UNK_TYPE D_80137458;
 extern UNK_POINTER D_8013746C;
 extern uint16_t D_8013747C;

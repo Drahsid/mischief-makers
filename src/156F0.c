@@ -1,7 +1,7 @@
 #include "common.h"
 
 //update positions of actors.
-void func_80014AF0(void){
+void Actors_ApplyVelocity(void){
     uint16_t index;
     if(D_800BE6F8) D_800BE6F8--;
     if(D_800BE670){
@@ -87,15 +87,15 @@ void func_800153A8(uint16_t index){
 void func_80016CB4(void) {
     uint16_t index;
 
-    if ((D_80137458 & 0x10) == 0) {
+    if ((gPlayerManager.unk_0x78 & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
             if ((thisActor.flag & ACTOR_FLAG_ACTIVE)) {
                 func_800160EC(index);
-                thisActor.flag3 &= ~(1 << 19);
+                thisActor.flag3 &= ~0x80000;
             }
         }
-        gPlayerPosXMirror._w = thisActor.pos.x_w + gScreenPosCurrentX._w;
-        gPlayerPosYMirror._w = thisActor.pos.y_w + gScreenPosCurrentY._w;
+        gPlayerPosXMirror._w = gPlayerActor.pos.x_w + gScreenPosCurrentX._w;
+        gPlayerPosYMirror._w = gPlayerActor.pos.y_w + gScreenPosCurrentY._w;
     }
 }
 #else
@@ -108,7 +108,7 @@ void func_80016D94(){
     x= gScreenPosNextX._w - gScreenPosCurrentX._w;
     y= gScreenPosNextY._w - gScreenPosCurrentY._w;
     for(index=1;index<ACTOR_COUNT1;index++){
-        if( (thisActor.flag & 2) && ((thisActor.flag & 8)==0)){
+        if( (thisActor.flag & ACTOR_FLAG_ACTIVE) && ((thisActor.flag & 8)==0)){
             thisActor.pos.x_w+=x;
             thisActor.pos.y_w+=y;
             if((thisActor.flag & 4)&&

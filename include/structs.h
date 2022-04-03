@@ -165,14 +165,14 @@ typedef struct {
     /* 0x5C */ uint32_t DebugValD; //need to see if anything sets them in the rom funcs.
     /* 0x60 */ uint32_t unk_0x60;
     /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.flag3
-    /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.unk_0xF8._w
-    /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.unk_0xFC._w
+    /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.speedX._w
+    /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.speedY._w
     /* 0x70 */ int16_t unk_0x70;
     /* 0x72 */ int16_t unk_0x72;
     /* 0x74 */ uint32_t unk_0x74;
     /* 0x78 */ uint32_t unk_0x78;
     /* 0x7C */ uint32_t unk_0x7C; //player actor time?
-} struct_D_801373E0; /* sizeof = 0x80 */
+} playerManager; /* sizeof = 0x80 */
 
 // Dunno what to call this, contains a dlist and the 0x180 byte preamble
 typedef struct {

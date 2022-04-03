@@ -158,7 +158,7 @@ void func_801945CC_68C5CC(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801949B4_68C9B4.s")
 void func_80194ABC_68CABC(uint16_t index){
-  if(--thisActor.unk_0x104._w<0) thisActor.flag&=~0x200;
+  if(--thisActor.pos2.x_w<0) thisActor.flag&=~0x200;
   thisActor.rgba.g+=6;
   thisActor.rgba.b+=8;
 }
@@ -224,7 +224,7 @@ void func_80195CA8_68DCA8(uint16_t index){
   thisActor.flag|=0x200;
   thisActor.attackDmg=100;
   thisActor.unk_0xDA=4, thisActor.unk_0xDB=3; //yes, this works.
-  thisActor.unk_0xFC._w=0x30000;
+  thisActor.speedY._w=0x30000;
   Actor_HitboxASet(index,12);
 }
 
