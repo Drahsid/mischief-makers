@@ -1,7 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "common.h"
+#include "structs.h"
 
 enum {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
@@ -30,7 +30,7 @@ enum {
     ACTOR_FLAG_UNK22 = (1 << 22),
     ACTOR_FLAG_UNK23 = (1 << 23),
     ACTOR_FLAG_UNK24 = (1 << 24),
-    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see func_8004ED10)
+    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see ActorTick_Marina)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
     ACTOR_FLAG_UNK27 = (1 << 27),
     ACTOR_FLAG_UNK28 = (1 << 28),
@@ -43,6 +43,7 @@ enum {
 #define ACTOR_FLAG_ENABLED (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE)
 
 typedef void (*ActorFunc)(uint16_t index);
+
 
 /*
  * Struct notes from 1.0 (99% based on observation and not code)
@@ -103,46 +104,42 @@ typedef void (*ActorFunc)(uint16_t index);
  */
 
 typedef struct {
-    /* 0x000 */ uint8_t unk_0x00[0x80];
+    /* 0x000 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x080 */ int32_t flag;
-    /* 0x084 */ uint16_t unk_0x84;
-    /* 0x086 */ uint8_t unk_0x86;
-    /* 0x087 */ uint8_t unk_0x87;
+    /* 0x084 */ uint16_t graphic;
+    /* 0x086 */ uint16_t unk_0x86; //align.
     /* 0x088 */ Vec3i_union pos;
-    /* 0x094 */ uint16_t unk_0x94;
-    /* 0x096 */ uint16_t unk_0x96;
-    /* 0x098 */ int32_t unk_0x98;
+    /* 0x094 */ uint16_t flag2;
+    /* 0x096 */ uint16_t unk_0x96; //align.
+    /* 0x098 */ int32_t flag3;
     /* 0x09C */ RGBA32 rgba;
     /* 0x0A0 */ uint8_t unk_0xA0;
-    /* 0x0A1 */ uint8_t unk_0xA1;
-    /* 0x0A2 */ int16_t unk_0xA2;
-    /* 0x0A4 */ int16_t unk_0xA4;
-    /* 0x0A6 */ int16_t unk_0xA6;
-    /* 0x0A8 */ int16_t unk_0xA8;
-    /* 0x0AA */ int16_t unk_0xAA;
-    /* 0x0AC */ int16_t unk_0xAC;
-    /* 0x0AE */ int16_t unk_0xAE;
-    /* 0x0B0 */ int16_t unk_0xB0;
-    /* 0x0B2 */ int16_t unk_0xB2;
-    /* 0x0B4 */ float unk_0xB4;
-    /* 0x0B8 */ float unk_0xB8;
-    /* 0x0BC */ float unk_0xBC;
-    /* 0x0C0 */ float unk_0xC0;
-    /* 0x0C4 */ float unk_0xC4;
-    /* 0x0C8 */ uint16_t unk_0xC8;
-    /* 0x0CA */ uint16_t unk_0xCA;
+    /* 0x0A1 */ uint8_t unk_0xA1;  //align.
+    /* 0x0A2 */ int16_t hitboxAX0;  //physics hitboxx?
+    /* 0x0A4 */ int16_t hitboxAX1;
+    /* 0x0A6 */ int16_t hitboxAY0;
+    /* 0x0A8 */ int16_t hitboxAY1;
+    /* 0x0AA */ int16_t hitboxBX0; //damage hitbox?
+    /* 0x0AC */ int16_t hitboxBX1;
+    /* 0x0AE */ int16_t hitboxBY0;
+    /* 0x0B0 */ int16_t hitboxBY1;
+    /* 0x0B2 */ int16_t unk_0xB2; //align.
+    /* 0x0B4 */ float scaleX;
+    /* 0x0B8 */ float scaleY;
+    /* 0x0BC */ float rotateX;
+    /* 0x0C0 */ float rotateY; 
+    /* 0x0C4 */ float rotateZ;
+    /* 0x0C8 */ int16_t unk_0xC8;
+    /* 0x0CA */ int16_t unk_0xCA;
     /* 0x0CC */ uint16_t unk_0xCC;
     /* 0x0CE */ uint16_t unk_0xCE;
     union {
-        struct {
-            /* 0x0D0 */ uint8_t unk_0xD0;
-            /* 0x0D1 */ uint8_t unk_0xD1;
-        };
-        /* 0x0D0 */ uint16_t unk_0xD0_h;
+        /* 0x0D0 */ uint16_t actorState; //used by each actor to determine behavior.
+        /* 0x0D0 */ uint8_t actorState_b[2];
     };
-    /* 0x0D2 */ uint16_t unk_0xD2;
+    /* 0x0D2 */ uint16_t actorType;
     /* 0x0D4 */ uint16_t unk_0xD4;
-    /* 0x0D6 */ uint16_t unk_0xD6;
+    /* 0x0D6 */ uint16_t actorLink; //index to another actor (parent/child)?
     /* 0x0D8 */ uint16_t unk_0xD8;
     /* 0x0DA */ uint8_t unk_0xDA;
     /* 0x0DB */ uint8_t unk_0xDB;
@@ -154,89 +151,50 @@ typedef struct {
         /* 0x0E0 */ int16_t health;
         /* 0x0E0 */ uint16_t healthu;
     };
-    /* 0x0E2 */ uint16_t unk_0xE2;
-    /* 0x0E4 */ uint16_t unk_0xE4;
-    /* 0x0E6 */ uint16_t unk_0xE6;
-    /* 0x0E8 */ uint32_t unk_0xE8; // This is a pointer!
-    /* 0x0EC */ int32_t unk_0xEC;
-    /* 0x0F0 */ int32_t unk_0xF0;
-    /* 0x0F4 */ uint32_t unk_0xF4;
-    /* 0x0F8 */ uint32_t unk_0xF8;
-    /* 0x0FC */ uint32_t unk_0xFC;
-    /* 0x100 */ uint32_t unk_0x100;
-    /* 0x104 */ int32_t unk_0x104;
-    /* 0x108 */ int32_t unk_0x108;
-    /* 0x10C */ uint32_t unk_0x10C;
+    /* 0x0E2 */ int16_t healthDelta; 
+    /* 0x0E4 */ int16_t attackDmg;
+    /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
+    /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
+    /* 0x0EC */ Vec3i_union vel; //position delta
+    /* 0x0F8 */ s2_w speedX; //actual velocity?
+    /* 0x0FC */ s2_w speedY; 
+    /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used(speed z?)
+    /* 0x104 */ Vec3i_union pos2; //origin? teleport?
     /* 0x110 */ float unk_0x110;
-    /* 0x114 */ float unk_0x114;
-    /* 0x118 */ float unk_0x118;
+    /* 0x114 */ float unk_0x114; 
+    /* 0x118 */ float unk_0x118; 
     /* 0x11C */ float unk_0x11C;
     /* 0x120 */ float unk_0x120;
     /* 0x124 */ float unk_0x124;
     /* 0x128 */ float unk_0x128;
-    union {
-        struct {
-            /* 0x12C */ uint16_t unk_0x12C;
-            /* 0x12E */ uint8_t unk_0x12E;
-            /* 0x12F */ uint8_t unk_0x12F;
-        };
-        /* 0x12C */ float unk_0x12C_f; // used as float in Actor_Spawn?
-    };
+    /* 0x12C */ word_u unk_0x12C;
+    //beyond this seems to be unions for purposes that vary between actor types.
     /* 0x130 */ float unk_0x130;
     /* 0x134 */ float unk_0x134;
     /* 0x138 */ float unk_0x138;
-    /* 0x13C */ float unk_0x13C;
-    union {
-        struct {
-            /* 0x140 */ uint8_t unk_0x140;
-            /* 0x141 */ uint8_t unk_0x141;
-            /* 0x142 */ uint16_t unk_0x142;
-        };
-        /* 0x140 */ float unk_0x140_f; // used as float in Actor_Spawn?
-    };
+    /* 0x13C */ word_u unk_0x13C;
+    /* 0x138 */ word_u unk_0x140;
     /* 0x144 */ float unk_0x144;
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
-    /* 0x150 */ int32_t unk_0x150;
-    /* 0x154 */ uint32_t unk_0x154; // s2_w - lower short called sometimes.
-    /* 0x158 */ int32_t unk_0x158;
+    /* 0x150 */ s2_w unk_0x150;
+    /* 0x154 */ s2_w unk_0x154;
+    /* 0x158 */ s2_w unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
-    /* 0x160 */ uint32_t unk_0x160;
-    /* 0x164 */ uint32_t unk_0x164;
-    /* 0x168 */ uint32_t unk_0x168;
-    /* 0x16C */ uint32_t unk_0x16C;
-    union {
-        struct {
-            /* 0x170 */ int8_t unk_0x170;
-            /* 0x171 */ int8_t unk_0x171;
-            /* 0x172 */ int8_t unk_0x172;
-            /* 0x173 */ int8_t unk_0x173;
-        };
-        /* 0x170 */ uint32_t unk_0x170_w;
-    };
+    /* 0x160 */ s2_w unk_0x160;
+    /* 0x164 */ s2_w unk_0x164;
+    /* 0x168 */ word_u unk_0x168;
+    /* 0x168 */ word_u unk_0x16C;
+    /* 0x170 */ word_u unk_0x170;
     /* 0x174 */ uint32_t unk_0x174;
-    /* 0x178 */ uint32_t unk_0x178;
-    /* 0x17C */ uint32_t unk_0x17C;
-    union {
-        struct {
-            /* 0x180 */ uint8_t unk_0x180;
-            /* 0x181 */ uint8_t unk_0x181;
-            /* 0x182 */ uint8_t unk_0x182;
-            /* 0x183 */ uint8_t unk_0x183;
-        };
-        /* 0x180 */ uint32_t unk_0x180_w;
-    };
-    union {
-        /* 0x184 */ uint32_t unk_0x184_w; // read as word in Actor_Spawn
-        struct {
-            /* 0x184 */ uint16_t unk_0x184;
-            /* 0x186 */ uint16_t unk_0x186;
-        };
-    };
-    /* 0x188 */ uint32_t unk_0x188;
-    /* 0x18C */ uint32_t unk_0x18C;
-    /* 0x190 */ uint32_t unk_0x190;
-    /* 0x194 */ uint8_t unk_0x194[4];
+    /* 0x178 */ word_u unk_0x178;
+    /* 0x17C */ word_u unk_0x17C; 
+    /* 0x180 */ word_u unk_0x180; 
+    /* 0x184 */ word_u unk_0x184; 
+    /* 0x188 */ word_u unk_0x188;
+    /* 0x18C */ word_u unk_0x18C;
+    /* 0x190 */ void* unk_0x190;
+    /* 0x194 */ uint8_t unk_0x194[4]; //align?
 } Actor; /* sizeof = 0x198 */
 
 typedef struct {
@@ -249,15 +207,44 @@ typedef struct {
     /* 0x0C */ uint16_t unk_0xC;
 } ActorInit; /* sizeof = 0x0E */
 
-// Might be u16, u16 (index0, index1)
-typedef void (*Actor_func_8001EB8Cfn)(int32_t, int32_t);
 
-extern Actor gActors[];
+typedef void (*ActorFunc_2Arg)(uint16_t, uint16_t);
+
+extern Actor gActors[0xD0];
 extern ActorFunc gActorFuncTable[];
-extern Actor_func_8001EB8Cfn D_800CA1C0[];
+extern ActorFunc_2Arg D_800CA1C0[];
+typedef union{
+    ActorFunc oneArg;
+    ActorFunc_2Arg twoArg;
+}ActorFunc_u;
+
+//todo: populate with all confirmed actor types
+//note: The following actor types have NOOPS as ticks, and may be unused:
+//0x0A, 0x0F-0x14, 0x17, 0x19-0x1B, 0x1D, 0x1E, 0x25, 0x2B, 0x41, 0x47, 0x53
+#define ACTORTYPE_GEM 0X08
+#define ACTORTYPE_MARINA 0X16
+#define ACTORTYPE_PORTRAIT 0X27
+#define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, construtor is dummied out.
+#define ACTORTYPE_CLANBOMB 0X45
+#define ACTORTYPE_DIGGINGSPOT 0X57
+#define ACTORTYPE_MARINAOHNO 0X70
+#define ACTORTYPE_CROSSHAIR 0X71
+#define ACTORTYPE_CLANPOT 0X79
+#define ACTORTYPE_MSHINT 0X7A
+#define ACTORTYPE_REDGEMRING 0X7B
+
+//flags used by Gem_ActorSpawn
+#define GEMFLAG_RED 0
+#define GEMFLAG_BLUE 1
+#define GEMFLAG_YELLOW 2
+#define GEMFLAG_GREEN 3
+#define GEMFLAG_BOUNCE 0X10
+#define GEMFLAG_UNK 0X20
+
 
 #define gPlayerActorp (gActors)
 #define gPlayerActor  gActors[0]
+#define gPlayerActorScale  gActors[0].unk_0x120
 #define ACTOR_COUNT0  0x90
 #define ACTOR_COUNT1  0xC0
 #define ACTOR_COUNT2  0xD0

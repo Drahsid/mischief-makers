@@ -1,7 +1,5 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
+
 
 /*
 Sprite gSprite ={
@@ -27,8 +25,7 @@ int32_t D_800C4EC4 = 40;
 uint32_t D_800C4EC8 = 1;
 double gSpriteScaleX = 1.0;
 double gSpriteScaleY = 1.0;
-int32_t D_800c4EE0[] = {1, 1, 1, 1, 1, 2, 2, 2};
-int32_t D_800c4F00[] = {-2, -1, 0, 1, 2, -1, 0, 1};
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
 
@@ -71,12 +68,12 @@ void Sprite_Finish(Gfx** dlistp) {
     *dlistp = dlist - 1;
 }
 
-void Sprite_SetPosition(int32_t arg0, uint32_t arg1) {
+void Sprite_SetSize(int32_t arg0, uint32_t arg1) {
     D_800C4EC4 = arg0;
     D_800C4EC8 = arg1;
 }
 
-void func_8000474C(int32_t arg0, uint32_t arg1) {
+void Sprite_SetPosition(int32_t arg0, uint32_t arg1) {
     D_800C4EBC = arg0;
     D_800C4EC0 = arg1;
 }
@@ -123,4 +120,3 @@ void Sprite_Update(Gfx** dlistp) {
 #pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004910.s")

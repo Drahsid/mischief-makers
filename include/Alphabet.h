@@ -59,8 +59,10 @@
 #define ALPHA_UPPER_Y 0x0150
 #define ALPHA_UPPER_Z 0x0151
 
+
 // there is a second alphabet using a slimmer font.
 // The top is used for titles and names, the bottom, everything else.
+
 
 #define ALPHA_THIN_LOWER_A 0x0075
 #define ALPHA_THIN_LOWER_B 0x0076
@@ -116,6 +118,86 @@
 #define ALPHA_THIN_UPPER_Y 0x0073
 #define ALPHA_THIN_UPPER_Z 0x0074
 
+//And a third alphabet with a bolder font.
+//used for the "FIGHT" and "Go to next area" prompts
+//numbering suggests this is the oringinal english alphabet.
+
+
+#define ALPHA_BOLD_UPPER_A 0x000A
+#define ALPHA_BOLD_UPPER_B 0x000B
+#define ALPHA_BOLD_UPPER_C 0x000C
+#define ALPHA_BOLD_UPPER_D 0x000D
+#define ALPHA_BOLD_UPPER_E 0x000E
+#define ALPHA_BOLD_UPPER_F 0x000F
+#define ALPHA_BOLD_UPPER_G 0x0010
+#define ALPHA_BOLD_UPPER_H 0x0011
+#define ALPHA_BOLD_UPPER_I 0x0012
+#define ALPHA_BOLD_UPPER_J 0x0013
+#define ALPHA_BOLD_UPPER_K 0x0014
+#define ALPHA_BOLD_UPPER_L 0x0015
+#define ALPHA_BOLD_UPPER_M 0x0016
+#define ALPHA_BOLD_UPPER_N 0x0017
+#define ALPHA_BOLD_UPPER_O 0x0018
+#define ALPHA_BOLD_UPPER_P 0x0019
+#define ALPHA_BOLD_UPPER_Q 0x001A
+#define ALPHA_BOLD_UPPER_R 0x001B
+#define ALPHA_BOLD_UPPER_S 0x001C
+#define ALPHA_BOLD_UPPER_T 0x001D
+#define ALPHA_BOLD_UPPER_U 0x001E
+#define ALPHA_BOLD_UPPER_V 0x001F
+#define ALPHA_BOLD_UPPER_W 0x0020
+#define ALPHA_BOLD_UPPER_X 0x0021
+#define ALPHA_BOLD_UPPER_Y 0x0022
+#define ALPHA_BOLD_UPPER_Z 0x0023
+
+#define ALPHA_BOLD_LOWER_A 0x0024
+#define ALPHA_BOLD_LOWER_B 0x0025
+#define ALPHA_BOLD_LOWER_C 0x0026
+#define ALPHA_BOLD_LOWER_D 0x0027
+#define ALPHA_BOLD_LOWER_E 0x0028
+#define ALPHA_BOLD_LOWER_F 0x0029
+#define ALPHA_BOLD_LOWER_G 0x002A
+#define ALPHA_BOLD_LOWER_H 0x002B
+#define ALPHA_BOLD_LOWER_I 0x002C
+#define ALPHA_BOLD_LOWER_J 0x002D
+#define ALPHA_BOLD_LOWER_K 0x002E
+#define ALPHA_BOLD_LOWER_L 0x002F
+#define ALPHA_BOLD_LOWER_M 0x0030
+#define ALPHA_BOLD_LOWER_N 0x0031
+#define ALPHA_BOLD_LOWER_O 0x0032
+#define ALPHA_BOLD_LOWER_P 0x0033
+#define ALPHA_BOLD_LOWER_Q 0x0034
+#define ALPHA_BOLD_LOWER_R 0x0035
+#define ALPHA_BOLD_LOWER_S 0x0036
+#define ALPHA_BOLD_LOWER_T 0x0037
+#define ALPHA_BOLD_LOWER_U 0x0038
+#define ALPHA_BOLD_LOWER_V 0x0039
+#define ALPHA_BOLD_LOWER_W 0x003A
+#define ALPHA_BOLD_LOWER_X 0x003B
+#define ALPHA_BOLD_LOWER_Y 0x003C
+#define ALPHA_BOLD_LOWER_Z 0x003D
+
+#define ALPHA_BOLD_PERIOD 0x003E
+#define ALPHA_BOLD_QUOTE 0x003F
+#define ALPHA_BOLD_COMMA 0x0040
+#define ALPHA_BOLD_APOSTROPHE 0x0041
+#define ALPHA_BOLD_EXCLAMAION 0x0042
+#define ALPHA_BOLD_QUESTION 0x0043
+#define ALPHA_BOLD_COPYRIGHT 0x0044
+#define ALPHA_BOLD_COLON 0x0045
+#define ALPHA_BOLD_PLUS 0x0046
+#define ALPHA_BOLD_MINUS 0x0047
+#define ALPHA_BOLD_EQUALS 0x0048
+#define ALPHA_BOLD_TIMES 0x0049
+#define ALPHA_BOLD_DIVIDE 0x004A
+#define ALPHA_BOLD_PERCENT 0x004B
+#define ALPHA_BOLD_SLASH 0x004C
+#define ALPHA_BOLD_PARENTESISLEFT 0x004D
+#define ALPHA_BOLD_PARENTESISRIGHT 0x004E
+#define ALPHA_BOLD_BRACKETLEFT 0x004F
+#define ALPHA_BOLD_BRACKETRIGHT 0x0050
+#define ALPHA_BOLD_SPACE 0xC000
+
 
 #define ALPHA_0 0x00A1
 #define ALPHA_1 0x00A2
@@ -128,7 +210,7 @@
 #define ALPHA_8 0x00A9
 #define ALPHA_9 0x00AA
 
-
+#define ALPHA_ELLIPSIS     0x00B0
 #define ALPHA_EXCLAMATION  0x00B1
 #define ALPHA_EXCLAMATION2 0x00B2
 #define ALPHA_QUESTION     0x00B3
@@ -146,7 +228,47 @@
 #define ALPHA_GAMMA        0x00D0
 #define ALPHA_APOSTROPHE_S 0x00D1
 
-// there are also some leftover japanese characters. someone who knows the dialect can cover these?
+//leftover japanese. Speech bubble text is dummied out, but still in data.
+//compiler does not like unicode.
+#ifdef UNICODE
+#define ALPHA_あ 0x0051
+#define ALPHA_い 0x0052
+#define ALPHA_う 0x0053
+#define ALPHA_え 0x0054
+#define ALPHA_お 0x0055
+#define ALPHA_か 0x0056
+#define ALPHA_き 0x0057
+#define ALPHA_く 0x0058
+#define ALPHA_け 0x0059
+#define ALPHA_こ 0x005A
+#define ALPHA_さ 0x005B
+#define ALPHA_し 0x005C
+#define ALPHA_す 0x005D
+#define ALPHA_せ 0x005E
+#define ALPHA_そ 0x005F
+#define ALPHA_た 0x0060
+#define ALPHA_ち 0x0061
+#define ALPHA_っ 0x0062
+#define ALPHA_て 0x0063
+#define ALPHA_と 0x0064
+#define ALPHA_に 0x0065
+#define ALPHA_ぬ 0x0066
+#define ALPHA_の 0x0067
+#define ALPHA_は 0x0068
+#define ALPHA_ひ 0x0069
+#define ALPHA_ふ 0x006A
+#define ALPHA_へ 0x006B
+#define ALPHA_ほ 0x006C
+#define ALPHA_ま 0x006D
+#define ALPHA_み 0x006E
+#define ALPHA_む 0x006F
+#define ALPHA_め 0x0070
+#define ALPHA_も 0x0071
+#define ALPHA_ゃ 0x0072
+#define ALPHA_め 0x0073
+
+#endif
+
 #define ALPHA_NULL 0x8FFF
 
 #endif

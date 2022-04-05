@@ -1,7 +1,4 @@
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+#include "common.h"
 
 #ifdef NON_MATCHING
 /* I have no idea how this regalloc is produced
@@ -182,33 +179,33 @@ void Thread_IdleProc(void* arg0) {
     if (osTvType == OS_TV_MPAL) {
         osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Framebuffer_Clear();
-        D_8012AD10 = osViModeTable[OS_VI_MPAL_LAN1];
-        D_8012AD08 = &osViModeTable[OS_VI_MPAL_LAN1];
+        gOSViMode = osViModeTable[OS_VI_MPAL_LAN1];
+        gOSViModep = &osViModeTable[OS_VI_MPAL_LAN1];
     }
     else {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
         Framebuffer_Clear();
-        D_8012AD10 = osViModeTable[OS_VI_NTSC_LAN1];
-        D_8012AD08 = &osViModeTable[OS_VI_NTSC_LAN1];
+        gOSViMode = osViModeTable[OS_VI_NTSC_LAN1];
+        gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
     }
 
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &D_8012A678, 8);
-    osCreateThread(&rmonThread, 0, &Thread_RmonProc, NULL, &D_80129670, OS_PRIORITY_RMON);
+    osCreateThread(&rmonThread, 0, rmonMain, NULL, &D_80129670, OS_PRIORITY_RMON);
     osStartThread(&rmonThread);
-    osCreateThread(&mainThread, 3, &Thread_MainProc, arg0, &D_80128670, 10);
+    osCreateThread(&mainThread, 3, Thread_MainProc, arg0, &D_80128670, 10);
     osStartThread(&mainThread);
     osSetThreadPri(0, 0);
 
     while (1) {}
 }
-
+//set gOSViModep->comRegs.hStart and  gOSViModep->feildregs[].vScale
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
 
 // main update setup
 void func_80000A84(uint16_t buffer_index) {
     uint16_t* framebuffer;
 
-    D_8012AC84 = &D_8012AC88[buffer_index];
+    gGFXTaskp = &gGFXTasks[buffer_index];
     D_800EF4F4 = gDListTail[buffer_index].unk_0x00;
     gDListHead = D_800EF4F4 + 48;
 
@@ -237,14 +234,14 @@ void Thread_MainProc(int32_t arg0) {
     uint16_t* framebuffer;
 
     Sound_InitPlayers();
-    osCreateMesgQueue(&D_8012ABA8, &D_8012AC68, 1);
+    osCreateMesgQueue(&gDMAMsgQ, &D_8012AC68, 1);
     osCreateMesgQueue(&D_8012ABD8, &D_8012AC70, 1);
-    osSetEventMesg(4, &D_8012ABD8, D_8012AC80);
+    osSetEventMesg(OS_EVENT_SP, &D_8012ABD8, D_8012AC80);
     Sound_SetEventMesg();
     osCreateMesgQueue(&D_8012ABF0, &D_8012AC74, 1);
-    osSetEventMesg(9, &D_8012ABF0, D_8012AC80);
+    osSetEventMesg(OS_EVENT_DP, &D_8012ABF0, D_8012AC80);
     osCreateMesgQueue(&D_8012ABC0, &D_8012AC6C, 1);
-    osViSetSpecialFeatures(0xA);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_GAMMA_DITHER_OFF);
     osViSetEvent(&D_8012ABC0, D_8012AC80, 1);
 
     func_800008E0();
@@ -263,43 +260,43 @@ void Thread_MainProc(int32_t arg0) {
             osContStartReadData(&D_8012AC08);
         }
 
-        D_8012AC84->t.type = 1;
-        D_8012AC84->t.flags = 0;
-        D_8012AC84->t.ucode_boot = (uint64_t*)rspbootTextStart;
-        D_8012AC84->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
-        D_8012AC84->t.ucode = (uint64_t*)gspFast3DTextStart;
-        D_8012AC84->t.ucode_data = (uint64_t*)gspFast3DDataStart;
-        D_8012AC84->t.output_buff = NULL;
-        D_8012AC84->t.output_buff_size = NULL;
-        D_8012AC84->t.ucode_size = 0x1000;
-        D_8012AC84->t.ucode_data_size = 0x800;
-        D_8012AC84->t.dram_stack = (uint64_t*)&D_8011D970;
-        D_8012AC84->t.dram_stack_size = 0x400;
-        D_8012AC84->t.data_ptr = gDListTail[gCurrentFramebufferIndex].dlist;
-        D_8012AC84->t.data_size = (uint32_t)((gDListHead - gDListTail[gCurrentFramebufferIndex].dlist) * sizeof(Gfx));
-        D_8012AC84->t.yield_data_ptr = (uint64_t*)&D_8011DDF0;
-        D_8012AC84->t.yield_data_size = 0xDA0;
+        gGFXTaskp->t.type = M_GFXTASK;
+        gGFXTaskp->t.flags = 0;
+        gGFXTaskp->t.ucode_boot = (uint64_t*)rspbootTextStart;
+        gGFXTaskp->t.ucode_boot_size = (uint32_t)rspbootTextEnd - (uint32_t)rspbootTextStart;
+        gGFXTaskp->t.ucode = (uint64_t*)gspFast3DTextStart;
+        gGFXTaskp->t.ucode_data = (uint64_t*)gspFast3DDataStart;
+        gGFXTaskp->t.output_buff = NULL;
+        gGFXTaskp->t.output_buff_size = NULL;
+        gGFXTaskp->t.ucode_size = 0x1000;
+        gGFXTaskp->t.ucode_data_size = 0x800;
+        gGFXTaskp->t.dram_stack = D_8011D970;
+        gGFXTaskp->t.dram_stack_size = sizeof(D_8011D970);
+        gGFXTaskp->t.data_ptr = gDListTail[gCurrentFramebufferIndex].dlist;
+        gGFXTaskp->t.data_size = (uint32_t)((gDListHead - gDListTail[gCurrentFramebufferIndex].dlist) * sizeof(Gfx));
+        gGFXTaskp->t.yield_data_ptr = D_8011DDF0;
+        gGFXTaskp->t.yield_data_size = sizeof(D_8011DDF0);
 
         osWritebackDCacheAll();
-        osSpTaskLoad(D_8012AC84);
-        osSpTaskStartGo(D_8012AC84);
+        osSpTaskLoad(gGFXTaskp);
+        osSpTaskStartGo(gGFXTaskp);
         Sound_Tick();
-        func_800028D0();
+        Sound_NextBuffer();
 
         gCurrentFramebufferIndex = 1 - gCurrentFramebufferIndex;
 
         func_80000A84(gCurrentFramebufferIndex);
         osRecvMesg(&D_8012ABF0, NULL, 1);
-        func_800029EC();
+        Sound_StartTask();
         osViSwapBuffer(framebuffer);
-        func_80010898();
+        lookAt_Tick();
 
         // D_8012ABC0 is probably the retrace/vsync queue
         if (MQ_IS_FULL(&D_8012ABC0)) {
             Sound_Tick();
-            func_800028D0();
+            Sound_NextBuffer();
             osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
-            func_800029EC();
+            Sound_StartTask();
         }
 
         osRecvMesg(&D_8012ABC0, &D_8012AC80, 1);
@@ -327,27 +324,25 @@ void Input_Update(void) {
         gJoyX = gConpadArrayA[gPlayerControllerIndex].stick_x;
         gJoyY = gConpadArrayA[gPlayerControllerIndex].stick_y;
     }
-    else {
-        gButtonCur = 0;
-    }
+    else
+        gButtonCur = 0U;
 
     gButtonPress = (gButtonCur ^ D_800BE538) & gButtonCur;
     gButtonHold = gButtonCur;
     D_800BE538 = gButtonCur;
 }
-
 #ifdef NON_MATCHING
 int32_t Input_GetFirstController(void) {
     int32_t sVar1;
     byte abStack5[5];
 
     osCreateMesgQueue(&D_8012AC20, &D_8012AC7C, 1);
-    osSetEventMesg(5, &D_8012AC20, (OSMesg)0x1);
-    osContReset(&D_8012AC20, abStack5, contStatArray);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC20, (OSMesg)0x1);
+    osContInit(&D_8012AC20, abStack5, contStatArray);
     osCreateMesgQueue(&D_8012AC08, &OSMesg_8012ac78, 1);
-    osSetEventMesg(5, &D_8012AC08, (OSMesg)0x0);
+    osSetEventMesg(OS_EVENT_SI, &D_8012AC08, (OSMesg)0x0);
     osCreateMesgQueue(&gContMesgq, &OSMesg_8012adb8, 2);
-    osSetEventMesg(5, &gContMesgq, (OSMesg)0x2);
+    osSetEventMesg(OS_EVENT_SI, &gContMesgq, (OSMesg)0x2);
     if (((abStack5[0] & 1) == 0) || ((contStatArray[0].errno & CONT_NO_RESPONSE_ERROR))) {
         if (((abStack5[0] & 2) == 0) || ((contStatArray[1].errno & CONT_NO_RESPONSE_ERROR))) {
             if (((abStack5[0] & 4) == 0) || ((contStatArray[2].errno & CONT_NO_RESPONSE_ERROR))) {
@@ -377,45 +372,45 @@ int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;
     OSMesg mesg;
     osInvalDCache(vaddr, nbytes);
-    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
-    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+    osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &gDMAMsgQ);
+    return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
 
-int32_t func_80001264(void) {
+int32_t RomCopy_RecvMesg(void) {
     OSMesg mesg;
-    return osRecvMesg(&D_8012ABA8, &mesg, 1);
+    return osRecvMesg(&gDMAMsgQ, &mesg, 1);
 }
 
 // same as above, no osRecvMesg. used once.
 int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
     OSIoMesg mb;
     osInvalDCache(vaddr, nbytes);
-    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &D_8012ABA8);
+    return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &gDMAMsgQ);
 }
 
 void func_800012F0(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        if ((gDebugBitfeild & 0x200) != 0 && gGamePaused == 0) {
+        if ((gDebugBitfeild & 0x200) && gGamePaused == 0) {
             gGamePaused = 1;
         }
 
-        if (gGamePaused != 0 && gGameSubState == 0x10) {
-            if ((gButtonPress & gButton_Start) != 0 || (gButtonPress & gButton_A) != 0) {
+        if (gGamePaused && gGameSubState == 0x10) {
+            if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                if ((gDebugBitfeild & 0x100) != 0) {
-                    func_80020844(gDebugBitfeild, &gGameSubState, &gDebugBitfeild);
-                    func_800208D4();
+                if ((gDebugBitfeild & 0x100)) {
+                    PauseGame_RestoreVolume();
+                    PauseGame_Unpause();
                 }
                 else {
                     gGameSubState = 0x20;
                 }
             }
         }
-        else if ((gButtonPress & gButton_Start) != 0 && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
+        else if ((gButtonPress & gButton_Start) && (uint16_t)D_800BE4EC == 0 && gGameSubState == 0) {
             if (gActors->health >= 0) {
                 gGamePaused = 1;
-                gDebugBitfeild &= 0xFFEF;
-                if ((gDebugBitfeild & 0x100) != 0) {
+                gDebugBitfeild &=~0x10;
+                if (gDebugBitfeild & 0x100) {
                     gGameSubState = 0x10;
                 }
                 else {
@@ -432,58 +427,59 @@ void func_800012F0(void) {
     }
 }
 
+
 // main update
 void func_8000147C(void) {
-    D_800BE4E4 += 1;
-    if (gPlayTime < 0x1EE627FF) {
+    gSceneFramesReal += 1;
+    if (gPlayTime < 518399999) {
         gPlayTime++;
     }
 
     func_800012F0();
     GameState_Tick();
-    func_800821B0();
+    MarinaGraphics_Load();
     func_80009940();
     func_80082F10();
-    func_80009BE8(&D_80171B30);
+    Gfx_DrawActors(&D_80171B30);
 
     if (D_800BE674 != 0) {
         func_80082CFC();
         func_8000DD6C();
-        func_80009BE8(&D_80171D30);
+        Gfx_DrawActors(&D_80171D30);
         func_80082E04();
     }
     else {
         func_80082E04();
-        func_80009BE8(&D_80171C30);
+        Gfx_DrawActors(&D_80171C30);
         func_80082CFC();
-        func_80009BE8(&D_80171D30);
+        Gfx_DrawActors(&D_80171D30);
         func_8000DD6C();
     }
 
     if (D_8013747C != 0) {
-        func_8000EA88();
-        func_80009BE8(&D_80171F10);
+        Gfx_DrawPortraits();
+        Gfx_DrawActors(&D_80171F10);
     }
     else {
-        func_80009BE8(&D_80171F10);
-        func_8000EA88();
+        Gfx_DrawActors(&D_80171F10);
+        Gfx_DrawPortraits();
     }
 
     Rand(); // update rng
-    func_800822B8();
-    func_800218FC();
-    func_8000F290();
+    MarinaGraphics_Decrypt();
+    Gfx_DrawLetterbox();
+    Gfx_DrawLifeBar();
     func_80009BE0();
 
-    if ((gDebugBitfeild & 1) != 0) {
+    if ((gDebugBitfeild & 1)) {
         func_8002167C();
     }
 
-    if ((gDebugBitfeild & 0x8000) != 0) {
+    if ((gDebugBitfeild & 0x8000)) {
         func_8001FF28();
     }
 
-    if ((gDebugBitfeild & 0x40) != 0) {
+    if ((gDebugBitfeild & 0x40)) {
         func_80021658();
     }
 
@@ -491,14 +487,14 @@ void func_8000147C(void) {
         func_80021660();
     }
 
-    func_80021620();
+    DebugText_BorW();
     DebugText_Tick();
 }
 
 void GameState_Tick(void) {
     switch (gGameState) {
         case GAMESTATE_SOFTRESET: {
-            func_80022F48(); // soft reset
+            start_game(); // soft reset
             break;
         }
         case GAMESTATE_INTRO: {
@@ -518,7 +514,7 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_LOADING: {
-            func_800232A4(); // loading stage
+            GamePlay_Load(); // loading stage
             break;
         }
         case GAMESTATE_GAMEPLAY: {
@@ -530,11 +526,11 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_UNKNOWN0: {
-            func_80388000(); // unknown
+            Gamestate8_Tick(); // supposed to be dma'd in from rom:0xf00D0
             break;
         }
         case GAMESTATE_UNKNOWN1: {
-            func_80388008(); // unknown
+            Gamestate9_Tick(); // same as above. NOOPs.
             break;
         }
         case GAMESTATE_ATTRACT: {
@@ -542,11 +538,11 @@ void GameState_Tick(void) {
             break;
         }
         case GAMESTATE_FILESELECT: {
-            func_80007C8C(); // fileselect
+            FileSelect_Tick(); // fileselect
             break;
         }
         case GAMESTATE_TRANSITION: {
-            func_8001B460(); // transition
+            Worldmap_Tick(); // transition
             break;
         }
         case GAMESTATE_UNKNOWN2: {

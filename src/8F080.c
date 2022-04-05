@@ -1,14 +1,13 @@
 #include "common.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E918.s")
+void func_8008E918(uint16_t index){
+    func_80081790(index,&D_800E8BEC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E948.s")
 
@@ -26,7 +25,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008EFA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008F094.s")
+uint32_t func_8008F094(uint16_t index,uint16_t dmg){
+    thisActor.health-=dmg;
+    if(thisActor.health&0x8000)thisActor.health=0;
+    return func_8008EFA8(index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008F108.s")
 
@@ -111,12 +114,17 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80092F2C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80092FD4.s")
-
+/*
+uint32_t func_800930AC(uint16_t x){
+    uint32_t ret =func_80092FD4(x);
+    if(ret) ret = func_8005DFC8(0);
+    return ret;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930EC.s")
+void func_800930E4(uint32_t x){}
+//displays Calina's Henshin text
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/CalinaChange_PrintText.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800931CC.s")
 
@@ -156,11 +164,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800955F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095928.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/ActorTick_CalinaDialouge.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A10.s")
+void CalinaChange_WandSpin(uint16_t index){
+    thisActor.unk_0x118+=thisActor.unk_0x114;
+    if(thisActor.unk_0x118>360){
+        thisActor.unk_0x118-=360;
+        SFX_Play_2(0x116); //dash sound
+        }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8F080/ActorTick_CalinaChange.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095FC8.s")
 
@@ -176,47 +190,42 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009685C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800968EC.s")
+void func_800968EC(uint16_t x){
+    func_800819A8(x, D_800E9654);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009691C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969CC.s")
+void func_800969CC(uint16_t x){
+    func_80090558(x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969F4.s")
+void func_800969F4(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800969FC.s")
+void func_800969FC(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A04.s")
+void func_80096A04(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A0C.s")
+void func_80096A0C(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A14.s")
+void func_80096A14(uint16_t x){}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A1C.s")
+void func_80096A1C(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 1;
+    func_8008FB20(index);
+}
 
-#ifdef NON_MATCHING
 void func_80096A70(uint16_t index) {
     gActors[index + 1].unk_0xD8 = 2;
-    func_800902B0(index);
+    func_8008FD08(index);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096A70.s")
-#endif
 
-#ifdef NON_MATCHING
 void func_80096AC4(uint16_t index) {
     gActors[index + 1].unk_0xD8 = 3;
+    func_80090064(index);
+}
+
+void func_80096B18(uint16_t index) {
+    gActors[index + 1].unk_0xD8 = 5;
     func_800902B0(index);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096AC4.s")
-#endif
-
-#ifdef NON_MATCHING
-void func_80096B18(float f1, float f2, uint16_t index) {
-    gActors[index + 1].unk_0xD8 = 5;
-    func_800902B0(f1, f2, index);
-}
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80096B18.s")
-#endif

@@ -14,57 +14,68 @@ segments:
   - name: boot
     type: bin
     start: 0x40
+    vram: 0xA4000040
+    subsegments:
+    - [0x0040, hasm, boot]
   - name: main
     type: code
     start: 0x1000
     vram: 0x80000400
     subsegments:
-      - [0x01000, asm, entrypoint]
+      - [0x01000, hasm, entrypoint]
       - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
+      - [0x05510, c,decodeA] #may be decompression/decryption func
       - [0x05A70, c, GameSave]
-      - [0x0A540, c]
-      - [0x11820, asm]
-      - [0x12DD0, c]
+      - [0x0A540, c,render]
+      - [0x11820, c]
+      - [0x12DD0, c,PlayerActor]
       - [0x134E0, c]
-      - [0x13850, c] #continue/Game over
+      - [0x13850, c,gameover] 
       - [0x156F0, c]
       - [0x17A70, c]
-      - [0x1E7A0, c]
+      - [0x1E7A0, c,ActorInit]
       - [0x1F1E0, c]
-      - [0x22290, c]
-      - [0x241E0, c]
+      - [0x22290, c,Letterbox]
+      - [0x23070, c,Lifebar]
+      - [0x23910, c,GameInit]
+      - [0x241E0, c,Scenes]
+      - [0x26A00, c,RomCopy]
+      - [0x27F70, c,text]
+      - [0x28EF0, c]
       - [0x438E0, c]
-      - [0x48A30, asm]
-      - [0x49200, c]
-      - [0x4FEB0, asm]
-      - [0x59EA0, asm]
-      - [0x5D120, asm]
-      - [0x5E230, asm]
-      - [0x60CF0, asm]
-      - [0x61B80, asm]
+      - [0x44F90, c,StaticGem]
+      - [0x46100, c]
+      - [0x48A30, c]
+      - [0x49200, c,ActorMarina]
+      - [0x4FEB0, c]
+      - [0x59EA0, c]
+      - [0x5D120, c]
+      - [0x5E230, c]
+      - [0x60CF0, c]
+      - [0x61B80, c]
       - [0x66250, c]
-      - [0x7D8E0, asm]
-      - [0x805E0, asm]
-      - [0x80D90, asm]
+      - [0x7D8E0, c]
+      - [0x805E0, c]
+      - [0x80D90, c]
       - [0x82920, c]
-      - [0x82DB0, c]
-      - [0x82F80, asm] # likey deals with text defined in Alphabet.h
-      - [0x844E0, c, DebugText] # looks to provide text/ transform data for sprite.c. unique struct.
-      - [0x84BB0, asm]
+      - [0x82DB0, c,MarinaGraphics]
+      - [0x82F80, c] # likey deals with text defined in Alphabet.h
+      - [0x844E0, c, DebugText]
+      - [0x84BB0, c]
       - [0x8D0A0, c]
       - [0x8F080, c]
-      - [0x97770, c]
-      - [0x99750, asm] # A single function which decompresses (?) Marina's sprite data to some address?
-      #start of libultra funcs
+      - [0x97770, c,LevelClear] # Level clear sequence
+      - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
+      #libultra
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
       - [0x99B50, asm, os/initalize]
       - [0x9A3C0, asm, os/vimgr]
       - [0x9A820, asm, os/visetmode]
       - [0x9A8F0, asm, os/pimgr]
-      - [0x9AC20, asm, rmon/Thread_RmonProc]
+      - [0x9AC20, asm, rmon/rmonmain]
       - [0x9B060, asm, os/setthreadpri]
       - [0x9B190, asm, os/virtualtophysical]
       - [0x9B250, asm, os/createmesgqueue]
@@ -75,7 +86,8 @@ segments:
       - [0x9B910, asm, os/recvmesg]
       - [0x9BAA0, asm, os/writebackchacheall]
       - [0x9BAD0, asm, io/taskload]
-      - [0x9C5D0, asm, io/assert]
+      - [0x9BEE0, asm, io/controller]
+      - [0x9C5D0, asm, os/assert]
       - [0x9C620, asm, audio/si]
       - [0x9C730, asm, audio/heapalloc]
       - [0x9C880, asm, audio/heapinit]
@@ -85,11 +97,12 @@ segments:
       - [0x9EEA0, asm, audio/seqpsetbank]
       - [0x9EEF0, asm, os/sendmsg]
       - [0x9F0D0, asm, audio/seqpsetfxmix]
-      - [0x9F140, asm, audio/sl]
+      - [0x9F140, asm, audio/synthesizer]
       - [0x9FA70, asm, audio/seqpgetstate]
       - [0x9FA90, asm, audio/cseq]
       - [0xA09A0, asm, audio/seqpsetseq]
       - [0xA09F0, asm, audio/seqpplay]
+      - [0xA0A30, asm, audio/setnextbuf]
       - [0xA0B40, asm, audio/seqpstop]
       - [0xA0B80, asm, audio/saqpsetchlvol]
       - [0xA0BF0, asm, audio/saqpsetpan]
@@ -109,22 +122,23 @@ segments:
       - [0xA5D10, asm, gu/scale]
       - [0xA5DD0, asm, gu/lookat]
       - [0xA6240, asm, libc/sprintf]
-      - [0xA6310, asm, gu/sqrt]
+      - [0xA6310, hasm, gu/sqrt]
       - [0xA6320, asm, os/gettime]
       - [0xA63F0, asm, error/kmcprint]
       - [0xA6830, asm, libc/string]
       - [0xA6930, asm, io/vi]
-      - [0xA6A90, asm, os/interrupt]
-      - [0xA6AD0, asm, os/exceptasm]
-      - [0xA79B0, asm, os/setfpccsr]
-      - [0xA79C0, asm, rsp/sprawread]
+      - [0xA6A90, hasm, os/interrupt]
+      - [0xA6AD0, hasm, os/exceptasm]
+      - [0xA79B0, hasm, os/setfpccsr]
+      - [0xA79C0, asm, io/sirawread]
       - [0xA7A80, asm, io/sirawwrite]
-      - [0xA7B10, asm, os/writebackdcache]
-      - [0xA7B90, asm, os/invalicache]
-      - [0xA7C10, asm, os/maptlbrdb]
+      - [0xA7B10, hasm, os/writebackdcache]
+      - [0xA7B90, hasm, os/invalicache]
+      - [0xA7C10, hasm, os/maptlbrdb]
       - [0xA7C70, asm, io/pirawread]
       - [0xA7D50, asm, libc/bzero]
-      - [0xA7E10, asm, os/timerintr]
+      - [0xA7E10, asm, os/thread]
+      - [0xA7E60, asm, os/timerintr]
       - [0xA8410, asm, os/getthreadpri]
       - [0xA8440, asm, io/vigetcurcontext]
       - [0xA8460, asm, io/vimgr]
@@ -137,11 +151,12 @@ segments:
       - [0xA9550, asm, host/rdbsend]
       - [0xA9860, asm, rmon/rmonmisc]
       - [0xA9A10, asm, rmon/rmonsio]
+      - [0xA9C60, asm, io/sprawread]
       - [0xA9D20, asm, rmon/rmonmem]
       - [0xAA700, asm, rmon/rmonbrk]
       - [0xAB380, asm, os/probetlb]
       - [0xAB440, asm, io/siacs]
-      - [0xAB520, asm, si/sirawdma]
+      - [0xAB520, asm, io/sirawdma]
       - [0xAB610, asm, libc/bcopy]
       - [0xAB990, asm, io/spsetpc]
       - [0xAB9D0, asm, io/sprawdma]
@@ -165,8 +180,12 @@ segments:
       - [0xAF1A0, asm, audio/synsetfxmix]
       - [0xAF2A0, asm, os/setintmask]
       - [0xAF340, asm, audio/drvrNew]
+      - [0xAFDE0, asm, audio/synallocfx]
       - [0xAFEE0, asm, audio/mainbus]
       - [0xB0110, asm, audio/load]
+      - [0xB12F0, asm, audio/resample]
+      - [0xB1750, asm, audio/env]
+      - [0xB2A50, asm, audio/auxbus]
       - [0xB2BF0, asm, audio/save]
       - [0xB2DD0, asm, ai/ai]
       - [0xB2E20, asm, eeprom/conteepwrite]
@@ -175,19 +194,22 @@ segments:
       - [0xB39A0, asm, gu/cosf]
       - [0xB3BE0, asm, gu/sinf]
       - [0xB3E60, asm, gu/normalize]
+      - [0xB3F10, asm, libc/xprintf]
+      - [0xB5150, asm, os/error]
+      - [0xB51B0, asm, os/kdebugserver]
       - [0xB5510, asm, host/readhost]
       - [0xB5600, asm, host/initrdb]
       - [0xB56B0, asm, io/leointerrupt]
       - [0xB6010, asm, os/destroythread]
       - [0xB6130, asm, io/si]
-      - [0xB6170, asm, os/setcompare]
+      - [0xB6170, hasm, os/setcompare]
       - [0xB6180, asm, os/resetglobalintmask]
       - [0xB61F0, asm, io/epirawwrite]
       - [0xB62A0, asm, io/epirawread]
       - [0xB6380, asm, os/setglobalintmask]
       - [0xB63E0, asm, os/yieldthread]
       - [0xB6440, asm, rmon/rmoncmds]
-      - [0xB6500, asm, io/sprawwriteio]
+      - [0xB6500, asm, io/sprawwrite]
       - [0xB6590, asm, rmon/rmonregs]
       - [0xB7280, asm, rmon/rmontask]
       - [0xB7DF0, asm, os/getactivequeue]
@@ -197,76 +219,846 @@ segments:
       - [0xB9B90, asm, libc/xstdio]
       - [0xB9EC0, asm, libc/xldtob]
       - [0xBAD90, asm, logger/ultralog]
-      - [0xBB250, asm, os/getcause]
+      - [0xBB250, hasm, os/getcause]
       - [0xBB260, asm, rmon/rmonrcp]
       - [0xBB310, asm, os/stopthread]
       - [0xBB3F0, asm, libc/ldiv]
       - [0xBB5E0, asm, os/rspboot]
-      # I dunno how to correctly find data/rodata, so these splits are very bad
-      - [0xBB810, bin] # .data, possibly some rodata from boot
+      - [0xBB6B0, bin, gspboot]
+      - [0xBCAB0, bin, aspboot]
+      #.data (note: sections commented out below have been problematic.)
+      - [0xBD8D0, .data,cosineTable]
+      - [0xBE8D0, .data,floatTable]      
+      - [0xBF0D0, bin] # general globals
+      - [0xBF350, bin] # BGM/instrument name lists
+      #- [0xBF5E4, bin] # BGM instrument settings
+      #- [0xC192C, bin] # SFX names? might be for base sounds. also seqp_bank indecies.
+      #- [0xC32DC, bin] # more music.c data
+      #- [0xC4508, bin] # sprite.c data
+      - [0xC5AE0, .data,decodeA] # decompress keys(?)
+      - [0xC5B20, bin] # gamesave.c data
+      - [0xC5FC0, bin] # misc. to discern later.
+      - [0xC88D0,.data,134E0] #a function table
+      - [0xC8910,bin,gameover]
+      - [0xC8B20,bin,156F0]
+      - [0xC8BE0,bin,17A70]
+      - [0xCCA20,data,Lifebar] #16-bit color references
+      - [0xCCB40,bin]
+
+
+      #libultra 
+      - [0xEA370, bin,osDATA]
+      #- [0xEA370, .data,os/initalize]
+      #- [0xEA390, .data,os/vimgr]
+      #- [0xEA3B0, .data,io/vitbl]
+      #- [0xEB0D0, .data,os/pimgr]
+      #- [0xEB100, .data,rmon/rmonmain]
+      #- [0xEB110, .data,io/controller]
+      #- [0xEB120, .data,audio/si]
+      #- [0xEB130, .data,audio/setnextbuf]
+      #- [0xEB140, .data,sp/sprite]
+      #- [0xEB150, .data,gu/rotate]
+      #- [0xEB160, .data,error/kmcprint]
+      #- [0xEB170, .data,io/vi]
+      #- [0xEB1E0, .data,os/exceptasm]
+      #- [0xEB200, .data,os/thread]
+      #- [0xEB220, .data,os/timerintr]
+      #- [0xEB230, .data,io/piacs]
+      #- [0xEB240, .data,host/rdbsend]
+      #- [0xEB250, .data,audio/drvrNew]
+      #- [0xEB3F0, .data,audio/env]
+      #- [0xEB530, .data,libc/xprintf]
+      #- [0xEB580, .data,io/vi]
+      #- [0xEB670, .data,os/error]
+      #- [0xEB690, .data,os/kdebugserver]
+      #- [0xEB6A0, .data,host/readhost]
+      #- [0xEB6B0, .data,rmon/rmoncmds]
+      #- [0xEB788, data]
+      #- [0xEB7B0, .data,libc/xstdio]
+      #- [0xEB7E0, .data,logger/ultralog]
+      #.rodata
       - [0xEB7E8, .rodata, boot] # end at 0xEB824
       - [0xEB830, rodata]
+      #- [0xEB830, rodata,music] # includes sfx/bgm/instrument names.
+      - [0xEBB10, .rodata, GameSave]
+      - [0xEBBC0, .rodata, render]
+      - [0xEBBE0, .rodata, 11820]
+      - [0xEBC00, rodata]
+      #- [0xEBC00, .rodata, gameover] #generates wrong offset
       - [0xEBC50, .rodata, 17A70]
       - [0xEBD00, rodata, 17A70]
       - [0xEC190, bin]
-      - [0xEC5C0, rodata, 241E0] # start for the jtbl at 0xEC6AC
-
-
-      # libultra
-      #- [0xEE200, rodata, io/viswapbuf]
-      #- [0xEE230, rodata, os/visetmode]
-      #- [0xEE2A0, rodata, os/visetevent]
-      #- [0xEE2E0, rodata, audio/heapalloc]
-      #- [0xEE530, rodata, audio/synthesizer]
-      #- [0xEE610, rodata, audio/cseq]
-      #- [0xEE620, rodata, sp/sprite]
-      #- [0xEE670, rodata, gu/perspective]
-      #- [0xEE6F0, rodata, io/sirawread]
-      #- [0xEE740, rodata, io/sirawwrite]
-      #- [0xEE770, rodata, io/pirawread]
-      #- [0xEE7A0, rodata, io/devmgr]
-      #- [0xEEAE0, rodata, io/sirawdma]
-      #- [0xEEB10, rodata, io/sprawdma]
-      #- [0xEEBA0, rodata, audio/seqplayer]
-      #- [0xEF100, rodata, audio/resample]
-      #- [0xEF130, rodata, audio/env]
-      #- [0xEF1F0, rodata, audio/save]
-      #- [0xEF220, rodata, gu/cosf]
-      #- [0xEF270, rodata, gu/sinf]
-      #- [0xEF2C0, rodata, libc/xprintf]
-      #- [0xEF3F0, rodata, io/sprawwrite]
-      #- [0xEF540, rodata, audio/seq]
-      #- [0xEF550, rodata, audio/reverb]
-      #- [0xEF5B0, rodata, libc/xldtob]
+      - [0xEC5C0, rodata, Scenes] # start for the jtbl at 0xEC6AC
       - [0xEC6C0, bin]
-      #- [0xEDC70, .rodata, DebugText] # strings and doubles
-      #- [0xEDCE0, .rodata, 84BB0]
+      - [0xEDC70, .rodata, DebugText] # strings
+      - [0xEDCC0, bin, Debugtext] #doubles (why not part of rodata?)
+      - [0xEDCE0, bin]
+      - [0xEE100, .rodata, LevelClear]
+      - [0xEE200, bin,osRODATA]
+      # libultra (not going into asms?)
+      #- [0xEE200, .rodata, io/viswapbuf]
+      #- [0xEE230, .rodata, os/visetmode]
+      #- [0xEE260, .rodata, rmon/rmonmain] 
+      #- [0xEE2A0, .rodata, os/visetevent]
+      #- [0xEE2C0, .rodata, os/assert]
+      #- [0xEE2E0, .rodata, audio/heapalloc]
+      #- [0xEE530, .rodata, audio/synthesizer]
+      #- [0xEE610, .rodata, audio/cseq]
+      #- [0xEE620, .rodata, sp/sprite]
+      #- [0xEE670, .rodata, gu/perspective]
+      #- [0xEE680, .rodata, os/exceptasm]
+      #- [0xEE6F0, .rodata, io/sirawread]
+      #- [0xEE740, .rodata, io/sirawwrite]
+      #- [0xEE770, .rodata, io/pirawread]
+      #- [0xEE7A0, .rodata, pi/devmgr]
+      #- [0xEE7C0, .rodata, rmon/rmonmisc]
+      #- [0xEE7F0, .rodata, io/sprawread]
+      #- [0xEE840, .rodata, rmon/rmonmem]
+      #- [0xEE910, .rodata, rmon/rmonbrk]
+      #- [0xEEAE0, .rodata, io/sirawdma]
+      #- [0xEEBA0, .rodata, audio/seqplayer]
+      #- [0xEEF90, .rodata, os/setintmask]
+      #- [0xEF010, .rodata, audio/drvrNew]
+      #- [0xEF100, .rodata, audio/resample]
+      #- [0xEF130, .rodata, audio/env]
+      #- [0xEF1F0, .rodata, audio/save]
+      #- [0xEF220, .rodata, gu/cosf]
+      #- [0xEF270, .rodata, gu/sinf]
+      #- [0xEF2C0, .rodata, libc/xprintf]
+      #- [0xEF3C0, .rodata, io/epirawread]
+      #- [0xEF3F0, .rodata, io/sprawwrite]
+      #- [0xEF420, .rodata, rmon/rmonregs]
+      #- [0xEF540, .rodata, audio/seq]
+      #- [0xEF550, .rodata, audio/reverb]
+      #- [0xEF5B0, .rodata, libc/xldtob]
+      - [0xEF610, bin]
       - [0xEF880, bin] # "RSP SW Version:" ...
-      - [0x7754F0, c] # includes actor functions from func_80016E70
+      
+  - type: code
+    start: 0xF00D0
+    vram: 0x80388000
+    overlay: true
+    subsegments:
+      - [0xF00D0,c,noop] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
+  - [0xF0100,bin] # romcopied in the same func as above.
+  - [0xF01C0,bin]
+  - [0x1E6900,bin] # loaded by func_80025E00
+  - [0x214B40,bin] # loaded by func_80025E6C
+  - [0x248F40,bin]
+  - [0x3fab30,bin] # loaded by func_800197A0
+  - [0x40AC70,bin] # blank.
+  - [0x40AC80,bin] # start of data refernced in table below (marina graphics?) (TODO: split all the entries.)
+  - [0x4A0910,bin] # ROM adresses load 2 at a time by MarinaGraphics_Load (-0x04BF5380)
+  #actor properties for Intermission scenes
+  - [0x4A15A0,bin]
+  - [0x4A15B0,bin]
+  - [0x4A15CC,bin]
+  - [0x4A15DC,bin]
+  - [0x4A162C,bin] #"freefall" for some reason.
+  - [0x4A1F84,bin]
+  - [0x4A1FB8,bin] #default - no actors
+  - [0x4A1FBC,bin] 
+  #more romcopied bits. looks to be compressed data
+  - [0x4A1FC0,bin]
+  - [0x4B9990,bin] #AlSoundBankFile
+  - [0x4CB120,bin]
+#call lists and code segments loaded per scene by RomCopy_Funcs
+  - type: code 
+    start: 0x67DBA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x67DBA0, data]
+  - type: code
+    start: 0x67DC20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x67DC20, c,ActorFuncs1/MigenBrawl]
+      - [0x686BB0,bin,ActorFuncs1/MigenBrawl]
+      - [0x689880,.rodata,ActorFuncs1/MigenBrawl]
+  - type: code 
+    start: 0x68A090
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x68A090, data]
+  - type: code
+    start: 0x68A100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x68A100, c,ActorFuncs1/CerberusAlpha]
+      - [0x69BD30,bin,ActorFuncs1/CerberusAlpha] 
+      - [0x69F550,.rodata,ActorFuncs1/CerberusAlpha] 
+  - type: code 
+    start: 0x6A00C0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6A00C0, data]
+  - type: code
+    start: 0x6A0100
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6A0100, c,ActorFuncs1/SasquatchBeta]
+      - [0x6A7C00,bin,ActorFuncs1/SasquatchBeta]
+      - [0x6AA570,.rodata,ActorFuncs1/SasquatchBeta]
+  - type: code 
+    start: 0x6AAA80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6AAA80, data]
+  - type: code
+    start: 0x6AAAF0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6AAAF0, c,ActorFuncs1/PhoenixGamma]
+      - [0x6B9AB0,bin,ActorFuncs1/PhoenixGamma]
+      - [0x6BC890,.rodata,ActorFuncs1/PhoenixGamma]
+  - type: code
+    start: 0x6BCD80
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6BCD80, data]
+  - type: code
+    start: 0x6BCDD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6BCDD0, c,ActorFuncs1/FinalBattle]
+      - [0x6CBC50,bin,ActorFuncs1/FinalBattle]
+      #- [0x6D15E0,.rodata,ActorFuncs1/FinalBattle]
+  - type: code
+    start: 0x6D1BF0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D1BF0, data]
+  - type: code
+    start: 0x6D1C00
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D1C00, c,ActorFuncs1/MeetMarina]
+      - [0x6D2710,.rodata,ActorFuncs1/MeetMarina]
+  - type: code
+    start: 0x6D2750
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D2750, data]
+  - type: code
+    start: 0x6D2780
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6D2780, c,ActorFuncs1/intro]
+      - [0x6D9460,bin,ActorFuncs1/intro]
+      #- [0x6D9B00,.rodata,ActorFuncs1/intro]
+  - type: code
+    start: 0x6D9FB0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6D9FB0, data]
+  - type: code
+    start: 0x6DA010
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6DA010, c,ActorFuncs1/DemoWorld1]
+      - [0x6E22E0,bin,ActorFuncs1/DemoWorld1]
+  - type: code
+    start: 0x6E2AE0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6E2AE0, data]
+  - type: code
+    start: 0x6E2B20
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6E2B20, c,ActorFuncs1/DemoWorld3]
+      - [0x6EDBB0,bin,ActorFuncs1/DemoWorld3]
+  - type: code
+    start: 0x6EE550
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6EE550, bin]
+  - type: code
+    start: 0x6EE580
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6EE580, c,ActorFuncs1/DemoWorld4]
+      - [0x6F38C0,bin,ActorFuncs1/DemoWorld4]
+  - type: code
+    start: 0x6F3DA0
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F3DA0, bin]
+  - type: code
+    start: 0x6F3DD0
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F3DD0, c,ActorFuncs1/DemoWorld5]
+      - [0x6F7800,bin,ActorFuncs1/DemoWorld5]
+  - type: code
+    start: 0x6F7B20
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F7B20, bin]
+  - type: code
+    start: 0x6F7B30
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F7B30, c,ActorFuncs1/DemoFinal]
+      - [0x6F91F0,bin,ActorFuncs1/DemoFinal]
+  - type: code
+    start: 0x6F9330
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x6F9330, bin]
+  - type: code
+    start: 0x6F9390
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x6F9390, c,ActorFuncs1/Ending]
+      - [0x711300,bin,ActorFuncs1/Ending]
+      #- [0x7129A0,.rodata,ActorFuncs1/Ending]
+  - type: code
+    start: 0x713600
+    vram: 0x80192000
+    overlay: true
+    subsegments:
+      - [0x713600, bin]
+  - type: code
+    start: 0x713630
+    vram: 0x80192100
+    overlay: true
+    subsegments:
+      - [0x713630, c,ActorFuncs1/General]
+      - [0x719150,bin,ActorFuncs1/General]
+      - [0x719200,.rodata,ActorFuncs1/General]
 
-  - type: bin # more data
-    start: 0x77EA60
-  # display lists / vtxs / etc
-  - [0x79EC60, bin]
-  - [0x79EE60, bin]
-  - [0x79EF58, bin]
-  - [0x79F050, bin]
-  - [0x79F148, bin]
-  - [0x79F240, bin]
-  - [0x79F338, bin]
-  - [0x79F430, bin]
-  - [0x79F578, bin]
-  - [0x79F6C0, bin]
-  - [0x79F808, bin]
-  - [0x79F950, bin]
-  - [0x79FA98, bin]
-  - [0x79FBE0, bin]
-  - [0x7A0790, bin]
-  - [0x7A08D8, bin]
-  - [0x7A0A20, bin]
-  - [0x7A0B68, bin]
-  - [0x7A0CB0, bin]
-  - [0x7A0DF8, bin]
-  - [0x7A0F40, bin]
+#call lists and code segments loaded per scene by RomCopy_Funcs2
+  - type: code
+    start: 0x719700
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x719700, bin]
+  - type: code
+    start: 0x719720 
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x719720, c,ActorFuncs2/Merco]
+      - [0x721E40,bin,ActorFuncs2/Merco]
+     # - [0x7228D0,.rodata,ActorFuncs2/Merco]
+  - type: code
+    start: 0x722A30
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x722A30, bin]
+  - type: code
+    start: 0x722A50
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x722A50, c,ActorFuncs2/Lunar]
+      - [0x72AA70,bin,ActorFuncs2/Lunar]
+      #- [0x72AE00,.rodata,ActorFuncs2/Lunar]
+  - type: code
+    start: 0x72B120
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x72B120, bin] 
+  - type: code
+    start: 0x72B140
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x72B140, c,ActorFuncs2/Taurus]
+      - [0x731860,bin,ActorFuncs2/Taurus]
+    #  - [0x731C10,.rodata,ActorFuncs2/Taurus]
+  - type: code
+    start: 0x731DD0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x731DD0, bin]
+  - type: code
+    start: 0x731E60
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x731E60, c,ActorFuncs2/General]
+      - [0x73B4D0,bin,ActorFuncs2/General]
+  - type: code
+    start: 0x73D070
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x73D070, bin]
+  - type: code
+    start: 0x73D090
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x73D090, c,ActorFuncs2/WorminUp]
+      - [0x742870,bin,ActorFuncs2/WorminUp]
+    #  - [0x742A10,.rodata,ActorFuncs2/WorminUp]
+  - type: code
+    start: 0x742CA0
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x742CA0, bin]
+  - type: code
+    start: 0x742CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x742CB0, c,ActorFuncs2/Flambee]
+      - [0x748AB0,bin,ActorFuncs2/Flambee]
+    #  - [0x7496D0,.rodata,ActorFuncs2/Flambee]
+  - type: code
+    start: 0x749C90
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x749C90, bin]
+  - type: code
+    start: 0x749CB0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x749CB0, c,ActorFuncs2/ChillyDog]
+      - [0x751950,bin,ActorFuncs2/ChillyDog]      
+      #- [0x753420,.rodata,ActorFuncs2/ChillyDog]      
+  - type: code
+    start: 0x753860
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x753860, bin]
+  - type: code
+    start: 0x753880
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x753880, c,ActorFuncs2/Festival]
+      - [0x753FD0,bin,ActorFuncs2/Festival]
+      #- [0x7544E0,.rodata,ActorFuncs2/Festival]
+  - type: code
+    start: 0x754570
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x754570, bin]
+  - type: code
+    start: 0x7545A0
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x7545A0, c,ActorFuncs2/ToadlyRaw]
+      - [0x75C6F0,bin,ActorFuncs2/ToadlyRaw]
+      #- [0x75D290,.rodata,ActorFuncs2/ToadlyRaw]
+  - type: code
+    start: 0x75D630
+    vram: 0x8019b000
+    overlay: true
+    subsegments:
+      - [0x75D630, bin]
+  - type: code
+    start: 0x75D660
+    vram: 0x8019b100
+    overlay: true
+    subsegments:
+      - [0x75D660, c,ActorFuncs2/MoleyCow]
+      - [0x763EA0,bin,ActorFuncs2/MoleyCow]
+      #- [0x765B20,.rodata,ActorFuncs2/MoleyCow]
+
+#call lists and code segments loaded per scene by RomCopy_ActorFuncs3
+  - type: code
+    start: 0x766080
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x766080, bin]
+  - type: code
+    start: 0x766110
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x766110, c,ActorFuncs3/World1]
+      - [0x76EC30, bin, ActorFuncs3/World1]
+      - [0x76F150, .rodata, ActorFuncs3/World1]
+  - type: code
+    start: 0x76F390
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76F390, bin]
+  - type: code
+    start: 0x76F3A0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76F3A0, c,ActorFuncs3/World2]
+      - [0x76FD40, bin,ActorFuncs3/World2]
+  - type: code
+    start: 0x76FD60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x76FD60, bin]
+  - type: code
+    start: 0x76FDD0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x76FDD0, c,ActorFuncs3/World3]
+      - [0x774520, bin,ActorFuncs3/World3]
+  - type: code
+    start: 0x775460
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x775460, bin]
+  - type: code
+    start: 0x7754F0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x7754F0, c,ActorFuncs3/World4]
+      - [0x77EA60,bin,ActorFuncs3/World4]
+  - type: code
+    start: 0x77F240
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x77F240, bin]
+  - type: code
+    start: 0x77F260
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x77F260, c,ActorFuncs3/World4B] 
+      - [0x784710, bin, ActorFuncs3/World4B]
+  - type: code
+    start: 0x7854B0
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x7854B0, bin]
+  - type: code
+    start: 0x7854D0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x7854D0, c,ActorFuncs3/World5]
+      - [0x789D70, bin, ActorFuncs3/World5]
+  - type: code
+    start: 0x78B430
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78B430, bin]
+  - type: code
+    start: 0x78B440
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78B440, c,ActorFuncs3/World5B]
+      - [0x78C9E0, bin,ActorFuncs3/World5B]
+  - type: code
+    start: 0x78CB60
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x78CB60, bin]
+  - type: code
+    start: 0x78CBF0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x78CBF0, c,ActorFuncs3/Festival]
+      - [0x7958C0, bin, ActorFuncs3/Festival]
+      - [0x7963E0, .rodata, ActorFuncs3/Festival]
+#call lists and code segments loaded per scene by romcopy_actorFuncs4
+  - type: code
+    start: 0x7969B0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7969B0, bin]
+  - type: code
+    start: 0x7969D0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7969D0, c,ActorFuncs4/World1]
+      - [0x7984C0, bin, ActorFuncs4/World1]
+  - type: code
+    start: 0x7986D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7986D0, bin]
+  - type: code
+    start: 0x798740
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x798740, c,ActorFuncs4/World2]
+      - [0x79DC30, bin, ActorFuncs4/World2]
+  - type: code
+    start: 0x7A13D0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A13D0, bin]
+  - type: code
+    start: 0x7A1410
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A1410, c,ActorFuncs4/World3]
+      - [0x7A69A0, bin, ActorFuncs4/World3]
+  - type: code
+    start: 0x7A6E60
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7A6E60, bin]
+  - type: code
+    start: 0x7A6E80
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7A6E80, c,ActorFuncs4/Festival]
+      - [0x7AB410, bin, ActorFuncs4/Festival]
+      - [0x7ABFE0, .rodata, ActorFuncs4/Festival]
+  - type: code
+    start: 0x7AC7F0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7AC7F0, bin]
+  - type: code
+    start: 0x7AC820
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7AC820, c,ActorFuncs4/Festival2]
+      - [0x7B3240, bin, ActorFuncs4/Festival2]
+      - [0x7B38B0, .rodata, ActorFuncs4/Festival2]
+  - type: code
+    start: 0x7B3FC0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B3FC0, bin]
+  - type: code
+    start: 0x7B3FE0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B3FE0, c,ActorFuncs4/Festival3]
+      - [0x7B79F0, bin, ActorFuncs4/Festival3]
+      - [0x7B8150, .rodata, ActorFuncs4/Festival3]
+  - type: code
+    start: 0x7B8760
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7B8760, bin]
+  - type: code
+    start: 0x7B87B0
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7B87B0, c,ActorFuncs4/World4]
+      - [0x7BC2B0, bin, ActorFuncs4/World4]
+      #- [0x7BC6A0, rodata, ActorFuncs4/World4]
+  - type: code
+    start: 0x7BC840
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7BC850
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7BC850, c,ActorFuncs4/Festival4]
+      - [0x7C0640, bin, ActorFuncs4/Festival4]
+  - type: code
+    start: 0x7C0AB0
+    vram: 0x801B0800
+    overlay: true
+    subsegments:
+      - [0x7BC840, bin]
+  - type: code
+    start: 0x7C0B20
+    vram: 0x801B0900
+    overlay: true
+    subsegments:
+      - [0x7C0B20, c,ActorFuncs4/World5]
+      - [0x7C67A0, bin, ActorFuncs4/World5]
+#call lists and code segments loaded per scene by romcopy_actorFuncs5      
+  - type: code
+    start: 0x7C6AB0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7C6AB0, data]
+  - type: code
+    start: 0x7C6AE0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7C6AE0, c,ActorFuncs5/World1]
+     - [0x7C9800, bin,ActorFuncs5/World1]
+     - [0x7CDDD0, .rodata,ActorFuncs5/World1]
+  - type: code
+    start: 0x7CE060
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7CE060, data]
+  - type: code
+    start: 0x7CE090
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7CE090, c,ActorFuncs5/World2]
+     - [0x7D0390, bin,ActorFuncs5/World2]
+     - [0x7D3F60, .rodata,ActorFuncs5/World2]
+  - type: code
+    start: 0x7D40C0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7D40C0, data]
+  - type: code
+    start: 0x7D40F0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7D40F0, c,ActorFuncs5/World3]
+     - [0x7D6930, bin,ActorFuncs5/World3]
+  - type: code
+    start: 0x7DAAA0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7DAAA0, data]
+  - type: code
+    start: 0x7DAB00
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7DAB00, c,ActorFuncs5/Festival]
+     - [0x7DC230, bin,ActorFuncs5/Festival]
+     - [0x7DC6E0, .rodata,ActorFuncs5/Festival]
+  - type: code
+    start: 0x7DC7A0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7DC7A0, data]
+  - type: code
+    start: 0x7DC7D0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7DC7D0, c,ActorFuncs5/7DC7D0]
+     - [0x7DF850, bin,ActorFuncs5/7DC7D0]
+  - type: code
+    start: 0x7E2A30
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7E2A30, data]
+  - type: code
+    start: 0x7E2A60
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7E2A60, c,ActorFuncs5/7E2A60]
+     - [0x7E5010, bin,ActorFuncs5/7E2A60]
+     - [0x7E67A0, .rodata,ActorFuncs5/7E2A60]
+  - type: code
+    start: 0x7E6A20
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7E6A20, data]
+  - type: code
+    start: 0x7E6A50
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7E6A50, c,ActorFuncs5/7E6A50]
+     - [0x7E7690, bin,ActorFuncs5/7E6A50]
+  - type: code
+    start: 0x7E7EB0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7E7EB0, data]
+  - type: code
+    start: 0x7E7ED0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7E7ED0, c,ActorFuncs5/7E7ED0]
+     - [0x7E95A0, bin,ActorFuncs5/7E7ED0]
+  - type: code
+    start: 0x7EA3C0
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+     - [0x7EA3C0, data]
+  - type: code
+    start: 0x7EA3D0
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+     - [0x7EA3D0, c,ActorFuncs5/7EA3D0]
+     - [0x7EA690, bin,ActorFuncs5/7EA3D0]
+  - type: code
+    start: 0x7EA710
+    vram: 0x801B9800
+    overlay: true
+    subsegments:
+    - [0x7EA710, data]
+  - type: code
+    start: 0x7EA730
+    vram: 0x801B9900
+    overlay: true
+    subsegments:
+    - [0x7EA730, c,ActorFuncs5/World4]
+    - [0x7EADE0, bin,ActorFuncs5/World4]
+    - [0x7EAFA0, .rodata,ActorFuncs5/World4]
   - [0x7EAFD0, bin, trailer] # 0xff to end
   - [0x800000]

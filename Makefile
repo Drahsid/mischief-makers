@@ -1,18 +1,25 @@
 BASENAME  = mischiefmakers
 
 BUILD_DIR = build
-ASM_DIRS  = asm asm/os asm/io asm/audio asm/rmon asm/libc asm/host asm/logger asm/gu asm/sp asm/eeprom asm/pi asm/ai asm/error asm/si asm/rsp\
-			asm/data asm/data/os asm/data/io asm/data/audio asm/data/rmon asm/data/libc asm/data/host asm/data/logger asm/data/gu asm/data/sp
-BIN_DIRS  = assets
+ASM_DIR   = asm
+ASM_DIRS  = $(ASM_DIR) $(ASM_DIR)/os $(ASM_DIR)/io $(ASM_DIR)/audio $(ASM_DIR)/rmon $(ASM_DIR)/libc $(ASM_DIR)/host $(ASM_DIR)/logger $(ASM_DIR)/gu $(ASM_DIR)/sp $(ASM_DIR)/eeprom $(ASM_DIR)/pi $(ASM_DIR)/ai $(ASM_DIR)/error $(ASM_DIR)/si $(ASM_DIR)/rsp\
+			$(ASM_DIR)/data $(ASM_DIR)/data/os $(ASM_DIR)/data/io $(ASM_DIR)/data/audio $(ASM_DIR)/data/rmon $(ASM_DIR)/data/libc $(ASM_DIR)/data/host $(ASM_DIR)/data/logger $(ASM_DIR)/data/gu $(ASM_DIR)/data/sp\
+			$(ASM_DIR) $(ASM_DIR)/ActorFuncs1 $(ASM_DIR)/ActorFuncs2 $(ASM_DIR)/ActorFuncs3 $(ASM_DIR)/ActorFuncs4 $(ASM_DIR)/ActorFuncs5
+BIN_DIR	  = assets
+BIN_DIRS  = $(BIN_DIR) $(BIN_DIR)/ActorFuncs1 $(BIN_DIR)/ActorFuncs2 $(BIN_DIR)/ActorFuncs3 $(BIN_DIR)/ActorFuncs4 $(BIN_DIR)/ActorFuncs5
 SRC_DIR   = src
-SRC_DIRS  = $(SRC_DIR)
+SRC_DIRS  = $(SRC_DIR) $(SRC_DIR)/ActorFuncs1 $(SRC_DIR)/ActorFuncs2 $(SRC_DIR)/ActorFuncs3 $(SRC_DIR)/ActorFuncs4 $(SRC_DIR)/ActorFuncs5
+SRC_DIRS_ULTRA =$(SRC_DIR)/os $(SRC_DIR)/io $(SRC_DIR)/audio $(SRC_DIR)/rmon $(SRC_DIR)/libc $(SRC_DIR)/host $(SRC_DIR)/logger $(SRC_DIR)/gu $(SRC_DIR)/sp $(SRC_DIR)/eeprom $(SRC_DIR)/pi $(SRC_DIR)/ai $(SRC_DIR)/error $(SRC_DIR)/si $(SRC_DIR)/rsp\
+			$(SRC_DIR)/data $(SRC_DIR)/data/os $(SRC_DIR)/data/io $(SRC_DIR)/data/audio $(SRC_DIR)/data/rmon $(SRC_DIR)/data/libc $(SRC_DIR)/data/host $(SRC_DIR)/data/logger $(SRC_DIR)/data/gu $(SRC_DIR)/data/sp
 TOOLS_DIR := tools
 
 S_FILES   = $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 C_FILES   = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+C_FILES_ULTRA   = $(foreach dir,$(SRC_DIRS_ULTRA),$(wildcard $(dir)/*.c))
 BIN_FILES = $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.bin))
 O_FILES := $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file).o) \
            $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file).o) \
+		   $(foreach file,$(C_FILES_ULTRA),$(BUILD_DIR)/$(file).o) \
            $(foreach file,$(BIN_FILES),$(BUILD_DIR)/$(file).o)
 
 
@@ -34,6 +41,7 @@ CC := $(TOOLS_DIR)/ido_recomp/linux/5.3/cc
 
 OPT_FLAGS := -O2
 MIPSISET := -mips1 -o32
+MIPSISET_ULTRA := -mips2 -g1 -o32
 INCLUDE_CFLAGS := -I . -I include -I libreultra/include/2.0I
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 

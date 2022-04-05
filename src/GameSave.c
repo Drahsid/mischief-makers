@@ -1,12 +1,9 @@
 #include "GameSave.h"
-#include "Alphabet.h"
+#include "common.h"
 #include "SFX.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include <ultra64.h>
+
 
 char gEEPROMID[8] = "TREA0722";
-
 uint16_t gTimeRecords[64] = {
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
@@ -14,22 +11,35 @@ uint16_t gTimeRecords[64] = {
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000,
     36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000, 36000
 };
-
 uint16_t gDefaultFileName[11] = {
     ALPHA_UPPER_S, ALPHA_LOWER_T, ALPHA_LOWER_A, ALPHA_LOWER_R, ALPHA_LOWER_T, ALPHA_SPACE,
     ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_SPACE,   ALPHA_NULL
 };
+uint32_t D_800C4FC0[10]={
+    0x10000,0x20000,0x40000,0x64,3,0x20000,3,0x40000,0,0x40000
+};
+uint16_t gNameEntrySpace[11]={
+    0,0,0,0,0,0,0,0,0,ALPHA_NULL
+};
+uint8_t D_800C5000=0;
+uint8_t GameSave_SelectedAge=0;
+uint8_t gSaveSlotIndex=0;
+
+//b2_s D_800C500C=0;
+uint16_t D_800C500E=0;
+
 
 // This function gets the lower 4 bits of the word lhs + (offset)
-// Difference is flipped instructions
+// Difference is flipped instruction. ('and t8,t7,a0' vs 'and t8,a0,t7')
 #ifdef NON_MATCHING
-uint16_t func_80004E70(int32_t lhs, uint32_t offset) {
+uint16_t func_80004E70(uint32_t lhs, int32_t offset) {
     return lhs & (0xF << (offset * 4)) >> (offset * 4);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004E70.s")
 #endif
 
+uint8_t D_800C5010[8]={9,9,9,5,9,5,0,0};
 int32_t func_80004E90(uint32_t arg0) {
     uint16_t index;
 
@@ -47,7 +57,7 @@ int32_t IsOver999(uint32_t x) { //{Vegeta Joke}
     }
     return 0;
 }
-
+//seems to check festival records and default them at certain conditions.
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80004F24.s")
 
 #ifdef NON_MATCHING
@@ -97,59 +107,56 @@ void GameSave_LoadRecords(void) {
     osEepromProbe(&gContMesgq);
     if (gSaveSlotIndex) {
         osEepromLongRead(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x2C, &gTimeRecords, sizeof(gTimeRecords));
     }
     else {
         osEepromLongRead(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, 0x80);
+        osEepromLongRead(&gContMesgq, 0x14, &gTimeRecords, sizeof(gTimeRecords));
     }
-    if (D_80171B19 >= 2)
-        D_80171B19 = 0;
+    if (D_80171B19 >= 2) D_80171B19 = 0;
 
     func_80004F24();
 
     for (index = 0; index < 64; index++) {
-        if (gTimeRecords[index] > 36000) {
-            gTimeRecords[index] = 36000;
-        }
+        if (gTimeRecords[index] > 36000) gTimeRecords[index] = 36000;
     }
 }
 
-void func_80005770(void) {
+void GameSave_SaveRecords(void) {
     osEepromProbe(&gContMesgq);
     osEepromLongWrite(&gContMesgq, 2, gFileNames, 0x48);
 
     if (gSaveSlotIndex) {
         osEepromLongWrite(&gContMesgq, 0x24, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x2C, &gTimeRecords, sizeof(gTimeRecords));
     }
     else {
         osEepromLongWrite(&gContMesgq, 0xC, &gFestivalRecords, 0x32);
-        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, 0x80);
+        osEepromLongWrite(&gContMesgq, 0x14, &gTimeRecords, sizeof(gTimeRecords));
     }
 }
 
 void GameSave_Erase(void) {
     GameSave_Initialize(gSaveSlotIndex);
     GameSave_SetDefaults();
-    func_80005770();
+    GameSave_SaveRecords();
 }
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
-    func_80027510(index, &D_800E13DC, pos_x, pos_y, 0);
-    gActors[index].unk_0x94 |= 0x200;
-    gActors[index].unk_0x18C = arg3;
+    Text_SpawnIcon(index, &gIcon_YellowGem, pos_x, pos_y, 0);
+    thisActor.flag2 |= 0x200;
+    thisActor.unk_0x18C._p = arg3;
 }
 
 // Differences related to implicit casts
 #ifdef NON_MATCHING
-void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
+void GameSave_PrintRedGems(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, int32_t arg4) {
     uint16_t* red_gems = &gFileRedGems[arg3];
-    func_80027800(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
-    func_80027800(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
+    Text_Print2Digits(arg0, *red_gems / 0x64, arg1, arg2, 0, arg4);
+    Text_Print2Digits(arg0, *red_gems % 0x64, arg1 + 18, arg2, 0, arg4);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800058E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/GameSave_PrintRedGems.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800059A4.s")
@@ -165,7 +172,6 @@ void func_800058E0(uint16_t arg0, uint16_t arg1, uint16_t arg2, uint16_t arg3, i
 #ifdef NON_MATCHING
 void func_80006B1C(uint16_t i) {
     uint16_t j;
-    i &= 0xFFFF;
     for (j = i + 0xab; j < i + 0xBD; j++) {
         gActors[j].flag = 0;
     }
@@ -184,16 +190,16 @@ void func_80006B1C(uint16_t i) {
 
 void func_80006DF4(uint16_t index) {
     uint32_t temp = index; // int promotion magic??
-    gActors[temp].unk_0xBC += 8.0f;
-    gActors[temp].unk_0xC0 += 8.0f;
-    gActors[temp + 1].unk_0xBC -= 8.0f;
-    gActors[temp + 1].unk_0xC0 -= 8.0f;
+    gActors[temp].rotateX += 8.0f;
+    gActors[temp].rotateY += 8.0f;
+    gActors[temp + 1].rotateX -= 8.0f;
+    gActors[temp + 1].rotateY -= 8.0f;
 }
-
+//sets selected stage
 #ifdef NON_MATCHING
 void func_80006E60(void) {
     gCurrentStage = gWorldProgress;
-    D_800BE5D0 = D_800C8378[gWorldProgress];
+    gCurrentScene = gStageScenes[gWorldProgress]; //array of scene indecies
     D_800D28E4 = D_800C83F8[gWorldProgress];
     func_80043918();
     D_800CBF40 = 1;
@@ -205,49 +211,68 @@ void func_80006E60(void) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006EDC.s")
+//menus use gActors' fields rather than their own variables.
+#define NameEntryLanguage gActors[185].unk_0xA0
+#define NameEntryCurrentChar gActors[184].unk_0xA0
+#define nameEntrySelectedColumn gActors[177].unk_0xA0
+#define nameEntrySelectedRow gActors[178].unk_0xA0
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800072A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_ConfirmName.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800073CC.s")
+#ifdef NON_MATCHING
+uint16_t NameEntry_PrintKeyboardHIRA(uint16_t index){
+    Text_SpawnAt2(index,0x11e,0x80,0x44,0);
+    gActors[index+1].flag=0;
+    index=Text_PrintAlphaAtColor(index+2,D_800C52B0,0x40,0x44,0,0x80,0,0);
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    gActors[index++].flag=0;
+    index= Text_PrintAlphaAt(index+1, gNameEntryRow0HIRA,0xff80,0x30,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow1HIRA,0xff80,0x20,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow2HIRA,0xff80,0x10,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow3HIRA,0xff80,0,0);
+    index= Text_PrintAlphaAt(index, gNameEntryRow4HIRA,0xff80,0xffF0,0);
+    gActors[index++].flag=0;
+    return index;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboardHIRA.s")
+#endif
 
 void func_80007578(void) {
     SFX_Play_2(SFX_MENU_BLIP);
-    gNameEntryLanguage = 0;
-    func_800073CC(0xC);
+    NameEntryLanguage = 0;
+    NameEntry_PrintKeyboardHIRA(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_800075A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboardKATA.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_PrintKeyboard.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_Setup.s")
 
-#ifdef NON_MATCHING
-// compiler refuses to recognize symbols
 void NameEntry_IsMaxed(void) {
     if (NameEntryCurrentChar == 10) {
         nameEntrySelectedColumn = 2;
         nameEntrySelectedRow = 5;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_IsMaxed.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007ABC.s")
 
 // Original Japanese version has 3 different character sets for name entry. All other regions have 1
 #ifdef NON_MATCHING
 void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) {
-    if (gNameEntryCurrentChar < 10) {
-        if (gNameEntryLanguage == 0) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Hiragana[gNameEntrySelectedColumn];
+    if (NameEntryCurrentChar != 10) {
+        if (NameEntryLanguage == 0) {
+            gNameEntrySpace[NameEntryCurrentChar] = Hiragana[nameEntrySelectedColumn];
         }
-        else if (gNameEntryLanguage == 1) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Katakana[gNameEntrySelectedColumn];
+        if (NameEntryLanguage == 1) {
+            gNameEntrySpace[NameEntryCurrentChar] = Katakana[nameEntrySelectedColumn];
         }
-        else if (gNameEntryLanguage == 2) {
-            gNameEntrySpace[gNameEntryCurrentChar] = Eng[gNameEntrySelectedColumn];
+        if (NameEntryLanguage == 2) {
+            gNameEntrySpace[NameEntryCurrentChar] = Eng[nameEntrySelectedColumn];
         }
         SFX_Play_1(SFX_MENU_DING);
         SFX_Play_1(0x10D);
@@ -258,4 +283,4 @@ void NameEntry_EnterChar(uint16_t* Hiragana, uint16_t* Katakana, uint16_t* Eng) 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/NameEntry_EnterChar.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80007C8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameSave/FileSelect_Tick.s")

@@ -1,24 +1,20 @@
-#include "BGM.h"
+#include "common.h"
 #include "GameSave.h"
-#include "data_symbols.h"
-#include "function_symbols.h"
-#include "inttypes.h"
-#include <ultra64.h>
 
-void func_80016E70(uint16_t index) {
-    uint8_t temp_t8 = gActors[index].unk_0xD2 & 0xFFFF;
+void Actors_Tick_Overlayed(uint16_t index) {
+    uint8_t temp_t8 = thisActor.actorType & 0xFFFF;
 
-    switch (gActors[index].unk_0xD2 >> 8) {
+    switch (thisActor.actorType >> 8) {
         case 1: {
             gActorFuncTable_801B0800[temp_t8](index);
             break;
         }
         case 2: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 3: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 4: {
@@ -30,7 +26,7 @@ void func_80016E70(uint16_t index) {
             break;
         }
         case 6: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 7: {
@@ -42,23 +38,23 @@ void func_80016E70(uint16_t index) {
             break;
         }
         case 9: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 10: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 11: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 12: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 13: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 14: {
@@ -66,51 +62,51 @@ void func_80016E70(uint16_t index) {
             break;
         }
         case 15: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 16: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 17: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 18: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 19: {
-            gActorFuncTable_8019B000[temp_t8](index);
+            gActorFuncTable_8019B000[temp_t8].oneArg(index);
             break;
         }
         case 20: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 21: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 22: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 23: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 24: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 25: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 26: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 27: {
@@ -118,47 +114,47 @@ void func_80016E70(uint16_t index) {
             break;
         }
         case 28: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 29: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 30: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 31: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 32: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 33: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 34: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 35: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 36: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 37: {
-            gActorFuncTable_801A6800[temp_t8](index);
+            gActorFuncTable_801A6800[temp_t8].oneArg(index);
             break;
         }
         case 38: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 39: {
@@ -178,11 +174,11 @@ void func_80016E70(uint16_t index) {
             break;
         }
         case 43: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
             break;
         }
         case 44: {
-            gActorFuncTable_80192000[temp_t8](index);
+            gActorFuncTable_80192000[temp_t8].oneArg(index);
         }
         default: {
             break;
@@ -190,21 +186,21 @@ void func_80016E70(uint16_t index) {
     }
 }
 
-void func_8001751C(void) {
-    Actor* actor; // this is probably a fake match but I prefer this syntax over gActors[index]
+void Actors_Tick(void) {
+    Actor* actor; // this is probably a fake match but I prefer this syntax over thisActor
     uint16_t index;
 
     // if actors are not supposed to process
-    if (D_800BE670 != 0) {
+    if (D_800BE670) {
         for (index = 1; index < ACTOR_COUNT2; index++) {
             actor = gActors + index;
 
-            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0 && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE) != 0) {
-                if (actor->unk_0xD2 < 0x100) {
-                    gActorFuncTable[actor->unk_0xD2](index);
+            if ((actor->flag & ACTOR_FLAG_ACTIVE) && (actor->flag & ACTOR_FLAG_ALWAYS_UPDATE)) {
+                if (actor->actorType < 0x100) {
+                    gActorFuncTable[actor->actorType](index);
                 }
                 else {
-                    func_80016E70(index);
+                    Actors_Tick_Overlayed(index);
                 }
             }
         }
@@ -213,20 +209,39 @@ void func_8001751C(void) {
         for (index = 1; index < ACTOR_COUNT2; index++) {
             actor = gActors + index;
 
-            if ((actor->flag & ACTOR_FLAG_ACTIVE) != 0) {
-                if (actor->unk_0xD2 < 0x100) {
-                    gActorFuncTable[actor->unk_0xD2](index);
+            if ((actor->flag & ACTOR_FLAG_ACTIVE)) {
+                if (actor->actorType < 0x100) {
+                    gActorFuncTable[actor->actorType](index);
                 }
                 else {
-                    func_80016E70(index);
+                    Actors_Tick_Overlayed(index);
                 }
             }
         }
     }
 }
-
+//file break?
+/*
+uint32_t func_80017680(uint16_t button, uint8_t* sel){
+    if((gButtonHold&button)==0) *sel=0;
+    else{
+        if(*sel != 33) *sel++;
+        else *sel=32;
+    }
+    if((gButtonPress&button==0) && (*sel!=33)) return 0;
+    return 1;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017680.s")
-
+/*
+uint32_t func_800176F8(uint16_t button, uint8_t* sel){
+    if((gButtonHold&button)==0) *sel=0;
+    else{
+        if(*sel != 20) *sel++;
+        else *sel=16;
+    }
+    if((gButtonPress&button==0) && (*sel!=20)) return 0;
+    return 1;
+}*/
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800176F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017770.s")
@@ -238,15 +253,15 @@ void Intro_Tick(void) {
         case 0: {
             func_80003A38();
 
-            D_800BE5D0 = 0x15;
+            gCurrentScene = SCENE_SPLASHSCREEN;
 
-            func_80025C38();
-            func_80010C20(D_800BE5D0);
+            InitScene();
+            func_80010C20(gCurrentScene);
 
             (&D_80380200)[2] = 1; // volatile?
             (&D_80380200)[1] = 1; // volatile?
 
-            func_800273FC(0x30, 0x2000, 0, 4, 0);
+            Text_SpawnAt2(0x30, 0x2000, 0, 4, 0);
 
             D_800F4224 |= 0x200;
             D_800F4210 |= 0x30000000;
@@ -266,7 +281,7 @@ void Intro_Tick(void) {
         case 1: {
             func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F42E4++ == 0) {
                     gGameSubState++;
                     D_800F42E8 = 0x80;
@@ -283,9 +298,9 @@ void Intro_Tick(void) {
         case 3: {
             func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F42E4-- + 0x1F) == 0) {
-                    func_800273FC(0x30U, 0x2000U, 0U, 4U, (uint16_t)0);
+                    Text_SpawnAt2(0x30U, 0x2000U, 0U, 4U, (uint16_t)0);
 
                     D_800F4224 = D_800F4224 | 0x200;
                     D_800F4210 = D_800F4210 | 0x30000000;
@@ -307,7 +322,7 @@ void Intro_Tick(void) {
         case 10: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4++ == 0) {
                     gGameSubState++;
                     D_800F42E8 = 0x80;
@@ -324,11 +339,11 @@ void Intro_Tick(void) {
         case 12: {
             func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4-- + 0x1F) {
                     D_800F4210 = 0;
 
-                    func_800273FC(0x31U, 0x2002U, 0U, 8U, (uint16_t)0);
+                    Text_SpawnAt2(0x31U, 0x2002U, 0U, 8U, (uint16_t)0);
 
                     D_800F43BC |= 0x200;
                     D_800F43A8 |= 0x30000000;
@@ -350,7 +365,7 @@ void Intro_Tick(void) {
         case 13: {
             func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F447C++ == 0) {
                     gGameSubState++;
                     D_800F4480 = 0x80;
@@ -367,7 +382,7 @@ void Intro_Tick(void) {
         case 15: {
             func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
-            if ((D_800BE4E4 & 1) != 0) {
+            if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F447C-- + 0x1F) == 0) {
                     D_800F43A8 = 0;
                     gGameSubState++;
@@ -384,7 +399,7 @@ void Intro_Tick(void) {
             D_800F43A8 = 0;
             gCurrentStage = 0;
             gWorldProgress = 0;
-            D_800BE5D0 = 0xB;
+            gCurrentScene = SCENE_INTRO;
             D_800D28E4 = 0x59;
             gSaveSlotIndex = 0;
             gGameState = GAMESTATE_TRANSITION;
@@ -406,36 +421,37 @@ void Intro_Tick(void) {
 
 char D_800C8F68[] = "PRESS START";
 char D_800C8F74[] = "@1997 TREASURE/ENIX";
-char D_800C8F88[] = "LICENED BY NINTENDO";
+char D_800C8F88[] = "LICENSED TO NINTENDO";
 
 // prints "Press start" and copyright info
-void func_80017F08(void) {
+void Title_Copyright(void) {
     func_80017770();
-    func_800276DC(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, func_80027588(0U, (0x1F - D_801781A0 / 4), (0x1F - D_801781A0 / 4), 0x1FU));
-    func_800276DC(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
-    func_800276DC(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, func_80027588(2U, 0x1FU, 0x1FU, 0x18U));
+    Text_PrintASCII(0x39U, &D_800C8F68, 0xFFCA, 0xFFE4, 0, Text_ConvertColor(0U, (0x1F - D_801781A0[0] / 4), (0x1F - D_801781A0[0] / 4), 0x1FU));
+    Text_PrintASCII(0x49U, &D_800C8F74, 0xFFAA, 0xFFC0, 0, Text_ConvertColor(2U, 0x1FU, 0x1FU, 0x18U));
+    Text_PrintASCII(0x60U, &D_800C8F88, 0xFFA6, 0xFFAE, 0, Text_ConvertColor(2U, 0x1FU, 0x1FU, 0x18U));
 }
 
 
 // cp1 stuff is producing a flipped pair of instructions
 #ifdef NON_MATCHING
 void func_80017FE8(uint16_t index) {
-    Actor* actor = &gActors[index];
+    Actor* actor;
 
-    actor->unk_0xD2 = 0;
+    thisActor.actorType = 0;
     Actor_Spawn(index);
+    actor = &thisActor;
     actor->pos.x = -2;
     actor->pos.y = 4;
-    actor->unk_0x84 = 0x2D0;
-    actor->unk_0x94 |= 0x801;
+    actor->graphic = 0x2D0;
+    actor->flag2 |= 0x801;
     actor->pos.z = 0x100;
-    actor->unk_0x188 = 0;
+    actor->unk_0x188._w = 0;
     actor->rgba.a = 0xFF;
     actor->rgba.b = 0xFF;
     actor->rgba.g = 0xFF;
     actor->rgba.r = 0xFF;
-    actor->unk_0xB4 = 18.0f;
-    actor->unk_0xB8 = 12.0f;
+    actor->scaleX = 18.0f;
+    actor->scaleY = 12.0f;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")
@@ -459,9 +475,9 @@ void TitleScreen_Tick(void) {
         // OK
         case 16: {
             gSPDisplayList(gDListHead++, &D_800C8EF0);
-            func_800230B8(&gDListHead);
+            func_800230B8();
             func_80017FE8(0x33);
-            D_800BE5D0 = 8;
+            gCurrentScene = SCENE_TITLE;
             gGameSubState += 1;
         }
         default: {
@@ -487,19 +503,19 @@ void TitleScreen_Tick(void) {
         }
         // OK
         case 20: {
-            func_8002670C(D_800BE5D0);
+            func_8002670C(gCurrentScene);
             gGameSubState += 1;
             break;
         }
         // OK
         case 21: {
-            func_80026784(D_800BE5D0);
+            func_80026784(gCurrentScene);
             gGameSubState += 1;
             break;
         }
         // OK
         case 22: {
-            func_80026428(D_800BE5D0);
+            func_80026428(gCurrentScene);
             gGameSubState += 1;
             break;
         }
@@ -514,35 +530,35 @@ void TitleScreen_Tick(void) {
             D_800BE6E8 = 1;
             D_800BE6EC = 0;
             D_800BE70C = 1;
-            func_80010C20(D_800BE5D0);
+            func_80010C20(gCurrentScene);
             gGameSubState += 1;
             break;
         }
         // some actors are referenced by a pointer, probably Actor* local vars?
         case 24: {
             gActors[7].rgba.b = 0;
-            D_801781A0 = 0;
+            D_801781A0[0] = 0;
 
-            func_800273FC(16, 0x800, 0x70, 0xFF68, 0);
-            gActors[16].unk_0x94 |= 0x100;
+            Text_SpawnAt2(16, 0x800, 0x70, 0xFF68, 0);
+            gActors[16].flag2 |= 0x100;
             gActors[16].rgba.a = 0x80;
 
-            func_800273FC(17, 0x1000, 0xFF88, 0xFF68, 0);
-            gActors[17].unk_0x94 |= 0x100;
+            Text_SpawnAt2(17, 0x1000, 0xFF88, 0xFF68, 0);
+            gActors[17].flag2 |= 0x100;
             gActors[17].rgba.a = 0x80;
 
-            gActors[48].unk_0xD2 = 0;
+            gActors[48].actorType = 0;
             actor2_Spawn(48);
-            gActors[48].unk_0x94 |= 0x200;
+            gActors[48].flag2 |= 0x200;
             gActors[48].flag |= (ACTOR_FLAG_UNK28 | ACTOR_FLAG_UNK29); // 0x30000000;
-            gActors[48].unk_0x17C = 0x80343C28;
+            gActors[48].unk_0x17C._p = 0x80343C28;
             gActors[48].unk_0x180 = 0x80349728;
-            gActors[48].unk_0x188 = 0xE;
+            gActors[48].unk_0x188._w = 0xE;
             gActors[48].pos.x = 0x2A;
-            gActors[48].unk_0xAA = 0xE0;
-            gActors[48].unk_0xAC = 1;
-            gActors[48].unk_0xAE = 8;
-            gActors[48].unk_0xB0 = 0xD;
+            gActors[48].hitboxBX0 = 0xE0;
+            gActors[48].hitboxBX1 = 1;
+            gActors[48].hitboxBY0 = 8;
+            gActors[48].hitboxBY1 = 0xD;
 
             gActors[49].flag = 0;
             gActors[50].flag = 0;
@@ -551,11 +567,11 @@ void TitleScreen_Tick(void) {
             break;
         }
         case 25: {
-            func_80017F08();
+            Title_Copyright();
 
             if (gActors[51].rgba.a == 7) {
                 gActors[51].flag = 0;
-                gActors[51].unk_0x154 = 0x10040;
+                gActors[51].unk_0x154._w = 0x10040;
                 gGameSubState += 1;
             }
             else {
@@ -565,16 +581,16 @@ void TitleScreen_Tick(void) {
             break;
         }
         case 26: {
-            gActors[51].unk_0x154--;
+            gActors[51].unk_0x154._w--;
             func_8001809C();
 
-            if (gActors[51].unk_0x154 == 0x10000) {
-                SFX_Play_1(0x21U);
+            if (gActors[51].unk_0x154._w == 0x10000) {
+                SFX_Play_1(SFX_MARINA_TITLE);
             }
 
             // test to toggle sound test
-            if (((gButtonHold & gButton_A) != 0) && ((gButtonHold & gButton_CLeft) != 0) && ((gButtonHold & gButton_CRight) != 0) &&
-                ((gButtonHold & gButton_LTrig) != 0) && ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) &&
+            if (((gButtonHold & gButton_A)) && ((gButtonHold & gButton_CLeft)) && ((gButtonHold & gButton_CRight)) &&
+                ((gButtonHold & gButton_LTrig)) && ((gButtonHold & gButton_B) == 0) && ((gButtonHold & gButton_CDown) == 0) &&
                 ((gButtonHold & gButton_CUp) == 0) && ((gButtonHold & gButton_RTrig) == 0)) {
                 gActors[7].rgba.b = 1;
             }
@@ -582,28 +598,21 @@ void TitleScreen_Tick(void) {
                 gActors[7].rgba.b = 0;
             }
 
-            func_80017F08();
+            Title_Copyright();
 
-            buttonPress = gButtonPress;
-            if ((gButtonPress & gButton_Start) != 0) {
-                SFX_Play_1(0x23U);
+            if (gButtonPress & gButton_Start) {
+                SFX_Play_1(SFX_MENU_DING);
                 func_80003F24(1, 0x40);
 
                 D_80178166 = 0;
 
-                if (gActors[7].rgba.b != 0) {
-                    gGameSubState = 0x30;
-                    buttonPress = gButtonPress;
-                }
-                else {
-                    gGameSubState = 0x20;
-                    buttonPress = gButtonPress;
-                }
+                if (gActors[7].rgba.b) gGameSubState = 0x30;
+                else gGameSubState = 0x20;
             }
-
-            if ((D_80137DA0 >= 0x1141 || (buttonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
+            //start attract mode when BGM timer finishes
+            if ((D_80137DA0 >= 0x1141 || (gButtonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
-                gActors[51].unk_0x94 |= 0x10;
+                gActors[51].flag2 |= 0x10;
                 gActors[51].flag = ACTOR_FLAG_ENABLED;
                 gActors[51].rgba.b = 0x7F;
                 gActors[51].rgba.g = 0x7F;
@@ -617,7 +626,7 @@ void TitleScreen_Tick(void) {
         // OK (besides regalloc)
         case 27: {
             func_8001809C();
-            func_80017F08();
+            Title_Copyright();
 
             if (gActors[51].rgba.a == 0xFF) {
                 D_80137D90 = 0;
@@ -662,7 +671,7 @@ void TitleScreen_Tick(void) {
         case 49: {
             func_800180FC();
             if (D_80178164-- == 0) {
-                func_800230B8(&D_80178164);
+                func_800230B8();
                 gActors[16].flag = ACTOR_FLAG_ENABLED;
                 gActors[17].flag = ACTOR_FLAG_ENABLED;
                 gGameState = GAMESTATE_DEBUG_SOUNDTEST;
@@ -675,6 +684,8 @@ void TitleScreen_Tick(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/TitleScreen_Tick.s")
 #endif
+#define gSoundTest_SelectedBGM gActors[2].vel.x_w
+#define gSoundTest_SelectedSFX gActors[3].vel.x_w
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/SoundTest_Tick.s")
 
@@ -724,7 +735,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t6 & 0xFF) == 0xFF) {
                     gActors.unk_0xBC6 = (uint8_t)0x15U;
                 }
-                SFX_Play_2(0x22);
+                SFX_Play_2(SFX_MENU_BLIP);
             }
 
             func_80017680(gButton_DDown, &D_800F0406);
@@ -735,7 +746,7 @@ void StageSelect_Tick(void) {
                 if ((temp_t8 & 0xFF) == 0x16) {
                     gActors.unk_0xBC6 = (uint8_t)0U;
                 }
-                SFX_Play_2(0x22);
+                SFX_Play_2(SFX_MENU_BLIP);
             }
 
             func_80017680(gButton_DLeft, &D_800F059E);
@@ -745,7 +756,7 @@ void StageSelect_Tick(void) {
                 temp_a2 = *temp_v1;
                 if (((int32_t)temp_a2) > 0) {
                     *temp_v1 = (uint8_t)(temp_a2 - 1);
-                    SFX_Play_2(0x22);
+                    SFX_Play_2(SFX_MENU_BLIP);
                 }
             }
 
@@ -757,7 +768,7 @@ void StageSelect_Tick(void) {
                 temp_a2_2 = *temp_v1_2;
                 if (((int32_t)(temp_a2_2 & 0xFF)) < ((*((&D_800C823C) + (temp_v0_2 * 2))) - 1)) {
                     *temp_v1_2 = (uint8_t)(temp_a2_2 + 1);
-                    SFX_Play_2(0x22, &D_800C823C, temp_a2_2);
+                    SFX_Play_2(SFX_MENU_BLIP);
                 }
             }
 
@@ -765,7 +776,7 @@ void StageSelect_Tick(void) {
             temp_t3 = (*((&D_80178170) + temp_v0_3)) + (*((&D_80178188) + temp_v0_3));
             temp_t8_2 = (temp_t3 & 0xFFFF) * 2;
             gCurrentStage = temp_t3;
-            D_800BE5D0 = *((&D_800C8378) + temp_t8_2);
+            gCurrentScene = *((&gStageScenes) + temp_t8_2);
             D_800D28E4 = *((&D_800C83F8) + temp_t8_2);
             StageSelect_Print(&gCurrentStage);
             if ((gButtonPress & gButton_Start) != 0) {
@@ -810,7 +821,7 @@ void StageSelect_Tick(void) {
         }
 
         gActors.unk_0xBC6 = (uint8_t)0U;
-        D_800BE5D0 = 0;
+        gCurrentScene = 0;
         StageSelect_Print((int16_t*)temp_a0, &D_800C823C, temp_a0, &D_80178188);
         D_801376BD = (uint8_t)0;
         D_801376B9 = (uint8_t)1;
@@ -858,9 +869,9 @@ void CalculateFestivalTime(void){
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800197A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001983C.s")
-
+//print the selected level name
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800198B4.s")
-
+//print the selected stage name
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800199DC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80019A80.s")
@@ -991,8 +1002,8 @@ void func_8001B004(void) {
 void func_8001B1F8(void) {
     World_IncrementProgress();
     func_8001B1A0();
-    D_80178160 = (uint16_t)D_8017815C;
-    D_8017815A = (int16_t)D_80178156;
+    D_80178160 = (uint16_t)gSelectedWorld;
+    D_8017815A = (int16_t)gWorldMapSelectedStage;
 }
 
 void func_8001B23C() {}
@@ -1004,8 +1015,7 @@ int16_t YellowGem_Count(void) {
     int16_t count = 0;
 
     for (i = 0; i < 63; i++) {
-        if (gYellowGemBitfeild & flag)
-            count++;
+        if (gYellowGemBitfeild & flag) count++;
         flag = __ll_lshift(flag, 1);
     }
     return count;
@@ -1032,7 +1042,7 @@ void GameSave_Update(void) {
     gFileRedGems[gSaveSlotIndex] = gRedGems;
     gFileYellowGems[gSaveSlotIndex] = YellowGem_Count();
     gFilePlayTimes[gSaveSlotIndex] = (uint64_t)gPlayTime;
-    func_80005770();
+    GameSave_SaveRecords();
     gWorldProgress = bVar1;
 }
 #else
@@ -1049,10 +1059,10 @@ void func_8001B3D0(void) {
     uVar2 = (uint32_t)gSaveSlotIndex;
     gFileYellowGems[uVar2] = uVar1;
     gFilePlayTimes[uVar2] = (uint64_t)gPlayTime;
-    func_80005770();
+    GameSave_SaveRecords();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B460.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/Worldmap_Tick.s")
 
 void YellowGem_SetFlag(void) {
     gYellowGemBitfeild |= (uint64_t)1 << (uint16_t)gCurrentStage;
@@ -1066,9 +1076,9 @@ uint64_t YellowGem_GetFlag(uint16_t arg0) {
 
 #ifdef NON_MATCHING
 void func_8001C834(void) {
-    func_800273FC(0x32, 0, 0xFFFC, 0x33, 1);
+    Text_SpawnAt2(0x32, 0, 0xFFFC, 0x33, 1);
     D_800F4540 |= 0x50000000;
-    func_800273FC(0x33, 0, 0xFFFC, 0xFFF7, 1);
+    Text_SpawnAt2(0x33, 0, 0xFFFC, 0xFFF7, 1);
     D_800F46D8 |= 0x70000000;
 }
 #else
@@ -1077,7 +1087,7 @@ void func_8001C834(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C8B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C97C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/17A70/printIcon_YellowGem.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001CA68.s")
 
