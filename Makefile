@@ -134,7 +134,7 @@ $(TARGET).elf: $(O_FILES)
 	$(LD) $(LD_FLAGS) -o $@
 
 $(TARGET).z64: $(TARGET).elf
-	$(OBJCOPY) $(OBJCOPYFLAGS) $< $@
+	$(OBJCOPY) $(OBJCOPY_FLAGS) $< $@
 
 ifndef PERMUTER
 $(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.c.o: %.c
