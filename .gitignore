@@ -16,7 +16,8 @@ expected/
 
 .vscode
 
-tools/n64crc
+tools/n64crc*
+ultralib
 
 ctx_includes.c
 ctx.c

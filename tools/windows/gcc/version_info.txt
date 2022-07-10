@@ -1,0 +1,19 @@
+winlibs personal build version gcc-11.3.0-mingw-w64ucrt-10.0.0-r3
+
+This is the winlibs 64-bit standalone build of:
+- GCC 11.3.0
+- GDB 11.2
+- MinGW-w64 10.0.0 (linked with ucrt)
+- GNU Binutils 2.38
+- GNU Make 4.3
+- PExports 0.47
+- dos2unix 7.4.2
+- Yasm 1.3.0
+- NASM 2.15.05
+- JWasm 2.12pre
+- ninja 1.10.2
+- doxygen 1.9.3
+
+This build was compiled with GCC 11.3.0 and packaged on 2022-05-01.
+
+Please check out http://winlibs.com/ for the latest personal build.
