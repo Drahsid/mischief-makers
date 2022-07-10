@@ -130,8 +130,11 @@ compare:
 
 ### Recipes
 
-$(TARGET).z64: $(O_FILES)
+$(TARGET).elf: $(O_FILES)
 	$(LD) $(LD_FLAGS) -o $@
+
+$(TARGET).z64: $(TARGET).elf
+	$(OBJCOPY) $(OBJCOPYFLAGS) $< $@
 
 ifndef PERMUTER
 $(GLOBAL_ASM_O_FILES): $(BUILD_DIR)/%.c.o: %.c
@@ -151,9 +154,6 @@ $(BUILD_DIR)/%.s.o: %.s
 
 $(BUILD_DIR)/%.bin.o: %.bin
 	$(LD) -r -b binary -o $@ $<
-
-$(TARGET).bin: $(TARGET).elf
-	$(OBJCOPY) $(OBJCOPY_FLAGS) $< $@
 
 $(N64CRC): $(TOOLS_DIR)/n64crc.c
 	make -C $(TOOLS_DIR)
