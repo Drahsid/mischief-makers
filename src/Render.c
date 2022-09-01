@@ -7,19 +7,19 @@
  * Most of the functions are setting up Display Lists
  */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/render/func_80009940.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/func_80009940.s")
 
 void func_80009BE0(void) {}
 //solves for perspective or orthographic view (depending on gDebugBitfeild)... amoung many other things.
-#pragma GLOBAL_ASM("asm/nonmatchings/render/Gfx_DrawActors.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/Gfx_DrawActors.s")
 //draws static gems?
-#pragma GLOBAL_ASM("asm/nonmatchings/render/func_8000DD6C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/func_8000DD6C.s")
 //draws the transition portrait tiles
-#pragma GLOBAL_ASM("asm/nonmatchings/render/Gfx_DrawPortraits.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/Gfx_DrawPortraits.s")
 //Draws the health guage
-#pragma GLOBAL_ASM("asm/nonmatchings/render/Gfx_DrawLifeBar.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/Gfx_DrawLifeBar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/render/func_8000FBF4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Render/func_8000FBF4.s")
 
 void lookAt_Tick(void) {
     D_801780F0 = gDListTail[0].unk_0x00;

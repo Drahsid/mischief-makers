@@ -165,7 +165,7 @@ void Framebuffer_Clear(void) {
     osViBlack((uint8_t)0U);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/Framebuffer_Clear.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Boot/Framebuffer_Clear.s")
 #endif
 
 void mainproc(int32_t arg0) {
@@ -199,7 +199,7 @@ void Thread_IdleProc(void* arg0) {
     while (1) {}
 }
 //set gOSViModep->comRegs.hStart and  gOSViModep->feildregs[].vScale
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/func_800008E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Boot/func_800008E0.s")
 
 // main update setup
 void func_80000A84(uint16_t buffer_index) {
@@ -365,7 +365,7 @@ int32_t Input_GetFirstController(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/Input_GetFirstController.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Boot/Input_GetFirstController.s")
 #endif
 
 int32_t RomCopy_A(uint32_t devaddr, void* vaddr, uint32_t nbytes) {

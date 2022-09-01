@@ -27,7 +27,7 @@ double gSpriteScaleX = 1.0;
 double gSpriteScaleY = 1.0;
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/func_80004380.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Sprite/func_80004380.s")
 
 uint8_t* func_800045F8(uint8_t* arg0, uint8_t arg1) {
     while (arg0[0] != 0 && arg1 != arg0[0]) {
@@ -117,6 +117,6 @@ void Sprite_Update(Gfx** dlistp) {
     *dlistp++;*/
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/sprite/Sprite_Update.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Sprite/Sprite_Update.s")
 #endif
 

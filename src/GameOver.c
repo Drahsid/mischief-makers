@@ -1,7 +1,6 @@
 #include "BGM.h"
-
-
 #include "common.h"
+
 void Continue_DrawRedGem(uint16_t index, uint16_t arg1, uint16_t arg2) {
     Actor* actor;
 
@@ -65,4 +64,4 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
     SFX_Play_1(0x134); //"wrong answer" buzzer
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/gameover/GamePlay_Tick_Continue.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameOver/GamePlay_Tick_Continue.s")

@@ -39,7 +39,7 @@ void Text_SpawnIcon(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, 
     actor->graphicTime = 1;
 }
 //takes 16-bit color vales, returns 32-bit?
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_ConvertColor.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_ConvertColor.s")
 
 void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, void* arg5) {
     Actor* actor;
@@ -51,7 +51,7 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
     actor->unk_0x18C._p = arg5;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_PrintASCII.s") 
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_PrintASCII.s") 
 
 #ifdef NON_MATCHING
 uint16_t Text_Print2Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, int32_t arg5){
@@ -62,7 +62,7 @@ uint16_t Text_Print2Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t 
     return index+2;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_Print2Digits.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_Print2Digits.s")
 #endif
 #ifdef NON_MATCHING
 uint16_t Text_Print3Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z, int32_t arg5){
@@ -76,7 +76,7 @@ uint16_t Text_Print3Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t 
     return index+3;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_Print3Digits.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_Print3Digits.s")
 #endif
 //all text in Japanese is monospaced(?)
 #ifndef VER_JPN
@@ -89,14 +89,14 @@ uint16_t Text_GetWidth(uint16_t* arg0) {
     return D_800D16AA[*arg0];//wrong lookup. need to find the real address.
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_GetWidth.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_GetWidth.s")
 #endif
 #ifdef NON_MATCHING
 uint16_t Text_getKerning(uint16_t* TXT){
     return Text_GetWidth(TXT)+Text_GetWidth(TXT+1);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_getKerning.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_getKerning.s")
 #endif
 #endif
 
@@ -156,9 +156,9 @@ uint16_t Text_PrintAlphaAtColor(uint16_t index,uint16_t *TXT,uint16_t pos_x,uint
     return index;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_PrintAlphaAtColorScale.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_PrintAlphaAtColorScale.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/text/Text_PrintAlphaAt2.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/Text_PrintAlphaAt2.s")
 
 uint16_t Text_PrintAlphaAt3(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16_t pos_y,uint16_t pos_z){
     uint16_t C = *TXT;
@@ -176,4 +176,4 @@ uint16_t Text_PrintAlphaAt3(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint1
     return index;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/text/func_80028260.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/GameText/func_80028260.s")
