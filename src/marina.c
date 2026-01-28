@@ -20,7 +20,7 @@ u8 func_80048600(s32 arg0) {
     if (flags & D_800BE50C) {
         ret = 1;
         if (D_800EF590[idx].flags & 0x20) {
-            ret = 0x810;
+            ret = 0x81;
         }
     } else {
         ret = 0;
