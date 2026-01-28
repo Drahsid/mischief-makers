@@ -1,6 +1,50 @@
 #include "common.h"
 
+#include "boot.h"
+
+#include "input.h"
+
+typedef struct {
+    u32 flags;
+    u8 pad[0x54];
+} MarinaEntry;
+
+extern MarinaEntry D_800EF590[];
+
+#ifdef NON_MATCHING
+u8 func_80048600(s32 arg0) {
+    u16 idx = (u16)arg0;
+    u16 flags = D_801370CC;
+    u8 ret;
+
+    if (flags & D_800BE50C) {
+        ret = 1;
+        if (D_800EF590[idx].flags & 0x20) {
+            ret = 0x810;
+        }
+    } else {
+        ret = 0;
+        if (flags & D_800BE510) {
+            ret = 2;
+            if (D_800EF590[idx].flags & 0x20) {
+                ret = 0x82;
+            }
+        }
+    }
+
+    if (flags & D_800BE508) {
+        ret = (u8)(ret | 0x10);
+    }
+
+    if (flags & D_800BE504) {
+        ret = (u8)(ret | 0x20);
+    }
+
+    return ret;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048600.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_800486F4.s")
 

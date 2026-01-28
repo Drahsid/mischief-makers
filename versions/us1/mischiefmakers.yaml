@@ -97,7 +97,7 @@ segments:
       - [0x027F70, asm] # has to do with on screen text
       - [0x0438E0, asm]
       - [0x048A30, asm]
-      - [0x049200, asm, marina]
+      - [0x049200, c, marina]
       - [0x04FEB0, asm]
       - [0x059EA0, asm]
       - [0x05D120, asm]
