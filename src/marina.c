@@ -1,4 +1,5 @@
 #include "common.h"
+#include "data_symbols.h"
 
 #include "boot.h"
 
@@ -46,7 +47,19 @@ u8 func_80048600(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048600.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_800486F4.s")
+s32 func_800486F4(void) {
+    s32 v = D_801373F0;
+
+    if ((v == 2) || (v == 6)) {
+        v = 4;
+    }
+
+    if ((v == 0xE) || (v == 0xA)) {
+        v = 0xC;
+    }
+
+    return v;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048740.s")
 
