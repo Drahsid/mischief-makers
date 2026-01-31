@@ -8,7 +8,35 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048BB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C28.s")
+u32 func_80048C28(s32 arg0) {
+    u16 flags;
+    u32 result;
+
+    if ((arg0 == 0) && ((D_801373D8 & 0x33) == 0)) {
+        return 0xFF;
+    }
+
+    flags = D_801373D8;
+    result = 4;
+
+    if (flags & 0x10) {
+        if (flags & 3) {
+            result = 6;
+        } else {
+            result = 8;
+        }
+    }
+
+    if (flags & 0x20) {
+        if (flags & 3) {
+            result = 2;
+        } else {
+            result = 0;
+        }
+    }
+
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
 

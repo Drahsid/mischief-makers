@@ -15,6 +15,7 @@ extern s16 D_800EF5F0;
 
 // func_8000147C
 extern u16 D_800BE674;
+extern u16 D_801373D8;
 extern u16 D_8013747C;
 extern u16 D_80171B30[128];
 extern u16 D_80171C30[128];
