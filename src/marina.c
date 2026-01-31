@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern s32 D_800D5794[];
+extern f32 D_800EF630;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048600.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_800486F4.s")
@@ -10,7 +13,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
+s32 func_80048C94(s32 index) {
+    return (s32)((f32)D_800D5794[index] * D_800EF630);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048CE4.s")
 
