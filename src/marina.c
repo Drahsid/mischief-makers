@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern u8 D_800EF5E1;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048600.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_800486F4.s")
@@ -12,7 +14,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048CE4.s")
+s32 func_80048CE4(void) {
+    u8 v = D_800EF5E1;
+
+    if (v == 1) {
+        return 1;
+    }
+
+    if (v < 0x2E) {
+        return 0;
+    }
+
+    if (v < 0x37) {
+        return 2;
+    }
+
+    return 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048D30.s")
 
