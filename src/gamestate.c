@@ -28,7 +28,7 @@ void func_800012F0(void) {
         }
         else if ((gButtonPress & D_800BE500) && (D_800BE4EC == 0) && (gGameStateSubState == 0)) {
             // player->health >= 0
-            if (gActors[0].unk_0E0 >= 0) {
+            if (gActors[0].health >= 0) {
                 gGamePaused = 1;
                 gDebugBitfeild &= ~0x10;
                 if (gDebugBitfeild & 0x100) {

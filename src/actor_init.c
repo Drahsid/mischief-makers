@@ -13,7 +13,7 @@ extern u8 D_800E1380[];
 #pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DE30.s")
 
 // Thanks to inspectredc for helping with this one!
-void func_8001E2D0(u16 actor_index) {
+DEFAULT_INT func_8001E2D0(u16 actor_index) {
     u16 type_table_index;
 
     type_table_index = gActors[actor_index].actorType * 7;
@@ -29,7 +29,7 @@ void func_8001E2D0(u16 actor_index) {
         gActors[actor_index].unk_0AC = D_800C9700[type_table_index + 2];
         gActors[actor_index].unk_0AE = D_800C9700[type_table_index + 3];
 
-        gActors[actor_index].unk_0E0 = D_800C9700[type_table_index + 4];
+        gActors[actor_index].health = D_800C9700[type_table_index + 4];
         gActors[actor_index].unk_0E4 = D_800C9700[type_table_index + 5];
 
         gActors[actor_index].flags = D_800C9DD8[gActors[actor_index].actorType];
@@ -44,7 +44,7 @@ void func_8001E2D0(u16 actor_index) {
         gActors[actor_index].unk_0AC = 16;
         gActors[actor_index].unk_0AE = 16;
         gActors[actor_index].unk_0B0 = -16;
-        gActors[actor_index].unk_0E0 = 10;
+        gActors[actor_index].health = 10;
         gActors[actor_index].unk_0E4 = 10;
         gActors[actor_index].flags = 3;
         gActors[actor_index].unk_0E8 = D_800E1380;

@@ -1,5 +1,6 @@
 #include "common.h"
 
+// Builds the runtime 16x16 collision byte map in D_8010CDF0 from the stage lookup/tile pages loaded by func_80026694
 #pragma GLOBAL_ASM("asm/nonmatchings/11820/func_80010C20.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/11820/func_8001107C.s")

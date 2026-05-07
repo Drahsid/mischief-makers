@@ -826,7 +826,7 @@ s32 func_800032C4(u32 arg0) {
     return -1;
 }
 
-s32 func_8000334C(u32 arg0) {
+s32 Sound_PlaySfx(u32 arg0) {
     return func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
 }
 
@@ -1117,7 +1117,7 @@ void func_80003D64(u8 arg0) {
     }
 }
 
-void func_80003F24(u16 arg0, u16 arg1) {
+void Sound_StartFade(u16 arg0, u16 arg1) {
     u16 index;
 
     if ((arg0 & 1) == 1) {

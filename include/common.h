@@ -6,6 +6,9 @@
 #include "inttypes.h"
 #include "common_structs.h"
 #include "linker.h"
+
+typedef s32 DEFAULT_INT; // use this to explicitly show when the original programmer likely forgot to write the return type
+
 #include "function_symbols.h"
 #include "data_symbols.h"
 

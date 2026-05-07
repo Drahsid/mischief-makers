@@ -1,4 +1,26 @@
 #include "common.h"
+#include "actor.h"
+#include "input.h"
+
+extern u16 D_800BE52C;
+extern s16 D_800BE568;
+extern s16 D_800BE56C;
+extern s16 D_800BE570;
+extern s16 D_800BE574;
+extern u16 D_800D28E4;
+extern u16 D_800D28F0;
+extern s16 D_800D2918;
+extern s16 D_800D291C;
+extern s16 D_800D2920;
+extern s16 D_800D2924;
+extern s32 D_800D2938;
+extern u16 D_800D357C[];
+extern u16 D_800D361C[];
+
+typedef struct {
+    /* 0x00 */ u16 flags;
+    /* 0x02 */ u8 unk_02[0xC];
+} ActorSpawnRecord; /* size = 0xE */
 
 void func_80042CE0(void) {
 }
@@ -15,7 +37,16 @@ void func_80042CE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042E28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042E84.s")
+void Palette_AdjustScenePalettes(
+    s16 blue_offset_0, s16 green_offset_0, s16 red_offset_0,
+    s16 blue_offset_1, s16 green_offset_1, s16 red_offset_1,
+    s16 blue_offset_2, s16 green_offset_2, s16 red_offset_2
+)
+{
+    Palette_AdjustRgb5551Array((u16*)0x803DA200, (u16*)0x80380000, 0xFF, blue_offset_0, green_offset_0, red_offset_0);
+    Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, blue_offset_1, green_offset_1, red_offset_1);
+    Palette_AdjustRgb5551Array((u16*)0x803DA600, (u16*)0x80380400, 0xFF, blue_offset_2, green_offset_2, red_offset_2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042F2C.s")
 
@@ -29,7 +60,64 @@ void func_80042CE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004398C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043A68.s")
+#ifdef NON_MATCHING
+extern u16 func_8004398C(ActorSpawnRecord* spawn);
+
+void Actor_LoadSpawnTable(void* spawn_table) {
+    ActorSpawnRecord* spawn;
+    u16 flags;
+    u16 actor_index;
+    u16 pair_index;
+    u16 group_index;
+    u16 record_offset;
+    u16* entry;
+
+    spawn = spawn_table;
+    pair_index = 0;
+    record_offset = 0;
+    group_index = 0;
+
+    flags = spawn->flags;
+    while (flags != 0xFF00) {
+        if (!(flags & 0x2000)) {
+            actor_index = func_8004398C(spawn);
+            flags = spawn->flags;
+
+            if (flags & 0x8000) {
+                entry = &D_800D357C[pair_index];
+                entry[0] = actor_index;
+                pair_index += 2;
+                entry[1] = gActors[actor_index].actorType;
+                flags = spawn->flags;
+            }
+
+            if (flags & 0x1000) {
+                entry = &D_800D361C[group_index];
+                entry[0] = actor_index;
+                group_index += 3;
+                entry[1] = gActors[actor_index].actorType;
+                entry[2] = record_offset;
+            }
+        }
+
+        spawn++;
+        record_offset += 7;
+        flags = spawn->flags;
+    }
+
+    while (pair_index < 0x40) {
+        D_800D357C[pair_index] = 0;
+        pair_index += 2;
+    }
+
+    while (group_index < 0x60) {
+        D_800D361C[group_index] = 0;
+        group_index += 3;
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/Actor_LoadSpawnTable.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043C10.s")
 
@@ -149,7 +237,37 @@ void func_80042CE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046280.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800462F0.s")
+void Camera_UpdateViewBounds(void) {
+    if (D_800D28E4 < 0x68) {
+        if ((D_800D2918 - 0x70) < D_800BE55C) {
+            D_800BE570 = D_800BE55C + 0x70;
+        }
+        else {
+            D_800BE570 = D_800D2918;
+        }
+
+        if (D_800BE55C < (D_800D291C + 0x70)) {
+            D_800BE574 = D_800BE55C - 0x70;
+        }
+        else {
+            D_800BE574 = D_800D291C;
+        }
+
+        if ((D_800BE558 - 0x90) < D_800D2920) {
+            D_800BE568 = D_800BE558 - 0x90;
+        }
+        else {
+            D_800BE568 = D_800D2920;
+        }
+
+        if (D_800D2924 < (D_800BE558 + 0x90)) {
+            D_800BE56C = D_800BE558 + 0x90;
+        }
+        else {
+            D_800BE56C = D_800D2924;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463C0.s")
 
@@ -179,7 +297,16 @@ void func_80042CE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046E6C.s")
+s32 Cutscene_CheckSkipInput(void) {
+    if (gButtonPress & D_800BE52C) {
+        D_800D28F0 = D_800D28E4;
+        D_800D28E4 = 0x63;
+        D_800D2938 = 0;
+        return 1;
+    }
+
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")
 

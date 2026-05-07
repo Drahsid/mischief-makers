@@ -69,16 +69,16 @@ typedef struct {
     /* 0x0DD */ u8 unk_0DD;
     /* 0x0DE */ u8 unk_0DE;
     /* 0x0DF */ u8 unk_0DF;
-    /* 0x0E0 */ s16 unk_0E0;
+    /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 unk_0E2;
     /* 0x0E4 */ s16 unk_0E4;
     /* 0x0E6 */ s16 unk_0E6;
     /* 0x0E8 */ void* unk_0E8;
-    /* 0x0EC */ s32 velocityX; // see 66250: maybe fixed-point but not like FixedCoord?
+    /* 0x0EC */ s32 velocityX; // FixedCoord(?) velocity see: 66250, 8D0A0, and matched overlays
     /* 0x0F0 */ s32 velocityY;
-    /* 0x0F4 */ s32 unk_0F4;
-    /* 0x0F8 */ s32 unk_0F8;
-    /* 0x0FC */ s32 unk_0FC;
+    /* 0x0F4 */ s32 unk_0F4; // FixedCoord parameter in overlay_76F390
+    /* 0x0F8 */ s32 unk_0F8; // FixedCoord parameter in overlay_76F390
+    /* 0x0FC */ s32 unk_0FC; // FixedCoord parameter in overlay_76F390
     /* 0x100 */ s32 unk_100;
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
@@ -109,12 +109,12 @@ typedef struct {
     /* 0x16C */ s32 unk_16C;
     /* 0x170 */ s32 unk_170;
     /* 0x174 */ s32 unk_174;
-    /* 0x178 */ s32 unk_178;
+    /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
     /* 0x17C */ s32 unk_17C;
     /* 0x180 */ s32 unk_180;
     /* 0x184 */ s32 unk_184;
     /* 0x188 */ s32 unk_188;
-    /* 0x18C */ s32 unk_18C;
+    /* 0x18C */ s32 unk_18C; // assigned sprite/render data pointers(?) by matched overlays
     /* 0x190 */ s32 unk_190;
     /* 0x194 */ u8 unk_194[0x4];
 } Actor; /* size = 0x198 */

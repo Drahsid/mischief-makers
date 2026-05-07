@@ -555,7 +555,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if args.split:
-        split.main([Path(YAML_FILE)], modes="all", verbose=False)
+        split.main(
+            [Path(YAML_FILE)],
+            modes="all",
+            verbose=False,
+            use_cache=not (args.clean or args.fullclean),
+        )
         linker_entries = split.linker_writer.entries
         create_build_script(linker_entries)
         write_permuter_settings()

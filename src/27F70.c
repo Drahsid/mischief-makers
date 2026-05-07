@@ -1,4 +1,10 @@
 #include "common.h"
+#include "actor.h"
+
+extern void func_80028638(void);
+extern void func_8002865C(void);
+extern void func_80028680(void);
+extern void func_800286A4(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80027370.s")
 
@@ -50,7 +56,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002854C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800285E4.s")
+void Actor_ClearRange(u16 actor_index, u16 end) {
+    while (actor_index < end) {
+        gActors[actor_index].flags = 0;
+        actor_index++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028638.s")
 
@@ -64,7 +75,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028704.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028744.s")
+void Actor_ClearSceneActors(void) {
+    func_80028638();
+    func_8002865C();
+    func_80028680();
+    func_800286A4();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002877C.s")
 
@@ -116,9 +132,45 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029798.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002981C.s")
+#ifdef NON_MATCHING
+s32 Math_ApproachS32(s32 current, s32 target, s32 step) {
+    s32 delta = current - target;
+    s32 neg_step = -step;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029860.s")
+    if (delta > 0) {
+        if (delta <= step) {
+            return target;
+        }
+        return current - step;
+    }
+
+    if (delta < neg_step) {
+        current += step;
+        return current;
+    }
+    return target;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Math_ApproachS32.s")
+#endif
+
+#ifdef NON_MATCHING
+f32 Math_ApproachF32(f32 current, f32 target, f32 step) {
+    if (target < current) {
+        if ((current - target) <= step) {
+            return target;
+        }
+        return current - step;
+    }
+
+    if (-step <= (current - target)) {
+        return target;
+    }
+    return current + step;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Math_ApproachF32.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800298D0.s")
 
@@ -200,7 +252,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AE44.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AEB4.s")
+void Actor_SetColorRgb(u16 actor_index, u16 color) {
+    gActors[actor_index].colorR = color;
+    gActors[actor_index].colorG = color;
+    gActors[actor_index].colorB = color;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AEF8.s")
 
@@ -222,7 +278,49 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B4D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B5A0.s")
+#ifdef NON_MATCHING
+s32 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_offset) {
+    s32 blue;
+    s32 green;
+    s32 red;
+    s32 clamped_blue;
+    s32 clamped_green;
+    s32 clamped_red;
+
+    color = (u16)color;
+    blue = ((color / 2) & 0x1F) + blue_offset;
+    green = ((color / 0x40) & 0x1F) + green_offset;
+    red = ((color / 0x800) & 0x1F) + red_offset;
+    clamped_blue = (s16)blue;
+    clamped_green = (s16)green;
+    clamped_red = (s16)red;
+
+    if (clamped_blue < 0) {
+        clamped_blue = 0;
+    }
+    else if (clamped_blue >= 0x20) {
+        clamped_blue = 0x1F;
+    }
+
+    if (clamped_green < 0) {
+        clamped_green = 0;
+    }
+    else if (clamped_green >= 0x20) {
+        clamped_green = 0x1F;
+    }
+
+    if (clamped_red < 0) {
+        clamped_red = 0;
+    }
+    else if (clamped_red >= 0x20) {
+        clamped_red = 0x1F;
+    }
+
+    return (u16)((clamped_red << 11) | (clamped_green << 6) | (clamped_blue << 1) | (color & 1));
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Palette_AdjustRgb5551.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B6E8.s")
 
@@ -230,7 +328,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B7F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B82C.s")
+#ifdef NON_MATCHING
+void Palette_AdjustRgb5551Array(u16* src, u16* dst, s32 count, s16 blue_offset, s16 green_offset, s16 red_offset) {
+    s16 remaining;
+    s16 blue;
+    s16 green;
+    s16 red;
+
+    remaining = count;
+    blue = blue_offset;
+    green = green_offset;
+    red = red_offset;
+
+    while (remaining > 0) {
+        *dst++ = Palette_AdjustRgb5551(*src++, blue, green, red);
+        remaining--;
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Palette_AdjustRgb5551Array.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B8F0.s")
 

@@ -19,8 +19,24 @@ Sound_StartTask = 0x800029EC; // type:func
 Sound_LoadSequence = 0x80002A2C; // type:func
 Sound_DmaReadSync = 0x80002AE0; // type:func
 Sound_PlayMusic = 0x80002B50; // type:func
+Sound_PlaySfx = 0x8000334C; // type:func
+Sound_StartFade = 0x80003F24; // type:func
+Trouble_RLE_Type1 = 0x80004910; // type:func
 
 LookAt_Update = 0x80010898; // type:func
+
+Actor_ClearRange = 0x800285E4; // type:func
+Actor_ClearSceneActors = 0x80028744; // type:func
+Math_ApproachS32 = 0x8002981C; // type:func
+Math_ApproachF32 = 0x80029860; // type:func
+Actor_SetColorRgb = 0x8002AEB4; // type:func
+Palette_AdjustRgb5551 = 0x8002B5A0; // type:func
+Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
+
+Palette_AdjustScenePalettes = 0x80042E84; // type:func
+Actor_LoadSpawnTable = 0x80043A68; // type:func
+Camera_UpdateViewBounds = 0x800462F0; // type:func
+Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
 GameState_SoftReset = 0x80022F48; // type:func
 GameState_Intro = 0x80017800; // type:func
@@ -36,3 +52,4 @@ GameState_Attract = 0x80021270; // type:func
 GameState_FileSelect = 0x80007C8C; // type:func
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
+Trouble_RLE_Type2 = 0x80098B50; // type:func

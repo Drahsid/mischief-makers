@@ -4,8 +4,6 @@
 extern u8 D_800E8BEC[];
 extern u8 D_800E9654[];
 
-extern void func_80081790(u16 actor_index, void* arg1);
-extern void func_800819A8(u16 actor_index, void* arg1);
 extern s32 func_8008EFA8(u16 actor_index);
 extern void func_8008FB20(u16 actor_index);
 extern void func_8008FD08(u16 actor_index);
@@ -38,9 +36,9 @@ void func_8008E918(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008EFA8.s")
 
 s32 func_8008F094(u16 actor_index, u16 arg1) {
-    gActors[actor_index].unk_0E0 -= arg1;
-    if (gActors[actor_index].unk_0E0 & 0x8000) {
-        gActors[actor_index].unk_0E0 = 0;
+    gActors[actor_index].health -= arg1;
+    if (gActors[actor_index].health & 0x8000) {
+        gActors[actor_index].health = 0;
     }
 
     return func_8008EFA8(actor_index);
