@@ -1,5 +1,5 @@
 gCosineLookup = 0x800BCCD0; //size:0x1000
-gUnusedFloatTable =0x800BDCD0 //size:0x800
+gUnusedFloatTable = 0x800BDCD0; //size:0x800
 gFramesInScene = 0x800BE4E4; // size:0x2
 gGamePaused = 0x800BE4E8; // size:0x2
 D_800BE4EC = 0x800BE4EC; // size:0x2
