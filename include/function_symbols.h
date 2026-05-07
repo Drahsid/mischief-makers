@@ -23,8 +23,8 @@ extern void Actor_ClearSceneActors(void);
 extern s32 Math_ApproachS32(s32 current, s32 target, s32 step);
 extern f32 Math_ApproachF32(f32 current, f32 target, f32 step);
 extern void Actor_SetColorRgb(u16 actor_index, u16 color);
-extern s32 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_offset);
-extern void Palette_AdjustRgb5551Array(u16* src, u16* dst, s32 count, s16 blue_offset, s16 green_offset, s16 red_offset);
+extern u16 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_offset);
+extern void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, s16 green_offset, s16 red_offset);
 extern void Palette_AdjustScenePalettes(
     s16 blue_offset_0, s16 green_offset_0, s16 red_offset_0,
     s16 blue_offset_1, s16 green_offset_1, s16 red_offset_1,

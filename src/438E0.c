@@ -63,20 +63,18 @@ void Palette_AdjustScenePalettes(
 #ifdef NON_MATCHING
 extern u16 func_8004398C(ActorSpawnRecord* spawn);
 
-void Actor_LoadSpawnTable(void* spawn_table) {
-    ActorSpawnRecord* spawn;
+// https://decomp.me/scratch/oqVJs
+void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
     u16 flags;
     u16 actor_index;
-    u16 pair_index;
-    u16 group_index;
-    u16 record_offset;
+    u16 jndex;
+    u16 index;
+    u16 counter;
     u16* entry;
 
-    spawn = spawn_table;
-    pair_index = 0;
-    record_offset = 0;
-    group_index = 0;
-
+    index = 0;
+    counter = 0;
+    jndex = 0;
     flags = spawn->flags;
     while (flags != 0xFF00) {
         if (!(flags & 0x2000)) {
@@ -84,35 +82,34 @@ void Actor_LoadSpawnTable(void* spawn_table) {
             flags = spawn->flags;
 
             if (flags & 0x8000) {
-                entry = &D_800D357C[pair_index];
+                entry = &D_800D357C[index];
                 entry[0] = actor_index;
-                pair_index += 2;
                 entry[1] = gActors[actor_index].actorType;
                 flags = spawn->flags;
+                index += 2;
             }
 
             if (flags & 0x1000) {
-                entry = &D_800D361C[group_index];
+                entry = &D_800D361C[jndex];
                 entry[0] = actor_index;
-                group_index += 3;
                 entry[1] = gActors[actor_index].actorType;
-                entry[2] = record_offset;
+                entry[2] = counter;
+                jndex += 3;
             }
         }
 
+        flags = spawn[1].flags;
+        counter += 7;
         spawn++;
-        record_offset += 7;
-        flags = spawn->flags;
     }
 
-    while (pair_index < 0x40) {
-        D_800D357C[pair_index] = 0;
-        pair_index += 2;
+    while (index < 0x40) {
+        D_800D357C[index] = 0;\
+        index += 2;
     }
-
-    while (group_index < 0x60) {
-        D_800D361C[group_index] = 0;
-        group_index += 3;
+    while (jndex < 0x60) {
+        D_800D361C[jndex] = 0;\
+        jndex += 3;
     }
 }
 #else

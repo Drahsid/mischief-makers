@@ -132,45 +132,41 @@ void Actor_ClearSceneActors(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029798.s")
 
-#ifdef NON_MATCHING
 s32 Math_ApproachS32(s32 current, s32 target, s32 step) {
-    s32 delta = current - target;
-    s32 neg_step = -step;
-
-    if (delta > 0) {
-        if (delta <= step) {
-            return target;
+    if ((current - target) > 0) {
+        if (step >= (current - target)) {
+            current = target;
         }
-        return current - step;
+        else {
+            current -= step;
+        }
     }
-
-    if (delta < neg_step) {
+    else if ((current - target) >= -step) {
+        current = target;
+    }
+    else {
         current += step;
-        return current;
     }
-    return target;
+    return current;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Math_ApproachS32.s")
-#endif
 
-#ifdef NON_MATCHING
 f32 Math_ApproachF32(f32 current, f32 target, f32 step) {
-    if (target < current) {
-        if ((current - target) <= step) {
-            return target;
+    if ((current - target) > 0) {
+        if (step >= (current - target)) {
+            current = target;
         }
-        return current - step;
+        else {
+            current -= step;
+        }
     }
-
-    if (-step <= (current - target)) {
-        return target;
+    else if ((current - target) >= -step) {
+        current = target;
     }
-    return current + step;
+    else {
+        current += step;
+    }
+    return current;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Math_ApproachF32.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800298D0.s")
 
@@ -278,22 +274,14 @@ void Actor_SetColorRgb(u16 actor_index, u16 color) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B4D0.s")
 
-#ifdef NON_MATCHING
-s32 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_offset) {
-    s32 blue;
-    s32 green;
-    s32 red;
-    s32 clamped_blue;
-    s32 clamped_green;
-    s32 clamped_red;
+u16 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_offset) {
+    s16 clamped_blue;
+    s16 clamped_green;
+    s16 clamped_red;
 
-    color = (u16)color;
-    blue = ((color / 2) & 0x1F) + blue_offset;
-    green = ((color / 0x40) & 0x1F) + green_offset;
-    red = ((color / 0x800) & 0x1F) + red_offset;
-    clamped_blue = (s16)blue;
-    clamped_green = (s16)green;
-    clamped_red = (s16)red;
+    clamped_blue = ((color / 2) & 0x1F) + blue_offset;
+    clamped_green = ((color / 0x40) & 0x1F) + green_offset;
+    clamped_red = ((color / 0x800) & 0x1F) + red_offset;
 
     if (clamped_blue < 0) {
         clamped_blue = 0;
@@ -316,11 +304,8 @@ s32 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_
         clamped_red = 0x1F;
     }
 
-    return (u16)((clamped_red << 11) | (clamped_green << 6) | (clamped_blue << 1) | (color & 1));
+    return (clamped_red << 11) | (clamped_green << 6) | (clamped_blue << 1) | (color & 1);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Palette_AdjustRgb5551.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B6E8.s")
 
@@ -328,26 +313,16 @@ s32 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B7F4.s")
 
-#ifdef NON_MATCHING
-void Palette_AdjustRgb5551Array(u16* src, u16* dst, s32 count, s16 blue_offset, s16 green_offset, s16 red_offset) {
-    s16 remaining;
-    s16 blue;
-    s16 green;
-    s16 red;
-
-    remaining = count;
-    blue = blue_offset;
-    green = green_offset;
-    red = red_offset;
-
-    while (remaining > 0) {
-        *dst++ = Palette_AdjustRgb5551(*src++, blue, green, red);
-        remaining--;
+void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, s16 green_offset, s16 red_offset) {
+    u16 result;
+    while (count > 0) {
+        result = Palette_AdjustRgb5551(*src, blue_offset, green_offset, red_offset);
+        count--;
+        src++;
+        dst++;
+        dst[-1] = result; // wtf??
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/Palette_AdjustRgb5551Array.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002B8F0.s")
 

@@ -6,40 +6,39 @@
 
 #include "input.h"
 
-#ifdef NON_MATCHING
-u8 func_80048600(s32 actor_index) {
-    u16 flags = D_801370CC;
+u8 func_80048600(u16 actor_index) {
     u8 ret;
 
-    if (flags & D_800BE50C) {
+    if (D_801370CC & D_800BE50C) {
         ret = 1;
-        if (gActors[actor_index].flags & 0x20) {
+        if (!(gActors[actor_index].flags & 0x20)) {
             ret = 0x81;
         }
     }
     else {
-        ret = 0;
-        if (flags & D_800BE510) {
+        if (D_801370CC & D_800BE510) {
             ret = 2;
-            if (gActors[actor_index].flags & 0x20) {
+            if (!(gActors[actor_index].flags & 0x20)) {
+            }
+            else {
                 ret = 0x82;
             }
         }
+        else {
+            ret = 0;
+        }
     }
 
-    if (flags & D_800BE508) {
-        ret = (u8)(ret | 0x10);
+    if (D_801370CC & D_800BE508) {
+        ret |= 0x10;
     }
 
-    if (flags & D_800BE504) {
-        ret = (u8)(ret | 0x20);
+    if (D_801370CC & D_800BE504) {
+        ret |= 0x20;
     }
 
     return ret;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048600.s")
-#endif
 
 s32 func_800486F4(void) {
     s32 v0 = D_801373F0;
