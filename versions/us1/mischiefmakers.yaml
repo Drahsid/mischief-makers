@@ -290,7 +290,9 @@ segments:
       - [0x0BB6B0, textbin, rsp/gspFast3D]
       - [0x0BCAB0, textbin, rsp/aspMain]
       # data
-      - [0x0BD8D0, data] # game globals?
+      - [0x0BD8D0,.data,cosineTable]
+      - [0x0BE8D0,.data,floatTable]      
+      - [0x0BF0D0, data] # game globals
       - [0x0BF0F0, data]
       - [0x0BF350, data, music_data] # music names start at BF354; music.s refs tables at C1654/C2280/C26DC
       - [0x0C4500, data] # font/text drawing data starts at C4508; 4F80 refs the table at C5A5C

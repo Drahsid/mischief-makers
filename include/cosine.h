@@ -1,0 +1,24 @@
+#ifndef COSINE_H
+#define COSINE_H
+
+#include <PR/ultratypes.h>
+
+// Mischeif Makers uses a 1024-step table of the cosine function for its sine/cosine math.
+extern f32 gCosineLookup[1024];
+
+//there is a second float table in the game that goes unused.
+extern f32 gUnusedFloatTable[512];
+
+#define ARRAYLENGTH(arr) (sizeof(arr)/sizeof(arr[0]))
+#define ARRAYEND(arr) arr+ARRAYLENGTH(arr) //for stacks and a few while loops.
+
+#define COSLEN ARRAYLENGTH(gCosineLookup)-1
+#define COSPiOver2 ARRAYLENGTH(gCosineLookup)/4
+#define RadStep (f64)360.0/ARRAYLENGTH(gCosineLookup)// = 0.3515625. used for sin/cos lookups
+#define COS(x) gCosineLookup[x&COSLEN]
+#define SIN(x) gCosineLookup[x-COSPiOver2&COSLEN] //cos(x-pi/2)=sin(x)
+#define NEGSIN(x) gCosineLookup[x+COSPiOver2&COSLEN]//cos(x+pi/2)=-sin(x)
+
+
+#endif
+
