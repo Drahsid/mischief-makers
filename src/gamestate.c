@@ -87,7 +87,7 @@ void func_8000147C(void) {
 
     func_8000178C(); // update rng
     func_800822B8(); // MarinaGraphics_Decrypt
-    func_800218FC(); // DrawLetterbox
+    Gfx_DrawLetterbox();
     func_8000F290(); // DrawLifeBar
     func_80009BE0();
 

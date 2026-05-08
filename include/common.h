@@ -7,6 +7,7 @@
 #include "common_structs.h"
 #include "linker.h"
 #include "cosine.h"
+#include "letterbox.h"
 
 typedef s32 DEFAULT_INT; // use this to explicitly show when the original programmer likely forgot to write the return type
 

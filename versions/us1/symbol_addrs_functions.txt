@@ -25,6 +25,10 @@ Trouble_RLE_Type1 = 0x80004910; // type:func
 
 LookAt_Update = 0x80010898; // type:func
 
+Gfx_DrawBorderRect = 0x80021690; // type:func
+Gfx_DrawLetterboxStandard = 0x8002170C; // type:func
+Gfx_DrawLetterbox = 0x800218FC; //type:func
+
 Actor_ClearRange = 0x800285E4; // type:func
 Actor_ClearSceneActors = 0x80028744; // type:func
 Math_ApproachS32 = 0x8002981C; // type:func

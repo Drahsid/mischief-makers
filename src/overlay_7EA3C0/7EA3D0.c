@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern u16 D_800CBF58;
+extern u16 gLetterboxMode;
 extern u16 D_800BE544;
 extern u16 D_800BE4EC;
 extern s32 D_800BE5F4;
@@ -59,7 +59,7 @@ u32 D_801B9C28_7EA6F8[] = {
     0x00000000,
     0x00000000,
 };
-
+//function appears to be related to "Searin' Swing!" 
 void func_801B9900_7EA3D0(void) {
     switch (D_800D28E8) {
         case 0:
@@ -68,13 +68,13 @@ void func_801B9900_7EA3D0(void) {
             D_800BE544 = 0x8000;
             if (D_800D2908 != 0) {
                 D_800D28E8 = 0x2000;
-                D_800CBF58 = 1;
+                gLetterboxMode = LETTERBOX_HORIZONTAL;
             }
             else {
-                D_800D28E8 = D_800D28E8 + 1;
+                D_800D28E8++;
                 func_80046148(D_801B9BC0_7EA690, 0);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
-                D_800CBF58 = 0;
+                gLetterboxMode = LETTERBOX_DEFAULT;
             }
             D_800BE4EC = 1;
             break;
@@ -94,7 +94,7 @@ void func_801B9900_7EA3D0(void) {
             D_800D28E8 = D_800D28E8 + 1;
             D_800D28FC &= ~4;
             D_800D28FC |= 8;
-            D_800CBF58 = 1;
+            gLetterboxMode = LETTERBOX_HORIZONTAL;
             break;
 
         case 0x101:

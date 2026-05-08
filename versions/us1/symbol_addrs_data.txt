@@ -7,6 +7,8 @@ gGameState = 0x800BE4F0; // size:0x2
 gGameStateSubState = 0x800BE4F4; // size:0x2
 D_800BE544 = 0x800BE544; // size:0x2
 
+gLetterboxMode = 0x800CBF58; //size:0x2
+
 gRngSeed = 0x800BE5A4; // size:0x2
 D_800BE5F4 = 0x800BE5F4; // size:0x4
 
