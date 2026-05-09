@@ -7,6 +7,8 @@
 
 #include "thread.h"
 
+extern Gfx D_800E3978[]; //dlist for letterbox
+
 extern Gfx* gDisplayListHead;
 extern OSMesg gPiManagerMessageBuffer[8];
 
