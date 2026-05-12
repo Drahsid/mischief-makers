@@ -84,6 +84,15 @@ def get_version_num():
     elif GAME_VERSION == "eu":
         return 3
 
+def preferred_tool(programs: List[str]) -> str:
+    """determine which if any executable is available in PATH"""
+    for prog in programs:
+        for path in os.environ.get("PATH", "").split(os.pathsep):
+            fpath = Path(path) / prog
+            if fpath.is_file and os.access(fpath, os.X_OK):
+                return prog
+    return ""
+
 YAML_FILE = f"versions/{GAME_VERSION}/{BASENAME}.yaml"
 LD_PATH = f"versions/{GAME_VERSION}/{BASENAME}.ld"
 MAP_PATH = f"build/{BASENAME}.map"
@@ -108,13 +117,14 @@ LIBULTRA_MIPS3_FLAGS = "-mips3 -32"
 LIBULTRA_MATCHING_MIPS2_G1_FLAGS = "-mips2 -g1 -32"
 LIBULTRA_O3_DIRS = ["audio", "gt", "gu", "mgu", "rg", "sched", "sp"]
 
-CROSS = "mips-linux-gnu-"
-CROSS_AS = f"{CROSS}as"
-CROSS_CPP = f"{CROSS}cpp"
+CROSS_AS = preferred_tool(["mips-linux-gnu-as", "mips64-linux-gnu-as", "mips64-elf-as"])
+CROSS = CROSS_AS.removesuffix("as")
 CROSS_LD = f"{CROSS}ld"
 CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
-AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
+CPP = preferred_tool([f"{CROSS}cpp", "clang", "cpp"])
+CPP_FLAGS = "-E -P -x c" if CPP == "clang" else "-P"
+AS_FLAGS = f"{COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
 OPT_FLAGS = "-O2"
 MIPS_FLAGS = "-mips1 -32"
 
@@ -130,32 +140,36 @@ LIBULTRA_CC_CMD = f"$ido {LIBULTRA_CFLAGS} $mips $defs $opt_flags $in {LIBULTRA_
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
-def clean():
-    if os.path.exists(f"versions/{GAME_VERSION}/.splache"):
-        os.remove(f"versions/{GAME_VERSION}/.splache")
+def remove_file(fpath: str | os.PathLike, verbose: bool = False):
+    if os.path.exists(fpath):
+        if verbose:
+            print(f"Deleting {fpath}")
+        os.remove(fpath)
+
+def clean(verbose: bool = False):
+    files = [
+        f"versions/{GAME_VERSION}/.splache",
+    ]
+    for f in files:
+        remove_file(f, verbose)
 
     shutil.rmtree("asm", ignore_errors=True)
     shutil.rmtree("assets", ignore_errors=True)
     shutil.rmtree("build", ignore_errors=True)
 
-def fullclean():
-    if os.path.exists(".ninja.log"):
-        os.remove(".ninja.log")
-    if os.path.exists("build.ninja"):
-        os.remove("build.ninja")
-    if os.path.exists("permuter_settings.toml"):
-        os.remove("permuter_settings.toml")
-
-    if os.path.exists(f"versions/{GAME_VERSION}/{BASENAME}.d"):
-        os.remove(f"versions/{GAME_VERSION}/{BASENAME}.d")
-    if os.path.exists(f"versions/{GAME_VERSION}/{BASENAME}.ld"):
-        os.remove(f"versions/{GAME_VERSION}/{BASENAME}.ld")
-    if os.path.exists(f"versions/{GAME_VERSION}/undefined_funcs_auto.txt"):
-        os.remove(f"versions/{GAME_VERSION}/undefined_funcs_auto.txt")
-    if os.path.exists(f"versions/{GAME_VERSION}/undefined_syms_auto.txt"):
-        os.remove(f"versions/{GAME_VERSION}/undefined_syms_auto.txt")
-        
-    clean()
+def fullclean(verbose: bool = False):
+    files = [
+        ".ninja.log",
+        "build.ninja",
+        "permuter_settings.toml",
+        f"versions/{GAME_VERSION}/{BASENAME}.d",
+        f"versions/{GAME_VERSION}/{BASENAME}.ld",
+        f"versions/{GAME_VERSION}/undefined_funcs_auto.txt",
+        f"versions/{GAME_VERSION}/undefined_syms_auto.txt",
+    ]
+    for f in files:
+        remove_file(f, verbose)
+    clean(verbose)
 
 def obtain_ido_recomp(version: str):
     download_dir = TOOLS_DIR / f"ido{version}"
@@ -353,12 +367,12 @@ def build_c_segment(entry: any, build):
         )
     else:
         build(
-                entry.object_path,
-                entry.src_paths,
-                "cc",
-                implicit=[ASM_PROCESSOR_PRELUDE],
-                variables={"flags": opt_level},
-            )
+            entry.object_path,
+            entry.src_paths,
+            "cc",
+            implicit=[ASM_PROCESSOR_PRELUDE],
+            variables={"flags": opt_level},
+        )
 
 def create_build_script(linker_entries: List[LinkerEntry]):
     built_objects: Set[Path] = set()
@@ -400,7 +414,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"{CROSS_CPP} {COMMON_INCLUDES} -DGAME_VERSION={get_version_num()} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+        command=f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} -D_LANGUAGE_ASSEMBLY -DGAME_VERSION={get_version_num()} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out && {O32_TOOL} $out",
     )
 
     ninja.rule(
@@ -537,12 +551,18 @@ if __name__ == "__main__":
         help="Split",
         action="store_true",
     )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        help="Verbose",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     if args.fullclean:
-        fullclean()
+        fullclean(args.verbose)
     elif args.clean:
-        clean()
+        clean(args.verbose)
 
     if args.setup:
         setup()
@@ -566,4 +586,5 @@ if __name__ == "__main__":
         write_permuter_settings()
 
     if args.build:
-        subprocess.run(["ninja"], check=True)
+        build_command = ["ninja", "-v"] if args.verbose else ["ninja"]
+        subprocess.run(build_command, check=True)
