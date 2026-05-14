@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import platform
 import shutil
 import sys
 import subprocess
@@ -74,22 +75,12 @@ def asmtu_should_emit_sibling(parent, sibling):
 
 CommonSegCodeSubsegment.split_as_asmtu_file = split_as_asmtu_file_with_dot_siblings
 
-def get_version_num():
-    if GAME_VERSION == "jp":
-        return 0
-    elif GAME_VERSION == "us0":
-        return 1
-    elif GAME_VERSION == "us1":
-        return 2
-    elif GAME_VERSION == "eu":
-        return 3
-
 def preferred_tool(programs: List[str]) -> str:
     """determine which if any executable is available in PATH"""
     for prog in programs:
         for path in os.environ.get("PATH", "").split(os.pathsep):
             fpath = Path(path) / prog
-            if fpath.is_file and os.access(fpath, os.X_OK):
+            if fpath.is_file() and os.access(fpath, os.X_OK):
                 return prog
     return ""
 
@@ -100,7 +91,9 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3DEX_GBI -DGAME_VERSION={get_version_num()} -DBUILD_VERSION=VERSION_H"
+GAME_VERSION_DEFINE = f"-DGAME_VERSION=GAME_VERSION_{GAME_VERSION.upper()}"
+
+IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3DEX_GBI {GAME_VERSION_DEFINE} -DBUILD_VERSION=VERSION_H"
 COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/PR -I ultralib/src"
 
 # Stock libultra_d.a version H IDO flags from ultralib/makefiles/ido.mk
@@ -128,17 +121,18 @@ AS_FLAGS = f"{COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
 OPT_FLAGS = "-O2"
 MIPS_FLAGS = "-mips1 -32"
 
-IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
+IDO_VER = "5.3"
+IDO_CC = TOOLS_DIR / f"ido{IDO_VER}" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 ASM_PROCESSOR_PRELUDE = "include/asm_processor_prelude.inc"
 GAME_WARNING_SUPPRESSIONS = "-woff 649,838"
 
-GAME_CC_CMD = f"{PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_53_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"{PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 LIBULTRA_CC_CMD = f"$ido {LIBULTRA_CFLAGS} $mips $defs $opt_flags $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out"
 
-LIBULTRA_AS_CMD = f"{IDO_53_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
+LIBULTRA_AS_CMD = f"{IDO_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
 def remove_file(fpath: str | os.PathLike, verbose: bool = False):
     if os.path.exists(fpath):
@@ -180,25 +174,28 @@ def obtain_ido_recomp(version: str):
         )
         shutil.rmtree(download_dir)
 
-    IDO_RECOMP_VERSION = "v1.1"
+    IDO_RECOMP_VERSION = "v1.2"
 
+    host_arch = ""
     if sys.platform == "darwin":
         ido_os = "macos"
     elif sys.platform == "linux":
         ido_os = "linux"
+        if platform.machine() == "aarch64":
+            host_arch = "-arm"
     elif sys.platform == "win32":
         ido_os = "windows"
     else:
         print(f"Unsupported platform {sys.platform}")
         sys.exit(1)
 
-    ido_tar_name = f"ido-{version}-recomp-{ido_os}.tar.gz"
+    ido_tar_name = f"ido-{version}-recomp-{ido_os}{host_arch}.tar.gz"
     url = f"https://github.com/decompals/ido-static-recomp/releases/download/{IDO_RECOMP_VERSION}/{ido_tar_name}"
     target_path = TOOLS_DIR / ido_tar_name
 
     print(f"Downloading IDO {version}: {url}")
     response = requests.get(url)
-    if response.status_code != 200:
+    if response.status_code != requests.codes.OK:
         print(f"Failed to download IDO tarball from {url}")
         sys.exit(1)
     with open(target_path, "wb") as f:
@@ -209,7 +206,7 @@ def obtain_ido_recomp(version: str):
 
 
 def setup():
-    obtain_ido_recomp("5.3")
+    obtain_ido_recomp(IDO_VER)
     print("Setup complete!")
 
 
@@ -233,7 +230,7 @@ CLAMP = "int"
 NULL = "int"
 
 [decompme.compilers]
-"{IDO_53_CC}" = "ido5.3"
+"{IDO_CC}" = "ido{IDO_VER}"
 """
         )
 
@@ -349,7 +346,6 @@ def get_libultra_c_defs(c_path: Path) -> str:
 
 def build_c_segment(entry: any, build):
     opt_level = OPT_FLAGS
-    ido = "5.3"
 
     c_path = entry.src_paths[0]
     if "libc" in c_path.parts or "ultralib" in c_path.parts:
@@ -362,7 +358,7 @@ def build_c_segment(entry: any, build):
                 "opt_flags": libultra_flags["opt_flags"],
                 "mips": libultra_flags["mips"],
                 "defs": get_libultra_c_defs(c_path),
-                "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                "ido": IDO_CC,
             },
         )
     else:
@@ -414,7 +410,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} -D_LANGUAGE_ASSEMBLY -DGAME_VERSION={get_version_num()} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out && {O32_TOOL} $out",
+        command=f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} -D_LANGUAGE_ASSEMBLY {GAME_VERSION_DEFINE} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out && {O32_TOOL} $out",
     )
 
     ninja.rule(
@@ -577,7 +573,7 @@ if __name__ == "__main__":
     if args.split:
         split.main(
             [Path(YAML_FILE)],
-            modes="all",
+            modes=["all"],
             verbose=False,
             use_cache=not (args.clean or args.fullclean),
         )
@@ -586,5 +582,12 @@ if __name__ == "__main__":
         write_permuter_settings()
 
     if args.build:
-        build_command = ["ninja", "-v"] if args.verbose else ["ninja"]
+        build_command = ["ninja"]
+        if args.verbose:
+            build_command += ["-v"]
+            print(f"{CROSS_AS=}")
+            print(f"{CROSS_LD=}")
+            print(f"{CROSS_OBJCOPY=}")
+            print(f"{CPP=}")
+            print(f"{IDO_CC=}")
         subprocess.run(build_command, check=True)

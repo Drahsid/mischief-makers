@@ -7,28 +7,33 @@ A in-progress decompilation of Mischief Makers (or Yuke-Yuke!! Trouble Makers, ã
 
 This project currently supports the 1.1 release of the US version, with very minor support for the other versions of the game.
 
-## Building (Linux)
-
-### Install build dependencies
+## Building
 The build process has the following package requirements:
 - git
 - build-essential
 - binutils-mips-linux-gnu
-- gcc-mips-linux-gnu
 - python3
-- python3-venv
-- ninja-build
+- python3 venv
+- ninja
 
+### Linux Dependencies
 Under a Debian based distribution, you can install these with the following commands:
 ```
 sudo apt update
-sudo apt install git build-essential binutils-mips-linux-gnu gcc-mips-linux-gnu python3 python3-venv ninja-build
+sudo apt install git build-essential binutils-mips-linux-gnu python3 python3-venv ninja-build
+```
+
+## macOS Dependencies
+Under macOS, homebrew can be used to install the dependencies with the following commands:
+```
+brew update
+brew install git python3 ninja tehzz/n64-dev/mips64-elf-binutils
 ```
 
 ### Clone the repository
 Clone `https://github.com/Drahsid/mischief-makers.git` in whatever directory you wish.
 ```
-git clone https://github.com/Drahsid/mischief-makers.git --recursive
+git clone --recurse-submodules https://github.com/Drahsid/mischief-makers.git
 ```
 
 For an existing checkout, synchronize and initialize the submodules before building:
@@ -39,15 +44,18 @@ git submodule update --init --recursive
 
 ### Install Python requirements
 Create a project venv and install the pinned Python requirements into it:
-```
+```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install -r requirements.txt
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
 ```
 
-Also note that you can do the following:
-```
+Alternative using `uv`:
+```sh
+uv venv
 source .venv/bin/activate
+uv pip install -r requirements.txt
 ```
 
 Run `configure.py` through this venv Python.
@@ -55,14 +63,14 @@ Run `configure.py` through this venv Python.
 ### Prepare the base rom
 Copy over your copy of Mischief Makers 1.1 US into the root folder of this repository. Rename the rom to baserom.us1.z64.
 
-For first-time setup, run the following command to download and extract the compiler:
+For first-time setup, run the following command to download and extract the IDO compiler. This automatically detects your host platform.
 ```
-.venv/bin/python configure.py --setup
+python3 configure.py --setup
 ```
 
 To extract, disassemble, generate the build script, and build the ROM:
 ```
-.venv/bin/python configure.py --split --build
+python3 configure.py --split --build
 ```
 
 ## Build the rom
@@ -75,9 +83,9 @@ OK!
 ## Other configure options
 Use the venv Python for configure commands:
 ```
-.venv/bin/python configure.py --clean
-.venv/bin/python configure.py --fullclean
-.venv/bin/python configure.py --split
+python3 configure.py --clean
+python3 configure.py --fullclean
+python3 configure.py --split
 ```
 
 ## Contributing
