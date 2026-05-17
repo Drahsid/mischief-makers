@@ -10,14 +10,14 @@ u16 func_8000178C(void);
 
 void func_800012F0(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
-        if ((gDebugBitfeild & 0x200) && (gGamePaused == 0)) {
+        if ((gDebugBitfield & 0x200) && (gGamePaused == 0)) {
             gGamePaused = 1;
         }
 
         if (gGamePaused != 0 && gGameStateSubState == 0x10) {
             if ((gButtonPress & D_800BE500) || (gButtonPress & D_800BE518)) {
                 // if this is true, you can pause while not drawing the pause screen (it still processes though?)
-                if (gDebugBitfeild & 0x100) {
+                if (gDebugBitfield & 0x100) {
                     func_80020844(); // PauseGame_RestoreVolume ?
                     func_800208D4(); // PauseGame_Unpause ?
                 }
@@ -30,8 +30,8 @@ void func_800012F0(void) {
             // player->health >= 0
             if (gActors[0].health >= 0) {
                 gGamePaused = 1;
-                gDebugBitfeild &= ~0x10;
-                if (gDebugBitfeild & 0x100) {
+                gDebugBitfield &= ~0x10;
+                if (gDebugBitfield & 0x100) {
                     gGameStateSubState = 0x10;
                 }
                 else {
@@ -91,19 +91,19 @@ void func_8000147C(void) {
     func_8000F290(); // DrawLifeBar
     func_80009BE0();
 
-    if (gDebugBitfeild & 1) {
+    if (gDebugBitfield & 0x1) {
         func_8002167C();
     }
 
-    if (gDebugBitfeild & 0x8000) {
+    if (gDebugBitfield & 0x8000) {
         func_8001FF28();
     }
 
-    if (gDebugBitfeild & 0x40) {
+    if (gDebugBitfield & 0x40) {
         func_80021658();
     }
 
-    if ((gDebugBitfeild & 0x1020) == 0x1000) {
+    if ((gDebugBitfield & 0x1020) == 0x1000) {
         func_80021660();
     }
 

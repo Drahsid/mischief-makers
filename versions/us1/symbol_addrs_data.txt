@@ -91,7 +91,7 @@ D_800E8F7C = 0x800E8F7C;
 gRngSeed = 0x800BE5A4; // size:0x2
 D_800BE5F4 = 0x800BE5F4; // size:0x4
 
-gDebugBitfeild = 0x800BE6AC; // size:0x2
+gDebugBitfield = 0x800BE6AC; // size:0x2
 
 gCurrentFramebufferIndex = 0x800BE700; // size:0x2
 gCurrentDisplayListBase = 0x800EF4F4; // size:0x4
