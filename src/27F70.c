@@ -22,7 +22,6 @@ extern void func_8003FD0C(s32, s16, s16, s16, s32);
 extern void func_80042864(u16);
 extern void func_800423A0(u16);
 extern void func_800427E0(u16);
-extern s32 func_800294E0(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80027370.s")
 

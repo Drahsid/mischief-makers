@@ -19,7 +19,7 @@ typedef union {
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
     /* 0x080 */ s32 flags; // see func_8001751C and func_8001E2D0
-    /* 0x084 */ s16 unk_084;
+    /* 0x084 */ u16 unk_084;
     /* 0x086 */ u8 unk_086[0x2];
     /* 0x088 */ FixedCoord posX; // see func_8007F9E0 and child position setup for Q16.16-style fixed coordinates
     /* 0x08C */ FixedCoord posY;

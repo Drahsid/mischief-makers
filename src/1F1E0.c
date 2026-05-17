@@ -97,8 +97,8 @@ extern void func_8008C528(u16); // guess
 extern void func_8008CA90(void);
 
 // quantizes NEGSIN to `n` number of angles
-#define UPPER_N_BITS(n, s) (((1 << ((n)/2)) - 1) << ((s) - ((n)/2)))
-#define NEGSIN_QUANTIZE(x, n) gCosineLookup[(((x)+COSPiOver2) & UPPER_N_BITS(n, 10)) & 0x3FF]
+#define UPPER_N_BITS(n, s) (((1 << ((n) / 2)) - 1) << ((s) - ((n) / 2)))
+#define NEGSIN_QUANTIZE(x, n) gCosineLookup[(((x) + COSPiOver2) & UPPER_N_BITS(n, 10)) & COSLEN]
 
 s32 func_8001E5E0(u16 arg0, u16 arg1, s32 arg2) {
     s32 v;
@@ -106,7 +106,7 @@ s32 func_8001E5E0(u16 arg0, u16 arg1, s32 arg2) {
 
     sp20 = sqrtf(gActors[arg0].unk_0E2);
     v = func_800294E0(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
-    return (s32) (NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2));
+    return NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2);
 }
 
 s32 func_8001E6F4(u16 arg0, u16 arg1, s32 arg2) {
@@ -115,7 +115,7 @@ s32 func_8001E6F4(u16 arg0, u16 arg1, s32 arg2) {
 
     sp20 = sqrtf(gActors[arg0].unk_0E2);
     v = func_800294E0(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
-    return (s32) (SIN(v) * (sp20 * arg2 * 2));
+    return SIN(v) * (sp20 * arg2 * 2);
 }
 
 void func_8001E808(s32 arg0, s32 arg1) {
@@ -387,8 +387,6 @@ void func_800208D4(void) {
     gGamePaused = 0;
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/nLKMi
 void func_8002092C(void) {
     u16 index;
 
@@ -402,19 +400,15 @@ void func_8002092C(void) {
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;
-        // could be `index-N` or `index+N`, depending on start address
-        gActors[index].unk_0AA = D_800C7CA4[index+1];
-        gActors[index].unk_0AC = D_800C7CAC[index+1];
-        gActors[index].unk_0B0 = D_800C7CB4[index+1];
-        gActors[index].unk_0AE = D_800C7CBC[index+1];
+        gActors[index].unk_0AA = D_800C7CA4[index + 0];
+        gActors[index].unk_0AC = D_800C7CAC[index + 0];
+        gActors[index].unk_0B0 = D_800C7CB4[index + 0];
+        gActors[index].unk_0AE = D_800C7CBC[index + 0];
         gActors[index].colorR = 0;
         gActors[index].colorG = 0;
         gActors[index].colorB = 0;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
-#endif
 
 void func_80020A54(void) {
     u16 index;
