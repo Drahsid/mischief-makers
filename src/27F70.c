@@ -1,10 +1,24 @@
 #include "common.h"
 #include "actor.h"
 
-extern void func_80028638(void);
-extern void func_8002865C(void);
-extern void func_80028680(void);
-extern void func_800286A4(void);
+extern u16 D_800CA230;
+extern u32 D_80137458;
+extern u16 D_80178136;
+
+extern void Actor_ClearRange_10To20(void);
+extern void Actor_ClearRange_30To90(void);
+extern void Actor_ClearRange_90ToC0(void);
+extern void Actor_ClearRange_C0ToC7(void);
+extern void func_800286C8(void);
+extern void func_8002A118(u16, s32);
+extern void func_8002A170(u16, s32);
+extern void func_80030A74(u16);
+extern void func_80030B0C(u16);
+extern void func_8003FD0C(s32, s16, s16, s16, s32);
+extern void func_80042864(u16);
+extern void func_800423A0(u16);
+extern void func_800427E0(u16);
+extern s32 func_800294E0(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80027370.s")
 
@@ -44,15 +58,25 @@ extern void func_800286A4(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800282F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028380.s")
+void func_80028380(void) {
+    gActors[0].flags = 0;
+    D_800CA230 = 1;
+    D_80137458 = 0;
+    if (gActors[0].health < 0) {
+        gActors[0].health = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800283BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800284B0.s")
+void func_800284B0(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800284B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028528.s")
+void func_80028528(void) {
+    func_800284B8(0x90, 0xC0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002854C.s")
 
@@ -63,23 +87,37 @@ void Actor_ClearRange(u16 actor_index, u16 end) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028638.s")
+void Actor_ClearRange_10To20(void) {
+    Actor_ClearRange(0x10, 0x20);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002865C.s")
+void Actor_ClearRange_30To90(void) {
+    Actor_ClearRange(0x30, 0x90);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028680.s")
+void Actor_ClearRange_90ToC0(void) {
+    Actor_ClearRange(0x90, 0xC0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800286A4.s")
+void Actor_ClearRange_C0ToC7(void) {
+    Actor_ClearRange(0xC0, 0xC7);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800286C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028704.s")
+void func_80028704(void) {
+    Actor_ClearRange_10To20();
+    Actor_ClearRange_30To90();
+    Actor_ClearRange_90ToC0();
+    Actor_ClearRange_C0ToC7();
+    func_800286C8();
+}
 
 void Actor_ClearSceneActors(void) {
-    func_80028638();
-    func_8002865C();
-    func_80028680();
-    func_800286A4();
+    Actor_ClearRange_10To20();
+    Actor_ClearRange_30To90();
+    Actor_ClearRange_90ToC0();
+    Actor_ClearRange_C0ToC7();
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002877C.s")
@@ -90,7 +128,12 @@ void Actor_ClearSceneActors(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028980.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800289CC.s")
+s32 func_800289CC(s32 arg0) {
+    if (arg0 < 0) {
+        return -arg0;
+    }
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800289E4.s")
 
@@ -100,7 +143,8 @@ void Actor_ClearSceneActors(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028B90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028C00.s")
+void func_80028C00(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80028C08.s")
 
@@ -120,13 +164,21 @@ void Actor_ClearSceneActors(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800294E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800295D8.s")
+s32 func_800295D8(void) {
+    return (func_800294E0() + 0x100) & 0x200;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029600.s")
+s32 func_80029600(void) {
+    return (func_800294E0() + 0x80) & 0x300;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029628.s")
+s32 func_80029628(void) {
+    return (func_800294E0() + 0x40) & 0x380;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029650.s")
+s32 func_80029650(void) {
+    return (func_800294E0() + 0x20) & 0x3C0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029678.s")
 
@@ -206,7 +258,10 @@ f32 Math_ApproachF32(f32 current, f32 target, f32 step) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002A170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002A1C8.s")
+void func_8002A1C8(u16 arg0, s32 arg1) {
+    func_8002A118(arg0, arg1);
+    func_8002A170(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002A200.s")
 
@@ -236,9 +291,19 @@ f32 Math_ApproachF32(f32 current, f32 target, f32 step) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AA20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002ABE4.s")
+void func_8002ABE4(u16 actor_index, s16 val) {
+    gActors[actor_index].unk_0A6 = val;
+    gActors[actor_index].unk_0A8 = -val;
+    gActors[actor_index].unk_0A2 = -val;
+    gActors[actor_index].unk_0A4 = val;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AC30.s")
+void func_8002AC30(u16 actor_index, s16 val) {
+    gActors[actor_index].unk_0AE = val;
+    gActors[actor_index].unk_0B0 = -val;
+    gActors[actor_index].unk_0AA = -val;
+    gActors[actor_index].unk_0AC = val;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AC7C.s")
 
@@ -342,9 +407,17 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C1D8.s")
+void func_8002C1D8(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C1E0.s")
+void func_8002C1E0(u16* src, u16* dst, u16 count) {
+    while (count > 0) {
+        *dst = *src;
+        count--;
+        src++;
+        dst++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C218.s")
 
@@ -356,7 +429,8 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C5C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C6DC.s")
+void func_8002C6DC(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002C6E4.s")
 
@@ -394,7 +468,8 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002ECAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002ED34.s")
+void func_8002ED34(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002ED48.s")
 
@@ -410,7 +485,11 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F420.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F6AC.s")
+void func_8002F6AC(void) {
+    if (D_80178136 >= 0x270F) {
+        D_80178136 = 0x270F;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F6D4.s")
 
@@ -436,7 +515,10 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80030B0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80030B84.s")
+void func_80030B84(u16 arg0) {
+    func_80030A74(arg0);
+    func_80030B0C(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80030BB8.s")
 
@@ -502,7 +584,8 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80033948.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800339AC.s")
+void func_800339AC(s32 arg0, s32 arg1, s32 arg2) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800339BC.s")
 
@@ -550,7 +633,9 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80035878.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800358CC.s")
+s32 func_800358CC(s32 arg0, s32 arg1) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800358DC.s")
 
@@ -714,7 +799,8 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F8B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F9CC.s")
+void func_8003F9CC(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003F9E0.s")
 
@@ -722,13 +808,21 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FD0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FE4C.s")
+void func_8003FE4C(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+    func_8003FD0C(arg0, arg1, arg2, arg3, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FE90.s")
+void func_8003FE90(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+    func_8003FD0C(arg0, arg1, arg2, arg3, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FED8.s")
+void func_8003FED8(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+    func_8003FD0C(arg0, arg1, arg2, arg3, 2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FF20.s")
+void func_8003FF20(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+    func_8003FD0C(arg0, arg1, arg2, arg3, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8003FF68.s")
 
@@ -776,23 +870,33 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042290.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042308.s")
+void func_80042308(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042310.s")
+void func_80042310(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042324.s")
+void func_80042324(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042338.s")
+void func_80042338(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042340.s")
+void func_80042340(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042348.s")
+void func_80042348(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042350.s")
+void func_80042350(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042358.s")
+void func_80042358(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042360.s")
+void Actor_AdvanceState(u16 actor_index) {
+    gActors[actor_index].state++;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800423A0.s")
 
@@ -804,7 +908,11 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042A0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042AEC.s")
+void func_80042AEC(u16 arg0) {
+    func_80042864(arg0);
+    func_800423A0(arg0);
+    func_800427E0(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80042B2C.s")
 

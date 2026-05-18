@@ -22,6 +22,12 @@ extern u16 D_8017815C;
 extern u16 D_80178160;
 extern u16 D_80178162;
 
+extern u8 D_800E9634[];
+extern u8 D_800E9654[];
+extern u8 D_800E9720[];
+
+extern u16 D_80178152;
+
 void func_800955F4(u16 actor_index);
 void func_80096104(u16 actor_index);
 void func_8009672C(u16 actor_index);
@@ -43,10 +49,6 @@ void func_8008310C(void);
 void func_80083454(void);
 void func_8008379C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_80083810(s32 arg0, s32 arg1, u16* arg2, s32 arg3);
-
-extern u8 D_800E9634[];
-extern u8 D_800E9654[];
-extern u8 D_800E9720[];
 
 ActorFunc D_800E5AC0[] = {
     func_800955F4,
@@ -353,7 +355,13 @@ void func_8001B004(void) {
     func_8001ACA8(9, 6, 0xFFFF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B02C.s")
+void func_8001B02C(void) {
+    if ((s32)D_80178162 >= (s32)D_80171B18 && D_80171B18 < 0x3B) {
+        D_80178162 = D_80178162 + 1;
+        D_80171B18 = D_80178162;
+        D_80178152 = 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001B078.s")
 
@@ -404,7 +412,13 @@ u64 func_8001C7F0(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001C97C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001CA68.s")
+void func_8001CA68(void) {
+    u16 index;
+
+    for (index = 0; index < 7; index++) {
+        gActors[index + 72].flags = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001CAA8.s")
 
@@ -428,8 +442,18 @@ u64 func_8001C7F0(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D240.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D5B8.s")
+void func_8001D5B8(s16 arg0) {
+    u16 index;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001D60C.s")
+    for (index = 0x48; index < 0x4F; index++) {
+        gActors[index].posY.whole += arg0;
+    }
+}
+
+void func_8001D60C(s16 arg0) {
+    gActors[50].posY.whole += arg0;
+    gActors[51].posY.whole += arg0;
+    func_8001D5B8(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameState_Records.s")

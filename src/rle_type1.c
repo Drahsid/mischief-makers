@@ -1,7 +1,12 @@
 #include "common.h"
 
-extern s32 D_800C4EE0[];
-extern s32 D_800C4F00[];
+s32 D_800C4EE0[] = {
+    1, 1, 1, 1, 1, 2, 2, 2,
+};
+
+s32 D_800C4F00[] = {
+    -2, -1, 0, 1, 2, -1, 0, 1,
+};
 
 // https://decomp.me/scratch/cMY8E
 #ifdef NON_MATCHING

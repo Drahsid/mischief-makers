@@ -11,7 +11,7 @@ void Gfx_DrawBorderRect(u16 col,s32 x1,s32 y1,s32 x2,s32 y2) {
 
 #ifdef NONMATCHING //90.77% match with "-O1"
 
-void Gfx_DrawLetterboxStandard() {
+void Gfx_DrawLetterboxStandard(void) {
     register u8 max = 0xFF;
 
     Gfx_DrawBorderRect(PACK_BLACK(max), 0, 0, SCREEN_WIDTH, 20);
@@ -32,7 +32,7 @@ extern u8 D_801376AC[]; //array of env colors
 extern u8 D_801376B0[]; //array of env colors
 
 
-void Gfx_DrawLetterbox() {
+void Gfx_DrawLetterbox(void) {
     register u8 max;
     u16 sp34;
     u16 sp32;
@@ -102,5 +102,4 @@ void Gfx_DrawLetterbox() {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/letterbox/Gfx_DrawLetterbox.s")
 #endif
-
 

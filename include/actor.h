@@ -90,7 +90,15 @@ typedef struct {
     /* 0x120 */ f32 unk_120;
     /* 0x124 */ f32 unk_124;
     /* 0x128 */ f32 unk_128;
-    /* 0x12C */ f32 unk_12C;
+    union {
+        /* 0x12C */ f32 unk_12C;
+        struct {
+            /* 0x12C */ u8 unk_12C_u8;
+            /* 0x12D */ u8 unk_12D_u8;
+            /* 0x12E */ u8 unk_12E_u8;
+            /* 0x12F */ u8 unk_12F_u8;
+        };
+    };
     /* 0x130 */ f32 unk_130;
     /* 0x134 */ f32 unk_134;
     /* 0x138 */ f32 unk_138;

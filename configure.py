@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import platform
 import shutil
 import sys
 import subprocess
@@ -15,6 +16,7 @@ import splat.scripts.split as split
 from splat.segtypes.common.codesubsegment import CommonSegCodeSubsegment
 from splat.segtypes.linker_entry import LinkerEntry
 from splat.util import options as splat_options
+from tools import trouble_asset_tool
 
 ROOT = Path(__file__).parent.relative_to(os.getcwd())
 TOOLS_DIR = ROOT / "tools"
@@ -74,24 +76,26 @@ def asmtu_should_emit_sibling(parent, sibling):
 
 CommonSegCodeSubsegment.split_as_asmtu_file = split_as_asmtu_file_with_dot_siblings
 
-def get_version_num():
-    if GAME_VERSION == "jp":
-        return 0
-    elif GAME_VERSION == "us0":
-        return 1
-    elif GAME_VERSION == "us1":
-        return 2
-    elif GAME_VERSION == "eu":
-        return 3
+def preferred_tool(programs: List[str]) -> str:
+    """determine which if any executable is available in PATH"""
+    for prog in programs:
+        for path in os.environ.get("PATH", "").split(os.pathsep):
+            fpath = Path(path) / prog
+            if fpath.is_file() and os.access(fpath, os.X_OK):
+                return prog
+    return ""
 
 YAML_FILE = f"versions/{GAME_VERSION}/{BASENAME}.yaml"
+TROUBLE_ASSETS_YAML_FILE = f"versions/{GAME_VERSION}/trouble_assets.yaml"
 LD_PATH = f"versions/{GAME_VERSION}/{BASENAME}.ld"
 MAP_PATH = f"build/{BASENAME}.map"
 ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3DEX_GBI -DGAME_VERSION={get_version_num()} -DBUILD_VERSION=VERSION_H"
+GAME_VERSION_DEFINE = f"-DGAME_VERSION=GAME_VERSION_{GAME_VERSION.upper()}"
+
+IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3DEX_GBI {GAME_VERSION_DEFINE} -DBUILD_VERSION=VERSION_H"
 COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/PR -I ultralib/src"
 
 # Stock libultra_d.a version H IDO flags from ultralib/makefiles/ido.mk
@@ -108,54 +112,89 @@ LIBULTRA_MIPS3_FLAGS = "-mips3 -32"
 LIBULTRA_MATCHING_MIPS2_G1_FLAGS = "-mips2 -g1 -32"
 LIBULTRA_O3_DIRS = ["audio", "gt", "gu", "mgu", "rg", "sched", "sp"]
 
-CROSS = "mips-linux-gnu-"
-CROSS_AS = f"{CROSS}as"
-CROSS_CPP = f"{CROSS}cpp"
+CROSS_AS = preferred_tool(["mips-linux-gnu-as", "mips64-linux-gnu-as", "mips64-elf-as"])
+CROSS = CROSS_AS.removesuffix("as")
 CROSS_LD = f"{CROSS}ld"
 CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
-AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
+CPP = preferred_tool([f"{CROSS}cpp", "clang", "cpp"])
+CPP_FLAGS = "-E -P -x c" if CPP == "clang" else "-P"
+AS_FLAGS = f"{COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
 OPT_FLAGS = "-O2"
 MIPS_FLAGS = "-mips1 -32"
 
-IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
+IDO_VER = "5.3"
+IDO_CC = TOOLS_DIR / f"ido{IDO_VER}" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 ASM_PROCESSOR_PRELUDE = "include/asm_processor_prelude.inc"
 GAME_WARNING_SUPPRESSIONS = "-woff 649,838"
 
-GAME_CC_CMD = f"{PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_53_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"{PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 LIBULTRA_CC_CMD = f"$ido {LIBULTRA_CFLAGS} $mips $defs $opt_flags $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out"
 
-LIBULTRA_AS_CMD = f"{IDO_53_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
+LIBULTRA_AS_CMD = f"{IDO_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
-def clean():
-    if os.path.exists(f"versions/{GAME_VERSION}/.splache"):
-        os.remove(f"versions/{GAME_VERSION}/.splache")
+def remove_file(fpath: str | os.PathLike, verbose: bool = False):
+    if os.path.exists(fpath):
+        if verbose:
+            print(f"Deleting {fpath}")
+        os.remove(fpath)
+
+
+def remove_path(path: Path, verbose: bool = False):
+    if verbose:
+        print(f"Deleting {path}")
+
+    if path.is_dir():
+        shutil.rmtree(path, ignore_errors=True)
+    else:
+        path.unlink()
+
+
+def remove_assets(preserve_generated: bool = False, verbose: bool = False):
+    assets_path = Path("assets")
+    generated_path = assets_path / "generated"
+
+    if not assets_path.exists():
+        return
+
+    if preserve_generated and generated_path.exists():
+        for path in assets_path.iterdir():
+            if path == generated_path:
+                continue
+
+            remove_path(path, verbose)
+        return
+
+    remove_path(assets_path, verbose)
+
+def clean(verbose: bool = False):
+    files = [
+        f"versions/{GAME_VERSION}/.splache",
+    ]
+    for f in files:
+        remove_file(f, verbose)
 
     shutil.rmtree("asm", ignore_errors=True)
-    shutil.rmtree("assets", ignore_errors=True)
+    remove_assets(preserve_generated=True, verbose=verbose)
     shutil.rmtree("build", ignore_errors=True)
 
-def fullclean():
-    if os.path.exists(".ninja.log"):
-        os.remove(".ninja.log")
-    if os.path.exists("build.ninja"):
-        os.remove("build.ninja")
-    if os.path.exists("permuter_settings.toml"):
-        os.remove("permuter_settings.toml")
-
-    if os.path.exists(f"versions/{GAME_VERSION}/{BASENAME}.d"):
-        os.remove(f"versions/{GAME_VERSION}/{BASENAME}.d")
-    if os.path.exists(f"versions/{GAME_VERSION}/{BASENAME}.ld"):
-        os.remove(f"versions/{GAME_VERSION}/{BASENAME}.ld")
-    if os.path.exists(f"versions/{GAME_VERSION}/undefined_funcs_auto.txt"):
-        os.remove(f"versions/{GAME_VERSION}/undefined_funcs_auto.txt")
-    if os.path.exists(f"versions/{GAME_VERSION}/undefined_syms_auto.txt"):
-        os.remove(f"versions/{GAME_VERSION}/undefined_syms_auto.txt")
-        
-    clean()
+def fullclean(verbose: bool = False):
+    files = [
+        ".ninja.log",
+        "build.ninja",
+        "permuter_settings.toml",
+        f"versions/{GAME_VERSION}/{BASENAME}.d",
+        f"versions/{GAME_VERSION}/{BASENAME}.ld",
+        f"versions/{GAME_VERSION}/undefined_funcs_auto.txt",
+        f"versions/{GAME_VERSION}/undefined_syms_auto.txt",
+    ]
+    for f in files:
+        remove_file(f, verbose)
+    clean(verbose)
+    remove_assets(preserve_generated=False, verbose=verbose)
 
 def obtain_ido_recomp(version: str):
     download_dir = TOOLS_DIR / f"ido{version}"
@@ -166,25 +205,28 @@ def obtain_ido_recomp(version: str):
         )
         shutil.rmtree(download_dir)
 
-    IDO_RECOMP_VERSION = "v1.1"
+    IDO_RECOMP_VERSION = "v1.2"
 
+    host_arch = ""
     if sys.platform == "darwin":
         ido_os = "macos"
     elif sys.platform == "linux":
         ido_os = "linux"
+        if platform.machine() == "aarch64":
+            host_arch = "-arm"
     elif sys.platform == "win32":
         ido_os = "windows"
     else:
         print(f"Unsupported platform {sys.platform}")
         sys.exit(1)
 
-    ido_tar_name = f"ido-{version}-recomp-{ido_os}.tar.gz"
+    ido_tar_name = f"ido-{version}-recomp-{ido_os}{host_arch}.tar.gz"
     url = f"https://github.com/decompals/ido-static-recomp/releases/download/{IDO_RECOMP_VERSION}/{ido_tar_name}"
     target_path = TOOLS_DIR / ido_tar_name
 
     print(f"Downloading IDO {version}: {url}")
     response = requests.get(url)
-    if response.status_code != 200:
+    if response.status_code != requests.codes.OK:
         print(f"Failed to download IDO tarball from {url}")
         sys.exit(1)
     with open(target_path, "wb") as f:
@@ -195,7 +237,7 @@ def obtain_ido_recomp(version: str):
 
 
 def setup():
-    obtain_ido_recomp("5.3")
+    obtain_ido_recomp(IDO_VER)
     print("Setup complete!")
 
 
@@ -219,9 +261,83 @@ CLAMP = "int"
 NULL = "int"
 
 [decompme.compilers]
-"{IDO_53_CC}" = "ido5.3"
+"{IDO_CC}" = "ido{IDO_VER}"
 """
         )
+
+
+def generated_asset_references_exist(path: Path, seen: set[Path] | None = None) -> bool:
+    if seen is None:
+        seen = set()
+    if path in seen:
+        return True
+    seen.add(path)
+
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith('#include "'):
+            include_path = line.split('"', 2)[1]
+            candidates = [path.parent / include_path]
+        elif line.startswith('.include "') or line.startswith('.incbin "'):
+            include_path = line.split('"', 2)[1]
+            candidates = [Path(include_path), path.parent / include_path]
+        else:
+            continue
+
+        resolved_path = next(
+            (candidate for candidate in candidates if candidate.exists()),
+            None,
+        )
+        if resolved_path is None:
+            return False
+
+        if resolved_path.suffix in (
+            ".h",
+            ".s",
+        ) and not generated_asset_references_exist(resolved_path, seen):
+            return False
+
+    return True
+
+
+def trouble_asset_output_paths(config: Dict, generated_root: Path):
+    for pool in config.get("rle_pools", []):
+        generated_dir = generated_root / pool["segment"]
+        yield generated_dir / "rle.h"
+        yield generated_dir / "rle.inc.s"
+
+    for group in config.get("assets", []):
+        generated_dir = generated_root / group["segment"]
+        yield generated_dir / f"{group['name']}.h"
+        yield generated_dir / f"{group['name']}.inc.s"
+
+
+def trouble_asset_headers_exist(config_path: Path, generated_root: Path = Path("assets/generated")) -> bool:
+    config = trouble_asset_tool.load_yaml(config_path)
+
+    for path in trouble_asset_output_paths(config, generated_root):
+        if not path.exists():
+            return False
+        if not generated_asset_references_exist(path):
+            return False
+
+    return True
+
+
+def generate_trouble_asset_headers():
+    config_path = Path(TROUBLE_ASSETS_YAML_FILE)
+
+    if not config_path.exists():
+        print(f"warning: {config_path} missing; skipping asset generation")
+        return
+
+    if trouble_asset_headers_exist(config_path):
+        return
+
+    trouble_asset_tool.generate_headers_from_yaml(
+        config_path,
+        Path(f"baserom.{GAME_VERSION}.z64"),
+    )
 
 
 def get_libultra_c_flags(c_path: Path) -> Dict[str, str]:
@@ -335,7 +451,6 @@ def get_libultra_c_defs(c_path: Path) -> str:
 
 def build_c_segment(entry: any, build):
     opt_level = OPT_FLAGS
-    ido = "5.3"
 
     c_path = entry.src_paths[0]
     if "libc" in c_path.parts or "ultralib" in c_path.parts:
@@ -348,17 +463,17 @@ def build_c_segment(entry: any, build):
                 "opt_flags": libultra_flags["opt_flags"],
                 "mips": libultra_flags["mips"],
                 "defs": get_libultra_c_defs(c_path),
-                "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                "ido": IDO_CC,
             },
         )
     else:
         build(
-                entry.object_path,
-                entry.src_paths,
-                "cc",
-                implicit=[ASM_PROCESSOR_PRELUDE],
-                variables={"flags": opt_level},
-            )
+            entry.object_path,
+            entry.src_paths,
+            "cc",
+            implicit=[ASM_PROCESSOR_PRELUDE],
+            variables={"flags": opt_level},
+        )
 
 def create_build_script(linker_entries: List[LinkerEntry]):
     built_objects: Set[Path] = set()
@@ -400,7 +515,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"{CROSS_CPP} {COMMON_INCLUDES} -DGAME_VERSION={get_version_num()} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+        command=f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} -D_LANGUAGE_ASSEMBLY {GAME_VERSION_DEFINE} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out && {O32_TOOL} $out",
     )
 
     ninja.rule(
@@ -537,12 +652,25 @@ if __name__ == "__main__":
         help="Split",
         action="store_true",
     )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        help="Verbose",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--skip-trouble-assets",
+        "--skip-trle-headers",
+        dest="skip_trouble_assets",
+        help="Skip generation of Trouble asset asm wrappers and headers",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     if args.fullclean:
-        fullclean()
+        fullclean(args.verbose)
     elif args.clean:
-        clean()
+        clean(args.verbose)
 
     if args.setup:
         setup()
@@ -557,13 +685,24 @@ if __name__ == "__main__":
     if args.split:
         split.main(
             [Path(YAML_FILE)],
-            modes="all",
+            modes=["all"],
             verbose=False,
             use_cache=not (args.clean or args.fullclean),
         )
+        if not args.skip_trouble_assets:
+            generate_trouble_asset_headers()
+
         linker_entries = split.linker_writer.entries
         create_build_script(linker_entries)
         write_permuter_settings()
 
     if args.build:
-        subprocess.run(["ninja"], check=True)
+        build_command = ["ninja"]
+        if args.verbose:
+            build_command += ["-v"]
+            print(f"{CROSS_AS=}")
+            print(f"{CROSS_LD=}")
+            print(f"{CROSS_OBJCOPY=}")
+            print(f"{CPP=}")
+            print(f"{IDO_CC=}")
+        subprocess.run(build_command, check=True)

@@ -3,31 +3,91 @@
 #include "input.h"
 
 extern u16 D_800BE52C;
+extern s16 D_800BE558;
+extern s16 D_800BE560;
 extern s16 D_800BE568;
 extern s16 D_800BE56C;
 extern s16 D_800BE570;
 extern s16 D_800BE574;
+extern u16 D_800BE4EC;
+extern u16 D_800BE544;
+extern u16 D_800BE5D0;
 extern u16 D_800D28E4;
+extern u16 D_800D28E8;
 extern u16 D_800D28F0;
+extern u32 D_800D28FC;
+extern u8 D_800D28D0[];
+extern u16 D_800D2908;
+extern u16 D_800D2900;
+extern s16 D_800D2914;
+extern s32 D_800D2928;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s32 D_800D2938;
+extern u16 D_800D2968;
+extern s16 D_800D296C;
+extern s16 D_800D2970;
+extern s16 D_800D2974;
+extern u16 D_800D2978[];
+extern void* D_800D1968[];
+extern void* D_800D19A8[];
+extern void* D_800D19B8[];
+extern u16 D_800D3740[];
+extern u16 D_800D3748[];
+extern u16 D_800D3750[];
+extern u16 D_800D3758[];
+extern u16 D_800D3760[];
+extern u16 D_800D3768[];
+extern u16 D_800D3770[];
+extern u16 D_800D3778[];
+extern u16 D_800D3780[];
+extern u16 D_800D3788[];
+extern u16 D_800D3790[];
+extern u16 D_800D3798[];
+extern u16 D_800D37A4;
+extern u16 D_800D37A8;
+extern u16 D_800D36DC[];
+extern u16 D_800D36FC[];
 extern u16 D_800D357C[];
 extern u16 D_800D361C[];
+extern s32 D_801782B4;
+extern u16* D_801782BC;
+extern u16 D_801782B8;
+extern u16 D_801782C0;
+extern u16 D_801782C2;
 
 typedef struct {
-    /* 0x00 */ u16 flags;
-    /* 0x02 */ u8 unk_02[0xC];
-} ActorSpawnRecord; /* size = 0xE */
+    /* 0x00 */ u8 unk_000[0x80];
+    /* 0x80 */ s16 unk_080;
+    /* 0x82 */ u8 unk_082[0x2];
+    /* 0x84 */ s16 unk_084;
+    /* 0x86 */ u8 unk_086[0x2];
+    /* 0x88 */ s16 unk_088;
+    /* 0x8A */ u8 unk_08A[0x2];
+    /* 0x8C */ s32 unk_08C;
+} UnkStruct_801069E0; /* size = 0x90 */
+
+extern UnkStruct_801069E0 D_801069E0[];
+
+extern u8 func_80012AB4(s16 arg0, s16 arg1);
+extern void func_800472D4(void);
+extern s32 func_8005DEFC(void);
+extern void func_80047994(void);
+
+void func_80043D04(ActorSpawnRecord* spawn);
+void func_80042D84(u32 arg0);
+void func_800451E4(void* arg0);
 
 void func_80042CE0(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CE8.s")
+void func_80042CE8(u32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF0.s")
+void func_80042CF0(u32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF8.s")
 
@@ -50,7 +110,12 @@ void Palette_AdjustScenePalettes(
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042F2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004320C.s")
+void func_8004320C(void) {
+    D_800D2968 = 0xFFFF;
+    D_800D296C = 0;
+    D_800D2974 = 0;
+    D_800D2970 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043234.s")
 
@@ -64,7 +129,8 @@ void Palette_AdjustScenePalettes(
 extern u16 func_8004398C(ActorSpawnRecord* spawn);
 
 // https://decomp.me/scratch/oqVJs
-void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
+void Actor_LoadSpawnTable(void* spawn_table) {
+    ActorSpawnRecord* spawn;
     u16 flags;
     u16 actor_index;
     u16 jndex;
@@ -75,6 +141,7 @@ void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
     index = 0;
     counter = 0;
     jndex = 0;
+    spawn = spawn_table;
     flags = spawn->flags;
     while (flags != 0xFF00) {
         if (!(flags & 0x2000)) {
@@ -120,7 +187,13 @@ void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D04.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D30.s")
+void func_80043D30(void* spawn) {
+    if (D_800D2908 == 0) {
+        func_80043D04(spawn);
+    }
+
+    Actor_LoadSpawnTable(spawn);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D6C.s")
 
@@ -130,7 +203,10 @@ void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800441F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044360.s")
+void func_80044360(void) {
+    D_801069E0[D_801782C0].unk_080 = 0xA;
+    D_801069E0[D_801782C0].unk_08C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044390.s")
 
@@ -148,77 +224,177 @@ void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004495C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800449A8.s")
+void func_800449A8(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x20;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19A8[D_801782C2 & 3];
+
+    if ((func_80012AB4(D_801069E0[D_801782C0].unk_084, D_801069E0[D_801782C0].unk_088) & 0xC0) == 0) {
+        *D_801782BC |= 0x8000;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044A38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044A84.s")
+void func_80044A84(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x24;
+    D_801069E0[D_801782C0].unk_08C = 0x80203050;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044B00.s")
+    if ((func_80012AB4(D_801069E0[D_801782C0].unk_084, D_801069E0[D_801782C0].unk_088) & 0xC0) == 0) {
+        *D_801782BC |= 0x8000;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044B7C.s")
+void func_80044B00(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x25;
+    D_801069E0[D_801782C0].unk_08C = 0x80203050;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044BD8.s")
+    if ((func_80012AB4(D_801069E0[D_801782C0].unk_084, D_801069E0[D_801782C0].unk_088) & 0xC0) == 0) {
+        *D_801782BC |= 0x8000;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044C34.s")
+void func_80044B7C(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3740[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044C90.s")
+void func_80044BD8(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3748[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044CEC.s")
+void func_80044C34(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3750[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044D48.s")
+void func_80044C90(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3758[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044DA4.s")
+void func_80044CEC(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3760[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044DEC.s")
+void func_80044D48(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3768[D_800D37A8];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044E34.s")
+void func_80044DA4(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x2F;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044E7C.s")
+void func_80044DEC(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x30;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044EC4.s")
+void func_80044E34(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x31;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044F0C.s")
+void func_80044E7C(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x32;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044F54.s")
+void func_80044EC4(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x33;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044F9C.s")
+void func_80044F0C(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x34;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80044FE4.s")
+void func_80044F54(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x35;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004502C.s")
+void func_80044F9C(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x36;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045074.s")
+void func_80044FE4(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x37;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800450D0.s")
+void func_8004502C(void) {
+    D_801069E0[D_801782C0].unk_080 = 0x38;
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D19B8[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004512C.s")
+void func_80045074(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3780[D_800D37A4];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045188.s")
+void func_800450D0(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3788[D_800D37A4];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
+
+void func_8004512C(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3790[D_800D37A4];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
+
+void func_80045188(void) {
+    D_801069E0[D_801782C0].unk_080 = D_800D3798[D_800D37A4];
+    D_801069E0[D_801782C0].unk_08C = (s32)D_800D1968[D_801782C2];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800451E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045500.s")
+void func_80045500(void) {
+    u16 index;
+
+    for (index = 0; index < 0x10; index++) {
+        D_800D36DC[index] = 0;
+        D_800D36FC[index] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045544.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045610.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800456DC.s")
+s16 func_800456DC(void) {
+    if (D_801782B8 & 0x20) {
+        return 0xF - (D_801782B8 & 0x1F);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004571C.s")
+    return (D_801782B8 & 0x1F) - 0xF;
+}
+
+u16 func_8004571C(void) {
+    return Palette_AdjustRgb5551(0x8001, 0, 0, func_800456DC());
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045758.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045D84.s")
+void func_80045D84(u32 arg0, u32 arg1) {
+    D_800D28E4 = 0x64;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045D9C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045E58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045F08.s")
+s32 func_80045F08(u32 arg0) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045F14.s")
 
@@ -230,7 +406,8 @@ void Actor_LoadSpawnTable(ActorSpawnRecord* spawn) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046218.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046274.s")
+void func_80046274(u32 arg0, u32 arg1) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046280.s")
 
@@ -266,7 +443,10 @@ void Camera_UpdateViewBounds(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463C0.s")
+void func_800463C0(void) {
+    Camera_UpdateViewBounds();
+    D_800BE568 = D_800BE558 - 0x90;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
 
@@ -276,7 +456,9 @@ void Camera_UpdateViewBounds(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800465F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004664C.s")
+void func_8004664C(void) {
+    D_801782B4 = Math_ApproachS32(D_801782B4, 0, 0x10000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004667C.s")
 
@@ -309,7 +491,11 @@ s32 Cutscene_CheckSkipInput(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800472D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004732C.s")
+void func_8004732C(void) {
+    if (func_80046D5C() != 0) {
+        func_800472D4();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004735C.s")
 
@@ -326,7 +512,13 @@ void func_80047674(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047714.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047958.s")
+void func_80047958(void) {
+    u16 index = D_800D28F0 - 0x1F;
+
+    D_800BE5D0 = D_800D28D0[index];
+    gGameState = 5;
+    gGameStateSubState = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047994.s")
 
@@ -340,6 +532,10 @@ void func_80047674(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047C28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047C98.s")
+void func_80047C98(void) {
+    if (!(D_800D28FC & 0x80)) {
+        func_800451E4(D_800D2978);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047CCC.s")

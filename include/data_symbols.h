@@ -23,4 +23,6 @@ extern u16 D_80171C30[128];
 extern UNK_TYPE D_80171D30;
 extern u16 D_80171F10[240];
 
+extern UnkStruct_D_801373E0 D_801373E0;
+
 #endif

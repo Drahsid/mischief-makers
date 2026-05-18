@@ -1,0 +1,181 @@
+rle_pools:
+  - { segment: Segment_04, rom_start: 0x0F0100, rom_end: 0x1E51F0, subtype: Type1, count: 13, entry_name: $INDEX_$ROM_$VRAM }
+  - { segment: Segment_06, rom_start: 0x1E6900, rom_end: 0x214B40, subtype: Type1, entry_name: $ROM_$VRAM }
+  - { segment: Segment_07, rom_start: 0x214B40, rom_end: 0x248AB0, subtype: Type2, count: 290, entry_name: sprite_$INDEX_$ROM_$VRAM }
+  - { segment: Segment_01, rom_start: 0x248F40, rom_end: 0x40AC70, subtype: Type1, count: 50, entry_name: $INDEX_$ROM_$VRAM }
+  - { segment: Segment_05, rom_start: 0x40AC80, rom_end: 0x4A0918, subtype: Type2, count: 801, entry_name: sprite_$INDEX_$ROM_$VRAM }
+  # Segment_03 uses an irregular table; see D_800CEED0 and xrefs.
+  - { segment: Segment_03, rom_start: 0x4A1FC0, rom_end: 0x4A6F60, subtype: Type1, table_rom: 0x0CFAD0, record_count: 88, stride: 0xC, pointer_offsets: [0, 4, 8], entry_name: collision_$INDEX_$ROM_$VRAM }
+
+assets:
+  - segment: Segment_02
+    name: segment_02_assets
+    rom_start: 0x4A15A0
+    entries:
+      - { name: D_4A15A0_02000000, rom_start: 0x4A15A0 }
+      - { name: D_4A15B0_02000010, rom_start: 0x4A15B0 }
+      - { name: D_4A15CC_0200002C, rom_start: 0x4A15CC }
+      - { name: D_4A15DC_0200003C, rom_start: 0x4A15DC }
+      - { name: D_4A15EC_0200004C, rom_start: 0x4A15EC }
+      - { name: D_4A15FC_0200005C, rom_start: 0x4A15FC }
+      - { name: D_4A160C_0200006C, rom_start: 0x4A160C }
+      - { name: D_4A161C_0200007C, rom_start: 0x4A161C }
+      - { name: D_4A162C_0200008C, rom_start: 0x4A162C }
+      - { name: D_4A1F84_020009E4, rom_start: 0x4A1F84 }
+      - { name: D_4A1FB8_02000A18, rom_start: 0x4A1FB8 }
+      - { name: D_4A1FBC_02000A1C, rom_start: 0x4A1FBC, rom_end: 0x4A1FC0 }
+
+  - segment: Segment_04
+    name: palette_asset_1E51F0
+    entries:
+      - { name: palette_1E51F0_040F50F0, rom_start: 0x1E51F0, rom_end: 0x1E53F0, exclude: true }
+
+  # not contiguous with palette_asset_1E51F0 due to a random dlist being in the middle
+  - segment: Segment_04
+    name: palette_asset_1E53F8
+    entries:
+      - { name: palettes_1E53F8_040F52F8, rom_start: 0x1E53F8, rom_end: 0x1E6900, exclude: true }
+
+  - segment: Segment_03
+    name: map_assets
+    entries:
+      - { name: map_table0_4A6F60_03004FA0, rom_start: 0x4A6F60 }
+      - { name: map_table0_4A6FE0_03005020, rom_start: 0x4A6FE0 }
+      - { name: map_table0_4A72E0_03005320, rom_start: 0x4A72E0 }
+      - { name: map_table0_4A7320_03005360, rom_start: 0x4A7320 }
+      - { name: map_table0_4A73E0_03005420, rom_start: 0x4A73E0 }
+      - { name: map_table0_4A7620_03005660, rom_start: 0x4A7620 }
+      - { name: map_table0_4A77E0_03005820, rom_start: 0x4A77E0 }
+      - { name: map_table0_4A7928_03005968, rom_start: 0x4A7928 }
+      - { name: map_table0_4A7FE8_03006028, rom_start: 0x4A7FE8 }
+      - { name: map_table0_4A8468_030064A8, rom_start: 0x4A8468 }
+      - { name: map_table0_4A85A8_030065E8, rom_start: 0x4A85A8 }
+      - { name: map_table0_4A8668_030066A8, rom_start: 0x4A8668 }
+      - { name: map_cell_table_4A8B30_03006B70, rom_start: 0x4A8B30 }
+      - { name: map_cell_table_4A8C30_03006C70, rom_start: 0x4A8C30 }
+      - { name: map_cell_table_4A8D30_03006D70, rom_start: 0x4A8D30 }
+      - { name: map_cell_table_4A8E30_03006E70, rom_start: 0x4A8E30 }
+      - { name: map_cell_table_4A8F30_03006F70, rom_start: 0x4A8F30 }
+      - { name: map_cell_table_4A9030_03007070, rom_start: 0x4A9030 }
+      - { name: map_cell_table_4A9130_03007170, rom_start: 0x4A9130 }
+      - { name: map_cell_table_4A9230_03007270, rom_start: 0x4A9230 }
+      - { name: map_cell_table_4A9330_03007370, rom_start: 0x4A9330 }
+      - { name: map_cell_table_4A9430_03007470, rom_start: 0x4A9430 }
+      - { name: map_cell_table_4A9530_03007570, rom_start: 0x4A9530 }
+      - { name: map_cell_table_4A9630_03007670, rom_start: 0x4A9630 }
+      - { name: map_cell_table_4A9730_03007770, rom_start: 0x4A9730 }
+      - { name: map_cell_table_4A9830_03007870, rom_start: 0x4A9830 }
+      - { name: map_cell_table_4A9930_03007970, rom_start: 0x4A9930 }
+      - { name: map_cell_table_4A9A30_03007A70, rom_start: 0x4A9A30 }
+      - { name: map_cell_table_4A9B30_03007B70, rom_start: 0x4A9B30 }
+      - { name: map_cell_table_4A9C30_03007C70, rom_start: 0x4A9C30 }
+      - { name: map_cell_table_4A9D30_03007D70, rom_start: 0x4A9D30 }
+      - { name: map_cell_table_4A9E30_03007E70, rom_start: 0x4A9E30 }
+      - { name: map_cell_table_4A9F30_03007F70, rom_start: 0x4A9F30 }
+      - { name: map_cell_table_4AA030_03008070, rom_start: 0x4AA030 }
+      - { name: map_cell_table_4AA130_03008170, rom_start: 0x4AA130 }
+      - { name: map_cell_table_4AA230_03008270, rom_start: 0x4AA230 }
+      - { name: map_cell_table_4AA330_03008370, rom_start: 0x4AA330 }
+      - { name: map_cell_table_4AA430_03008470, rom_start: 0x4AA430 }
+      - { name: map_cell_table_4AA530_03008570, rom_start: 0x4AA530 }
+      - { name: map_cell_table_4AA630_03008670, rom_start: 0x4AA630 }
+      - { name: map_cell_table_4AA730_03008770, rom_start: 0x4AA730 }
+      - { name: map_cell_table_4AA830_03008870, rom_start: 0x4AA830 }
+      - { name: map_cell_table_4AA930_03008970, rom_start: 0x4AA930 }
+      - { name: map_cell_table_4AAA30_03008A70, rom_start: 0x4AAA30 }
+      - { name: map_cell_table_4AAB30_03008B70, rom_start: 0x4AAB30 }
+      - { name: map_cell_table_4AAC30_03008C70, rom_start: 0x4AAC30 }
+      - { name: map_cell_table_4AAD30_03008D70, rom_start: 0x4AAD30 }
+      - { name: map_cell_table_4AAE30_03008E70, rom_start: 0x4AAE30 }
+      - { name: map_cell_table_4AAF30_03008F70, rom_start: 0x4AAF30 }
+      - { name: map_cell_table_4AB030_03009070, rom_start: 0x4AB030 }
+      - { name: map_cell_table_4AB130_03009170, rom_start: 0x4AB130 }
+      - { name: map_cell_table_4AB230_03009270, rom_start: 0x4AB230 }
+      - { name: map_cell_table_4AB330_03009370, rom_start: 0x4AB330 }
+      - { name: map_cell_table_4AB430_03009470, rom_start: 0x4AB430 }
+      - { name: map_cell_table_4AB530_03009570, rom_start: 0x4AB530 }
+      - { name: map_cell_table_4AB630_03009670, rom_start: 0x4AB630 }
+      - { name: map_cell_table_4AB730_03009770, rom_start: 0x4AB730 }
+      - { name: map_cell_table_4AB830_03009870, rom_start: 0x4AB830 }
+      - { name: map_cell_table_4AB930_03009970, rom_start: 0x4AB930 }
+      - { name: map_cell_table_4ABA30_03009A70, rom_start: 0x4ABA30 }
+      - { name: map_cell_table_4ABB30_03009B70, rom_start: 0x4ABB30 }
+      - { name: map_cell_table_4ABC30_03009C70, rom_start: 0x4ABC30 }
+      - { name: map_cell_table_4ABD30_03009D70, rom_start: 0x4ABD30 }
+      - { name: map_cell_table_4ABE30_03009E70, rom_start: 0x4ABE30 }
+      - { name: map_cell_table_4ABF30_03009F70, rom_start: 0x4ABF30 }
+      - { name: map_cell_table_4AC030_0300A070, rom_start: 0x4AC030 }
+      - { name: map_cell_table_4AC130_0300A170, rom_start: 0x4AC130 }
+      - { name: map_cell_table_4AC230_0300A270, rom_start: 0x4AC230 }
+      - { name: map_cell_table_4AC330_0300A370, rom_start: 0x4AC330 }
+      - { name: map_cell_table_4AC430_0300A470, rom_start: 0x4AC430 }
+      - { name: map_cell_table_4AC530_0300A570, rom_start: 0x4AC530 }
+      - { name: map_cell_table_4AC630_0300A670, rom_start: 0x4AC630 }
+      - { name: map_cell_table_4AC730_0300A770, rom_start: 0x4AC730 }
+      - { name: map_cell_table_4AC830_0300A870, rom_start: 0x4AC830 }
+      - { name: map_cell_table_4AC930_0300A970, rom_start: 0x4AC930 }
+      - { name: map_cell_table_4ACA30_0300AA70, rom_start: 0x4ACA30 }
+      - { name: map_cell_table_4ACB30_0300AB70, rom_start: 0x4ACB30 }
+      - { name: map_cell_table_4ACC30_0300AC70, rom_start: 0x4ACC30 }
+      - { name: map_cell_table_4ACD30_0300AD70, rom_start: 0x4ACD30 }
+      - { name: map_cell_table_4ACE30_0300AE70, rom_start: 0x4ACE30 }
+      - { name: map_cell_table_4ACF30_0300AF70, rom_start: 0x4ACF30 }
+      - { name: map_cell_table_4AD030_0300B070, rom_start: 0x4AD030 }
+      - { name: map_cell_table_4AD130_0300B170, rom_start: 0x4AD130 }
+      - { name: map_cell_table_4AD230_0300B270, rom_start: 0x4AD230 }
+      - { name: map_cell_table_4AD330_0300B370, rom_start: 0x4AD330 }
+      - { name: map_cell_table_4AD430_0300B470, rom_start: 0x4AD430 }
+      - { name: map_cell_table_4AD530_0300B570, rom_start: 0x4AD530 }
+      - { name: map_cell_table_4AD630_0300B670, rom_start: 0x4AD630 }
+      - { name: map_cell_table_4AD730_0300B770, rom_start: 0x4AD730 }
+      - { name: map_cell_table_4AD830_0300B870, rom_start: 0x4AD830 }
+      - { name: map_cell_table_4AD930_0300B970, rom_start: 0x4AD930 }
+      - { name: map_cell_table_4ADA30_0300BA70, rom_start: 0x4ADA30 }
+      - { name: map_cell_table_4ADB30_0300BB70, rom_start: 0x4ADB30 }
+      - { name: map_cell_table_4ADC30_0300BC70, rom_start: 0x4ADC30 }
+      - { name: map_cell_table_4ADD30_0300BD70, rom_start: 0x4ADD30 }
+      - { name: map_cell_table_4ADE30_0300BE70, rom_start: 0x4ADE30 }
+      - { name: map_cell_table_4ADF30_0300BF70, rom_start: 0x4ADF30 }
+      - { name: map_cell_table_4AE030_0300C070, rom_start: 0x4AE030 }
+      - { name: map_cell_table_4AE130_0300C170, rom_start: 0x4AE130 }
+      - { name: map_cell_table_4AE230_0300C270, rom_start: 0x4AE230 }
+      - { name: map_table2_4AE330_0300C370, rom_start: 0x4AE330 }
+      - { name: map_table2_4AE440_0300C480, rom_start: 0x4AE440 }
+      - { name: map_table2_4AEAF0_0300CB30, rom_start: 0x4AEAF0 }
+      - { name: map_table2_4AF190_0300D1D0, rom_start: 0x4AF190 }
+      - { name: map_table2_4AF6B0_0300D6F0, rom_start: 0x4AF6B0 }
+      - { name: map_table2_4AFBC0_0300DC00, rom_start: 0x4AFBC0 }
+      - { name: map_table2_4B0310_0300E350, rom_start: 0x4B0310 }
+      - { name: map_table2_4B09E0_0300EA20, rom_start: 0x4B09E0 }
+      - { name: map_table2_4B14A0_0300F4E0, rom_start: 0x4B14A0 }
+      - { name: map_table2_4B17F0_0300F830, rom_start: 0x4B17F0 }
+      - { name: map_table2_4B1A70_0300FAB0, rom_start: 0x4B1A70 }
+      - { name: map_table2_4B1B50_0300FB90, rom_start: 0x4B1B50 }
+      - { name: map_table2_4B1DA0_0300FDE0, rom_start: 0x4B1DA0 }
+      - { name: D_4B1F9C_0300FFDC, rom_start: 0x4B1F9C }
+      - { name: map_table2_4B2560_030105A0, rom_start: 0x4B2560 }
+      - { name: map_table2_4B2820_03010860, rom_start: 0x4B2820 }
+      - { name: map_table2_4B2CA0_03010CE0, rom_start: 0x4B2CA0 }
+      - { name: map_table2_4B3920_03011960, rom_start: 0x4B3920 }
+      - { name: map_table2_4B3980_030119C0, rom_start: 0x4B3980 }
+      - { name: map_table2_4B3B00_03011B40, rom_start: 0x4B3B00 }
+      - { name: map_table2_4B3C60_03011CA0, rom_start: 0x4B3C60 }
+      - { name: map_table2_4B4180_030121C0, rom_start: 0x4B4180 }
+      - { name: map_table2_4B4700_03012740, rom_start: 0x4B4700 }
+      - { name: map_table2_4B4A70_03012AB0, rom_start: 0x4B4A70 }
+      - { name: map_table2_4B5390_030133D0, rom_start: 0x4B5390 }
+      - { name: map_table2_4B5880_030138C0, rom_start: 0x4B5880 }
+      - { name: map_table2_4B61B0_030141F0, rom_start: 0x4B61B0 }
+      - { name: map_table2_4B6400_03014440, rom_start: 0x4B6400 }
+      - { name: map_table2_4B6B80_03014BC0, rom_start: 0x4B6B80 }
+      - { name: map_table2_4B6DF0_03014E30, rom_start: 0x4B6DF0 }
+      - { name: map_table2_4B79F0_03015A30, rom_start: 0x4B79F0 }
+      - { name: map_table2_4B7AB0_03015AF0, rom_start: 0x4B7AB0 }
+      - { name: map_table2_4B7F20_03015F60, rom_start: 0x4B7F20 }
+      - { name: map_table2_4B81B0_030161F0, rom_start: 0x4B81B0 }
+      - { name: map_table2_4B8530_03016570, rom_start: 0x4B8530 }
+      - { name: map_table2_4B8780_030167C0, rom_start: 0x4B8780 }
+      - { name: map_table2_4B8A00_03016A40, rom_start: 0x4B8A00 }
+      - { name: map_table2_4B8DD0_03016E10, rom_start: 0x4B8DD0 }
+      - { name: map_table2_4B92D0_03017310, rom_start: 0x4B92D0 }
+      - { name: map_table2_4B94C0_03017500, rom_start: 0x4B94C0, rom_end: 0x4B9980 }
