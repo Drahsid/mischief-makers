@@ -49,7 +49,7 @@ extern u16 gFramesInScene;
 extern u16 gGamePaused;
 extern u16 gGameState;
 extern u16 gGameStateSubState;
-extern u16 gDebugBitfeild;
+extern u16 gDebugBitfield;
 
 extern u32 gFramesInPlayTime;
 

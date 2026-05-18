@@ -23,4 +23,10 @@ typedef struct {
     /* 0x06 */ u16 unk_3842[11];
 } AudioBufferSampleCounts; /* size = 0x1C */
 
+extern s16 D_800EF4D4;
+extern s16 gMusicVolume;
+extern u16 gSfxPlayerVolumes[];
+extern u8 gSfxPlayerFlags[];
+extern u16 gSfxSequenceIds[];
+
 #endif

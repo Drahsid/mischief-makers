@@ -9,12 +9,12 @@ extern f32 gCosineLookup[1024];
 //there is a second float table in the game that goes unused.
 extern f32 gUnusedFloatTable[512];
 
-#define COSLEN ((sizeof(gCosineLookup)/sizeof(f32))-1)
-#define COSPiOver2 ((sizeof(gCosineLookup)/sizeof(f32))/4)
-#define RadStep (f64)360.0/(sizeof(gCosineLookup)/sizeof(f32))// = 0.3515625. used for sin/cos lookups
-#define COS(x) gCosineLookup[x&COSLEN]
-#define SIN(x) gCosineLookup[x-COSPiOver2&COSLEN] //cos(x-pi/2)=sin(x)
-#define NEGSIN(x) gCosineLookup[x+COSPiOver2&COSLEN]//cos(x+pi/2)=-sin(x)
+#define COSLEN (ARRAYLENGTH(gCosineLookup) - 1)
+#define COSPiOver2 (ARRAYLENGTH(gCosineLookup) / 4)
+#define RadStep (f64)360.0/(ARRAYLENGTH(gCosineLookup)) // = 0.3515625. used for sin/cos lookups
+#define COS(x) gCosineLookup[(x) & COSLEN]
+#define SIN(x) gCosineLookup[((x) - COSPiOver2) & COSLEN] //cos(x-pi/2)=sin(x)
+#define NEGSIN(x) gCosineLookup[((x) + COSPiOver2) & COSLEN] //cos(x+pi/2)=-sin(x)
 
 #endif
 

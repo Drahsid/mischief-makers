@@ -5,6 +5,10 @@ extern u16 D_800CA230;
 extern u32 D_80137458;
 extern u16 D_80178136;
 
+extern s8 D_800D2204[];
+extern s8 D_800D2228[];
+extern s8 D_800D222C[];
+
 extern void Actor_ClearRange_10To20(void);
 extern void Actor_ClearRange_30To90(void);
 extern void Actor_ClearRange_90ToC0(void);
@@ -18,7 +22,6 @@ extern void func_8003FD0C(s32, s16, s16, s16, s32);
 extern void func_80042864(u16);
 extern void func_800423A0(u16);
 extern void func_800427E0(u16);
-extern s32 func_800294E0(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80027370.s")
 
@@ -162,22 +165,61 @@ void func_80028C00(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800291AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800294E0.s")
+s32 func_800294E0(s32 arg0, s32 arg1) {
+    s32 tmp;
+    s32 var_v1;
+    s32 var_a0;
+    s8* var_v0;
+    u8 ret;
 
-s32 func_800295D8(void) {
-    return (func_800294E0() + 0x100) & 0x200;
+    var_v0 = D_800D2228;
+    if (arg0 == 0) {
+        return (arg1 > 0) ? 0x100 : 0x300;
+    }
+    if (arg1 == 0) {
+        return (arg0 > 0) ? 0 : 0x200;
+    }
+    if (arg0 < 0) {
+        arg0 = -arg0;
+        var_v0 = D_800D222C;
+    }
+    if (arg1 < 0) {
+        arg1 = -arg1;
+        var_v0 += 2;
+    }
+    if (arg0 < arg1) {
+        tmp = arg0;
+        arg0 = arg1;
+        arg1 = tmp;
+        var_v0 += 1;
+    }
+    var_v1 = (arg0 * 4) / arg1;
+    if (var_v1 > 35) {
+        var_v1 = 35;
+    }
+    var_v1 = D_800D2204[var_v1];
+    var_a0 = *var_v0;
+    if (var_a0 < 0) {
+        var_v1 = -var_v1;
+    }
+    var_v1 += (var_a0 * 2);
+    return (var_v1 & 0xFF) * 4;
 }
 
-s32 func_80029600(void) {
-    return (func_800294E0() + 0x80) & 0x300;
+s32 func_800295D8(s32 arg0, s32 arg1) {
+    return (func_800294E0(arg0, arg1) + 0x100) & 0x200;
 }
 
-s32 func_80029628(void) {
-    return (func_800294E0() + 0x40) & 0x380;
+s32 func_80029600(s32 arg0, s32 arg1) {
+    return (func_800294E0(arg0, arg1) + 0x80) & 0x300;
 }
 
-s32 func_80029650(void) {
-    return (func_800294E0() + 0x20) & 0x3C0;
+s32 func_80029628(s32 arg0, s32 arg1) {
+    return (func_800294E0(arg0, arg1) + 0x40) & 0x380;
+}
+
+s32 func_80029650(s32 arg0, s32 arg1) {
+    return (func_800294E0(arg0, arg1) + 0x20) & 0x3C0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_80029678.s")

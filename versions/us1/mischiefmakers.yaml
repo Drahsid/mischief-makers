@@ -92,7 +92,7 @@ segments:
       - [0x0156F0, asm]
       - [0x017A70, c]
       - [0x01E7A0, c, actor_init]
-      - [0x01F1E0, asm]
+      - [0x01F1E0, c]
       - [0x022290, asm, letterbox]
       - [0x023070, asm, lifebar]
       - [0x023910, asm, soft_reset]
