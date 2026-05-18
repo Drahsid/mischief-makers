@@ -9,7 +9,10 @@ typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
 extern u16 D_800BE4D0;
 extern u16 D_800BE4D4;
+extern u16 D_800BE4D8;
+extern u16 D_800BE4DC;
 extern u16 D_800BE4E0;
+extern u16 D_800BE500;
 extern u16 D_800BE530;
 extern u16 D_800BE534;
 extern u16 D_800BE544;
@@ -29,6 +32,15 @@ extern s16 D_800C7CBC[];
 
 extern UnkFunc800CA1C0 D_800CA1C0[];
 extern u16 D_800CA230;
+extern u16 D_800CA238;
+extern u16 D_800CA23C;
+extern u16 D_800CA240;
+extern u16 D_800CA244;
+extern u16 D_800CA248;
+extern u16 D_800CA24C;
+extern u16 D_800CA250;
+extern u16* D_800CBDFC[];
+extern u16* D_800CBE0C[];
 
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
@@ -38,18 +50,18 @@ extern u16 D_800D2920;
 extern u16 D_800D2924;
 extern u16 D_800D2978[];
 
+extern u16 D_80104098[];
 extern u8 D_8010CDF0[0x10000];
-
 extern u16 D_8011CDF8[];
 extern u16 D_8011CF20[];
-extern u16 D_8011D048[];
-extern u16 D_8011D170[];
-extern u16 D_8011D290[];
-extern u16 D_8011D3D0[];
-extern u16 D_8011D4F0[];
-extern u16 D_8011D610[];
-extern u16 D_8011D730[];
-extern u16 D_8011D850[];
+extern s16 D_8011D048[];
+extern s16 D_8011D170[];
+extern s16 D_8011D290[];
+extern s16 D_8011D3D0[];
+extern s16 D_8011D4F0[];
+extern s16 D_8011D610[];
+extern s16 D_8011D730[];
+extern s16 D_8011D850[];
 extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
@@ -70,6 +82,7 @@ extern u16 D_801782B8;
 extern void func_8001107C(void);
 extern void func_800122B0(void);
 extern void func_80012830(void);
+extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern void func_80014AF0(void);
 extern void func_80014C44(void);
 extern void func_80016CB4(void);
@@ -86,6 +99,7 @@ extern void func_800457C8(void);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
+extern u8 func_8005C870(u8);
 extern void func_8005C8A4(void);
 extern s16 func_8005DEFC(void);
 extern void func_8005F6D4(void);
@@ -203,9 +217,69 @@ void func_8001F88C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FA78.s")
+u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
+    u16 var_a3;
+    u16 index;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FCA0.s")
+    var_a3 = arg0;
+    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].unk_098 & 0x600)) {
+        var_a3 = gActors[arg0].unk_0D6;
+    }
+    
+    for (index = 0; index < D_800BE4D0; index++) {
+        if ((arg0 != D_8011CF20[index]) && (var_a3 != D_8011CF20[index]) &&
+            (D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
+            (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index])) {
+            D_800BE4DC = D_8011CF20[index];
+            return 0xC0;
+        }
+    }
+
+    for (index = 0; index < D_800BE4D4; index++) {
+        if ((arg0 != D_8011CDF8[index]) && (var_a3 != D_8011CDF8[index]) &&
+            (D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
+            (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index])) {
+            D_800BE4DC = D_8011CDF8[index];
+            return 0x40;
+        }
+    }
+
+    D_800BE4DC = 0;
+    return 0;
+}
+
+u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
+    u8 temp_v0;
+    u16 index;
+
+    temp_v0 = func_8005C870(func_80012AB4(arg1, arg2));
+    D_800BE4DC = 0;
+    D_800BE4D8 = 0;
+    if (temp_v0 != 0) {
+        return temp_v0;
+    }
+    for (index = 0; index < D_800BE4D0; index++) {
+        if ((D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
+            (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index]) &&
+            (arg0 != D_8011CF20[index])) {
+            D_800BE4DC = D_8011CF20[index];
+            D_800BE4D8 = 1;
+            return 0xC0;
+        }
+    }
+
+    for (index = 0; index < D_800BE4D4; index++) {
+        if ((D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
+            (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index]) &&
+            (arg0 != D_8011CDF8[index])) {
+            D_800BE4DC = D_8011CDF8[index];
+            D_800BE4D8 = 1;
+            return 0x40;
+        }
+    }
+
+    return 0;
+}
 
 void func_8001FEB0(void) {
     u32 index;
@@ -435,7 +509,40 @@ void GameState_Gameplay(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80021098.s")
+void func_80021098(void) {
+    u16 prev_game_sub_state;
+
+    D_800BE4EC = 1;
+    gGameState = GAMESTATE_GAMEPLAY;
+    prev_game_sub_state = gGameStateSubState;
+    gGameStateSubState = 0;
+    D_800CA244--;
+    if (D_800CA244 == 0) {
+        D_800CA23C++;
+        D_800CA240 = gButtonHold = D_800CBDFC[D_800CA238][D_800CA23C];
+        D_800CA23C++;
+        D_800CA244 = D_800CBDFC[D_800CA238][D_800CA23C];
+    }
+    else {
+        gButtonHold = D_800CA240;
+    }
+
+    D_800CA250--;
+    if (D_800CA250 == 0) {
+        D_800CA248++;
+        D_800CA24C = gButtonPress = D_800CBE0C[D_800CA238][D_800CA248] | (gButtonPress & D_800BE500);
+        D_800CA248++;
+        D_800CA250 = D_800CBE0C[D_800CA238][D_800CA248];
+    }
+    else {
+        gButtonPress = D_800CA24C | (gButtonPress & D_800BE500);
+    }
+    GameState_Gameplay();
+    D_80104098[0x1440] = 0;
+    D_80104098[0x1490] = 0;
+    gGameState = GAMESTATE_ATTRACT;
+    gGameStateSubState = prev_game_sub_state;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/GameState_Attract.s")
 
