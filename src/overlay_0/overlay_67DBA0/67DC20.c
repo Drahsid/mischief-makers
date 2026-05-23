@@ -80,7 +80,7 @@ void func_8019237C_67DE9C(s32 arg0) {
     *(s32*)&gActors[0x4E].unk_180 = 0x3C;
     *(s32*)&gActors[0x4F].unk_180 = 8;
     *(s32*)&gActors[0x50].unk_180 = 0xFE;
-    *(f32*)&gActors[0x4E].unk_140 = 0.0f;
+    *(f32*)&gActors[0x4E].unk_140_f32 = 0.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_801923B0_67DED0.s")
@@ -135,7 +135,7 @@ void func_801928A8_67E3C8(s32 arg0) {
 
     gActors[0x4E].unk_180 = 0xA;
     gActors[0x4F].unk_180 = 0x90;
-    gActors[0x4E].unk_140 = 0.5f;
+    gActors[0x4E].unk_140_f32 = 0.5f;
     gActors[0x4E].unk_148 = 1.0f;
     gActors[0x4E].unk_14C = D_8019DD98_6898B8;
     D_8019E578_68A098 = 0xFFEC0000;
@@ -519,7 +519,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 
     if (gActors[0x37].flags_098 & ACTOR_FLAG3_UNK9) {
         gActors[0x37].flags &= ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9);
-        if (((u8*)&gActors[0].unk_140)[0] == 0) {
+        if (gActors[0].unk_140_u8 == 0) {
             gActors[index].state = 0x400;
             func_80193DF0_67F910(index, 0x10);
             return 1;

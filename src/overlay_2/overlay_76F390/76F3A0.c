@@ -134,7 +134,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].timer_110 = 0.55f;
             gActors[temp_v0].unk_118 = -0.02f;
             gActors[temp_v0].unk_11C = -0.02f;
-            gActors[temp_v0].unk_140 = -20.0f;
+            gActors[temp_v0].unk_140_f32 = -20.0f;
         }
     }
 }

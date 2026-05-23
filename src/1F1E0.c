@@ -8,6 +8,9 @@
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
+extern u16 gRngSeed;
+extern u16 gAudioFadeMode;
+
 extern u16 D_800BE4D0;
 extern u16 D_800BE4D4;
 extern u16 D_800BE4D8;
@@ -17,6 +20,8 @@ extern u16 D_800BE500;
 extern u16 D_800BE530;
 extern u16 D_800BE534;
 extern u16 D_800BE544;
+extern u16 D_800BE5D0;
+extern u16 D_800BE668;
 extern u16 D_800BE6B4;
 extern u16 D_800BE6B8;
 extern u16 D_800BE704;
@@ -25,11 +30,13 @@ extern u16 D_800BE708;
 extern s32 D_800CA28C; // unknown type
 extern s32 D_800CA2A0; // unknown type
 
-// these could be related arrays
 extern s16 D_800C7CA4[];
 extern s16 D_800C7CAC[];
 extern s16 D_800C7CB4[];
 extern s16 D_800C7CBC[];
+extern u16 D_800C83F8[];
+extern u16 D_800CA234;
+extern u16 D_800CA2B0[];
 
 extern UnkFunc800CA1C0 D_800CA1C0[];
 extern u16 D_800CA230;
@@ -45,6 +52,7 @@ extern u16* D_800CBE0C[];
 
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
+extern u16 D_800D2908;
 extern u16 D_800D2918;
 extern u16 D_800D291C;
 extern u16 D_800D2920;
@@ -79,6 +87,8 @@ extern u16 D_801781DC;
 extern u16 D_801781E0;
 extern u16 D_801782B8;
 
+extern void GameState_Loading(void);
+extern void Sound_StartFade(u16, u16);
 extern void func_8001107C(void);
 extern void func_800122B0(void);
 extern void func_80012830(void);
@@ -193,7 +203,7 @@ void func_8001EC1C(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EC1C.s")
 
 void func_8001F88C(void) {
-    u16 index; // var_a0
+    u16 index;
 
     if (!(D_80137458 & 0x10)) {
         for (index = 0, D_800BE4D0 = 0, D_800BE4D4 = 0; index < 144; index++) {
@@ -217,17 +227,17 @@ void func_8001F88C(void) {
     }
 }
 
-u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
+u8 func_8001FA78(u16 actor_index, s16 arg1, s16 arg2) {
     u16 var_a3;
     u16 index;
 
-    var_a3 = arg0;
-    if ((gActors[arg0].flags & ACTOR_FLAG_ATTACHED) || (gActors[arg0].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10))) {
-        var_a3 = gActors[arg0].unk_0D6;
+    var_a3 = actor_index;
+    if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10))) {
+        var_a3 = gActors[actor_index].unk_0D6;
     }
     
     for (index = 0; index < D_800BE4D0; index++) {
-        if ((arg0 != D_8011CF20[index]) && (var_a3 != D_8011CF20[index]) &&
+        if ((actor_index != D_8011CF20[index]) && (var_a3 != D_8011CF20[index]) &&
             (D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
             (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index])) {
             D_800BE4DC = D_8011CF20[index];
@@ -236,7 +246,7 @@ u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
     }
 
     for (index = 0; index < D_800BE4D4; index++) {
-        if ((arg0 != D_8011CDF8[index]) && (var_a3 != D_8011CDF8[index]) &&
+        if ((actor_index != D_8011CDF8[index]) && (var_a3 != D_8011CDF8[index]) &&
             (D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
             (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index])) {
             D_800BE4DC = D_8011CDF8[index];
@@ -248,7 +258,7 @@ u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
     return 0;
 }
 
-u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
+u8 func_8001FCA0(u16 actor_index, s16 arg1, s16 arg2) {
     u8 temp_v0;
     u16 index;
 
@@ -261,7 +271,7 @@ u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
     for (index = 0; index < D_800BE4D0; index++) {
         if ((D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
             (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index]) &&
-            (arg0 != D_8011CF20[index])) {
+            (actor_index != D_8011CF20[index])) {
             D_800BE4DC = D_8011CF20[index];
             D_800BE4D8 = 1;
             return 0xC0;
@@ -271,7 +281,7 @@ u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
     for (index = 0; index < D_800BE4D4; index++) {
         if ((D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
             (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index]) &&
-            (arg0 != D_8011CDF8[index])) {
+            (actor_index != D_8011CDF8[index])) {
             D_800BE4DC = D_8011CDF8[index];
             D_800BE4D8 = 1;
             return 0x40;
@@ -299,14 +309,14 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gActors[0].flags_098 &= 0x80600;
+    gActors[0].flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
 }
 
 void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].flags_098 &= 0x380600;
+        gActors[index].flags_098 &= ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
     }
 }
 
@@ -543,7 +553,81 @@ void func_80021098(void) {
     gGameStateSubState = prev_game_sub_state;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/GameState_Attract.s")
+void GameState_Attract(void) {
+    Actor* actors_200;
+    s32 var_v0;
+
+    actors_200 = &gActors[200];
+    switch (gGameStateSubState) {
+    case 0:
+        if (D_800CA238 > 3) {
+            D_800CA238 = 0;
+        }
+        gDebugStageSelectSelectedIndex = D_800CA2B0[D_800CA238];
+        D_800BE5D0 = gDebugStageSelectSceneIds[gDebugStageSelectSelectedIndex];
+        D_800D28E4 = gDebugStageSelectStageIds[gDebugStageSelectSelectedIndex];
+        D_800CA234 = 0xA00;
+        D_800D2908 = 1;
+        gActors[0].health = 1000;
+        D_800BE668 = 0x32;
+        gRngSeed = 0x1234;
+        GameState_Loading();
+        gGameState = 0xA;
+        gGameStateSubState = 1;
+        D_80104098[0x1440] = D_80104098[0x1490] = 0;
+        func_8002092C();
+        actors_200[0].hitboxBY1 = actors_200[1].hitboxBY0 = actors_200[2].hitboxBX0 = actors_200[3].hitboxBX1 = 0;
+        D_800CA23C = 0;
+        D_800CA240 = 0;
+        D_800CA248 = 0;
+        D_800CA24C = 0;
+        D_800CA244 = D_800CBDFC[D_800CA238][0];
+        D_800CA250 = D_800CBE0C[D_800CA238][0];
+        break;
+    case 1:
+        if (actors_200[2].hitboxBX0 == 0x90) {
+            actors_200[0].flags = actors_200[1].flags = actors_200[2].flags = actors_200[3].flags = 0;
+        }
+        else {
+            actors_200[0].hitboxBY1 += 2;
+            actors_200[1].hitboxBY0 -= 2;
+            actors_200[2].hitboxBX0 += 3;
+            actors_200[3].hitboxBX1 -= 3;
+        }
+        func_80021098();
+        if ((D_800CA234-- == 0) || (gButtonPress & D_800BE500)) {
+            if (actors_200[0].flags == 0) {
+                Sound_StartFade(1, 0x40);
+                D_800CA234 = 0x40;
+                gGameStateSubState++;
+            }
+        }
+        break;
+    case 2:
+        func_80021098();
+        var_v0 = (D_800CA234--) ^ 0x30;
+        if (var_v0 == 0) {
+            actors_200[0].flags = actors_200[1].flags = actors_200[2].flags = actors_200[3].flags = 0xB;
+            gGameStateSubState++;
+        }
+        break;
+    case 3:
+        func_80021098();
+        if (actors_200[2].hitboxBX0 == actors_200[3].hitboxBX1) {
+            D_800CA238++;
+            gAudioFadeMode = 0;
+            gGameState = 0;
+            gGameStateSubState = 0;
+        }
+        else {
+            actors_200[0].hitboxBY1 -= 2;
+            actors_200[1].hitboxBY0 += 2;
+            actors_200[2].hitboxBX0 -= 3;
+            actors_200[3].hitboxBX1 += 3;
+        }
+        break;
+    }
+}
 
 void func_80021620(void) {
     if (gButtonPress & D_800BE534) {

@@ -110,7 +110,7 @@ enum ActorFlags3 {
 
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
-    /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
+    /* 0x080 */ u32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
     /* 0x084 */ u16 graphicIndex; // index of graphic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
     /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
@@ -146,7 +146,7 @@ typedef struct {
     /* 0x0C8 */ s16 unk_0C8;
     /* 0x0CA */ s16 unk_0CA;
     /* 0x0CC */ s16 unk_0CC;
-    /* 0x0CE */ s16 unk_0CE;
+    /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
         // < 0x4000: common action state, action = state / 16, other = state & 0xF; sometimes read as individual bytes
@@ -157,7 +157,7 @@ typedef struct {
     };
     /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
     /* 0x0D4 */ u16 unk_0D4;
-    /* 0x0D6 */ u16 unk_0D6;
+    /* 0x0D6 */ u16 unk_0D6; // used as another actor index
     /* 0x0D8 */ u16 unk_0D8;
     /* 0x0DA */ u8 unk_0DA;
     /* 0x0DB */ u8 unk_0DB;
@@ -212,7 +212,15 @@ typedef struct {
     /* 0x134 */ f32 unk_134;
     /* 0x138 */ f32 unk_138;
     /* 0x13C */ f32 unk_13C;
-    /* 0x140 */ f32 unk_140;
+    union {
+        /* 0x140 */ f32 unk_140_f32;
+        struct {
+            /* 0x140 */ u8 unk_140_u8;
+            /* 0x141 */ u8 unk_141_u8;
+            /* 0x142 */ u8 unk_142_u8;
+            /* 0x143 */ u8 unk_143_u8;
+        };
+    };
     /* 0x144 */ f32 unk_144;
     /* 0x148 */ f32 unk_148;
     /* 0x14C */ f32 unk_14C;

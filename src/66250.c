@@ -15,7 +15,6 @@ extern void func_80069C54(u16 actor_index);
 extern void func_80072628(u16 actor_index);
 extern void func_80078F54(u16 actor_index);
 extern u32 func_80029A7C(s32 arg0, s32 arg1, s32 arg2);
-extern u32 func_80029B00(s32 arg0, s32 arg1, s32 arg2);
 extern u32 func_80029CC0(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern u32 func_80029D58(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern u32 func_80029DEC(s32 arg0, s32 arg1);
@@ -35,7 +34,6 @@ extern u16 D_800D2950;
 extern ActorFunc D_800D7F00[];
 extern u8 D_800E1788[];
 extern u16 D_800E3580;
-extern u32 D_800E3584;
 extern u16 D_800BE4E0;
 
 void func_80065650(u16 actor_index) {

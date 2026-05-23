@@ -15,6 +15,9 @@ extern s32 Sound_PlaySfx(u32 sound_id);
 extern void Sound_StartFade(u16 mode, u16 duration);
 
 extern u16 func_8000178C(void);
+extern void func_80012288(void);
+extern u8 func_80012AB4(s16 arg0, s16 arg1);
+extern u8 func_80012C04(s16, s16);
 
 extern void func_80010C20(u16 arg0);
 extern void func_800282F0(s16 arg0, s16 arg1);
@@ -51,11 +54,11 @@ extern void func_80026F2C(u16 arg0);
 extern void func_800270E4(u16 arg0);
 extern void func_800271B0(u16 arg0);
 extern void func_80028380(void);
-extern s32 func_800288EC(u16 actor_index, s16 arg1);
+extern u16 func_800288EC(u16 actor_index, s16 arg1);
 extern s32 func_80028C08(u16 actor_index);
 extern void func_80029134(u16 actor_index);
-extern u32 func_80029B00(s32 arg0, s32 arg1, s32 arg2);
-extern u32 func_80029B74(s32 arg0);
+extern u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2);
+extern u32 func_80029B74(s16 arg0);
 extern void func_8002A2B0(u16 actor_index, s32 arg1);
 extern void func_8002ABE4(u16 actor_index, s16 val);
 extern s32 func_8002F154(u16 arg0, u16 arg1, s32 arg2);
@@ -148,5 +151,7 @@ extern void func_80082CFC(void);
 extern void func_80082E04(void);
 extern void func_80082F10(void);
 extern void func_80083E74(void);
+
+extern void func_8005CA34(s32, s32);
 
 #endif
