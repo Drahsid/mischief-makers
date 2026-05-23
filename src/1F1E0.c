@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "cosine.h"
 #include "boot.h"
+#include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
 
@@ -66,7 +67,6 @@ extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
 extern u16 D_80178136;
-extern u16 D_80178162;
 extern s16 D_801781C0[]; // some volume setting
 extern u16 D_801781C8;
 extern u16 D_801781CA;
@@ -427,7 +427,7 @@ void func_800205DC(void) {
 void func_800207DC(void) {
     u64 ret;
 
-    ret = func_8001C7F0(D_80178162);
+    ret = func_8001C7F0(gDebugStageSelectSelectedIndex);
     if (ret != 0) {
         func_800836A0(9, 1, &D_800CA2A0, 0);
     }

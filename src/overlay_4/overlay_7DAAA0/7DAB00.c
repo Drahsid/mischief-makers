@@ -1,22 +1,10 @@
 #include "common.h"
 #include "actor.h"
 
-extern u16 D_800BE4EC;
-extern u16 D_800BE544;
-extern s16 D_800BE56C;
-extern s32 D_800BE5F4;
-extern u8 D_800BE710;
-extern u16 D_800D28E4;
-extern u16 D_800D28E8;
-extern u16 D_800D28F0;
-extern u16 D_800D28F8;
-extern u32 D_800D28FC;
-extern u16 D_800D2908;
 extern s16 D_800D2924;
-extern s32 D_800D2928;
-extern u16 gAudioFadeMode;
 extern s16 D_80104098[];
-extern u8 D_801781F8[];
+extern s32 D_800BE5F4;
+extern u16 D_800D28F8;
 extern u32 D_80178288;
 
 u32 D_801BB030_7DC230[] = {

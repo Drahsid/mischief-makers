@@ -72,3 +72,8 @@ Actor_ClearRange_30To90 = 0x8002865C; // type:func
 Actor_ClearRange_90ToC0 = 0x80028680; // type:func
 Actor_ClearRange_C0ToC7 = 0x800286A4; // type:func
 Actor_AdvanceState = 0x80042360; // type:func
+
+// debug_level_select.c
+Input_CheckButtonRepeat = 0x80017680; // type:func
+DebugMenu_UpdateCursorFlash = 0x80017770; // type:func
+DebugStageSelect_DrawMenu = 0x80018E00; // type:func

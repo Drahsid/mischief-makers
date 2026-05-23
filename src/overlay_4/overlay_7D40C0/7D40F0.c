@@ -1,49 +1,24 @@
 #include "common.h"
 #include "actor.h"
+#include "debug_level_select.h"
 
+extern s16 func_8005DEFC(void);
+extern s16 D_800D2918;
+extern s16 D_800D291C;
+extern s16 D_800D2920;
+extern void func_80064AA0(s32 arg0, void* arg1);
 typedef union {
     /* 0x00 */ s32 word;
     /* 0x00 */ s16 half;
 } Unk_801BC140_7D40F0; /* size = 0x04 */
 
 
-extern u8 D_800D24D8;
-extern u8 D_800D24F0;
-extern u16 D_800D22BC[];
-extern u16 D_800BE4E0;
-extern u16 D_800BE544;
-extern s32 D_800BE548;
 extern s32 D_800BE550;
 extern s32 D_800BE554;
-extern u16 D_800BE5D0;
 extern s16 D_800BE5D8;
-extern s16 D_800BE5DC;
 extern s32 D_800BE5F4;
-extern s32 D_800BE6D8;
-extern u8 D_800BE6E4;
-extern u8 D_800BE6E8;
-extern u8 D_800BE6EC;
-extern u16 D_800D28E4;
-extern u16 D_800D28E8;
 extern s16 D_800D28F8;
-extern u16 D_800D28F0;
-extern u32 D_800D28FC;
-extern u16 D_800D2908;
-extern s16 D_800D2918;
-extern s16 D_800D291C;
-extern s16 D_800D2920;
-extern s32 D_800D2938;
-extern s16 D_800F4268;
-extern s32 D_800F43A8;
-extern s16 D_800F43B0;
-extern s32 D_800F7510;
-extern s32 gMusicSequenceId;
-extern u16 gAudioFadeMode;
 extern u32 D_80137458;
-extern u16 D_80178162;
-extern u32 D_800D1A04[];
-extern u8 D_801781F8[];
-extern u32 D_800D8588[];
 
 Unk_801BC140_7D40F0 D_801BC140_7D6930 = { 0 };
 Unk_801BC140_7D40F0 D_801BC144_7D6934 = { 0 };
@@ -1266,33 +1241,7 @@ s16 D_801C02B4_7DAAA4;
 u16 D_801C02B6_7DAAA6;
 u8 D_801C02B8_7DAAA8[8];
 
-extern void func_80010C20(u16 arg0);
 extern u64 func_8001C7F0(u16 arg0);
-extern void func_8002601C(s32 arg0);
-extern void func_800260C8(s32 arg0);
-extern void func_800282F0(s16 arg0, s16 arg1);
-extern void func_80028380(void);
-extern void Actor_ClearRange_30To90(void);
-extern void func_80034D80(u16 arg0, void* arg1);
-extern void func_800369A0(u16 arg0, u16 arg1, void* arg2);
-extern void func_8003D628(u16 arg0);
-extern void func_8003F138(f32 arg0, s16 arg1, s16 arg2, s16 arg3);
-extern void func_80026E60(u16 arg0);
-extern void func_80042E28(s32 arg0);
-extern void func_80042F2C(s32 arg0, s32 arg1, s32 arg2);
-extern void func_80043D04(void* arg0);
-extern void func_80043D6C(void* arg0);
-extern void func_80045D84(s32 arg0, s32 arg1);
-extern void func_800472D4(void);
-extern s32 func_8004735C(s32 arg0, s32 arg1);
-extern void func_8005739C(s32 arg0, s32 arg1);
-extern s16 func_8005DEFC(void);
-extern s32 func_8005DF5C(s32 arg0);
-extern void func_8005CA34(s32 arg0, s32 arg1);
-extern void func_80064AA0(s32 arg0, void* arg1);
-extern void func_8008BFB0(void);
-extern void Sound_PlayMusic(u32 sequence_id);
-extern void func_8003E6A4(s32 arg0, s32 arg1);
 
 void func_801B9900_7D40F0(void);
 void func_801B9F3C_7D472C(u16 arg0, u16 arg1);
@@ -2432,7 +2381,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
     u16 actor_count;
     u16 index;
 
-    if (D_800D24F0 >= 2) { if (func_8001C7F0(D_80178162) == 0) {
+    if (D_800D24F0 >= 2) { if (func_8001C7F0(gDebugStageSelectSelectedIndex) == 0) {
             index = 0; actor_count = 1; while (actor_count < 3) {
                 if ((actor_type = D_800D22BC[index + 3]) == 8) {
                     if ((D_800D22BC[index + 1] & 3) == 3) {

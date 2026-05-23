@@ -9,14 +9,7 @@ typedef struct {
     /* 0x08 */ s16 unk_08;
 } UnkStruct_801A7250; /* size = 0x0A */
 
-extern u16 D_800BE4E0;
 
-extern s32 func_80003778(u32 arg0, u16 actor_index);
-extern s32 func_800288EC(u16 actor_index, s16 arg1);
-extern void func_8002ABE4(u16 actor_index, s32 arg1);
-extern u16 func_80031284(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
-extern void func_80039134(u16 actor_index);
-extern void func_8005CA34(s32 arg0, s32 arg1);
 
 UnkStruct_801A7250 D_801A7250_76FCF0[] = {
     { 0, 0x11, 0xC, -0x40, -0xC0 },

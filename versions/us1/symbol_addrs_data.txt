@@ -201,6 +201,20 @@ gButtonLast = 0x800BE538; // size:0x2
 gJoyX = 0x800BE53C; // size:0x1
 gJoyY = 0x800BE540; // size:0x1
 
+// debug_level_select.c
+gDebugStageSelectRowPrefixes = 0x800C81E4;
+gDebugStageSelectRowOptionCounts = 0x800C823C;
+gDebugStageSelectGroupOptionStartOffsets = 0x800C8268;
+gDebugStageSelectGroupOptionStartOffsetsTail = 0x800C8270;
+gDebugStageSelectOptionSuffixes = 0x800C8278;
+gDebugStageSelectSceneIds = 0x800C8378;
+gDebugStageSelectStageIds = 0x800C83F8;
+gStageTransitionTimeThresholds = 0x800C8478;
+gDebugStageSelectSelectedIndex = 0x80178162;
+gDebugStageSelectSelectedOptions = 0x80178170;
+gDebugStageSelectOptionBaseOffsets = 0x80178188;
+gDebugMenuCursorFlash = 0x801781A0;
+
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;
 rle_0045_3E7AB0_0119EB70 = 0x0119EB70;

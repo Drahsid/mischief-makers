@@ -1,33 +1,11 @@
 #include "common.h"
 #include "actor.h"
 
-extern s16 D_800BE568;
-extern s16 D_800BE56C;
-extern s16 D_800BE570;
-extern s16 D_800BE574;
-extern s16 D_800BE558;
-extern s16 D_800BE55C;
-extern u16 D_800BE52C;
-extern u16 D_800BE530;
-extern u16 D_800BE544;
-extern u8 D_800BE6E4;
-extern u8 D_800BE6E8;
-extern u8 D_800BE6EC;
-extern s32 D_800BE73C;
-extern s32 D_800BE5F4;
-extern u16 gButtonPress;
-extern u8 D_800CC428;
-extern u16 D_800D28E8;
-extern u16 D_800D28E4;
-extern u16 D_800D28F0;
-extern u32 D_800D28FC;
-extern s32 D_800D2928;
-extern s32 D_800D292C;
-extern s32 D_800D2930;
-extern s32 D_800D2938;
 extern s16 D_800D2924;
-
 extern s16 D_80104098[];
+extern void func_80064AA0(s32 arg0, void* arg1);
+extern s32 D_800BE5F4;
+
 extern s16 D_801BA636_7E7786;
 extern u32 D_801BA540_7E7690[];
 extern u32 D_801BA56C_7E76BC[];
@@ -57,10 +35,6 @@ extern u32 D_801BACF0_7E7E40[];
 extern u32 D_801BAD00_7E7E50[];
 extern u32 D_801BAD04_7E7E54[];
 
-extern void func_8003D628(u16 arg0);
-extern void func_80046A9C(void);
-extern void func_80064AA0(s32 arg0, void* arg1);
-extern s16 func_800456DC(void);
 
 typedef struct {
     /* 0x00 */ u16 unk_00;

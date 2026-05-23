@@ -1,12 +1,6 @@
 #include "common.h"
 
-extern u16 gLetterboxMode;
-extern u16 D_800BE544;
-extern u16 D_800BE4EC;
 extern s32 D_800BE5F4;
-extern u16 D_800D28E8;
-extern u32 D_800D28FC;
-extern u16 D_800D2908;
 extern u8 D_8010692C;
 
 u32 D_801B9BC0_7EA690[] = {

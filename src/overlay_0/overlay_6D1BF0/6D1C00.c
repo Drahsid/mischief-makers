@@ -1,29 +1,10 @@
 #include "common.h"
 #include "actor.h"
 
-extern s16 D_800D5830;
-extern s16 D_800D5834;
-extern u8 D_800E1180[];
-extern u8 D_800E45D0[];
-extern u8 D_800E4698[];
-extern u8 D_800E574C[];
-extern u8 D_800E57D4[];
-extern u8 D_800E58D4[];
-extern u8 D_800E58F0[];
-extern u8 D_800E5910[];
-extern u8 D_800E5938[];
-extern u8 D_800E5970[];
-extern u8 D_800E59E0[];
 
-extern s32 func_800036C8(s32 arg0, u16 arg1);
-extern s32 func_80003980(s32 arg0, u16 arg1);
-extern u16 func_80028528(void);
 extern s16 func_8005DEFC(void);
-extern void func_8005DF40(s32 arg0, s32 arg1);
-extern s32 func_8005DF5C(s32 arg0);
-extern void func_8007F9E0(u16 actor_index);
-extern void func_80081720(u16 arg0, void* arg1, s32 arg2);
-extern void func_8008C710(u16 arg0);
+extern u16 func_80028528(void);
+extern s32 func_800036C8(s32 arg0, u16 arg1);
 
 void func_80192C00_6D2700(u16 actor_index);
 void ClancerCommanderMech_Init(u16 actor_index);

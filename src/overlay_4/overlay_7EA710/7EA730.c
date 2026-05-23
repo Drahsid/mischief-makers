@@ -1,55 +1,19 @@
 #include "common.h"
 #include "actor.h"
 
-extern u16 D_800CA230;
-extern u16 D_800BE4EC;
-extern u16 D_800BE544;
-extern s16 D_800BE550;
-extern s16 D_800BE554;
-extern s16 D_800BE558;
-extern s16 D_800BE55C;
-extern s16 D_800BE560;
-extern s16 D_800BE564;
-extern s16 D_800BE568;
-extern s16 D_800BE56C;
-extern s16 D_800BE570;
-extern s16 D_800BE574;
-extern s16 D_800BE578;
-extern s16 D_800BE580;
-extern s32 D_800BE5F4;
-extern s16 D_800BE704;
-extern s16 D_800BE708;
-extern u16 D_800D28E8;
-extern u32 D_800D28FC;
-extern f32 D_800D2904;
-extern u16 D_800D2914;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern s16 D_800D294C;
-extern s16 D_800D2950;
 extern u16 D_80104098[];
-extern u8 D_801376BC[];
+extern s16 D_800BE550;
+extern s16 D_800BE554;
+extern s32 D_800BE5F4;
+extern s16 D_800BE704;
+extern s16 D_800BE708;
+extern u16 D_800D2914;
+extern s16 D_800D2950;
 
-extern void func_80010C20(u16 arg0);
-extern void func_800255B4(u16 arg0);
-extern void func_80025BFC(void);
-extern void func_80025E00(void);
-extern void func_80026220(u16 arg0);
-extern void func_8002653C(void);
-extern void func_800265FC(u16 arg0);
-extern void func_80026694(u16 arg0);
-extern void func_8002670C(u16 arg0);
-extern void func_80026784(u16 arg0);
-extern void func_80026D88(u16 arg0);
-extern void func_80026F2C(u16 arg0);
-extern void func_800270E4(u16 arg0);
-extern void func_800271B0(u16 arg0);
-extern void func_80042DBC(void* arg0);
-extern void func_80045500(void);
-extern void func_80045D84(s32 arg0, s32 arg1);
-extern void* func_80045F14(void* arg0);
 
 void func_801B9A78_7EA8A8(s16* arg0);
 void func_801B9B2C_7EA95C(void);
