@@ -41,11 +41,36 @@ Gfx_DrawLetterbox = 0x800218FC; //type:func
 
 Actor_ClearRange = 0x800285E4; // type:func
 Actor_ClearSceneActors = 0x80028744; // type:func
+Math_AbsS32 = 0x800289CC; // type:func
+Math_Atan2 = 0x800294E0; // type:func
+Math_PlaneHalf = 0x800295D8; // type:func
+Math_PlaneQuadrant = 0x80029600; // type:func
+Math_PlaneOctant = 0x80029628; // type:func
+Math_Plane16Way = 0x80029650; // type:func
+Math_ClampLimit = 0x8002A090; // type:func
+Actor_SetVelocityXAbs = 0x8002A0C4; // type:func
+Actor_ClampVelocityX = 0x8002A118; // type:func
+Actor_ClampVelocityY = 0x8002A170; // type:func
+Actor_ClampVelocity = 0x8002A1C8; // type:func
+Actor_Clamp_0F8 = 0x8002A200; // type:func
+Actor_Clamp_0FC = 0x8002A258; // type:func
+Actor_Clamp_0F8_0FC = 0x8002A2B0; // type:func
+Actor_Scale_0F8_0FC_Velocity = 0x8002A320; // type:func
+Actor_UpdateVelocityX = 0x8002A404; // type:func
+Actor_UpdateVelocityY = 0x8002A464; // type:func
+Actor_UpdateVelocity = 0x8002A4C4; // type:func
+Actor_IncrementRgb = 0x8002AEF8; // type:func
+Actor_ApproachRgb = 0x8002B1D0; // type:func
 Math_ApproachS32 = 0x8002981C; // type:func
 Math_ApproachF32 = 0x80029860; // type:func
 Actor_SetColorRgb = 0x8002AEB4; // type:func
 Palette_AdjustRgb5551 = 0x8002B5A0; // type:func
+Palette_AdjustRgbIndexArray = 0x8002B6E8; // type:func
+Palette_SetRgbIndexArray = 0x8002B7B8; // type:func
+Palette_SetRgbTableIndexArray = 0x8002B7F4; // type:func
+Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
+
 
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
@@ -67,10 +92,17 @@ GameState_FileSelect = 0x80007C8C; // type:func
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 Trouble_RLE_Type2 = 0x80098B50; // type:func
+Actor_RangeFindFlag2 = 0x800284B8; // type:func
+Actor_RangeFindFlag2_90ToC0 = 0x80028528; // type:func
 Actor_ClearRange_10To20 = 0x80028638; // type:func
 Actor_ClearRange_30To90 = 0x8002865C; // type:func
 Actor_ClearRange_90ToC0 = 0x80028680; // type:func
 Actor_ClearRange_C0ToC7 = 0x800286A4; // type:func
+Actor_IsOutsideRegion = 0x800288EC; // type:func
+Actor_RegionCheckAudio = 0x80028980; // type:func
+Actor_NearestFromList = 0x800289E4; // type:func
+Actor_UpdateNearest = 0x80028AE8; // type:func
+Actor_UpdateNearestTo0 = 0x80028B1C; // type:func
 Actor_AdvanceState = 0x80042360; // type:func
 
 // debug_level_select.c

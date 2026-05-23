@@ -38,21 +38,21 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern u16 D_800D84E8[];
 extern u16 D_800E14C8[];
-extern s32 D_800E3578;
-extern s32 D_800E357C;
-extern u16 D_800E3580; // nearest actor index, updated in func_800289E4
+extern s32 D_800E3578; // nearest actor delta X
+extern s32 D_800E357C; // nearest actor delta Y
+extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 extern u16 D_80137450;
 extern u32 D_80137458;
 extern u16 D_80178136;
 
 extern Unk800D1788 D_800D1788[];
 extern u8 D_800D17FC[];
-extern s8 D_800D2204[];
-extern s8 D_800D2228[];
-extern s8 D_800D222C[];
+extern s8 D_800D2204[]; // LUT in atan2
+extern s8 D_800D2228[]; // entries used in atan2
+extern s8 D_800D222C[]; // entries used in atan2
 extern u16 D_800D2230[];
 extern u16 D_800D36DC[];
-extern u16 D_800D36FC[];
+extern u16 D_800D36FC[]; // list of actor indexes used in Actor_UpdateNearest
 extern u8 D_800DCE7C[]; // guess
 extern u8 D_800DD07C[]; // guess
 extern u8 D_800DD27C[]; // guess
@@ -61,8 +61,8 @@ extern Unk80104098 D_80104098[0x40];
 extern u16 D_8011DD70[];
 
 // forward declarations
-void func_8002A200(u16 actor_index, s32 max_val);
-void func_8002A258(u16 actor_index, s32 max_val);
+void Actor_Clamp_0F8(u16 actor_index, s32 max_val);
+void Actor_Clamp_0FC(u16 actor_index, s32 max_val);
 void func_8002AC30(u16 actor_index, s16 val);
 void func_80030B0C(u16);
 u16 func_8003123C(void*, s32, s32, s32);
@@ -137,6 +137,7 @@ u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5) {
     return actor_index;
 }
 
+// render 2-digit number
 u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
     u16 tens;
 
@@ -150,6 +151,7 @@ u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
     return actor_index + 2;
 }
 
+// render 3-digit number
 u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
     u16 hundos;
     u16 tens;
@@ -358,8 +360,7 @@ void func_800283BC(u32 arg0, u16 arg1) {
 void func_800284B0(s32 arg0) {
 }
 
-// Actor_RangeFindFlag2
-u16 func_800284B8(u16 actor_index, u16 end) {
+u16 Actor_RangeFindFlag2(u16 actor_index, u16 end) {
     while (actor_index < end) {
         if (!(gActors[actor_index].flags & ACTOR_FLAG_ACTIVE)) {
             return actor_index;
@@ -369,18 +370,18 @@ u16 func_800284B8(u16 actor_index, u16 end) {
     return 0;
 }
 
-// Actor_RangeFindFlag2_90ToC0
-u16 func_80028528(void) {
-    return func_800284B8(0x90, 0xC0);
+u16 Actor_RangeFindFlag2_90ToC0(void) {
+    return Actor_RangeFindFlag2(0x90, 0xC0);
 }
 
 #ifdef NON_MATCHING
+// BUG: incorrect prototype
 // only matches if func_8001E2D0 returns void
 // https://decomp.me/scratch/opNVZ
 u16 func_8002854C(u16 actor_type, s16 x, s16 y, s16 z) {
     u16 actor_index;
 
-    actor_index = func_800284B8(0x90, 0xC0);
+    actor_index = Actor_RangeFindFlag2(0x90, 0xC0);
     if (actor_index != 0) {
         gActors[actor_index].actorType = actor_type;
         func_8001E2D0(actor_index);
@@ -470,8 +471,7 @@ u16 func_8002884C(u16 actor_index) {
     return 1;
 }
 
-// Actor_IsOutsideBox
-u16 func_800288EC(u16 actor_index, s16 length) {
+u16 Actor_IsOutsideRegion(u16 actor_index, s16 length) {
     if ((gActors[actor_index].posX.whole > (0x90 + length)) || (gActors[actor_index].posX.whole < (-0x90 - length)) || 
         (gActors[actor_index].posY.whole > (0x60 + length)) || (gActors[actor_index].posY.whole < (-0x60 - length))) {
         return 1;
@@ -481,15 +481,13 @@ u16 func_800288EC(u16 actor_index, s16 length) {
     }
 }
 
-// Actor_OutsideBoxSound
-void func_80028980(u16 actor_index, s16 arg1, u32 arg2) {
-    if (func_800288EC(actor_index, arg1) == 0) {
+void Actor_RegionCheckAudio(u16 actor_index, s16 arg1, u32 arg2) {
+    if (Actor_IsOutsideRegion(actor_index, arg1) == 0) {
         func_800036C8(arg2, actor_index);
     }
 }
 
-// Math_AbsS32()
-s32 func_800289CC(s32 val) {
+s32 Math_AbsS32(s32 val) {
     if (val < 0) {
         return -val;
     }
@@ -498,15 +496,14 @@ s32 func_800289CC(s32 val) {
     }
 }
 
-// Actor_NearestFromList
-void func_800289E4(u16 actor_index, u16* actor_list, s16 max_dist) {
+void Actor_NearestFromList(u16 actor_index, u16* actor_list, s16 max_dist) {
     s16 dist_x;
     u16 index;
 
     D_800E3580 = 0;
     while (*actor_list != 0) {
         index = *actor_list;
-        dist_x = func_800289CC(gActors[actor_index].posX.whole - gActors[index].posX.whole);
+        dist_x = Math_AbsS32(gActors[actor_index].posX.whole - gActors[index].posX.whole);
         if (dist_x < max_dist) {
             D_800E3580 = index;
             max_dist = dist_x;
@@ -515,14 +512,13 @@ void func_800289E4(u16 actor_index, u16* actor_list, s16 max_dist) {
     }
 }
 
-// Actor_UpdateNearest
-void func_80028AE8(u16 actor_index) {
-    func_800289E4(actor_index, D_800D36FC, 0x7FFF);
+void Actor_UpdateNearest(u16 actor_index) {
+    Actor_NearestFromList(actor_index, D_800D36FC, 0x7FFF);
 }
 
-void func_80028B1C(u16 actor_index) {
-    s16 dist = func_800289CC(gActors[actor_index].posX.whole - gActors[0].posX.whole);
-    func_800289E4(actor_index, D_800D36DC, dist);
+void Actor_UpdateNearestTo0(u16 actor_index) {
+    s16 dist = Math_AbsS32(gActors[actor_index].posX.whole - gActors[0].posX.whole);
+    Actor_NearestFromList(actor_index, D_800D36DC, dist);
 }
 
 void func_80028B90(u16 actor_index) {
@@ -550,11 +546,11 @@ s32 func_80028C08(u16 actor_index) {
     }
 }
 
-s32 func_80028C80(u16 actor_inde) {
-    if (gActors[actor_inde].flags_098 & ACTOR_FLAG3_UNK9) {
-        gActors[actor_inde].posX.raw = gActors[actor_inde].unk_104;
-        gActors[actor_inde].posY.raw = gActors[actor_inde].unk_108;
-        gActors[actor_inde].posZ.raw = gActors[actor_inde].unk_10C;
+s32 func_80028C80(u16 actor_index) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+        gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
+        gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
+        gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
         return 0;
     }
     else {
@@ -711,8 +707,8 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
                     gActors->unk_0DD = 0x11;
                     gActors->unk_0F8.raw = gActors[actor_index].unk_0F8.raw;
                     gActors->unk_0FC.raw = gActors[actor_index].unk_0FC.raw;
-                    func_8002A200(0, 0x40000);
-                    func_8002A258(0, 0x20000);
+                    Actor_Clamp_0F8(0, 0x40000);
+                    Actor_Clamp_0FC(0, 0x20000);
                     gActors->unk_0E2 = 0;
                 }
                 return 1;
@@ -752,41 +748,40 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
     return 3;
 }
 
-// Math_Atan2?
-s32 func_800294E0(s32 arg0, s32 arg1) {
+s32 Math_Atan2(s32 x, s32 y) {
     s32 tmp;
     s32 var_v1;
     s32 var_a0;
-    s8* var_v0;
+    s8* table;
     u8 ret;
 
-    var_v0 = D_800D2228;
-    if (arg0 == 0) {
-        return (arg1 > 0) ? 0x100 : 0x300;
+    table = D_800D2228;
+    if (x == 0) {
+        return (y > 0) ? 0x100 : 0x300;
     }
-    if (arg1 == 0) {
-        return (arg0 > 0) ? 0 : 0x200;
+    if (y == 0) {
+        return (x > 0) ? 0 : 0x200;
     }
-    if (arg0 < 0) {
-        arg0 = -arg0;
-        var_v0 = D_800D222C;
+    if (x < 0) {
+        x = -x;
+        table = D_800D222C;
     }
-    if (arg1 < 0) {
-        arg1 = -arg1;
-        var_v0 += 2;
+    if (y < 0) {
+        y = -y;
+        table += 2;
     }
-    if (arg0 < arg1) {
-        tmp = arg0;
-        arg0 = arg1;
-        arg1 = tmp;
-        var_v0 += 1;
+    if (x < y) {
+        tmp = x;
+        x = y;
+        y = tmp;
+        table += 1;
     }
-    var_v1 = (arg0 * 4) / arg1;
+    var_v1 = (x * 4) / y;
     if (var_v1 > 35) {
         var_v1 = 35;
     }
     var_v1 = D_800D2204[var_v1];
-    var_a0 = *var_v0;
+    var_a0 = *table;
     if (var_a0 < 0) {
         var_v1 = -var_v1;
     }
@@ -794,20 +789,20 @@ s32 func_800294E0(s32 arg0, s32 arg1) {
     return (var_v1 & 0xFF) * 4;
 }
 
-s32 func_800295D8(s32 arg0, s32 arg1) {
-    return (func_800294E0(arg0, arg1) + 0x100) & 0x200;
+s32 Math_PlaneHalf(s32 x, s32 y) {
+    return (Math_Atan2(x, y) + 0x100) & 0x200;
 }
 
-s32 func_80029600(s32 arg0, s32 arg1) {
-    return (func_800294E0(arg0, arg1) + 0x80) & 0x300;
+s32 Math_PlaneQuadrant(s32 x, s32 y) {
+    return (Math_Atan2(x, y) + 0x80) & 0x300;
 }
 
-s32 func_80029628(s32 arg0, s32 arg1) {
-    return (func_800294E0(arg0, arg1) + 0x40) & 0x380;
+s32 Math_PlaneOctant(s32 x, s32 y) {
+    return (Math_Atan2(x, y) + 0x40) & 0x380;
 }
 
-s32 func_80029650(s32 arg0, s32 arg1) {
-    return (func_800294E0(arg0, arg1) + 0x20) & 0x3C0;
+s32 Math_Plane16Way(s32 x, s32 y) {
+    return (Math_Atan2(x, y) + 0x20) & 0x3C0;
 }
 
 s32 func_80029678(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
@@ -1102,20 +1097,20 @@ s16* func_8002A018(s16* arg0, s16 arg1) {
     return var_v1;
 }
 
-s32 func_8002A090(s32 arg0, s32 arg1) {
-    if (arg1 < 0) {
-        arg1 = -arg1;
+s32 Math_ClampLimit(s32 val, s32 limit) {
+    if (limit < 0) {
+        limit = -limit;
     }
-    if (arg1 < arg0) {
-        arg0 = arg1;
+    if (limit < val) {
+        val = limit;
     }
-    if (arg0 < -arg1) {
-        arg0 = -arg1;
+    if (val < -limit) {
+        val = -limit;
     }
-    return arg0;
+    return val;
 }
 
-void func_8002A0C4(u16 actor_index, s32 velocity_x) {
+void Actor_SetVelocityXAbs(u16 actor_index, s32 velocity_x) {
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].velocityX.raw = -velocity_x;
     }
@@ -1124,59 +1119,50 @@ void func_8002A0C4(u16 actor_index, s32 velocity_x) {
     }
 }
 
-// Actor_CapVelocityX
-void func_8002A118(u16 actor_index, s32 max_velocity) {
-    gActors[actor_index].velocityX.raw = func_8002A090(gActors[actor_index].velocityX.raw, max_velocity);
+void Actor_ClampVelocityX(u16 actor_index, s32 max_velocity) {
+    gActors[actor_index].velocityX.raw = Math_ClampLimit(gActors[actor_index].velocityX.raw, max_velocity);
 }
 
-// Actor_CapVelocityY
-void func_8002A170(u16 actor_index, s32 max_velocity) {
-    gActors[actor_index].velocityY.raw = func_8002A090(gActors[actor_index].velocityY.raw, max_velocity);
+void Actor_ClampVelocityY(u16 actor_index, s32 max_velocity) {
+    gActors[actor_index].velocityY.raw = Math_ClampLimit(gActors[actor_index].velocityY.raw, max_velocity);
 }
 
-// Actor_CapVelocity
-void func_8002A1C8(u16 actor_index, s32 max_velocity) {
-    func_8002A118(actor_index, max_velocity);
-    func_8002A170(actor_index, max_velocity);
+void Actor_ClampVelocity(u16 actor_index, s32 max_velocity) {
+    Actor_ClampVelocityX(actor_index, max_velocity);
+    Actor_ClampVelocityY(actor_index, max_velocity);
 }
 
-// Actor_Cap_0F8 (related to VelX)
-void func_8002A200(u16 actor_index, s32 max_val) {
-    gActors[actor_index].unk_0F8.raw = func_8002A090(gActors[actor_index].unk_0F8.raw, max_val);
+void Actor_Clamp_0F8(u16 actor_index, s32 max_val) {
+    gActors[actor_index].unk_0F8.raw = Math_ClampLimit(gActors[actor_index].unk_0F8.raw, max_val);
 }
 
-// Actor_Cap_0FC (related to VelY)
-void func_8002A258(u16 actor_index, s32 max_val) {
-    gActors[actor_index].unk_0FC.raw = func_8002A090(gActors[actor_index].unk_0FC.raw, max_val);
+void Actor_Clamp_0FC(u16 actor_index, s32 max_val) {
+    gActors[actor_index].unk_0FC.raw = Math_ClampLimit(gActors[actor_index].unk_0FC.raw, max_val);
 }
 
-// Actor_Cap_0F8_0FC (related to VelY)
-void func_8002A2B0(u16 actor_index, s32 max_val) {
-    gActors[actor_index].unk_0F8.raw = func_8002A090(gActors[actor_index].unk_0F8.raw, max_val);
-    gActors[actor_index].unk_0FC.raw = func_8002A090(gActors[actor_index].unk_0FC.raw, max_val);
+void Actor_Clamp_0F8_0FC(u16 actor_index, s32 max_val) {
+    gActors[actor_index].unk_0F8.raw = Math_ClampLimit(gActors[actor_index].unk_0F8.raw, max_val);
+    gActors[actor_index].unk_0FC.raw = Math_ClampLimit(gActors[actor_index].unk_0FC.raw, max_val);
 }
 
-void func_8002A320(u16 actor_index, s32 dist) {
+void Actor_Scale_0F8_0FC_Velocity(u16 actor_index, s32 magnitude) {
     s16 angle;
-    angle = func_800294E0(gActors[actor_index].velocityX.raw, gActors[actor_index].velocityY.raw);
-    gActors[actor_index].unk_0F8.raw = COS(angle) * dist;
-    gActors[actor_index].unk_0FC.raw = SIN(angle) * dist;
+    angle = Math_Atan2(gActors[actor_index].velocityX.raw, gActors[actor_index].velocityY.raw);
+    gActors[actor_index].unk_0F8.raw = COS(angle) * magnitude;
+    gActors[actor_index].unk_0FC.raw = SIN(angle) * magnitude;
 }
 
-// Actor_UpdateVelocityX
-void func_8002A404(u16 actor_index, s32 dvx) {
+void Actor_UpdateVelocityX(u16 actor_index, s32 dvx) {
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, dvx);
 }
 
-// Actor_UpdateVelocityY
-void func_8002A464(u16 actor_index, s32 dvy) {
+void Actor_UpdateVelocityY(u16 actor_index, s32 dvy) {
     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, dvy);
 }
 
-// Actor_UpdateVelocity
-void func_8002A4C4(u16 actor_index, s32 dvx, s32 dvy) {
-    func_8002A404(actor_index, dvx);
-    func_8002A464(actor_index, dvy);
+void Actor_UpdateVelocity(u16 actor_index, s32 dvx, s32 dvy) {
+    Actor_UpdateVelocityX(actor_index, dvx);
+    Actor_UpdateVelocityY(actor_index, dvy);
 }
 
 s32 func_8002A4FC(u16 actor_index) {
@@ -1370,23 +1356,23 @@ s32 func_8002AD7C(u16 actor_index, s32 arg1, s32 arg2, s32 arg3) {
     return arg2 & 0x3FF;
 }
 
-// clamps colors to +/-arg1
-u16 func_8002AE44(s16 arg0, s16 arg1) {
-    if (arg1 < 0) {
-        if (-arg1 >= arg0) {
+// increment/decrement color by arg1
+u16 func_8002AE44(s16 current, s16 amount) {
+    if (amount < 0) {
+        if (-amount >= current) {
             return 0;
         }
         else {
-            return (arg0 + arg1);
+            return (current + amount);
         }
     }
     else {
-        arg0 += arg1;
-        if (arg0 >= 0x100) {
+        current += amount;
+        if (current >= 0x100) {
             return 0xFF;
         }
         else {
-            return arg0;
+            return current;
         }
     }
 }
@@ -1397,21 +1383,20 @@ void Actor_SetColorRgb(u16 actor_index, u16 color) {
     gActors[actor_index].colorB = color;
 }
 
-// clamp actor's RGB to arg1
-void func_8002AEF8(u16 actor_index, s16 arg1) {
-    gActors[actor_index].colorR = func_8002AE44(gActors[actor_index].colorR, arg1);
-    gActors[actor_index].colorG = func_8002AE44(gActors[actor_index].colorG, arg1);
-    gActors[actor_index].colorB = func_8002AE44(gActors[actor_index].colorB, arg1);
+void Actor_IncrementRgb(u16 actor_index, s16 amount) {
+    gActors[actor_index].colorR = func_8002AE44(gActors[actor_index].colorR, amount);
+    gActors[actor_index].colorG = func_8002AE44(gActors[actor_index].colorG, amount);
+    gActors[actor_index].colorB = func_8002AE44(gActors[actor_index].colorB, amount);
 }
 
-void func_8002AF7C(u16 actor_index, u16 arg1, s16 arg2) {
+void func_8002AF7C(u16 actor_index, u16 arg1, s16 amount) {
     if (!(D_800BE4E0 & arg1)) {
         gActors[actor_index].colorR = 0x7F;
         gActors[actor_index].colorG = 0x7F;
         gActors[actor_index].colorB = 0x7F;
     }
     else {
-        func_8002AEF8(actor_index, arg2);
+        Actor_IncrementRgb(actor_index, amount);
     }
 }
 
@@ -1454,7 +1439,7 @@ void func_8002B140(u16 actor_index, s16 arg1) {
     gActors[actor_index].colorB = func_8002B010(actor_index, gActors[actor_index].colorB, arg1);
 }
 
-void func_8002B1D0(u16 actor_index, s16 arg1) {
+void Actor_ApproachRgb(u16 actor_index, s16 arg1) {
     gActors[actor_index].colorR = Math_ApproachS32(gActors[actor_index].colorR, 0, arg1);
     gActors[actor_index].colorG = Math_ApproachS32(gActors[actor_index].colorG, 0, arg1);
     gActors[actor_index].colorB = Math_ApproachS32(gActors[actor_index].colorB, 0, arg1);
@@ -1546,7 +1531,7 @@ u16 Palette_AdjustRgb5551(u16 color, s16 blue_offset, s16 green_offset, s16 red_
 }
 
 // sets array of palette indexes to given RGB
-void func_8002B6E8(u16* src_idx, u16* dst, s16 blue, s16 green, s16 red) {
+void Palette_AdjustRgbIndexArray(u16* src_idx, u16* dst, s16 blue, s16 green, s16 red) {
     while (src_idx[0] != 0x100) {
         dst[src_idx[0]] = Palette_AdjustRgb5551(src_idx[1], blue, green, red);
         src_idx += 2;
@@ -1554,15 +1539,15 @@ void func_8002B6E8(u16* src_idx, u16* dst, s16 blue, s16 green, s16 red) {
 }
 
 // sets array of palette indexes to color
-void func_8002B7B8(u16* src_idx, u16* dst, u16 color) {
-    while (*src_idx != 0x100) {
-        dst[*src_idx] = color;
+void Palette_SetRgbIndexArray(u16* src_idx, u16* dst, u16 color) {
+    while (src_idx[0] != 0x100) {
+        dst[src_idx[0]] = color;
         src_idx += 2;
     }
 }
 
 // sets array of palette indexes to color in array
-void func_8002B7F4(u16* src_idx, u16* dst) {
+void Palette_SetRgbTableIndexArray(u16* src_idx, u16* dst) {
     while (src_idx[0] != 0x100) {
         dst[src_idx[0]] = src_idx[1];
         src_idx += 2;
@@ -1580,10 +1565,9 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
     }
 }
 
-// Actor_ReduceHealth
 // reduce health by amount
 // returns 1 if health remaining, 0 otherwise
-s32 func_8002B8F0(u16 actor_index, u16 health_diff) {
+s32 Actor_ReduceHealth(u16 actor_index, u16 health_diff) {
     if (gActors[actor_index].health <= health_diff) {
         gActors[actor_index].health = 0;
         return 0;
@@ -1797,7 +1781,7 @@ void func_8002C044(void) {
     index = 0;
     for (actor_index = 0x30; actor_index < 0x90; actor_index++) {
         if (((gActors[actor_index].flags & (ACTOR_FLAG_UNK10 | ACTOR_FLAG_ACTIVE)) == (ACTOR_FLAG_UNK10 | ACTOR_FLAG_ACTIVE)) &&
-            (gActors[actor_index].health > 0) && (!func_800288EC(actor_index, 0x20))) {
+            (gActors[actor_index].health > 0) && (!Actor_IsOutsideRegion(actor_index, 0x20))) {
             D_800D2230[index++] = actor_index;
             if (index >= 0x20) {
                 return;
@@ -2207,7 +2191,7 @@ u16 func_80030F94(u16, void*, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800311EC.s")
 
 u16 func_8003123C(void* arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u16 actor_index = func_80028528();
+    u16 actor_index = Actor_RangeFindFlag2_90ToC0();
     return func_80030F94(actor_index, arg0, arg1, arg2, arg3);
 }
 

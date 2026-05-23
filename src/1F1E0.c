@@ -40,7 +40,7 @@ extern u16 D_800CA2B0[];
 
 extern UnkFunc800CA1C0 D_800CA1C0[];
 extern u16 D_800CA230;
-extern u16 D_800CA238;
+extern u16 D_800CA238; // attract demo index
 extern u16 D_800CA23C;
 extern u16 D_800CA240;
 extern u16 D_800CA244;
@@ -104,7 +104,6 @@ extern void func_8001FF30(void);
 extern void func_8001FF50(void);
 extern void func_80022470(void);
 extern void func_800253B0(void);
-extern s32 func_800294E0(s32, s32);
 extern void func_800457C8(void);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
@@ -129,7 +128,7 @@ s32 func_8001E5E0(u16 arg0, u16 arg1, s32 arg2) {
     f32 sp20;
 
     sp20 = sqrtf(gActors[arg0].unk_0E2);
-    v = func_800294E0(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
+    v = Math_Atan2(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
     return NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2);
 }
 
@@ -138,7 +137,7 @@ s32 func_8001E6F4(u16 arg0, u16 arg1, s32 arg2) {
     f32 sp20;
 
     sp20 = sqrtf(gActors[arg0].unk_0E2);
-    v = func_800294E0(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
+    v = Math_Atan2(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
     return SIN(v) * (sp20 * arg2 * 2);
 }
 

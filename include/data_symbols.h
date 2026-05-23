@@ -31,7 +31,7 @@ extern s32 D_800D2938;
 extern s16 D_800D294C;
 extern u32 D_800D8588[];
 extern u16 D_800E3580;
-extern u32 D_800E3584;
+extern u32 D_800E3584; // nearest actor facing
 extern u8 D_801376BC[];
 extern u8 D_801781F8[];
 extern u16 gAudioFadeMode;

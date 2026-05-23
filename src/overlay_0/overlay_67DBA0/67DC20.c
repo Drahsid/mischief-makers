@@ -51,7 +51,6 @@ void func_8002ACFC(u16 actor_index, s16 arg1, s16 arg2);
 void func_8002AC7C(u16 actor_index, s16 arg1, s16 arg2);
 void func_8002AC30(u16 actor_index, s16 val);
 s32 func_800036C8(u32 arg0, u16 actor_index);
-s32 func_800294E0(s32 arg0, s32 arg1);
 u16 func_8003123C(void* arg0, s32 arg1, s32 arg2, s32 arg3);
 u16 func_80031284(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
 s32 func_80048C94(s32 arg0);
@@ -163,7 +162,7 @@ void func_801928A8_67E3C8(s32 arg0) {
 void func_80192E68_67E988(u16 actor_index, u16 arg1) {
     u16 new_actor_index;
 
-    new_actor_index = func_800284B8(0x68, 0x70);
+    new_actor_index = Actor_RangeFindFlag2(0x68, 0x70);
     if (new_actor_index != 0) {
         ACTOR_INIT(new_actor_index,0x609);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
@@ -624,7 +623,7 @@ void func_80198708_684228(u16 actor_index) {
 }
 
 u16 func_8019882C_68434C(void) {
-    return func_800284B8(0x67, 0x68);
+    return Actor_RangeFindFlag2(0x67, 0x68);
 }
 
 void func_80198850_684370(u16 actor_index) {
@@ -637,7 +636,7 @@ void func_80198850_684370(u16 actor_index) {
         gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
         gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole;
         gActors[new_actor_index].posZ.whole = gActors[actor_index].posZ.whole + 1;
-        gActors[new_actor_index].unk_16C = func_800294E0(gActors[0].posX.raw - gActors[new_actor_index].posX.raw,
+        gActors[new_actor_index].unk_16C = Math_Atan2(gActors[0].posX.raw - gActors[new_actor_index].posX.raw,
                           gActors[0].posY.raw - gActors[new_actor_index].posY.raw) << 16;
         gActors[new_actor_index].var_154 = 0x1FFFCC;
     }

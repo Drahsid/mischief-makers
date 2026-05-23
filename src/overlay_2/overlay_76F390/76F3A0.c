@@ -48,7 +48,7 @@ void func_801A6980_76F420(u16 actor_index) {
     FlameArchInit* temp_v1;
 
     if ((D_800BE4E0 & 3) == 0) {
-        temp_v0 = func_800284B8(0x30, 0x90);
+        temp_v0 = Actor_RangeFindFlag2(0x30, 0x90);
         if (temp_v0 != 0) {
             temp_index = gActors[actor_index].unk_0D8 * 5;
             temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
@@ -146,7 +146,7 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
     temp_v1 = (u16)gActors[actor_index].timer_110 % 0xF0;
 
     if ((temp_v1 >= 0x1E) && (temp_v1 < 0xD3)) {
-        if (func_800288EC(actor_index, 0x40) == 0) {
+        if (Actor_IsOutsideRegion(actor_index, 0x40) == 0) {
             if ((D_800BE4E0 & 7) == 0) {
                 func_80003778(0x4B, actor_index);
             }

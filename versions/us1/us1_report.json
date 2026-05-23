@@ -4012,7 +4012,7 @@
           }
         },
         {
-          "name": "func_800284B8",
+          "name": "Actor_RangeFindFlag2",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4020,7 +4020,7 @@
           }
         },
         {
-          "name": "func_80028528",
+          "name": "Actor_RangeFindFlag2_90ToC0",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4115,7 +4115,7 @@
           }
         },
         {
-          "name": "func_800288EC",
+          "name": "Actor_IsOutsideRegion",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4123,7 +4123,7 @@
           }
         },
         {
-          "name": "func_80028980",
+          "name": "Actor_RegionCheckAudio",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4131,7 +4131,7 @@
           }
         },
         {
-          "name": "func_800289CC",
+          "name": "Math_AbsS32",
           "size": "24",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4139,7 +4139,7 @@
           }
         },
         {
-          "name": "func_800289E4",
+          "name": "Actor_NearestFromList",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4147,7 +4147,7 @@
           }
         },
         {
-          "name": "func_80028AE8",
+          "name": "Actor_UpdateNearest",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4155,7 +4155,7 @@
           }
         },
         {
-          "name": "func_80028B1C",
+          "name": "Actor_UpdateNearestTo0",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4243,7 +4243,7 @@
           }
         },
         {
-          "name": "func_800294E0",
+          "name": "Math_Atan2",
           "size": "248",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4251,7 +4251,7 @@
           }
         },
         {
-          "name": "func_800295D8",
+          "name": "Math_PlaneHalf",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4259,7 +4259,7 @@
           }
         },
         {
-          "name": "func_80029600",
+          "name": "Math_PlaneQuadrant",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4267,7 +4267,7 @@
           }
         },
         {
-          "name": "func_80029628",
+          "name": "Math_PlaneOctant",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4275,7 +4275,7 @@
           }
         },
         {
-          "name": "func_80029650",
+          "name": "Math_Plane16Way",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4435,7 +4435,7 @@
           }
         },
         {
-          "name": "func_8002A090",
+          "name": "Math_ClampLimit",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4443,7 +4443,7 @@
           }
         },
         {
-          "name": "func_8002A0C4",
+          "name": "Actor_SetVelocityXAbs",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4451,7 +4451,7 @@
           }
         },
         {
-          "name": "func_8002A118",
+          "name": "Actor_ClampVelocityX",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4459,7 +4459,7 @@
           }
         },
         {
-          "name": "func_8002A170",
+          "name": "Actor_ClampVelocityY",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4467,7 +4467,7 @@
           }
         },
         {
-          "name": "func_8002A1C8",
+          "name": "Actor_ClampVelocity",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4475,7 +4475,7 @@
           }
         },
         {
-          "name": "func_8002A200",
+          "name": "Actor_Clamp_0F8",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4483,7 +4483,7 @@
           }
         },
         {
-          "name": "func_8002A258",
+          "name": "Actor_Clamp_0FC",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4491,7 +4491,7 @@
           }
         },
         {
-          "name": "func_8002A2B0",
+          "name": "Actor_Clamp_0F8_0FC",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4499,7 +4499,7 @@
           }
         },
         {
-          "name": "func_8002A320",
+          "name": "Actor_Scale_0F8_0FC_Velocity",
           "size": "228",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4507,7 +4507,7 @@
           }
         },
         {
-          "name": "func_8002A404",
+          "name": "Actor_UpdateVelocityX",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4515,7 +4515,7 @@
           }
         },
         {
-          "name": "func_8002A464",
+          "name": "Actor_UpdateVelocityY",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4523,7 +4523,7 @@
           }
         },
         {
-          "name": "func_8002A4C4",
+          "name": "Actor_UpdateVelocity",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4643,7 +4643,7 @@
           }
         },
         {
-          "name": "func_8002AEF8",
+          "name": "Actor_IncrementRgb",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4675,7 +4675,7 @@
           }
         },
         {
-          "name": "func_8002B1D0",
+          "name": "Actor_ApproachRgb",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4731,7 +4731,7 @@
           }
         },
         {
-          "name": "func_8002B6E8",
+          "name": "Palette_AdjustRgbIndexArray",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4739,7 +4739,7 @@
           }
         },
         {
-          "name": "func_8002B7B8",
+          "name": "Palette_SetRgbIndexArray",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4747,7 +4747,7 @@
           }
         },
         {
-          "name": "func_8002B7F4",
+          "name": "Palette_SetRgbTableIndexArray",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4763,7 +4763,7 @@
           }
         },
         {
-          "name": "func_8002B8F0",
+          "name": "Actor_ReduceHealth",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {

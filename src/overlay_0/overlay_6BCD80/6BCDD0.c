@@ -60,7 +60,7 @@ extern u32 D_801A5E68_6D0B38[];
 extern u32 D_801A5F38_6D0C08[];
 extern u32 D_801A68EC_6D15BC[];
 extern s32 func_800032C4(u32 arg0);
-extern s32 func_800294E0(s32 arg0, s32 arg1);
+extern s32 Math_Atan2(s32 arg0, s32 arg1);
 
 void func_801932DC_6BDFAC(u16 actor_index);
 void func_80193EFC_6BEBCC(u16 actor_index, f32 arg1, f32 arg2, s32 arg3);
@@ -347,7 +347,7 @@ void func_80195D44_6C0A14(s32 arg0) {
 s32 func_80196030_6C0D00(s32 arg0) {
     u16 actor_index;
 
-    actor_index = func_800284B8(0x5E, 0x62);
+    actor_index = Actor_RangeFindFlag2(0x5E, 0x62);
     if (actor_index != 0) {
         ACTOR_INIT(actor_index, 0x1604);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
@@ -367,7 +367,7 @@ void func_8019654C_6C121C(u16 actor_index) {
     u16 rand;
 
     rand = func_8000178C();\
-    D_801A2190_6CCE60 = (func_800294E0(gActors[0].posX.whole - gActors[actor_index + 8].posX.whole,
+    D_801A2190_6CCE60 = (Math_Atan2(gActors[0].posX.whole - gActors[actor_index + 8].posX.whole,
                                        gActors[0].posY.whole - gActors[actor_index + 8].posY.whole) - (rand & 0x3F) - 0x310) & 0x3FF;
 }
 
@@ -376,7 +376,7 @@ void func_801965D0_6C12A0(u16 actor_index, u16 angle) {
 
     target = gCosineLookup[angle & 0x3FF] * 393216.0f;
     gActors[actor_index].velocityX.raw =
-        Math_ApproachS32(gActors[actor_index].velocityX.raw, target, func_800289CC(gCosineLookup[angle & 0x3FF] * 49152.0f));
+        Math_ApproachS32(gActors[actor_index].velocityX.raw, target, Math_AbsS32(gCosineLookup[angle & 0x3FF] * 49152.0f));
 }
 
 void func_801966B0_6C1380(u16 actor_index, u16 angle) {
@@ -384,7 +384,7 @@ void func_801966B0_6C1380(u16 actor_index, u16 angle) {
 
     target = gCosineLookup[(angle - 0x100) & 0x3FF] * 393216.0f;
     gActors[actor_index].velocityY.raw = Math_ApproachS32(
-        gActors[actor_index].velocityY.raw, target, func_800289CC(gCosineLookup[(angle - 0x100) & 0x3FF] * 49152.0f));
+        gActors[actor_index].velocityY.raw, target, Math_AbsS32(gCosineLookup[(angle - 0x100) & 0x3FF] * 49152.0f));
 }
 
 void func_80196794_6C1464(u16 actor_index) {
