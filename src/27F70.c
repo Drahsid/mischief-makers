@@ -334,17 +334,17 @@ void func_8002A1C8(u16 arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AA20.s")
 
 void func_8002ABE4(u16 actor_index, s16 val) {
-    gActors[actor_index].unk_0A6 = val;
-    gActors[actor_index].unk_0A8 = -val;
-    gActors[actor_index].unk_0A2 = -val;
-    gActors[actor_index].unk_0A4 = val;
+    gActors[actor_index].hitboxAY0 = val;
+    gActors[actor_index].hitboxAY1 = -val;
+    gActors[actor_index].hitboxAX0 = -val;
+    gActors[actor_index].hitboxAX1 = val;
 }
 
 void func_8002AC30(u16 actor_index, s16 val) {
-    gActors[actor_index].unk_0AE = val;
-    gActors[actor_index].unk_0B0 = -val;
-    gActors[actor_index].unk_0AA = -val;
-    gActors[actor_index].unk_0AC = val;
+    gActors[actor_index].hitboxBY0 = val;
+    gActors[actor_index].hitboxBY1 = -val;
+    gActors[actor_index].hitboxBX0 = -val;
+    gActors[actor_index].hitboxBX1 = val;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002AC7C.s")

@@ -1408,7 +1408,7 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
 
     if (D_800D24D8 >= 3) { index = 0; actor_count = 1; while (actor_count < 4) {
             if ((actor_type = D_800D22BC[index + 3]) == 0x1C07) {
-                ((s32*)&gActors[actor_index].unk_150)[actor_count] = index;
+                ((s32*)&gActors[actor_index].var150)[actor_count] = index;
                 actor_count++;
             }
 
@@ -1661,7 +1661,7 @@ void func_801BA690_7D4E80(void) {
         gActors[0x90].colorR = D_801C02B0_7DAAA0 + 0xAF;
         gActors[0x90].colorG = D_801C02B4_7DAAA4 + 0x70;
         gActors[0x90].colorB = D_801C02B2_7DAAA2 + 0x12;
-        gActors[0x90].unk_094 |= 0x210;
+        gActors[0x90].gFlag |= (ACTOR_GFLAG_RGB16|ACTOR_GFLAG_UNK4);
         gActors[0x90].unk_18C = (s32)D_800D8588;
         gActors[0x91].colorR = D_801C02B0_7DAAA0;
         gActors[0x92].colorR = D_801C02B0_7DAAA0;
@@ -1778,13 +1778,13 @@ void func_801BAA0C_7D51FC(void) {
 void func_801BAC6C_7D545C(void) {
     s32 var;
 
-    gActors[0x95].unk_094 |= 0x200;
-    gActors[0x94].unk_094 |= 0x200;
-    gActors[0x93].unk_094 |= 0x200;
-    gActors[0x92].unk_094 |= 0x200;
-    gActors[0x91].unk_094 |= 0x200;
-    gActors[0x90].unk_094 |= 0x200;
-    gActors[0x97].unk_094 |= 0x200;
+    gActors[0x95].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x94].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x93].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x92].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x91].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x90].gFlag |= ACTOR_GFLAG_RGB16;
+    gActors[0x97].gFlag |= ACTOR_GFLAG_RGB16;
 
     gActors[0x95].colorR = 0x10;
     gActors[0x94].colorR = 0x10;
@@ -1798,8 +1798,8 @@ void func_801BAC6C_7D545C(void) {
     gActors[0x92].colorB = 0x10;
     gActors[0x91].colorB = 0x10;
 
-    gActors[0x90].unk_094 &= 0xFFFFFFEF;
-    gActors[0x96].unk_094 &= 0xFFFFFFEF;
+    gActors[0x90].gFlag &= ~ACTOR_GFLAG_UNK4;
+    gActors[0x96].gFlag &= ~ACTOR_GFLAG_UNK4;
 
     gActors[0x90].colorR = 4;
     gActors[0x90].colorG = 0;
@@ -2385,7 +2385,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
             index = 0; actor_count = 1; while (actor_count < 3) {
                 if ((actor_type = D_800D22BC[index + 3]) == 8) {
                     if ((D_800D22BC[index + 1] & 3) == 3) {
-                    ((s32*)&gActors[actor_index].unk_150)[actor_count] = index;
+                    ((s32*)&gActors[actor_index].var150)[actor_count] = index;
                     actor_count++;
                 }
                 }

@@ -19,55 +19,55 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     type_table_index = gActors[actor_index].actorType * 7;
 
     if (gActors[actor_index].actorType < 0x100) {
-        gActors[actor_index].unk_0A2 = -D_800C9700[type_table_index + 0];
-        gActors[actor_index].unk_0A8 = -D_800C9700[type_table_index + 1];
-        gActors[actor_index].unk_0AA = -D_800C9700[type_table_index + 2];
-        gActors[actor_index].unk_0B0 = -D_800C9700[type_table_index + 3];
+        gActors[actor_index].hitboxAX0 = -D_800C9700[type_table_index + 0];
+        gActors[actor_index].hitboxAY1 = -D_800C9700[type_table_index + 1];
+        gActors[actor_index].hitboxBX0 = -D_800C9700[type_table_index + 2];
+        gActors[actor_index].hitboxBY1 = -D_800C9700[type_table_index + 3];
 
-        gActors[actor_index].unk_0A4 = D_800C9700[type_table_index + 0];
-        gActors[actor_index].unk_0A6 = D_800C9700[type_table_index + 1];
-        gActors[actor_index].unk_0AC = D_800C9700[type_table_index + 2];
-        gActors[actor_index].unk_0AE = D_800C9700[type_table_index + 3];
+        gActors[actor_index].hitboxAX1 = D_800C9700[type_table_index + 0];
+        gActors[actor_index].hitboxAY0 = D_800C9700[type_table_index + 1];
+        gActors[actor_index].hitboxBX1 = D_800C9700[type_table_index + 2];
+        gActors[actor_index].hitboxBY0 = D_800C9700[type_table_index + 3];
 
         gActors[actor_index].health = D_800C9700[type_table_index + 4];
         gActors[actor_index].unk_0E4 = D_800C9700[type_table_index + 5];
 
         gActors[actor_index].flags = D_800C9DD8[gActors[actor_index].actorType];
-        gActors[actor_index].unk_0E8 = D_800C9FCC[gActors[actor_index].actorType];
+        gActors[actor_index].graphicListV = D_800C9FCC[gActors[actor_index].actorType];
     }
     else {
-        gActors[actor_index].unk_0A2 = -16;
-        gActors[actor_index].unk_0A4 = 16;
-        gActors[actor_index].unk_0A6 = 16;
-        gActors[actor_index].unk_0A8 = -16;
-        gActors[actor_index].unk_0AA = -16;
-        gActors[actor_index].unk_0AC = 16;
-        gActors[actor_index].unk_0AE = 16;
-        gActors[actor_index].unk_0B0 = -16;
+        gActors[actor_index].hitboxAX0 = -16;
+        gActors[actor_index].hitboxAX1 = 16;
+        gActors[actor_index].hitboxAY0 = 16;
+        gActors[actor_index].hitboxAY1 = -16;
+        gActors[actor_index].hitboxBX0 = -16;
+        gActors[actor_index].hitboxBX1 = 16;
+        gActors[actor_index].hitboxBY0 = 16;
+        gActors[actor_index].hitboxBY1 = -16;
         gActors[actor_index].health = 10;
         gActors[actor_index].unk_0E4 = 10;
         gActors[actor_index].flags = 3;
-        gActors[actor_index].unk_0E8 = D_800E1380;
+        gActors[actor_index].graphicListV = D_800E1380;
     }
 
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].scaleY = gActors[actor_index].scaleX = 1.0f;
-    gActors[actor_index].unk_0E6 = 1;
+    gActors[actor_index].graphicTime = 1;
     gActors[actor_index].unk_0DE = 1;
 
-    gActors[actor_index].unk_084 =
+    gActors[actor_index].graphic =
     gActors[actor_index].posX.frac =
     gActors[actor_index].posY.frac =
     gActors[actor_index].posZ.raw =
-    gActors[actor_index].unk_094 =
-    gActors[actor_index].unk_098 =
+    gActors[actor_index].gFlag =
+    gActors[actor_index].flag3 =
     gActors[actor_index].colorR =
     gActors[actor_index].colorG =
     gActors[actor_index].colorB =
     gActors[actor_index].unk_0A0 =
-    gActors[actor_index].unk_0BC =
-    gActors[actor_index].unk_0C0 =
-    gActors[actor_index].unk_0C4 =
+    gActors[actor_index].rotateX =
+    gActors[actor_index].rotateY =
+    gActors[actor_index].rotateZ =
     gActors[actor_index].unk_0C8 =
     gActors[actor_index].unk_0CA =
     gActors[actor_index].unk_0CC =
@@ -90,7 +90,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_104 =
     gActors[actor_index].unk_108 =
     gActors[actor_index].unk_10C =
-    gActors[actor_index].unk_110 =
+    gActors[actor_index].timer110 =
     gActors[actor_index].unk_114 =
     gActors[actor_index].unk_118 =
     gActors[actor_index].unk_11C =
@@ -106,9 +106,9 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_144 =
     gActors[actor_index].unk_148 =
     gActors[actor_index].unk_14C =
-    gActors[actor_index].unk_150 =
-    gActors[actor_index].unk_154 =
-    gActors[actor_index].unk_158 =
+    gActors[actor_index].var150 =
+    gActors[actor_index].var154 =
+    gActors[actor_index].var158 =
     gActors[actor_index].unk_15C =
     gActors[actor_index].unk_160 =
     gActors[actor_index].unk_164 =

@@ -124,10 +124,10 @@ void func_801B9A40_7CE1D0(void) {
 void func_801B9A98_7CE228(u16 actor_index) {
     gActors[actor_index].flags = 0x28A;
     gActors[actor_index].unk_0E4 = 0;
-    gActors[actor_index].unk_0A6 = 0;
-    gActors[actor_index].unk_0A8 = -0x20;
-    gActors[actor_index].unk_0A2 = -0x100;
-    gActors[actor_index].unk_0A4 = 0x100;
+    gActors[actor_index].hitboxAY0 = 0;
+    gActors[actor_index].hitboxAY1 = -0x20;
+    gActors[actor_index].hitboxAX0 = -0x100;
+    gActors[actor_index].hitboxAX1 = 0x100;
     gActors[actor_index].unk_0DB = 0x13;
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = -0x50;

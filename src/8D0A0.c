@@ -64,10 +64,10 @@ void func_8008C4E0(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008CDC4.s")
 
 void func_8008CF10(u16 actor_index) {
-    gActors[actor_index].unk_0AE = 8;
-    gActors[actor_index].unk_0B0 = -0xE;
-    gActors[actor_index].unk_0AA = -8;
-    gActors[actor_index].unk_0AC = 8;
+    gActors[actor_index].hitboxBY0 = 8;
+    gActors[actor_index].hitboxBY1 = -0xE;
+    gActors[actor_index].hitboxBX0 = -8;
+    gActors[actor_index].hitboxBX1 = 8;
 }
 
 void func_8008CF60(u16 actor_index) {
@@ -139,7 +139,7 @@ void func_8008D2B0(u16 actor_index) {
 
 void func_8008D320(u16 actor_index) {
     gActors[actor_index].state = 0xB0;
-    gActors[actor_index].unk_094 |= 8;
+    gActors[actor_index].gFlag |= ACTOR_GFLAG_ROTZ;
     gActors[actor_index].unk_18C = (s32)D_800D4518;
     gActors[actor_index].unk_120 = 20.0f;
     func_8008D128(actor_index);
@@ -151,7 +151,7 @@ void func_8008D39C(u16 actor_index) {
 }
 
 s32 func_8008D418(u16 actor_index) {
-    if (gActors[actor_index].unk_098 & 0x40) {
+    if (gActors[actor_index].flag3 & 0x40) {
         func_8008D0A8(actor_index);
         return 1;
     }
@@ -163,7 +163,7 @@ s32 func_8008D480(u16 actor_index) {
     func_8008D39C(actor_index);
 
     if (gActors[actor_index].unk_188 < 0) {
-        if (gActors[actor_index].unk_098 & 0x20) {
+        if (gActors[actor_index].flag3 & 0x20) {
             func_8008CFE4(actor_index);
             return 1;
         }
@@ -221,12 +221,12 @@ void func_8008DCE0(u16 actor_index) {
     gActors[actor_index].colorB = Math_ApproachS32(gActors[actor_index].colorB, 0, 4);
     func_8008D39C(actor_index);
 
-    if (gActors[actor_index].unk_094 & 8) {
-        gActors[actor_index].unk_0C4 += 20.0f;
+    if (gActors[actor_index].gFlag & ACTOR_GFLAG_ROTZ) {
+        gActors[actor_index].rotateZ += 20.0f;
     }
 
     gActors[actor_index].unk_120 -= 1.0f;
-    if ((gActors[actor_index].unk_120 < 0.0f) || ((gActors[actor_index].unk_098 & 0x20) && (gActors[actor_index].flags & 0x20000))) {
+    if ((gActors[actor_index].unk_120 < 0.0f) || ((gActors[actor_index].flag3 & 0x20) && (gActors[actor_index].flags & 0x20000))) {
         if ((gActors[0].health == 0) || (gActors[0].health & 0x8000)) {
             func_8008DC70(actor_index);
         }

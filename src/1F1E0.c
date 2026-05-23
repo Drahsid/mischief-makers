@@ -173,8 +173,8 @@ void func_8001E9DC(u16 arg0, u16 arg1) {
 
 void func_8001EADC(u16 arg0, u16 arg1) {
     if ((gActors[arg1].unk_0DE == 0xB) || (gActors[arg1].unk_0DE == 0xE) || (gActors[arg1].unk_0DE == 0xF)) {
-        gActors[arg1].unk_098 &= ~0x2;
-        gActors[arg0].unk_098 ^= 0x3;
+        gActors[arg1].flag3 &= ~0x2;
+        gActors[arg0].flag3 ^= 0x3;
         gActors[arg0].unk_0DC = gActors[arg0].unk_0DA;
         gActors[arg0].unk_0DD = gActors[arg0].unk_0DB;
     }
@@ -199,18 +199,18 @@ void func_8001F88C(void) {
         for (index = 0, D_800BE4D0 = 0, D_800BE4D4 = 0; index < 144; index++) {
             if (gActors[index].flags & 0x40000) {
                 D_8011CF20[D_800BE4D0] = index;
-                D_8011D170[D_800BE4D0] = gActors[index].posX.whole + gActors[index].unk_0AC;
-                D_8011D3D0[D_800BE4D0] = gActors[index].posX.whole + gActors[index].unk_0AA;
-                D_8011D610[D_800BE4D0] = gActors[index].posY.whole + gActors[index].unk_0AE;
-                D_8011D850[D_800BE4D0] = gActors[index].posY.whole + gActors[index].unk_0B0;
+                D_8011D170[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+                D_8011D3D0[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+                D_8011D610[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+                D_8011D850[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY1;
                 D_800BE4D0++;
             }
             if (gActors[index].flags & 0x2000) {
                 D_8011CDF8[D_800BE4D4] = index;
-                D_8011D048[D_800BE4D4] = gActors[index].posX.whole + gActors[index].unk_0AC;
-                D_8011D290[D_800BE4D4] = gActors[index].posX.whole + gActors[index].unk_0AA;
-                D_8011D4F0[D_800BE4D4] = gActors[index].posY.whole + gActors[index].unk_0AE;
-                D_8011D730[D_800BE4D4] = gActors[index].posY.whole + gActors[index].unk_0AE - 8;
+                D_8011D048[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+                D_8011D290[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+                D_8011D4F0[D_800BE4D4] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+                D_8011D730[D_800BE4D4] = gActors[index].posY.whole + gActors[index].hitboxBY0 - 8;
                 D_800BE4D4++;
             }
         }
@@ -222,7 +222,7 @@ u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
     u16 index;
 
     var_a3 = arg0;
-    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].unk_098 & 0x600)) {
+    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].flag3 & 0x600)) {
         var_a3 = gActors[arg0].unk_0D6;
     }
     
@@ -299,14 +299,14 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gActors[0].unk_098 &= 0x80600;
+    gActors[0].flag3 &= 0x80600;
 }
 
 void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].unk_098 &= 0x380600;
+        gActors[index].flag3 &= 0x380600;
     }
 }
 
@@ -467,17 +467,17 @@ void func_8002092C(void) {
     for (index = 200; index < 204; index++) {
         gActors[index].actorType = 0;
         func_8001E2D0(index);
-        gActors[index].unk_094 |= 0x800;
-        gActors[index].flags |= 8;
+        gActors[index].gFlag |= ACTOR_GFLAG_UNK11;
+        gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
-        gActors[index].unk_084 = 0x8000;
+        gActors[index].graphic = 0x8000;
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;
-        gActors[index].unk_0AA = D_800C7CA4[index + 0];
-        gActors[index].unk_0AC = D_800C7CAC[index + 0];
-        gActors[index].unk_0B0 = D_800C7CB4[index + 0];
-        gActors[index].unk_0AE = D_800C7CBC[index + 0];
+        gActors[index].hitboxBX0 = D_800C7CA4[index + 0];
+        gActors[index].hitboxBX1 = D_800C7CAC[index + 0];
+        gActors[index].hitboxBY1 = D_800C7CB4[index + 0];
+        gActors[index].hitboxBY0 = D_800C7CBC[index + 0];
         gActors[index].colorR = 0;
         gActors[index].colorG = 0;
         gActors[index].colorB = 0;

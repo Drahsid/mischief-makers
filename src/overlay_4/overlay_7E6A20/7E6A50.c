@@ -280,7 +280,7 @@ void func_801BA3C4_7E7514(void);
 void func_801BA480_7E75D0(void);
 
 void func_801B9900_7E6A50(u16 actor_index) {
-    gActors[actor_index].unk_094 |= 0x200;
+    gActors[actor_index].gFlag |= ACTOR_GFLAG_RGB16;
     gActors[actor_index].unk_18C = (s32)D_801BA56C_7E76BC;
     Actor_SetColorRgb(actor_index, 8);
 }
@@ -288,7 +288,7 @@ void func_801B9900_7E6A50(u16 actor_index) {
 void func_801B996C_7E6ABC(void) {
     s32 temp;
 
-    if ((gActors[0x90].actorType == 0xD) && ((gActors[0x90].flags & 2) != 0)) {
+    if ((gActors[0x90].actorType == 0xD) && ((gActors[0x90].flags & ACTOR_FLAG_ACTIVE) != 0)) {
         func_801B9900_7E6A50(0x90);
         func_801B9900_7E6A50(0x91);
     }
