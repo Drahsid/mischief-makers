@@ -14,7 +14,7 @@ void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other
 void ClancerCommanderMech_Update(u16 actor_index);
 
 void ClancerCommanderMech_Init(u16 actor_index) {
-    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE|ACTOR_GFLAG_UNK4;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4;
     gActors[actor_index].flags = 3;
     func_8008105C(actor_index, D_800E4698, D_800E45D0);
     gActors[actor_index].unk_178 = (s32)D_800E574C;
@@ -54,7 +54,7 @@ void ClancerCommanderMech_UpdateParts(u16 actor_index) {
 }
 
 void ClancerCommanderMech_ClearFlags(u16 actor_index) {
-    gActors[actor_index].flag3 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
 }
 
 void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other_actor_index) {
@@ -99,8 +99,8 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 gActors[actor_index].velocityY = FIXED_UNIT(0.75);
                 func_80081790(actor_index, D_800E58D4);
                 ACTORINIT(temp_index_22,0x1D);
-                gActors[temp_index_22].var150 = (s32)D_800E1180;
-                gActors[temp_index_22].var154 = 1;
+                gActors[temp_index_22].var_150 = (s32)D_800E1180;
+                gActors[temp_index_22].var_154 = 1;
                 gActors[temp_index_22].flags = 3;
             }
             break;

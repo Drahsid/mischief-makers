@@ -173,8 +173,8 @@ void func_8001E9DC(u16 arg0, u16 arg1) {
 
 void func_8001EADC(u16 arg0, u16 arg1) {
     if ((gActors[arg1].unk_0DE == 0xB) || (gActors[arg1].unk_0DE == 0xE) || (gActors[arg1].unk_0DE == 0xF)) {
-        gActors[arg1].flag3 &= ~0x2;
-        gActors[arg0].flag3 ^= 0x3;
+        gActors[arg1].flags_098 &= ~0x2;
+        gActors[arg0].flags_098 ^= 0x3;
         gActors[arg0].unk_0DC = gActors[arg0].unk_0DA;
         gActors[arg0].unk_0DD = gActors[arg0].unk_0DB;
     }
@@ -222,7 +222,7 @@ u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
     u16 index;
 
     var_a3 = arg0;
-    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].flag3 & 0x600)) {
+    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].flags_098 & 0x600)) {
         var_a3 = gActors[arg0].unk_0D6;
     }
     
@@ -299,14 +299,14 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gActors[0].flag3 &= 0x80600;
+    gActors[0].flags_098 &= 0x80600;
 }
 
 void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].flag3 &= 0x380600;
+        gActors[index].flags_098 &= 0x380600;
     }
 }
 

@@ -81,7 +81,7 @@ enum ActorGFlags {
     ACTOR_GFLAG_UNK15 = (1 << 15) // a change in blending?
 };
 
-// bits used by the "flag3" field
+// bits used by the "flags_098" field
 enum ActorFlags3 {
     ACTOR_FLAG3_UNK0 = (1 << 0),
     ACTOR_FLAG3_UNK1 = (1 << 1),
@@ -127,7 +127,7 @@ typedef struct {
     /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
     /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
-    /* 0x098 */ u32 flag3; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
+    /* 0x098 */ u32 flags_098; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
     /* 0x09C */ u8 colorR; // see A540: 0x9C..0x9F packed into FA000000 display-list color
     /* 0x09D */ u8 colorG;
     /* 0x09E */ u8 colorB;
@@ -232,11 +232,11 @@ typedef struct {
     // or the crosshair actor will use it for the index of its "parent",
     // or player-controlled Teran will count his jumps with it.
 
-    /* 0x150 */ s32 var150;
-    /* 0x154 */ s32 var154;
+    /* 0x150 */ s32 var_150;
+    /* 0x154 */ s32 var_154;
     union {
-            /* 0x158 */ s32 var158;
-            /* 0x158 */ u16 var158_u16[2];
+            /* 0x158 */ s32 var_158;
+            /* 0x158 */ u16 var_158_u16[2];
     };
     /* 0x15C */ s32 unk_15C;
     /* 0x160 */ s32 unk_160;

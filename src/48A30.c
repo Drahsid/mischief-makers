@@ -52,10 +52,10 @@ void func_80047ED4(u16 _actor_index) {
     }
     actor_index = _actor_index;
     actor = &gActors[actor_index];
-    actor->var150 = actor->flags & ~0x1B80;
+    actor->var_150 = actor->flags & ~0x1B80;
 
     if ((D_800BE5F4.dirty & 0xFF) == 4) {
-        actor->var150 &= ~1;
+        actor->var_150 &= ~1;
     }
 
     actor->velocityX = actor->velocityY = 0;
@@ -180,7 +180,7 @@ void func_80048320(u16 actor_index) {
 
 void func_800483B4(u16 actor_index) {
     if (gActors[actor_index].stateLower == 3) {
-        gActors[actor_index].var150 = 0x258;
+        gActors[actor_index].var_150 = 0x258;
     }
 
     D_800BE5F4.dirty = 1;
@@ -205,7 +205,7 @@ void func_80048408(u16 actor_index) {
                     if (gActors[actor_index].velocityY == 0) {
                         gActors[actor_index].unk_170 = 0xA1;
                         gActors[actor_index].state = 1;
-                        gActors[actor_index].var150 = gActors[actor_index].flags;
+                        gActors[actor_index].var_150 = gActors[actor_index].flags;
                         D_800BE5F4.unk_02 = 1;
                     }
                 }

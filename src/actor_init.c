@@ -60,7 +60,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].posY.frac =
     gActors[actor_index].posZ.raw =
     gActors[actor_index].graphicFlags =
-    gActors[actor_index].flag3 =
+    gActors[actor_index].flags_098 =
     gActors[actor_index].colorR =
     gActors[actor_index].colorG =
     gActors[actor_index].colorB =
@@ -106,9 +106,9 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_144 =
     gActors[actor_index].unk_148 =
     gActors[actor_index].unk_14C =
-    gActors[actor_index].var150 =
-    gActors[actor_index].var154 =
-    gActors[actor_index].var158 =
+    gActors[actor_index].var_150 =
+    gActors[actor_index].var_154 =
+    gActors[actor_index].var_158 =
     gActors[actor_index].unk_15C =
     gActors[actor_index].unk_160 =
     gActors[actor_index].unk_164 =

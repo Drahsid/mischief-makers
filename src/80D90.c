@@ -2,7 +2,7 @@
 #include "actor.h"
 
 void func_80080190(u16 actor_index) {
-    gActors[actor_index].flag3 &= ~0x200600;
+    gActors[actor_index].flags_098 &= ~0x200600;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800801D8.s")

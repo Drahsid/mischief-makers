@@ -72,8 +72,8 @@ void func_801A6980_76F420(u16 actor_index) {
             }
 
             func_8002ABE4(temp_v0, 0x10);
-            Actor_SetColorRgb(temp_v0, ((u16*)&gActors[actor_index].var158)[1]);
-            gActors[temp_v0].colorA = gActors[actor_index].var154;
+            Actor_SetColorRgb(temp_v0, ((u16*)&gActors[actor_index].var_158)[1]);
+            gActors[temp_v0].colorA = gActors[actor_index].var_154;
             ((s16*)&gActors[temp_v0].velocityX)[0] = temp_v1->unk_00;
             ((s16*)&gActors[temp_v0].velocityY)[0] = temp_v1->unk_02;
             ((s16*)&gActors[temp_v0].unk_0F4)[0] = temp_v1->unk_04;
@@ -127,7 +127,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].unk_14C = gActors[actor_index].actorType;
             gActors[temp_v0].unk_134 = 0.0f;
             gActors[temp_v0].unk_0F4 = FIXED_UNIT(1.0);
-            gActors[temp_v0].var154 = -0x10;
+            gActors[temp_v0].var_154 = -0x10;
             gActors[temp_v0].unk_138 = -16.0f;
             gActors[temp_v0].unk_13C = 16.0f;
             gActors[temp_v0].timer_110 = 0.55f;
@@ -162,13 +162,13 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
 
             if (temp_v1 >= 0xB4) {
                 gActors[actor_index].unk_114 = Math_ApproachF32(gActors[actor_index].unk_114, 0.1f, 0.05f);
-                gActors[actor_index].var154 = Math_ApproachF32(gActors[actor_index].var154, 0.0f, 8.0f);
+                gActors[actor_index].var_154 = Math_ApproachF32(gActors[actor_index].var_154, 0.0f, 8.0f);
                 return;
             }
 
             gActors[actor_index].unk_114 = Math_ApproachF32(gActors[actor_index].unk_114, 2.3f, 0.05f);
-            gActors[actor_index].var154 = Math_ApproachF32(gActors[actor_index].var154, 192.0f, 4.0f);
-            gActors[actor_index].var158 = Math_ApproachF32(gActors[actor_index].var158, 0.0f, 1.0f);
+            gActors[actor_index].var_154 = Math_ApproachF32(gActors[actor_index].var_154, 192.0f, 4.0f);
+            gActors[actor_index].var_158 = Math_ApproachF32(gActors[actor_index].var_158, 0.0f, 1.0f);
             return;
         }
     }
@@ -184,8 +184,8 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
     }
 
     gActors[actor_index].unk_114 = 0.1f;
-    gActors[actor_index].var154 = 0;
-    gActors[actor_index].var158 = 0x7F;
+    gActors[actor_index].var_154 = 0;
+    gActors[actor_index].var_158 = 0x7F;
 }
 
 void func_801A7180_76FC20(u16 actor_index) {

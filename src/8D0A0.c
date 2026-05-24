@@ -151,7 +151,7 @@ void func_8008D39C(u16 actor_index) {
 }
 
 s32 func_8008D418(u16 actor_index) {
-    if (gActors[actor_index].flag3 & 0x40) {
+    if (gActors[actor_index].flags_098 & 0x40) {
         func_8008D0A8(actor_index);
         return 1;
     }
@@ -163,7 +163,7 @@ s32 func_8008D480(u16 actor_index) {
     func_8008D39C(actor_index);
 
     if (gActors[actor_index].unk_188 < 0) {
-        if (gActors[actor_index].flag3 & 0x20) {
+        if (gActors[actor_index].flags_098 & 0x20) {
             func_8008CFE4(actor_index);
             return 1;
         }
@@ -226,7 +226,7 @@ void func_8008DCE0(u16 actor_index) {
     }
 
     gActors[actor_index].unk_120 -= 1.0f;
-    if ((gActors[actor_index].unk_120 < 0.0f) || ((gActors[actor_index].flag3 & 0x20) && (gActors[actor_index].flags & 0x20000))) {
+    if ((gActors[actor_index].unk_120 < 0.0f) || ((gActors[actor_index].flags_098 & 0x20) && (gActors[actor_index].flags & 0x20000))) {
         if ((gActors[0].health == 0) || (gActors[0].health & 0x8000)) {
             func_8008DC70(actor_index);
         }

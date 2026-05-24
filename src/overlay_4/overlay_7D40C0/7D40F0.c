@@ -1408,7 +1408,7 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
 
     if (D_800D24D8 >= 3) { index = 0; actor_count = 1; while (actor_count < 4) {
             if ((actor_type = D_800D22BC[index + 3]) == 0x1C07) {
-                ((s32*)&gActors[actor_index].var150)[actor_count] = index;
+                ((s32*)&gActors[actor_index].var_150)[actor_count] = index;
                 actor_count++;
             }
 
@@ -2385,7 +2385,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
             index = 0; actor_count = 1; while (actor_count < 3) {
                 if ((actor_type = D_800D22BC[index + 3]) == 8) {
                     if ((D_800D22BC[index + 1] & 3) == 3) {
-                    ((s32*)&gActors[actor_index].var150)[actor_count] = index;
+                    ((s32*)&gActors[actor_index].var_150)[actor_count] = index;
                     actor_count++;
                 }
                 }

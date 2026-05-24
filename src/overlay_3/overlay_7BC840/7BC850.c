@@ -18,7 +18,7 @@ void func_801B0900_7BC850(u16 actor_index) {
 }
 
 s32 func_801B0944_7BC894(u16 actor_index) {
-    if ((gActors[actor_index].flag3 & 0x200) && !(gActors[actor_index].state & 0x1000)) {
+    if ((gActors[actor_index].flags_098 & 0x200) && !(gActors[actor_index].state & 0x1000)) {
         func_80040858(actor_index);
         gActors[actor_index].state = 0x1000;
         func_80029134(actor_index);
@@ -45,7 +45,7 @@ void func_801B0A7C_7BC9CC(u16 actor_index) {
     s32 state;
 
     if (!(gActors[actor_index].state & 0x1000)) {
-        if (gActors[actor_index].flag3 & 2) {
+        if (gActors[actor_index].flags_098 & 2) {
             func_80040858(actor_index);
             func_801B0900_7BC850(actor_index);
             if (gActors[actor_index].unk_0DD < 0x15) {
@@ -105,12 +105,12 @@ s32 func_801B0D80_7BCCD0(u16 actor_index) {
     gActors[actor_index].velocityY = Math_ApproachS32(gActors[actor_index].velocityY, -0x68000, 0x3800);
 
     result = 0;
-    if (((gActors[actor_index].flag3 & 4) && (gActors[actor_index].velocityX < 0)) ||
-        ((gActors[actor_index].flag3 & 8) && (gActors[actor_index].velocityX > 0))) {
+    if (((gActors[actor_index].flags_098 & 4) && (gActors[actor_index].velocityX < 0)) ||
+        ((gActors[actor_index].flags_098 & 8) && (gActors[actor_index].velocityX > 0))) {
         result = 1;
     }
 
-    if ((gActors[actor_index].velocityY < 0) && (gActors[actor_index].flag3 & 0x20)) {
+    if ((gActors[actor_index].velocityY < 0) && (gActors[actor_index].flags_098 & 0x20)) {
         result = (u8)(result | 2);
     }
 
@@ -142,7 +142,7 @@ s32 func_801B11F0_7BD140(u16 actor_index) {
     u16 distance;
 
     if (D_801B4B60_7C0AB0 & 2) {
-        if (gActors[0x43].flag3 & 0x200) {
+        if (gActors[0x43].flags_098 & 0x200) {
             return 0x43;
         }
         return 0;
@@ -155,7 +155,7 @@ s32 func_801B11F0_7BD140(u16 actor_index) {
         do {
             current_actor_index = D_801B46F8_7C0648[index];
             distance = func_800289CC(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
-            if ((gActors[current_actor_index].flags & 2) && !(gActors[current_actor_index].flag3 & 0x200) &&
+            if ((gActors[current_actor_index].flags & 2) && !(gActors[current_actor_index].flags_098 & 0x200) &&
                 !(gActors[current_actor_index].flags & 0x200) && (gActors[current_actor_index].posX.whole > 0) &&
                 (distance < best_distance) && (gActors[current_actor_index].posY.whole < 0)) {
                 best_actor_index = current_actor_index;
@@ -299,13 +299,13 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
             gActors[target_index].unk_104 = gActors[source_index].posX.raw;
             gActors[target_index].unk_108 = gActors[source_index].posY.raw + 0x80000;
             gActors[target_index].unk_10C = gActors[source_index].posZ.raw - 4;
-            gActors[target_index].flag3 |= 0x200;
+            gActors[target_index].flags_098 |= 0x200;
             gActors[target_index].unk_0D6 = source_index;
             return 0;
         }
 
-        gActors[target_index].flag3 &= ~0x200;
-        gActors[target_index].flag3 |= 0x400;
+        gActors[target_index].flags_098 &= ~0x200;
+        gActors[target_index].flags_098 |= 0x400;
         gActors[target_index].unk_0F8 = D_801B4B61_7C0AB1 * 0x30000;
         gActors[target_index].unk_0FC = 0x40000;
         if (target_index == 0) {
@@ -328,8 +328,8 @@ void func_801B34E4_7BF434(u16 actor_index, s16 target_x) {
     s16 screen_x;
 
     if (gActors[actor_index].graphicTime == 0) {
-        gActors[actor_index].var150 = gActors[actor_index].var150 ^ 1;
-        if (gActors[actor_index].var150 != 0) {
+        gActors[actor_index].var_150 = gActors[actor_index].var_150 ^ 1;
+        if (gActors[actor_index].var_150 != 0) {
             gActors[actor_index].graphicListV = D_800E1A20;\
             gActors[actor_index].graphicTime = 1;
         }
