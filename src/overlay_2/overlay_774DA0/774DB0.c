@@ -2,7 +2,6 @@
 #include "actor.h"
 #include "function_symbols.h"
 
-extern void func_8002AC30(u16 actor_index, s16 val);
 extern s32 D_800BE5D8;
 extern s32 D_80102928;
 extern s16 D_8010345C;

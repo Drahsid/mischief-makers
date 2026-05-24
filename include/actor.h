@@ -145,7 +145,7 @@ typedef struct {
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
     /* 0x0C8 */ s16 unk_0C8;
     /* 0x0CA */ s16 unk_0CA;
-    /* 0x0CC */ s16 unk_0CC;
+    /* 0x0CC */ u16 unk_0CC;
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state

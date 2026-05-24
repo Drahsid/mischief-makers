@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "function_symbols.h"
+#include "music.h"
 
 extern s16 D_800D2920;
 extern s16 D_800D2924;
@@ -15,9 +16,7 @@ extern s16 D_800BE708;
 extern s32 D_800BE6CC;
 extern s32 D_800D2934;
 
-extern void func_800032C4(u32 arg0);
 extern s32 func_800036C8(u32 arg0, u16 actor_index);
-extern s32 func_8005DEFC(void);
 extern void func_80046274(u32 arg0, u32 arg1);
 extern void func_8004732C(void);
 

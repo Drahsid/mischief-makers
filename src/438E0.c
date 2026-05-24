@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "input.h"
+#include "music.h"
 
 extern u16 D_800BE52C;
 extern s16 D_800BE558;
@@ -58,22 +59,9 @@ extern u16 D_801782B8;
 extern u16 D_801782C0;
 extern u16 D_801782C2;
 
-typedef struct {
-    /* 0x00 */ u8 unk_000[0x80];
-    /* 0x80 */ s16 unk_080;
-    /* 0x82 */ u8 unk_082[0x2];
-    /* 0x84 */ s16 unk_084;
-    /* 0x86 */ u8 unk_086[0x2];
-    /* 0x88 */ s16 unk_088;
-    /* 0x8A */ u8 unk_08A[0x2];
-    /* 0x8C */ s32 unk_08C;
-} UnkStruct_801069E0; /* size = 0x90 */
-
-extern UnkStruct_801069E0 D_801069E0[];
-
 extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern void func_800472D4(void);
-extern s32 func_8005DEFC(void);
+extern s16 func_8005DEFC(void);
 extern void func_80047994(void);
 
 void func_80043D04(ActorSpawnRecord* spawn);

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "music.h"
 
 extern s32 D_80137420;
 extern s32 D_800BE5F4;
@@ -11,7 +12,6 @@ extern u8 D_800D4518[];
 extern u8 D_800D46A8[];
 extern u8 D_800D4958[];
 
-extern s32 func_800032C4(u32 arg0);
 extern s32 func_8008CC00(void);
 extern void func_8008CDC4(u16 actor_index, u16 arg1);
 extern void func_8008CFE4(u16 actor_index);

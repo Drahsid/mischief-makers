@@ -37,14 +37,6 @@
 #define SFX_SOUND_IDS gSfxSoundIds.soundIds
 #define AUDIO_BUFFER_SAMPLE_COUNTS gAudioBufferSampleCounts.counts
 
-typedef struct {
-    /* 0x00 */ u8 unk_000[0x84];
-    /* 0x84 */ s16 unk_084;
-    /* 0x86 */ u8 unk_086[0x2];
-    /* 0x88 */ s16 unk_088;
-    /* 0x8A */ u8 unk_08A[0x6];
-} UnkStruct_801069E0; /* size = 0x90 */
-
 // Matches the ordered sequence DMA cache from the SDK PLAYSEQ demo.
 typedef struct {
     /* 0x00 */ ALLink node;
@@ -89,7 +81,6 @@ extern u8 D_800C2968[];
 extern s16 D_800EF4D4;
 extern s32 D_80137794;
 extern u8 D_80104090[];
-extern UnkStruct_801069E0 D_801069E0[];
 
 extern MusicSequenceParams gMusicSequenceParams[];
 extern u8* gMusicSequenceSamplePatchLists[];
@@ -159,7 +150,6 @@ s32 func_80003020(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
 void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
 void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
 void Sound_PlayMusic(u32 sequence_id);
-s32 func_800032C4(u32 arg0);
 void func_80003AD4(u8 arg0);
 void func_80003D64(u8 arg0);
 void func_80003A38(void);

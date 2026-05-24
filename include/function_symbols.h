@@ -19,19 +19,31 @@ extern void func_80012288(void);
 extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern u8 func_80012C04(s16, s16);
 
+extern void func_8001C7A4(void);
+extern u64 func_8001C7F0(u16);
+
 extern void func_80010C20(u16 arg0);
 extern void func_800282F0(s16 arg0, s16 arg1);
 extern s32 Math_AbsS32(s32 val);
 extern s32 Math_Atan2(s32 x, s32 y);
 extern void func_8002AA20(u16 actor_index, s32 unused);
-extern u16 func_80031284(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
+extern void func_8002AC30(u16 actor_index, s16 val);
+extern u16 func_8003123C(u16* arg0, s32 pos_x, s32 pos_y, s32 pos_z);
+extern u16 func_80031284(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void Actor_ClearRange_30To90(void);
-extern void func_8003D628(u16 arg0);
+extern u16 func_8003D628(u16);
 extern void func_80042DBC(void* arg0);
 extern void func_80045D84(u32 arg0, u32 arg1);
+extern void func_80057320(s32, s32);
 extern void func_8005739C(s32 arg0, s32 arg1);
 extern void func_8005CA34(s32 arg0, s32 arg1);
+extern s32 func_8005D1E8(u16);
+extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
+extern void func_80066BCC(u16 actor_index);
+extern void func_80067EF0(u16);
+extern void func_8006CC70(u16);
+extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
@@ -60,16 +72,17 @@ extern s32 func_80028C08(u16 actor_index);
 extern void func_80029134(u16 actor_index);
 extern u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2);
 extern u32 func_80029B74(s16 arg0);
+extern s32 func_800298D0(s32 arg0, s32 arg1, s32 arg2);
 extern void Actor_Clamp_0F8_0FC(u16 actor_index, s32 max_val);
 extern void func_8002ABE4(u16 actor_index, s16 val);
-extern s32 func_8002F154(u16 arg0, u16 arg1, s32 arg2);
-extern void func_80030A24(u16 arg0);
-extern void func_80033204(s32 arg0, u16 arg1, s32 arg2, f32 arg3, s32 arg4);
-extern void func_80034D80(u16 arg0, void* arg1);
-extern void func_800369A0(u16 arg0, u16 arg1, void* arg2);
+extern void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
+extern s32 func_8002F154(u16 arg0, u16 arg1, u16 arg2);
+extern void func_80030A24(u16 actor_index);
+extern void func_80033204(u16 arg0, u16 arg1, u16 arg2, f32 arg3, u16 arg4);
+extern void func_800369A0(u16 actor_index, u16 arg1, u16* arg2);
 extern void func_80039134(u16 actor_index);
-extern void func_8003E6A4(s32 arg0, s32 arg1);
-extern void func_8003EEC0(f32 arg0, s16 arg1, s16 arg2, s16 arg3);
+extern void func_8003E6A4(u16 arg0, u16 actor_index);
+extern u16 func_8003EEC0(f32, s16 x, s16 y, s16 z);
 extern void func_8003F138(f32 arg0, s16 arg1, s16 arg2, s16 arg3);
 extern void func_80040858(u16 actor_index);
 extern void func_80042E28(s32 arg0);
@@ -84,18 +97,24 @@ extern void* func_80045F14(void* arg0);
 extern void func_80046A9C(void);
 extern void func_800472D4(void);
 extern s32 func_8004735C(s32 arg0, s32 arg1);
+extern s32 func_800486F4(void);
 extern s32 func_80048CE4(void);
 extern void func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8005DF40(s32 arg0, s32 arg1);
 extern void func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+extern void func_8007D0DC(u16, void*, u16, u16, s32); // guess
+extern void func_8007EA14(void*, u16, s16, s32, s32, void*, s32, s32, s32, s32, s32, f32);
 extern void func_8007F9E0(u16 actor_index);
 extern void func_80081720(u16 arg0, void* arg1, s32 arg2);
 extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
 extern void func_8008C710(u16 arg0);
 extern void func_80022D10(void);
-extern DEFAULT_INT func_8001E2D0(u16 actor_index);
+#ifndef FUNC_8001E2D0_RET
+  #define FUNC_8001E2D0_RET DEFAULT_INT
+#endif
+extern FUNC_8001E2D0_RET func_8001E2D0(u16 actor_index);
 extern void func_80026E60(u16 arg0);
 extern u16 Actor_RangeFindFlag2(u16 actor_index, u16 end);
 extern u16 Actor_RangeFindFlag2_90ToC0(void);
@@ -153,7 +172,5 @@ extern void func_80082CFC(void);
 extern void func_80082E04(void);
 extern void func_80082F10(void);
 extern void func_80083E74(void);
-
-extern void func_8005CA34(s32, s32);
 
 #endif
