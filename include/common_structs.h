@@ -20,4 +20,15 @@ typedef struct {
     /* 0x02 */ u8 unk_02[0xC];
 } ActorSpawnRecord; /* size = 0xE */
 
+
+typedef union {
+    /* 0x00 */ s32 raw;
+    struct {
+    /* 0x00 */ s16 whole;
+    /* 0x00 */ u16 frac;
+    };
+} FixedCoord;
+
+#define FIXED_UNIT(value) ((s32)((value) * 0x10000))
+
 #endif

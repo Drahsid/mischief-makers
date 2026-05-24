@@ -265,7 +265,7 @@ typedef struct {
 extern Actor gActors[];
 
 
-//a common macro for initalizing actors.
+// a common macro for initalizing actors.
 #define ACTORINIT(index, type)\
  gActors[index].actorType = type;\
  func_8001E2D0(index)
