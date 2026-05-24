@@ -280,7 +280,7 @@ void func_801BA3C4_7E7514(void);
 void func_801BA480_7E75D0(void);
 
 void func_801B9900_7E6A50(u16 actor_index) {
-    gActors[actor_index].gFlag |= ACTOR_GFLAG_PALETTE;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
     gActors[actor_index].unk_18C = (s32)D_801BA56C_7E76BC;
     Actor_SetColorRgb(actor_index, 8);
 }

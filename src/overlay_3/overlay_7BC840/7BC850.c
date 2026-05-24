@@ -377,7 +377,7 @@ void func_801B3F18_7BFE68(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].flags = 3;
         if (temp == 0) {
-            gActors[actor_index].graphic = 0x81C;
+            gActors[actor_index].graphicIndex  = 0x81C;
             gActors[actor_index].posZ.whole = -0xC0;
         }
     }

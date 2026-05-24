@@ -139,7 +139,7 @@ void func_8008D2B0(u16 actor_index) {
 
 void func_8008D320(u16 actor_index) {
     gActors[actor_index].state = 0xB0;
-    gActors[actor_index].gFlag |= ACTOR_GFLAG_ROTZ;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
     gActors[actor_index].unk_18C = (s32)D_800D4518;
     gActors[actor_index].unk_120 = 20.0f;
     func_8008D128(actor_index);
@@ -221,7 +221,7 @@ void func_8008DCE0(u16 actor_index) {
     gActors[actor_index].colorB = Math_ApproachS32(gActors[actor_index].colorB, 0, 4);
     func_8008D39C(actor_index);
 
-    if (gActors[actor_index].gFlag & ACTOR_GFLAG_ROTZ) {
+    if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_ROTZ) {
         gActors[actor_index].rotateZ += 20.0f;
     }
 

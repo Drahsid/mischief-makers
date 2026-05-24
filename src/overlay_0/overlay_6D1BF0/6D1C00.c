@@ -14,7 +14,7 @@ void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other
 void ClancerCommanderMech_Update(u16 actor_index);
 
 void ClancerCommanderMech_Init(u16 actor_index) {
-    gActors[actor_index].gFlag |= ACTOR_GFLAG_SCALE|ACTOR_GFLAG_UNK4;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE|ACTOR_GFLAG_UNK4;
     gActors[actor_index].flags = 3;
     func_8008105C(actor_index, D_800E4698, D_800E45D0);
     gActors[actor_index].unk_178 = (s32)D_800E574C;

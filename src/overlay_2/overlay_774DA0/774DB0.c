@@ -27,9 +27,9 @@ void func_801A6C80_775130(u16 actor_index) {
         case 0:
             func_8001E2D0(actor_index);
             gActors[actor_index].state++;
-            gActors[actor_index].gFlag = ACTOR_GFLAG_SCALE;
+            gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = 0x69503;
-            gActors[actor_index].graphic = 0xC6;
+            gActors[actor_index].graphicIndex  = 0xC6;
             func_8002AC30(actor_index, 8);
             gActors[actor_index].unk_0CE = 0;
             gActors[actor_index].unk_0DF = 1;\

@@ -466,10 +466,10 @@ void func_8002092C(void) {
 
     for (index = 200; index < 204; index++) {
         ACTORINIT(index,0);
-        gActors[index].gFlag |= ACTOR_GFLAG_UNK11;
+        gActors[index].graphicFlags |= ACTOR_GFLAG_UNK11;
         gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
-        gActors[index].graphic = 0x8000;
+        gActors[index].graphicIndex  = 0x8000;
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;

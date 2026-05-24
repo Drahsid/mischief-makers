@@ -263,7 +263,7 @@ void func_80095A10(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80095A8C.s")
 
 void func_80095FC8(u16 actor_index) {
-    gActors[actor_index].gFlag = 1;
+    gActors[actor_index].graphicFlags = 1;
     func_8008105C(actor_index, D_800E9414, D_800E93C4);
     gActors[actor_index].unk_178 = (s32)D_800E961C;
     func_80081790(actor_index, D_800E95E8);
@@ -280,7 +280,7 @@ void func_80095FC8(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8009672C.s")
 
 void func_8009685C(u16 actor_index) {
-    gActors[actor_index].gFlag = 1;
+    gActors[actor_index].graphicFlags = 1;
     func_8008105C(actor_index, D_800E9654, D_800E9634);
     gActors[actor_index].unk_178 = (s32)D_800E9720;
     func_80081790(actor_index, D_800E9700);

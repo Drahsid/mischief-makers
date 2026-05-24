@@ -61,7 +61,7 @@ enum ActorFlags {
     ACTOR_FLAG_UNK31 = (1 << 31)
 };
 
-// bits used by the "gFlag" field
+// bits used by the "graphicFlags" field
 enum ActorGFlags {
     ACTOR_GFLAG_SCALE = (1 << 0), // scale effected by scaleX and scaleY fields.
     ACTOR_GFLAG_ROTX = (1 << 1), // effected by rotateX
@@ -120,12 +120,12 @@ enum ActorFlags3 {
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
     /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicate inactive ("free") actor index
-    /* 0x084 */ u16 graphic; // index of grapic currently used.
+    /* 0x084 */ u16 graphicIndex ; // index of grapic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
     /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
     /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
     /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
-    /* 0x094 */ u16 gFlag; // uses ActorGFlags enum. determines graphical properties.
+    /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
     /* 0x098 */ u32 flag3; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
     /* 0x09C */ u8 colorR; // see A540: 0x9C..0x9F packed into FA000000 display-list color
@@ -149,9 +149,9 @@ typedef struct {
     /* 0x0B2 */ u8 unk_0B2[0x2]; /// align bytes?
     /* 0x0B4 */ f32 scaleX; // see: passed as guScale x/y arguments
     /* 0x0B8 */ f32 scaleY;
-    /* 0x0BC */ f32 rotateX; // used in guRotate if ACTOR_GFLAG_ROTX in gFlag is set
-    /* 0x0C0 */ f32 rotateY; // used in guRotate if ACTOR_GFLAG_ROTY in gFlag is set
-    /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in gFlag is set
+    /* 0x0BC */ f32 rotateX; // used in guRotate if ACTOR_GFLAG_ROTX in graphicFlags is set
+    /* 0x0C0 */ f32 rotateY; // used in guRotate if ACTOR_GFLAG_ROTY in graphicFlags is set
+    /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
     /* 0x0C8 */ s16 unk_0C8;
     /* 0x0CA */ s16 unk_0CA;
     /* 0x0CC */ s16 unk_0CC;
@@ -252,7 +252,7 @@ typedef struct {
     /* 0x188 */ s32 unk_188;
     union {
         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
-        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in gFlag, field is treated as pallette pointer
+        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as pallette pointer
     };
     union {
         /* 0x190 */ s32 unk_190;
@@ -266,7 +266,7 @@ extern Actor gActors[];
 
 
 //a common macro for initalizing actors.
-#define ACTORINIT(index,type)\
+#define ACTORINIT(index, type)\
  gActors[index].actorType = type;\
  func_8001E2D0(index)
 
