@@ -3,18 +3,9 @@
 
 #include <PR/gbi.h>
 #include <PR/ultratypes.h>
+#include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
-
-typedef union {
-    s32 raw;
-    struct {
-        s16 whole;
-        u16 frac;
-    };
-} FixedCoord;
-
-#define FIXED_UNIT(value) ((s32)((value) * 0x10000))
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
