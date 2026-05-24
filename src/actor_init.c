@@ -90,7 +90,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_104 =
     gActors[actor_index].unk_108 =
     gActors[actor_index].unk_10C =
-    gActors[actor_index].timer110 =
+    gActors[actor_index].timer_110 =
     gActors[actor_index].unk_114 =
     gActors[actor_index].unk_118 =
     gActors[actor_index].unk_11C =

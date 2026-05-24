@@ -77,7 +77,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index + 1].unk_180 = 0;
-            if (((u16)gActors[actor_index].timer110) == 0) {
+            if (((u16)gActors[actor_index].timer_110) == 0) {
                 gActors[actor_index].state = 0x4000;
             }
             break;
@@ -98,8 +98,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 gActors[actor_index].velocityX = FIXED_UNIT(4.5);
                 gActors[actor_index].velocityY = FIXED_UNIT(0.75);
                 func_80081790(actor_index, D_800E58D4);
-                gActors[temp_index_22].actorType = 0x1D;
-                func_8001E2D0(temp_index_22);
+                ACTORINIT(temp_index_22,0x1D);
                 gActors[temp_index_22].var150 = (s32)D_800E1180;
                 gActors[temp_index_22].var154 = 1;
                 gActors[temp_index_22].flags = 3;
@@ -177,8 +176,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             func_80081790(actor_index, D_800E5938);
                             temp = func_80028528();
                             if (temp != 0) {
-                                gActors[temp].actorType = 0x34;
-                                func_8001E2D0(temp);
+                                ACTORINIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;

@@ -20,11 +20,11 @@ typedef union {
 // the first relating to behavior, the second rendering, and the third more behavior.
 
 // bits used by the "flags" actor field.
-enum ActorFlags{
+enum ActorFlags {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1 << 1), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ONSCREEN_ONLY = (1 << 2), //deactivate if off-camera?
-    ACTOR_FLAG_FREEZE_POS = (1 << 3), //keep screenspace position regarless of camera movement. Used for screen effect actors,
+    ACTOR_FLAG_FREEZE_POS = (1 << 3), //keep screenspace position regardless of camera movement. Used for screen effect actors,
     ACTOR_FLAG_UNK4 = (1 << 4), //set, but not checked?
     ACTOR_FLAG_FLIPPED = (1 << 5), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
                                    // scale, in this context?)
@@ -52,7 +52,7 @@ enum ActorFlags{
     ACTOR_FLAG_UNK22 = (1 << 22), // something with physics?
     ACTOR_FLAG_UNK23 = (1 << 23), // something with physics?
     ACTOR_FLAG_UNK24 = (1 << 24), // unused?
-    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see ActorTick_Marina)
+    ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see Marina's update function)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
     ACTOR_FLAG_UNK27 = (1 << 27), // set but not checked?
     ACTOR_FLAG_UNK28 = (1 << 28), // set but not checked?
@@ -62,7 +62,7 @@ enum ActorFlags{
 };
 
 // bits used by the "gFlag" field
-enum ActorGFlags{
+enum ActorGFlags {
     ACTOR_GFLAG_SCALE = (1 << 0), // scale effected by scaleX and scaleY fields.
     ACTOR_GFLAG_ROTX = (1 << 1), // effected by rotateX
     ACTOR_GFLAG_ROTY = (1 << 2), // effected by rotateY
@@ -72,59 +72,59 @@ enum ActorGFlags{
     ACTOR_GFLAG_UNK6 = (1 << 6), // changes if effected by perspective?
     ACTOR_GFLAG_UNK7 = (1 << 7), // unused?
     ACTOR_GFLAG_UNK8 = (1 << 8), // effects z positioning?
-    ACTOR_GFLAG_RGB16 = (1 << 9), // use pointer at field 0x18C as a palette
+    ACTOR_GFLAG_PALETTE = (1 << 9), // use pointer at field 0x18C as a palette
     ACTOR_GFLAG_UNK10 = (1 << 10), // effects animation
     ACTOR_GFLAG_UNK11 = (1 << 11), // seems to effect translate mtx.
     ACTOR_GFLAG_SCALEZ = (1 << 12), // use feild 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_UNK13 = (1 << 13), // field at 0x17C treated as dlist for 3d model?
     ACTOR_GFLAG_UNK14 = (1 << 14), // unused?
-    ACTOR_GFLAG_UNK15 = (1 << 15), // a change in blending?
+    ACTOR_GFLAG_UNK15 = (1 << 15) // a change in blending?
 };
 
 // bits used by the "flag3" field
-enum ActorFlags3{
-    ACTOR_FLAG3_UNK0 = ( 1 << 0),
-    ACTOR_FLAG3_UNK1 = ( 1 << 1),
-    ACTOR_FLAG3_UNK2 = ( 1 << 2),
-    ACTOR_FLAG3_UNK3 = ( 1 << 3),
-    ACTOR_FLAG3_UNK4 = ( 1 << 4),
-    ACTOR_FLAG3_UNK5 = ( 1 << 5),
-    ACTOR_FLAG3_UNK6 = ( 1 << 6),
-    ACTOR_FLAG3_UNK7 = ( 1 << 7),
-    ACTOR_FLAG3_UNK8 = ( 1 << 8),
-    ACTOR_FLAG3_UNK9 = ( 1 << 9),
-    ACTOR_FLAG3_UNK10 = ( 1 << 10),
-    ACTOR_FLAG3_UNK11 = ( 1 << 11),
-    ACTOR_FLAG3_UNK12 = ( 1 << 12),
-    ACTOR_FLAG3_UNK13 = ( 1 << 13),
-    ACTOR_FLAG3_UNK14 = ( 1 << 14),
-    ACTOR_FLAG3_UNK15 = ( 1 << 15),
-    ACTOR_FLAG3_UNK16 = ( 1 << 16),
-    ACTOR_FLAG3_UNK17 = ( 1 << 17),
-    ACTOR_FLAG3_UNK18 = ( 1 << 18),
-    ACTOR_FLAG3_UNK19 = ( 1 << 19),
-    ACTOR_FLAG3_UNK20 = ( 1 << 20),
-    ACTOR_FLAG3_UNK21 = ( 1 << 21),
-    ACTOR_FLAG3_UNK22 = ( 1 << 22),
-    ACTOR_FLAG3_UNK23 = ( 1 << 23),
-    ACTOR_FLAG3_UNK24 = ( 1 << 24),
-    ACTOR_FLAG3_UNK25 = ( 1 << 25),
-    ACTOR_FLAG3_UNK26 = ( 1 << 26),
-    ACTOR_FLAG3_UNK27 = ( 1 << 27),
-    ACTOR_FLAG3_UNK28 = ( 1 << 28),
-    ACTOR_FLAG3_UNK29 = ( 1 << 29),
-    ACTOR_FLAG3_UNK30 = ( 1 << 30),
-    ACTOR_FLAG3_UNK31 = ( 1 << 31),
+enum ActorFlags3 {
+    ACTOR_FLAG3_UNK0 = (1 << 0),
+    ACTOR_FLAG3_UNK1 = (1 << 1),
+    ACTOR_FLAG3_UNK2 = (1 << 2),
+    ACTOR_FLAG3_UNK3 = (1 << 3),
+    ACTOR_FLAG3_UNK4 = (1 << 4),
+    ACTOR_FLAG3_UNK5 = (1 << 5),
+    ACTOR_FLAG3_UNK6 = (1 << 6),
+    ACTOR_FLAG3_UNK7 = (1 << 7),
+    ACTOR_FLAG3_UNK8 = (1 << 8),
+    ACTOR_FLAG3_UNK9 = (1 << 9),
+    ACTOR_FLAG3_UNK10 = (1 << 10),
+    ACTOR_FLAG3_UNK11 = (1 << 11),
+    ACTOR_FLAG3_UNK12 = (1 << 12),
+    ACTOR_FLAG3_UNK13 = (1 << 13),
+    ACTOR_FLAG3_UNK14 = (1 << 14),
+    ACTOR_FLAG3_UNK15 = (1 << 15),
+    ACTOR_FLAG3_UNK16 = (1 << 16),
+    ACTOR_FLAG3_UNK17 = (1 << 17),
+    ACTOR_FLAG3_UNK18 = (1 << 18),
+    ACTOR_FLAG3_UNK19 = (1 << 19),
+    ACTOR_FLAG3_UNK20 = (1 << 20),
+    ACTOR_FLAG3_UNK21 = (1 << 21),
+    ACTOR_FLAG3_UNK22 = (1 << 22),
+    ACTOR_FLAG3_UNK23 = (1 << 23),
+    ACTOR_FLAG3_UNK24 = (1 << 24),
+    ACTOR_FLAG3_UNK25 = (1 << 25),
+    ACTOR_FLAG3_UNK26 = (1 << 26),
+    ACTOR_FLAG3_UNK27 = (1 << 27),
+    ACTOR_FLAG3_UNK28 = (1 << 28),
+    ACTOR_FLAG3_UNK29 = (1 << 29),
+    ACTOR_FLAG3_UNK30 = (1 << 30),
+    ACTOR_FLAG3_UNK31 = (1 << 31)
 };
 
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
-    /* 0x080 */ s32 flags; // uses ActorFlags enum
+    /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicate inactive ("free") actor index
     /* 0x084 */ u16 graphic; // index of grapic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
-    /* 0x088 */ FixedCoord posX; //  Q16.16-style fixed x-coordinate relative to center of screen
-    /* 0x08C */ FixedCoord posY; //  Q16.16-style fixed y-coordinate relative to center of screen
-    /* 0x090 */ FixedCoord posZ; //  Q16.16-style fixed z-coordinate used for depth
+    /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
+    /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
+    /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
     /* 0x094 */ u16 gFlag; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
     /* 0x098 */ u32 flag3; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
@@ -180,9 +180,9 @@ typedef struct {
     /* 0x0E6 */ s16 graphicTime; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.
-    // if references a u16[], where the odd values are the index of the next graphic,
+    // it often references a u16[], where the odd values are the index of the next graphic,
     // and the even values their time in ticks to be displayed.
-    // negative "time" values mean a looping animation back that many indecies.
+    // negative "index" values mean a looping animation back that many indecies.
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
 
@@ -201,11 +201,11 @@ typedef struct {
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
     /* 0x10C */ s32 unk_10C;
-    /* 0x110 */ f32 timer110; //often used as timer in "state machines", other times as "general purpose" field.
+    /* 0x110 */ f32 timer_110; // often used as timer in "state machines", other times as "general purpose" field.
     /* 0x114 */ f32 unk_114;
     /* 0x118 */ f32 unk_118;
     /* 0x11C */ f32 unk_11C;
-    /* 0x120 */ f32 unk_120;
+    /* 0x120 */ f32 unk_120; // some actors, like Marina, use this as an XY scale.
     /* 0x124 */ f32 unk_124;
     /* 0x128 */ f32 unk_128;
     union {
@@ -234,7 +234,10 @@ typedef struct {
 
     /* 0x150 */ s32 var150;
     /* 0x154 */ s32 var154;
-    /* 0x158 */ s32 var158; //sometimes treated as a u16[2].
+    union {
+            /* 0x158 */ s32 var158;
+            /* 0x158 */ u16 var158_u16[2];
+    };
     /* 0x15C */ s32 unk_15C;
     /* 0x160 */ s32 unk_160;
     /* 0x164 */ s32 unk_164;
@@ -247,13 +250,15 @@ typedef struct {
     /* 0x180 */ s32 unk_180;
     /* 0x184 */ s32 unk_184;
     /* 0x188 */ s32 unk_188;
-    union 
-    {
+    union {
         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
-        /* 0x18C */ u16* unk_18Cp; // when ACTOR_GFLAG_RGB16 is set in gFlag, field is treated as pallette pointer
+        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in gFlag, field is treated as pallette pointer
     };
-    
-    /* 0x190 */ s32 unk_190;
+    union {
+        /* 0x190 */ s32 unk_190;
+        /* 0x190 */ void* unk_190_p;
+        /* 0x190 */ ActorFunc unk_190_cb;
+    }
     /* 0x194 */ u8 unk_194[0x4];
 } Actor; /* size = 0x198 */
 

@@ -153,7 +153,7 @@ s32 func_801B9DB0_7DCC80(void) {
         new_var = 0x40;
         if (gActors[0x30].state != new_var) {
             gActors[0x30].state = 0x40;
-            gActors[0x30].health -= 0xC8;
+            gActors[0x30].health -= 200;
             if (gActors[0x30].health <= 0) {
                 gActors[0x30].health = 0;
                 func_801B9D84_7DCC54();

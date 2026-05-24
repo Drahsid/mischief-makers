@@ -58,7 +58,7 @@ void func_801B9900_7EA3D0(void) {
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
             }
             else {
-                D_800D28E8++;
+                D_800D28E8 = D_800D28E8 + 1;
                 func_80046148(D_801B9BC0_7EA690, 0);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
                 gLetterboxMode = LETTERBOX_DEFAULT;

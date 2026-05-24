@@ -465,8 +465,7 @@ void func_8002092C(void) {
     u16 index;
 
     for (index = 200; index < 204; index++) {
-        gActors[index].actorType = 0;
-        func_8001E2D0(index);
+        ACTORINIT(index,0);
         gActors[index].gFlag |= ACTOR_GFLAG_UNK11;
         gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
