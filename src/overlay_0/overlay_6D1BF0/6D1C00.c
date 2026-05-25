@@ -95,8 +95,8 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 ClancerCommanderMech_Init(actor_index);
                 gActors[actor_index].state++;
                 gActors[actor_index + 1].unk_180 |= 0x8000;
-                gActors[actor_index].velocityX = FIXED_UNIT(4.5);
-                gActors[actor_index].velocityY = FIXED_UNIT(0.75);
+                gActors[actor_index].velocityX.raw = FIXED_UNIT(4.5);
+                gActors[actor_index].velocityY.raw = FIXED_UNIT(0.75);
                 func_80081790(actor_index, D_800E58D4);
                 ACTORINIT(temp_index_22,0x1D);
                 gActors[temp_index_22].var_150 = (s32)D_800E1180;
@@ -114,17 +114,17 @@ void ClancerCommanderMech_Update(u16 actor_index) {
             break;
 
         case 0x4003:
-            gActors[actor_index].velocityX -= FIXED_UNIT(0.125);
-            if (gActors[actor_index].velocityX < FIXED_UNIT(-1.75)) {
+            gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.125);
+            if (gActors[actor_index].velocityX.raw < FIXED_UNIT(-1.75)) {
                 gActors[actor_index].state++;
             }
             ClancerCommanderMech_UpdateAttachedActorPosition(actor_index, temp_index_22);
             break;
 
         case 0x4004:
-            gActors[actor_index].velocityX += FIXED_UNIT(0.09375);
-            gActors[actor_index].velocityY -= FIXED_UNIT(0.0625);
-            if (gActors[actor_index].velocityY < FIXED_UNIT(-1.0)) {
+            gActors[actor_index].velocityX.raw += FIXED_UNIT(0.09375);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.0625);
+            if (gActors[actor_index].velocityY.raw < FIXED_UNIT(-1.0)) {
                 gActors[actor_index].state++;
                 gActors[actor_index + 2].unk_180 = 0x14;
                 gActors[actor_index + 3].unk_180 = 0;
@@ -171,14 +171,14 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             gActors[actor_index].state++;
                             gActors[temp_index_21].graphicListV = D_800E5970;
                             gActors[temp_index_21].graphicTime = 1;
-                            gActors[actor_index].velocityX = FIXED_UNIT(-1.625);
-                            gActors[actor_index].velocityY = FIXED_UNIT(-1.5);
+                            gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
+                            gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);
                             temp = func_80028528();
                             if (temp != 0) {
                                 ACTORINIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;
-                                gActors[temp].velocityX = FIXED_UNIT(1.0);
+                                gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;
                                 func_80003980(0xDD, temp);
                                 func_800036C8(0xB0, actor_index);
@@ -187,8 +187,8 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                     gActors[actor_index + 3].unk_180++;
                 }
             }
-            gActors[actor_index].velocityX = Math_ApproachS32(gActors[actor_index].velocityX, 0, FIXED_UNIT(0.0625));
-            gActors[actor_index].velocityY = Math_ApproachS32(gActors[actor_index].velocityY, 0, FIXED_UNIT(0.0625));
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,0, FIXED_UNIT(0.0625));
             ClancerCommanderMech_UpdateAttachedActorPosition(actor_index, temp_index_22);
             break;
 
@@ -199,8 +199,8 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 gActors[actor_index + 0x22].flags = 0;
                 return;
             }
-            gActors[actor_index].velocityX += FIXED_UNIT(0.15625);
-            gActors[actor_index].velocityY += FIXED_UNIT(0.0703125);
+            gActors[actor_index].velocityX.raw += FIXED_UNIT(0.15625);
+            gActors[actor_index].velocityY.raw += FIXED_UNIT(0.0703125);
             ClancerCommanderMech_UpdateAttachedActorPosition(actor_index, temp_index_22);
             break;
     }

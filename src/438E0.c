@@ -481,10 +481,10 @@ s32 Cutscene_CheckSkipInput(void) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x63;
         D_800D2938 = 0;
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046EBC.s")

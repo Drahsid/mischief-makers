@@ -136,39 +136,39 @@ void func_8001E808(s32 arg0, s32 arg1) {
 }
 
 void func_8001E814(u16 arg0, u16 arg1) {
-    if ((gActors[arg0].velocityX != 0) || (gActors[arg0].velocityY != 0)) {
-        gActors[arg1].unk_0F8 = gActors[arg0].velocityX;
-        gActors[arg1].unk_0FC = gActors[arg0].velocityY;
+    if ((gActors[arg0].velocityX.raw != 0) || (gActors[arg0].velocityY.raw != 0)) {
+        gActors[arg1].unk_0F8.raw = gActors[arg0].velocityX.raw;
+        gActors[arg1].unk_0FC.raw = gActors[arg0].velocityY.raw;
     }
     else {
-        gActors[arg1].unk_0F8 = func_8001E5E0(arg0, arg1, 0x2000);
-        gActors[arg1].unk_0FC = func_8001E6F4(arg0, arg1, 0x2000);
+        gActors[arg1].unk_0F8.raw = func_8001E5E0(arg0, arg1, 0x2000);
+        gActors[arg1].unk_0FC.raw = func_8001E6F4(arg0, arg1, 0x2000);
     }
 }
 
 void func_8001E8E4(u16 arg0, u16 arg1) {
-    if (!(gActors[arg0].flags & 0x20)) {
-        gActors[arg1].unk_0F8 = gActors[arg0].unk_0F8;
+    if (!(gActors[arg0].flags & ACTOR_FLAG_FLIPPED)) {
+        gActors[arg1].unk_0F8.raw = gActors[arg0].unk_0F8.raw;
     }
     else {
-        gActors[arg1].unk_0F8 = -gActors[arg0].unk_0F8;
+        gActors[arg1].unk_0F8.raw = -gActors[arg0].unk_0F8.raw;
     }
-    gActors[arg1].unk_0FC = gActors[arg0].unk_0FC;
+    gActors[arg1].unk_0FC.raw = gActors[arg0].unk_0FC.raw;
 }
 
 void func_8001E964(u16 arg0, u16 arg1) {
     if (gActors[arg1].posX.whole < gActors[arg0].posX.whole) {
-        gActors[arg1].unk_0F8 = -gActors[arg0].unk_0F8;
+        gActors[arg1].unk_0F8.raw = -gActors[arg0].unk_0F8.raw;
     }
     else {
-        gActors[arg1].unk_0F8 = gActors[arg0].unk_0F8;
+        gActors[arg1].unk_0F8.raw = gActors[arg0].unk_0F8.raw;
     }
-    gActors[arg1].unk_0FC = gActors[arg0].unk_0FC;
+    gActors[arg1].unk_0FC.raw = gActors[arg0].unk_0FC.raw;
 }
 
 void func_8001E9DC(u16 arg0, u16 arg1) {
-    gActors[arg1].unk_0F8 = gActors[arg0].unk_0F8 * COS(func_8000178C() * 4);
-    gActors[arg1].unk_0FC = gActors[arg0].unk_0FC * COS(func_8000178C());
+    gActors[arg1].unk_0F8.raw = gActors[arg0].unk_0F8.raw * COS(func_8000178C() * 4);
+    gActors[arg1].unk_0FC.raw = gActors[arg0].unk_0FC.raw * COS(func_8000178C());
 }
 
 void func_8001EADC(u16 arg0, u16 arg1) {

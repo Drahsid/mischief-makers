@@ -110,7 +110,7 @@ enum ActorFlags3 {
 
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
-    /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicate inactive ("free") actor index
+    /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
     /* 0x084 */ u16 graphicIndex ; // index of grapic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
     /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
@@ -171,8 +171,8 @@ typedef struct {
     /* 0x0E6 */ s16 graphicTime; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.
-    // it often references a u16[], where the odd values are the index of the next graphic,
-    // and the even values their time in ticks to be displayed.
+    // it often references a u16[], where the entries alternate
+    // between the index of the grapic and the time in ticks to display.
     // negative "index" values mean a looping animation back that many indecies.
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
@@ -183,12 +183,12 @@ typedef struct {
         /* 0x0E8 */ u16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
-    /* 0x0EC */ s32 velocityX; // FixedCoord(?) velocity see: 66250, 8D0A0, and matched overlays
-    /* 0x0F0 */ s32 velocityY;
-    /* 0x0F4 */ s32 unk_0F4; // FixedCoord parameter in overlay_76F390
-    /* 0x0F8 */ s32 unk_0F8; // FixedCoord parameter in overlay_76F390
-    /* 0x0FC */ s32 unk_0FC; // FixedCoord parameter in overlay_76F390
-    /* 0x100 */ s32 unk_100;
+    /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
+    /* 0x0F0 */ FixedCoord velocityY; // applied to posY in func_80014af0 
+    /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in func_80014af0
+    /* 0x0F8 */ FixedCoord unk_0F8; // additional velocity field for x-axis.
+    /* 0x0FC */ FixedCoord unk_0FC; // additional velocity field for y-axis.
+    /* 0x100 */ s32 unk_100; // cleared in func_8001E2D0, but otherwise (seemingly) unused. z-axis value?
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
     /* 0x10C */ s32 unk_10C;

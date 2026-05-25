@@ -283,10 +283,10 @@ s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
     }
 
     if ((gButtonPress & button) || (*repeat_timer == 0x21)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800176F8.s")

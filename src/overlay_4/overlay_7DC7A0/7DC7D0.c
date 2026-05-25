@@ -275,7 +275,7 @@ s32 func_801BA92C_7DD7FC(void) {
         return 1;
     }
 
-    if (!(flags & 0x20) && (D_800D28E8 == 0xE) && (D_800BE558 == 0x982) && (D_800BE55C == 0x17C)) {
+    if (!(flags & ACTOR_FLAG_FLIPPED) && (D_800D28E8 == 0xE) && (D_800BE558 == 0x982) && (D_800BE55C == 0x17C)) {
         D_800D28E8 = 0x600;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDB20_7E09F0);
@@ -333,7 +333,7 @@ void func_801BABFC_7DDACC(void) {
         gActors[0xB4].flags = 0;
     }
 
-    if (!(flags & 0x20)) {
+    if (!(flags & ACTOR_FLAG_FLIPPED)) {
         gActors[0x55].flags = 0;
     }
     else {

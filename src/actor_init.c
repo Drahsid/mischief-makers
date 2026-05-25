@@ -81,11 +81,11 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_0DD =
     gActors[actor_index].unk_0DF =
     gActors[actor_index].unk_0E2 =
-    gActors[actor_index].velocityX =
-    gActors[actor_index].velocityY =
-    gActors[actor_index].unk_0F4 =
-    gActors[actor_index].unk_0F8 =
-    gActors[actor_index].unk_0FC =
+    gActors[actor_index].velocityX.raw =
+    gActors[actor_index].velocityY.raw =
+    gActors[actor_index].velocityZ.raw =
+    gActors[actor_index].unk_0F8.raw =
+    gActors[actor_index].unk_0FC.raw =
     gActors[actor_index].unk_100 =
     gActors[actor_index].unk_104 =
     gActors[actor_index].unk_108 =

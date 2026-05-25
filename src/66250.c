@@ -171,20 +171,20 @@ u32 func_8006890C(void) {
 
 u32 func_80068934(void) {
     if ((gActors[D_800E3580].flags & 0xA80) && func_80029A7C(0x68, 0x20, -0x20)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 u32 func_800689A8(void) {
     if (D_800E3584 & 0x30000) {
         if (func_80029B00(0x24, 8, -8)) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 u32 func_800689F8(void) {
@@ -345,11 +345,11 @@ void func_80069304(u16 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069A18.s")
 
 void func_80069B94(u16 actor_index) {
-    gActors[actor_index].velocityX = Math_ApproachS32(gActors[actor_index].velocityX, 0, FIXED_UNIT(0.25));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.25));
 }
 
 void func_80069BF4(u16 actor_index) {
-    gActors[actor_index].velocityX = Math_ApproachS32(gActors[actor_index].velocityX, 0, FIXED_UNIT(0.015625));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.015625));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069C54.s")
@@ -453,7 +453,7 @@ void func_8006C5A4(u16 actor_index) {
         func_80066964(actor_index, (gActors[actor_index].unk_0D8 & 0x7000) / 0x1000);
         func_80066A10(actor_index);
 
-        if (gActors[actor_index].flags & 0x20) {
+        if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
             gActors[actor_index].unk_148 = -gActors[actor_index].scaleX;
         }
         else {
@@ -855,7 +855,7 @@ void func_80079760(u16 actor_index) {
     s32 arg0;
 
     func_80078F54(actor_index);
-    if (gActors[actor_index].flags & 0x20) {
+    if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         arg0 = 0x2000000;
     }
     else {
@@ -863,8 +863,8 @@ void func_80079760(u16 actor_index) {
     }
 
     gActors[actor_index].unk_168 = func_800298D0(arg0, gActors[actor_index].unk_168, 0x180000);
-    gActors[actor_index].velocityX = Math_ApproachS32(gActors[actor_index].velocityX, 0, gActors[actor_index].var_158 + 0x80);
-    gActors[actor_index].velocityY = Math_ApproachS32(gActors[actor_index].velocityY, 0, gActors[actor_index].unk_15C + 0x80);
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index].var_158 + 0x80);
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,0, gActors[actor_index].unk_15C + 0x80);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079810.s")

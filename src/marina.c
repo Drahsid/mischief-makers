@@ -11,14 +11,14 @@ u8 func_80048600(u16 actor_index) {
 
     if (D_801370CC & D_800BE50C) {
         ret = 1;
-        if (!(gActors[actor_index].flags & 0x20)) {
+        if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
             ret = 0x81;
         }
     }
     else {
         if (D_801370CC & D_800BE510) {
             ret = 2;
-            if (!(gActors[actor_index].flags & 0x20)) {
+            if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
             }
             else {
                 ret = 0x82;

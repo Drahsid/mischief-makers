@@ -87,7 +87,7 @@ s32 func_801B9900_7CE090(void) {
             if (gGameState == 6) {
                 gGameState = 7;
                 gGameStateSubState = 0;
-                gActors[0].velocityX = gActors[0].velocityY = D_800BE5EC = 0;
+                gActors[0].velocityX.raw = gActors[0].velocityY.raw = D_800BE5EC = 0;
                 D_800BE5E8 = 0;
             }
 
@@ -149,7 +149,7 @@ void func_801B9B08_7CE298(void) {
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
-        D_800BE5EC = (D_800BE5EC * 0) + (gActors[0].velocityX = (((gActors[0].velocityY = 0) & 0xFFFFFFFFFFFFFFFFULL)));
+        D_800BE5EC = (D_800BE5EC * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
         // FAKEMATCH
         D_800BE5E8 = 0;
         func_801B9A0C_7CE19C(D_800D28E8 + 1);

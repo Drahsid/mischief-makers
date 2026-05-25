@@ -414,10 +414,10 @@ s32 func_801B9DAC_7E6EFC(void) {
         Actor_LoadSpawnTable(D_801BA6B0_7E7800[D_800D2928].unk_08);
         D_800BE568 = D_801BA6B0_7E7800[D_800D2928].unk_00 - 0x90;
         gActors[0x31].unk_15C |= 1;
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801B9E7C_7E6FCC(void) {
