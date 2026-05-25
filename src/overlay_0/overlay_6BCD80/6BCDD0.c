@@ -349,7 +349,7 @@ s32 func_80196030_6C0D00(s32 arg0) {
 
     actor_index = func_800284B8(0x5E, 0x62);
     if (actor_index != 0) {
-        ACTORINIT(actor_index,0x1604);
+        ACTORINIT(actor_index, 0x1604);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
         return TRUE;
     }
@@ -663,8 +663,8 @@ void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {
 }
 
 void func_80198858_6C3528(s32 arg0, u16 actor_index) {
-    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9);
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK12);
+    gActors[0].flags_098 |= (ACTOR_FLAG3_UNK16);
     gActors[0].unk_0FC = 0xFFFE0000;
     if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
         gActors[0].unk_0F8 = 0x30000;

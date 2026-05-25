@@ -257,13 +257,14 @@ extern Actor gActors[];
 
 
 // a common macro for initalizing actors.
+// can cause mismatches.
 #define ACTORINIT(index, type)\
  gActors[index].actorType = type;\
  func_8001E2D0(index)
 
 // a common macro for initalizing grpahic lists
 #define ACTORGFXINIT(index, graphicsP)\
- gActors[index].graphicsListV = graphicsP;\
+ gActors[index].graphicListV = graphicsP;\
  gActors[index].graphicTime = 1
 
 

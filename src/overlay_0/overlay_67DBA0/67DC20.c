@@ -675,6 +675,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[actor_index].unk_17C = gActors[actor_index].unk_174;
 
     next_actor_index = actor_index + 1;
+    //ACTORINIT macro causes mismatch here.
     gActors[next_actor_index].actorType = 0x1D;
     func_8001E2D0(next_actor_index);
     gActors[next_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
