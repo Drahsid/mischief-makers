@@ -55,7 +55,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].graphicTime = 1;
     gActors[actor_index].unk_0DE = 1;
 
-    gActors[actor_index].graphicIndex  =
+    gActors[actor_index].graphicIndex =
     gActors[actor_index].posX.frac =
     gActors[actor_index].posY.frac =
     gActors[actor_index].posZ.raw =

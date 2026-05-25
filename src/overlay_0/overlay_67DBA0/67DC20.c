@@ -145,7 +145,7 @@ void func_801928A8_67E3C8(s32 arg0) {
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = 3;
-        gActors[actor_index].graphicIndex  = 0xDE;
+        gActors[actor_index].graphicIndex = 0xDE;
         gActors[actor_index].colorA = 0xC0;
         gActors[actor_index].colorR = 0x40;
         gActors[actor_index].unk_0F4 = 0x20000;
@@ -268,7 +268,7 @@ void func_801939CC_67F4EC(u16 actor_index) {
     threshold = 0x120000;
     for (index = 0; index < 9; index++) {
         if (threshold < gActors[actor_index].var_154) {
-            gActors[actor_index].graphicIndex  = D_8019DB1C_68963C[index];
+            gActors[actor_index].graphicIndex = D_8019DB1C_68963C[index];
             return;
         }
         threshold += -0x60000;
@@ -282,7 +282,7 @@ void func_80193A4C_67F56C(u16 actor_index) {
     threshold = 0x120000;
     for (index = 0; index < 9; index++) {
         if (threshold < gActors[actor_index].var_154) {
-            gActors[actor_index].graphicIndex  = D_8019DB30_689650[index];
+            gActors[actor_index].graphicIndex = D_8019DB30_689650[index];
             return;
         }
         threshold += -0x60000;
@@ -296,7 +296,7 @@ void func_80193ACC_67F5EC(u16 actor_index) {
     threshold = -0x20000;
     for (index = 0; index < 9; index++) {
         if (threshold >= gActors[actor_index].var_154) {
-            gActors[actor_index].graphicIndex  = D_8019DB44_689664[index];
+            gActors[actor_index].graphicIndex = D_8019DB44_689664[index];
             return;
         }
         threshold += 0x8000;
@@ -316,14 +316,14 @@ void func_80193B4C_67F66C(u16 actor_index) {
     threshold = 0x8000;
     for (index = 0; index < 6; index++) {
         if (value < threshold) {
-            actor[0x20].graphicIndex  = D_8019DB58_689678[index];
+            actor[0x20].graphicIndex = D_8019DB58_689678[index];
             actor[0x20].unk_13C = 11.0f;
             return;
         }
         threshold += 0x8000;
     }
 
-    actor[0x20].graphicIndex  = 0x80C;
+    actor[0x20].graphicIndex = 0x80C;
     actor[0x20].unk_13C = 10.0f;
 }
 
@@ -340,13 +340,13 @@ void func_80193C14_67F734(u16 actor_index) {
     threshold = 0x8000;
     for (index = 0; index < 7; index++) {
         if (value < threshold) {
-            actor[0x21].graphicIndex  = D_8019DB64_689684[index];
+            actor[0x21].graphicIndex = D_8019DB64_689684[index];
             return;
         }
         threshold += 0x8000;
     }
 
-    actor[0x21].graphicIndex  = 0x81A;
+    actor[0x21].graphicIndex = 0x81A;
 }
 
 void func_80193CC4_67F7E4(s32 arg0, u16 index) {
@@ -475,7 +475,7 @@ void func_80194A38_680558(void) {
     gActors[0x60].colorB = 0x7F;
     gActors[0x60].graphicFlags = (ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 |
         ACTOR_GFLAG_ROTX | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE);
-    gActors[0x60].graphicIndex  = 0x262;
+    gActors[0x60].graphicIndex = 0x262;
     gActors[0x60].colorA = 0;
     gActors[0x60].posX.whole = 0;
     gActors[0x60].posY.whole = 0;
@@ -700,7 +700,7 @@ void func_8019911C_684C3C(u16 actor_index) {
         actor->velocityX = Math_ApproachS32(actor->velocityX, 0x4000, 0x400);
 
         if (actor->unk_178 < actor->unk_180) {
-            actor->var_150 &= 0xEFFFFFFF;
+            actor->var_150 &= ~0x10000000;
             actor->unk_178 = actor->unk_170;
         }
     }
@@ -717,7 +717,7 @@ void func_8019911C_684C3C(u16 actor_index) {
         actor->velocityY = Math_ApproachS32(actor->velocityY, 0x2000, 0x800);
 
         if (actor->unk_17C < actor->unk_184) {
-            actor->var_150 &= 0xDFFFFFFF;
+            actor->var_150 &= ~0x20000000;
             actor->unk_17C = actor->unk_174 - (func_8000178C() & 7) - 3;
         }
     }
@@ -739,8 +739,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-            gActors[actor_index].graphicListV = D_800E164C;\
-            gActors[actor_index].graphicTime = 1;
+            ACTORGFXINIT(actor_index, D_800E164C);
             gActors[actor_index].unk_18C = (s32)D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);

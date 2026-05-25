@@ -65,10 +65,10 @@ void func_801A6980_76F420(u16 actor_index) {
             gActors[temp_v0].scaleY = gActors[temp_v0].scaleX;
 
             if (D_800BE4E0 & 4) {
-                gActors[temp_v0].graphicIndex  = 0xD4;
+                gActors[temp_v0].graphicIndex = 0xD4;
             }
             else {
-                gActors[temp_v0].graphicIndex  = 0xD6;
+                gActors[temp_v0].graphicIndex = 0xD6;
             }
 
             func_8002ABE4(temp_v0, 0x10);

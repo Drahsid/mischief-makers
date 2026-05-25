@@ -15,9 +15,15 @@ typedef struct {
     /* 0x78 */ u32 unk_78;
 } UnkStruct_D_801373E0;
 
+// data for setting actors in a stage (may actually be u16[] - often ending with a 0xff00.)
 typedef struct {
-    /* 0x00 */ u16 flags;
-    /* 0x02 */ u8 unk_02[0xC];
+    /* 0x00 */ u16 flags; // value for actor->flags
+    /* 0x02 */ u16 index; // index of actor to set
+    /* 0x04 */ u16 posX;  // x-position of actor in stage
+    /* 0x06 */ u16 posY;  // y-position of actor in stage
+    /* 0x08 */ u16 timer_110; // value of actor->timer_110
+    /* 0x0A */ u16 unk_0D8; // value of actor->unk_0D8
+    /* 0x0C */ u16 type; // value of actor->actorType
 } ActorSpawnRecord; /* size = 0xE */
 
 

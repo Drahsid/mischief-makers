@@ -249,7 +249,7 @@ typedef struct {
         /* 0x190 */ s32 unk_190;
         /* 0x190 */ void* unk_190_p;
         /* 0x190 */ ActorFunc unk_190_cb;
-    }
+    };
     /* 0x194 */ u8 unk_194[0x4];
 } Actor; /* size = 0x198 */
 
@@ -260,5 +260,11 @@ extern Actor gActors[];
 #define ACTORINIT(index, type)\
  gActors[index].actorType = type;\
  func_8001E2D0(index)
+
+// a common macro for initalizing grpahic lists
+#define ACTORGFXINIT(index, graphicsP)\
+ gActors[index].graphicsListV = graphicsP;\
+ gActors[index].graphicTime = 1
+
 
 #endif
