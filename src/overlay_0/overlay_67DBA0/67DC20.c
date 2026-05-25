@@ -123,10 +123,10 @@ void func_80192820_67E340(s32 arg0) {
     if (actor_index != 0) {
         actor_index = (u16)actor_index;
         if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-            gActors[actor_index].unk_160 = (-(gActors[0x37].var_150) << 0x10) + 0x2000000;
+            gActors[actor_index].var_160 = (-(gActors[0x37].var_150) << 0x10) + 0x2000000;
             return;
         }
-        gActors[actor_index].unk_160 = (gActors[0x37].var_150 << 0x10) + 0x2000000;
+        gActors[actor_index].var_160 = (gActors[0x37].var_150 << 0x10) + 0x2000000;
     }
 }
 

@@ -223,14 +223,33 @@ typedef struct {
     // or the crosshair actor will use it for the index of its "parent",
     // or player-controlled Teran will count his jumps with it.
 
-    /* 0x150 */ s32 var_150;
-    /* 0x154 */ s32 var_154;
     union {
-            /* 0x158 */ s32 var_158;
-            /* 0x158 */ u16 var_158_u16[2];
+        /* 0x150 */ s32 var_150;
+        /* 0x150 */ u16 var_150_u16[2];
+        /* 0x150 */ u8 var_150_u8[4];
     };
-    /* 0x15C */ s32 unk_15C;
-    /* 0x160 */ s32 unk_160;
+    union {
+        /* 0x154 */ s32 var_154;
+        /* 0x154 */ u16 var_154_u16[2];
+        /* 0x154 */ s16 var_154_s16[2];
+        /* 0x154 */ s8 var_154_s8[4];
+    };
+    union {
+        /* 0x158 */ s32 var_158;
+        /* 0x158 */ u16 var_158_u16[2];
+    };
+    union {
+        /* 0x15C */ s32 var_15C;
+        /* 0x15C */ u16 var_15C_u16[2];
+        /* 0x15C */ s16 var_15C_s16[2];
+    };
+    union {
+        /* 0x160 */ s32 var_160;
+        /* 0x160 */ u16 var_160_u16[2];
+        /* 0x160 */ s16 var_160_s16[2];
+        /* 0x160 */ s8 var_160_s8[4];
+        /* 0x160 */ u8 var_160_u8[4];
+    };
     /* 0x164 */ s32 unk_164;
     /* 0x168 */ s32 unk_168;
     /* 0x16C */ s32 unk_16C;
@@ -239,7 +258,7 @@ typedef struct {
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
     union{
         /* 0x17C */ s32 unk_17C;
-        /* 0x17C */ u8 unk_17C_bu[4];
+        /* 0x17C */ u8 unk_17C_u8[4];
         /* 0x17C */ ActorFunc cb_17C; // used by "particle" actors
         /* 0x17C */ Gfx* dlist_17C; // used by 3d objects (level select cursor, Intro effects)
     };
