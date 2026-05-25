@@ -260,7 +260,7 @@ typedef struct {
         /* 0x17C */ s32 unk_17C;
         /* 0x17C */ u8 unk_17C_u8[4];
         /* 0x17C */ ActorFunc cb_17C; // used by "particle" actors
-        /* 0x17C */ Gfx* dlist_17C; // used by 3d objects (level select cursor, Intro effects)
+        /* 0x17C */ Gfx* dlist_17C; // used by 3d objects (sound test cursors, Intro effects)
     };
     /* 0x180 */ s32 unk_180;
     /* 0x184 */ s32 unk_184;
