@@ -53,7 +53,7 @@ void func_801A6980_76F420(u16 actor_index) {
             temp_v1 = (UnkStruct_801A7250*)&((s16*)D_801A7250_76FCF0)[temp_index];
             gActors[actor_index].posY.whole = temp_v1->unk_06;
             gActors[actor_index].posZ.whole = temp_v1->unk_08;
-            ACTORINIT(temp_vo,0x2502);
+            ACTORINIT(temp_v0,0x2502);
             gActors[temp_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[temp_v0].flags = (func_8000178C() & ACTOR_FLAG_FLIPPED) + (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE);
             gActors[temp_v0].unk_0E4 = 0x64;

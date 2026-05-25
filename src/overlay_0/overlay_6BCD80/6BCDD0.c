@@ -73,7 +73,7 @@ void func_8019902C_6C3CFC(u16 actor_index);
 
 
 void func_80192100_6BCDD0(u16 actor_index) {
-    ACTORINIT(actor_index.0x21);
+    ACTORINIT(actor_index,0x21);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ);
     gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
 }
@@ -351,9 +351,9 @@ s32 func_80196030_6C0D00(s32 arg0) {
     if (actor_index != 0) {
         ACTORINIT(actor_index,0x1604);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
-        return true;
+        return TRUE;
     }
-    return false;
+    return FALSE;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801960B0_6C0D80.s")
@@ -664,7 +664,7 @@ void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {
 
 void func_80198858_6C3528(s32 arg0, u16 actor_index) {
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9);
-    gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
+    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK12);
     gActors[0].unk_0FC = 0xFFFE0000;
     if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
         gActors[0].unk_0F8 = 0x30000;

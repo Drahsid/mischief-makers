@@ -177,7 +177,7 @@ typedef struct {
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
 
-    union{
+    union {
         /* 0x0E8 */ void* graphicListV; // if uncertain if reference is u16[] or u16*
         /* 0x0E8 */ u16* graphicList; // odd indecies for graphic used, even for time to use them.
         /* 0x0E8 */ u16** graphicLists; // used by Marina and other actors to hold several animation references.
