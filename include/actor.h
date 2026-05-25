@@ -14,12 +14,12 @@ typedef void (*ActorFunc)(u16 actor_index);
 enum ActorFlags {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1 << 1), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
-    ACTOR_FLAG_ONSCREEN_ONLY = (1 << 2), //deactivate if off-camera?
-    ACTOR_FLAG_FREEZE_POS = (1 << 3), //keep screenspace position regardless of camera movement. Used for screen effect actors,
-    ACTOR_FLAG_UNK4 = (1 << 4), //set, but not checked?
+    ACTOR_FLAG_ONSCREEN_ONLY = (1 << 2), // deactivate if off-camera?
+    ACTOR_FLAG_FREEZE_POS = (1 << 3), // keep screenspace position regardless of camera movement. Used for screen effect actors,
+    ACTOR_FLAG_UNK4 = (1 << 4), // set, but not checked?
     ACTOR_FLAG_FLIPPED = (1 << 5), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
                                    // scale, in this context?)
-    ACTOR_FLAG_UNK6 = (1 << 6),  //seems related to actor linking?
+    ACTOR_FLAG_UNK6 = (1 << 6),  // seems related to actor linking?
 
     // bits 7-12 seem to deal with collision checks.
     // and whether or not the hitboxA or B fields
@@ -111,7 +111,7 @@ enum ActorFlags3 {
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
     /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicate inactive ("free") actor index
-    /* 0x084 */ u16 graphicIndex ; // index of grapic currently used.
+    /* 0x084 */ u16 graphicIndex; // index of grapic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
     /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
     /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
