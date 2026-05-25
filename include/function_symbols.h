@@ -59,7 +59,7 @@ extern u32 func_80029B74(s32 arg0);
 extern void func_8002A2B0(u16 actor_index, s32 arg1);
 extern void func_8002ABE4(u16 actor_index, s16 val);
 extern s32 func_8002F154(u16 arg0, u16 arg1, s32 arg2);
-extern void func_80030A24(void);
+extern void func_80030A24(u16 arg0);
 extern void func_80033204(s32 arg0, u16 arg1, s32 arg2, f32 arg3, s32 arg4);
 extern void func_80034D80(u16 arg0, void* arg1);
 extern void func_800369A0(u16 arg0, u16 arg1, void* arg2);
