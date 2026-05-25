@@ -239,7 +239,7 @@ typedef struct {
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
     union{
         /* 0x17C */ s32 unk_17C;
-        /* 0x17C */ u8 unk_17C[4];
+        /* 0x17C */ u8 unk_17C_bu[4];
         /* 0x17C */ ActorFunc cb_17C; // used by "particle" actors
         /* 0x17C */ Gfx* dlist_17C; // used by 3d objects (level select cursor, Intro effects)
     };
