@@ -14,8 +14,8 @@ void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other
 void ClancerCommanderMech_Update(u16 actor_index);
 
 void ClancerCommanderMech_Init(u16 actor_index) {
-    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4;
-    gActors[actor_index].flags = 3;
+    gActors[actor_index].graphicFlags |= (ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4);
+    gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_8008105C(actor_index, D_800E4698, D_800E45D0);
     gActors[actor_index].unk_178 = (s32)D_800E574C;
     func_80081478(actor_index, D_800E4698, 0);
@@ -101,7 +101,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 ACTORINIT(temp_index_22,0x1D);
                 gActors[temp_index_22].var_150 = (s32)D_800E1180;
                 gActors[temp_index_22].var_154 = 1;
-                gActors[temp_index_22].flags = 3;
+                gActors[temp_index_22].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
             }
             break;
 

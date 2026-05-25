@@ -370,16 +370,16 @@ s32 func_801BBD34_7DEC04(void) {
     u16 actor_index;
 
     for (actor_index = 0x60; actor_index < 0x70; actor_index++) {
-        if (gActors[actor_index].flags & 2) {
+        if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
             gActors[0x30].state = 0x41;
             gActors[0x30].unk_0D4 = 0x3C;
             gActors[0x30].posX.whole = gActors[actor_index].posX.whole;
             gActors[0x30].posY.whole = gActors[actor_index].posY.whole + 0x28;
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 s32 func_801BBDB0_7DEC80(void) {
@@ -391,26 +391,26 @@ s32 func_801BBDB0_7DEC80(void) {
         if ((gActors[0x30].health & 0x8000) || (gActors[0x30].health == 0)) {
             gActors[0x30].health = 0;
             func_801BBD08_7DEBD8();
-            return 1;
+            return TRUE;
         }
 
         if (D_800D28E8 == 0x1033) {
             if (func_801BBD34_7DEC04() != 0) {
-                return 0;
+                return FALSE;
             }
         }
 
         gActors[0x30].health = 0;
         func_801BBD08_7DEBD8();
-        return 1;
+        return TRUE;
     }
 
     if (gActors[0x30].flags == 0) {
         func_801BBD08_7DEBD8();
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801BBE80_7DED50(void) {

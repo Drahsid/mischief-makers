@@ -201,7 +201,7 @@ void func_801A7180_76FC20(u16 actor_index) {
         return;
     }
 
-    if (gActors[actor_index].velocityY.raw >= -0x7FFFF) {
+    if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-8.0)) {
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0);
     }
 }

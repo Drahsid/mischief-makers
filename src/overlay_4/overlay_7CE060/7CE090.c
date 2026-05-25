@@ -99,7 +99,7 @@ s32 func_801B9900_7CE090(void) {
 }
 
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
-    gActors[0].flags &= ~0x20;
+    gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
     D_800BE5D8 = D_800BE558 + arg0;
     D_800BE5DC = D_800BE55C + arg1;
     gActors[0].posX.whole = arg0;

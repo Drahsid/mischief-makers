@@ -232,8 +232,8 @@ void func_8019B730_753EB0(u16 actor_index) {
 
         case 0x10:
             gActors[actor_index].state++;
-            gActors[actor_index].flags &= 0xFFFDFFFF;\
-            gActors[actor_index].flags |= 0x10000;
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17;\
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
             gActors[actor_index].velocityY.raw = 0;
             func_80081790(actor_index, D_8019BCFC_75447C);
 

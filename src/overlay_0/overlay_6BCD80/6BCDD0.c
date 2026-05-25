@@ -789,7 +789,7 @@ void func_8019946C_6C413C(void) {
     D_800D294C = 0;
     Actor_ClearRange_10To20();
     D_800BE558 = D_800BE550;
-    gActors[0].flags |= 0x103;
+    gActors[0].flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_800282F0(gActors[0x31].posX.whole, -0x18);
     D_800BE5F4 = 5;
     gActors[0].unk_0D4 = 0;
@@ -877,8 +877,9 @@ void func_8019D908_6C85D8(void) {
 
 void func_8019D970_6C8640(u16 arg0) {
     gActors[0xC1].state = 1;
-    gActors[0xC1].graphicFlags = 0xB11;
-    gActors[0xC1].flags = 0xB;
+    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+         ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
+    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     gActors[0xC1].unk_18C = (s32)D_800D8588;
     gActors[0xC1].colorA = 0xFF;
     gActors[0xC1].var_150 = 0;
@@ -888,8 +889,9 @@ void func_8019D970_6C8640(u16 arg0) {
 
 void func_8019D9D8_6C86A8(u16 arg0) {
     gActors[0xC1].state = 2;
-    gActors[0xC1].graphicFlags = 0xB11;
-    gActors[0xC1].flags = 0xB;
+    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+         ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);;
+    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     gActors[0xC1].unk_18C = (s32)D_800D8588;
     gActors[0xC1].colorA = 0;
     gActors[0xC1].var_150 = 0;
@@ -899,8 +901,9 @@ void func_8019D9D8_6C86A8(u16 arg0) {
 
 void func_8019DA3C_6C870C(u16 arg0, u16 arg1) {
     gActors[0xC1].state = 3;
-    gActors[0xC1].graphicFlags = 0xB11;
-    gActors[0xC1].flags = 0xB;
+    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+         ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);;
+    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     gActors[0xC1].unk_18C = (s32)D_800D8588;
     gActors[0xC1].colorA = 0;
     gActors[0xC1].var_150 = 0;
@@ -912,11 +915,11 @@ void func_8019DA3C_6C870C(u16 arg0, u16 arg1) {
 s32 func_8019DAAC_6C877C(u16 arg0) {
     if (gActors[0xC1].colorA == 0xFF) {
         if (arg0 < gActors[0xC1].var_150) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_8019DAF0_6C87C0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
@@ -959,8 +962,8 @@ void func_8019DCB8_6C8988(void) {
 
 void func_8019DF44_6C8C14(u16 actor_index) {
     ACTORINIT(actor_index,0x1D);
-    gActors[actor_index].graphicFlags = 0x108;
-    gActors[actor_index].flags = 3;
+    gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ);
+    gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
 }
 
 void func_8019DFB0_6C8C80(s32 arg0) {
@@ -1008,7 +1011,7 @@ void func_8019E424_6C90F4(u16 actor_index) {
 
         case 0x101:
             gActors[actor_index].colorR += 3;
-            gActors[actor_index].flags |= 1;
+            gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
             gActors[actor_index].posX.raw = 0;
             gActors[actor_index].posY.raw = gActors[0x30].posY.raw - FIXED_UNIT(4);
             gActors[actor_index].posZ.raw = gActors[0x30].posZ.raw - FIXED_UNIT(32);
@@ -1019,7 +1022,7 @@ void func_8019E424_6C90F4(u16 actor_index) {
             break;
 
         case 0x3001:
-            gActors[actor_index].flags |= 1;
+            gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
             gActors[actor_index].posX.raw = 0;
             gActors[actor_index].posY.raw = gActors[0x30].posY.raw - FIXED_UNIT(4);
             gActors[actor_index].posZ.raw = gActors[0x43].posZ.raw + FIXED_UNIT(32);
@@ -1068,7 +1071,7 @@ void func_8019E564_6C9234(u16 actor_index) {
             gActors[actor_index].posZ.whole = 2;
 
         case 0x3001:
-            gActors[actor_index].posY.raw += 0x3000;
+            gActors[actor_index].posY.raw += FIXED_UNIT(0.1875);
             break;
 
         case 0x3002:
@@ -1148,7 +1151,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
             gActors[actor_index].unk_174 = 6;
 
         case 0x3001:
-            gActors[actor_index].posY.raw += 0x3000;
+            gActors[actor_index].posY.raw += FIXED_UNIT(0.1875);
             func_8019E7E8_6C94B8(actor_index);
             break;
 
@@ -1207,7 +1210,7 @@ void func_8019EC70_6C9940(u16 actor_index) {
 
 void func_8019ECEC_6C99BC(u16 actor_index) {
     func_8019EB80_6C9850(actor_index);
-    gActors[actor_index].flags |= 0x20;
+    gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
     gActors[actor_index].posX.whole = 0x60;\
     gActors[actor_index].posY.whole = -0x30;
     gActors[actor_index].velocityX.raw = FIXED_UNIT(-4.0);

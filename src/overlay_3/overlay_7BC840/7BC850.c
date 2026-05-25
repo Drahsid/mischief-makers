@@ -14,7 +14,7 @@ extern void func_800339BC(s32 arg0, s32 arg1, s32 arg2, u16 arg3);
 extern s32 func_800036C8(u32 arg0, u16 actor_index);
 
 void func_801B0900_7BC850(u16 actor_index) {
-    gActors[actor_index].flags &= 0xFFFFF7FF;
+    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK11;
 }
 
 s32 func_801B0944_7BC894(u16 actor_index) {
@@ -62,10 +62,10 @@ void func_801B0A7C_7BC9CC(u16 actor_index) {
             gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
             func_8002A2B0(actor_index, 0x40000);
             if (gActors[actor_index].velocityX.raw > 0) {
-                gActors[actor_index].flags |= 0x20;
+                gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
             }
             else {
-                gActors[actor_index].flags &= -0x21;
+                gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
             }
         }
     }
@@ -77,8 +77,8 @@ void func_801B0BA0_7BCAF0(u16 actor_index) {
 
 void func_801B0C00_7BCB50(u16 actor_index) {
     gActors[actor_index].state = 0x38;
-    gActors[actor_index].flags |= 0x20000;
-    gActors[actor_index].flags &= 0xFFFEFFFF;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
+    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16;
     gActors[actor_index].velocityX.raw /= 2;
     gActors[actor_index].velocityY.raw = 0;
     func_800036C8(0x91, actor_index);
@@ -88,8 +88,8 @@ void func_801B0C00_7BCB50(u16 actor_index) {
 
 void func_801B0CBC_7BCC0C(u16 actor_index) {
     gActors[actor_index].state = 0x40;
-    gActors[actor_index].flags |= 0x20000;\
-    gActors[actor_index].flags &= 0xFFFEF7FF;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK17;\
+    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK11);
     func_801B0900_7BC850(actor_index);
     gActors[actor_index].velocityX.raw /= 2;
     gActors[actor_index].velocityY.raw = 0;
@@ -155,8 +155,9 @@ s32 func_801B11F0_7BD140(u16 actor_index) {
         do {
             current_actor_index = D_801B46F8_7C0648[index];
             distance = func_800289CC(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
-            if ((gActors[current_actor_index].flags & 2) && !(gActors[current_actor_index].flags_098 & 0x200) &&
-                !(gActors[current_actor_index].flags & 0x200) && (gActors[current_actor_index].posX.whole > 0) &&
+            if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) &&
+                !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_UNK9) &&
+                !(gActors[current_actor_index].flags & ACTOR_FLAG_UNK9) && (gActors[current_actor_index].posX.whole > 0) &&
                 (distance < best_distance) && (gActors[current_actor_index].posY.whole < 0)) {
                 best_actor_index = current_actor_index;
                 best_distance = distance;
@@ -191,7 +192,7 @@ s32 func_801B141C_7BD36C(u16 actor_index) {
         }
     }
     else if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
-        gActors[actor_index].flags |= 0x20;
+        gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
         return 2;
     }
 

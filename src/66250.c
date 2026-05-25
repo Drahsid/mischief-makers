@@ -443,7 +443,7 @@ void func_8006C5A4(u16 actor_index) {
     state = gActors[actor_index].state;
     if ((state >= 0x51) && (state != 0xFFFF)) {
         if (gActors[actor_index].health == 0) {
-            gActors[actor_index].flags &= ~0x400;
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK10;
         }
 
         if (gActors[actor_index].unk_0D4 != 0) {

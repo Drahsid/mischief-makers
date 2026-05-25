@@ -448,7 +448,7 @@ void func_8019487C_68039C(s32 arg0) {
 }
 
 void func_80194934_680454(s32 arg0) {
-    if (gActors[0x3F].posZ.raw >= -0x27FFFF) {
+    if (gActors[0x3F].posZ.raw > FIXED_UNIT(-40.0)) {
         gActors[0x47].unk_180 = Math_ApproachS32(gActors[0x47].unk_180, 0, 0x6000);
     }
     else {
@@ -458,7 +458,7 @@ void func_80194934_680454(s32 arg0) {
 }
 
 void func_801949B8_6804D8(s32 arg0) {
-    if (gActors[0x3F].posZ.raw < -0x780000) {
+    if (gActors[0x3F].posZ.raw < FIXED_UNIT(-120.0)) {
         gActors[0x47].unk_180 = Math_ApproachS32(gActors[0x47].unk_180, 0, 0x6000);
     }
     else {
@@ -815,11 +815,11 @@ void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
 
         case 0xA:
             if (gActors[actor_index].stateLower != 3) {
-                if (*(s32*)&D_800BE55C + gActors[actor_index].posY.raw < 0x16D0000) {
+                if (*(s32*)&D_800BE55C + gActors[actor_index].posY.raw < FIXED_UNIT(365.0)) {
                     return;
                 }
 
-                if (gActors[actor_index].posY.whole >= -0x7F) {
+                if (gActors[actor_index].posY.whole > -0x80) {
                     return;
                 }
 

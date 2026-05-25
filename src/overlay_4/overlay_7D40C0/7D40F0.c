@@ -1311,7 +1311,7 @@ s32 func_801B9B90_7D4380(void) {
 }
 
 void func_801B9C0C_7D43FC(s16 arg0, s16 arg1) {
-    gActors[0].flags &= ~0x20;
+    gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
     D_800BE5D8 = D_800BE558 + arg0;
     D_800BE5DC = D_800BE55C + arg1;
     gActors[0].posX.whole = arg0;
@@ -2244,7 +2244,7 @@ void func_801BBAA8_7D6298(void) {
 }
 
 void func_801BBB30_7D6320(u16 arg0, u16 arg1, u16 arg2, u16 arg3, void* arg4) {
-    gActors[0].flags &= ~0x20;
+    gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
     D_800BE558 = arg0;
     D_800BE55C = arg1;
     gActors[0].posX.whole = arg2;
@@ -2358,7 +2358,7 @@ void func_801BBE90_7D6680(void) {
             func_80045FA4(D_801BFB3C_7DA32C, -7);
             func_801BBDF8_7D65E8(D_801BFF78_7DA768);
             D_800BE5F4 = 10;
-            gActors[0].flags |= 0x20;
+            gActors[0].flags |= ACTOR_FLAG_FLIPPED;
             D_800D28E8++;
             break;
 

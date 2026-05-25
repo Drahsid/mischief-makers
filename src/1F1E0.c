@@ -197,7 +197,7 @@ void func_8001F88C(void) {
 
     if (!(D_80137458 & 0x10)) {
         for (index = 0, D_800BE4D0 = 0, D_800BE4D4 = 0; index < 144; index++) {
-            if (gActors[index].flags & 0x40000) {
+            if (gActors[index].flags & ACTOR_FLAG_UNK18) {
                 D_8011CF20[D_800BE4D0] = index;
                 D_8011D170[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX1;
                 D_8011D3D0[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX0;
@@ -205,7 +205,7 @@ void func_8001F88C(void) {
                 D_8011D850[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY1;
                 D_800BE4D0++;
             }
-            if (gActors[index].flags & 0x2000) {
+            if (gActors[index].flags & ACTOR_FLAG_UNK13) {
                 D_8011CDF8[D_800BE4D4] = index;
                 D_8011D048[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX1;
                 D_8011D290[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX0;
@@ -222,7 +222,7 @@ u8 func_8001FA78(u16 arg0, s16 arg1, s16 arg2) {
     u16 index;
 
     var_a3 = arg0;
-    if ((gActors[arg0].flags & 0x02000000) || (gActors[arg0].flags_098 & 0x600)) {
+    if ((gActors[arg0].flags & ACTOR_FLAG_ATTACHED) || (gActors[arg0].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10))) {
         var_a3 = gActors[arg0].unk_0D6;
     }
     
