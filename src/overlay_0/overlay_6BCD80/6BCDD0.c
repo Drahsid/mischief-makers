@@ -1252,7 +1252,7 @@ void func_8019EE8C_6C9B5C(u16 actor_index) {
         gActors[new_actor_index].graphicFlags |= 0x8110;
         gActors[new_actor_index].colorA = gActors[actor_index].colorA;
         gActors[new_actor_index].var_154 = -1;
-        gActors[new_actor_index].unk_17C = (s32)func_80030A24;
+        gActors[new_actor_index].cb_17C = func_80030A24;
         gActors[new_actor_index].unk_104 = -1;
         gActors[new_actor_index].velocityZ.raw = -0x1800;
     }
