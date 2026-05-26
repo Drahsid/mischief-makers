@@ -260,6 +260,11 @@ typedef struct {
 extern Actor gActors[];
 
 
+// the following two macros are based on common patterns in the code.
+// however, due to the nature of the IDO compiler, they may cause a mismatch
+// despite being indentical on a human-readable level.
+// test for mismatches before fully utilizing.
+
 // a common macro for initalizing actors.
 // can cause mismatches.
 #define ACTOR_INIT(index, type)\
@@ -267,6 +272,7 @@ extern Actor gActors[];
  func_8001E2D0(index)
 
 // a common macro for initalizing grpahic lists
+// can cause mismatches.
 #define ACTOR_GFX_INIT(index, graphicsP)\
  gActors[index].graphicList = (u16*)graphicsP;\
  gActors[index].graphicTimer = 1
