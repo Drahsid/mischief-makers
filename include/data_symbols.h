@@ -66,7 +66,7 @@ extern s16 D_800D5834;
 extern u32 D_800D8A98[];
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
-extern u8 D_800E1380[];
+extern u16 D_800E1380[]; // default graphics list. contains {0,0}
 extern u16 D_800E1540[];
 extern u32 D_800E154C[];
 extern u32 D_800E156C[];

@@ -141,7 +141,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                         case 0:
                             func_800036C8(0x44, actor_index);
                             gActors[temp_index_21].graphicList = D_800E59E0;
-                            gActors[temp_index_21].graphicTime = 1;
+                            gActors[temp_index_21].graphicTimer = 1;
                             func_8005DF5C(1);
                             D_800D5830 = -0x68;
                             D_800D5834 = 0x26;
@@ -170,7 +170,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                         case 4:
                             gActors[actor_index].state++;
                             gActors[temp_index_21].graphicList = D_800E5970;
-                            gActors[temp_index_21].graphicTime = 1;
+                            gActors[temp_index_21].graphicTimer = 1;
                             gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
                             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);

@@ -169,7 +169,7 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].flags = 0x8403;
         gActors[new_actor_index].graphicList = D_800E1540;
-        gActors[new_actor_index].graphicTime = 1;
+        gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].posX.whole = gActors[0x50].posX.whole;
         gActors[new_actor_index].posY.whole = gActors[0x50].posY.whole - 0x10;
         gActors[new_actor_index].posZ.whole = gActors[0x50].posZ.whole;
@@ -517,8 +517,8 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 
     index = actor_index;
 
-    if (gActors[0x37].flags_098 & 0x200) {
-        gActors[0x37].flags &= -0x1201;
+    if (gActors[0x37].flags_098 & ACTOR_FLAG3_UNK9) {
+        gActors[0x37].flags &= ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9);
         if (((u8*)&gActors[0].unk_140)[0] == 0) {
             gActors[index].state = 0x400;
             func_80193DF0_67F910(index, 0x10);
@@ -543,7 +543,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 
 void func_80194E64_680984(u16 actor_index, u16 arg1) {
     gActors[actor_index].timer_110 =
-        (f32)(arg1 + (gActors[actor_index].health / 0x1E) - (func_8000178C() & 0x2F) + 0x14);
+        (f32)(arg1 + (gActors[actor_index].health / 30) - (func_8000178C() & 0x2F) + 0x14);
 }
 
 void func_80194EE4_680A04(void) {
@@ -664,7 +664,7 @@ void func_80198F70_684A90(u16 actor_index) {
     u16 next_actor_index;
 
     gActors[actor_index].graphicList = D_8019DB80_6896A0;
-    gActors[actor_index].graphicTime = 1;
+    gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = 0x1403;
     func_8002AC30(actor_index, 0xC);
@@ -681,7 +681,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[next_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     gActors[next_actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[next_actor_index].graphicList = D_8019DC14_689734;
-    gActors[next_actor_index].graphicTime = 1;
+    gActors[next_actor_index].graphicTimer = 1;
 }
 
 void func_80199094_684BB4(u16 actor_index) {

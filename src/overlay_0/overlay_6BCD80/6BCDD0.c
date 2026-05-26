@@ -986,7 +986,7 @@ void func_8019E030_6C8D00(s32 arg0) {
     gActors[0x74].graphicFlags = ACTOR_GFLAG_UNK8;
     gActors[0x74].flags = ACTOR_FLAG_ACTIVE;
     gActors[0x74].graphicList = D_801A6820_6D14F0;
-    gActors[0x74].graphicTime = 1;
+    gActors[0x74].graphicTimer = 1;
 }
 
 void func_8019E07C_6C8D4C(s32 arg0) {
@@ -1187,7 +1187,7 @@ void func_8019EB80_6C9850(u16 actor_index) {
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK8);
     gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     gActors[actor_index].posZ.whole = 0xA0;
-    gActors[actor_index].graphicTime = 1;
+    gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].colorA = 0;
 }
 

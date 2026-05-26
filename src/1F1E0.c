@@ -173,8 +173,8 @@ void func_8001E9DC(u16 arg0, u16 arg1) {
 
 void func_8001EADC(u16 arg0, u16 arg1) {
     if ((gActors[arg1].unk_0DE == 0xB) || (gActors[arg1].unk_0DE == 0xE) || (gActors[arg1].unk_0DE == 0xF)) {
-        gActors[arg1].flags_098 &= ~0x2;
-        gActors[arg0].flags_098 ^= 0x3;
+        gActors[arg1].flags_098 &= ~ACTOR_FLAG3_UNK1;
+        gActors[arg0].flags_098 ^= (ACTOR_FLAG3_UNK1 | ACTOR_FLAG3_UNK0);
         gActors[arg0].unk_0DC = gActors[arg0].unk_0DA;
         gActors[arg0].unk_0DD = gActors[arg0].unk_0DB;
     }

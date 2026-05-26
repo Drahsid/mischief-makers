@@ -34,20 +34,19 @@ typedef struct {
     /* 0x40 */ s16 unk_40;
     /* 0x42 */ s8 unk_42;
     /* 0x43 */ s8 unk_43;
-    /* 0x44 */ s32 unk_44; // used while playing the "fall Whistle" sound in "Freefall!"
+    /* 0x44 */ s32 fallWhistle; // boolean(?) used while playing the "fall Whistle" sound in "Freefall!"
     /* 0x48 */ u8 unk_48[8]; // unused?
     /* 0x50 */ u32 debugPosX; // set during Marina's "flymode" state with her global X position.
     /* 0x54 */ u32 debugPosY; // set during Marina's "flymode" state with her global Y position.
     /* 0x58 */ u32 unk_58; // another dislayed Debug value? unused.
     /* 0x5C */ u32 unk_5C; // another dislayed Debug value? unused.
-    /* 0x5C */ u32 unk_5C; 
     /* 0x60 */ u32 unk_60; 
-    /* 0x64 */ u32 unk_64; 
-    /* 0x68 */ s32 unk_68; 
-    /* 0x6C */ u32 unk_6C; 
+    /* 0x64 */ u32 marina_Flags_098; // stores Marina's "flags_098" value
+    /* 0x68 */ s32 marina_Unk_0F8; // stores Marina's "unk_0F8" value when ACTOR_FLAG3_UNK1 is set.
+    /* 0x6C */ u32 marina_Unk_0FC; // stores Marina's "unk_0FC" value when ACTOR_FLAG3_UNK1 is set.
     /* 0x70 */ u16 unk_70; // index of "held" actor?
     /* 0x72 */ u8 unk_72[6]; // unused?
-    /* 0x78 */ u32 unk_78;
+    /* 0x78 */ u32 unk_78; // bitfield. 0x8 allows marina actor to update.
     /* 0x7C */ u32 unk_7C;
 } UnkStruct_D_801373E0;
 

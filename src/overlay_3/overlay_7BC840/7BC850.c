@@ -105,12 +105,12 @@ s32 func_801B0D80_7BCCD0(u16 actor_index) {
     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -0x68000, 0x3800);
 
     result = FALSE;
-    if (((gActors[actor_index].flags_098 & 4) && (gActors[actor_index].velocityX.raw < 0)) ||
-        ((gActors[actor_index].flags_098 & 8) && (gActors[actor_index].velocityX.raw > 0))) {
+    if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2) && (gActors[actor_index].velocityX.raw < 0)) ||
+        ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK3) && (gActors[actor_index].velocityX.raw > 0))) {
         result = TRUE;
     }
 
-    if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & 0x20)) {
+    if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         result = (u8)(result | 2);
     }
 
@@ -328,7 +328,7 @@ f32 func_801B3480_7BF3D0(u16 actor_index) {
 void func_801B34E4_7BF434(u16 actor_index, s16 target_x) {
     s16 screen_x;
 
-    if (gActors[actor_index].graphicTime == 0) {
+    if (gActors[actor_index].graphicTimer == 0) {
         gActors[actor_index].var_150 = gActors[actor_index].var_150 ^ 1;
         if (gActors[actor_index].var_150 != 0) {
             ACTOR_GFX_INIT(actor_index, D_800E1A20);

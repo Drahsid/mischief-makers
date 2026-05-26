@@ -168,7 +168,7 @@ typedef struct {
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 unk_0E2;
     /* 0x0E4 */ s16 unk_0E4;
-    /* 0x0E6 */ s16 graphicTime; // time in ticks (x/60 seconds) the current graphic should be displayed.
+    /* 0x0E6 */ s16 graphicTimer; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.
     // it often references a u16[], where the entries alternate
@@ -178,7 +178,7 @@ typedef struct {
     // storing the animations for each state.
 
     union {
-        /* 0x0E8 */ u16* graphicList; // odd indecies for graphic used, even for time to use them.
+        /* 0x0E8 */ u16* graphicList; // entries alternate between graphic index and time to display.
         /* 0x0E8 */ u16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
@@ -269,7 +269,7 @@ extern Actor gActors[];
 // a common macro for initalizing grpahic lists
 #define ACTOR_GFX_INIT(index, graphicsP)\
  gActors[index].graphicList = (u16*)graphicsP;\
- gActors[index].graphicTime = 1
+ gActors[index].graphicTimer = 1
 
 
 #endif

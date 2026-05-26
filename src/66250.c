@@ -110,7 +110,7 @@ void func_80065724(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80067B18.s")
 
 void func_80067E50(u16 actor_index, void* arg1) {
-    if (gActors[actor_index].graphicTime == 0) {
+    if (gActors[actor_index].graphicTimer == 0) {
         ACTOR_GFX_INIT(actor_index,arg1);
     }
 }
