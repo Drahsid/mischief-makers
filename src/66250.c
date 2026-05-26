@@ -111,7 +111,7 @@ void func_80065724(u16 actor_index) {
 
 void func_80067E50(u16 actor_index, void* arg1) {
     if (gActors[actor_index].graphicTime == 0) {
-        ACTORGFXINIT(actor_index,arg1);
+        ACTOR_GFX_INIT(actor_index,arg1);
     }
 }
 

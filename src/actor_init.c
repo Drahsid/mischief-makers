@@ -4,7 +4,7 @@
 extern s16 D_800C9700[];
 extern s32 D_800C9DD8[];
 extern u16* D_800C9FCC[];
-extern u8 D_800E1380[];
+extern u16 D_800E1380[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DBA0.s")
 
@@ -47,7 +47,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
         gActors[actor_index].health = 10;
         gActors[actor_index].unk_0E4 = 10;
         gActors[actor_index].flags = 3;
-        gActors[actor_index].graphicListV = D_800E1380;
+        gActors[actor_index].graphicList = D_800E1380;
     }
 
     gActors[actor_index].colorA = 0xFF;

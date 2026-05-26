@@ -135,7 +135,7 @@ void func_8008F294(u16 actor_index) {
 void func_80091158(u16 actor_index) {
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, 0x800);
     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-6.5)) {
-        gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.265635);
+        gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.265625);
     }
 }
 

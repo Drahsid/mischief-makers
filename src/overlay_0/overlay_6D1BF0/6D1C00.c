@@ -98,7 +98,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(4.5);
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(0.75);
                 func_80081790(actor_index, D_800E58D4);
-                ACTORINIT(temp_index_22,0x1D);
+                ACTOR_INIT(temp_index_22,0x1D);
                 gActors[temp_index_22].var_150 = (s32)D_800E1180;
                 gActors[temp_index_22].var_154 = 1;
                 gActors[temp_index_22].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
@@ -140,7 +140,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                     switch (gActors[actor_index + 3].unk_180) {
                         case 0:
                             func_800036C8(0x44, actor_index);
-                            gActors[temp_index_21].graphicListV = D_800E59E0;
+                            gActors[temp_index_21].graphicList = D_800E59E0;
                             gActors[temp_index_21].graphicTime = 1;
                             func_8005DF5C(1);
                             D_800D5830 = -0x68;
@@ -169,14 +169,14 @@ void ClancerCommanderMech_Update(u16 actor_index) {
 
                         case 4:
                             gActors[actor_index].state++;
-                            gActors[temp_index_21].graphicListV = D_800E5970;
+                            gActors[temp_index_21].graphicList = D_800E5970;
                             gActors[temp_index_21].graphicTime = 1;
                             gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
                             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);
                             temp = func_80028528();
                             if (temp != 0) {
-                                ACTORINIT(temp,0x34);
+                                ACTOR_INIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;

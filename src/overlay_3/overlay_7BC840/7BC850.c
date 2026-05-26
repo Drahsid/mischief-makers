@@ -331,17 +331,17 @@ void func_801B34E4_7BF434(u16 actor_index, s16 target_x) {
     if (gActors[actor_index].graphicTime == 0) {
         gActors[actor_index].var_150 = gActors[actor_index].var_150 ^ 1;
         if (gActors[actor_index].var_150 != 0) {
-            ACTORGFXINIT(actor_index, D_800E1A20);
+            ACTOR_GFX_INIT(actor_index, D_800E1A20);
         }
         else {
-            ACTORGFXINIT(actor_index, D_800E19FC);
+            ACTOR_GFX_INIT(actor_index, D_800E19FC);
         }
     }
 
     screen_x = gActors[actor_index].posX.whole + D_800BE558;
     if (screen_x == target_x) {
         gActors[actor_index].state = 0x30;
-        ACTORGFXINIT(actor_index, D_800E1700);
+        ACTOR_GFX_INIT(actor_index, D_800E1700);
         gActors[actor_index].unk_174 = 0x10;
         return;
     }

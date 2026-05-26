@@ -48,7 +48,7 @@ void func_801A6C80_775130(u16 actor_index) {
             }
             else {
                 if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
-                    gActors[actor_index].flags &= ~(ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK7);
+                    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
                     gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw / 4;
                 }
 
