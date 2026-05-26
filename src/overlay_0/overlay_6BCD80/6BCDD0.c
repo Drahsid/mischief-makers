@@ -384,7 +384,7 @@ void func_801966B0_6C1380(u16 actor_index, u16 angle) {
 
     target = gCosineLookup[(angle - 0x100) & 0x3FF] * 393216.0f;
     gActors[actor_index].velocityY.raw = Math_ApproachS32(
-        gActors[actor_index].velocityY.raw,target, func_800289CC(gCosineLookup[(angle - 0x100) & 0x3FF] * 49152.0f));
+        gActors[actor_index].velocityY.raw, target, func_800289CC(gCosineLookup[(angle - 0x100) & 0x3FF] * 49152.0f));
 }
 
 void func_80196794_6C1464(u16 actor_index) {
@@ -392,7 +392,7 @@ void func_80196794_6C1464(u16 actor_index) {
 }
 
 void func_801967F4_6C14C4(u16 actor_index) {
-    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,0, 0xC000);
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, 0xC000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80196854_6C1524.s")
@@ -1059,7 +1059,7 @@ void func_8019E564_6C9234(u16 actor_index) {
         case 0x202:
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0x1000000, 0x40000);
             gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, 0x1000);
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,-0xA000, 0xF00);
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -0xA000, 0xF00);
             break;
 
         case 0x3000:

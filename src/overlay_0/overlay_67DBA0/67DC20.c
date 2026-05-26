@@ -591,7 +591,7 @@ void func_80197FA0_683AC0(u16 actor_index) {
         }
     }
     else {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,-0x3000, 0xC00);
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -0x3000, 0xC00);
 
         if (gActors[actor_index].unk_184 < gActors[actor_index].unk_17C) {
             gActors[actor_index].unk_188 |= 0x20000000;

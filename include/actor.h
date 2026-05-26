@@ -221,11 +221,11 @@ typedef struct {
     // examples: Clanbombs will use offset 0x150 for the fuse timer,
     // or the crosshair actor will use it for the index of its "parent",
     // or player-controlled Teran will count his jumps with it.
+    
+    // NOTE: trying to use unions for these variables for different datatypes (u8[4],u16[2])
+    //  may cause mismatch due to "narrowing"
 
-    union {
-        /* 0x150 */ s32 var_150;
-        /* 0x150 */ u16 var_150_u16[2];
-    };
+    /* 0x150 */ s32 var_150;
     /* 0x154 */ s32 var_154;
     /* 0x158 */ s32 var_158;
     /* 0x15C */ s32 var_15C;

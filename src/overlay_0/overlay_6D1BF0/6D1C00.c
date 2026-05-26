@@ -188,7 +188,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 }
             }
             gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,0, FIXED_UNIT(0.0625));
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, FIXED_UNIT(0.0625));
             ClancerCommanderMech_UpdateAttachedActorPosition(actor_index, temp_index_22);
             break;
 

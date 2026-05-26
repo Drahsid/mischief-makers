@@ -864,7 +864,7 @@ void func_80079760(u16 actor_index) {
 
     gActors[actor_index].unk_168 = func_800298D0(arg0, gActors[actor_index].unk_168, 0x180000);
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index].var_158 + 0x80);
-    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw,0, gActors[actor_index].var_15C + 0x80);
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, gActors[actor_index].var_15C + 0x80);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079810.s")
