@@ -1,6 +1,7 @@
 #ifndef COMMON_STRUCTS_H
 #define COMMON_STRUCTS_H
 
+// game uses Q16.16 fixed-point numbers for position and velocity values.
 typedef union {
     /* 0x00 */ s32 raw;
     struct {
@@ -14,7 +15,7 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
-// struct storing data about Mariana player actor
+// struct storing data about Marina player actor
 typedef struct {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
