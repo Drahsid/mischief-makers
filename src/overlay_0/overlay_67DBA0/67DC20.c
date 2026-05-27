@@ -96,7 +96,7 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
         gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
         gActors[actor_index].flags |= (gActors[0x37].flags & ACTOR_FLAG_FLIPPED) + 0x8000;
         gActors[actor_index].colorA = 0x80;
-        gActors[actor_index].unk_18C = 0x8022D4E8;
+        gActors[actor_index].palette_18C = (u16*)0x8022D4E8;
         gActors[actor_index].scaleX = 1.5f;
         gActors[actor_index].scaleY = 2.0f;
         gActors[actor_index].unk_130 = 55.0f;
@@ -179,7 +179,7 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
         gActors[new_actor_index].unk_0F8.raw = FIXED_UNIT(1.0);
         gActors[new_actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
         gActors[new_actor_index].health = 0;
-        gActors[new_actor_index].unk_0E4 = 0x50;
+        gActors[new_actor_index].damage = 0x50;
         gActors[new_actor_index].unk_0DF = 0x20;
         gActors[new_actor_index].unk_0DA = 0x80;\
         gActors[new_actor_index].unk_0DB = 8;

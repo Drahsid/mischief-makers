@@ -123,7 +123,7 @@ void func_801B9A40_7CE1D0(void) {
 
 void func_801B9A98_7CE228(u16 actor_index) {
     gActors[actor_index].flags = 0x28A;
-    gActors[actor_index].unk_0E4 = 0;
+    gActors[actor_index].damage = 0;
     gActors[actor_index].hitboxAY0 = 0;
     gActors[actor_index].hitboxAY1 = -0x20;
     gActors[actor_index].hitboxAX0 = -0x100;

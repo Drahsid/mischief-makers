@@ -618,7 +618,7 @@ void func_80198638_6C3308(u16 actor_index) {
     u16 index = actor_index + 0x1B;
 
     gActors[index].flags |= 0x9200;
-    gActors[index].unk_0E4 = 0x64;
+    gActors[index].damage = 0x64;
     gActors[index].hitboxAY0 = 0xB;\
     gActors[index].hitboxAY1 = -8;
     gActors[index].hitboxAX0 = -0xB;
@@ -634,7 +634,7 @@ void func_801986DC_6C33AC(u16 actor_index) {
     u16 index = actor_index + 0x15;
 
     gActors[index].flags |= 0x9200;
-    gActors[index].unk_0E4 = 0x12C;
+    gActors[index].damage = 0x12C;
     gActors[index].hitboxAY0 = 0xE;\
     gActors[index].hitboxAY1 = -0xE;
     gActors[index].hitboxAX0 = -0xA;\

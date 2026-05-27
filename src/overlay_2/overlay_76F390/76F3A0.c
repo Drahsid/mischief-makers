@@ -1,17 +1,18 @@
 #include "common.h"
 #include "actor.h"
 
+// determines spawn position and velocity of flame arches in "Sea of Lava"
 typedef struct {
-    /* 0x00 */ s16 unk_00;
-    /* 0x02 */ s16 unk_02;
-    /* 0x04 */ s16 unk_04;
-    /* 0x06 */ s16 unk_06;
-    /* 0x08 */ s16 unk_08;
-} UnkStruct_801A7250; /* size = 0x0A */
+    /* 0x00 */ s16 velX;
+    /* 0x02 */ s16 velY;
+    /* 0x04 */ s16 velZ;
+    /* 0x06 */ s16 posY;
+    /* 0x08 */ s16 posZ;
+} FlameArchInit; /* size = 0x0A */
 
 
-
-UnkStruct_801A7250 D_801A7250_76FCF0[] = {
+// table of flame arch spawn data in "Sea of Lava"
+FlameArchInit D_801A7250_76FCF0[] = {
     { 0, 0x11, 0xC, -0x40, -0xC0 },
     { 0, 0xE, 6, -0x40, -0x60 },
     { 0, 0x10, -0xC, -0x60, 0xC0 },
@@ -44,19 +45,19 @@ void func_801A694C_76F3EC(u16 actor_index) {
 void func_801A6980_76F420(u16 actor_index) {
     u16 temp_v0;
     u16 temp_index;
-    UnkStruct_801A7250* temp_v1;
+    FlameArchInit* temp_v1;
 
     if ((D_800BE4E0 & 3) == 0) {
         temp_v0 = func_800284B8(0x30, 0x90);
         if (temp_v0 != 0) {
             temp_index = gActors[actor_index].unk_0D8 * 5;
-            temp_v1 = (UnkStruct_801A7250*)&((s16*)D_801A7250_76FCF0)[temp_index];
-            gActors[actor_index].posY.whole = temp_v1->unk_06;
-            gActors[actor_index].posZ.whole = temp_v1->unk_08;
+            temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
+            gActors[actor_index].posY.whole = temp_v1->posY;
+            gActors[actor_index].posZ.whole = temp_v1->posZ;
             ACTOR_INIT(temp_v0,0x2502);
             gActors[temp_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[temp_v0].flags = (func_8000178C() & ACTOR_FLAG_FLIPPED) + (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE);
-            gActors[temp_v0].unk_0E4 = 0x64;
+            gActors[temp_v0].damage = 100;
             gActors[temp_v0].unk_0DA = 0x84;
             gActors[temp_v0].unk_0DB = 0xB;
             gActors[temp_v0].unk_0F8.raw = FIXED_UNIT(4.0);
@@ -74,9 +75,9 @@ void func_801A6980_76F420(u16 actor_index) {
             func_8002ABE4(temp_v0, 0x10);
             Actor_SetColorRgb(temp_v0, ((u16*)&gActors[actor_index].var_158)[1]);
             gActors[temp_v0].colorA = gActors[actor_index].var_154;
-            gActors[temp_v0].velocityX.whole = temp_v1->unk_00;
-            gActors[temp_v0].velocityY.whole = temp_v1->unk_02;
-            gActors[temp_v0].velocityZ.whole = temp_v1->unk_04;
+            gActors[temp_v0].velocityX.whole = temp_v1->velX;
+            gActors[temp_v0].velocityY.whole = temp_v1->velY;
+            gActors[temp_v0].velocityZ.whole = temp_v1->velZ;
             gActors[temp_v0].posX.whole = gActors[actor_index].posX.whole - (func_8000178C() & 0xF) + 8;
             gActors[temp_v0].posY.whole = gActors[actor_index].posY.whole - (func_8000178C() & 0xF) + 8;
             gActors[temp_v0].posZ.whole = gActors[actor_index].posZ.whole;
@@ -87,13 +88,13 @@ void func_801A6980_76F420(u16 actor_index) {
 void func_801A6B28_76F5C8(u16 actor_index) {
     u16 temp_v0;
     u16 temp_index;
-    UnkStruct_801A7250* temp_v1;
+    FlameArchInit* temp_v1;
 
     if ((D_800BE4E0 & 3) == 0) {
         func_8005CA34(4, 5);
         temp_index = gActors[actor_index].unk_0D8 * 5;
-        temp_v1 = (UnkStruct_801A7250*)&((s16*)D_801A7250_76FCF0)[temp_index];
-        temp_v0 = func_80031284(0x1B4, gActors[actor_index].posX.whole, temp_v1->unk_06, temp_v1->unk_08 + 1);
+        temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
+        temp_v0 = func_80031284(0x1B4, gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
 
         if (temp_v0 != 0) {
             gActors[temp_v0].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ);
@@ -101,7 +102,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
             gActors[temp_v0].scaleY = (((func_8000178C() & 0xF) / 18.0f) + 2.5);
             gActors[temp_v0].timer_110 = 0.2f;
             gActors[temp_v0].var_160 = ((func_8000178C() & 0x1F) << 0x10) + 0x2F00000;
-            gActors[temp_v0].unk_18C = 0x8022D4E8;
+            gActors[temp_v0].palette_18C = (u16*)0x8022D4E8;
             gActors[temp_v0].unk_148 = 3.0f;
         }
     }
@@ -121,7 +122,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].scaleY = 2.0f;
             gActors[temp_v0].colorR = 0x7F;
             temp_v1 = func_8000178C();
-            gActors[temp_v0].unk_18C = 0x8022D4E8;
+            gActors[temp_v0].palette_18C = (u16*)0x8022D4E8;
             gActors[temp_v0].var_160 = ((((temp_v1 * 4) & 0x1F0) + 0x200) << 2) << 14;
             gActors[temp_v0].unk_130 = actor_index;
             gActors[temp_v0].unk_14C = gActors[actor_index].actorType;
@@ -188,19 +189,21 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
     gActors[actor_index].var_158 = 0x7F;
 }
 
+// update function for arch flame in "Sea of Lava"
 void func_801A7180_76FC20(u16 actor_index) {
+    // trigger damage collision only if around Marina's depth.
     if ((gActors[actor_index].posZ.whole < 0x10) && (gActors[actor_index].posZ.whole >= -0xB) && (gActors[actor_index].colorA >= 0x81)) {
-        gActors[actor_index].flags |= (ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
+        gActors[actor_index].flags |= (ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9); 
     }
     else {
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
     }
-
+    // despawn when falling and below lava.
     if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].posY.whole < -0x40)) {
         gActors[actor_index].flags = 0;
         return;
     }
-
+    // "gravity"
     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-8.0)) {
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0);
     }

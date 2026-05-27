@@ -167,7 +167,7 @@ typedef struct {
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 unk_0E2;
-    /* 0x0E4 */ s16 unk_0E4;
+    /* 0x0E4 */ s16 damage; // damage caused by contact
     /* 0x0E6 */ s16 graphicTimer; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.

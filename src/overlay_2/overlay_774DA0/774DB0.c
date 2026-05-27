@@ -35,7 +35,7 @@ void func_801A6C80_775130(u16 actor_index) {
             gActors[actor_index].unk_0DF = 1;\
             gActors[actor_index].unk_0DB = 0x17;
             gActors[actor_index].health = 100;
-            gActors[actor_index].unk_0E4 = 0;
+            gActors[actor_index].damage = 0;
             gActors[actor_index].var_150 = 0x10;
 
         case 1:
