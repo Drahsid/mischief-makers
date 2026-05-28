@@ -111,7 +111,7 @@ enum ActorFlags3 {
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
     /* 0x080 */ s32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
-    /* 0x084 */ u16 graphicIndex; // index of grapic currently used.
+    /* 0x084 */ u16 graphicIndex; // index of graphic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
     /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
     /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
@@ -247,7 +247,7 @@ typedef struct {
     /* 0x188 */ s32 unk_188;
     union {
         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
-        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as pallette pointer
+        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
     };
     union {
         /* 0x190 */ s32 unk_190;
