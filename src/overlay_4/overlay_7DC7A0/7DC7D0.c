@@ -60,20 +60,20 @@ void func_801B99B8_7DC888(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B9A70_7DC940(u16 arg0, u16 arg1, u16 arg2) {
-    if (gScreenPosCurrentY >= arg1) {
+    if (gScreenPosCurrentY.whole >= arg1) {
         D_800D291C = arg1 - 0x70;
         D_800D28E8 += arg2;
         return;
     }
 
-    if (arg0 >= gScreenPosCurrentY) {
+    if (arg0 >= gScreenPosCurrentY.whole) {
         D_800D2918 = arg0 + 0x70;
         D_800D28E8 -= arg2;
         return;
     }
 
     if ((gActors[0].posX.whole < -0x60) || (gActors[0].posX.whole >= 0x61)) {
-        if (gScreenPosCurrentY < ((arg0 + arg1) / 2)) {
+        if (gScreenPosCurrentY.whole < ((arg0 + arg1) / 2)) {
             D_800D2918 = arg0 + 0x70;
             D_800D28E8 -= arg2;
         }
@@ -97,19 +97,19 @@ void func_801B9BC0_7DCA90(u16 arg0) {
 }
 
 void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
-    if (((arg0 - 8) < gScreenPosCurrentX) && (gScreenPosCurrentX < (arg0 + 8))) {
+    if (((arg0 - 8) < gScreenPosCurrentX.whole) && (gScreenPosCurrentX.whole < (arg0 + 8))) {
         func_801B9BC0_7DCA90(arg0);
         return;
     }
 
-    if (((arg1 - 8) < gScreenPosCurrentX) && (gScreenPosCurrentX < (arg1 + 8))) {
+    if (((arg1 - 8) < gScreenPosCurrentX.whole) && (gScreenPosCurrentX.whole < (arg1 + 8))) {
         func_801B9B8C_7DCA5C(arg1);
         return;
     }
 
     if ((gActors[0].posY.whole < -0x60) || (gActors[0].posY.whole >= 0x61)) {
         if (arg2 != 0) {
-            if (gScreenPosCurrentX < ((arg0 + arg1) / 2)) {
+            if (gScreenPosCurrentX.whole < ((arg0 + arg1) / 2)) {
                 func_801B9B8C_7DCA5C(arg1);
             }
             else {
@@ -117,7 +117,7 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
             }
         }
         else {
-            if (gScreenPosCurrentX < ((arg0 + arg1) / 2)) {
+            if (gScreenPosCurrentX.whole < ((arg0 + arg1) / 2)) {
                 func_801B9BC0_7DCA90(arg0);
             }
             else {
@@ -147,7 +147,7 @@ s32 func_801B9DB0_7DCC80(void) {
     s32 new_var2;
     s32 new_var;
 
-    if ((gScreenPosCurrentY + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
+    if ((gScreenPosCurrentY.whole + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
         new_var = 0x40;
         if (gActors[0x30].state != new_var) {
             gActors[0x30].state = 0x40;
@@ -155,7 +155,7 @@ s32 func_801B9DB0_7DCC80(void) {
             if (gActors[0x30].health <= 0) {
                 gActors[0x30].health = 0;
                 func_801B9D84_7DCC54();
-                return 1;
+                return TRUE;
             }
             D_800D2938 = 0;
             D_800D28E8 -= 2;
@@ -165,10 +165,10 @@ s32 func_801B9DB0_7DCC80(void) {
 
     if (gActors[0x30].flags == 0) {
         func_801B9D84_7DCC54();
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801B9E6C_7DCD3C(void) {
@@ -238,56 +238,56 @@ void func_801BA8CC_7DD79C(void* arg0) {
 s32 func_801BA92C_7DD7FC(void) {
     s32 flags = D_801BDA7C_7E094C;
 
-    if (!(flags & 1) && (D_800D28E8 == 0xA) && (gScreenPosCurrentX == 0x782) && (gScreenPosCurrentY == 0x27C)) {
+    if (!(flags & 1) && (D_800D28E8 == 0xA) && (gScreenPosCurrentX.whole == 0x782) && (gScreenPosCurrentY.whole == 0x27C)) {
         D_800D28E8 = 0x100;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDA80_7E0950);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & 2) && (D_800D28E8 == 6) && (gScreenPosCurrentX == 0x682) && (gScreenPosCurrentY == 0x47C)) {
+    if (!(flags & 2) && (D_800D28E8 == 6) && (gScreenPosCurrentX.whole == 0x682) && (gScreenPosCurrentY.whole == 0x47C)) {
         D_800D28E8 = 0x200;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDAA0_7E0970);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & 4) && (D_800D28E8 == 6) && (gScreenPosCurrentX == 0x192) && (gScreenPosCurrentY == 0x47C)) {
+    if (!(flags & 4) && (D_800D28E8 == 6) && (gScreenPosCurrentX.whole == 0x192) && (gScreenPosCurrentY.whole == 0x47C)) {
         D_800D28E8 = 0x300;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDAC0_7E0990);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & 8) && (D_800D28E8 == 2) && (gScreenPosCurrentX == 0x92) && (gScreenPosCurrentY == 0x17C)) {
+    if (!(flags & 8) && (D_800D28E8 == 2) && (gScreenPosCurrentX.whole == 0x92) && (gScreenPosCurrentY.whole == 0x17C)) {
         D_800D28E8 = 0x400;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDAE0_7E09B0);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & 0x10) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX == 0x592) && (gScreenPosCurrentY == 0x17C)) {
+    if (!(flags & 0x10) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX.whole == 0x592) && (gScreenPosCurrentY.whole == 0x17C)) {
         D_800D28E8 = 0x500;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDB00_7E09D0);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & ACTOR_FLAG_FLIPPED) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX == 0x982) && (gScreenPosCurrentY == 0x17C)) {
+    if (!(flags & ACTOR_FLAG_FLIPPED) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX.whole == 0x982) && (gScreenPosCurrentY.whole == 0x17C)) {
         D_800D28E8 = 0x600;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDB20_7E09F0);
-        return 1;
+        return TRUE;
     }
 
-    if (!(flags & 0x40) && (D_800D28E8 == 0x12) && (gScreenPosCurrentX == 0x692) && (gScreenPosCurrentY == 0x57C)) {
+    if (!(flags & 0x40) && (D_800D28E8 == 0x12) && (gScreenPosCurrentX.whole == 0x692) && (gScreenPosCurrentY.whole == 0x57C)) {
         D_800D28E8 = 0x700;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDB40_7E0A10);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801BABFC_7DDACC(void) {
@@ -383,7 +383,7 @@ s32 func_801BBD34_7DEC04(void) {
 s32 func_801BBDB0_7DEC80(void) {
     s32 new_var2;
 
-    if ((gScreenPosCurrentY + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
+    if ((gScreenPosCurrentY.whole + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
         gActors[0x30].state = 0x40;
         gActors[0x30].health -= 0xC8;
         if ((gActors[0x30].health & 0x8000) || (gActors[0x30].health == 0)) {
@@ -462,7 +462,7 @@ void func_801BC828_7DF6F8(void) {
             break;
 
         case 3:
-            if ((gScreenPosCurrentY + gActors->posY.whole) < 0xA0) {
+            if ((gScreenPosCurrentY.whole + gActors->posY.whole) < 0xA0) {
                 func_8005739C(0, 0x64);
                 func_801BC7C4_7DF694();
             }

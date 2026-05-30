@@ -2,7 +2,6 @@
 #include "actor.h"
 #include "function_symbols.h"
 
-extern s16 gPlayerPosX.whole;
 extern f32 D_801B4720_7C0670;
 extern u8 D_801B4B60_7C0AB0;
 extern s32 D_801B4B64_7C0AB4;
@@ -338,7 +337,7 @@ void func_801B34E4_7BF434(u16 actor_index, s16 target_x) {
         }
     }
 
-    screen_x = gActors[actor_index].posX.whole + gScreenPosCurrentX;
+    screen_x = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
     if (screen_x == target_x) {
         gActors[actor_index].state = 0x30;
         ACTOR_GFX_INIT(actor_index, D_800E1700);

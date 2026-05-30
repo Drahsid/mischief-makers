@@ -15,10 +15,18 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
+// used by PortraitStruct->flags
+typedef enum{
+    PORTRAIT_FLAG_SCALE = (1U << 0U),
+    PORTRAIT_FLAG_UNK1 = (1U << 1U),
+    PORTRAIT_FLAG_PALETTE = (1U << 9U),
+    PORTRAIT_FLAG_UNK14 = (1U << 14U)
+}PortraitFlags;
+
 // used for the portrait transition effect lifebar and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 flags;
+    /* 0x80 */ u16 flags; //uses PortraitFlags
     /* 0x82 */ u16 graphicIndex;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
@@ -26,7 +34,12 @@ typedef struct {
     /* 0x90 */ f32 scaleY;
     /* 0x94 */ u8 alpha;
     /* 0x95 */ u8 align[3];
-} PortraitStruct;
+    /* 0x98 */ u16* palette; // used if PORTRAIT_FLAG_PALETTE is set
+    /* 0x9C */ u32 unk9c; // unused
+} PortraitStruct; /* sizeof = 0xA0 */
+
+#define gLifebar gPortraits[0x40]// lifebar uses PortraitStruct
+#define gLifebarHead gPortraits[0x41]// head at edge of lifebar uses PortraitStruct
 
 // related to "static" gems in stage
 typedef struct {
@@ -36,10 +49,7 @@ typedef struct {
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
     /* 0x8C */ void* unk_08C; // texture?
-} UnkStruct_801069E0; /* size = 0x90 */
-
-#define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
-#define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
+} UnkStruct_801069E0; /* sizeof = 0x90 */
 
 // struct storing data about Marina player actor
 typedef struct {
@@ -80,6 +90,7 @@ typedef struct {
 // D_800BE5F4 is treated as both word and 4 bytes.
 typedef union {
     u32 w;
+    s32 ws; // sometimes only matches as signed word.
     struct {
         u8 unk_00;
         u8 unk_01;

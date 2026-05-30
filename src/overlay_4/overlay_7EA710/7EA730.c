@@ -5,8 +5,6 @@ extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern s16 D_800BE704;
-extern s16 D_800BE708;
 extern u16 D_800D2914;
 extern s16 D_800D2950;
 
@@ -187,8 +185,8 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D28FC &= -0x58B;
             D_800D28FC |= 4;
             D_800D2914 = 0;
-            gLifebar.posY.whole = -0x50;
-            gLifebarHead.posY.whole = -0x53;
+            gLifebar.posY.whole = 0x50;
+            gLifebarHead.posY.whole = 0x53;
             D_801376BC[0] = 1;
             D_801376BC[1] = 1;
             D_801376BC[2] = 1;

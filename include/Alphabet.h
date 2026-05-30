@@ -223,6 +223,10 @@
 #define ALPHA_GAMMA        0x00D0
 #define ALPHA_APOSTROPHE_S 0x00D1
 
+// the original Japanese version uses Katakana and Hiragana characters
+// these are overwritten in english localizations.
+// TODO: complete list
+
 #define ALPHA_JP_AH     0x0051 // あ
 #define ALPHA_JP_I      0x0052 // い
 #define ALPHA_JP_U      0x0053 // う
@@ -257,7 +261,6 @@
 #define ALPHA_JP_ME     0x0070 // め
 #define ALPHA_JP_MO     0x0071 // も
 #define ALPHA_JP_A      0x0072 // ゃ
-#define ALPHA_JP_ME2    0x0073 // め
 
 #define ALPHA_NULL 0x8FFF
 

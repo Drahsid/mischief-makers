@@ -65,14 +65,14 @@ void func_8000147C(void) {
     if (D_800BE674) {
         func_80082CFC(); // DrawMidground
         func_8000DD6C(); // DrawClanBlocks
-        func_80009BE8(&D_80171D30); // DrawActors
+        func_80009BE8(D_80171D30); // DrawActors
         func_80082E04(); // DrawEnvLayer
     }
     else {
         func_80082E04(); // DrawEnvLayer
-        func_80009BE8(&D_80171C30); // DrawActors
+        func_80009BE8(D_80171C30); // DrawActors
         func_80082CFC(); // DrawMidground
-        func_80009BE8(&D_80171D30); // DrawActors
+        func_80009BE8(D_80171D30); // DrawActors
         func_8000DD6C(); // DrawClanBlocks
     }
 

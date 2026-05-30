@@ -7,7 +7,6 @@
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern void func_80064AA0(s32 arg0, void* arg1);
-extern s16 gPlayerPosX.whole;
 
 extern s16 D_800D28F8;
 
@@ -99,8 +98,8 @@ s32 func_801B9900_7CE090(void) {
 
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
     gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
-    gPlayerPosX.whole = gScreenPosCurrentX + arg0;
-    gPlayerPosY.whole = gScreenPosCurrentY + arg1;
+    gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
+    gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
     gActors[0].posX.whole = arg0;
     gActors[0].posY.whole = arg1;
     D_800BE5F4.w = 0xA;
@@ -148,9 +147,9 @@ void func_801B9B08_7CE298(void) {
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
-        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
+        *(s32*)&gPlayerVelYMirror = (*(s32*)&gPlayerVelYMirror * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
         // FAKEMATCH
-        gPlayerVelYMirror.raw = 0;
+        *(s32*)&gPlayerVelXMirror = 0;
         func_801B9A0C_7CE19C(D_800D28E8 + 1);
     }
 }
@@ -176,8 +175,8 @@ void func_801B9C88_7CE418(void) {
         D_800D28E8 -= 2;
         D_800BE544 = 0;
         D_800D28FC |= 8;
-        gLifebar.posy.whole = -0x58;
-        gLifebarHead.posy.whole = -0x55;
+        gLifebar.posY.whole = -0x58;
+        gLifebarHead.posY.whole = -0x55;
     }
 }
 

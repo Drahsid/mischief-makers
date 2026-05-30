@@ -8,7 +8,7 @@ extern u16 gDebugStageSelectRowOptionCounts[];
 extern u16 gDebugStageSelectGroupOptionStartOffsets[];
 extern u16 gDebugStageSelectGroupOptionStartOffsetsTail[];
 extern const char* gDebugStageSelectOptionSuffixes[];
-extern u16 gDebugStageSelectSceneIds[];
+extern u16 gStageScenes[];
 extern u16 gDebugStageSelectStageIds[];
 extern u16 gStageTimesToBeat[];
 extern u16 gDebugStageSelectSelectedIndex;

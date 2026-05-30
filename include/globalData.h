@@ -42,14 +42,14 @@ enum DebugFlags{
     DEBUG_UNK4 = (1U << 4U), // unset in func_800012F0
     DEBUG_UNK5 = (1U << 5U), // used for mask in func_8000147C
     DEBUG_STUB6 = (1U << 6U), // runs a stubbed debug function on game tick.
-    DEBUG_SFXDATA = (1U << 7U), // display data on SFX channel states.
+    DEBUG_UNK7 = (1U << 7U), // unused
     DEBUG_UNK8 = (1U << 8U), // changes pause state behavior.
     DEBUG_FORCEPAUSE = (1U << 9U), // force the game into a pause state
     DEBUG_UNK10 = (1U << 10U), // unused
     DEBUG_UNK11 = (1U << 11U), // unused
     DEBUG_STUB12 = (1U << 12U), //runs a stubbed debug function on game tick.
     DEBUG_UNK13 = (1U << 13U), // unused
-    DEBUG_UNK14 = (1U << 14U), // unused
+    DEBUG_SFXDATA = (1U << 14U), // display data on SFX channel states.
     DEBUG_STUB15 = (1U << 15U), //runs a stubbed debug function on game tick.
     DEBUG_CAMERALOCK = (DEBUG_STUB15 | DEBUG_UNK13 | DEBUG_UNK10) // checked for in some scenes' camera logic.
 };
@@ -57,19 +57,12 @@ enum DebugFlags{
 // global values near start of .bss
 // has mix of types of data (sound, collision, etc.), for some reason.
 
-extern u8 gMusicPlayerFlags;
-extern s16 gMusicVolume;
-extern s16 D_800EF4D4;
-extern s32 gMusicSequenceId;
-extern s32 D_800EF4DC; // unused.
-extern u8 gMusicChannelFxMixes[16];
-extern u8 gSfxPlayerFlags[4];
+
 extern Gfx* gCurrentDisplayListBase;
-extern u16 gSfxPlayerVolumes[4];
+
 extern u32 D_800EF500; // unknown/unused
 extern u32 D_800EF504; // unknown/unused
 extern u16 gSfxSequenceIds[4];
-extern Actor gActors[208];
 extern u8 D_80104090[4];
 extern u32 D_80104094;
 // first 64 are used for portrait transition effect. the last two are the life bar
@@ -97,13 +90,7 @@ extern s16 D_8011D4F0[144]; // posX + hitboxBX0 of ACTOR_FLAG_UNK13-flagged Acto
 extern s16 D_8011D610[144]; // posX + hitboxBX1 of ACTOR_FLAG_UNK13-flagged Actors
 extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_UNK13-flagged Actors
 extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK13-flagged Actors
-extern u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 extern u16 D_8011DD70[64]; // history of button presses?
-extern u64 gYeildData[YEILD_DATA_SIZE / sizeof(u64)];
-// TENTATIVE GUESS: VERY large gap.
-// ASM/Ghidra doesn't suggest anying using it.
-// continues afterwards with relevant data
-extern u64 D_8011EB90[1868]; 
 extern u16 D_801225F0[64]; // history of button holds?
 
 
@@ -224,7 +211,6 @@ extern u32 D_800BE690; // unused
 extern u32 D_800BE694; // unused
 extern u32 D_800BE698; // unused
 extern u32 D_800BE69C; // unused
-extern u32 D_800BE6A0; // unused
 extern u32 D_800BE6A0; // unused
 extern u16 D_800BE6A4;
 extern u16 D_800BE6A8;

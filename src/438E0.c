@@ -1,7 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "input.h"
-
+#include "globalData.h"
 
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
@@ -224,7 +224,7 @@ void func_80044A84(void) {
 
 void func_80044B00(void) {
     D_801069E0[D_801782C0].graphicIndex = 0x25;
-    D_801069E0[D_801782C0].unk_08C = 0x80203050;
+    D_801069E0[D_801782C0].unk_08C = (void*)0x80203050;
 
     if ((func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0) == 0) {
         *D_801782BC |= 0x8000;
@@ -391,14 +391,14 @@ void func_80046274(u32 arg0, u32 arg1) {
 
 void Camera_UpdateViewBounds(void) {
     if (D_800D28E4 < 0x68) {
-        if ((D_800D2918 - 0x70) < gScreenPosCurrentY) {
-            D_800BE570.whole  = gScreenPosCurrentY + 0x70;
+        if ((D_800D2918 - 0x70) < gScreenPosCurrentY.whole) {
+            D_800BE570.whole  = gScreenPosCurrentY.whole + 0x70;
         }
         else {
             D_800BE570.whole  = D_800D2918;
         }
 
-        if (gScreenPosCurrentY < (D_800D291C + 0x70)) {
+        if (gScreenPosCurrentY.whole < (D_800D291C + 0x70)) {
             D_800BE574.whole = gScreenPosCurrentY.whole - 0x70;
         }
         else {

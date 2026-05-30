@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "music.h"
+#include "globalData.h"
 #include "linker.h"
 
 #define AUDIO_DMA_QUEUE_SIZE              0x30
@@ -52,6 +53,8 @@ typedef struct {
     /* 0x08 */ DMABuffer* firstFree;
 } DMAState; /* size = 0x0C */
 
+
+extern u8 D_800EF4D0; // folded addr required for fakematching
 
 extern u16 gAudioFadeMode;
 extern u32 gAudioUpdateCounter;

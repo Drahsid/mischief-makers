@@ -23,6 +23,16 @@ typedef struct {
     /* 0x06 */ u16 unk_3842[11];
 } AudioBufferSampleCounts; /* size = 0x1C */
 
+// in globals .bss
+
+extern u8 gMusicPlayerFlags;
+extern s16 gMusicVolume;
+extern s16 D_800EF4D4;
+extern s32 gMusicSequenceId;
+extern s32 D_800EF4DC; // unused.
+extern u8 gMusicChannelFxMixes[16];
+extern u8 gSfxPlayerFlags[4];
+extern u16 gSfxPlayerVolumes[4];
 
 s32 func_80003430(u32, s16, s8);
 s32 func_80003474(u32, s16, s8);

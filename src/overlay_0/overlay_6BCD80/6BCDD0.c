@@ -721,7 +721,7 @@ void func_8019902C_6C3CFC(u16 actor_index) {
     s16 diff;
     s16* camera_x;
 
-    camera_x = &gScreenPosCurrentX;
+    camera_x = &gScreenPosCurrentX.whole;
     if (!(gActors[actor_index].state & 0x800) && (D_801A6F3C_6D1C0C != 0xFFFF)) {
         diff = gActors[actor_index].posX.whole - gActors[0].posX.whole;
         if (diff >= 0x141) {

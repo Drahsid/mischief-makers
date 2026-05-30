@@ -5,12 +5,11 @@
 #include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
+#include "globalData.h"
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
 extern u16 D_800BE6B8;
-extern u16 D_800BE704;
-extern u16 D_800BE708;
 
 extern s32 D_800CA28C; // unknown type
 extern s32 D_800CA2A0; // unknown type
@@ -537,15 +536,15 @@ void GameState_Attract(void) {
             D_800CA238 = 0;
         }
         gDebugStageSelectSelectedIndex = D_800CA2B0[D_800CA238];
-        D_800BE5D0 = gDebugStageSelectSceneIds[gDebugStageSelectSelectedIndex];
+        gCurrentScene = gStageScenes[gDebugStageSelectSelectedIndex];
         D_800D28E4 = gDebugStageSelectStageIds[gDebugStageSelectSelectedIndex];
         D_800CA234 = 0xA00;
         D_800D2908 = 1;
         gActors[0].health = 1000;
-        D_800BE668 = 0x32;
+        D_800BE668 = 50;
         gRngSeed = 0x1234;
         GameState_Loading();
-        gGameState = 0xA;
+        gGameState = GAMESTATE_ATTRACT;
         gGameStateSubState = 1;
         gLifebar.flags = gLifebarHead.flags = 0;
         func_8002092C();
@@ -568,7 +567,7 @@ void GameState_Attract(void) {
             actors_200[3].hitboxBX1 -= 3;
         }
         func_80021098();
-        if ((D_800CA234-- == 0) || (gButtonPress & D_800BE500)) {
+        if ((D_800CA234-- == 0) || (gButtonPress & gButton_Start)) {
             if (actors_200[0].flags == 0) {
                 Sound_StartFade(1, 0x40);
                 D_800CA234 = 0x40;

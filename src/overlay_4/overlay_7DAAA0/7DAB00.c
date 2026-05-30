@@ -274,7 +274,7 @@ void func_801B9A8C_7DAC8C(void) {
             if ((D_800D28E8 - 3) == 0) {
                 D_800BE5F4.w = 5;
                 D_800D28F0 = D_800D28E4;
-                D_800D28E4 = 0x63;
+                D_800D28E4 = 99;
             }
             Cutscene_CheckSkipInput();
             break;
@@ -301,7 +301,7 @@ void func_801B9A8C_7DAC8C(void) {
                         s32 temp;
 
                         temp = 3;
-                        D_800BE5F4.w = temp;
+                        D_800BE5F4.ws = temp;
                         *(s16*)&D_800D28E8 = temp;
                     }
                 }
@@ -349,9 +349,9 @@ void func_801B9D10_7DAF10(void) {
         case 2:
             func_80047714(1, 1, 1, 3);
             if ((D_800D28E8 - 3) == 0) {
-                D_800BE5F4.w = 3;
+                D_800BE5F4.ws = 3;
                 D_800D28F0 = D_800D28E4;
-                D_800D28E4 = 0x63;
+                D_800D28E4 = 99;
             }
             Cutscene_CheckSkipInput();
             break;
@@ -370,16 +370,14 @@ void func_801B9D10_7DAF10(void) {
 
         case 0x1001:
             D_800D2928--;
-            if (D_800D2928 <= 0) {
-                if (gAudioFadeMode != 1) {
-                    s32 temp;
+            if ((D_800D2928 <= 0) && (gAudioFadeMode != 1)) {
+                s32 temp;
 
-                    Actor_ClearRange(0x30, 0xC0);
-                    func_801B9CAC_7DAEAC();
-                    temp = 3;
-                    D_800BE5F4.w = temp;
-                    *(s16*)&D_800D28E8 = temp;
-                }
+                Actor_ClearRange(0x30, 0xC0);
+                func_801B9CAC_7DAEAC();
+                temp = 3;
+                D_800BE5F4.ws = temp;
+                *(s16*)&D_800D28E8 = temp;
             }
             break;
 
@@ -593,7 +591,7 @@ void func_801BA45C_7DB65C(void) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BA3F8_7DB5F8();
                     temp = 3;
-                    D_800BE5F4.w = temp;
+                    D_800BE5F4.ws = temp;
                     *(s16*)&D_800D28E8 = temp;
                 }
             }
@@ -696,7 +694,7 @@ void func_801BA7C4_7DB9C4(void) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BA740_7DB940();
                     temp = 3;
-                    D_800BE5F4.w = temp;
+                    D_800BE5F4.ws = temp;
                     *(s16*)&D_800D28E8 = temp;
                 }
             }
@@ -861,8 +859,8 @@ void func_801BAD9C_7DBF9C(void) {
         case 3:
             D_800D28E8++;
             D_800D28FC |= 8;
-            gLifebar.posy.whole = -0x58;
-            gLifebarHead.posy.whole = -0x55;
+            gLifebar.posY.whole = -0x58;
+            gLifebarHead.posY.whole = -0x55;
             D_800BE5F4.w = 5;
             gCannotPause = FALSE;
             break;

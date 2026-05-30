@@ -63,7 +63,8 @@ const char* gDebugStageSelectOptionSuffixes[] = {
     "0", "1", "0", "1", "0", "1", "2", "0",
 };
 
-u16 gDebugStageSelectSceneIds[] = {
+// list of scene indecies in order of game progress.
+u16 gStageScenes[] = {
     0x000B, 0x000E, 0x0000, 0x0044, 0x0035, 0x0037, 0x0034, 0x0043, 0x0038, 0x003A, 0x0036,
     0x0039, 0x0001, 0x0045, 0x0025, 0x003C, 0x0026, 0x003B, 0x003D, 0x0046, 0x003E, 0x000D,
     0x0005, 0x001C, 0x0048, 0x000C, 0x0023, 0x0047, 0x0020, 0x001F, 0x0024, 0x0009, 0x0021,
@@ -206,7 +207,7 @@ void GameState_DebugStageSelect(void) {
                 func_80003380(0x22);
             }
 
-            if (Input_CheckButtonRepeat(gButton_DDown, &gActors[DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX].colorB) != 0) {
+            if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX].colorB) != 0) {
                 selected_entry = &gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
                 selected_value = *selected_entry;
                 if (selected_value > 0) {
@@ -229,7 +230,7 @@ void GameState_DebugStageSelect(void) {
                     gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
             selected_index = index + 0;
             gDebugStageSelectSelectedIndex = index;
-            gCurrentScene = gDebugStageSelectSceneIds[selected_index];
+            gCurrentScene = gStageScenes[selected_index];
             D_800D28E4 = gDebugStageSelectStageIds[selected_index];
             DebugStageSelect_DrawMenu(&gDebugStageSelectSelectedIndex);
 

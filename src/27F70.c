@@ -10,18 +10,6 @@ typedef struct {
     u8 pad6[2];
 } Unk800D1788;
 
-extern u16 D_800BE4D8;
-extern u16 D_800BE504;
-extern u16 D_800BE508;
-extern u16 D_800BE50C;
-extern u16 D_800BE510;
-extern u16 D_800BE514;
-extern s16 D_800BE558;
-extern s16 D_800BE55C;
-extern f32 D_800BE5B4;
-extern s16 D_800BE5D8;
-extern s16 D_800BE5DC;
-extern u16 D_800BE5FC;
 extern u16 D_800CA230;
 extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
 extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
@@ -311,8 +299,8 @@ void func_800282F0(s16 x, s16 y) {
     D_801373E0.unk_24 = 0;
     gActors->posX.whole = x;
     gActors->posY.whole = y;
-    D_800BE5D8 = D_800BE558 + x;
-    D_800BE5DC = D_800BE55C + y;
+    gPlayerPosX.whole = gScreenPosCurrentX.whole + x;
+    gPlayerPosY.whole = gScreenPosCurrentY.whole + y;
     D_800CA230 = 0;
     if (gActors->health < 0) {
         gActors->health = 0;
@@ -331,7 +319,7 @@ void func_80028380(void) {
 void func_800283BC(u32 arg0, u16 arg1) {
     s16 var_v0;
 
-    var_v0 = (gActors[arg1 & 0xFFF].posX.whole - D_800BE5B4) / 2;
+    var_v0 = (gActors[arg1 & 0xFFF].posX.whole - gLookatAtX) / 2;
     if (var_v0 >= 0x40) {
         var_v0 = 0x3F;
     }
@@ -433,13 +421,13 @@ void Actor_ClearSceneActors(void) {
 u16 func_8002877C(u16 actor_index) {
     s16 temp_v1;
 
-    temp_v1 = D_800BE558 + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX0;
+    temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX0;
     if (temp_v1 < D_800D2920) {
         gActors[actor_index].posX.whole += D_800D2920 - temp_v1;
         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK2;
         return 1;
     }
-    temp_v1 = D_800BE558 + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX1;
+    temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX1;
     if (temp_v1 > D_800D2924) {
         gActors[actor_index].posX.whole += D_800D2924 - temp_v1;
         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK3;
@@ -450,11 +438,11 @@ u16 func_8002877C(u16 actor_index) {
 
 u16 func_8002884C(u16 actor_index) {
     s16 temp_v1;
-    temp_v1 = D_800BE558 + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX0;
+    temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX0;
     if (temp_v1 < D_800D2920) {
         return 0;
     }
-    temp_v1 = D_800BE558 + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX1;
+    temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX1;
     if (temp_v1 > D_800D2924) {
         return 0;
     }
@@ -830,7 +818,7 @@ u16 func_80029798(u16 actor_index) {
 
     if (D_800D28FC & 0x400) {
         actor = &gActors[actor_index];
-        if ((D_800BE55C + actor->posY.whole) < (D_800D291C - 16)) {
+        if ((gScreenPosCurrentY.whole + actor->posY.whole) < (D_800D291C - 16)) {
             prev_flags = actor->flags;
             actor->flags = 0;
             return prev_flags;
@@ -1027,7 +1015,7 @@ u16 func_80029E48(u16 actor_index, s16 arg1, s16 arg2) {
     u16 var_v1;
 
     actor = &gActors[actor_index];
-    temp_v0 = D_800BE558 + actor->posX.whole;
+    temp_v0 = gScreenPosCurrentX.whole + actor->posX.whole;
     if ((arg1 >= temp_v0) || (arg2 < temp_v0)) {
         var_v1 = 0x8000;
     }
@@ -1048,7 +1036,7 @@ u16 func_80029F00(u16 actor_index, s16 arg1, s16 arg2) {
     u16 var_v1;
 
     actor = &gActors[actor_index];
-    temp_v0 = D_800BE55C + actor->posY.whole;
+    temp_v0 = gScreenPosCurrentY.whole + actor->posY.whole;
     if ((arg2 >= temp_v0) || (arg1 < temp_v0)) {
         var_v1 = 0x8000;
     }
@@ -1560,24 +1548,24 @@ void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, 
 s32 Actor_ReduceHealth(u16 actor_index, u16 health_diff) {
     if (gActors[actor_index].health <= health_diff) {
         gActors[actor_index].health = 0;
-        return 0;
+        return FALSE;
     }
     else {
         gActors[actor_index].health = gActors[actor_index].health - health_diff;
-        return 1;
+        return TRUE;
     }
 }
 
 s32 func_8002B954(u16 actor_index, u16 arg1) {
-    if (D_800BE4D8 == 0) {
+    if (D_800BE4D8 == FALSE) {
         if (arg1 & 0x80) {
-            return 1;
+            return TRUE;
         }
         else if ((arg1 & 0x40) && (gActors[actor_index].velocityY.raw < 0)) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_8002B9D8(u16 actor_index) {
@@ -1585,19 +1573,19 @@ s32 func_8002B9D8(u16 actor_index) {
         func_8002B954(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole + 4, gActors[actor_index].posY.whole)) || 
         func_8002B954(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 4)) || 
         func_8002B954(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + 4))) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
 s32 func_8002BACC(u16 arg0, u16 arg1) {
-    if ((D_800BE4D8 == 0) && (arg1 & 0x80)) {
-        return 1;
+    if ((D_800BE4D8 == FALSE) && (arg1 & 0x80)) {
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1634,11 +1622,11 @@ void func_8002BC90(u16 arg0) {
     u16 count;
     u16 value;
 
-    target = arg0 ? D_800BE510 : D_800BE50C;
+    target = arg0 ? gButton_DRight : gButton_DLeft;
     count = 0;
     for (index = 0; index < 18; index++) {
         value = D_8011DD70[index];
-        value &= -1 - D_800BE504;
+        value &= -1 - gButton_DUp;
         if (value != 0) {
             if (target == value) {
                 count++;
@@ -1653,11 +1641,11 @@ void func_8002BC90(u16 arg0) {
         }
     }
 
-    target = arg0 ? D_800BE50C : D_800BE510;
+    target = arg0 ? gButton_DLeft : gButton_DRight;
     count = 0;
     for (index = 0; index < 18; index++) {
         value = D_8011DD70[index];
-        value &= -1 - D_800BE504;
+        value &= -1 - gButton_DUp;
         if (value != 0) {
             if (target == value) {
                 count++;
@@ -1672,12 +1660,12 @@ void func_8002BC90(u16 arg0) {
         }
     }
 
-    target = arg0 ? D_800BE510 : D_800BE50C;
+    target = arg0 ? gButton_DRight : gButton_DLeft;
     if (D_800BE5FC & 1) {
         for (index = 0; index < 10; index++) {
             value = D_8011DD70[index];
             if (value != 0) {
-                if (value == D_800BE514 || value == (D_800BE514 + target)) {
+                if (value == gButton_B || value == (gButton_B + target)) {
                     D_800BE5FC = 0xB;
                     return;
                 }
@@ -1686,12 +1674,12 @@ void func_8002BC90(u16 arg0) {
         }
     }
 
-    target = arg0 ? D_800BE50C : D_800BE510;
+    target = arg0 ? gButton_DLeft : gButton_DRight;
     if (D_800BE5FC & 1) {
         for (index = 0; index < 10; index++) {
             value = D_8011DD70[index];
             if (value != 0) {
-                if (value == D_800BE514 || value == (D_800BE514 + target)) {
+                if (value == gButton_B || value == (gButton_B + target)) {
                     D_800BE5FC = 0xD;
                     return;
                 }
@@ -1704,7 +1692,7 @@ void func_8002BC90(u16 arg0) {
     for (index = 0; index < 20; index++) {
         value = D_8011DD70[index];
         if (value != 0) {
-            if (value != D_800BE514 && value != (D_800BE514 + D_800BE504)) {
+            if (value != gButton_B && value != (gButton_B + gButton_DUp)) {
                 index = 100;
             }
             else {
@@ -1717,7 +1705,7 @@ void func_8002BC90(u16 arg0) {
     for (; index < 20; index++) {
         value = D_8011DD70[index];
         if (value != 0) {
-            if (value == D_800BE504) {
+            if (value == gButton_DUp) {
                 count++;
                 if (count == 2) {
                     D_800BE5FC = 0x10;
@@ -1735,7 +1723,7 @@ void func_8002BC90(u16 arg0) {
     for (; index < 20; index++) {
         value = D_8011DD70[index];
         if (value != 0) {
-            if (value != D_800BE514 && value != (D_800BE514 + D_800BE508)) {
+            if (value != gButton_B && value != (gButton_B + gButton_DDown)) {
                 index = 100;
             }
             else {
@@ -1748,7 +1736,7 @@ void func_8002BC90(u16 arg0) {
     for (; index < 20; index++) {
         value = D_8011DD70[index];
         if (value != 0) {
-            if (value == D_800BE508) {
+            if (value == gButton_DDown) {
                 count++;
                 if (count == 2) {
                     D_800BE5FC = 0x20;

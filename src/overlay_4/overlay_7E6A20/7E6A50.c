@@ -428,7 +428,7 @@ void func_801B9E7C_7E6FCC(void) {
         entry = &D_801BA6B0_7E7800[D_800D2928];
         temp = entry->unk_10;
         D_800BE568.whole  = temp - 0x90;
-        D_800BE56C.whole .whole = entry->unk_12 + 0x90;
+        D_800BE56C.whole = entry->unk_12 + 0x90;
         D_800BE570.whole  = 0x2EF;
         D_800BE574.whole = 0x20F;
         gScreenPosCurrentX.whole = temp + 0x90;
@@ -559,7 +559,7 @@ void func_801BA1DC_7E732C(void) {
             break;
 
         case 2:
-            if (gScreenPosCurrentX >= 0x1601) {
+            if (gScreenPosCurrentX.whole > 0x1600) {
                 Actor_LoadSpawnTable(D_801BAB78_7E7CC8);
                 D_800D28E8++;
             }

@@ -89,7 +89,7 @@ UnkFuncType_D_800C7CD0 D_800C7CD0[] = {
 };
 
 u8 func_80012B88(u8 arg0, s16 arg1, s16 arg2) {
-    return D_800C7CD0[arg0 & 0xF](gScreenPosCurrentX + arg1, gScreenPosCurrentY + arg2) & arg0; // low nibble selects the 16x16 shape test; high bits carry collision type/flags
+    return D_800C7CD0[arg0 & 0xF](gScreenPosCurrentX.whole + arg1, gScreenPosCurrentY.whole + arg2) & arg0; // low nibble selects the 16x16 shape test; high bits carry collision type/flags
 }
 
 u8 func_80012C04(s16 arg0, s16 arg1) {
