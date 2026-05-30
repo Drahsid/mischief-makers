@@ -23,7 +23,7 @@ typedef enum{
     PORTRAIT_FLAG_UNK14 = (1U << 14U)
 }PortraitFlags;
 
-// used for the portrait transition effect lifebar and lifebar head.
+// used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
     /* 0x80 */ u16 flags; //uses PortraitFlags
