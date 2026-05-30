@@ -547,7 +547,7 @@ void GameState_Attract(void) {
         GameState_Loading();
         gGameState = 0xA;
         gGameStateSubState = 1;
-        D_80104098[0x1440] = D_80104098[0x1490] = 0;
+        gLifebar.flags = gLifebarHead.flags = 0;
         func_8002092C();
         actors_200[0].hitboxBY1 = actors_200[1].hitboxBY0 = actors_200[2].hitboxBX0 = actors_200[3].hitboxBX1 = 0;
         D_800CA23C = 0;

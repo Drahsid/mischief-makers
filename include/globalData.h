@@ -3,6 +3,7 @@
 
 #include "common_structs.h"
 #include "actor.h"
+#include "thread.h"
 #include <PR/ultratypes.h>
 
 
@@ -71,26 +72,39 @@ extern u16 gSfxSequenceIds[4];
 extern Actor gActors[208];
 extern u8 D_80104090[4];
 extern u32 D_80104094;
-extern PortraitStruct gPortraits[66];
-
+// first 64 are used for portrait transition effect. the last two are the life bar
+// and bust on the edge respectively.
+extern PortraitStruct gPortraits[66]; 
+extern s8 gSfxPanOverrides[];
+extern u32 D_801069DC; // unused
+extern UnkStruct_801069E0 D_801069E0[64]; // "static gems" on screen / loaded?
+extern u16 gSfxActorIndices[4];
+extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u16 gSfxStopTimers[4];
 extern u8 D_8010CDF0[0x10000];
 extern u8 gSfxChannelVolumes[8];
 extern u16 D_8011CDF8[144]; // indecies of ACTOR_FLAG_UNK13-flagged Actors
 extern u8 gSfxChannelPans[8];
 extern u16 D_8011CF20[144]; 
-extern u8 D_8011D040[8]; // blank space between
-extern s16 D_8011D048[];
-extern s16 D_8011D170[];
-extern s16 D_8011D290[];
-extern s16 D_8011D3B0[];
-extern s16 D_8011D3D0[]; // posY + hitboxBY1 of ACTOR_FLAG_UNK18-flagged Actors
-extern s16 D_8011D4F0[]; // posX + hitboxBX0 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D610[]; // posX + hitboxBX1 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D730[]; // posY + hitboxBY0 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D850[]; // posY + hitboxBY1 of ACTOR_FLAG_UNK13-flagged Actors
-extern u16 D_8011DD70[64];
-extern u16 D_801225F0[64];
+extern u32 D_8011D040[2]; // blank space between
+extern s16 D_8011D048[144];
+extern u32 D_8011D068[2]; // blank space between
+extern s16 D_8011D170[144];
+extern s16 D_8011D290[144];
+extern s16 D_8011D3B0[8][2];
+extern s16 D_8011D3D0[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK18-flagged Actors
+extern s16 D_8011D4F0[144]; // posX + hitboxBX0 of ACTOR_FLAG_UNK13-flagged Actors
+extern s16 D_8011D610[144]; // posX + hitboxBX1 of ACTOR_FLAG_UNK13-flagged Actors
+extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_UNK13-flagged Actors
+extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK13-flagged Actors
+extern u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
+extern u16 D_8011DD70[64]; // history of button presses?
+extern u64 gYeildData[YEILD_DATA_SIZE / sizeof(u64)];
+// TENTATIVE GUESS: VERY large gap.
+// ASM/Ghidra doesn't suggest anying using it.
+// continues afterwards with relevant data
+extern u64 D_8011EB90[1868]; 
+extern u16 D_801225F0[64]; // history of button holds?
 
 
 // global values near start of .data

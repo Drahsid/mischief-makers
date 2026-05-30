@@ -37,14 +37,6 @@
 #define SFX_SOUND_IDS gSfxSoundIds.soundIds
 #define AUDIO_BUFFER_SAMPLE_COUNTS gAudioBufferSampleCounts.counts
 
-typedef struct {
-    /* 0x00 */ u8 unk_000[0x84];
-    /* 0x84 */ s16 unk_084;
-    /* 0x86 */ u8 unk_086[0x2];
-    /* 0x88 */ s16 unk_088;
-    /* 0x8A */ u8 unk_08A[0x6];
-} UnkStruct_801069E0; /* size = 0x90 */
-
 // Matches the ordered sequence DMA cache from the SDK PLAYSEQ demo.
 typedef struct {
     /* 0x00 */ ALLink node;
@@ -65,8 +57,6 @@ extern u16 gAudioFadeMode;
 extern u32 gAudioUpdateCounter;
 extern u8 gAudioHeapBuffer[];
 
-extern u16 gSfxActorIndices[];
-extern s8 gSfxPanOverrides[];
 extern u8 gAudioInitialized;
 extern u32 gAudioFrameCounter;
 extern u16 gAudioFadeDuration;
@@ -78,7 +68,7 @@ extern u8 D_800C2927[];
 extern u8 D_800C2968[];
 extern s16 D_800EF4D4;
 extern s32 D_80137794;
-extern UnkStruct_801069E0 D_801069E0[];
+
 
 extern MusicSequenceParams gMusicSequenceParams[];
 extern u8* gMusicSequenceSamplePatchLists[];
@@ -950,11 +940,11 @@ s32 func_80003828(u32 arg0, u16 arg1) {
     s8 temp_a;
     s16 temp_b;
 
-    if ((D_801069E0[arg1].unk_084 < -0x17F) || (D_801069E0[arg1].unk_084 >= 0x180)) {
+    if ((D_801069E0[arg1].posX.whole < -0x17F) || (D_801069E0[arg1].posX.whole >= 0x180)) {
         return -1;
     }
 
-    func_80003540(D_801069E0[arg1].unk_084, D_801069E0[arg1].unk_088, &temp_a, &temp_b);
+    func_80003540(D_801069E0[arg1].posX.whole, D_801069E0[arg1].posY.whole, &temp_a, &temp_b);
 
     if (temp_b < 0x80) {
         return -1;

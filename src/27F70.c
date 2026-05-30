@@ -10,12 +10,6 @@ typedef struct {
     u8 pad6[2];
 } Unk800D1788;
 
-typedef struct {
-    u8 unk0[0x80];
-    u16 unk80;
-    u8 unk82[0xA0 - 0x82];
-} Unk80104098; // size = 0xA0
-
 extern u16 D_800BE4D8;
 extern u16 D_800BE504;
 extern u16 D_800BE508;
@@ -55,9 +49,6 @@ extern u16 D_800D36FC[]; // list of actor indexes used in Actor_UpdateNearest
 extern u8 D_800DCE7C[]; // guess
 extern u8 D_800DD07C[]; // guess
 extern u8 D_800DD27C[]; // guess
-
-extern Unk80104098 D_80104098[0x40];
-extern u16 D_8011DD70[];
 
 // forward declarations
 void Actor_Clamp_0F8(u16 actor_index, s32 max_val);
@@ -419,8 +410,8 @@ void Actor_ClearRange_C0ToC7(void) {
 
 void func_800286C8(void) {
     u16 index;
-    for (index = 0; index < (u16)ARRAYLENGTH(D_80104098); index++) {
-        D_80104098[index].unk80 = 0;
+    for (index = 0; index < (u16)(ARRAYLENGTH(gPortraits)-2); index++) {
+        gPortraits[index].flags = 0;
     }
 }
 

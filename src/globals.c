@@ -1,5 +1,51 @@
 #include "common.h"
 
+// start of .bss
+
+u8 gMusicPlayerFlags;
+s16 gMusicVolume;
+s16 D_800EF4D4;
+s32 gMusicSequenceId;
+s32 D_800EF4DC; // unused.
+u8 gMusicChannelFxMixes[16];
+u8 gSfxPlayerFlags[4];
+Gfx* gCurrentDisplayListBase;
+u16 gSfxPlayerVolumes[4];
+u32 D_800EF500; // unknown/unused
+u32 D_800EF504; // unknown/unused
+u16 gSfxSequenceIds[4];
+Actor gActors[208];
+u8 D_80104090[4];
+u32 D_80104094;
+PortraitStruct gPortraits[66]; 
+s8 gSfxPanOverrides[];
+u32 D_801069DC;
+UnkStruct_801069E0 D_801069E0[64];
+u16 gSfxActorIndices[4];
+u8 D_80108DE8[512][32];
+u16 gSfxStopTimers[4];
+u8 D_8010CDF0[0x10000];
+u8 gSfxChannelVolumes[8];
+u16 D_8011CDF8[144];
+u8 gSfxChannelPans[8];
+u16 D_8011CF20[144]; 
+u32 D_8011D040[2];
+s16 D_8011D048[144];
+u32 D_8011D068[2];
+s16 D_8011D170[144];
+s16 D_8011D290[144];
+s16 D_8011D3B0[8][2];
+s16 D_8011D3D0[144];
+s16 D_8011D4F0[144];
+s16 D_8011D610[144];
+s16 D_8011D730[144];
+s16 D_8011D850[144];
+u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
+u16 D_8011DD70[64];
+u64 gYeildData[YEILD_DATA_SIZE / sizeof(u64)];
+u64 D_8011EB90[1868]; 
+u16 D_801225F0[64];
+
 // inial values of global data near start of .data
 
 u16 D_800BE4D0 = 0;

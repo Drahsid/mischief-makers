@@ -28,6 +28,16 @@ typedef struct {
     /* 0x95 */ u8 align[3];
 } PortraitStruct;
 
+// related to "static" gems in stage
+typedef struct {
+    /* 0x00 */ Mtx translateMtxs[2];
+    /* 0x80 */ u16 graphicIndex;
+    /* 0x82 */ u16 align;
+    /* 0x84 */ FixedCoord posX;
+    /* 0x88 */ FixedCoord posY;
+    /* 0x8C */ void* unk_08C; // texture?
+} UnkStruct_801069E0; /* size = 0x90 */
+
 #define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
 #define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
 
