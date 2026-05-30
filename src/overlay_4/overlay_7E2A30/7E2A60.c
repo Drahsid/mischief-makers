@@ -49,7 +49,7 @@ void func_801B99B8_7E2B18(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B9A70_7E2BD0(u16 arg0, u16 arg1, u16 arg2) {
-    s16 position_y = D_800BE55C;
+    s16 position_y = gScreenPosCurrentY.whole;
 
     if (position_y >= arg1) {
         D_800D291C = arg1 - 0x70;

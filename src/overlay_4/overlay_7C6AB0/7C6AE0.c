@@ -70,7 +70,7 @@ void func_801BA6C4_7C78A4(void) {
         case 2:
             Camera_UpdateViewBounds();
 
-            if (D_800BE558 >= 0x711) {
+            if (gScreenPosCurrentX.whole >= 0x711) {
                 D_800D28E8++;
                 D_800BE544 = 0x50;
                 D_800BE568 = 0x680;

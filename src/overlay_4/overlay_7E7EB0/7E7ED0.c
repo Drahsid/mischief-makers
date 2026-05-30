@@ -3,14 +3,13 @@
 #include "function_symbols.h"
 
 extern void func_80011F44(s16 arg0, s16 arg1, s32 arg2, s32 arg3);
-extern s16 D_800BE5D8;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s32 D_800D2928;
 
 s32 func_801B9900_7E7ED0(u16 arg0, s16 arg1, s16 arg2) {
-    if (Math_AbsS32(arg1 - D_800BE5D8) < 0x12) {
-        if (Math_AbsS32(arg2 - D_800BE5DC) < 0x80) {
+    if (Math_AbsS32(arg1 - gPlayerPosX.whole) < 0x12) {
+        if (Math_AbsS32(arg2 - gPlayerPosY.whole) < 0x80) {
             if (gActors[0].health >= 0) {
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
@@ -73,14 +72,14 @@ void func_801B9BF0_7E81C0(s16 arg0, s16 arg1, void* arg2) {
             break;
 
         case 2:
-            if (arg0 < D_800BE5D8) {
+            if (arg0 < gPlayerPosX.whole) {
                 D_800D2920 = arg0;
                 D_800D2928++;
             }
             break;
 
         case 3:
-            if ((arg0 - 0x100) < D_800BE558) {
+            if ((arg0 - 0x100) < gScreenPosCurrentX.whole) {
                 Actor_ClearRange(0x30, 0x90);
                 Actor_LoadSpawnTable(arg2);
                 D_800D28E8++;
@@ -90,7 +89,7 @@ void func_801B9BF0_7E81C0(s16 arg0, s16 arg1, void* arg2) {
 }
 
 void func_801B9CD4_7E82A4(s16 arg0) {
-    if (D_800BE558 < arg0) {
+    if (gScreenPosCurrentX.whole < arg0) {
         D_800D2920 = arg0;
     }
 }
