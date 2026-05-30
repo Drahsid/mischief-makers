@@ -39,16 +39,16 @@ const char* gDebugStageSelectRowPrefixes[] = {
     "4-2", "5-d", "5-0", "end", "e-0", "---",
 };
 
-u16 gDebugStageSelectRowOptionCounts[] = {
+u16 gStageRowCounts[] = {
     0x0001, 0x0001, 0x000A, 0x000A, 0x0001, 0x0001, 0x0009, 0x0002, 0x0001, 0x0001, 0x0005,
     0x0005, 0x0001, 0x0001, 0x0003, 0x0002, 0x0001, 0x0001, 0x0002, 0x0002, 0x0003, 0x0000,
 };
 
-u16 gDebugStageSelectGroupOptionStartOffsets[] = {
+u16 gStageGroupOptionOffsets[] = {
     0x0002, 0x000C, 0x0018, 0x0025,
 };
 
-u16 gDebugStageSelectGroupOptionStartOffsetsTail[] = {
+u16 gStageGroupOptionOffsetsTail[] = {
     0x0031, 0x003A, 0x0000, 0x0000,
 };
 
@@ -172,7 +172,7 @@ void GameState_DebugStageSelect(void) {
                 gDebugStageSelectOptionBaseOffsets[index] = 0;
 
                 for (jndex = 0; jndex < index; jndex++) {
-                    gDebugStageSelectOptionBaseOffsets[index] += gDebugStageSelectRowOptionCounts[jndex];
+                    gDebugStageSelectOptionBaseOffsets[index] += gStageRowCounts[jndex];
                 }
             }
 
@@ -220,7 +220,7 @@ void GameState_DebugStageSelect(void) {
                 selected_entry = &gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
                 selected_value = *selected_entry;
                 if (selected_value <
-                    (gDebugStageSelectRowOptionCounts[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] - 1)) {
+                    (gStageRowCounts[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] - 1)) {
                     *selected_entry = selected_value + 1;
                     func_80003380(0x22);
                 }
@@ -229,10 +229,10 @@ void GameState_DebugStageSelect(void) {
             index = gDebugStageSelectOptionBaseOffsets[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] +
                     gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
             selected_index = index + 0;
-            gDebugStageSelectSelectedIndex = index;
+            gCurrentStage = index;
             gCurrentScene = gStageScenes[selected_index];
             D_800D28E4 = gDebugStageSelectStageIds[selected_index];
-            DebugStageSelect_DrawMenu(&gDebugStageSelectSelectedIndex);
+            DebugStageSelect_DrawMenu(&gCurrentStage);
 
             if (gButtonPress & gButton_Start) {
                 func_80003A38();
@@ -243,7 +243,7 @@ void GameState_DebugStageSelect(void) {
 
         case 2:
             D_800C5008 = 0;
-            D_80171B18 = gDebugStageSelectSelectedIndex;
+            D_80171B18 = gCurrentStage;
             gGameState = GAMESTATE_TRANSITION;
             gGameStateSubState = 0x41;
             break;

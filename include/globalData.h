@@ -116,7 +116,7 @@ extern u16 gButton_CUp; // value of C-Up
 extern u16 gButton_CRight; // value of C-Right
 extern u16 gButton_ZTrig; // value of Z button
 extern u16 gButton_LTrig; // value of L button
-extern u16 gButton_RTrig; // value of Z button
+extern u16 gButton_RTrig; // value of R button
 extern u16 gButtonLast; // mask of previous input for determining "held" and "pressed" buttons
 extern s8 gJoyX; // joystick value read, but not used.
 extern s8 gJoyY; // joystick value read, but not used.

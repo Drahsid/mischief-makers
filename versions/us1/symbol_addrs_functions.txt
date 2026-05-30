@@ -36,6 +36,9 @@ Trouble_RLE_Type1 = 0x80004910; // type:func
 
 LookAt_Update = 0x80010898; // type:func
 
+YellowGem_SetFlag = 0x8001C7A4 // type:func
+YellowGem_GetFlag = 0x8001C7F0 // type:func
+
 Gfx_DrawBorderRect = 0x80021690; // type:func
 Gfx_DrawLetterboxStandard = 0x8002170C; // type:func
 Gfx_DrawLetterbox = 0x800218FC; //type:func

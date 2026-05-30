@@ -71,7 +71,7 @@ extern void func_80014C44(void);
 extern void func_80016CB4(void);
 extern void func_80016D94(void);
 extern void func_8001751C(void);
-extern u64 func_8001C7F0(u16);
+extern u64 YellowGem_GetFlag(u16);
 extern void func_8001DE30(void);
 extern void func_8001FF30(void);
 extern void func_8001FF50(void);
@@ -406,10 +406,11 @@ void func_800205DC(void) {
     func_80083518(3, 1, (val % 10) + 0x51, 0);
 }
 
+// display "got it" or "not yet" for yellow gem state on pause?
 void func_800207DC(void) {
     u64 ret;
 
-    ret = func_8001C7F0(gDebugStageSelectSelectedIndex);
+    ret = YellowGem_GetFlag(gCurrentStage);
     if (ret != 0) {
         func_800836A0(9, 1, &D_800CA2A0, 0);
     }
@@ -535,9 +536,9 @@ void GameState_Attract(void) {
         if (D_800CA238 > 3) {
             D_800CA238 = 0;
         }
-        gDebugStageSelectSelectedIndex = D_800CA2B0[D_800CA238];
-        gCurrentScene = gStageScenes[gDebugStageSelectSelectedIndex];
-        D_800D28E4 = gDebugStageSelectStageIds[gDebugStageSelectSelectedIndex];
+        gCurrentStage = D_800CA2B0[D_800CA238];
+        gCurrentScene = gStageScenes[gCurrentStage];
+        D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
         D_800CA234 = 0xA00;
         D_800D2908 = 1;
         gActors[0].health = 1000;

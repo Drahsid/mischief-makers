@@ -15,7 +15,7 @@ extern u8 D_800C5008;
 extern u16 D_80171AD0[];
 extern u16 D_80171AD4[];
 extern u64 D_80171AD8[];
-extern u64 D_80171B10;
+extern u64 D_80171B10; // bitfeild of yellow gem collection.
 extern u8 D_80171B18;
 extern u16 D_80178136;
 extern u16 D_80178156;
@@ -135,9 +135,9 @@ void func_8001B004(void) {
 }
 
 void func_8001B02C(void) {
-    if ((s32)gDebugStageSelectSelectedIndex >= (s32)D_80171B18 && D_80171B18 < 0x3B) {
-        gDebugStageSelectSelectedIndex = gDebugStageSelectSelectedIndex + 1;
-        D_80171B18 = gDebugStageSelectSelectedIndex;
+    if ((s32)gCurrentStage >= (s32)D_80171B18 && D_80171B18 < 0x3B) {
+        gCurrentStage = gCurrentStage + 1;
+        D_80171B18 = gCurrentStage;
         D_80178152 = 1;
     }
 }
@@ -164,7 +164,7 @@ void func_8001B3D0(void) {
     u16 yellow_gem_count;
     u32 save_slot_index;
 
-    D_80171B18 = gDebugStageSelectSelectedIndex;
+    D_80171B18 = gCurrentStage;
     D_80171AD0[D_800C5008] = D_80178136;
     yellow_gem_count = func_8001B244();
     save_slot_index = D_800C5008;
@@ -175,11 +175,13 @@ void func_8001B3D0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1A120/GameState_Transition.s")
 
-void func_8001C7A4(void) {
-    D_80171B10 |= (u64)1 << gDebugStageSelectSelectedIndex;
+// sets bit if yellow gem was collected in this stage
+void YellowGem_SetFlag(void) {
+    D_80171B10 |= (u64)1 << gCurrentStage;
 }
 
-u64 func_8001C7F0(u16 arg0) {
+// returns bit if yellow gem was collected in this stage
+u64 YellowGem_GetFlag(u16 arg0) {
     u64 mask = (u64)1 << arg0;
 
     return D_80171B10 & mask;

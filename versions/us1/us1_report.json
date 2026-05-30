@@ -2257,7 +2257,7 @@
           }
         },
         {
-          "name": "func_8001C7A4",
+          "name": "YellowGem_SetFlag",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2265,7 +2265,7 @@
           }
         },
         {
-          "name": "func_8001C7F0",
+          "name": "YellowGem_GetFlag",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {

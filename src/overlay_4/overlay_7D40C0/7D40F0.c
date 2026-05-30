@@ -1238,7 +1238,7 @@ s16 D_801C02B4_7DAAA4;
 u16 D_801C02B6_7DAAA6;
 u8 D_801C02B8_7DAAA8[8];
 
-extern u64 func_8001C7F0(u16 arg0);
+extern u64 YellowGem_GetFlag(u16 arg0);
 
 void func_801B9900_7D40F0(void);
 void func_801B9F3C_7D472C(u16 arg0, u16 arg1);
@@ -2373,12 +2373,13 @@ void func_801BBE90_7D6680(void) {
 void func_801BC010_7D6800(u16 arg0, u16 arg1) {
 }
 
+// get the yellow gem in "Clanpot Shake"?
 s32 func_801BC01C_7D680C(u16 actor_index) {
     u16 actor_type;
     u16 actor_count;
     u16 index;
 
-    if (D_800D24F0 >= 2) { if (func_8001C7F0(gDebugStageSelectSelectedIndex) == 0) {
+    if (D_800D24F0 >= 2) { if (YellowGem_GetFlag(gCurrentStage) == 0) {
             index = 0; actor_count = 1; while (actor_count < 3) {
                 if ((actor_type = D_800D22BC[index + 3]) == 8) {
                     if ((D_800D22BC[index + 1] & 3) == 3) {
