@@ -46,7 +46,7 @@ static u16 D_8011DD70[64];
 static u64 gYeildData[0x900];
 static u16 D_801225F0[64];
 
-// inial values of global data near start of .data
+// initial values of global data near start of .data
 
 u16 D_800BE4D0 = 0;
 u16 D_800BE4D4 = 0;
