@@ -10,8 +10,17 @@ extern u8 D_801376B0[];
 extern u16 D_801370CC;
 extern u16 D_801370CE;
 extern u32 D_8019B200_686D20[];
+extern u8 D_8019B18C_686CAC[];
+extern u8 D_8019B194_686CB4[];
+extern u8 D_8019B1D4_686CF4[];
+extern u8 D_8019B1DC_686CFC[];
+extern u8 D_8019BF20_687A40[];
+extern u8 D_8019C010_687B30[];
 extern u32 D_8019C054_687B74[];
+extern u8 D_8019C830_688350[];
+extern u8 D_8019C884_6883A4[];
 extern u32 D_8019C8D8_6883F8[];
+extern u8 D_8019D6E0_689200[];
 extern u32 D_8019D784_6892A4[];
 extern u16 D_8019DB80_6896A0[];
 extern u16 D_8019DC14_689734[];
@@ -247,7 +256,56 @@ void func_80193728_67F248(u16 actor_index) {
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_80193790_67F2B0.s")
+void func_80193790_67F2B0(u16 actor_index) {
+    s32 temp[1];
+
+    func_80193728_67F248(0x31);
+    func_8008105C(0x31, D_8019B200_686D20, D_8019B1DC_686CFC);
+    gActors[0x31].unk_178 = (s32)D_8019BF20_687A40;
+    temp[0] = (s32)D_8019BF20_687A40;
+
+    func_80193728_67F248(0x38);
+    func_8008105C(0x38, D_8019B200_686D20, D_8019B1DC_686CFC);
+    gActors[0x38].unk_178 = temp[0];
+    gActors[0x38].unk_138 = 1.0f;
+
+    func_80193728_67F248(0x3F);
+    func_8008105C(0x3F, D_8019C054_687B74, D_8019C010_687B30);
+    gActors[0x3F].unk_178 = (s32)D_8019C830_688350;
+    gActors[0x3F].unk_168 = 0x2980;
+    gActors[0x3F].unk_128 = 67.0f;
+    gActors[0x3F].unk_12C = 66.0f;
+
+    func_80193728_67F248(0x4D);
+    func_8008105C(0x4D, D_8019C8D8_6883F8, D_8019C884_6883A4);
+    gActors[0x4D].unk_178 = (s32)D_8019D6E0_689200;
+    gActors[0x52].graphicFlags |= ACTOR_GFLAG_ROTY;
+    gActors[0x53].graphicFlags |= ACTOR_GFLAG_ROTY;
+    gActors[0x5B].flags |= ACTOR_FLAG_FLIPPED;
+
+    func_80193728_67F248(0x5C);
+    func_8008105C(0x5C, D_8019B194_686CB4, D_8019B18C_686CAC);
+    gActors[0x5C].unk_178 = (s32)D_8019B1D4_686CF4;
+
+    func_80081478(0x31, D_8019B200_686D20, 0);
+    func_80081478(0x38, D_8019B200_686D20, 0);
+    func_80081478(0x3F, D_8019C054_687B74, 0);
+    func_80081478(0x4D, D_8019C8D8_6883F8, 0);
+    func_80081478(0x5C, D_8019B194_686CB4, 0);
+
+    func_80193600_67F120(0x4E);
+    func_80193600_67F120(0x37);
+    func_80193600_67F120(0x3E);
+
+    gActors[0x4E].unk_0DE = 9;
+    gActors[0x37].unk_0DE = 10;
+    gActors[0x37].unk_0CE = 2;
+    gActors[0x3E].unk_0DE = 10;
+    gActors[0x3E].unk_0CE = 2;
+    gActors[actor_index].health = 1000;
+    gActors[0x42].posY.raw = gActors[0x43].unk_180;
+    gActors[0x40].unk_14C = 0.0f;
+}
 
 void func_801939CC_67F4EC(u16 actor_index) {
     u16 index;

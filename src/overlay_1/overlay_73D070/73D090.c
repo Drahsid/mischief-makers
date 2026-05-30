@@ -1,4 +1,9 @@
 #include "common.h"
+#include "actor.h"
+
+void func_8019BEDC_73DE6C(u16 actor_index);
+void func_8019C244_73E1D4(u16 actor_index);
+void func_8019C9A4_73E934(u16 actor_index);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019B100_73D090.s")
 
@@ -57,7 +62,13 @@ void func_8019BACC_73DA5C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019CFFC_73EF8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D0B0_73F040.s")
+void func_8019D0B0_73F040(u16 actor_index) {
+    gActors[actor_index].unk_16C = (gActors[actor_index].unk_16C + gActors[actor_index].unk_174) & 0x3FFFFFF;
+    gActors[actor_index].unk_170 = (gActors[actor_index].unk_170 + gActors[actor_index].unk_178) & 0x3FFFFFF;
+    func_8019C9A4_73E934(actor_index);
+    func_8019BEDC_73DE6C(actor_index);
+    func_8019C244_73E1D4(actor_index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D14C_73F0DC.s")
 

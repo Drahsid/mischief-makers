@@ -1,6 +1,6 @@
-splat64[mips]==0.40.0
-spimdisasm==1.40.2
+splat64[mips]==0.40.1
+spimdisasm==1.40.3
 ninja_syntax==1.7.2
-GitPython==3.1.49
-requests==2.33.1
-mapfile_parser==2.12.1
+GitPython==3.1.50
+requests==2.34.2
+mapfile_parser==2.12.2

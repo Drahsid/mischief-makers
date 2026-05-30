@@ -1,0 +1,192 @@
+name: Mischief Makers
+repo: https://github.com/Drahsid/mischief-makers
+platform: n64
+build_system: ninja
+versions:
+  - name: us1
+    fullname: us1
+    sha1: 811709c6473f74cbf283aa61f056e1de3046ec73
+    paths:
+      target: "baserom.us1.z64"
+      build_dir: "build"
+      map: "build/mischiefmakers.map"
+      compiled_target: "build/mischiefmakers.z64"
+      elf: "build/mischiefmakers.elf"
+      expected_dir: "expected/"
+      asm: "asm"
+      nonmatchings: "asm/nonmatchings"
+
+  - name: us0
+    fullname: us0
+    sha1: 5eb5a9d6f413a379fe297fe1542d21f728393a27
+    paths:
+      target: "baserom.us0.z64"
+      build_dir: "build"
+      map: "build/mischiefmakers.map"
+      compiled_target: "build/mischiefmakers.z64"
+      elf: "build/mischiefmakers.elf"
+      expected_dir: "expected/"
+      asm: "asm"
+      nonmatchings: "asm/nonmatchings"
+
+  - name: eu
+    fullname: eu
+    sha1: e5405aad683959edab641b5da05b8159cac93e63
+    paths:
+      target: "baserom.eu.z64"
+      build_dir: "build"
+      map: "build/mischiefmakers.map"
+      compiled_target: "build/mischiefmakers.z64"
+      elf: "build/mischiefmakers.elf"
+      expected_dir: "expected/"
+      asm: "asm"
+      nonmatchings: "asm/nonmatchings"
+
+  - name: jp
+    fullname: jp
+    sha1: 039a75636c34d219d489d0a84a671d00dc23e7c4
+    paths:
+      target: "baserom.jp.z64"
+      build_dir: "build"
+      map: "build/mischiefmakers.map"
+      compiled_target: "build/mischiefmakers.z64"
+      elf: "build/mischiefmakers.elf"
+      expected_dir: "expected/"
+      asm: "asm"
+      nonmatchings: "asm/nonmatchings"
+
+tools:
+  mapfile_parser:
+    progress_report:
+      check_asm_paths: False
+      report_data: False
+      path_index: 2
+      prefixes_to_trim:
+        - build/lib/
+        - build/src/
+        - build/asm/data/
+        - build/asm/
+        - build/
+      categories:
+        - id: segment_main
+          name: Main segment
+          paths:
+            - asm/entrypoint
+            - boot
+            - input
+            - dma
+            - gamestate
+            - music
+            - font
+            - rle_type1
+            - "5A70"
+            - A540
+            - "11820"
+            - "12DD0"
+            - "134E0"
+            - gameover
+            - "156F0"
+            - "17A70"
+            - debug_level_select
+            - "1A120"
+            - actor_init
+            - "1F1E0"
+            - letterbox
+            - lifebar
+            - soft_reset
+            - "241E0"
+            - "26A00"
+            - "27F70"
+            - "438E0"
+            - "48A30"
+            - marina
+            - "4FEB0"
+            - "59EA0"
+            - "5D120"
+            - "5E230"
+            - "60CF0"
+            - "61B80"
+            - "66250"
+            - "7D8E0"
+            - "805E0"
+            - "80D90"
+            - "82920"
+            - "82DB0"
+            - "82F80"
+            - osd_debug_text
+            - "84BB0"
+            - "8D0A0"
+            - "8F080"
+            - stage_end_screen
+            - asm/rle_type2
+            - ultralib/
+            - libc/
+            - rsp/
+            - header
+            - assets/
+            - cosineTable
+            - floatTable
+            - BF0D0
+            - BF0F0
+            - music_data
+            - C5B20
+            - C6200
+            - C7DA0
+            - C84A0
+            - C8B20
+            - C8BE0
+            - C90F0
+            - CA300
+            - D22D0
+            - E44A0
+            - E4760
+            - E4920
+            - E5160
+            - E6700
+            - EBB10
+            - EBBC0
+            - EBBE0
+            - EBEA0
+            - EC190
+            - EC220
+            - EC920
+            - EC960
+            - EC9D0
+            - ECAC0
+            - ECB90
+            - ECCF0
+            - ECD80
+            - ED0E0
+            - EDBC0
+            - EDC10
+            - EDC20
+            - EDC50
+            - EDCE0
+            - EDEF0
+            - bss_
+
+        - id: overlays
+          name: Overlays
+          paths:
+            - overlay_
+
+        - id: overlay_slot_0
+          name: Overlays [0]
+          paths:
+            - overlay_0/
+        - id: overlay_slot_1
+          name: Overlays [1]
+          paths:
+            - overlay_1/
+        - id: overlay_slot_2
+          name: Overlays [2]
+          paths:
+            - overlay_2/
+        - id: overlay_slot_3
+          name: Overlays [3]
+          paths:
+            - overlay_3/
+        - id: overlay_slot_4
+          name: Overlays [4]
+          paths:
+            - overlay_4/

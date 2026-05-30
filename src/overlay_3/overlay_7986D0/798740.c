@@ -1,4 +1,7 @@
 #include "common.h"
+#include "actor.h"
+
+extern s32 Math_PlaneHalf(s32 x, s32 y);
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B0900_798740.s")
@@ -31,7 +34,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B2334_79A174.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B23EC_79A22C.s")
+DEFAULT_INT func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
+    s32 angle;
+
+    angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
+                           gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
+    func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+                  (s32)(gCosineLookup[angle & 0x3FF] * 188416.0f),
+                  (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 188416.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B24F0_79A330.s")
 
@@ -64,7 +75,16 @@ void func_801B2828_79A668(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B3634_79B474.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B36FC_79B53C.s")
+void func_801B36FC_79B53C(u16 arg0, u16 actor_index) {
+    gActors[actor_index].actorType = 0x508;
+    func_8001E2D0(actor_index);
+    gActors[actor_index].posX.whole = 0x190 - D_800BE558;
+    gActors[actor_index].posY.whole = (arg0 << 6) - (D_800BE55C & 0x3F) - 0xC0;
+    gActors[actor_index].graphicFlags |= 0x2900;
+    gActors[actor_index].unk_188 = 0;
+    gActors[actor_index].posZ.whole = -0x100;
+    gActors[actor_index].state = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B37B0_79B5F0.s")
 
@@ -90,7 +110,15 @@ void func_801B2828_79A668(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B4AB0_79C8F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B4C5C_79CA9C.s")
+DEFAULT_INT func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
+    s32 angle;
+
+    angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
+                           gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
+    func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+                  (s32)(gCosineLookup[angle & 0x3FF] * 188416.0f),
+                  (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 188416.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B4D60_79CBA0.s")
 

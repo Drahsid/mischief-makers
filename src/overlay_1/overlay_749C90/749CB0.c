@@ -1,12 +1,25 @@
 #include "common.h"
+#include "actor.h"
 
+void func_8002AC30(u16 actor_index, s16 val);
+void func_8019B100_749CB0(u16 actor_index);
 void func_8019BD50_74A900(u16 actor_index);
+void func_801A202C_750BDC(u16 actor_index);
+
+extern ActorFunc D_801A4838_7533E8[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019B100_749CB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019B184_749D34.s")
+void func_8019B184_749D34(u16 actor_index) {
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK10;
+    func_8002AC30(actor_index, 8);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019B1E4_749D94.s")
+void func_8019B1E4_749D94(u16 actor_index) {
+    func_8019B184_749D34(actor_index + 4);
+    func_8019B184_749D34(actor_index + 2);
+    func_8019B184_749D34(actor_index + 5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019B248_749DF8.s")
 
@@ -14,7 +27,10 @@ void func_8019BD50_74A900(u16 actor_index);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019BB60_74A710.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019BC9C_74A84C.s")
+void func_8019BC9C_74A84C(u16 actor_index) {
+    func_8019B100_749CB0(actor_index);
+    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+}
 
 void func_8019BD00_74A8B0(s32 arg0) {
 }
@@ -59,7 +75,10 @@ void func_8019BD48_74A8F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_8019FE50_74EA00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_801A047C_74F02C.s")
+void func_801A047C_74F02C(u16 actor_index) {
+    func_801A202C_750BDC(actor_index);
+    D_801A4838_7533E8[((s16*)&gActors[actor_index + 2].unk_180)[0]](actor_index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_801A04F0_74F0A0.s")
 
@@ -106,4 +125,3 @@ void func_8019BD48_74A8F8(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_801A2A44_7515F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_801A2BCC_75177C.s")
-

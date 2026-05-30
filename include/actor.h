@@ -238,7 +238,10 @@ typedef struct {
     /* 0x154 */ s32 var_154;
     /* 0x158 */ s32 var_158;
     /* 0x15C */ s32 var_15C;
-    /* 0x160 */ s32 var_160;
+    union {
+        /* 0x160 */ s32 var_160;
+        /* 0x160 */ u8 var_160_u8;
+    };
     /* 0x164 */ s32 unk_164;
     /* 0x168 */ s32 unk_168;
     /* 0x16C */ s32 unk_16C;
@@ -252,7 +255,10 @@ typedef struct {
         /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
     };
     /* 0x180 */ s32 unk_180;
-    /* 0x184 */ s32 unk_184;
+    union {
+        /* 0x184 */ s32 unk_184;
+        /* 0x184 */ s16 unk_184_s16[2];
+    };
     /* 0x188 */ s32 unk_188;
     union {
         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
