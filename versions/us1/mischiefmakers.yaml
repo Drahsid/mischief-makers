@@ -296,8 +296,7 @@ segments:
       # data
       - [0x0BD8D0, .data, cosineTable]
       - [0x0BE8D0, .data, floatTable]      
-      - [0x0BF0D0, data] # game globals
-      - [0x0BF0F0, data]
+      - [0x0BF0D0, .data, globals] # game globals
       - [0x0BF350, data, music_data] # music names start at BF354; music.s refs tables at C1654/C2280/C26DC
       - [0x0C4500, .data, font]
       - [0x0C5AE0, .data, rle_type1]

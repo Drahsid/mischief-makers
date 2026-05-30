@@ -26,7 +26,6 @@ void Gfx_DrawLetterboxStandard(void) {
 
 #ifdef NONMATCHING //division, break checks, and unused u8*'s get optimized out in "-O2".
 
-extern f32 D_800BE5B0; //lookat eyeZ
 extern u8 D_801376A8[]; //array of env colors
 extern u8 D_801376AC[]; //array of env colors
 extern u8 D_801376B0[]; //array of env colors
@@ -49,7 +48,7 @@ void Gfx_DrawLetterbox(void) {
         Gfx_DrawLetterboxStandard();
         break;
     case LETTERBOX_HORIZONTAL:
-        if (D_800BE5B0 <= 448.0f) {
+        if (gLookatEyeZ <= 448.0f) {
             max=0xff;
             red=D_801376A8;
             green=D_801376AC;
@@ -64,8 +63,8 @@ void Gfx_DrawLetterbox(void) {
             red=D_801376A8;
             green=D_801376AC;
             blue=D_801376B0;
-            var_v0 = (((D_800BE5B0 - 448.0f) * 96.0f) / D_800BE5B0) + 20.0f;
-            sp34 = ((((448.0f - D_800BE5B0) * 96.0f) / D_800BE5B0) + 212.0f);
+            var_v0 = (((gLookatEyeZ - 448.0f) * 96.0f) / gLookatEyeZ) + 20.0f;
+            sp34 = ((((448.0f - gLookatEyeZ) * 96.0f) / gLookatEyeZ) + 212.0f);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, 0U, 320, var_v0);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, sp34, 320U, 0xF8);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, 4U, 0xEU, 0xF8);
@@ -73,7 +72,7 @@ void Gfx_DrawLetterbox(void) {
         }
         break;
     case LETTERBOX_VERTICAL:
-        if (D_800BE5B0 <= 448.0f) {
+        if (gLookatEyeZ <= 448.0f) {
             max=0xff;
             red=D_801376A8;
             green=D_801376AC;
@@ -88,8 +87,8 @@ void Gfx_DrawLetterbox(void) {
             red=D_801376A8;
             green=D_801376AC;
             blue=D_801376B0;
-            sp32 = (((D_800BE5B0 - 448.0f) * 192.0f) / D_800BE5B0) + 14.0f;
-            sp30 = ((((448.0f - D_800BE5B0) * 192.0f) / D_800BE5B0) + 302.0f);
+            sp32 = (((gLookatEyeZ - 448.0f) * 192.0f) / gLookatEyeZ) + 14.0f;
+            sp30 = ((((448.0f - gLookatEyeZ) * 192.0f) / gLookatEyeZ) + 302.0f);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, 0U, 320, 0x14);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, 0xD4, 320, 0xF8);
             Gfx_DrawBorderRect(PACK_BLACK(max), 0U, 4U, sp32, 0xF8);

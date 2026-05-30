@@ -36,16 +36,15 @@ extern ActorFunc D_800D7F00[];
 extern u8 D_800E1788[];
 extern u16 D_800E3580;
 extern u32 D_800E3584;
-extern u16 D_800BE4E0;
 
 void func_80065650(u16 actor_index) {
     u16 rand_x[2];
     u16 rand_y;
 
     func_80067E50(actor_index, D_800E1788);
-    if ((D_800BE4E0 % 17) == 0) {
-        rand_x[0] = func_8000178C();
-        rand_y = func_8000178C();
+    if ((gActiveFrames % 17) == 0) {
+        rand_x[0] = Rand();
+        rand_y = Rand();
         func_800339BC(
             (gActors[actor_index].posX.raw - ((rand_x[0] & 0x1F) * FIXED_UNIT(0.625))) + FIXED_UNIT(10.0),
             (gActors[actor_index].posY.raw - ((rand_y & 0x1F) * FIXED_UNIT(0.75))) + FIXED_UNIT(18.0),
@@ -170,7 +169,7 @@ u32 func_8006890C(void) {
 }
 
 u32 func_80068934(void) {
-    if ((gActors[D_800E3580].flags & 0xA80) && func_80029A7C(0x68, 0x20, -0x20)) {
+    if ((gActors[D_800E3580].flags & (ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7)) && func_80029A7C(0x68, 0x20, -0x20)) {
         return TRUE;
     }
 
@@ -460,7 +459,7 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].unk_148 = gActors[actor_index].scaleX;
         }
 
-        if (((gActors[actor_index].flags_098 & 0x200) == 0) && (D_800D2950 != actor_index)) {
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) && (D_800D2950 != actor_index)) {
             func_80028C00(actor_index);
         }
     }
@@ -832,7 +831,7 @@ void func_800744AC(u16 arg0, u16 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80078CC8.s")
 
 void func_80078F14(u16 actor_index, s32 arg1) {
-    if (!(D_800BE4E0 & 1)) {
+    if (!(gActiveFrames & 1)) {
         func_80078CC8(actor_index, 0);
     }
 }

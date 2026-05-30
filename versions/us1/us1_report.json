@@ -361,7 +361,7 @@
           }
         },
         {
-          "name": "func_8000178C",
+          "name": "Rand",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {

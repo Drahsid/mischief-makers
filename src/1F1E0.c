@@ -8,16 +8,6 @@
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
-extern u16 D_800BE4D0;
-extern u16 D_800BE4D4;
-extern u16 D_800BE4D8;
-extern u16 D_800BE4DC;
-extern u16 D_800BE4E0;
-extern u16 D_800BE500;
-extern u16 D_800BE530;
-extern u16 D_800BE534;
-extern u16 D_800BE544;
-extern u16 D_800BE6B4;
 extern u16 D_800BE6B8;
 extern u16 D_800BE704;
 extern u16 D_800BE708;
@@ -51,18 +41,7 @@ extern u16 D_800D2920;
 extern u16 D_800D2924;
 extern u16 D_800D2978[];
 
-extern u16 D_80104098[];
-extern u8 D_8010CDF0[0x10000];
-extern u16 D_8011CDF8[];
-extern u16 D_8011CF20[];
-extern s16 D_8011D048[];
-extern s16 D_8011D170[];
-extern s16 D_8011D290[];
-extern s16 D_8011D3D0[];
-extern s16 D_8011D4F0[];
-extern s16 D_8011D610[];
-extern s16 D_8011D730[];
-extern s16 D_8011D850[];
+
 extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
@@ -75,7 +54,7 @@ extern u16 D_801781CE;
 extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
-extern u16 D_801781DC;
+extern u16 D_801781DC; // when gDebugThrottle>1, this is used to store button input between ticks
 extern u16 D_801781E0;
 extern u16 D_801782B8;
 
@@ -167,8 +146,8 @@ void func_8001E964(u16 arg0, u16 arg1) {
 }
 
 void func_8001E9DC(u16 arg0, u16 arg1) {
-    gActors[arg1].unk_0F8.raw = gActors[arg0].unk_0F8.raw * COS(func_8000178C() * 4);
-    gActors[arg1].unk_0FC.raw = gActors[arg0].unk_0FC.raw * COS(func_8000178C());
+    gActors[arg1].unk_0F8.raw = gActors[arg0].unk_0F8.raw * COS(Rand() * 4);
+    gActors[arg1].unk_0FC.raw = gActors[arg0].unk_0FC.raw * COS(Rand());
 }
 
 void func_8001EADC(u16 arg0, u16 arg1) {
@@ -254,7 +233,7 @@ u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
 
     temp_v0 = func_8005C870(func_80012AB4(arg1, arg2));
     D_800BE4DC = 0;
-    D_800BE4D8 = 0;
+    D_800BE4D8 = FALSE;
     if (temp_v0 != 0) {
         return temp_v0;
     }
@@ -263,7 +242,7 @@ u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
             (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index]) &&
             (arg0 != D_8011CF20[index])) {
             D_800BE4DC = D_8011CF20[index];
-            D_800BE4D8 = 1;
+            D_800BE4D8 = TRUE;
             return 0xC0;
         }
     }
@@ -273,7 +252,7 @@ u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2) {
             (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index]) &&
             (arg0 != D_8011CDF8[index])) {
             D_800BE4DC = D_8011CDF8[index];
-            D_800BE4D8 = 1;
+            D_800BE4D8 = TRUE;
             return 0x40;
         }
     }
@@ -327,19 +306,19 @@ void func_8001FFA8(void) {
 void func_80020024(void) {
     s32 index;
 
-    D_800BE4E0++;
+    gActiveFrames++;
     D_801782B8++;
     if ((D_801781E0 < 36000) && (D_800D28E8 >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         D_801781E0++;
     }
     func_800122B0();
-    if (gDebugBitfield & 0x2) {
-        if ((gButtonPress & D_800BE530) && (D_800BE6B4 != 1)) {
+    if (gDebugBitfield & DEBUG_THROTTLE) {
+        if ((gButtonPress & gButton_LTrig) && (D_800BE6B4 != 1)) {
             D_800BE6B4--;
             D_801781DC = 0;
         }
 
-        if ((gButtonPress & D_800BE534) && (D_800BE6B4 != 50)) {
+        if ((gButtonPress & gButton_RTrig) && (D_800BE6B4 != 50)) {
             D_800BE6B4++;
             D_801781DC = 0;
         }
@@ -377,7 +356,7 @@ void func_80020024(void) {
         func_80047CCC();
     }
     func_80047C98();
-    if (gDebugBitfield & 0x4000) {
+    if (gDebugBitfield & DEBUG_SFXDATA) {
         for (index = 0; index < 4; index++) {
             func_80083C54(gSfxPlayerFlags[index], -144, 60 - 32 * index);
             func_80083A74(gSfxSequenceIds[index] - 33, -144, 48 - 32 * index);
@@ -511,7 +490,7 @@ void GameState_Gameplay(void) {
 void func_80021098(void) {
     u16 prev_game_sub_state;
 
-    D_800BE4EC = 1;
+    gCannotPause = TRUE;
     gGameState = GAMESTATE_GAMEPLAY;
     prev_game_sub_state = gGameStateSubState;
     gGameStateSubState = 0;
@@ -529,12 +508,12 @@ void func_80021098(void) {
     D_800CA250--;
     if (D_800CA250 == 0) {
         D_800CA248++;
-        D_800CA24C = gButtonPress = D_800CBE0C[D_800CA238][D_800CA248] | (gButtonPress & D_800BE500);
+        D_800CA24C = gButtonPress = D_800CBE0C[D_800CA238][D_800CA248] | (gButtonPress & gButton_Start);
         D_800CA248++;
         D_800CA250 = D_800CBE0C[D_800CA238][D_800CA248];
     }
     else {
-        gButtonPress = D_800CA24C | (gButtonPress & D_800BE500);
+        gButtonPress = D_800CA24C | (gButtonPress & gButton_Start);
     }
     GameState_Gameplay();
     D_80104098[0x1440] = 0;
@@ -546,7 +525,7 @@ void func_80021098(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/GameState_Attract.s")
 
 void func_80021620(void) {
-    if (gButtonPress & D_800BE534) {
+    if (gButtonPress & gButton_RTrig) {
         D_800BE6B8 ^= 0xFF;
     }
 }

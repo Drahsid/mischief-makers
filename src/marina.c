@@ -9,14 +9,14 @@
 u8 func_80048600(u16 actor_index) {
     u8 ret;
 
-    if (D_801370CC & D_800BE50C) {
+    if (D_801370CC & gButton_DLeft) {
         ret = 1;
         if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
             ret = 0x81;
         }
     }
     else {
-        if (D_801370CC & D_800BE510) {
+        if (D_801370CC & gButton_DRight) {
             ret = 2;
             if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
             }
@@ -29,11 +29,11 @@ u8 func_80048600(u16 actor_index) {
         }
     }
 
-    if (D_801370CC & D_800BE508) {
+    if (D_801370CC & gButton_DDown) {
         ret |= 0x10;
     }
 
-    if (D_801370CC & D_800BE504) {
+    if (D_801370CC & gButton_DUp) {
         ret |= 0x20;
     }
 

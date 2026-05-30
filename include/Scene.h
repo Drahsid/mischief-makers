@@ -1,6 +1,7 @@
 // Scene: apart from stages as these include intermissions with Theo and Leo,
 // as well as the festival games using several scenes for the various events
 // 88 in total, but some are unused/broken.
+
 #define SCENE_MEETMARINA	    0x00
 #define SCENE_SEAOFLAVA	        0x01
 #define SCENE_UNK02	            0x02

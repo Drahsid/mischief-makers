@@ -9,6 +9,7 @@ DMA_AwaitMessage = 0x80001264; // type:func
 DMA_Read = 0x80001290; // type:func
 
 Sound_DmaCallback = 0x800017D0; // type:func
+Rand = 0x8000178c; // type:func rom:0x238c
 Sound_DmaNew = 0x80001988; // type:func
 Sound_CleanDmaBuffers = 0x80001A80; // type:func
 Sound_InitPlayers = 0x80001B38; // type:func

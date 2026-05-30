@@ -2,16 +2,7 @@
 #include "actor.h"
 #include "input.h"
 
-extern u16 D_800BE52C;
-extern s16 D_800BE558;
-extern s16 D_800BE560;
-extern s16 D_800BE568;
-extern s16 D_800BE56C;
-extern s16 D_800BE570;
-extern s16 D_800BE574;
-extern u16 D_800BE4EC;
-extern u16 D_800BE544;
-extern u16 D_800BE5D0;
+
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
 extern u16 D_800D28F0;
@@ -413,39 +404,39 @@ void func_80046274(u32 arg0, u32 arg1) {
 
 void Camera_UpdateViewBounds(void) {
     if (D_800D28E4 < 0x68) {
-        if ((D_800D2918 - 0x70) < D_800BE55C) {
-            D_800BE570 = D_800BE55C + 0x70;
+        if ((D_800D2918 - 0x70) < gScreenPosCurrentY) {
+            D_800BE570.whole  = gScreenPosCurrentY + 0x70;
         }
         else {
-            D_800BE570 = D_800D2918;
+            D_800BE570.whole  = D_800D2918;
         }
 
-        if (D_800BE55C < (D_800D291C + 0x70)) {
-            D_800BE574 = D_800BE55C - 0x70;
+        if (gScreenPosCurrentY < (D_800D291C + 0x70)) {
+            D_800BE574.whole = gScreenPosCurrentY.whole - 0x70;
         }
         else {
-            D_800BE574 = D_800D291C;
+            D_800BE574.whole = D_800D291C;
         }
 
-        if ((D_800BE558 - 0x90) < D_800D2920) {
-            D_800BE568 = D_800BE558 - 0x90;
+        if ((gScreenPosCurrentX.whole - 0x90) < D_800D2920) {
+            D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
         }
         else {
-            D_800BE568 = D_800D2920;
+            D_800BE568.whole  = D_800D2920;
         }
 
-        if (D_800D2924 < (D_800BE558 + 0x90)) {
-            D_800BE56C = D_800BE558 + 0x90;
+        if (D_800D2924 < (gScreenPosCurrentX.whole + 0x90)) {
+            D_800BE56C.whole  = gScreenPosCurrentX.whole + 0x90;
         }
         else {
-            D_800BE56C = D_800D2924;
+            D_800BE56C.whole  = D_800D2924;
         }
     }
 }
 
 void func_800463C0(void) {
     Camera_UpdateViewBounds();
-    D_800BE568 = D_800BE558 - 0x90;
+    D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
@@ -477,9 +468,9 @@ void func_8004664C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046D5C.s")
 
 s32 Cutscene_CheckSkipInput(void) {
-    if (gButtonPress & D_800BE52C) {
+    if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
-        D_800D28E4 = 0x63;
+        D_800D28E4 = 99;
         D_800D2938 = 0;
         return TRUE;
     }
@@ -515,8 +506,8 @@ void func_80047674(void) {
 void func_80047958(void) {
     u16 index = D_800D28F0 - 0x1F;
 
-    D_800BE5D0 = D_800D28D0[index];
-    gGameState = 5;
+    gCurrentScene = D_800D28D0[index];
+    gGameState = GAMESTATE_LOADING;
     gGameStateSubState = 0;
 }
 

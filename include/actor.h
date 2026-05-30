@@ -31,7 +31,8 @@ enum ActorFlags {
     ACTOR_FLAG_UNK10 = (1U << 10U), 
     ACTOR_FLAG_UNK11 = (1U << 11U),
     ACTOR_FLAG_UNK12 = (1U << 12U),
-    ACTOR_FLAG_UNK13 = (1U << 13U),
+    
+    ACTOR_FLAG_UNK13 = (1U << 13U), // platform actor?
     ACTOR_FLAG_UNK14 = (1U << 14U),
     ACTOR_FLAG_UNK15 = (1U << 15U), // something with damage (instakill if set?)
     ACTOR_FLAG_UNK16 = (1U << 16U),
@@ -44,7 +45,7 @@ enum ActorFlags {
     ACTOR_FLAG_UNK23 = (1U << 23U), // something with physics?
     ACTOR_FLAG_UNK24 = (1U << 24U), // unused?
     ACTOR_FLAG_ATTACHED = (1U << 25U),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see Marina's update function)
-    ACTOR_FLAG_ALWAYS_UPDATE = (1U << 26U), // if this bit is set, the actor will always update, despite the state of D_800BE670
+    ACTOR_FLAG_ALWAYS_UPDATE = (1U << 26U), // if this bit is set, the actor will always update, despite the state of gActorStall
     ACTOR_FLAG_UNK27 = (1U << 27U), // set but not checked?
     ACTOR_FLAG_UNK28 = (1U << 28U), // set but not checked?
     ACTOR_FLAG_UNK29 = (1U << 29U), // set but not checked?

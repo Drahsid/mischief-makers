@@ -76,7 +76,7 @@ s32 func_8008F168(u16 actor_index) {
     if (func_8008EDB0(actor_index)) {
         return 2;
     }
-    if (gActors[actor_index].flags_098 & 0x40) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK6) {
         gActors[actor_index].state = 0x150;
         return 3;
     }

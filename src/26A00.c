@@ -1514,7 +1514,7 @@ void func_80026174(u16 index) {
 #ifdef NON_MATCHING
 // https://decomp.me/scratch/3R7AG
 void func_80026220(u16 index) {
-    if ((index == 2) || (D_800D28E4 == 0x66) || (gGameState == 8) || (gGameState == 9)) {
+    if ((index == 2) || (D_800D28E4 == 0x66) || (gGameState == GAMESTATE_UNKNOWN0) || (gGameState == GAMESTATE_UNKNOWN1)) {
         DMA_ReadSync(((D_800CEC0C[5] - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_LOW, D_800CEC0C[6] - D_800CEC0C[5]);
         D_80137724 = (u32)MAP_BANK_DEST;
         D_80137728 = (u32)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, MAP_BANK_DEST);

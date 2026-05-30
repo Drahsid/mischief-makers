@@ -5,10 +5,6 @@ extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern u16 D_80104098[];
-extern s16 D_800BE550;
-extern s16 D_800BE554;
-extern s32 D_800BE5F4;
 extern s16 D_800BE704;
 extern s16 D_800BE708;
 extern u16 D_800D2914;
@@ -79,14 +75,14 @@ void func_801B9900_7EA730(void) {
         case 0:
             func_80045FA4(D_801B9FB0_7EADE0, 0);
             Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
-            D_800BE5F4 = 4;
+            D_800BE5F4.w = 4;
             gActors[0].flags = 0;
             D_800CA230 = 1;
             D_800D28E8++;
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800BE4EC = 1;
+                gCannotPause = TRUE;
                 D_800D28E8++;
             }
             break;
@@ -105,7 +101,7 @@ void func_801B99D0_7EA800(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800BE4EC = 1;
+                gCannotPause = TRUE;
                 D_800D28E8++;
             }
             break;
@@ -131,10 +127,10 @@ void func_801B9B2C_7EA95C(void) {
     D_800D2924 = 0x7FFF;
     D_800D2918 = 0x7FFF;
     D_800D291C = 0;
-    D_800BE568 = D_800D2920;
-    D_800BE56C = D_800D2924;
-    D_800BE570 = D_800D2918;
-    D_800BE574 = D_800D291C;
+    D_800BE568.whole = D_800D2920;
+    D_800BE56C.whole = D_800D2924;
+    D_800BE570.whole = D_800D2918;
+    D_800BE574.whole = D_800D291C;
     D_800BE544 = 0x8000;
     D_800BE704 = 2;
     D_800BE708 = 2;
@@ -146,12 +142,12 @@ void func_801B9BB4_7EA9E4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
-            D_800BE5F4 = 4;
+            D_800BE5F4.w = 4;
             gActors[0].flags = 0;
             D_800CA230 = 1;
             D_800D28E8++;
             D_800BE578 = temp;
-            D_800BE580 = -0xC;
+            D_800BE580 = -12;
             D_800D2920 = -0xF00;
             D_800D2924 = 0xF00;
             D_800D2918 = 0xF00;
@@ -159,7 +155,7 @@ void func_801B9BB4_7EA9E4(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800BE4EC = 1;
+                gCannotPause = TRUE;
                 D_800D28E8++;
             }
             break;
@@ -204,12 +200,12 @@ void func_801B9BB4_7EA9E4(void) {
 
         case 5:
             D_800D28E8++;
-            D_800BE550 = 0x720;
-            D_800BE554 = 0x4A0;
-            D_800BE558 = D_800BE550;
-            D_800BE55C = D_800BE554;
-            D_800BE560 = D_800BE558;
-            D_800BE564 = D_800BE55C;
+            gScreenPosTargetX.whole = 1824;
+            gScreenPosTargetY.whole = 1184;
+            gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
+            gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
+            gScreenPosNextX.whole = gScreenPosCurrentX.whole;
+            gScreenPosNextY.whole = gScreenPosCurrentY.whole;
             func_801B9B2C_7EA95C();
             D_800BE704 = 2;
             D_800BE708 = 2;
@@ -233,12 +229,12 @@ void func_801B9EA4_7EACD4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
-            D_800BE5F4 = 4;
+            D_800BE5F4.w = 4;
             gActors[0].flags = 0;
             D_800CA230 = 1;
             D_800D28E8++;
             D_800BE578 = 2;
-            D_800BE580 = -0xC;
+            D_800BE580 = -12;
             D_800D2920 = -0xF00;
             D_800D2924 = 0xF00;
             D_800D2918 = 0xF00;
@@ -246,7 +242,7 @@ void func_801B9EA4_7EACD4(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800BE4EC = 1;
+                gCannotPause = TRUE;
                 D_800D28E8++;
             }
             break;

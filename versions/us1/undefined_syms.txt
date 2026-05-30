@@ -3,7 +3,7 @@ _bssSegmentEnd = 0x8018B7A0;
 
 gFramesInScene = 0x800BE4E4;
 gGamePaused = 0x800BE4E8;
-D_800BE4EC = 0x800BE4EC;
+gCannotPause = 0x800BE4EC;
 
 __gBootStackEnd = 0x80124670;
 __gIdleStackEnd = 0x80126670;

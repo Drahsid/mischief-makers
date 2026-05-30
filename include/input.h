@@ -18,12 +18,4 @@ extern OSMesgQueue gControllerReadMessageQueue;
 extern u32 gPlayerControllerIndex;
 extern u16 gButtonCurrent;
 
-extern s8 gJoyX;
-extern s8 gJoyY;
-
-extern u16 D_800BE50C;
-extern u16 D_800BE510;
-extern u16 D_800BE508;
-extern u16 D_800BE504;
-
 #endif

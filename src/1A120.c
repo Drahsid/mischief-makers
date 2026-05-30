@@ -97,19 +97,19 @@ void func_80019EC4(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1A120/func_8001A584.s")
 
 s16 func_8001A758(u16 arg0, u16 arg1) {
-    if (arg0 < gStageTransitionTimeThresholds[arg1]) {
+    if (arg0 < gStageTimesToBeat[arg1]) {
         return 0;
     }
 
-    if (arg0 < gStageTransitionTimeThresholds[arg1] + 1800) {
+    if (arg0 < gStageTimesToBeat[arg1] + 1800) {
         return 1;
     }
 
-    if (arg0 < gStageTransitionTimeThresholds[arg1] + 7200) {
+    if (arg0 < gStageTimesToBeat[arg1] + 7200) {
         return 2;
     }
 
-    if (arg0 < gStageTransitionTimeThresholds[arg1] + 18000 && arg0 < 36000) {
+    if (arg0 < gStageTimesToBeat[arg1] + 18000 && arg0 < 36000) {
         return 3;
     }
 

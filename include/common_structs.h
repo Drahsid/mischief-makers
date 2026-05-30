@@ -15,6 +15,22 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
+// used for the portrait transition effect lifebar and lifebar head.
+typedef struct {
+    /* 0x00 */ Mtx translateMtxs[2];
+    /* 0x80 */ u16 flags;
+    /* 0x82 */ u16 graphicIndex;
+    /* 0x84 */ FixedCoord posX;
+    /* 0x88 */ FixedCoord posY;
+    /* 0x8C */ f32 scaleX;
+    /* 0x90 */ f32 scaleY;
+    /* 0x94 */ u8 alpha;
+    /* 0x95 */ u8 align[3];
+} PortraitStruct;
+
+#define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
+#define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
+
 // struct storing data about Marina player actor
 typedef struct {
     /* 0x00 */ s32 unk_00;
@@ -50,6 +66,17 @@ typedef struct {
     /* 0x78 */ u32 unk_78; // bitfield. 0x8 allows marina actor to update.
     /* 0x7C */ u32 unk_7C;
 } UnkStruct_D_801373E0;
+
+// D_800BE5F4 is treated as both word and 4 bytes.
+typedef union {
+    u32 w;
+    struct {
+        u8 unk_00;
+        u8 unk_01;
+        u8 unk_02;
+        u8 unk_03;
+    };
+} UnkStruct_D_800BE5F4;
 
 // data for setting actors in a stage (may actually be u16[] - often ending with a 0xff00.)
 typedef struct {

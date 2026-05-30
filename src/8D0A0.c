@@ -2,7 +2,6 @@
 #include "actor.h"
 
 extern s32 D_80137420;
-extern s32 D_800BE5F4;
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
 
@@ -151,7 +150,7 @@ void func_8008D39C(u16 actor_index) {
 }
 
 s32 func_8008D418(u16 actor_index) {
-    if (gActors[actor_index].flags_098 & 0x40) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK6) {
         func_8008D0A8(actor_index);
         return TRUE;
     }
@@ -163,7 +162,7 @@ s32 func_8008D480(u16 actor_index) {
     func_8008D39C(actor_index);
 
     if (gActors[actor_index].unk_188 < 0) {
-        if (gActors[actor_index].flags_098 & 0x20) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
             func_8008CFE4(actor_index);
             return TRUE;
         }
@@ -271,10 +270,10 @@ void func_8008DEBC(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E310.s")
 
 void func_8008E3C0(u16 actor_index) {
-    D_800BE5F4 = 4;
+    D_800BE5F4.w = 4;
     func_8008DF20(actor_index);
     if (gActors[actor_index].state == 0x10) {
-        D_800BE5F4 = 4;
+        D_800BE5F4.w = 4;
         gActors[actor_index].state = 0x30;
         gActors[actor_index].unk_18C = (s32)D_800D46A8;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);

@@ -60,22 +60,17 @@ typedef struct {
     /* 0x08 */ DMABuffer* firstFree;
 } DMAState; /* size = 0x0C */
 
-extern u8 D_800EF4D0; // folded addr required for fakematching
+
 extern s16 gMusicVolume;
 extern u8 gSfxPlayerFlags[];
 extern u16 gSfxPlayerVolumes[];
 extern u16 gSfxSequenceIds[];
-extern s32 gMusicSequenceId;
-extern u8 gSfxChannelVolumes[];
 extern u16 gAudioFadeMode;
 extern u32 gAudioUpdateCounter;
 extern u8 gAudioHeapBuffer[];
 
-extern u8 gMusicPlayerFlags;
 extern u8 gMusicChannelFxMixes[];
-extern u8 gSfxChannelPans[];
 extern u16 gSfxActorIndices[];
-extern u16 gSfxStopTimers[];
 extern s8 gSfxPanOverrides[];
 extern u8 gAudioInitialized;
 extern u32 gAudioFrameCounter;
