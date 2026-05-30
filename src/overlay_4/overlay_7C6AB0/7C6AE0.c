@@ -4,7 +4,6 @@
 
 extern s16 D_800D2918;
 extern s16 D_800D2924;
-extern s32 D_800BE5F4;
 
 extern u32 D_801BC620_7C9800[];
 extern s16 D_801BC7A8_7C9988[];
@@ -52,7 +51,7 @@ void func_801BA6C4_7C78A4(void) {
             func_801B99B4_7C6B94(D_801BC7A8_7C9988);
             D_800D28E8++;
             func_80045FA4(D_801BE3EC_7CB5CC, (s32)D_801BE3FC_7CB5DC);
-            D_800BE5F4 = 8;
+            D_800BE5F4.ws = 8;
             Actor_LoadSpawnTable(D_801BC620_7C9800);
             Actor_LoadSpawnTable(D_801BE98C_7CBB6C);
             func_801BA694_7C7874();
@@ -70,10 +69,10 @@ void func_801BA6C4_7C78A4(void) {
         case 2:
             Camera_UpdateViewBounds();
 
-            if (gScreenPosCurrentX.whole >= 0x711) {
+            if (gScreenPosCurrentX.whole > 0x710) {
                 D_800D28E8++;
                 D_800BE544 = 0x50;
-                D_800BE568 = 0x680;
+                D_800BE568.whole = 0x680;
                 Actor_LoadSpawnTable(D_801BEB24_7CBD04);
             }
             break;

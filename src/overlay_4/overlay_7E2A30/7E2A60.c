@@ -190,10 +190,10 @@ void func_801BB1F4_7E4354(void) {
     Actor_LoadSpawnTable(D_801BBEB0_7E5010);
     Actor_LoadSpawnTable(D_801BD23C_7E639C);
     gActors[0].flags |= 0x20;
-    D_800BE568 = 0xF2;
-    D_800BE56C = 0x712;
-    D_800BE570 = 0x1EC;
-    D_800BE574 = 0x10C;
+    D_800BE568.whole = 0xF2;
+    D_800BE56C.whole = 0x712;
+    D_800BE570.whole = 0x1EC;
+    D_800BE574.whole = 0x10C;
     D_800D28E8++;
 }
 
