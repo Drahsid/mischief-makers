@@ -17,7 +17,6 @@ typedef struct {
 } Unk80104098; // size = 0xA0
 
 extern u16 D_800BE4D8;
-extern u16 D_800BE4E0;
 extern u16 D_800BE504;
 extern u16 D_800BE508;
 extern u16 D_800BE50C;
@@ -1022,7 +1021,7 @@ s32 func_80029D58(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
 }
 
 s32 func_80029DEC(u16 arg0, u16 arg1) {
-    if (!(D_800BE4E0 & arg0) && !(func_8000178C() & arg1)) {
+    if (!(gActiveFrames & arg0) && !(Rand() & arg1)) {
         return 1;
     }
     else {
@@ -1390,7 +1389,7 @@ void Actor_IncrementRgb(u16 actor_index, s16 amount) {
 }
 
 void func_8002AF7C(u16 actor_index, u16 arg1, s16 amount) {
-    if (!(D_800BE4E0 & arg1)) {
+    if (!(gActiveFrames & arg1)) {
         gActors[actor_index].colorR = 0x7F;
         gActors[actor_index].colorG = 0x7F;
         gActors[actor_index].colorB = 0x7F;
@@ -1453,13 +1452,13 @@ void func_8002B25C(u16 actor_index, s16 arg1) {
 
 void func_8002B2D0(u16 actor_index) {
     gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_UNK4;
-    gActors[actor_index].colorR = (-D_800BE4E0 & 0xF) << 3;
+    gActors[actor_index].colorR = (-gActiveFrames & 0xF) << 3;
     gActors[actor_index].colorG = gActors[actor_index].colorR;
     gActors[actor_index].colorB = gActors[actor_index].colorR;
 }
 
 void func_8002B330(u16 actor_index) {
-    if (D_800BE4E0 & 0x4) {
+    if (gActiveFrames & 0x4) {
         gActors[actor_index].colorR = func_8002B010(actor_index, gActors[actor_index].colorR, 0x40);
         gActors[actor_index].colorG = gActors[actor_index].colorR;
         gActors[actor_index].colorB = gActors[actor_index].colorR;
@@ -1472,7 +1471,7 @@ void func_8002B330(u16 actor_index) {
 }
 
 void func_8002B400(u16 actor_index) {
-    if (D_800BE4E0 & 0x4) {
+    if (gActiveFrames & 0x4) {
         gActors[actor_index].colorR = func_8002B010(actor_index, gActors[actor_index].colorR, 0x40);
         gActors[actor_index].colorG = 0;
         gActors[actor_index].colorB = 0;
@@ -1485,7 +1484,7 @@ void func_8002B400(u16 actor_index) {
 }
 
 void func_8002B4D0(u16 actor_index) {
-    if (D_800BE4E0 & 0x4) {
+    if (gActiveFrames & 0x4) {
         gActors[actor_index].colorR = 0;
         gActors[actor_index].colorG = 0;
         gActors[actor_index].colorB = func_8002B010(actor_index, gActors[actor_index].colorB, 0x40);
@@ -2032,7 +2031,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     gActors[actor_index].unk_190 = 0;
     gActors[actor_index].posX.whole = pos_x;
     gActors[actor_index].posY.whole = pos_y;
-    angle = func_8000178C();
+    angle = Rand();
     if (arg3 & 1) {
         gActors[actor_index].velocityX.raw = (COS(angle * 4) * 131072.0f);
     }
@@ -2468,7 +2467,7 @@ u16 func_8003F9E0(f32 arg0, s16 arg1, s16 arg2, s16 arg3) {
     actor_index = func_80031284(0x1F0, arg1, arg2, arg3 + 1);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
-        if (func_8000178C() & 1) {
+        if (Rand() & 1) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
         }
         gActors[actor_index].var_154 = -0xC;
