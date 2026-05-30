@@ -366,8 +366,8 @@ void func_801B9A08_7E6B58(void) {
             func_80045FA4(D_801BA63C_7E778C, 0);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BA66C_7E77BC);
-            D_80104098[0x1444] = -0x58;
-            D_80104098[0x1494] = -0x55;
+            gLifebar.posY.whole = -0x58;
+            gLifebarHead.posY.whole = -0x55;
             gDrawMidground = TRUE;
             gDrawBackground = TRUE;
             func_801B99F4_7E6B44(0x30);

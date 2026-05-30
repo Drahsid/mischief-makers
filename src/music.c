@@ -61,15 +61,10 @@ typedef struct {
 } DMAState; /* size = 0x0C */
 
 
-extern s16 gMusicVolume;
-extern u8 gSfxPlayerFlags[];
-extern u16 gSfxPlayerVolumes[];
-extern u16 gSfxSequenceIds[];
 extern u16 gAudioFadeMode;
 extern u32 gAudioUpdateCounter;
 extern u8 gAudioHeapBuffer[];
 
-extern u8 gMusicChannelFxMixes[];
 extern u16 gSfxActorIndices[];
 extern s8 gSfxPanOverrides[];
 extern u8 gAudioInitialized;
@@ -83,7 +78,6 @@ extern u8 D_800C2927[];
 extern u8 D_800C2968[];
 extern s16 D_800EF4D4;
 extern s32 D_80137794;
-extern u8 D_80104090[];
 extern UnkStruct_801069E0 D_801069E0[];
 
 extern MusicSequenceParams gMusicSequenceParams[];

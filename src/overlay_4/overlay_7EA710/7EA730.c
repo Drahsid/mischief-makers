@@ -187,8 +187,8 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D28FC &= -0x58B;
             D_800D28FC |= 4;
             D_800D2914 = 0;
-            D_80104098[5188] = 0x50;
-            D_80104098[5268] = 0x53;
+            gLifebar.posY.whole = -0x50;
+            gLifebarHead.posY.whole = -0x53;
             D_801376BC[0] = 1;
             D_801376BC[1] = 1;
             D_801376BC[2] = 1;

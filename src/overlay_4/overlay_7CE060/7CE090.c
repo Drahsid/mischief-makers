@@ -136,8 +136,8 @@ void func_801B9B08_7CE298(void) {
     if (func_80046D5C() != 0) {
         D_800D28E8++;
         D_800D28FC |= 8;
-        D_80104098[5188] = -0x58;
-        D_80104098[5268] = -0x55;
+        gLifebar.posY.whole = -0x58;
+        gLifebarHead.posY.whole = -0x55;
         gCannotPause = FALSE;
         D_800BE544 = 0;
         D_800BE548.raw = FIXED_UNIT(16.0);
@@ -176,8 +176,8 @@ void func_801B9C88_7CE418(void) {
         D_800D28E8 -= 2;
         D_800BE544 = 0;
         D_800D28FC |= 8;
-        D_80104098[5188] = -0x58;
-        D_80104098[5268] = -0x55;
+        gLifebar.posy.whole = -0x58;
+        gLifebarHead.posy.whole = -0x55;
     }
 }
 
@@ -313,8 +313,8 @@ void func_801BA868_7CEFF8(void) {
 
         case 1:
             func_801B9B08_7CE298();
-            D_80104098[5188] = -0x48;
-            D_80104098[5268] = -0x45;
+            gLifebar.posY.whole = -0x48;
+            gLifebarHead.posY.whole = -0x45;
             break;
 
         case 2:

@@ -200,8 +200,8 @@ void func_801BA774_7DD644(void) {
             if (func_80046D5C() != 0) {
                 D_800D28E8++;
                 D_800D28FC |= 8;
-                D_80104098[5188] = -0x58;
-                D_80104098[5268] = -0x55;
+                gLifebar.posY.whole = -0x58;
+                gLifebarHead.posY.whole = -0x55;
             }
             break;
 

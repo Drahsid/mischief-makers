@@ -516,8 +516,8 @@ void func_80021098(void) {
         gButtonPress = D_800CA24C | (gButtonPress & gButton_Start);
     }
     GameState_Gameplay();
-    D_80104098[0x1440] = 0;
-    D_80104098[0x1490] = 0;
+    gLifebar.flags = 0;
+    gLifebarHead.flags = 0;
     gGameState = GAMESTATE_ATTRACT;
     gGameStateSubState = prev_game_sub_state;
 }

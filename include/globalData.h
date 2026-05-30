@@ -2,6 +2,7 @@
 #define GLOBAL_DATA_H
 
 #include "common_structs.h"
+#include "actor.h"
 #include <PR/ultratypes.h>
 
 
@@ -59,10 +60,18 @@ extern u8 gMusicPlayerFlags;
 extern s16 gMusicVolume;
 extern s16 D_800EF4D4;
 extern s32 gMusicSequenceId;
-extern s32 D_800eF4DC; // unused.
+extern s32 D_800EF4DC; // unused.
 extern u8 gMusicChannelFxMixes[16];
-
+extern u8 gSfxPlayerFlags[4];
 extern Gfx* gCurrentDisplayListBase;
+extern u16 gSfxPlayerVolumes[4];
+extern u32 D_800EF500; // unknown/unused
+extern u32 D_800EF504; // unknown/unused
+extern u16 gSfxSequenceIds[4];
+extern Actor gActors[208];
+extern u8 D_80104090[4];
+extern u32 D_80104094;
+extern PortraitStruct gPortraits[66];
 
 extern u16 gSfxStopTimers[4];
 extern u8 D_8010CDF0[0x10000];

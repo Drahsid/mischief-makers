@@ -861,8 +861,8 @@ void func_801BAD9C_7DBF9C(void) {
         case 3:
             D_800D28E8++;
             D_800D28FC |= 8;
-            D_80104098[0x1444] = -0x58;
-            D_80104098[0x1494] = -0x55;
+            gLifebar.posy.whole = -0x58;
+            gLifebarHead.posy.whole = -0x55;
             D_800BE5F4.w = 5;
             gCannotPause = FALSE;
             break;
