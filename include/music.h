@@ -33,6 +33,12 @@ extern s32 D_800EF4DC; // unused.
 extern u8 gMusicChannelFxMixes[16];
 extern u8 gSfxPlayerFlags[4];
 extern u16 gSfxPlayerVolumes[4];
+extern s8 gSfxPanOverrides[];
+extern u16 gSfxSequenceIds[4];
+extern u16 gSfxActorIndices[4];
+extern u16 gSfxStopTimers[4];
+extern u8 gSfxChannelVolumes[8];
+extern u8 gSfxChannelPans[8];
 
 s32 func_80003430(u32, s16, s8);
 s32 func_80003474(u32, s16, s8);

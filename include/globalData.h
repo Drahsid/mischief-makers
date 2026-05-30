@@ -62,22 +62,17 @@ extern Gfx* gCurrentDisplayListBase;
 
 extern u32 D_800EF500; // unknown/unused
 extern u32 D_800EF504; // unknown/unused
-extern u16 gSfxSequenceIds[4];
+
 extern u8 D_80104090[4];
 extern u32 D_80104094;
 // first 64 are used for portrait transition effect. the last two are the life bar
 // and bust on the edge respectively.
 extern PortraitStruct gPortraits[66]; 
-extern s8 gSfxPanOverrides[];
 extern u32 D_801069DC; // unused
 extern UnkStruct_801069E0 D_801069E0[64]; // "static gems" on screen / loaded?
-extern u16 gSfxActorIndices[4];
 extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
-extern u16 gSfxStopTimers[4];
 extern u8 D_8010CDF0[0x10000];
-extern u8 gSfxChannelVolumes[8];
 extern u16 D_8011CDF8[144]; // indecies of ACTOR_FLAG_UNK13-flagged Actors
-extern u8 gSfxChannelPans[8];
 extern u16 D_8011CF20[144]; 
 extern u32 D_8011D040[2]; // blank space between
 extern s16 D_8011D048[144];
