@@ -24,4 +24,8 @@ typedef struct {
 } AudioBufferSampleCounts; /* size = 0x1C */
 
 
+s32 func_80003430(u32, s16, s8);
+s32 func_80003474(u32, s16, s8);
+s32 func_800036C8(u32 arg0, u16 actor_index);
+
 #endif

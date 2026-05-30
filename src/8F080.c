@@ -13,7 +13,6 @@ extern u8 D_800E961C[];
 extern u8 D_800E8C08[];
 
 extern void func_8008105C(u16 actor_index, void* arg1, void* arg2);
-extern u32 func_80029B00(s32 arg0, s32 arg1, s32 arg2);
 extern void func_80091BDC(u16 actor_index);
 
 extern s32 func_8008EDB0(u16 actor_index);

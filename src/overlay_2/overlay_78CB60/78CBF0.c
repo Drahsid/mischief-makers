@@ -63,17 +63,21 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A9440_78F730.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A9508_78F7F8.s")
+void func_801A9508_78F7F8(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A9510_78F800.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A9690_78F980.s")
+void func_801A9690_78F980(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A9698_78F988.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A96CC_78F9BC.s")
+void func_801A96CC_78F9BC(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A96D4_78F9C4.s")
+void func_801A96D4_78F9C4(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A96DC_78F9CC.s")
 
@@ -97,7 +101,9 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA2A4_790594.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA2FC_7905EC.s")
+void func_801AA2FC_7905EC(s32 arg0, s32 arg1) {
+    D_801781F8[0x9A] = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA310_790600.s")
 
@@ -111,7 +117,8 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AAB78_790E68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AAFC4_7912B4.s")
+void func_801AAFC4_7912B4(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AAFCC_7912BC.s")
 
@@ -219,11 +226,14 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AEC44_794F34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AECA0_794F90.s")
+void func_801AECA0_794F90(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AECA8_794F98.s")
+void func_801AECA8_794F98(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AECB0_794FA0.s")
+void func_801AECB0_794FA0(s32 arg0) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AECB8_794FA8.s")
 

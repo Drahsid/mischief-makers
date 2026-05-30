@@ -1,16 +1,25 @@
-#include "common.h"
+#include <PR/ultratypes.h>
 
-u32 D_801B9800_7E2A30[] = {
-    0x801B9E74,
-    0x801BA534,
-    0x801BA950,
-    0x801BB28C,
-    0x801BB85C,
-    0x801BB85C,
-    0x801BB85C,
-    0x801BB85C,
-    0x801BB85C,
-    0x801BB85C,
-    0x801BBC00,
-    0x00000000,
+typedef void (*OverlayFunc)(void);
+
+void func_801B9E74_7E2FD4(void);
+void func_801BA534_7E3694(void);
+void func_801BA950_7E3AB0(void);
+void func_801BB28C_7E43EC(void);
+void func_801BB85C_7E49BC(void);
+void func_801BBC00_7E4D60(void);
+
+OverlayFunc D_801B9800_7E2A30[] = {
+    func_801B9E74_7E2FD4,
+    func_801BA534_7E3694,
+    func_801BA950_7E3AB0,
+    func_801BB28C_7E43EC,
+    func_801BB85C_7E49BC,
+    func_801BB85C_7E49BC,
+    func_801BB85C_7E49BC,
+    func_801BB85C_7E49BC,
+    func_801BB85C_7E49BC,
+    func_801BB85C_7E49BC,
+    func_801BBC00_7E4D60,
+    NULL,
 };

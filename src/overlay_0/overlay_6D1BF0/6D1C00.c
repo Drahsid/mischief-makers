@@ -3,7 +3,6 @@
 
 
 extern s16 func_8005DEFC(void);
-extern u16 func_80028528(void);
 extern s32 func_800036C8(s32 arg0, u16 arg1);
 
 void func_80192C00_6D2700(u16 actor_index);
@@ -174,7 +173,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
                             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);
-                            temp = func_80028528();
+                            temp = Actor_RangeFindFlag2_90ToC0();
                             if (temp != 0) {
                                 ACTOR_INIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;

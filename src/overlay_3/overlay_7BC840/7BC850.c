@@ -60,7 +60,7 @@ void func_801B0A7C_7BC9CC(u16 actor_index) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16;
             gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
             gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
-            func_8002A2B0(actor_index, 0x40000);
+            Actor_Clamp_0F8_0FC(actor_index, 0x40000);
             if (gActors[actor_index].velocityX.raw > 0) {
                 gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
             }
@@ -154,7 +154,7 @@ s32 func_801B11F0_7BD140(u16 actor_index) {
     if (current_actor_index != 0) {
         do {
             current_actor_index = D_801B46F8_7C0648[index];
-            distance = func_800289CC(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
+            distance = Math_AbsS32(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
             if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) &&
                 !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_UNK9) &&
                 !(gActors[current_actor_index].flags & ACTOR_FLAG_UNK9) && (gActors[current_actor_index].posX.whole > 0) &&
