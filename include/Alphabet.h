@@ -264,5 +264,7 @@
 
 #define ALPHA_NULL 0x8FFF
 
+#define ALPHA_GINDEX(c) ( (c * 2) + 0x2d2) // get graphic index of ALPHA_* index
+
 #endif
 

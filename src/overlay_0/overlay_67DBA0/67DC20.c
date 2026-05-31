@@ -48,7 +48,6 @@ void func_80081720(u16 actor_index, void* arg1, s32 arg2);
 void func_8002ACFC(u16 actor_index, s16 arg1, s16 arg2);
 void func_8002AC7C(u16 actor_index, s16 arg1, s16 arg2);
 void func_8002AC30(u16 actor_index, s16 val);
-s32 func_800036C8(u32 arg0, u16 actor_index);
 u16 func_8003123C(void* arg0, s32 arg1, s32 arg2, s32 arg3);
 u16 func_80031284(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
 s32 func_80048C94(s32 arg0);
@@ -781,6 +780,7 @@ void func_8019911C_684C3C(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_801992AC_684DCC.s")
 
+// Migen Jr. recovers with gem from father.
 void func_80199DA8_6858C8(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
@@ -788,10 +788,10 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
             ACTOR_GFX_INIT(actor_index, D_800E164C);
-            gActors[actor_index].unk_18C = (s32)D_800D8A98;
+            gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
-            func_800036C8(0x51, actor_index);
+            func_800036C8(SFX_GEM_APPEAR, actor_index);
 
         case 1:
             gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 4);
@@ -810,7 +810,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             if (gActors[actor_index].posY.whole < gActors[0x4F].posY.whole - 0x14) {
                 gActors[actor_index].flags = 0;
                 gActors[0x30].state = 0xB0;
-                func_800036C8(0x95, actor_index);
+                func_800036C8(SFX_GEM_BLUE, actor_index);
                 D_8019E570_68A090 = 2;
             }
             break;

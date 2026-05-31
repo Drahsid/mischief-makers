@@ -1,7 +1,10 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
-#include "common.h"
+#include <PR/ultratypes.h>
+#include <ultra64.h>
+#include "BGM.h"
+#include "SFX.h"
 
 #define AUDIO_CHANNEL_COUNT 16
 
@@ -40,8 +43,30 @@ extern u16 gSfxStopTimers[4];
 extern u8 gSfxChannelVolumes[8];
 extern u8 gSfxChannelPans[8];
 
+
+s32 func_80003020(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
+void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
+void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
+void Sound_PlayMusic(u32 sequence_id);
+s32 Sound_PlaySfx(u32 sound_id);
+s32 func_800032C4(u32 arg0);
+void func_80003AD4(u8 arg0);
+void func_80003D64(u8 arg0);
+void func_8003A958(void);
+void func_80003A38(void);
+void func_80003A64(void);
+void func_800040A0(void);
+
 s32 func_80003430(u32, s16, s8);
 s32 func_80003474(u32, s16, s8);
 s32 func_800036C8(u32 arg0, u16 actor_index);
+extern void Sound_InitPlayers(void);
+extern void Sound_SetEventMesg(void);
+extern void Sound_Update(void);
+extern void Sound_NextBuffer(void);
+extern void Sound_StartTask(void);
+extern void Sound_PlayMusic(u32 sequence_id);
+extern void Sound_StartFade(u16 mode, u16 duration);
+
 
 #endif

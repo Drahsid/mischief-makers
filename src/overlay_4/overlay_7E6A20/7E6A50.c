@@ -342,7 +342,7 @@ void func_801B9A08_7E6B58(void) {
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BA65C_7E77AC);
             func_80046A9C();
-            Sound_PlayMusic(3);
+            Sound_PlayMusic(BGM_BONO);
 
         case 0x201:
             if (func_80046D5C() != 0) {

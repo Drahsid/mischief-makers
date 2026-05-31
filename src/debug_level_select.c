@@ -196,7 +196,7 @@ void GameState_DebugStageSelect(void) {
                 if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == 0xFF) {
                     gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = DEBUG_STAGE_SELECT_ROW_COUNT - 1;
                 }
-                func_80003380(0x22);
+                func_80003380(SFX_MENU_BLIP);
             }
 
             if (Input_CheckButtonRepeat(gButton_DDown, &gActors[DEBUG_STAGE_SELECT_REPEAT_DOWN_ACTOR_INDEX].colorB) != 0) {
@@ -204,7 +204,7 @@ void GameState_DebugStageSelect(void) {
                 if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == DEBUG_STAGE_SELECT_ROW_COUNT) {
                     gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = 0;
                 }
-                func_80003380(0x22);
+                func_80003380(SFX_MENU_BLIP);
             }
 
             if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX].colorB) != 0) {
@@ -212,7 +212,7 @@ void GameState_DebugStageSelect(void) {
                 selected_value = *selected_entry;
                 if (selected_value > 0) {
                     *selected_entry = selected_value - 1;
-                    func_80003380(0x22);
+                    func_80003380(SFX_MENU_BLIP);
                 }
             }
 
@@ -222,7 +222,7 @@ void GameState_DebugStageSelect(void) {
                 if (selected_value <
                     (gStageRowCounts[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] - 1)) {
                     *selected_entry = selected_value + 1;
-                    func_80003380(0x22);
+                    func_80003380(SFX_MENU_BLIP);
                 }
             }
 

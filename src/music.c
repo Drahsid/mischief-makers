@@ -137,16 +137,7 @@ extern s32 gAudioMinFrameSize;
 extern s16* gAudioOutputBufferPhysical;
 
 extern void __assert(const char* expression, const char* file, s32 line);
-s32 func_80003020(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
-void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
-void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
-void Sound_PlayMusic(u32 sequence_id);
-s32 func_800032C4(u32 arg0);
-void func_80003AD4(u8 arg0);
-void func_80003D64(u8 arg0);
-void func_80003A38(void);
-void func_80003A64(void);
-void func_800040A0(void);
+
 
 // rodata
 const char D_800EAC30[] = "SVOICE1L";
@@ -795,6 +786,7 @@ s32 func_80003020(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5) {
     return -1;
 }
 
+// stop playing sound of ID(arg0)
 s32 func_800032C4(u32 arg0) {
     u8 index;
 
@@ -808,79 +800,89 @@ s32 func_800032C4(u32 arg0) {
     return -1;
 }
 
+// play sound of ID(arg0) with default configuration
 s32 Sound_PlaySfx(u32 arg0) {
     return func_80003020(arg0, -1, -1, 0x81, 0xFF, 0);
 }
 
+// play sound of ID(arg0)
 s32 func_80003380(u32 arg0) {
     return func_80003020(arg0, -1, -1, 0x91, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with volume of (arg1)
 s32 func_800033B4(u32 arg0, s16 arg1) {
     return func_80003020(arg0, arg1, -1, 0x81, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with pan of (arg1)
 s32 func_800033F0(u32 arg0, s8 arg1) {
     return func_80003020(arg0, -1, arg1, 0x81, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with volume of (arg1) and pan of (arg2)
 s32 func_80003430(u32 arg0, s16 arg1, s8 arg2) {
     return func_80003020(arg0, arg1, arg2, 0x81, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with volume of (arg1) and pan of (arg2)
 s32 func_80003474(u32 arg0, s16 arg1, s8 arg2) {
     return func_80003020(arg0, arg1, arg2, 0x91, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with volume of (arg1) and pan of (arg2)
 s32 func_800034B8(u32 arg0, s16 arg1, s8 arg2) {
     return func_80003020(arg0, arg1, arg2, 0x92, 0xFF, 0);
 }
 
+// play sound of ID(arg0) with volume of (arg1) and pan of (arg2)
 s32 func_800034FC(u32 arg0, s16 arg1, s8 arg2) {
     return func_80003020(arg0, arg1, arg2, 0x93, 0xFF, 0);
 }
 
-void func_80003540(s16 arg0, s16 arg1, s8* arg2, s16* arg3) {
+// calculate x-postion pan and y-postion modification of sound.
+void func_80003540(s16 xIn, s16 yIn, s8* xOut, s16* yOut) {
     s32 temp_v0;
     s32 temp_v1;
     s16 temp;
 
-    if (arg0 < -0x80) {
-        *arg2 = 0;
+    if (xIn < -0x80) {
+        *xOut = 0;
     }
-    else if (arg0 >= 0x80) {
-        *arg2 = 0x7F;
+    else if (xIn >= 0x80) {
+        *xOut = 0x7F;
     }
     else {
-        *arg2 = (arg0 / 2) + 0x40;
+        *xOut = (xIn / 2) + 0x40;
     }
 
-    if (arg0 > 0) {
-        temp_v0 = arg0;
+    if (xIn > 0) {
+        temp_v0 = xIn;
     }
     else {
-        temp_v0 = -arg0;
+        temp_v0 = -xIn;
     }
 
-    if (arg1 > 0) {
-        temp_v1 = arg1;
+    if (yIn > 0) {
+        temp_v1 = yIn;
     }
     else {
-        temp_v1 = -arg1;
+        temp_v1 = -yIn;
     }
 
     temp = temp_v1 + temp_v0;
     if (temp < 0x100) {
-        *arg3 = 0x100;
+        *yOut = 0x100;
     }
     else if (temp < 0x200) {
-        *arg3 = 0x200 - temp;
+        *yOut = 0x200 - temp;
     }
     else {
-        *arg3 = 0;
+        *yOut = 0;
     }
 }
 
+// pan sound(arg0) based on x-position (and modify sound based on y-position) of gActors[actor_index]
 s32 func_800035F8(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -903,6 +905,7 @@ s32 func_800035F8(u32 arg0, u16 actor_index) {
     }
 }
 
+// pan sound(arg0) based on x-position of gActors[actor_index] 
 s32 func_800036C8(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -921,6 +924,7 @@ s32 func_800036C8(u32 arg0, u16 actor_index) {
     }
 }
 
+// pan sound(arg0) based on x-position of gActors[actor_index] 
 s32 func_80003778(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -939,6 +943,7 @@ s32 func_80003778(u32 arg0, u16 actor_index) {
     }
 }
 
+// play sound(arg0) and base pan on x-position of D_801069E0[arg1].
 s32 func_80003828(u32 arg0, u16 arg1) {
     s8 temp_a;
     s16 temp_b;
@@ -957,6 +962,7 @@ s32 func_80003828(u32 arg0, u16 arg1) {
     }
 }
 
+// pan sound of ID(arg0) based on x-position of gActors[actor_index] 
 s32 func_800038C8(u32 arg0, u16 actor_index, u16 arg2) {
     s8 temp_a;
     s16 temp_b;
@@ -975,6 +981,7 @@ s32 func_800038C8(u32 arg0, u16 actor_index, u16 arg2) {
     }
 }
 
+// play sound of ID(arg0) while pan is continually modified by x-position of gActors[(arg1)]
 void func_80003980(u32 arg0, u16 arg1) {
     func_80003020(arg0, -1, -1, 0xC1, arg1, 0);
 }
@@ -988,16 +995,19 @@ s32 func_800039B8(u32 arg0, s32 arg1, s32 arg2) {
     return index;
 }
 
+// stop both music and sounds
 void func_80003A10(void) {
     func_80003A38();
     func_80003A64();
 }
 
+// stop the music.
 void func_80003A38(void) {
     alSeqpStop((ALSeqPlayer*)gMainSeqPlayer);
     gMusicPlayerFlags = 0;
 }
 
+// stop all SFX
 void func_80003A64(void) {
     u8 index;
 
@@ -1007,6 +1017,8 @@ void func_80003A64(void) {
     }
 }
 
+// adjust panand volume of sound based on x-position
+// of gActors[gSfxActorIndices[arg0]]
 void func_80003AD4(u8 arg0) {
     s8 pan;
     u16 current_index;

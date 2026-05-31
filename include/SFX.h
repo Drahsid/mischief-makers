@@ -72,6 +72,9 @@
 
 #define SFX_MENU_BLIP  0x0022
 #define SFX_MENU_DING  0x0023
+
+#define SFX_FALLWHISTLE 0x003E
+
 #define SFX_STAGE_OPEN 0x00D2
 
 

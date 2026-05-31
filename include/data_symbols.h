@@ -12,7 +12,7 @@ extern u16 D_800D2908;
 extern s32 D_800D2928;
 extern s32 D_800D2938;
 extern s16 D_800D294C;
-extern u32 D_800D8588[];
+extern u16 D_800D8588[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern u8 D_801376BC[];
@@ -32,7 +32,7 @@ extern u16 D_800D2954;
 extern u16 D_800D2960;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
-extern u32 D_800D8A98[];
+extern u16 D_800D8A98[];
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
 extern u16 D_800E1380[]; // default graphics list. contains {0,0}

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "SFX.h"
 
 
 extern ActorFunc D_800D3D20[];
@@ -197,7 +198,7 @@ void func_80048408(u16 actor_index) {
         case 1:
             if (((s8*)&gActors[actor_index].unk_170)[0] == 0) {
                 if (((s8*)&gActors[actor_index].unk_170)[1] == 5) {
-                    Sound_PlaySfx(0xCE);
+                    Sound_PlaySfx(SFX_MARINA_YAY);
                 }
             }
 

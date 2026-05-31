@@ -1,5 +1,4 @@
 #include "common.h"
-#include "music.h"
 #include "actor.h"
 #include "debug_level_select.h"
 
@@ -1622,7 +1621,7 @@ void func_801BA690_7D4E80(void) {
                 func_80026E60(0xF);
                 func_8002601C(0x10);
                 func_800260C8(0x1D);
-                Sound_PlayMusic(0x1A);
+                Sound_PlayMusic(BGM_BROKEN);
                 D_800D28E8++;
             }
             gCannotPause = TRUE;
@@ -2127,7 +2126,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 4:
-            Sound_PlayMusic(0x1D);
+            Sound_PlayMusic(BGM_YUJYA);
             func_8005DF5C(2);
             func_8005DF5C(3);
             func_8005DF5C(4);
@@ -2155,7 +2154,7 @@ void func_801BB768_7D5F58(void) {
         case 21:
             if (gAudioFadeMode != 0x81) {
                 D_800BE5F4.w = 0x14;
-                Sound_PlayMusic(0x1E);
+                Sound_PlayMusic(BGM_GET);
                 D_800D28E8 = 0x16;
             }
             break;
@@ -2182,8 +2181,8 @@ void func_801BB768_7D5F58(void) {
 
         case 0x1000:
             Sound_PlaySfx(0xBA);
-            if (gMusicSequenceId != 0x1D) {
-                Sound_PlayMusic(0x1D);
+            if (gMusicSequenceId != BGM_YUJYA) {
+                Sound_PlayMusic(BGM_YUJYA);
             }
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
             D_800BE5F4.w = 7;

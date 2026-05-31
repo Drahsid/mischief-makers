@@ -25,18 +25,19 @@ extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 extern u16 D_80137450;
 extern u32 D_80137458;
 extern u16 D_80178136;
+extern ALCSPlayer* gSfxSeqPlayers[];
 
 extern Unk800D1788 D_800D1788[];
-extern u8 D_800D17FC[];
+extern u16 D_800D17FC[]; // text palette
 extern s8 D_800D2204[]; // LUT in atan2
 extern s8 D_800D2228[]; // entries used in atan2
 extern s8 D_800D222C[]; // entries used in atan2
 extern u16 D_800D2230[];
 extern u16 D_800D36DC[];
 extern u16 D_800D36FC[]; // list of actor indexes used in Actor_UpdateNearest
-extern u8 D_800DCE7C[]; // guess
-extern u8 D_800DD07C[]; // guess
-extern u8 D_800DD27C[]; // guess
+extern u16 D_800DCE7C[]; // guess
+extern u16 D_800DD07C[]; // guess
+extern u16 D_800DD27C[]; // guess
 
 // forward declarations
 void Actor_Clamp_0F8(u16 actor_index, s32 max_val);
@@ -106,7 +107,7 @@ u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5) {
             actor_index++;
         }
         else if (ch != ' ') {
-            func_80027644(actor_index, D_800D16D0[ch - ' '] * 2 + 0x2D2, x, y, z, arg5);
+            func_80027644(actor_index, ALPHA_GINDEX(D_800D16D0[ch - ' ']), x, y, z, arg5);
             actor_index++;
         }
         str++;
@@ -124,8 +125,8 @@ u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
         num -= 10;
         tens++;
     }
-    func_80027644(actor_index + 0, (tens * 2) + 0x2D2, x, y, z, arg5);
-    func_80027644(actor_index + 1, (num * 2) + 0x2D2, x + 9, y, z, arg5);
+    func_80027644(actor_index + 0, ALPHA_GINDEX(tens), x, y, z, arg5);
+    func_80027644(actor_index + 1, ALPHA_GINDEX(num), x + 9, y, z, arg5);
     return actor_index + 2;
 }
 
@@ -146,9 +147,9 @@ u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
         tens++;
     }
     index = actor_index;
-    func_80027644(index, (hundos * 2) + 0x2D2, x, y, z, arg5);
-    func_80027644(index + 1, (tens * 2) + 0x2D2, x + 9, y, z, arg5);
-    func_80027644(index + 2, (num * 2) + 0x2D2, x + 18, y, z, arg5);
+    func_80027644(index, ALPHA_GINDEX(hundos), x, y, z, arg5);
+    func_80027644(index + 1, ALPHA_GINDEX(tens), x + 9, y, z, arg5);
+    func_80027644(index + 2, ALPHA_GINDEX(num), x + 18, y, z, arg5);
     return index + 3;
 }
 
@@ -189,7 +190,7 @@ u16 func_80027B28(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = (*str * 2) + 0x2D2;
+            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
             actor_index++;
             x += func_80027A88(str);
         }
@@ -206,7 +207,7 @@ u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = (*str * 2) + 0x2D2;
+            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
             if (red | green | blue) {
                 gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
                 gActors[actor_index].colorR = red;
@@ -234,7 +235,7 @@ u16 func_80027D94(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
             }
             gActors[actor_index].scaleX = scale_x;
             gActors[actor_index].scaleY = scale_y;
-            gActors[actor_index].graphicIndex = (*str * 2) + 0x2D2;
+            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
             if (red | green | blue) {
                 gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
                 gActors[actor_index].colorR = red;
@@ -256,7 +257,7 @@ u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
             gActors[actor_index].unk_18C = (s32)D_800D17FC;
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = (*str * 2) + 0x2D2;
+            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
             actor_index++;
             x += func_80027A88(str);
         }
@@ -273,7 +274,7 @@ u16 func_80028150(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = (*str * 2) + 0x2D2;
+            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
         }
         else {
             gActors[actor_index].flags = 0;
@@ -1925,25 +1926,25 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
         break;
     case 0x300E:
         gActors[actor_index].unk_0D8 = 2;
-        if (gActors[actor_index].unk_18C == (s32)D_800DCE7C) {
+        if (gActors[actor_index].palette_18C == D_800DCE7C) {
             gActors[actor_index].unk_0D8 = 6;
         }
-        else if (gActors[actor_index].unk_18C == (s32)D_800DD07C) {
+        else if (gActors[actor_index].palette_18C == D_800DD07C) {
             gActors[actor_index].unk_0D8 = 0xA;
         }
-        else if (gActors[actor_index].unk_18C == (s32)D_800DD27C) {
+        else if (gActors[actor_index].palette_18C == D_800DD27C) {
             gActors[actor_index].unk_0D8 = 0xE;
         }
         break;
     case 0x3010:
         gActors[actor_index].unk_0D8 = 4;
-        if (gActors[actor_index].unk_18C == (s32)D_800DCE7C) {
+        if (gActors[actor_index].palette_18C == D_800DCE7C) {
             gActors[actor_index].unk_0D8 = 8;
         }
-        else if (gActors[actor_index].unk_18C == (s32)D_800DD07C) {
+        else if (gActors[actor_index].palette_18C == D_800DD07C) {
             gActors[actor_index].unk_0D8 = 0xC;
         }
-        else if (gActors[actor_index].unk_18C == (s32)D_800DD27C) {
+        else if (gActors[actor_index].palette_18C == D_800DD27C) {
             gActors[actor_index].unk_0D8 = 0x10;
         }
         break;
@@ -2044,7 +2045,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     index = func_8003123C(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x11);
     if (index != 0) {
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-        gActors[index].unk_18C = (s32) D_800D84E8;
+        gActors[index].palette_18C = D_800D84E8;
         gActors[index].graphicIndex = 0x168;
         gActors[index].var_150 = 0x800000;
         gActors[index].var_154 = -15;
@@ -2059,7 +2060,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
         gActors[index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[index].var_154 = 16;
         gActors[index].unk_164 = -2;
-        gActors[index].unk_17C = (s32) func_80030B0C;
+        gActors[index].pfn_17C = func_80030B0C;
         gActors[index].unk_104 = 0x1E;
         gActors[index].scaleX = 1.5f;
         gActors[index].scaleY = 1.5f;
@@ -2116,9 +2117,10 @@ void func_8002ED34(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002F420.s")
 
+// cap red gems collected at 9999
 void func_8002F6AC(void) {
-    if (D_80178136 >= 0x270F) {
-        D_80178136 = 0x270F;
+    if (D_80178136 >= 9999) {
+        D_80178136 = 9999;
     }
 }
 
@@ -2450,7 +2452,7 @@ u16 func_8003F9E0(f32 arg0, s16 arg1, s16 arg2, s16 arg3) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
         }
         gActors[actor_index].var_154 = -0xC;
-        gActors[actor_index].unk_18C = 0x8022D4E8;
+        gActors[actor_index].palette_18C = (void*)0x8022D4E8;
         Actor_SetColorRgb(actor_index, 0x30);
         gActors[actor_index].scaleX = arg0 * 0.5;
         gActors[actor_index].scaleY = arg0 * 0.5;

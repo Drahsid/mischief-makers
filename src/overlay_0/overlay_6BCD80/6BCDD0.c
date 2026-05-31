@@ -56,7 +56,6 @@ extern u32 D_801A55AC_6D027C[];
 extern u32 D_801A5E68_6D0B38[];
 extern u32 D_801A5F38_6D0C08[];
 extern u32 D_801A68EC_6D15BC[];
-extern s32 func_800032C4(u32 arg0);
 extern s32 Math_Atan2(s32 arg0, s32 arg1);
 
 void func_801932DC_6BDFAC(u16 actor_index);
@@ -889,7 +888,7 @@ void func_8019D9D8_6C86A8(u16 arg0) {
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-    gActors[0xC1].unk_18C = (s32)D_800D8588;
+    gActors[0xC1].palette_18C = D_800D8588;
     gActors[0xC1].colorA = 0;
     gActors[0xC1].var_150 = 0;
     gActors[0xC1].var_154 = arg0;
@@ -901,7 +900,7 @@ void func_8019DA3C_6C870C(u16 arg0, u16 arg1) {
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-    gActors[0xC1].unk_18C = (s32)D_800D8588;
+    gActors[0xC1].palette_18C = D_800D8588;
     gActors[0xC1].colorA = 0;
     gActors[0xC1].var_150 = 0;
     gActors[0xC1].var_154 = arg1;

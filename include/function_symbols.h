@@ -5,15 +5,6 @@
 
 extern int sprintf(char* str, const char* fmt, ...);
 
-extern void Sound_InitPlayers(void);
-extern void Sound_SetEventMesg(void);
-extern void Sound_Update(void);
-extern void Sound_NextBuffer(void);
-extern void Sound_StartTask(void);
-extern void Sound_PlayMusic(u32 sequence_id);
-extern s32 Sound_PlaySfx(u32 sound_id);
-extern void Sound_StartFade(u16 mode, u16 duration);
-
 extern u16 Rand(void);
 extern void func_80012288(void);
 extern u8 func_80012AB4(s16 arg0, s16 arg1);

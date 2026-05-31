@@ -35,7 +35,7 @@ typedef struct {
     /* 0x94 */ u8 alpha;
     /* 0x95 */ u8 align[3];
     /* 0x98 */ u16* palette; // used if PORTRAIT_FLAG_PALETTE is set
-    /* 0x9C */ u32 unk9c; // unused
+    /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
 #define gLifebar gPortraits[0x40]// lifebar uses PortraitStruct

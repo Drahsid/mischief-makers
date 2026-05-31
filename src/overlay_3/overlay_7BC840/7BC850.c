@@ -10,7 +10,6 @@ extern s8 D_801B4B61_7C0AB1;
 extern u16 D_801B46F8_7C0648[];
 
 extern void func_800339BC(s32 arg0, s32 arg1, s32 arg2, u16 arg3);
-extern s32 func_800036C8(u32 arg0, u16 actor_index);
 
 void func_801B0900_7BC850(u16 actor_index) {
     gActors[actor_index].flags &= ~ACTOR_FLAG_UNK11;

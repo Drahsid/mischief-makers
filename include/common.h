@@ -1,8 +1,7 @@
 #ifndef COMMON_INCLUDE_H
 #define COMMON_INCLUDE_H
 
-#include <PR/ultratypes.h>
-#include <ultra64.h>
+#include "music.h"
 #include "inttypes.h"
 #include "common_structs.h"
 #include "globalData.h"

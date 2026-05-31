@@ -426,7 +426,7 @@ void func_80020844(void) {
     for (index = 0; index < 4; index++) {
         gSfxPlayerVolumes[index] = D_801781C0[index];
     }
-    Sound_PlaySfx(0xCB);
+    Sound_PlaySfx(SFX_MARINA_YELL2);
     
     for (jndex = 204; jndex < 208; jndex++) {
         gActors[jndex].flags = 0;

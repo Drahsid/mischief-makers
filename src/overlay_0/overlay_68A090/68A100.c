@@ -3,6 +3,8 @@
 #undef func_80031284
 #include "actor.h"
 
+// overlay code used in "Sasqutach Beta"
+
 extern u16 D_801A80DE_6A00DE;
 extern s16 D_801A80EE_6A00EE;
 extern s16 D_801A80F0_6A00F0;
@@ -36,7 +38,7 @@ void func_801922A0_68A2A0(s32 arg0) {
     gActors[0xC1].posX.whole = 0;
     gActors[0xC1].posY.whole = 0;
     gActors[0xC1].posZ.whole = 0x80;
-    gActors[0xC1].unk_18C = (s32)D_800D8588;
+    gActors[0xC1].palette_18C = D_800D8588;
     gActors[0xC1].scaleX = 20.0f;
     gActors[0xC1].scaleY = 20.0f;
 }

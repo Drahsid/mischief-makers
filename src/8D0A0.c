@@ -7,10 +7,9 @@ extern u32 D_800D28FC;
 
 extern u8 D_800D44F4[];
 extern u8 D_800D4518[];
-extern u8 D_800D46A8[];
+extern u16 D_800D46A8[];
 extern u8 D_800D4958[];
 
-extern s32 func_800032C4(u32 arg0);
 extern s32 func_8008CC00(void);
 extern void func_8008CDC4(u16 actor_index, u16 arg1);
 extern void func_8008CFE4(u16 actor_index);
@@ -275,11 +274,11 @@ void func_8008E3C0(u16 actor_index) {
     if (gActors[actor_index].state == 0x10) {
         D_800BE5F4.w = 4;
         gActors[actor_index].state = 0x30;
-        gActors[actor_index].unk_18C = (s32)D_800D46A8;
+        gActors[actor_index].palette_18C = D_800D46A8;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
         gActors[actor_index].unk_118 = 1.0f;
-        func_800032C4(0xB5);
-        func_800032C4(0xB4);
-        Sound_PlaySfx(0xCD);
+        func_800032C4(SFX_MARINA_OW1);
+        func_800032C4(SFX_MARINA_YELL1);
+        Sound_PlaySfx(SFX_MARINA_OHNO);
     }
 }

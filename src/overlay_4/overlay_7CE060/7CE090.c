@@ -10,7 +10,6 @@ extern void func_80064AA0(s32 arg0, void* arg1);
 
 extern s16 D_800D28F8;
 
-extern void func_800032C4(u32 arg0);
 
 extern u32 D_801BBC00_7D0390[];
 extern u32 D_801BBC2C_7D03BC[];
