@@ -43,7 +43,6 @@ extern u32 D_801BEC4C_7E1B1C[];
 extern void func_80003A38(void);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
-extern s16 func_8005DEFC(void);
 extern s16 D_800D28F8;
 extern s32 D_800D2934;
 extern u16 D_800D5824;

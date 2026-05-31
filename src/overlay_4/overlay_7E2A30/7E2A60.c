@@ -23,7 +23,7 @@ extern u32 D_801BCFB0_7E6110[];
 extern u32 D_801BD23C_7E639C[];
 extern u32 D_801BCF74_7E60D4[];
 extern u32 D_801BD4B4_7E6614[];
-extern u32 D_801BD4D4_7E6634[];
+extern u16 D_801BD4D4_7E6634[];
 extern u32 D_801BD558_7E66B8[];
 extern u32 D_801BD568_7E66C8[];
 extern u32 D_801BD578_7E66D8[];
@@ -38,7 +38,7 @@ extern u32 D_80137458;
 extern s32 func_8003FF68(s32 arg0, f32 arg1);
 extern s32 func_800036C8(u32 arg0, u16 actor_index);
 extern void func_8002F2A8(s32 arg0);
-extern s32 func_8005DEFC(void);
+extern void func_80034D80(u16 actor_index, u16* vals); // BUG: incorrect prototype!
 extern void func_80064AA0(s32 arg0, void* arg1);
 
 void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2);

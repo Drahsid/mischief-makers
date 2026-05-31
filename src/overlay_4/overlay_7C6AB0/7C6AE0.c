@@ -92,7 +92,6 @@ extern void func_80045544(s32 arg0, s32 arg1);
 extern void func_80045610(s32 arg0, s32 arg1);
 extern void func_80043D30(void* arg0);
 extern void func_800472D4(void);
-extern s32 func_8005DEFC(void);
 extern s32 func_800032C4(u32 arg0);
 extern void func_80025EC4(u16 index);
 extern void func_801BB6AC_7C888C(u16 arg0);

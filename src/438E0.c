@@ -61,7 +61,6 @@ extern u16 D_801782C2;
 
 extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern void func_800472D4(void);
-extern s16 func_8005DEFC(void);
 extern void func_80047994(void);
 
 void func_80043D04(ActorSpawnRecord* spawn);

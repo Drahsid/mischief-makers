@@ -2,7 +2,6 @@
 #include "actor.h"
 
 
-extern s16 func_8005DEFC(void);
 extern s32 func_800036C8(s32 arg0, u16 arg1);
 
 void func_80192C00_6D2700(u16 actor_index);

@@ -109,7 +109,6 @@ extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
 extern u8 func_8005C870(u8);
 extern void func_8005C8A4(void);
-extern s16 func_8005DEFC(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
 extern void func_800836A0(s32, s32, s32*, s32); // guess on types
