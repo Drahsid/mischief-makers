@@ -16,12 +16,12 @@ typedef struct {
 } GfxData; /* sizeof = 0x6180 */
 
 // used by PortraitStruct->flags
-typedef enum{
+typedef enum {
     PORTRAIT_FLAG_SCALE = (1U << 0U),
     PORTRAIT_FLAG_UNK1 = (1U << 1U),
     PORTRAIT_FLAG_PALETTE = (1U << 9U),
     PORTRAIT_FLAG_UNK14 = (1U << 14U)
-}PortraitFlags;
+} PortraitFlags;
 
 // used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
@@ -38,8 +38,8 @@ typedef struct {
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
-#define gLifebar gPortraits[0x40]// lifebar uses PortraitStruct
-#define gLifebarHead gPortraits[0x41]// head at edge of lifebar uses PortraitStruct
+#define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
+#define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
 
 // related to "static" gems in stage
 typedef struct {
@@ -89,8 +89,8 @@ typedef struct {
 
 // D_800BE5F4 is treated as both word and 4 bytes.
 typedef union {
-    u32 w;
-    s32 ws; // sometimes only matches as signed word.
+    u32 unk_00_u32;
+    s32 unk_00_s32; // sometimes only matches as signed word.
     struct {
         u8 unk_00;
         u8 unk_01;

@@ -91,7 +91,7 @@ void func_801B9900_7EA3D0(void) {
             D_800D28E8 = D_800D28E8 + 1;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
-            D_800BE5F4.w = 7;
+            D_800BE5F4.unk_00_u32 = 7;
             D_801373E0.unk_78 |= 1;
             gCannotPause = TRUE;
             break;
@@ -107,7 +107,7 @@ void func_801B9900_7EA3D0(void) {
             D_800D28E8 = 0x1001;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
-            D_800BE5F4.w = 7;
+            D_800BE5F4.unk_00_u32 = 7;
             D_801373E0.unk_78 |= 1;
             break;
 

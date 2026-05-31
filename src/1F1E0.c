@@ -56,7 +56,7 @@ extern u16 D_801781CE;
 extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
-extern u16 D_801781DC; // when gDebugThrottle>1, this is used to store button input between ticks
+extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
 extern u16 D_801781E0;
 extern u16 D_801782B8;
 
@@ -71,7 +71,6 @@ extern void func_80014C44(void);
 extern void func_80016CB4(void);
 extern void func_80016D94(void);
 extern void func_8001751C(void);
-extern u64 YellowGem_GetFlag(u16);
 extern void func_8001DE30(void);
 extern void func_8001FF30(void);
 extern void func_8001FF50(void);
@@ -179,7 +178,7 @@ void func_8001F88C(void) {
 
     if (!(D_80137458 & 0x10)) {
         for (index = 0, D_800BE4D0 = 0, D_800BE4D4 = 0; index < 144; index++) {
-            if (gActors[index].flags & ACTOR_FLAG_UNK18) {
+            if (gActors[index].flags & ACTOR_FLAG_PLATFORM1) {
                 D_8011CF20[D_800BE4D0] = index;
                 D_8011D170[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX1;
                 D_8011D3D0[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX0;
@@ -187,7 +186,7 @@ void func_8001F88C(void) {
                 D_8011D850[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY1;
                 D_800BE4D0++;
             }
-            if (gActors[index].flags & ACTOR_FLAG_UNK13) {
+            if (gActors[index].flags & ACTOR_FLAG_PLATFORM0) {
                 D_8011CDF8[D_800BE4D4] = index;
                 D_8011D048[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX1;
                 D_8011D290[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX0;
@@ -277,6 +276,7 @@ void func_8001FEB0(void) {
     }
 }
 
+// stubbed function run when bit in gDebugBitfield is set
 void func_8001FF28(void) {
 }
 
@@ -315,7 +315,7 @@ void func_80020024(void) {
         D_801781E0++;
     }
     func_800122B0();
-    if (gDebugBitfield & DEBUG_THROTTLE) {
+    if (gDebugBitfield & DEBUGFLAG_THROTTLE) {
         if ((gButtonPress & gButton_LTrig) && (gDebugThrottle != 1)) {
             gDebugThrottle--;
             D_801781DC = 0;
@@ -359,7 +359,7 @@ void func_80020024(void) {
         func_80047CCC();
     }
     func_80047C98();
-    if (gDebugBitfield & DEBUG_SFXDATA) {
+    if (gDebugBitfield & DEBUGFLAG_SFXDATA) {
         for (index = 0; index < 4; index++) {
             func_80083C54(gSfxPlayerFlags[index], -144, 60 - 32 * index);
             func_80083A74(gSfxSequenceIds[index] - 33, -144, 48 - 32 * index);
@@ -608,14 +608,17 @@ void func_80021620(void) {
     }
 }
 
+// stubbed function run when bit in gDebugBitfield is set
 void func_80021658(void) {
 }
 
+// stubbed function run when bit in gDebugBitfield is set
 void func_80021660(void) {
 }
 
 void func_80021668(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
+// stubbed function run when bit in gDebugBitfield is set
 void func_8002167C(void) {
 }

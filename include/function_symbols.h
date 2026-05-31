@@ -147,4 +147,8 @@ extern void func_80083E74(void);
 
 extern void func_8005CA34(s32, s32);
 
+void YellowGem_SetFlag(void);
+
+u64 YellowGem_GetFlag(u16 stage);
+
 #endif

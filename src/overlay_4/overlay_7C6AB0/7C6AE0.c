@@ -39,7 +39,7 @@ void func_801B99B4_7C6B94(s16* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_4/overlay_7C6AB0/7C6AE0/func_801BA38C_7C756C.s")
 
 void func_801BA694_7C7874(void) {
-    gActors[0x8C].graphicFlags |= 0x10;
+    gActors[0x8C].graphicFlags |= ACTOR_GFLAG_UNK4;
     gActors[0x8C].colorB = 0x58;\
     gActors[0x8C].colorG = 0x70;\
     gActors[0x8C].colorR = 0x30;
@@ -51,7 +51,7 @@ void func_801BA6C4_7C78A4(void) {
             func_801B99B4_7C6B94(D_801BC7A8_7C9988);
             D_800D28E8++;
             func_80045FA4(D_801BE3EC_7CB5CC, (s32)D_801BE3FC_7CB5DC);
-            D_800BE5F4.ws = 8;
+            D_800BE5F4.unk_00_u32 = 8;
             Actor_LoadSpawnTable(D_801BC620_7C9800);
             Actor_LoadSpawnTable(D_801BE98C_7CBB6C);
             func_801BA694_7C7874();

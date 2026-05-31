@@ -255,7 +255,7 @@ u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-            gActors[actor_index].palette_18C = D_800D17FC;
+            gActors[actor_index].unk_18C = (s32)D_800D17FC;
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
             actor_index++;
@@ -291,7 +291,7 @@ void func_80028260(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue) {
     if ((arg0 == 0) || (arg0 == 1) || (arg0 == 2)) {
         sp4 = (u16*)0x80380400;
     }
-    sp4[arg1] =  GPACK_RGBA5551(red,green,blue,1);
+    sp4[arg1] =  GPACK_RGBA5551(red, green, blue, 1);
 }
 
 // file break - above is last text-related function
@@ -399,9 +399,10 @@ void Actor_ClearRange_C0ToC7(void) {
     Actor_ClearRange(0xC0, 0xC7);
 }
 
+// unset all portrait structs (except lifebar and bust)
 void func_800286C8(void) {
     u16 index;
-    for (index = 0; index < (u16)(ARRAYLENGTH(gPortraits)-2); index++) {
+    for (index = 0; index < (u16)(ARRAYLENGTH(gPortraits) - 2); index++) {
         gPortraits[index].flags = 0;
     }
 }

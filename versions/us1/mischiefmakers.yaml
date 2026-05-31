@@ -424,7 +424,7 @@ segments:
       - { start: 0xEF610, type: databin, name: rsp/gspFast3DData, linker_section_order: .rodata }
       - { start: 0xEFE10, type: databin, name: rsp/aspMainData, linker_section_order: .rodata }
       # bss
-      - { name: globals, type: bss, vram: 0x800EF4D0 } # bss start
+      - { name: globals, type: .bss, vram: 0x800EF4D0 } # bss start
       - { name: bss_80122670, type: bss, vram: 0x80122670 } # may be more thread stacks?
       - { name: boot, type: .bss, vram: 0x80123670 }
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }

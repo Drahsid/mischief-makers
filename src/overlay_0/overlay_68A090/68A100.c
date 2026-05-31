@@ -313,7 +313,7 @@ void func_80196F98_68EF98(s32 arg0) {
     func_8002AC30(0x3C, 0x12);
     func_80196F48_68EF48(0x38);
     func_8002AC30(0x38, 0x12);
-    gActors[0x38].flags &= ~0x1000;
+    gActors[0x38].flags &= ~ACTOR_FLAG_UNK12;
     func_80196F48_68EF48(0x3A);
     func_8002AC30(0x3A, 0xE);
     func_80196F48_68EF48(0x45);

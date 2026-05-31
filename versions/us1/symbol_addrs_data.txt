@@ -114,7 +114,7 @@ D_800BE5F4 = 0x800BE5F4; // size:0x4
 
 gScreenXLock = 0x800be62C; // type:u16 size:0x2
 gScreenYLock = 0x800be630; // type:u16 size:0x2
-gHPDisplayed = 0x800be63C; // type:u16 size:0x2
+gHealthDisplayed = 0x800be63C; // type:u16 size:0x2
 gActorStall = 0x800be670; // type:u16 size:0x2
 
 gDebugBitfield = 0x800BE6AC; // size:0x2
@@ -154,7 +154,7 @@ gSfxBankIds = 0x800C2280;
 gSfxSoundIds = 0x800C26DC;
 gSfxSampleParams = 0x800C2E00;
 gSfxPanOverrides = 0x801069D8; // size:0x4
-gPortraits = 0x80104098; // size:0x2400
+gPortraits = 0x80104098; // size:0x2940
 gSfxActorIndices = 0x80108DE0; // size:0x8
 gSfxStopTimers = 0x8010CDE8; // size:0x8
 gSfxChannelVolumes = 0x8011CDF0; // size:0x4

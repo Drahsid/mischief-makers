@@ -269,10 +269,10 @@ void func_8008DEBC(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E310.s")
 
 void func_8008E3C0(u16 actor_index) {
-    D_800BE5F4.w = 4;
+    D_800BE5F4.unk_00_u32 = 4;
     func_8008DF20(actor_index);
     if (gActors[actor_index].state == 0x10) {
-        D_800BE5F4.w = 4;
+        D_800BE5F4.unk_00_u32 = 4;
         gActors[actor_index].state = 0x30;
         gActors[actor_index].palette_18C = D_800D46A8;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);

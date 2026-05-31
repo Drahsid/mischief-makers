@@ -128,7 +128,7 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
 }
 
 void func_801B9D38_7DCC08(void) {
-    D_800BE5F4.w = 4;
+    D_800BE5F4.unk_00_u32 = 4;
     D_800D2950 = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = *(s16*)&D_801781F8[0xB2];
@@ -137,8 +137,8 @@ void func_801B9D38_7DCC08(void) {
 }
 
 void func_801B9D84_7DCC54(void) {
-    if (gGameState == 6) {
-        gGameState = 7;
+    if (gGameState == GAMESTATE_GAMEPLAY) {
+        gGameState = GAMESTATE_CONTINUE;
         gGameStateSubState = 0;
     }
 }
@@ -231,7 +231,7 @@ void func_801BA8CC_7DD79C(void* arg0) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(D_801BC990_7DF860);
     Actor_LoadSpawnTable(D_801BDFFC_7E0ECC);
-    D_800BE5F4.w = 0xA;
+    D_800BE5F4.unk_00_u32 = 0xA;
     D_800D28E8++;
 }
 
@@ -331,7 +331,7 @@ void func_801BABFC_7DDACC(void) {
         gActors[0xB4].flags = 0;
     }
 
-    if (!(flags & ACTOR_FLAG_FLIPPED)) {
+    if (!(flags & 0x20)) {
         gActors[0x55].flags = 0;
     }
     else {
@@ -349,7 +349,7 @@ void func_801BABFC_7DDACC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_4/overlay_7DC7A0/7DC7D0/func_801BACDC_7DDBAC.s")
 
 void func_801BBCBC_7DEB8C(void) {
-    D_800BE5F4.w = 4;
+    D_800BE5F4.unk_00_u32 = 4;
     D_800D2950 = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = *(s16*)&D_801781F8[0xB2];

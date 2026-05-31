@@ -140,7 +140,7 @@ void func_801928A8_67E3C8(s32 arg0) {
 
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[actor_index].flags = 3;
+        gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
         gActors[actor_index].graphicIndex = 0xDE;
         gActors[actor_index].colorA = 0xC0;
         gActors[actor_index].colorR = 0x40;
@@ -201,7 +201,7 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
 
 void func_801934F0_67F010(void) {
     ACTOR_INIT(0x5E,0x2F);
-    gActors[0x5E].flags = (ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK13 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_ACTIVE);
+    gActors[0x5E].flags = (ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_ACTIVE);
     gActors[0x5E].health = 1;
     gActors[0x5E].hitboxBY0 = -0xC;
     gActors[0x5E].hitboxBY1 = -0x20;
@@ -225,7 +225,7 @@ void func_8019359C_67F0BC(void) {
 
 void func_801935A4_67F0C4(void) {
     ACTOR_INIT(0x61,0x607);
-    gActors[0x61].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_UNK13);
+    gActors[0x61].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_PLATFORM0);
     gActors[0x61].hitboxBY0 = 0x10;
     gActors[0x61].hitboxBY1 = -0x10;
     gActors[0x61].hitboxBX0 = -0x100;
@@ -711,7 +711,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[actor_index].graphicList = D_8019DB80_6896A0;
     gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = 0x1403;
+    gActors[actor_index].flags = (ACTOR_FLAG_UNK12 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_8002AC30(actor_index, 0xC);
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
@@ -861,7 +861,7 @@ void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
 
         case 0xA:
             if (gActors[actor_index].stateLower != 3) {
-                if (*(s32*)&gScreenPosCurrentY + gActors[actor_index].posY.raw < FIXED_UNIT(365.0)) {
+                if (gScreenPosCurrentY.raw + gActors[actor_index].posY.raw < FIXED_UNIT(365.0)) {
                     return;
                 }
 

@@ -64,7 +64,7 @@ extern u16 gLetterboxMode;
 
 // func_8000147C
 extern s8 D_801373F0;
-extern u16 D_8013747C;
+extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
 extern u16 D_80171B30[128]; // indecies of actors to draw in the "back" 
 extern u16 D_80171C30[128]; // indecies of actors to draw in middle (not drawn if D_800be674 is set)
 extern u16 D_80171D30[240]; // indecies of actors to draw in "front"

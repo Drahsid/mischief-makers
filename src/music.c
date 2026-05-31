@@ -492,7 +492,7 @@ void Sound_Update(void) {
             gMusicPlayerFlags &= 0x7F;
             Sound_LoadSequence(gMusicSequenceId, gMainSeqBuffer);
             alCSeqNew(gMainSequence, gMainSeqBuffer);
-            alSeqpSetSeq((ALSeqPlayer*)gMainSeqPlayer, gMainSequence);
+            alSeqpSetSeq((ALSeqPlayer*)gMainSeqPlayer, (ALSeq*)gMainSequence);
             alSeqpSetVol((ALSeqPlayer*)gMainSeqPlayer, gMusicVolume);
             alSeqpPlay((ALSeqPlayer*)gMainSeqPlayer);
         }

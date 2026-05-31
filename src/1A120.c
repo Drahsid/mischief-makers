@@ -181,8 +181,8 @@ void YellowGem_SetFlag(void) {
 }
 
 // returns bit if yellow gem was collected in this stage
-u64 YellowGem_GetFlag(u16 arg0) {
-    u64 mask = (u64)1 << arg0;
+u64 YellowGem_GetFlag(u16 stage) {
+    u64 mask = (u64)1 << stage;
 
     return D_80171B10 & mask;
 }

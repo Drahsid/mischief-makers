@@ -28,30 +28,30 @@ enum GameState{
 
 
 // used by gDebugBitfield
-enum DebugFlags{
-    DEBUG_STUB1 = (1U << 0), //runs a stubbed debug function on game tick.
+enum DebugFlags {
+    DEBUGFLAG_STUB1 = (1U << 0), //runs a stubbed function on game tick.
     
     // control gDebugThrottle value with L and R buttons
     // input between slowed ticks stored in D_801781DC
-    DEBUG_THROTTLE = (1U << 1U), 
+    DEBUGFLAG_THROTTLE = (1U << 1U), 
     
     // game runs with perspective view when set, orthographic when unset
     // set during initalization.
-    DEBUG_PERSPECTIVE = (1U << 2U), 
-    DEBUG_UNK3 = (1U << 3U), // unused
-    DEBUG_UNK4 = (1U << 4U), // unset in func_800012F0
-    DEBUG_UNK5 = (1U << 5U), // used for mask in func_8000147C
-    DEBUG_STUB6 = (1U << 6U), // runs a stubbed debug function on game tick.
-    DEBUG_UNK7 = (1U << 7U), // unused
-    DEBUG_UNK8 = (1U << 8U), // changes pause state behavior.
-    DEBUG_FORCEPAUSE = (1U << 9U), // force the game into a pause state
-    DEBUG_UNK10 = (1U << 10U), // unused
-    DEBUG_UNK11 = (1U << 11U), // unused
-    DEBUG_STUB12 = (1U << 12U), //runs a stubbed debug function on game tick.
-    DEBUG_UNK13 = (1U << 13U), // unused
-    DEBUG_SFXDATA = (1U << 14U), // display data on SFX channel states.
-    DEBUG_STUB15 = (1U << 15U), //runs a stubbed debug function on game tick.
-    DEBUG_CAMERALOCK = (DEBUG_STUB15 | DEBUG_UNK13 | DEBUG_UNK10) // checked for in some scenes' camera logic.
+    DEBUGFLAG_PERSPECTIVE = (1U << 2U), 
+    DEBUGFLAG_UNK3 = (1U << 3U), // unknown/unused
+    DEBUGFLAG_UNK4 = (1U << 4U), // unset in func_800012F0
+    DEBUGFLAG_UNK5 = (1U << 5U), // used for mask in func_8000147C
+    DEBUGFLAG_STUB6 = (1U << 6U), // runs a stubbed function on game tick.
+    DEBUGFLAG_ACTORSTATS = (1U << 7U), // display stats on actor(s) in "front layer"
+    DEBUGFLAG_BLANKPAUSE = (1U << 8U), // changes pause state behavior.
+    DEBUGFLAG_FORCEPAUSE = (1U << 9U), // force the game into a pause state
+    DEBUGFLAG_UNK10 = (1U << 10U), // used in "camera Lock" mask
+    DEBUGFLAG_UNK11 = (1U << 11U), // unknown/unused
+    DEBUGFLAG_STUB12 = (1U << 12U), //runs a stubbed function on game tick.
+    DEBUGFLAG_UNK13 = (1U << 13U), // used in "camera Lock" mask
+    DEBUGFLAG_SFXDATA = (1U << 14U), // display data on SFX channel states.
+    DEBUGFLAG_STUB15 = (1U << 15U), //runs a stubbed function on game tick.
+    DEBUG_CAMERALOCK = (DEBUGFLAG_STUB15 | DEBUGFLAG_UNK13 | DEBUGFLAG_UNK10) // checked for in some scenes' camera logic.
 };
 
 // global values near start of .bss
@@ -70,27 +70,27 @@ extern u32 D_801069DC; // unused
 extern UnkStruct_801069E0 D_801069E0[64]; // "static gems" on screen / loaded?
 extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u8 D_8010CDF0[0x10000];
-extern u16 D_8011CDF8[144]; // indecies of ACTOR_FLAG_UNK13-flagged Actors
-extern u16 D_8011CF20[144]; 
+extern u16 D_8011CDF8[144]; // indecies of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 D_8011CF20[144]; // indecies of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern u32 D_8011D040[2]; // blank space between
-extern s16 D_8011D048[144];
+extern s16 D_8011D048[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern u32 D_8011D068[2]; // blank space between
-extern s16 D_8011D170[144];
-extern s16 D_8011D290[144];
+extern s16 D_8011D170[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 D_8011D290[144]; // posX + hitboxBX0 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern s16 D_8011D3B0[8][2];
-extern s16 D_8011D3D0[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK18-flagged Actors
-extern s16 D_8011D4F0[144]; // posX + hitboxBX0 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D610[144]; // posX + hitboxBX1 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_UNK13-flagged Actors
-extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK13-flagged Actors
+extern s16 D_8011D3D0[144]; // posY + hitboxBX0 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 D_8011D4F0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern s16 D_8011D610[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors - 8
+extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_PLATFORM1-flagged Actors
 
 
 // global values near start of .data
 
-extern u16 D_800BE4D0; // count of ACTOR_FLAG_UNK18-flagged Actors
-extern u16 D_800BE4D4; // count of ACTOR_FLAG_UNK13-flagged Actors
-extern u16 D_800BE4D8; // set if an actor contacts either group of 3d(?) hitboxes
-extern u16 D_800BE4DC; // index of actor contacting either group of 3d(?) hitboxes
+extern u16 D_800BE4D0; // count of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern u16 D_800BE4D4; // count of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 D_800BE4D8; // set if an actor contacts either group of platform hitboxes
+extern u16 D_800BE4DC; // index of actor contacting either group of platform hitboxes
 extern u16 gActiveFrames; // count of frames/ticks in current scene. does not count during pause. often AND'd and modulo'd.
 extern u16 gFramesInScene; // a second count of frames/ticks in current scene. not effect by pausing.
 extern u16 gGamePaused; // set when game is paused.
@@ -158,7 +158,7 @@ extern u16 gScreenXLock; // locks X-axis screen scrolling. always false
 extern u16 gScreenYLock; // locks Y-axis screen scrolling. always false
 extern u16 D_800BE634;
 extern u16 D_800BE638;
-extern u16 gHPDisplayed; // value used by lifebar to display Marina's hitpoints.
+extern u16 gHealthDisplayed; // value used by lifebar to display Marina's hitpoints.
 extern u32 D_800BE640; // unused
 extern u16 D_800BE644;
 extern u16 D_800BE648;

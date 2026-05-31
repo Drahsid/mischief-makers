@@ -101,7 +101,7 @@ void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
     gActors[0].posX.whole = arg0;
     gActors[0].posY.whole = arg1;
-    D_800BE5F4.w = 0xA;
+    D_800BE5F4.unk_00_u32 = 0xA;
 }
 
 void func_801B9A0C_7CE19C(u16 arg0) {
@@ -112,7 +112,7 @@ void func_801B9A0C_7CE19C(u16 arg0) {
 }
 
 void func_801B9A40_7CE1D0(void) {
-    if (gActors[0x5E].flags & 0x42000) {
+    if (gActors[0x5E].flags & (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_PLATFORM0)) {
         func_801B99AC_7CE13C(0, gActors[0x5E].posY.whole + 8);
         gActors[0].unk_0D4 = 0x78;
     }
@@ -139,7 +139,7 @@ void func_801B9B08_7CE298(void) {
         gCannotPause = FALSE;
         D_800BE544 = 0;
         D_800BE548.raw = FIXED_UNIT(16.0);
-        D_800BE5F4.w = 0xA;
+        D_800BE5F4.unk_00_u32 = 0xA;
     }
 }
 
@@ -569,7 +569,7 @@ void func_801BB0F0_7CF880(void) {
             D_800D28E8++;
             Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 1, -1, 1);
             func_80045FA4(D_801BEB9C_7D332C, (s32)D_801BEBD4_7D3364);
-            D_800BE5F4.w = 4;
+            D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BF098_7D3828);
             D_800BE54C.raw = FIXED_UNIT(32.0);
             gLookatEyeY = 32.0f;
@@ -578,7 +578,7 @@ void func_801BB0F0_7CF880(void) {
         case 1:
             if (func_80046D5C() != 0) {
                 D_800D28E8++;
-                D_800BE5F4.w = 0xA;
+                D_800BE5F4.unk_00_u32 = 0xA;
                 D_800D28FC |= 8;
             }
             break;
