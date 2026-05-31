@@ -2,6 +2,7 @@
 #define COMMON_INCLUDE_H
 
 #include "music.h"
+#include "input.h"
 #include "inttypes.h"
 #include "common_structs.h"
 #include "globalData.h"

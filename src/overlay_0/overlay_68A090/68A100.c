@@ -25,8 +25,8 @@ void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192198_68A198.s")
 
-void func_8019226C_68A26C(u16 arg0, u16 arg1) {
-    func_800036C8((s32)arg0, arg1);
+s32 func_8019226C_68A26C(u16 arg0, u16 arg1) {
+    return func_800036C8((s32)arg0, arg1);
 }
 
 void func_801922A0_68A2A0(s32 arg0) {

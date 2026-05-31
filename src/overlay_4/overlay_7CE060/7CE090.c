@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "function_symbols.h"
 
-// "overlay 4" data for World stages
+// "overlay 4" data for World 2 stages
 
 extern s16 D_800D2920;
 extern s16 D_800D2924;
@@ -76,7 +76,7 @@ void func_801BB360_7CFAF0(u16 actor_index);
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
         if (gActors[0].stateUpper == 4) {
-            func_8005739C(0, 0x64);
+            func_8005739C(0, 100);
             if (gActors[0].health >= 0) {
                 return TRUE;
             }
@@ -146,9 +146,8 @@ void func_801B9B08_7CE298(void) {
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
-        *(s32*)&gPlayerVelYMirror = (*(s32*)&gPlayerVelYMirror * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
-        // FAKEMATCH
-        *(s32*)&gPlayerVelXMirror = 0;
+        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
+        gPlayerVelXMirror.raw = 0;
         func_801B9A0C_7CE19C(D_800D28E8 + 1);
     }
 }

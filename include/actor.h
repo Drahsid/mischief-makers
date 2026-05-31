@@ -31,7 +31,6 @@ enum ActorFlags {
     ACTOR_FLAG_UNK10 = (1U << 10U), 
     ACTOR_FLAG_UNK11 = (1U << 11U),
     ACTOR_FLAG_UNK12 = (1U << 12U),
-    
     ACTOR_FLAG_UNK13 = (1U << 13U), // platform actor?
     ACTOR_FLAG_UNK14 = (1U << 14U),
     ACTOR_FLAG_UNK15 = (1U << 15U), // something with damage (instakill if set?)
@@ -286,7 +285,7 @@ extern Actor gActors[];
  gActors[index].actorType = type;\
  func_8001E2D0(index)
 
-// a common macro for initalizing grpahic lists
+// a common macro for initalizing graphic lists
 // can cause mismatches.
 #define ACTOR_GFX_INIT(index, graphicsP)\
  gActors[index].graphicList = (u16*)graphicsP;\

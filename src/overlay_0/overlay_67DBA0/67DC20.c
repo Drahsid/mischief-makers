@@ -631,7 +631,7 @@ void func_80197FA0_683AC0(u16 actor_index) {
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0x2000, 0x800);
 
         if (gActors[actor_index].unk_17C < gActors[actor_index].unk_184) {
-            gActors[actor_index].unk_188 &= 0xDFFFFFFF;
+            gActors[actor_index].unk_188 &= ~0x20000000;
             gActors[actor_index].unk_17C = gActors[actor_index].unk_174 - (Rand() & 7) - 3;
         }
     }

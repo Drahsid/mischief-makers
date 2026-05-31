@@ -59,10 +59,8 @@ enum DebugFlags{
 
 
 extern Gfx* gCurrentDisplayListBase;
-
 extern u32 D_800EF500; // unknown/unused
 extern u32 D_800EF504; // unknown/unused
-
 extern u8 D_80104090[4];
 extern u32 D_80104094;
 // first 64 are used for portrait transition effect. the last two are the life bar
@@ -85,8 +83,6 @@ extern s16 D_8011D4F0[144]; // posX + hitboxBX0 of ACTOR_FLAG_UNK13-flagged Acto
 extern s16 D_8011D610[144]; // posX + hitboxBX1 of ACTOR_FLAG_UNK13-flagged Actors
 extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_UNK13-flagged Actors
 extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_UNK13-flagged Actors
-extern u16 D_8011DD70[64]; // history of button presses?
-extern u16 D_801225F0[64]; // history of button holds?
 
 
 // global values near start of .data
@@ -101,25 +97,6 @@ extern u16 gGamePaused; // set when game is paused.
 extern u16 gCannotPause; // if set, prevents pausing game.
 extern u16 gGameState; // main state of game. uses GameState enum
 extern u16 gGameStateSubState; // sub state of game state.
-extern u16 gButtonHold; // held button input.
-extern u16 gButtonPress; // pressed button input.
-extern u16 gButton_Start; // value of Start Button
-extern u16 gButton_DUp; // value of D-pad Up
-extern u16 gButton_DDown; // value of D-pad Down
-extern u16 gButton_DLeft; // value of D-pad Left
-extern u16 gButton_DRight; // value of D-pad Right
-extern u16 gButton_B; // value of B Button
-extern u16 gButton_A; // value of A Button
-extern u16 gButton_CLeft; // value of C-Left
-extern u16 gButton_CDown; // value of C-Down
-extern u16 gButton_CUp; // value of C-Up
-extern u16 gButton_CRight; // value of C-Right
-extern u16 gButton_ZTrig; // value of Z button
-extern u16 gButton_LTrig; // value of L button
-extern u16 gButton_RTrig; // value of R button
-extern u16 gButtonLast; // mask of previous input for determining "held" and "pressed" buttons
-extern s8 gJoyX; // joystick value read, but not used.
-extern s8 gJoyY; // joystick value read, but not used.
 extern u16 D_800BE544; // bitfeild determining camera scroll?
 extern FixedCoord D_800BE548; // max horizonal camera scroll speed?
 extern FixedCoord D_800BE54C; // max vertical camera scroll speed?
@@ -163,7 +140,7 @@ extern s16 D_800BE5E4;
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
 extern s16 D_800BE5F0; 
-extern UnkStruct_D_800BE5F4 D_800BE5F4;
+extern UnkStruct_D_800BE5F4 D_800BE5F4; // sometimes treated as a u32, s32, or u8[4]
 extern u16 D_800BE5F8; // zero'd in func_800121D0, otherwise unused.
 extern u16 D_800BE5FC; 
 extern u32 D_800BE600; // unused
