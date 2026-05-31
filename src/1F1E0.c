@@ -122,21 +122,21 @@ extern void func_8008CA90(void);
 #define UPPER_N_BITS(n, s) (((1 << ((n) / 2)) - 1) << ((s) - ((n) / 2)))
 #define NEGSIN_QUANTIZE(x, n) gCosineLookup[(((x) + COSPiOver2) & UPPER_N_BITS(n, 10)) & COSLEN]
 
-s32 func_8001E5E0(u16 arg0, u16 arg1, s32 arg2) {
+s32 func_8001E5E0(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[arg0].unk_0E2);
-    v = Math_Atan2(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
+    sp20 = sqrtf(gActors[actor0].unk_0E2);
+    v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2);
 }
 
-s32 func_8001E6F4(u16 arg0, u16 arg1, s32 arg2) {
+s32 func_8001E6F4(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[arg0].unk_0E2);
-    v = Math_Atan2(gActors[arg0].posX.raw - gActors[arg1].posX.raw, gActors[arg0].posY.raw - gActors[arg1].posY.raw);
+    sp20 = sqrtf(gActors[actor0].unk_0E2);
+    v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return SIN(v) * (sp20 * arg2 * 2);
 }
 
