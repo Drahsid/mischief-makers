@@ -444,22 +444,22 @@ u16 func_8002884C(u16 actor_index) {
     s16 temp_v1;
     temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX0;
     if (temp_v1 < D_800D2920) {
-        return 0;
+        return FALSE;
     }
     temp_v1 = gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + gActors[actor_index].hitboxBX1;
     if (temp_v1 > D_800D2924) {
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 u16 Actor_IsOutsideRegion(u16 actor_index, s16 length) {
     if ((gActors[actor_index].posX.whole > (0x90 + length)) || (gActors[actor_index].posX.whole < (-0x90 - length)) || 
         (gActors[actor_index].posY.whole > (0x60 + length)) || (gActors[actor_index].posY.whole < (-0x60 - length))) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -521,10 +521,10 @@ s32 func_80028C08(u16 actor_index) {
     if ((gActors[other_index].flags & ACTOR_FLAG_ACTIVE) && (gActors[other_index].health > 0)) {
         gActors[other_index].unk_0D6 = actor_index;
         gActors[other_index].flags_098 |= ACTOR_FLAG3_UNK9;
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -533,10 +533,10 @@ s32 func_80028C80(u16 actor_index) {
         gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
         gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
         gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
-        return 0;
+        return FALSE;
     }
     else {
-        return 1;
+        return TRUE;
     }
 }
 
@@ -572,10 +572,10 @@ u8 func_8001FCA0(u16 arg0, s32 arg1, s32 arg2);
 s32 func_80028DAC(u16 arg0, s16 arg1) {
     if ((func_8001FCA0(arg0, arg1, gActors[0].posY.whole + 2) & 0x80) &&
         (func_8001FCA0(arg0, arg1, gActors[0].posY.whole + 2) & 0x80)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -591,7 +591,7 @@ s32 func_80028E1C(u16 actor_index) {
                         gActors[0].unk_0F8.raw = 0;
                         gActors[0].unk_0FC.raw = -0x30000;
                         func_800036C8(100, actor_index);
-                        return 1;
+                        return TRUE;
                     }
                     actor0_pos += 16;
                 }
@@ -605,7 +605,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gActors[0].unk_0F8.raw = 0x30000;
                             gActors[0].unk_0FC.raw = 0;
                             func_800036C8(100, actor_index);
-                            return 1;
+                            return TRUE;
                         }
                         actor0_pos -= 16;
                     }
@@ -618,7 +618,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gActors[0].unk_0F8.raw = -0x30000;
                             gActors[0].unk_0FC.raw = 0;
                             func_800036C8(100, actor_index);
-                            return 1;
+                            return TRUE;
                         }
                         actor0_pos += 16;
                     }
@@ -626,7 +626,7 @@ s32 func_80028E1C(u16 actor_index) {
             }
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_80029044(u16 actor_index) {
@@ -640,10 +640,10 @@ s32 func_80029044(u16 actor_index) {
             gActors->unk_0F8.raw = 0;
             gActors->unk_0FC.raw = 0x30000;
             func_800036C8(100, actor_index);
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_80029134(u16 actor_index) {
@@ -1847,7 +1847,7 @@ s32 func_8002C3C8(u16 actor_index) {
         }
         gActors[actor_index].var_150 |= 0x100000;
         func_80029134(actor_index);
-        return 1;
+        return TRUE;
     }
     else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
         if (gActors[actor_index].unk_0DD != 0x13) {
@@ -1861,16 +1861,16 @@ s32 func_8002C3C8(u16 actor_index) {
                 if (gActors[actor_index].unk_0FC.raw < 0x20000) {
                     gActors[actor_index].velocityY.raw = 0x20000;
                 }
-                return 1;
+                return TRUE;
             }
         }
         else {
             gActors[actor_index].flags = 0;
             gActors[actor_index].health = 0;
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_8002C510(u16 actor_index) {

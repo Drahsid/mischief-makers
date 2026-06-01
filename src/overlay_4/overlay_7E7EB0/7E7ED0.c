@@ -52,12 +52,12 @@ s32 func_801B9900_7E7ED0(u16 arg0, s16 arg1, s16 arg2) {
                 D_800D28E4 = 0x61;
                 D_800D28E8 = arg0;
                 func_80028380();
-                return 1;
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801B99A4_7E7F74(u16* actor_indices, u16 arg1) {

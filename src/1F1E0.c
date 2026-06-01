@@ -57,7 +57,7 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 D_801781E0;
+extern u16 gStageTime; // time in current stage. does not count time paused or during cutscenes.
 extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
@@ -311,8 +311,8 @@ void func_80020024(void) {
 
     gActiveFrames++;
     D_801782B8++;
-    if ((D_801781E0 < 36000) && (D_800D28E8 >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
-        D_801781E0++;
+    if ((gStageTime < 36000) && (D_800D28E8 >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
+        gStageTime++;
     }
     func_800122B0();
     if (gDebugBitfield & DEBUGFLAG_THROTTLE) {
@@ -580,7 +580,8 @@ void GameState_Attract(void) {
         func_80021098();
         var_v0 = (D_800CA234--) ^ 0x30;
         if (var_v0 == 0) {
-            actors_200[0].flags = actors_200[1].flags = actors_200[2].flags = actors_200[3].flags = 0xB;
+            actors_200[0].flags = actors_200[1].flags = actors_200[2].flags = actors_200[3].flags = 
+              (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
             gGameStateSubState++;
         }
         break;

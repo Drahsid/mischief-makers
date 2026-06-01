@@ -96,30 +96,34 @@ void func_80019EC4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1A120/func_8001A584.s")
 
-s16 func_8001A758(u16 arg0, u16 arg1) {
-    if (arg0 < gStageTimesToBeat[arg1]) {
+// returns the time rank of (stage) compared to (time)
+// 0=S Rank, 1=A, 2=B, 3=C, 4=D
+s16 func_8001A758(u16 time, u16 stage) {
+    if (time < gStageTimesToBeat[stage]) {
         return 0;
     }
 
-    if (arg0 < gStageTimesToBeat[arg1] + 1800) {
+    if (time < gStageTimesToBeat[stage] + 1800) {
         return 1;
     }
 
-    if (arg0 < gStageTimesToBeat[arg1] + 7200) {
+    if (time < gStageTimesToBeat[stage] + 7200) {
         return 2;
     }
 
-    if (arg0 < gStageTimesToBeat[arg1] + 18000 && arg0 < 36000) {
+    if (time < gStageTimesToBeat[stage] + 18000 && time < 36000) {
         return 3;
     }
 
     return 4;
 }
 
-void func_8001A7E0(s16 arg0, s16 arg1, u16 arg2, u16 arg3, s16 arg4) {
-    func_8008379C(arg0, arg1, D_800C9694[func_8001A758(arg2, arg3)], arg4);
+// print the Rank letter for (stage) based on (time)
+void func_8001A7E0(s16 arg0, s16 arg1, u16 time, u16 stage, s16 arg4) {
+    func_8008379C(arg0, arg1, D_800C9694[func_8001A758(time, stage)], arg4);
 }
 
+// print the Rank review for (stage) based on (time)
 void func_8001A838(s16 arg0, s16 arg1, u16 arg2, u16 arg3, s16 arg4) {
     func_80083810(arg0, arg1, D_800C96A0[func_8001A758(arg2, arg3)], arg4);
 }

@@ -987,7 +987,7 @@ void func_801BB6D0_7C88B0(void) {
             Sound_PlayMusic(BGM_LIKE_A_WIND);
 
             if (YellowGem_GetFlag(gCurrentStage) != 0) {
-                gActors[0x77].flags = 0;
+                gActors[0x77].flags = 0; // hide yellow gem in "Crisis: Nepton"?
             }
             break;
 
@@ -1046,7 +1046,7 @@ void func_801BB6D0_7C88B0(void) {
                         break;
 
                     case 0xE:
-                        Sound_PlaySfx(0xB7);
+                        Sound_PlaySfx(SFX_MARINA_STOP);
                         func_801BB6AC_7C888C(0x20);
                         break;
 
@@ -1142,7 +1142,7 @@ void func_801BB6D0_7C88B0(void) {
 
         case 0x1000:
             D_800D28E8++;
-            gActors[0].flags |= 0x20;
+            gActors[0].flags |= ACTOR_FLAG_FLIPPED;
             func_80045FA4(D_801BF740_7CC920, (s32)D_801BF778_7CC958);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BF7D0_7CC9B0);
@@ -1150,7 +1150,7 @@ void func_801BB6D0_7C88B0(void) {
             D_800BE5F4.unk_00_s32 = 7;
             D_800D2924 = 0x690;
 
-            if (YellowGem_GetFlag(gCurrentStage)) {
+            if (YellowGem_GetFlag(gCurrentStage) != 0) {
                 gActors[0x77].flags = 0;
             }
 

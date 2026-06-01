@@ -90,7 +90,7 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
     if (actor_index != 0) {
         gActors[0x46].unk_180 = actor_index;
         gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
-        gActors[actor_index].flags |= (gActors[0x37].flags & ACTOR_FLAG_FLIPPED) + 0x8000;
+        gActors[actor_index].flags |= (gActors[0x37].flags & ACTOR_FLAG_FLIPPED) + ACTOR_FLAG_UNK15;
         gActors[actor_index].colorA = 0x80;
         gActors[actor_index].palette_18C = (u16*)0x8022D4E8;
         gActors[actor_index].scaleX = 1.5f;

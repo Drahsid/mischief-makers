@@ -487,13 +487,13 @@ s32 func_801BB184_7E42E4(void) {
 
     while (actor_index != 0) {
         if (gActors[actor_index].state != 2) {
-            return 0;
+            return FALSE;
         }
 
         actor_index = D_801BCF94_7E60F4[index++];
     }
 
-    return 1;
+    return TRUE;
 }
 
 void func_801BB1F4_7E4354(void) {

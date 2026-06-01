@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "Overlay 3" code for world 1
+
 extern f32 D_801B2428_7984F8[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7969B0/7969D0/func_801B0900_7969D0.s")

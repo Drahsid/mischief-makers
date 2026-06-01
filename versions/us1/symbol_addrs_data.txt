@@ -274,10 +274,13 @@ gDebugStageSelectOptionSuffixes = 0x800C8278;
 gStageScenes = 0x800C8378;
 gDebugStageSelectStageIds = 0x800C83F8;
 gStageTimesToBeat = 0x800C8478;
+gStageTimeBest = 0x80178150;// type:u16 size:0x2
 gCurrentStage = 0x80178162;
 gDebugStageSelectSelectedOptions = 0x80178170;
 gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;
+
+gStageTime = 0x801781E0;// type:u16 size:0x2
 
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;

@@ -882,7 +882,8 @@ void func_80003540(s16 xIn, s16 yIn, s8* xOut, s16* yOut) {
     }
 }
 
-// pan sound(arg0) based on x-position (and modify sound based on y-position) of gActors[actor_index]
+// pan sound(arg0) based on x-position of gActors[actor_index]
+// do not play sound if ouside x-and-y axis range.
 s32 func_800035F8(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -905,7 +906,8 @@ s32 func_800035F8(u32 arg0, u16 actor_index) {
     }
 }
 
-// pan sound(arg0) based on x-position of gActors[actor_index] 
+// pan sound(arg0) based on x-position of gActors[actor_index]
+// do not play sound if ouside x axis range.
 s32 func_800036C8(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -924,7 +926,8 @@ s32 func_800036C8(u32 arg0, u16 actor_index) {
     }
 }
 
-// pan sound(arg0) based on x-position of gActors[actor_index] 
+// pan sound(arg0) based on x-position of gActors[actor_index]
+// do not play sound if ouside x axis range.
 s32 func_80003778(u32 arg0, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
@@ -944,6 +947,7 @@ s32 func_80003778(u32 arg0, u16 actor_index) {
 }
 
 // play sound(arg0) and base pan on x-position of D_801069E0[arg1].
+// do not play sound if ouside x axis range.
 s32 func_80003828(u32 arg0, u16 arg1) {
     s8 temp_a;
     s16 temp_b;
@@ -963,6 +967,7 @@ s32 func_80003828(u32 arg0, u16 arg1) {
 }
 
 // pan sound of ID(arg0) based on x-position of gActors[actor_index] 
+// do not play sound if ouside x axis range.
 s32 func_800038C8(u32 arg0, u16 actor_index, u16 arg2) {
     s8 temp_a;
     s16 temp_b;
