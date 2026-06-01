@@ -178,8 +178,8 @@ typedef struct {
     // storing the animations for each state.
 
     union {
-        /* 0x0E8 */ u16* graphicList; // entries alternate between graphic index and time to display.
-        /* 0x0E8 */ u16** graphicLists; // used by Marina and other actors to hold several animation references.
+        /* 0x0E8 */ s16* graphicList; // entries alternate between graphic index and time to display.
+        /* 0x0E8 */ s16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
     /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
@@ -288,7 +288,7 @@ extern Actor gActors[];
 // a common macro for initalizing grpahic lists
 // can cause mismatches.
 #define ACTOR_GFX_INIT(index, graphicsP)\
- gActors[index].graphicList = (u16*)graphicsP;\
+ gActors[index].graphicList = (s16*)graphicsP;\
  gActors[index].graphicTimer = 1
 
 

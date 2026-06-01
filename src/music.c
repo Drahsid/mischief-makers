@@ -55,7 +55,7 @@ typedef struct {
 extern u8 D_800EF4D0; // folded addr required for fakematching
 extern s16 gMusicVolume;
 extern u8 gSfxPlayerFlags[];
-extern u16 gSfxPlayerVolumes[];
+extern s16 gSfxPlayerVolumes[];
 extern u16 gSfxSequenceIds[];
 extern s32 gMusicSequenceId;
 extern u8 gSfxChannelVolumes[];

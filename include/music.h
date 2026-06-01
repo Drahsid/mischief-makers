@@ -36,7 +36,7 @@ typedef struct {
 
 extern s16 D_800EF4D4;
 extern s16 gMusicVolume;
-extern u16 gSfxPlayerVolumes[];
+extern s16 gSfxPlayerVolumes[];
 extern u8 gSfxPlayerFlags[];
 extern u16 gSfxSequenceIds[];
 extern UnkStruct_801069E0 D_801069E0[];

@@ -53,7 +53,7 @@ extern u16 D_800D2294[];
 extern s32 D_800D229C[];
 extern s32 D_800D22AC[];
 extern u16 D_800D22BC[];
-extern u16 D_800D2284[];
+extern s16 D_800D2284[];
 extern u16 D_800D23FC[];
 extern u16 D_800D24A8[];
 extern u16 D_800D24B4[];
@@ -71,7 +71,7 @@ extern u16 D_800D2690[]; // grouped by step count 3 (0x6 bytes)
 extern s32 D_800D26E0[];
 extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
-extern u16 D_800D271C[];
+extern s16 D_800D271C[];
 extern u8 D_800D2750[];
 extern u8 D_800D27B0[];
 extern u16 D_800D27F8[];
@@ -101,23 +101,21 @@ extern u16 D_800D8608[];
 extern u16 D_800D8628[];
 extern u16 D_800D86A0[];
 extern u16 D_800D86D8[]; // guess
-extern u16 D_800D88B8[]; // guess
-extern u16 D_800D8C78[]; // guess
 extern u8 D_800D9AE4[];
 extern u8 D_800D9AF4[];
 extern u16 D_800D9B64[];
-extern u16 D_800E14C8[];
-extern u16 D_800E14E8[];
-extern u16 D_800E155C[];
-extern u16 D_800E157C[];
-extern u16 D_800E15C4[];
-extern u16 D_800E1604[];
-extern u16 D_800E1C1C[];
-extern u16 D_800E1C2C[];
-extern u16 D_800E1D0C[];
-extern u16 D_800E1DEC[];
-extern u16 D_800E2514[];
-extern u16 D_800E2528[];
+extern s16 D_800E14C8[];
+extern s16 D_800E14E8[];
+extern s16 D_800E155C[];
+extern s16 D_800E157C[];
+extern s16 D_800E15C4[];
+extern s16 D_800E1604[];
+extern s16 D_800E1C1C[];
+extern s16 D_800E1C2C[];
+extern s16 D_800E1D0C[];
+extern s16 D_800E1DEC[];
+extern s16 D_800E2514[];
+extern s16 D_800E2528[];
 extern s32 D_800E3578; // nearest actor delta X
 extern s32 D_800E357C; // nearest actor delta Y
 extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
@@ -191,7 +189,7 @@ void func_80027468(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u8 red, u8 gr
     }
 }
 
-void func_80027510(u16 actor_index, u16* graphic_list, u16 x, u16 y, u16 z) {
+void func_80027510(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z) {
     func_80027370(actor_index, x, y, z);
     gActors[actor_index].graphicList = graphic_list;
     gActors[actor_index].graphicTimer = 1;
@@ -3312,7 +3310,7 @@ void func_80030E58(u16 actor_index) {
     }
 }
 
-u16 func_80030F94(u16 actor_index, u16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_80030F94(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 index;
 
     index = actor_index & 0x7FFF;
@@ -3344,7 +3342,7 @@ u16 func_80030F94(u16 actor_index, u16* graphic_list, s32 pos_x, s32 pos_y, s32 
     return index;
 }
 
-u16 func_800310A4(u16 actor_index, u16 arg1, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_800310A4(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 index;
 
     index = actor_index & 0x7FFF;
@@ -3366,49 +3364,49 @@ u16 func_800310A4(u16 actor_index, u16 arg1, s32 pos_x, s32 pos_y, s32 pos_z) {
         gActors[index].unk_184 = gActors[index].posX.raw;
         gActors[index].unk_188 = gActors[index].posY.raw;
         gActors[index].unk_148 = 240.0f;
-        gActors[index].graphicIndex = arg1;
+        gActors[index].graphicIndex = graphic_index;
     }
     return index;
 }
 
-u16 func_8003119C(u16* arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_8003119C(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2(0x10, 0x2D);
-    return func_80030F94(actor_index, arg0, pos_x, pos_y, pos_z);
+    return func_80030F94(actor_index, graphic_list, pos_x, pos_y, pos_z);
 }
 
-u16 func_800311EC(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_800311EC(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2(0x10, 0x2D);
-    return func_800310A4(actor_index, arg0, pos_x, pos_y, pos_z);
+    return func_800310A4(actor_index, graphic_index, pos_x, pos_y, pos_z);
 }
 
-u16 func_8003123C(u16* arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_8003123C(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2_90ToC0();
-    return func_80030F94(actor_index, arg0, pos_x, pos_y, pos_z);
+    return func_80030F94(actor_index, graphic_list, pos_x, pos_y, pos_z);
 }
 
-u16 func_80031284(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2_90ToC0();
-    return func_800310A4(actor_index, arg0, pos_x, pos_y, pos_z);
+    return func_800310A4(actor_index, graphic_index, pos_x, pos_y, pos_z);
 }
 
-u16 func_800312CC(u16* arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_800312CC(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2(0x10, 0x2D);
-    return func_80030F94(actor_index | 0x8000, arg0, pos_x, pos_y, pos_z);
+    return func_80030F94(actor_index | 0x8000, graphic_list, pos_x, pos_y, pos_z);
 }
 
-u16 func_80031324(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_80031324(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2(0x10, 0x2D);
-    return func_800310A4(actor_index | 0x8000, arg0, pos_x, pos_y, pos_z);
+    return func_800310A4(actor_index | 0x8000, graphic_index, pos_x, pos_y, pos_z);
 }
 
-u16 func_8003137C(u16* arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_8003137C(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2_90ToC0();
-    return func_80030F94(actor_index | 0x8000, arg0, pos_x, pos_y, pos_z);
+    return func_80030F94(actor_index | 0x8000, graphic_list, pos_x, pos_y, pos_z);
 }
 
-u16 func_800313CC(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z) {
+u16 func_800313CC(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindFlag2_90ToC0();
-    return func_800310A4(actor_index | 0x8000, arg0, pos_x, pos_y, pos_z);
+    return func_800310A4(actor_index | 0x8000, graphic_index, pos_x, pos_y, pos_z);
 }
 
 void func_8003141C(u16 actor_index) {
@@ -3422,7 +3420,7 @@ void func_8003141C(u16 actor_index) {
     s32 pad;
 
     if (gActors[actor_index].state != 0) {
-        if (((D_800E1380 != gActors[actor_index].graphicList) && (*((s16*)gActors[actor_index].graphicList) == 0) &&
+        if (((D_800E1380 != gActors[actor_index].graphicList) && (*gActors[actor_index].graphicList == 0) &&
             (gActors[actor_index].graphicTimer == 0)) || ((gActors[actor_index].colorA == 0) && (gActors[actor_index].var_154 < 0)) || (gActors[actor_index].unk_148 == 0.0f)) {
             gActors[actor_index].flags = 0;
             return;
@@ -7040,15 +7038,15 @@ void func_8003C328(u16 actor_index) {
     gActors[actor_index].flags_098 = 0;
 }
 
-u16 func_8003D518(u16 arg0, u16* arg1, s32 arg2, s32 arg3, s32 arg4) {
+u16 func_8003D518(u16 arg0, s16* graphic_list, s32 arg2, s32 arg3, s32 arg4) {
     u16 actor_index;
     if (arg0 == 0) {
         actor_index = Actor_RangeFindFlag2(0x10, 0x2D);
-        return func_80030F94(actor_index, arg1, arg2, arg3, arg4);
+        return func_80030F94(actor_index, graphic_list, arg2, arg3, arg4);
     }
     else {
         actor_index = Actor_RangeFindFlag2(0x90, 0xC0);
-        return func_80030F94(actor_index, arg1, arg2, arg3, arg4);
+        return func_80030F94(actor_index, graphic_list, arg2, arg3, arg4);
     }
 }
 

@@ -20,6 +20,7 @@ extern u16 D_800BE500;
 extern u16 D_800BE530;
 extern u16 D_800BE534;
 extern u16 D_800BE544;
+extern s16 D_800BE590;
 extern u16 D_800BE5D0;
 extern u16 D_800BE668;
 extern u16 D_800BE6B4;
@@ -27,6 +28,9 @@ extern u16 D_800BE6B8;
 extern u16 D_800BE704;
 extern u16 D_800BE708;
 
+extern s32 D_800CA254; // unknown type
+extern s32 D_800CA26C; // unknown type
+extern s32 D_800CA280; // unknown type
 extern s32 D_800CA28C; // unknown type
 extern s32 D_800CA2A0; // unknown type
 
@@ -47,6 +51,7 @@ extern u16 D_800CA244;
 extern u16 D_800CA248;
 extern u16 D_800CA24C;
 extern u16 D_800CA250;
+extern s16 D_800CBF40;
 extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 
@@ -58,6 +63,9 @@ extern u16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2924;
 extern u16 D_800D2978[];
+
+extern s16 D_800E13DC[];
+extern s16 D_800E13FC[];
 
 extern u16 D_80104098[];
 extern u8 D_8010CDF0[0x10000];
@@ -498,8 +506,122 @@ void func_80020A54(void) {
     }
 }
 
-void func_80020A90(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_80020A90.s")
+void func_80020A90(void) {
+    u16 actor_index;
+    u16 index;
+    s16* graphic_list;
+
+    switch (gGameStateSubState) {
+    case 0:
+        D_800EF4D4 = gMusicVolume;
+        gMusicVolume /= 2;
+        for (index = 0; index < 4; index++) {
+            D_801781C0[index] = gSfxPlayerVolumes[index];
+            gSfxPlayerVolumes[index] /= 2;
+        }
+        Sound_PlaySfx(0xCA);
+        func_8002092C();
+        gGameStateSubState++;
+        /* fallthrough */
+    case 1:
+        actor_index = 0xC8;
+        if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) {
+            func_800273FC(actor_index + 4, 0, 0, 0xC, 0x401);
+            gActors[actor_index + 4].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
+            func_80083454();
+            func_800836A0(4, 0, &D_800CA254, 1);
+            func_800836A0(5, 2, &D_800CA26C, 0);
+            func_800836A0(5, 3, &D_800CA280, 0);
+            func_8002034C();
+            func_800205DC();
+            func_800207DC();
+            func_80027510(actor_index + 5, D_800E13DC, 0xFFA8, 0xC, 0x401);
+            gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
+            gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
+            gActors[actor_index + 5].unk_18C = (s32) D_800D88B8;
+            func_80027510(actor_index + 6, D_800E13DC, 8, 0xC, 0x401);
+            gActors[actor_index + 6].flags |= ACTOR_FLAG_FREEZE_POS;
+            gActors[actor_index + 6].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
+            gActors[actor_index + 6].unk_18C = (s32) D_800D8C78;
+            func_80027510(actor_index + 7, D_800E13FC, 0xFFC4, 0xFFF8, 0x401);
+            gActors[actor_index + 7].flags |= ACTOR_FLAG_FREEZE_POS;
+            gActors[actor_index + 7].graphicFlags |= ACTOR_GFLAG_UNK6;
+            gGameStateSubState = 0x10;
+        }
+        else {
+            gActors[actor_index].hitboxBY1 -= 8;
+            gActors[actor_index + 1].hitboxBY0 += 8;
+            gActors[actor_index + 2].hitboxBX0 -= 12;
+            gActors[actor_index + 3].hitboxBX1 += 12;
+        }
+        break;
+    case 32:
+        if ((gActors[0xCF].posY.whole == -28) && (D_800D28E8 >= 2)) {
+            for (actor_index = 0; actor_index < 0xC8; actor_index++) {
+                gActors[actor_index].flags = 0;
+            }
+            D_800BE590 = 0;
+            D_800CBF40 = 1;
+            D_80171B10 = D_801781F0;
+            func_80046218(D_800D28E4 - 1, 0);
+            gGameStateSubState = 0x23;
+        }
+        else {
+            func_80020844();
+            gGameStateSubState++;
+        }
+        break;
+    case 33:
+        gGameStateSubState++;
+        break;
+    case 34:
+        actor_index = 0xC8;
+        if (gActors[actor_index + 2].hitboxBX0 == 0x90) {
+            func_800208D4();
+        }
+        else {
+            gActors[actor_index].hitboxBY1 += 8;
+            gActors[actor_index + 1].hitboxBY0 -= 8;
+            gActors[actor_index + 2].hitboxBX0 += 12;
+            gActors[actor_index + 3].hitboxBX1 -= 12;
+        }
+        break;
+    case 35:
+        if (gGameState == 6) {
+            func_80047CCC();
+        }
+        break;
+    case 16:
+        D_801782B8++;
+        func_8002034C();
+        if ((gButtonPress & D_800BE504) && (gActors[0xCF].posY.whole != -8)) {
+            Sound_PlaySfx(0x22);
+            gActors[0xCF].posY.whole = -8;
+        }
+        if ((gButtonPress & D_800BE508) && (gActors[0xCF].posY.whole != -28)) {
+            Sound_PlaySfx(0x22);
+            gActors[0xCF].posY.whole = -28;
+        }
+        break;
+    }
+
+    for (actor_index = 0xCD; actor_index < 0xD0; actor_index++) {
+        if (gActors[actor_index].flags != 0) {
+            gActors[actor_index].graphicTimer--;
+            graphic_list = gActors[actor_index].graphicList;
+            if (graphic_list) {} // fakematch
+            if (gActors[actor_index].graphicTimer == 0) {
+                gActors[actor_index].graphicIndex = graphic_list[0];
+                gActors[actor_index].graphicTimer = graphic_list[1];
+                graphic_list += 2;
+                if (graphic_list[0] < 0) {
+                    graphic_list += graphic_list[0];
+                }
+                gActors[actor_index].graphicList = graphic_list;
+            }
+        }
+    }
+}
 
 void GameState_Gameplay(void) {
     u32 start_time;

@@ -1,7 +1,7 @@
 #include "common.h"
 #include "actor.h"
 
-extern u16 D_801A3AEC_72210C[];
+extern s16 D_801A3AEC_72210C[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_719700/719720/func_8019B100_719720.s")
 
