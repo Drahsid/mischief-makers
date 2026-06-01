@@ -51,7 +51,7 @@ enum DebugFlags {
     DEBUGFLAG_UNK13 = (1U << 13U), // used in "camera Lock" mask
     DEBUGFLAG_SFXDATA = (1U << 14U), // display data on SFX channel states.
     DEBUGFLAG_STUB15 = (1U << 15U), //runs a stubbed function on game tick.
-    DEBUG_CAMERALOCK = (DEBUGFLAG_STUB15 | DEBUGFLAG_UNK13 | DEBUGFLAG_UNK10) // checked for in some scenes' camera logic.
+    DEBUGFLAG_CAMERALOCK = (DEBUGFLAG_STUB15 | DEBUGFLAG_UNK13 | DEBUGFLAG_UNK10) // checked for in some scenes' camera logic.
 };
 
 // global values near start of .bss
@@ -194,10 +194,10 @@ extern u32 D_800BE6BC; // unused. file break?
 extern s32 gActorDepthFront; // compared to actors' z-pos to determine actors should be drawn in the "front" or "top". set to -8.
 extern s32 D_800BE6C4; // read during "Midground" drawing
 extern s32 D_800BE6C8; // read during "Midground" drawing
-extern s32 gActorDepthMiddle; // compared to actors' z-pos to determine actors should be drawn in the "middle". set using scene LUT.
+extern s32 gActorDepthMiddle; // compared to actors' z-pos to determine actors should be drawn in the "middle".
 extern s32 D_800BE6D0; // read during "EnvLayer" drawing
 extern s32 D_800BE6D4; // read during "EnvLayer" drawing
-extern s32 gActorDepthBack; // compared to actors' z-pos to determine actors should be drawn in the "back".  set using scene LUT.
+extern s32 gActorDepthBack; // compared to actors' z-pos to determine actors should be drawn in the "back".
 extern s32 D_800BE6DC;
 extern s32 D_800BE6E0;
 extern u8 gDrawMidground; // draws "Midground" if set.

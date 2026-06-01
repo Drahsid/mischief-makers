@@ -489,7 +489,7 @@ void Sound_Update(void) {
 
     if (alSeqpGetState((ALSeqPlayer*)gMainSeqPlayer) == AL_STOPPED) {
         if ((gMusicPlayerFlags & 0x80) != 0) {
-            gMusicPlayerFlags &= 0x7F;
+            gMusicPlayerFlags &= ~0x80;
             Sound_LoadSequence(gMusicSequenceId, gMainSeqBuffer);
             alCSeqNew(gMainSequence, gMainSeqBuffer);
             alSeqpSetSeq((ALSeqPlayer*)gMainSeqPlayer, (ALSeq*)gMainSequence);

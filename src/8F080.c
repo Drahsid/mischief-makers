@@ -239,7 +239,7 @@ void func_800930E4(u32 arg0) {
 
 void func_80094EB8(u16 actor_index) {
     if (func_80029B00(0x50, 0x40, -0x40)) {
-        gActors[actor_index].flags_098 |= 0x40000;
+        gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK18;
     }
 }
 

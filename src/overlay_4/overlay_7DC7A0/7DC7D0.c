@@ -986,8 +986,8 @@ void func_801BBEBC_7DED8C(void) {
                 func_80045F14(D_801BE204_7E10D4);
                 D_800D28FC &= ~2;
                 func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
-                gActors[0x30].unk_0D8 &= 0xFFFE;
-                gActors[0x40].unk_0D8 &= 0xFFFE;
+                gActors[0x30].unk_0D8 &= ~1;
+                gActors[0x40].unk_0D8 &= ~1;
                 D_800BE544 = 0x8000;
             }
             break;

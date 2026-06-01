@@ -273,7 +273,7 @@ void func_8001FEB0(void) {
     }
 
     for (index = 0; D_800D2978[index] != 0; index += 3) {
-        D_800D2978[index] &= 0xFFFF7FFF;
+        D_800D2978[index] &= ~0x8000;
     }
 }
 

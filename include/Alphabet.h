@@ -62,6 +62,7 @@
 
 // there is a second alphabet using a slimmer font.
 // The top is used for titles and names, the bottom, everything else.
+
 #define ALPHA_THIN_LOWER_A 0x0075
 #define ALPHA_THIN_LOWER_B 0x0076
 #define ALPHA_THIN_LOWER_C 0x0077
@@ -119,6 +120,7 @@
 // And a third alphabet with a bolder font.
 // used for the "FIGHT" and "Go to next area" prompts
 // numbering suggests this is the oringinal english alphabet.
+
 #define ALPHA_BOLD_UPPER_A 0x000A
 #define ALPHA_BOLD_UPPER_B 0x000B
 #define ALPHA_BOLD_UPPER_C 0x000C
