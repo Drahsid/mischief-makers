@@ -70,27 +70,27 @@ extern u32 D_801069DC; // unused
 extern UnkStruct_801069E0 D_801069E0[64]; // "static gems" on screen / loaded?
 extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u8 D_8010CDF0[0x10000];
-extern u16 D_8011CDF8[144]; // indecies of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern u16 D_8011CF20[144]; // indecies of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern u16 gPlatform0Actors[144]; // indecies of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 gPlatform1Actors[144]; // indecies of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern u32 D_8011D040[2]; // blank space between
-extern s16 D_8011D048[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern s16 gPlatforms0X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern u32 D_8011D068[2]; // blank space between
-extern s16 D_8011D170[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM1-flagged Actors
-extern s16 D_8011D290[144]; // posX + hitboxBX0 of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern s16 gPlatforms1X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 gPlatforms0X0[144]; // posX + hitboxBX0 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern s16 D_8011D3B0[8][2];
-extern s16 D_8011D3D0[144]; // posY + hitboxBX0 of ACTOR_FLAG_PLATFORM1-flagged Actors
-extern s16 D_8011D4F0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern s16 D_8011D610[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM1-flagged Actors
-extern s16 D_8011D730[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors - 8
-extern s16 D_8011D850[144]; // posY + hitboxBY1 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 gPlatforms1X0[144]; // posY + hitboxBX0 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 gPlatforms0Y0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern s16 gPlatforms1Y0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern s16 gPlatforms0Y1[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors - 8
+extern s16 gPlatforms1Y1[144]; // posY + hitboxBY1 of ACTOR_FLAG_PLATFORM1-flagged Actors
 
 
 // global values near start of .data
 
-extern u16 D_800BE4D0; // count of ACTOR_FLAG_PLATFORM1-flagged Actors
-extern u16 D_800BE4D4; // count of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern u16 D_800BE4D8; // set if an actor contacts either group of platform hitboxes
-extern u16 D_800BE4DC; // index of actor contacting either group of platform hitboxes
+extern u16 gPlatform1ActorCount; // count of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern u16 gPlatform0ActorCount; // count of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 gPlatformHit; // set if an actor contacts either group of platform hitboxes
+extern u16 gPlatformHitActor; // index of actor contacting either group of platform hitboxes
 extern u16 gActiveFrames; // count of frames/ticks in current scene. does not count during pause. often AND'd and modulo'd.
 extern u16 gFramesInScene; // a second count of frames/ticks in current scene. not effect by pausing.
 extern u16 gGamePaused; // set when game is paused.
@@ -186,18 +186,18 @@ extern u32 D_800BE69C; // unused
 extern u32 D_800BE6A0; // unused
 extern u16 D_800BE6A4;
 extern u16 D_800BE6A8;
-extern u16 gDebugBitfield; // bitfield that can trigger leftover debug features.
+extern u16 gDebugBitfield; // bitfield that can trigger leftover debug features. Init'd to active perpective camera.
 extern f32 D_800BE6B0; // unused.
 extern u16 gDebugThrottle; // can be used to slow game logic to (x/60) seconds per tick, where 1=<x=<50
-extern u16 D_800BE6B8; // turns debug text black or white. also treated as u8[2]
+extern u16 gDebugOSDTint; // turns debug text black or white. also treated as u8[2]
 extern u32 D_800BE6BC; // unused. file break?
-extern s32 D_800BE6C0; // compared to actor's z-pos to determine actors should be drawn in the "front" or "top". set to -8.
+extern s32 gActorDepthFront; // compared to actors' z-pos to determine actors should be drawn in the "front" or "top". set to -8.
 extern s32 D_800BE6C4; // read during "Midground" drawing
 extern s32 D_800BE6C8; // read during "Midground" drawing
-extern s32 D_800BE6CC; // compared to actor's z-pos to determine actors should be drawn in the "middle". set using scene LUT.
+extern s32 gActorDepthMiddle; // compared to actors' z-pos to determine actors should be drawn in the "middle". set using scene LUT.
 extern s32 D_800BE6D0; // read during "EnvLayer" drawing
 extern s32 D_800BE6D4; // read during "EnvLayer" drawing
-extern s32 D_800BE6D8; // compared to actor's z-pos to determine actors should be drawn in the "back".  set using scene LUT.
+extern s32 gActorDepthBack; // compared to actors' z-pos to determine actors should be drawn in the "back".  set using scene LUT.
 extern s32 D_800BE6DC;
 extern s32 D_800BE6E0;
 extern u8 gDrawMidground; // draws "Midground" if set.

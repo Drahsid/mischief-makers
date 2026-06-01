@@ -10,8 +10,8 @@ extern void func_8000147C(void);
 
 // globals .bss 
 
-extern u16 D_8011DD70[64]; // history of button presses?
-extern u16 D_801225F0[64]; // history of button holds?
+extern u16 gButtonPressHistory[64]; // history of button presses
+extern u16 gButtonHoldHistory[64]; // history of button holds
 
 
 // globals .data

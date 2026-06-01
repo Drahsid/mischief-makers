@@ -1561,7 +1561,7 @@ s32 Actor_ReduceHealth(u16 actor_index, u16 health_diff) {
 }
 
 s32 func_8002B954(u16 actor_index, u16 arg1) {
-    if (D_800BE4D8 == FALSE) {
+    if (gPlatformHit == FALSE) {
         if (arg1 & 0x80) {
             return TRUE;
         }
@@ -1585,7 +1585,7 @@ s32 func_8002B9D8(u16 actor_index) {
 }
 
 s32 func_8002BACC(u16 arg0, u16 arg1) {
-    if ((D_800BE4D8 == FALSE) && (arg1 & 0x80)) {
+    if ((gPlatformHit == FALSE) && (arg1 & 0x80)) {
         return TRUE;
     }
     else {
@@ -1629,7 +1629,7 @@ void func_8002BC90(u16 arg0) {
     target = arg0 ? gButton_DRight : gButton_DLeft;
     count = 0;
     for (index = 0; index < 18; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         value &= -1 - gButton_DUp;
         if (value != 0) {
             if (target == value) {
@@ -1648,7 +1648,7 @@ void func_8002BC90(u16 arg0) {
     target = arg0 ? gButton_DLeft : gButton_DRight;
     count = 0;
     for (index = 0; index < 18; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         value &= -1 - gButton_DUp;
         if (value != 0) {
             if (target == value) {
@@ -1667,7 +1667,7 @@ void func_8002BC90(u16 arg0) {
     target = arg0 ? gButton_DRight : gButton_DLeft;
     if (D_800BE5FC & 1) {
         for (index = 0; index < 10; index++) {
-            value = D_8011DD70[index];
+            value = gButtonPressHistory[index];
             if (value != 0) {
                 if (value == gButton_B || value == (gButton_B + target)) {
                     D_800BE5FC = 0xB;
@@ -1681,7 +1681,7 @@ void func_8002BC90(u16 arg0) {
     target = arg0 ? gButton_DLeft : gButton_DRight;
     if (D_800BE5FC & 1) {
         for (index = 0; index < 10; index++) {
-            value = D_8011DD70[index];
+            value = gButtonPressHistory[index];
             if (value != 0) {
                 if (value == gButton_B || value == (gButton_B + target)) {
                     D_800BE5FC = 0xD;
@@ -1694,7 +1694,7 @@ void func_8002BC90(u16 arg0) {
 
     count = 0;
     for (index = 0; index < 20; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         if (value != 0) {
             if (value != gButton_B && value != (gButton_B + gButton_DUp)) {
                 index = 100;
@@ -1707,7 +1707,7 @@ void func_8002BC90(u16 arg0) {
 
     index++;
     for (; index < 20; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         if (value != 0) {
             if (value == gButton_DUp) {
                 count++;
@@ -1725,7 +1725,7 @@ void func_8002BC90(u16 arg0) {
     count = 0;
     index = 0;
     for (; index < 20; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         if (value != 0) {
             if (value != gButton_B && value != (gButton_B + gButton_DDown)) {
                 index = 100;
@@ -1738,7 +1738,7 @@ void func_8002BC90(u16 arg0) {
 
     index++;
     for (; index < 20; index++) {
-        value = D_8011DD70[index];
+        value = gButtonPressHistory[index];
         if (value != 0) {
             if (value == gButton_DDown) {
                 count++;

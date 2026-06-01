@@ -216,8 +216,8 @@ void func_801AC360_792650(u16 actor_index) {
 void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
     gActors[actor_index].actorType = 0x1A07;
     func_8001E2D0(actor_index);
-    gActors[actor_index].graphicFlags = 0x800;
-    gActors[actor_index].flags = 0xA;
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
+    gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posZ.whole = 0x80;
     gActors[actor_index].var_150 = arg1;
     gActors[actor_index].unk_164 = 0x40;

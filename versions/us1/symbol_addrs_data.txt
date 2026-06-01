@@ -7,6 +7,11 @@ gCannotPause = 0x800BE4EC; // size:0x2
 gGameState = 0x800BE4F0; // size:0x2
 gGameStateSubState = 0x800BE4F4; // size:0x2
 
+gPlatform1ActorCount = 0x800BE4D0; // type:u16 size:0x2
+gPlatform0ActorCount = 0x800BE4D4; // type:u16 size:0x2
+gPlatformHit = 0x800BE4D8; // type:u16 size:0x2
+gPlatformHitActor = 0x800BE4DC; // type:u16 size:0x2
+
 gCamShakeTime = 0x800be590; // type:s16 size:0x2 rom:0xbf190
 gCamShakeV = 0x800be594; // type:s16 size:0x2 rom:0xbf194
 gCamShakeType = 0x800be598; // type:s16 size:0x2 rom:0xbf198
@@ -119,6 +124,11 @@ gActorStall = 0x800be670; // type:u16 size:0x2
 
 gDebugBitfield = 0x800BE6AC; // size:0x2
 gDebugThrottle = 0x800BE6B4; // size:0x2
+gDebugOSDTint = 0x800BE6B8; // size:0x2
+
+gActorDepthFront = 0x800BE6C0; // type:s32 size:0x4
+gActorDepthMiddle = 0x800BE6CC; // type:s32 size:0x4
+gActorDepthBack = 0x800BE6D8; // type:s32 size:0x4
 
 gDrawMidground = 0x800BE6E4; // type:u8 size:0x1
 gDrawEnvLayer = 0x800BE6E8; // type:u8 size:0x1
@@ -132,8 +142,22 @@ gCameraRotDelta = 0x800be730; // type:s32 size:0x4 rom:0xbf330
 gCurrentDisplayListBase = 0x800EF4F4; // size:0x4
 gActors = 0x800EF510; // size:0x14B80
 
+gPlatform0Actors = 0x8011CDF8; // size:0x120
+gPlatform1Actors = 0x8011CF20; // size:0x120
+gPlatforms0X1 = 0x8011D048; // size:0x120
+gPlatforms1X1 = 0x8011D170; // size:0x120
+gPlatforms0X0 = 0x8011D290; // size:0x120
+gPlatforms1X0 = 0x8011D3D0; // size:0x120
+gPlatforms0Y0 = 0x8011D4F0; // size:0x120
+gPlatforms1Y0 = 0x8011D610; // size:0x120
+gPlatforms0Y1 = 0x8011D730; // size:0x120
+gPlatforms1Y1 = 0x8011D850; // size:0x120
+
+
 gDramStack = 0x8011D970; // size:0x400
-gYeildData = 0x8011DDF0; // size:0xDA0
+gButtonPressHistory = 0x8011DD70; // size:0x80
+gYeildData = 0x8011DDF0; // size:0x4800
+gButtonHoldHistory = 0x801225F0; // size:0x80
 
 gAudioCustomFxParams = 0x800C3858; // size:0xA8
 gMusicPlayerFlags = 0x800EF4D0; // size:0x1
@@ -281,6 +305,12 @@ gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;
 
 gStageTime = 0x801781E0;// type:u16 size:0x2
+
+gActorsBack = 0x80171B30; // size:0x100
+gActorsMiddle = 0x80171C30; //size:0x100
+gActorsFront = 0x80171D30; // size:0x1e0
+gActorsTop = 0x80171F10; // size:0x1e0
+
 
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;

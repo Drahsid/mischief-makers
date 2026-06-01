@@ -9,10 +9,8 @@
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
-extern u16 D_800BE6B8;
-
-extern s32 D_800CA28C; // unknown type
-extern s32 D_800CA2A0; // unknown type
+extern u16 D_800CA28C[]; // "Not Yet"
+extern u16 D_800CA2A0[]; // " Got it"
 
 extern s16 D_800C7CA4[];
 extern s16 D_800C7CAC[];
@@ -57,7 +55,7 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 gStageTime; // time in current stage. does not count time paused or during cutscenes.
+extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
 extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
@@ -173,32 +171,35 @@ void func_8001EB8C(u16 arg0, u16 arg1) {
 void func_8001EC1C(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EC1C.s")
 
+// find actors with either "platform" flag and add their position+hitbox offsets to lists
 void func_8001F88C(void) {
     u16 index;
 
     if (!(D_80137458 & 0x10)) {
-        for (index = 0, D_800BE4D0 = 0, D_800BE4D4 = 0; index < 144; index++) {
+        for (index = 0, gPlatform1ActorCount = 0, gPlatform0ActorCount = 0; index < 144; index++) {
             if (gActors[index].flags & ACTOR_FLAG_PLATFORM1) {
-                D_8011CF20[D_800BE4D0] = index;
-                D_8011D170[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX1;
-                D_8011D3D0[D_800BE4D0] = gActors[index].posX.whole + gActors[index].hitboxBX0;
-                D_8011D610[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY0;
-                D_8011D850[D_800BE4D0] = gActors[index].posY.whole + gActors[index].hitboxBY1;
-                D_800BE4D0++;
+                gPlatform1Actors[gPlatform1ActorCount] = index;
+                gPlatforms1X1[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+                gPlatforms1X0[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+                gPlatforms1Y0[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+                gPlatforms1Y1[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY1;
+                gPlatform1ActorCount++;
             }
             if (gActors[index].flags & ACTOR_FLAG_PLATFORM0) {
-                D_8011CDF8[D_800BE4D4] = index;
-                D_8011D048[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX1;
-                D_8011D290[D_800BE4D4] = gActors[index].posX.whole + gActors[index].hitboxBX0;
-                D_8011D4F0[D_800BE4D4] = gActors[index].posY.whole + gActors[index].hitboxBY0;
-                D_8011D730[D_800BE4D4] = gActors[index].posY.whole + gActors[index].hitboxBY0 - 8;
-                D_800BE4D4++;
+                gPlatform0Actors[gPlatform0ActorCount] = index;
+                gPlatforms0X1[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+                gPlatforms0X0[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+                gPlatforms0Y0[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+                gPlatforms0Y1[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0 - 8;
+                gPlatform0ActorCount++;
             }
         }
     }
 }
 
-u8 func_8001FA78(u16 actor_index, s16 arg1, s16 arg2) {
+// see if gActors[actor_index] collides with a platform-flagged actor
+// based on (x) and (y) coords
+u8 func_8001FA78(u16 actor_index, s16 x, s16 y) {
     u16 var_a3;
     u16 index;
 
@@ -207,54 +208,54 @@ u8 func_8001FA78(u16 actor_index, s16 arg1, s16 arg2) {
         var_a3 = gActors[actor_index].unk_0D6;
     }
     
-    for (index = 0; index < D_800BE4D0; index++) {
-        if ((actor_index != D_8011CF20[index]) && (var_a3 != D_8011CF20[index]) &&
-            (D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
-            (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index])) {
-            D_800BE4DC = D_8011CF20[index];
+    for (index = 0; index < gPlatform1ActorCount; index++) {
+        if ((actor_index != gPlatform1Actors[index]) && (var_a3 != gPlatform1Actors[index]) &&
+            (gPlatforms1X1[index] >= x) && (x >= gPlatforms1X0[index]) &&
+            (gPlatforms1Y0[index] >= y) && (y >= gPlatforms1Y1[index])) {
+            gPlatformHitActor = gPlatform1Actors[index];
             return 0xC0;
         }
     }
 
-    for (index = 0; index < D_800BE4D4; index++) {
-        if ((actor_index != D_8011CDF8[index]) && (var_a3 != D_8011CDF8[index]) &&
-            (D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
-            (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index])) {
-            D_800BE4DC = D_8011CDF8[index];
+    for (index = 0; index < gPlatform0ActorCount; index++) {
+        if ((actor_index != gPlatform0Actors[index]) && (var_a3 != gPlatform0Actors[index]) &&
+            (gPlatforms0X1[index] >= x) && (x >= gPlatforms0X0[index]) &&
+            (gPlatforms0Y0[index] >= y) && (y >= gPlatforms0Y1[index])) {
+            gPlatformHitActor = gPlatform0Actors[index];
             return 0x40;
         }
     }
 
-    D_800BE4DC = 0;
+    gPlatformHitActor = 0;
     return 0;
 }
 
-u8 func_8001FCA0(u16 actor_index, s16 arg1, s16 arg2) {
+u8 func_8001FCA0(u16 actor_index, s16 x, s16 y) {
     u8 temp_v0;
     u16 index;
 
-    temp_v0 = func_8005C870(func_80012AB4(arg1, arg2));
-    D_800BE4DC = 0;
-    D_800BE4D8 = FALSE;
+    temp_v0 = func_8005C870(func_80012AB4(x, y));
+    gPlatformHitActor = 0;
+    gPlatformHit = FALSE;
     if (temp_v0 != 0) {
         return temp_v0;
     }
-    for (index = 0; index < D_800BE4D0; index++) {
-        if ((D_8011D170[index] >= arg1) && (arg1 >= D_8011D3D0[index]) &&
-            (D_8011D610[index] >= arg2) && (arg2 >= D_8011D850[index]) &&
-            (actor_index != D_8011CF20[index])) {
-            D_800BE4DC = D_8011CF20[index];
-            D_800BE4D8 = TRUE;
+    for (index = 0; index < gPlatform1ActorCount; index++) {
+        if ((gPlatforms1X1[index] >= x) && (x >= gPlatforms1X0[index]) &&
+            (gPlatforms1Y0[index] >= y) && (y >= gPlatforms1Y1[index]) &&
+            (actor_index != gPlatform1Actors[index])) {
+            gPlatformHitActor = gPlatform1Actors[index];
+            gPlatformHit = TRUE;
             return 0xC0;
         }
     }
 
-    for (index = 0; index < D_800BE4D4; index++) {
-        if ((D_8011D048[index] >= arg1) && (arg1 >= D_8011D290[index]) &&
-            (D_8011D4F0[index] >= arg2) && (arg2 >= D_8011D730[index]) &&
-            (actor_index != D_8011CDF8[index])) {
-            D_800BE4DC = D_8011CDF8[index];
-            D_800BE4D8 = TRUE;
+    for (index = 0; index < gPlatform0ActorCount; index++) {
+        if ((gPlatforms0X1[index] >= x) && (x >= gPlatforms0X0[index]) &&
+            (gPlatforms0Y0[index] >= y) && (y >= gPlatforms0Y1[index]) &&
+            (actor_index != gPlatform0Actors[index])) {
+            gPlatformHitActor = gPlatform0Actors[index];
+            gPlatformHit = TRUE;
             return 0x40;
         }
     }
@@ -433,6 +434,7 @@ void func_80020844(void) {
     }
 }
 
+// restore BGM volume and unset "bar" actors on unpause
 void func_800208D4(void) {
     u16 index;
 
@@ -441,9 +443,10 @@ void func_800208D4(void) {
     }
     gMusicVolume = D_800EF4D4;
     gGameStateSubState = 0;
-    gGamePaused = 0;
+    gGamePaused = FALSE;
 }
 
+// inialize "bar" actors for pause transition.
 void func_8002092C(void) {
     u16 index;
 
@@ -466,6 +469,7 @@ void func_8002092C(void) {
     }
 }
 
+// unset "bar" actors for pause transition.
 void func_80020A54(void) {
     u16 index;
 
@@ -491,6 +495,7 @@ void GameState_Gameplay(void) {
     }
 }
 
+// "tick" attract mode button inputs and game logic
 void func_80021098(void) {
     u16 prev_game_sub_state;
 
@@ -603,9 +608,10 @@ void GameState_Attract(void) {
     }
 }
 
+// toggle OSD color from black or whit with R button
 void func_80021620(void) {
     if (gButtonPress & gButton_RTrig) {
-        D_800BE6B8 ^= 0xFF;
+        gDebugOSDTint ^= 0xFF;
     }
 }
 

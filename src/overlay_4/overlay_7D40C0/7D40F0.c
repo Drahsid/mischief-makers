@@ -1329,7 +1329,7 @@ void func_801B9CA0_7D4490(void) {
             Palette_AdjustScenePalettes(-0x15, -0x1A, -0x20, 0, 0, 0, -0x13, -0x1F, -0x20);
             func_80042F2C(-4, -8, -0xC);
             Actor_LoadSpawnTable(D_801BC5FC_7D6DEC);
-            D_800BE6D8 = -0x30;
+            gActorDepthBack = -0x30;
             D_800BE544 = 0;
             D_800BE548.raw = 0x400000;
             break;
@@ -1425,7 +1425,7 @@ void func_801BA040_7D4830(void) {
 void func_801BA084_7D4874(void) {
     Palette_AdjustScenePalettes(-0x15, -0x1A, -0x20, 0, 0, 0, -0x13, -0x1F, -0x20);
     func_80042F2C(-8, -8, -8);
-    D_800BE6D8 = -0x30;
+    gActorDepthBack = -0x30;
     D_800BE544 = 0;
     D_800BE548.raw = FIXED_UNIT(64.0);
 }
@@ -1588,7 +1588,7 @@ void func_801BA690_7D4E80(void) {
             func_80045FA4(D_801BD694_7D7E84, (s32)D_801BD6B4_7D7EA4);
             Palette_AdjustScenePalettes(8, 2, -6, 0, 0, 0, 0, 0, 0);
             Actor_LoadSpawnTable(D_801BDB48_7D8338);
-            D_800BE6D8 = -0x30;
+            gActorDepthBack = -0x30;
             gDrawBackground = FALSE;
             D_800BE544 = 0;
             D_800BE548.raw = FIXED_UNIT(64.0);
@@ -1850,7 +1850,7 @@ void func_801BAE84_7D5674(void* arg0, s32 arg1) {
     Actor_LoadSpawnTable(D_801BEB2C_7D931C);
     D_800BE544 = 0x8000;
     D_800BE548.raw = FIXED_UNIT(64.0);
-    D_800BE6D8 = -0x30;
+    gActorDepthBack = -0x30;
     gDrawBackground = FALSE;
     func_801BAC6C_7D545C();
     Sound_PlaySfx(0x74);

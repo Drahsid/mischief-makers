@@ -59,29 +59,29 @@ void func_8000147C(void) {
     func_800821B0(); // MarinaGraphics_Load
     func_80009940();
     func_80082F10();
-    func_80009BE8(D_80171B30); // DrawActors
+    func_80009BE8(gActorsBack); // DrawActors
 
     // "Snowstorm Maze" and "Lunar"
     if (D_800BE674) {
         func_80082CFC(); // DrawMidground
         func_8000DD6C(); // DrawClanBlocks
-        func_80009BE8(D_80171D30); // DrawActors
+        func_80009BE8(gActorsFront); // DrawActors
         func_80082E04(); // DrawEnvLayer
     }
     else {
         func_80082E04(); // DrawEnvLayer
-        func_80009BE8(D_80171C30); // DrawActors
+        func_80009BE8(gActorsMiddle); // DrawActors
         func_80082CFC(); // DrawMidground
-        func_80009BE8(D_80171D30); // DrawActors
+        func_80009BE8(gActorsFront); // DrawActors
         func_8000DD6C(); // DrawClanBlocks
     }
 
     if (D_8013747C != 0) {
         func_8000EA88(); // DrawPortraits
-        func_80009BE8(D_80171F10); // DrawActors
+        func_80009BE8(gActorsTop); // DrawActors
     }
     else {
-        func_80009BE8(D_80171F10); // DrawActors
+        func_80009BE8(gActorsTop); // DrawActors
         func_8000EA88(); // DrawPortraits
     }
 

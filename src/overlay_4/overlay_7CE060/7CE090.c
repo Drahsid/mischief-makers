@@ -10,7 +10,6 @@ extern void func_80064AA0(s32 arg0, void* arg1);
 extern s16 func_8005DEFC(void);
 
 extern s16 D_800D28F8;
-extern s32 D_800BE6CC;
 extern s32 D_800D2934;
 
 
@@ -129,7 +128,7 @@ void func_801B9A40_7CE1D0(void) {
 }
 
 void func_801B9A98_7CE228(u16 actor_index) {
-    gActors[actor_index].flags = 0x28A;
+    gActors[actor_index].flags = (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE);
     gActors[actor_index].damage = 0;
     gActors[actor_index].hitboxAY0 = 0;
     gActors[actor_index].hitboxAY1 = -0x20;
@@ -482,7 +481,7 @@ handle_cutscene_index:
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(0x5E);
             D_800BE6A8 = 0;
-            gLetterboxMode = 1;
+            gLetterboxMode = LETTERBOX_HORIZONTAL;
             D_800BE710 = 1;
             D_800BE568.whole = 0x158;
             D_800BE56C.whole = 0x1008;
@@ -842,7 +841,7 @@ void func_801BB360_7CFAF0(void) {
                 D_800BE544 = 0x8000;
                 gDrawMidground = 0;
                 gDrawEnvLayer = 1;
-                D_800BE6D8 = temp;
+                gActorDepthBack = temp;
                 gActors[0x64].state = 0x80;
                 D_800D28FC |= 2;
                 gActors[0x62].timer_110 = 1.0f;
@@ -857,8 +856,8 @@ void func_801BB360_7CFAF0(void) {
                     D_800D2934 = -0x5C;
                     func_80045FA4(D_801BF728_7D3EB8, 0);
                     func_80043D30(D_801BF738_7D3EC8);
-                    D_800BE6CC = -0x20;
-                    D_800BE6D8 = 0x80;
+                    gActorDepthMiddle = -0x20;
+                    gActorDepthBack = 0x80;
                     D_800BE5F4.unk_00_s32 = 3;
                     D_800BE544 = 0x8000;
                 }
@@ -1036,8 +1035,8 @@ void func_801BB360_7CFAF0(void) {
             gActors[0].flags |= ACTOR_FLAG_FLIPPED;
             D_800BE544 = 0x8000;
             gDrawEnvLayer = 0;
-            D_800BE6CC = -0xC0;
-            D_800BE6D8 = -0xC0;
+            gActorDepthMiddle = -0xC0;
+            gActorDepthBack = -0xC0;
             gScreenPosTargetY.whole = 0x19C;
             gActors[0].velocityY.raw = 0;
             gActors[0].velocityX.raw = 0;
