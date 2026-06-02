@@ -2915,7 +2915,7 @@ void func_8002F420(u16 actor_index) {
 }
 
 // cap red gems collected at 9999
-void func_8002F6AC(void) {
+void RedGems_Clamp(void) {
     if (D_80178136 >= 9999) {
         D_80178136 = 9999;
     }

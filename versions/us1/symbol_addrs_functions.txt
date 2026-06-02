@@ -97,6 +97,8 @@ Palette_SetRgbTableIndexArray = 0x8002B7F4; // type:func
 Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 
+RedGems_Clamp = 0x8002F6AC // type:func
+
 
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
