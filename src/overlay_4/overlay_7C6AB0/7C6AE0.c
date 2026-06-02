@@ -1110,8 +1110,7 @@ void func_801BB6D0_7C88B0(void) {
 
                     case 0xC:
                     {
-                        gActors[0x50].graphicList = D_800E1C84;\
-                        gActors[0x50].graphicTimer = 1;
+                        ACTOR_GFX_INIT(0x50, D_800E1C84);
                         Sound_PlaySfx(0x2B);
                         func_801BB6AC_7C888C(0);
                         D_800D28F8 = 0xB4;
