@@ -41,14 +41,14 @@ typedef struct {
 #define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
 #define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
 
-// related to "static" gems in stage
+// data on "static" objects (clanblocks, gems)
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
     /* 0x80 */ u16 graphicIndex;
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
-    /* 0x8C */ void* unk_08C; // texture?
+    /* 0x8C */ void* palette;
 } UnkStruct_801069E0; /* sizeof = 0x90 */
 
 // struct storing data about Marina player actor

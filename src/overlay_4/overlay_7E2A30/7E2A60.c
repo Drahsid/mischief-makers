@@ -663,7 +663,7 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x805:
             if ((u32)D_800D2928-- < 1U) {
-                *(u32*)&D_800BE5F4 = 5;
+                D_800BE5F4.unk_00_u32 = 5;
                 func_80064AA0(0x3C, D_801BD558_7E66B8);
             }
             break;
@@ -674,7 +674,7 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x1000:
             func_801BB1F4_7E4354();
-            *(u32*)&D_800BE5F4 = 5;
+            D_800BE5F4.unk_00_u32 = 5;
             break;
 
         case 0x1001:

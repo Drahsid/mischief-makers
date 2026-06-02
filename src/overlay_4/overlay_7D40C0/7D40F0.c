@@ -2198,7 +2198,7 @@ void func_801BB768_7D5F58(void) {
 
         case 0x1002:
             if (func_8004735C(0x14, 0) != 0) {
-                func_8003E6A4(0xF, 0x30);
+                SpawnCrosshair(CROSSHAIR_ALL, 0x30);
             }
             break;
 

@@ -10,7 +10,7 @@ s32 D_800EF4DC; // unused.
 u8 gMusicChannelFxMixes[16];
 u8 gSfxPlayerFlags[4];
 Gfx* gCurrentDisplayListBase;
-u16 gSfxPlayerVolumes[4];
+s16 gSfxPlayerVolumes[4];
 u32 D_800EF500; // unknown/unused
 u32 D_800EF504; // unknown/unused
 u16 gSfxSequenceIds[4];

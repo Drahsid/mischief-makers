@@ -97,8 +97,10 @@ Palette_SetRgbTableIndexArray = 0x8002B7F4; // type:func
 Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 
-RedGems_Clamp = 0x8002F6AC // type:func
-
+SpawnGemActor = 0x8002EFE4; // type:func
+RedGems_Clamp = 0x8002F6AC; // type:func
+Crosshair_SetPos = 0x8003E640; //type:func
+SpawnCrosshair = 0x8003E6A4; // type:func
 
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
@@ -120,8 +122,8 @@ GameState_FileSelect = 0x80007C8C; // type:func
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 Trouble_RLE_Type2 = 0x80098B50; // type:func
-Sound_RangeFindInactive = 0x800284B8; // type:func
-Sound_RangeFindInactive_90ToC0 = 0x80028528; // type:func
+Actor_RangeFindInactive = 0x800284B8; // type:func
+Actor_RangeFindInactive_90ToC0 = 0x80028528; // type:func
 Actor_ClearRange_10To20 = 0x80028638; // type:func
 Actor_ClearRange_30To90 = 0x8002865C; // type:func
 Actor_ClearRange_90ToC0 = 0x80028680; // type:func
