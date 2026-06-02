@@ -109,6 +109,8 @@ Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
 Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
+SpawnTextBubble = 0x8007D0DC; // type:func
+
 GameState_SoftReset = 0x80022F48; // type:func
 GameState_Intro = 0x80017800; // type:func
 GameState_TitleScreen = 0x8001817C; // type:func

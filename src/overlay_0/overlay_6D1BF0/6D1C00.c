@@ -175,7 +175,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;
-                                Sound_PlaySfxAtActorPanning(0xDD, temp);
+                                Sound_PlaySfxAtActorPanning(SFX_THEO_HELP2, temp);
                                 Sound_PlaySfxAtActor2(0xB0, actor_index);
                             }
                     }

@@ -12212,7 +12212,7 @@
           }
         },
         {
-          "name": "func_8007D0DC",
+          "name": "SpawnTextBubble",
           "size": "24",
           "metadata": {
             "virtual_address": "2147995868"

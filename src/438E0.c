@@ -363,7 +363,7 @@ u16 func_8004571C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800457C8.s")
 
 void func_80045D84(u32 arg0, u32 arg1) {
-    D_800D28E4 = 0x64;
+    D_800D28E4 = 100;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045D9C.s")

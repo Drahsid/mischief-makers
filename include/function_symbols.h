@@ -96,7 +96,7 @@ extern void func_8005DF40(s32 arg0, s32 arg1);
 extern void func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-extern void func_8007D0DC(u16, void*, u16, u16, s32); // guess
+extern u16 SpawnTextBubble(u16, u16*, s16, s16, s32);
 extern void func_8007EA14(void*, u16, s16, s32, s32, void*, s32, s32, s32, s32, s32, f32);
 extern void func_8007F9E0(u16 actor_index);
 extern void func_80081720(u16 arg0, void* arg1, s32 arg2);

@@ -4402,7 +4402,7 @@ s16 func_80034E10(u16 actor_a0, u16 arg1, u16 arg2, u16 arg3, u16 arg4, u16 acto
         }
     }
 
-    Sound_PlaySfxAtActor2(0x5A, actor_a0);
+    Sound_PlaySfxAtActor2(SFX_POP, actor_a0);
     if (arg1 & 0x800) {
         return gActors[actor_a5].unk_170;
     }
@@ -4474,7 +4474,7 @@ u16 func_80035394(u16 actor_index) {
     if (gActors[actor_index].unk_174 & 0x8000) {
         index = Actor_RangeFindInactive(0x10, 0x2D);
         if (index == 0) {
-            Sound_PlaySfxAtActor2(0x5A, actor_index);
+            Sound_PlaySfxAtActor2(SFX_POP, actor_index);
             return 0;
         }
     }
@@ -4523,7 +4523,7 @@ u16 func_80035524(u16 actor_index0, u16 actor_index1) {
                 gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
                 gActors[0].unk_0FC.raw = FIXED_UNIT(3.0);
             }
-            Sound_PlaySfxAtActor2(0x5A, actor_index0);
+            Sound_PlaySfxAtActor2(SFX_POP, actor_index0);
             return 0;
         }
         gActors[actor_index2].actorType = D_800D22BC[gActors[actor_index0].unk_170 + 3];
@@ -4558,7 +4558,7 @@ u16 func_80035524(u16 actor_index0, u16 actor_index1) {
         gActors[actor_index2].velocityY.raw = FIXED_UNIT(0.875);
         break;
     }
-    Sound_PlaySfxAtActor2(0x5A, actor_index0);
+    Sound_PlaySfxAtActor2(SFX_POP, actor_index0);
     return actor_index2;
 }
 
@@ -4942,7 +4942,7 @@ void func_800367D0(u16 actor_index) {
                 }
             }
             else if (temp_a0 == 0) {
-                func_8007D0DC(0, D_800D1898, 0, 0x20, 0x1E);
+                SpawnTextBubble(0, D_800D1898, 0, 0x20, 0x1E);
             }
         }
     }

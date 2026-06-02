@@ -1220,7 +1220,7 @@ void func_800040A0(void) {
             gMusicVolume = (gMusicFadeVolume * progress) / 0x80;
 
             for (index = 0; index < AUDIO_PLAYER_COUNT; index++) {
-                if (gSfxSequenceIds[index] != 0xBB) {
+                if (gSfxSequenceIds[index] != SFX_STAGE_TILES) {
                     gSfxPlayerVolumes[index] = (gSfxFadeVolumes[index] * progress) / 0x80;
                 }
             }
