@@ -64,7 +64,7 @@ extern s16 D_800E13FC[];
 extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
-extern u16 D_80178136;
+extern u16 gRedGems;
 extern s16 D_801781C0[]; // SFX volumes stored during pause
 extern u16 D_801781C8;
 extern u16 D_801781CA;
@@ -667,7 +667,7 @@ void func_8002034C(void) {
 void func_800205DC(void) {
     u16 val;
 
-    val = D_80178136;
+    val = gRedGems;
     func_80083518(6, 1, (val % 10) + 0x51, 0);
     val /= 10;
     func_80083518(5, 1, (val % 10) + 0x51, 0);

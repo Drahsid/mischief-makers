@@ -17,7 +17,7 @@ extern u16 D_80171AD4[];
 extern u64 D_80171AD8[];
 extern u64 D_80171B10; // bitfeild of yellow gem collection.
 extern u8 D_80171B18;
-extern u16 D_80178136;
+extern u16 gRedGems;
 extern u16 D_80178156;
 extern u16 D_8017815A;
 extern u16 D_8017815C;
@@ -169,7 +169,7 @@ void func_8001B3D0(void) {
     u32 save_slot_index;
 
     D_80171B18 = gCurrentStage;
-    D_80171AD0[D_800C5008] = D_80178136;
+    D_80171AD0[D_800C5008] = gRedGems;
     yellow_gem_count = func_8001B244();
     save_slot_index = D_800C5008;
     D_80171AD4[save_slot_index] = yellow_gem_count;

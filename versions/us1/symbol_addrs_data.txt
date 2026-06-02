@@ -289,6 +289,8 @@ gPlayerVelYMirror = 0x800be5ec; // type:s32 size:0x4 rom:0xbf1ec
 
 gPortraitTint= 0x800be6f0; // type:u8 size:0x1 rom:0xbf2f0
 
+gRedGems = 80178136; //type:u16 size:0x2
+
 // debug_level_select.c
 gDebugStageSelectRowPrefixes = 0x800C81E4;
 gStageRowCounts = 0x800C823C;

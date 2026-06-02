@@ -95,7 +95,7 @@ extern s8 D_801373F2;
 extern s32 D_80137444;
 extern u16 D_80137450;
 extern u32 D_80137458;
-extern u16 D_80178136;
+extern u16 gRedGems;
 extern ALCSPlayer* gSfxSeqPlayers[];
 
 extern Unk800D1788 D_800D1788[];
@@ -2892,10 +2892,10 @@ void SpawnGemRing(u16 flags) {
         gActors[index].var_158 = (360 / gActors[index].var_154) / 0.3515625;
         gActors[index].var_15C = flags & 0x100;
         if (gActors[index].var_150 != 0) {
-            D_80178136 -= gActors[index].var_154;
+            gRedGems -= gActors[index].var_154;
             gActors[index].unk_12C = 0.0f;
-            if (D_80178136 & 0x8000) {
-                D_80178136 = 0;
+            if (gRedGems & 0x8000) {
+                gRedGems = 0;
             }
         }
         else {
@@ -2934,8 +2934,8 @@ void GemRing_MakeGems(u16 actor_index) {
 
 // cap red gems collected at 9999
 void RedGems_Clamp(void) {
-    if (D_80178136 >= 9999) {
-        D_80178136 = 9999;
+    if (gRedGems >= 9999) {
+        gRedGems = 9999;
     }
 }
 
@@ -2954,7 +2954,7 @@ void func_8002F6D4(u16 actor_index) {
         gActors[actor_index].unk_12C -= 1.0f;
         if (gActors[actor_index].unk_12C <= 0.0f) {
             gActors[actor_index].flags = 0;
-            D_80178136 += gActors[actor_index].var_154;
+            gRedGems += gActors[actor_index].var_154;
             RedGems_Clamp();
             func_8003FB20(actor_index, 0, 2.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 8);
             Sound_PlaySfx(0x57);
@@ -2982,7 +2982,7 @@ void func_8002F6D4(u16 actor_index) {
 void func_8002F93C(u16 actor_index, u16 isStatic, void* palette, s16 pos_x, s16 pos_y) {
     // grab red gem
     if (palette == D_800D88B8) {
-        D_80178136 += 1;
+        gRedGems += 1;
         RedGems_Clamp();
         func_8003FB20(actor_index, 0, 1.0f, pos_x, pos_y, gActors[D_800D2950].posZ.whole);
         if (isStatic) {
