@@ -6,11 +6,7 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern u16 D_80104098[];
-extern s16 D_800BE550;
-extern s16 D_800BE554;
 extern s32 D_800BE5F4;
-extern s16 D_800BE704;
-extern s16 D_800BE708;
 extern u16 D_800D2914;
 extern s16 D_800D2950;
 
@@ -204,12 +200,12 @@ void func_801B9BB4_7EA9E4(void) {
 
         case 5:
             D_800D28E8++;
-            D_800BE550 = 0x720;
-            D_800BE554 = 0x4A0;
-            D_800BE558 = D_800BE550;
-            D_800BE55C = D_800BE554;
-            D_800BE560 = D_800BE558;
-            D_800BE564 = D_800BE55C;
+            D_800BE550.whole = 0x720;
+            D_800BE554.whole = 0x4A0;
+            D_800BE558.whole = D_800BE550.whole;
+            D_800BE55C.whole = D_800BE554.whole;
+            D_800BE560.whole = D_800BE558.whole;
+            D_800BE564.whole = D_800BE55C.whole;
             func_801B9B2C_7EA95C();
             D_800BE704 = 2;
             D_800BE708 = 2;

@@ -15,18 +15,14 @@ extern u16 D_800BE4D0;
 extern u16 D_800BE4D4;
 extern u16 D_800BE4D8;
 extern u16 D_800BE4DC;
-extern u16 D_800BE4E0;
 extern u16 D_800BE500;
 extern u16 D_800BE530;
 extern u16 D_800BE534;
-extern u16 D_800BE544;
 extern s16 D_800BE590;
 extern u16 D_800BE5D0;
 extern u16 D_800BE668;
 extern u16 D_800BE6B4;
 extern u16 D_800BE6B8;
-extern u16 D_800BE704;
-extern u16 D_800BE708;
 
 extern s32 D_800CA254; // unknown type
 extern s32 D_800CA26C; // unknown type

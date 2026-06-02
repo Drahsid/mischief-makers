@@ -72,7 +72,7 @@ void func_801B99B8_7E2B18(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B9A70_7E2BD0(u16 arg0, u16 arg1, u16 arg2) {
-    s16 position_y = D_800BE55C;
+    s16 position_y = D_800BE55C.whole;
 
     if (position_y >= arg1) {
         D_800D291C = arg1 - 0x70;
@@ -111,19 +111,19 @@ void func_801B9BC0_7E2D20(u16 arg0) {
 }
 
 void func_801B9BF4_7E2D54(u16 arg0, u16 arg1, u16 arg2) {
-    if (((arg0 - 0x20) < D_800BE558) && (D_800BE558 < (arg0 + 0x20))) {
+    if (((arg0 - 0x20) < D_800BE558.whole) && (D_800BE558.whole < (arg0 + 0x20))) {
         func_801B9BC0_7E2D20(arg0);
         return;
     }
 
-    if (((arg1 - 0x20) < D_800BE558) && (D_800BE558 < (arg1 + 0x20))) {
+    if (((arg1 - 0x20) < D_800BE558.whole) && (D_800BE558.whole < (arg1 + 0x20))) {
         func_801B9B8C_7E2CEC(arg1);
         return;
     }
 
     if ((gActors[0].posY.whole < -0x60) || (gActors[0].posY.whole >= 0x61)) {
         if (arg2 != 0) {
-            if (D_800BE558 < ((arg0 + arg1) / 2)) {
+            if (D_800BE558.whole < ((arg0 + arg1) / 2)) {
                 func_801B9B8C_7E2CEC(arg1);
             }
             else {
@@ -131,7 +131,7 @@ void func_801B9BF4_7E2D54(u16 arg0, u16 arg1, u16 arg2) {
             }
         }
         else {
-            if (D_800BE558 < ((arg0 + arg1) / 2)) {
+            if (D_800BE558.whole < ((arg0 + arg1) / 2)) {
                 func_801B9BC0_7E2D20(arg0);
             }
             else {
@@ -372,7 +372,7 @@ void func_801BA950_7E3AB0(void) {
             break;
 
         case 46:
-            if (D_800BE5DC < 0x7E0) {
+            if (D_800BE5DC.whole < 0x7E0) {
                 D_800BE4EC = 1;
                 D_800BE5D4 = 1;
                 Sound_PlaySfx(0x3E);

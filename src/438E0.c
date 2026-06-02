@@ -4,14 +4,9 @@
 #include "music.h"
 
 extern u16 D_800BE52C;
-extern s16 D_800BE558;
-extern s16 D_800BE560;
-extern s16 D_800BE568;
-extern s16 D_800BE56C;
 extern s16 D_800BE570;
 extern s16 D_800BE574;
 extern u16 D_800BE4EC;
-extern u16 D_800BE544;
 extern u16 D_800BE5D0;
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
@@ -400,29 +395,29 @@ void func_80046274(u32 arg0, u32 arg1) {
 
 void Camera_UpdateViewBounds(void) {
     if (D_800D28E4 < 0x68) {
-        if ((D_800D2918 - 0x70) < D_800BE55C) {
-            D_800BE570 = D_800BE55C + 0x70;
+        if ((D_800D2918 - 0x70) < D_800BE55C.whole) {
+            D_800BE570 = D_800BE55C.whole + 0x70;
         }
         else {
             D_800BE570 = D_800D2918;
         }
 
-        if (D_800BE55C < (D_800D291C + 0x70)) {
-            D_800BE574 = D_800BE55C - 0x70;
+        if (D_800BE55C.whole < (D_800D291C + 0x70)) {
+            D_800BE574 = D_800BE55C.whole - 0x70;
         }
         else {
             D_800BE574 = D_800D291C;
         }
 
-        if ((D_800BE558 - 0x90) < D_800D2920) {
-            D_800BE568 = D_800BE558 - 0x90;
+        if ((D_800BE558.whole - 0x90) < D_800D2920) {
+            D_800BE568 = D_800BE558.whole - 0x90;
         }
         else {
             D_800BE568 = D_800D2920;
         }
 
-        if (D_800D2924 < (D_800BE558 + 0x90)) {
-            D_800BE56C = D_800BE558 + 0x90;
+        if (D_800D2924 < (D_800BE558.whole + 0x90)) {
+            D_800BE56C = D_800BE558.whole + 0x90;
         }
         else {
             D_800BE56C = D_800D2924;
@@ -432,7 +427,7 @@ void Camera_UpdateViewBounds(void) {
 
 void func_800463C0(void) {
     Camera_UpdateViewBounds();
-    D_800BE568 = D_800BE558 - 0x90;
+    D_800BE568 = D_800BE558.whole - 0x90;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")

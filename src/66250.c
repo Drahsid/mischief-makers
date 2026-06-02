@@ -31,7 +31,6 @@ extern u16 D_800D2950;
 extern ActorFunc D_800D7F00[];
 extern u8 D_800E1788[];
 extern u16 D_800E3580;
-extern u16 D_800BE4E0;
 
 void func_80065650(u16 actor_index) {
     u16 rand_x[2];

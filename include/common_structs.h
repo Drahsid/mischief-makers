@@ -62,6 +62,17 @@ typedef struct {
     /* 0x0C */ u16 type; // value of actor->actorType
 } ActorSpawnRecord; /* size = 0xE */
 
+typedef struct {
+    /* 0x00 */ u8 unk_0[0x80];
+    /* 0x80 */ u16 unk_80;
+    /* 0x80 */ u16 unk_82;
+    /* 0x80 */ s16 unk_84;
+    /* 0x80 */ u16 unk_86;
+    /* 0x88 */ s16 unk_88;
+    /* 0x82 */ u8 unk_8A[0x94 - 0x8A];
+    /* 0x94 */ u8 unk_94;
+    /* 0x82 */ u8 unk_95[0xA0 - 0x95];
+} Unk80104098; /* size = 0xA0 */
 
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000))
 

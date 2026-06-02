@@ -7,18 +7,10 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s16 D_800D28F8;
-extern u32 D_800D2934;
 extern s16 D_800D3B74;
 extern s16 D_800D36FC;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
-extern u16 D_800BE4E0;
-extern s16 D_800BE550;
-extern s16 D_800BE554;
-extern s16 D_800BE558;
-extern s16 D_800BE55C;
-extern s16 D_800BE5D8;
-extern s16 D_800BE5DC;
 extern s32 D_800BE5F4;
 extern s16 D_800E1C84[];
 extern u16 gDebugStageSelectSelectedIndex;
@@ -93,7 +85,6 @@ extern void func_80045610(s32 arg0, s32 arg1);
 extern void func_80043D30(void* arg0);
 extern void func_800472D4(void);
 extern s32 func_800032C4(u32 arg0);
-extern void func_80025EC4(u16 index);
 extern void func_801BB6AC_7C888C(u16 arg0);
 
 void func_801B9900_7C6AE0(s16* arg0) {
@@ -132,10 +123,10 @@ void func_801B9AC0_7C6CA0(void) {
             gActors[0x8A].posY.whole -= 0xA4;
             gActors[0x8B].posY.whole -= 0xA4;
             D_800BE544 = 0x8000;
-            D_800BE550 = 0x1A0;
-            D_800BE554 = 0x200;
-            D_800BE558 = D_800BE550;
-            D_800BE55C = D_800BE554;
+            D_800BE550.whole = 0x1A0;
+            D_800BE554.whole = 0x200;
+            D_800BE558.whole = D_800BE550.whole;
+            D_800BE55C.whole = D_800BE554.whole;
             Sound_PlaySfx(0xBD);
             D_800BE4EC = 1;
             break;
@@ -160,15 +151,15 @@ void func_801B9AC0_7C6CA0(void) {
             break;
 
         case 3:
-            *(s32*)&D_800BE554 -= 0x8000;
+            D_800BE554.raw -= 0x8000;
 
-            if (D_800BE554 < 0x15B) {
+            if (D_800BE554.whole < 0x15B) {
                 D_800D28E8++;
                 D_800D28F8 = 0x3C;
                 D_800BE5F4 = 9;
-                D_800BE5D8 = D_800BE558 - 0x80;
+                D_800BE5D8.whole = D_800BE558.whole - 0x80;
                 gActors[0].posX.whole = -0x80;
-                D_800BE5DC = D_800BE55C - 0x2E;
+                D_800BE5DC.whole = D_800BE55C.whole - 0x2E;
                 gActors[0].posY.whole = -0x2E;
             }
 
@@ -487,7 +478,7 @@ void func_801BA6C4_7C78A4(void) {
         case 2:
             Camera_UpdateViewBounds();
 
-            if (D_800BE558 >= 0x711) {
+            if (D_800BE558.whole >= 0x711) {
                 D_800D28E8++;
                 D_800BE544 = 0x50;
                 D_800BE568 = 0x680;
@@ -916,7 +907,7 @@ void func_801BB310_7C84F0(void) {
             D_800BE4EC = 0;
 
         case 4:
-            if (D_800BE5D8 >= 0x1980) {
+            if (D_800BE5D8.whole >= 0x1980) {
                 D_800BE570 = Math_ApproachS32(D_800BE570, 0x1CC, 3);
                 D_801373E0.unk_78 |= 4;
             }
@@ -925,7 +916,7 @@ void func_801BB310_7C84F0(void) {
                 D_801373E0.unk_78 &= ~4;
             }
 
-            if (D_800BE5D8 >= 0x1AF9) {
+            if (D_800BE5D8.whole >= 0x1AF9) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0xA);
                 D_800BE5F4 = 3;

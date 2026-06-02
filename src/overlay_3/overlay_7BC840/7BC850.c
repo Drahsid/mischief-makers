@@ -2,7 +2,6 @@
 #include "actor.h"
 #include "function_symbols.h"
 
-extern s16 D_800BE5D8;
 extern f32 D_801B4720_7C0670;
 extern u8 D_801B4B60_7C0AB0;
 extern s32 D_801B4B64_7C0AB4;
@@ -201,8 +200,8 @@ s32 func_801B141C_7BD36C(u16 actor_index) {
 
 void func_801B14AC_7BD3FC(s32 arg0) {
     if ((D_801B4B60_7C0AB0 & 3) == 0) {
-        if (D_800BE5D8 >= 0x209) {
-            if (D_800BE5DC < 0x170) {
+        if (D_800BE5D8.whole >= 0x209) {
+            if (D_800BE5DC.whole < 0x170) {
                 if (D_801B4B70_7C0AC0 == 0) {
                     D_801B4B70_7C0AC0 = 1;
                 }
@@ -338,7 +337,7 @@ void func_801B34E4_7BF434(u16 actor_index, s16 target_x) {
         }
     }
 
-    screen_x = gActors[actor_index].posX.whole + D_800BE558;
+    screen_x = gActors[actor_index].posX.whole + D_800BE558.whole;
     if (screen_x == target_x) {
         gActors[actor_index].state = 0x30;
         ACTOR_GFX_INIT(actor_index, D_800E1700);

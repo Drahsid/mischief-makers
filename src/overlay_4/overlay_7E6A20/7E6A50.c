@@ -406,11 +406,11 @@ void func_801B9A08_7E6B58(void) {
 }
 
 s32 func_801B9DAC_7E6EFC(void) {
-    if (D_801BA6B0_7E7800[D_800D2928].unk_10 < D_800BE558) {
+    if (D_801BA6B0_7E7800[D_800D2928].unk_10 < D_800BE558.whole) {
         gActors[0x31].var_15C |= 2;
     }
 
-    if (D_801BA6B0_7E7800[D_800D2928].unk_00 < D_800BE558) {
+    if (D_801BA6B0_7E7800[D_800D2928].unk_00 < D_800BE558.whole) {
         Actor_LoadSpawnTable(D_801BA6B0_7E7800[D_800D2928].unk_08);
         D_800BE568 = D_801BA6B0_7E7800[D_800D2928].unk_00 - 0x90;
         gActors[0x31].var_15C |= 1;
@@ -433,8 +433,8 @@ void func_801B9E7C_7E6FCC(void) {
         D_800BE56C = entry->unk_12 + 0x90;
         D_800BE570 = 0x2EF;
         D_800BE574 = 0x20F;
-        D_800BE558 = temp + 0x90;
-        D_800BE55C = 0x27F;
+        D_800BE558.whole = temp + 0x90;
+        D_800BE55C.whole = 0x27F;
         gActors[0].posX.whole = -0x90;
         gActors[0].posY.whole = -0x15;
     }
@@ -561,7 +561,7 @@ void func_801BA1DC_7E732C(void) {
             break;
 
         case 2:
-            if (D_800BE558 >= 0x1601) {
+            if (D_800BE558.whole >= 0x1601) {
                 Actor_LoadSpawnTable(D_801BAB78_7E7CC8);
                 D_800D28E8++;
             }

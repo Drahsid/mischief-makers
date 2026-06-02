@@ -7,14 +7,9 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s16 D_80104098[];
 extern void func_80064AA0(s32 arg0, void* arg1);
-extern s16 D_800BE5D8;
 extern s32 D_800BE5F4;
-extern s16 D_800BE550;
-extern s16 D_800BE554;
 extern s16 D_800D28F8;
-extern s16 D_800BE708;
 extern s32 D_800BE6CC;
-extern s32 D_800D2934;
 
 extern s32 func_800036C8(u32 arg0, u16 actor_index);
 extern void func_80046274(u32 arg0, u32 arg1);
@@ -113,8 +108,8 @@ s32 func_801B9900_7CE090(void) {
 
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
     gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
-    D_800BE5D8 = D_800BE558 + arg0;
-    D_800BE5DC = D_800BE55C + arg1;
+    D_800BE5D8.whole = D_800BE558.whole + arg0;
+    D_800BE5DC.whole = D_800BE55C.whole + arg1;
     gActors[0].posX.whole = arg0;
     gActors[0].posY.whole = arg1;
     D_800BE5F4 = 0xA;
@@ -172,8 +167,8 @@ void func_801B9B94_7CE324(void) {
 void func_801B9BF4_7CE384(void* spawn_table) {
     D_800D28E8++;
     D_800BE544 = 0x8000;
-    D_800BE558 = D_800BE550;
-    D_800BE55C = D_800BE554;
+    D_800BE558.whole = D_800BE550.whole;
+    D_800BE55C.whole = D_800BE554.whole;
     func_8008BFB0();
     Actor_LoadSpawnTable(D_801BBC00_7D0390);
 
@@ -228,8 +223,8 @@ void func_801B9CF4_7CE484(void) {
             break;
 
         case 3:
-            D_800BE550 = 0x26C;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x26C;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BC0F4_7D0884);
             func_801B99AC_7CE13C(-0x20, -0x25);
 
@@ -246,8 +241,8 @@ void func_801B9CF4_7CE484(void) {
             break;
 
         case 7:
-            D_800BE550 = 0x965;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x965;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BC2A8_7D0A38);
             func_801B99AC_7CE13C(-0x30, 0x1E);
             func_800032C4(0x5E);
@@ -284,13 +279,13 @@ void func_801B9F18_7CE6A8(void) {
             break;
 
         case 3:
-            if (D_800BE5D8 < 0x1280) {
-                D_800BE550 = 0xA00;
-                D_800BE554 = 0x190;
+            if (D_800BE5D8.whole < 0x1280) {
+                D_800BE550.whole = 0xA00;
+                D_800BE554.whole = 0x190;
             }
             else {
-                D_800BE550 = 0x1280;
-                D_800BE554 = 0x190;
+                D_800BE550.whole = 0x1280;
+                D_800BE554.whole = 0x190;
             }
             func_801B9BF4_7CE384(D_801BC55C_7D0CEC);
             func_801B99AC_7CE13C(0, -8);
@@ -392,7 +387,7 @@ void func_801BA0C8_7CE858(void) {
             if (func_801B9900_7CE090() != 0) {
                 s32 position_x;
 
-                if ((position_x = D_800BE558 + (gActors + 0)->posX.whole) >= 0xB60) {
+                if ((position_x = D_800BE558.whole + (gActors + 0)->posX.whole) >= 0xB60) {
                     if (D_800D292C < 2) {
                         D_800D292C = 2;
 
@@ -425,8 +420,8 @@ handle_cutscene_index:
             break;
 
         case 6:
-            D_800BE550 = 0x200;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x200;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BC964_7D10F4);
             func_801B99AC_7CE13C(0, -0x18);
 
@@ -442,10 +437,10 @@ handle_cutscene_index:
             break;
 
         case 8:
-            D_800BE550 = 0x760;
-            D_800BE554 = 0x190;
-            D_800BE558 = D_800BE550;
-            D_800BE55C = D_800BE554;
+            D_800BE550.whole = 0x760;
+            D_800BE554.whole = 0x190;
+            D_800BE558.whole = D_800BE550.whole;
+            D_800BE55C.whole = D_800BE554.whole;
             func_801B9BF4_7CE384(D_801BC964_7D10F4);
             func_801B99AC_7CE13C(0, -0x18);
             D_800BE5B0 = 448.0f;
@@ -462,10 +457,10 @@ handle_cutscene_index:
             break;
 
         case 10:
-            D_800BE550 = 0xB60;
-            D_800BE554 = 0x190;
-            D_800BE558 = D_800BE550;
-            D_800BE55C = D_800BE554;
+            D_800BE550.whole = 0xB60;
+            D_800BE554.whole = 0x190;
+            D_800BE558.whole = D_800BE550.whole;
+            D_800BE55C.whole = D_800BE554.whole;
             func_801B9BF4_7CE384(D_801BC964_7D10F4);
             func_801B99AC_7CE13C(0, -0x18);
             D_800BE5B0 = 448.0f;
@@ -593,8 +588,8 @@ void func_801BA9E0_7CF170(void) {
 
         case 3:
             func_80010C20(D_800BE5D0);
-            D_800BE550 = 0x204;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x204;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BD27C_7D1A0C);
             func_801B99AC_7CE13C(-0x28, -0x12);
             func_80042DBC(D_801BCB30_7D12C0);
@@ -635,14 +630,14 @@ void func_801BABE8_7CF378(void) {
 
         case 2:
             func_801B9B94_7CE324();
-            if (D_800BE5D8 >= 0x630) {
+            if (D_800BE5D8.whole >= 0x630) {
                 D_800D28E8 = 5;
             }
             break;
 
         case 3:
-            D_800BE550 = 0x130;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x130;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
             gActors[0x30].unk_190 = (s32)D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
@@ -669,8 +664,8 @@ void func_801BABE8_7CF378(void) {
             break;
 
         case 6:
-            D_800BE550 = 0x6F0;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x6F0;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
             gActors[0x30].unk_190 = (s32)D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
@@ -684,8 +679,8 @@ void func_801BABE8_7CF378(void) {
             break;
 
         case 9:
-            D_800BE550 = 0x10D0;
-            D_800BE554 = 0x1F0;
+            D_800BE550.whole = 0x10D0;
+            D_800BE554.whole = 0x1F0;
             func_801B9BF4_7CE384(D_801BDE24_7D25B4);
             func_801B99AC_7CE13C(-0x70, -0x22);
 
@@ -719,13 +714,13 @@ void func_801BAE74_7CF604(void) {
             break;
 
         case 3:
-            if (D_800BE5D8 < 0x9F0) {
-                D_800BE550 = 0x130;
-                D_800BE554 = 0x190;
+            if (D_800BE5D8.whole < 0x9F0) {
+                D_800BE550.whole = 0x130;
+                D_800BE554.whole = 0x190;
             }
             else {
-                D_800BE550 = 0xA50;
-                D_800BE554 = 0x190;
+                D_800BE550.whole = 0xA50;
+                D_800BE554.whole = 0x190;
             }
             func_801B9BF4_7CE384(D_801BE400_7D2B90);
             func_801B99AC_7CE13C(-0x70, -0x22);
@@ -756,8 +751,8 @@ void func_801BAFEC_7CF77C(void) {
             break;
 
         case 3:
-            D_800BE550 = 0x200;
-            D_800BE554 = 0x190;
+            D_800BE550.whole = 0x200;
+            D_800BE554.whole = 0x190;
             func_801B9BF4_7CE384(D_801BEA48_7D31D8);
             func_801B99AC_7CE13C(0, 0);
 
@@ -889,14 +884,14 @@ void func_801BB360_7CFAF0(void) {
             D_800D2928--;
             if (D_800D2928 < 0) {
                 D_800D28E8++;
-                D_800BE554 = 0x19C;
+                D_800BE554.whole = 0x19C;
                 D_800BE54C = 0x20000;
             }
             Cutscene_CheckSkipInput();
             break;
 
         case 3:
-            if (D_800BE55C < 0x1C0) {
+            if (D_800BE55C.whole < 0x1C0) {
                 D_800D28E8++;
                 D_800D2928 = 0;
                 D_800D28F8 = 0;
@@ -1045,13 +1040,13 @@ void func_801BB360_7CFAF0(void) {
             D_800BE6E8 = 0;
             D_800BE6CC = -0xC0;
             D_800BE6D8 = -0xC0;
-            D_800BE554 = 0x19C;
+            D_800BE554.whole = 0x19C;
             gActors[0].velocityY.raw = 0;
             gActors[0].velocityX.raw = 0;
-            D_800BE55C = D_800BE554;
-            D_800BE5D8 = D_800BE558 + 0x30;
+            D_800BE55C.whole = D_800BE554.whole;
+            D_800BE5D8.whole = D_800BE558.whole + 0x30;
             gActors[0].posX.whole = 0x30;
-            D_800BE5DC = D_800BE55C - 0x36;
+            D_800BE5DC.whole = D_800BE55C.whole - 0x36;
             gActors[0].posY.whole = -0x36;
             D_800D28FC |= 2;
             D_80104098[5188] = -0x58;

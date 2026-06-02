@@ -108,8 +108,8 @@ void func_800423A0(u16 actor_index) {
     }
     x = COS(gActors[actor_index].unk_16C) * 294912.0f;
     y = SIN(gActors[actor_index].unk_16C) * 294912.0f;
-    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gActors[0].posX.whole + D_800BE558;
-    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gActors[0].posY.whole + D_800BE55C;
+    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gActors[0].posX.whole + D_800BE558.whole;
+    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gActors[0].posY.whole + D_800BE55C.whole;
     
     var_a1_2 = (x << 0x10) + (y & 0xFFFF);
     for (var_v1 = 0; var_v1 < 8; var_v1++) {
@@ -117,8 +117,8 @@ void func_800423A0(u16 actor_index) {
         (&gActors[actor_index].unk_170)[var_v1] = var_a1_2;
         var_a1_2 = angle;
     }
-    gActors[actor_index].posX.whole = (gActors[actor_index].unk_18C / 65536) - D_800BE558;
-    gActors[actor_index].posY.whole = gActors[actor_index].unk_18C - D_800BE55C;
+    gActors[actor_index].posX.whole = (gActors[actor_index].unk_18C / 65536) - D_800BE558.whole;
+    gActors[actor_index].posY.whole = gActors[actor_index].unk_18C - D_800BE55C.whole;
 }
 #else
 void func_800423A0(u16);

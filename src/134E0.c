@@ -2,8 +2,6 @@
 
 typedef u8 (*UnkFuncType_D_800C7CD0)(s16 arg0, s16 arg1);
 
-extern s16 D_800BE558;
-extern s16 D_800BE55C;
 extern u16 D_800BE648;
 extern u16 D_800BE658;
 extern u16 D_800BE65C;
@@ -64,8 +62,8 @@ u8 func_80012A58(s16 arg0, s16 arg1) {
 }
 
 u8 func_80012AB4(s16 arg0, s16 arg1) {
-    u16 x = D_800BE558 + arg0;
-    u16 y = D_800BE648 + -(D_800BE55C + arg1) - 1;
+    u16 x = D_800BE558.whole + arg0;
+    u16 y = D_800BE648 + -(D_800BE55C.whole + arg1) - 1;
 
     return D_8010CDF0[((x >> 4) & D_800BE658) + ((y << D_800BE660) & D_800BE65C)];
 }
@@ -97,7 +95,7 @@ UnkFuncType_D_800C7CD0 D_800C7CD0[] = {
 };
 
 u8 func_80012B88(u8 arg0, s16 arg1, s16 arg2) {
-    return D_800C7CD0[arg0 & 0xF](D_800BE558 + arg1, D_800BE55C + arg2) & arg0; // low nibble selects the 16x16 shape test; high bits carry collision type/flags
+    return D_800C7CD0[arg0 & 0xF](D_800BE558.whole + arg1, D_800BE55C.whole + arg2) & arg0; // low nibble selects the 16x16 shape test; high bits carry collision type/flags
 }
 
 u8 func_80012C04(s16 arg0, s16 arg1) {

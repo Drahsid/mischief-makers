@@ -26,8 +26,6 @@ extern u8 D_801A5214_6CFEE4;
 extern u16 D_801A6794_6D1464[];
 extern u8 D_801A6F58_6D1C28;
 extern u8 D_801A6F59_6D1C29;
-extern s16 D_800BE5D8;
-extern s16 D_800BE550;
 extern s32 D_800BE5F4;
 extern u32 D_801A1038_6CBD08[];
 extern u16 D_801A6F3C_6D1C0C;
@@ -725,17 +723,17 @@ void func_8019902C_6C3CFC(u16 actor_index) {
     s16 diff;
     s16* camera_x;
 
-    camera_x = &D_800BE558;
+    camera_x = &D_800BE558.whole;
     if (!(gActors[actor_index].state & 0x800) && (D_801A6F3C_6D1C0C != 0xFFFF)) {
         diff = gActors[actor_index].posX.whole - gActors[0].posX.whole;
         if (diff >= 0x141) {
             gActors[0].posX.whole = gActors[actor_index].posX.whole - 0x140;
-            D_800BE5D8 = gActors[0].posX.whole + *camera_x;
+            D_800BE5D8.whole = gActors[0].posX.whole + *camera_x;
             return;
         }
         if (diff < -0x140) {
             gActors[0].posX.whole = gActors[actor_index].posX.whole + 0x140;
-            D_800BE5D8 = gActors[0].posX.whole + *camera_x;
+            D_800BE5D8.whole = gActors[0].posX.whole + *camera_x;
         }
     }
 }
@@ -789,7 +787,7 @@ void func_801992A4_6C3F74(void) {
 void func_8019946C_6C413C(void) {
     D_800D294C = 0;
     Actor_ClearRange_10To20();
-    D_800BE558 = D_800BE550;
+    D_800BE558.whole = D_800BE550.whole;
     gActors[0].flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_800282F0(gActors[0x31].posX.whole, -0x18);
     D_800BE5F4 = 5;

@@ -365,7 +365,7 @@ segments:
       - [0x0EBD00, .rodata, debug_level_select]
       - [0x0EBEA0, rodata] # 17A70 jump tables
       - [0x0EC190, .rodata, 1F1E0]
-      - [0x0EC220, rodata] # 241E0?
+      - [0x0EC220, .rodata, 241E0]
       - [0x0EC280, .rodata, 27F70]
       - [0x0EC910, .rodata, 42E90]
       - [0x0EC920, rodata] # 438E0?

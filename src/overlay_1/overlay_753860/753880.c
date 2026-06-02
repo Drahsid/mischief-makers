@@ -164,8 +164,8 @@ void func_8019B230_7539B0(u16 actor_index) {
 void func_8019B314_753A94(u16 actor_index) {
     if (gActors[actor_index].state != 0) {
         gActors[actor_index + 1].unk_180 &= 0xFF7FFCFF;
-        gActors[actor_index + 6].unk_180 = gActors[actor_index].posX.whole + D_800BE558;
-        gActors[actor_index + 7].unk_180 = gActors[actor_index].posY.whole + D_800BE55C;
+        gActors[actor_index + 6].unk_180 = gActors[actor_index].posX.whole + D_800BE558.whole;
+        gActors[actor_index + 7].unk_180 = gActors[actor_index].posY.whole + D_800BE55C.whole;
 
         if (gActors[actor_index + 6].unk_180 < D_800BE568) {
             gActors[actor_index + 1].unk_180 |= 0x100;
