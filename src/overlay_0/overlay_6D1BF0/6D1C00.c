@@ -137,7 +137,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 if (func_8005DEFC() == 0) {
                     switch (gActors[actor_index + 3].unk_180) {
                         case 0:
-                            func_800036C8(0x44, actor_index);
+                            Sound_PlaySfxAtActor2(0x44, actor_index);
                             gActors[temp_index_21].graphicList = D_800E59E0;
                             gActors[temp_index_21].graphicTimer = 1;
                             func_8005DF5C(1);
@@ -172,14 +172,14 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
                             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);
-                            temp = Actor_RangeFindFlag2_90ToC0();
+                            temp = Sound_RangeFindInactive_90ToC0();
                             if (temp != 0) {
                                 ACTOR_INIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;
-                                func_80003980(0xDD, temp);
-                                func_800036C8(0xB0, actor_index);
+                                Sound_PlaySfxAtActorPanning(0xDD, temp);
+                                Sound_PlaySfxAtActor2(0xB0, actor_index);
                             }
                     }
                     gActors[actor_index + 3].unk_180++;

@@ -8,6 +8,9 @@
 
 #define AUDIO_CHANNEL_COUNT 16
 
+
+
+
 typedef struct {
     /* 0x00 */ u8 volume;
     /* 0x01 */ u8 unk_01;
@@ -44,22 +47,23 @@ extern u8 gSfxChannelVolumes[8];
 extern u8 gSfxChannelPans[8];
 
 
-s32 func_80003020(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
+s32 Sound_AddSfx(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
 void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
 void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
 void Sound_PlayMusic(u32 sequence_id);
 s32 Sound_PlaySfx(u32 sound_id);
-s32 func_800032C4(u32 arg0);
-void func_80003AD4(u8 arg0);
+s32 Sound_StopSfx(u32 arg0);
+void Sound_ActorPanVol(u8 arg0);
 void func_80003D64(u8 arg0);
 void func_8003A958(void);
-void func_80003A38(void);
-void func_80003A64(void);
+void Sound_StopMusic(void);
+void Sound_StopAllSfx(void);
 void func_800040A0(void);
 
-s32 func_80003430(u32, s16, s8);
-s32 func_80003474(u32, s16, s8);
-s32 func_800036C8(u32 arg0, u16 actor_index);
+s32 Sound_PlaySfxAtVolPan(u32, s16, s8);
+s32 Sound_PlaySfxAtVolPan2(u32, s16, s8);
+s32 Sound_PlaySfxAtActor2(u32 arg0, u16 actor_index);
+s32 Sound_PlaySfx3(u32 SFXID, s32 volume, s32 pan);
 extern void Sound_InitPlayers(void);
 extern void Sound_SetEventMesg(void);
 extern void Sound_Update(void);

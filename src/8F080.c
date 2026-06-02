@@ -24,9 +24,9 @@ extern void func_8008FD08(u16 actor_index);
 extern void func_80090064(u16 actor_index);
 extern void func_800902B0(u16 actor_index);
 extern void func_80090558(u16 actor_index);
-extern void func_80003380(s32 arg0);
+extern void Sound_PlaySfx2(s32 arg0);
 extern s32 func_80092FD4(u16);
-extern void func_80003380(s32);
+extern void Sound_PlaySfx2(s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
 
@@ -255,7 +255,7 @@ void func_80095A10(u16 actor_index) {
     gActors[actor_index].unk_118 += gActors[actor_index].unk_114;
     if (gActors[actor_index].unk_118 > 360.0f) {
         gActors[actor_index].unk_118 -= 360.0f;
-        func_80003380(0x116);
+        Sound_PlaySfx2(0x116);
     }
 }
 

@@ -38,7 +38,7 @@ extern u32 D_801BEC34_7E1B04[];
 extern u32 D_801BEC3C_7E1B0C[];
 extern u32 D_801BEC44_7E1B14[];
 extern u32 D_801BEC4C_7E1B1C[];
-extern void func_80003A38(void);
+extern void Sound_StopMusic(void);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 func_8005DEFC(void);
@@ -871,7 +871,7 @@ void func_801BBEBC_7DED8C(void) {
             Actor_LoadSpawnTable(D_801BEAAC_7E197C);
             func_801BBCBC_7DEB8C();
             gActors[0x98].flags = 0;
-            func_80003A38();
+            Sound_StopMusic();
             break;
 
         case 0x31:
@@ -1001,7 +1001,7 @@ void func_801BBEBC_7DED8C(void) {
                 func_8003D628(0);
                 func_80045FA4(D_801BE204_7E10D4, -8);
                 D_800BE5F4.unk_00_s32 = 4;
-                func_80003A38();
+                Sound_StopMusic();
             }
             else {
                 func_801BBDB0_7DEC80();

@@ -107,7 +107,7 @@ u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5) {
             actor_index++;
         }
         else if (ch != ' ') {
-            func_80027644(actor_index, ALPHA_GINDEX(D_800D16D0[ch - ' ']), x, y, z, arg5);
+            func_80027644(actor_index, ALPHA_GLYPH_INDEX(D_800D16D0[ch - ' ']), x, y, z, arg5);
             actor_index++;
         }
         str++;
@@ -125,8 +125,8 @@ u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
         num -= 10;
         tens++;
     }
-    func_80027644(actor_index + 0, ALPHA_GINDEX(tens), x, y, z, arg5);
-    func_80027644(actor_index + 1, ALPHA_GINDEX(num), x + 9, y, z, arg5);
+    func_80027644(actor_index + 0, ALPHA_GLYPH_INDEX(tens), x, y, z, arg5);
+    func_80027644(actor_index + 1, ALPHA_GLYPH_INDEX(num), x + 9, y, z, arg5);
     return actor_index + 2;
 }
 
@@ -147,15 +147,15 @@ u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5) {
         tens++;
     }
     index = actor_index;
-    func_80027644(index, ALPHA_GINDEX(hundos), x, y, z, arg5);
-    func_80027644(index + 1, ALPHA_GINDEX(tens), x + 9, y, z, arg5);
-    func_80027644(index + 2, ALPHA_GINDEX(num), x + 18, y, z, arg5);
+    func_80027644(index, ALPHA_GLYPH_INDEX(hundos), x, y, z, arg5);
+    func_80027644(index + 1, ALPHA_GLYPH_INDEX(tens), x + 9, y, z, arg5);
+    func_80027644(index + 2, ALPHA_GLYPH_INDEX(num), x + 18, y, z, arg5);
     return index + 3;
 }
 
 // get pixel width of character by alphabet symbol
 u16 func_80027A44(u16* str) {
-    if (*str < ALPHA_LOWER_A) {
+    if (*str < ALPHA_EN3_LOWER_A) {
         return 6;
     }
     else if (*str == ALPHA_BOLD_SPACE) {
@@ -190,7 +190,7 @@ u16 func_80027B28(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
+            gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             actor_index++;
             x += func_80027A88(str);
         }
@@ -207,7 +207,7 @@ u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
+            gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             if (red | green | blue) {
                 gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
                 gActors[actor_index].colorR = red;
@@ -235,7 +235,7 @@ u16 func_80027D94(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
             }
             gActors[actor_index].scaleX = scale_x;
             gActors[actor_index].scaleY = scale_y;
-            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
+            gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             if (red | green | blue) {
                 gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
                 gActors[actor_index].colorR = red;
@@ -257,7 +257,7 @@ u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
             gActors[actor_index].unk_18C = (s32)D_800D17FC;
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
+            gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             actor_index++;
             x += func_80027A88(str);
         }
@@ -274,7 +274,7 @@ u16 func_80028150(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-            gActors[actor_index].graphicIndex = ALPHA_GINDEX(*str);
+            gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
         }
         else {
             gActors[actor_index].flags = 0;
@@ -331,17 +331,18 @@ void func_800283BC(u32 arg0, u16 arg1) {
     }
 
     if (arg1 & 0x8000) {
-        func_80003474(arg0, 0x100, var_v0 + 0x40);
+        Sound_PlaySfxAtVolPan2(arg0, 0x100, var_v0 + 0x40);
     }
     else {
-        func_80003430(arg0, 0x100, var_v0 + 0x40);
+        Sound_PlaySfxAtVolPan(arg0, 0x100, var_v0 + 0x40);
     }
 }
 
 void func_800284B0(s32 arg0) {
 }
 
-u16 Actor_RangeFindFlag2(u16 actor_index, u16 end) {
+// find actor in a range without the ACTOR_FLAG_ACTIVE flag
+u16 Sound_RangeFindInactive(u16 actor_index, u16 end) {
     while (actor_index < end) {
         if (!(gActors[actor_index].flags & ACTOR_FLAG_ACTIVE)) {
             return actor_index;
@@ -350,9 +351,9 @@ u16 Actor_RangeFindFlag2(u16 actor_index, u16 end) {
     }
     return 0;
 }
-
-u16 Actor_RangeFindFlag2_90ToC0(void) {
-    return Actor_RangeFindFlag2(0x90, 0xC0);
+// find actor in range 0x90-0xC0 without the ACTOR_FLAG_ACTIVE flag
+u16 Sound_RangeFindInactive_90ToC0(void) {
+    return Sound_RangeFindInactive(0x90, 0xC0);
 }
 
 #ifdef NON_MATCHING
@@ -362,7 +363,7 @@ u16 Actor_RangeFindFlag2_90ToC0(void) {
 u16 func_8002854C(u16 actor_type, s16 x, s16 y, s16 z) {
     u16 actor_index;
 
-    actor_index = Actor_RangeFindFlag2(0x90, 0xC0);
+    actor_index = Sound_RangeFindInactive(0x90, 0xC0);
     if (actor_index != 0) {
         gActors[actor_index].actorType = actor_type;
         func_8001E2D0(actor_index);
@@ -376,6 +377,7 @@ u16 func_8002854C(u16 actor_type, s16 x, s16 y, s16 z) {
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_8002854C.s")
 #endif
 
+// clear the flags of actors in a range, making them "inacitve"
 void Actor_ClearRange(u16 actor_index, u16 end) {
     while (actor_index < end) {
         gActors[actor_index].flags = 0;
@@ -383,18 +385,22 @@ void Actor_ClearRange(u16 actor_index, u16 end) {
     }
 }
 
+// clear the flags of actors in range 0x10-0x20, making them "inacitve"
 void Actor_ClearRange_10To20(void) {
     Actor_ClearRange(0x10, 0x20);
 }
 
+// clear the flags of actors in range 0x30-0x90, making them "inacitve"
 void Actor_ClearRange_30To90(void) {
     Actor_ClearRange(0x30, 0x90);
 }
 
+// clear the flags of actors in range 0x90-0xC0, making them "inacitve"
 void Actor_ClearRange_90ToC0(void) {
     Actor_ClearRange(0x90, 0xC0);
 }
 
+// clear the flags of actors in range 0xC0-0xC7, making them "inacitve"
 void Actor_ClearRange_C0ToC7(void) {
     Actor_ClearRange(0xC0, 0xC7);
 }
@@ -407,6 +413,9 @@ void func_800286C8(void) {
     }
 }
 
+// clear the flags of actors in ranges
+// 0x10-0x20, 0x30-0x90, 0x90-0xC0, 0xC0-0xC7,
+// and the transition portraits, making them "inacitve"
 void func_80028704(void) {
     Actor_ClearRange_10To20();
     Actor_ClearRange_30To90();
@@ -415,6 +424,9 @@ void func_80028704(void) {
     func_800286C8();
 }
 
+// clear the flags of actors in ranges
+// 0x10-0x20, 0x30-0x90, 0x90-0xC0, and 0xC0-0xC7,
+// making them "inacitve"
 void Actor_ClearSceneActors(void) {
     Actor_ClearRange_10To20();
     Actor_ClearRange_30To90();
@@ -453,6 +465,10 @@ u16 func_8002884C(u16 actor_index) {
     return TRUE;
 }
 
+// see if an actor is outside the screen by a certain range.
+// @param actor_index index of actor
+// @param length distance in screen pixels from edges of screen.
+// @returns true if outside this boundary.
 u16 Actor_IsOutsideRegion(u16 actor_index, s16 length) {
     if ((gActors[actor_index].posX.whole > (0x90 + length)) || (gActors[actor_index].posX.whole < (-0x90 - length)) || 
         (gActors[actor_index].posY.whole > (0x60 + length)) || (gActors[actor_index].posY.whole < (-0x60 - length))) {
@@ -463,9 +479,13 @@ u16 Actor_IsOutsideRegion(u16 actor_index, s16 length) {
     }
 }
 
-void Actor_RegionCheckAudio(u16 actor_index, s16 arg1, u32 arg2) {
-    if (Actor_IsOutsideRegion(actor_index, arg1) == 0) {
-        func_800036C8(arg2, actor_index);
+// if an actor is within a certain range outside the screen, play a sound effect
+// @param actor_index index of actor
+// @param length distance in screen pixels from edges of screen.
+// @param SFXID ID of sound effect (should use SFX_* where applicable)
+void Actor_RegionCheckAudio(u16 actor_index, s16 length, u32 SFXID) {
+    if (Actor_IsOutsideRegion(actor_index, length) == 0) {
+        Sound_PlaySfxAtActor2(SFXID, actor_index);
     }
 }
 
@@ -590,7 +610,7 @@ s32 func_80028E1C(u16 actor_index) {
                         gActors[0].flags_098 = ACTOR_FLAG3_UNK16;
                         gActors[0].unk_0F8.raw = 0;
                         gActors[0].unk_0FC.raw = -0x30000;
-                        func_800036C8(100, actor_index);
+                        Sound_PlaySfxAtActor2(100, actor_index);
                         return TRUE;
                     }
                     actor0_pos += 16;
@@ -604,7 +624,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gActors[0].flags_098 = ACTOR_FLAG3_UNK16;
                             gActors[0].unk_0F8.raw = 0x30000;
                             gActors[0].unk_0FC.raw = 0;
-                            func_800036C8(100, actor_index);
+                            Sound_PlaySfxAtActor2(100, actor_index);
                             return TRUE;
                         }
                         actor0_pos -= 16;
@@ -617,7 +637,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gActors[0].flags_098 = ACTOR_FLAG3_UNK16;
                             gActors[0].unk_0F8.raw = -0x30000;
                             gActors[0].unk_0FC.raw = 0;
-                            func_800036C8(100, actor_index);
+                            Sound_PlaySfxAtActor2(100, actor_index);
                             return TRUE;
                         }
                         actor0_pos += 16;
@@ -639,7 +659,7 @@ s32 func_80029044(u16 actor_index) {
             gActors->flags_098 = ACTOR_FLAG3_UNK16;
             gActors->unk_0F8.raw = 0;
             gActors->unk_0FC.raw = 0x30000;
-            func_800036C8(100, actor_index);
+            Sound_PlaySfxAtActor2(100, actor_index);
             return TRUE;
         }
     }
@@ -689,8 +709,8 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
                     gActors->unk_0DD = 0x11;
                     gActors->unk_0F8.raw = gActors[actor_index].unk_0F8.raw;
                     gActors->unk_0FC.raw = gActors[actor_index].unk_0FC.raw;
-                    Actor_Clamp_0F8(0, 0x40000);
-                    Actor_Clamp_0FC(0, 0x20000);
+                    Actor_Clamp_0F8(0, FIXED_UNIT(4));
+                    Actor_Clamp_0FC(0, FIXED_UNIT(2));
                     gActors->unk_0E2 = 0;
                 }
                 return 1;
@@ -985,10 +1005,10 @@ s32 func_80029CC0(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     if ((((arg0 < D_800E3578) && (arg1 > D_800E3578)) ||
         ((-arg0 > D_800E3578) && (-arg1 < D_800E3578))) &&
          (arg2 > D_800E357C) && (arg3 < D_800E357C)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -996,19 +1016,19 @@ s32 func_80029D58(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     if ((D_800E3584 & 0x30000) &&
         (arg1 > D_800E3578) && (arg0 < D_800E3578) &&
         (arg2 > D_800E357C) && (arg3 < D_800E357C)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
 s32 func_80029DEC(u16 arg0, u16 arg1) {
     if (!(gActiveFrames & arg0) && !(Rand() & arg1)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1595,18 +1615,18 @@ s32 func_8002BACC(u16 arg0, u16 arg1) {
 
 s32 func_8002BB04(u16 actor_index) {
     if (func_8002BACC(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole - 4, gActors[actor_index].posY.whole))) {
-        return 1;
+        return TRUE;
     }
     if (func_8002BACC(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole + 4, gActors[actor_index].posY.whole))) {
-        return 1;
+        return TRUE;
     }
     if (func_8002BACC(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 4))) {
-        return 1;
+        return TRUE;
     }
     if (func_8002BACC(actor_index, func_8001FCA0(actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + 4))) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u16 func_8002BC10(u16 actor_index) {
@@ -1797,6 +1817,7 @@ u16 func_8002C140(s32 arg0) {
 void func_8002C1D8(s32 arg0) {
 }
 
+// 16-bit memcpy?
 void func_8002C1E0(u16* src, u16* dst, u16 count) {
     while (count > 0) {
         *dst = *src;
@@ -2027,7 +2048,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
 void func_8002D040(u16 actor_index, s32 arg1) {
     u16 index;
 
-    func_800036C8(0x43, actor_index);
+    Sound_PlaySfxAtActor2(0x43, actor_index);
     func_8005CA34(-6, 0xA);
     gActors[actor_index].actorType = 1;
     gActors[actor_index].hitboxAY0 = 8;
@@ -2174,7 +2195,7 @@ u16 func_80030F94(u16, void*, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/27F70/func_800311EC.s")
 
 u16 func_8003123C(void* arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u16 actor_index = Actor_RangeFindFlag2_90ToC0();
+    u16 actor_index = Sound_RangeFindInactive_90ToC0();
     return func_80030F94(actor_index, arg0, arg1, arg2, arg3);
 }
 

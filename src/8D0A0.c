@@ -241,8 +241,8 @@ void func_8008DE28(u16 arg0) {
 }
 
 void func_8008DE30(u16 actor_index) {
-    func_800032C4(0xB5);
-    func_800032C4(0xB4);
+    Sound_StopSfx(0xB5);
+    Sound_StopSfx(0xB4);
 
     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-6.5)) {
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.1953125);
@@ -277,8 +277,8 @@ void func_8008E3C0(u16 actor_index) {
         gActors[actor_index].palette_18C = D_800D46A8;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
         gActors[actor_index].unk_118 = 1.0f;
-        func_800032C4(SFX_MARINA_OW1);
-        func_800032C4(SFX_MARINA_YELL1);
+        Sound_StopSfx(SFX_MARINA_OW1);
+        Sound_StopSfx(SFX_MARINA_YELL1);
         Sound_PlaySfx(SFX_MARINA_OHNO);
     }
 }

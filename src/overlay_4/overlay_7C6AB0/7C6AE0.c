@@ -82,7 +82,7 @@ extern void func_80045610(s32 arg0, s32 arg1);
 extern void func_80043D30(void* arg0);
 extern void func_800472D4(void);
 extern s32 func_8005DEFC(void);
-extern s32 func_800032C4(u32 arg0);
+extern s32 Sound_StopSfx(u32 arg0);
 extern void func_80025EC4(u16 index);
 extern void func_801BB6AC_7C888C(u16 arg0);
 
@@ -237,7 +237,7 @@ void func_801B9AC0_7C6CA0(void) {
             func_80046148(D_801BC7CC_7C99AC, (s32)D_801BC7DC_7C99BC);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BCBE0_7C9DC0);
-            func_800032C4(0xBD);
+            Sound_StopSfx(0xBD);
             gActors[0x34].unk_174 = 0x1003;
             func_80025EC4(1);
 

@@ -8,7 +8,7 @@
 
 
 // used by gGameState
-enum GameState{
+enum GameState {
     GAMESTATE_SOFTRESET,
     GAMESTATE_INTRO,
     GAMESTATE_TITLESCREEN,

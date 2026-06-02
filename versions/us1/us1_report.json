@@ -491,7 +491,7 @@
           }
         },
         {
-          "name": "func_80002F48",
+          "name": "Sound_SetSfxChannel",
           "size": "216",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -499,7 +499,7 @@
           }
         },
         {
-          "name": "func_80003020",
+          "name": "Sound_AddSfx",
           "size": "676",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -507,7 +507,7 @@
           }
         },
         {
-          "name": "func_800032C4",
+          "name": "Sound_StopSfx",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -523,7 +523,7 @@
           }
         },
         {
-          "name": "func_80003380",
+          "name": "Sound_PlaySfx2",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -531,7 +531,7 @@
           }
         },
         {
-          "name": "func_800033B4",
+          "name": "Sound_PlaySfxAtVol",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -539,7 +539,7 @@
           }
         },
         {
-          "name": "func_800033F0",
+          "name": "Sound_PlaySfxAtPan",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -547,7 +547,7 @@
           }
         },
         {
-          "name": "func_80003430",
+          "name": "Sound_PlaySfxAtVolPan",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -555,7 +555,7 @@
           }
         },
         {
-          "name": "func_80003474",
+          "name": "Sound_PlaySfxAtVolPan2",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -563,7 +563,7 @@
           }
         },
         {
-          "name": "func_800034B8",
+          "name": "Sound_PlaySfxAtVolPan3",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -571,7 +571,7 @@
           }
         },
         {
-          "name": "func_800034FC",
+          "name": "Sound_PlaySfxAtVolPan4",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -579,7 +579,7 @@
           }
         },
         {
-          "name": "func_80003540",
+          "name": "Sound_CalculatePanVol",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -587,7 +587,7 @@
           }
         },
         {
-          "name": "func_800035F8",
+          "name": "Sound_PlaySfxAtActor",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -595,7 +595,7 @@
           }
         },
         {
-          "name": "func_800036C8",
+          "name": "Sound_PlaySfxAtActor2",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -603,7 +603,7 @@
           }
         },
         {
-          "name": "func_80003778",
+          "name": "Sound_PlaySfxAtActor3",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -611,7 +611,7 @@
           }
         },
         {
-          "name": "func_80003828",
+          "name": "Sound_PlaySfxAtObject",
           "size": "160",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -619,7 +619,7 @@
           }
         },
         {
-          "name": "func_800038C8",
+          "name": "Sound_PlaySfxAtActorTimed",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -627,7 +627,7 @@
           }
         },
         {
-          "name": "func_80003980",
+          "name": "Sound_PlaySfxAtActorPanning",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -643,7 +643,7 @@
           }
         },
         {
-          "name": "func_80003A10",
+          "name": "Sound_StopAll",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -651,7 +651,7 @@
           }
         },
         {
-          "name": "func_80003A38",
+          "name": "Sound_StopMusic",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -659,7 +659,7 @@
           }
         },
         {
-          "name": "func_80003A64",
+          "name": "Sound_StopAllSfx",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -667,7 +667,7 @@
           }
         },
         {
-          "name": "func_80003AD4",
+          "name": "Sound_ActorPanVol",
           "size": "656",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4012,7 +4012,7 @@
           }
         },
         {
-          "name": "Actor_RangeFindFlag2",
+          "name": "Sound_RangeFindInactive",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4020,7 +4020,7 @@
           }
         },
         {
-          "name": "Actor_RangeFindFlag2_90ToC0",
+          "name": "Sound_RangeFindInactive_90ToC0",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {

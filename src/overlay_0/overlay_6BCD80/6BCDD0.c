@@ -343,7 +343,7 @@ void func_80195D44_6C0A14(s32 arg0) {
 s32 func_80196030_6C0D00(s32 arg0) {
     u16 actor_index;
 
-    actor_index = Actor_RangeFindFlag2(0x5E, 0x62);
+    actor_index = Sound_RangeFindInactive(0x5E, 0x62);
     if (actor_index != 0) {
         ACTOR_INIT(actor_index, 0x1604);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
@@ -535,43 +535,43 @@ void func_80197E08_6C2AD8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80197F00_6C2BD0.s")
 
 void func_80198330_6C3000(u16 arg0, s32 arg1) {
-    func_800032C4(D_801A6F60);
+    Sound_StopSfx(D_801A6F60);
     Sound_PlaySfx(arg0);
     D_801A6F60 = arg0;
 }
 
 
 void func_80198370_6C3040(u16 arg0, s32 arg1) {
-    func_800032C4(D_801A6F62);
+    Sound_StopSfx(D_801A6F62);
     Sound_PlaySfx(arg0);
     D_801A6F62 = arg0;
 }
 
 
 void func_801983B0_6C3080(u16 arg0, s32 arg1) {
-    func_800032C4(D_801A6F64);
+    Sound_StopSfx(D_801A6F64);
     Sound_PlaySfx(arg0);
     D_801A6F64 = arg0;
 }
 
 
 void func_801983F0_6C30C0(u16 arg0, u16 arg1) {
-    func_800032C4(D_801A6F60);
-    func_800033F0(arg0, 0);
+    Sound_StopSfx(D_801A6F60);
+    Sound_PlaySfxAtPan(arg0, 0);
     D_801A6F60 = arg0;
 }
 
 
 void func_80198430_6C3100(u16 arg0, u16 arg1) {
-    func_800032C4(D_801A6F62);
-    func_800033F0(arg0, 0x40);
+    Sound_StopSfx(D_801A6F62);
+    Sound_PlaySfxAtPan(arg0, 0x40);
     D_801A6F62 = arg0;
 }
 
 
 void func_80198470_6C3140(u16 arg0, u16 arg1) {
-    func_800032C4(D_801A6F64);
-    func_800033F0(arg0, 0x7F);
+    Sound_StopSfx(D_801A6F64);
+    Sound_PlaySfxAtPan(arg0, 0x7F);
     D_801A6F64 = arg0;
 }
 
@@ -583,11 +583,11 @@ void func_801984B0_6C3180(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 
 void func_80198508_6C31D8(u16 arg0, s32 arg1) {
     Sound_PlaySfx(arg0);
-    func_800032C4(D_801A6F60);
+    Sound_StopSfx(D_801A6F60);
     D_801A6F60 = arg0;
-    func_800032C4(D_801A6F62);
+    Sound_StopSfx(D_801A6F62);
     D_801A6F62 = arg0;
-    func_800032C4(D_801A6F64);
+    Sound_StopSfx(D_801A6F64);
     D_801A6F64 = arg0;
 }
 
@@ -1048,7 +1048,7 @@ void func_8019E564_6C9234(u16 actor_index) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-3.0);
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
                 func_8005CA34(5, 8);
-                func_800033B4(0x59, 0xC8);
+                Sound_PlaySfxAtVol(0x59, 0xC8);
             }
             break;
 

@@ -153,7 +153,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posX.whole = gActors[0].posX.whole;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = (u16*)0x8022D568;
-            func_800036C8(0xAA, 0);
+            Sound_PlaySfxAtActor2(0xAA, 0);
             func_8005739C(0, 0x64);
 
             if (gActors[0].health >= 0) {

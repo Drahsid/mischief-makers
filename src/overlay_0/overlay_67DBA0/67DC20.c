@@ -159,7 +159,7 @@ void func_801928A8_67E3C8(s32 arg0) {
 void func_80192E68_67E988(u16 actor_index, u16 arg1) {
     u16 new_actor_index;
 
-    new_actor_index = Actor_RangeFindFlag2(0x68, 0x70);
+    new_actor_index = Sound_RangeFindInactive(0x68, 0x70);
     if (new_actor_index != 0) {
         ACTOR_INIT(new_actor_index,0x609);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
@@ -669,7 +669,7 @@ void func_80198708_684228(u16 actor_index) {
 }
 
 u16 func_8019882C_68434C(void) {
-    return Actor_RangeFindFlag2(0x67, 0x68);
+    return Sound_RangeFindInactive(0x67, 0x68);
 }
 
 void func_80198850_684370(u16 actor_index) {
@@ -791,7 +791,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
-            func_800036C8(SFX_GEM_APPEAR, actor_index);
+            Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);
 
         case 1:
             gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 4);
@@ -810,7 +810,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             if (gActors[actor_index].posY.whole < gActors[0x4F].posY.whole - 0x14) {
                 gActors[actor_index].flags = 0;
                 gActors[0x30].state = 0xB0;
-                func_800036C8(SFX_GEM_BLUE, actor_index);
+                Sound_PlaySfxAtActor2(SFX_GEM_BLUE, actor_index);
                 D_8019E570_68A090 = 2;
             }
             break;

@@ -1331,7 +1331,7 @@ void func_801B9CA0_7D4490(void) {
             Actor_LoadSpawnTable(D_801BC5FC_7D6DEC);
             gActorDepthBack = -0x30;
             D_800BE544 = 0;
-            D_800BE548.raw = 0x400000;
+            D_800BE548.raw = FIXED_UNIT(64.0);
             break;
 
         case 1:

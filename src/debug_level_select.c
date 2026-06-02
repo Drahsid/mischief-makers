@@ -23,8 +23,8 @@ extern u8 D_801376B5;
 extern u8 D_801376B9;
 extern u8 D_801376BD;
 
-void func_80003A38(void);
-s32 func_80003380(u32 arg0);
+void Sound_StopMusic(void);
+s32 Sound_PlaySfx2(u32 arg0);
 void func_80043918(void);
 void func_8008391C(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
 
@@ -196,7 +196,7 @@ void GameState_DebugStageSelect(void) {
                 if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == 0xFF) {
                     gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = DEBUG_STAGE_SELECT_ROW_COUNT - 1;
                 }
-                func_80003380(SFX_MENU_BLIP);
+                Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
             if (Input_CheckButtonRepeat(gButton_DDown, &gActors[DEBUG_STAGE_SELECT_REPEAT_DOWN_ACTOR_INDEX].colorB) != 0) {
@@ -204,7 +204,7 @@ void GameState_DebugStageSelect(void) {
                 if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == DEBUG_STAGE_SELECT_ROW_COUNT) {
                     gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = 0;
                 }
-                func_80003380(SFX_MENU_BLIP);
+                Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
             if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX].colorB) != 0) {
@@ -212,7 +212,7 @@ void GameState_DebugStageSelect(void) {
                 selected_value = *selected_entry;
                 if (selected_value > 0) {
                     *selected_entry = selected_value - 1;
-                    func_80003380(SFX_MENU_BLIP);
+                    Sound_PlaySfx2(SFX_MENU_BLIP);
                 }
             }
 
@@ -222,7 +222,7 @@ void GameState_DebugStageSelect(void) {
                 if (selected_value <
                     (gStageRowCounts[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] - 1)) {
                     *selected_entry = selected_value + 1;
-                    func_80003380(SFX_MENU_BLIP);
+                    Sound_PlaySfx2(SFX_MENU_BLIP);
                 }
             }
 
@@ -235,7 +235,7 @@ void GameState_DebugStageSelect(void) {
             DebugStageSelect_DrawMenu(&gCurrentStage);
 
             if (gButtonPress & gButton_Start) {
-                func_80003A38();
+                Sound_StopMusic();
                 func_80043918();
                 gGameStateSubState++;
             }

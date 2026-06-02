@@ -213,7 +213,7 @@ void func_801B9CF4_7CE484(void) {
                     D_800BE6A8 = 0;
                     Actor_ClearRange(0x32, 0x90);
                     Actor_LoadSpawnTable(D_801BC2A8_7D0A38);
-                    func_800032C4(0x5E);
+                    Sound_StopSfx(0x5E);
                     Sound_PlaySfx(0x11D);
                 }
             }
@@ -242,7 +242,7 @@ void func_801B9CF4_7CE484(void) {
             gScreenPosTargetY.whole = 400;
             func_801B9BF4_7CE384(D_801BC2A8_7D0A38);
             func_801B99AC_7CE13C(-0x30, 0x1E);
-            func_800032C4(0x5E);
+            Sound_StopSfx(0x5E);
             Sound_PlaySfx(0x11D);
 
         case 8:
@@ -575,7 +575,7 @@ void func_801BA9E0_7CF170(void) {
             func_801B9B94_7CE324();
             if (D_800D28F8 == 0) {
                 Actor_LoadSpawnTable(D_801BD334_7D1AC4);
-                func_800032C4(0x5E);
+                Sound_StopSfx(0x5E);
                 Sound_PlaySfx(0x11D);
             }
             if (D_800D28F8 == 0x520) {
@@ -980,7 +980,7 @@ void func_801BB360_7CFAF0(void) {
                 switch (D_800D2928) {
                     case 5:
                         *(u8*)&D_800BE5F4.unk_00_s32 = 1;
-                        func_800036C8(0x116, 0);
+                        Sound_PlaySfxAtActor2(0x116, 0);
                         break;
 
                     case 8:

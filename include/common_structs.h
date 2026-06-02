@@ -26,7 +26,7 @@ typedef enum {
 // used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 flags; //uses PortraitFlags
+    /* 0x80 */ u16 flags; // uses PortraitFlags
     /* 0x82 */ u16 graphicIndex;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
