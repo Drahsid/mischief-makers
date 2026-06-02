@@ -489,7 +489,7 @@ void Sound_Update(void) {
 
     if (alSeqpGetState((ALSeqPlayer*)gMainSeqPlayer) == AL_STOPPED) {
         if ((gMusicPlayerFlags & 0x80) != 0) {
-            gMusicPlayerFlags &= ~0x80;
+            gMusicPlayerFlags &= 0x7F;
             Sound_LoadSequence(gMusicSequenceId, gMainSeqBuffer);
             alCSeqNew(gMainSequence, gMainSeqBuffer);
             alSeqpSetSeq((ALSeqPlayer*)gMainSeqPlayer, (ALSeq*)gMainSequence);
@@ -552,7 +552,7 @@ void Sound_Update(void) {
 
                 Sound_LoadSequence(gSfxSequenceIds[index], gSfxSeqBuffers[index]);
                 alCSeqNew(gSfxSequences[index], gSfxSeqBuffers[index]);
-                alSeqpSetSeq((ALSeqPlayer*)gSfxSeqPlayers[index], gSfxSequences[index]);
+                alSeqpSetSeq((ALSeqPlayer*)gSfxSeqPlayers[index], (ALSeq*)gSfxSequences[index]);
                 alSeqpSetVol((ALSeqPlayer*)gSfxSeqPlayers[index], gSfxPlayerVolumes[index]);
                 alSeqpPlay((ALSeqPlayer*)gSfxSeqPlayers[index]);
                 gSfxPlayerFlags[index] &= 0x7F;
