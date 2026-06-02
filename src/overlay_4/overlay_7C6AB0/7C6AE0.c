@@ -10,8 +10,8 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s16 D_800D3B74;
-extern u16 D_800D36FC[];
-extern u16 D_800E1C84[];
+extern s16 D_800D36FC[];
+extern s16 D_800E1C84[];
 
 extern u32 D_801BC620_7C9800[];
 extern s16 D_801BC760_7C9940[];
@@ -1100,8 +1100,7 @@ void func_801BB6D0_7C88B0(void) {
 
                     case 0xC:
                     {
-                        gActors[0x50].graphicList = (u16*)D_800E1C84;\
-                        gActors[0x50].graphicTimer = 1;
+                        ACTOR_GFX_INIT(0x50, D_800E1C84);
                         Sound_PlaySfx(0x2B);
                         func_801BB6AC_7C888C(0);
                         D_800D28F8 = 0xB4;

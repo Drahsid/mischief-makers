@@ -3,7 +3,6 @@
 
 
 
-extern void func_8002AC30(u16 actor_index, s32 arg1);
 void func_8019B100_753880(u16 actor_index);
 void func_8019B208_753988(u16 actor_index);
 void func_8019B230_7539B0(u16 actor_index);

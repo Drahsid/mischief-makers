@@ -3,7 +3,7 @@
 
 extern s16 D_800C9700[];
 extern s32 D_800C9DD8[];
-extern u16* D_800C9FCC[];
+extern s16* D_800C9FCC[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DBA0.s")
 

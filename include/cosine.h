@@ -13,8 +13,7 @@ extern f32 gUnusedFloatTable[512];
 #define COSPiOver2 (ARRAYLENGTH(gCosineLookup) / 4)
 #define RadStep (f64)360.0/(ARRAYLENGTH(gCosineLookup)) // = 0.3515625. used for sin/cos lookups
 #define COS(x) gCosineLookup[(x) & COSLEN]
-#define SIN(x) gCosineLookup[((x) - COSPiOver2) & COSLEN] //cos(x-pi/2)=sin(x)
+#define SIN(x) gCosineLookup[((x) - (s32)COSPiOver2) & COSLEN] //cos(x-pi/2)=sin(x)
 #define NEGSIN(x) gCosineLookup[((x) + COSPiOver2) & COSLEN] //cos(x+pi/2)=-sin(x)
 
 #endif
-

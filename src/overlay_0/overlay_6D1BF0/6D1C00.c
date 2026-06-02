@@ -1,9 +1,6 @@
 #include "common.h"
 #include "actor.h"
 
-
-extern s16 func_8005DEFC(void);
-
 void func_80192C00_6D2700(u16 actor_index);
 void ClancerCommanderMech_Init(u16 actor_index);
 void ClancerCommanderMech_UpdateParts(u16 actor_index);

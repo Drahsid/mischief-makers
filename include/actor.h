@@ -145,7 +145,7 @@ typedef struct {
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
     /* 0x0C8 */ s16 unk_0C8;
     /* 0x0CA */ s16 unk_0CA;
-    /* 0x0CC */ s16 unk_0CC;
+    /* 0x0CC */ u16 unk_0CC;
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
@@ -178,8 +178,8 @@ typedef struct {
     // storing the animations for each state.
 
     union {
-        /* 0x0E8 */ u16* graphicList; // entries alternate between graphic index and time to display.
-        /* 0x0E8 */ u16** graphicLists; // used by Marina and other actors to hold several animation references.
+        /* 0x0E8 */ s16* graphicList; // entries alternate between graphic index and time to display.
+        /* 0x0E8 */ s16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
     /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
@@ -288,7 +288,7 @@ extern Actor gActors[];
 // a common macro for initalizing graphic lists
 // can cause mismatches.
 #define ACTOR_GFX_INIT(index, graphicsP)\
- gActors[index].graphicList = (u16*)graphicsP;\
+ gActors[index].graphicList = (s16*)graphicsP;\
  gActors[index].graphicTimer = 1
 
 

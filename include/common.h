@@ -24,6 +24,9 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 #define ARRAYLENGTH(arr) (sizeof(arr)/sizeof(arr[0]))
 #define ARRAYEND(arr) arr+ARRAYLENGTH(arr) //for stacks and a few while loops.
 
+#define ABS(x) ((x) > 0 ? (x) : -(x))
+#define SQ(x) ((x) * (x))
+
 #ifndef osInitialize
 #define osInitialize __osInitialize_common
 #endif

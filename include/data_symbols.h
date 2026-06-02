@@ -16,6 +16,8 @@ extern u16 D_800D8588[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern u8 D_801376BC[];
+extern u64 D_80171B10;
+extern u64 D_801781F0;
 extern u8 D_801781F8[];
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
@@ -23,7 +25,7 @@ extern u16 D_800CA230;
 extern u8 D_800CC428;
 extern u32 D_800D1A04[];
 extern u16 D_800D22BC[];
-extern u8 D_800D24D8;
+extern u8 D_800D24D8[];
 extern u8 D_800D24F0;
 extern f32 D_800D2904;
 extern s32 D_800D292C;
@@ -32,15 +34,18 @@ extern u16 D_800D2954;
 extern u16 D_800D2960;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
+extern u16 D_800D88B8[]; // guess
 extern u16 D_800D8A98[];
+extern u16 D_800D8C78[]; // guess
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
-extern u16 D_800E1380[]; // default graphics list. contains {0,0}
-extern u16 D_800E1540[];
-extern u32 D_800E154C[];
-extern u32 D_800E156C[];
-extern u32 D_800E164C[];
-extern u8 D_800E1700[];
+extern s16 D_800E1380[]; // default graphics list. contains {0,0}
+extern s16 D_800E1540[];
+extern s16 D_800E154C[];
+extern s16 D_800E156C[];
+extern s16 D_800E158C[];
+extern s16 D_800E164C[];
+extern s16 D_800E1700[];
 extern u8 D_800E19FC[];
 extern u8 D_800E1A20[];
 extern s16 D_800E3488[];
@@ -54,8 +59,8 @@ extern u32 D_800E58D4[];
 extern u16 D_800E58F0[];
 extern s16 D_800E5910[];
 extern s16 D_800E5938[];
-extern u16 D_800E5970[];
-extern u16 D_800E59E0[];
+extern s16 D_800E5970[];
+extern s16 D_800E59E0[];
 extern s16 D_800F4268;
 extern s32 D_800F43A8;
 extern s16 D_800F43B0;

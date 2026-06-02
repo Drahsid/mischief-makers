@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "function_symbols.h"
+#include "music.h"
 
 // "overlay 4" data for World 2 stages
 
@@ -12,6 +13,8 @@ extern s16 func_8005DEFC(void);
 extern s16 D_800D28F8;
 extern s32 D_800D2934;
 
+extern void func_80046274(u32 arg0, u32 arg1);
+extern void func_8004732C(void);
 
 extern u32 D_801BBC00_7D0390[];
 extern u32 D_801BBC2C_7D03BC[];

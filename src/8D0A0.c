@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "music.h"
 
 extern s32 D_80137420;
 extern u16 D_800D28E4;

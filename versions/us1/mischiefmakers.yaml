@@ -102,6 +102,7 @@ segments:
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c] # might be a fake split
       - [0x027F70, c] # has to do with on screen text
+      - [0x042E90, c]
       - [0x0438E0, c]
       - [0x048A30, c]
       - [0x049200, c, marina]
@@ -362,9 +363,10 @@ segments:
       - [0x0EBC50, .rodata, 17A70]
       - [0x0EBD00, .rodata, debug_level_select]
       - [0x0EBEA0, rodata] # 17A70 jump tables
-      - [0x0EC190, rodata] # 1F1E0?
+      - [0x0EC190, .rodata, 1F1E0]
       - [0x0EC220, rodata] # 241E0?
       - [0x0EC280, .rodata, 27F70]
+      - [0x0EC910, .rodata, 42E90]
       - [0x0EC920, rodata] # 438E0?
       - [0x0EC960, rodata] # marina?
       - [0x0EC9D0, rodata] # 4FEB0?

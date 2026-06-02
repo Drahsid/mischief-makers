@@ -55,7 +55,6 @@ typedef struct {
 
 
 extern u8 D_800EF4D0; // folded addr required for fakematching
-
 extern u16 gAudioFadeMode;
 extern u32 gAudioUpdateCounter;
 extern u8 gAudioHeapBuffer[];
@@ -71,7 +70,6 @@ extern u8 D_800C2927[];
 extern u8 D_800C2968[];
 extern s16 D_800EF4D4;
 extern s32 D_80137794;
-
 
 extern MusicSequenceParams gMusicSequenceParams[];
 extern u8* gMusicSequenceSamplePatchLists[];
@@ -137,7 +135,6 @@ extern s32 gAudioMinFrameSize;
 extern s16* gAudioOutputBufferPhysical;
 
 extern void __assert(const char* expression, const char* file, s32 line);
-
 
 // rodata
 const char D_800EAC30[] = "SVOICE1L";
