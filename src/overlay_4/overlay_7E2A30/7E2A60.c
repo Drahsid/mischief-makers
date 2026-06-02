@@ -35,10 +35,8 @@ extern u32 D_80137458;
 
 extern s32 func_8003FF68(s32 arg0, f32 arg1);
 extern s32 Sound_PlaySfxAtActor2(u32 arg0, u16 actor_index);
-extern void func_8002F2A8(s32 arg0);
 extern void func_80034D80(u16 actor_index, u16* vals); // BUG: incorrect prototype!
 extern void func_80064AA0(s32 arg0, void* arg1);
-extern void func_8002F2A8(s32 arg0);
 extern s16 func_8005DEFC(void);
 
 void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2);
@@ -655,7 +653,7 @@ void func_801BB28C_7E43EC(void) {
         case 0x804:
             func_80047714(4, 1, 2, 0x805);
             if (D_800D28E8 == 0x805) {
-                func_8002F2A8(0xA);
+                SpawnGemRing(10);
                 D_800D28FC |= 8;
                 D_800D2928 = 0x40;
             }

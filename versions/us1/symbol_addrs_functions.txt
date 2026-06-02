@@ -98,6 +98,8 @@ Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 
 SpawnGemActor = 0x8002EFE4; // type:func
+SpawnGemRing = 0x8002F2A8; // type:func
+GemRing_MakeGems = 0x8002F420; //type:func
 RedGems_Clamp = 0x8002F6AC; // type:func
 Crosshair_SetPos = 0x8003E640; //type:func
 SpawnCrosshair = 0x8003E6A4; // type:func

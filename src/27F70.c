@@ -18,7 +18,7 @@ extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
 extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
 extern s32 D_800D1810[];
 extern u16 D_800D1898[];
-extern s32 D_800D1958[];
+extern u16* D_800D1958[]; // palettes of gems
 extern s32 D_800D19F4[];
 extern u32 D_800D1A04[];
 extern u16 D_800D2294[];
@@ -2870,7 +2870,13 @@ u16 func_8002F1C8(u16 actor_index) {
     return index;
 }
 
-void func_8002F2A8(u16 arg0) {
+// spawn ring of gems
+// flags for ring properties:
+// bits 0-4: gem value/ammount
+// bits 8-9: gem appearance [red,green,yellow,blue]
+// bit 15 - add(unset) or remove(unset) value.
+// bit 15 also determines if ring expands(set) or contracts(unset).
+void SpawnGemRing(u16 flags) {
     u16 index;
 
     index = Actor_RangeFindInactive_90ToC0();
@@ -2880,11 +2886,11 @@ void func_8002F2A8(u16 arg0) {
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8;
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
         ACTOR_GFX_INIT(index, D_800E164C);
-        gActors[index].unk_18C = D_800D1958[(arg0 & 0x300) / 256];
-        gActors[index].var_150 = arg0 & 0x8000;
-        gActors[index].var_154 = arg0 & 0xF;
+        gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 256];
+        gActors[index].var_150 = flags & 0x8000;
+        gActors[index].var_154 = flags & 0xF;
         gActors[index].var_158 = (360 / gActors[index].var_154) / 0.3515625;
-        gActors[index].var_15C = arg0 & 0x100;
+        gActors[index].var_15C = flags & 0x100;
         if (gActors[index].var_150 != 0) {
             D_80178136 -= gActors[index].var_154;
             gActors[index].unk_12C = 0.0f;
@@ -2898,7 +2904,8 @@ void func_8002F2A8(u16 arg0) {
     }
 }
 
-void func_8002F420(u16 actor_index) {
+// spawn gems composing red gem ring
+void GemRing_MakeGems(u16 actor_index) {
     s16 index;
     u16 actor;
     u16 angle;
@@ -2932,6 +2939,7 @@ void RedGems_Clamp(void) {
     }
 }
 
+// gem ring behaviour
 void func_8002F6D4(u16 actor_index) {
     u16 alpha;
 
@@ -2953,7 +2961,7 @@ void func_8002F6D4(u16 actor_index) {
         }
     }
     gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
-    func_8002F420(actor_index);
+    GemRing_MakeGems(actor_index);
     alpha = gActors[actor_index].unk_12C * 2;
     if (alpha >= 0x100) {
         alpha = 0xFF;
@@ -3074,7 +3082,7 @@ s32 func_8002FD48(u16 actor_index) {
 void func_8002FEF8(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
         ACTOR_GFX_INIT(actor_index, D_800E164C);
-        gActors[actor_index].unk_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
+        gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
         func_800358DC(actor_index);
     }
     else {
@@ -3089,7 +3097,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         ACTOR_GFX_INIT(actor_index, D_800E164C);
-        gActors[actor_index].unk_18C = D_800D1958[(u16)gActors[actor_index].timer_110];
+        gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].timer_110];
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
         /* fallthrough */
@@ -3137,7 +3145,7 @@ void func_800303A8(u16 actor_index) {
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
         gActors[actor_index].var_154 = (u16)gActors[actor_index].timer_110 & 0xF;
-        gActors[actor_index].unk_18C = D_800D1958[gActors[actor_index].var_154];
+        gActors[actor_index].palette_18C = D_800D1958[gActors[actor_index].var_154];
         if (gActors[actor_index].var_150 == 0) {
             gActors[actor_index].var_150 = 120;
         }

@@ -75,7 +75,6 @@ extern u32 D_801C0B7C_7CDD5C[];
 extern s32 func_800475EC(void);
 extern void func_80047648(s32 arg0);
 extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
-extern void func_8002F2A8(s32 arg0);
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern void func_80045544(s32 arg0, s32 arg1);
 extern void func_80045610(s32 arg0, s32 arg1);
@@ -310,7 +309,7 @@ void func_801BA008_7C71E8(void) {
 
         case 8:
             if (func_8005DEFC() == 0) {
-                func_8002F2A8(0xA);
+                SpawnGemRing(10);
                 func_8005DF5C(4);
                 D_800D28E8 += 1;
             }

@@ -68,6 +68,7 @@ extern void func_8002ABE4(u16 actor_index, s16 val);
 extern void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
 extern void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
 extern s32 func_8002F154(u16 arg0, u16 arg1, u16 arg2);
+extern void SpawnGemRing(u16 arg0);
 extern void func_80030A24(u16 actor_index);
 extern void func_80033204(u16 arg0, u16 arg1, u16 arg2, f32 arg3, u16 arg4);
 extern void func_800369A0(u16 actor_index, u16 arg1, u16* arg2);
