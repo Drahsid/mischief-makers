@@ -83,7 +83,7 @@
 #define ALPHA_EN_PLUS 0x0046 // +
 #define ALPHA_EN_MINUS 0x0047 // -
 #define ALPHA_EN_EQUALS 0x0048 // =
-#define ALPHA_EN_TIMES 0x0049 // x
+#define ALPHA_EN_TIMES 0x0049 // ×
 #define ALPHA_EN_DIVIDE 0x004A // ÷
 #define ALPHA_EN_PERCENT 0x004B // %
 #define ALPHA_EN_SLASH 0x004C // /
@@ -180,6 +180,7 @@
 #define ALPHA_JP_HIRA_SMALL_YO   0x00A0 // ょ
 
 // a second set of Arabic numbers
+// and associated puncuation.
 
 #define ALPHA_THIN_0 0x00A1 // 0
 #define ALPHA_THIN_1 0x00A2 // 1
@@ -191,6 +192,9 @@
 #define ALPHA_THIN_7 0x00A8 // 7
 #define ALPHA_THIN_8 0x00A9 // 8
 #define ALPHA_THIN_9 0x00AA // 9
+
+#define ALPHA_THIN_COMMA 0x00AB // ,
+#define ALPHA_THIN_PERIOD 0x00AC // .
 
 #define ALPHA_ELLIPSIS     0x00B0 // ...
 #define ALPHA_EXCLAMATION  0x00B1 // !
