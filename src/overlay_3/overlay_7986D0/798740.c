@@ -2,6 +2,7 @@
 #include "actor.h"
 
 extern s32 Math_PlaneHalf(s32 x, s32 y);
+extern DEFAULT_INT func_8002EBB8(s32 actor_index, s32 pos_x, s32 pos_y, s32 vel_x, s32 vel_y); // TODO: prototype
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7986D0/798740/func_801B0900_798740.s")

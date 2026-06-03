@@ -1,6 +1,4 @@
-#define func_80031284 func_80031284_s16_arg2
 #include "common.h"
-#undef func_80031284
 #include "actor.h"
 
 // overlay code used in "Sasqutach Beta"
@@ -17,7 +15,13 @@ extern u16 D_801A682A_69E82A[];
 extern u16 D_801A6876_69E876[];
 extern u16 D_801A68C2_69E8C2[];
 
-u16 func_80031284(s32 arg0, s16 arg1, s32 arg2, s32 arg3);
+extern u16 func_80031284(s32 arg0, s16 arg1, s32 arg2, s32 arg3); // TODO: prototype
+extern DEFAULT_INT func_800036C8(s32 arg0, u32 actor_index); // TODO: prototype
+extern DEFAULT_INT func_80031E38(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6,
+                                 s32 arg7, s32 arg8, s32 arg9, s32 arg10, s32 arg11, s32 arg12, s32 arg13,
+                                 s32 arg14, s32 arg15, s32 arg16, s32 arg17, s32 arg18, s32 arg19, s32 arg20,
+                                 s32 arg21, s32 arg22, s32 arg23, s32 arg24, s32 arg25, s32 arg26, s32 arg27,
+                                 s32 arg28, s32 arg29); // TODO: prototype
 void func_8002AC30(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 

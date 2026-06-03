@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
+
 // determines spawn position and velocity of flame arches in "Sea of Lava"
 typedef struct {
     /* 0x00 */ s16 velX;

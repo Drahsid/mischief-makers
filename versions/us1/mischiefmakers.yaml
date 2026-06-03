@@ -677,10 +677,10 @@ segments:
     start: 0x6D2780
     bss_size: 0x210
     subsegments:
-      - [0x6D2780, asmtu, overlay_0/overlay_6D2750/6D2780] # object segment 6D2780->6D9FB0 (0x7830)
-      - [0x6D9460, .data, overlay_0/overlay_6D2750/6D2780]
+      - [0x6D2780, c, overlay_0/overlay_6D2750/6D2780] # object segment 6D2780->6D9FB0 (0x7830)
+      - [0x6D9460, data, overlay_0/overlay_6D2750/6D2780]
       - [0x6D9B00, .rodata, overlay_0/overlay_6D2750/6D2780]
-      - { name: overlay_0/overlay_6D2750/6D2780, type: .bss, vram: 0x80199930 }
+      - { name: overlay_0/overlay_6D2750/6D2780, type: bss, vram: 0x80199930 }
 
   - name: overlay_6D9FB0_dispatch_table # blackgamma7: DemoWorld1
     exclusive_ram_id: overlay_6D9FB0_dispatch_table

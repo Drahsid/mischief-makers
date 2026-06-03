@@ -17,7 +17,6 @@ extern s32 Math_Atan2(s32 x, s32 y);
 extern void func_8002AA20(u16 actor_index, s32 unused);
 extern void func_8002AC30(u16 actor_index, s16 val);
 extern u16 func_8003123C(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z);
-extern u16 func_80031284(u16 arg0, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void Actor_ClearRange_30To90(void);
 extern u16 func_8003D628(u16);
 extern void func_80042DBC(void* arg0);

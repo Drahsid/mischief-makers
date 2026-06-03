@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "music.h"
 
+extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
+
 extern s16 D_801A2110_6CCDE0;
 extern s16 D_801A2190_6CCE60;
 extern s16 D_801A2924_6CD5F4;

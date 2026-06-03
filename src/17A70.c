@@ -8,7 +8,9 @@ extern ActorFunc D_80192000[];
 extern ActorFunc D_8019B000[];
 extern ActorFunc D_801A6800[];
 extern ActorFunc D_801B0800[];
+extern ActorFunc D_800C7FE0[];
 
+extern u16 D_800BE670;
 extern s16 D_800C9694[];
 extern u16* D_800C96A0[];
 extern u8 D_800C5008;
@@ -21,6 +23,7 @@ extern u16 D_80178156;
 extern u16 D_8017815A;
 extern u16 D_8017815C;
 extern u16 D_80178160;
+extern u16 D_80178166;
 
 extern u8 D_801376A9;
 extern u8 D_801376AD;
@@ -32,6 +35,9 @@ extern u8 D_801376BD;
 extern u8 D_800E9634[];
 extern u8 D_800E9654[];
 extern u8 D_800E9720[];
+extern char D_800C8F68[];
+extern char D_800C8F74[];
+extern char D_800C8F88[];
 
 extern u16 D_80178152;
 
@@ -45,6 +51,8 @@ void func_80096A04(u16 actor_index);
 void func_80096A0C(u16 actor_index);
 void func_80096A14(u16 actor_index);
 void func_80005770(void);
+void func_80017F08(void);
+void func_8001809C(void);
 void func_80019A80(void);
 void func_80019E48(void);
 void func_8001A254(void);
@@ -54,6 +62,8 @@ void func_8001B1A0(void);
 u16 func_8001B244(void);
 void Sound_StopMusic(void);
 s32 Sound_PlaySfx2(u32 arg0);
+s32 func_80027588(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5);
 void func_80043918(void);
 void func_8008310C(void);
 void func_80083454(void);
@@ -268,7 +278,34 @@ void func_80016E70(u16 actor_index) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001751C.s")
+void func_8001751C(void) {
+    u16 actor_index;
+
+    if (D_800BE670 != 0) {
+        for (actor_index = 1; actor_index < 0xD0; actor_index++) {
+            if ((gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) && (gActors[actor_index].flags & ACTOR_FLAG_ALWAYS_UPDATE)) {
+                if (gActors[actor_index].actorType < 0x100) {
+                    D_800C7FE0[gActors[actor_index].actorType](actor_index);
+                }
+                else {
+                    func_80016E70(actor_index);
+                }
+            }
+        }
+    }
+    else {
+        for (actor_index = 1; actor_index < 0xD0; actor_index++) {
+            if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
+                if (gActors[actor_index].actorType < 0x100) {
+                    D_800C7FE0[gActors[actor_index].actorType](actor_index);
+                }
+                else {
+                    func_80016E70(actor_index);
+                }
+            }
+        }
+    }
+}
 
 s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
     if (!(gButtonHold & button)) {
@@ -288,7 +325,23 @@ s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
     return FALSE;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800176F8.s")
+s32 func_800176F8(u16 button, u8* repeat_timer) {
+    if (!(gButtonHold & button)) {
+        *repeat_timer = 0;
+    }
+    else if (*repeat_timer == 0x14) {
+        *repeat_timer = 0x10;
+    }
+    else {
+        (*repeat_timer)++;
+    }
+
+    if ((gButtonPress & button) || (*repeat_timer == 0x14)) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
 
 void DebugMenu_UpdateCursorFlash(void) {
     u16 cursor_index;
@@ -329,13 +382,64 @@ void DebugMenu_UpdateCursorFlash(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameState_Intro.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017F08.s")
+void func_80017F08(void) {
+    s32 palette_index;
+    s32 color;
+    s32 palette;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_80017FE8.s")
+    DebugMenu_UpdateCursorFlash();
+    palette = func_80027588(
+        (palette_index = 0),
+        (color = (0x1F - (gDebugMenuCursorFlash[0] / 4)) & 0xFF),
+        color & 0xFF,
+        0x1F);
+    func_800276DC(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
+    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
+    func_800276DC(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
+    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
+    func_800276DC(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_8001809C.s")
+void func_80017FE8(u16 actor_index) {
+    gActors[actor_index].actorType = 0;
+    func_8001E2D0(actor_index);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/17A70/func_800180FC.s")
+    gActors[actor_index].posX.whole = -2;
+    gActors[actor_index].posY.whole = 4;
+    gActors[actor_index].graphicIndex = 0x2D0;
+    gActors[actor_index].graphicFlags |= 0x801;
+    gActors[actor_index].posZ.whole = 0x100;
+    gActors[actor_index].unk_188 = 0;
+    gActors[actor_index].scaleX = 18.0f;
+    gActors[actor_index].scaleY = 12.0f;
+    gActors[actor_index].colorR = gActors[actor_index].colorG = gActors[actor_index].colorB = gActors[actor_index].colorA = 0xFF;
+}
+
+void func_8001809C(void) {
+    if (gActors[0x34].posX.whole == -0x18) {
+        return;
+    }
+
+    gActors[0x34].velocityX.raw = (-0x180000 - gActors[0x34].posX.raw) / 4;
+    if (gActors[0x34].velocityX.raw < -0x200000) {
+        gActors[0x34].posX.raw += -0x200000;
+        return;
+    }
+    gActors[0x34].posX.raw += gActors[0x34].velocityX.raw;
+}
+
+void func_800180FC(void) {
+    u16 index;
+
+    func_8001809C();
+    func_80017F08();
+
+    if ((D_80178166++ & 4) == 0) {
+        for (index = 0x39; index < 0x43; index++) {
+            gActors[index].flags = 0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameState_TitleScreen.s")
 
