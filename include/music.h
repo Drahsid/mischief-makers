@@ -61,9 +61,9 @@ void func_800040A0(void);
 
 s32 Sound_PlaySfxAtVolPan(u32, s16, s8);
 s32 Sound_PlaySfxAtVolPan2(u32, s16, s8);
-s32 Sound_PlaySfxAtActor2(u32 SFXID, u16 actor_index);
-s32 Sound_PlaySfxAtObject(u32 SFXID, u16 index);
-s32 Sound_PlaySfx3(u32 SFXID, s32 volume, s32 pan);
+s32 Sound_PlaySfxAtActor2(u32 sfx_id, u16 actor_index);
+s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index);
+s32 Sound_PlaySfx3(u32 sfx_id, s32 volume, s32 pan);
 extern void Sound_InitPlayers(void);
 extern void Sound_SetEventMesg(void);
 extern void Sound_Update(void);

@@ -559,10 +559,10 @@ u16 Actor_IsOutsideRegion(u16 actor_index, s16 length) {
 // if an actor is within a certain range outside the screen, play a sound effect
 // @param actor_index index of actor
 // @param length distance in screen pixels from edges of screen.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
-void Actor_RegionCheckAudio(u16 actor_index, s16 length, u32 SFXID) {
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
+void Actor_RegionCheckAudio(u16 actor_index, s16 length, u32 sfx_id) {
     if (Actor_IsOutsideRegion(actor_index, length) == 0) {
-        Sound_PlaySfxAtActor2(SFXID, actor_index);
+        Sound_PlaySfxAtActor2(sfx_id, actor_index);
     }
 }
 

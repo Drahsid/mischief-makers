@@ -707,20 +707,20 @@ void Sound_PlayMusic(u32 sequence_id) {
 // add properties of next sound to play
 // @param channel channel of next sound
 // @param player pointer to seqence player. unused.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
 // @param flags flags of sound to use
 // @param actor_index actor whose position effects volume/pan of sound. (0xFF - no actor effect)
 // @param timer timer
-void Sound_SetSfxChannel(u8 channel, ALSeqPlayer* player, u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 timer) {
+void Sound_SetSfxChannel(u8 channel, ALSeqPlayer* player, u32 sfx_id, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 timer) {
     u8* data;
 
     gSfxPlayerFlags[channel] = flags;
     gSfxActorIndices[channel] = actor_index;
-    gSfxSequenceIds[channel] = SFXID;
+    gSfxSequenceIds[channel] = sfx_id;
 
-    data = D_800C2968 + (SFXID * 2);
+    data = D_800C2968 + (sfx_id * 2);
     D_80104090[channel] = data[-0x41];
     gSfxStopTimers[channel] = timer;
     gSfxPanOverrides[channel] = pan;
@@ -734,13 +734,13 @@ void Sound_SetSfxChannel(u8 channel, ALSeqPlayer* player, u32 SFXID, s16 volume,
 }
 
 // add properties of next sound to play
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
 // @param flags flags of sound to use
 // @param actor_index actor whose position effects volume/pan of sound. (0xFF - no actor effect)
 // @param timer timer
-s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 timer) {
+s32 Sound_AddSfx(u32 sfx_id, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 timer) {
     u8 index;
     u8 replace_index;
     u8 priority;
@@ -760,7 +760,7 @@ s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 t
         }
 
         for (index = 0; index < AUDIO_PLAYER_COUNT; index++) {
-            if ((gSfxPlayerFlags[index] != 0) && (SFXID == gSfxSequenceIds[index])) {
+            if ((gSfxPlayerFlags[index] != 0) && (sfx_id == gSfxSequenceIds[index])) {
                 if ((gSfxPlayerFlags[index] & 0x80) != 0) {
                     return -1;
                 }
@@ -768,7 +768,7 @@ s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 t
                 alSeqpStop((ALSeqPlayer*)gSfxSeqPlayers[index]);
 
                 if (flags != 0x91) {
-                    Sound_SetSfxChannel(index, (ALSeqPlayer*)gSfxSeqPlayers[index], SFXID, volume, pan, flags, actor_index, timer);
+                    Sound_SetSfxChannel(index, (ALSeqPlayer*)gSfxSeqPlayers[index], sfx_id, volume, pan, flags, actor_index, timer);
                     return index;
                 }
             }
@@ -777,7 +777,7 @@ s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 t
 
     for (index = 0; index < AUDIO_PLAYER_COUNT; index++) {
         if (gSfxPlayerFlags[index] == 0) {
-            Sound_SetSfxChannel(index, (ALSeqPlayer*)gSfxSeqPlayers[index], SFXID, volume, pan, flags, actor_index, timer);
+            Sound_SetSfxChannel(index, (ALSeqPlayer*)gSfxSeqPlayers[index], sfx_id, volume, pan, flags, actor_index, timer);
             return index;
         }
     }
@@ -791,9 +791,9 @@ s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 t
         }
     }
 
-    if (D_800C2927[SFXID * 2] >= priority) {
+    if (D_800C2927[sfx_id * 2] >= priority) {
         alSeqpStop((ALSeqPlayer*)gSfxSeqPlayers[replace_index]);
-        Sound_SetSfxChannel(replace_index, (ALSeqPlayer*)gSfxSeqPlayers[replace_index], SFXID, volume, pan, flags, actor_index, timer);
+        Sound_SetSfxChannel(replace_index, (ALSeqPlayer*)gSfxSeqPlayers[replace_index], sfx_id, volume, pan, flags, actor_index, timer);
 
         return replace_index;
     }
@@ -802,12 +802,12 @@ s32 Sound_AddSfx(u32 SFXID, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 t
 }
 
 // stop playing a sound effect
-// @param SFXID ID of sound to stop (should use SFX_* where applicable)
-s32 Sound_StopSfx(u32 SFXID) {
+// @param sfx_id ID of sound to stop (should use SFX_* where applicable)
+s32 Sound_StopSfx(u32 sfx_id) {
     u8 index;
 
     for (index = 0; index < AUDIO_PLAYER_COUNT; index++) {
-        if (gSfxPlayerFlags[index] && (SFXID == gSfxSequenceIds[index])) {
+        if (gSfxPlayerFlags[index] && (sfx_id == gSfxSequenceIds[index])) {
             alSeqpStop((ALSeqPlayer*)gSfxSeqPlayers[index]);
             return index;
         }
@@ -817,62 +817,62 @@ s32 Sound_StopSfx(u32 SFXID) {
 }
 
 // play sound  with default configuration
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
-s32 Sound_PlaySfx(u32 SFXID) {
-    return Sound_AddSfx(SFXID, -1, -1, 0x81, 0xFF, 0);
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
+s32 Sound_PlaySfx(u32 sfx_id) {
+    return Sound_AddSfx(sfx_id, -1, -1, 0x81, 0xFF, 0);
 }
 
 // play sound
 // add properties of next sound to play
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
-s32 Sound_PlaySfx2(u32 SFXID) {
-    return Sound_AddSfx(SFXID, -1, -1, 0x91, 0xFF, 0);
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
+s32 Sound_PlaySfx2(u32 sfx_id) {
+    return Sound_AddSfx(sfx_id, -1, -1, 0x91, 0xFF, 0);
 }
 
 // play sound of with specific volume
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound to play (-1 or >0x100 means default)
-s32 Sound_PlaySfxAtVol(u32 SFXID, s16 volume) {
-    return Sound_AddSfx(SFXID, volume, -1, 0x81, 0xFF, 0);
+s32 Sound_PlaySfxAtVol(u32 sfx_id, s16 volume) {
+    return Sound_AddSfx(sfx_id, volume, -1, 0x81, 0xFF, 0);
 }
 
 // play sound with specific pan
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param pan pan of sound
-s32 Sound_PlaySfxAtPan(u32 SFXID, s8 pan) {
-    return Sound_AddSfx(SFXID, -1, pan, 0x81, 0xFF, 0);
+s32 Sound_PlaySfxAtPan(u32 sfx_id, s8 pan) {
+    return Sound_AddSfx(sfx_id, -1, pan, 0x81, 0xFF, 0);
 }
 
 // play sound with specified volume and pan
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
-s32 Sound_PlaySfxAtVolPan(u32 SFXID, s16 volume, s8 pan) {
-    return Sound_AddSfx(SFXID, volume, pan, 0x81, 0xFF, 0);
+s32 Sound_PlaySfxAtVolPan(u32 sfx_id, s16 volume, s8 pan) {
+    return Sound_AddSfx(sfx_id, volume, pan, 0x81, 0xFF, 0);
 }
 
 // play sound with specified volume and pan
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
-s32 Sound_PlaySfxAtVolPan2(u32 SFXID, s16 volume, s8 pan) {
-    return Sound_AddSfx(SFXID, volume, pan, 0x91, 0xFF, 0);
+s32 Sound_PlaySfxAtVolPan2(u32 sfx_id, s16 volume, s8 pan) {
+    return Sound_AddSfx(sfx_id, volume, pan, 0x91, 0xFF, 0);
 }
 
 // play sound with specified volume and pan
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
-s32 Sound_PlaySfxAtVolPan3(u32 SFXID, s16 volume, s8 pan) {
-    return Sound_AddSfx(SFXID, volume, pan, 0x92, 0xFF, 0);
+s32 Sound_PlaySfxAtVolPan3(u32 sfx_id, s16 volume, s8 pan) {
+    return Sound_AddSfx(sfx_id, volume, pan, 0x92, 0xFF, 0);
 }
 
 // play sound with specified volume and pan
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume volume of sound (-1 or >0x100 means default.)
 // @param pan pan of sound
-s32 Sound_PlaySfxAtVolPan4(u32 SFXID, s16 volume, s8 pan) {
-    return Sound_AddSfx(SFXID, volume, pan, 0x93, 0xFF, 0);
+s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan) {
+    return Sound_AddSfx(sfx_id, volume, pan, 0x93, 0xFF, 0);
 }
 
 // calculate x-postion pan and y-postion volume of sound.
@@ -919,9 +919,9 @@ void Sound_CalculatePanVol(s16 xIn, s16 yIn, s8* xOut, s16* yOut) {
 
 // play sound with position of actor changing pan and volume
 // will not play if actor is outside x and y boundaries.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
-s32 Sound_PlaySfxAtActor(u32 SFXID, u16 actor_index) {
+s32 Sound_PlaySfxAtActor(u32 sfx_id, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
 
@@ -939,15 +939,15 @@ s32 Sound_PlaySfxAtActor(u32 SFXID, u16 actor_index) {
         return -1;
     }
     else {
-        return Sound_AddSfx(SFXID, temp_b, temp_a, 0x81, 0xFF, 0);
+        return Sound_AddSfx(sfx_id, temp_b, temp_a, 0x81, 0xFF, 0);
     }
 }
 
 // play sound with position of actor changing pan and volume
 // will not play if actor is outside x boundaries.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
-s32 Sound_PlaySfxAtActor2(u32 SFXID, u16 actor_index) {
+s32 Sound_PlaySfxAtActor2(u32 sfx_id, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
 
@@ -961,13 +961,13 @@ s32 Sound_PlaySfxAtActor2(u32 SFXID, u16 actor_index) {
         return -1;
     }
     else {
-        return Sound_AddSfx(SFXID, temp_b, temp_a, 0x81, 0xFF, 0);
+        return Sound_AddSfx(sfx_id, temp_b, temp_a, 0x81, 0xFF, 0);
     }
 }
 
 // play sound with position of actor changing pan and volume
 // will not play if actor is outside x boundaries.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
 s32 Sound_PlaySfxAtActor3(u32 arg0, u16 actor_index) {
     s8 temp_a;
@@ -989,9 +989,9 @@ s32 Sound_PlaySfxAtActor3(u32 arg0, u16 actor_index) {
 
 // play sound with position of object changing pan and volume
 // will not play if object is outside x boundaries.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param index index of object at position effects volume/pan of sound.
-s32 Sound_PlaySfxAtObject(u32 SFXID, u16 index) {
+s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index) {
     s8 temp_a;
     s16 temp_b;
 
@@ -1005,16 +1005,16 @@ s32 Sound_PlaySfxAtObject(u32 SFXID, u16 index) {
         return -1;
     }
     else {
-        return Sound_AddSfx(SFXID, temp_b, temp_a, 0x81, 0xFF, 0);
+        return Sound_AddSfx(sfx_id, temp_b, temp_a, 0x81, 0xFF, 0);
     }
 }
 
 // play timed sound with position of actor changing pan and volume
 // will not play if actor is outside x boundaries.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
 // @param timer timer
-s32 Sound_PlaySfxAtActorTimed(u32 SFXID, u16 actor_index, u16 timer) {
+s32 Sound_PlaySfxAtActorTimed(u32 sfx_id, u16 actor_index, u16 timer) {
     s8 temp_a;
     s16 temp_b;
 
@@ -1028,25 +1028,25 @@ s32 Sound_PlaySfxAtActorTimed(u32 SFXID, u16 actor_index, u16 timer) {
         return -1;
     }
     else {
-        return Sound_AddSfx(SFXID, temp_b, temp_a, 0xA1, 0xFF, timer);
+        return Sound_AddSfx(sfx_id, temp_b, temp_a, 0xA1, 0xFF, timer);
     }
 }
 
 // play sound with pan contiously changing with actor's x-position.
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
-void Sound_PlaySfxAtActorPanning(u32 SFXID, u16 actor_index) {
-    Sound_AddSfx(SFXID, -1, -1, 0xC1, actor_index, 0);
+void Sound_PlaySfxAtActorPanning(u32 sfx_id, u16 actor_index) {
+    Sound_AddSfx(sfx_id, -1, -1, 0xC1, actor_index, 0);
 }
 
 // play sound. other 2 args are ignored
-// @param SFXID ID of sound effect (should use SFX_* where applicable)
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param volume unused.
 // @param pan unused.
-s32 Sound_PlaySfx3(u32 SFXID, s32 volume, s32 pan) {
+s32 Sound_PlaySfx3(u32 sfx_id, s32 volume, s32 pan) {
     s32 index;
 
-    index = Sound_AddSfx(SFXID, -1, -1, 0x89, 0xFF, 0);
+    index = Sound_AddSfx(sfx_id, -1, -1, 0x89, 0xFF, 0);
     gSfxChannelVolumes[index] = 0x7F;
     gSfxChannelPans[index] = 0x40;
     return index;

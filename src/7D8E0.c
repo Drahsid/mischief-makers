@@ -13,11 +13,11 @@
 // spawns a text box over an actor for a few moments.
 // ...in the japanese version.
 // @param index index of "speaking" actor
-// @param TXT "string" to display
+// @param text "string" to display
 // @param posx x-position offset of text.
 // @param posy y-position offset of text.
 // @param arg4 unused(?)
-u16 SpawnTextBubble(u16 index, u16* TXT, s16 posx, s16 posy, s32 arg4){
+u16 SpawnTextBubble(u16 index, u16* text, s16 posx, s16 posy, s32 arg4){
     return 0;
 }
 
