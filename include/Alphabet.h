@@ -7,6 +7,17 @@
 
 // Monospace English alphabet used in all versions
 
+#define ALPHA_1 0x0001 // 0
+#define ALPHA_2 0x0002 // 1
+#define ALPHA_3 0x0003 // 2
+#define ALPHA_4 0x0004 // 3
+#define ALPHA_5 0x0005 // 4
+#define ALPHA_6 0x0006 // 5
+#define ALPHA_7 0x0007 // 6
+#define ALPHA_8 0x0008 // 7
+#define ALPHA_9 0x0009 // 8
+#define ALPHA_9 0x000A // 9
+
 #define ALPHA_EN_UPPER_A 0x000A
 #define ALPHA_EN_UPPER_B 0x000B
 #define ALPHA_EN_UPPER_C 0x000C
@@ -168,24 +179,33 @@
 #define ALPHA_JP_HIRA_SMALL_YU   0x009F // ゅ
 #define ALPHA_JP_HIRA_SMALL_YO   0x00A0 // ょ
 
-#define ALPHA_0 0x00A1 // 0
-#define ALPHA_1 0x00A2 // 1
-#define ALPHA_2 0x00A3 // 2
-#define ALPHA_3 0x00A4 // 3
-#define ALPHA_4 0x00A5 // 4
-#define ALPHA_5 0x00A6 // 5
-#define ALPHA_6 0x00A7 // 6
-#define ALPHA_7 0x00A8 // 7
-#define ALPHA_8 0x00A9 // 8
-#define ALPHA_9 0x00AA // 9
+// a second set of Arabic numbers
+
+#define ALPHA_THIN_0 0x00A1 // 0
+#define ALPHA_THIN_1 0x00A2 // 1
+#define ALPHA_THIN_2 0x00A3 // 2
+#define ALPHA_THIN_3 0x00A4 // 3
+#define ALPHA_THIN_4 0x00A5 // 4
+#define ALPHA_THIN_5 0x00A6 // 5
+#define ALPHA_THIN_6 0x00A7 // 6
+#define ALPHA_THIN_7 0x00A8 // 7
+#define ALPHA_THIN_8 0x00A9 // 8
+#define ALPHA_THIN_9 0x00AA // 9
 
 #define ALPHA_ELLIPSIS     0x00B0 // ...
 #define ALPHA_EXCLAMATION  0x00B1 // !
 #define ALPHA_EXCLAMATION2 0x00B2 // !!
 #define ALPHA_QUESTION     0x00B3 // ?
-#define ALPHA_BRACKETLEFT  0x00B8 // [
-#define ALPHA_BRACKETRIGHT 0x00B9 // ]
+#define ALPHA_QUESTION2    0x00B4 // ??
+#define ALPHA_QEXCLAIM     0x00B5 // !?
+#define ALPHA_PARENTHLEFT  0x00B6 // (
+#define ALPHA_PARENTHRIGHT 0x00B7 // )
+#define ALPHA_BRACKETLEFT  0x00B8 // <
+#define ALPHA_BRACKETRIGHT 0x00B9 // >
+#define ALPHA_TILDE        0x00BA // ~
 #define ALPHA_COLON        0x00BB // :
+#define ALPHA_COMMA        0x00BC // ,
+#define ALPHA_PERIOD       0x00BE // .
 #define ALPHA_PLUS         0x00BF // +
 #define ALPHA_MINUS        0x00C0 // -
 #define ALPHA_EQUALS       0x00C3 // =
@@ -272,6 +292,7 @@
 #define ALPHA_JP_KATA_SMALL_YA   0x011A // ャ
 #define ALPHA_JP_KATA_SMALL_YU   0x011B // ュ
 #define ALPHA_JP_KATA_SMALL_YO   0x011C // ョ
+#define ALPHA_JP_KATA_VU         0x011D // ヴ
 
 
 // a slimmer English alphabet charset
