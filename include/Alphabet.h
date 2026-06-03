@@ -195,9 +195,9 @@
 
 #define ALPHA_THIN_COMMA 0x00AB // ,
 #define ALPHA_THIN_PERIOD 0x00AC // .
-#define ALPHA_THIN_INYOUFUL 0x00AD // 「
-#define ALPHA_THIN_INYOUFUR 0x00AE // 」
-#define ALPHA_THIN_INYOUFURP 0x00AC // .」
+#define ALPHA_JP_QUOTEL 0x00AD // 「
+#define ALPHA_JP_QUOTER 0x00AE // 」
+#define ALPHA_JP_QUOTERP 0x00AC // .」
 
 
 #define ALPHA_ELLIPSIS     0x00B0 // ...
