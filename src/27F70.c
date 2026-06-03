@@ -6,7 +6,6 @@
 #include "input.h"
 #include "music.h"
 
-extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
 typedef struct {
     u8 pad0[2];

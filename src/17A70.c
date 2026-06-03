@@ -10,7 +10,6 @@ extern ActorFunc D_801A6800[];
 extern ActorFunc D_801B0800[];
 extern ActorFunc D_800C7FE0[];
 
-extern u16 D_800BE670;
 extern s16 D_800C9694[];
 extern u16* D_800C96A0[];
 extern u8 D_800C5008;
@@ -281,7 +280,7 @@ void func_80016E70(u16 actor_index) {
 void func_8001751C(void) {
     u16 actor_index;
 
-    if (D_800BE670 != 0) {
+    if (gActorStall) {
         for (actor_index = 1; actor_index < 0xD0; actor_index++) {
             if ((gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) && (gActors[actor_index].flags & ACTOR_FLAG_ALWAYS_UPDATE)) {
                 if (gActors[actor_index].actorType < 0x100) {
