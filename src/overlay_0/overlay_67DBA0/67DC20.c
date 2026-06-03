@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "function_symbols.h"
 
+// "Overlay 0" code for "Migen Brawl"
 
 extern u8 D_801376B4[];
 extern u8 D_801376A8[];

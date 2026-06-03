@@ -61,7 +61,7 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern u16 D_800D2950;
 extern u16 D_800D2954;
-extern s16 D_800D2958;
+extern s16 gNoHit; //set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D295C;
 extern u16 D_800D5820;
 extern u16 D_800D5824;
@@ -2851,12 +2851,12 @@ s32 func_8002F154(u16 actor_index, u16 flags, u16 unused_arg2) {
     return index;
 }
 
-// spawns yellow gem if boss defeated with getting hit.
+// spawns yellow gem if boss defeated without getting hit.
 u16 func_8002F1C8(u16 actor_index) {
     u16 index;
 
     index = 0;
-    if (D_800D2958 >= 0) {
+    if (gNoHit >= 0) {
         if (YellowGem_GetFlag(gCurrentStage) == 0) {
             func_8003FE4C(1.0f, gActors[0].posX.whole, gActors[0].posY.whole + 48, 2);
             index = SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_YELLOW), 0);
