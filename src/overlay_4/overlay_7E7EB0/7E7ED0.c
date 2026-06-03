@@ -136,7 +136,7 @@ void func_801B9D00_7E82D0(void) {
             Palette_AdjustRgb5551Array((u16*)0x802E5ED8, (u16*)0x802E5D48, 0xC3, 1, 1, -1);
             Palette_AdjustRgb5551Array((u16*)0x803DA600, (u16*)0x80380400, 0xFF, 1, 0, 1);
             D_800D28E8 = 0x100;
-            D_800BE710 = 1;
+            D_800BE710 = TRUE;
             break;
 
         case 0x100:
@@ -212,7 +212,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x204:
-            D_800BE710 = 0;
+            D_800BE710 = FALSE;
             func_801B9900_7E7ED0(0x400, 0x1DC3, 0x19E);
             break;
 

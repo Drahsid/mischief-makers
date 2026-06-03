@@ -48,7 +48,7 @@ void func_801A6980_76F420(u16 actor_index) {
     FlameArchInit* temp_v1;
 
     if ((gActiveFrames & 3) == 0) {
-        temp_v0 = Sound_RangeFindInactive(0x30, 0x90);
+        temp_v0 = Actor_RangeFindInactive(0x30, 0x90);
         if (temp_v0 != 0) {
             temp_index = gActors[actor_index].unk_0D8 * 5;
             temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];

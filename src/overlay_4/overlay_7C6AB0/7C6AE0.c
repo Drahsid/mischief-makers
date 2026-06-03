@@ -75,14 +75,11 @@ extern u32 D_801C0B7C_7CDD5C[];
 extern s32 func_800475EC(void);
 extern void func_80047648(s32 arg0);
 extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
-extern void func_8002F2A8(s32 arg0);
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern void func_80045544(s32 arg0, s32 arg1);
 extern void func_80045610(s32 arg0, s32 arg1);
 extern void func_80043D30(void* arg0);
 extern void func_800472D4(void);
-extern s32 func_8005DEFC(void);
-extern s32 Sound_StopSfx(u32 arg0);
 extern void func_80025EC4(u16 index);
 extern void func_801BB6AC_7C888C(u16 arg0);
 
@@ -312,7 +309,7 @@ void func_801BA008_7C71E8(void) {
 
         case 8:
             if (func_8005DEFC() == 0) {
-                func_8002F2A8(0xA);
+                SpawnGemRing(10);
                 func_8005DF5C(4);
                 D_800D28E8 += 1;
             }
@@ -805,7 +802,7 @@ void func_801BAB34_7C7D14(void) {
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
                 gActors[0x31].state = 0x10;
-                func_8003E6A4(0xF, 0x32);
+                SpawnCrosshair(CROSSHAIR_ALL, 0x32);
                 gCannotPause = FALSE;
             }
 
@@ -855,7 +852,7 @@ void func_801BAB34_7C7D14(void) {
             if (func_8004735C(0x100, 0) != 0) {
                 D_800BE544 = 0x31;
                 gActors[0x31].state = 0x10;
-                func_8003E6A4(0xF, 0x32);
+                SpawnCrosshair(CROSSHAIR_ALL, 0x32);
             }
             break;
     }

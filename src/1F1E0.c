@@ -15,24 +15,17 @@ extern u16 gAudioFadeMode;
 extern u16 D_800BE4D0;
 extern u16 D_800BE4D4;
 extern u16 D_800BE4D8;
-extern u16 D_800BE4DC;
-extern u16 D_800BE4E0;
-extern u16 D_800BE500;
-extern u16 D_800BE530;
-extern u16 D_800BE534;
 extern u16 D_800BE544;
-extern s16 D_800BE590;
-extern u16 D_800BE5D0;
 extern u16 D_800BE668;
 extern u16 D_800BE6B4;
 extern u16 D_800BE6B8;
 extern u16 D_800BE704;
 extern u16 D_800BE708;
 
-extern s32 D_800CA254; // unknown type
-extern s32 D_800CA26C; // unknown type
-extern s32 D_800CA280; // unknown type
-extern u16 D_800CA28C[]; // "Not Yet"
+extern u16 D_800CA254[]; // "d  h  m  s"
+extern u16 D_800CA26C[]; // " Continue"
+extern u16 D_800CA280[]; // " Exit"
+extern u16 D_800CA28C[]; // " Not Yet"
 extern u16 D_800CA2A0[]; // " Got it"
 
 extern s16 D_800C7CA4[];
@@ -71,8 +64,8 @@ extern s16 D_800E13FC[];
 extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
-extern u16 D_80178136;
-extern s16 D_801781C0[]; // some volume setting
+extern u16 gRedGems;
+extern s16 D_801781C0[]; // SFX volumes stored during pause
 extern u16 D_801781C8;
 extern u16 D_801781CA;
 extern u16 D_801781CC;
@@ -108,7 +101,7 @@ extern u8 func_8005C870(u8);
 extern void func_8005C8A4(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
-extern void func_800836A0(s32, s32, s32*, s32); // guess on types
+extern void func_800836A0(s32, s32, u16*, s32); // guess on types
 extern void func_80083A74(s32, s32, s32); // guess
 extern void func_80083C54(s16, s32, s32); // guess
 extern void func_8008C528(u16); // guess
@@ -674,7 +667,7 @@ void func_8002034C(void) {
 void func_800205DC(void) {
     u16 val;
 
-    val = D_80178136;
+    val = gRedGems;
     func_80083518(6, 1, (val % 10) + 0x51, 0);
     val /= 10;
     func_80083518(5, 1, (val % 10) + 0x51, 0);
@@ -690,10 +683,10 @@ void func_800207DC(void) {
 
     ret = YellowGem_GetFlag(gCurrentStage);
     if (ret != 0) {
-        func_800836A0(9, 1, &D_800CA2A0, 0);
+        func_800836A0(9, 1, D_800CA2A0, 0);
     }
     else {
-        func_800836A0(9, 1, &D_800CA28C, 0);
+        func_800836A0(9, 1, D_800CA28C, 0);
     }
 }
 
@@ -768,7 +761,7 @@ void func_80020A90(void) {
             D_801781C0[index] = gSfxPlayerVolumes[index];
             gSfxPlayerVolumes[index] /= 2;
         }
-        Sound_PlaySfx(0xCA);
+        Sound_PlaySfx(SFX_MARINA_YELL3);
         func_8002092C();
         gGameStateSubState++;
         /* fallthrough */
@@ -778,9 +771,9 @@ void func_80020A90(void) {
             func_800273FC(actor_index + 4, 0, 0, 0xC, 0x401);
             gActors[actor_index + 4].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
             func_80083454();
-            func_800836A0(4, 0, &D_800CA254, 1);
-            func_800836A0(5, 2, &D_800CA26C, 0);
-            func_800836A0(5, 3, &D_800CA280, 0);
+            func_800836A0(4, 0, D_800CA254, 1);
+            func_800836A0(5, 2, D_800CA26C, 0);
+            func_800836A0(5, 3, D_800CA280, 0);
             func_8002034C();
             func_800205DC();
             func_800207DC();
@@ -809,7 +802,7 @@ void func_80020A90(void) {
             for (actor_index = 0; actor_index < 0xC8; actor_index++) {
                 gActors[actor_index].flags = 0;
             }
-            D_800BE590 = 0;
+            gCamShakeTime = 0;
             D_800CBF40 = 1;
             D_80171B10 = D_801781F0;
             func_80046218(D_800D28E4 - 1, 0);
@@ -843,11 +836,11 @@ void func_80020A90(void) {
     case 16:
         D_801782B8++;
         func_8002034C();
-        if ((gButtonPress & D_800BE504) && (gActors[0xCF].posY.whole != -8)) {
+        if ((gButtonPress & gButton_DUp) && (gActors[0xCF].posY.whole != -8)) {
             Sound_PlaySfx(0x22);
             gActors[0xCF].posY.whole = -8;
         }
-        if ((gButtonPress & D_800BE508) && (gActors[0xCF].posY.whole != -28)) {
+        if ((gButtonPress & gButton_DDown) && (gActors[0xCF].posY.whole != -28)) {
             Sound_PlaySfx(0x22);
             gActors[0xCF].posY.whole = -28;
         }

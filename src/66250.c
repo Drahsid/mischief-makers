@@ -731,10 +731,10 @@ void func_8007406C(u16 actor_index, u16 arg1, s32 arg2) {
 
 u16 func_800742B8(u16 arg0) {
     if (arg0 & 1) {
-        return Sound_RangeFindInactive(1, 0x10);
+        return Actor_RangeFindInactive(1, 0x10);
     }
     else {
-        return Sound_RangeFindInactive(0x70, 0x7A);
+        return Actor_RangeFindInactive(0x70, 0x7A);
     }
 }
 

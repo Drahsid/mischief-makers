@@ -54,13 +54,13 @@ void func_800423A0(u16 actor_index) {
 
     if (gActors[actor_index].var_160 & 1) {
         gActors[actor_index].var_160 &= ~1;
-        if (gButtonHold & D_800BE510) {
+        if (gButtonHold & gButton_DRight) {
             angle = 0x8000;
         }
         else if (gButtonHold & D_800BE50C) {
             angle = 0x01FF8000;
         }
-        else if (gButtonHold & D_800BE504) {
+        else if (gButtonHold & gButton_DUp) {
             if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
                 angle = 0x01008000;
             }
@@ -68,7 +68,7 @@ void func_800423A0(u16 actor_index) {
                 angle = 0xFF8000;
             }
         }
-        else if (gButtonHold & D_800BE508) {
+        else if (gButtonHold & gButton_DDown) {
             if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
                 angle = 0x02FF8000;
             }
@@ -93,7 +93,7 @@ void func_800423A0(u16 actor_index) {
                 gActors[actor_index].unk_168 = Math_ApproachS32(gActors[actor_index].unk_168, 0x160000, 0x40000);
             }
         }
-        else if (gButtonHold & D_800BE534) {
+        else if (gButtonHold & gButton_RTrig) {
             gActors[actor_index].var_160 |= 1;
         }
         angle = func_800298D0(gActors[actor_index].var_15C, gActors[actor_index].var_158, gActors[actor_index].unk_168);
@@ -108,8 +108,8 @@ void func_800423A0(u16 actor_index) {
     }
     x = COS(gActors[actor_index].unk_16C) * 294912.0f;
     y = SIN(gActors[actor_index].unk_16C) * 294912.0f;
-    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gActors[0].posX.whole + D_800BE558;
-    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gActors[0].posY.whole + D_800BE55C;
+    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gActors[0].posX.whole + gScreenPosCurrentX.whole;
+    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gActors[0].posY.whole + gScreenPosCurrentY.whole;
     
     var_a1_2 = (x << 0x10) + (y & 0xFFFF);
     for (var_v1 = 0; var_v1 < 8; var_v1++) {
@@ -117,8 +117,8 @@ void func_800423A0(u16 actor_index) {
         (&gActors[actor_index].unk_170)[var_v1] = var_a1_2;
         var_a1_2 = angle;
     }
-    gActors[actor_index].posX.whole = (gActors[actor_index].unk_18C / 65536) - D_800BE558;
-    gActors[actor_index].posY.whole = gActors[actor_index].unk_18C - D_800BE55C;
+    gActors[actor_index].posX.whole = (gActors[actor_index].unk_18C / 65536) - gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole = gActors[actor_index].unk_18C - gScreenPosCurrentY.whole;
 }
 #else
 void func_800423A0(u16);
@@ -144,9 +144,9 @@ void func_80042864(u16 actor_index) {
     s16 y;
     u16 index;
 
-    if (!(D_800BE4E0 & 3)) {
-        x = gActors[actor_index].posX.whole - (func_8000178C() & 0x1F) + 0x10;
-        y = gActors[actor_index].posY.whole - (func_8000178C() & 0x1F) + 0x10;
+    if (!(gActiveFrames & 3)) {
+        x = gActors[actor_index].posX.whole - (Rand() & 0x1F) + 0x10;
+        y = gActors[actor_index].posY.whole - (Rand() & 0x1F) + 0x10;
         index = func_8003123C(D_800E158C, x, y, gActors[actor_index].posZ.whole);
         if (index != 0) {
             gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
@@ -179,7 +179,7 @@ void func_80042A0C(u16 actor_index) {
 
     func_80042864(actor_index);
     func_800423A0(actor_index);
-    index = Actor_RangeFindFlag2(0x10, 0x18);
+    index = Actor_RangeFindInactive(0x10, 0x18);
     if (index != 0) {
         gActors[actor_index].state += 1;
         gActors[actor_index].var_154 = index;

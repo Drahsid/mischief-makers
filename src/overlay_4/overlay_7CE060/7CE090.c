@@ -318,7 +318,7 @@ void func_801BA0C8_7CE858(void) {
                 Sound_PlaySfx(0x5E);
                 D_800BE6A8 = 0;
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
-                D_800BE710 = 1;
+                D_800BE710 = TRUE;
                 D_800BE568.whole = 0x158;
                 D_800BE56C.whole = 0x1008;
                 D_800D2920 = D_800BE568.whole;
@@ -485,7 +485,7 @@ handle_cutscene_index:
             Sound_PlaySfx(0x5E);
             D_800BE6A8 = 0;
             gLetterboxMode = LETTERBOX_HORIZONTAL;
-            D_800BE710 = 1;
+            D_800BE710 = TRUE;
             D_800BE568.whole = 0x158;
             D_800BE56C.whole = 0x1008;
             D_800D2920 = D_800BE568.whole;

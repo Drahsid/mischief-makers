@@ -44,7 +44,7 @@ extern s16 D_800E1540[];
 extern s16 D_800E154C[];
 extern s16 D_800E156C[];
 extern s16 D_800E158C[];
-extern s16 D_800E164C[];
+extern s16 D_800E164C[]; // gem graphics list
 extern s16 D_800E1700[];
 extern u8 D_800E19FC[];
 extern u8 D_800E1A20[];

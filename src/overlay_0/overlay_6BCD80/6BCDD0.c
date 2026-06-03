@@ -343,7 +343,7 @@ void func_80195D44_6C0A14(s32 arg0) {
 s32 func_80196030_6C0D00(s32 arg0) {
     u16 actor_index;
 
-    actor_index = Sound_RangeFindInactive(0x5E, 0x62);
+    actor_index = Actor_RangeFindInactive(0x5E, 0x62);
     if (actor_index != 0) {
         ACTOR_INIT(actor_index, 0x1604);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
@@ -396,11 +396,14 @@ void func_801967F4_6C14C4(u16 actor_index) {
 void func_80196BE8_6C18B8(s32 arg0) {
 }
 
-
-void func_80196BF0_6C18C0(u16 arg0, u16 arg1, s32 velocity_x) {
+// spawn gem actor with specified x-velocity
+// @param index index of parent actor.
+// @param flags flags of gem spawned (use GemFlags)
+// @param velocity_x x-velocity of gem when spawned.
+void func_80196BF0_6C18C0(u16 index, u16 flags, s32 velocity_x) {
     s32 actor_index;
 
-    actor_index = func_8002F154(arg0, arg1, 0);
+    actor_index = func_8002F154(index, flags, 0);
     if (actor_index != 0) {
         gActors[actor_index].velocityX.raw = velocity_x;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(3.5);

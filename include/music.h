@@ -38,7 +38,7 @@ extern s32 gMusicSequenceId;
 extern s32 D_800EF4DC; // unused.
 extern u8 gMusicChannelFxMixes[16];
 extern u8 gSfxPlayerFlags[4];
-extern u16 gSfxPlayerVolumes[4];
+extern s16 gSfxPlayerVolumes[4];
 extern s8 gSfxPanOverrides[];
 extern u16 gSfxSequenceIds[4];
 extern u16 gSfxActorIndices[4];
@@ -55,14 +55,14 @@ s32 Sound_PlaySfx(u32 sound_id);
 s32 Sound_StopSfx(u32 arg0);
 void Sound_ActorPanVol(u8 arg0);
 void func_80003D64(u8 arg0);
-void func_8003A958(void);
 void Sound_StopMusic(void);
 void Sound_StopAllSfx(void);
 void func_800040A0(void);
 
 s32 Sound_PlaySfxAtVolPan(u32, s16, s8);
 s32 Sound_PlaySfxAtVolPan2(u32, s16, s8);
-s32 Sound_PlaySfxAtActor2(u32 arg0, u16 actor_index);
+s32 Sound_PlaySfxAtActor2(u32 SFXID, u16 actor_index);
+s32 Sound_PlaySfxAtObject(u32 SFXID, u16 index);
 s32 Sound_PlaySfx3(u32 SFXID, s32 volume, s32 pan);
 extern void Sound_InitPlayers(void);
 extern void Sound_SetEventMesg(void);

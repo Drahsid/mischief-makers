@@ -169,13 +169,13 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.625);
                             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.5);
                             func_80081790(actor_index, D_800E5938);
-                            temp = Sound_RangeFindInactive_90ToC0();
+                            temp = Actor_RangeFindInactive_90ToC0();
                             if (temp != 0) {
                                 ACTOR_INIT(temp,0x34);
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;
-                                Sound_PlaySfxAtActorPanning(0xDD, temp);
+                                Sound_PlaySfxAtActorPanning(SFX_THEO_HELP2, temp);
                                 Sound_PlaySfxAtActor2(0xB0, actor_index);
                             }
                     }

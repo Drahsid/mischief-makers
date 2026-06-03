@@ -96,7 +96,7 @@
 // these are overwritten in english localizations,
 // which use the other english/Greek alphbet indecies.
 // some "strings" using the original charset remain in NA/EU code,
-// but are not properly read. (see func_8007D0DC calls.)
+// but are not properly read. (see SpawnTextBubble calls.)
 
 #define ALPHA_JP_HIRA_A          0x0051 // あ
 #define ALPHA_JP_HIRA_I          0x0052 // い

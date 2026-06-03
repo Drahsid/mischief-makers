@@ -21,6 +21,11 @@ u16 func_80031284(s32 arg0, s16 arg1, s32 arg2, s32 arg3);
 void func_8002AC30(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 
+extern u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6,
+     s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, s16 arg14, s16 arg15,
+      s16 arg16, s16 arg17, s16 arg18, s16 arg19, s16 arg20, s16 arg21, s16 arg22, u16 arg23,
+       u16 arg24, u16 arg25, u16 arg26, s16 arg27, s16 arg28,s32 arg29);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192100_68A100.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192198_68A198.s")
@@ -134,7 +139,7 @@ void func_80194754_68C754(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 0x14) & 0xFFFF, 0xF, 0x200, 0x84, 8, 0x50000, 0x20000, 0xA, 0, -0x18, 0,
+    func_80031E38(0x80, 0x90, (actor_index + 0x14), 0xF, 0x200, 0x84, 8, 0x50000, 0x20000, 0xA, 0, -0x18, 0,
         0x10, -8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x28, 0, 0x6E, 0x46, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 0x14].unk_18C = 2;
@@ -148,7 +153,7 @@ void func_801949B4_68C9B4(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 6) & 0xFFFF, 0xF, 0x200, 0x84, 8, 0x80000, 0x40000, 0xA, 0, -0x16, 0x10,
+    func_80031E38(0x80, 0x90, (actor_index + 6), 0xF, 0x200, 0x84, 8, 0x80000, 0x40000, 0xA, 0, -0x16, 0x10,
         0x16, -0x16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x14, 0, 0x2D, 0x50, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 6].unk_18C = 2;

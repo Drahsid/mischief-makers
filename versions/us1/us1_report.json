@@ -4021,7 +4021,7 @@
           }
         },
         {
-          "name": "Sound_RangeFindInactive",
+          "name": "Actor_RangeFindInactive",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4029,7 +4029,7 @@
           }
         },
         {
-          "name": "Sound_RangeFindInactive_90ToC0",
+          "name": "Actor_RangeFindInactive_90ToC0",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5077,7 +5077,7 @@
           }
         },
         {
-          "name": "func_8002EFE4",
+          "name": "SpawnGemActor",
           "size": "368",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5117,7 +5117,7 @@
           }
         },
         {
-          "name": "func_8002F6AC",
+          "name": "RedGems_Clamp",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6205,7 +6205,7 @@
           }
         },
         {
-          "name": "func_8003E640",
+          "name": "Crosshair_SetPos",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6213,7 +6213,7 @@
           }
         },
         {
-          "name": "func_8003E6A4",
+          "name": "SpawnCrosshair",
           "size": "432",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -12212,7 +12212,7 @@
           }
         },
         {
-          "name": "func_8007D0DC",
+          "name": "SpawnTextBubble",
           "size": "24",
           "metadata": {
             "virtual_address": "2147995868"
