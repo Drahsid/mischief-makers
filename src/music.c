@@ -876,44 +876,44 @@ s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan) {
 }
 
 // calculate x-postion pan and y-postion volume of sound.
-void Sound_CalculatePanVol(s16 xIn, s16 yIn, s8* xOut, s16* yOut) {
+void Sound_CalculatePanVol(s16 x_in, s16 y_in, s8* x_out, s16* y_out) {
     s32 temp_v0;
     s32 temp_v1;
     s16 temp;
 
-    if (xIn < -0x80) {
-        *xOut = 0;
+    if (x_in < -0x80) {
+        *x_out = 0;
     }
-    else if (xIn >= 0x80) {
-        *xOut = 0x7F;
+    else if (x_in >= 0x80) {
+        *x_out = 0x7F;
     }
     else {
-        *xOut = (xIn / 2) + 0x40;
+        *x_out = (x_in / 2) + 0x40;
     }
 
-    if (xIn > 0) {
-        temp_v0 = xIn;
+    if (x_in > 0) {
+        temp_v0 = x_in;
     }
     else {
-        temp_v0 = -xIn;
+        temp_v0 = -x_in;
     }
 
-    if (yIn > 0) {
-        temp_v1 = yIn;
+    if (y_in > 0) {
+        temp_v1 = y_in;
     }
     else {
-        temp_v1 = -yIn;
+        temp_v1 = -y_in;
     }
 
     temp = temp_v1 + temp_v0;
     if (temp < 0x100) {
-        *yOut = 0x100;
+        *y_out = 0x100;
     }
     else if (temp < 0x200) {
-        *yOut = 0x200 - temp;
+        *y_out = 0x200 - temp;
     }
     else {
-        *yOut = 0;
+        *y_out = 0;
     }
 }
 

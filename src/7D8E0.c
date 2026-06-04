@@ -14,10 +14,11 @@
 // ...in the japanese version.
 // @param index index of "speaking" actor
 // @param text "string" to display
-// @param posx x-position offset of text.
-// @param posy y-position offset of text.
+// @param off_x x-position offset of text.
+// @param off_y y-position offset of text.
 // @param arg4 unused(?)
-u16 SpawnTextBubble(u16 index, u16* text, s16 posx, s16 posy, s32 arg4){
+// @returns index of actor, 0 if failed or English version.
+u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 arg4) {
     return 0;
 }
 

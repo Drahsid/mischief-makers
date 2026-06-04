@@ -6,8 +6,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/soft_reset/GameState_SoftReset.s")
 
-// clear all actors and "static gem" objects
-void func_800230B8(){
+// clear all actors and static objects
+void func_800230B8(void) {
     u16 index;
     for(index = 0; index < 208; index++){
         gActors[index].flags = 0;
@@ -19,7 +19,7 @@ void func_800230B8(){
 }
 
 // clear all portraits
-void func_8002312C(){
+void func_8002312C(void) {
     u16 index;
     for(index = 0; index < ARRAYLENGTH(gPortraits); index++){
         gPortraits[index].flags = 0;

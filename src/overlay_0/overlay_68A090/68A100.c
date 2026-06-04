@@ -21,7 +21,7 @@ void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 extern u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6,
      s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, s16 arg14, s16 arg15,
       s16 arg16, s16 arg17, s16 arg18, s16 arg19, s16 arg20, s16 arg21, s16 arg22, u16 arg23,
-       u16 arg24, u16 arg25, u16 arg26, s16 arg27, s16 arg28,s32 arg29);
+       u16 arg24, u16 arg25, u16 arg26, s16 arg27, s16 arg28,s32 arg29); // TODO: prototype
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192100_68A100.s")
 
