@@ -3,6 +3,7 @@
 
 #include <PR/gbi.h>
 #include <PR/ultratypes.h>
+#include "graphicIndex.h"
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
