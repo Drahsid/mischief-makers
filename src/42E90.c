@@ -57,7 +57,7 @@ void func_800423A0(u16 actor_index) {
         if (gButtonHold & gButton_DRight) {
             angle = 0x8000;
         }
-        else if (gButtonHold & D_800BE50C) {
+        else if (gButtonHold & gButton_DLeft) {
             angle = 0x01FF8000;
         }
         else if (gButtonHold & gButton_DUp) {

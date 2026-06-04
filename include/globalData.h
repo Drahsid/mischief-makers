@@ -79,7 +79,7 @@ extern s16 gPlatforms0X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagg
 extern u32 D_8011D068[2]; // blank space between
 extern s16 gPlatforms1X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern s16 gPlatforms0X0[144]; // posX + hitboxBX0 of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern s16 D_8011D3B0[8][2];
+extern s16 D_8011D3B0[8][2]; // initial stage properties (actualy FixedCoord[8]?)
 extern s16 gPlatforms1X0[144]; // posY + hitboxBX0 of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern s16 gPlatforms0Y0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern s16 gPlatforms1Y0[144]; // posY + hitboxBY0 of ACTOR_FLAG_PLATFORM1-flagged Actors
