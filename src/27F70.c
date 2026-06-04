@@ -2975,18 +2975,18 @@ void func_8002F6D4(u16 actor_index) {
 
 // behaviour for collecting gems.
 // @param actor_index index of actor who collected gem
-// @param isStatic boolean if gem was a static object(true) or actor(false).
+// @param is_static boolean if gem was a static object(true) or actor(false).
 // determines sound source.
 // @param palette palette of gem. checked to determine type.
 // @param pos_x x-position of gem
 // @param pos_y y-position of gem
-void func_8002F93C(u16 actor_index, u16 isStatic, void* palette, s16 pos_x, s16 pos_y) {
+void func_8002F93C(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 pos_y) {
     // grab red gem
     if (palette == D_800D88B8) {
         gRedGems += 1;
         RedGems_Clamp();
         func_8003FB20(actor_index, 0, 1.0f, pos_x, pos_y, gActors[D_800D2950].posZ.whole);
-        if (isStatic) {
+        if (is_static) {
             Sound_PlaySfxAtObject(SFX_GEM_RED, actor_index);
         }
         else {
@@ -3002,7 +3002,7 @@ void func_8002F93C(u16 actor_index, u16 isStatic, void* palette, s16 pos_x, s16 
             func_80057320(0, 30);
         }
         func_800337F4(pos_x, pos_y, 4, 0x132);
-        if (isStatic) {
+        if (is_static) {
             Sound_PlaySfxAtObject(SFX_GEM_BLUE, actor_index);
         }
         else {
@@ -3019,7 +3019,7 @@ void func_8002F93C(u16 actor_index, u16 isStatic, void* palette, s16 pos_x, s16 
             func_80057320(0, 500);
         }
         func_8003F9CC(2.5f, pos_x, pos_y, 0);
-        if (isStatic) {
+        if (is_static) {
             Sound_PlaySfxAtObject(SFX_GEM_YELLOW, actor_index);
         }
         else {
@@ -3035,7 +3035,7 @@ void func_8002F93C(u16 actor_index, u16 isStatic, void* palette, s16 pos_x, s16 
         else {
             func_80057320(0, 300);
         }
-        if (isStatic != 0) {
+        if (is_static != 0) {
             Sound_PlaySfxAtObject(SFX_GEM_GREEN, actor_index);
         }
         else {
