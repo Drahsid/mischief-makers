@@ -6,7 +6,6 @@ extern void func_80011F44(s16 arg0, s16 arg1, s32 arg2, s32 arg3);
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern s32 D_800D2928;
-extern s32 D_800D2934;
 extern u32 D_80137458;
 extern u8 D_801BAFD0_7E95A0[];
 extern u8 D_801BAFD4_7E95A4[];

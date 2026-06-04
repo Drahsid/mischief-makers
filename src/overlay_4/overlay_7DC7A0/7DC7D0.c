@@ -42,7 +42,6 @@ extern void Sound_StopMusic(void);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 D_800D28F8;
-extern s32 D_800D2934;
 extern u16 D_800D5824;
 extern u32 D_801BE1F4_7E10C4[];
 extern u32 D_801BE204_7E10D4[];
@@ -298,7 +297,7 @@ s32 func_801BA92C_7DD7FC(void) {
         return TRUE;
     }
 
-    if (!(flags & ACTOR_FLAG_FLIPPED) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX.whole == 0x982) && (gScreenPosCurrentY.whole == 0x17C)) {
+    if (!(flags & 0x20) && (D_800D28E8 == 0xE) && (gScreenPosCurrentX.whole == 0x982) && (gScreenPosCurrentY.whole == 0x17C)) {
         D_800D28E8 = 0x600;
         D_800BE544 = 0x8000;
         Actor_LoadSpawnTable(D_801BDB20_7E09F0);

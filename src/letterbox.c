@@ -101,4 +101,3 @@ void Gfx_DrawLetterbox(void) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/letterbox/Gfx_DrawLetterbox.s")
 #endif
-

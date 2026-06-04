@@ -19,8 +19,6 @@ extern u16 D_800BE544;
 extern u16 D_800BE668;
 extern u16 D_800BE6B4;
 extern u16 D_800BE6B8;
-extern u16 D_800BE704;
-extern u16 D_800BE708;
 
 extern u16 D_800CA254[]; // "d  h  m  s"
 extern u16 D_800CA26C[]; // " Continue"
