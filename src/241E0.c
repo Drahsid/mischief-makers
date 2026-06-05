@@ -46,11 +46,9 @@ extern s16 D_801373DE;
 extern s32* D_8013746C; // guess, related to type of D_800C71A0
 extern s32 D_8013769C;
 extern s32 D_801376A0;
-extern s32 D_801376A4;
+extern u16* D_801376A4;
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
-#define D_80380000 ((s32*)0x80380000)
-#define D_80380400 ((u16*)0x80380400)
 #define D_803DA200 ((s32*)0x803DA200)
 
 void func_800235E0(void) {
@@ -223,12 +221,12 @@ void func_80023C18(void) {
     D_800BE56C.whole = 0x222;
     if (gActiveFrames & 1) {
         for (index = 0; index < 0x2C; index++) {
-            D_80380400[D_800CBFFC[index]] = D_800CBF5C[D_800CBFFC[index] - 0x90];
+            PALETTE_80380400[D_800CBFFC[index]] = D_800CBF5C[D_800CBFFC[index] - 0x90];
         }
     }
     else {
         for (index = 0; index < 0x2C; index++) {
-            D_80380400[D_800CBFFC[index]] = (D_800CBF5C[D_800CBFFC[index] - 0x90] & 0xFFFF) | 0xFFC1;
+            PALETTE_80380400[D_800CBFFC[index]] = (D_800CBF5C[D_800CBFFC[index] - 0x90] & 0xFFFF) | 0xFFC1;
         }
     }
 }
@@ -594,7 +592,7 @@ void func_80024DD8(void) {
     u16* src;
     u16* dest;
 
-    dest = D_80380400;
+    dest = PALETTE_80380400;
     src = D_800CC228;
     for (index = 0; index < 0x100; index++) {
         *dest++ = *src++;
@@ -606,7 +604,7 @@ void func_80024E18(void) {
     s32* src;
     s32* dest;
 
-    for (index = 0, src = (s32*)0x80380400, dest = (s32*)0x803DA600; index < 0x80; index++) {
+    for (index = 0, src = (s32*)PALETTE_80380400, dest = (s32*)0x803DA600; index < 0x80; index++) {
         *dest++ = *src++;
     }
     Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
@@ -857,12 +855,12 @@ void func_800255B4(u16 index) {
     D_801373DE = 0;
     func_8008BFB0();
     gLifebar.flags = 2;
-    gLifebar.graphicIndex = 0xF0;
+    gLifebar.graphicIndex = GINDEX_LIFEBAR;
     gLifebar.posX.whole = -0x4C;
     gLifebar.posY.whole = 0xA0;
     gLifebar.alpha = 0xFF;
     gLifebarHead.flags = 2;
-    gLifebarHead.graphicIndex = 0xF4;
+    gLifebarHead.graphicIndex = GINDEX_LIFEHEAD;
     gLifebar.posX.whole = -0x7C;
     gLifebar.posY.whole = 0x80;
     D_800CA230 = 0;
@@ -871,51 +869,51 @@ void func_800255B4(u16 index) {
 
     switch (D_800CD034[index]) {
     case 0:
-        D_8013769C = 0x80380000;
+        D_8013769C = PALETTE_80380000;
         D_801376A0 = 0x80380200;
-        D_801376A4 = 0x80380400;
+        D_801376A4 = PALETTE_80380400;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = TRUE;
         break;
     case 1:
-        D_8013769C = 0x80380000;
-        D_801376A0 = 0x80380400;
+        D_8013769C = PALETTE_80380000;
+        D_801376A0 = PALETTE_80380400;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = FALSE;
         break;
     case 2:
-        D_8013769C = 0x80380400;
-        D_801376A0 = 0x80380000;
-        D_801376A4 = 0x80380400;
+        D_8013769C = PALETTE_80380400;
+        D_801376A0 = PALETTE_80380000;
+        D_801376A4 = PALETTE_80380400;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = TRUE;
         break;
     case 3:
-        D_8013769C = 0x80380000;
-        D_801376A0 = 0x80380000;
-        D_801376A4 = 0x80380000;
+        D_8013769C = PALETTE_80380000;
+        D_801376A0 = PALETTE_80380000;
+        D_801376A4 = PALETTE_80380000;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = TRUE;
         break;
     case 4:
-        D_8013769C = 0x80380000;
-        D_801376A0 = 0x80380200;
+        D_8013769C = PALETTE_80380000;
+        D_801376A0 = PALETTE_80380200;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = FALSE;
         break;
     case 5:
-        D_801376A0 = 0x80380200;
+        D_801376A0 = PALETTE_80380200;
         gDrawMidground = FALSE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = FALSE;
         break;
     case 6:
-        D_8013769C = 0x80380200;
+        D_8013769C = PALETTE_80380200;
         gDrawMidground = TRUE;
         gDrawEnvLayer = FALSE;
         gDrawBackground = FALSE;
@@ -926,21 +924,21 @@ void func_800255B4(u16 index) {
         gDrawBackground = FALSE;
         break;
     case 8:
-        D_8013769C = 0x80380000;
-        D_801376A4 = 0x80380400;
+        D_8013769C = PALETTE_80380000;
+        D_801376A4 = PALETTE_80380400;
         gDrawMidground = TRUE;
         gDrawEnvLayer = FALSE;
         gDrawBackground = TRUE;
         break;
     case 9:
-        D_801376A0 = 0x80380200;
-        D_801376A4 = 0x80380400;
+        D_801376A0 = PALETTE_80380200;
+        D_801376A4 = PALETTE_80380400;
         gDrawMidground = FALSE;
         gDrawEnvLayer = TRUE;
         gDrawBackground = TRUE;
         break;
     case 10:
-        D_801376A4 = 0x80380400;
+        D_801376A4 = PALETTE_80380400;
         gDrawMidground = FALSE;
         gDrawEnvLayer = FALSE;
         gDrawBackground = TRUE;
@@ -970,7 +968,7 @@ void func_80025BFC(void) {
     s32* src;
     s32* dest;
 
-    for (index = 0, src = D_80380000, dest = D_803DA200; index < 0x180; index++) {
+    for (index = 0, src = (s32*)PALETTE_80380000, dest = D_803DA200; index < 0x180; index++) {
         *dest++ = *src++;
     }
 }
@@ -997,7 +995,7 @@ void func_80025C38(void) {
     else if ((gCurrentScene == SCENE_DEMOWORLD1) || (gCurrentScene == SCENE_DEMOWORLD5) || (gCurrentScene == SCENE_ENDING)) {
         func_80026220(0x43);
         func_80026494(0xE, 0);
-        D_801376A4 = 0x80380400;
+        D_801376A4 = PALETTE_80380400;
     }
     else {
         func_80026220(gCurrentScene);

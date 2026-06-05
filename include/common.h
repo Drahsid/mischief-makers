@@ -15,8 +15,18 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 #include "function_symbols.h"
 #include "data_symbols.h"
 
-#define FRAMEBUFFER0 (0x801DA800)
-#define FRAMEBUFFER1 (0x803DA800)
+#define FRAMEBUFFER0 ((void*)0x801DA800)
+#define FRAMEBUFFER1 ((void*)0x803DA800)
+
+// hard-coded palette addresses.
+
+#define PALETTE_802209E0 ((u16*)0x802209E0) // used by life bar
+#define PALETTE_8022D4C8 ((u16*)0x8022D4C8)
+#define PALETTE_8022D4E8 ((u16*)0x8022D4E8)
+#define PALETTE_8022D548 ((u16*)0x8022D548)
+#define PALETTE_80380000 ((u16*)0x80380000)
+#define PALETTE_80380200 ((u16*)0x80380200)
+#define PALETTE_80380400 ((u16*)0x80380400)
 
 #define SCREEN_WIDTH (320)
 #define SCREEN_HEIGHT (240)

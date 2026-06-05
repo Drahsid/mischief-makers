@@ -869,7 +869,7 @@ void func_8019D908_6C85D8(void) {
     ACTOR_INIT(0xC1,0x160D);
     gActors[0xC1].graphicFlags = 0;
     gActors[0xC1].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0xC1].graphicIndex = 0x2D0;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[0xC1].posZ.whole = 0xE0;
     gActors[0xC1].var_154 = 4;
     gActors[0xC1].scaleX = 20.0f;
@@ -881,7 +881,7 @@ void func_8019D970_6C8640(u16 arg0) {
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-    gActors[0xC1].unk_18C = (s32)D_800D8588;
+    gActors[0xC1].palette_18C = D_800D8588;
     gActors[0xC1].colorA = 0xFF;
     gActors[0xC1].var_150 = 0;
     gActors[0xC1].var_154 = arg0;

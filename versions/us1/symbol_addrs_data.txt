@@ -242,6 +242,8 @@ gAudioDmaState = 0x8016D9A8; // size:0xC
 gAudioDmaBuffers = 0x8016D9B8; // size:0x500
 gAudioFrameCounter = 0x8016DEB8; // size:0x4
 
+gPiManagerMessageQueue = 0x8012AC38; // size:0x18
+
 //
 gDmaMessageQueue = 0x8012ABA8; // size:0x18
 

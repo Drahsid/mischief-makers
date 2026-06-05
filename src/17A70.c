@@ -405,7 +405,7 @@ void func_80017FE8(u16 actor_index) {
 
     gActors[actor_index].posX.whole = -2;
     gActors[actor_index].posY.whole = 4;
-    gActors[actor_index].graphicIndex = 0x2D0;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[actor_index].graphicFlags |= 0x801;
     gActors[actor_index].posZ.whole = 0x100;
     gActors[actor_index].unk_188 = 0;

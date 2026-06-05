@@ -91,7 +91,7 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
         gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
         gActors[actor_index].flags |= (gActors[0x37].flags & ACTOR_FLAG_FLIPPED) + ACTOR_FLAG_UNK15;
         gActors[actor_index].colorA = 0x80;
-        gActors[actor_index].palette_18C = (u16*)0x8022D4E8;
+        gActors[actor_index].palette_18C = PALETTE_8022D4E8;
         gActors[actor_index].scaleX = 1.5f;
         gActors[actor_index].scaleY = 2.0f;
         gActors[actor_index].unk_130 = 55.0f;
@@ -650,7 +650,7 @@ void func_80198708_684228(u16 actor_index) {
     u16 new_actor_index;
 
     gActors[actor_index].unk_118 = (f64)gActors[actor_index].unk_118 + D_8019E378_689E98;
-    new_actor_index = func_80031284(0x168, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
+    new_actor_index = func_80031284(GINDEX_BLASTB, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].velocityZ.raw = FIXED_UNIT(1.0);

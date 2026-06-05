@@ -81,9 +81,9 @@ void Palette_AdjustScenePalettes(
     s16 blue_offset_2, s16 green_offset_2, s16 red_offset_2
 )
 {
-    Palette_AdjustRgb5551Array((u16*)0x803DA200, (u16*)0x80380000, 0xFF, blue_offset_0, green_offset_0, red_offset_0);
-    Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, blue_offset_1, green_offset_1, red_offset_1);
-    Palette_AdjustRgb5551Array((u16*)0x803DA600, (u16*)0x80380400, 0xFF, blue_offset_2, green_offset_2, red_offset_2);
+    Palette_AdjustRgb5551Array((u16*)0x803DA200, PALETTE_80380000, 0xFF, blue_offset_0, green_offset_0, red_offset_0);
+    Palette_AdjustRgb5551Array((u16*)0x803DA400, PALETTE_80380200, 0xFF, blue_offset_1, green_offset_1, red_offset_1);
+    Palette_AdjustRgb5551Array((u16*)0x803DA600, PALETTE_80380400, 0xFF, blue_offset_2, green_offset_2, red_offset_2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042F2C.s")

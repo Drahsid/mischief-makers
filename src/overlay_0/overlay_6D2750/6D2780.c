@@ -814,7 +814,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
 void func_8019429C_6D491C(u16 actor_index) {
     gActors[actor_index].graphicFlags =  ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_DRAW;
     gActors[actor_index].flags = ACTOR_GFLAG_ROTZ| ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].graphicIndex = 0x2D0;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].colorR = 0;
     gActors[actor_index].colorG = 0;
@@ -823,7 +823,7 @@ void func_8019429C_6D491C(u16 actor_index) {
     gActors[actor_index].posY.whole = 0;
     gActors[actor_index].posZ.whole = -0x100;
     gActors[actor_index].unk_188 = 0;
-    gActors[actor_index].unk_18C = (s32)D_800D85A8;
+    gActors[actor_index].palette_18C = D_800D85A8;
     gActors[actor_index].scaleX = 19.0f;
     gActors[actor_index].scaleY = 13.0f;
 }

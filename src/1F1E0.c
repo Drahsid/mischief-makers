@@ -778,11 +778,11 @@ void func_80020A90(void) {
             func_80027510(actor_index + 5, D_800E13DC, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
-            gActors[actor_index + 5].unk_18C = (s32) D_800D88B8;
+            gActors[actor_index + 5].palette_18C =  D_800D88B8;
             func_80027510(actor_index + 6, D_800E13DC, 8, 0xC, 0x401);
             gActors[actor_index + 6].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 6].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
-            gActors[actor_index + 6].unk_18C = (s32) D_800D8C78;
+            gActors[actor_index + 6].palette_18C =  D_800D8C78;
             func_80027510(actor_index + 7, D_800E13FC, 0xFFC4, 0xFFF8, 0x401);
             gActors[actor_index + 7].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 7].graphicFlags |= ACTOR_GFLAG_UNK6;

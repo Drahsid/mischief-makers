@@ -24,7 +24,7 @@ extern s32 D_800BE73C;
 extern u16 D_800CA230;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
-extern u32 D_800D1A04[];
+extern u16 D_800D1A04[];
 extern u16 D_800D22BC[];
 extern u8 D_800D24D8[];
 extern u8 D_800D24F0;
