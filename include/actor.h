@@ -172,7 +172,7 @@ typedef struct {
     /* 0x0E6 */ s16 graphicTimer; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.
-    // it often references a u16[], where the entries alternate
+    // it often references a s16[], where the entries alternate
     // between the index of the grapic and the time in ticks to display.
     // negative "index" values mean a looping animation back that many indecies.
     // some actors, like Marina, instead treat the field as a u16**,
