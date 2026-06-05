@@ -24,7 +24,7 @@ extern void func_80042DBC(void* arg0);
 extern void func_80045D84(u32 arg0, u32 arg1);
 extern void func_80057320(s32, s32);
 extern void func_8005739C(s32 arg0, s32 arg1);
-extern void func_8005CA34(s32 arg0, s32 arg1);
+extern void func_8005CA34(s32 mag, s32 time); // shake camera vertically.
 extern s32 func_8005D1E8(u16);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
@@ -182,10 +182,7 @@ extern void func_80082E04(void);
 extern void func_80082F10(void);
 extern void func_80083E74(void);
 
-extern void func_8005CA34(s32, s32);
-
 void YellowGem_SetFlag(void);
-
 u64 YellowGem_GetFlag(u16 stage);
 
 #endif

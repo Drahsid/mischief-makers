@@ -788,7 +788,7 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
                     gActors[0].unk_0FC.raw = gActors[actor_index].unk_0FC.raw;
                     Actor_Clamp_0F8(0, FIXED_UNIT(4));
                     Actor_Clamp_0FC(0, FIXED_UNIT(2));
-                    gActors[0].unk_0E2 = 0;
+                    gActors[0].damageDelta = 0;
                 }
                 return 1;
             }
@@ -1953,7 +1953,7 @@ s32 func_8002C3C8(u16 actor_index) {
         if (gActors[actor_index].unk_0DD != 0x13) {
             if (gActors[actor_index].unk_0DD != 0x17) {
                 gActors[actor_index].state = 0x20;
-                gActors[actor_index].unk_0D4 = 4;
+                gActors[actor_index].iFrames = 4;
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
                 gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
@@ -2122,8 +2122,8 @@ void func_8002C6E4(u16 actor_index) {
         func_8002C3C8(actor_index);
         break;
     }
-    if (gActors[actor_index].unk_0D4 > 0) {
-        gActors[actor_index].unk_0D4--;
+    if (gActors[actor_index].iFrames > 0) {
+        gActors[actor_index].iFrames--;
     }
     if (gActors[actor_index].unk_140_f32 >= 0.0f) {
         gActors[actor_index].unk_140_f32 -= 1.0f;
@@ -2237,7 +2237,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     if (arg3 & 2) {
         gActors[actor_index].velocityY.raw = (SIN(angle * 4) * 131072.0f);
     }
-    gActors[actor_index].unk_0D4 = 0x1E;
+    gActors[actor_index].iFrames = 0x1E;
 }
 
 void func_8002D040(u16 actor_index, s32 arg1) {
@@ -4363,7 +4363,7 @@ void func_800348E4(u16 actor_index) {
 
 void func_800349C0(u16 actor_index, u16 arg1) {
     if (gActors[actor_index].unk_0D6 == 0) {
-        gActors[actor_index].unk_0D4 = arg1;
+        gActors[actor_index].iFrames = arg1;
     }
 }
 
@@ -8216,7 +8216,7 @@ u16 func_8004089C(u16 actor_index, u16* arg1) {
 }
 
 s32 func_800409E0(u16 actor_index) {
-    if ((gActors[actor_index].health <= 0) || (gActors[actor_index].unk_0D4 > 0) || 
+    if ((gActors[actor_index].health <= 0) || (gActors[actor_index].iFrames > 0) || 
         ((gActors[actor_index].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) != (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) ||
         (gActors[actor_index].state < 0x51)) {
         return 1;

@@ -441,8 +441,8 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK10;
         }
 
-        if (gActors[actor_index].unk_0D4 != 0) {
-            gActors[actor_index].unk_0D4--;
+        if (gActors[actor_index].iFrames != 0) {
+            gActors[actor_index].iFrames--;
         }
 
         func_80066964(actor_index, (gActors[actor_index].unk_0D8 & 0x7000) / 0x1000);

@@ -793,7 +793,7 @@ void func_8019946C_6C413C(void) {
     gActors[0].flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_800282F0(gActors[0x31].posX.whole, -0x18);
     D_800BE5F4.unk_00_u32 = 5;
-    gActors[0].unk_0D4 = 0;
+    gActors[0].iFrames = 0;
     gActors[0x31].state = 0x410;
     gActors[0x31].posZ.whole = -0xE0;
     func_80081478(0x31, D_801A1038_6CBD08, 1);
