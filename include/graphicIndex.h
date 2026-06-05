@@ -119,6 +119,9 @@
 #define GINDEX_SHOCKEFFECT     0x01C0 // 3 animation frames
 #define GINDEX_POOF            0x01C6 // 8 animation frames
 #define GINDEX_STAREFFECT      0x01D6
+#define GINDEX_IMPACTEFFECTA   0x01D8 // 3 animation frames
+
+#define GINDEX_8SQUARERING     0x01F2
 
 #define GINDEX_PORTRAIT_MARINAA 0x01F4
 #define GINDEX_PORTRAIT_MARINAB 0x01F6 // happy
@@ -171,6 +174,8 @@
 
 #define GINDEX_MISSLE          0x025C
 
+#define GINDEX_SAGECLOUD       0x0260
+
 #define GINDEX_CLANPOT         0x0264 // 3 animation frames
 #define GINDEX_CLANBALL        0x026A // 3 animation frames
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
@@ -181,7 +186,7 @@
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
 #define GINDEX_SOLIDSQARE      0x02D0 // used as a fill for transisions
-#define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet"  charset graphics
+#define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
 
 // indecies of 0x800 and beyond seem subject to change based on scene.
@@ -236,5 +241,7 @@
 #define GINDEX_WMSTAGEICONPLAINS   0X3038
 #define GINDEX_WMSTAGEICONENDING   0X303A
 #define GINDEX_WMSTAGEICONVERTICAL 0X303C
+
+#define GINDEX_PAUSEBAR 0x8000
 
 #endif

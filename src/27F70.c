@@ -7816,7 +7816,7 @@ void func_8003F360(u16 actor_index) {
     }
 }
 
-// spawns and "!" speech bubble particle.
+// spawns an "!" speech bubble particle.
 // @param scale inital scale of "!"
 // @param pos_x x-postion of actor.
 // @param pos_y y-postion of actor.
@@ -7843,10 +7843,15 @@ u16 func_8003F6A4(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
     return actor_index;
 }
 
+// spawns particle of 8 blue squres in a circle.
+// @param arg0 growth of circle?
+// @param pos_x x-postion of actor.
+// @param pos_y y-postion of actor.
+// @param pos_z z-postion of actor.
 u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
 
-    actor_index = func_80031284(0x1F2, pos_x, pos_y, pos_z + 1);
+    actor_index = func_80031284(GINDEX_8SQUARERING, pos_x, pos_y, pos_z + 1);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[actor_index].var_154 = -0x10;

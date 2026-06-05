@@ -126,7 +126,7 @@ void func_801B9A0C_7CE19C(u16 arg0) {
 void func_801B9A40_7CE1D0(void) {
     if (gActors[0x5E].flags & (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_PLATFORM0)) {
         func_801B99AC_7CE13C(0, gActors[0x5E].posY.whole + 8);
-        gActors[0].unk_0D4 = 0x78;
+        gActors[0].unk_0D4 = 120;
     }
 }
 
@@ -509,7 +509,7 @@ handle_cutscene_index:
 void func_801BA818_7CEFA8(void) {
     if (func_801B9900_7CE090() != 0) {
         func_801B99AC_7CE13C(gActors[0x60].posX.whole, gActors[0x60].posY.whole + 0x18);
-        gActors[0].unk_0D4 = 0x78;
+        gActors[0].unk_0D4 = 120;
     }
 }
 

@@ -407,7 +407,7 @@ void func_8001EC1C(void) {
                                     gActors[index_s1].unk_0D6 = actor_index;
                                 }
                                 if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
-                                    gActors[actor_index].unk_0D4 = 0x3C;
+                                    gActors[actor_index].unk_0D4 = 60;
                                 }
                                 if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
                                     if (gActors[index_s1].unk_0DB < 0x14) {
@@ -723,7 +723,7 @@ void func_8002092C(void) {
         gActors[index].graphicFlags |= ACTOR_GFLAG_UNK11;
         gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
-        gActors[index].graphicIndex = 0x8000;
+        gActors[index].graphicIndex = GINDEX_PAUSEBAR;
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;

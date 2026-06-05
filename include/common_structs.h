@@ -15,7 +15,7 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
-// used by PortraitStruct->flags
+// used by PortraitStruct->flags (same as ActorGFlags?)
 typedef enum {
     PORTRAIT_FLAG_SCALE = (1U << 0U),
     PORTRAIT_FLAG_UNK1 = (1U << 1U),
@@ -44,7 +44,7 @@ typedef struct {
 // data on "static" objects (clanblocks, gems)
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 graphicIndex;
+    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_*
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;

@@ -95,7 +95,7 @@ void func_8008D0A8(u16 actor_index) {
 
 void func_8008D128(u16 actor_index) {
     Actor_SetColorRgb(actor_index, 0x7F);
-    gActors[actor_index].unk_0D4 = 0x3C;
+    gActors[actor_index].unk_0D4 = 60;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16| ACTOR_FLAG_UNK8);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     gActors[actor_index].unk_118 = 1.0f;

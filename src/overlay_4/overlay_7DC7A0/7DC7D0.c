@@ -788,7 +788,7 @@ s32 func_801BBD34_7DEC04(void) {
     for (actor_index = 0x60; actor_index < 0x70; actor_index++) {
         if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
             gActors[0x30].state = 0x41;
-            gActors[0x30].unk_0D4 = 0x3C;
+            gActors[0x30].unk_0D4 = 60;
             gActors[0x30].posX.whole = gActors[actor_index].posX.whole;
             gActors[0x30].posY.whole = gActors[actor_index].posY.whole + 0x28;
             return TRUE;
