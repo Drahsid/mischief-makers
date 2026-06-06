@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "music.h"
 
-extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
+extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
 extern s16 D_801A2110_6CCDE0;
 extern s16 D_801A2190_6CCE60;
@@ -1250,7 +1250,7 @@ void func_8019EE70_6C9B40(void) {
 void func_8019EE8C_6C9B5C(u16 actor_index) {
     u16 new_actor_index;
 
-    new_actor_index = func_80031284(gActors[actor_index].graphicIndex, gActors[actor_index].posX.whole,
+    new_actor_index = SpawnParticle_Image_90C0_16(gActors[actor_index].graphicIndex, gActors[actor_index].posX.whole,
                                     gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags |= 0x8110;

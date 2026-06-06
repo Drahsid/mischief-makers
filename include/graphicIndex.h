@@ -51,6 +51,7 @@
 #define GINDEX_MINEROUND       0x00C6
 
 #define GINDEX_CLANBLOB        0x00CC
+#define GINDEX_PARTICLERING    0x00CE
 
 #define GINDEX_FIREBALL        0x00D4 // 2 animation frames
 

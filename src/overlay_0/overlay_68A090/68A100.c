@@ -167,7 +167,7 @@ void func_801949B4_68C9B4(u16 actor_index) {
 void func_80195454_68D454(u16 actor_index) {
     u16 new_actor_index;
 
-    new_actor_index = func_80031284(0x1D8, gActors[actor_index + 0x1E].posX.whole, gActors[actor_index + 0x1E].posY.whole - 0x1C, 0x11);
+    new_actor_index = SpawnParticle_Image_90C0_16(0x1D8, gActors[actor_index + 0x1E].posX.whole, gActors[actor_index + 0x1E].posY.whole - 0x1C, 0x11);
     func_80194DC4_68CDC4(new_actor_index, 1.0f, 1.0f);
 }
 

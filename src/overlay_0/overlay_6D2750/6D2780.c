@@ -1171,7 +1171,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
 
 // Sparkle/smoke/impact particle spawners used by the portrait actors
 void func_80194D2C_6D53AC(u16 actor_index) {
-    u16 new_actor_index = func_8003123C(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
+    u16 new_actor_index = SpawnParticle_List_90C0_16(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = 1;
@@ -1190,7 +1190,7 @@ void func_80194E0C_6D548C(u16 actor_index) {
     u16 new_actor_index;
 
     if ((gActiveFrames & 3) == 0) {
-        new_actor_index = func_80031284(
+        new_actor_index = SpawnParticle_Image_90C0_16(
             0x1D8,
             gActors[actor_index].posX.whole - 8,
             gActors[actor_index].posY.whole - 0x10,
@@ -1217,7 +1217,7 @@ void func_80194F1C_6D559C(u16 actor_index) {
     f32 temp_f6;
     f32 temp_f10;
 
-    new_actor_index = func_80031284(
+    new_actor_index = SpawnParticle_Image_90C0_16(
         0x1AA,
         gActors[actor_index].posX.whole,
         gActors[actor_index].posY.whole - 0x10,
@@ -1479,7 +1479,7 @@ void func_80196FC8_6D7648(u16 actor_index) {
     s32 angle;
     u16 new_actor_index;
 
-    new_actor_index = func_8003123C(D_800E1380, 0, 0, gActors[actor_index].posZ.whole);
+    new_actor_index = SpawnParticle_List_90C0_16(D_800E1380, 0, 0, gActors[actor_index].posZ.whole);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].flags = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
@@ -1493,8 +1493,8 @@ void func_80196FC8_6D7648(u16 actor_index) {
         gActors[new_actor_index].posX.whole = (s32)((Rand() - 0x80) * 0.3);
         gActors[new_actor_index].posY.whole = (s32)(((Rand() - 0x80) * 0.3) + 48.0);
         angle = Math_Atan2(-gActors[actor_index].posX.whole, 0x30 - gActors[actor_index].posY.whole);
-        gActors[new_actor_index].velocityX.raw = (s32)(gCosineLookup[angle & 0x3FF] * 65536.0f);
-        gActors[new_actor_index].velocityY.raw = (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 65536.0f);
+        gActors[new_actor_index].velocityX.raw = FIXED_UNIT(COS(angle));
+        gActors[new_actor_index].velocityY.raw = FIXED_UNIT(SIN(angle));
         gActors[new_actor_index].var_158 = 0;
         gActors[new_actor_index].var_15C = 0;
         gActors[new_actor_index].unk_168 = 0;
@@ -1638,7 +1638,7 @@ void func_80198274_6D88F4(u16 actor_index) {
 
 // Smoke puffs in front of Leo before Calina appears?
 void func_801987F0_6D8E70(u16 actor_index) {
-    u16 new_actor_index = func_8003123C(D_800E1604, 0, 0, 0);
+    u16 new_actor_index = SpawnParticle_List_90C0_16(D_800E1604, 0, 0, 0);
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;

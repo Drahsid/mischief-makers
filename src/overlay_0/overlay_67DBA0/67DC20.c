@@ -57,7 +57,7 @@ void func_80192100_67DC20(s32 arg0) {
 void func_80192108_67DC28(s32 arg0) {
     u16 actor_index;
 
-    actor_index = func_8003123C(D_800E154C, gActors[0x4F].posX.whole, gActors[0x4F].posY.whole + 0x20,
+    actor_index = SpawnParticle_List_90C0_16(D_800E154C, gActors[0x4F].posX.whole, gActors[0x4F].posY.whole + 0x20,
                                 gActors[0x4F].posZ.whole + 5);
 
     if (actor_index != 0) {
@@ -84,7 +84,7 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
     u16 actor_index;
 
     gActors[0x46].unk_180 = 0;
-    actor_index = func_8003123C(D_800E156C, 0, 0, 0);
+    actor_index = SpawnParticle_List_90C0_16(D_800E156C, 0, 0, 0);
 
     if (actor_index != 0) {
         gActors[0x46].unk_180 = actor_index;
@@ -135,7 +135,7 @@ void func_801928A8_67E3C8(s32 arg0) {
     gActors[0x4E].unk_14C = D_8019DD98_6898B8;
     D_8019E578_68A098 = 0xFFEC0000;
     D_8019E57C_68A09C = 0;
-    actor_index = func_8003123C(D_800E1380, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
+    actor_index = SpawnParticle_List_90C0_16(D_800E1380, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
 
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
@@ -650,7 +650,7 @@ void func_80198708_684228(u16 actor_index) {
     u16 new_actor_index;
 
     gActors[actor_index].unk_118 = (f64)gActors[actor_index].unk_118 + D_8019E378_689E98;
-    new_actor_index = func_80031284(GINDEX_BLASTB, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
+    new_actor_index = SpawnParticle_Image_90C0_16(GINDEX_BLASTB, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].velocityZ.raw = FIXED_UNIT(1.0);

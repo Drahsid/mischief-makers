@@ -95,7 +95,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
         func_8005CA34(4, 5);
         temp_index = gActors[actor_index].unk_0D8 * 5;
         temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
-        temp_v0 = func_80031284(0x1B4, gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
+        temp_v0 = SpawnParticle_Image_90C0_16(0x1B4, gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
 
         if (temp_v0 != 0) {
             gActors[temp_v0].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ);
@@ -113,7 +113,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
     u16 temp_v0;
 
     if ((gActiveFrames % 5) == 0) {
-        temp_v0 = func_80031284(0x1B4, 0, 0, 0);
+        temp_v0 = SpawnParticle_Image_90C0_16(0x1B4, 0, 0, 0);
         if (temp_v0 != 0) {
             u16 temp_v1;
 
