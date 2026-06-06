@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "function_symbols.h"
 
+// "overlay 4" code for "Trapped", "Phoenix Gamma", "Inner Struggle", "Merco", and several unused scenes.
+
 extern void func_80011F44(s16 arg0, s16 arg1, s32 arg2, s32 arg3);
 extern s16 D_800D2920;
 extern s16 D_800D2924;

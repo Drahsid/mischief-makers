@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "debug_level_select.h"
 
+// "overlay 4" code of most the World 3 scenes, excluding "The Day Of" and "Cerberus Alpha"
+
 // BUG: incorrect prototype!
 extern void func_80034D80(u16 actor_index, u16* vals);
 

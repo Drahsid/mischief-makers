@@ -8,6 +8,7 @@ extern s16 D_800D2924;
 extern u16 D_800D2914;
 extern s16 D_800D2950;
 
+// "overlay 4" code for demo and intro scenes
 
 void func_801B9A78_7EA8A8(s16* arg0);
 void func_801B9B2C_7EA95C(void);

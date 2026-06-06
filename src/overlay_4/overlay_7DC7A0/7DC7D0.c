@@ -2,6 +2,9 @@
 #include "actor.h"
 #include "function_symbols.h"
 
+// "overlay 4" code for "Rescue: Acts 1 and 2", "Toadaly Raw", "7 Clancer Kids",
+// "Rolling Rock", "Moley Cow", and several unused scenes.
+
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;

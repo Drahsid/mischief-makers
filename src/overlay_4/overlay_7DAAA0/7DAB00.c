@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 4" code for the festival games and "Cerberus Alpha"
+
 extern s16 D_800D2924;
 extern u16 D_800D28F8;
 extern u32 D_80178288;

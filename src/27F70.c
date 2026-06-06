@@ -50,7 +50,7 @@ extern u16 gCrosshairPalette[];
 extern u16 D_800D2814[];
 extern f32 D_800D281C[];
 extern u16 D_800D282C[];
-extern u16 D_800D2854[];
+extern u16 D_800D2854[]; // graphic indecies of shock effect?
 extern u16 D_800D2860[];
 extern u16 D_800D28E4;
 extern u16 D_800D28E8;
@@ -2262,7 +2262,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     gActors[actor_index].timer_110 = 8.0f;
     gActors[actor_index].velocityX.raw = 0;
     gActors[actor_index].velocityY.raw = 0;
-    index = SpawnParticle_List_90C0_16(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x11);
+    index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x11);
     if (index != 0) {
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[index].palette_18C = D_800D84E8;
@@ -2597,7 +2597,7 @@ void func_8002E288(u16 actor_index) {
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, gActors[actor_index].var_150, gActors[actor_index].unk_164);
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, gActors[actor_index].var_154, gActors[actor_index].unk_168);
         if ((gActiveFrames & 3) == 0) {
-            index = SpawnParticle_List_90C0_16(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole - 1);
+            index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole - 1);
             if (index != 0) {
                 gActors[index].graphicFlags = ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
                 gActors[index].graphicIndex = gActors[actor_index].graphicIndex;
@@ -2886,7 +2886,7 @@ void SpawnGemRing(u16 flags) {
         func_8001E2D0(index);
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8;
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
-        ACTOR_GFX_INIT(index, D_800E164C);
+        ACTOR_GFX_INIT(index, gGraphicListGem2);
         gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 256];
         gActors[index].var_150 = flags & 0x8000;
         gActors[index].var_154 = flags & 0xF;
@@ -3082,7 +3082,7 @@ s32 func_8002FD48(u16 actor_index) {
 
 void func_8002FEF8(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
-        ACTOR_GFX_INIT(actor_index, D_800E164C);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
         gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
         func_800358DC(actor_index);
     }
@@ -3097,7 +3097,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        ACTOR_GFX_INIT(actor_index, D_800E164C);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
         gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].timer_110];
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
@@ -3141,7 +3141,7 @@ void func_800303A8(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        ACTOR_GFX_INIT(actor_index, D_800E164C);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
         gActors[actor_index].colorA = 0xFE;
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
@@ -3363,7 +3363,7 @@ u16 SpawnParticle_List(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y,
         gActors[index].unk_184 = gActors[index].posX.raw;
         gActors[index].unk_188 = gActors[index].posY.raw;
         gActors[index].unk_148 = 240.0f;
-        if (graphic_list == D_800E1380) {
+        if (graphic_list == gGraphicListBlank) {
             gActors[index].graphicTimer = 0x1E0;
         }
         else {
@@ -3539,7 +3539,7 @@ void ActorUpdate_Particle(u16 actor_index) {
     s32 pad;
 
     if (gActors[actor_index].state != 0) {
-        if (((D_800E1380 != gActors[actor_index].graphicList) && (*gActors[actor_index].graphicList == 0) &&
+        if (((gGraphicListBlank != gActors[actor_index].graphicList) && (*gActors[actor_index].graphicList == 0) &&
             (gActors[actor_index].graphicTimer == 0)) || ((gActors[actor_index].colorA == 0) && (gActors[actor_index].var_154 < 0)) || (gActors[actor_index].unk_148 == 0.0f)) {
             gActors[actor_index].flags = 0;
             return;
@@ -4057,7 +4057,7 @@ void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
     u16 actor_index;
     u16 temp;
 
-    actor_index = SpawnParticle_List_90C0_16(D_800E1380, x, y, z);
+    actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, x, y, z);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = graphic;
@@ -4217,7 +4217,7 @@ void func_80033E7C(s32 arg0, s16 x, s16 y, s16 z, s32 velocity, u32 pos_scale, u
     u32 temp_a0;
 
     if ((gActiveFrames % arg6) == 0) {
-        actor_index = SpawnParticle_List_90C0_16(D_800E1380, x, y, z);
+        actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, x, y, z);
         if (actor_index != 0) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
@@ -6263,7 +6263,7 @@ void func_8003A120(u16 actor_index) {
                     break;
                 }
                 if (!(gActiveFrames & 0xF) && (gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown))) {
-                    index = SpawnParticle_List_90C0_16(D_800E1380, gActors[actor_index].posX.whole + vel_x, gActors[actor_index].posY.whole + vel_y, gActors[0].posZ.whole + 1);
+                    index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole + vel_x, gActors[actor_index].posY.whole + vel_y, gActors[0].posZ.whole + 1);
                     if (index != 0) {
                         gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
                         gActors[index].graphicIndex = GINDEX_BIGARROW;
@@ -7631,7 +7631,7 @@ void func_8003E854(u16 actor_index) {
 void func_8003EAE0(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     u16 actor_index;
 
-    actor_index = func_8003D518(arg0, D_800E1380, arg2, arg3, arg4);
+    actor_index = func_8003D518(arg0, gGraphicListBlank, arg2, arg3, arg4);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = GINDEX_STAREFFECT;
@@ -7649,7 +7649,7 @@ void func_8003EAE0(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
 void func_8003EC0C(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     u16 actor_index;
 
-    actor_index = func_8003D518(arg0, D_800E1380, arg2, arg3, arg4);
+    actor_index = func_8003D518(arg0, gGraphicListBlank, arg2, arg3, arg4);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
@@ -8029,7 +8029,6 @@ u16 SpawnParticle_RingWave(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z, u16 type)
 // @param pos_x x-postion of actors.
 // @param pos_y y-postion of actors.
 // @param pos_z z-postion of actors.
-// @param type AND'd by 3 to get color [blue,green,yellow,red]
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     return SpawnParticle_RingWave(arg0, pos_x, pos_y, pos_z, 0);

@@ -1,5 +1,7 @@
 #include "common.h"
 
+// "overlay 4" code for Title Screen and "Final Battle"
+
 extern u8 D_8010692C;
 
 u32 D_801B9BC0_7EA690[] = {
@@ -45,7 +47,7 @@ u32 D_801B9C28_7EA6F8[] = {
     0x00000000,
     0x00000000,
 };
-// function appears to be related to "Searin' Swing!"
+
 void func_801B9900_7EA3D0(void) {
     switch (D_800D28E8) {
         case 0:

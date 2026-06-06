@@ -1171,7 +1171,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
 
 // Sparkle/smoke/impact particle spawners used by the portrait actors
 void func_80194D2C_6D53AC(u16 actor_index) {
-    u16 new_actor_index = SpawnParticle_List_90C0_16(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
+    u16 new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = 1;
@@ -1479,7 +1479,7 @@ void func_80196FC8_6D7648(u16 actor_index) {
     s32 angle;
     u16 new_actor_index;
 
-    new_actor_index = SpawnParticle_List_90C0_16(D_800E1380, 0, 0, gActors[actor_index].posZ.whole);
+    new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, 0, 0, gActors[actor_index].posZ.whole);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].flags = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;

@@ -32,6 +32,7 @@
 #define SCENE_FINALBATTLE   	0x1B
 #define SCENE_DEMOWORLD3    	0x1C
 #define SCENE_CATASTROPHE   	0x1D
+#define SCENE_UNK30             0x1E
 #define SCENE_CHILLYDOG	        0x1F
 #define SCENE_GOMARZEN64    	0x20
 #define SCENE_DAYBEFORE	        0x21
@@ -43,9 +44,15 @@
 #define SCENE_7CLANCERKIDS  	0x28
 #define SCENE_RESCUEACT2    	0x29
 #define SCENE_ROLLINGROCK	    0x2A
+#define SCENE_UNK43             0x2B
+#define SCENE_UNK44             0x2C
+#define SCENE_UNK45             0x2D
 #define SCENE_MOLEYCOW      	0x2E
 #define SCENE_ASTERSMAZE    	0x2F
 #define SCENE_GHOSTCATCHER  	0x30
+#define SCENE_UNK49             0x31
+#define SCENE_UNK50             0x32
+#define SCENE_UNK51             0x33
 #define SCENE_3CLANCERKIDS  	0x34
 #define SCENE_CLANBALLLAND  	0x35
 #define SCENE_WESTERNWORLD	    0x36
@@ -67,10 +74,19 @@
 #define SCENE_FREEFALL          0x46
 #define SCENE_CLANBALLLIFT      0x47
 #define SCENE_CLANPOTSHAKE      0x48
+#define SCENE_UNK73             0x49
+#define SCENE_UNK74             0x4A
+#define SCENE_UNK75             0x4B
+#define SCENE_UNK76             0x4C
 #define SCENE_CLANCEWAR2        0x4D
 #define SCENE_BEESTHEONE        0x4E
 #define SCENE_INNERSTRUGGLE     0x4F
 #define SCENE_UNK80             0x50 // crash. data suggest more stages were planned for world 5.
+#define SCENE_UNK81             0x51
+#define SCENE_UNK82             0x52
+#define SCENE_UNK83             0x53
+#define SCENE_UNK84             0x54
 #define SCENE_MERCO             0x55
 #define SCENE_UNK86             0x56 // loads "trapped"'s map with marina below. uses "Merco"'s camera effect
+#define SCENE_UNK87             0x57
 

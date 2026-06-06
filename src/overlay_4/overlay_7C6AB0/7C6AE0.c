@@ -3,6 +3,8 @@
 #include "debug_level_select.h"
 #include "function_symbols.h"
 
+// "overlay 4" code for the World 1 scenes.
+
 extern s16 D_800D28F8;
 extern s32 D_800D2934;
 extern s16 D_800D2918;

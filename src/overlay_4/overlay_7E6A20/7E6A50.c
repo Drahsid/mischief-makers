@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
+
 extern s16 D_800D2924;
 extern void func_80064AA0(s32 arg0, void* arg1);
 

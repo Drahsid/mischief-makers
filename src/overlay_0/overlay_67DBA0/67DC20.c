@@ -135,7 +135,7 @@ void func_801928A8_67E3C8(s32 arg0) {
     gActors[0x4E].unk_14C = D_8019DD98_6898B8;
     D_8019E578_68A098 = 0xFFEC0000;
     D_8019E57C_68A09C = 0;
-    actor_index = SpawnParticle_List_90C0_16(D_800E1380, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
+    actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
 
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
@@ -786,7 +786,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-            ACTOR_GFX_INIT(actor_index, D_800E164C);
+            ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
             gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
