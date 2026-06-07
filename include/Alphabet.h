@@ -7,16 +7,16 @@
 
 // Monospace English alphabet used in all versions
 
-#define ALPHA_1 0x0001 // 0
-#define ALPHA_2 0x0002 // 1
-#define ALPHA_3 0x0003 // 2
-#define ALPHA_4 0x0004 // 3
-#define ALPHA_5 0x0005 // 4
-#define ALPHA_6 0x0006 // 5
-#define ALPHA_7 0x0007 // 6
-#define ALPHA_8 0x0008 // 7
-#define ALPHA_9 0x0009 // 8
-#define ALPHA_9 0x000A // 9
+#define ALPHA_0 0x0000 // 0 // used in "print 2/3" digits funcs.
+#define ALPHA_1 0x0001 // 1
+#define ALPHA_2 0x0002 // 2
+#define ALPHA_3 0x0003 // 3
+#define ALPHA_4 0x0004 // 4
+#define ALPHA_5 0x0005 // 5
+#define ALPHA_6 0x0006 // 6
+#define ALPHA_7 0x0007 // 7
+#define ALPHA_8 0x0008 // 8
+#define ALPHA_9 0x0009 // 9
 
 #define ALPHA_EN_UPPER_A 0x000A
 #define ALPHA_EN_UPPER_B 0x000B

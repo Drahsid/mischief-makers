@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "Alphabet.h"
 
 extern ActorFunc D_801AF758_795A48[];
 extern ActorFunc D_801AF778_795A68[];
@@ -7,6 +8,10 @@ extern u16 D_801AF79C_795A8C[];
 extern u16 D_801AF7C4_795AB4[];
 extern u16 D_801AF7C6_795AB6[];
 extern f32 D_801AFA24_795D14[];
+extern u8 D_801AF606_7958F6[];
+
+void func_801A7C14_78DF04(u16);
+void func_801A7CA4_78DF94(u16);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A6900_78CBF0.s")
 
@@ -28,15 +33,52 @@ void func_801A740C_78D6FC(s32 arg0, s32 arg1) {
 void func_801A7418_78D708(s32 arg0, s32 arg1) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A7424_78D714.s")
+u16 func_801A7424_78D714(u16 arg0){
+    u16 actor_index;
+
+    actor_index = Actor_RangeFindInactive(0x90,0xb8);
+    if (actor_index != 0){
+        gActors[actor_index].actorType = 0x1a01;
+        func_8001E2D0(actor_index);
+        gActors[actor_index].graphicIndex = 0x2D0;
+    }
+    return actor_index;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A74A0_78D790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A76AC_78D99C.s")
+void func_801A76AC_78D99C(u16 arg0){
+    u16 actor_index;
+    u16 rand;
+
+    actor_index = func_801A7424_78D714(arg0);
+    if (actor_index != 0) {
+        rand = Rand();
+        gActors[actor_index].posX.whole = gActors[arg0].posX.whole + ((rand-0x80)/2);
+        gActors[actor_index].posY.whole = 0x80;
+        gActors[actor_index].posZ.whole = gActors[arg0].posZ.whole + 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A774C_78DA3C.s")
 
+#ifdef NONMATCHING
+void func_801A7878_78DB68(u16 arg0, u16 arg1){
+    if (arg1 == 0) {
+        gActors[arg0].colorR = 0;
+        gActors[arg0].colorG = 0;
+        gActors[arg0].colorB = 49;
+    }
+    else {
+        gActors[arg0].colorR = (u8)-((arg1 >> 2)& 1);
+        gActors[arg0].colorG = (u8)-((arg1 >> 1) & 1);
+        gActors[arg0].colorB = (u8)-(arg1 & 1);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A7878_78DB68.s")
+#endif
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A7940_78DC30.s")
 
@@ -49,7 +91,12 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A7E98_78E188.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A821C_78E50C.s")
+void func_801A821C_78E50C(u16 actor_index) {
+    if (gActors[actor_index].unk_0D8 > 1) {
+        func_801A7C14_78DF04(actor_index);
+        func_801A7CA4_78DF94(actor_index);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8284_78E574.s")
 
@@ -57,7 +104,22 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8428_78E718.s")
 
+#ifdef NONMATCHING
+u8 func_801A8780_78EA70(u16* arg0) {
+    u16 c;
+
+    c = *arg0;
+    if ((s32) c < ALPHA_EN3_LOWER_A) {
+        return 6U;
+    }
+    if (c & 0x8000) {
+        return 0U;
+    }
+    return D_801AF606_7958F6[c];
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8780_78EA70.s")
+#endif
 
 u16 func_801A87C0_78EAB0(s32 arg0) {
     u16 value;
@@ -127,13 +189,31 @@ void func_801A9768_78FA58(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA208_7904F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA2A4_790594.s")
+void func_801AA2A4_790594(u16 actor_index){
+    if (gActors[actor_index].pfn_190 != NULL){
+        gActors[actor_index].pfn_190(actor_index);
+    }
+}
 
 void func_801AA2FC_7905EC(s32 arg0, s32 arg1) {
     D_801781F8.unk_9A = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AA310_790600.s")
+void func_801AA310_790600(s32 arg0, s32 arg1){
+    u16 index;
+    FestivalStruct* p;
+    u8* n;
+
+    p = &D_801781F8;
+    n = p->eventsPlayed;
+    for (index = 0; index<10; index++){
+        n[index] = FALSE;
+    }
+    p->eventClearCount = 0;
+    p->pointsWhite = 0;
+    p->pointsRed = 0;
+    gLetterboxMode = LETTERBOX_HORIZONTAL;
+}
 
 void func_801AA368_790658(void) {
 }
