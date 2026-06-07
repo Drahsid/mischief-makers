@@ -6,7 +6,7 @@ extern ActorFunc D_801AF778_795A68[];
 extern u16 D_801AF79C_795A8C[];
 extern u16 D_801AF7C4_795AB4[];
 extern u16 D_801AF7C6_795AB6[];
-extern u8 D_801AFA24_795D14[];
+extern f32 D_801AFA24_795D14[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A6900_78CBF0.s")
 
@@ -205,12 +205,15 @@ void func_801ABB80_791E70(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AC250_792540.s")
 
 void func_801AC360_792650(u16 actor_index) {
-    ((u16*)&D_800F4268)[0x7F5] = 0x1A08;
+    Actor* actorP;
+
+    actorP=&gActors[0x3a];
+    actorP->actorType = 0x1A08;
     func_8001E2D0(0x3A);
-    ((u32*)&D_800F43B0)[0x394] = ((u32*)&D_800F43A8)[0x396] | ACTOR_FLAG_FREEZE_POS;
-    D_800E59E0[0x7C14] = 0;
-    D_800E5970[0x7C4E] = 0;
-    ((s32*)D_800E5910)[0x3E7A] = (s32)D_801AFA24_795D14;
+    actorP->flags |= ACTOR_FLAG_FREEZE_POS;
+    actorP->posX.whole = 0;
+    actorP->posY.whole = 0;
+    actorP->unk_178 = (s32)D_801AFA24_795D14;
 }
 
 void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
@@ -224,50 +227,56 @@ void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
 }
 
 void func_801AC448_792738(u16 actor_index) {
-    D_800E3488[0x8885] = 0;
+    Actor* actorP;
+    
+    actorP =&gActors[0x32];
+    actorP->actorType = 0;
     func_8001E2D0(0x32);
-    D_800E3518[0x881E] = 0x800;
-    D_800E352C[0x4405] = 0x2003;
-    D_800E45D0[0x7FBA] = 0x81C;
-    D_800E4698[0x7F58] = 0;
-    D_800E574C[0x7700] = -0x22;
-    D_800E57D4[0x76BE] = -1;
-    D_800E58D4[0x3B5D] = 0x60;
-    D_800E58F0[0x763F] = 0x12;
-    D_800E5910[0x7630] = -0x12;
-    D_800E5938[0x7619] = -0x14;
-    D_800E5970[0x75FE] = 0x14;
+    actorP->graphicFlags = 0x800;
+    actorP->flags = 0x2003;
+    actorP->graphicIndex = 0x81C;
+    actorP->posX.whole = 0;
+    actorP->posY.whole = -0x22;
+    actorP->posZ.whole = -1;
+    actorP->unk_188 = 0x60;
+    actorP->hitboxBY0 = 0x12;
+    actorP->hitboxBY1 = -0x12;
+    actorP->hitboxBX0 = -0x14;
+    actorP->hitboxBX1 = 0x14;
 
-    D_800E59E0[0x7771] = 0;
+    actorP =&gActors[0x34];
+    actorP->actorType = 0;
     func_8001E2D0(0x34);
-    ((u32*)&D_800F4268)[0x182] = 0x2002;
-    ((u16*)&D_800F43A8)[0x266] = 0;
-    ((s16*)&D_800F43B0)[0x264] = -0x2C;
-    D_800E3488[0x89FA] = -0x38;
-    D_800E3518[0x89B4] = 0x60;
-    ((u16*)D_800E352C)[0x89B9] = 0x10;
-    D_800E45D0[0x8168] = -0x10;
-    D_800E4698[0x8101] = -0x14;
-    D_800E574C[0x78A8] = 0x14;
-
-    D_800E57D4[0x7943] = 0;
+    actorP->flags = 0x2002;
+    actorP->graphicIndex = 0;
+    actorP->posX.whole = -0x2C;
+    actorP->posY.whole = -0x38;
+    actorP->posZ.whole = 0x60;
+    actorP->hitboxBY0 = 0x10;
+    actorP->hitboxBY1 = -0x10;
+    actorP->hitboxBX0 = -0x14;
+    actorP->hitboxBX1 = 0x14;
+    
+    actorP =&gActors[0x35];
+    actorP->actorType = 0;
     func_8001E2D0(0x35);
-    D_800E58D4[0x3C4D] = 0x2002;
-    D_800E58F0[0x788E] = 0;
-    D_800E5910[0x7880] = 0x2C;
-    D_800E5938[0x786E] = -0x38;
-    D_800E5970[0x7854] = 0x60;
-    D_800E59E0[0x782B] = 0x10;
-    ((s16*)&D_800F4268)[0x3E8] = -0x10;
-    ((s16*)&D_800F43A8)[0x345] = -0x14;
-    ((u16*)&D_800F43B0)[0x342] = 0x14;
+    actorP->flags = 0x2002;
+    actorP->graphicIndex = 0;
+    actorP->posX.whole = 0x2C;
+    actorP->posY.whole = -0x38;
+    actorP->posZ.whole = 0x60;
+    actorP->hitboxBY0 = 0x10;
+    actorP->hitboxBY1 = -0x10;
+    actorP->hitboxBX0 = -0x14;
+    actorP->hitboxBX1 = 0x14;
 
-    D_800E3488[0x8951] = 0x1A00;
+    actorP =&gActors[0x33];
+    actorP->actorType = 0x1A00;
     func_8001E2D0(0x33);
-    D_800E3518[0x88E4] = 0;
-    ((u16*)D_800E352C)[0x88DC] = 0x48;
-    D_800E45D0[0x808C] = -1;
-    ((f32*)D_800E4698)[0x4034] = -1.0f;
+    actorP->posX.whole = 0;
+    actorP->posY.whole = 0x48;
+    actorP->posZ.whole = -1;
+    actorP->timer_110 = -1.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AC624_792914.s")
@@ -283,10 +292,13 @@ void func_801AC448_792738(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801ACD80_793070.s")
 
 void func_801ACEE8_7931D8(u16 actor_index) {
-    func_801AC3C0_7926B0(0x3C, D_801AF7C4_795AB4[D_801781F8.currentEvent * 2]);
-    D_800E3488[0x9058] = 0;
-    D_800E3518[0x9012] = 0x20;
-    D_800E352C[0x483A] = 0x280A;
+    Actor* actorP;
+    
+    actorP =&gActors[60];
+    func_801AC3C0_7926B0(60, D_801AF7C4_795AB4[D_801781F8.currentEvent * 2]);
+    actorP->posX.whole = 0;
+    actorP->posY.whole = 0x20;
+    actorP->unk_164 = 0x280A;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801ACF40_793230.s")
