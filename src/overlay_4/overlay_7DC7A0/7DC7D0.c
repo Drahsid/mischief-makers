@@ -155,7 +155,7 @@ void func_801B9D38_7DCC08(void) {
     D_800BE5F4.unk_00_u32 = 4;
     D_800D2950 = 0x30;
     D_800D2954 = 1;
-    gActors[0x30].health = *(s16*)&D_801781F8[0xB2];
+    gActors[0x30].health = D_801781F8.guestHP;
     gActors[0x30].posX.whole = gActors[0].posX.whole;
     gActors[0x30].posY.whole = gActors[0].posY.whole;
 }
@@ -770,7 +770,7 @@ void func_801BBCBC_7DEB8C(void) {
     D_800BE5F4.unk_00_u32 = 4;
     D_800D2950 = 0x30;
     D_800D2954 = 1;
-    gActors[0x30].health = *(s16*)&D_801781F8[0xB2];
+    gActors[0x30].health = D_801781F8.guestHP;
     gActors[0x30].posX.whole = gActors[0].posX.whole;
     gActors[0x30].posY.whole = gActors[0].posY.whole;
 }
@@ -842,7 +842,7 @@ void func_801BBEBC_7DED8C(void) {
         case 0:
             Palette_AdjustScenePalettes(2, 1, 0, 0, -5, -8, 4, 7, 0);
             D_800D28E8 = 0x30;
-            *(s16*)&D_801781F8[0xB2] = 0x3E8;
+            D_801781F8.guestHP = 0x3E8;
             break;
 
         case 1:
@@ -1070,7 +1070,7 @@ void func_801BBEBC_7DED8C(void) {
 
     if ((gActors[0x30].flags & 2) && (gActors[0x30].health != 0)) {
         if (gActors[0x30].actorType == 0x1D02) {
-            *(s16*)&D_801781F8[0xB2] = gActors[0x30].health;
+            D_801781F8.guestHP = gActors[0x30].health;
         }
     }
 }

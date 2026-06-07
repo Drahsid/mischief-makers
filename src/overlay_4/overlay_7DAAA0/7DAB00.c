@@ -220,7 +220,7 @@ void func_801B9908_7DAB08(void) {
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB168_7DC368);
-            *(s16*)&D_801781F8[0x2C] = 9;
+            D_801781F8.currentEvent = 9;
             break;
 
         case 1:
