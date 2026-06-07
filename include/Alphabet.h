@@ -9,7 +9,7 @@
 
 // Monospace English alphabet used in all versions
 
-#define ALPHA_0 0x0000 // 0 (used in "print 2/3 digits" functions)
+#define ALPHA_0 0x0000 // 0 // used in "print 2/3" digits funcs.
 #define ALPHA_1 0x0001 // 1
 #define ALPHA_2 0x0002 // 2
 #define ALPHA_3 0x0003 // 3
