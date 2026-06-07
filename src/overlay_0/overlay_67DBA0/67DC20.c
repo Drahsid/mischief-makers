@@ -837,7 +837,7 @@ void func_8019A604_686124(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019A6AC_6861CC.s")

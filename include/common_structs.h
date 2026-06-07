@@ -15,18 +15,10 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
-// used by PortraitStruct->flags (same as ActorGFlags?)
-typedef enum {
-    PORTRAIT_FLAG_SCALE = (1U << 0U),
-    PORTRAIT_FLAG_UNK1 = (1U << 1U),
-    PORTRAIT_FLAG_PALETTE = (1U << 9U),
-    PORTRAIT_FLAG_UNK14 = (1U << 14U)
-} PortraitFlags;
-
 // used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 flags; // uses PortraitFlags
+    /* 0x80 */ u16 flags; // uses ActorGFlags
     /* 0x82 */ u16 graphicIndex;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;

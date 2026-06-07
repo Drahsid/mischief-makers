@@ -1,7 +1,7 @@
 #include "common.h"
 #include "actor.h"
 
-// overlay code used in "Sasqutach Beta"
+// "overlay 0" code used in "Sasqutach Beta"
 
 extern u16 D_801A80DE_6A00DE;
 extern s16 D_801A80EE_6A00EE;
@@ -94,8 +94,9 @@ void func_801932C4_68B2C4(s32 arg0) {
 void func_801932FC_68B2FC(void) {
     gActors[0x48].actorType = 0;
     func_8001E2D0(0x48);
-    gActors[0x48].graphicFlags = 0x319;
-    gActors[0x48].flags = 2;
+    gActors[0x48].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 |
+        ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
+    gActors[0x48].flags = ACTOR_FLAG_ACTIVE;
     gActors[0x48].graphicIndex = 0x164;
     gActors[0x48].palette_18C = D_800D8588;
     gActors[0x48].colorA = 0xC0;
@@ -186,11 +187,11 @@ void func_80195454_68D454(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80195C14_68DC14.s")
 
 void func_80195CA8_68DCA8(u16 actor_index) {
-    gActors[actor_index].flags |= 0x200;
-    gActors[actor_index].damage = 0x64;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK9;
+    gActors[actor_index].damage = 100;
     gActors[actor_index].unk_0DA = 4;\
     gActors[actor_index].unk_0DB = 3;
-    gActors[actor_index].unk_0FC.raw = 0x30000;
+    gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
     func_8002ABE4(actor_index, 0xC);
 }
 

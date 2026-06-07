@@ -69,7 +69,7 @@ enum ActorGFlags {
     ACTOR_GFLAG_UNK11 = (1U << 11U), // seems to effect translate mtx.
     ACTOR_GFLAG_SCALEZ = (1U << 12U), // use feild 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_3DOBJ = (1U << 13U), // field at 0x17C treated as dlist for 3d model
-    ACTOR_GFLAG_UNK14 = (1U << 14U), // unused?
+    ACTOR_GFLAG_UNK14 = (1U << 14U), // used by portrait struct.
     ACTOR_GFLAG_UNK15 = (1U << 15U) // a change in blending?
 };
 

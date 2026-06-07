@@ -108,5 +108,6 @@ void func_801A6C80_775130(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 0xFFDFF9FF;
+    gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 
+         ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
