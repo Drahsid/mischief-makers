@@ -196,7 +196,7 @@ void func_801AA2A4_790594(u16 actor_index){
 }
 
 void func_801AA2FC_7905EC(s32 arg0, s32 arg1) {
-    D_801781F8.unk_9A = 0;
+    gFestivalData.unk_9A = 0;
 }
 
 void func_801AA310_790600(s32 arg0, s32 arg1){
@@ -204,7 +204,7 @@ void func_801AA310_790600(s32 arg0, s32 arg1){
     FestivalStruct* p;
     u8* n;
 
-    p = &D_801781F8;
+    p = &gFestivalData;
     n = p->eventsPlayed;
     for (index = 0; index<10; index++){
         n[index] = FALSE;
@@ -267,7 +267,7 @@ void func_801ABB44_791E34(u16 actor_index, u16 arg1) {
 }
 
 void func_801ABB80_791E70(u16 actor_index) {
-    D_801781F8.currentEvent = D_801AF79C_795A8C[actor_index * 3];
+    gFestivalData.currentEvent = D_801AF79C_795A8C[actor_index * 3];
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801ABBAC_791E9C.s")
@@ -375,7 +375,7 @@ void func_801ACEE8_7931D8(u16 actor_index) {
     Actor* actorP;
     
     actorP =&gActors[60];
-    func_801AC3C0_7926B0(60, D_801AF7C4_795AB4[D_801781F8.currentEvent * 2]);
+    func_801AC3C0_7926B0(60, D_801AF7C4_795AB4[gFestivalData.currentEvent * 2]);
     actorP->posX.whole = 0;
     actorP->posY.whole = 0x20;
     actorP->unk_164 = 0x280A;
