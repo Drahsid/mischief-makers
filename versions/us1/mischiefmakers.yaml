@@ -1326,7 +1326,7 @@ segments:
     start: 0x7C6AE0
     subsegments:
       - [0x7C6AE0, c, overlay_4/overlay_7C6AB0/7C6AE0] # object segment 7C6AE0->7CE060 (0x7580)
-      - [0x7C9800, data, overlay_4/overlay_7C6AB0/7C6AE0]
+      - [0x7C9800, .data, overlay_4/overlay_7C6AB0/7C6AE0]
       - [0x7CDDD0, .rodata, overlay_4/overlay_7C6AB0/7C6AE0]
 
   - name: overlay_7CE060_dispatch_table # blackgamma7: World2
