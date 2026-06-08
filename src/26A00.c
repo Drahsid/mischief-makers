@@ -23,7 +23,6 @@ typedef struct {
 
 extern u16 D_800CBF50;
 extern u16 D_800CBF54;
-extern u16 D_800D28E4;
 extern u8 D_800DE348[];
 extern u32 D_8013772C;
 extern u32 D_80137730;

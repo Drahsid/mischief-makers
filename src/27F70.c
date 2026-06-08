@@ -52,8 +52,6 @@ extern f32 D_800D281C[];
 extern u16 D_800D282C[];
 extern u16 D_800D2854[]; // graphic indecies of shock effect?
 extern u16 D_800D2860[];
-extern u16 D_800D28E4;
-extern u16 D_800D28E8;
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern s16 D_800D291C;
@@ -7350,7 +7348,7 @@ void func_8003DBD0(u16 actor_index) {
     case 4:
         if (gActors[actor_index].timer_110 < 0.0f) {
             gActors[actor_index].flags = 0;
-            D_800D28E8 += 1;
+            gStageCinemaState += 1;
         }
         break;
     }
@@ -8565,7 +8563,7 @@ void func_800418A8(u16 actor_index) {
             case 3:
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
-                D_800D28E8 = gActors[actor_index].unk_0D8;
+                gStageCinemaState = gActors[actor_index].unk_0D8;
                 break;
             }
         }

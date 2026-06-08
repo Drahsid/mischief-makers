@@ -54,6 +54,7 @@ s32 func_80048C94(s32 arg0);
 void func_80192100_67DC20(s32 arg0) {
 }
 
+// Spawn a "!" bubble over Migen Jr.'s head when his fist gets caught.
 void func_80192108_67DC28(s32 arg0) {
     u16 actor_index;
 

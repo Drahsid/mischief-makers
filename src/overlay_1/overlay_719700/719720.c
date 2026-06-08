@@ -18,7 +18,7 @@ void func_8019BD78_71A398(u16 actor_index) {
     gActors[actor_index].graphicLists = D_801A3AEC_72210C;
     gActors[actor_index].health = 300;
     gActors[actor_index].flags &= 0xFF3CFFFF;\
-    gActors[actor_index].flags |= ACTOR_FLAG3_UNK23;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK23;
     gActors[actor_index].unk_170 = 1;
 }
 

@@ -48,7 +48,6 @@ extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 
 extern u16 D_800D28E4;
-extern u16 D_800D28E8;
 extern u16 D_800D2918;
 extern u16 D_800D291C;
 extern u16 D_800D2920;
@@ -579,7 +578,7 @@ void func_80020024(void) {
 
     gActiveFrames++;
     D_801782B8++;
-    if ((gStageTime < 36000) && (D_800D28E8 >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
+    if ((gStageTime < 36000) && (gStageCinemaState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         gStageTime++;
     }
     func_800122B0();
@@ -795,7 +794,7 @@ void func_80020A90(void) {
         }
         break;
     case 32:
-        if ((gActors[0xCF].posY.whole == -28) && (D_800D28E8 >= 2)) {
+        if ((gActors[0xCF].posY.whole == -28) && (gStageCinemaState >= 2)) {
             for (actor_index = 0; actor_index < 0xC8; actor_index++) {
                 gActors[actor_index].flags = 0;
             }
@@ -926,7 +925,7 @@ void GameState_Attract(void) {
         gCurrentScene = gStageScenes[gCurrentStage];
         D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
         D_800CA234 = 0xA00;
-        D_800D2908 = 1;
+        gSkipStageIntro = TRUE;
         gActors[0].health = 1000;
         D_800BE668 = 50;
         gRngSeed = 0x1234;
@@ -989,7 +988,7 @@ void GameState_Attract(void) {
     }
 }
 
-// toggle OSD color from black or whit with R button
+// toggle OSD color from black or white with R button
 void func_80021620(void) {
     if (gButtonPress & gButton_RTrig) {
         gDebugOSDTint ^= 0xFF;

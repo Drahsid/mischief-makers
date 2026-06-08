@@ -5,7 +5,6 @@
 #include "music.h"
 
 extern u16 D_800D28E4;
-extern u16 D_800D28E8;
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern u8 D_800D28D0[];
@@ -165,7 +164,7 @@ void Actor_LoadSpawnTable(void* spawn_table) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D04.s")
 
 void func_80043D30(void* spawn) {
-    if (D_800D2908 == 0) {
+    if (!gSkipStageIntro) {
         func_80043D04(spawn);
     }
 

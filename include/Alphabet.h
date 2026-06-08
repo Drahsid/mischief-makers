@@ -95,8 +95,8 @@
 #define ALPHA_EN_BRACKETRIGHT 0x0050 // ]
 
 // the original Japanese version uses Japanese characters
-// at least Katakana and Hiragana  are overwritten in english localizations,
-// which use the other english/Greek alphbet indecies.
+// at least Katakana and Hiragana are overwritten in english localizations,
+// which use the other english/Greek alphabet indecies.
 // some "strings" using the original charset remain in NA/EU code,
 // but are not properly read. (see SpawnTextBubble calls.)
 
