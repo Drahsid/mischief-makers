@@ -1,6 +1,8 @@
 #ifndef ALPHABET_H
 #define ALPHABET_H
 
+#include "graphicIndex.h"
+
 // game uses a unique charset for the text that is 16 bits.
 
 #define ALPHA_SPACE 0x0000

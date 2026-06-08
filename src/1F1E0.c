@@ -112,7 +112,7 @@ s32 func_8001E5E0(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[actor0].damageDelta);
+    sp20 = sqrtf(gActors[actor0].pendingDamage);
     v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2);
 }
@@ -121,7 +121,7 @@ s32 func_8001E6F4(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[actor0].damageDelta);
+    sp20 = sqrtf(gActors[actor0].pendingDamage);
     v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return SIN(v) * (sp20 * arg2 * 2);
 }
@@ -234,7 +234,7 @@ void func_8001EC1C(void) {
         }
         for (index_fp = 0; index_fp < count_a2; index_fp++) {
             actor_index = spA98[index_fp];
-            gActors[actor_index].damageDelta = 0;
+            gActors[actor_index].pendingDamage = 0;
             for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
                 index_s1 = spBB8[index_s4];
                 if (index_s1 != actor_index) {
@@ -275,7 +275,7 @@ void func_8001EC1C(void) {
                                     if (gActors[index_s1].unk_0DB < 0x17) {
                                         gActors[actor_index].unk_0D6 = index_s1;
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].damageDelta += gActors[index_s1].damage;
+                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                     }
                                 }
                             } while (0);
@@ -287,8 +287,8 @@ void func_8001EC1C(void) {
                 func_8001EB8C(gActors[actor_index].unk_0D6, actor_index);
             }
             if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                if (gActors[actor_index].damageDelta < gActors[actor_index].health) {
-                    gActors[actor_index].health -= gActors[actor_index].damageDelta;
+                if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                    gActors[actor_index].health -= gActors[actor_index].pendingDamage;
                 }
                 else {
                     gActors[actor_index].health = 0;
@@ -394,8 +394,8 @@ void func_8001EC1C(void) {
 
             for (index_fp = 0; index_fp < count_a2; index_fp++) {
                 actor_index = spA98[index_fp];
-                spCE6 = gActors[actor_index].damageDelta;
-                gActors[actor_index].damageDelta = 0;
+                spCE6 = gActors[actor_index].pendingDamage;
+                gActors[actor_index].pendingDamage = 0;
                 for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
                     index_s1 = spBB8[index_s4];
                     if (index_s1 != actor_index) {
@@ -411,7 +411,7 @@ void func_8001EC1C(void) {
                                 if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
                                     if (gActors[index_s1].unk_0DB < 0x14) {
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].damageDelta += gActors[index_s1].damage;
+                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                         gActors[actor_index].unk_0D6 = index_s1;
                                         func_8001EB8C(index_s1, actor_index);
                                     }
@@ -421,13 +421,13 @@ void func_8001EC1C(void) {
                     }
                 }
                 if (actor_index == 0) {
-                    if (gActors[actor_index].damageDelta == 0) {
-                        gActors[actor_index].damageDelta = spCE6;
+                    if (gActors[actor_index].pendingDamage == 0) {
+                        gActors[actor_index].pendingDamage = spCE6;
                     }
                 }
                 else if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                    if (gActors[actor_index].damageDelta < gActors[actor_index].health) {
-                        gActors[actor_index].health -= gActors[actor_index].damageDelta;
+                    if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                        gActors[actor_index].health -= gActors[actor_index].pendingDamage;
                     }
                     else {
                         gActors[actor_index].health = 0;

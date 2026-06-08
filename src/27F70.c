@@ -789,7 +789,7 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
                     gActors[0].unk_0FC.raw = gActors[actor_index].unk_0FC.raw;
                     Actor_Clamp_0F8(0, FIXED_UNIT(4));
                     Actor_Clamp_0FC(0, FIXED_UNIT(2));
-                    gActors[0].damageDelta = 0;
+                    gActors[0].pendingDamage = 0;
                 }
                 return 1;
             }

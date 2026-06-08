@@ -848,9 +848,9 @@ void func_800255B4(u16 index) {
     D_800BE6DC = 0;
     D_800BE6E0 = 0;
     D_800BE664 = D_800CCC6C[index].unk2;
-    D_800BE6C0 = -8;
-    D_800BE6CC = D_800CCC6C[index].unk4;
-    D_800BE6D8 = D_800CCC6C[index].unk6;
+    gActorDepthFront = -8;
+    gActorDepthMiddle = D_800CCC6C[index].unk4;
+    gActorDepthBack = D_800CCC6C[index].unk6;
     D_801373DC = 0x10;
     D_801373DE = 0;
     func_8008BFB0();

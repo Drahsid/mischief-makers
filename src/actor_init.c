@@ -79,7 +79,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_0DC =
     gActors[actor_index].unk_0DD =
     gActors[actor_index].unk_0DF =
-    gActors[actor_index].damageDelta =
+    gActors[actor_index].pendingDamage =
     gActors[actor_index].velocityX.raw =
     gActors[actor_index].velocityY.raw =
     gActors[actor_index].velocityZ.raw =

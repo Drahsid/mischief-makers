@@ -167,7 +167,7 @@ typedef struct {
     /* 0x0DE */ u8 unk_0DE;
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
-    /* 0x0E2 */ s16 damageDelta; // damage taken in tick. used in knockback calculation.
+    /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.
     /* 0x0E4 */ s16 damage; // damage caused by contact
     /* 0x0E6 */ s16 graphicTimer; // time in ticks (x/60 seconds) the current graphic should be displayed.
 

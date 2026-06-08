@@ -36,10 +36,6 @@ extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
-extern s32 Sound_PlaySfxAtVol(u32 arg0, s16 arg1);
-extern s32 Sound_PlaySfxAtPan(u32 arg0, s8 arg1);
-extern s32 Sound_PlaySfxAtActor3(u32 arg0, u16 actor_index);
-extern void Sound_PlaySfxAtActorPanning(u32 arg0, u16 arg1);
 extern void func_800255B4(u16 arg0);
 extern void func_80025BFC(void);
 extern void func_80025E00(void);
