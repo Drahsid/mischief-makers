@@ -1760,8 +1760,8 @@ void func_801BA6C4_7C78A4(void) {
             if (gActors[0x50].flags == 0) {
                 gStageCinemaState++;
                 D_800BE544 = 0;
-                D_800D2924 = 0xF50;
-                D_800D2918 = 0x2D0;
+                D_800D2924 = 3920;
+                D_800D2918 = 720;
                 Actor_LoadSpawnTable(D_801BEB54_7CBD34);
             }
             break;

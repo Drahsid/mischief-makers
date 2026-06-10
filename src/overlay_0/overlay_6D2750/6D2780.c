@@ -48,7 +48,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y);
 
 // Intro actor setup helpers
 // The controller uses fixed actor slots for the main portraits, attached sprite parts, screen fades, particles, and effects
-void func_80192100_6D2780(u16 arg0, u16 actor_index, u16 actor_type, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
     gActors[actor_index].actorType = actor_type;
     func_8001E2D0(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
@@ -58,45 +58,45 @@ void func_80192100_6D2780(u16 arg0, u16 actor_index, u16 actor_type, u16 graphic
     gActors[actor_index].posX.whole = pos_x;
     gActors[actor_index].posY.whole = pos_y;
     gActors[actor_index].posZ.whole = pos_z;
-    gActors[actor_index].stateLower = gActors[arg0].stateLower;
+    gActors[actor_index].stateLower = gActors[parent_actor].stateLower;
 }
 
-void func_801921C8_6D2848(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B02, arg2, arg3, arg4, arg5);
+void func_801921C8_6D2848(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B02, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_80192224_6D28A4(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B03, arg2, arg3, arg4, arg5);
-    gActors[actor_index].posX.whole = gActors[arg0].posX.whole + arg3;
-    gActors[actor_index].posY.whole = gActors[arg0].posY.whole + arg4;
-    gActors[actor_index].posZ.whole = gActors[arg0].posZ.whole + arg5;
-    gActors[actor_index].var_158 = arg3 << 0x10;
-    gActors[actor_index].var_15C = arg4 << 0x10;
-    gActors[actor_index].var_154 = arg0;
-    gActors[actor_index].var_160 = arg5;
+void func_80192224_6D28A4(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(parent_index, actor_index, 0x2B03, graphic_index, pos_x, pos_y, pos_z);
+    gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + pos_x;
+    gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + pos_y;
+    gActors[actor_index].posZ.whole = gActors[parent_index].posZ.whole + pos_z;
+    gActors[actor_index].var_158 = pos_x << 0x10;
+    gActors[actor_index].var_15C = pos_y << 0x10;
+    gActors[actor_index].var_154 = parent_index;
+    gActors[actor_index].var_160 = pos_z;
 }
 
-void func_801922F4_6D2974(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B04, arg2, arg3, arg4, arg5);
+void func_801922F4_6D2974(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, arg1, 0x2B04, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_80192350_6D29D0(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B01, arg2, arg3, arg4, arg5);
+void func_80192350_6D29D0(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, arg1, 0x2B01, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_801923AC_6D2A2C(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B06, arg2, arg3, arg4, arg5);
-    gActors[actor_index].graphicFlags |= 9;
+void func_801923AC_6D2A2C(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B06, graphic_index, pos_x, pos_y, pos_z);
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
-void func_80192438_6D2AB8(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192224_6D28A4(arg0, actor_index, arg2, arg3, arg4, arg5);
+void func_80192438_6D2AB8(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192224_6D28A4(parent_index, actor_index, graphic_index, pos_x, pos_y, pos_z);
     gActors[actor_index].actorType = 0x2B07;
-    gActors[actor_index].graphicFlags |= 9;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
-void func_801924CC_6D2B4C(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
-    func_80192100_6D2780(arg0, arg1, 0x2B08, 0, arg2, arg3, arg4);
+void func_801924CC_6D2B4C(u16 arg0, u16 actor_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B08, 0, pos_x, pos_y, pos_z);
 }
 
 // Particles used during the orange-gradient clancer-rise scene?
@@ -203,7 +203,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
     switch (gActors[actor_index].stateLower) {
         // Bootstrap the intro overlay after the logo fades
         case 0:
-            func_80192350_6D29D0(actor_index, 0x8F, 0x2D0, 0, 0, 0x10);
+            func_80192350_6D29D0(actor_index, 0x8F, GINDEX_SOLIDSQARE, 0, 0, 0x10);
             func_80192920_6D2FA0(3);
             D_80199B30_6DA1B0 = 0x30;
             break;

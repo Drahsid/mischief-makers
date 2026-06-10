@@ -8,7 +8,7 @@
 // Like those of Marina, Clancers, and Beastector, they instead increment normally.
 
 #define GINDEX_LEFT 1 // odd entries are the horizontal mirror of the previous
-#define GRAPHIC_FRAME(g,n) GINDEX_##g##+(2*n) // when we need to declare with animation graphic.
+#define GRAPHIC_FRAME(g,n) (GINDEX_##g +(2*n)) // when we need to declare with animation graphic.
 
 
 // each clanblock has 3-4 animation indecies following.
@@ -189,7 +189,13 @@
 #define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
 
-// indecies of 0x800 and beyond seem subject to change based on scene.
+// indecies of 0x800 and beyond are based on RLE segments loaded per scene.
+// These will have overlapping indecies due to graphics loaded on a per-case basis.
+// see references to D_800CFE04 for more information.
+// future index additions should follow the namesceme of either
+// GINDEX_SEG[##]_[NAME] or GINDEX_[ARBEV]_[NAME]
+// where [ABREV] is an abreviation of the confirmed use case
+// example: "world map" graphics have [ABREV] as "WM"
 
 #define GINDEX_SUNGLASSES       0X1004
 
@@ -214,33 +220,33 @@
 #define GINDEX_HATPIRATE         0X3014
 
 
-// 0x3000 is also used by the world map graphics
+// indecies used by the world map graphics
 
-#define GINDEX_WMSPEECHBUBBLE      0X3000
-#define GINDEX_WMWORLDTITLEBG      0X3002
-#define GINDEX_WMSTAGEICONUNKNOWN  0X3004
-#define GINDEX_WMSTAGEICONBLOCKED  0X3006
-#define GINDEX_WMMARINAICON        0X3008 // 4 animation frames
-#define GINDEX_WMPATHSECTIONLEFT   0X3010
-#define GINDEX_WMPATHSECTIONMID    0X3012
-#define GINDEX_WMPATHSECTIONRIGHT  0X3014
-#define GINDEX_WMMCLANCERMIC       0X3016 // 4 animation frames
-#define GINDEX_WMSTAGEICONDESERT   0X301E
-#define GINDEX_WMSTAGEICONLAVA     0X3020
-#define GINDEX_WMSTAGEICONMIGEN    0X3022
-#define GINDEX_WMSTAGEICONCITY     0X3024
-#define GINDEX_WMSTAGEICONLUNAR    0X3026
-#define GINDEX_WMSTAGEICONSNOW     0X3028
-#define GINDEX_WMSTAGEICONCAVE1    0X302A
-#define GINDEX_WMSTAGEICONCAVE2    0X302C
-#define GINDEX_WMSTAGEICONTAURUS   0X302E
-#define GINDEX_WMSTAGEICONIMPHQ1   0X3030
-#define GINDEX_WMSTAGEICONIMPHQ2   0X3032
-#define GINDEX_WMSTAGEICONMERCO    0X3034
-#define GINDEX_WMSTAGEICONFINAL    0X3036
-#define GINDEX_WMSTAGEICONPLAINS   0X3038
-#define GINDEX_WMSTAGEICONENDING   0X303A
-#define GINDEX_WMSTAGEICONVERTICAL 0X303C
+#define GINDEX_WM_SPEECHBUBBLE      0X3000
+#define GINDEX_WM_WORLDTITLEBG      0X3002
+#define GINDEX_WM_STAGEICONUNKNOWN  0X3004
+#define GINDEX_WM_STAGEICONBLOCKED  0X3006
+#define GINDEX_WM_MARINAICON        0X3008 // 4 animation frames
+#define GINDEX_WM_PATHSECTIONLEFT   0X3010
+#define GINDEX_WM_PATHSECTIONMID    0X3012
+#define GINDEX_WM_PATHSECTIONRIGHT  0X3014
+#define GINDEX_WM_CLANCERMIC       0X3016 // 4 animation frames
+#define GINDEX_WM_STAGEICONDESERT   0X301E
+#define GINDEX_WM_STAGEICONLAVA     0X3020
+#define GINDEX_WM_STAGEICONMIGEN    0X3022
+#define GINDEX_WM_STAGEICONCITY     0X3024
+#define GINDEX_WM_STAGEICONLUNAR    0X3026
+#define GINDEX_WM_STAGEICONSNOW     0X3028
+#define GINDEX_WM_STAGEICONCAVE1    0X302A
+#define GINDEX_WM_STAGEICONCAVE2    0X302C
+#define GINDEX_WM_STAGEICONTAURUS   0X302E
+#define GINDEX_WM_STAGEICONIMPHQ1   0X3030
+#define GINDEX_WM_STAGEICONIMPHQ2   0X3032
+#define GINDEX_WM_STAGEICONMERCO    0X3034
+#define GINDEX_WM_STAGEICONFINAL    0X3036
+#define GINDEX_WM_STAGEICONPLAINS   0X3038
+#define GINDEX_WM_STAGEICONENDING   0X303A
+#define GINDEX_WM_STAGEICONVERTICAL 0X303C
 
 #define GINDEX_PAUSEBAR 0x8000
 

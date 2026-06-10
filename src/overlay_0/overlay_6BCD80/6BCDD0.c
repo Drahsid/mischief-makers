@@ -357,8 +357,8 @@ s32 func_80196030_6C0D00(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801960B0_6C0D80.s")
 
 void func_80196530_6C1200(s32 arg0) {
-    D_801A2110_6CCDE0 = 0x2D0;
-    D_801A2190_6CCE60 = 0x2D0;
+    D_801A2110_6CCDE0 = 720;
+    D_801A2190_6CCE60 = 720;
 }
 
 void func_8019654C_6C121C(u16 actor_index) {
