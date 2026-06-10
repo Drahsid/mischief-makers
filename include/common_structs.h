@@ -26,7 +26,7 @@ typedef struct {
     /* 0x90 */ f32 scaleY;
     /* 0x94 */ u8 alpha;
     /* 0x95 */ u8 align[3];
-    /* 0x98 */ u16* palette; // used if ACTOR_FLAG_PALETTE is set
+    /* 0x98 */ u16* palette; // used if ACTOR_GFLAG_PALETTE is set
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
