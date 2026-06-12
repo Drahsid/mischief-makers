@@ -7,16 +7,16 @@
 
 // Monospace English alphabet used in all versions
 
-#define ALPHA_1 0x0001 // 0
-#define ALPHA_2 0x0002 // 1
-#define ALPHA_3 0x0003 // 2
-#define ALPHA_4 0x0004 // 3
-#define ALPHA_5 0x0005 // 4
-#define ALPHA_6 0x0006 // 5
-#define ALPHA_7 0x0007 // 6
-#define ALPHA_8 0x0008 // 7
-#define ALPHA_9 0x0009 // 8
-#define ALPHA_9 0x000A // 9
+#define ALPHA_0 0x0000 // 0
+#define ALPHA_1 0x0001 // 1
+#define ALPHA_2 0x0002 // 2
+#define ALPHA_3 0x0003 // 3
+#define ALPHA_4 0x0004 // 4
+#define ALPHA_5 0x0005 // 5
+#define ALPHA_6 0x0006 // 6
+#define ALPHA_7 0x0007 // 7
+#define ALPHA_8 0x0008 // 8
+#define ALPHA_9 0x0009 // 9
 
 #define ALPHA_EN_UPPER_A 0x000A
 #define ALPHA_EN_UPPER_B 0x000B
@@ -305,7 +305,7 @@
 
 // a slimmer English alphabet charset
 // used as primary "font" in localization.
-// implements kerning.
+
 
 #define ALPHA_EN2_UPPER_A 0x005B
 #define ALPHA_EN2_UPPER_B 0x005C
@@ -370,6 +370,7 @@
 
 
 // a third English Alphabet, used for titles and names
+// implements kerning in english version.
 
 #define ALPHA_EN3_LOWER_A 0x011E
 #define ALPHA_EN3_LOWER_B 0x011F
@@ -432,6 +433,24 @@
 #define ALPHA_NULL 0x8FFF
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + 0x2d2) // get graphic index of ALPHA_* index
+
+// macro for when we need to differentiate between
+// English and Japanese "ALPHA_*" arrays
+#if 0 //GAME_VERSION==GAME_VERSION_JP
+// used to decide between english and japanese text during pre-processing
+#define ALPHA_ARRAY(name,jp,en) u16 ##name [] =jp
+#else
+#endif
+// used to decide between english and japanese text during pre-processing
+#define ALPHA_ARRAY(name,jp,en) u16 ##name [] = en
+/* example:
+  ALPHA_ARRAY(D_800CA280,
+   // "コ-スからでる" / "exit course"
+   {ALPHA_JP_KATA_KO,ALPHA_MINUS,ALPHA_JP_HIRA_KA,ALPHA_JP_HIRA_RA,
+   ALPHA_JP_HIRA_DE,ALPHA_JP_HIRA_RU,ALPHA_NULL},
+   // " exit"
+   {ALPHA_SPACE,ALPHA_EN2_UPPER_E,}
+);*/
 
 #endif
 
