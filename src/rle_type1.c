@@ -1,18 +1,17 @@
 #include "common.h"
 
-s32 D_800C4EE0[] = {
+// how many windows/rows back the copy source sits
+static s32 sRleWindowMultipliers[] = {
     1, 1, 1, 1, 1, 2, 2, 2,
 };
 
-s32 D_800C4F00[] = {
+// the byte adjustment added to distance
+static s32 sRleWindowOffsets[] = {
     -2, -1, 0, 1, 2, -1, 0, 1,
 };
 
-// https://decomp.me/scratch/cMY8E
-#ifdef NON_MATCHING
 s32 Trouble_RLE_Type1(u8* src, u8* dst) {
-    s32 command;
-    s32 current_command;
+    u8 current_command;
     s32 window_size;
     s32 dst_pos;
     s32 index;
@@ -21,35 +20,28 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
     u8 value;
     u8* input;
 
-    command = src[0];
     window_size = 4;
     dst_pos = 0;
-    input = src;
+    input = src; loop_start: { // wtf
+        current_command = *input;
 
-    do {
-        current_command = command;
+        while (current_command < 0x80) {
+            count = (current_command & 0xF) + 1;
+            index = (current_command >> 4) & 7;
+            copy_pos = dst_pos - (window_size * sRleWindowMultipliers[index]) - sRleWindowOffsets[index];
 
-        if (current_command < 0x80) {
-            do {
-                index = (current_command >> 4) & 7;
-                copy_pos = dst_pos - (window_size * D_800C4EE0[index]) - D_800C4F00[index];
-                count = (current_command & 0xF) + 1;
+            for (index = 0; index < count; index++) {
+                dst[dst_pos++] = dst[copy_pos++];
+            }
 
-                for (index = 0; index < count; index++) {
-                    dst[dst_pos++] = dst[copy_pos++];
-                }
-
-                input++;
-                command = input[0];
-                current_command = command;
-            } while (current_command < 0x80);
+            input++;
+            current_command = *input;
         }
 
         if (current_command == 0x80) {
-            input++;
-            window_size = (input[0] << 8) + input[1];
-            command = input[2];
-            input += 2;
+            window_size = (input[1] << 8) + input[2];
+            input += 3;
+            goto loop_start;
         }
         else if (current_command < 0xA0) {
             copy_pos = dst_pos - input[1];
@@ -59,9 +51,8 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
                 dst[dst_pos++] = dst[copy_pos++];
             }
 
-            input++;
-
-            command = (input++)[1];
+            input += 2;
+            goto loop_start;
         }
         else if (current_command < 0xC0) {
             count = (current_command & 0x1F) + 1;
@@ -111,41 +102,31 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
                 dst[dst_pos++] = *input++;
             }
 
-            command = *input;
+            goto loop_start;
         }
-        else if ((current_command + 1) <= 0xD0) {
-            count = (current_command & 0xF) + 2;
+        else if (current_command < 0xD0) {
+            count = current_command;
+            count = (count & 0xF) + 2;
             value = input[1];
 
             for (index = 0; index < count; index++) {
                 dst[dst_pos++] = value;
             }
 
-            command = input[2];
             input += 2;
+            goto loop_start;
         }
         else if (current_command < 0xE0) {
             count = current_command & 0xF;
             count++;
 
-            command = count == 0x10;
-            if (command) {
-                dst[dst_pos + 15] = 0;
-                dst[dst_pos + 14] = 0;
-                dst[dst_pos + 13] = 0;
-                dst[dst_pos + 12] = 0;
-                dst[dst_pos + 11] = 0;
-                dst[dst_pos + 10] = 0;
-                dst[dst_pos + 9] = 0;
-                dst[dst_pos + 8] = 0;
-                dst[dst_pos + 7] = 0;
-                dst[dst_pos + 6] = 0;
-                dst[dst_pos + 5] = 0;
-                dst[dst_pos + 4] = 0;
-                dst[dst_pos + 3] = 0;
-                dst[dst_pos + 2] = 0;
-                dst[dst_pos + 1] = 0;
-                dst[dst_pos + 0] = current_command * 0;
+            if (count == 0x10) {
+                if (current_command && current_command) {
+                }
+                dst[dst_pos + 0] = dst[dst_pos + 1] = dst[dst_pos + 2] = dst[dst_pos + 3]
+                    = dst[dst_pos + 4] = dst[dst_pos + 5] = dst[dst_pos + 6] = dst[dst_pos + 7]
+                    = dst[dst_pos + 8] = dst[dst_pos + 9] = dst[dst_pos + 10] = dst[dst_pos + 11]
+                    = dst[dst_pos + 12] = dst[dst_pos + 13] = dst[dst_pos + 14] = dst[dst_pos + 15] = 0;
                 dst_pos += 0x10;
             }
             else {
@@ -154,8 +135,8 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
                 }
             }
 
-            command = input[1];
             input++;
+            goto loop_start;
         }
         else if (current_command < 0xF0) {
             count = current_command & 0xF;
@@ -163,27 +144,15 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
             value = dst[dst_pos - 1];
 
             for (index = 0; index < count; index++) {
-                dst[dst_pos + 15] = value;
-                dst[dst_pos + 14] = value;
-                dst[dst_pos + 13] = value;
-                dst[dst_pos + 12] = value;
-                dst[dst_pos + 11] = value;
-                dst[dst_pos + 10] = value;
-                dst[dst_pos + 9] = value;
-                dst[dst_pos + 8] = value;
-                dst[dst_pos + 7] = value;
-                dst[dst_pos + 6] = value;
-                dst[dst_pos + 5] = value;
-                dst[dst_pos + 4] = value;
-                dst[dst_pos + 3] = value;
-                dst[dst_pos + 2] = value;
-                dst[dst_pos + 1] = value;
-                dst[dst_pos + 0] = value;
+                dst[dst_pos + 0] = dst[dst_pos + 1] = dst[dst_pos + 2] = dst[dst_pos + 3]
+                    = dst[dst_pos + 4] = dst[dst_pos + 5] = dst[dst_pos + 6] = dst[dst_pos + 7]
+                    = dst[dst_pos + 8] = dst[dst_pos + 9] = dst[dst_pos + 10] = dst[dst_pos + 11]
+                    = dst[dst_pos + 12] = dst[dst_pos + 13] = dst[dst_pos + 14] = dst[dst_pos + 15] = value;
                 dst_pos += 0x10;
             }
 
-            command = input[1];
             input++;
+            goto loop_start;
         }
         else if (current_command < 0xFF) {
             count = current_command & 0xF;
@@ -194,13 +163,14 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
                 dst[dst_pos++] = value;
             }
 
-            command = input[1];
             input++;
+            goto loop_start;
         }
-    } while (command != 0xFF);
 
+        if (current_command != 0xFF) {
+            goto loop_start;
+        }
+    }
+    
     return dst_pos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/rle_type1/Trouble_RLE_Type1.s")
-#endif
