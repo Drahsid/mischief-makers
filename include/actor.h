@@ -258,7 +258,10 @@ typedef struct {
         /* 0x184 */ s32 unk_184;
         /* 0x184 */ s16 unk_184_s16[2];
     };
-    /* 0x188 */ s32 unk_188;
+    union {
+        /* 0x188 */ s32 unk_188;
+        /* 0x188 */ s16 unk_188_s16;
+    };
     union {
         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
         /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
