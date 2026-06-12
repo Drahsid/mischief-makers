@@ -1752,21 +1752,32 @@ void func_80026BD0(u16 index) {
     }
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/HqxM1
+#ifdef MATCHING_NON_MATCHING
+// This matches, but using __inline or -O3 changes codegen elsewhere in this file. Need to reconstruct all of the small functions that got inlined to fix.
+
+#define D_800CFE04_ENTRY(I) D_800CFE04[index * 12 + I]
+
+static __inline u32 Start_Seg01(u32 start) {
+    return (start - ((u32)Segment_01_DATA_START)) + ((u32)Segment_01_ROM_START);
+}
+
 void func_80026C9C(u16 index) {
-    s32 unused[2];
+    u32 start;
 
     D_800CBF50 = 0;
-    D_80137714 = D_80137718 = (u32)ASSET_DEST5;
-    if (D_800CFE04[index * 12 + 10] != 0) {
-        if ((u32)&rle_0045_3E7AB0_0119EB70 == D_800CFE04[index * 12 + 10]) {
-            D_800CBF50 = 1;
-        }
-        DMA_ReadSync(((D_800CFE04[index * 12 + 10] - (u32)Segment_01_DATA_START) + (u32)Segment_01_ROM_START), RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 11] - D_800CFE04[index * 12 + 10]);
-        D_80137718 = (u32)ASSET_DEST5 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST5);
-        D_801376D4 = D_800D0E98[index * 6];
+    D_80137714 = D_80137718 = 0x80360000U;
+    if (D_800CFE04_ENTRY(10) == 0) {
+        return;
     }
+
+    if ((u32)rle_0045_3E7AB0_0119EB70 == D_800CFE04_ENTRY(10)) {
+        D_800CBF50 = 1;
+    }
+
+    start = Start_Seg01(D_800CFE04_ENTRY(10));
+    DMA_ReadSync((u8*)start, (u8*)0x80259000U, D_800CFE04_ENTRY(11) - D_800CFE04_ENTRY(10));
+    D_80137718 = 0x80360000U + Trouble_RLE_Type1((u8*)0x80259000U, (u8*)0x80360000U);
+    D_801376D4 = D_800D0E98[index * 6];
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_80026C9C.s")

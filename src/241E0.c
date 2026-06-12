@@ -34,8 +34,8 @@ extern u8 D_800CBFFC[];
 extern u16 D_800CC228[];
 extern Unk800CC58CFunc D_800CC42C[];
 extern Unk800CC58CFunc D_800CC58C[];
-extern Unk800CC6EC D_800CC6EC[];
-extern Unk800CCC6C D_800CCC6C[];
+extern s16 D_800CC6EC[];
+extern s16 D_800CCC6C[];
 extern u8 gSceneBgm[]; // music for start os scene (0xff if none)
 extern u8 D_800CD034[]; // scene properties of BG layers?
 extern u8 D_800E3BC8[];
@@ -805,41 +805,41 @@ void func_80025578(void) {
     }
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/d9Bku
-void func_800255B4(u16 index) {
+void func_800255B4(u16 arg0) {
     D_800D16C4[0] = 0;
     D_800BE6A8 = 0;
     D_800BE710 = 0;
-    gScreenPosTargetX.raw = gScreenPosCurrentX.raw = 0;
-    D_800BE568 = D_800CC6EC[index].unk0;
-    D_800BE56C = D_800CC6EC[index].unk2;
-    D_800BE574 = D_800CC6EC[index].unk4;
-    D_800BE570 = D_800CC6EC[index].unk6;
-    gActors->posX.whole = D_800CC6EC[index].unkA;
-    gScreenPosCurrentX.whole = D_800CC6EC[index].unk8;
+    gScreenPosTargetX.raw = 0;
+    gScreenPosCurrentX.raw = 0;
+    D_800BE568.whole = D_800CC6EC[arg0 * 8];
+    D_800BE56C.whole = D_800CC6EC[arg0 * 8 + 1];
+    D_800BE574.whole = D_800CC6EC[arg0 * 8 + 2];
+    D_800BE570.whole = D_800CC6EC[arg0 * 8 + 3];
+    gScreenPosCurrentX.whole = D_800CC6EC[arg0 * 8 + 4];
+    gActors->posX.whole = D_800CC6EC[arg0 * 8 + 5];
     gScreenPosNextX.whole = gScreenPosCurrentX.whole;
     gScreenPosTargetX.whole = gScreenPosCurrentX.whole;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
-    gActors->posY.whole = D_800CC6EC[index].unkE;
-    gScreenPosCurrentY.whole = D_800CC6EC[index].unkC;
-    gScreenPosNextY.whole = gScreenPosTargetY.whole = D_800CC6EC[index].unkC;
+    gScreenPosCurrentY.whole = D_800CC6EC[arg0 * 8 + 6];
+    gActors->posY.whole = D_800CC6EC[arg0 * 8 + 7];
+    gScreenPosNextY.whole = gScreenPosCurrentY.whole;
+    gScreenPosTargetY.whole = gScreenPosCurrentY.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
     D_800BE61C = 0;
     D_800BE620 = 0;
-    D_800BE62C = 0;
-    D_800BE630 = 0;
+    gScreenXLock = 0;
+    gScreenYLock = 0;
     D_800BE704 = 0x10;
     D_800BE708 = 4;
     D_800BE588 = 0;
     D_800BE58C = 0;
     D_800BE544 = 0;
-    D_800BE548 = 0x100000;
-    D_800BE54C = 0x100000;
+    D_800BE548.raw = 0x100000;
+    D_800BE54C.raw = 0x100000;
     D_800BE734 = 0;
     D_800BE738 = 0;
     D_800BE73C = 0;
-    D_800BE654 = D_800CCC6C[index].unk0;
+    D_800BE654 = D_800CCC6C[arg0 * 5 + 0];
     D_800BE644 = 4 << D_800BE654;
     D_800BE648 = 0x4000 >> D_800BE654;
     D_800BE64C = 0x7FF >> (6 - D_800BE654);
@@ -849,10 +849,10 @@ void func_800255B4(u16 index) {
     D_800BE65C = 0xFFFF - D_800BE658;
     D_800BE6DC = 0;
     D_800BE6E0 = 0;
-    D_800BE664 = D_800CCC6C[index].unk2;
-    D_800BE6C0 = -8;
-    D_800BE6CC = D_800CCC6C[index].unk4;
-    D_800BE6D8 = D_800CCC6C[index].unk6;
+    D_800BE664 = D_800CCC6C[arg0 * 5 + 1];
+    gActorDepthFront = -8;
+    gActorDepthMiddle = D_800CCC6C[arg0 * 5 + 2];
+    gActorDepthBack = D_800CCC6C[arg0 * 5 + 3];
     D_801373DC = 0x10;
     D_801373DE = 0;
     func_8008BFB0();
@@ -863,13 +863,13 @@ void func_800255B4(u16 index) {
     gLifebar.alpha = 0xFF;
     gLifebarHead.flags = 2;
     gLifebarHead.graphicIndex = 0xF4;
-    gLifebar.posX.whole = -0x7C;
-    gLifebar.posY.whole = 0x80;
+    gLifebarHead.posX.whole = -0x7C;
+    gLifebarHead.posY.whole = 0x80;
     D_800CA230 = 0;
     gLetterboxMode = 0;
     D_800BE70C = 0;
 
-    switch (D_800CD034[index]) {
+    switch (D_800CD034[arg0]) {
     case 0:
         D_8013769C = 0x80380000;
         D_801376A0 = 0x80380200;
@@ -947,12 +947,9 @@ void func_800255B4(u16 index) {
         break;
     }
     D_800BE634 = 0;
-    D_800CC42C[index]();
-    D_800CC58C[index]();
+    D_800CC42C[arg0]();
+    D_800CC58C[arg0]();
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/241E0/func_800255B4.s")
-#endif
 
 void func_80025B7C(void) {
     func_8002694C(gCurrentScene);
