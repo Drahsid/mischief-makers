@@ -1133,7 +1133,7 @@ void func_801B9ED4_7DCDA4(void) {
             }
 
             gStageCinemaState++;
-            func_80045FA4(D_801BC9A0_7DF870, (s32)D_801BCA5C_7DF92C);
+            func_80045FA4(D_801BC9A0_7DF870, (u16*)D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD63C_7E050C);
             gActors[0x8D].var_158 = 1;
@@ -1247,7 +1247,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0xC:
             gStageCinemaState++;
-            func_80045FA4(D_801BC9A0_7DF870, (s32)D_801BCA5C_7DF92C);
+            func_80045FA4(D_801BC9A0_7DF870, (u16*)D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD684_7E0554);
             gActors[0x8D].var_158 = 1;
@@ -1268,7 +1268,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0x10:
             gStageCinemaState++;
-            func_80045FA4(D_801BC9B0_7DF880, (s32)D_801BCA6C_7DF93C);
+            func_80045FA4(D_801BC9B0_7DF880, (u16*)D_801BCA6C_7DF93C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD730_7E0600);
             gActors[0x88].var_158 = 1;
@@ -1368,7 +1368,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0x20:
             gStageCinemaState++;
-            func_80045FA4(D_801BC9C0_7DF890, (s32)D_801BD638_7E0508);
+            func_80045FA4(D_801BC9C0_7DF890, (u16*)D_801BD638_7E0508);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD958_7E0828);
             gActors[0x8D].var_158 = 1;
@@ -1440,7 +1440,7 @@ void func_801BA774_7DD644(void) {
 }
 
 void func_801BA8CC_7DD79C(void* arg0) {
-    func_80045FA4(arg0, (s32)D_801BDB60_7E0A30);
+    func_80045FA4(arg0, (u16*)D_801BDB60_7E0A30);
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(D_801BC990_7DF860);
     Actor_LoadSpawnTable(D_801BDFFC_7E0ECC);
@@ -1576,7 +1576,7 @@ void func_801BACDC_7DDBAC(void) {
                 break;
             }
 
-            func_80045FA4(D_801BD9B4_7E0884, (s32)D_801BDB60_7E0A30);
+            func_80045FA4(D_801BD9B4_7E0884, (u16*)D_801BDB60_7E0A30);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BDFFC_7E0ECC);
             D_801BDA7C_7E094C = 0;
@@ -1650,7 +1650,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x1000:
-            func_80045FA4(D_801BD9B4_7E0884, (s32)D_801BDB60_7E0A30);
+            func_80045FA4(D_801BD9B4_7E0884, (u16*)D_801BDB60_7E0A30);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BDFFC_7E0ECC);
             D_801BDA7C_7E094C = 0;
@@ -1828,7 +1828,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x900:
-            func_80045FA4(D_801BD9E4_7E08B4, (s32)D_801BDB60_7E0A30);
+            func_80045FA4(D_801BD9E4_7E08B4, (u16*)D_801BDB60_7E0A30);
             Actor_ClearRange_30To90();
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BE0C4_7E0F94);
@@ -2058,7 +2058,7 @@ void func_801BBEBC_7DED8C(void) {
             }
 
             gStageCinemaState++;
-            func_80045FA4(D_801BE1F4_7E10C4, (s32)D_801BEA18_7E18E8);
+            func_80045FA4(D_801BE1F4_7E10C4, (u16*)D_801BEA18_7E18E8);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BEAAC_7E197C);
             func_801BBCBC_7DEB8C();
@@ -2151,7 +2151,7 @@ void func_801BBEBC_7DED8C(void) {
         case 0x1030:
             gStageCinemaState++;
             Actor_ClearSceneActors();
-            func_80045FA4(D_801BE1F4_7E10C4, (s32)D_801BEA18_7E18E8);
+            func_80045FA4(D_801BE1F4_7E10C4, (u16*)D_801BEA18_7E18E8);
             D_800BE544 = 0;
             gDrawMidground = TRUE;
             gDrawEnvLayer = TRUE;

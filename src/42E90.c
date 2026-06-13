@@ -8,10 +8,10 @@ s32 func_80042290(u16 actor_index) {
     if ((gActors[actor_index].actorType == 0x90C) &&
         (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) &&
        !(gActors[actor_index].unk_188 & 0x8000)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 

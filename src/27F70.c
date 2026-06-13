@@ -1031,28 +1031,28 @@ s32 func_80029A7C(s16 arg0, s16 arg1, s16 arg2) {
     if ((D_800E3584 & 0x10000) &&
         (arg0 > D_800E3578) && (-arg0 < D_800E3578) &&
         (arg1 > D_800E357C) && (arg2 < D_800E357C)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
 u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2) {
     if ((arg0 > D_800E3578) && (-arg0 < D_800E3578) && (arg1 > D_800E357C) && (arg2 < D_800E357C)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
 u32 func_80029B74(s16 arg0) {
     if ((arg0 > D_800E3578) && (-arg0 < D_800E3578)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
