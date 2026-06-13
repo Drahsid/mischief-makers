@@ -7,6 +7,7 @@ u32 D_801A08E0_742870=0;
 
 u32 D_801A08E4_742874[31]={0}; // unused?
 
+// graphic indecies of worm segments.
 u16 D_801A0960_7428F0[]={
     0x0804,0x0814,0x080A,0x0814,0x080C,0x0816,
     0x080E,0x0818,0x0810,0x081A,0x0812,0x0000
@@ -16,6 +17,7 @@ u16 D_801A0978_742908[]={
     1,1,0,0,0,0,0,0,0,0,0,0
 };
 
+// actor flags for worm segments.
 u16 D_801A0990_742920[]={
     0x2403,0x0003,0x0003,0x0403,0x0003,0x0003,
     0x0403,0x0003,0x0003,0x0403,0x0003,0x0000
@@ -26,6 +28,7 @@ f32 D_801A09A8_742938[]={
     0.05,0,-0.05,-0.1,-0.05,-0.05
 };
 
+// size of worm segments.
 f32 D_801A09E8_742978[]={
     1,1,1,1,0.95,0.9,0.85,0.8,0.75,0.7,0.6,0.5,0.4,0.3,0.2,0.1
 };
@@ -90,13 +93,42 @@ void func_8019BACC_73DA5C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BC64_73DBF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BE98_73DE28.s")
+// copy of Math_ApproachS32.
+s32 func_8019BE98_73DE28(s32 current, s32 target, s32 step) {
+    if ((current - target) > 0) {
+        if (step >= (current - target)) {
+            current = target;
+        }
+        else {
+            current -= step;
+        }
+    }
+    else if ((current - target) >= -step) {
+        current = target;
+    }
+    else {
+        current += step;
+    }
+    return current;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BEDC_73DE6C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019C060_73DFF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019C120_73E0B0.s")
+void func_8019C120_73E0B0(u16 actor_index) {
+    s32 temp_t0;
+
+    temp_t0 = (gActors[actor_index].unk_168/0x10000) & (s32)(COSLEN);
+    if ((temp_t0 > (s32)(COSPiOver2)) && (temp_t0 < (s32)(COSPiOver2*3))) {
+        gActors[actor_index+1].rotateY=0.0;
+        gActors[actor_index+1].rotateZ= (f32) ((f64) ((s32)(COSPiOver2*4) - ((temp_t0 + (s32)(COSPiOver2*2)) & (s32)(COSLEN))) *  RadStep);
+    }
+    else{
+      gActors[actor_index+1].rotateY = 180.0f;
+      gActors[actor_index+1].rotateZ = (f32) ((f64) ((s32)(COSPiOver2*4) - temp_t0) *  RadStep);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019C244_73E1D4.s")
 
