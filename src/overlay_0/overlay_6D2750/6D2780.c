@@ -303,7 +303,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
             switch (gActors[actor_index].stateUpper) {
                 case 0:
                     gActors[actor_index].stateUpper++;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x10);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x10);
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
                     func_80192224_6D28A4(0x33, 0x34, 0x180A, -0x1F, 0x69, 1);
@@ -485,7 +485,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[0x37].stateUpper = 0;
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x11);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x11);
                     break;
 
                 case 1:
@@ -548,7 +548,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_801922F4_6D2974(actor_index, 0x37, 0x804, -0xDD, -4, 8);
                     func_80192224_6D28A4(0x33, 0x34, 0x802, 0, 0, 1);
                     func_80192224_6D28A4(0x37, 0x35, 0x806, 0, 0, 1);
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0);
                     break;
 
                 case 1:
@@ -639,7 +639,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[actor_index].stateUpper++;
                     func_801921C8_6D2848(actor_index, 0x33, 0x1008, 0x18, 0, 0x10);
                     gActors[0x34].flags = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x100);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x100);
                     func_801923AC_6D2A2C(actor_index, 0x50, 0x1800, 0, 0, 0x20);
                     func_80192438_6D2AB8(0x50, 0x51, 0x1802, -0x15, 0x22, -4);
                     func_80192438_6D2AB8(0x50, 0x52, 0x1804, -0x4D, 0xA, -2);

@@ -40,7 +40,7 @@ u16 func_801A7424_78D714(u16 arg0){
     if (actor_index != 0){
         gActors[actor_index].actorType = 0x1a01;
         func_8001E2D0(actor_index);
-        gActors[actor_index].graphicIndex = 0x2D0;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
     }
     return actor_index;
 }
