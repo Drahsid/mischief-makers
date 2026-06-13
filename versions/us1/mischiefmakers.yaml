@@ -1127,9 +1127,9 @@ segments:
     start: 0x78B440
     subsegments:
       - [0x78B440, c, overlay_2/overlay_78B430/78B440] # object segment 78B440->78CB60 (0x1720)
-      - [0x78C9E0, data, overlay_78B430/78B440]
-      - [0x78CAC0, rodata, overlay_78B430/78B440]
-
+      - [0x78C9E0, .data, overlay_2/overlay_78B430/78B440]
+      - [0x78CAB0, .rodata, overlay_2/overlay_78B430/78B440]
+      - { name: overlay_2/overlay_78B430/78B440, type: .bss, vram: 0x801A8020 }
   - name: overlay_78CB60_dispatch_table # blackgamma7: Festival
     exclusive_ram_id: overlay_78CB60_dispatch_table
     type: code
