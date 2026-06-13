@@ -860,11 +860,11 @@ void func_800255B4(u16 arg0) {
     gLifebar.posY.whole = 0xA0;
     gLifebar.alpha = 0xFF;
     gLifebarHead.flags = 2;
-    gLifebarHead.graphicIndex = GINDEX_LIFEHEAD;
+    gLifebarHead.graphicIndex = GINDEX_LIFEHEADBLINK;
     gLifebarHead.posX.whole = -0x7C;
     gLifebarHead.posY.whole = 0x80;
     D_800CA230 = 0;
-    gLetterboxMode = 0;
+    gLetterboxMode = LETTERBOX_DEFAULT;
     D_800BE70C = 0;
 
     switch (D_800CD034[arg0]) {
