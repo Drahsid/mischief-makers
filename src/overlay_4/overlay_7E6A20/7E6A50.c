@@ -534,7 +534,7 @@ void func_801BA1DC_7E732C(void) {
                 *dst16++ = *src16++;
             }
 
-            dst = (u32*)0x803DA600;
+            dst = (u32*)PALETTE_803DA600;
             index = 0;
             src = (u32*)base;
             for (; index < 0x80; index++) {

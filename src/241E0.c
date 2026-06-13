@@ -49,7 +49,6 @@ extern u16* D_801376A0;
 extern u16* D_801376A4;
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
-#define D_803DA200 ((s32*)0x803DA200)
 
 void func_800235E0(void) {
     gCameraRot = 0;
@@ -604,7 +603,7 @@ void func_80024E18(void) {
     s32* src;
     s32* dest;
 
-    for (index = 0, src = (s32*)PALETTE_80380400, dest = (s32*)0x803DA600; index < 0x80; index++) {
+    for (index = 0, src = (s32*)PALETTE_80380400, dest = (s32*)PALETTE_803DA600; index < 0x80; index++) {
         *dest++ = *src++;
     }
     Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
@@ -832,8 +831,8 @@ void func_800255B4(u16 arg0) {
     D_800BE588 = 0;
     D_800BE58C = 0;
     D_800BE544 = 0;
-    D_800BE548.raw = 0x100000;
-    D_800BE54C.raw = 0x100000;
+    D_800BE548.raw = FIXED_UNIT(16.0);
+    D_800BE54C.raw = FIXED_UNIT(16.0);
     D_800BE734 = 0;
     D_800BE738 = 0;
     D_800BE73C = 0;
@@ -854,12 +853,12 @@ void func_800255B4(u16 arg0) {
     D_801373DC = 0x10;
     D_801373DE = 0;
     func_8008BFB0();
-    gLifebar.flags = 2;
+    gLifebar.flags = PORTRAIT_GFLAG_UNK1;
     gLifebar.graphicIndex = GINDEX_LIFEBAR;
     gLifebar.posX.whole = -0x4C;
     gLifebar.posY.whole = 0xA0;
     gLifebar.alpha = 0xFF;
-    gLifebarHead.flags = 2;
+    gLifebarHead.flags = PORTRAIT_GFLAG_UNK1;
     gLifebarHead.graphicIndex = GINDEX_LIFEHEADBLINK;
     gLifebarHead.posX.whole = -0x7C;
     gLifebarHead.posY.whole = 0x80;
@@ -870,7 +869,7 @@ void func_800255B4(u16 arg0) {
     switch (D_800CD034[arg0]) {
     case 0:
         D_8013769C = PALETTE_80380000;
-        D_801376A0 = 0x80380200;
+        D_801376A0 = PALETTE_80380200;
         D_801376A4 = PALETTE_80380400;
         gDrawMidground = TRUE;
         gDrawEnvLayer = TRUE;
@@ -965,7 +964,7 @@ void func_80025BFC(void) {
     s32* src;
     s32* dest;
 
-    for (index = 0, src = (s32*)PALETTE_80380000, dest = D_803DA200; index < 0x180; index++) {
+    for (index = 0, src = (s32*)PALETTE_80380000, dest = (s32*)PALETTE_803DA200; index < 0x180; index++) {
         *dest++ = *src++;
     }
 }

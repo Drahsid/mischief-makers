@@ -27,6 +27,9 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 #define PALETTE_80380000 ((u16*)0x80380000)
 #define PALETTE_80380200 ((u16*)0x80380200)
 #define PALETTE_80380400 ((u16*)0x80380400)
+#define PALETTE_803DA200 ((u16*)0x803DA200)
+#define PALETTE_803DA400 ((u16*)0x803DA400)
+#define PALETTE_803DA600 ((u16*)0x803DA600)
 
 #define SCREEN_WIDTH (320)
 #define SCREEN_HEIGHT (240)

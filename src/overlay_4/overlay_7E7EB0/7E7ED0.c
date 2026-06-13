@@ -517,7 +517,7 @@ void func_801B9D00_7E82D0(void) {
     switch (gStageCinemaState) {
         case 0:
             Palette_AdjustRgb5551Array((u16*)0x802E5ED8, (u16*)0x802E5D48, 0xC3, 1, 1, -1);
-            Palette_AdjustRgb5551Array((u16*)0x803DA600, PALETTE_80380400, 0xFF, 1, 0, 1);
+            Palette_AdjustRgb5551Array(PALETTE_803DA600, PALETTE_80380400, 0xFF, 1, 0, 1);
             gStageCinemaState = 0x100;
             D_800BE710 = TRUE;
             break;

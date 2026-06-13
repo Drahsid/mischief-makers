@@ -1275,14 +1275,14 @@ void func_801B9900_7D40F0(void) {
     }
 
     if ((D_801BC140_7D6930.half != -0x15) || (D_801BC144_7D6934.half != -0x1A) || (D_801BC148_7D6938.half != -0x20)) {
-        Palette_AdjustRgb5551Array((void*)0x803DA200, PALETTE_80380000, 0xFF, D_801BC140_7D6930.half, D_801BC144_7D6934.half, D_801BC148_7D6938.half);
+        Palette_AdjustRgb5551Array(PALETTE_803DA200, PALETTE_80380000, 0xFF, D_801BC140_7D6930.half, D_801BC144_7D6934.half, D_801BC148_7D6938.half);
         D_801BC140_7D6930.half = Math_ApproachS32(D_801BC140_7D6930.half, -0x15, 1);
         D_801BC144_7D6934.half = Math_ApproachS32(D_801BC144_7D6934.half, -0x1A, 1);
         D_801BC148_7D6938.half = Math_ApproachS32(D_801BC148_7D6938.half, -0x20, 1);
     }
 
     if ((D_801BC14C_7D693C.half != -0x13) || (D_801BC150_7D6940.half != -0x1F) || (D_801BC154_7D6944.half != -0x20)) {
-        Palette_AdjustRgb5551Array((void*)0x803DA600, PALETTE_80380400, 0xFF, D_801BC14C_7D693C.half, D_801BC150_7D6940.half, D_801BC154_7D6944.half);
+        Palette_AdjustRgb5551Array(PALETTE_803DA600, PALETTE_80380400, 0xFF, D_801BC14C_7D693C.half, D_801BC150_7D6940.half, D_801BC154_7D6944.half);
         D_801BC14C_7D693C.half = Math_ApproachS32(D_801BC14C_7D693C.half, -0x13, 1);
         D_801BC150_7D6940.half = Math_ApproachS32(D_801BC150_7D6940.half, -0x1F, 1);
         D_801BC154_7D6944.half = Math_ApproachS32(D_801BC154_7D6944.half, -0x20, 1);

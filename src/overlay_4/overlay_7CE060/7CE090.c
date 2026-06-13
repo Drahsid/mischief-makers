@@ -1257,7 +1257,7 @@ void func_801B9CF4_7CE484(void) {
         case 0:
             gStageCinemaState++;
             D_800BE6A8 = 1;
-            Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, 1, 4, 4);
+            Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 4, 4);
             Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 3, 6, 7);
             func_80046148(D_801BBC2C_7D03BC, (s32)D_801BBC3C_7D03CC);
             Actor_LoadSpawnTable(D_801BBC00_7D0390);
@@ -1322,7 +1322,7 @@ void func_801B9F18_7CE6A8(void) {
     switch (gStageCinemaState) {
         case 0:
             gStageCinemaState++;
-            Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, 1, 2, 3);
+            Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 2, 3);
             Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 5, 5, 7);
             Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 1, 1, 6);
             func_80046148(D_801BC434_7D0BC4, (s32)D_801BC444_7D0BD4);
@@ -1369,7 +1369,7 @@ void func_801BA0C8_7CE858(void) {
             }
             else {
                 gStageCinemaState++;
-                Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, 1, 4, 1);
+                Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 4, 1);
                 Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 3, 5, 3);
                 Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 0, 6, 0);
                 func_80045FA4(D_801BC80C_7D0F9C, (s32)D_801BC81C_7D0FAC);
@@ -1676,7 +1676,7 @@ void func_801BABE8_7CF378(void) {
     switch (gStageCinemaState) {
         case 0:
             gStageCinemaState++;
-            Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, 0, 3, -3);
+            Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 0, 3, -3);
             D_800BE6A8 = 0;
             func_80046148(D_801BD364_7D1AF4, (s32)D_801BD37C_7D1B0C);
             Actor_LoadSpawnTable(D_801BBC00_7D0390);
@@ -1758,7 +1758,7 @@ void func_801BAE74_7CF604(void) {
     switch (gStageCinemaState) {
         case 0:
             gStageCinemaState++;
-            Palette_AdjustRgb5551Array((u16*)0x803DA400, (u16*)0x80380200, 0xFF, 5, 3, -2);
+            Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 5, 3, -2);
             Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 2, 2, 4);
             D_800BE6A8 = 0;
             func_80046148(D_801BDF68_7D26F8, (s32)D_801BDF78_7D2708);

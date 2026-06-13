@@ -15,6 +15,9 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
+// portraits seem to use the same graphic flags as actors with this one exception.
+#define PORTRAIT_GFLAG_UNK1 ACTOR_GFLAG_ROTX
+
 // used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
