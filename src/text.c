@@ -52,7 +52,7 @@ u16 gASCIIAlphaIndecies[]={
 };
 
 
-Unk800D1788 gTextPalettes[]={
+u16 gTextPalettes[][4]={
     {0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1}
 };
 
@@ -134,13 +134,14 @@ void Text_InitActorGList(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z
 // @param green green value of color, pre-adjusted for RGBA5551
 // @returns pointer to gTextPalettes[arg0]
 u16* Text_SetColor(u16 arg0, u8 red, u8 blue, u8 green) {
-    Unk800D1788* temp_v1;
+    u16* temp_v1;
 
-    temp_v1 = &gTextPalettes[arg0];
-    temp_v1->unk2 = (((red / 2) << 11) + ((blue / 2) << 6) + ((green / 2) * 2) + 1);
-    temp_v1->unk4 = ((red << 11) + (blue << 6) + (green * 2) + 1);
-    return (u16*)temp_v1;
+    temp_v1 = gTextPalettes[arg0];
+    temp_v1[1] = (((red / 2) << 11) + ((blue / 2) << 6) + ((green / 2) * 2) + 1);
+    temp_v1[2] = ((red << 11) + (blue << 6) + (green * 2) + 1);
+    return temp_v1;
 }
+
 // set a text character actor with graphic and palette.
 // @param actor_index index of acctor.
 // @param graphic_index index of graphic.

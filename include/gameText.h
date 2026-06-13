@@ -3,17 +3,8 @@
 #include "inttypes.h"
 #include "Alphabet.h"
 
-// probably just a u16[4]...
-typedef struct {
-    s16 unk0;
-    s16 unk2;
-    s16 unk4;
-    s16 unk6;
-} Unk800D1788;
-
-
 extern u16 gASCIIAlphaIndecies[]; // LUT (ASCII - 0x20)->index
-extern Unk800D1788 gTextPalettes[];
+extern u16 gTextPalettes[][4];
 extern u8 gEngTextKerning[];
 extern u16 gTextPaletteBase[];
  

@@ -101,7 +101,7 @@ segments:
       - [0x023910, asm, soft_reset]
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c] # might be a fake split
-      - [0x027f70, c, text] # code for prinnting game's text
+      - [0x027f70, c, text] # code for printing game's text
       - [0x028EF0, c] 
       - [0x042E90, c]
       - [0x0438E0, c]
