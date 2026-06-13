@@ -34,6 +34,7 @@ u16 D_801A7F4C_78CA8C[]={
 };
 
 //. bss
+
 u8 D_801A8020;
 s16 D_801A8022;
 s16 D_801A8024;
@@ -96,6 +97,8 @@ void func_801A6D4C_78B88C(u16 actor_index){
 }
 
 #ifdef NON_MATCHING
+// pirate spawns a spikeball based on HP and/or chance.
+// https://decomp.me/scratch/S2YYO 71.75%
 void func_801A6E48_78B988(u16 actor_index) {
     u16 temp_a0;
     u16 temp_a1;
@@ -142,12 +145,14 @@ void func_801A6E48_78B988(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78B430/78B440/func_801A7100_78BC40.s")
 
+// behavior of pirate's spike balls.
+// unk_12C: number of bounces.
 void func_801A7C78_78C7B8(u16 actor_index) {
     
     func_80038C94(actor_index);
     if (gActors[actor_index].state == 0) {
         func_80038E1C(actor_index);
-        gActors[actor_index].flags |= 0x20000;
+        gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     }
     else{
       gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -158,24 +163,25 @@ void func_801A7C78_78C7B8(u16 actor_index) {
       }
     
       gActors[actor_index].velocityY.raw-= 0x2000;
-      if (gActors[actor_index].velocityY.raw < 0) {
-        if (gActors[actor_index].flags_098 & 0x20) {
-            if (gActors[actor_index].unk_12C >= 0.0f) {
-                Sound_PlaySfxAtActor2(0x9B, actor_index);
-            }
-            gActors[actor_index].velocityY.raw = (s32) ((f64) -(f32) gActors[actor_index].velocityY.raw * 0.75);
-            gActors[actor_index].unk_12C -= 1.0f;
+      if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
+        // bounce ball if it hits the floor and has more "bounces" left.
+        if (gActors[actor_index].unk_12C >= 0.0f) {
+            Sound_PlaySfxAtActor2(0x9B, actor_index);
         }
+        // 25% less bounce.
+        gActors[actor_index].velocityY.raw = (s32) ((f64) -(f32) gActors[actor_index].velocityY.raw * 0.75);
+        gActors[actor_index].unk_12C -= 1.0f;
       }
       func_80038868(actor_index, 0);
       if ((gActors[actor_index].unk_190 & 1) || (gActors[actor_index].unk_12C < 0.0f)) {
+        // ball is done bouncing, pops.
         gActors[actor_index].flags = 0;
         SpawnParticle_RingWaveBlue(0.5, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
-        Sound_PlaySfxAtActor2(0x5A, actor_index);
+        Sound_PlaySfxAtActor2(SFX_POP, actor_index);
         return;
       }
     }
     func_80038D1C(actor_index);
     func_8002ABE4(actor_index, 2);
-    gActors[actor_index].flags &= ~0x80;
+    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
 }

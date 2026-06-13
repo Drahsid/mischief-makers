@@ -5807,10 +5807,10 @@ void func_80038E1C(u16 actor_index) {
     gActors[actor_index].unk_148 = 1.1f;
     gActors[actor_index].health = 1;
     if (gActors[actor_index].var_158 & 1) {
-        gActors[actor_index].damage = 0x1E;
+        gActors[actor_index].damage = 30;
     }
     else {
-        gActors[actor_index].damage = 0x3C;
+        gActors[actor_index].damage = 60;
     }
     gActors[actor_index].unk_0DE = 0xC;
     gActors[actor_index].unk_0DF = 0x40;
