@@ -667,8 +667,8 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 1:
-            if (!(gActors[0x50].flags & 0x20)) {
-                gActors[0x50].flags |= 0x20;
+            if (!(gActors[0x50].flags & ACTOR_FLAG_FLIPPED)) {
+                gActors[0x50].flags |= ACTOR_FLAG_FLIPPED;
             }
             if (func_80046D5C() != 0) {
                 D_800D28F8 = 4;
