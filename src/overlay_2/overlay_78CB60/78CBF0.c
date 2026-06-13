@@ -2,13 +2,15 @@
 #include "actor.h"
 #include "Alphabet.h"
 
+// "overlay 2" code for Festival Games.
+
 extern ActorFunc D_801AF758_795A48[];
 extern ActorFunc D_801AF778_795A68[];
 extern u16 D_801AF79C_795A8C[];
 extern u16 D_801AF7C4_795AB4[];
 extern u16 D_801AF7C6_795AB6[];
 extern f32 D_801AFA24_795D14[];
-extern u8 D_801AF606_7958F6[];
+extern u8 D_801AF724_795A14[52]; // another ALPHA_EN3_* char length table.
 
 void func_801A7C14_78DF04(u16);
 void func_801A7CA4_78DF94(u16);
@@ -115,7 +117,7 @@ u8 func_801A8780_78EA70(u16* arg0) {
     if (c & 0x8000) {
         return 0U;
     }
-    return D_801AF606_7958F6[c];
+    return D_801AF724_795A14[c - ALPHA_EN3_LOWER_A];
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8780_78EA70.s")
