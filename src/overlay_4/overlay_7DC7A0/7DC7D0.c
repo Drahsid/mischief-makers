@@ -11,7 +11,7 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern void func_80064AA0(u16 arg0, void* arg1);
 extern u16 D_800D2950;
-extern void Sound_StopMusic(void);
+extern s32 func_8004185C(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 D_800D28F8;
@@ -19,6 +19,7 @@ extern u16 D_800D5824;
 extern s16 D_801BC9E2_7DF8B2;
 extern s16 D_801BC9EA_7DF8BA;
 extern s16 D_801BC9F2_7DF8C2;
+
 
 
 u32 D_801BC990_7DF860[] = {

@@ -8477,10 +8477,10 @@ void func_8004178C(u16 actor_index, u16* arg1) {
 // Actor_IsState2
 s32 func_8004185C(u16 arg0) {
     if (gActors[arg0].state == 2) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
