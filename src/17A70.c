@@ -34,9 +34,9 @@ extern u8 D_801376BD;
 extern u8 D_800E9634[];
 extern u8 D_800E9654[];
 extern u8 D_800E9720[];
-extern char D_800C8F68[];
-extern char D_800C8F74[];
-extern char D_800C8F88[];
+extern char D_800C8F68[]; // "PRESS START"
+extern char D_800C8F74[]; // "@1997 TREASURE/ENIX"
+extern char D_800C8F88[]; // "LICENCED TO NINTENDO" (not in Japanese version)
 
 extern u16 D_80178152;
 
@@ -386,6 +386,7 @@ void func_80017F08(void) {
     Text_PrintASCII(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
     palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
     Text_PrintASCII(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
+    // last 2 lines ommited in Japanese version.
     palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
     Text_PrintASCII(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
 }
