@@ -1138,7 +1138,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BD63C_7E050C);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = 0x30;
-            *(s16*)&D_801781F8[0xB2] = 0x3E8;
+            gFestivalData.guestHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0x8000;
             break;
@@ -1252,7 +1252,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BD684_7E0554);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = 0x30;
-            *(s16*)&D_801781F8[0xB2] = 0x3E8;
+            gFestivalData.guestHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0;
 
@@ -1395,7 +1395,7 @@ void func_801B9ED4_7DCDA4(void) {
 
     if ((gActors[0x30].flags & 2) && (gActors[0x30].health != 0)) {
         if (gActors[0x30].actorType == 0x1D02) {
-            *(s16*)&D_801781F8[0xB2] = gActors[0x30].health;
+            gFestivalData.guestHP = gActors[0x30].health;
         }
     }
 }
