@@ -1263,7 +1263,7 @@ void func_801B9900_7D40F0(void) {
         D_801BC140_7D6930.whole = -0x1F;
         D_801BC144_7D6934.whole = -0x1F;
         D_801BC148_7D6938.whole = -0xC;
-func_80045FA4        D_801BC14C_7D693C.whole = 0;
+        D_801BC14C_7D693C.whole = 0;
         D_801BC150_7D6940.whole = -0x14;
         D_801BC154_7D6944.whole = -0x18;
         func_8005CA34(-6, 0x14);

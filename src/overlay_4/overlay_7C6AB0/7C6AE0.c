@@ -2646,7 +2646,7 @@ void func_801BC2B0_7C9490(void) {
         case 0x11:
             if (func_80046D5C() != 0) {
                 gStageCinemaState++;
-                D_800D28FC |= 8;func_80045FA4
+                D_800D28FC |= 8;
             }
             break;
 
