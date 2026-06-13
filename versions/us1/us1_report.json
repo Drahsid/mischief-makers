@@ -9,7 +9,7 @@
     "matched_functions": 1703,
     "matched_functions_percent": 36.172474,
     "complete_data_percent": 100.0,
-    "total_units": 423
+    "total_units": 421
   },
   "units": [
     {
@@ -36179,6 +36179,20 @@
           "metadata": {
             "virtual_address": "2149167360"
           }
+        },
+        {
+          "name": ".data",
+          "size": "416",
+          "metadata": {
+            "virtual_address": "2149189856"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "656",
+          "metadata": {
+            "virtual_address": "2149190272"
+          }
         }
       ],
       "functions": [
@@ -36573,58 +36587,6 @@
         "progress_categories": [
           "overlays",
           "overlay_slot_1"
-        ]
-      }
-    },
-    {
-      "name": "overlay_73D070/73D090.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "480",
-          "metadata": {
-            "virtual_address": "2149189856"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".overlay_73D070",
-        "module_id": 63,
-        "progress_categories": [
-          "overlays"
-        ]
-      }
-    },
-    {
-      "name": "overlay_73D070/73D090.rodata",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".rodata",
-          "size": "592",
-          "metadata": {
-            "virtual_address": "2149190336"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".overlay_73D070",
-        "module_id": 63,
-        "progress_categories": [
-          "overlays"
         ]
       }
     },
@@ -48834,7 +48796,7 @@
         "matched_functions": 548,
         "matched_functions_percent": 21.523958,
         "complete_data_percent": 100.0,
-        "total_units": 142
+        "total_units": 140
       }
     },
     {
