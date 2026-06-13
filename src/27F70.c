@@ -2884,7 +2884,7 @@ void SpawnGemRing(u16 flags) {
         func_8001E2D0(index);
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8;
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
-        ACTOR_GFX_INIT(index, gGraphicListGem2);
+        ACTOR_GFX_INIT(index, gGraphicListGem);
         gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 256];
         gActors[index].var_150 = flags & 0x8000;
         gActors[index].var_154 = flags & 0xF;
@@ -3080,7 +3080,7 @@ s32 func_8002FD48(u16 actor_index) {
 
 void func_8002FEF8(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
-        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
         func_800358DC(actor_index);
     }
@@ -3095,7 +3095,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].timer_110];
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
@@ -3139,7 +3139,7 @@ void func_800303A8(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
+        ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].colorA = 0xFE;
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);

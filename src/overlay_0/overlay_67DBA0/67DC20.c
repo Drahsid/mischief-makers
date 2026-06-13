@@ -787,7 +787,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-            ACTOR_GFX_INIT(actor_index, gGraphicListGem2);
+            ACTOR_GFX_INIT(actor_index, gGraphicListGem);
             gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
