@@ -34,9 +34,22 @@ extern u8 D_801376BD;
 extern u8 D_800E9634[];
 extern u8 D_800E9654[];
 extern u8 D_800E9720[];
+
+//.data
+
+extern Gfx D_800c8EC8[];
 extern char D_800C8F68[]; // "PRESS START"
 extern char D_800C8F74[]; // "@1997 TREASURE/ENIX"
 extern char D_800C8F88[]; // "LICENCED TO NINTENDO" (not in Japanese version)
+extern u16 D_800C8FA0[];
+extern u16 D_800C8FC0[];
+extern u16 D_800C9080[];
+extern u16 D_800C9280[]; // "Sound test" SFX indecies.
+extern char D_800C94CC[]; // "BGM"
+extern char D_800C94D0[]; // "S.E"
+extern u16 D_800C94D8[]; // positions of Sound Test icons
+
+
 
 extern u16 D_80178152;
 
@@ -398,7 +411,7 @@ void func_80017FE8(u16 actor_index) {
     gActors[actor_index].posX.whole = -2;
     gActors[actor_index].posY.whole = 4;
     gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
-    gActors[actor_index].graphicFlags |= 0x801;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].posZ.whole = 0x100;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].scaleX = 18.0f;
@@ -406,14 +419,15 @@ void func_80017FE8(u16 actor_index) {
     gActors[actor_index].colorR = gActors[actor_index].colorG = gActors[actor_index].colorB = gActors[actor_index].colorA = 0xFF;
 }
 
+// move subtitle graphic (visible only in Japanese version.)
 void func_8001809C(void) {
     if (gActors[0x34].posX.whole == -0x18) {
         return;
     }
 
-    gActors[0x34].velocityX.raw = (-0x180000 - gActors[0x34].posX.raw) / 4;
-    if (gActors[0x34].velocityX.raw < -0x200000) {
-        gActors[0x34].posX.raw += -0x200000;
+    gActors[0x34].velocityX.raw = (FIXED_UNIT(-24.0) - gActors[0x34].posX.raw) / 4;
+    if (gActors[0x34].velocityX.raw < FIXED_UNIT(-32.0)) {
+        gActors[0x34].posX.raw += FIXED_UNIT(-32.0);
         return;
     }
     gActors[0x34].posX.raw += gActors[0x34].velocityX.raw;
@@ -425,6 +439,7 @@ void func_800180FC(void) {
     func_8001809C();
     func_80017F08();
 
+    // blink "press start" text
     if ((D_80178166++ & 4) == 0) {
         for (index = 0x39; index < 0x43; index++) {
             gActors[index].flags = 0;
