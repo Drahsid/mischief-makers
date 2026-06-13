@@ -763,7 +763,7 @@ void func_80020A90(void) {
     case 1:
         actor_index = 0xC8;
         if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) {
-            func_800273FC(actor_index + 4, 0, 0, 0xC, 0x401);
+            Text_InitActorGraphic(actor_index + 4, 0, 0, 0xC, 0x401);
             gActors[actor_index + 4].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
             func_80083454();
             func_800836A0(4, 0, D_800CA254, 1);

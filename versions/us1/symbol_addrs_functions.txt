@@ -166,3 +166,23 @@ Actor_AdvanceState = 0x80042360; // type:func
 Input_CheckButtonRepeat = 0x80017680; // type:func
 DebugMenu_UpdateCursorFlash = 0x80017770; // type:func
 DebugStageSelect_DrawMenu = 0x80018E00; // type:func
+
+//text.c
+Text_InitActor = 0x80027370; // type:func
+Text_InitActorGraphic = 0x800273FC; // type:func
+Text_InitActorGraphicRGB = 0x80027468; // type:func
+Text_InitActorGList = 0x80027510; // type:func
+Text_SetColor = 0x80027588; // type:func
+Text_InitActorPalette = 0x80027644; // type:func
+Text_PrintASCII = 0x800276DC; // type:func
+Text_Print2Digits = 0x80027800; // type:func
+Text_Print3Digits = 0x800278E8; // type:func
+Text_GetWidth = 0x80027A44; // type:func
+Text_GetWidth2 = 0x80027A88; // type:func
+Text_FreeString = 0x80027AC8; // type:func
+Text_PrintString = 0x80027B28; // type:func
+Text_PrintStringRGB = 0x80027C40; // type:func
+Text_PrintStringRGBScale = 0x80027D94; // type:func
+Text_PrintStringGray = 0x8002801C; // type:func
+Text_PrintString2 = 0x80028150; // type:func
+Text_SetHCColor = 0x80028260; // type:func

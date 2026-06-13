@@ -3,26 +3,37 @@
 #include "inttypes.h"
 #include "Alphabet.h"
 
-extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
-extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
+// probably just a u16[4]...
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+} Unk800D1788;
 
-extern void func_80027370(u16 actor_index, u16 x, u16 y, u16 z);
-extern void func_800273FC(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z);
-extern void func_80027468(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue);
-extern void func_80027510(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z);
-void* func_80027588(u16 arg0, u8 red, u8 blue, u8 green);
-extern void func_80027644(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, s32 arg5);
-extern u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5);
-extern u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5);
-extern u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 arg5);
-extern u16 func_80027A44(u16* str);
-extern u16 func_80027A88(u16* str);
-extern u16 func_80027AC8(u16 actor_index, u16* str);
-extern u16 func_80027B28(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
-extern u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue);
-extern u16 func_80027D94(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue, f32 scale_x, f32 scale_y);
-extern u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
-extern u16 func_80028150(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
-extern void func_80028260(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue);
+
+extern u16 gASCIIAlphaIndecies[]; // LUT (ASCII - 0x20)->index
+extern Unk800D1788 gTextPalettes[];
+extern u8 gEngTextKerning[];
+extern u16 gTextPaletteBase[];
+ 
+extern void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z);
+extern void Text_InitActorGraphic(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z);
+extern void Text_InitActorGraphicRGB(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue);
+extern void Text_InitActorGList(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z);
+extern u16* Text_SetColor(u16 arg0, u8 red, u8 blue, u8 green);
+extern void Text_InitActorPalette(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u16* arg5);
+extern u16 Text_PrintASCII(u16 actor_index, char* str, u16 x, u16 y, u16 z, u16* arg5);
+extern u16 Text_Print2Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* arg5);
+extern u16 Text_Print3Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* arg5);
+extern u16 Text_GetWidth(u16* str);
+extern u16 Text_GetWidth2(u16* str);
+extern u16 Text_FreeString(u16 actor_index, u16* str);
+extern u16 Text_PrintString(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
+extern u16 Text_PrintStringRGB(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue);
+extern u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue, f32 scale_x, f32 scale_y);
+extern u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
+extern u16 Text_PrintString2(u16 actor_index, u16* str, u16 x, u16 y, u16 z);
+extern void Text_SetHCColor(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue);
 
 #endif

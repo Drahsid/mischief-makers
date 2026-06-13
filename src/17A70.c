@@ -59,9 +59,6 @@ void func_8001ACA8(s32 arg0, s32 arg1, s32 arg2);
 void func_8001B02C(void);
 void func_8001B1A0(void);
 u16 func_8001B244(void);
-void Sound_StopMusic(void);
-s32 Sound_PlaySfx2(u32 arg0);
-u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5);
 void func_80043918(void);
 void func_8008310C(void);
 void func_80083454(void);
@@ -380,22 +377,17 @@ void DebugMenu_UpdateCursorFlash(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameState_Intro.s")
 
+// 
 void func_80017F08(void) {
-    s32 palette_index;
-    s32 color;
-    s32 palette;
+    u16* palette;
 
     DebugMenu_UpdateCursorFlash();
-    palette = func_80027588(
-        (palette_index = 0),
-        (color = (0x1F - (gDebugMenuCursorFlash[0] / 4)) & 0xFF),
-        color & 0xFF,
-        0x1F);
-    func_800276DC(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
-    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
-    func_800276DC(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
-    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
-    func_800276DC(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
+    palette = Text_SetColor(0,(0x1F - (gDebugMenuCursorFlash[0] / 4)),(0x1F - (gDebugMenuCursorFlash[0] / 4)),0x1f);
+    Text_PrintASCII(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
+    palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
+    Text_PrintASCII(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
+    palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
+    Text_PrintASCII(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
 }
 
 void func_80017FE8(u16 actor_index) {

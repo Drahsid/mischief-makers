@@ -17,8 +17,8 @@ u16 gASCIIAlphaIndecies[]={
     ALPHA_4,ALPHA_5,ALPHA_6,ALPHA_7,
 //  8       9       :              ;
     ALPHA_8,ALPHA_9,ALPHA_EN_COLON,ALPHA_SPACE,
-//  <           =            >           ?
-    ALPHA_EN_BRACKETLEFT,ALPHA_SPACE,ALPHA_SPACE,ALPHA_EN_QUESTION,
+//  <           =            >          ?
+    ALPHA_SPACE,ALPHA_SPACE,ALPHA_SPACE,ALPHA_EN_QUESTION,
 //  @                  A                B                C
     ALPHA_EN_COPYRIGHT,ALPHA_EN_UPPER_A,ALPHA_EN_UPPER_B,ALPHA_EN_UPPER_C,
 //  D                E                F                G
@@ -51,25 +51,21 @@ u16 gASCIIAlphaIndecies[]={
    ALPHA_EN_LOWER_X,ALPHA_EN_LOWER_Y,ALPHA_EN_LOWER_Z,ALPHA_SPACE
 };
 
-typedef struct {
-    s16 unk0;
-    s16 unk2;
-    s16 unk4;
-    s16 unk6;
-} Unk800D1788;
 
 Unk800D1788 gTextPalettes[]={
-    {0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1}
+    {0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1},{0,0,0,1}
 };
 
 // In english localizations the main "font" is a kerned
 // English Alphabet. This table gives the letters' widths.
+// not in original Japanese version.
 u8 gEngTextKerning[]={
     // a b c d e f g h i j k l m n o p q r s t u v w x y z
        6,5,5,5,5,4,5,5,2,5,5,2,7,5,5,5,5,5,5,5,5,5,6,5,5,5,
     // A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
        6,6,6,6,6,6,6,6,3,6,6,5,8,6,6,6,6,6,6,6,6,7,8,6,6,6
 };
+
 //              RGB vals: 0,0,0 7,7,7  15,15,15                         
 u16 gTextPaletteBase[]={0,0x001,0x39cf,0x7bdf};
 
@@ -78,7 +74,7 @@ u16 gTextPaletteBase[]={0,0x001,0x39cf,0x7bdf};
 // @param x x-position of acctor.
 // @param y y-position of acctor.
 // @param z z-position of acctor.
-void func_80027370(u16 actor_index, u16 x, u16 y, u16 z) {
+void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z) {
     gActors[actor_index].actorType = 0;
     func_8001E2D0(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK11;
@@ -90,28 +86,28 @@ void func_80027370(u16 actor_index, u16 x, u16 y, u16 z) {
 
 // set a text character actor with graphic
 // @param actor_index index of acctor.
-// @param arg1 index of graphic.
+// @param graphic_index index of graphic.
 // @param x x-position of acctor.
 // @param y y-position of acctor.
 // @param z z-position of acctor.
-void func_800273FC(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z) {
-    func_80027370(actor_index, x, y, z);
-    gActors[actor_index].graphicIndex = arg1;
+void Text_InitActorGraphic(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16 z) {
+    Text_InitActor(actor_index, x, y, z);
+    gActors[actor_index].graphicIndex = graphic_index;
 }
 
 // set a text character actor with graphic and color.
 // @param actor_index index of acctor.
-// @param arg1 index of graphic.
+// @param graphic_index index of graphic.
 // @param x x-position of acctor.
 // @param y y-position of acctor.
 // @param z z-position of acctor.
 // @param red red value of actor color.
 // @param green green value of actor color.
 // @param blue blue value of actor color.
-void func_80027468(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue) {
-    func_80027370(actor_index, x, y, z);
+void Text_InitActorGraphicRGB(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue) {
+    Text_InitActor(actor_index, x, y, z);
     gActors[actor_index].graphicTimer = 0;
-    gActors[actor_index].graphicIndex = arg1;
+    gActors[actor_index].graphicIndex = graphic_index;
     if (red | green | blue) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
         gActors[actor_index].colorR = red;
@@ -126,37 +122,37 @@ void func_80027468(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, u8 red, u8 gr
 // @param x x-position of acctor.
 // @param y y-position of acctor.
 // @param z z-position of acctor.
-void func_80027510(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z) {
-    func_80027370(actor_index, x, y, z);
+void Text_InitActorGList(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z) {
+    Text_InitActor(actor_index, x, y, z);
     ACTOR_GFX_INIT(actor_index, graphic_list);
 }
 
 // set colors of gTextPalettes[arg0] based on(red,blue,green)
 // @param arg0 index of gTextPalettes[]
-// @param red red value of color, pre-adjusted for RGB5551
-// @param blue blue value of color, pre-adjusted for RGB5551
-// @param green green value of color, pre-adjusted for RGB5551
+// @param red red value of color, pre-adjusted for RGBA5551
+// @param blue blue value of color, pre-adjusted for RGBA5551
+// @param green green value of color, pre-adjusted for RGBA5551
 // @returns pointer to gTextPalettes[arg0]
-void* func_80027588(u16 arg0, u8 red, u8 blue, u8 green) {
+u16* Text_SetColor(u16 arg0, u8 red, u8 blue, u8 green) {
     Unk800D1788* temp_v1;
 
     temp_v1 = &gTextPalettes[arg0];
     temp_v1->unk2 = (((red / 2) << 11) + ((blue / 2) << 6) + ((green / 2) * 2) + 1);
     temp_v1->unk4 = ((red << 11) + (blue << 6) + (green * 2) + 1);
-    return temp_v1;
+    return (u16*)temp_v1;
 }
 // set a text character actor with graphic and palette.
 // @param actor_index index of acctor.
-// @param arg1 index of graphic.
+// @param graphic_index index of graphic.
 // @param x x-position of acctor.
 // @param y y-position of acctor.
 // @param z z-position of acctor.
 // @param palette pointer of palette.
-void func_80027644(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, s32 palette) {
-    func_800273FC(actor_index, arg1, x, y, z);
+void Text_InitActorPalette(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16 z, u16* palette) {
+    Text_InitActorGraphic(actor_index, graphic_index, x, y, z);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_index].unk_18C = palette;
+    gActors[actor_index].palette_18C = palette;
 }
 
 // render string to screen horizontally
@@ -167,7 +163,7 @@ void func_80027644(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z, s32 palette) 
 // @param y y-position of acctor.
 // @param z z-position of acctor.
 // @param palette pointer of palette.
-u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 palette) {
+u16 Text_PrintASCII(u16 actor_index, char* str, u16 x, u16 y, u16 z, u16* palette) {
     char ch;
     while ((ch = *str) != 0) {
         if (ch == '#') {
@@ -175,7 +171,7 @@ u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 palette) 
             actor_index++;
         }
         else if (ch != ' ') {
-            func_80027644(actor_index, ALPHA_GLYPH_INDEX(gASCIIAlphaIndecies[ch - ' ']), x, y, z, palette);
+            Text_InitActorPalette(actor_index, ALPHA_GLYPH_INDEX(gASCIIAlphaIndecies[ch - ' ']), x, y, z, palette);
             actor_index++;
         }
         str++;
@@ -192,7 +188,7 @@ u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 palette) 
 // @param z z-position of acctor.
 // @param palette pointer of palette.
 // @returns actor_index+2
-u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 palette) {
+u16 Text_Print2Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palette) {
     u16 tens;
 
     tens = 0;
@@ -200,8 +196,8 @@ u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 palette) {
         num -= 10;
         tens++;
     }
-    func_80027644(actor_index + 0, ALPHA_GLYPH_INDEX(tens), x, y, z, palette);
-    func_80027644(actor_index + 1, ALPHA_GLYPH_INDEX(num), x + 9, y, z, palette);
+    Text_InitActorPalette(actor_index + 0, ALPHA_GLYPH_INDEX(tens), x, y, z, palette);
+    Text_InitActorPalette(actor_index + 1, ALPHA_GLYPH_INDEX(num), x + 9, y, z, palette);
     return actor_index + 2;
 }
 
@@ -213,7 +209,7 @@ u16 func_80027800(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 palette) {
 // @param z z-position of acctor.
 // @param palette pointer of palette.
 // @returns actor_index+3
-u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 palette) {
+u16 Text_Print3Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palette) {
     u16 hundos;
     u16 tens;
     s32 index;
@@ -229,16 +225,17 @@ u16 func_800278E8(u16 actor_index, u16 num, u16 x, u16 y, u16 z, s32 palette) {
         tens++;
     }
     index = actor_index;
-    func_80027644(index, ALPHA_GLYPH_INDEX(hundos), x, y, z, palette);
-    func_80027644(index + 1, ALPHA_GLYPH_INDEX(tens), x + 9, y, z, palette);
-    func_80027644(index + 2, ALPHA_GLYPH_INDEX(num), x + 18, y, z, palette);
+    Text_InitActorPalette(index, ALPHA_GLYPH_INDEX(hundos), x, y, z, palette);
+    Text_InitActorPalette(index + 1, ALPHA_GLYPH_INDEX(tens), x + 9, y, z, palette);
+    Text_InitActorPalette(index + 2, ALPHA_GLYPH_INDEX(num), x + 18, y, z, palette);
     return index + 3;
 }
 
 // get pixel width of character by alphabet symbol
+// Not in Japanese version - text is monospace.
 // @param str ALPHABET_* string
 // @returns character width
-u16 func_80027A44(u16* str) {
+u16 Text_GetWidth(u16* str) {
     if (*str < ALPHA_EN3_LOWER_A) {
         return 6;
     }
@@ -251,13 +248,14 @@ u16 func_80027A44(u16* str) {
 }
 
 // get pixel width of 2 characters by alphabet symbol
+// Not in Japanese version - text is monospace.
 // @param str ALPHABET_* string
 // @returns characters' width
-u16 func_80027A88(u16* str) {
+u16 Text_GetWidth2(u16* str) {
     u16 len0;
     u16 len1;
-    len0 = func_80027A44(str++);
-    len1 = func_80027A44(str);
+    len0 = Text_GetWidth(str++);
+    len1 = Text_GetWidth(str);
     return len1 + len0;
 }
 
@@ -265,7 +263,7 @@ u16 func_80027A88(u16* str) {
 // @param actor_index index of first acctor.
 // @param str ALPHABET_* string
 // @returns last applicable actor index + 1
-u16 func_80027AC8(u16 actor_index, u16* str) {
+u16 Text_FreeString(u16 actor_index, u16* str) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
             gActors[actor_index].flags = 0;
@@ -283,14 +281,14 @@ u16 func_80027AC8(u16 actor_index, u16* str) {
 // @param y y-position of first acctor.
 // @param z z-position of first acctor.
 // @returns last applicable actor index + 1
-u16 func_80027B28(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
+u16 Text_PrintString(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
-            func_80027370(actor_index, x, y, z);
+            Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             actor_index++;
-            x += func_80027A88(str);
+            x += Text_GetWidth2(str);
         }
         else {
             x += 14;
@@ -310,10 +308,10 @@ u16 func_80027B28(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 // @param green green value of actor color.
 // @param blue blue value of actor color.
 // @returns last applicable actor index + 1
-u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue) {
+u16 Text_PrintStringRGB(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
-            func_80027370(actor_index, x, y, z);
+            Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             if (red | green | blue) {
@@ -323,7 +321,7 @@ u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
                 gActors[actor_index].colorB = blue;
             }
             actor_index++;
-            x += func_80027A88(str);
+            x += Text_GetWidth2(str);
         }
         else {
             x += 14;
@@ -345,10 +343,10 @@ u16 func_80027C40(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
 // @param scale_x x-scale of actors.
 // @param scale_y y-scale of actors.
 // @returns last applicable actor index + 1
-u16 func_80027D94(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue, f32 scale_x, f32 scale_y) {
+u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue, f32 scale_x, f32 scale_y) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
-            func_80027370(actor_index, x, y, z);
+            Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             if ((scale_x != 1.0) || (scale_y != 1.0)) {
                 gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
@@ -377,16 +375,16 @@ u16 func_80027D94(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 gre
 // @param y y-position of first acctor.
 // @param z z-position of first acctor.
 // @returns last applicable actor index + 1
-u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
+u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
-            func_80027370(actor_index, x, y, z);
+            Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
             gActors[actor_index].unk_18C = (s32)gTextPaletteBase;
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             actor_index++;
-            x += func_80027A88(str);
+            x += Text_GetWidth2(str);
         }
         else {
             x += 14;
@@ -403,10 +401,10 @@ u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 // @param y y-position of first acctor.
 // @param z z-position of first acctor.
 // @returns last applicable actor index + 1
-u16 func_80028150(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
+u16 Text_PrintString2(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
         if (*str != 0) {
-            func_80027370(actor_index, x, y, z);
+            Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
         }
@@ -421,12 +419,12 @@ u16 func_80028150(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 }
 
 // set color of palette (0x80380400)[arg1]
-// @param arg0 unknown. should always be 0,1, or 2 to avoid bad pointer.
+// @param arg0 unknown. should always be 0, 1, or 2 to avoid bad pointer.
 // @param arg1 index at hard-coded palette address.
 // @param red red value of palette color.
 // @param green green value of palette color.
 // @param blue blue value of palette color.
-void func_80028260(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue) {
+void Text_SetHCColor(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue) {
     u16* sp4;
     if ((arg0 == 0) || (arg0 == 1) || (arg0 == 2)) {
         sp4 = (u16*)0x80380400;
