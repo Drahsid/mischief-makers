@@ -35,7 +35,6 @@ extern u16 D_800CA234;
 extern u16 D_800CA2B0[];
 
 extern UnkFunc800CA1C0 D_800CA1C0[];
-extern u16 D_800CA230;
 extern u16 D_800CA238; // attract demo index
 extern u16 D_800CA23C;
 extern u16 D_800CA240;

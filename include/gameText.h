@@ -3,7 +3,6 @@
 #include "inttypes.h"
 #include "Alphabet.h"
 
-extern u16 D_800CA230;
 extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
 extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
 
