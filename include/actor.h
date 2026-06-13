@@ -3,6 +3,7 @@
 
 #include <PR/gbi.h>
 #include <PR/ultratypes.h>
+#include "graphicIndex.h"
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
@@ -68,7 +69,7 @@ enum ActorGFlags {
     ACTOR_GFLAG_UNK11 = (1U << 11U), // seems to effect translate mtx.
     ACTOR_GFLAG_SCALEZ = (1U << 12U), // use feild 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_3DOBJ = (1U << 13U), // field at 0x17C treated as dlist for 3d model
-    ACTOR_GFLAG_UNK14 = (1U << 14U), // unused?
+    ACTOR_GFLAG_UNK14 = (1U << 14U), // used by portrait struct.
     ACTOR_GFLAG_UNK15 = (1U << 15U) // a change in blending?
 };
 
@@ -156,8 +157,8 @@ typedef struct {
         };
     };
     /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
-    /* 0x0D4 */ u16 unk_0D4;
-    /* 0x0D6 */ u16 unk_0D6; // used as another actor index
+    /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
+    /* 0x0D6 */ u16 unk_0D6; // index to "parent"/grab-ee actor?
     /* 0x0D8 */ u16 unk_0D8;
     /* 0x0DA */ u8 unk_0DA;
     /* 0x0DB */ u8 unk_0DB;
@@ -166,12 +167,12 @@ typedef struct {
     /* 0x0DE */ u8 unk_0DE;
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
-    /* 0x0E2 */ s16 unk_0E2;
+    /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.
     /* 0x0E4 */ s16 damage; // damage caused by contact
     /* 0x0E6 */ s16 graphicTimer; // time in ticks (x/60 seconds) the current graphic should be displayed.
 
     // graphic animations are determined by the following pointer.
-    // it often references a u16[], where the entries alternate
+    // it often references a s16[], where the entries alternate
     // between the index of the grapic and the time in ticks to display.
     // negative "index" values mean a looping animation back that many indecies.
     // some actors, like Marina, instead treat the field as a u16**,

@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "SFX.h"
 
+// "overlay 0" code for intro scene
+
 typedef struct {
     /* 0x00 */ f32 unk_00;
     /* 0x04 */ s32 unk_04;
@@ -46,7 +48,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y);
 
 // Intro actor setup helpers
 // The controller uses fixed actor slots for the main portraits, attached sprite parts, screen fades, particles, and effects
-void func_80192100_6D2780(u16 arg0, u16 actor_index, u16 actor_type, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
     gActors[actor_index].actorType = actor_type;
     func_8001E2D0(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
@@ -56,45 +58,45 @@ void func_80192100_6D2780(u16 arg0, u16 actor_index, u16 actor_type, u16 graphic
     gActors[actor_index].posX.whole = pos_x;
     gActors[actor_index].posY.whole = pos_y;
     gActors[actor_index].posZ.whole = pos_z;
-    gActors[actor_index].stateLower = gActors[arg0].stateLower;
+    gActors[actor_index].stateLower = gActors[parent_actor].stateLower;
 }
 
-void func_801921C8_6D2848(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B02, arg2, arg3, arg4, arg5);
+void func_801921C8_6D2848(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B02, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_80192224_6D28A4(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B03, arg2, arg3, arg4, arg5);
-    gActors[actor_index].posX.whole = gActors[arg0].posX.whole + arg3;
-    gActors[actor_index].posY.whole = gActors[arg0].posY.whole + arg4;
-    gActors[actor_index].posZ.whole = gActors[arg0].posZ.whole + arg5;
-    gActors[actor_index].var_158 = arg3 << 0x10;
-    gActors[actor_index].var_15C = arg4 << 0x10;
-    gActors[actor_index].var_154 = arg0;
-    gActors[actor_index].var_160 = arg5;
+void func_80192224_6D28A4(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(parent_index, actor_index, 0x2B03, graphic_index, pos_x, pos_y, pos_z);
+    gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + pos_x;
+    gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + pos_y;
+    gActors[actor_index].posZ.whole = gActors[parent_index].posZ.whole + pos_z;
+    gActors[actor_index].var_158 = pos_x << 0x10;
+    gActors[actor_index].var_15C = pos_y << 0x10;
+    gActors[actor_index].var_154 = parent_index;
+    gActors[actor_index].var_160 = pos_z;
 }
 
-void func_801922F4_6D2974(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B04, arg2, arg3, arg4, arg5);
+void func_801922F4_6D2974(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, arg1, 0x2B04, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_80192350_6D29D0(u16 arg0, u16 arg1, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, arg1, 0x2B01, arg2, arg3, arg4, arg5);
+void func_80192350_6D29D0(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, arg1, 0x2B01, graphic_index, pos_x, pos_y, pos_z);
 }
 
-void func_801923AC_6D2A2C(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B06, arg2, arg3, arg4, arg5);
-    gActors[actor_index].graphicFlags |= 9;
+void func_801923AC_6D2A2C(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B06, graphic_index, pos_x, pos_y, pos_z);
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
-void func_80192438_6D2AB8(u16 arg0, u16 actor_index, u16 arg2, s16 arg3, s16 arg4, s16 arg5) {
-    func_80192224_6D28A4(arg0, actor_index, arg2, arg3, arg4, arg5);
+void func_80192438_6D2AB8(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192224_6D28A4(parent_index, actor_index, graphic_index, pos_x, pos_y, pos_z);
     gActors[actor_index].actorType = 0x2B07;
-    gActors[actor_index].graphicFlags |= 9;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
-void func_801924CC_6D2B4C(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
-    func_80192100_6D2780(arg0, arg1, 0x2B08, 0, arg2, arg3, arg4);
+void func_801924CC_6D2B4C(u16 arg0, u16 actor_index, s16 pos_x, s16 pos_y, s16 pos_z) {
+    func_80192100_6D2780(arg0, actor_index, 0x2B08, 0, pos_x, pos_y, pos_z);
 }
 
 // Particles used during the orange-gradient clancer-rise scene?
@@ -201,7 +203,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
     switch (gActors[actor_index].stateLower) {
         // Bootstrap the intro overlay after the logo fades
         case 0:
-            func_80192350_6D29D0(actor_index, 0x8F, 0x2D0, 0, 0, 0x10);
+            func_80192350_6D29D0(actor_index, 0x8F, GINDEX_SOLIDSQARE, 0, 0, 0x10);
             func_80192920_6D2FA0(3);
             D_80199B30_6DA1B0 = 0x30;
             break;
@@ -814,7 +816,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
 void func_8019429C_6D491C(u16 actor_index) {
     gActors[actor_index].graphicFlags =  ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_DRAW;
     gActors[actor_index].flags = ACTOR_GFLAG_ROTZ| ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].graphicIndex = 0x2D0;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].colorR = 0;
     gActors[actor_index].colorG = 0;
@@ -823,7 +825,7 @@ void func_8019429C_6D491C(u16 actor_index) {
     gActors[actor_index].posY.whole = 0;
     gActors[actor_index].posZ.whole = -0x100;
     gActors[actor_index].unk_188 = 0;
-    gActors[actor_index].unk_18C = (s32)D_800D85A8;
+    gActors[actor_index].palette_18C = D_800D85A8;
     gActors[actor_index].scaleX = 19.0f;
     gActors[actor_index].scaleY = 13.0f;
 }
@@ -1171,7 +1173,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
 
 // Sparkle/smoke/impact particle spawners used by the portrait actors
 void func_80194D2C_6D53AC(u16 actor_index) {
-    u16 new_actor_index = func_8003123C(D_800E1380, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
+    u16 new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole - 0x10, 1);
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = 1;
@@ -1190,7 +1192,7 @@ void func_80194E0C_6D548C(u16 actor_index) {
     u16 new_actor_index;
 
     if ((gActiveFrames & 3) == 0) {
-        new_actor_index = func_80031284(
+        new_actor_index = SpawnParticle_Image_90C0_16(
             0x1D8,
             gActors[actor_index].posX.whole - 8,
             gActors[actor_index].posY.whole - 0x10,
@@ -1217,7 +1219,7 @@ void func_80194F1C_6D559C(u16 actor_index) {
     f32 temp_f6;
     f32 temp_f10;
 
-    new_actor_index = func_80031284(
+    new_actor_index = SpawnParticle_Image_90C0_16(
         0x1AA,
         gActors[actor_index].posX.whole,
         gActors[actor_index].posY.whole - 0x10,
@@ -1479,7 +1481,7 @@ void func_80196FC8_6D7648(u16 actor_index) {
     s32 angle;
     u16 new_actor_index;
 
-    new_actor_index = func_8003123C(D_800E1380, 0, 0, gActors[actor_index].posZ.whole);
+    new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, 0, 0, gActors[actor_index].posZ.whole);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].flags = ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
@@ -1493,8 +1495,8 @@ void func_80196FC8_6D7648(u16 actor_index) {
         gActors[new_actor_index].posX.whole = (s32)((Rand() - 0x80) * 0.3);
         gActors[new_actor_index].posY.whole = (s32)(((Rand() - 0x80) * 0.3) + 48.0);
         angle = Math_Atan2(-gActors[actor_index].posX.whole, 0x30 - gActors[actor_index].posY.whole);
-        gActors[new_actor_index].velocityX.raw = (s32)(gCosineLookup[angle & 0x3FF] * 65536.0f);
-        gActors[new_actor_index].velocityY.raw = (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 65536.0f);
+        gActors[new_actor_index].velocityX.raw = FIXED_UNIT(COS(angle));
+        gActors[new_actor_index].velocityY.raw = FIXED_UNIT(SIN(angle));
         gActors[new_actor_index].var_158 = 0;
         gActors[new_actor_index].var_15C = 0;
         gActors[new_actor_index].unk_168 = 0;
@@ -1638,7 +1640,7 @@ void func_80198274_6D88F4(u16 actor_index) {
 
 // Smoke puffs in front of Leo before Calina appears?
 void func_801987F0_6D8E70(u16 actor_index) {
-    u16 new_actor_index = func_8003123C(D_800E1604, 0, 0, 0);
+    u16 new_actor_index = SpawnParticle_List_90C0_16(D_800E1604, 0, 0, 0);
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;

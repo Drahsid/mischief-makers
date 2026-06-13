@@ -16,15 +16,15 @@ extern s32 Math_AbsS32(s32 val);
 extern s32 Math_Atan2(s32 x, s32 y);
 extern void func_8002AA20(u16 actor_index, s32 unused);
 extern void func_8002AC30(u16 actor_index, s16 val);
-extern u16 func_8003123C(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z);
-extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
+extern u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z);
+extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void Actor_ClearRange_30To90(void);
 extern u16 func_8003D628(u16);
 extern void func_80042DBC(void* arg0);
 extern void func_80045D84(u32 arg0, u32 arg1);
 extern void func_80057320(s32, s32);
 extern void func_8005739C(s32 arg0, s32 arg1);
-extern void func_8005CA34(s32 arg0, s32 arg1);
+extern void func_8005CA34(s32 mag, s32 time); // shake camera vertically.
 extern s32 func_8005D1E8(u16);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
@@ -36,10 +36,6 @@ extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
-extern s32 Sound_PlaySfxAtVol(u32 arg0, s16 arg1);
-extern s32 Sound_PlaySfxAtPan(u32 arg0, s8 arg1);
-extern s32 Sound_PlaySfxAtActor3(u32 arg0, u16 actor_index);
-extern void Sound_PlaySfxAtActorPanning(u32 arg0, u16 arg1);
 extern void func_800255B4(u16 arg0);
 extern void func_80025BFC(void);
 extern void func_80025E00(void);
@@ -182,10 +178,7 @@ extern void func_80082E04(void);
 extern void func_80082F10(void);
 extern void func_80083E74(void);
 
-extern void func_8005CA34(s32, s32);
-
 void YellowGem_SetFlag(void);
-
 u64 YellowGem_GetFlag(u16 stage);
 
 #endif

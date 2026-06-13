@@ -28,7 +28,7 @@ void func_801A6C80_775130(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = 0x69503;
-            gActors[actor_index].graphicIndex = 0xC6;
+            gActors[actor_index].graphicIndex = GINDEX_MINEROUND;
             func_8002AC30(actor_index, 8);
             gActors[actor_index].unk_0CE = 0;
             gActors[actor_index].unk_0DF = 1;\
@@ -41,7 +41,7 @@ void func_801A6C80_775130(u16 actor_index) {
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
                 gActors[actor_index].state++;
                 gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK12 |ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
-                gActors[actor_index].unk_0D4 = 0xA;
+                gActors[actor_index].iFrames = 10;
                 gActors[actor_index].velocityX.raw = 0;
                 gActors[actor_index].velocityY.raw = 0;
             }
@@ -79,14 +79,14 @@ void func_801A6C80_775130(u16 actor_index) {
 
         case 2:
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
-                gActors[actor_index].unk_0D4 = 0xA;
+                gActors[actor_index].iFrames = 10;
                 gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
                 gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
                 gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
             }
             else {
                 gActors[actor_index].state--;
-                gActors[actor_index].unk_0D4 = 0;
+                gActors[actor_index].iFrames = 0;
                 gActors[actor_index].var_150 = 0x10;
                 gActors[actor_index].unk_114 = 5.0f;
 
@@ -108,5 +108,6 @@ void func_801A6C80_775130(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 0xFFDFF9FF;
+    gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 
+         ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }

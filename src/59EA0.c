@@ -50,8 +50,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C098.s")
 
+// unused variant of after-image. uses arrays to store history.
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C0CC.s")
 
+// spawns after-image of Marina while dashing
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C250.s")
 
+// "tick" of actor for Marina's after-image
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C3C8.s")

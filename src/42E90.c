@@ -99,7 +99,7 @@ void func_800423A0(u16 actor_index) {
         angle = func_800298D0(gActors[actor_index].var_15C, gActors[actor_index].var_158, gActors[actor_index].unk_168);
     }
     gActors[actor_index].var_158 = angle;
-    angle /= 65536;
+    angle /= 0x10000;
     if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].unk_16C += 24;
     }
@@ -147,7 +147,7 @@ void func_80042864(u16 actor_index) {
     if (!(gActiveFrames & 3)) {
         x = gActors[actor_index].posX.whole - (Rand() & 0x1F) + 0x10;
         y = gActors[actor_index].posY.whole - (Rand() & 0x1F) + 0x10;
-        index = func_8003123C(D_800E158C, x, y, gActors[actor_index].posZ.whole);
+        index = SpawnParticle_List_90C0_16(D_800E158C, x, y, gActors[actor_index].posZ.whole);
         if (index != 0) {
             gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[index].var_160 = 8;

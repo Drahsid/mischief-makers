@@ -5,10 +5,10 @@
 #include "inttypes.h"
 
 extern u16 D_800D28E4;
-extern u16 D_800D28E8;
+extern u16 gStageCinemaState; // state for cinematics (intro/dialog/outro) for stages.
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
-extern u16 D_800D2908;
+extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
 extern s32 D_800D2928;
 extern s32 D_800D2938;
 extern s16 D_800D294C;
@@ -24,7 +24,7 @@ extern s32 D_800BE73C;
 extern u16 D_800CA230;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
-extern u32 D_800D1A04[];
+extern u16 D_800D1A04[];
 extern u16 D_800D22BC[];
 extern u8 D_800D24D8[];
 extern u8 D_800D24F0;
@@ -41,12 +41,12 @@ extern u16 D_800D8A98[];
 extern u16 D_800D8C78[]; // guess
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
-extern s16 D_800E1380[]; // default graphics list. contains {0,0}
+extern s16 gGraphicListBlank[]; // default graphics list. contains {0,0}
 extern s16 D_800E1540[];
-extern s16 D_800E154C[];
+extern s16 D_800E154C[]; // graphic index for "!" bubble
 extern s16 D_800E156C[];
 extern s16 D_800E158C[];
-extern s16 D_800E164C[]; // gem graphics list
+extern s16 gGraphicListGem[]; // gem graphics list
 extern s16 D_800E1700[];
 extern u8 D_800E19FC[];
 extern u8 D_800E1A20[];

@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "Overlay 1" code used in "Wormin' Up!!"
+
 void func_8019BEDC_73DE6C(u16 actor_index);
 void func_8019C244_73E1D4(u16 actor_index);
 void func_8019C9A4_73E934(u16 actor_index);

@@ -1,5 +1,7 @@
 #include "common.h"
 
+// "overlay 4" code for Title Screen and "Final Battle"
+
 extern u8 D_8010692C;
 
 u32 D_801B9BC0_7EA690[] = {
@@ -45,19 +47,20 @@ u32 D_801B9C28_7EA6F8[] = {
     0x00000000,
     0x00000000,
 };
-// function appears to be related to "Searin' Swing!"
+
+// cinematic "state machine" for "Final Battle!!"
 void func_801B9900_7EA3D0(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
             D_800D28FC |= 4;
             D_8010692C = 0x40;
             D_800BE544 = 0x8000;
-            if (D_800D2908 != 0) {
-                D_800D28E8 = 0x2000;
+            if (gSkipStageIntro) {
+                gStageCinemaState = 0x2000;
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
             }
             else {
-                D_800D28E8 = D_800D28E8 + 1;
+                gStageCinemaState = gStageCinemaState + 1;
                 func_80046148(D_801B9BC0_7EA690, 0);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
                 gLetterboxMode = LETTERBOX_DEFAULT;
@@ -67,7 +70,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = D_800D28E8 + 1;
+                gStageCinemaState = gStageCinemaState + 1;
                 gCannotPause = TRUE;
             }
             break;
@@ -77,7 +80,7 @@ void func_801B9900_7EA3D0(void) {
             break;
 
         case 0x100:
-            D_800D28E8 = D_800D28E8 + 1;
+            gStageCinemaState = gStageCinemaState + 1;
             D_800D28FC &= ~4;
             D_800D28FC |= 8;
             gLetterboxMode = LETTERBOX_HORIZONTAL;
@@ -88,7 +91,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x1000:
             Actor_ClearSceneActors();
-            D_800D28E8 = D_800D28E8 + 1;
+            gStageCinemaState = gStageCinemaState + 1;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
@@ -98,13 +101,13 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x1001:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 0x100;
+                gStageCinemaState = 0x100;
                 gCannotPause = TRUE;
             }
             break;
 
         case 0x2000:
-            D_800D28E8 = 0x1001;
+            gStageCinemaState = 0x1001;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
@@ -116,7 +119,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x8001:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = D_800D28E8 + 1;
+                gStageCinemaState = gStageCinemaState + 1;
             }
             break;
 

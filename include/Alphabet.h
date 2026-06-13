@@ -1,13 +1,15 @@
 #ifndef ALPHABET_H
 #define ALPHABET_H
 
+#include "graphicIndex.h"
+
 // game uses a unique charset for the text that is 16 bits.
 
 #define ALPHA_SPACE 0x0000
 
 // Monospace English alphabet used in all versions
 
-#define ALPHA_0 0x0000 // 0
+#define ALPHA_0 0x0000 // 0 (used in "print 2/3 digits" functions)
 #define ALPHA_1 0x0001 // 1
 #define ALPHA_2 0x0002 // 2
 #define ALPHA_3 0x0003 // 3
@@ -93,8 +95,8 @@
 #define ALPHA_EN_BRACKETRIGHT 0x0050 // ]
 
 // the original Japanese version uses Japanese characters
-// at least Katakana and Hiragana  are overwritten in english localizations,
-// which use the other english/Greek alphbet indecies.
+// at least Katakana and Hiragana are overwritten in english localizations,
+// which use the other english/Greek alphabet indecies.
 // some "strings" using the original charset remain in NA/EU code,
 // but are not properly read. (see SpawnTextBubble calls.)
 
@@ -432,7 +434,7 @@
 
 #define ALPHA_NULL 0x8FFF
 
-#define ALPHA_GLYPH_INDEX(c) ( (c * 2) + 0x2d2) // get graphic index of ALPHA_* index
+#define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 
 // macro for when we need to differentiate between
 // English and Japanese "ALPHA_*" arrays

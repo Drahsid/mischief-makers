@@ -198,7 +198,7 @@ void func_8019B468_753BE8(u16 actor_index) {
     gActors[actor_index].hitboxBY1 = (s16)(gActors[actor_index + 1].unk_12C * -34.0f);
     gActors[actor_index].hitboxBX0 = (s16)(gActors[actor_index + 1].unk_12C * -12.0f);
     gActors[actor_index].hitboxBX1 = (s16)(gActors[actor_index + 1].unk_12C * 12.0f);
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 void func_8019B60C_753D8C(u16 actor_index) {

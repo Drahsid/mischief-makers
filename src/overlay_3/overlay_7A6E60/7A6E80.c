@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern u16 D_800D28E4;
-extern u16 D_800D28E8;
 extern u16 D_800D28F0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0900_7A6E80.s")
@@ -11,7 +9,7 @@ extern u16 D_800D28F0;
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0A58_7A6FD8.s")
 
 void func_801B0BFC_7A717C(u16 arg0) {
-    D_800D28E8 = 0;
+    gStageCinemaState = 0;
     D_800D28F0 = arg0;
     D_800D28E4 = 0x62;
 }
@@ -21,13 +19,13 @@ void func_801B0BFC_7A717C(u16 arg0) {
 void func_801B0CBC_7A723C(u16 arg0) {
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x63;
-    D_800D28E8 = 4;
+    gStageCinemaState = 4;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0CEC_7A726C.s")
 
 void func_801B0DA0_7A7320(u16 arg0) {
-    D_800D28E8 = 0;
+    gStageCinemaState = 0;
     D_800D28F0 = 0x32;
     D_800D28E4 = 0x62;
 }

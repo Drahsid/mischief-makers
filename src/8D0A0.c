@@ -6,10 +6,10 @@ extern s32 D_80137420;
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
 
-extern u8 D_800D44F4[];
-extern u8 D_800D4518[];
+extern u16 D_800D44F4[];
+extern u16 D_800D4518[];
 extern u16 D_800D46A8[];
-extern u8 D_800D4958[];
+extern u16 D_800D4958[];
 
 extern s32 func_8008CC00(void);
 extern void func_8008CDC4(u16 actor_index, u16 arg1);
@@ -95,7 +95,7 @@ void func_8008D0A8(u16 actor_index) {
 
 void func_8008D128(u16 actor_index) {
     Actor_SetColorRgb(actor_index, 0x7F);
-    gActors[actor_index].unk_0D4 = 0x3C;
+    gActors[actor_index].iFrames = 60;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16| ACTOR_FLAG_UNK8);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     gActors[actor_index].unk_118 = 1.0f;
@@ -114,7 +114,7 @@ void func_8008D1E8(u16 actor_index) {
     gActors[actor_index].state = 0xA0;
     gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16;
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-    gActors[actor_index].unk_18C = (s32)D_800D4958;
+    gActors[actor_index].palette_18C = D_800D4958;
     gActors[actor_index].unk_118 = 1.0f;
     gActors[actor_index].unk_184 = gActors[0].unk_0F8.raw;
     gActors[actor_index].unk_188 = gActors[0].unk_0FC.raw;
@@ -131,7 +131,7 @@ void func_8008D1E8(u16 actor_index) {
 
 void func_8008D2B0(u16 actor_index) {
     gActors[actor_index].state = 0xB0;
-    gActors[actor_index].unk_18C = (s32)D_800D44F4;
+    gActors[actor_index].palette_18C = D_800D44F4;
     gActors[actor_index].unk_120 = 8.0f;
     func_8008D128(actor_index);
 }
@@ -139,7 +139,7 @@ void func_8008D2B0(u16 actor_index) {
 void func_8008D320(u16 actor_index) {
     gActors[actor_index].state = 0xB0;
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
-    gActors[actor_index].unk_18C = (s32)D_800D4518;
+    gActors[actor_index].palette_18C = D_800D4518;
     gActors[actor_index].unk_120 = 20.0f;
     func_8008D128(actor_index);
 }

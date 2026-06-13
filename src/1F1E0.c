@@ -48,15 +48,13 @@ extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 
 extern u16 D_800D28E4;
-extern u16 D_800D28E8;
-extern u16 D_800D2908;
 extern u16 D_800D2918;
 extern u16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2924;
 extern u16 D_800D2978[];
 
-extern s16 D_800E13DC[];
+extern s16 gGraphicListGemIcon[];
 extern s16 D_800E13FC[];
 
 extern u32 D_80137458;
@@ -113,7 +111,7 @@ s32 func_8001E5E0(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[actor0].unk_0E2);
+    sp20 = sqrtf(gActors[actor0].pendingDamage);
     v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return NEGSIN_QUANTIZE(v, 2) * (sp20 * arg2 * 2);
 }
@@ -122,7 +120,7 @@ s32 func_8001E6F4(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;
     f32 sp20;
 
-    sp20 = sqrtf(gActors[actor0].unk_0E2);
+    sp20 = sqrtf(gActors[actor0].pendingDamage);
     v = Math_Atan2(gActors[actor0].posX.raw - gActors[actor1].posX.raw, gActors[actor0].posY.raw - gActors[actor1].posY.raw);
     return SIN(v) * (sp20 * arg2 * 2);
 }
@@ -235,11 +233,11 @@ void func_8001EC1C(void) {
         }
         for (index_fp = 0; index_fp < count_a2; index_fp++) {
             actor_index = spA98[index_fp];
-            gActors[actor_index].unk_0E2 = 0;
+            gActors[actor_index].pendingDamage = 0;
             for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
                 index_s1 = spBB8[index_s4];
                 if (index_s1 != actor_index) {
-                    if (((gActors[actor_index].unk_0D4 == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) &&
+                    if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) &&
                         (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp]) && (sp78[index_fp] < sp3D8[index_s4])) {
 
                         if (index_s4 == 0) {
@@ -276,7 +274,7 @@ void func_8001EC1C(void) {
                                     if (gActors[index_s1].unk_0DB < 0x17) {
                                         gActors[actor_index].unk_0D6 = index_s1;
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].unk_0E2 += gActors[index_s1].damage;
+                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                     }
                                 }
                             } while (0);
@@ -288,8 +286,8 @@ void func_8001EC1C(void) {
                 func_8001EB8C(gActors[actor_index].unk_0D6, actor_index);
             }
             if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                if (gActors[actor_index].unk_0E2 < gActors[actor_index].health) {
-                    gActors[actor_index].health -= gActors[actor_index].unk_0E2;
+                if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                    gActors[actor_index].health -= gActors[actor_index].pendingDamage;
                 }
                 else {
                     gActors[actor_index].health = 0;
@@ -313,7 +311,7 @@ void func_8001EC1C(void) {
                 sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
                 sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
             }
-            if (gActors[index_s1].unk_0D4 == 0) {
+            if (gActors[index_s1].iFrames == 0) {
                 if ((gActors[index_s1].health >= 0) && ((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK12) && ((index_s1 == 0) || (gActors[index_s1].health != 0))) {
                     spA98[count_a2] = index_s1;
                     sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
@@ -395,24 +393,24 @@ void func_8001EC1C(void) {
 
             for (index_fp = 0; index_fp < count_a2; index_fp++) {
                 actor_index = spA98[index_fp];
-                spCE6 = gActors[actor_index].unk_0E2;
-                gActors[actor_index].unk_0E2 = 0;
+                spCE6 = gActors[actor_index].pendingDamage;
+                gActors[actor_index].pendingDamage = 0;
                 for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
                     index_s1 = spBB8[index_s4];
                     if (index_s1 != actor_index) {
-                        if (((gActors[actor_index].unk_0D4 == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
+                        if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
                             if (sp78[index_fp] < sp3D8[index_s4]) {
                                 gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
                                 if ((gActors[index_s1].unk_0DB < 0x14) || (gActors[index_s1].unk_0DB == 0x18)) {
                                     gActors[index_s1].unk_0D6 = actor_index;
                                 }
                                 if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
-                                    gActors[actor_index].unk_0D4 = 0x3C;
+                                    gActors[actor_index].iFrames = 60;
                                 }
                                 if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
                                     if (gActors[index_s1].unk_0DB < 0x14) {
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].unk_0E2 += gActors[index_s1].damage;
+                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                         gActors[actor_index].unk_0D6 = index_s1;
                                         func_8001EB8C(index_s1, actor_index);
                                     }
@@ -422,13 +420,13 @@ void func_8001EC1C(void) {
                     }
                 }
                 if (actor_index == 0) {
-                    if (gActors[actor_index].unk_0E2 == 0) {
-                        gActors[actor_index].unk_0E2 = spCE6;
+                    if (gActors[actor_index].pendingDamage == 0) {
+                        gActors[actor_index].pendingDamage = spCE6;
                     }
                 }
                 else if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                    if (gActors[actor_index].unk_0E2 < gActors[actor_index].health) {
-                        gActors[actor_index].health -= gActors[actor_index].unk_0E2;
+                    if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                        gActors[actor_index].health -= gActors[actor_index].pendingDamage;
                     }
                     else {
                         gActors[actor_index].health = 0;
@@ -580,7 +578,7 @@ void func_80020024(void) {
 
     gActiveFrames++;
     D_801782B8++;
-    if ((gStageTime < 36000) && (D_800D28E8 >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
+    if ((gStageTime < 36000) && (gStageCinemaState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         gStageTime++;
     }
     func_800122B0();
@@ -723,7 +721,7 @@ void func_8002092C(void) {
         gActors[index].graphicFlags |= ACTOR_GFLAG_UNK11;
         gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
-        gActors[index].graphicIndex = 0x8000;
+        gActors[index].graphicIndex = GINDEX_PAUSEBAR;
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;
@@ -775,14 +773,14 @@ void func_80020A90(void) {
             func_8002034C();
             func_800205DC();
             func_800207DC();
-            func_80027510(actor_index + 5, D_800E13DC, 0xFFA8, 0xC, 0x401);
+            func_80027510(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
-            gActors[actor_index + 5].unk_18C = (s32) D_800D88B8;
-            func_80027510(actor_index + 6, D_800E13DC, 8, 0xC, 0x401);
+            gActors[actor_index + 5].palette_18C =  D_800D88B8;
+            func_80027510(actor_index + 6, gGraphicListGemIcon, 8, 0xC, 0x401);
             gActors[actor_index + 6].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 6].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
-            gActors[actor_index + 6].unk_18C = (s32) D_800D8C78;
+            gActors[actor_index + 6].palette_18C =  D_800D8C78;
             func_80027510(actor_index + 7, D_800E13FC, 0xFFC4, 0xFFF8, 0x401);
             gActors[actor_index + 7].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 7].graphicFlags |= ACTOR_GFLAG_UNK6;
@@ -796,7 +794,7 @@ void func_80020A90(void) {
         }
         break;
     case 32:
-        if ((gActors[0xCF].posY.whole == -28) && (D_800D28E8 >= 2)) {
+        if ((gActors[0xCF].posY.whole == -28) && (gStageCinemaState >= 2)) {
             for (actor_index = 0; actor_index < 0xC8; actor_index++) {
                 gActors[actor_index].flags = 0;
             }
@@ -927,7 +925,7 @@ void GameState_Attract(void) {
         gCurrentScene = gStageScenes[gCurrentStage];
         D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
         D_800CA234 = 0xA00;
-        D_800D2908 = 1;
+        gSkipStageIntro = TRUE;
         gActors[0].health = 1000;
         D_800BE668 = 50;
         gRngSeed = 0x1234;
@@ -990,7 +988,7 @@ void GameState_Attract(void) {
     }
 }
 
-// toggle OSD color from black or whit with R button
+// toggle OSD color from black or white with R button
 void func_80021620(void) {
     if (gButtonPress & gButton_RTrig) {
         gDebugOSDTint ^= 0xFF;

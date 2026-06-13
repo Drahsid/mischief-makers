@@ -46,7 +46,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
         gActors[actor_index].health = 10;
         gActors[actor_index].damage = 10;
         gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-        gActors[actor_index].graphicList = D_800E1380;
+        gActors[actor_index].graphicList = gGraphicListBlank;
     }
 
     gActors[actor_index].colorA = 0xFF;
@@ -72,14 +72,14 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_0CC =
     gActors[actor_index].unk_0CE =
     gActors[actor_index].state =
-    gActors[actor_index].unk_0D4 =
+    gActors[actor_index].iFrames =
     gActors[actor_index].unk_0D6 =
     gActors[actor_index].unk_0DA =
     gActors[actor_index].unk_0DB =
     gActors[actor_index].unk_0DC =
     gActors[actor_index].unk_0DD =
     gActors[actor_index].unk_0DF =
-    gActors[actor_index].unk_0E2 =
+    gActors[actor_index].pendingDamage =
     gActors[actor_index].velocityX.raw =
     gActors[actor_index].velocityY.raw =
     gActors[actor_index].velocityZ.raw =

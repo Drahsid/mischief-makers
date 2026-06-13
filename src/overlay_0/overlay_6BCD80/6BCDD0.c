@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "music.h"
 
-extern u16 func_80031284(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
+extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
 extern s16 D_801A2110_6CCDE0;
 extern s16 D_801A2190_6CCE60;
@@ -357,8 +357,8 @@ s32 func_80196030_6C0D00(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801960B0_6C0D80.s")
 
 void func_80196530_6C1200(s32 arg0) {
-    D_801A2110_6CCDE0 = 0x2D0;
-    D_801A2190_6CCE60 = 0x2D0;
+    D_801A2110_6CCDE0 = 720;
+    D_801A2190_6CCE60 = 720;
 }
 
 void func_8019654C_6C121C(u16 actor_index) {
@@ -762,7 +762,7 @@ void func_80199190_6C3E60(u16 actor_index) {
     if (gActors[actor_index].health & 0x8000) {
         gActors[actor_index].health = 0;
     }
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 f32 func_80199208_6C3ED8(u16 actor_index) {
@@ -793,7 +793,7 @@ void func_8019946C_6C413C(void) {
     gActors[0].flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     func_800282F0(gActors[0x31].posX.whole, -0x18);
     D_800BE5F4.unk_00_u32 = 5;
-    gActors[0].unk_0D4 = 0;
+    gActors[0].iFrames = 0;
     gActors[0x31].state = 0x410;
     gActors[0x31].posZ.whole = -0xE0;
     func_80081478(0x31, D_801A1038_6CBD08, 1);
@@ -869,7 +869,7 @@ void func_8019D908_6C85D8(void) {
     ACTOR_INIT(0xC1,0x160D);
     gActors[0xC1].graphicFlags = 0;
     gActors[0xC1].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0xC1].graphicIndex = 0x2D0;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[0xC1].posZ.whole = 0xE0;
     gActors[0xC1].var_154 = 4;
     gActors[0xC1].scaleX = 20.0f;
@@ -881,7 +881,7 @@ void func_8019D970_6C8640(u16 arg0) {
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-    gActors[0xC1].unk_18C = (s32)D_800D8588;
+    gActors[0xC1].palette_18C = D_800D8588;
     gActors[0xC1].colorA = 0xFF;
     gActors[0xC1].var_150 = 0;
     gActors[0xC1].var_154 = arg0;
@@ -1250,7 +1250,7 @@ void func_8019EE70_6C9B40(void) {
 void func_8019EE8C_6C9B5C(u16 actor_index) {
     u16 new_actor_index;
 
-    new_actor_index = func_80031284(gActors[actor_index].graphicIndex, gActors[actor_index].posX.whole,
+    new_actor_index = SpawnParticle_Image_90C0_16(gActors[actor_index].graphicIndex, gActors[actor_index].posX.whole,
                                     gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags |= 0x8110;

@@ -54,10 +54,11 @@ s32 func_80048C94(s32 arg0);
 void func_80192100_67DC20(s32 arg0) {
 }
 
+// Spawn a "!" bubble over Migen Jr.'s head when his fist gets caught.
 void func_80192108_67DC28(s32 arg0) {
     u16 actor_index;
 
-    actor_index = func_8003123C(D_800E154C, gActors[0x4F].posX.whole, gActors[0x4F].posY.whole + 0x20,
+    actor_index = SpawnParticle_List_90C0_16(D_800E154C, gActors[0x4F].posX.whole, gActors[0x4F].posY.whole + 0x20,
                                 gActors[0x4F].posZ.whole + 5);
 
     if (actor_index != 0) {
@@ -84,14 +85,14 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
     u16 actor_index;
 
     gActors[0x46].unk_180 = 0;
-    actor_index = func_8003123C(D_800E156C, 0, 0, 0);
+    actor_index = SpawnParticle_List_90C0_16(D_800E156C, 0, 0, 0);
 
     if (actor_index != 0) {
         gActors[0x46].unk_180 = actor_index;
         gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
         gActors[actor_index].flags |= (gActors[0x37].flags & ACTOR_FLAG_FLIPPED) + ACTOR_FLAG_UNK15;
         gActors[actor_index].colorA = 0x80;
-        gActors[actor_index].palette_18C = (u16*)0x8022D4E8;
+        gActors[actor_index].palette_18C = PALETTE_8022D4E8;
         gActors[actor_index].scaleX = 1.5f;
         gActors[actor_index].scaleY = 2.0f;
         gActors[actor_index].unk_130 = 55.0f;
@@ -135,12 +136,12 @@ void func_801928A8_67E3C8(s32 arg0) {
     gActors[0x4E].unk_14C = D_8019DD98_6898B8;
     D_8019E578_68A098 = 0xFFEC0000;
     D_8019E57C_68A09C = 0;
-    actor_index = func_8003123C(D_800E1380, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
+    actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[0x50].posX.whole, gActors[0x50].posY.whole, gActors[0x50].posZ.whole + 1);
 
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-        gActors[actor_index].graphicIndex = 0xDE;
+        gActors[actor_index].graphicIndex = GRAPHIC_FRAME(BOOM1,3);
         gActors[actor_index].colorA = 0xC0;
         gActors[actor_index].colorR = 0x40;
         gActors[actor_index].velocityZ.raw = FIXED_UNIT(2);
@@ -650,7 +651,7 @@ void func_80198708_684228(u16 actor_index) {
     u16 new_actor_index;
 
     gActors[actor_index].unk_118 = (f64)gActors[actor_index].unk_118 + D_8019E378_689E98;
-    new_actor_index = func_80031284(0x168, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
+    new_actor_index = SpawnParticle_Image_90C0_16(GINDEX_BLASTB, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[new_actor_index].velocityZ.raw = FIXED_UNIT(1.0);
@@ -786,7 +787,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
-            ACTOR_GFX_INIT(actor_index, D_800E164C);
+            ACTOR_GFX_INIT(actor_index, gGraphicListGem);
             gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
@@ -837,7 +838,7 @@ void func_8019A604_686124(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019A6AC_6861CC.s")
