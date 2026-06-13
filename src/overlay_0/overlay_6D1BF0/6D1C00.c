@@ -8,6 +8,8 @@ void ClancerCommanderMech_ClearFlags(u16 actor_index);
 void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other_actor_index);
 void ClancerCommanderMech_Update(u16 actor_index);
 
+// "overlay 0" code for "Meet Marina". code for Clancer Commander at stage intro.
+
 void ClancerCommanderMech_Init(u16 actor_index) {
     gActors[actor_index].graphicFlags |= (ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4);
     gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
@@ -49,7 +51,7 @@ void ClancerCommanderMech_UpdateParts(u16 actor_index) {
 }
 
 void ClancerCommanderMech_ClearFlags(u16 actor_index) {
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other_actor_index) {

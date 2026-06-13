@@ -1,12 +1,13 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
+
 extern s16 D_800D2924;
 extern void func_80064AA0(s32 arg0, void* arg1);
 
 extern s16 D_801BA636_7E7786;
 extern u32 D_801BA540_7E7690[];
-extern u32 D_801BA56C_7E76BC[];
 extern u32 D_801BA63C_7E778C[];
 extern u32 D_801BA65C_7E77AC[];
 extern u32 D_801BA66C_7E77BC[];
@@ -52,20 +53,20 @@ u32 D_801BA540_7E7690[] = {
     0x00000000, 0x00000000, 0x005EFF00,
 };
 
-u32 D_801BA56C_7E76BC[] = {
-    0x084D088F, 0x08CF088D, 0x111108D1, 0x11511953,
-    0x10CF1995, 0x19930911, 0x09D31215, 0x0A151A15,
-    0x11931213, 0x1A190993, 0x11D30A13, 0x11D50191,
-    0x0A5309D1, 0x19D509D5, 0x12551253, 0x09910193,
-    0x0A551153, 0x0151014F, 0x0A19125B, 0x1A9F129F,
-    0x1AA11B25, 0x1B211B69, 0x236923ED, 0x242D0A1B,
-    0x1A5B1B65, 0x34B734BB, 0x2CBB2C37, 0x243123E9,
-    0x0A5B1259, 0x231F2CB7, 0x2CB12C31, 0x3D373537,
-    0x1A592BE9, 0x3D3B45BB, 0x463B23F1, 0x125F2365,
-    0x353F3DB7, 0x4637353B, 0x3DBF45B7, 0x4E3B1BE9,
-    0x4E37563B, 0x121956FB, 0x129B3DBB, 0x4EFF46FF,
-    0x4EFB463F, 0x232112A1, 0x2D3B0887, 0x0889110B,
-    0x29D1214D, 0x298F3A13,
+u16 D_801BA56C_7E76BC[] = {
+    0x084D, 0x088F, 0x08CF, 0x088D, 0x1111, 0x08D1, 0x1151, 0x1953,
+    0x10CF, 0x1995, 0x1993, 0x0911, 0x09D3, 0x1215, 0x0A15, 0x1A15,
+    0x1193, 0x1213, 0x1A19, 0x0993, 0x11D3, 0x0A13, 0x11D5, 0x0191,
+    0x0A53, 0x09D1, 0x19D5, 0x09D5, 0x1255, 0x1253, 0x0991, 0x0193,
+    0x0A55, 0x1153, 0x0151, 0x014F, 0x0A19, 0x125B, 0x1A9F, 0x129F,
+    0x1AA1, 0x1B25, 0x1B21, 0x1B69, 0x2369, 0x23ED, 0x242D, 0x0A1B,
+    0x1A5B, 0x1B65, 0x34B7, 0x34BB, 0x2CBB, 0x2C37, 0x2431, 0x23E9,
+    0x0A5B, 0x1259, 0x231F, 0x2CB7, 0x2CB1, 0x2C31, 0x3D37, 0x3537,
+    0x1A59, 0x2BE9, 0x3D3B, 0x45BB, 0x463B, 0x23F1, 0x125F, 0x2365,
+    0x353F, 0x3DB7, 0x4637, 0x353B, 0x3DBF, 0x45B7, 0x4E3B, 0x1BE9,
+    0x4E37, 0x563B, 0x1219, 0x56FB, 0x129B, 0x3DBB, 0x4EFF, 0x46FF,
+    0x4EFB, 0x463F, 0x2321, 0x12A1, 0x2D3B, 0x0887, 0x0889, 0x110B,
+    0x29D1, 0x214D, 0x298F, 0x3A13,
 };
 
 u32 D_801BA634_7E7784 = 0x10C9FFFF;
@@ -279,7 +280,7 @@ void func_801BA480_7E75D0(void);
 
 void func_801B9900_7E6A50(u16 actor_index) {
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-    gActors[actor_index].unk_18C = (s32)D_801BA56C_7E76BC;
+    gActors[actor_index].palette_18C = D_801BA56C_7E76BC;
     Actor_SetColorRgb(actor_index, 8);
 }
 
@@ -304,21 +305,21 @@ void func_801B9A08_7E6B58(void) {
         D_800CC428 = 1;
     }
 
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8 = 0x100;
+            gStageCinemaState = 0x100;
             break;
 
         case 0x100:
-            D_800D28E8 = 0x300;
+            gStageCinemaState = 0x300;
             break;
 
         case 0x101:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
-                D_800D2928 = 0x3C;
+                D_800D2928 = 60;
                 Sound_StartFade(0x81, 0x37);
             }
             break;
@@ -327,12 +328,12 @@ void func_801B9A08_7E6B58(void) {
             func_801B99F4_7E6B44(0x30);
             D_800D2928--;
             if (D_800D2928 < 0) {
-                D_800D28E8 = 0x200;
+                gStageCinemaState = 0x200;
             }
             break;
 
         case 0x200:
-            D_800D28E8++;
+            gStageCinemaState++;
             Actor_ClearSceneActors();
             func_80045FA4(D_801BA63C_7E778C, 0);
             D_800BE5F4.unk_00_u32 = 4;
@@ -346,14 +347,14 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x201:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
         case 0x202:
             if (((gButtonPress & gButton_ZTrig) != 0) || (gActors[0x30].flags == 0)) {
                 D_800D2938 = 0;
-                D_800D28E8 = 0x300;
+                gStageCinemaState = 0x300;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
                 D_800D2928 = 1;
@@ -362,7 +363,7 @@ void func_801B9A08_7E6B58(void) {
             break;
 
         case 0x300:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BA63C_7E778C, 0);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BA66C_7E77BC);
@@ -374,7 +375,7 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x301:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
             }
@@ -382,13 +383,13 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x302:
             if (gActors[0x50].flags == 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             func_801B99F4_7E6B44(0x30);
             break;
 
         case 0x303:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0x78;
 
         case 0x304:
@@ -456,32 +457,32 @@ void func_801B9FB4_7E7104(void) {
 }
 
 void func_801B9FC8_7E7118(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
             D_800D2928 = 0;
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
             func_801B9E7C_7E6FCC();
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BA704_7E7854);
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2930 = 0;
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
             }
             break;
 
         case 2:
             if (func_801B9DAC_7E6EFC() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
         case 3:
             if (gActors[0x80].flags == 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 Actor_ClearSceneActors();
                 func_8003D628(0);
                 D_800D2928++;
@@ -492,7 +493,7 @@ void func_801B9FC8_7E7118(void) {
         case 4:
             D_800D2930--;
             if (D_800D2930 <= 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 func_801B9F50_7E70A0();
                 return;
             }
@@ -501,11 +502,11 @@ void func_801B9FC8_7E7118(void) {
         case 6:
             func_801B9FB4_7E7104();
             if (D_800D2928 >= 4) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 func_80064AA0(1, D_801BA784_7E78D4);
                 return;
             }
-            D_800D28E8 = 1;
+            gStageCinemaState = 1;
             Actor_LoadSpawnTable(D_801BA6B0_7E7800[D_800D2928].unk_04);
             break;
 
@@ -523,9 +524,9 @@ void func_801BA1DC_7E732C(void) {
     u32* src;
     u32* dst;
 
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            base = (u16*)0x80380400;
+            base = PALETTE_80380400;
             src = (u32*)base;
             dst16 = base;
             src16 = D_801BA7A4_7E78F4;
@@ -533,7 +534,7 @@ void func_801BA1DC_7E732C(void) {
                 *dst16++ = *src16++;
             }
 
-            dst = (u32*)0x803DA600;
+            dst = (u32*)PALETTE_803DA600;
             index = 0;
             src = (u32*)base;
             for (; index < 0x80; index++) {
@@ -548,20 +549,20 @@ void func_801BA1DC_7E732C(void) {
             D_800D2924 = 0x2000;
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BAA08_7E7B58);
-            D_800D28E8++;
+            gStageCinemaState++;
 
         case 1:
             if (func_80046D5C() != 0) {
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
         case 2:
             if (gScreenPosCurrentX.whole > 0x1600) {
                 Actor_LoadSpawnTable(D_801BAB78_7E7CC8);
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
@@ -571,16 +572,16 @@ void func_801BA1DC_7E732C(void) {
 }
 
 void func_801BA3C4_7E7514(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BACCC_7E7E1C, (s32)D_801BACDC_7E7E2C);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BACE0_7E7E30);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
             }
@@ -592,16 +593,16 @@ void func_801BA3C4_7E7514(void) {
 }
 
 void func_801BA480_7E75D0(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BACF0_7E7E40, (s32)D_801BAD00_7E7E50);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BAD04_7E7E54);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
             }

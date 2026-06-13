@@ -1,7 +1,9 @@
 #include "common.h"
 #include "actor.h"
 
-extern s16 D_801A3AEC_72210C[];
+// "overlay 1" code for stage "Merco!!"
+
+extern s16* D_801A3AEC_72210C[]; // graphic lists for Merco
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_719700/719720/func_8019B100_719720.s")
 
@@ -13,10 +15,10 @@ void func_8019BD70_71A390(s32 arg0) {
 }
 
 void func_8019BD78_71A398(u16 actor_index) {
-    gActors[actor_index].graphicList = D_801A3AEC_72210C;
-    gActors[actor_index].health = 0x12C;
+    gActors[actor_index].graphicLists = D_801A3AEC_72210C;
+    gActors[actor_index].health = 300;
     gActors[actor_index].flags &= 0xFF3CFFFF;\
-    gActors[actor_index].flags |= 0x800000;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK23;
     gActors[actor_index].unk_170 = 1;
 }
 

@@ -15,18 +15,13 @@ typedef struct {
     /* 0x0180 */ Gfx dlist[3072];
 } GfxData; /* sizeof = 0x6180 */
 
-// used by PortraitStruct->flags
-typedef enum {
-    PORTRAIT_FLAG_SCALE = (1U << 0U),
-    PORTRAIT_FLAG_UNK1 = (1U << 1U),
-    PORTRAIT_FLAG_PALETTE = (1U << 9U),
-    PORTRAIT_FLAG_UNK14 = (1U << 14U)
-} PortraitFlags;
+// portraits seem to use the same graphic flags as actors with this one exception.
+#define PORTRAIT_GFLAG_UNK1 ACTOR_GFLAG_ROTX
 
 // used for the portrait transition effect, lifebar, and lifebar head.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 flags; // uses PortraitFlags
+    /* 0x80 */ u16 flags; // uses ActorGFlags
     /* 0x82 */ u16 graphicIndex;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
@@ -34,7 +29,7 @@ typedef struct {
     /* 0x90 */ f32 scaleY;
     /* 0x94 */ u8 alpha;
     /* 0x95 */ u8 align[3];
-    /* 0x98 */ u16* palette; // used if PORTRAIT_FLAG_PALETTE is set
+    /* 0x98 */ u16* palette; // used if ACTOR_GFLAG_PALETTE is set
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
@@ -44,7 +39,7 @@ typedef struct {
 // data on "static" objects (clanblocks, gems)
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 graphicIndex;
+    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_*
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;

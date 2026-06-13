@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 1" code for "Taurus!!"
+
 extern s16* D_801A1A90_731AD0[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_72B120/72B140/func_8019B100_72B140.s")
@@ -16,8 +18,8 @@ void func_8019B6B0_72B6F0(s32 arg0) {
 
 void func_8019B6B8_72B6F8(u16 actor_index) {
     gActors[actor_index].graphicLists = D_801A1A90_731AD0;
-    gActors[actor_index].health = 0x1F4;
-    gActors[actor_index].posZ.raw = 0xFFFF0000;
+    gActors[actor_index].health = 500;
+    gActors[actor_index].posZ.raw = FIXED_UNIT(-1.0);
     gActors[actor_index].flags &= 0xFF3CFFFF;\
     gActors[actor_index].flags |= 0x10000;
     gActors[actor_index].unk_170 = 1;

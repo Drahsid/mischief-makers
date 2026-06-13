@@ -52,7 +52,7 @@ enum DebugFlags {
     DEBUGFLAG_STUB12 = (1U << 12U), //runs a stubbed function on game tick.
     DEBUGFLAG_UNK13 = (1U << 13U), // used in "camera Lock" mask
     DEBUGFLAG_SFXDATA = (1U << 14U), // display data on SFX channel states.
-    DEBUGFLAG_STUB15 = (1U << 15U), //runs a stubbed function on game tick.
+    DEBUGFLAG_STUB15 = (1U << 15U), // runs a stubbed function on game tick.
     DEBUGFLAG_CAMERALOCK = (DEBUGFLAG_STUB15 | DEBUGFLAG_UNK13 | DEBUGFLAG_UNK10) // checked for in some scenes' camera logic.
 };
 

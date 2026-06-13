@@ -40,6 +40,9 @@ DEFAULT_INT func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
                            gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
     func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+                  // required to match. equivalent: 
+                  //FIXED_UNIT(COS(angle)*46.0),
+                  //FIXED_UNIT(SIN(angle)*46.0));
                   (s32)(gCosineLookup[angle & 0x3FF] * 188416.0f),
                   (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 188416.0f));
 }
@@ -116,6 +119,9 @@ DEFAULT_INT func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
                            gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
     func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+                  // required to match. equivalent: 
+                  //FIXED_UNIT(COS(angle)*46.0),
+                  //FIXED_UNIT(SIN(angle)*46.0));
                   (s32)(gCosineLookup[angle & 0x3FF] * 188416.0f),
                   (s32)(gCosineLookup[(angle - 0x100) & 0x3FF] * 188416.0f));
 }

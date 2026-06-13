@@ -38,7 +38,8 @@ OSMesgQueue gSignalProcessorMessageQueue;
 OSMesgQueue gDisplayProcessorMessageQueue;
 OSMesgQueue gSerialInterfaceMessageQueue;
 OSMesgQueue gControllerInitMessageQueue;
-OSMesgQueue D_8012AC38[2];
+OSMesgQueue gPiManagerMessageQueue;
+OSMesgQueue D_8012AC50; // unused
 
 OSMesg gDmaMessageBuffer;
 OSMesg gVideoInterfaceMessageBuffer;
@@ -127,7 +128,7 @@ void Thread_IdleProc(void* argument) {
         gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
     }
 
-    osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &gPiManagerMessageBuffer, 8);
+    osCreatePiManager(OS_PRIORITY_PIMGR, &gPiManagerMessageQueue, gPiManagerMessageBuffer, 8);
     osCreateThread(&gRmonThread, 0, rmonMain, NULL, __gRmonStackEnd, OS_PRIORITY_RMON);
     osStartThread(&gRmonThread);
     osCreateThread(&gMainThread, 3, Thread_MainProc, argument, __gMainStackEnd, 10);
@@ -238,7 +239,7 @@ void Thread_MainProc(void* unused) {
         gCurrentGraphicsTask->t.ucode_data_size = 0x800;
         gCurrentGraphicsTask->t.dram_stack = gDramStack;
         gCurrentGraphicsTask->t.dram_stack_size = sizeof(gDramStack);
-        gCurrentGraphicsTask->t.data_ptr = gDisplayListData[gCurrentFramebufferIndex].dlist;
+        gCurrentGraphicsTask->t.data_ptr = (u64*)gDisplayListData[gCurrentFramebufferIndex].dlist;
         gCurrentGraphicsTask->t.data_size = (u32)(
             (gDisplayListHead - gDisplayListData[gCurrentFramebufferIndex].dlist) * sizeof(Gfx)
         );
@@ -269,10 +270,10 @@ void Thread_MainProc(void* unused) {
         osRecvMesg(&gVideoInterfaceMessageQueue, &gEventMessage, 1);
 
         if (gCurrentFramebufferIndex) {
-            framebuffer = FRAMEBUFFER0; // framebuffer = gFramebuffer0;
+            framebuffer = FRAMEBUFFER0;
         }
         else {
-            framebuffer = FRAMEBUFFER1; // framebuffer = gFramebuffer1;
+            framebuffer = FRAMEBUFFER1;
         }
 
         Input_Update();

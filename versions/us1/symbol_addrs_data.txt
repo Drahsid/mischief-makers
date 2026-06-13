@@ -41,6 +41,9 @@ D_800D0E84 = 0x800D0E84; // size:0x840
 D_800D16C4 = 0x800D16C4; // size:0xC
 D_800D18F8 = 0x800D18F8;
 D_800D1918 = 0x800D1918;
+gStageCinemaState = 0x800D28E8; // type:u16 size:0x2
+gCrosshairPalette = 0x800D27F8; // size:0x1A
+gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
 D_800D292C = 0x800D292C;
 D_800D2930 = 0x800D2930;
 gNoHit = 0x800D2958; // size:0x2
@@ -57,11 +60,14 @@ D_800D9B24 = 0x800D9B24;
 D_800D9B34 = 0x800D9B34;
 D_800D9B44 = 0x800D9B44;
 D_800D9B54 = 0x800D9B54;
+gGraphicListBlank = 0x800E1380; // size:0x4
 D_800E1384 = 0x800E1384;
 D_800E13B8 = 0x800E13B8;
+gGraphicListGemIcon = 0x800E13DC; // size:0x10
 D_800E149C = 0x800E149C;
 D_800E151C = 0x800E151C;
 D_800E15AC = 0x800E15AC;
+gGraphicListGem = 0x800E164C; // size:0x10
 D_800E1670 = 0x800E1670;
 D_800E16B8 = 0x800E16B8;
 D_800E1714 = 0x800E1714;
@@ -241,6 +247,8 @@ gAudioSeqDmaIoMesg = 0x8016E748; // size:0x18
 gAudioDmaState = 0x8016D9A8; // size:0xC
 gAudioDmaBuffers = 0x8016D9B8; // size:0x500
 gAudioFrameCounter = 0x8016DEB8; // size:0x4
+
+gPiManagerMessageQueue = 0x8012AC38; // size:0x18
 
 //
 gDmaMessageQueue = 0x8012ABA8; // size:0x18

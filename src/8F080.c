@@ -24,9 +24,7 @@ extern void func_8008FD08(u16 actor_index);
 extern void func_80090064(u16 actor_index);
 extern void func_800902B0(u16 actor_index);
 extern void func_80090558(u16 actor_index);
-extern void Sound_PlaySfx2(s32 arg0);
 extern s32 func_80092FD4(u16);
-extern void Sound_PlaySfx2(s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_8008E480.s")
 

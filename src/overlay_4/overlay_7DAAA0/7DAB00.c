@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 4" code for the festival games and "Cerberus Alpha"
+
 extern s16 D_800D2924;
 extern u16 D_800D28F8;
 extern u32 D_80178288;
@@ -212,9 +214,9 @@ void func_801B9900_7DAB00(void) {
 }
 
 void func_801B9908_7DAB08(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BB158_7DC358, 0);
             D_800D2928 = 1;
             D_800BE5F4.unk_00_u32 = 4;
@@ -225,7 +227,7 @@ void func_801B9908_7DAB08(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
@@ -254,16 +256,16 @@ void func_801B9A28_7DAC28(void) {
 }
 
 void func_801B9A8C_7DAC8C(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801B99D4_7DABD4();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -271,7 +273,7 @@ void func_801B9A8C_7DAC8C(void) {
 
         case 2:
             func_80047714(2, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 99;
@@ -281,13 +283,13 @@ void func_801B9A8C_7DAC8C(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -302,7 +304,7 @@ void func_801B9A8C_7DAC8C(void) {
 
                         temp = 3;
                         D_800BE5F4.unk_00_s32 = temp;
-                        *(s16*)&D_800D28E8 = temp;
+                        *(s16*)&gStageCinemaState = temp;
                     }
                 }
             }
@@ -331,16 +333,16 @@ void func_801B9CAC_7DAEAC(void) {
 }
 
 void func_801B9D10_7DAF10(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801B9C58_7DAE58();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -348,7 +350,7 @@ void func_801B9D10_7DAF10(void) {
 
         case 2:
             func_80047714(1, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_s32 = 3;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 99;
@@ -358,13 +360,13 @@ void func_801B9D10_7DAF10(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -377,7 +379,7 @@ void func_801B9D10_7DAF10(void) {
                 func_801B9CAC_7DAEAC();
                 temp = 3;
                 D_800BE5F4.unk_00_s32 = temp;
-                *(s16*)&D_800D28E8 = temp;
+                *(s16*)&gStageCinemaState = temp;
             }
             break;
 
@@ -402,16 +404,16 @@ void func_801B9F30_7DB130(void) {
 }
 
 void func_801B9F78_7DB178(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801B9EDC_7DB0DC();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -419,7 +421,7 @@ void func_801B9F78_7DB178(void) {
 
         case 2:
             func_80047714(5, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x63;
@@ -429,13 +431,13 @@ void func_801B9F78_7DB178(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -445,7 +447,7 @@ void func_801B9F78_7DB178(void) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801B9F30_7DB130();
-                    D_800D28E8 = 3;
+                    gStageCinemaState = 3;
                 }
             }
             break;
@@ -472,16 +474,16 @@ void func_801BA198_7DB398(void) {
 }
 
 void func_801BA1D8_7DB3D8(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801BA144_7DB344();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -489,7 +491,7 @@ void func_801BA1D8_7DB3D8(void) {
 
         case 2:
             func_80047714(6, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x63;
@@ -499,13 +501,13 @@ void func_801BA1D8_7DB3D8(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -515,7 +517,7 @@ void func_801BA1D8_7DB3D8(void) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BA198_7DB398();
-                    D_800D28E8 = 3;
+                    gStageCinemaState = 3;
                 }
             }
             break;
@@ -545,16 +547,16 @@ void func_801BA3F8_7DB5F8(void) {
 }
 
 void func_801BA45C_7DB65C(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801BA3A4_7DB5A4();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -562,7 +564,7 @@ void func_801BA45C_7DB65C(void) {
 
         case 2:
             func_80047714(3, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x63;
@@ -572,13 +574,13 @@ void func_801BA45C_7DB65C(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -592,7 +594,7 @@ void func_801BA45C_7DB65C(void) {
                     func_801BA3F8_7DB5F8();
                     temp = 3;
                     D_800BE5F4.unk_00_s32 = temp;
-                    *(s16*)&D_800D28E8 = temp;
+                    *(s16*)&gStageCinemaState = temp;
                 }
             }
             break;
@@ -603,9 +605,9 @@ void func_801BA45C_7DB65C(void) {
 }
 
 void func_801BA628_7DB828(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BB2B8_7DC4B8, 0);
             D_800BE5F4.unk_00_u32 = 3;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
@@ -613,7 +615,7 @@ void func_801BA628_7DB828(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
@@ -648,16 +650,16 @@ void func_801BA740_7DB940(void) {
 }
 
 void func_801BA7C4_7DB9C4(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801BA6EC_7DB8EC();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
             }
@@ -665,7 +667,7 @@ void func_801BA7C4_7DB9C4(void) {
 
         case 2:
             func_80047714(4, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x63;
@@ -675,13 +677,13 @@ void func_801BA7C4_7DB9C4(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -695,7 +697,7 @@ void func_801BA7C4_7DB9C4(void) {
                     func_801BA740_7DB940();
                     temp = 3;
                     D_800BE5F4.unk_00_s32 = temp;
-                    *(s16*)&D_800D28E8 = temp;
+                    *(s16*)&gStageCinemaState = temp;
                 }
             }
             break;
@@ -706,16 +708,16 @@ void func_801BA7C4_7DB9C4(void) {
 }
 
 void func_801BA990_7DBB90(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BB3F0_7DC5F0, 0);
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB400_7DC600);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
@@ -748,23 +750,23 @@ void func_801BAAA4_7DBCA4(void) {
 }
 
 void func_801BAB04_7DBD04(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_801BAA50_7DBC50();
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 4;
             }
             break;
 
         case 2:
             func_80047714(7, 1, 1, 3);
-            if ((D_800D28E8 - 3) == 0) {
+            if ((gStageCinemaState - 3) == 0) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x63;
@@ -775,13 +777,13 @@ void func_801BAB04_7DBD04(void) {
 
         case 3:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 4;
+                gStageCinemaState = 4;
                 gCannotPause = FALSE;
             }
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D2928 = 0xA;
             Sound_StartFade(1, 0xA);
 
@@ -791,7 +793,7 @@ void func_801BAB04_7DBD04(void) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BAAA4_7DBCA4();
-                    D_800D28E8 = 3;
+                    gStageCinemaState = 3;
                 }
             }
             break;
@@ -804,16 +806,16 @@ void func_801BAB04_7DBD04(void) {
 }
 
 void func_801BACD0_7DBED0(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BB450_7DC650, 0);
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB460_7DC660);
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 gCannotPause = TRUE;
             }
             break;
@@ -831,13 +833,13 @@ void func_801BACD0_7DBED0(void) {
 }
 
 void func_801BAD9C_7DBF9C(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            if (D_800D2908 != 0) {
-                D_800D28E8 = 0x1000;
+            if (gSkipStageIntro) {
+                gStageCinemaState = 0x1000;
             }
             else {
-                D_800D28E8++;
+                gStageCinemaState++;
                 func_80046148(D_801BB470_7DC670, 0);
                 Actor_LoadSpawnTable(D_801BB480_7DC680);
                 Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
@@ -847,7 +849,7 @@ void func_801BAD9C_7DBF9C(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 gCannotPause = TRUE;
             }
             break;
@@ -857,7 +859,7 @@ void func_801BAD9C_7DBF9C(void) {
             break;
 
         case 3:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800D28FC |= 8;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
@@ -866,23 +868,23 @@ void func_801BAD9C_7DBF9C(void) {
             break;
 
         case 5:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800BE544 = 0x8000;
             D_800D28FC |= 4;
             D_800D28FC &= ~8;
             break;
 
         case 7:
-            D_800D28E8++;
+            gStageCinemaState++;
             Actor_LoadSpawnTable(D_801BB480_7DC680);
             break;
 
         case 9:
-            D_800D28E8 = 0xC000;
+            gStageCinemaState = 0xC000;
             break;
 
         case 0x1000:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BB470_7DC670, 0);
             Actor_LoadSpawnTable(D_801BB480_7DC680);
             Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
@@ -891,7 +893,7 @@ void func_801BAD9C_7DBF9C(void) {
 
         case 0x1001:
             if (func_80046D5C() != 0) {
-                D_800D28E8 = 3;
+                gStageCinemaState = 3;
             }
             break;
 
@@ -900,7 +902,7 @@ void func_801BAD9C_7DBF9C(void) {
 
         case 0xC001:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 

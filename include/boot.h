@@ -19,7 +19,8 @@ extern OSMesgQueue gSignalProcessorMessageQueue;
 extern OSMesgQueue gDisplayProcessorMessageQueue;
 extern OSMesgQueue gSerialInterfaceMessageQueue;
 extern OSMesgQueue gControllerInitMessageQueue;
-extern OSMesgQueue D_8012AC38[2];
+extern OSMesgQueue gPiManagerMessageQueue;
+extern OSMesgQueue D_8012AC50; //unused
 
 extern OSMesg gDmaMessageBuffer;
 extern OSMesg gVideoInterfaceMessageBuffer;

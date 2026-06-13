@@ -1,6 +1,8 @@
 #include "common.h"
 #include "actor.h"
 
+// "overlay 1" code for "Chilly Dog!!"
+
 void func_8002AC30(u16 actor_index, s16 val);
 void func_8019B100_749CB0(u16 actor_index);
 void func_8019BD50_74A900(u16 actor_index);
@@ -29,7 +31,7 @@ void func_8019B1E4_749D94(u16 actor_index) {
 
 void func_8019BC9C_74A84C(u16 actor_index) {
     func_8019B100_749CB0(actor_index);
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 void func_8019BD00_74A8B0(s32 arg0) {

@@ -441,8 +441,8 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK10;
         }
 
-        if (gActors[actor_index].unk_0D4 != 0) {
-            gActors[actor_index].unk_0D4--;
+        if (gActors[actor_index].iFrames != 0) {
+            gActors[actor_index].iFrames--;
         }
 
         func_80066964(actor_index, (gActors[actor_index].unk_0D8 & 0x7000) / 0x1000);
@@ -461,7 +461,7 @@ void func_8006C5A4(u16 actor_index) {
     }
 
     func_80066BCC(actor_index);
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C6F0.s")
