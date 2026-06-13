@@ -648,14 +648,14 @@ void func_801B9D78_7E2ED8(void) {
 }
 
 void func_801B9E74_7E2FD4(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
-            if (D_800D2908 != 0) {
-                D_800D28E8 = 0x1000;
+            if (gSkipStageIntro) {
+                gStageCinemaState = 0x1000;
                 break;
             }
 
-            D_800D28E8++;
+            gStageCinemaState++;
             Palette_AdjustScenePalettes(8, 8, -2, 2, 2, -0x1F, 8, 0, -0x1F);
             func_801B9D38_7E2E98(D_801BBEC0_7E5020, (s32)D_801BBF10_7E5070, D_801BC7FC_7E595C);
             D_800BE5F4.unk_00_s32 = 4;
@@ -672,16 +672,16 @@ void func_801B9E74_7E2FD4(void) {
             }
             if (func_80046D5C() != 0) {
                 D_800D28F8 = 4;
-                D_800D28E8++;
+                gStageCinemaState++;
                 gCannotPause = TRUE;
             }
             break;
 
         case 2:
             func_80047714(1, 1, 1, 3);
-            if (D_800D28E8 == 3) {
+            if (gStageCinemaState == 3) {
                 D_800D2938 = 0;
-                D_800D28E8 = 3;
+                gStageCinemaState = 3;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
                 D_800BE5F4.unk_00_s32 = 4;
@@ -690,11 +690,11 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 3:
-            D_800D28E8++;
+            gStageCinemaState++;
             D_800BE544 = 0;
 
         case 4:
-            D_800D28E8++;
+            gStageCinemaState++;
             switch (D_800D2928) {
                 case 0:
                     func_801B9D38_7E2E98(D_801BBEE0_7E5040, -7, D_801BC83C_7E599C);
@@ -719,7 +719,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 5:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800D292C = 1;
                 gCannotPause = FALSE;
@@ -766,10 +766,10 @@ void func_801B9E74_7E2FD4(void) {
                 if (((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) >= 0x2000) &&
                     ((gScreenPosCurrentY.whole + (gActors + 0x41)->posY.whole) >= 0x140) &&
                     (gActors[0x40].flags & 2)) {
-                    D_800D28E8 = 7;
+                    gStageCinemaState = 7;
                 }
                 else {
-                    D_800D28E8 = 0xA;
+                    gStageCinemaState = 0xA;
                 }
 
                 gCannotPause = TRUE;
@@ -785,14 +785,14 @@ void func_801B9E74_7E2FD4(void) {
                 D_801373E0.unk_24 = 0;
             }
             func_80047714(2, 1, 1, 8);
-            if (D_800D28E8 == 8) {
+            if (gStageCinemaState == 8) {
                 D_800BE5F4.unk_00_s32 = 2;
             }
             break;
 
         case 8:
             D_800D2938 = 0;
-            D_800D28E8 = 0xC;
+            gStageCinemaState = 0xC;
             D_800D28F0 = 0;
             D_800D28E4 = 0x64;
             break;
@@ -801,7 +801,7 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
             gActors[0].velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
-            if (D_800D28E8 == 0xB) {
+            if (gStageCinemaState == 0xB) {
                 D_800BE5F4.unk_00_s32 = 2;
             }
             break;
@@ -810,7 +810,7 @@ void func_801B9E74_7E2FD4(void) {
             D_800D2938 = 0;
             D_800D2928 = 0;
             D_800D292C = 0;
-            D_800D28E8 = 0x1000;
+            gStageCinemaState = 0x1000;
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
             break;
@@ -820,7 +820,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0x1000:
-            D_800D28E8 = 3;
+            gStageCinemaState = 3;
             D_800D2928 = 0;
             D_800D292C = 0;
             D_800D2930 = 0;
@@ -892,7 +892,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
 
-    if (D_800D28E8 != 0) {
+    if (gStageCinemaState != 0) {
         for (index = 0; index < 8; index++) {
             saved[index] = gActors[index + 0x48].unk_188_s16;
         }
@@ -907,7 +907,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
         gActors[0x4F].timer_110 = gActors[0x4F].timer_110 - 4096.0f;
     }
 
-    if (D_800D28E8 != 0) {
+    if (gStageCinemaState != 0) {
         for (index = 0; index < 8; index++) {
             if (saved[index] == 0) {
                 snapped = gActors[index + 0x48].timer_110;
@@ -944,7 +944,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     D_800D2918 = arg1 + 0x70;
     D_800D291C = arg1 - 0x70;
     D_800BE5F4.unk_00_s32 = 0xA;
-    D_800D28E8 = 8;
+    gStageCinemaState = 8;
     D_801BD8C0_7E6A20 = arg2;
 }
 

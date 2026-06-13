@@ -1122,16 +1122,16 @@ void func_801B9EA0_7DCD70(void) {
 }
 
 void func_801B9ED4_7DCDA4(void) {
-    switch (D_800D28E8) {
+    switch (gStageCinemaState) {
         case 0:
             Palette_AdjustScenePalettes(2, 1, 0, 0, -5, -8, 4, 7, 0);
             func_80042F2C(-2, -2, -2);
-            if (D_800D2908 != 0) {
-                D_800D28E8 = 0xC;
+            if (gSkipStageIntro) {
+                gStageCinemaState = 0xC;
                 break;
             }
 
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BC9A0_7DF870, (s32)D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD63C_7E050C);
@@ -1144,7 +1144,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
                 gCannotPause = TRUE;
@@ -1154,7 +1154,7 @@ void func_801B9ED4_7DCDA4(void) {
         case 2:
             D_800D28F8--;
             if (D_800D28F8 < 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
                 func_8005DF5C(D_801BCA08_7DF8D8[D_800D2934]);
                 func_8005DF40(0, (s16)D_801BCA08_7DF8D8[D_800D2934 + 1]);
                 D_800D5830 = D_801BCA08_7DF8D8[D_800D2934 + 2];
@@ -1230,22 +1230,22 @@ void func_801B9ED4_7DCDA4(void) {
 
                 D_800D2934 += 4;
                 if (D_801BCA08_7DF8D8[D_800D2934] == 0xFFFF) {
-                    D_800D28E8++;
+                    gStageCinemaState++;
                     D_800D28F8 = 0x3C;
                 }
                 else {
-                    D_800D28E8--;
+                    gStageCinemaState--;
                     D_800D28F8 = 0x14;
                 }
             }
 
-            if ((gButtonPress & gButton_ZTrig) || (D_800D28E8 == 4)) {
+            if ((gButtonPress & gButton_ZTrig) || (gStageCinemaState == 4)) {
                 func_801B9E6C_7DCD3C();
             }
             break;
 
         case 0xC:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BC9A0_7DF870, (s32)D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD684_7E0554);
@@ -1257,7 +1257,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0xD:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
@@ -1266,7 +1266,7 @@ void func_801B9ED4_7DCDA4(void) {
             break;
 
         case 0x10:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BC9B0_7DF880, (s32)D_801BCA6C_7DF93C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD730_7E0600);
@@ -1295,7 +1295,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0x11:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
 
         case 0x12:
@@ -1361,12 +1361,12 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0x13:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
             break;
 
         case 0x20:
-            D_800D28E8++;
+            gStageCinemaState++;
             func_80045FA4(D_801BC9C0_7DF890, (s32)D_801BD638_7E0508);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD958_7E0828);
@@ -1376,7 +1376,7 @@ void func_801B9ED4_7DCDA4(void) {
 
         case 0x21:
             if (func_80046D5C() != 0) {
-                D_800D28E8++;
+                gStageCinemaState++;
             }
 
         case 0x22:
