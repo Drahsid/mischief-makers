@@ -1410,7 +1410,7 @@ void func_801BB28C_7E43EC(void) {
     Camera_UpdateViewBounds();
 }
 
-// state machine for intro/end of "Lunar!!"
+// state machine for intro/end of "Taurus!!"
 void func_801BB85C_7E49BC(void) {
     switch (gStageCinemaState) {
         case 0:

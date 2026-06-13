@@ -54,7 +54,7 @@ extern u16 D_800D2920;
 extern u16 D_800D2924;
 extern u16 D_800D2978[];
 
-extern s16 gGraphicListGem[];
+extern s16 gGraphicListGemIcon[];
 extern s16 D_800E13FC[];
 
 extern u32 D_80137458;
@@ -773,11 +773,11 @@ void func_80020A90(void) {
             func_8002034C();
             func_800205DC();
             func_800207DC();
-            func_80027510(actor_index + 5, gGraphicListGem, 0xFFA8, 0xC, 0x401);
+            func_80027510(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
             gActors[actor_index + 5].palette_18C =  D_800D88B8;
-            func_80027510(actor_index + 6, gGraphicListGem, 8, 0xC, 0x401);
+            func_80027510(actor_index + 6, gGraphicListGemIcon, 8, 0xC, 0x401);
             gActors[actor_index + 6].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 6].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
             gActors[actor_index + 6].palette_18C =  D_800D8C78;
