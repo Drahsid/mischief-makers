@@ -96,52 +96,44 @@ void func_801A6D4C_78B88C(u16 actor_index){
     }
 }
 
-#ifdef NON_MATCHING
-// pirate spawns a spikeball based on HP and/or chance.
-// https://decomp.me/scratch/S2YYO 71.75%
-void func_801A6E48_78B988(u16 actor_index) {
-    u16 temp_a0;
-    u16 temp_a1;
-    u16 temp_t4;
+// pirate spawns a bouncing spikeball based on health and/or chance.
+void func_801A6E48_78B988(u16 arg0) {
+    u16 actor_index;
     
-    
-    temp_a0 = Actor_RangeFindInactive(0x49U, 0x4CU);
-    if (temp_a0 != 0) {
-        gActors[temp_a0].actorType = 0x2002;
-        func_8001E2D0(temp_a0);
-        gActors[temp_a0].timer_110 = (f32) ((Rand() & 19) << 8);
-        gActors[temp_a0].unk_0D8 = 0;
-        gActors[temp_a0].posX.whole = gActors[actor_index].posX.whole;
-        gActors[temp_a0].posY.whole = gActors[actor_index].posY.whole + 0x10;
-        temp_a1 = gActors[actor_index].health;
-        temp_t4 = temp_a1 & 0x300;
-        if (temp_t4 == 0x100){
-            gActors[temp_a0].velocityY.raw = FIXED_UNIT(-5.0);
-            gActors[temp_a0].unk_12C = 1.0f;
-            gActors[temp_a0].velocityX.raw = (gActors[actor_index+1].unk_130 * FIXED_UNIT(0.75));
-        }
-        else if (temp_t4 == 0x200) {
-            gActors[temp_a0].velocityY.raw = FIXED_UNIT(-1.0);
-            gActors[temp_a0].unk_12C = 2.0f;
-            gActors[temp_a0].velocityX.raw = (gActors[actor_index+1].unk_130 * FIXED_UNIT(1));
-        }
-        else{
+    actor_index = Actor_RangeFindInactive(0x49, 0x4C);
+    if (actor_index != 0) {
+        gActors[actor_index].actorType = 0x2002;
+        func_8001E2D0(actor_index);
+        gActors[actor_index].timer_110 = (Rand() & 19) << 8;
+        gActors[actor_index].unk_0D8 = 0;
+        gActors[actor_index].posX.whole = gActors[arg0].posX.whole;
+        gActors[actor_index].posY.whole = gActors[arg0].posY.whole + 0x10;
+        switch (gActors[arg0].health & 0x300) {
+            case 0x200:
+            gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(1);
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.0);
+            gActors[actor_index].unk_12C = 2.0f;
+            break;
+            case 0x100:
+            gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(0.75);
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(-5.0);
+            gActors[actor_index].unk_12C = 1.0f;
+            break;
+            default:
           if (Rand() & 1) {
-            gActors[temp_a0].velocityY.raw = FIXED_UNIT(-2.0);
-            gActors[temp_a0].unk_12C = 2.0f;
-            gActors[temp_a0].velocityX.raw =  (gActors[actor_index+1].unk_130 * FIXED_UNIT(1.375));
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(-2.0);
+            gActors[actor_index].velocityX.raw =  gActors[arg0+1].unk_130 * FIXED_UNIT(1.375);
+            gActors[actor_index].unk_12C = 2.0f;
           }
           else {
-            gActors[temp_a0].velocityY.raw = FIXED_UNIT(-5.0);
-            gActors[temp_a0].unk_12C = 1.0f;
-            gActors[temp_a0].velocityX.raw = (gActors[actor_index+1].unk_130 * FIXED_UNIT(0.75));
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(-5.0);
+            gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(0.75);
+            gActors[actor_index].unk_12C = 1.0f;
           }    
+            break;
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78B430/78B440/func_801A6E48_78B988.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78B430/78B440/func_801A7100_78BC40.s")
 

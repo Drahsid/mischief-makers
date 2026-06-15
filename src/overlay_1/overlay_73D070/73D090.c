@@ -91,7 +91,48 @@ void func_8019BACC_73DA5C(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BAD4_73DA64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BC64_73DBF4.s")
+// initalize head and body segments of worm.
+void func_8019BC64_73DBF4(u16 arg0) {
+    u16 var_s1;
+    u16 var_s2;
+    s32 pad[6];
+
+    gActors[arg0].flags = 2;
+    gActors[arg0].hitboxBY0 = 0x16;
+    gActors[arg0].hitboxBY1 = -8;
+    gActors[arg0].hitboxBX0 = -8;
+    gActors[arg0].hitboxBX1 = 8;
+    gActors[arg0].var_15C = arg0 + 2;
+    gActors[arg0].var_160 = arg0 + 2;
+    gActors[arg0].unk_164 = arg0 + 1;
+    gActors[arg0].health = 150;
+    for (var_s1 = arg0 + 1, var_s2 = 0; var_s2 < 11; var_s1++, var_s2++) {
+        gActors[var_s1].actorType = 0x21;
+        func_8001E2D0(var_s1);
+        gActors[var_s1].graphicFlags = 0x809;
+        gActors[var_s1].flags = D_801A0990_742920[var_s2];
+        gActors[var_s1].graphicIndex = D_801A0960_7428F0[var_s2];
+        gActors[var_s1].scaleX = D_801A09E8_742978[var_s2];
+        gActors[var_s1].posX.whole = -0x1000;
+        gActors[var_s1].posY.whole = -0x1000;
+        gActors[var_s1].health = 1000;
+        gActors[var_s1].colorA = 0xFE;
+        gActors[arg0].unk_18C |= 0x200;
+        gActors[var_s1].unk_0CE = 8;
+        func_8002AC30(var_s1, 6);
+    }
+    gActors[(u16)(arg0 + 1)].graphicFlags |= 4;
+    gActors[(u16)(arg0 + 1)].hitboxBY0 = 0x14;
+    gActors[(u16)(arg0 + 1)].hitboxBY1 = -8;
+    gActors[(u16)(arg0 + 1)].hitboxBX0 = -0xC;
+    gActors[(u16)(arg0 + 1)].hitboxBX1 = 0xC;
+    func_8002AC30(arg0 + 2, 0x10);
+    D_800BE678 = 0x68;
+    D_800BE67C = 0xB8;
+    D_800BE680 = 0xB8;
+    D_800BE684 = 0xD0;
+    D_800BE688 = 0xD3;
+}
 
 // copy of Math_ApproachS32.
 s32 func_8019BE98_73DE28(s32 current, s32 target, s32 step) {

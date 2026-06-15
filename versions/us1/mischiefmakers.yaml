@@ -1145,7 +1145,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x78CBF0, c, overlay_2/overlay_78CB60/78CBF0] # object segment 78CBF0->7969B0 (0x9DC0)
-      - [0x7958C0, data, overlay_78CB60/78CBF0] # has the "Foul!", "100M", "Jump", etc. strings
+      - [0x7958C0, .data, overlay_2/overlay_78CB60/78CBF0]
       - [0x7963E0, rodata, overlay_78CB60/78CBF0]
       - { name: overlay_78CB60/78CBF0, type: bss, vram: 0x801B06C0 }
 
