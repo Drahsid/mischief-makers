@@ -1,6 +1,13 @@
 #include "common.h"
 
+
+// "overlay 3" code for Festival Games.
+
 extern u16 D_800D28F0;
+
+void func_801B0DA0_7A7320(u16);
+extern func_801B2498_7A8A18(u16);
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0900_7A6E80.s")
 
@@ -14,8 +21,26 @@ void func_801B0BFC_7A717C(u16 arg0) {
     D_800D28E4 = 0x62;
 }
 
+#ifdef NON_MATCHING
+// forefit after too many false starts.
+// https://decomp.me/scratch/OacVT
+// match requires direct reference to gFestivalData.competitors.
+void func_801B0C20_7A71A0(u16 actor_index){
+    
+    gFestivalRecords[gFestivalData.currentEvent] = gActors[actor_index].unk_178;
+    func_801B0DA0_7A7320(actor_index);
+    func_801B2498_7A8A18(actor_index);
+    
+    gFestivalData.competitors[0].rank = 4;
+    gFestivalData.competitors[1].rank = 1;
+    gFestivalData.competitors[2].rank = 2;
+    gFestivalData.competitors[3].rank = 3;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0C20_7A71A0.s")
+#endif
 
+// warning on false start.
 void func_801B0CBC_7A723C(u16 arg0) {
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x63;
@@ -26,7 +51,7 @@ void func_801B0CBC_7A723C(u16 arg0) {
 
 void func_801B0DA0_7A7320(u16 arg0) {
     gStageCinemaState = 0;
-    D_800D28F0 = 0x32;
+    D_800D28F0 = 50;
     D_800D28E4 = 0x62;
 }
 
@@ -100,11 +125,17 @@ void func_801B0DA0_7A7320(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B3370_7A98F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B3480_7A9A00.s")
+void func_801B3480_7A9A00(u16 from, u16 to){
+    u16 index;
+    for(index = from; index < to; index++){
+        gActors[index].flags = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B34D4_7A9A54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B3BC4_7AA144.s")
+void func_801B3BC4_7AA144(u16 arg0){
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B3BCC_7AA14C.s")
 
@@ -114,7 +145,13 @@ void func_801B0DA0_7A7320(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B4298_7AA818.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B466C_7AABEC.s")
+void func_801B466C_7AABEC(u16 actor_index, s16* new_list){
+    if(gActors[actor_index].graphicTimer==0){
+        ACTOR_GFX_INIT(actor_index,new_list);
+        gActors[actor_index].var_154 = 0;
+        gActors[actor_index].velocityX.raw = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B46C0_7AAC40.s")
 

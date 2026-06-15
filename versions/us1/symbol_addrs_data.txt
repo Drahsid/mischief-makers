@@ -325,6 +325,8 @@ gActorsFront = 0x80171D30; // size:0x1e0
 gActorsTop = 0x80171F10; // size:0x1e0
 
 
+gFestivalRecords; = 0x80171AE8 // size:0x28
+
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;
 rle_0045_3E7AB0_0119EB70 = 0x0119EB70;

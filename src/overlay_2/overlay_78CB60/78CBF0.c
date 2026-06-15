@@ -4,6 +4,9 @@
 
 // "overlay 2" code for Festival Games.
 
+extern void func_80069E18(u16);
+extern u8 D_80171B19; // set when festival games are won.
+
 // may be a u32[] 
 u32 D_801AF5D0_7958C0[][2]={
     {0x17d,0x17c},{0x1a3,0x194},{0x17d,0x17c},{0x1C7,0x17D},{0x140,0x16e}
@@ -130,15 +133,15 @@ ActorFunc D_801AF778_795A68[]={
     func_801A96D4_78F9C4
 };
 
-// {?, event option y-pos, event selected.}
+// {event option x-pos, event option y-pos, event selected.}
 u16 D_801AF798_795A88[]={
-    -0x20,0x20,0,
-    -0x20,0x10,1,
-    -0x20,0,2,
-    -0x20,-0x10,3,
-    -0x20,-0x20,4,
-    -0x20,-0x30,5,
-    -0x20,-0x40,6,
+    -0x20, 0x20, FESTGAME_100M,
+    -0x20, 0x10, FESTGAME_200M,
+    -0x20,    0, FESTGAME_400M,
+    -0x20,-0x10, FESTGAME_JUMP,
+    -0x20,-0x20, FESTGAME_BALL,
+    -0x20,-0x30, FESTGAME_HURDLE,
+    -0x20,-0x40, FESTGAME_MATH,
     -1
 };
 
@@ -151,7 +154,7 @@ u16 D_801AF7C4_795AB4[]={
 // struct read in func_801ABBAC_791E9C.
 typedef struct{
     u8 unk_00;
-    u8 unk_01;
+    u8 unk_01; // align byte?
     u16 unk_02;
     s32 unk_04;
     s32 unk_08;
@@ -677,6 +680,7 @@ u16 D_801B00E4_7963D4[]={
 };
 
 
+
 void func_801A7C14_78DF04(u16);
 void func_801A7CA4_78DF94(u16);
 
@@ -766,13 +770,9 @@ void func_801A821C_78E50C(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8428_78E718.s")
 
-// https://decomp.me/scratch/6vYeL
-// this SHOULD work, but causes a mismatch with proper array address.
-// fakematch in function below will also need solved.
-#ifdef NON_MATCHING
+
 u8 func_801A8780_78EA70(u16* arg0) {
-    u16 val = *arg0; // wtf
-    if (val < ALPHA_EN3_LOWER_A) {
+    if (*arg0 < ALPHA_EN3_LOWER_A) {
         return 6;
     }
     else if (*arg0 & 0x8000) {
@@ -781,18 +781,13 @@ u8 func_801A8780_78EA70(u16* arg0) {
     
     return D_801AF724_795A14[*arg0 - ALPHA_EN3_LOWER_A];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8780_78EA70.s")
-#endif
 
-u16 func_801A87C0_78EAB0(s32 arg0) {
-    u16 value;
-    s32 next = arg0;
-
-    arg0 = next;
-    arg0 += 2;
-    value = func_801A8780_78EA70(next, arg0);
-    return value + func_801A8780_78EA70(arg0);
+u16 func_801A87C0_78EAB0(u16* str) {
+    u16 len0;
+    u16 len1;
+    len0 = func_801A8780_78EA70(str++);
+    len1 = func_801A8780_78EA70(str);
+    return len1 + len0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A8800_78EAF0.s")
@@ -870,7 +865,7 @@ void func_801AA310_790600(s32 arg0, s32 arg1){
 
     p = &gFestivalData;
     n = p->eventsPlayed;
-    for (index = 0; index<10; index++){
+    for (index = 0; index < FESTGAME_TOTAL; index++){
         n[index] = FALSE;
     }
     p->eventClearCount = 0;
@@ -905,16 +900,76 @@ void func_801AAFC4_7912B4(s32 arg0) {
 void func_801AB3EC_7916DC(u16 actor_index, u16* arg1) {
     gActors[0x33].posX.whole = arg1[gActors[actor_index].unk_170 * 3] - gActors[actor_index].unk_180 + 0x30;
     gActors[0x33].posY.whole = arg1[gActors[actor_index].unk_170 * 3 + 1];
-    gActors[0x33].flags |= 1;
+    gActors[0x33].flags |= ACTOR_FLAG_DRAW;
 }
 
+#ifdef NON_MATCHING
+// initalize "strikethrough" actors in menu for played games.
+// should work, once issue with applying .rodata is solved.
+void func_801AB474_791764(u16 arg0){
+    u16 index; 
+    u16 actor_index;
+    for (index = 0; index < FESTGAME_TOTAL; index++){
+        actor_index = index+0x40;
+        gActors[actor_index].actorType =0;
+        func_8001E2D0(actor_index);
+        gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
+        gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].posZ.whole = 0x81;
+        gActors[actor_index].scaleX = 7.0f;
+        gActors[actor_index].scaleY = 0.2f;
+        gActors[actor_index].unk_188 =0;
+        gActors[actor_index].colorR = 0xFF;
+        gActors[actor_index].colorA = 200;
+        gActors[actor_index].posX.whole = 0;
+        gActors[actor_index].posY.whole = D_801AF798_795A88[index*3+1];
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB474_791764.s")
+#endif
+// hide the strikes on menu options.
+void func_801AB5B4_7918A4(u16 arg0){
+    u16 index; 
+    u16 actor_index;
+    for (index = 0; index < FESTGAME_TOTAL; index++){
+        actor_index = index+0x40;
+        gActors[actor_index].flags &= ~ACTOR_FLAG_DRAW;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB5B4_7918A4.s")
+#ifdef NON_MATCHING
+// draw strike over menu options for completed events.
+// https://decomp.me/scratch/7nrBj
+void func_801AB610_791900(u16 actor_index){
+    u16 index;
+    u32 max;
+    u16 actor_index2;
+    u8* p;
+    
 
+    if(!D_80171B19){
+        p = gFestivalData.eventsPlayed;
+        for (index=gActors[actor_index].unk_17C*7, max=index+7;index<max;index++){
+            if(p[index]){
+                actor_index2 = index+0x40;
+               gActors[actor_index2].flags |= ACTOR_FLAG_DRAW;
+            }
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB610_791900.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB6B4_7919A4.s")
+// has the selected event been completed?
+u32 func_801AB6B4_7919A4(u16 actor_index){
+    if(!D_80171B19){
+        return gFestivalData.eventsPlayed[gActors[actor_index].unk_170];
+    }
+    return FALSE;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB710_791A00.s")
 
@@ -1100,7 +1155,10 @@ void func_801AECB0_794FA0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AECB8_794FA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AED30_795020.s")
+void func_801AED30_795020(u16 actor_index){
+    gActors[actor_index].unk_118 = 1.0;
+    func_80069E18(actor_index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AED88_795078.s")
 

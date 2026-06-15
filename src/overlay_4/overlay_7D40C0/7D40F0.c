@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "debug_level_select.h"
 
-// "overlay 4" code of most the World 3 stages, excluding "The Day Of" and "Cerberus Alpha"
+// "overlay 4" code of most the World 3 stages, excluding "The Day Of", "Cat-tastrophe" and "Cerberus Alpha"
 
 // BUG: incorrect prototype!
 extern void func_80034D80(u16 actor_index, u16* vals);
@@ -1626,7 +1626,7 @@ void func_801BA690_7D4E80(void) {
 
         case 0x102:
             func_80045FA4(D_801BD6A4_7D7E94, (u16*)D_801BDCA8_7D8498);
-            gFestivalData.currentEvent = 8;
+            gFestivalData.currentEvent = FESTGAME_INTRO;
             Actor_LoadSpawnTable(D_801BDCAC_7D849C);
             gStageCinemaState++;
             D_800BE544 = 0x8000;
@@ -1685,7 +1685,7 @@ void func_801BAA0C_7D51FC(void) {
             else {
                 gStageCinemaState++;
                 func_80045FA4(D_801BDE8C_7D867C, 0);
-                gFestivalData.currentEvent = 7;
+                gFestivalData.currentEvent = FESTGAME_DODGEBALL;
                 Actor_LoadSpawnTable(D_801BDE9C_7D868C);
                 D_800BE5F4.unk_00_u32 = 7;
             }
@@ -1730,7 +1730,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x1000:
             gStageCinemaState++;
             func_80045FA4(D_801BDE8C_7D867C, 0);
-            gFestivalData.currentEvent = 7;
+            gFestivalData.currentEvent = FESTGAME_DODGEBALL;
             Actor_LoadSpawnTable(D_801BDE9C_7D868C);
             D_800F4268 = 1;
             D_800BE5F4.unk_00_u32 = 7;

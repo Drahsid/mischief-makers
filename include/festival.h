@@ -3,13 +3,30 @@
 
 #include "inttypes.h"
 
+typedef enum {
+    FESTGAME_100M,
+    FESTGAME_200M,
+    FESTGAME_400M,
+    FESTGAME_JUMP,
+    FESTGAME_BALL,
+    FESTGAME_HURDLE,
+    FESTGAME_MATH,
+    FESTGAME_DODGEBALL, // dodgeball with Cat Clancer
+    FESTGAME_INTRO, // introduction in "The Day Before"
+    FESTGAME_SELECT, // select screen
+    FESTGAME_TOTAL
+} FestivalEvents;
+
+
+extern u32 gFestivalRecords[FESTGAME_TOTAL]; // festival games records.
+
 // code related to Festival Games
 
 // data related to competitor in festival.
 typedef struct {
     /* 0x00 */ u16 actorIndex;
     /* 0x02 */ s16 playerNumber;
-    /* 0x04 */ u16 unk_04;
+    /* 0x04 */ u16 rank; // rank in in event. 0 for still running.
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ s32 actor_unk_174;
     /* 0x0C */ s32 rand;
@@ -39,7 +56,7 @@ typedef struct {
     /* 0x9C */ s32 timeCurrent;
     /* 0xA0 */ s32 timeToBeat;
     /* 0xA4 */ u8 unk_A4[4]; // unused?
-    /* 0xA8 */ u8 eventsPlayed[10]; // booleans set when event is completed.
+    /* 0xA8 */ u8 eventsPlayed[FESTGAME_TOTAL]; // booleans set when event is completed.
     /* 0xB2 */ s16 guestHP; // used by Teran in "Rescue"
 } FestivalStruct;
 
