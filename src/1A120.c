@@ -4,10 +4,7 @@
 #include "debug_level_select.h"
 #include "input.h"
 
-extern ActorFunc D_80192000[];
-extern ActorFunc D_8019B000[];
-extern ActorFunc D_801A6800[];
-extern ActorFunc D_801B0800[];
+
 
 extern s16 D_800C9694[];
 extern u16* D_800C96A0[];
@@ -53,8 +50,6 @@ void func_8001ACA8(s32 arg0, s32 arg1, s32 arg2);
 void func_8001B02C(void);
 void func_8001B1A0(void);
 u16 func_8001B244(void);
-void Sound_StopMusic(void);
-s32 Sound_PlaySfx2(u32 arg0);
 void func_80043918(void);
 void func_8008310C(void);
 void func_80083454(void);

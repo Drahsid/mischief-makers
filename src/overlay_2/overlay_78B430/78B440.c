@@ -13,7 +13,7 @@ void func_801A6908_78B448(u16 actor_index) {
 void func_801A6968_78B4A8(u16 actor_index, u16 new_actor_index, u16 graphic_index) {
     f32 scale;
 
-    gActors[new_actor_index].actorType = 0x1D;
+    gActors[new_actor_index].actorType = ACTORTYPE_GRAPHICONLY;
     Actor_Initialize(new_actor_index);
 
     scale = D_801A7F70_78CAB0;

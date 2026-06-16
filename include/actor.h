@@ -4,6 +4,7 @@
 #include <PR/gbi.h>
 #include <PR/ultratypes.h>
 #include "graphicIndex.h"
+#include "actorTypes.h"
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
@@ -276,6 +277,11 @@ typedef struct {
 } Actor; /* size = 0x198 */
 
 extern Actor gActors[];
+
+extern ActorFunc D_80192000[]; // "overlay 0" dispatch table.
+extern ActorFunc D_8019B000[]; // "overlay 1" dispatch table.
+extern ActorFunc D_801A6800[]; // "overlay 2" dispatch table.
+extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 
 
 // the following two macros are based on common patterns in the code.
