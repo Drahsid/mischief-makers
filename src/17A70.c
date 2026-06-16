@@ -401,7 +401,7 @@ void func_80017F08(void) {
 
 void func_80017FE8(u16 actor_index) {
     gActors[actor_index].actorType = 0;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
 
     gActors[actor_index].posX.whole = -2;
     gActors[actor_index].posY.whole = 4;

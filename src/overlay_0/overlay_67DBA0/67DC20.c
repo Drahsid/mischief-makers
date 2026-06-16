@@ -722,7 +722,7 @@ void func_80198F70_684A90(u16 actor_index) {
     next_actor_index = actor_index + 1;
     //ACTOR_INIT macro causes mismatch here.
     gActors[next_actor_index].actorType = 0x1D;
-    func_8001E2D0(next_actor_index);
+    Actor_Initialize(next_actor_index);
     gActors[next_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     gActors[next_actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[next_actor_index].graphicList = D_8019DC14_689734;

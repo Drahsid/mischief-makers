@@ -188,7 +188,7 @@ typedef struct {
     /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in func_80014af0
     /* 0x0F8 */ FixedCoord unk_0F8; // related to x-axis velocity. Usage varies.
     /* 0x0FC */ FixedCoord unk_0FC; // related to y-axis velocity. Usage varies.
-    /* 0x100 */ s32 unk_100; // cleared in func_8001E2D0, but otherwise (seemingly) unused. z-axis value?
+    /* 0x100 */ s32 unk_100; // cleared in Actor_Initialize, but otherwise (seemingly) unused. z-axis value?
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
     /* 0x10C */ s32 unk_10C;
@@ -287,7 +287,7 @@ extern Actor gActors[];
 // can cause mismatches.
 #define ACTOR_INIT(index, type)\
  gActors[index].actorType = type;\
- func_8001E2D0(index)
+ Actor_Initialize(index)
 
 // a common macro for initalizing graphic lists
 // can cause mismatches.

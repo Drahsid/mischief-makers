@@ -115,10 +115,10 @@ extern void func_80083454(void);
 extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
 extern void func_8008C710(u16 arg0);
 extern void func_80022D10(void);
-#ifndef FUNC_8001E2D0_RET
-  #define FUNC_8001E2D0_RET DEFAULT_INT
+#ifndef Actor_Initialize_RET
+  #define Actor_Initialize_RET DEFAULT_INT
 #endif
-extern FUNC_8001E2D0_RET func_8001E2D0(u16 actor_index);
+extern Actor_Initialize_RET Actor_Initialize(u16 actor_index);
 extern void func_80026E60(u16 arg0);
 extern u16 Actor_RangeFindInactive(u16 actor_index, u16 end);
 extern u16 Actor_RangeFindInactive_90ToC0(void);

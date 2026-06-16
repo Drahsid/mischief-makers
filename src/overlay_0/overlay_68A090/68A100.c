@@ -33,7 +33,7 @@ s32 func_8019226C_68A26C(u16 arg0, u16 arg1) {
 
 void func_801922A0_68A2A0(s32 arg0) {
     gActors[0xC1].actorType = 0xF0A;
-    func_8001E2D0(0xC1);
+    Actor_Initialize(0xC1);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
@@ -87,13 +87,13 @@ void func_80192D44_68AD44(s32 arg0) {
 
 void func_801932C4_68B2C4(s32 arg0) {
     gActors[0x48].actorType = 0xF05;
-    func_8001E2D0(0x48);
+    Actor_Initialize(0x48);
     gActors[0x48].colorA = 0xF0;
 }
 
 void func_801932FC_68B2FC(void) {
     gActors[0x48].actorType = 0;
-    func_8001E2D0(0x48);
+    Actor_Initialize(0x48);
     gActors[0x48].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 |
         ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
     gActors[0x48].flags = ACTOR_FLAG_ACTIVE;

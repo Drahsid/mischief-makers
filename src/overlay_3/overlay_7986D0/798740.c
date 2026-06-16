@@ -80,7 +80,7 @@ void func_801B2828_79A668(u16 actor_index) {
 
 void func_801B36FC_79B53C(u16 arg0, u16 actor_index) {
     gActors[actor_index].actorType = 0x508;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = 0x190 - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = (arg0 << 6) - (gScreenPosCurrentY.whole & 0x3F) - 0xC0;
     gActors[actor_index].graphicFlags |= 0x2900;

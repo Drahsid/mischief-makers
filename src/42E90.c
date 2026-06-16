@@ -1,4 +1,4 @@
-#define FUNC_8001E2D0_RET void
+#define Actor_Initialize_RET void
 #include "common.h"
 #include "actor.h"
 
@@ -185,7 +185,7 @@ void func_80042A0C(u16 actor_index) {
         gActors[actor_index].var_154 = index;
         gActors[actor_index].timer_110 -= 1.0f;
         gActors[index].actorType = 0xC;
-        func_8001E2D0(index);
+        Actor_Initialize(index);
         gActors[index].graphicFlags = 0;
         gActors[index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE;
         func_8002AC30(index, 4);

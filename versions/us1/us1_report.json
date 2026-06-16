@@ -2469,7 +2469,7 @@
           }
         },
         {
-          "name": "func_8001E2D0",
+          "name": "Actor_Initialize",
           "size": "784",
           "fuzzy_match_percent": 100.0,
           "metadata": {

@@ -149,7 +149,7 @@ void func_8019B208_753988(u16 actor_index) {
 
 void func_8019B230_7539B0(u16 actor_index) {
     func_80026E60(0x14);
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = 0x3403;
     func_8002AC30(actor_index, 4);

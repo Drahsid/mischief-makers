@@ -24,7 +24,7 @@ void func_801A6C80_775130(u16 actor_index) {
 
     switch (gActors[actor_index].state) {
         case 0:
-            func_8001E2D0(actor_index);
+            Actor_Initialize(actor_index);
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = 0x69503;

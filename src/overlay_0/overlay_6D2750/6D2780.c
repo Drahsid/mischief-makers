@@ -50,7 +50,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y);
 // The controller uses fixed actor slots for the main portraits, attached sprite parts, screen fades, particles, and effects
 void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
     gActors[actor_index].actorType = actor_type;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[actor_index].unk_188 = 0;
@@ -105,7 +105,7 @@ void func_80192528_6D2BA8(u16 actor_index) {
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].actorType = 0x2B09;
-        func_8001E2D0(new_actor_index);
+        Actor_Initialize(new_actor_index);
         gActors[new_actor_index].posX.whole = Rand() - 0x80;
         gActors[new_actor_index].posY.whole = (s32)((Rand() * 0.125) + 16.0);
         gActors[new_actor_index].posZ.whole = -gActors[new_actor_index].posY.whole;
@@ -836,7 +836,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
 
     gActors[actor_index].actorType = 0x2B06;
     temp_actor_index = actor_index;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     if (temp_actor_index) {} // FAKEMATCH
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
