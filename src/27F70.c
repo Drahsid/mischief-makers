@@ -1279,7 +1279,7 @@ s32 func_8002A658(u16 actor_index) {
 
     // BUG: UB, var_v1 may be uninitialized
     if (gActors[0].unk_140_u8 & 0x80) {
-        var_v0 = ((gActors[actor_index].rotateZ / 0.3515625) / 64) + 4.0;
+        var_v0 = ((gActors[actor_index].rotateZ / RadStep) / 64) + 4.0;
         var_v0 &= 0xF;
         switch (gActors[0].unk_140_u8 & 0xF) {
             case 0:
@@ -1931,7 +1931,7 @@ void func_8002C328(u16 actor_index) {
         gActors[actor_index].unk_188 = 0;
     }
 
-    gActors[actor_index].rotateZ = (gActors[actor_index].unk_188 / 0x10000) * 0.3515625;
+    gActors[actor_index].rotateZ = (gActors[actor_index].unk_188 / 0x10000) * RadStep;
 }
 
 s32 func_8002C3C8(u16 actor_index) {
@@ -2429,7 +2429,7 @@ void func_8002D670(u16 actor_index) {
 void func_8002D904(u16 actor_index, s32 angle) {
     gActors[actor_index].var_158 = angle;
     angle /= 0x10000;
-    gActors[actor_index].rotateZ = angle * 0.3515625;
+    gActors[actor_index].rotateZ = angle * RadStep;
     gActors[actor_index].var_150 = COS(angle) * 262144.0f;
     gActors[actor_index].var_154 = SIN(angle) * 262144.0f;
     gActors[actor_index].unk_164 = gActors[actor_index].var_150 / 32;
@@ -2553,7 +2553,7 @@ void func_8002DFC0(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     gActors[actor_index].posY.raw = pos_y;
     gActors[actor_index].posZ.raw = pos_z + FIXED_UNIT(1.125);
     angle /= 0x10000;
-    gActors[actor_index].rotateZ = angle * 0.3515625;
+    gActors[actor_index].rotateZ = angle * RadStep;
     gActors[actor_index].var_150 = COS(angle) * 131072.0f;
     gActors[actor_index].var_154 = SIN(angle) * 131072.0f;
     gActors[actor_index].unk_164 = gActors[actor_index].var_150 / 8;
@@ -2637,7 +2637,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     gActors[actor_index].posY.raw = pos_y;
     gActors[actor_index].posZ.raw = pos_z;
     angle /= 0x10000;
-    gActors[actor_index].rotateZ = angle * 0.3515625;
+    gActors[actor_index].rotateZ = angle * RadStep;
     gActors[actor_index].var_150 = COS(angle) * 262144.0f;
     gActors[actor_index].var_154 = SIN(angle) * 262144.0f;
     gActors[actor_index].unk_164 = gActors[actor_index].var_150 / 4;
@@ -2888,7 +2888,7 @@ void SpawnGemRing(u16 flags) {
         gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 256];
         gActors[index].var_150 = flags & 0x8000;
         gActors[index].var_154 = flags & 0xF;
-        gActors[index].var_158 = (360 / gActors[index].var_154) / 0.3515625;
+        gActors[index].var_158 = (360 / gActors[index].var_154) / RadStep;
         gActors[index].var_15C = flags & 0x100;
         if (gActors[index].var_150 != 0) {
             gRedGems -= gActors[index].var_154;
@@ -3558,7 +3558,7 @@ void ActorUpdate_Particle(u16 actor_index) {
         gActors[actor_index].var_160 += gActors[actor_index].var_150;
     }
     gActors[actor_index].state++;
-    gActors[actor_index].rotateZ = ((gActors[actor_index].var_160 / 0x10000) & 0x3FF) * 0.3515625;
+    gActors[actor_index].rotateZ = ((gActors[actor_index].var_160 / 0x10000) & 0x3FF) * RadStep;
     if (gActors[actor_index].unk_178 != 0) {
         gActors[actor_index].unk_128 -= 1.0f;
         if (gActors[actor_index].unk_128 < 0.0f) {
@@ -3893,7 +3893,7 @@ u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos_z, f32
     gActors[index].colorB = gActors[actor_index0].colorB;
     gActors[index].rotateZ = gActors[actor_index0].rotateZ;
     gActors[index].unk_148 = 1.0f;
-    temp_f8 = gActors[actor_index0].rotateZ / 0.3515625;
+    temp_f8 = gActors[actor_index0].rotateZ / RadStep;
     if (gActors[index].flags & ACTOR_FLAG_FLIPPED) {
         var_a2 = (temp_f8 - arg2) + 0x200;
     }
@@ -3915,7 +3915,7 @@ void func_800330A4(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3) {
     f32 dist;
 
     gActors[actor_index0].rotateZ = gActors[actor_index1].rotateZ;
-    temp_f18 = gActors[actor_index1].rotateZ / 0.3515625;
+    temp_f18 = gActors[actor_index1].rotateZ / RadStep;
     if (gActors[actor_index0].flags & ACTOR_FLAG_FLIPPED) {
         var_a0 = ((temp_f18 - arg2) + 0x200);
     }
@@ -3935,7 +3935,7 @@ void func_80033204(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3, u16 a
 
     gActors[actor_index0].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_index0].flags |= (gActors[actor_index1].flags & ACTOR_FLAG_FLIPPED);
-    angle = gActors[actor_index1].rotateZ / 0.3515625;
+    angle = gActors[actor_index1].rotateZ / RadStep;
     
     if (gActors[actor_index0].flags & ACTOR_FLAG_FLIPPED) {
         var_a0 = (angle - arg2) + 0x200;
@@ -3953,7 +3953,7 @@ void func_80033204(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3, u16 a
     else {
         var_a0 = arg4 + angle;
     }
-    gActors[actor_index0].rotateZ = var_a0 * 0.3515625;
+    gActors[actor_index0].rotateZ = var_a0 * RadStep;
 }
 
 void func_800333A0(s16 x, s16 y, s16 z, f32 arg3) {
@@ -6486,7 +6486,7 @@ void func_8003AC30(u16 actor_index) {
                 gActors[var_a2].rotateZ = Math_Atan2(
                     gActors[index].posX.raw - gActors[actor_index].posX.raw,
                     gActors[index].posY.raw - gActors[actor_index].posY.raw
-                ) * 0.3515625;
+                ) * RadStep;
 
                 dx = gActors[index].posX.whole - gActors[actor_index].posX.whole;
                 dy = gActors[index].posY.whole - gActors[actor_index].posY.whole;
@@ -6837,7 +6837,7 @@ void func_8003C328(u16 actor_index) {
         }
         pos_x = 0;
         angle = gActors[actor_index].var_15C / 65536;
-        gActors[actor_index].rotateZ = (angle - 0x100) * 0.3515625;
+        gActors[actor_index].rotateZ = (angle - 0x100) * RadStep;
         pos_y = 0;
         switch (angle) {
         case 0x0:
