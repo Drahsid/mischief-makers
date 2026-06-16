@@ -234,20 +234,14 @@ void func_8019D5E4_73F574(u16 actor_index, s32 target, s32 step) {
 void func_8019E918_7408A8(s32 arg0) {
 }
 
-#ifdef NON_MATCHING
 // set flags for worm segments.
-// https://decomp.me/scratch/CTqUz
-// registers are off.
 void func_8019E920_7408B0(u16 actor_index){
     u16 index;
     u16 jndex;
-    for (index = 0,jndex=actor_index+1; index < 11; index++,jndex++){
+    for (jndex = actor_index + 1, index = 0; index < 11; jndex++, index++){
         gActors[jndex].flags = D_801A0990_742920[index];
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019E920_7408B0.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019E990_740920.s")
 
