@@ -93,8 +93,8 @@ void func_8019BACC_73DA5C(s32 arg0) {
 
 // initalize head and body segments of worm.
 void func_8019BC64_73DBF4(u16 arg0) {
-    u16 var_s1;
-    u16 var_s2;
+    u16 index;
+    u16 jndex;
     s32 pad[6];
 
     gActors[arg0].flags = 2;
@@ -106,20 +106,20 @@ void func_8019BC64_73DBF4(u16 arg0) {
     gActors[arg0].var_160 = arg0 + 2;
     gActors[arg0].unk_164 = arg0 + 1;
     gActors[arg0].health = 150;
-    for (var_s1 = arg0 + 1, var_s2 = 0; var_s2 < 11; var_s1++, var_s2++) {
-        gActors[var_s1].actorType = 0x21;
-        func_8001E2D0(var_s1);
-        gActors[var_s1].graphicFlags = 0x809;
-        gActors[var_s1].flags = D_801A0990_742920[var_s2];
-        gActors[var_s1].graphicIndex = D_801A0960_7428F0[var_s2];
-        gActors[var_s1].scaleX = D_801A09E8_742978[var_s2];
-        gActors[var_s1].posX.whole = -0x1000;
-        gActors[var_s1].posY.whole = -0x1000;
-        gActors[var_s1].health = 1000;
-        gActors[var_s1].colorA = 0xFE;
+    for (index = arg0 + 1, jndex = 0; jndex < 11; index++, jndex++) {
+        gActors[index].actorType = 0x21;
+        func_8001E2D0(index);
+        gActors[index].graphicFlags = 0x809;
+        gActors[index].flags = D_801A0990_742920[jndex];
+        gActors[index].graphicIndex = D_801A0960_7428F0[jndex];
+        gActors[index].scaleX = D_801A09E8_742978[jndex];
+        gActors[index].posX.whole = -0x1000;
+        gActors[index].posY.whole = -0x1000;
+        gActors[index].health = 1000;
+        gActors[index].colorA = 0xFE;
         gActors[arg0].unk_18C |= 0x200;
-        gActors[var_s1].unk_0CE = 8;
-        func_8002AC30(var_s1, 6);
+        gActors[index].unk_0CE = 8;
+        func_8002AC30(index, 6);
     }
     gActors[(u16)(arg0 + 1)].graphicFlags |= 4;
     gActors[(u16)(arg0 + 1)].hitboxBY0 = 0x14;
@@ -205,7 +205,16 @@ void func_8019D0B0_73F040(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D4A8_73F438.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D5E4_73F574.s")
+
+// step worm's x-velocity based on facing(?)
+void func_8019D5E4_73F574(u16 actor_index, s32 target, s32 step) {
+    s32 x;
+    if (gActors[actor_index].unk_18C & 0x10) {
+        target = -target;
+    }
+    x = target; // needed to match, issue with stack.
+    gActors[actor_index].velocityX.raw = func_8019BE98_73DE28(gActors[actor_index].velocityX.raw, target, step);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D64C_73F5DC.s")
 
@@ -220,7 +229,20 @@ void func_8019D0B0_73F040(u16 actor_index) {
 void func_8019E918_7408A8(s32 arg0) {
 }
 
+#ifdef NON_MATCHING
+// set flags for worm segments.
+// https://decomp.me/scratch/CTqUz
+// registers are off.
+void func_8019E920_7408B0(u16 actor_index){
+    u16 index;
+    u16 jndex;
+    for (index = 0,jndex=actor_index+1; index < 11; index++,jndex++){
+        gActors[jndex].flags = D_801A0990_742920[index];
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019E920_7408B0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019E990_740920.s")
 

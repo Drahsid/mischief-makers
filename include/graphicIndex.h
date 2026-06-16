@@ -3,7 +3,7 @@
 
 
 // indecies used by "graphicIndex" feild of Actor and Portrait structs
-// many graphic indecies use even entries for graphics facing one size,
+// many graphic indecies use even entries for graphics facing one side,
 // and odd facing the other. for more complex aninmations,
 // Like those of Marina, Clancers, and Beastector, they instead increment normally.
 

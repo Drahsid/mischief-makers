@@ -15,6 +15,7 @@ typedef void (*ActorFunc)(u16 actor_index);
 enum ActorFlags {
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
+    ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
     ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera?
     ACTOR_FLAG_FREEZE_POS = (1U << 3U), // keep screenspace position regardless of camera movement. Used for screen effect actors.
     ACTOR_FLAG_UNK4 = (1U << 4U), 

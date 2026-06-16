@@ -895,7 +895,50 @@ void func_801AAFC4_7912B4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB14C_79143C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB1EC_7914DC.s")
+s32 func_801AB1EC_7914DC(u16 arg0, u16 arg1, u16 arg2) {
+    s32 temp_hi;
+    s32 sp28;
+    s32 sp24;
+
+    sp24 = 0;
+    temp_hi = gActors[arg0].unk_170 % 7;
+    sp28 = gActors[arg0].unk_170 / 7;
+    if (arg1 & gButton_DUp) {
+        if (temp_hi == 0) {
+            if (arg2 == 0) {
+                gActors[arg0].unk_170 += 6;
+            }
+        } else {
+            gActors[arg0].unk_170 -= 1;
+        }
+        Sound_PlaySfx(SFX_MENU_BLIP);
+    }
+    if (arg1 & gButton_DDown) {
+        if (temp_hi == 6) {
+            if (arg2 == 0) {
+                gActors[arg0].unk_170 -= 6;
+            }
+        } else {
+            gActors[arg0].unk_170 += 1;
+        }
+        Sound_PlaySfx(SFX_MENU_BLIP);
+    }
+    if ((arg1 & gButton_DRight) && (sp28 != 0)) {
+        gActors[arg0].unk_170 += 7;
+        gActors[arg0].unk_17C += 1;
+        Sound_PlaySfx(SFX_MENU_BLIP);
+        sp24 = 1;
+    }
+    if (arg1 & gButton_DLeft) {
+        if (sp28 != 0) {
+            gActors[arg0].unk_170 -= 7;
+            gActors[arg0].unk_17C -= 1;
+            Sound_PlaySfx(SFX_MENU_BLIP);
+            sp24 = 1;
+        }
+    }
+    return sp24;
+}
 
 void func_801AB3EC_7916DC(u16 actor_index, u16* arg1) {
     gActors[0x33].posX.whole = arg1[gActors[actor_index].unk_170 * 3] - gActors[actor_index].unk_180 + 0x30;
@@ -941,20 +984,19 @@ void func_801AB5B4_7918A4(u16 arg0){
 
 #ifdef NON_MATCHING
 // draw strike over menu options for completed events.
-// https://decomp.me/scratch/7nrBj
+// https://decomp.me/scratch/eZkac
 void func_801AB610_791900(u16 actor_index){
     u16 index;
-    u32 max;
+    u16 start;
     u16 actor_index2;
-    u8* p;
-    
 
-    if(!D_80171B19){
-        p = gFestivalData.eventsPlayed;
-        for (index=gActors[actor_index].unk_17C*7, max=index+7;index<max;index++){
-            if(p[index]){
-                actor_index2 = index+0x40;
-               gActors[actor_index2].flags |= ACTOR_FLAG_DRAW;
+    if (!D_80171B19) {
+        start = gActors[actor_index].unk_17C * 7;
+        for (index = start; index < start + 7; index++) {
+            // if local pointer, operand order incorrect
+            if (gFestivalData.eventsPlayed[index]) {
+                actor_index2 = index + 0x40;
+                gActors[actor_index2].flags |= 1;
             }
         }
     }

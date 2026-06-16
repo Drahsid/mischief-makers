@@ -20,6 +20,19 @@ typedef struct {
     /* 0x0A */ s16 target_y;
 } IntroActorMotion;
 
+
+// struct to initalize boulders, 
+// used in func_8019293C_6D2FBC
+typedef struct {
+    s16 pos_x;
+    s16 pos_y;
+    s32 vel_x;
+    s32 vel_y;
+    s32 vel_z;
+    s32 scale;
+}IntroBoulderInit;
+
+
 extern u8 D_800BE70C;
 extern s16 D_800E1604[];
 extern s16 D_800E5D30[];
@@ -27,6 +40,7 @@ extern s16 D_800E5E48[];
 extern s16 D_800E8820[];
 extern s16 D_800E8EAC[];
 extern u16 D_800D85A8[];
+extern IntroBoulderInit D_80198DE0_6D9460[];
 extern s16 D_80199B30_6DA1B0;
 extern UnkStruct_func_801960BC_6D673C D_80199070_6D96F0[];
 extern UnkStruct_func_801960BC_6D673C D_80199090_6D9710[];
@@ -1178,7 +1192,7 @@ void func_80194D2C_6D53AC(u16 actor_index) {
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = 1;
         gActors[new_actor_index].flags = 0x23;
-        gActors[new_actor_index].graphicIndex = 0x1D8;
+        gActors[new_actor_index].graphicIndex = GINDEX_IMPACTEFFECTA;
         gActors[new_actor_index].scaleX = 0.5f;
         gActors[new_actor_index].scaleY = 0.5f;
         gActors[new_actor_index].unk_114 = -0.01f;
@@ -1193,7 +1207,7 @@ void func_80194E0C_6D548C(u16 actor_index) {
 
     if ((gActiveFrames & 3) == 0) {
         new_actor_index = SpawnParticle_Image_90C0_16(
-            0x1D8,
+            GINDEX_IMPACTEFFECTA,
             gActors[actor_index].posX.whole - 8,
             gActors[actor_index].posY.whole - 0x10,
             gActors[actor_index].posZ.whole + 1
