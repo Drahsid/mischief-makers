@@ -12,7 +12,7 @@ extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "att
 extern s32 D_800D2928;
 extern s32 D_800D2938;
 extern s16 D_800D294C;
-extern u16 D_800D8588[];
+extern u16 D_800D8588[]; // all-white palette
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern u8 D_801376BC[];
@@ -25,9 +25,21 @@ extern u16 D_800CA230;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
 extern u16 D_800D1A04[];
-extern u16 D_800D22BC[];
-extern u8 D_800D24D8[];
-extern u8 D_800D24F0;
+extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, timer_110, unk_0D8, type, icon}
+
+// counts for items in clanpot. checked for mixing.
+// indecies of items counted:
+// 0x00: rocketeers needed for rideable rocketeer.
+// 0x10: ACTORTYPE_OVL0_GEN_BOMB0
+// 0x11: ACTORTYPE_OVL0_GEN_BOMB1
+// 0x12: flower
+// 0x13: hat
+// 0x14: shuriken
+// 0x15: red gem
+// 0x16: blue gem
+// 0x17: yellow gem
+// 0x18: green gem
+extern u8 gClanpotItemCount[26];
 extern f32 D_800D2904;
 extern s32 D_800D292C;
 extern s32 D_800D2930;

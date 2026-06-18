@@ -721,7 +721,7 @@ void func_8002092C(void) {
         gActors[index].graphicFlags |= ACTOR_GFLAG_UNK11;
         gActors[index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[index].unk_188 = 0;
-        gActors[index].graphicIndex = GINDEX_PAUSEBAR;
+        gActors[index].graphicIndex = GINDEX_BLACKBAR;
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;

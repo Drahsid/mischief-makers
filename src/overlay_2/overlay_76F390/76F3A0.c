@@ -55,7 +55,7 @@ void func_801A6980_76F420(u16 actor_index) {
             temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
             gActors[actor_index].posY.whole = temp_v1->posY;
             gActors[actor_index].posZ.whole = temp_v1->posZ;
-            ACTOR_INIT(temp_v0,0x2502);
+            ACTOR_INIT(temp_v0,ACTORTYPE_OVL2_SOL_ARCHFLAME);
             gActors[temp_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[temp_v0].flags = (Rand() & ACTOR_FLAG_FLIPPED) + (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE);
             gActors[temp_v0].damage = 100;
@@ -95,7 +95,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
         func_8005CA34(4, 5);
         temp_index = gActors[actor_index].unk_0D8 * 5;
         temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
-        temp_v0 = SpawnParticle_Image_90C0_16(0x1B4, gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
+        temp_v0 = SpawnParticle_Image_90C0_16(GRAPHIC_FRAME(DASHEFFECT,1), gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
 
         if (temp_v0 != 0) {
             gActors[temp_v0].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ);
@@ -113,7 +113,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
     u16 temp_v0;
 
     if ((gActiveFrames % 5) == 0) {
-        temp_v0 = SpawnParticle_Image_90C0_16(0x1B4, 0, 0, 0);
+        temp_v0 = SpawnParticle_Image_90C0_16(GRAPHIC_FRAME(DASHEFFECT,1), 0, 0, 0);
         if (temp_v0 != 0) {
             u16 temp_v1;
 

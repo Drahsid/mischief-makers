@@ -92,6 +92,6 @@
 #define SFX_POP            0x005A
 #define SFX_GRABDEFLECT    0x0062
 #define SFX_CROSSHAIR      0x00C7
-#define SFX_TURMPATFANFARE 0x0130
+#define SFX_TURMPETFANFARE 0x0130
 
 #endif

@@ -816,7 +816,7 @@ void func_80199BA8_6C4878(u16 actor_index) {
             else {
                 index = actor_index + 0x15;
             }
-            func_80193EFC_6BEBCC(index, D_801A6AD0_6D17A0, D_801A6AD0_6D17A0, 0xFFFB0000);
+            func_80193EFC_6BEBCC(index, D_801A6AD0_6D17A0, D_801A6AD0_6D17A0, FIXED_UNIT(-5.0));
         }
         else {
             if (gActors[actor_index].unk_138 != 0.0f) {
@@ -825,7 +825,7 @@ void func_80199BA8_6C4878(u16 actor_index) {
             else {
                 index = actor_index + 0x1B;
             }
-            func_80193EFC_6BEBCC(index, D_801A6AD4_6D17A4, D_801A6AD4_6D17A4, 0x50000);
+            func_80193EFC_6BEBCC(index, D_801A6AD4_6D17A4, D_801A6AD4_6D17A4, FIXED_UNIT(5.0));
         }
     }
 }

@@ -24,16 +24,12 @@ extern u16* D_800D19F4[]; // palettes of "wave rings",
 extern u16 D_800D2294[];
 extern s32 D_800D229C[];
 extern s32 D_800D22AC[];
-extern u16 D_800D22BC[];
 extern s16 D_800D2284[];
 extern u16 D_800D23FC[];
 extern u16 D_800D24A8[];
 extern u16 D_800D24B4[];
 extern u16 D_800D24C0[];
 extern u16 D_800D24CC[];
-extern u8 D_800D24EA;
-extern u8 D_800D24EC;
-extern u8 D_800D24EE;
 extern s32 D_800D24F4[];
 extern s32 D_800D2504[];
 extern s32 D_800D2514[];
@@ -113,7 +109,7 @@ void Actor_Clamp_0FC(u16 actor_index, s32 max_val);
 void func_80030B0C(u16);
 void func_80031D58(u16 arg0, u16 arg1);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 arg3);
-s16 func_8003526C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
+s16 Clanpot_AddItemCheck3(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
 void func_800358DC(u16 actor_index);
 void func_80035A20(u16 actor_index);
 u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue);
@@ -377,6 +373,10 @@ void func_80028260(u16 arg0, u16 arg1, u8 red, u8 green, u8 blue) {
 
 // file break - above is last text-related function
 
+
+// spawn player at given coords
+// @param x local x-position of player
+// @param y local y-position of player
 void func_800282F0(s16 x, s16 y) {
     func_80012288();
     D_801373E0.unk_20 = 0;
@@ -391,6 +391,7 @@ void func_800282F0(s16 x, s16 y) {
     }
 }
 
+// dectivate player actor
 void func_80028380(void) {
     gActors[0].flags = 0;
     D_800CA230 = 1;
@@ -400,7 +401,11 @@ void func_80028380(void) {
     }
 }
 
-void func_800283BC(u32 arg0, u16 arg1) {
+// play sound with pan based on actor actor x-position - gLookatAtX 
+// @param sfx_id ID of sound effect (should use SFX_* where applicable)
+// @param arg1 actor index on which to base pan.
+// if bit 15 is set, calls different sound function.
+void func_800283BC(u32 sfx_id, u16 arg1) {
     s16 var_v0;
 
     var_v0 = (gActors[arg1 & 0xFFF].posX.whole - gLookatAtX) / 2;
@@ -412,13 +417,14 @@ void func_800283BC(u32 arg0, u16 arg1) {
     }
 
     if (arg1 & 0x8000) {
-        Sound_PlaySfxAtVolPan2(arg0, 0x100, var_v0 + 0x40);
+        Sound_PlaySfxAtVolPan2(sfx_id, 0x100, var_v0 + 0x40);
     }
     else {
-        Sound_PlaySfxAtVolPan(arg0, 0x100, var_v0 + 0x40);
+        Sound_PlaySfxAtVolPan(sfx_id, 0x100, var_v0 + 0x40);
     }
 }
 
+// update function of ACTORTYPE_GRAPHICONLY
 void func_800284B0(s32 arg0) {
 }
 
@@ -753,6 +759,9 @@ void func_80029134(u16 actor_index) {
     gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
 }
 
+#define ACTOR_FLAG_MASK (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)
+
+// related to Marina grabbing an actor?
 s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         func_8002AC30(actor_index, 8);
@@ -763,18 +772,18 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
         gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
         gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
         gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
-        if (gActors[0].stateLower == 0x26) {
+        if (gActors[0].stateLower == 0x26) { // is Marina throwing(?)
             if (func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole) & 0x80) {
                 gActors[actor_index].posX.raw = gActors[0].posX.raw;
             }
         }
         if (func_80028E1C(actor_index) != 0) {
             gActors[actor_index].state = state2;
-            gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags2 & 0x6B503);
+            gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags2 & ACTOR_FLAG_MASK);
             return 3;
         }
         else {
-            if (flags1 & 0x20) {
+            if (flags1 & ACTOR_FLAG_FLIPPED) {
                 gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
                 gActors[actor_index].flags |= (gActors[gActors[actor_index].unk_0D6].flags & ACTOR_FLAG_FLIPPED);
             }
@@ -798,10 +807,10 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
     }
     else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
         gActors[actor_index].state = state1;
-        gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags1 & 0x6B503);
+        gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags1 & ACTOR_FLAG_MASK);
         gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
         gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
-        if (flags1 & 0x280) {
+        if (flags1 & (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7)) {
             if (gActors[gActors[actor_index].unk_0D6].flags & ACTOR_FLAG_UNK8) {
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
             }
@@ -822,7 +831,7 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
         return 2;
     }
     gActors[actor_index].state = state2;
-    gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags2 & 0x6B503);
+    gActors[actor_index].flags = (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) + (flags2 & ACTOR_FLAG_MASK);
     return 3;
 }
 
@@ -2095,7 +2104,12 @@ void func_8002C6E4(u16 actor_index) {
         }
         break;
     case 0x30:
-        temp_v0 = func_800291AC(actor_index, 0x40, 0x21783, 0x20, 0x21503);
+        temp_v0 = func_800291AC(actor_index,0x40,
+                         (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK9 |
+                         ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW),
+                         0x20,
+                         (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 |
+                         ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW));
         switch (temp_v0) {
         case 3:
             gActors[actor_index].unk_11C = 0.0f;
@@ -2191,7 +2205,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
         gActors[actor_index].unk_0D8 = 0x1E;
         break;
     }
-    gActors[actor_index].actorType = 0x2607;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_7;
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
     gActors[actor_index].flags_098 = 0;
     gActors[actor_index].state = 0;
@@ -2236,7 +2250,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     if (arg3 & 2) {
         gActors[actor_index].velocityY.raw = (SIN(angle * 4) * 131072.0f);
     }
-    gActors[actor_index].iFrames = 0x1E;
+    gActors[actor_index].iFrames = 30;
 }
 
 void func_8002D040(u16 actor_index, s32 arg1) {
@@ -2725,7 +2739,7 @@ void func_8002E89C(u16 actor_index) {
 }
 
 void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) {
-    gActors[actor_index].actorType = 0x2602;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_SHURIKEN;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG3_UNK2 | ACTOR_FLAG3_UNK1 | ACTOR_FLAG3_UNK0;
@@ -2747,7 +2761,7 @@ void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) 
 }
 
 void func_8002ECAC(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) {
-    gActors[actor_index].actorType = 0x2600;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_BOMB0;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = pos_x;
     gActors[actor_index].posY.whole = pos_y;
@@ -2760,7 +2774,7 @@ void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
 
 // possibly has another unused arg4, matching func_8002ECAC interface
 void func_8002ED48(u16 actor_index, s16 pos_x, s16 pos_y, s32 arg3) {
-    gActors[actor_index].actorType = 0x2603;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_BOOMERANG;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = pos_x;
     gActors[actor_index].posY.whole = pos_y;
@@ -3174,7 +3188,7 @@ void func_800303A8(u16 actor_index) {
                 return;
             }
             else {
-                if (func_8003526C(actor_index, 0x8400, 0, 0, 0x66) >= 0) {
+                if (Clanpot_AddItemCheck3(actor_index, CLANPOT_NEWITEM | CLANPOT_NOTGRAPHIC, 0, 0, 0x66) >= 0) {
                     gActors[actor_index].flags = 0;
                     return;
                 }
@@ -3969,6 +3983,7 @@ void func_800333A0(s16 x, s16 y, s16 z, f32 arg3) {
 }
 
 // spawns an "after-image" of an actor behind it.
+// copies pos, rot, scale, facing and graphicFlags.
 // @param src_index "parent" to copy.
 // @param alpha inital alpha value.
 // @param rate rate at which the image will fade.
@@ -4021,7 +4036,7 @@ void func_8003358C(u16 actor_index) {
 // @param scale_y y-scale of star's orbit
 // @param pos_z s-postion of star
 // @param duration number of ticks the star lasts.
-void func_800335E4(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration) {
+void SpawnDizzyStar(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x90, 0xC0);
@@ -4042,7 +4057,7 @@ void func_800335E4(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration
 }
 
 // update function of dizzy star.
-void func_800336B8(u16 actor_index) {
+void ActorUpdate_DizzyStar(u16 actor_index) {
     u16 parent;
 
     gActors[actor_index].rotateZ += 40.0f;
@@ -4116,7 +4131,7 @@ void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3) {
     u16 actor_index;
 
     if (arg3 & 1) {
-        actor_index = SpawnParticle_Image_90C0_32(0xCA, pos_x, pos_y, pos_z);
+        actor_index = SpawnParticle_Image_90C0_32(GINDEX_CIRCLEEFFECT, pos_x, pos_y, pos_z);
         if (actor_index != 0) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
@@ -4139,7 +4154,7 @@ void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3) {
             Actor_Initialize(actor_index);
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-            gActors[actor_index].graphicIndex = 0xCA;
+            gActors[actor_index].graphicIndex = GINDEX_CIRCLEEFFECT;
             gActors[actor_index].posX.raw = pos_x;
             gActors[actor_index].posY.raw = pos_y;
             gActors[actor_index].posZ.raw = pos_z;
@@ -4233,7 +4248,7 @@ void func_80033E7C(s32 arg0, s16 x, s16 y, s16 z, s32 velocity, u32 pos_scale, u
         if (actor_index != 0) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-            gActors[actor_index].graphicIndex = 0xCA;
+            gActors[actor_index].graphicIndex = GINDEX_CIRCLEEFFECT;
             gActors[actor_index].colorA = 0xD0;
             gActors[actor_index].scaleX = 0.2f;
             gActors[actor_index].scaleY = 0.2f;
@@ -4484,35 +4499,47 @@ void func_80034D14(u16 actor_index) {
     gActors[actor_index].scaleY = gActors[actor_index].unk_16C / 1000.0f;
 }
 
-void func_80034D80(u16 actor_index, u16* vals, u16 unused_a2) {
+// load list of items into Clanpot.
+// @param actor_index index of Clanpot.
+// @param vals list to load, ending with 0xFFFF
+// @param unused_a2 unused. causes prototype mismatch.
+void Clanpot_InitItems(u16 actor_index, u16* vals, u16 unused_a2) {
     u16 index;
 
     for (index = 0x9B; index >= 0; index -= 5, vals += 5) {
         if (vals[0] == 0xFFFF) {
             break;
         }
-        D_800D22BC[index + 0] = vals[0];
-        D_800D22BC[index + 1] = vals[1];
-        D_800D22BC[index + 2] = vals[2];
-        D_800D22BC[index + 3] = vals[3];
-        D_800D22BC[index + 4] = vals[4];
+        gClanpotItems[index + 0] = vals[0];
+        gClanpotItems[index + 1] = vals[1];
+        gClanpotItems[index + 2] = vals[2];
+        gClanpotItems[index + 3] = vals[3];
+        gClanpotItems[index + 4] = vals[4];
         gActors[actor_index].unk_170 = index;
     }
 }
 
-s16 func_80034E10(u16 actor_a0, u16 arg1, u16 arg2, u16 arg3, u16 arg4, u16 actor_a5) {
+// add item to Clanpot.
+// @param item_index index of item to add.
+// @param flags flags on properties to add
+// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
+// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param arg4 5th "field" in clanpot "entry"
+// @param pot_index index of Clanpot.
+// @returns index of next clanpot item, -1 if pot is "full."
+s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4, u16 pot_index) {
     u16 index;
     u16 actor_v0;
 
-    if (gActors[actor_a5].unk_170 == 0) {
+    if (gActors[pot_index].unk_170 == 0) {
         return -1;
     }
-    if (arg1 & 0x200) {
-        gActors[actor_a0].flags = 0;
+    if (flags & CLANPOT_UNSETFLAGS) {
+        gActors[item_index].flags = 0;
     }
 
     for (index = 0; index < 4; index++) {
-        actor_v0 = SpawnParticle_Image_90C0_16(0xCA, gActors[actor_a0].posX.whole, gActors[actor_a0].posY.whole + 0xC, gActors[actor_a0].posZ.whole + 2);
+        actor_v0 = SpawnParticle_Image_90C0_16(GINDEX_CIRCLEEFFECT, gActors[item_index].posX.whole, gActors[item_index].posY.whole + 0xC, gActors[item_index].posZ.whole + 2);
         if (actor_v0 != 0) {
             gActors[actor_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_v0].scaleX = 1.5f;
@@ -4526,55 +4553,85 @@ s16 func_80034E10(u16 actor_a0, u16 arg1, u16 arg2, u16 arg3, u16 arg4, u16 acto
         }
     }
 
-    Sound_PlaySfxAtActor2(SFX_POP, actor_a0);
-    if (arg1 & 0x800) {
-        return gActors[actor_a5].unk_170;
+    Sound_PlaySfxAtActor2(SFX_POP, item_index);
+    if (flags & CLANPOT_NOSTORE) {
+        return gActors[pot_index].unk_170;
     }
 
-    gActors[actor_a5].unk_170 -= 5;
-    D_800D22BC[gActors[actor_a5].unk_170] = actor_a0 + arg1;
-    if (arg1 & 0x2000) {
-        D_800D22BC[gActors[actor_a5].unk_170 + 1] = arg2;
+    gActors[pot_index].unk_170 -= 5;
+    gClanpotItems[gActors[pot_index].unk_170] = item_index + flags;
+    if (flags & CLANPOT_NEW_110) {
+        gClanpotItems[gActors[pot_index].unk_170 + 1] = unk_110;
     }
     else {
-        D_800D22BC[gActors[actor_a5].unk_170 + 1] = (u16) gActors[actor_a0].timer_110;
+        gClanpotItems[gActors[pot_index].unk_170 + 1] = (u16) gActors[item_index].timer_110;
     }
-    if (arg1 & 0x1000) {
-        D_800D22BC[gActors[actor_a5].unk_170 + 2] = arg3;
+    if (flags & CLANPOT_NEW_D8) {
+        gClanpotItems[gActors[pot_index].unk_170 + 2] = unk_0d8;
     }
     else {
-        D_800D22BC[gActors[actor_a5].unk_170 + 2] = gActors[actor_a0].unk_0D8;
+        gClanpotItems[gActors[pot_index].unk_170 + 2] = gActors[item_index].unk_0D8;
     }
-    D_800D22BC[gActors[actor_a5].unk_170 + 3] = gActors[actor_a0].actorType;
-    D_800D22BC[gActors[actor_a5].unk_170 + 4] = arg4;
-    return gActors[actor_a5].unk_170;
+    gClanpotItems[gActors[pot_index].unk_170 + 3] = gActors[item_index].actorType;
+    gClanpotItems[gActors[pot_index].unk_170 + 4] = arg4;
+    return gActors[pot_index].unk_170;
 }
 
-s16 func_8003510C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
+// add item to Clanpot with check for valid collision.
+// @param item_index index of item to add.
+// @param flags flags on properties to add. (uses ClanpotFlags)
+// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
+// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param arg4 5th "field" in clanpot "entry"
+// @returns index of next clanpot item, -1 if pot is "full."
+s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
     u16 index;
 
-    index = gActors[actor_index].unk_0CC & 0xFF;
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
-        if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) && (gActors[index].actorType == 0x18)) {
-            return func_80034E10(actor_index, arg1, arg2, arg3, arg4, index);
+    // check if hit from below by clanpot
+    index = gActors[item_index].unk_0CC & 0xFF;
+    if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
+        if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK5) && (gActors[index].actorType == ACTORTYPE_CLANPOT)) {
+            return Clanpot_AddItem(item_index, flags, unk_110, unk_0d8, arg4, index);
         }
     }
     return -1;
 }
-
-s16 func_800351C8(u16 actor_index, u16 arg1, u16 arg2, u16 arg3) {
-    return func_8003510C(actor_index, arg1, arg2, arg3, 0);
+// add item to Clanpot with check for valid collision.
+// @param item_index index of item to add.
+// @param flags flags on properties to add. (uses ClanpotFlags)
+// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
+// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @returns index of next clanpot item, -1 if pot is "full."
+s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8) {
+    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, 0);
 }
 
-s16 func_80035218(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
-    return func_8003510C(actor_index, arg1, arg2, arg3, arg4);
+// add item to Clanpot with check for valid collision.
+// unused. Identical to used version.
+// @param item_index index of item to add.
+// @param flags flags on properties to add. (uses ClanpotFlags)
+// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
+// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param arg4 5th "field" in clanpot "entry"
+// @returns index of next clanpot item, -1 if pot is "full."
+s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
+    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, arg4);
 }
 
-s16 func_8003526C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
-    return func_8003510C(actor_index, arg1, arg2, arg3, arg4);
+// add item to Clanpot with check for valid collision.
+// @param item_index index of item to add.
+// Identical to unused version.
+// @param flags flags on properties to add. (uses ClanpotFlags)
+// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
+// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param arg4 5th "field" in clanpot "entry"
+// @returns index of next clanpot item, -1 if pot is "full."
+s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
+    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, arg4);
 }
 
-void func_800352C0(u16 actor_index, s16 offset) {
+//move items in clanpot.
+void Clanpot_MoveItems(u16 actor_index, s16 offset) {
     s16 count;
     u16 index;
     u16 temp;
@@ -4583,19 +4640,21 @@ void func_800352C0(u16 actor_index, s16 offset) {
     if ((count > 0) || (gActors[actor_index].unk_170 < 0xA0)) {
         for (count = (count / 5); count > 0; count--) {
             for (index = 0; index < 5; index++) {
-                temp = D_800D22BC[offset + index];
-                D_800D22BC[offset + index] = D_800D22BC[offset + index - 5];             
-                D_800D22BC[offset + index - 5] = temp;
+                temp = gClanpotItems[offset + index];
+                gClanpotItems[offset + index] = gClanpotItems[offset + index - 5];             
+                gClanpotItems[offset + index - 5] = temp;
             }
             offset -= 5;
         }
     }
 }
 
-u16 func_80035394(u16 actor_index) {
+// spawn item after mergining components.
+// used for yellow gem and ridable Rocketeer.
+u16 Clanpot_SpawnNow(u16 actor_index) {
     u16 index;
 
-    if (gActors[actor_index].unk_174 & 0x8000) {
+    if (gActors[actor_index].unk_174 & CLANPOT_NEWITEM) {
         index = Actor_RangeFindInactive(0x10, 0x2D);
         if (index == 0) {
             Sound_PlaySfxAtActor2(SFX_POP, actor_index);
@@ -4603,7 +4662,7 @@ u16 func_80035394(u16 actor_index) {
         }
     }
     else {
-        index = gActors[actor_index].unk_174 & 0xFF;
+        index = gActors[actor_index].unk_174 & CLANPOT_INDEXMASK;
     }
 
     gActors[index].actorType = gActors[actor_index].unk_180;
@@ -4614,6 +4673,7 @@ u16 func_80035394(u16 actor_index) {
     gActors[index].posY.whole = gActors[gActors[actor_index].var_150].posY.whole + 16;
     gActors[index].posZ.whole = gActors[gActors[actor_index].var_150].posZ.whole;
     if (gActors[index].actorType == ACTORTYPE_GEM) {
+        // spawn the yellow gem a little higher up with a bounce
         gActors[index].health = 0;
         gActors[index].posY.whole += 20;
         gActors[index].velocityX.raw = 0;
@@ -4622,85 +4682,94 @@ u16 func_80035394(u16 actor_index) {
     return index;
 }
 
-u16 func_80035524(u16 actor_index0, u16 actor_index1) {
-    u16 actor_index2;
+// pull item out of clanpot
+// @param pot_index index of Clanpot.
+// @param actor_index0 index of Clanpot user.
+// @returns index of retrieved item, 0 if failed.
+u16 Clanpot_TakeItem(u16 pot_index, u16 actor_index0) {
+    u16 actor_index1;
 
-    if (gActors[actor_index0].unk_170 == 0xA0) {
-        if (actor_index1 == 0) {
+    if (gActors[pot_index].unk_170 == ARRAYLENGTH(gClanpotItems)) {
+        // no items.
+        if (actor_index0 == 0) {
             gActors[0].unk_0F8.raw = 0;
             gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
             gActors[0].unk_0FC.raw = FIXED_UNIT(3.0);
         }
-        Sound_PlaySfxAtActor2(0x4E, actor_index0);
+        Sound_PlaySfxAtActor2(0x4E, pot_index);
         return 0;
     }
-    actor_index2 = D_800D22BC[gActors[actor_index0].unk_170];
-    if (actor_index2 & 0x8000) {
-        if ((D_800D22BC[gActors[actor_index0].unk_170 + 3] == 0x2705) || (D_800D22BC[gActors[actor_index0].unk_170 + 3] == 0x2706)) {
-            Sound_PlaySfxAtActor2(0x64, actor_index0);
+    actor_index1 = gClanpotItems[gActors[pot_index].unk_170];
+    if (actor_index1 & CLANPOT_NEWITEM) {
+        // don't spawn these 2 items.
+        if ((gClanpotItems[gActors[pot_index].unk_170 + 3] == 0x2705) || (gClanpotItems[gActors[pot_index].unk_170 + 3] == 0x2706)) {
+            Sound_PlaySfxAtActor2(0x64, pot_index);
             return 0;
         }
-        actor_index2 = Actor_RangeFindInactive(0x10, 0x2D);
-        if (actor_index2 == 0) {
-            if (actor_index1 == 0) {
+        actor_index1 = Actor_RangeFindInactive(0x10, 0x2D);
+        if (actor_index1 == 0) {
+            if (actor_index0 == 0) {
                 gActors[0].unk_0F8.raw = 0;
                 gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
                 gActors[0].unk_0FC.raw = FIXED_UNIT(3.0);
             }
-            Sound_PlaySfxAtActor2(SFX_POP, actor_index0);
+            Sound_PlaySfxAtActor2(SFX_POP, pot_index);
             return 0;
         }
-        gActors[actor_index2].actorType = D_800D22BC[gActors[actor_index0].unk_170 + 3];
-        Actor_Initialize(actor_index2);
-        gActors[actor_index2].timer_110 = D_800D22BC[gActors[actor_index0].unk_170 + 1];
-        gActors[actor_index2].unk_0D8 = D_800D22BC[gActors[actor_index0].unk_170 + 2];
+        gActors[actor_index1].actorType = gClanpotItems[gActors[pot_index].unk_170 + 3];
+        Actor_Initialize(actor_index1);
+        gActors[actor_index1].timer_110 = gClanpotItems[gActors[pot_index].unk_170 + 1];
+        gActors[actor_index1].unk_0D8 = gClanpotItems[gActors[pot_index].unk_170 + 2];
     }
     else {
-        actor_index2 = D_800D22BC[gActors[actor_index0].unk_170] & 0xFF;
+        actor_index1 = gClanpotItems[gActors[pot_index].unk_170] & CLANPOT_INDEXMASK;
     }
 
-    gActors[actor_index0].unk_170 += 5;
-    gActors[actor_index1].unk_0D6 = actor_index2;
-    gActors[actor_index2].unk_0D6 = actor_index1;
-    gActors[actor_index2].posX.raw = gActors[actor_index0].unk_104;
-    gActors[actor_index2].posY.raw = gActors[actor_index0].unk_108;
-    gActors[actor_index2].posZ.raw = gActors[actor_index0].unk_10C;
-    gActors[actor_index2].unk_104 = gActors[actor_index0].unk_104;
-    gActors[actor_index2].unk_108 = gActors[actor_index0].unk_108;
-    gActors[actor_index2].unk_10C = gActors[actor_index0].unk_10C - 1;
-    switch (gActors[actor_index2].actorType) {
-    case 0x8:
-        gActors[actor_index2].health = 0;
-        gActors[actor_index2].posY.whole += 20;
-        gActors[actor_index2].velocityX.raw = 0;
-        gActors[actor_index2].velocityY.raw = FIXED_UNIT(5.5);
+    gActors[pot_index].unk_170 += 5;
+    gActors[actor_index0].unk_0D6 = actor_index1;
+    gActors[actor_index1].unk_0D6 = actor_index0;
+    gActors[actor_index1].posX.raw = gActors[pot_index].unk_104;
+    gActors[actor_index1].posY.raw = gActors[pot_index].unk_108;
+    gActors[actor_index1].posZ.raw = gActors[pot_index].unk_10C;
+    gActors[actor_index1].unk_104 = gActors[pot_index].unk_104;
+    gActors[actor_index1].unk_108 = gActors[pot_index].unk_108;
+    gActors[actor_index1].unk_10C = gActors[pot_index].unk_10C - 1;
+    switch (gActors[actor_index1].actorType) {
+    case ACTORTYPE_GEM:
+        gActors[actor_index1].health = 0;
+        gActors[actor_index1].posY.whole += 20;
+        gActors[actor_index1].velocityX.raw = 0;
+        gActors[actor_index1].velocityY.raw = FIXED_UNIT(5.5);
         break;
-    case 0x63:
-        gActors[actor_index2].health = 0;
-        gActors[actor_index2].posY.whole += 20;
-        gActors[actor_index2].velocityX.raw = 0;
-        gActors[actor_index2].velocityY.raw = FIXED_UNIT(0.875);
+    case ACTORTYPE_CLANCERGHOST:
+        gActors[actor_index1].health = 0;
+        gActors[actor_index1].posY.whole += 20;
+        gActors[actor_index1].velocityX.raw = 0;
+        gActors[actor_index1].velocityY.raw = FIXED_UNIT(0.875);
         break;
     }
-    Sound_PlaySfxAtActor2(SFX_POP, actor_index0);
-    return actor_index2;
+    Sound_PlaySfxAtActor2(SFX_POP, pot_index);
+    return actor_index1;
 }
 
-void func_80035824(u16 actor_index) {
+// set hitbox A for clanpot. unused.
+void Clanpot_SetHitboxA(u16 actor_index) {
     gActors[actor_index].hitboxAY0 = 20;
     gActors[actor_index].hitboxAY1 = 6;
     gActors[actor_index].hitboxAX0 = -8;
     gActors[actor_index].hitboxAX1 = 8;
 }
 
-void func_80035878(u16 actor_index) {
+// set hitbox B for clanpot
+void Clanpot_SetHitboxB(u16 actor_index) {
     gActors[actor_index].hitboxBY0 = 14;
     gActors[actor_index].hitboxBY1 = -10;
     gActors[actor_index].hitboxBX0 = -8;
     gActors[actor_index].hitboxBX1 = 8;
 }
 
-s32 func_800358CC(s32 arg0, s32 arg1) {
+// unknown. used by actortype 0x0804
+s32 func_800358CC(u16 arg0, u16 arg1) {
     return 0;
 }
 
@@ -4727,7 +4796,7 @@ void func_80035A20(u16 actor_index) {
     gActors[actor_index].posZ.whole = gActors[index].posZ.whole + 2;
     switch (gActors[actor_index].unk_0FC.raw) {
     case 0:
-        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == 0x79)) {
+        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == ACTORTYPE_CLANPOTMENU)) {
             if ((gActors[index].unk_18C != 0) && (gActors[actor_index].unk_0CE == 0)) {
                 gActors[actor_index].flags = 0;
                 break;
@@ -4779,6 +4848,7 @@ u16 func_80035C44(u16 actor_index, u16 arg1) {
     return index;
 }
 
+// show item in clanpot menu?
 u16 func_80035D34(u16 actor_index) {
     u16 actor1;
     u16 index;
@@ -4787,8 +4857,8 @@ u16 func_80035D34(u16 actor_index) {
     actor1 = Actor_RangeFindInactive(0x12, 0x2D);
     if (actor1 != 0) {
         index = gActors[actor_index].unk_178;
-        vals = &D_800D22BC[index];
-        if ((vals[0] & 0x400) == 0) {
+        vals = &gClanpotItems[index];
+        if ((vals[0] & CLANPOT_NOTGRAPHIC) == 0) {
             gActors[actor1].actorType = 0x68;
             Actor_Initialize(actor1);
             gActors[actor1].flags = ACTOR_FLAG_ACTIVE;
@@ -4803,7 +4873,7 @@ u16 func_80035D34(u16 actor_index) {
             }
         }
         else {
-            vals = &D_800D22BC[index];
+            vals = &gClanpotItems[index];
             gActors[actor1].actorType = vals[4];
             Actor_Initialize(actor1);
             gActors[actor1].timer_110 = vals[1];
@@ -4816,7 +4886,8 @@ u16 func_80035D34(u16 actor_index) {
     return actor1;
 }
 
-void func_80035E90(u16 actor_index) {
+// update func for clanpot menu
+void ActorUpdate_ClanpotMenu(u16 actor_index) {
     u16 var_a3;
     u16 var_v0;
     u16 temp_a2;
@@ -4829,7 +4900,7 @@ void func_80035E90(u16 actor_index) {
         if (gActors[actor_index].state < 0x2F) {
             if (gActors[actor_index].state == 0x20) {
                 gActors[actor_index].state = 0x30;
-                func_800352C0(temp_a2, gActors[actor_index].unk_178);
+                Clanpot_MoveItems(temp_a2, gActors[actor_index].unk_178);
                 gActors[actor_index].unk_178 = gActors[temp_a2].unk_170;
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(0.5);
                 gActors[actor_index].unk_120 = 45.0f;
@@ -4843,7 +4914,7 @@ void func_80035E90(u16 actor_index) {
     }
     gActors[temp_a2].graphicFlags = ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_DRAW;
-    gActors[actor_index].graphicIndex = 0x8000;
+    gActors[actor_index].graphicIndex = GINDEX_BLACKBAR;
     switch (gActors[actor_index].state) {
     case 47:
         gActors[actor_index].state++;
@@ -4962,7 +5033,7 @@ void func_80035E90(u16 actor_index) {
             }
         }
         var_a3 = gActors[actor_index].unk_178;
-        if ((gActors[actor_index].state == 0x30) && (D_800D22BC[var_a3] & 0x4000) && (gActiveFrames & 8)) {
+        if ((gActors[actor_index].state == 0x30) && (gClanpotItems[var_a3] & 0x4000) && (gActiveFrames & 8)) {
             gActors[actor_index].colorR = 0x1F;
             gActors[actor_index].colorB = 0x1F;
         }
@@ -5010,12 +5081,13 @@ void func_8003667C(u16 actor_index) {
     }
 }
 
-u16 func_800366E4(u16 actor_index) {
+// span Clanpot menu above Marina
+u16 Clanpot_SpawnMenu(u16 actor_index) {
     u16 index;
 
     index = Actor_RangeFindInactive(0x12, 0x2D);
     if (index != 0) {
-        gActors[index].actorType = 0x79;
+        gActors[index].actorType = ACTORTYPE_CLANPOTMENU;
         Actor_Initialize(index);
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
         gActors[index].posX.whole = ((gActors[actor_index].posX.whole - gActors[0].posX.whole) / 2) + gActors[0].posX.whole;
@@ -5026,7 +5098,9 @@ u16 func_800366E4(u16 actor_index) {
     return index;
 }
 
-void func_800367D0(u16 actor_index) {
+// tilt clanpot until menu pops up
+// (or Marina says it's empty in the Japnese version.)
+void Clanpot_Tilt(u16 actor_index) {
     s16 temp_a0;
 
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -5062,7 +5136,7 @@ void func_800367D0(u16 actor_index) {
         if ((temp_a0 % 30) == 0) {
             if (gActors[actor_index].unk_170 < 0xA0) {
                 if (temp_a0 == 0) {
-                    func_800366E4(actor_index);
+                    Clanpot_SpawnMenu(actor_index);
                 }
             }
             else if (temp_a0 == 0) {
@@ -5072,146 +5146,166 @@ void func_800367D0(u16 actor_index) {
     }
 }
 
-void func_800369A0(u16 actor_index, u16 arg1, u16* arg2) {
-    gActors[actor_index].unk_114 = 0x400 / arg1;
-    arg2 += 4;
-    gActors[actor_index].unk_174 = arg2[-4];
-    gActors[actor_index].unk_178 = arg2[-3];
-    gActors[actor_index].unk_17C = arg2[-2];
-    gActors[actor_index].unk_180 = arg2[-1];
-    gActors[actor_index].unk_184 = arg2[0];
+// add mixed item to clanpot
+// @param pot_index index of Clanpot.
+// @param arg1 number of items in mix.
+// @param props properties of item in same order as gClanpotItems:
+// {index + flags, field 0x110, field 0x110, field 0xD8, icon}
+void Clanpot_SetMixedItem(u16 pot_index, u16 arg1, u16* props) {
+    gActors[pot_index].unk_114 = 0x400 / arg1;
+    props += 4;
+    gActors[pot_index].unk_174 = props[-4];
+    gActors[pot_index].unk_178 = props[-3];
+    gActors[pot_index].unk_17C = props[-2];
+    gActors[pot_index].unk_180 = props[-1];
+    gActors[pot_index].unk_184 = props[0];
 }
 
-u16 func_80036A60(u16 actor_index) {
+// mix explosives into clanbomb.
+// @param pot_index index of Clanpot.
+// @returns true if requirements met.
+u16 Clanpot_MixClanbomb(u16 pot_index) {
     u16 index_a1;
     u16 index_a2;
     u16 val;
 
-    if ((D_800D24D8[0x10] + D_800D24D8[0x11]) > 3) {
+    if ((gClanpotItemCount[0x10] + gClanpotItemCount[0x11]) > 3) {
         for (index_a2 = 0, index_a1 = 1; index_a1 < 5; index_a2 += 5) {
-            val = D_800D22BC[index_a2 + 3];
-            if ((val == 0x2600) || (val == 0x2601)) {
-                ((s32*)&gActors[actor_index].var_150)[index_a1] = index_a2;
+            val = gClanpotItems[index_a2 + 3];
+            if ((val == ACTORTYPE_OVL0_GEN_BOMB0) || (val == ACTORTYPE_OVL0_GEN_BOMB1)) {
+                ((s32*)&gActors[pot_index].var_150)[index_a1] = index_a2;
                 index_a1++;
             }
         }
-        func_800369A0(actor_index, 4, D_800D24A8);
-        return 1;
+        Clanpot_SetMixedItem(pot_index, 4, D_800D24A8);
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
-u16 func_80036B44(u16 actor_index) {
+// mix 3 shuriken into a boomerang.
+// @param pot_index index of Clanpot.
+// @returns true if requirements met.
+u16 Clanpot_MixBoomerang(u16 pot_index) {
     u16 index_a1;
     u16 index_v0;
     u16 val;
 
-    if (D_800D24EC > 2) {
+    if (gClanpotItemCount[0x14] > 2) {
         for (index_a1 = 0, index_v0 = 1; index_v0 < 4; index_a1 += 5) {
-            val = D_800D22BC[index_a1 + 3];
-            if (val == 0x2602) {
-                ((s32*)&gActors[actor_index].var_150)[index_v0] = index_a1;
+            val = gClanpotItems[index_a1 + 3];
+            if (val == ACTORTYPE_OVL0_GEN_SHURIKEN) {
+                ((s32*)&gActors[pot_index].var_150)[index_v0] = index_a1;
                 index_v0++;
             }
         }
-        func_800369A0(actor_index, 3, D_800D24B4);
-        return 1;
+        Clanpot_SetMixedItem(pot_index, 3, D_800D24B4);
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
-u16 func_80036C14(u16 actor_index) {
+// mix 3 flowers into a shuriken.
+// @param pot_index index of Clanpot.
+// @returns true if requirements met.
+u16 Clanpot_MixShuriken(u16 pot_index) {
     u16 index_a1;
     u16 index_v0;
     u16 val;
 
-    if (D_800D24EA > 1) {
+    if (gClanpotItemCount[0x12] > 1) {
         for (index_a1 = 0, index_v0 = 1; index_v0 < 3; index_a1 += 5) {
-            val = D_800D22BC[index_a1 + 3];
-            if (val == 0x43) {
-                ((s32*)&gActors[actor_index].var_150)[index_v0] = index_a1;
+            val = gClanpotItems[index_a1 + 3];
+            if (val == ACTORTYPE_FLOWER) {
+                ((s32*)&gActors[pot_index].var_150)[index_v0] = index_a1;
                 index_v0++;
             }
         }
-        func_800369A0(actor_index, 2, D_800D24C0);
-        return 1;
+        Clanpot_SetMixedItem(pot_index, 2, D_800D24C0);
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
-u16 func_80036CE4(u16 actor_index) {
+// mix blue gems into a green gem.
+// @param pot_index index of Clanpot.
+// @returns true if requirements met.
+u16 Clanpot_MixGreenGem(u16 pot_index) {
     u16 index_a2;
     u16 index_v0;
     u16 val;
 
-    if (D_800D24EE > 5) {
+    if (gClanpotItemCount[0x16] > 5) {
         for (index_a2 = 0, index_v0 = 1; index_v0 < 7; index_a2 += 5) {
-            val = D_800D22BC[index_a2 + 3];
-            if ((val == 8) && ((D_800D22BC[index_a2 + 1] & 3) == 1)) {
-                ((s32*)&gActors[actor_index].var_150)[index_v0] = index_a2;
+            val = gClanpotItems[index_a2 + 3];
+            if ((val == 8) && ((gClanpotItems[index_a2 + 1] & 3) == 1)) {
+                ((s32*)&gActors[pot_index].var_150)[index_v0] = index_a2;
                 index_v0++;
             }
         }
-        func_800369A0(actor_index, 6, D_800D24CC);
-        return 1;
+        Clanpot_SetMixedItem(pot_index, 6, D_800D24CC);
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
-u16 func_80036DC8(u16 actor_index) {
+// count certain item types in clanpot. Checks mixing conditions.
+// @param actor_index pot index.
+// @returns true if mixing possible, false otherwise
+u16 Clanpot_TryMix(u16 actor_index) {
     u16 index0;
     u16 index1;
     u16 actor1;
 
-    for (index0 = 0; D_800D24D8[index0] != 0xFF; index0++) {
-        D_800D24D8[index0] = 0;
+    for (index0 = 0; gClanpotItemCount[index0] != 0xFF; index0++) {
+        gClanpotItemCount[index0] = 0;
     }
 
     actor1 = gActors[actor_index].var_150;
     for (index1 = gActors[actor1].unk_170; index1 < 0xA0; index1 += 5) {
-        switch (D_800D22BC[index1 + 3]) {
-        case 0x2600:
-            D_800D24D8[0x10]++;
+        switch (gClanpotItems[index1 + 3]) {
+        case ACTORTYPE_OVL0_GEN_BOMB0:
+            gClanpotItemCount[0x10]++;
             break;
-        case 0x2601:
-            D_800D24D8[0x11]++;
+        case ACTORTYPE_OVL0_GEN_BOMB1:
+            gClanpotItemCount[0x11]++;
             break;
-        case 0x43:  
-            D_800D24D8[0x12]++;
+        case ACTORTYPE_FLOWER:  
+            gClanpotItemCount[0x12]++;
             break;
-        case 0x44:  
-            D_800D24D8[0x13]++;
+        case ACTORTYPE_HAT:  
+            gClanpotItemCount[0x13]++;
             break;
-        case 0x2602:
-            D_800D24D8[0x14]++;
+        case ACTORTYPE_OVL0_GEN_SHURIKEN:
+            gClanpotItemCount[0x14]++;
             break;
-        case 0x8:   
-            switch (D_800D22BC[index1 + 1] & 3) {
-            case 0:
-                D_800D24D8[0x15]++;
+        case ACTORTYPE_GEM:   
+            switch (gClanpotItems[index1 + 1] & GEMFLAG_MASK) {
+            case GEMFLAG_RED:
+                gClanpotItemCount[0x15]++;
                 break;
-            case 1:
-                D_800D24D8[0x16]++;
+            case GEMFLAG_BLUE:
+                gClanpotItemCount[0x16]++;
                 break;
-            case 2:
-                D_800D24D8[0x17]++;
+            case GEMFLAG_YELLOW:
+                gClanpotItemCount[0x17]++;
                 break;
-            case 3:
-                D_800D24D8[0x18]++;
+            case GEMFLAG_GREEN:
+                gClanpotItemCount[0x18]++;
                 break;
             }
             break;
         default:
-            if (gActors[actor1].unk_168 != 0) {
-                ((void (*)(u16, u16)) gActors[actor1].unk_168)(D_800D22BC[index1 + 3], index1);
+            if (gActors[actor1].clanpot_pfn0 != NULL) {
+                gActors[actor1].clanpot_pfn0(gClanpotItems[index1 + 3], index1);
             }
             break;
         }
@@ -5222,74 +5316,78 @@ u16 func_80036DC8(u16 actor_index) {
     gActors[actor_index].var_160 = -1;
     gActors[actor_index].unk_164 = -1;
     gActors[actor_index].unk_168 = -1;
-    if (((gActors[actor1].unk_16C != 0) && (((s32 (*)(u16, u16)) gActors[actor1].unk_16C)(actor_index, index1) != 0)) || (func_80036A60(actor_index) != 0) || (func_80036B44(actor_index) != 0) || (func_80036C14(actor_index) != 0) || ((func_80036CE4(actor_index) != 0))) {
-        return 1;
+    if (((gActors[actor1].unk_16C != 0) && (((s32 (*)(u16, u16)) gActors[actor1].unk_16C)(actor_index, index1) != 0)) || (Clanpot_MixClanbomb(actor_index) != 0) || (Clanpot_MixBoomerang(actor_index) != 0) || (Clanpot_MixShuriken(actor_index) != 0) || ((Clanpot_MixGreenGem(actor_index) != 0))) {
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
-void func_8003707C(u16 index) {
-    D_800D22BC[index + 0] = 0;
-    D_800D22BC[index + 1] = 0;
-    D_800D22BC[index + 2] = 0;
-    D_800D22BC[index + 3] = 0;
-    D_800D22BC[index + 4] = 0;
+// remove item from clanpot after mixing.
+void Clanpot_EraseItem(u16 index) {
+    gClanpotItems[index + 0] = 0;
+    gClanpotItems[index + 1] = 0;
+    gClanpotItems[index + 2] = 0;
+    gClanpotItems[index + 3] = 0;
+    gClanpotItems[index + 4] = 0;
 }
 
-void func_800370AC(u16 actor_index) {
+// create mixed item and remove components
+void Clanpot_AddMixedItem(u16 actor_index) {
     u16 actor1;
     u16 val_index;
 
     if (gActors[actor_index].var_154 >= 0) {
-        func_8003707C(gActors[actor_index].var_154);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].var_154);
+        Clanpot_EraseItem(gActors[actor_index].var_154);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].var_154);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
     if (gActors[actor_index].var_158 >= 0) {
-        func_8003707C(gActors[actor_index].var_158);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].var_158);
+        Clanpot_EraseItem(gActors[actor_index].var_158);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].var_158);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
     if (gActors[actor_index].var_15C >= 0) {
-        func_8003707C(gActors[actor_index].var_15C);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].var_15C);
+        Clanpot_EraseItem(gActors[actor_index].var_15C);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].var_15C);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
     if (gActors[actor_index].var_160 >= 0) {
-        func_8003707C(gActors[actor_index].var_160);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].var_160);
+        Clanpot_EraseItem(gActors[actor_index].var_160);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].var_160);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
     if (gActors[actor_index].unk_164 >= 0) {
-        func_8003707C(gActors[actor_index].unk_164);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].unk_164);
+        Clanpot_EraseItem(gActors[actor_index].unk_164);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].unk_164);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
     if (gActors[actor_index].unk_168 >= 0) {
-        func_8003707C(gActors[actor_index].unk_168);
-        func_800352C0(gActors[actor_index].var_150, gActors[actor_index].unk_168);
+        Clanpot_EraseItem(gActors[actor_index].unk_168);
+        Clanpot_MoveItems(gActors[actor_index].var_150, gActors[actor_index].unk_168);
         gActors[gActors[actor_index].var_150].unk_170 += 5;
     }
 
-    if (gActors[actor_index].unk_174 & 0x100) {
+    // special item - spawn now.
+    if (gActors[actor_index].unk_174 & CLANPOT_SPAWNNOW) {
         gActors[gActors[actor_index].var_150].unk_178 = gActors[gActors[actor_index].var_150].unk_170;
-        func_80035394(actor_index);
-        Sound_PlaySfxAtActor2(0x130, actor_index);
+        Clanpot_SpawnNow(actor_index);
+        Sound_PlaySfxAtActor2(SFX_TURMPETFANFARE, actor_index);
         SpawnParticle_RingWaveBlue(1.0f, gActors[gActors[actor_index].var_150].posX.whole, gActors[gActors[actor_index].var_150].posY.whole + 0x22, gActors[actor_index].posZ.whole);
         SpawnParticle_RingWaveBlue(-0.5f, gActors[gActors[actor_index].var_150].posX.whole, gActors[gActors[actor_index].var_150].posY.whole + 0x22, gActors[actor_index].posZ.whole);
     }
+    // add new item to clanpot
     else {
         gActors[gActors[actor_index].var_150].unk_170 -= 5;
         gActors[gActors[actor_index].var_150].unk_178 = gActors[gActors[actor_index].var_150].unk_170;
         val_index = gActors[gActors[actor_index].var_150].unk_170;
-        D_800D22BC[val_index + 0] = (s16) gActors[actor_index].unk_174;
-        D_800D22BC[val_index + 1] = (s16) gActors[actor_index].unk_178;
-        D_800D22BC[val_index + 2] = (s16) gActors[actor_index].unk_17C;
-        D_800D22BC[val_index + 3] = (s16) gActors[actor_index].unk_180;
-        D_800D22BC[val_index + 4] = (s16) gActors[actor_index].unk_184;
-        actor1 = func_800366E4(gActors[actor_index].var_150);
+        gClanpotItems[val_index + 0] = (s16) gActors[actor_index].unk_174;
+        gClanpotItems[val_index + 1] = (s16) gActors[actor_index].unk_178;
+        gClanpotItems[val_index + 2] = (s16) gActors[actor_index].unk_17C;
+        gClanpotItems[val_index + 3] = (s16) gActors[actor_index].unk_180;
+        gClanpotItems[val_index + 4] = (s16) gActors[actor_index].unk_184;
+        actor1 = Clanpot_SpawnMenu(gActors[actor_index].var_150);
         if (actor1 != 0) {
             gActors[actor1].state = 0x2F;
             gActors[actor1].posX.whole = gActors[gActors[actor_index].var_150].posX.whole;
@@ -5301,7 +5399,7 @@ void func_800370AC(u16 actor_index) {
     }
 }
 
-u16 func_800374D8(u16 actor_index, s16 val_index) {
+u16 Clanpot_MixSequenceIcon(u16 actor_index, s16 val_index) {
     u16 pad;
     u16 actor1;
 
@@ -5310,25 +5408,25 @@ u16 func_800374D8(u16 actor_index, s16 val_index) {
     }
     actor1 = Actor_RangeFindInactive(0x12, 0x2D);
     if (actor1 != 0) {
-        if (!(D_800D22BC[val_index] & 0x400)) {
+        if (!(gClanpotItems[val_index] & CLANPOT_NOTGRAPHIC)) {
             gActors[actor1].actorType = 0x68;
             Actor_Initialize(actor1);
             gActors[actor1].flags = ACTOR_FLAG_ACTIVE;
-            if (D_800D22BC[val_index + 4] == 0) {
+            if (gClanpotItems[val_index + 4] == 0) {
                 gActors[actor1].graphicIndex = GINDEX_QUESTIONBUBBLE;
                 gActors[actor1].palette_18C =  D_800D86A0;
                 gActors[actor1].scaleX = 1.5f;
                 gActors[actor1].scaleY = 1.5f;
             }
             else {
-                gActors[actor1].graphicIndex = D_800D22BC[val_index + 4];
+                gActors[actor1].graphicIndex = gClanpotItems[val_index + 4];
             }
         }
         else {
-            gActors[actor1].actorType = D_800D22BC[val_index + 4];
+            gActors[actor1].actorType = gClanpotItems[val_index + 4];
             Actor_Initialize(actor1);
-            gActors[actor1].timer_110 = D_800D22BC[val_index + 1];
-            gActors[actor1].unk_0D8 = D_800D22BC[val_index + 2];
+            gActors[actor1].timer_110 = gClanpotItems[val_index + 1];
+            gActors[actor1].unk_0D8 = gClanpotItems[val_index + 2];
         }
         gActors[actor1].colorA = 0;
         gActors[actor1].unk_0FC.raw = 1;
@@ -5340,37 +5438,38 @@ u16 func_800374D8(u16 actor_index, s16 val_index) {
     }
 }
 
-void func_8003766C(u16 actor_index) {
+// clanpot mix sequence?
+void ActorUpdate_ClanpotMixSequence(u16 actor_index) {
     u16 index;
-    u16 actor1;
-    u16 actor2;
+    u16 pot_index;
+    u16 icon_actor;
     f32 var_f0;
 
-    actor1 = gActors[actor_index].var_150;
-    if (gActors[actor1].unk_184 == 0 || gActors[0].velocityX.raw != 0) {
+    pot_index = gActors[actor_index].var_150;
+    if (gActors[pot_index].unk_184 == 0 || gActors[0].velocityX.raw != 0) {
         gActors[actor_index].flags = 0;
-        gActors[actor1].unk_188 = 0;
+        gActors[pot_index].unk_188 = 0;
         Sound_StopSfx(0xFC);
     }
     else {
-        if (gActors[actor_index].unk_188 < gActors[actor1].unk_184) {
-            gActors[actor_index].unk_188 = gActors[actor1].unk_184;
+        if (gActors[actor_index].unk_188 < gActors[pot_index].unk_184) {
+            gActors[actor_index].unk_188 = gActors[pot_index].unk_184;
         }
         switch (gActors[actor_index].state) {
         case 0:
-            if (func_80036DC8(actor_index)) {
+            if (Clanpot_TryMix(actor_index)) {
                 var_f0 = 256.0f;
                 for (index = 1; index < 7; index++) {
-                    actor2 = func_800374D8(actor_index, ((s32*)&gActors[actor_index].var_150)[index]);
-                    if (actor2 != 0) {
-                        gActors[actor2].unk_104 = var_f0;
+                    icon_actor = Clanpot_MixSequenceIcon(actor_index, ((s32*)&gActors[actor_index].var_150)[index]);
+                    if (icon_actor != 0) {
+                        gActors[icon_actor].unk_104 = var_f0;
                         var_f0 += gActors[actor_index].unk_114;
                     }
                 }
                 gActors[actor_index].state++;
                 gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
                 gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
-                gActors[actor_index].unk_16C = 0x180000;
+                gActors[actor_index].unk_16C = FIXED_UNIT(24.0);
                 gActors[actor_index].graphicIndex = GINDEX_BLASTB;
                 gActors[actor_index].palette_18C = PALETTE_8022D548;
                 gActors[actor_index].scaleX = 2.5f;
@@ -5400,24 +5499,24 @@ void func_8003766C(u16 actor_index) {
             if (gActors[actor_index].scaleX > 2.5) {
                 gActors[actor_index].scaleX = 2.5f;
             }
-            gActors[actor_index].unk_16C = (gActors[actor_index].scaleX / 2.5) * 1572864.0;
+            gActors[actor_index].unk_16C = (gActors[actor_index].scaleX / 2.5) * (f32)FIXED_UNIT(24.0);
             if (gActors[actor_index].unk_188 >= 0xE) {
-                func_800370AC(actor_index);
+                Clanpot_AddMixedItem(actor_index);
                 gActors[actor_index].flags = 0;
-                gActors[actor1].unk_184 = 0;
-                gActors[actor1].unk_188 = 0x3C;
-                gActors[actor1].flags &= ~ACTOR_FLAG_PLATFORM0;
+                gActors[pot_index].unk_184 = 0;
+                gActors[pot_index].unk_188 = 0x3C;
+                gActors[pot_index].flags &= ~ACTOR_FLAG_PLATFORM0;
                 Sound_StopSfx(0xFC);
                 return;
             }
             break;
         }
         if (gActors[actor_index].flags & ACTOR_FLAG_DRAW) {
-            gActors[actor_index].posX.whole = gActors[actor1].posX.whole;
+            gActors[actor_index].posX.whole = gActors[pot_index].posX.whole;
             gActors[actor_index].posY.whole = gActors[0].posY.whole + 0x28;
-            gActors[actor_index].posZ.whole = gActors[actor1].posZ.whole + 2;
+            gActors[actor_index].posZ.whole = gActors[pot_index].posZ.whole + 2;
             gActors[actor_index].scaleY = gActors[actor_index].scaleX;
-            gActors[actor_index].colorA = gActors[actor1].unk_184 * 0x12;
+            gActors[actor_index].colorA = gActors[pot_index].unk_184 * 0x12;
             if (gActors[actor_index].colorA > 0x7F) {
                 gActors[actor_index].colorA = 0x7F;
             }
@@ -5425,24 +5524,24 @@ void func_8003766C(u16 actor_index) {
     }
 }
 
-void func_80037B18(u16 actor_index) {
+void Clanpot_SpawnMixSequence(u16 actor_index) {
     u16 index;
 
     index = Actor_RangeFindInactive(0x11, 0x2D);
     if (index != 0) {
-        gActors[index].actorType = 0x78;
+        gActors[index].actorType = ACTORTYPE_CLANPOTMIX;
         Actor_Initialize(index);
         gActors[index].var_150 = actor_index;
     }
 }
 
-void func_80037B90(u16 actor_index) {
+void ActorUpdate_Clanpot(u16 actor_index) {
     s32 temp_v0;
     s32 d_pos_x;
 
     if (func_80029798(actor_index) == 0) {
         gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_ROTZ;
-        if (gActors[actor_index].actorType == 0x18) {
+        if (gActors[actor_index].actorType == ACTORTYPE_CLANPOT) {
             func_8002877C(actor_index);
         }
         gActors[actor_index].posZ.raw = gActors[actor_index].posY.whole - 0xF800;
@@ -5453,7 +5552,7 @@ void func_80037B90(u16 actor_index) {
         if (gActors[actor_index].state != 3) {
             if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0) && (gActors[0].unk_140_u8 == 8)) {
                 if (((gActors[0].posY.whole - gActors[actor_index].posY.whole) >= 0x1B) && (d_pos_x < 0xC)) {
-                    func_80035524(actor_index, 0);
+                    Clanpot_TakeItem(actor_index, 0);
                     gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK9;
                 }
             }
@@ -5483,7 +5582,7 @@ void func_80037B90(u16 actor_index) {
             if ((gActors[actor_index].unk_0D8 & 0x8000) == 0) {
                 gActors[actor_index].unk_170 = 0xA0;
             }
-            func_80035878(actor_index);
+            Clanpot_SetHitboxB(actor_index);
             gActors[actor_index].var_160 = 4;
             /* fallthrough */
         case 1:
@@ -5551,7 +5650,10 @@ void func_80037B90(u16 actor_index) {
         case 3:
             func_80040858(actor_index);
             gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM0;
-            temp_v0 = func_800291AC(actor_index, 4, 0x29183, 2, 0x29103);
+            temp_v0 = func_800291AC(actor_index, 4, 
+                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW),
+                 2,
+                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 |  ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW));
             switch (temp_v0) {
             case 3:
                 gActors[actor_index].velocityX.raw = 0;
@@ -5560,13 +5662,14 @@ void func_80037B90(u16 actor_index) {
             case 2:
                 gActors[actor_index].var_150 &= ~1;
                 gActors[actor_index].unk_184 = 0;
-                func_80035878(actor_index);
+                Clanpot_SetHitboxB(actor_index);
                 gActors[actor_index].unk_174 = 0;
                 break;
             default:
+                // tilting pot to look inside.
                 if ((gButtonHold & gButton_DDown) && (gActors[0].velocityX.raw == 0) && (gActors[0].velocityY.raw == 0) && (D_80137444 & 0x20) && (gActors[actor_index].posY.whole < gActors[0].posY.whole)) {
                     gActors[actor_index].flags &= ~ACTOR_FLAG_PLATFORM0;
-                    func_800367D0(actor_index);
+                    Clanpot_Tilt(actor_index);
                 }
                 else {
                     gActors[actor_index].unk_174 = 0;
@@ -5576,6 +5679,7 @@ void func_80037B90(u16 actor_index) {
                     gActors[actor_index].unk_184 = 0;
                     gActors[actor_index].colorR = 0;
                 }
+                // shake-shaking, start mix mix sequence.
                 if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17) && (gActors[actor_index].unk_188 == 0) && (gActors[actor_index].unk_170 < 0xA0)) {
                     if (gActors[actor_index].colorR == 0) {
                         Sound_PlaySfx(0xD5);
@@ -5587,7 +5691,7 @@ void func_80037B90(u16 actor_index) {
                         case 15:
                             break;
                         case 0:
-                            func_80037B18(actor_index);
+                            Clanpot_SpawnMixSequence(actor_index);
                             /* fallthrough */
                         default:
                             gActors[actor_index].unk_184++;
@@ -7221,7 +7325,7 @@ u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = arg0 & ~ACTOR_GFLAG_3DOBJ;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[actor_index].graphicIndex = 0x8000;
+        gActors[actor_index].graphicIndex = GINDEX_BLACKBAR;
         gActors[actor_index].posX.raw = pos_x;
         gActors[actor_index].posY.raw = pos_y;
         gActors[actor_index].posZ.raw = pos_z;
@@ -7232,7 +7336,7 @@ u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s
         gActors[actor_index].colorR = red;
         gActors[actor_index].colorG = green;
         gActors[actor_index].colorB = blue;
-        if (arg0 & 0x2000) {
+        if (arg0 & ACTOR_GFLAG_3DOBJ) {
             gActors[actor_index].unk_148 = 1.0f;
         }
         else {

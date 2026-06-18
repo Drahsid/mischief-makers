@@ -2,7 +2,7 @@
 #define GRAPHIC_INDEX_H
 
 
-// indecies used by "graphicIndex" feild of Actor and Portrait structs
+// indecies used by "graphicIndex" field of Actor and Portrait structs
 // many graphic indecies use even entries for graphics facing one size,
 // and odd facing the other. for more complex aninmations,
 // Like those of Marina, Clancers, and Beastector, they instead increment normally.
@@ -50,6 +50,7 @@
 
 #define GINDEX_MINEROUND       0x00C6
 
+#define GINDEX_CIRCLEEFFECT    0x00CA
 #define GINDEX_CLANBLOB        0x00CC
 #define GINDEX_PARTICLERING    0x00CE
 
@@ -183,6 +184,8 @@
 
 #define GINDEX_CLANCERGHOST    0x02A2 // 6 animation frames
 
+#define GINDEX_MOCHI           0x02c2
+
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
 #define GINDEX_SOLIDSQARE      0x02D0 // used as a fill for transisions
@@ -248,6 +251,6 @@
 #define GINDEX_WM_STAGEICONENDING   0X303A
 #define GINDEX_WM_STAGEICONVERTICAL 0X303C
 
-#define GINDEX_PAUSEBAR 0x8000
+#define GINDEX_BLACKBAR 0x8000
 
 #endif

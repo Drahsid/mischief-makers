@@ -12,7 +12,7 @@ extern u8 D_800C5008;
 extern u16 D_80171AD0[];
 extern u16 D_80171AD4[];
 extern u64 D_80171AD8[];
-extern u64 D_80171B10; // bitfeild of yellow gem collection.
+extern u64 D_80171B10; // bitfield of yellow gem collection.
 extern u8 D_80171B18;
 extern u16 gRedGems;
 extern u16 D_80178156;

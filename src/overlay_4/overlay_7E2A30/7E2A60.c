@@ -16,7 +16,7 @@ extern s16 D_801BD8C2_7E6A22;
 extern u32 D_80137458;
 
 extern s32 func_8003FF68(s32 arg0, f32 arg1);
-extern void func_80034D80(u16 actor_index, u16* vals); // BUG: incorrect prototype!
+extern void Clanpot_InitItems(u16 actor_index, u16* vals); // BUG: incorrect prototype!
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern s16 func_8005DEFC(void);
 
@@ -1357,7 +1357,7 @@ void func_801BB28C_7E43EC(void) {
             func_80045FA4(D_801BCF84_7E60E4, 0);
             Actor_LoadSpawnTable(D_801BBEB0_7E5010);
             Actor_LoadSpawnTable(D_801BD4B4_7E6614);
-            func_80034D80(0x48, D_801BD4D4_7E6634);
+            Clanpot_InitItems(0x48, D_801BD4D4_7E6634);
             gActors[0].flags |= 0x20;
             D_800BE5F4.unk_00_s32 = 5;
             gAudioFadeMode = 0;

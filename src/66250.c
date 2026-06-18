@@ -904,6 +904,7 @@ void func_80079760(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8007B60C.s")
 
+// update function of Rocketeer Clancers.
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8007B73C.s")
 
 void func_8007CCD0(s32 arg0) {

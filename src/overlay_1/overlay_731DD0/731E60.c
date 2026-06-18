@@ -235,6 +235,7 @@ void func_8019EBA8_735908(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A3290_739FF0.s")
 
+// change gun's effect (and in japan, describe it)
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A3664_73A3C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A37C0_73A520.s")

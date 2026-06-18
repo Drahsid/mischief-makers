@@ -99,7 +99,7 @@ extern u16 gGamePaused; // set when game is paused.
 extern u16 gCannotPause; // if set, prevents pausing game.
 extern u16 gGameState; // main state of game. uses GameState enum
 extern u16 gGameStateSubState; // sub state of game state.
-extern u16 D_800BE544; // bitfeild determining camera scroll?
+extern u16 D_800BE544; // bitfield determining camera scroll?
 extern FixedCoord D_800BE548; // max horizonal camera scroll speed?
 extern FixedCoord D_800BE54C; // max vertical camera scroll speed?
 extern FixedCoord gScreenPosTargetX; // target x-position of camera in stage

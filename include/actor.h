@@ -33,12 +33,12 @@ enum ActorFlags {
     ACTOR_FLAG_UNK10 = (1U << 10U), 
     ACTOR_FLAG_UNK11 = (1U << 11U),
     ACTOR_FLAG_UNK12 = (1U << 12U),
-    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // platform actor?
+    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // actor's hitboxes are considered a "platform"
     ACTOR_FLAG_UNK14 = (1U << 14U),
     ACTOR_FLAG_UNK15 = (1U << 15U), // something with damage (instakill if set?)
     ACTOR_FLAG_UNK16 = (1U << 16U),
     ACTOR_FLAG_UNK17 = (1U << 17U),
-    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // platfom actor?
+    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxes are considered a "platform"
     ACTOR_FLAG_UNK19 = (1U << 19U),
     ACTOR_FLAG_UNK20 = (1U << 20U),
     ACTOR_FLAG_UNK21 = (1U << 21U),
@@ -68,7 +68,7 @@ enum ActorGFlags {
     ACTOR_GFLAG_PALETTE = (1U << 9U), // use pointer at field 0x18C as a palette
     ACTOR_GFLAG_UNK10 = (1U << 10U), // effects animation
     ACTOR_GFLAG_UNK11 = (1U << 11U), // seems to effect translate mtx.
-    ACTOR_GFLAG_SCALEZ = (1U << 12U), // use feild 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
+    ACTOR_GFLAG_SCALEZ = (1U << 12U), // use field 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_3DOBJ = (1U << 13U), // field at 0x17C treated as dlist for 3d model
     ACTOR_GFLAG_UNK14 = (1U << 14U), // used by portrait struct.
     ACTOR_GFLAG_UNK15 = (1U << 15U) // a change in blending?
@@ -93,7 +93,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK14 = (1U << 14U),
     ACTOR_FLAG3_UNK15 = (1U << 15U),
     ACTOR_FLAG3_UNK16 = (1U << 16U),
-    ACTOR_FLAG3_UNK17 = (1U << 17U),
+    ACTOR_FLAG3_UNK17 = (1U << 17U), // being shake-shaken?
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
@@ -145,9 +145,9 @@ typedef struct {
     /* 0x0BC */ f32 rotateX; // used in guRotate if ACTOR_GFLAG_ROTX in graphicFlags is set
     /* 0x0C0 */ f32 rotateY; // used in guRotate if ACTOR_GFLAG_ROTY in graphicFlags is set
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
-    /* 0x0C8 */ s16 unk_0C8;
-    /* 0x0CA */ s16 unk_0CA;
-    /* 0x0CC */ u16 unk_0CC;
+    /* 0x0C8 */ s16 unk_0C8; // global x-position of actor collided?
+    /* 0x0CA */ s16 unk_0CA; // global y-position + hitboxBY0 of actor collided?
+    /* 0x0CC */ u16 unk_0CC; // index of actor collided?. bit 15 is also set when updated
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
@@ -165,7 +165,7 @@ typedef struct {
     /* 0x0DB */ u8 unk_0DB;
     /* 0x0DC */ u8 unk_0DC;
     /* 0x0DD */ u8 unk_0DD;
-    /* 0x0DE */ u8 unk_0DE;
+    /* 0x0DE */ u8 unk_0DE; // behavior when grabbed?
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.
@@ -244,8 +244,14 @@ typedef struct {
         /* 0x160 */ u8 var_160_u8;
     };
     /* 0x164 */ s32 unk_164;
-    /* 0x168 */ s32 unk_168;
-    /* 0x16C */ s32 unk_16C;
+    union{
+        /* 0x168 */ s32 unk_168;
+        /* 0x17C */ void(*clanpot_pfn0)(u16 item_type,u16 actor_index); // used by clanpots when mixing to tally items
+    };
+    union{
+        /* 0x16C */ s32 unk_16C;
+        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing.
+    };
     /* 0x170 */ s32 unk_170;
     /* 0x174 */ s32 unk_174;
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays

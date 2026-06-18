@@ -5573,7 +5573,7 @@
           }
         },
         {
-          "name": "func_800335E4",
+          "name": "SpawnDizzyStar",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5717,7 +5717,7 @@
           }
         },
         {
-          "name": "func_80034D80",
+          "name": "Clanpot_InitItems",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5725,7 +5725,7 @@
           }
         },
         {
-          "name": "func_80034E10",
+          "name": "Clanpot_AddItem",
           "size": "764",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5733,7 +5733,7 @@
           }
         },
         {
-          "name": "func_8003510C",
+          "name": "Clanpot_AddItemCheck",
           "size": "188",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5741,7 +5741,7 @@
           }
         },
         {
-          "name": "func_800351C8",
+          "name": "Clanpot_AddItemCheck1",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5749,7 +5749,7 @@
           }
         },
         {
-          "name": "func_80035218",
+          "name": "Clanpot_AddItemCheck2",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5757,7 +5757,7 @@
           }
         },
         {
-          "name": "func_8003526C",
+          "name": "Clanpot_AddItemCheck3",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5765,7 +5765,7 @@
           }
         },
         {
-          "name": "func_800352C0",
+          "name": "Clanpot_MoveItems",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5773,7 +5773,7 @@
           }
         },
         {
-          "name": "func_80035394",
+          "name": "Clanpot_SpawnNow",
           "size": "400",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5781,7 +5781,7 @@
           }
         },
         {
-          "name": "func_80035524",
+          "name": "Clanpot_TakeItem",
           "size": "768",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5789,7 +5789,7 @@
           }
         },
         {
-          "name": "func_80035824",
+          "name": "Clanpot_SetHitboxA",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5797,7 +5797,7 @@
           }
         },
         {
-          "name": "func_80035878",
+          "name": "Clanpot_SetHitboxB",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5853,7 +5853,7 @@
           }
         },
         {
-          "name": "func_80035E90",
+          "name": "ActorUpdate_ClanpotMenu",
           "size": "2028",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5869,7 +5869,7 @@
           }
         },
         {
-          "name": "func_800366E4",
+          "name": "Clanpot_SpawnMenu",
           "size": "236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5877,7 +5877,7 @@
           }
         },
         {
-          "name": "func_800367D0",
+          "name": "Clanpot_Tilt",
           "size": "464",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5885,7 +5885,7 @@
           }
         },
         {
-          "name": "func_800369A0",
+          "name": "Clanpot_SetMixedItem",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5893,7 +5893,7 @@
           }
         },
         {
-          "name": "func_80036A60",
+          "name": "Clanpot_MixClanbomb",
           "size": "228",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5901,7 +5901,7 @@
           }
         },
         {
-          "name": "func_80036B44",
+          "name": "Clanpot_MixBoomerang",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5909,7 +5909,7 @@
           }
         },
         {
-          "name": "func_80036C14",
+          "name": "Clanpot_MixShuriken",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5917,7 +5917,7 @@
           }
         },
         {
-          "name": "func_80036CE4",
+          "name": "Clanpot_MixGreenGem",
           "size": "228",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5925,7 +5925,7 @@
           }
         },
         {
-          "name": "func_80036DC8",
+          "name": "Clanpot_TryMix",
           "size": "692",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5933,7 +5933,7 @@
           }
         },
         {
-          "name": "func_8003707C",
+          "name": "Clanpot_EraseItem",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5941,7 +5941,7 @@
           }
         },
         {
-          "name": "func_800370AC",
+          "name": "Clanpot_AddMixedItem",
           "size": "1068",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5949,7 +5949,7 @@
           }
         },
         {
-          "name": "func_800374D8",
+          "name": "Clanpot_MixSequenceIcon",
           "size": "404",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5957,7 +5957,7 @@
           }
         },
         {
-          "name": "func_8003766C",
+          "name": "ActorUpdate_ClanpotMixSequence",
           "size": "1196",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5965,7 +5965,7 @@
           }
         },
         {
-          "name": "func_80037B18",
+          "name": "Clanpot_SpawnMixSequence",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5973,7 +5973,7 @@
           }
         },
         {
-          "name": "func_80037B90",
+          "name": "ActorUpdate_Clanpot",
           "size": "2056",
           "fuzzy_match_percent": 100.0,
           "metadata": {

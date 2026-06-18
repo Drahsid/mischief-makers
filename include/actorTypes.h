@@ -13,7 +13,7 @@
 // the entry here should be "ACTOR_OVL0_CALPHA"
 // and the first actor in the dispatch table should use the number
 // (ACTOR_OVL0_CALPHA << 8).
-typedef enum{
+typedef enum {
     ACTOR_MAIN, // actors with code in the main segment.
     ACTOR_OVL3_1,
     ACTOR_OVL1_2,
@@ -36,7 +36,7 @@ typedef enum{
     ACTOR_OVL1_19,
     ACTOR_OVL0_20,
     ACTOR_OVL0_21,
-    ACTOR_OVL0_22,
+    ACTOR_OVL0_FINALBAT, // actors in Overlay 0 Code for "Final Battle"
     ACTOR_OVL2_23,
     ACTOR_OVL2_24,
     ACTOR_OVL0_25,
@@ -52,7 +52,7 @@ typedef enum{
     ACTOR_OVL0_35,
     ACTOR_OVL0_36,
     ACTOR_OVL2_STAGE_2_1, // actors in Overlay 2 code of "Sea of Lava"
-    ACTOR_OVL0_38,
+    ACTOR_OVL0_GEN, // actors in Overlay 0 code for the majority of stages.
     ACTOR_OVL3_39,
     ACTOR_OVL3_40,
     ACTOR_OVL3_41,
@@ -63,6 +63,8 @@ typedef enum{
 
 
 typedef enum{
+    // actors in main code segment
+
     ACTORTYPE_ZERO= (ACTOR_MAIN << 8), // used for images. has a stubbed "tick" function.
     ACTORTYPE_DIZZYSTAR = 6, // stars when a Clancer is KO'd.
     ACTORTYPE_AFTERIMAGE, // spawns an after-image of an actor behind it.
@@ -82,17 +84,46 @@ typedef enum{
     ACTORTYPE_TEXTBUBBLE = 0X35, // used many times in Japan version. in English versions, only used by the coach in "the day before".
     ACTORTYPE_PARTICLE56 = 0x38, // a "child class" of ACTORTYPE_PARTICLE. extended behavior.
     ACTORTYPE_GEM61 = 61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
-    ACTORTYPE_FLOWER = 0X43,
-    ACTORTYPE_HAT,
+    ACTORTYPE_FLOWER = 0X43, // flowers with a slow, sine-wave fall.
+    ACTORTYPE_HAT, // hats worn by clancers
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_DIGGINGSPOT = 0x57, // grab the ground for treasures.
+    ACTORTYPE_CLANCERGHOST = 0X63,
     ACTORTYPE_AREACLEAR = 0X6B, // "Get out of trouble!" "Go to the next area!"
     ACTORTYPE_MARINAOHNO = 0X70, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
     ACTORTYPE_CROSSHAIR = 0X71, // Crosshair appearing over actors for a second. Arrows can be toggled.
     ACTORTYPE_STAGECLEAR = 0X74, // actors for the "stage clear" animation.
     ACTORTYPE_LEVELCLEAR, // actors for the "level clear" animation.
+    ACTORTYPE_CLANPOTMIX = 0x78, // sequence for mixing clanpot items.
+    ACTORTYPE_CLANPOTMENU, // mwnu when looking into clanpot.
     ACTORTYPE_MSHINT = 0X7A, // Ms. Hint
-    ACTORTYPE_GEMRING = 0X7B
-}ActorTypes;
+    ACTORTYPE_GEMRING = 0X7B, // Ring of gems when buying hint for recieving reward.
+    
+    // actors in dispatch table D_801A6800_78B430
+
+    ACTORTPYE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor
+    ACTORTPYE_OVL2_W5B_PIRATE, // pirate at end of "Trapped"
+    ACTORTPYE_OVL2_W5B_SPIKEBALL, // spikeballs of pirate at end of "trapped"
+    
+    // actors in dispatch table D_801A6800_76F390
+    
+    ACTORTYPE_OVL2_SOL_0 = (ACTOR_OVL2_STAGE_2_1 << 8),
+    ACTORTYPE_OVL2_SOL_1,
+    ACTORTYPE_OVL2_SOL_ARCHFLAME, // arch flame in "Sea of Lava"
+
+    // actors in dispatch table D_80192000_713600
+
+    ACTORTYPE_OVL0_GEN_BOMB0 = (ACTOR_OVL0_GEN << 8), // explosive weapon
+    ACTORTYPE_OVL0_GEN_BOMB1, // explosive weapon.
+    ACTORTYPE_OVL0_GEN_SHURIKEN, // throwing star
+    ACTORTYPE_OVL0_GEN_BOOMERANG,
+    ACTORTYPE_OVL0_GEN_4,
+    ACTORTYPE_OVL0_GEN_5,
+    ACTORTYPE_OVL0_GEN_6,
+    ACTORTYPE_OVL0_GEN_7,
+    ACTORTYPE_OVL0_GEN_8,
+    ACTORTYPE_OVL0_GEN_9,
+    ACTORTYPE_OVL0_GEN_10
+} ActorTypes;
 
 #endif

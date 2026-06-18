@@ -5,7 +5,7 @@
 // "overlay 4" code of most the World 3 stages, excluding "The Day Of" and "Cerberus Alpha"
 
 // BUG: incorrect prototype!
-extern void func_80034D80(u16 actor_index, u16* vals);
+extern void Clanpot_InitItems(u16 actor_index, u16* vals);
 
 extern s16 D_800D2918;
 extern s16 D_800D291C;
@@ -1394,7 +1394,7 @@ void func_801B9CA0_7D4490(void) {
 
 void func_801B9F3C_7D472C(u16 arg0, u16 arg1) {
     if (arg0 == 0x1C07) {
-        D_800D24D8[0]++;
+        gClanpotItemCount[0]++;
     }
 }
 
@@ -1403,8 +1403,8 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
     u16 actor_count;
     u16 index;
 
-    if (D_800D24D8[0] >= 3) { index = 0; actor_count = 1; while (actor_count < 4) {
-            if ((actor_type = D_800D22BC[index + 3]) == 0x1C07) {
+    if (gClanpotItemCount[0] >= 3) { index = 0; actor_count = 1; while (actor_count < 4) {
+            if ((actor_type = gClanpotItems[index + 3]) == 0x1C07) {
                 ((s32*)&gActors[actor_index].var_150)[actor_count] = index;
                 actor_count++;
             }
@@ -1412,7 +1412,7 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
             index += 5;
         }
 
-        func_800369A0(actor_index, 3, D_801BC844_7D7034);
+        Clanpot_SetMixedItem(actor_index, 3, D_801BC844_7D7034);
         return TRUE;
     }
 
@@ -1420,9 +1420,9 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
 }
 
 void func_801BA040_7D4830(void) {
-    func_80034D80(0x5F, D_801BC7BC_7D6FAC);
-    gActors[0x5F].unk_168 = (s32)func_801B9F3C_7D472C;
-    gActors[0x5F].unk_16C = (s32)func_801B9F70_7D4760;
+    Clanpot_InitItems(0x5F, D_801BC7BC_7D6FAC);
+    gActors[0x5F].clanpot_pfn0 = func_801B9F3C_7D472C;
+    gActors[0x5F].clanpot_pfn1 = func_801B9F70_7D4760;
 }
 
 void func_801BA084_7D4874(void) {
@@ -1480,7 +1480,7 @@ void func_801BA290_7D4A80(void) {
             func_80045FA4(D_801BC850_7D7040, (s32)D_801BC880_7D7070);
             Actor_LoadSpawnTable(D_801BD3C0_7D7BB0);
             func_801BA084_7D4874();
-            func_80034D80(0x5F, D_801BC7DC_7D6FCC);
+            Clanpot_InitItems(0x5F, D_801BC7DC_7D6FCC);
             break;
 
         case 1:
@@ -2379,10 +2379,10 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
     u16 actor_count;
     u16 index;
 
-    if (D_800D24F0 >= 2) { if (YellowGem_GetFlag(gCurrentStage) == 0) {
+    if (gClanpotItemCount[0x18] >= 2) { if (YellowGem_GetFlag(gCurrentStage) == 0) {
             index = 0; actor_count = 1; while (actor_count < 3) {
-                if ((actor_type = D_800D22BC[index + 3]) == 8) {
-                    if ((D_800D22BC[index + 1] & 3) == 3) {
+                if ((actor_type = gClanpotItems[index + 3]) == ACTORTYPE_GEM) {
+                    if ((gClanpotItems[index + 1] & 3) == GEMFLAG_GREEN) {
                     ((s32*)&gActors[actor_index].var_150)[actor_count] = index;
                     actor_count++;
                 }
@@ -2391,7 +2391,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
                 index += 5;
             }
 
-            func_800369A0(actor_index, 2, D_801C00D8_7DA8C8);
+            Clanpot_SetMixedItem(actor_index, 2, D_801C00D8_7DA8C8);
             return TRUE;
         }
     }
@@ -2400,6 +2400,6 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
 }
 
 void func_801BC11C_7D690C(void) {
-    gActors[0x39].unk_168 = (s32)func_801BC010_7D6800;
-    gActors[0x39].unk_16C = (s32)func_801BC01C_7D680C;
+    gActors[0x39].clanpot_pfn0 = func_801BC010_7D6800;
+    gActors[0x39].clanpot_pfn1 = func_801BC01C_7D680C;
 }
