@@ -29,7 +29,7 @@ typedef enum {
     ACTOR_OVL1_12,
     ACTOR_OVL1_13,
     ACTOR_OVL3_14,
-    ACTOR_OVL0_SBETA, // actors in Overlay 0 code of "Sasquatch Beta" 
+    ACTOR_OVL0_CALPHA, // actors in Overlay 0 code of "Cerberus Alpha" 
     ACTOR_OVL0_16,
     ACTOR_OVL1_17,
     ACTOR_OVL1_18,
@@ -58,7 +58,7 @@ typedef enum {
     ACTOR_OVL3_41,
     ACTOR_OVL3_42,
     ACTOR_OVL0_INTRO, // actors in Overlay 0 code of intro cinematic.
-    ACTOR_OVL0_44
+    ACTOR_OVL0_ENDING // actors in Overlay 0 code of Ending.
 }ActorOverlayIDs;
 
 
@@ -99,6 +99,22 @@ typedef enum{
     ACTORTYPE_MSHINT = 0X7A, // Ms. Hint
     ACTORTYPE_GEMRING = 0X7B, // Ring of gems when buying hint for recieving reward.
     
+    // actors in dispatch table D_800E5AC0
+
+    ACTORTYPE_MAIN8_0 = (ACTOR_MAIN_8 << 8),
+    ACTORTYPE_MAIN8_1,
+    ACTORTYPE_MAIN8_2,
+    ACTORTYPE_MAIN8_3,
+    ACTORTYPE_MAIN8_4,
+    ACTORTYPE_MAIN8_5, // stubbed
+    ACTORTYPE_MAIN8_6,
+    ACTORTYPE_MAIN8_7,
+    ACTORTYPE_MAIN8_8,
+    ACTORTYPE_MAIN8_9,
+    ACTORTYPE_MAIN8_10,
+    ACTORTYPE_MAIN8_11,
+    ACTORTYPE_MAIN8_12, // stubbed
+
     // actors in dispatch table D_801A6800_78B430
 
     ACTORTPYE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor

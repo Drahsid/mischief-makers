@@ -151,7 +151,7 @@ void func_80016E70(u16 actor_index) {
             D_801B0800[index](actor_index);
             break;
 
-        case ACTOR_OVL0_SBETA:
+        case ACTOR_OVL0_CALPHA:
             D_80192000[index](actor_index);
             break;
 
@@ -267,7 +267,7 @@ void func_80016E70(u16 actor_index) {
             D_80192000[index](actor_index);
             break;
 
-        case ACTOR_OVL0_44:
+        case ACTOR_OVL0_ENDING:
             D_80192000[index](actor_index);
             break;
     }

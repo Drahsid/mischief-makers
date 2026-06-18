@@ -242,8 +242,8 @@ void func_8008DE28(u16 arg0) {
 }
 
 void func_8008DE30(u16 actor_index) {
-    Sound_StopSfx(0xB5);
-    Sound_StopSfx(0xB4);
+    Sound_StopSfx(SFX_MARINA_OW1);
+    Sound_StopSfx(SFX_MARINA_YELL1);
 
     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-6.5)) {
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.1953125);
