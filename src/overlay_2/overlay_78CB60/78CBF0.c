@@ -683,6 +683,10 @@ u16 D_801B00E4_7963D4[]={
 
 void func_801A7C14_78DF04(u16);
 void func_801A7CA4_78DF94(u16);
+void func_801ABE24_792114(u16);
+void func_801AE0DC_7943CC(u16);
+void func_801AD4F4_7937E4(u16);
+void func_801AEA60_794D50(u16,u16);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A6900_78CBF0.s")
 
@@ -1150,7 +1154,11 @@ void func_801ACEE8_7931D8(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AD4F4_7937E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AD628_793918.s")
+void func_801AD628_793918(u16 arg0){
+    if (gFestivalData.isTimeBeat){
+        func_801AD4F4_7937E4(0x41);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AD658_793948.s")
 
@@ -1164,19 +1172,25 @@ void func_801ACEE8_7931D8(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE0DC_7943CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE5A0_794890.s")
+void func_801AE5A0_794890(u16 arg0){
+    func_801ABE24_792114(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE5C8_7948B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE804_794AF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE8B4_794BA4.s")
+void func_801AE8B4_794BA4(u16 arg0){
+    func_801AE0DC_7943CC(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AE8DC_794BCC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AEA60_794D50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AEB10_794E00.s")
+void func_801AEB10_794E00(u16 arg0){
+    func_801AEA60_794D50(arg0,0x19);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AEB3C_794E2C.s")
 

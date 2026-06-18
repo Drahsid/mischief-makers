@@ -71,7 +71,7 @@ extern u16 D_800D8608[];
 extern u16 D_800D8628[];
 extern u16 D_800D86A0[];
 extern u16 D_800D86D8[]; // guess
-extern u8 D_800D9AE4[];
+extern u16 D_800D9AE4[];
 extern u8 D_800D9AF4[];
 extern u16 D_800D9B64[];
 extern s16 D_800E14C8[];
@@ -7339,7 +7339,7 @@ void func_8003DBD0(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, 0x200000, 0x8000);
-            func_8007EA14(&D_800D27B0, 0xA00, 0, gActors[actor_index].var_154, 0x800000, &D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(&D_800D27B0, 0xA00, 0, gActors[actor_index].var_154, 0x800000, D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0x5C, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + 0xFFF70000, 0x800000, 0x7F, 0, 0);
@@ -8257,12 +8257,12 @@ u16 func_8004089C(u16 actor_index, u16* arg1) {
     }
 
     if ((actor_index & 0x8000) && ((x >= 0x31) || (x < -0x30) || (y >= 0x31) || (y < -0x30))) {
-        return 0;
+        return FALSE;
     }
 
     if (gActors[index].flags_098 & ACTOR_FLAG3_UNK20) {
         gActors[index].flags_098 |= ACTOR_FLAG3_UNK18;
-        return 1;
+        return TRUE;
     }
     else {
         if (gActors[index].flags & ACTOR_FLAG_FLIPPED) {
@@ -8273,17 +8273,17 @@ u16 func_8004089C(u16 actor_index, u16* arg1) {
         }
         func_800406A4(arg1, index, x, gActors[index].hitboxBY0, 10);
     }
-    return 1;
+    return TRUE;
 }
 
 s32 func_800409E0(u16 actor_index) {
     if ((gActors[actor_index].health <= 0) || (gActors[actor_index].iFrames > 0) || 
         ((gActors[actor_index].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) != (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) ||
         (gActors[actor_index].state < 0x51)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 

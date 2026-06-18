@@ -17,7 +17,7 @@ extern s16 D_800E1C84[];
 
 
 extern s32 func_800475EC(void);
-extern void func_80047648(s32 arg0);
+extern void func_80047648(s16 arg0);
 extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern void func_80045544(s32 arg0, s32 arg1);

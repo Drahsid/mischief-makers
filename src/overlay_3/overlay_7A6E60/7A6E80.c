@@ -4,6 +4,7 @@
 // "overlay 3" code for Festival Games.
 
 extern u16 D_800D28F0;
+extern u16 D_800D9AE4[];
 
 void func_801B0DA0_7A7320(u16);
 extern func_801B2498_7A8A18(u16);
@@ -95,7 +96,9 @@ void func_801B0DA0_7A7320(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2738_7A8CB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2854_7A8DD4.s")
+void func_801B2854_7A8DD4(u16 arg0){
+    gActors[0x6e].palette_18C = D_800D9AE4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B286C_7A8DEC.s")
 
@@ -109,13 +112,25 @@ void func_801B0DA0_7A7320(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2D18_7A9298.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2DE4_7A9364.s")
+void func_801B2DE4_7A9364(u16 actor_index){
+    if(gActors[actor_index].graphicTimer == 0){
+        gActors[actor_index].var_154 = 0x50;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2E2C_7A93AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2EBC_7A943C.s")
+void func_801B2EBC_7A943C(u16 actor_index){
+    if(gActors[actor_index].graphicTimer == 0){
+        gActors[actor_index].var_154 = 0x60;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2F04_7A9484.s")
+void func_801B2F04_7A9484(u16 actor_index){
+    if((gActors[actor_index].graphicTimer == 0)&&(gActors[actor_index].unk_174 == 0)){
+        gActors[actor_index].var_154 = 0xE0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2F5C_7A94DC.s")
 
