@@ -24,12 +24,12 @@ typedef struct {
 // struct to initalize boulders, 
 // used in func_8019293C_6D2FBC
 typedef struct {
-    s16 pos_x;
-    s16 pos_y;
-    s32 vel_x;
-    s32 vel_y;
-    s32 vel_z;
-    s32 scale;
+    /* 0x00 */ s16 pos_x;
+    /* 0x02 */ s16 pos_y;
+    /* 0x04 */ s32 vel_x;
+    /* 0x08 */ s32 vel_y;
+    /* 0x0C */ s32 vel_z;
+    /* 0x10 */ f32 scale;
 }IntroBoulderInit;
 
 
