@@ -66,18 +66,30 @@ typedef enum{
     // actors in main code segment
 
     ACTORTYPE_ZERO= (ACTOR_MAIN << 8), // used for images. has a stubbed "tick" function.
-    ACTORTYPE_DIZZYSTAR = 6, // stars when a Clancer is KO'd.
+    ACTORTYPE_1, // HitboxA changes size over time, based on 0x110.
+    ACTORTYPE_2, // Essentially Stubbed
+    ACTORTYPE_3, // Stubbed
+    ACTORTYPE_4, // Stubbed
+    ACTORTYPE_5,
+    ACTORTYPE_DIZZYSTAR, // stars when a Clancer is KO'd.
     ACTORTYPE_AFTERIMAGE, // spawns an after-image of an actor behind it.
     ACTORTYPE_GEM, // gem actor.
     ACTORTYPE_PARTICLE, // moving sprites.
-    ACTORTYPE_STUB17 = 0x11, // stubbed code is in overlay script F00D0.c
-    ACTORTYPE_STUB18, // stubbed code is in overlay script F00D0.c
-    ACTORTYPE_STUB19, // stubbed code is in overlay script F00D0.c
-    ACTORTYPE_STUB20, // stubbed code is in overlay script F00D0.c
+    ACTORTYPE_10, // Stubbed
+    ACTORTYPE_17 = 0x11, // stubbed code is in overlay script F00D0.c
+    ACTORTYPE_18, // stubbed code is in overlay script F00D0.c
+    ACTORTYPE_19, // stubbed code is in overlay script F00D0.c
+    ACTORTYPE_20, // stubbed code is in overlay script F00D0.c
     ACTORTYPE_3DICON, // used in Sound Test menu.
     ACTORTYPE_MARINA, // player character.
-    ACTORTYPE_CLANPOT = 0x18,
-    ACTORTYPE_GRAPHICONLY = 0x1D, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
+    ACTORTYPE_23, // Stubbed
+    ACTORTYPE_CLANPOT,
+    ACTORTYPE_25, // Stubbed
+    ACTORTYPE_26, // Stubbed
+    ACTORTYPE_27, // Stubbed
+    ACTORTYPE_28, // controls for Blockman?
+    ACTORTYPE_GRAPHICONLY, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
+    ACTORTYPE_30, // Stubbed
     ACTORTYPE_PORTRAIT = 0x27,
     ACTORTYPE_MARINAAFTERIMAGE = 0x2E, // when marina dashes. Has unused alternate version.
     ACTORTYPE_WARPSTAR = 0x32,
@@ -89,6 +101,10 @@ typedef enum{
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_DIGGINGSPOT = 0x57, // grab the ground for treasures.
     ACTORTYPE_CLANCERGHOST = 0X63,
+    ACTORTYPE_GEMICON = 0X66, // clanpot icon for gems.
+    ACTORTYPE_GHOSTICON, // clanpot icon for Clancer Ghosts.
+    ACTORTYPE_CLANPOTICON, // clanpot icon for items.
+    ACTORTYPE_CLANCERICON, // clanpot icon is the appropriate clancer.
     ACTORTYPE_AREACLEAR = 0X6B, // "Get out of trouble!" "Go to the next area!"
     ACTORTYPE_MARINAOHNO = 0X70, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
     ACTORTYPE_CROSSHAIR = 0X71, // Crosshair appearing over actors for a second. Arrows can be toggled.
@@ -129,8 +145,8 @@ typedef enum{
 
     // actors in dispatch table D_80192000_713600
 
-    ACTORTYPE_OVL0_GEN_BOMB0 = (ACTOR_OVL0_GEN << 8), // explosive weapon
-    ACTORTYPE_OVL0_GEN_BOMB1, // explosive weapon.
+    ACTORTYPE_OVL0_GEN_BOMB0 = (ACTOR_OVL0_GEN << 8), // Round explosive weapon
+    ACTORTYPE_OVL0_GEN_BOMB1, // elliptical explosive weapon
     ACTORTYPE_OVL0_GEN_SHURIKEN, // throwing star
     ACTORTYPE_OVL0_GEN_BOOMERANG,
     ACTORTYPE_OVL0_GEN_4,

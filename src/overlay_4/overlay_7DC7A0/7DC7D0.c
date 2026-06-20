@@ -11,7 +11,7 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern void func_80064AA0(u16 arg0, void* arg1);
 extern u16 D_800D2950;
-extern s32 func_8004185C(u16 arg0);
+extern s32 WarpStar_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 D_800D28F8;
@@ -1271,6 +1271,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_80045FA4(D_801BC9B0_7DF880, (s32)D_801BCA6C_7DF93C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD730_7E0600);
+            // set warp stars to wait for Teran to "use" them.
             gActors[0x88].var_158 = 1;
             gActors[0x88].unk_178 = 0x30;
             gActors[0x89].var_158 = 1;
@@ -1310,8 +1311,10 @@ void func_801B9ED4_7DCDA4(void) {
                     Sound_PlaySfx(0x136);
                 }
             }
+            
+            // warp stars with alternating targets.
 
-            if (func_8004185C(0x89) != 0) {
+            if (WarpStar_IsGrabbed(0x89)) {
                 if (gActiveFrames & 0x40) {
                     D_801BC9E2_7DF8B2 = 0x2AC;
                 }
@@ -1320,7 +1323,7 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
 
-            if (func_8004185C(0x8A) != 0) {
+            if (WarpStar_IsGrabbed(0x8A)) {
                 if (gActiveFrames & 0x40) {
                     D_801BC9EA_7DF8BA = 0x2AC;
                 }
@@ -1329,7 +1332,7 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
 
-            if (func_8004185C(0x8B) != 0) {
+            if (WarpStar_IsGrabbed(0x8B)) {
                 if ((gActiveFrames % 48) >= 0x1C) {
                     D_801BC9F2_7DF8C2 = 0x24C;
                 }
@@ -1338,7 +1341,7 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
 
-            if (func_8004185C(0x8C) != 0) {
+            if (WarpStar_IsGrabbed(0x8C)) {
                 switch ((gActiveFrames / 16) % 3) {
                     case 0:
                         D_801BCA00_7DF8D0[0] = 0x1960;

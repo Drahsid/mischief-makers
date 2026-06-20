@@ -427,7 +427,7 @@ void func_8006A06C(u16 actor_index, f32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C0F4.s")
 
-void func_8006C1A4(u16 arg0) {
+void ActorType2_Noop(u16 arg0) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C1AC.s")
@@ -688,8 +688,9 @@ void func_8007325C(u16 actor_index) {
     func_8006C5A4(actor_index);
 }
 
-void func_800732F8(u16 arg0) {
-    func_8006C1A4(arg0);
+
+void ActorUpdate_Type2(u16 arg0) {
+    ActorType2_Noop(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80073320.s")
@@ -907,5 +908,7 @@ void func_80079760(u16 actor_index) {
 // update function of Rocketeer Clancers.
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8007B73C.s")
 
-void func_8007CCD0(s32 arg0) {
+
+// update for actor type 3
+void ActorUpdate_Type3(u16 arg0) {
 }

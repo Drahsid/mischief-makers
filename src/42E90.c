@@ -15,7 +15,7 @@ s32 func_80042290(u16 actor_index) {
     }
 }
 
-void func_80042308(s32 arg0) {
+void ActorUpdate_Type4(u16 arg0) {
 }
 
 void func_80042310(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -24,19 +24,24 @@ void func_80042310(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 void func_80042324(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
-void func_80042338(s32 arg0) {
+// update function for actor type 10
+void ActorUpdate_Type10(u16 arg0) {
 }
 
-void func_80042340(s32 arg0) {
+// update function for actor type 23
+void ActorUpdate_Type23(u16 arg0) {
 }
 
-void func_80042348(s32 arg0) {
+// update function for actor type 25
+void ActorUpdate_Type25(u16 arg0) {
 }
 
-void func_80042350(s32 arg0) {
+// update function for actor type 26
+void ActorUpdate_Type26(u16 arg0) {
 }
 
-void func_80042358(s32 arg0) {
+// update function for actor type 71
+void ActorUpdate_Type71(u16 arg0) {
 }
 
 void Actor_AdvanceState(u16 actor_index) {

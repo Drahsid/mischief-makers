@@ -99,10 +99,21 @@ Palette_SetRgbTableIndexArray = 0x8002B7F4; // type:func
 Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 
+ActorUpdate_Type27 = 0x8002C1D8; // type:func
+ActorUpdate_Type30 = 0x8002C6DC; // type:func
+ActorUpdate_Type1 = 0x8002D260; // type:func
 SpawnGemActor = 0x8002EFE4; // type:func
 SpawnGemRing = 0x8002F2A8; // type:func
 GemRing_MakeGems = 0x8002F420; //type:func
 RedGems_Clamp = 0x8002F6AC; // type:func
+ActorUpdate_GemRing = 0x8002F6D4; // type:func
+GemCollect = 0x8002F93C; // type:func
+GemCollect_Actor = 0x8002FC30; // type:func
+GemCollect_Static = 0x8002FCD8; // type:func
+ActorUpdate_GemIcon = 0x8002FEF8; // type:func
+ActorUpdate_Gem = 0x800303A8; // type:func
+ActorUpdate_Gem61 = 0x80030964; // type:func
+
 
 SpawnParticle_List = 0x80030F94; // type:func
 SpawnParticle_Image = 0x800310A4; // type:func
@@ -115,6 +126,9 @@ SpawnParticle_Image_102D_32 = 0x80031324; // type:func
 SpawnParticle_List_90C0_32 = 0x8003137C; // type:func
 SpawnParticle_Image_90C0_32 = 0x800313CC; // type:func
 ActorUpdate_Particle = 0x8003141C; // type:func
+SpawnAfterImage = 0x80033428; // type:func
+ActorUpdate_AfterImage = 0x8003358C; // type:func
+ActorUpdate_Type5 = 0x80033DE4; // type:func
 SpawnDizzyStar = 0x800335E4; // type:func
 ActorUpdate_DizzyStar = 0x800336B8; // type:func
 SpawnParticle_SineUp = 0x800337F4; // type:func
@@ -131,6 +145,7 @@ Clanpot_SpawnNow = 0x80035394; // type:func
 Clanpot_TakeItem = 0x80035524; // type:func
 Clanpot_SetHitboxA = 0x80035824; // type:func
 Clanpot_SetHitboxB = 0x80035824; // type:func
+ClanpotIcon_State1 = 0x80035A20; // type:func
 ActorUpdate_ClanpotMenu = 0x80035E90; // type:func
 Clanpot_SpawnMenu = 0x800366E4; // type:func
 Clanpot_Tilt = 0x800367D0; // type:func
@@ -146,6 +161,7 @@ Clanpot_MixSequenceIcon = 0x800374D8; //type:func
 ActorUpdate_ClanpotMixSequence = 0x8003766C; //type:func
 Clanpot_SpawnMixSequence = 0x80037B18; //type:func
 ActorUpdate_Clanpot = 0x80037B90; //type:func
+ActorUpdate_Type28 = 0x8003A120; //type:func
 Crosshair_SetPos = 0x8003E640; // type:func
 SpawnCrosshair = 0x8003E6A4; // type:func
 SpawnParticle_Exclamation = 0x8003F6A4; // type:func
@@ -157,13 +173,28 @@ SpawnParticle_RingWaveGreen = 0x8003FE90; // type:func
 SpawnParticle_RingWaveYellow = 0x8003FED8; // type:func
 SpawnParticle_RingWaveRed = 0x8003FF20; // type:func
 
+WarpStar_Init = 0x80040ab4; // type:func
+WarpStar_UpdateAppearance = 0x80041018; // type:func
+WarpStar_IsGuestUsing = 0x8004151C; // type:func
+WarpStar_IsGuestsUsing = 0x8004168C; // type:func
+WarpStar_MoveUser = 0x8004172C; // type:func
+WarpStar_MoveFaceUser = 0x8004178C; // type:func
+WarpStar_StarRing = 0x80040B4C; // type:func
+WarpStar_Sparkle = 0x80040E08; // type:func
+WarpStar_IsGrabbed = 0x8004185C; // type:func
+ActorUpdate_WarpStar = 0x800418A8; // type:func
 
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
 Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
+
+ActorType2_Noop = 0x8006C1A4; // type:func
+ActorUpdate_Type2 = 0x800732F8; // type:func
+ActorUpdate_Type3 = 0x8007CDD0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
+
 
 GameState_SoftReset = 0x80022F48; // type:func
 GameState_Intro = 0x80017800; // type:func
@@ -191,6 +222,12 @@ Actor_RegionCheckAudio = 0x80028980; // type:func
 Actor_NearestFromList = 0x800289E4; // type:func
 Actor_UpdateNearest = 0x80028AE8; // type:func
 Actor_UpdateNearestTo0 = 0x80028B1C; // type:func
+ActorUpdate_Type4 = 0x80042308; // type:func
+ActorUpdate_Type10 = 0x80042338; // type:func
+ActorUpdate_Type23 = 0x80042340; // type:func
+ActorUpdate_Type25 = 0x80042348; // type:func
+ActorUpdate_Type26 = 0x80042350; // type:func
+ActorUpdate_Type71 = 0x80042358; // type:func
 Actor_AdvanceState = 0x80042360; // type:func
 
 // debug_level_select.c

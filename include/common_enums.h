@@ -34,7 +34,7 @@ typedef enum {
     // involves the 5th "field" of gClanpotItems.
     // if unset, this value will represent the graphic index in the Clanpot menu.
     // if set, it is instead the actor type to use as the item's icon.
-    CLANPOT_NOTGRAPHIC = (1 << 10), 
+    CLANPOT_ACTORICON = (1 << 10), 
     CLANPOT_NOSTORE = (1 << 11 ), // skip storing item values. used by "Ball" festival minigame.
     CLANPOT_NEW_D8 = (1 << 12), // use arg in Clanpot_AddItem if set, otherwise store actor field at offset 0xD8.
     CLANPOT_NEW_110 = (1 << 13), // use arg in Clanpot_AddItem if set, otherwise store actor field at offset 0x110. 

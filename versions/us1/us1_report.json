@@ -4973,7 +4973,7 @@
           }
         },
         {
-          "name": "func_8002C1D8",
+          "name": "ActorUpdate_Type27",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5029,7 +5029,7 @@
           }
         },
         {
-          "name": "func_8002C6DC",
+          "name": "ActorUpdate_Type30",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5061,7 +5061,7 @@
           }
         },
         {
-          "name": "func_8002D260",
+          "name": "ActorUpdate_Type1",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5253,7 +5253,7 @@
           }
         },
         {
-          "name": "func_8002F6D4",
+          "name": "ActorUpdate_GemRing",
           "size": "616",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5261,7 +5261,7 @@
           }
         },
         {
-          "name": "func_8002F93C",
+          "name": "GemCollect",
           "size": "756",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5269,7 +5269,7 @@
           }
         },
         {
-          "name": "func_8002FC30",
+          "name": "GemCollect_Actor",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5277,7 +5277,7 @@
           }
         },
         {
-          "name": "func_8002FD48",
+          "name": "GemCollect_Static",
           "size": "432",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5285,7 +5285,7 @@
           }
         },
         {
-          "name": "func_8002FEF8",
+          "name": "ActorUpdate_GemIcon",
           "size": "272",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5301,7 +5301,7 @@
           }
         },
         {
-          "name": "func_800303A8",
+          "name": "ActorUpdate_Gem",
           "size": "1468",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5309,7 +5309,7 @@
           }
         },
         {
-          "name": "func_80030964",
+          "name": "ActorUpdate_Gem61",
           "size": "92",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5557,7 +5557,7 @@
           }
         },
         {
-          "name": "func_80033428",
+          "name": "SpawnAfterImage",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5565,7 +5565,7 @@
           }
         },
         {
-          "name": "func_8003358C",
+          "name": "ActorUpdate_AfterImage",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5645,7 +5645,7 @@
           }
         },
         {
-          "name": "func_80033DE4",
+          "name": "ActorUpdate_Type5",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5829,7 +5829,7 @@
           }
         },
         {
-          "name": "func_80035A20",
+          "name": "ClanpotIcon_State1",
           "size": "548",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6181,7 +6181,7 @@
           }
         },
         {
-          "name": "func_8003A120",
+          "name": "ActorUpdate_Type28",
           "size": "2104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6621,7 +6621,7 @@
           }
         },
         {
-          "name": "func_80040AB4",
+          "name": "WarpStar_Init",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6629,7 +6629,7 @@
           }
         },
         {
-          "name": "func_80040B4C",
+          "name": "WarpStar_StarRing",
           "size": "700",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6637,7 +6637,7 @@
           }
         },
         {
-          "name": "func_80040E08",
+          "name": "WarpStar_Sparkle",
           "size": "528",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6645,7 +6645,7 @@
           }
         },
         {
-          "name": "func_80041018",
+          "name": "WarpStar_UpdateAppearance",
           "size": "1284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6653,7 +6653,7 @@
           }
         },
         {
-          "name": "func_8004151C",
+          "name": "WarpStar_IsGuestUsing",
           "size": "368",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6661,7 +6661,7 @@
           }
         },
         {
-          "name": "func_8004168C",
+          "name": "WarpStar_IsGuestsUsing",
           "size": "160",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6669,7 +6669,7 @@
           }
         },
         {
-          "name": "func_8004172C",
+          "name": "WarpStar_MoveUser",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6677,7 +6677,7 @@
           }
         },
         {
-          "name": "func_8004178C",
+          "name": "WarpStar_MoveFaceUser",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6685,7 +6685,7 @@
           }
         },
         {
-          "name": "func_8004185C",
+          "name": "WarpStar_IsGrabbed",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6693,7 +6693,7 @@
           }
         },
         {
-          "name": "func_800418A8",
+          "name": "ActorUpdate_WarpStar",
           "size": "2536",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6749,7 +6749,7 @@
           }
         },
         {
-          "name": "func_80042308",
+          "name": "ActorUpdate_Type4",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6773,7 +6773,7 @@
           }
         },
         {
-          "name": "func_80042338",
+          "name": "ActorUpdate_Type10",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6781,7 +6781,7 @@
           }
         },
         {
-          "name": "func_80042340",
+          "name": "ActorUpdate_Type23",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6789,7 +6789,7 @@
           }
         },
         {
-          "name": "func_80042348",
+          "name": "ActorUpdate_Type25",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6797,7 +6797,7 @@
           }
         },
         {
-          "name": "func_80042350",
+          "name": "ActorUpdate_Type26",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6805,7 +6805,7 @@
           }
         },
         {
-          "name": "func_80042358",
+          "name": "ActorUpdate_Type71",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10950,7 +10950,7 @@
           }
         },
         {
-          "name": "func_8006C1A4",
+          "name": "ActorType2_Noop",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -11613,7 +11613,7 @@
           }
         },
         {
-          "name": "func_800732F8",
+          "name": "ActorUpdate_Type2",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -12270,7 +12270,7 @@
           }
         },
         {
-          "name": "func_8007CCD0",
+          "name": "ActorUpdate_Type3",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {

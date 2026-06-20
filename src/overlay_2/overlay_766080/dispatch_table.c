@@ -67,7 +67,7 @@ ActorFunc D_801A6800_766080[] = {
     func_801A98B0_7690C0,
     func_801A99CC_7691DC,
     func_801A78DC_7670EC,
-    func_801AE1B4_76D9C4,
+    func_801AE1B4_76D9C4, // Blockman?
     func_801AED40_76E550,
     func_801AEE40_76E650,
     func_801AA0AC_7698BC,

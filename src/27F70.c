@@ -111,7 +111,7 @@ void func_80031D58(u16 arg0, u16 arg1);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 arg3);
 s16 Clanpot_AddItemCheck3(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
 void func_800358DC(u16 actor_index);
-void func_80035A20(u16 actor_index);
+void ClanpotIcon_State1(u16 actor_index);
 u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue);
 void func_8003ED48(u16 unused_arg0, s32 arg1, s16 x, s16 y, s16 z);
 u16 SpawnParticle_HeartBubble(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z);
@@ -123,7 +123,7 @@ u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
 u16 func_8003FF68(u16 actor_index, f32 scale);
-void func_80040E08(u16 actor_index, u16 arg1);
+void WarpStar_Sparkle(u16 actor_index, u16 arg1);
 
 void func_80027370(u16 actor_index, u16 x, u16 y, u16 z) {
     gActors[actor_index].actorType = 0;
@@ -401,7 +401,7 @@ void func_80028380(void) {
     }
 }
 
-// play sound with pan based on actor actor x-position - gLookatAtX 
+// play sound with pan based on actor's x-position - gLookatAtX 
 // @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param arg1 actor index on which to base pan.
 // if bit 15 is set, calls different sound function.
@@ -1900,7 +1900,7 @@ u16 func_8002C140(s32 arg0) {
     return 0;
 }
 
-void func_8002C1D8(s32 arg0) {
+void ActorUpdate_Type27(s32 arg0) {
 }
 
 // 16-bit memcpy?
@@ -2018,7 +2018,7 @@ void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16
     gActors[actor_index].unk_178 = 0x200;
 }
 
-void func_8002C6DC(s32 arg0) {
+void ActorUpdate_Type30(s32 arg0) {
 }
 
 void func_8002C6E4(u16 actor_index) {
@@ -2302,7 +2302,8 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     func_8003F9E0(3.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x10);
 }
 
-void func_8002D260(u16 actor_index) {
+// actor type 1 update
+void ActorUpdate_Type1(u16 actor_index) {
     gActors[actor_index].hitboxAY0 += 2;
     gActors[actor_index].hitboxAY1 -= 2;
     gActors[actor_index].hitboxAX0 -= 2;
@@ -2738,6 +2739,7 @@ void func_8002E89C(u16 actor_index) {
     }
 }
 
+// Spawn a shuriken.
 void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) {
     gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_SHURIKEN;
     Actor_Initialize(actor_index);
@@ -2769,6 +2771,7 @@ void func_8002ECAC(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) 
     gActors[actor_index].velocityY.raw = vel_y;
 }
 
+// probably another "spawn projectile" function.
 void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
 }
 
@@ -2953,7 +2956,7 @@ void RedGems_Clamp(void) {
 }
 
 // gem ring behaviour
-void func_8002F6D4(u16 actor_index) {
+void ActorUpdate_GemRing(u16 actor_index) {
     u16 alpha;
 
     if (gActors[actor_index].var_150 != 0) {
@@ -2967,7 +2970,7 @@ void func_8002F6D4(u16 actor_index) {
         gActors[actor_index].unk_12C -= 1.0f;
         if (gActors[actor_index].unk_12C <= 0.0f) {
             gActors[actor_index].flags = 0;
-            gRedGems += gActors[actor_index].var_154;
+            gRedGems += gActors[actor_index].                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
             RedGems_Clamp();
             SpawnParticle_RingSparkle(actor_index, 0, 2.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 8);
             Sound_PlaySfx(0x57);
@@ -2992,7 +2995,7 @@ void func_8002F6D4(u16 actor_index) {
 // @param palette palette of gem. checked to determine type.
 // @param pos_x x-position of gem
 // @param pos_y y-position of gem
-void func_8002F93C(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 pos_y) {
+void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 pos_y) {
     // grab red gem
     if (palette == D_800D88B8) {
         gRedGems += 1;
@@ -3056,18 +3059,18 @@ void func_8002F93C(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16
     }
 }
 
-u16 func_8002FC30(u16 actor_index) {
+u16 GemCollect_Actor(u16 actor_index) {
     if ((D_800D2950 != 0) && (gActors[D_800D2950].health == 0)) {
         return gActors[actor_index].flags;
     }
     if (func_8005D1E8(actor_index) != 0) {
         gActors[actor_index].flags = 0;
-        func_8002F93C(actor_index, FALSE, gActors[actor_index].palette_18C, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole);
+        GemCollect(actor_index, FALSE, gActors[actor_index].palette_18C, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole);
     }
     return gActors[actor_index].flags;
 }
 
-s32 func_8002FD48(u16 actor_index) {
+s32 GemCollect_Static(u16 actor_index) {
     if ((D_800D2950 != 0) && (gActors[D_800D2950].health == 0)) {
         return 0;
     }
@@ -3076,7 +3079,7 @@ s32 func_8002FD48(u16 actor_index) {
         ((D_801069E0[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxBX1)) &&
         ((D_801069E0[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxBY0)) && 
         ((D_801069E0[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxBY1))) {
-        func_8002F93C(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
+        GemCollect(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
         return 1;
     }
 
@@ -3085,21 +3088,22 @@ s32 func_8002FD48(u16 actor_index) {
         ((D_801069E0[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxAX1)) && 
         ((D_801069E0[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxAY0)) && 
         ((D_801069E0[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxAY1))) {
-        func_8002F93C(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
+        GemCollect(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
         return 2;
     }
 
     return 0;
 }
 
-void func_8002FEF8(u16 actor_index) {
+// update function for Clanpot gem icon
+void ActorUpdate_GemIcon(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
         func_800358DC(actor_index);
     }
     else {
-        func_80035A20(actor_index);
+        ClanpotIcon_State1(actor_index);
     }
 }
 
@@ -3124,7 +3128,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].colorA = Math_ApproachF32(gActors[actor_index].colorA, 128.0f, 4.0f);
         gActors[actor_index].scaleX = Math_ApproachF32(gActors[actor_index].scaleX, 1.5f, 0.1f);
-        func_80040E08(actor_index, 0);
+        WarpStar_Sparkle(actor_index, FALSE);
         gActors[actor_index].posY.raw += FIXED_UNIT(0.5);
         gActors[actor_index].var_150 -= 0x8000;
         if (gActors[actor_index].var_150 < 0) {
@@ -3133,9 +3137,9 @@ void func_80030008(u16 actor_index) {
         break;
     case 3:
         gActors[actor_index].scaleX = Math_ApproachF32(gActors[actor_index].scaleX, 1.0f, 0.1f);
-        func_80040E08(actor_index, 0);
+        WarpStar_Sparkle(actor_index, FALSE);
         if (gActors[actor_index].colorA == 0xFF) {
-            func_8002FC30(actor_index);
+            GemCollect_Actor(actor_index);
         }
         else {
             gActors[actor_index].colorA = Math_ApproachF32(gActors[actor_index].colorA, 255.0f, 4.0f);
@@ -3146,7 +3150,7 @@ void func_80030008(u16 actor_index) {
 }
 
 // behaviour of gem actor
-void func_800303A8(u16 actor_index) {
+void ActorUpdate_Gem(u16 actor_index) {
     s32 pad;
     switch (gActors[actor_index].state) {
     case 0:
@@ -3177,7 +3181,7 @@ void func_800303A8(u16 actor_index) {
                 Actor_SetColorRgb(actor_index, 0x7F);
             }
         }
-        else if (func_8002FC30(actor_index) == 0) {
+        else if (GemCollect_Actor(actor_index) == 0) {
             return;
         }
         if ((u16)gActors[actor_index].timer_110 & GEMFLAG_BOUNCE) {
@@ -3188,7 +3192,7 @@ void func_800303A8(u16 actor_index) {
                 return;
             }
             else {
-                if (Clanpot_AddItemCheck3(actor_index, CLANPOT_NEWITEM | CLANPOT_NOTGRAPHIC, 0, 0, 0x66) >= 0) {
+                if (Clanpot_AddItemCheck3(actor_index, CLANPOT_NEWITEM | CLANPOT_ACTORICON, 0, 0, ACTORTYPE_GEMICON) >= 0) {
                     gActors[actor_index].flags = 0;
                     return;
                 }
@@ -3235,8 +3239,8 @@ void func_800303A8(u16 actor_index) {
 }
 
 // behavoir of special gem actor. spawned in func_8002F154
-void func_80030964(u16 actor_index) {
-    func_800303A8(actor_index);
+void ActorUpdate_Gem61(u16 actor_index) {
+    ActorUpdate_Gem(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8;
 }
 
@@ -3310,8 +3314,8 @@ void func_80030D9C(u16 actor_index) {
     if (velocity_x < 0) {
         velocity_x = -velocity_x;
     }
-    if (velocity_x < 0x180000) {
-        velocity_x = 0x180000;
+    if (velocity_x < FIXED_UNIT(1.5)) {
+        velocity_x = FIXED_UNIT(1.5);
     }
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].var_160 += velocity_x;
@@ -3987,9 +3991,9 @@ void func_800333A0(s16 x, s16 y, s16 z, f32 arg3) {
 // @param src_index "parent" to copy.
 // @param alpha inital alpha value.
 // @param rate rate at which the image will fade.
-// @param arg3 if gActiveFrame & arg3 != 0, the spawn will fail.
+// @param arg3 if gActiveFrames & arg3 != 0, the spawn will fail.
 // @returns index of actor, or 0 if failed.
-u16 func_80033428(u16 src_index, u16 alpha, u16 rate, u16 arg3) {
+u16 SpawnAfterImage(u16 src_index, u16 alpha, u16 rate, u16 arg3) {
     u16 index;
 
     if (gActiveFrames & arg3) {
@@ -4021,7 +4025,7 @@ u16 func_80033428(u16 src_index, u16 alpha, u16 rate, u16 arg3) {
 }
 
 // update function of "after-image" actor.
-void func_8003358C(u16 actor_index) {
+void ActorUpdate_AfterImage(u16 actor_index) {
     if (gActors[actor_index].colorA < gActors[actor_index].unk_18C) {
         gActors[actor_index].flags = 0;
     }
@@ -4079,7 +4083,7 @@ void ActorUpdate_DizzyStar(u16 actor_index) {
 // @param x origin x-postion
 // @param y origin y-postion
 // @param z origin z-postion
-// @param graphic grpahic index (used GINDEX_* where applicable.)
+// @param graphic grpahic index (use GINDEX_* where applicable.)
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
     u16 actor_index;
     u16 temp;
@@ -4225,7 +4229,7 @@ u16 func_80033CB0(s16 pos_x, s16 pos_y, s16 pos_z, s32 vel_x, s32 vel_y, u16 arg
     }
 }
 
-void func_80033DE4(u16 actor_index) {
+void ActorUpdate_Type5(u16 actor_index) {
     gActors[actor_index].var_154--;
     if (gActors[actor_index].var_154 == 0) {
         gActors[actor_index].flags = 0;
@@ -4524,10 +4528,10 @@ void Clanpot_InitItems(u16 actor_index, u16* vals, u16 unused_a2) {
 // @param flags flags on properties to add
 // @param unk_110 overrides item's timer_110 if (flags & 0x2000)
 // @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
-// @param arg4 5th "field" in clanpot "entry"
+// @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @param pot_index index of Clanpot.
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4, u16 pot_index) {
+s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon, u16 pot_index) {
     u16 index;
     u16 actor_v0;
 
@@ -4573,7 +4577,7 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg
         gClanpotItems[gActors[pot_index].unk_170 + 2] = gActors[item_index].unk_0D8;
     }
     gClanpotItems[gActors[pot_index].unk_170 + 3] = gActors[item_index].actorType;
-    gClanpotItems[gActors[pot_index].unk_170 + 4] = arg4;
+    gClanpotItems[gActors[pot_index].unk_170 + 4] = icon;
     return gActors[pot_index].unk_170;
 }
 
@@ -4582,16 +4586,16 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg
 // @param flags flags on properties to add. (uses ClanpotFlags)
 // @param unk_110 overrides item's timer_110 if (flags & 0x2000)
 // @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
-// @param arg4 5th "field" in clanpot "entry"
+// @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
+s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
     u16 index;
 
     // check if hit from below by clanpot
     index = gActors[item_index].unk_0CC & 0xFF;
     if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
         if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK5) && (gActors[index].actorType == ACTORTYPE_CLANPOT)) {
-            return Clanpot_AddItem(item_index, flags, unk_110, unk_0d8, arg4, index);
+            return Clanpot_AddItem(item_index, flags, unk_110, unk_0d8, icon, index);
         }
     }
     return -1;
@@ -4612,10 +4616,10 @@ s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8) {
 // @param flags flags on properties to add. (uses ClanpotFlags)
 // @param unk_110 overrides item's timer_110 if (flags & 0x2000)
 // @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
-// @param arg4 5th "field" in clanpot "entry"
+// @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
-    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, arg4);
+s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
+    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, icon);
 }
 
 // add item to Clanpot with check for valid collision.
@@ -4624,10 +4628,10 @@ s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u
 // @param flags flags on properties to add. (uses ClanpotFlags)
 // @param unk_110 overrides item's timer_110 if (flags & 0x2000)
 // @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
-// @param arg4 5th "field" in clanpot "entry"
+// @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 arg4) {
-    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, arg4);
+s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
+    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, icon);
 }
 
 //move items in clanpot.
@@ -4789,7 +4793,8 @@ void func_80035978(u16 actor_index) {
     gActors[actor_index].posY.whole = gActors[gActors[actor_index].unk_0F8.raw].posY.whole;
 }
 
-void func_80035A20(u16 actor_index) {
+// "state 1"  for the Clanpot icon actor types.
+void ClanpotIcon_State1(u16 actor_index) {
     u16 index;
 
     index = gActors[actor_index].unk_0F8.raw;
@@ -4810,9 +4815,9 @@ void func_80035A20(u16 actor_index) {
         }
         break;
     case 1:
-        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == 0x78)) {
+        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == ACTORTYPE_CLANPOTMIX)) {
             gActors[actor_index].colorA = gActors[index].colorA * 2;
-            gActors[actor_index].unk_104 = gActors[actor_index].unk_104 - (gActors[index].unk_170 / 65536);
+            gActors[actor_index].unk_104 = gActors[actor_index].unk_104 - (gActors[index].unk_170 / 0x1000);
             gActors[actor_index].unk_10C = COS(gActors[actor_index].unk_104) * gActors[index].unk_16C;
             gActors[actor_index].posY.raw = (SIN(gActors[actor_index].unk_104) * gActors[index].unk_16C) + gActors[index].posY.raw;
             if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
@@ -4858,8 +4863,8 @@ u16 func_80035D34(u16 actor_index) {
     if (actor1 != 0) {
         index = gActors[actor_index].unk_178;
         vals = &gClanpotItems[index];
-        if ((vals[0] & CLANPOT_NOTGRAPHIC) == 0) {
-            gActors[actor1].actorType = 0x68;
+        if ((vals[0] & CLANPOT_ACTORICON) == 0) {
+            gActors[actor1].actorType = ACTORTYPE_CLANPOTICON;
             Actor_Initialize(actor1);
             gActors[actor1].flags = ACTOR_FLAG_ACTIVE;
             if (vals[4] == 0) {
@@ -5077,11 +5082,11 @@ void func_8003667C(u16 actor_index) {
         func_800358DC(actor_index);
     }
     else {
-        func_80035A20(actor_index);  
+        ClanpotIcon_State1(actor_index);  
     }
 }
 
-// span Clanpot menu above Marina
+// spawn Clanpot menu above Marina
 u16 Clanpot_SpawnMenu(u16 actor_index) {
     u16 index;
 
@@ -5408,8 +5413,8 @@ u16 Clanpot_MixSequenceIcon(u16 actor_index, s16 val_index) {
     }
     actor1 = Actor_RangeFindInactive(0x12, 0x2D);
     if (actor1 != 0) {
-        if (!(gClanpotItems[val_index] & CLANPOT_NOTGRAPHIC)) {
-            gActors[actor1].actorType = 0x68;
+        if (!(gClanpotItems[val_index] & CLANPOT_ACTORICON)) {
+            gActors[actor1].actorType = ACTORTYPE_CLANPOTICON;
             Actor_Initialize(actor1);
             gActors[actor1].flags = ACTOR_FLAG_ACTIVE;
             if (gClanpotItems[val_index + 4] == 0) {
@@ -6213,7 +6218,9 @@ void func_80039E7C(u16 actor_index) {
     }
 }
 
-void func_8003A120(u16 actor_index) {
+// update for actor type 28
+// (controls for Blockman?)
+void ActorUpdate_Type28(u16 actor_index) {
     s32 pad;
     s32 vel_x;
     s32 vel_y;
@@ -6272,7 +6279,7 @@ void func_8003A120(u16 actor_index) {
             if (gActors[actor_index].var_150 & 0x20000000) {
                 if (!(gActors[0].flags & ACTOR_FLAG_FLIPPED)) {
                     Sound_PlaySfx(0x117);
-                    gActors[actor_index].var_150 &= 0xDFFFFFFF;
+                    gActors[actor_index].var_150 &= ~0x20000000;
                 }
             }
             else if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
@@ -6331,7 +6338,7 @@ void func_8003A120(u16 actor_index) {
             }
             if (gActors[actor_index].var_150 & 0x1000) {
                 switch (gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown)) {
-                case 0x800:
+                case CONT_UP:
                     vel_y = 0x10;
                     if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
                         vel_x = 0x18;
@@ -6342,7 +6349,7 @@ void func_8003A120(u16 actor_index) {
                         var_t1 = 0x01800000;
                     }
                     break;
-                case 0x400:
+                case CONT_DOWN:
                     vel_y = -0x10;
                     if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
                         vel_x = 0x18;
@@ -6353,9 +6360,9 @@ void func_8003A120(u16 actor_index) {
                         var_t1 = 0x02800000;
                     }
                     break;
-                case 0x200:
+                case CONT_LEFT:
                     /* fallthrough */
-                case 0xA00:
+                case (CONT_UP | CONT_LEFT):
                     vel_x = -0x18;
                     vel_y = 0x10;
                     var_t1 = 0x01800000;
@@ -6365,14 +6372,14 @@ void func_8003A120(u16 actor_index) {
                     vel_y = -0x10;
                     var_t1 = 0x02800000;
                     break;
-                case 0x100:
-                case 0x900:
+                case CONT_RIGHT:
+                case (CONT_UP | CONT_RIGHT):
                     /* fallthrough? */
                     vel_x = 0x18;
                     vel_y = 0x10;
                     var_t1 = 0x800000;
                     break;
-                case 0x500:
+                case (CONT_DOWN | CONT_RIGHT):
                     vel_x = 0x18;
                     vel_y = -0x10;
                     var_t1 = 0x03800000;
@@ -8398,10 +8405,10 @@ s32 func_800409E0(u16 actor_index) {
     if ((gActors[actor_index].health <= 0) || (gActors[actor_index].iFrames > 0) || 
         ((gActors[actor_index].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) != (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) ||
         (gActors[actor_index].state < 0x51)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -8415,10 +8422,10 @@ s32 func_80040A64(void) {
     // BUG: UB, missing return
 }
 
-void func_80040AB4(u16 actor_index) {
+void WarpStar_Init(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    gActors[actor_index].graphicIndex = 0x1A8;
+    gActors[actor_index].graphicIndex = GINDEX_WARPSTAR;
     gActors[actor_index].unk_0DF = 0x40;
     func_8002AC30(actor_index, 10);
     gActors[actor_index].posZ.whole = -1;
@@ -8426,13 +8433,14 @@ void func_80040AB4(u16 actor_index) {
     gActors[actor_index].unk_120 = 255.0f;
 }
 
-void func_80040B4C(u16 actor_index) {
+// spawn ring of star particles when Warp Star is used or appears.
+void WarpStar_StarRing(u16 actor_index) {
     s32 angle;
     u16 index;
     u16 actor_v0;
 
     for (index = 0; index < 8; index++) {
-        actor_v0 = SpawnParticle_Image_90C0_16(0x1A8, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
+        actor_v0 = SpawnParticle_Image_90C0_16(GINDEX_WARPSTAR, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
         if (actor_v0 != 0) {
             angle = gActors[actor_index].var_160 + (index << 7);
             gActors[actor_v0].posX.raw += (COS(angle) * gActors[actor_index].unk_164);
@@ -8450,13 +8458,16 @@ void func_80040B4C(u16 actor_index) {
     }
 }
 
-void func_80040E08(u16 actor_index, u16 arg1) {
+// sparkle effect around warp star
+// @param actor_index index of star
+// @param no_random if set, stars appear without random offset
+void WarpStar_Sparkle(u16 actor_index, u16 no_random) {
     u16 index;
     s16 x;
     s16 y;
 
-    if (Actor_IsOutsideRegion(actor_index, 0x20) == 0) {
-        if (arg1 != 0) {
+    if (!Actor_IsOutsideRegion(actor_index, 0x20)) {
+        if (no_random) {
             x = 0;
             y = 0;
         }
@@ -8465,7 +8476,7 @@ void func_80040E08(u16 actor_index, u16 arg1) {
             y = (f32) (16 - (Rand() & 0x1F));
         }
         if ((gActiveFrames & 0x3) == 0) {
-            index = SpawnParticle_Image_90C0_16(0x1D6, gActors[actor_index].posX.whole + x, gActors[actor_index].posY.whole + y, gActors[actor_index].posZ.whole + 1);
+            index = SpawnParticle_Image_90C0_16(GINDEX_STAREFFECT, gActors[actor_index].posX.whole + x, gActors[actor_index].posY.whole + y, gActors[actor_index].posZ.whole + 1);
             if (index != 0) {
                 gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
                 gActors[index].unk_18C = gActors[actor_index].unk_18C;
@@ -8483,7 +8494,7 @@ void func_80040E08(u16 actor_index, u16 arg1) {
 }
 
 
-void func_80041018(u16 actor_index) {
+void WarpStar_UpdateAppearance(u16 actor_index) {
     u16 index;
     u32 pad0;
     u32 pad1;
@@ -8535,66 +8546,79 @@ void func_80041018(u16 actor_index) {
             gActors[index].colorA = gActors[actor_index].colorA / 3.0f;
         }
     }
-    func_80040E08(actor_index, 0);
+    WarpStar_Sparkle(actor_index, FALSE);
 }
 
-s32 func_8004151C(u16 actor0, u16 actor1) {
-    if (((gActors[actor1].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) == (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) && (gActors[actor1].health != 0)) {
-        if ((gActors[actor0].posX.whole + 8 >= (gActors[actor1].hitboxBX0 + gActors[actor1].posX.whole) && 
-            (gActors[actor1].posX.whole + gActors[actor1].hitboxBX1) >= (gActors[actor0].posX.whole - 8) && 
-            (gActors[actor1].posY.whole + gActors[actor1].hitboxBY0) >= (gActors[actor0].posY.whole - 8) && 
-            (gActors[actor0].posY.whole + 8) >= (gActors[actor1].hitboxBY1 + gActors[actor1].posY.whole)) ||
-            (((gActors[actor1].flags & (ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK7)) != 0) && 
-              (gActors[actor0].posX.whole + 8 >= (gActors[actor1].hitboxAX0 + gActors[actor1].posX.whole)) && 
-              (gActors[actor1].posX.whole + gActors[actor1].hitboxAX1) >= (gActors[actor0].posX.whole - 8) && 
-              (gActors[actor1].posY.whole + gActors[actor1].hitboxAY0) >= (gActors[actor0].posY.whole - 8) && 
-              (gActors[actor0].posY.whole + 8) >= (gActors[actor1].hitboxAY1 + gActors[actor1].posY.whole))) {
+// check if actor is using star.
+// @param star_index index of star.
+// @param guest_index index of "guest character stored in star actor offset 0x178 or 0x17C.
+// @returns true if they are using.
+s32 WarpStar_IsGuestUsing(u16 star_index, u16 guest_index) {
+    if (((gActors[guest_index].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) == (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) && (gActors[guest_index].health != 0)) {
+        if ((gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole) && 
+            (gActors[guest_index].posX.whole + gActors[guest_index].hitboxBX1) >= (gActors[star_index].posX.whole - 8) && 
+            (gActors[guest_index].posY.whole + gActors[guest_index].hitboxBY0) >= (gActors[star_index].posY.whole - 8) && 
+            (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxBY1 + gActors[guest_index].posY.whole)) ||
+            (((gActors[guest_index].flags & (ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK7)) != 0) && 
+              (gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxAX0 + gActors[guest_index].posX.whole)) && 
+              (gActors[guest_index].posX.whole + gActors[guest_index].hitboxAX1) >= (gActors[star_index].posX.whole - 8) && 
+              (gActors[guest_index].posY.whole + gActors[guest_index].hitboxAY0) >= (gActors[star_index].posY.whole - 8) && 
+              (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxAY1 + gActors[guest_index].posY.whole))) {
 
-            gActors[actor0].unk_174 = actor1;
-            gActors[actor1].flags_098 |= ACTOR_FLAG3_UNK21;
-            return 1;
+            gActors[star_index].unk_174 = guest_index;
+            gActors[guest_index].flags_098 |= ACTOR_FLAG3_UNK21;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_8004168C(u16 arg0) {
-    if (gActors[arg0].unk_178 != 0) {
-        if (func_8004151C(arg0, gActors[arg0].unk_178) != 0) {
-            return 1;
+// check if actors of indecies in 0x178 or 0x17C are using star.
+// @returns true if either is using, SHOULD return false otherwise.
+s32 WarpStar_IsGuestsUsing(u16 star_index) {
+    if (gActors[star_index].unk_178 != 0) {
+        if (WarpStar_IsGuestUsing(star_index, gActors[star_index].unk_178)) {
+            return TRUE;
         }
     }
-    if (gActors[arg0].unk_17C != 0) {
-        if (func_8004151C(arg0, gActors[arg0].unk_17C) != 0) {
-            return 1;
+    if (gActors[star_index].unk_17C != 0) {
+        if (WarpStar_IsGuestUsing(star_index, gActors[star_index].unk_17C)) {
+            return TRUE;
         }
     }
     // BUG: UB, missing return
 }
 
-void func_8004172C(u16 actor_index, u16* arg1) {
-    gActors[actor_index].posX.whole = arg1[0] - gScreenPosCurrentX.whole;
-    gActors[actor_index].posY.whole = arg1[1] - gScreenPosCurrentY.whole;
+// move user of warp star
+// @param actor_index index of user
+// @param coords coorinates to move user {x,y,facing}
+void WarpStar_MoveUser(u16 actor_index, u16* coords) {
+    gActors[actor_index].posX.whole = coords[0] - gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole = coords[1] - gScreenPosCurrentY.whole;
 }
 
-void func_8004178C(u16 actor_index, u16* arg1) {
+// move user of warp star
+// @param actor_index index of warp star
+// @param coords coorinates to move user {x,y,facing}
+void WarpStar_MoveFaceUser(u16 actor_index, u16* coords) {
     if (gActors[actor_index].unk_174 != 0) {
-        func_8004172C(gActors[actor_index].unk_174, arg1);
+        WarpStar_MoveUser(gActors[actor_index].unk_174, coords);
     }
     else {
-        func_8004172C(0, arg1);
+        WarpStar_MoveUser(0, coords);
         gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
         gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
         gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
-        if (arg1[2] & 1) {
+        if (coords[2] & 1) {
             gActors[0].flags |= ACTOR_FLAG_FLIPPED;
         }
     }
 }
 
-// Actor_IsState2
-s32 func_8004185C(u16 arg0) {
-    if (gActors[arg0].state == 2) {
+// if warpstar is state 2,
+// the player has just grabbed it
+s32 WarpStar_IsGrabbed(u16 actor_index) {
+    if (gActors[actor_index].state == 2) {
         return TRUE;
     }
     else {
@@ -8602,7 +8626,8 @@ s32 func_8004185C(u16 arg0) {
     }
 }
 
-void func_800418A8(u16 actor_index) {
+// update function for warp star
+void ActorUpdate_WarpStar(u16 actor_index) {
     u16 idx;
     s16 sp24;
     s16 sp22;
@@ -8610,24 +8635,24 @@ void func_800418A8(u16 actor_index) {
     s32 temp;
 
     switch (gActors[actor_index].state) {
-    case 0:
+    case 0: // check if star is active.
         if (!(func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole) & 0xC0)) {
             if ((gActors[actor_index].posX.whole < 0x180) && (gActors[actor_index].posX.whole > -0x180) &&
                 (gActors[actor_index].posY.whole < 0x100) && (gActors[actor_index].posY.whole > -0x100)) {
-                gActors[actor_index].state = 0xA;
+                gActors[actor_index].state = 10;
             }
             else {
                 gActors[actor_index].state = 2;
-                func_80040AB4(actor_index);
+                WarpStar_Init(actor_index);
             }
         }
         break;
     case 2:
-        func_80041018(actor_index);
-        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0)) || func_8004168C(actor_index)) {
+        WarpStar_UpdateAppearance(actor_index);
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0)) || WarpStar_IsGuestsUsing(actor_index)) {
             gActors[actor_index].state++;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-            Sound_PlaySfxAtActor2(0x123, actor_index);
+            Sound_PlaySfxAtActor2(SFX_STAR_TP, actor_index);
             gActors[actor_index].unk_14C = 40.0f;
             D_800D2960 = 1;
             D_800D295C = actor_index;
@@ -8647,12 +8672,12 @@ void func_800418A8(u16 actor_index) {
         }
         break;
     case 3:
-        func_80041018(actor_index);
+        WarpStar_UpdateAppearance(actor_index);
         gActors[actor_index].unk_11C = Math_ApproachF32(gActors[actor_index].unk_11C, 0.0f, 0.02f);
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 0.0f, 16.0f);
         gActors[actor_index].var_160 -= 16;
         gActors[actor_index].unk_164 += (262144.0f * gActors[actor_index].unk_11C);
-        func_80040B4C(actor_index);
+        WarpStar_StarRing(actor_index);
         gActors[actor_index].unk_14C -= 1.0f;
         if (gActors[actor_index].unk_14C < 0.0f) {
             gActors[actor_index].unk_14C = 60.0f;
@@ -8672,11 +8697,11 @@ void func_800418A8(u16 actor_index) {
                 break;
             case 2:
                 gActors[actor_index].state++;
-                func_8004178C(actor_index, &D_800D2860[gActors[actor_index].unk_0D8]);
+                WarpStar_MoveFaceUser(actor_index, &D_800D2860[gActors[actor_index].unk_0D8]);
                 break;
             case 4:
                 gActors[actor_index].state++;
-                func_8004178C(actor_index, (u16* ) gActors[actor_index].unk_190);
+                WarpStar_MoveFaceUser(actor_index, (u16* ) gActors[actor_index].unk_190);
                 break;
             case 3:
                 D_800D28F0 = D_800D28E4;
@@ -8741,7 +8766,7 @@ void func_800418A8(u16 actor_index) {
         break;
     case 10:
         gActors[actor_index].state++;
-        func_80040AB4(actor_index);
+        WarpStar_Init(actor_index);
         gActors[actor_index].var_160 = 0;
         gActors[actor_index].unk_164 = 0x680000;
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
@@ -8749,7 +8774,7 @@ void func_800418A8(u16 actor_index) {
         gActors[actor_index].unk_120 = 0.0f;
         /* fallthrough */
     case 11:
-        func_80041018(actor_index);
+        WarpStar_UpdateAppearance(actor_index);
         gActors[actor_index].unk_11C = Math_ApproachF32(gActors[actor_index].unk_11C, 1.05f, 0.05f);
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 255.0f, 16.0f);
         if (((u16)gActors[actor_index].unk_120 == 0xFF) && (gActors[actor_index].unk_11C >= 1.0)) {
@@ -8759,7 +8784,7 @@ void func_800418A8(u16 actor_index) {
         else {
             gActors[actor_index].var_160 += 0x10;
             gActors[actor_index].unk_164 -= (425984.0 * (1.0 - gActors[actor_index].unk_11C));
-            func_80040B4C(actor_index);
+            WarpStar_StarRing(actor_index);
         }
         break;
     }
@@ -8772,15 +8797,15 @@ void func_800418A8(u16 actor_index) {
         case 2:
             // fakematch: the zero term keeps IDO from reusing v1 for timer_idx
             timer_idx = gActors[actor_index].unk_0D8 + (sp24 * 0);
-            func_8004172C(actor_index, &D_800D2860[timer_idx]);
+            WarpStar_MoveUser(actor_index, &D_800D2860[timer_idx]);
             break;
         case 4:
-            func_8004172C(actor_index, (u16* ) gActors[actor_index].unk_190);
+            WarpStar_MoveUser(actor_index, (u16* ) gActors[actor_index].unk_190);
             break;
         default:
             return;
         }
-        func_80040E08(actor_index, 1);
+        WarpStar_Sparkle(actor_index, TRUE);
         gActors[actor_index].posX.whole = sp24;
         gActors[actor_index].posY.whole = sp22;
     }

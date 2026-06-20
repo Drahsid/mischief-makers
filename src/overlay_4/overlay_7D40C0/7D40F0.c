@@ -152,23 +152,35 @@ u32 D_801BC7AC_7D6F9C[] = {
     0x0000008F, 0x0EB80170, 0x00810000, 0x0032FF00,
 };
 
+// contents of second Clanpot in "Go Marzen 64"
 u16 D_801BC7BC_7D6FAC[] = {
-    0x8400, 0x1111, 0x0000, 0x1C07, 0x0069, 0x8400, 0x1111, 0x0000,
-    0x1C07, 0x0069, 0x8400, 0x1111, 0x0000, 0x1C07, 0x0069, 0xFFFF,
+//  flags                                   0x110   0xD8 type    Icon    
+    (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,   0x1C07, ACTORTYPE_CLANCERICON, 
+    (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,   0x1C07, ACTORTYPE_CLANCERICON, 
+    (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,   0x1C07, ACTORTYPE_CLANCERICON, 
+    0xFFFF,
 };
 
+// contents of first Clanpot in "Go Marzen 64"
 u16 D_801BC7DC_7D6FCC[] = {
-    0x8000, 0x0000, 0x0001, 0x2600, 0x00C6, 0x8000, 0x0000, 0x0001,
-    0x2601, 0x00B6, 0x8000, 0x0000, 0x0001, 0x2600, 0x00C6, 0x8000,
-    0x0000, 0x0001, 0x2601, 0x00B6, 0x8000, 0x0000, 0x0000, 0x0043,
-    0x013E, 0x8000, 0x0001, 0x0000, 0x0043, 0x0140, 0x8000, 0x0002,
-    0x0000, 0x0043, 0x0142, 0x8000, 0x0003, 0x0000, 0x0043, 0x0144,
-    0x8000, 0x0002, 0x0000, 0x0043, 0x0142, 0x8000, 0x0003, 0x0000,
-    0x0043, 0x0144, 0xFFFF, 0x0000,
+//  flags            0x110 0xD8 type                      Icon
+    CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB0, GINDEX_MINEROUND,
+    CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB1, GINDEX_RAILSTOP,
+    CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB0, GINDEX_MINEROUND,
+    CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB1, GINDEX_RAILSTOP, 
+    CLANPOT_NEWITEM, 0,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERRED,
+    CLANPOT_NEWITEM, 1,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERDAISY,
+    CLANPOT_NEWITEM, 2,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERTULIP,
+    CLANPOT_NEWITEM, 3,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERD,
+    CLANPOT_NEWITEM, 2,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERTULIP,
+    CLANPOT_NEWITEM, 3,    0,   ACTORTYPE_FLOWER,         GINDEX_FLOWERD,
+    0xFFFF, 0
 };
 
+// properties of mixed Rocketeer in "Go Marzen 64"
 u16 D_801BC844_7D7034[] = {
-    0x4570, 0x2170, 0x0001, 0x1C07, 0x0069, 0x0000,
+    (CLANPOT_SPAWNNOW | CLANPOT_ACTORICON | CLANPOT_FLAG14 | 0x70),
+    0x2170, 1, 0x1C07, ACTORTYPE_CLANCERICON, 0,
 };
 
 u32 D_801BC850_7D7040[] = {
@@ -1230,8 +1242,10 @@ u32 D_801BFF78_7DA768[] = {
     0x0000008E, 0x0FC005A0, 0x00010000, 0x0032FF00,
 };
 
+// properties of mixed yellow gem in "Clanpot Shake"
 u16 D_801C00D8_7DA8C8[] = {
-    0xC500, 0x0032, 0x0000, 0x0008, 0x0066, 0x0000,
+    (CLANPOT_SPAWNNOW | CLANPOT_NEWITEM | CLANPOT_ACTORICON | CLANPOT_FLAG14), 
+    GEMFLAG_COMMON | GEMFLAG_YELLOW, 0, ACTORTYPE_GEM, ACTORTYPE_GEMICON, 0
 };
 
 s16 D_801C02B0_7DAAA0;
@@ -2382,7 +2396,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
     if (gClanpotItemCount[0x18] >= 2) { if (YellowGem_GetFlag(gCurrentStage) == 0) {
             index = 0; actor_count = 1; while (actor_count < 3) {
                 if ((actor_type = gClanpotItems[index + 3]) == ACTORTYPE_GEM) {
-                    if ((gClanpotItems[index + 1] & 3) == GEMFLAG_GREEN) {
+                    if ((gClanpotItems[index + 1] & GEMFLAG_MASK) == GEMFLAG_GREEN) {
                     ((s32*)&gActors[actor_index].var_150)[actor_count] = index;
                     actor_count++;
                 }
