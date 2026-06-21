@@ -9,7 +9,7 @@ extern u8 D_80171B19; // set when festival games are won.
 
 // may be a u32[] 
 u32 D_801AF5D0_7958C0[][2]={
-    {0x17d, 0x17c}, {0x1a3, 0x194}, {0x17d, 0x17c}, {0x1C7, 0x17D}, {0x140, 0x16e}
+    {0x17D, 0x17C}, {0x1A3, 0x194}, {0x17D, 0x17C}, {0x1C7, 0x17D}, {0x140, 0x16}
 };
 
 // a graphic list.
@@ -988,7 +988,8 @@ void func_801AB5B4_7918A4(u16 arg0){
 
 #ifdef NON_MATCHING
 // draw strike over menu options for completed events.
-// https://decomp.me/scratch/eZkac
+// https://decomp.me/scratch/kQeKy
+// only matches if gFestivalData.eventsPlayed is not treated as part of a struct.
 void func_801AB610_791900(u16 actor_index){
     u16 index;
     u16 start;
