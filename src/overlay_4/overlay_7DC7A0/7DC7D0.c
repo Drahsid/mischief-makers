@@ -2191,7 +2191,8 @@ void func_801BBEBC_7DED8C(void) {
                 gStageCinemaState = 0x1038;
                 Actor_ClearSceneActors();
                 func_8003D628(0);
-                func_80045FA4(D_801BE204_7E10D4, -8);
+                // function can use second arg as "flags" int instead
+                func_80045FA4(D_801BE204_7E10D4, (u16*)-8);
                 D_800BE5F4.unk_00_s32 = 4;
                 Sound_StopMusic();
             }
