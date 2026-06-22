@@ -97,7 +97,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
-    ACTOR_FLAG3_UNK21 = (1U << 21U),
+    ACTOR_FLAG3_UNK21 = (1U << 21U), //using warp gate
     ACTOR_FLAG3_UNK22 = (1U << 22U),
     ACTOR_FLAG3_UNK23 = (1U << 23U),
     ACTOR_FLAG3_UNK24 = (1U << 24U),
@@ -159,7 +159,7 @@ typedef struct {
     };
     /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
-    /* 0x0D6 */ u16 unk_0D6; // index to "parent"/grab-ee actor?
+    /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 unk_0D8;
     /* 0x0DA */ u8 unk_0DA;
     /* 0x0DB */ u8 unk_0DB;
@@ -277,6 +277,7 @@ typedef struct {
     union {
         /* 0x190 */ s32 unk_190;
         /* 0x190 */ void* unk_190_p;
+        /* 0x190 */ u16* warpGate_coords; // coordinates for a warp gate. {x,y,x-facing}
         /* 0x190 */ ActorFunc pfn_190;
     };
     /* 0x194 */ u8 unk_194[0x4];

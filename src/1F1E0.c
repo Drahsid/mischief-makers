@@ -242,7 +242,7 @@ void func_8001EC1C(void) {
 
                         if (index_s4 == 0) {
                             if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
-                                (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].unk_0D6 != actor_index))) {
+                                (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
                                 gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
                             }
                         }
@@ -266,13 +266,13 @@ void func_8001EC1C(void) {
                                     // This unreachable branch preserves IDO's reload before the contact-owner store.
                                     if ((!gActors) && (!gActors)) {
                                     }
-                                    gActors[index_s1].unk_0D6 = actor_index;
+                                    gActors[index_s1].parentIndex = actor_index;
                                 }
                                 if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
-                                    (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].unk_0D6 != actor_index))) {
+                                    (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
                                     gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
                                     if (gActors[index_s1].unk_0DB < 0x17) {
-                                        gActors[actor_index].unk_0D6 = index_s1;
+                                        gActors[actor_index].parentIndex = index_s1;
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
                                         gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                     }
@@ -283,7 +283,7 @@ void func_8001EC1C(void) {
                 }
             }
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
-                func_8001EB8C(gActors[actor_index].unk_0D6, actor_index);
+                func_8001EB8C(gActors[actor_index].parentIndex, actor_index);
             }
             if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
                 if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
@@ -351,14 +351,14 @@ void func_8001EC1C(void) {
                                 break;
                             }
                             else if (gActors[actor_index].unk_0DB == 0x18) {
-                                gActors[actor_index].unk_0D6 = index_s1;
+                                gActors[actor_index].parentIndex = index_s1;
                                 gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK0;
                             }
                             else {
                                 var_t2 = gActors[actor_index].posZ.raw;
                                 var_t3 = spCDE;
                                 spA98[index_fp] = 0xFFFF;
-                                gActors[index_s1].unk_0D6 = actor_index;
+                                gActors[index_s1].parentIndex = actor_index;
                                 gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK8;
                             }
                         }
@@ -402,7 +402,7 @@ void func_8001EC1C(void) {
                             if (sp78[index_fp] < sp3D8[index_s4]) {
                                 gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
                                 if ((gActors[index_s1].unk_0DB < 0x14) || (gActors[index_s1].unk_0DB == 0x18)) {
-                                    gActors[index_s1].unk_0D6 = actor_index;
+                                    gActors[index_s1].parentIndex = actor_index;
                                 }
                                 if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
                                     gActors[actor_index].iFrames = 60;
@@ -411,7 +411,7 @@ void func_8001EC1C(void) {
                                     if (gActors[index_s1].unk_0DB < 0x14) {
                                         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
                                         gActors[actor_index].pendingDamage += gActors[index_s1].damage;
-                                        gActors[actor_index].unk_0D6 = index_s1;
+                                        gActors[actor_index].parentIndex = index_s1;
                                         func_8001EB8C(index_s1, actor_index);
                                     }
                                 }
@@ -471,7 +471,7 @@ u8 func_8001FA78(u16 actor_index, s16 x, s16 y) {
 
     var_a3 = actor_index;
     if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10))) {
-        var_a3 = gActors[actor_index].unk_0D6;
+        var_a3 = gActors[actor_index].parentIndex;
     }
     
     for (index = 0; index < gPlatform1ActorCount; index++) {

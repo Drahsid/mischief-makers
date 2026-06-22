@@ -92,7 +92,7 @@ typedef enum{
     ACTORTYPE_30, // Stubbed
     ACTORTYPE_PORTRAIT = 0x27,
     ACTORTYPE_MARINAAFTERIMAGE = 0x2E, // when marina dashes. Has unused alternate version.
-    ACTORTYPE_WARPSTAR = 0x32,
+    ACTORTYPE_WARPGATE = 0x32,
     ACTORTYPE_TEXTBUBBLE = 0X35, // used many times in Japan version. in English versions, only used by the coach in "the day before".
     ACTORTYPE_PARTICLE56 = 0x38, // a "child class" of ACTORTYPE_PARTICLE. extended behavior.
     ACTORTYPE_GEM61 = 61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.

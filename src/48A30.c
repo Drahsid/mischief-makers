@@ -174,7 +174,7 @@ void func_80048408(u16 actor_index) {
     switch (D_800BE5F4.unk_02) {
         case 0:
             if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
-                func_8004F514(actor_index, gActors[actor_index].unk_0D6);
+                func_8004F514(actor_index, gActors[actor_index].parentIndex);
                 if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
                     gActors[actor_index].state = 3;
                 }

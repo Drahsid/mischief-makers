@@ -325,12 +325,12 @@ u32 D_801BD4B0_7CA690[] = {
     0x0600015E, 0x00940714, 0x031000EC, 0x00300000,
 };
 
-u32 D_801BD4C0_7CA6A0[] = {
-    0x0B30012E, 0x00000000,
+u16 D_801BD4C0_7CA6A0[] = {
+    0x0B30, 0x012E, 0, 0
 };
 
-u32 D_801BD4C8_7CA6A8[] = {
-    0x06000238, 0x00000000,
+u16 D_801BD4C8_7CA6A8[] = {
+    0x0600, 0x0238, 0, 0
 };
 
 u32 D_801BD4D0_7CA6B0[] = {
@@ -1665,7 +1665,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 6:
-            gActors[0x43].unk_190 = (s32)D_801BD4C0_7CA6A0;
+            gActors[0x43].warpGate_coords = D_801BD4C0_7CA6A0;
             break;
 
         case 0x100:
@@ -1685,7 +1685,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 0x102:
-            gActors[0x31].unk_190 = (s32)D_801BD4C8_7CA6A8;
+            gActors[0x31].warpGate_coords = D_801BD4C8_7CA6A8;
             break;
 
         case 0x1000:

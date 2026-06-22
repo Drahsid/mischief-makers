@@ -40,8 +40,8 @@ extern s32 D_800D26E0[];
 extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];
-extern u8 D_800D2750[];
-extern u8 D_800D27B0[];
+extern u16 D_800D2750[]; // "escaped from trouble!" "Marina has succeeded!!"
+extern u16 D_800D27B0[];  // "go to next area!!" "good luck!!"
 extern u16 gCrosshairPalette[];
 extern u16 D_800D2814[];
 extern f32 D_800D281C[];
@@ -123,7 +123,7 @@ u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
 u16 func_8003FF68(u16 actor_index, f32 scale);
-void WarpStar_Sparkle(u16 actor_index, u16 arg1);
+void WarpGate_Sparkle(u16 actor_index, u16 arg1);
 
 void func_80027370(u16 actor_index, u16 x, u16 y, u16 z) {
     gActors[actor_index].actorType = 0;
@@ -606,7 +606,7 @@ void Actor_UpdateNearestTo0(u16 actor_index) {
 }
 
 void func_80028B90(u16 actor_index) {
-    u16 other_index = gActors[actor_index].unk_0D6;
+    u16 other_index = gActors[actor_index].parentIndex;
     if (gActors[actor_index].posX.whole < gActors[other_index].posX.whole) {
         gActors[actor_index].unk_0F8.raw = -gActors[other_index].unk_0F8.raw;
     }
@@ -619,9 +619,9 @@ void func_80028C00(s32 arg0) {
 }
 
 s32 func_80028C08(u16 actor_index) {
-    u16 other_index = gActors[actor_index].unk_0D6;
+    u16 other_index = gActors[actor_index].parentIndex;
     if ((gActors[other_index].flags & ACTOR_FLAG_ACTIVE) && (gActors[other_index].health > 0)) {
-        gActors[other_index].unk_0D6 = actor_index;
+        gActors[other_index].parentIndex = actor_index;
         gActors[other_index].flags_098 |= ACTOR_FLAG3_UNK9;
         return TRUE;
     }
@@ -647,7 +647,7 @@ void func_80028CE8(u16 actor_index) {
     gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
 
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
-    if (gActors[gActors[actor_index].unk_0D6].flags & ACTOR_FLAG_UNK8) {
+    if (gActors[gActors[actor_index].parentIndex].flags & ACTOR_FLAG_UNK8) {
         gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
     }
     else {
@@ -785,7 +785,7 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
         else {
             if (flags1 & ACTOR_FLAG_FLIPPED) {
                 gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
-                gActors[actor_index].flags |= (gActors[gActors[actor_index].unk_0D6].flags & ACTOR_FLAG_FLIPPED);
+                gActors[actor_index].flags |= (gActors[gActors[actor_index].parentIndex].flags & ACTOR_FLAG_FLIPPED);
             }
             if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) && (D_80137450 == actor_index)) {
                 if (gActors[actor_index].unk_0DD != 0x15) {
@@ -811,7 +811,7 @@ s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
         gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
         gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
         if (flags1 & (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7)) {
-            if (gActors[gActors[actor_index].unk_0D6].flags & ACTOR_FLAG_UNK8) {
+            if (gActors[gActors[actor_index].parentIndex].flags & ACTOR_FLAG_UNK8) {
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
             }
             else {
@@ -1947,7 +1947,7 @@ s32 func_8002C3C8(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         gActors[actor_index].state = 0x30;
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
-        if (gActors[actor_index].unk_0D6 == 0) {
+        if (gActors[actor_index].parentIndex == 0) {
             gActors[actor_index].var_150 |= 0x80000000;
         }
         else {
@@ -2117,7 +2117,7 @@ void func_8002C6E4(u16 actor_index) {
             gActors[actor_index].unk_140_f32 = 4.0f;
             break;
         case 2:
-            if (gActors[actor_index].unk_0D6 == 0) {
+            if (gActors[actor_index].parentIndex == 0) {
                 gActors[actor_index].var_150 |= 0x20000000;
             }
             else {
@@ -3128,7 +3128,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].colorA = Math_ApproachF32(gActors[actor_index].colorA, 128.0f, 4.0f);
         gActors[actor_index].scaleX = Math_ApproachF32(gActors[actor_index].scaleX, 1.5f, 0.1f);
-        WarpStar_Sparkle(actor_index, FALSE);
+        WarpGate_Sparkle(actor_index, FALSE);
         gActors[actor_index].posY.raw += FIXED_UNIT(0.5);
         gActors[actor_index].var_150 -= 0x8000;
         if (gActors[actor_index].var_150 < 0) {
@@ -3137,7 +3137,7 @@ void func_80030008(u16 actor_index) {
         break;
     case 3:
         gActors[actor_index].scaleX = Math_ApproachF32(gActors[actor_index].scaleX, 1.0f, 0.1f);
-        WarpStar_Sparkle(actor_index, FALSE);
+        WarpGate_Sparkle(actor_index, FALSE);
         if (gActors[actor_index].colorA == 0xFF) {
             GemCollect_Actor(actor_index);
         }
@@ -3849,7 +3849,7 @@ void func_80032900(u16 actor_index) {
         gActors[actor_index].velocityY.raw = gActors[actor_t9].velocityY.raw;
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
-            gActors[gActors[actor_index].unk_0D6].unk_0D6 = actor_index;
+            gActors[gActors[actor_index].parentIndex].parentIndex = actor_index;
             (&gActors[actor_t9].var_150)[index] |= 0x1000;
         }
         if (gActors[actor_index].flags & ACTOR_FLAG_UNK17) {
@@ -4284,7 +4284,7 @@ void func_800340CC(u16 actor_index, s16 arg1, u16 arg2) {
 
     pos_x = gActors[actor_index].hitboxAX1 + gActors[actor_index].hitboxAX0 + gActors[actor_index].posX.whole;
     pos_y = gActors[actor_index].hitboxAY0 + gActors[actor_index].hitboxAY1 + gActors[actor_index].posY.whole;
-    index = gActors[actor_index].unk_0D6;
+    index = gActors[actor_index].parentIndex;
     pos_dx = gActors[index].hitboxBX1 + gActors[index].hitboxBX0 + gActors[index].posX.whole - pos_x;
     pos_dy = gActors[index].hitboxBY0 + gActors[index].hitboxBY1 + gActors[index].posY.whole - pos_y;
     angle = Math_Atan2(pos_dx, pos_dy);
@@ -4416,7 +4416,7 @@ void func_800348E4(u16 actor_index) {
 }
 
 void func_800349C0(u16 actor_index, u16 arg1) {
-    if (gActors[actor_index].unk_0D6 == 0) {
+    if (gActors[actor_index].parentIndex == 0) {
         gActors[actor_index].iFrames = arg1;
     }
 }
@@ -4730,8 +4730,8 @@ u16 Clanpot_TakeItem(u16 pot_index, u16 actor_index0) {
     }
 
     gActors[pot_index].unk_170 += 5;
-    gActors[actor_index0].unk_0D6 = actor_index1;
-    gActors[actor_index1].unk_0D6 = actor_index0;
+    gActors[actor_index0].parentIndex = actor_index1;
+    gActors[actor_index1].parentIndex = actor_index0;
     gActors[actor_index1].posX.raw = gActors[pot_index].unk_104;
     gActors[actor_index1].posY.raw = gActors[pot_index].unk_108;
     gActors[actor_index1].posZ.raw = gActors[pot_index].unk_10C;
@@ -5555,7 +5555,7 @@ void ActorUpdate_Clanpot(u16 actor_index) {
             d_pos_x = -d_pos_x;
         }
         if (gActors[actor_index].state != 3) {
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0) && (gActors[0].unk_140_u8 == 8)) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].parentIndex == 0) && (gActors[0].unk_140_u8 == 8)) {
                 if (((gActors[0].posY.whole - gActors[actor_index].posY.whole) >= 0x1B) && (d_pos_x < 0xC)) {
                     Clanpot_TakeItem(actor_index, 0);
                     gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK9;
@@ -6090,6 +6090,8 @@ void func_800398F8(u16 actor0, u16 actor1) {
     }
 }
 
+// play sound for actor Appearing
+// and in gem's case, add timer and bounce
 void func_80039970(u16 actor0, u16 actor1) {
     switch (gActors[actor1].actorType) {
     case ACTORTYPE_GEM:
@@ -6097,8 +6099,8 @@ void func_80039970(u16 actor0, u16 actor1) {
         gActors[actor1].velocityY.raw = FIXED_UNIT(4.0);
         Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor0);
         break;
-    case ACTORTYPE_WARPSTAR:
-        Sound_PlaySfxAtActor2(0x136, actor0);
+    case ACTORTYPE_WARPGATE:
+        Sound_PlaySfxAtActor2(SFX_STAR_APPEAR, actor0);
         break;
     default:
         Sound_PlaySfxAtActor2(0x116, actor0);
@@ -6274,7 +6276,7 @@ void ActorUpdate_Type28(u16 actor_index) {
         }
         /* fallthrough */
     case 2:
-        if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0)) {
+        if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].parentIndex == 0)) {
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
             if (gActors[actor_index].var_150 & 0x20000000) {
                 if (!(gActors[0].flags & ACTOR_FLAG_FLIPPED)) {
@@ -7322,28 +7324,41 @@ u16 func_8003D628(u16 arg0) {
     func_8005CA34(8, 0x3C);
     return index;
 }
-
-u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue) {
+// draw a colored box to specified position and dimensions.
+// @param graphic_flag settings for graphicFlags.
+// ACTOR_GFLAG_3DOBJ is instead used to determine box duration.
+// @param by0 hitboxBY0
+// @param by1 hitboxBY1
+// @param bx0 hitboxBX0
+// @param bx1 hitboxBX0
+// @param pos_x x-position. Whole word.
+// @param pos_y y-position. Whole word.
+// @param pos_z z-position. Whole word.
+// @param red red value of color
+// @param green green value of color
+// @param blue blue value of color
+// @returns index of actor, 0 if failed.
+u16 func_8003D68C(s32 graphic_flag, s16 by0, s16 by1, s16 bx0, s16 bx1, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive_90ToC0();
     if (actor_index != 0) {
         gActors[actor_index].actorType = 0x34;
         Actor_Initialize(actor_index);
-        gActors[actor_index].graphicFlags = arg0 & ~ACTOR_GFLAG_3DOBJ;
+        gActors[actor_index].graphicFlags = graphic_flag & ~ACTOR_GFLAG_3DOBJ;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         gActors[actor_index].graphicIndex = GINDEX_BLACKBAR;
         gActors[actor_index].posX.raw = pos_x;
         gActors[actor_index].posY.raw = pos_y;
         gActors[actor_index].posZ.raw = pos_z;
-        gActors[actor_index].hitboxBY0 = arg1;
-        gActors[actor_index].hitboxBY1 = arg2;
-        gActors[actor_index].hitboxBX0 = arg3;
-        gActors[actor_index].hitboxBX1 = arg4;
+        gActors[actor_index].hitboxBY0 = by0;
+        gActors[actor_index].hitboxBY1 = by1;
+        gActors[actor_index].hitboxBX0 = bx0;
+        gActors[actor_index].hitboxBX1 = bx1;
         gActors[actor_index].colorR = red;
         gActors[actor_index].colorG = green;
         gActors[actor_index].colorB = blue;
-        if (arg0 & ACTOR_GFLAG_3DOBJ) {
+        if (graphic_flag & ACTOR_GFLAG_3DOBJ) {
             gActors[actor_index].unk_148 = 1.0f;
         }
         else {
@@ -7353,7 +7368,7 @@ u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s
     return actor_index;
 }
 
-void func_8003D794(u16 actor_index) {
+void AreaClear_State0(u16 actor_index) {
     u16 var_v0;
     u16 index;
     f32 scale;
@@ -7416,10 +7431,10 @@ void func_8003D794(u16 actor_index) {
     }
 }
 
-void func_8003DBD0(u16 actor_index) {
+void ActorUpdate_AreaClear(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
-        func_8003D794(actor_index);
+        AreaClear_State0(actor_index);
         if (gActors[actor_index].timer_110 < 0.0f) {
             if (gActors[actor_index].unk_188 & 0x8000) {
                 gActors[actor_index].state = 4;
@@ -8311,7 +8326,7 @@ u16 func_800405C0(u16 actor_index, s32 x, s32 y, s32 z) {
     if (index != 0) {
         gActors[index].actorType = 0x5D;
         Actor_Initialize(index);
-        gActors[index].unk_0D6 = actor_index;
+        gActors[index].parentIndex = actor_index;
         gActors[index].unk_104 = x << 0x10;
         gActors[index].unk_108 = y << 0x10;
         gActors[index].unk_10C = z << 0x10;
@@ -8328,7 +8343,7 @@ s32 func_800406A4(u16* arg0, u16 arg1, s32 x, s32 y, s32 z) {
     if ((D_800D5820 == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_ACTIVE)) {
         gActors[actor_index].actorType = 0x5D;
         Actor_Initialize(actor_index);
-        gActors[actor_index].unk_0D6 = arg1;
+        gActors[actor_index].parentIndex = arg1;
         gActors[actor_index].unk_104 = x << 0x10;
         gActors[actor_index].unk_108 = y << 0x10;
         gActors[actor_index].unk_10C = z << 0x10;
@@ -8422,10 +8437,10 @@ s32 func_80040A64(void) {
     // BUG: UB, missing return
 }
 
-void WarpStar_Init(u16 actor_index) {
+void WarpGate_Init(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    gActors[actor_index].graphicIndex = GINDEX_WARPSTAR;
+    gActors[actor_index].graphicIndex = GINDEX_WARPGATE;
     gActors[actor_index].unk_0DF = 0x40;
     func_8002AC30(actor_index, 10);
     gActors[actor_index].posZ.whole = -1;
@@ -8434,13 +8449,13 @@ void WarpStar_Init(u16 actor_index) {
 }
 
 // spawn ring of star particles when Warp Star is used or appears.
-void WarpStar_StarRing(u16 actor_index) {
+void WarpGate_StarRing(u16 actor_index) {
     s32 angle;
     u16 index;
     u16 actor_v0;
 
     for (index = 0; index < 8; index++) {
-        actor_v0 = SpawnParticle_Image_90C0_16(GINDEX_WARPSTAR, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
+        actor_v0 = SpawnParticle_Image_90C0_16(GINDEX_WARPGATE, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
         if (actor_v0 != 0) {
             angle = gActors[actor_index].var_160 + (index << 7);
             gActors[actor_v0].posX.raw += (COS(angle) * gActors[actor_index].unk_164);
@@ -8458,10 +8473,10 @@ void WarpStar_StarRing(u16 actor_index) {
     }
 }
 
-// sparkle effect around warp star
+// sparkle effect around warp gate
 // @param actor_index index of star
 // @param no_random if set, stars appear without random offset
-void WarpStar_Sparkle(u16 actor_index, u16 no_random) {
+void WarpGate_Sparkle(u16 actor_index, u16 no_random) {
     u16 index;
     s16 x;
     s16 y;
@@ -8494,7 +8509,7 @@ void WarpStar_Sparkle(u16 actor_index, u16 no_random) {
 }
 
 
-void WarpStar_UpdateAppearance(u16 actor_index) {
+void WarpGate_UpdateAppearance(u16 actor_index) {
     u16 index;
     u32 pad0;
     u32 pad1;
@@ -8546,14 +8561,14 @@ void WarpStar_UpdateAppearance(u16 actor_index) {
             gActors[index].colorA = gActors[actor_index].colorA / 3.0f;
         }
     }
-    WarpStar_Sparkle(actor_index, FALSE);
+    WarpGate_Sparkle(actor_index, FALSE);
 }
 
 // check if actor is using star.
 // @param star_index index of star.
 // @param guest_index index of "guest character stored in star actor offset 0x178 or 0x17C.
 // @returns true if they are using.
-s32 WarpStar_IsGuestUsing(u16 star_index, u16 guest_index) {
+s32 WarpGate_IsGuestUsing(u16 star_index, u16 guest_index) {
     if (((gActors[guest_index].flags & (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) == (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)) && (gActors[guest_index].health != 0)) {
         if ((gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole) && 
             (gActors[guest_index].posX.whole + gActors[guest_index].hitboxBX1) >= (gActors[star_index].posX.whole - 8) && 
@@ -8575,37 +8590,37 @@ s32 WarpStar_IsGuestUsing(u16 star_index, u16 guest_index) {
 
 // check if actors of indecies in 0x178 or 0x17C are using star.
 // @returns true if either is using, SHOULD return false otherwise.
-s32 WarpStar_IsGuestsUsing(u16 star_index) {
+s32 WarpGate_IsGuestsUsing(u16 star_index) {
     if (gActors[star_index].unk_178 != 0) {
-        if (WarpStar_IsGuestUsing(star_index, gActors[star_index].unk_178)) {
+        if (WarpGate_IsGuestUsing(star_index, gActors[star_index].unk_178)) {
             return TRUE;
         }
     }
     if (gActors[star_index].unk_17C != 0) {
-        if (WarpStar_IsGuestUsing(star_index, gActors[star_index].unk_17C)) {
+        if (WarpGate_IsGuestUsing(star_index, gActors[star_index].unk_17C)) {
             return TRUE;
         }
     }
     // BUG: UB, missing return
 }
 
-// move user of warp star
+// move user of warp gate
 // @param actor_index index of user
 // @param coords coorinates to move user {x,y,facing}
-void WarpStar_MoveUser(u16 actor_index, u16* coords) {
+void WarpGate_MoveUser(u16 actor_index, u16* coords) {
     gActors[actor_index].posX.whole = coords[0] - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = coords[1] - gScreenPosCurrentY.whole;
 }
 
-// move user of warp star
-// @param actor_index index of warp star
+// move user of warp gate and face left or right.
+// @param actor_index index of warp gate
 // @param coords coorinates to move user {x,y,facing}
-void WarpStar_MoveFaceUser(u16 actor_index, u16* coords) {
+void WarpGate_MoveFaceUser(u16 actor_index, u16* coords) {
     if (gActors[actor_index].unk_174 != 0) {
-        WarpStar_MoveUser(gActors[actor_index].unk_174, coords);
+        WarpGate_MoveUser(gActors[actor_index].unk_174, coords);
     }
     else {
-        WarpStar_MoveUser(0, coords);
+        WarpGate_MoveUser(0, coords);
         gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
         gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
         gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
@@ -8617,7 +8632,7 @@ void WarpStar_MoveFaceUser(u16 actor_index, u16* coords) {
 
 // if warpstar is state 2,
 // the player has just grabbed it
-s32 WarpStar_IsGrabbed(u16 actor_index) {
+s32 WarpGate_IsGrabbed(u16 actor_index) {
     if (gActors[actor_index].state == 2) {
         return TRUE;
     }
@@ -8626,8 +8641,8 @@ s32 WarpStar_IsGrabbed(u16 actor_index) {
     }
 }
 
-// update function for warp star
-void ActorUpdate_WarpStar(u16 actor_index) {
+// update function for warp gate
+void ActorUpdate_WarpGate(u16 actor_index) {
     u16 idx;
     s16 sp24;
     s16 sp22;
@@ -8643,13 +8658,13 @@ void ActorUpdate_WarpStar(u16 actor_index) {
             }
             else {
                 gActors[actor_index].state = 2;
-                WarpStar_Init(actor_index);
+                WarpGate_Init(actor_index);
             }
         }
         break;
     case 2:
-        WarpStar_UpdateAppearance(actor_index);
-        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0)) || WarpStar_IsGuestsUsing(actor_index)) {
+        WarpGate_UpdateAppearance(actor_index);
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].parentIndex == 0)) || WarpGate_IsGuestsUsing(actor_index)) {
             gActors[actor_index].state++;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
             Sound_PlaySfxAtActor2(SFX_STAR_TP, actor_index);
@@ -8672,12 +8687,12 @@ void ActorUpdate_WarpStar(u16 actor_index) {
         }
         break;
     case 3:
-        WarpStar_UpdateAppearance(actor_index);
+        WarpGate_UpdateAppearance(actor_index);
         gActors[actor_index].unk_11C = Math_ApproachF32(gActors[actor_index].unk_11C, 0.0f, 0.02f);
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 0.0f, 16.0f);
         gActors[actor_index].var_160 -= 16;
         gActors[actor_index].unk_164 += (262144.0f * gActors[actor_index].unk_11C);
-        WarpStar_StarRing(actor_index);
+        WarpGate_StarRing(actor_index);
         gActors[actor_index].unk_14C -= 1.0f;
         if (gActors[actor_index].unk_14C < 0.0f) {
             gActors[actor_index].unk_14C = 60.0f;
@@ -8697,11 +8712,11 @@ void ActorUpdate_WarpStar(u16 actor_index) {
                 break;
             case 2:
                 gActors[actor_index].state++;
-                WarpStar_MoveFaceUser(actor_index, &D_800D2860[gActors[actor_index].unk_0D8]);
+                WarpGate_MoveFaceUser(actor_index, &D_800D2860[gActors[actor_index].unk_0D8]);
                 break;
             case 4:
                 gActors[actor_index].state++;
-                WarpStar_MoveFaceUser(actor_index, (u16* ) gActors[actor_index].unk_190);
+                WarpGate_MoveFaceUser(actor_index,gActors[actor_index].warpGate_coords);
                 break;
             case 3:
                 D_800D28F0 = D_800D28E4;
@@ -8766,7 +8781,7 @@ void ActorUpdate_WarpStar(u16 actor_index) {
         break;
     case 10:
         gActors[actor_index].state++;
-        WarpStar_Init(actor_index);
+        WarpGate_Init(actor_index);
         gActors[actor_index].var_160 = 0;
         gActors[actor_index].unk_164 = 0x680000;
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
@@ -8774,7 +8789,7 @@ void ActorUpdate_WarpStar(u16 actor_index) {
         gActors[actor_index].unk_120 = 0.0f;
         /* fallthrough */
     case 11:
-        WarpStar_UpdateAppearance(actor_index);
+        WarpGate_UpdateAppearance(actor_index);
         gActors[actor_index].unk_11C = Math_ApproachF32(gActors[actor_index].unk_11C, 1.05f, 0.05f);
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 255.0f, 16.0f);
         if (((u16)gActors[actor_index].unk_120 == 0xFF) && (gActors[actor_index].unk_11C >= 1.0)) {
@@ -8784,7 +8799,7 @@ void ActorUpdate_WarpStar(u16 actor_index) {
         else {
             gActors[actor_index].var_160 += 0x10;
             gActors[actor_index].unk_164 -= (425984.0 * (1.0 - gActors[actor_index].unk_11C));
-            WarpStar_StarRing(actor_index);
+            WarpGate_StarRing(actor_index);
         }
         break;
     }
@@ -8797,15 +8812,15 @@ void ActorUpdate_WarpStar(u16 actor_index) {
         case 2:
             // fakematch: the zero term keeps IDO from reusing v1 for timer_idx
             timer_idx = gActors[actor_index].unk_0D8 + (sp24 * 0);
-            WarpStar_MoveUser(actor_index, &D_800D2860[timer_idx]);
+            WarpGate_MoveUser(actor_index, &D_800D2860[timer_idx]);
             break;
         case 4:
-            WarpStar_MoveUser(actor_index, (u16* ) gActors[actor_index].unk_190);
+            WarpGate_MoveUser(actor_index,gActors[actor_index].warpGate_coords);
             break;
         default:
             return;
         }
-        WarpStar_Sparkle(actor_index, TRUE);
+        WarpGate_Sparkle(actor_index, TRUE);
         gActors[actor_index].posX.whole = sp24;
         gActors[actor_index].posY.whole = sp22;
     }

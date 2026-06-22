@@ -6293,7 +6293,7 @@
           }
         },
         {
-          "name": "func_8003D794",
+          "name": "AreaClear_State0",
           "size": "1084",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6301,7 +6301,7 @@
           }
         },
         {
-          "name": "func_8003DBD0",
+          "name": "ActorUpdate_AreaClear",
           "size": "936",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6621,7 +6621,7 @@
           }
         },
         {
-          "name": "WarpStar_Init",
+          "name": "WarpGate_Init",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6629,7 +6629,7 @@
           }
         },
         {
-          "name": "WarpStar_StarRing",
+          "name": "WarpGate_StarRing",
           "size": "700",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6637,7 +6637,7 @@
           }
         },
         {
-          "name": "WarpStar_Sparkle",
+          "name": "WarpGate_Sparkle",
           "size": "528",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6645,7 +6645,7 @@
           }
         },
         {
-          "name": "WarpStar_UpdateAppearance",
+          "name": "WarpGate_UpdateAppearance",
           "size": "1284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6653,7 +6653,7 @@
           }
         },
         {
-          "name": "WarpStar_IsGuestUsing",
+          "name": "WarpGate_IsGuestUsing",
           "size": "368",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6661,7 +6661,7 @@
           }
         },
         {
-          "name": "WarpStar_IsGuestsUsing",
+          "name": "WarpGate_IsGuestsUsing",
           "size": "160",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6669,7 +6669,7 @@
           }
         },
         {
-          "name": "WarpStar_MoveUser",
+          "name": "WarpGate_MoveUser",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6677,7 +6677,7 @@
           }
         },
         {
-          "name": "WarpStar_MoveFaceUser",
+          "name": "WarpGate_MoveFaceUser",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6685,7 +6685,7 @@
           }
         },
         {
-          "name": "WarpStar_IsGrabbed",
+          "name": "WarpGate_IsGrabbed",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6693,7 +6693,7 @@
           }
         },
         {
-          "name": "ActorUpdate_WarpStar",
+          "name": "ActorUpdate_WarpGate",
           "size": "2536",
           "fuzzy_match_percent": 100.0,
           "metadata": {

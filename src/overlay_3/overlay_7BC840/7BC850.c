@@ -291,7 +291,7 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
     u16 source_index;
 
     source_index = actor_index + 5;
-    target_index = gActors[source_index].unk_0D6 & 0x7FFF;
+    target_index = gActors[source_index].parentIndex & 0x7FFF;
 
     if (func_80028C08(actor_index) != 0) {
         if ((u8)arg1 == 0) {
@@ -299,7 +299,7 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
             gActors[target_index].unk_108 = gActors[source_index].posY.raw + FIXED_UNIT(8.0);
             gActors[target_index].unk_10C = gActors[source_index].posZ.raw - 4;
             gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK9;
-            gActors[target_index].unk_0D6 = source_index;
+            gActors[target_index].parentIndex = source_index;
             return FALSE;
         }
 
@@ -313,7 +313,7 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
         return FALSE;
     }
 
-    gActors[source_index].unk_0D6 = 0;
+    gActors[source_index].parentIndex = 0;
     return TRUE;
 }
 

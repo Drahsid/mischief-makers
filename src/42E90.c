@@ -221,7 +221,7 @@ void func_80042B94(u16 actor_index) {
 
 void func_80042C10(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
-        if (gActors[actor_index].unk_0D6 != 0) {
+        if (gActors[actor_index].parentIndex != 0) {
             gActors[actor_index].flags = 0;
             gActors[actor_index].actorType = 0;
         }
@@ -229,7 +229,7 @@ void func_80042C10(u16 actor_index) {
             if (gActors[actor_index].var_150 == 0) {
                 func_8002ED34(actor_index, gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw, 0, 0);
             }
-            gActors[actor_index].unk_0D6 = 0;
+            gActors[actor_index].parentIndex = 0;
             gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK9;
         }
     }

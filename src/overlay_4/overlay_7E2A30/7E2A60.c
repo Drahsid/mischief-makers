@@ -224,36 +224,36 @@ u32 D_801BC8EC_7E5A4C[] = {
     0x01820E7C, 0x00F20612, 0x0EEC0E0C, 0x0000FFC2,
 };
 
-u32 D_801BC8FC_7E5A5C[] = {
-    0x03B80E5E, 0x00010000,
+u16 D_801BC8FC_7E5A5C[] = {
+    0x03B8, 0x0E5E, 1, 0
 };
 
-u32 D_801BC904_7E5A64[] = {
-    0x03B80C5E, 0x00010000,
+u16 D_801BC904_7E5A64[] = {
+    0x03B8, 0x0C5E, 1, 0
 };
 
-u32 D_801BC90C_7E5A6C[] = {
-    0x03480A5E, 0x00010000,
+u16 D_801BC90C_7E5A6C[] = {
+    0x0348, 0x0A5E, 1, 0
 };
 
-u32 D_801BC914_7E5A74[] = {
-    0x03B8085E, 0x00010000,
+u16 D_801BC914_7E5A74[] = {
+    0x03B8, 0x085E, 1, 0
 };
 
-u32 D_801BC91C_7E5A7C[] = {
-    0x0BB80E5E, 0x00010000,
+u16 D_801BC91C_7E5A7C[] = {
+    0x0BB8, 0x0E5E, 1, 0
 };
 
-u32 D_801BC924_7E5A84[] = {
-    0x0BB80C5E, 0x00010000,
+u16 D_801BC924_7E5A84[] = {
+    0x0BB8, 0x0C5E, 1, 0
 };
 
-u32 D_801BC92C_7E5A8C[] = {
-    0x0B480A5E, 0x00010000,
+u16 D_801BC92C_7E5A8C[] = {
+    0x0B48, 0x0A5E, 1, 0
 };
 
-u32 D_801BC934_7E5A94[] = {
-    0x0BB8085E, 0x00010000,
+u16 D_801BC934_7E5A94[] = {
+    0x0BB8, 0x085E, 1, 0
 };
 
 u32 D_801BC93C_7E5A9C[] = {
@@ -921,20 +921,20 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
         }
     }
 
-    gActors[0x60].unk_190 = (s32)D_801BC8FC_7E5A5C;
-    gActors[0x61].unk_190 = (s32)D_801BC904_7E5A64;
-    gActors[0x62].unk_190 = (s32)D_801BC90C_7E5A6C;
-    gActors[0x63].unk_190 = (s32)D_801BC914_7E5A74;
-    gActors[0x64].unk_190 = (s32)D_801BC91C_7E5A7C;
-    gActors[0x65].unk_190 = (s32)D_801BC924_7E5A84;
-    gActors[0x66].unk_190 = (s32)D_801BC92C_7E5A8C;
-    gActors[0x67].unk_190 = (s32)D_801BC934_7E5A94;
+    gActors[0x60].warpGate_coords = D_801BC8FC_7E5A5C;
+    gActors[0x61].warpGate_coords = D_801BC904_7E5A64;
+    gActors[0x62].warpGate_coords = D_801BC90C_7E5A6C;
+    gActors[0x63].warpGate_coords = D_801BC914_7E5A74;
+    gActors[0x64].warpGate_coords = D_801BC91C_7E5A7C;
+    gActors[0x65].warpGate_coords = D_801BC924_7E5A84;
+    gActors[0x66].warpGate_coords = D_801BC92C_7E5A8C;
+    gActors[0x67].warpGate_coords = D_801BC934_7E5A94;
 
     if ((arg0 == 0x182) || (arg0 == 0x982)) {
-        gActors[0].flags |= 0x20;
+        gActors[0].flags |= ACTOR_FLAG_FLIPPED;
     }
     else {
-        gActors[0].flags &= ~0x20;
+        gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
     }
 
     if (arg0 < 0x800) {

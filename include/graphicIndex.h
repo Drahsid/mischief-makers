@@ -112,7 +112,7 @@
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
-#define GINDEX_WARPSTAR        0x01A8
+#define GINDEX_WARPGATE        0x01A8
 
 #define GINDEX_SPARKLESMALL    0x01AE // 2 animation frames
 #define GINDEX_DASHEFFECT      0x01B2 // 2 animation frames

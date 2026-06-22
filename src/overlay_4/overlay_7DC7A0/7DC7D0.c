@@ -11,7 +11,7 @@ extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern void func_80064AA0(u16 arg0, void* arg1);
 extern u16 D_800D2950;
-extern s32 WarpStar_IsGrabbed(u16 arg0);
+extern s32 WarpGate_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 D_800D28F8;
@@ -38,32 +38,39 @@ u32 D_801BC9C0_7DF890[] = {
     0x1F70027D, 0x1B002000, 0x02ED020D, 0x00000000,
 };
 
-u32 D_801BC9D0_7DF8A0[] = {
-    0x1200014C, 0x00000000,
+// warp gate coords in "Rescue! Act 1"
+u16 D_801BC9D0_7DF8A0[] = {
+    0x1200, 0x14C, 0, 0
 };
 
-u32 D_801BC9D8_7DF8A8[] = {
-    0x1345027C, 0x00000000,
+// warp gate coords in "Rescue! Act 1"
+u16 D_801BC9D8_7DF8A8[] = {
+    0x1345, 0x27C, 0, 0
 };
 
-u32 D_801BC9E0_7DF8B0[] = {
-    0x1370024C, 0x00000000,
+// warp gate coords in "Rescue! Act 1"
+u16 D_801BC9E0_7DF8B0[] = {
+    0x1370, 0x24C, 0, 0
 };
 
-u32 D_801BC9E8_7DF8B8[] = {
-    0x1490024C, 0x00000000,
+// warp gate coords in "Rescue! Act 1"
+u16 D_801BC9E8_7DF8B8[] = {
+    0x1490, 0x24C, 0, 0
 };
 
-u32 D_801BC9F0_7DF8C0[] = {
-    0x15A0024C, 0x00000000,
+// warp gate coords in "Rescue! Act 1"
+u16 D_801BC9F0_7DF8C0[] = {
+    0x15A0, 0x024C, 0, 0
 };
 
+// warp gate coords in "Rescue! Act 1"
 u32 D_801BC9F8_7DF8C8[] = {
-    0x16D002CC, 0x00000000,
+    0x16D0, 0x2CC, 0,0
 };
 
+// warp gate coords in "Rescue! Act 1"
 u16 D_801BCA00_7DF8D0[] = {
-    0x19A0, 0x0290, 0x0000, 0x0000,
+    0x19A0, 0x0290, 0, 0,
 };
 
 u16 D_801BCA08_7DF8D8[] = {
@@ -1271,7 +1278,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_80045FA4(D_801BC9B0_7DF880, (s32)D_801BCA6C_7DF93C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD730_7E0600);
-            // set warp stars to wait for Teran to "use" them.
+            // set warp gates to wait for Teran to "use" them.
             gActors[0x88].var_158 = 1;
             gActors[0x88].unk_178 = 0x30;
             gActors[0x89].var_158 = 1;
@@ -1286,13 +1293,13 @@ void func_801B9ED4_7DCDA4(void) {
             gActors[0x8E].unk_178 = 0x30;
             gActors[0x8F].var_158 = 1;
             gActors[0x8F].unk_178 = 0x30;
-            gActors[0x89].unk_190 = (s32)D_801BC9E0_7DF8B0;
-            gActors[0x8A].unk_190 = (s32)D_801BC9E8_7DF8B8;
-            gActors[0x8B].unk_190 = (s32)D_801BC9F0_7DF8C0;
-            gActors[0x88].unk_190 = (s32)D_801BC9F8_7DF8C8;
-            gActors[0x8C].unk_190 = (s32)D_801BCA00_7DF8D0;
-            gActors[0x8E].unk_190 = (s32)D_801BC9D0_7DF8A0;
-            gActors[0x8F].unk_190 = (s32)D_801BC9D8_7DF8A8;
+            gActors[0x89].warpGate_coords = D_801BC9E0_7DF8B0;
+            gActors[0x8A].warpGate_coords = D_801BC9E8_7DF8B8;
+            gActors[0x8B].warpGate_coords = D_801BC9F0_7DF8C0;
+            gActors[0x88].warpGate_coords = D_801BC9F8_7DF8C8;
+            gActors[0x8C].warpGate_coords = D_801BCA00_7DF8D0;
+            gActors[0x8E].warpGate_coords = D_801BC9D0_7DF8A0;
+            gActors[0x8F].warpGate_coords = D_801BC9D8_7DF8A8;
             func_801B9D38_7DCC08();
 
         case 0x11:
@@ -1312,18 +1319,18 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
             
-            // warp stars with alternating targets.
+            // warp gates with alternating targets.
 
-            if (WarpStar_IsGrabbed(0x89)) {
+            if (WarpGate_IsGrabbed(0x89)) {
                 if (gActiveFrames & 0x40) {
-                    D_801BC9E2_7DF8B2 = 0x2AC;
+                    D_801BC9E0_7DF8B0[1] = 0x2AC;
                 }
                 else {
-                    D_801BC9E2_7DF8B2 = 0x24C;
+                    D_801BC9E0_7DF8B0[1] = 0x24C;
                 }
             }
 
-            if (WarpStar_IsGrabbed(0x8A)) {
+            if (WarpGate_IsGrabbed(0x8A)) {
                 if (gActiveFrames & 0x40) {
                     D_801BC9EA_7DF8BA = 0x2AC;
                 }
@@ -1332,7 +1339,7 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
 
-            if (WarpStar_IsGrabbed(0x8B)) {
+            if (WarpGate_IsGrabbed(0x8B)) {
                 if ((gActiveFrames % 48) >= 0x1C) {
                     D_801BC9F2_7DF8C2 = 0x24C;
                 }
@@ -1341,7 +1348,7 @@ void func_801B9ED4_7DCDA4(void) {
                 }
             }
 
-            if (WarpStar_IsGrabbed(0x8C)) {
+            if (WarpGate_IsGrabbed(0x8C)) {
                 switch ((gActiveFrames / 16) % 3) {
                     case 0:
                         D_801BCA00_7DF8D0[0] = 0x1960;
@@ -2277,9 +2284,9 @@ void func_801BC75C_7DF62C(void* arg0, s32 arg1) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(D_801BC990_7DF860);
     Actor_LoadSpawnTable(D_801BF77C_7E264C);
-    gActors[0x31].unk_190 = (s32)D_801BEC34_7E1B04;
-    gActors[0x32].unk_190 = (s32)D_801BEC3C_7E1B0C;
-    gActors[0x33].unk_190 = (s32)D_801BEC44_7E1B14;
+    gActors[0x31].warpGate_coords = D_801BEC34_7E1B04;
+    gActors[0x32].warpGate_coords = D_801BEC3C_7E1B0C;
+    gActors[0x33].warpGate_coords = D_801BEC44_7E1B14;
 }
 
 void func_801BC7C4_7DF694(void) {

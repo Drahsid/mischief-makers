@@ -90,7 +90,7 @@ void func_801A6C80_775130(u16 actor_index) {
                 gActors[actor_index].var_150 = 0x10;
                 gActors[actor_index].unk_114 = 5.0f;
 
-                if (gActors[actor_index].unk_0D6 == 0) {
+                if (gActors[actor_index].parentIndex == 0) {
                     gActors[actor_index].flags |= 0x21080;
                 }
                 else {

@@ -317,7 +317,7 @@ void func_80023F5C(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw;
-        if ((gActors[0].unk_0D6 == 0x31) && (gActors[0x30].actorType == 0x907) && (gActors[0x32].unk_180 & 0x8000)) {
+        if ((gActors[0].parentIndex == 0x31) && (gActors[0x30].actorType == 0x907) && (gActors[0x32].unk_180 & 0x8000)) {
             gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + 0x180000;
         }
         else {

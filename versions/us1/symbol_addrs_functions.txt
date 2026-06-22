@@ -134,6 +134,7 @@ ActorUpdate_DizzyStar = 0x800336B8; // type:func
 SpawnParticle_SineUp = 0x800337F4; // type:func
 SpawnParticle_SineUpHeart = 0x800338F4; // type:func
 SpawnParticle_SineUpNotes = 0x80033948; // type:func
+
 Clanpot_InitItems = 0x80034D80; // type:func
 Clanpot_AddItem = 0x80034E10; // type:func
 Clanpot_AddItemCheck = 0x8003510C; // type:func
@@ -161,7 +162,12 @@ Clanpot_MixSequenceIcon = 0x800374D8; //type:func
 ActorUpdate_ClanpotMixSequence = 0x8003766C; //type:func
 Clanpot_SpawnMixSequence = 0x80037B18; //type:func
 ActorUpdate_Clanpot = 0x80037B90; //type:func
+
 ActorUpdate_Type28 = 0x8003A120; //type:func
+
+AreaClear_State0 = 0x8003D794; //type:func
+ActorUpdate_AreaClear = 0x8003DBD0; //type:func
+
 Crosshair_SetPos = 0x8003E640; // type:func
 SpawnCrosshair = 0x8003E6A4; // type:func
 SpawnParticle_Exclamation = 0x8003F6A4; // type:func
@@ -173,16 +179,16 @@ SpawnParticle_RingWaveGreen = 0x8003FE90; // type:func
 SpawnParticle_RingWaveYellow = 0x8003FED8; // type:func
 SpawnParticle_RingWaveRed = 0x8003FF20; // type:func
 
-WarpStar_Init = 0x80040ab4; // type:func
-WarpStar_UpdateAppearance = 0x80041018; // type:func
-WarpStar_IsGuestUsing = 0x8004151C; // type:func
-WarpStar_IsGuestsUsing = 0x8004168C; // type:func
-WarpStar_MoveUser = 0x8004172C; // type:func
-WarpStar_MoveFaceUser = 0x8004178C; // type:func
-WarpStar_StarRing = 0x80040B4C; // type:func
-WarpStar_Sparkle = 0x80040E08; // type:func
-WarpStar_IsGrabbed = 0x8004185C; // type:func
-ActorUpdate_WarpStar = 0x800418A8; // type:func
+WarpGate_Init = 0x80040ab4; // type:func
+WarpGate_UpdateAppearance = 0x80041018; // type:func
+WarpGate_IsGuestUsing = 0x8004151C; // type:func
+WarpGate_IsGuestsUsing = 0x8004168C; // type:func
+WarpGate_MoveUser = 0x8004172C; // type:func
+WarpGate_MoveFaceUser = 0x8004178C; // type:func
+WarpGate_StarRing = 0x80040B4C; // type:func
+WarpGate_Sparkle = 0x80040E08; // type:func
+WarpGate_IsGrabbed = 0x8004185C; // type:func
+ActorUpdate_WarpGate = 0x800418A8; // type:func
 
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func

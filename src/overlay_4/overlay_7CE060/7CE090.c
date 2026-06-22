@@ -478,8 +478,8 @@ u32 D_801BD364_7D1AF4[] = {
     0x01300190, 0x00A00F20, 0x04800120, 0xFF90FFDE,
 };
 
-u32 D_801BD374_7D1B04[] = {
-    0x106001CE, 0x00010000,
+u16 D_801BD374_7D1B04[] = {
+    0x1060, 0x01CE, 1, 0
 };
 
 u32 D_801BD37C_7D1B0C[] = {
@@ -905,24 +905,24 @@ u32 D_801BEB9C_7D332C[] = {
     0x01901000, 0x00D00250, 0x10700120, 0x00000000,
 };
 
-u32 D_801BEBAC_7D333C[] = {
-    0x00F80DD0, 0x00000000,
+u16 D_801BEBAC_7D333C[] = {
+    0x00F8, 0x0DD0, 0, 0
 };
 
-u32 D_801BEBB4_7D3344[] = {
-    0x02300E40, 0x00010000,
+u16 D_801BEBB4_7D3344[] = {
+    0x0230, 0x0E40, 1, 0
 };
 
-u32 D_801BEBBC_7D334C[] = {
-    0x01B009D0, 0x00000000,
+u16 D_801BEBBC_7D334C[] = {
+    0x01B0, 0x09D0, 0, 0
 };
 
-u32 D_801BEBC4_7D3354[] = {
-    0x01300350, 0x00000000,
+u16 D_801BEBC4_7D3354[] = {
+    0x0130, 0x0350, 0, 0
 };
 
-u32 D_801BEBCC_7D335C[] = {
-    0x01900ED0, 0x00010000,
+u16 D_801BEBCC_7D335C[] = {
+    0x0190, 0x0ED0, 1, 0
 };
 
 u32 D_801BEBD4_7D3364[] = {
@@ -1681,7 +1681,7 @@ void func_801BABE8_7CF378(void) {
             func_80046148(D_801BD364_7D1AF4, (s32)D_801BD37C_7D1B0C);
             Actor_LoadSpawnTable(D_801BBC00_7D0390);
             Actor_LoadSpawnTable(D_801BDB74_7D2304);
-            gActors[0x30].unk_190 = (s32)D_801BD374_7D1B04;
+            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(0x5E);
             break;
@@ -1701,7 +1701,7 @@ void func_801BABE8_7CF378(void) {
             gScreenPosTargetX.whole = 0x130;
             gScreenPosTargetY.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
-            gActors[0x30].unk_190 = (s32)D_801BD374_7D1B04;
+            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 4:
@@ -1729,7 +1729,7 @@ void func_801BABE8_7CF378(void) {
             gScreenPosTargetX.whole = 0x6F0;
             gScreenPosTargetY.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
-            gActors[0x30].unk_190 = (s32)D_801BD374_7D1B04;
+            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 7:
@@ -1835,13 +1835,13 @@ void func_801BB0F0_7CF880(void) {
         gLookatEyeZ = 640.0f;
     }
 
-    gActors[0x30].unk_190 = (s32)D_801BEBAC_7D333C;
-    gActors[0x31].unk_190 = (s32)D_801BEBB4_7D3344;
-    gActors[0x32].unk_190 = (s32)D_801BEBBC_7D334C;
-    gActors[0x33].unk_190 = (s32)D_801BEBC4_7D3354;
-    gActors[0x36].unk_190 = (s32)D_801BEBCC_7D335C;
-    gActors[0x35].unk_190 = (s32)D_801BEBCC_7D335C;
-    gActors[0x34].unk_190 = (s32)D_801BEBCC_7D335C;
+    gActors[0x30].warpGate_coords = D_801BEBAC_7D333C;
+    gActors[0x31].warpGate_coords = D_801BEBB4_7D3344;
+    gActors[0x32].warpGate_coords = D_801BEBBC_7D334C;
+    gActors[0x33].warpGate_coords = D_801BEBC4_7D3354;
+    gActors[0x36].warpGate_coords = D_801BEBCC_7D335C;
+    gActors[0x35].warpGate_coords = D_801BEBCC_7D335C;
+    gActors[0x34].warpGate_coords = D_801BEBCC_7D335C;
 
     switch (gStageCinemaState) {
         case 0:
