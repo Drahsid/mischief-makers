@@ -215,10 +215,10 @@ void func_8019EBA8_735908(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A1E74_738BD4.s")
 
-void func_801A206C_738DCC(u16 arg0){
+void func_801A206C_738DCC(u16 arg0) {
     gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
-    gActors[0].unk_0F8.raw=0;
-    gActors[0].unk_0FC.raw=FIXED_UNIT(-1.0);
+    gActors[0].unk_0F8.raw = 0;
+    gActors[0].unk_0FC.raw = FIXED_UNIT(-1.0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A2098_738DF8.s")

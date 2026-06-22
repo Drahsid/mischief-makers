@@ -120,16 +120,16 @@ void func_801A6E48_78B988(u16 arg0) {
             gActors[actor_index].unk_12C = 1.0f;
             break;
             default:
-          if (Rand() & 1) {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(-2.0);
-            gActors[actor_index].velocityX.raw =  gActors[arg0+1].unk_130 * FIXED_UNIT(1.375);
-            gActors[actor_index].unk_12C = 2.0f;
-          }
-          else {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(-5.0);
-            gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(0.75);
-            gActors[actor_index].unk_12C = 1.0f;
-          }    
+              if (Rand() & 1) {
+                gActors[actor_index].velocityY.raw = FIXED_UNIT(-2.0);
+                gActors[actor_index].velocityX.raw =  gActors[arg0+1].unk_130 * FIXED_UNIT(1.375);
+                gActors[actor_index].unk_12C = 2.0f;
+              }
+              else {
+                gActors[actor_index].velocityY.raw = FIXED_UNIT(-5.0);
+                gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(0.75);
+                gActors[actor_index].unk_12C = 1.0f;
+              }    
             break;
         }
     }
@@ -140,17 +140,17 @@ void func_801A6E48_78B988(u16 arg0) {
 // behavior of pirate's spike balls.
 // unk_12C: number of bounces.
 void func_801A7C78_78C7B8(u16 actor_index) {
-    
     func_80038C94(actor_index);
     if (gActors[actor_index].state == 0) {
         func_80038E1C(actor_index);
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     }
-    else{
+    else {
       gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
       if (gActors[actor_index].velocityX.raw > 0) {
         gActors[actor_index].rotateZ -= 10.0f;
-      } else {
+      }
+      else {
         gActors[actor_index].rotateZ += 10.0f;
       }
     

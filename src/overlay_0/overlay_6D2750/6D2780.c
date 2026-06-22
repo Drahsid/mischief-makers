@@ -30,7 +30,7 @@ typedef struct {
     /* 0x08 */ s32 vel_y;
     /* 0x0C */ s32 vel_z;
     /* 0x10 */ f32 scale;
-}IntroBoulderInit;
+} IntroBoulderInit;
 
 
 extern u8 D_800BE70C;

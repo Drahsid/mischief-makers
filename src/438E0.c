@@ -428,8 +428,8 @@ void func_800463C0(void) {
     D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
 }
 
-s32 func_800463F0(void){
-    if((D_800D28FC & 0x1000)|| (func_8005DEFC())){
+s32 func_800463F0(void) {
+    if((D_800D28FC & 0x1000) || (func_8005DEFC())) {
         return TRUE;
     }
     return FALSE;

@@ -359,8 +359,8 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80197414_68F414.s")
 
-void func_801974A4_68F4A4(){
- D_801A7258_69F258 = gActors[0x8f].health /10;
+void func_801974A4_68F4A4() {
+     D_801A7258_69F258 = gActors[0x8f].health / 10;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801974C8_68F4C8.s")
@@ -385,19 +385,19 @@ void func_801974A4_68F4A4(){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199DB0_691DB0.s")
 
-void func_80199E90_691E90(u16 arg0){
-    if(gButtonPress & gButton_CDown){
-        func_80195F04_68DF04(arg0,2);
-        func_80081790(arg0,D_801A6CC0_69ECC0);
-        func_800819A8(arg0,D_801A3E50_69BE50);
+void func_80199E90_691E90(u16 arg0) {
+    if (gButtonPress & gButton_CDown) {
+        func_80195F04_68DF04(arg0, 2);
+        func_80081790(arg0, D_801A6CC0_69ECC0);
+        func_800819A8(arg0, D_801A3E50_69BE50);
     }
 }
 
-void func_80199EF0_691EF0(u16 arg0){
-    if(gButtonPress & gButton_CDown){
-        func_80195F04_68DF04(arg0,2);
-        func_80081790(arg0,D_801A6CC0_69ECC0);
-        func_800819A8(arg0,D_801A3E50_69BE50);
+void func_80199EF0_691EF0(u16 arg0) {
+    if (gButtonPress & gButton_CDown) {
+        func_80195F04_68DF04(arg0, 2);
+        func_80081790(arg0, D_801A6CC0_69ECC0);
+        func_800819A8(arg0, D_801A3E50_69BE50);
     }
 }
 

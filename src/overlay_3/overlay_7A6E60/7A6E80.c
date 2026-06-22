@@ -112,22 +112,22 @@ void func_801B2854_7A8DD4(u16 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2D18_7A9298.s")
 
-void func_801B2DE4_7A9364(u16 actor_index){
-    if(gActors[actor_index].graphicTimer == 0){
+void func_801B2DE4_7A9364(u16 actor_index) {
+    if(gActors[actor_index].graphicTimer == 0) {
         gActors[actor_index].var_154 = 0x50;
     }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B2E2C_7A93AC.s")
 
-void func_801B2EBC_7A943C(u16 actor_index){
-    if(gActors[actor_index].graphicTimer == 0){
+void func_801B2EBC_7A943C(u16 actor_index) {
+    if(gActors[actor_index].graphicTimer == 0) {
         gActors[actor_index].var_154 = 0x60;
     }
 }
 
-void func_801B2F04_7A9484(u16 actor_index){
-    if((gActors[actor_index].graphicTimer == 0)&&(gActors[actor_index].unk_174 == 0)){
+void func_801B2F04_7A9484(u16 actor_index) {
+    if((gActors[actor_index].graphicTimer == 0)&&(gActors[actor_index].unk_174 == 0)) {
         gActors[actor_index].var_154 = 0xE0;
     }
 }
@@ -140,9 +140,9 @@ void func_801B2F04_7A9484(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B3370_7A98F0.s")
 
-void func_801B3480_7A9A00(u16 from, u16 to){
+void func_801B3480_7A9A00(u16 from, u16 to) {
     u16 index;
-    for(index = from; index < to; index++){
+    for(index = from; index < to; index++) {
         gActors[index].flags = 0;
     }
 }
@@ -160,8 +160,8 @@ void func_801B3BC4_7AA144(u16 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B4298_7AA818.s")
 
-void func_801B466C_7AABEC(u16 actor_index, s16* new_list){
-    if(gActors[actor_index].graphicTimer==0){
+void func_801B466C_7AABEC(u16 actor_index, s16* new_list) {
+    if(gActors[actor_index].graphicTimer==0) {
         ACTOR_GFX_INIT(actor_index,new_list);
         gActors[actor_index].var_154 = 0;
         gActors[actor_index].velocityX.raw = 0;

@@ -9,7 +9,7 @@ extern u8 D_80171B19; // set when festival games are won.
 
 // may be a u32[] 
 u32 D_801AF5D0_7958C0[][2]={
-    {0x17D, 0x17C}, {0x1A3, 0x194}, {0x17D, 0x17C}, {0x1C7, 0x17D}, {0x140, 0x16}
+    {0x17D, 0x17C}, {0x1A3, 0x194}, {0x17D, 0x17C}, {0x1C7, 0x17D}, {0x140, 0x16E}
 };
 
 // a graphic list.
@@ -325,7 +325,7 @@ u16 D_801AFB6C_795E5C[]={
 };
 
 u16 D_801AFB84_795E74[]={
-    0x0006, 0xFFFE, 0x0007, 0x7FFFE, 0x0008, 0xFFFE, 
+    0x0006, 0xFFFE, 0x0007, 0xFFFE, 0x0008, 0xFFFE, 
     0x0009, 0xFFFE, 0x0000, 0xFFFE, 0x8FFF, 0
 };
 
@@ -708,11 +708,11 @@ void func_801A740C_78D6FC(s32 arg0, s32 arg1) {
 void func_801A7418_78D708(s32 arg0, s32 arg1) {
 }
 
-u16 func_801A7424_78D714(u16 arg0){
+u16 func_801A7424_78D714(u16 arg0) {
     u16 actor_index;
 
-    actor_index = Actor_RangeFindInactive(0x90,0xb8);
-    if (actor_index != 0){
+    actor_index = Actor_RangeFindInactive(0x90, 0xb8);
+    if (actor_index != 0) {
         gActors[actor_index].actorType = 0x1a01;
         func_8001E2D0(actor_index);
         gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
@@ -722,14 +722,14 @@ u16 func_801A7424_78D714(u16 arg0){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A74A0_78D790.s")
 
-void func_801A76AC_78D99C(u16 arg0){
+void func_801A76AC_78D99C(u16 arg0) {
     u16 actor_index;
     u16 rand;
 
     actor_index = func_801A7424_78D714(arg0);
     if (actor_index != 0) {
         rand = Rand();
-        gActors[actor_index].posX.whole = gActors[arg0].posX.whole + ((rand-0x80)/2);
+        gActors[actor_index].posX.whole = gActors[arg0].posX.whole + ((rand - 0x80) / 2);
         gActors[actor_index].posY.whole = 0x80;
         gActors[actor_index].posZ.whole = gActors[arg0].posZ.whole + 1;
     }
@@ -976,11 +976,12 @@ void func_801AB474_791764(u16 arg0){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AB474_791764.s")
 #endif
+
 // hide the strikes on menu options.
-void func_801AB5B4_7918A4(u16 arg0){
+void func_801AB5B4_7918A4(u16 arg0) {
     u16 index; 
     u16 actor_index;
-    for (index = 0; index < FESTGAME_TOTAL; index++){
+    for (index = 0; index < FESTGAME_TOTAL; index++) {
         actor_index = index+0x40;
         gActors[actor_index].flags &= ~ACTOR_FLAG_DRAW;
     }
@@ -1011,8 +1012,8 @@ void func_801AB610_791900(u16 actor_index){
 #endif
 
 // has the selected event been completed?
-u32 func_801AB6B4_7919A4(u16 actor_index){
-    if(!D_80171B19){
+u32 func_801AB6B4_7919A4(u16 actor_index) {
+    if(!D_80171B19) {
         return gFestivalData.eventsPlayed[gActors[actor_index].unk_170];
     }
     return FALSE;
