@@ -8,7 +8,7 @@ u32 D_801A08E0_742870=0;
 u32 D_801A08E4_742874[31]={0}; // unused?
 
 // graphic indecies of worm segments.
-u16 D_801A0960_7428F0[]={
+u16 sWormSegGraphics[]={
     0x0804, 0x0814, 0x080A, 0x0814, 0x080C, 0x0816, 
     0x080E, 0x0818, 0x0810, 0x081A, 0x0812, 0x0000
 };
@@ -19,7 +19,7 @@ u16 D_801A0978_742908[]={
 };
 
 // actor flags for worm segments.
-u16 D_801A0990_742920[]={
+u16 sWormSegFlags[]={
     ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
     ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
     ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
@@ -32,7 +32,7 @@ f32 D_801A09A8_742938[]={
 };
 
 // size of worm segments.
-f32 D_801A09E8_742978[]={
+f32 sWormSegSizes[]={
     1, 1, 1, 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1
 };
 
@@ -123,9 +123,9 @@ void func_8019BC64_73DBF4(u16 actor_index) {
         gActors[index].actorType = 0x21;
         func_8001E2D0(index);
         gActors[index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-        gActors[index].flags = D_801A0990_742920[var_s2];
-        gActors[index].graphicIndex = D_801A0960_7428F0[var_s2];
-        gActors[index].scaleX = D_801A09E8_742978[var_s2];
+        gActors[index].flags = sWormSegFlags[var_s2];
+        gActors[index].graphicIndex = sWormSegGraphics[var_s2];
+        gActors[index].scaleX = sWormSegSizes[var_s2];
         gActors[index].posX.whole = -0x1000;
         gActors[index].posY.whole = -0x1000;
         gActors[index].health = 1000;
@@ -152,7 +152,7 @@ void func_8019BC64_73DBF4(u16 actor_index) {
 
 
 // copy of Math_ApproachS32.
-s32 func_8019BE98_73DE28(s32 current, s32 target, s32 step) {
+s32 Worm_ApproachS32(s32 current, s32 target, s32 step) {
     if ((current - target) > 0) {
         if (step >= (current - target)) {
             current = target;
@@ -230,7 +230,7 @@ void func_8019D5E4_73F574(u16 actor_index, s32 target, s32 step) {
         target = -target;
     }
     x = target; // needed to match, issue with stack.
-    gActors[actor_index].velocityX.raw = func_8019BE98_73DE28(gActors[actor_index].velocityX.raw, target, step);
+    gActors[actor_index].velocityX.raw = Worm_ApproachS32(gActors[actor_index].velocityX.raw, target, step);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019D64C_73F5DC.s")
@@ -247,11 +247,11 @@ void func_8019E918_7408A8(s32 arg0) {
 }
 
 // set flags for worm segments.
-void func_8019E920_7408B0(u16 actor_index){
+void Worm_SetSegmentFlags(u16 actor_index){
     u16 index;
     u16 jndex;
     for (jndex = actor_index + 1, index = 0; index < 11; jndex++, index++){
-        gActors[jndex].flags = D_801A0990_742920[index];
+        gActors[jndex].flags = sWormSegFlags[index];
     }
 }
 

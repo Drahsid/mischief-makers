@@ -41,6 +41,8 @@ options:
     - symbol_addrs_libultra.txt
     - symbol_addrs_functions.txt
     - symbol_addrs_data.txt
+    - symbol_addrs_ovl0.txt
+    - symbol_addrs_ovl1.txt
     
   reloc_addrs_path:
     - reloc_addrs.txt
