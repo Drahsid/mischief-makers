@@ -44,7 +44,7 @@ typedef struct {
     /* 0x2E */ u16 competitorCount;
     /* 0x30 */ u16 fouls; // "no flying" warnings
     /* 0x32 */ u8 unk_32[6]; // unused?
-    /* 0x38 */ u16 competitorIndecies[4];
+    /* 0x38 */ u16 competitorIndices[4];
     /* 0x40 */ FestivalPlayer competitors[4];
     /* 0x90 */ u16* unk_90;
     /* 0x94 */ u8 eventClearCount;

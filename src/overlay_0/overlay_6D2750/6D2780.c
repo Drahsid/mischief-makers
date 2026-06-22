@@ -66,7 +66,7 @@ void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16
     gActors[actor_index].actorType = actor_type;
     func_8001E2D0(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].graphicIndex = graphic_index;
     gActors[actor_index].posX.whole = pos_x;
@@ -853,7 +853,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
     func_8001E2D0(actor_index);
     if (temp_actor_index) {} // FAKEMATCH
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = 0x2800;
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = pos_y;
@@ -866,7 +866,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
 
 void func_801943E4_6D4A64(u16 arg0) {
     gActors[arg0].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4;
-    gActors[arg0].flags = ACTOR_FLAG_FREEZE_POS |ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[arg0].flags = ACTOR_FLAG_FREEZE_POS |ACTOR_FLAG_ENABLED;
     gActors[arg0].colorA = 0xFF;
     gActors[arg0].posX.whole = -2;
     gActors[arg0].posY.whole = 3;
@@ -938,7 +938,7 @@ void func_8019444C_6D4ACC(u16 actor_index) {
 
 void func_801945EC_6D4C6C(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].colorR = 0xFF;
     gActors[actor_index].colorG = 0xFF;
     gActors[actor_index].colorB = 0xFF;
@@ -1658,7 +1658,7 @@ void func_801987F0_6D8E70(u16 actor_index) {
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[new_actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+        gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].colorA = 0xFF;
         gActors[new_actor_index].scaleX = 1.5f;
         gActors[new_actor_index].scaleY = 1.5f;

@@ -12,6 +12,7 @@ u16 D_801A0960_7428F0[]={
     0x0804, 0x0814, 0x080A, 0x0814, 0x080C, 0x0816, 
     0x080E, 0x0818, 0x0810, 0x081A, 0x0812, 0x0000
 };
+
 // unused?
 u16 D_801A0978_742908[]={
     1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -19,8 +20,10 @@ u16 D_801A0978_742908[]={
 
 // actor flags for worm segments.
 u16 D_801A0990_742920[]={
-    0x2403, 0x0003, 0x0003, 0x0403, 0x0003, 0x0003, 
-    0x0403, 0x0003, 0x0003, 0x0403, 0x0003, 0x0000
+    ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
+    ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
+    ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 
+    ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED, ACTOR_FLAG_ENABLED, 0
 };
 
 f32 D_801A09A8_742938[]={
@@ -35,10 +38,11 @@ f32 D_801A09E8_742978[]={
 
 // unused?
 s16 D_801A0A28_7429B8[]={
-    0, 0x50, 0xFFB0, 0x100, 0, 0xFFB0, 0x50, 
-    0x0100, 0x60, 0x20, 0xFFE0, 0xFFA0, 
-    0x0100, 0, 0xFFA0, 0xFFE0, 0x20, 0x60, 
-    0x0100, 0
+    0, 0x50, 0xFFB0, 0x100,
+    0, 0xFFB0, 0x50, 0x0100, 
+    0x60, 0x20, 0xFFE0, 0xFFA0, 
+    0x0100, 0, 0xFFA0, 0xFFE0,
+    0x20, 0x60, 0x0100, 0
 };
 
 // a graphic list.
@@ -97,47 +101,55 @@ void func_8019BACC_73DA5C(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019BAD4_73DA64.s")
 
 // initalize head and body segments of worm.
-void func_8019BC64_73DBF4(u16 arg0) {
+void func_8019BC64_73DBF4(u16 actor_index) {
     u16 index;
-    u16 jndex;
-    s32 pad[6];
+    u16 var_s2;
+    u16 index2;
+    u16 index3;
+    s32 pad[5];
 
-    gActors[arg0].flags = 2;
-    gActors[arg0].hitboxBY0 = 0x16;
-    gActors[arg0].hitboxBY1 = -8;
-    gActors[arg0].hitboxBX0 = -8;
-    gActors[arg0].hitboxBX1 = 8;
-    gActors[arg0].var_15C = arg0 + 2;
-    gActors[arg0].var_160 = arg0 + 2;
-    gActors[arg0].unk_164 = arg0 + 1;
-    gActors[arg0].health = 150;
-    for (index = arg0 + 1, jndex = 0; jndex < 11; index++, jndex++) {
+    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
+    gActors[actor_index].hitboxBY0 = 0x16;
+    gActors[actor_index].hitboxBY1 = -8;
+    gActors[actor_index].hitboxBX0 = -8;
+    gActors[actor_index].hitboxBX1 = 8;
+    gActors[actor_index].var_15C = actor_index + 2;
+    gActors[actor_index].var_160 = actor_index + 2;
+    gActors[actor_index].unk_164 = actor_index + 1;
+    gActors[actor_index].health = 150;
+
+    index2 = actor_index + 1;
+    for (index = actor_index + 1, var_s2 = 0; var_s2 < 11; index++, var_s2++) {
         gActors[index].actorType = 0x21;
         func_8001E2D0(index);
-        gActors[index].graphicFlags = 0x809;
-        gActors[index].flags = D_801A0990_742920[jndex];
-        gActors[index].graphicIndex = D_801A0960_7428F0[jndex];
-        gActors[index].scaleX = D_801A09E8_742978[jndex];
+        gActors[index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
+        gActors[index].flags = D_801A0990_742920[var_s2];
+        gActors[index].graphicIndex = D_801A0960_7428F0[var_s2];
+        gActors[index].scaleX = D_801A09E8_742978[var_s2];
         gActors[index].posX.whole = -0x1000;
         gActors[index].posY.whole = -0x1000;
         gActors[index].health = 1000;
         gActors[index].colorA = 0xFE;
-        gActors[arg0].unk_18C |= 0x200;
+        gActors[actor_index].unk_18C |= 0x200;
         gActors[index].unk_0CE = 8;
         func_8002AC30(index, 6);
     }
-    gActors[(u16)(arg0 + 1)].graphicFlags |= 4;
-    gActors[(u16)(arg0 + 1)].hitboxBY0 = 0x14;
-    gActors[(u16)(arg0 + 1)].hitboxBY1 = -8;
-    gActors[(u16)(arg0 + 1)].hitboxBX0 = -0xC;
-    gActors[(u16)(arg0 + 1)].hitboxBX1 = 0xC;
-    func_8002AC30(arg0 + 2, 0x10);
+    
+    gActors[index2].graphicFlags |= 4;
+    gActors[index2].hitboxBY0 = 0x14;
+    gActors[index2].hitboxBY1 = -8;
+    gActors[index2].hitboxBX0 = -0xC;
+    gActors[index2].hitboxBX1 = 0xC;
+
+    index3 = actor_index + 2;
+    func_8002AC30(index3, 0x10);
     D_800BE678 = 0x68;
     D_800BE67C = 0xB8;
     D_800BE680 = 0xB8;
     D_800BE684 = 0xD0;
     D_800BE688 = 0xD3;
 }
+
 
 // copy of Math_ApproachS32.
 s32 func_8019BE98_73DE28(s32 current, s32 target, s32 step) {

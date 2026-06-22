@@ -40,7 +40,7 @@ s32 func_8019226C_68A26C(u16 arg0, u16 arg1) {
 void func_801922A0_68A2A0(s32 arg0) {
     gActors[0xC1].actorType = 0xF0A;
     func_8001E2D0(0xC1);
-    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
+    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[0xC1].posX.whole = 0;
@@ -463,7 +463,7 @@ void func_80199F50_691F50(u16 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_8019CCC4_694CC4.s")
 
 func_8019CD94_694D94(u16 arg0){
-    if(D_801A80C2_6A00C2 < (u16)-2){
+    if(D_801A80C2_6A00C2 < 0xFFFE){
         D_801A80C2_6A00C2++;
     }
 }

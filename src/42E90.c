@@ -168,7 +168,7 @@ void func_80042864(u16 actor_index) {
 void func_800429A4(u16 actor_index) {
     gActors[actor_index].state++;
     gActors[actor_index].graphicFlags = 0;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = 0x1CE;
     gActors[actor_index].colorR = 0x80;
     gActors[actor_index].timer_110 = 30.0f;

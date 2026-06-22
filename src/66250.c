@@ -520,16 +520,15 @@ u16 func_8006C9D0(u16 actor_index) {
     return result;
 }
 
-#ifdef NON_MATCHING
-u32 func_8006CA0C(u16 actor_index){
-    u32 result = FALSE;
+u16 func_8006CA0C(u16 actor_index){
+    u16 result = FALSE;
     if(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK6){
         gActors[actor_index].state = 0x250;
         if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED){
-            gActors[actor_index].unk_118 = (f32)FIXED_UNIT(0.5);
+            gActors[actor_index].unk_118 = (f32)FIXED_UNIT(-0.5);
         }
         else{
-            gActors[actor_index].unk_118 = (f32)FIXED_UNIT(-0.5);
+            gActors[actor_index].unk_118 = (f32)FIXED_UNIT(0.5);
         }
         gActors[actor_index].unk_11C = (f32)FIXED_UNIT((1.0/8));
         result = TRUE;
@@ -538,9 +537,6 @@ u32 func_8006CA0C(u16 actor_index){
     result |= func_80069884(actor_index);
     return result;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006CA0C.s")
-#endif
 
 u16 func_8006CAD4(u16 actor_index) {
     u16 result = func_8006C7B8(actor_index);
@@ -812,16 +808,12 @@ void func_800744AC(u16 arg0, u16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800753C4.s")
 
-#ifdef NON_MATCHING 
-void func_80075418(u16 actor_index){
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw,0,FIXED_UNIT((1.0/16)));
-    if(gActors[actor_index].velocityX.raw > FIXED_UNIT(-7.5)){
-        gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.375);
+void func_80075418(u16 actor_index) {
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0 / 16.0));
+    if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-7.5)) {
+        gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.375);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80075418.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80075498.s")
 

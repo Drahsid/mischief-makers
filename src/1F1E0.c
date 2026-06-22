@@ -966,7 +966,7 @@ void GameState_Attract(void) {
         var_v0 = (D_800CA234--) ^ 0x30;
         if (var_v0 == 0) {
             actors_200[0].flags = actors_200[1].flags = actors_200[2].flags = actors_200[3].flags = 
-              (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
+              (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
             gGameStateSubState++;
         }
         break;
