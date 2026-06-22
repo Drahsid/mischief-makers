@@ -73,7 +73,7 @@ void func_8019902C_6C3CFC(u16 actor_index);
 void func_80192100_6BCDD0(u16 actor_index) {
     ACTOR_INIT(actor_index,0x21);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ);
-    gActors[actor_index].flags = (ACTOR_FLAG_ENABLED);
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
 }
 
 void func_8019216C_6BCE3C(u16 actor_index) {
@@ -964,7 +964,7 @@ void func_8019DCB8_6C8988(void) {
 void func_8019DF44_6C8C14(u16 actor_index) {
     ACTOR_INIT(actor_index,0x1D);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ);
-    gActors[actor_index].flags = (ACTOR_FLAG_ENABLED);
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
 }
 
 void func_8019DFB0_6C8C80(s32 arg0) {
@@ -1186,7 +1186,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
 void func_8019EB80_6C9850(u16 actor_index) {
     ACTOR_INIT(actor_index,0x1D);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK8);
-    gActors[actor_index].flags = (ACTOR_FLAG_ENABLED);
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].posZ.whole = 0xA0;
     gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].colorA = 0;

@@ -7405,7 +7405,7 @@ void func_8003E230(u16 actor_index) {
         index = SpawnParticle_List_90C0_16(D_800D271C, gActors[actor_index].unk_170, gActors[actor_index].unk_174, gActors[actor_index].posZ.whole - 2);
         if (index != 0) {
             gActors[index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-            gActors[index].flags = flags + (ACTOR_FLAG_ENABLED);
+            gActors[index].flags = flags + ACTOR_FLAG_ENABLED;
             gActors[index].pfn_17C = func_80030B0C;
             gActors[index].unk_104 = 0x14;
             gActors[index].unk_108 = -4;
@@ -7424,7 +7424,7 @@ void func_8003E230(u16 actor_index) {
         index = SpawnParticle_Image_90C0_16(0x15E, gActors[actor_index].unk_170, gActors[actor_index].unk_174, gActors[actor_index].posZ.whole - 3);
         if (index != 0) {
             gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-            gActors[index].flags = flags + (ACTOR_FLAG_ENABLED);
+            gActors[index].flags = flags + ACTOR_FLAG_ENABLED;
             gActors[index].pfn_17C = func_80030B0C;
             gActors[index].unk_104 = 0x14;
             gActors[index].unk_108 = -4;
@@ -8278,7 +8278,7 @@ u16 func_8004089C(u16 actor_index, u16* arg1) {
 
 s32 func_800409E0(u16 actor_index) {
     if ((gActors[actor_index].health <= 0) || (gActors[actor_index].iFrames > 0) || 
-        ((gActors[actor_index].flags & (ACTOR_FLAG_ENABLED)) != (ACTOR_FLAG_ENABLED)) ||
+        ((gActors[actor_index].flags & ACTOR_FLAG_ENABLED) != ACTOR_FLAG_ENABLED) ||
         (gActors[actor_index].state < 0x51)) {
         return TRUE;
     }
@@ -8421,7 +8421,7 @@ void func_80041018(u16 actor_index) {
 }
 
 s32 func_8004151C(u16 actor0, u16 actor1) {
-    if (((gActors[actor1].flags & (ACTOR_FLAG_ENABLED)) == (ACTOR_FLAG_ENABLED)) && (gActors[actor1].health != 0)) {
+    if (((gActors[actor1].flags & ACTOR_FLAG_ENABLED) == ACTOR_FLAG_ENABLED) && (gActors[actor1].health != 0)) {
         if ((gActors[actor0].posX.whole + 8 >= (gActors[actor1].hitboxBX0 + gActors[actor1].posX.whole) && 
             (gActors[actor1].posX.whole + gActors[actor1].hitboxBX1) >= (gActors[actor0].posX.whole - 8) && 
             (gActors[actor1].posY.whole + gActors[actor1].hitboxBY0) >= (gActors[actor0].posY.whole - 8) && 

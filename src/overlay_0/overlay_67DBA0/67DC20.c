@@ -140,7 +140,7 @@ void func_801928A8_67E3C8(s32 arg0) {
 
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[actor_index].flags = (ACTOR_FLAG_ENABLED);
+        gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[actor_index].graphicIndex = GRAPHIC_FRAME(BOOM1,3);
         gActors[actor_index].colorA = 0xC0;
         gActors[actor_index].colorR = 0x40;
@@ -786,7 +786,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
         case 0:
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
-            gActors[actor_index].flags = (ACTOR_FLAG_ENABLED);
+            gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
             ACTOR_GFX_INIT(actor_index, gGraphicListGem);
             gActors[actor_index].palette_18C = D_800D8A98;
             gActors[actor_index].scaleX = 4.0f;
