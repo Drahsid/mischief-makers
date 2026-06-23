@@ -64,7 +64,7 @@ u16 D_801BC9F0_7DF8C0[] = {
 };
 
 // warp gate coords in "Rescue! Act 1"
-u32 D_801BC9F8_7DF8C8[] = {
+u16 D_801BC9F8_7DF8C8[] = {
     0x16D0, 0x2CC, 0,0
 };
 
@@ -2169,7 +2169,7 @@ void func_801BBEBC_7DED8C(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BEAAC_7E197C);
             func_801BBCBC_7DEB8C();
-            gActors[0x40].unk_0D8 |= 8;
+            gActors[0x40].var_0D8 |= 8;
             if (D_800D2928 == 0) {
                 Sound_PlayMusic(BGM_OUT);
             }
@@ -2188,8 +2188,8 @@ void func_801BBEBC_7DED8C(void) {
                 func_80045F14(D_801BE204_7E10D4);
                 D_800D28FC &= ~2;
                 func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
-                gActors[0x30].unk_0D8 &= ~1;
-                gActors[0x40].unk_0D8 &= ~1;
+                gActors[0x30].var_0D8 &= ~1;
+                gActors[0x40].var_0D8 &= ~1;
                 D_800BE544 = 0x8000;
             }
             break;

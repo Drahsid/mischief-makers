@@ -39,8 +39,7 @@ typedef enum {
     CLANPOT_NEW_D8 = (1 << 12), // use arg in Clanpot_AddItem if set, otherwise store actor field at offset 0xD8.
     CLANPOT_NEW_110 = (1 << 13), // use arg in Clanpot_AddItem if set, otherwise store actor field at offset 0x110. 
     CLANPOT_FLAG14 = (1 << 14), // unknown.
-    CLANPOT_NEWITEM = (1U << 15U), // Don't use old index when retiveing, use the first available from 16-45 
+    CLANPOT_NEWITEM = (1U << 15U) // Don't use old index when retiveing, use the first available from 16-45 
 } ClanpotFlags;
 
 #endif
-1<9

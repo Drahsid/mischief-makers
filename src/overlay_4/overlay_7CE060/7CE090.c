@@ -1835,13 +1835,14 @@ void func_801BB0F0_7CF880(void) {
         gLookatEyeZ = 640.0f;
     }
 
-    gActors[0x30].warpGate_coords = D_801BEBAC_7D333C;
-    gActors[0x31].warpGate_coords = D_801BEBB4_7D3344;
-    gActors[0x32].warpGate_coords = D_801BEBBC_7D334C;
-    gActors[0x33].warpGate_coords = D_801BEBC4_7D3354;
-    gActors[0x36].warpGate_coords = D_801BEBCC_7D335C;
-    gActors[0x35].warpGate_coords = D_801BEBCC_7D335C;
-    gActors[0x34].warpGate_coords = D_801BEBCC_7D335C;
+    // set coordinates for warp gates (casting required to match)
+    gActors[0x30].unk_190 = (s32)D_801BEBAC_7D333C;
+    gActors[0x31].unk_190 = (s32)D_801BEBB4_7D3344;
+    gActors[0x32].unk_190 = (s32)D_801BEBBC_7D334C;
+    gActors[0x33].unk_190 = (s32)D_801BEBC4_7D3354;
+    gActors[0x36].unk_190 = (s32)D_801BEBCC_7D335C;
+    gActors[0x35].unk_190 = (s32)D_801BEBCC_7D335C;
+    gActors[0x34].unk_190 = (s32)D_801BEBCC_7D335C;
 
     switch (gStageCinemaState) {
         case 0:
@@ -1909,7 +1910,7 @@ void func_801BB360_7CFAF0(void) {
                 gActorDepthBack = temp;
                 gActors[0x64].state = 0x80;
                 D_800D28FC |= 2;
-                gActors[0x62].timer_110 = 1.0f;
+                gActors[0x62].var_110 = 1.0f;
             }
             else {
                 Sound_PlaySfx(0x5E);
@@ -2113,7 +2114,7 @@ void func_801BB360_7CFAF0(void) {
             D_800D28FC |= 2;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
-            gActors[0x62].timer_110 = 1.0f;
+            gActors[0x62].var_110 = 1.0f;
             Sound_PlaySfx(0x5E);
             break;
 

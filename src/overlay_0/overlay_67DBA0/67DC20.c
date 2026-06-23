@@ -147,7 +147,7 @@ void func_801928A8_67E3C8(s32 arg0) {
         gActors[actor_index].velocityZ.raw = FIXED_UNIT(2);
         gActors[actor_index].velocityY.raw = FIXED_UNIT(-4.0);
         gActors[actor_index].var_154 = -0xE;
-        gActors[actor_index].timer_110 = 1.0f;
+        gActors[actor_index].var_110 = 1.0f;
         gActors[actor_index].unk_114 = D_8019DD9C_6898BC;
     }
 }
@@ -570,7 +570,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
             return 1;
         }
         gActors[index].state = 0x30;
-        gActors[index].timer_110 = 50.0f;
+        gActors[index].var_110 = 50.0f;
         func_80193DF0_67F910(index, 0);
         gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
         gActors[0].unk_0FC.raw = FIXED_UNIT(-2.0);
@@ -587,7 +587,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 }
 
 void func_80194E64_680984(u16 actor_index, u16 arg1) {
-    gActors[actor_index].timer_110 =
+    gActors[actor_index].var_110 =
         (f32)(arg1 + (gActors[actor_index].health / 30) - (Rand() & 0x2F) + 0x14);
 }
 
@@ -659,7 +659,7 @@ void func_80198708_684228(u16 actor_index) {
         gActors[new_actor_index].colorA = 0x80;
         gActors[new_actor_index].var_154 = -0x21;
         gActors[new_actor_index].unk_178 = (s32)D_800E0648;
-        gActors[new_actor_index].timer_110 = 0.5f;
+        gActors[new_actor_index].var_110 = 0.5f;
         gActors[new_actor_index].unk_114 = 0.5f;
         gActors[new_actor_index].scaleY = gActors[new_actor_index].scaleX;
         if (Rand() & 1) {

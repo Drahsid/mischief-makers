@@ -89,7 +89,7 @@ DEFAULT_INT Actor_Initialize(u16 actor_index) {
     gActors[actor_index].unk_104 =
     gActors[actor_index].unk_108 =
     gActors[actor_index].unk_10C =
-    gActors[actor_index].timer_110 =
+    gActors[actor_index].var_110 =
     gActors[actor_index].unk_114 =
     gActors[actor_index].unk_118 =
     gActors[actor_index].unk_11C =

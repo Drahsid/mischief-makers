@@ -109,7 +109,7 @@ RedGems_Clamp = 0x8002F6AC; // type:func
 ActorUpdate_GemRing = 0x8002F6D4; // type:func
 GemCollect = 0x8002F93C; // type:func
 GemCollect_Actor = 0x8002FC30; // type:func
-GemCollect_Static = 0x8002FCD8; // type:func
+GemCollect_Static = 0x8002FD48; // type:func
 ActorUpdate_GemIcon = 0x8002FEF8; // type:func
 ActorUpdate_Gem = 0x800303A8; // type:func
 ActorUpdate_Gem61 = 0x80030964; // type:func
@@ -145,7 +145,7 @@ Clanpot_MoveItems = 0x800352C0; // type:func
 Clanpot_SpawnNow = 0x80035394; // type:func
 Clanpot_TakeItem = 0x80035524; // type:func
 Clanpot_SetHitboxA = 0x80035824; // type:func
-Clanpot_SetHitboxB = 0x80035824; // type:func
+Clanpot_SetHitboxB = 0x80035878; // type:func
 ClanpotIcon_State1 = 0x80035A20; // type:func
 ActorUpdate_ClanpotMenu = 0x80035E90; // type:func
 Clanpot_SpawnMenu = 0x800366E4; // type:func
@@ -198,7 +198,7 @@ Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
-ActorUpdate_Type3 = 0x8007CDD0; // type:func
+ActorUpdate_Type3 = 0x8007CCD0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
 
 

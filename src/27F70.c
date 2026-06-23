@@ -2018,7 +2018,7 @@ void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16
     gActors[actor_index].unk_178 = 0x200;
 }
 
-void ActorUpdate_Type30(s32 arg0) {
+void ActorUpdate_Type30(u16 arg0) {
 }
 
 void func_8002C6E4(u16 actor_index) {
@@ -2148,61 +2148,61 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     u8 angle;
     s32 pad;
 
-    gActors[actor_index].timer_110 = 0.0f;
+    gActors[actor_index].var_110 = 0.0f;
     switch (gActors[actor_index].graphicIndex) {
     default:
         gActors[actor_index].flags = 0;
         return;
     case 0x302E:
-        gActors[actor_index].unk_0D8 = 0;
+        gActors[actor_index].var_0D8 = 0;
         break;
     case 0x300E:
-        gActors[actor_index].unk_0D8 = 2;
+        gActors[actor_index].var_0D8 = 2;
         if (gActors[actor_index].palette_18C == D_800DCE7C) {
-            gActors[actor_index].unk_0D8 = 6;
+            gActors[actor_index].var_0D8 = 6;
         }
         else if (gActors[actor_index].palette_18C == D_800DD07C) {
-            gActors[actor_index].unk_0D8 = 0xA;
+            gActors[actor_index].var_0D8 = 0xA;
         }
         else if (gActors[actor_index].palette_18C == D_800DD27C) {
-            gActors[actor_index].unk_0D8 = 0xE;
+            gActors[actor_index].var_0D8 = 0xE;
         }
         break;
     case 0x3010:
-        gActors[actor_index].unk_0D8 = 4;
+        gActors[actor_index].var_0D8 = 4;
         if (gActors[actor_index].palette_18C == D_800DCE7C) {
-            gActors[actor_index].unk_0D8 = 8;
+            gActors[actor_index].var_0D8 = 8;
         }
         else if (gActors[actor_index].palette_18C == D_800DD07C) {
-            gActors[actor_index].unk_0D8 = 0xC;
+            gActors[actor_index].var_0D8 = 0xC;
         }
         else if (gActors[actor_index].palette_18C == D_800DD27C) {
-            gActors[actor_index].unk_0D8 = 0x10;
+            gActors[actor_index].var_0D8 = 0x10;
         }
         break;
     case 0x304C:
     case 0x304E:
-        gActors[actor_index].unk_0D8 = 0x12;
+        gActors[actor_index].var_0D8 = 0x12;
         break;
     case 0x3004:
-        gActors[actor_index].unk_0D8 = 0x14;
+        gActors[actor_index].var_0D8 = 0x14;
         break;
     case 0x3006:
-        gActors[actor_index].unk_0D8 = 0x16;
+        gActors[actor_index].var_0D8 = 0x16;
         break;
     case 0x3012:
-        gActors[actor_index].unk_0D8 = 0x18;
+        gActors[actor_index].var_0D8 = 0x18;
         break;
     case 0x305C:
     case 0x305E:
     case 0x3060:
-        gActors[actor_index].unk_0D8 = 0x1A;
+        gActors[actor_index].var_0D8 = 0x1A;
         break;
     case 0x306E:
-        gActors[actor_index].unk_0D8 = 0x1C;
+        gActors[actor_index].var_0D8 = 0x1C;
         break;
     case 0x246:
-        gActors[actor_index].unk_0D8 = 0x1E;
+        gActors[actor_index].var_0D8 = 0x1E;
         break;
     }
     gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_7;
@@ -2271,7 +2271,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     gActors[actor_index].unk_0DF = 0;
     gActors[actor_index].unk_0DB = 0xB; \
     gActors[actor_index].unk_0DA = 0x84;
-    gActors[actor_index].timer_110 = 8.0f;
+    gActors[actor_index].var_110 = 8.0f;
     gActors[actor_index].velocityX.raw = 0;
     gActors[actor_index].velocityY.raw = 0;
     index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x11);
@@ -2283,7 +2283,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
         gActors[index].var_154 = -15;
         gActors[index].scaleX = 1.0f;
         gActors[index].scaleY = 1.0f;
-        gActors[index].timer_110 = 0.25f;
+        gActors[index].var_110 = 0.25f;
         gActors[index].unk_114 = 0.25f;
         Actor_SetColorRgb(index, 0x7F);
     }
@@ -2296,7 +2296,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
         gActors[index].unk_104 = 0x1E;
         gActors[index].scaleX = 1.5f;
         gActors[index].scaleY = 1.5f;
-        gActors[index].timer_110 = 0.04f;
+        gActors[index].var_110 = 0.04f;
         gActors[index].unk_114 = 0.04f;
     }
     func_8003F9E0(3.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0x10);
@@ -2308,8 +2308,8 @@ void ActorUpdate_Type1(u16 actor_index) {
     gActors[actor_index].hitboxAY1 -= 2;
     gActors[actor_index].hitboxAX0 -= 2;
     gActors[actor_index].hitboxAX1 += 2;
-    if (gActors[actor_index].timer_110 != 0.0f) {
-        gActors[actor_index].timer_110 -= 1.0f;
+    if (gActors[actor_index].var_110 != 0.0f) {
+        gActors[actor_index].var_110 -= 1.0f;
     }
     else {
         gActors[actor_index].flags = 0;
@@ -2407,7 +2407,7 @@ void func_8002D670(u16 actor_index) {
         gActors[actor_index].damage = 0;
         func_8002ABE4(actor_index, 4);
         func_8002AC30(actor_index, 2);
-        gActors[actor_index].unk_114 = gActors[actor_index].timer_110 + (0, 16.0f); // fakematch
+        gActors[actor_index].unk_114 = gActors[actor_index].var_110 + (0, 16.0f); // fakematch
         gActors[actor_index].palette_18C =  D_800D8A98;
         /* fallthrough */
     case 1:
@@ -2637,7 +2637,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK10 | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_ACTIVE;
-    gActors[actor_index].unk_0D8 = arg1;
+    gActors[actor_index].var_0D8 = arg1;
     ACTOR_GFX_INIT(actor_index, D_800D2284);
     gActors[actor_index].colorA = 0xC0;
     gActors[actor_index].unk_0DF = 0x20;
@@ -2689,7 +2689,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
         gActors[index].scaleX = 0.22f;
         gActors[index].scaleY = 1.56f;
         gActors[index].unk_164 = -4;
-        gActors[index].timer_110 = 0.11f;
+        gActors[index].var_110 = 0.11f;
         gActors[index].unk_114 = -0.156f;
         gActors[index].unk_118 = -0.0077f;
         gActors[index].unk_11C = 0.0065f;
@@ -2838,7 +2838,7 @@ u16 SpawnGemActor(u16 actor_index, u16 flags, u16 unused_arg2) {
         gActors[index].actorType = ACTORTYPE_GEM;
         Actor_Initialize(index);
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[index].timer_110 = flags;
+        gActors[index].var_110 = flags;
         gActors[index].posX.whole = gActors[actor_index].posX.whole;
         gActors[index].posY.whole = gActors[actor_index].posY.whole;
         if (flags & GEMFLAG_BOUNCE) {
@@ -2970,7 +2970,7 @@ void ActorUpdate_GemRing(u16 actor_index) {
         gActors[actor_index].unk_12C -= 1.0f;
         if (gActors[actor_index].unk_12C <= 0.0f) {
             gActors[actor_index].flags = 0;
-            gRedGems += gActors[actor_index].                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
+            gRedGems += gActors[actor_index].var_154;
             RedGems_Clamp();
             SpawnParticle_RingSparkle(actor_index, 0, 2.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 8);
             Sound_PlaySfx(0x57);
@@ -3099,7 +3099,7 @@ s32 GemCollect_Static(u16 actor_index) {
 void ActorUpdate_GemIcon(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-        gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].timer_110) & 3];
+        gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].var_110) & 3];
         func_800358DC(actor_index);
     }
     else {
@@ -3114,7 +3114,7 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-        gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].timer_110];
+        gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].var_110];
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
         /* fallthrough */
@@ -3161,12 +3161,12 @@ void ActorUpdate_Gem(u16 actor_index) {
         gActors[actor_index].colorA = 0xFE;
         func_8002ABE4(actor_index, 6);
         func_8002AC30(actor_index, 8);
-        gActors[actor_index].var_154 = (u16)gActors[actor_index].timer_110 & 0xF;
+        gActors[actor_index].var_154 = (u16)gActors[actor_index].var_110 & 0xF;
         gActors[actor_index].palette_18C = D_800D1958[gActors[actor_index].var_154];
         if (gActors[actor_index].var_150 == 0) {
             gActors[actor_index].var_150 = 120;
         }
-        if ((u16)gActors[actor_index].timer_110 & GEMFLAG_GLIMMER) {
+        if ((u16)gActors[actor_index].var_110 & GEMFLAG_GLIMMER) {
             gActors[actor_index].unk_134 = 40.0f;
         }
         else {
@@ -3184,7 +3184,7 @@ void ActorUpdate_Gem(u16 actor_index) {
         else if (GemCollect_Actor(actor_index) == 0) {
             return;
         }
-        if ((u16)gActors[actor_index].timer_110 & GEMFLAG_BOUNCE) {
+        if ((u16)gActors[actor_index].var_110 & GEMFLAG_BOUNCE) {
             if ((D_800D28E4 >= 0xA) && (D_800D28E4 < 0x15) && (gActors[actor_index].posY.whole < -0x50) && 
                 (D_800D28E4 != 0x13) && (D_800D28E4 != 0x12) && (D_800D28E4 != 0x11)) {
                 gActors[actor_index].flags = 0;
@@ -3219,7 +3219,7 @@ void ActorUpdate_Gem(u16 actor_index) {
         else {
             gActors[actor_index].posZ.raw = FIXED_UNIT(-6.0);
         }
-        if ((u16)gActors[actor_index].timer_110 & GEMFLAG_FINITE) {
+        if ((u16)gActors[actor_index].var_110 & GEMFLAG_FINITE) {
             gActors[actor_index].var_150--;
             if (gActors[actor_index].var_150 < 0) {
                 if (gActors[actor_index].colorA < 6) {
@@ -3314,8 +3314,8 @@ void func_80030D9C(u16 actor_index) {
     if (velocity_x < 0) {
         velocity_x = -velocity_x;
     }
-    if (velocity_x < FIXED_UNIT(1.5)) {
-        velocity_x = FIXED_UNIT(1.5);
+    if (velocity_x < FIXED_UNIT(24)) {
+        velocity_x = FIXED_UNIT(24);
     }
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].var_160 += velocity_x;
@@ -3335,7 +3335,7 @@ void func_80030E58(u16 actor_index) {
         if (index != 0) {
             gActors[index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-            gActors[index].timer_110 = -0.06f;
+            gActors[index].var_110 = -0.06f;
             gActors[index].unk_114 = -0.06f;
             gActors[index].velocityX.raw = -gActors[actor_index].velocityX.raw / 2;
             gActors[index].velocityY.raw = -gActors[actor_index].velocityY.raw / 2;
@@ -3569,9 +3569,9 @@ void ActorUpdate_Particle(u16 actor_index) {
         if (gActors[actor_index].colorA == 0xFF) {
             gActors[actor_index].colorA = 0xFE;
         }
-        gActors[actor_index].timer_110 += gActors[actor_index].unk_118;
+        gActors[actor_index].var_110 += gActors[actor_index].unk_118;
         gActors[actor_index].unk_114 += gActors[actor_index].unk_11C;
-        gActors[actor_index].scaleX += gActors[actor_index].timer_110;
+        gActors[actor_index].scaleX += gActors[actor_index].var_110;
         gActors[actor_index].scaleY += gActors[actor_index].unk_114;
         gActors[actor_index].var_160 += gActors[actor_index].var_150;
     }
@@ -3723,7 +3723,7 @@ u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u1
         gActors[actor_index].unk_108 = arg10;
         gActors[actor_index].unk_120 = arg17;
         gActors[actor_index].unk_124 = arg18;
-        gActors[actor_index].timer_110 = arg21;
+        gActors[actor_index].var_110 = arg21;
         gActors[actor_index].unk_114 = arg22;
         gActors[actor_index].var_158 = arg24;
     }
@@ -3794,7 +3794,7 @@ void func_800320F8(u16 actor_index) {
         gActors[actor_index].posY.whole = gActors[actor_130].posY.whole + (gActors[actor_index].unk_108 * gActors[actor_130].scaleY);
         gActors[actor_index].hitboxAX0 = Math_ApproachS32(gActors[actor_index].hitboxAX0, gActors[actor_index].unk_128, gActors[actor_index].unk_118);
         gActors[actor_index].hitboxAX1 = Math_ApproachS32(gActors[actor_index].hitboxAX1, gActors[actor_index].unk_12C, gActors[actor_index].unk_11C);
-        gActors[actor_index].hitboxAY0 = Math_ApproachS32(gActors[actor_index].hitboxAY0, gActors[actor_index].unk_120, gActors[actor_index].timer_110);
+        gActors[actor_index].hitboxAY0 = Math_ApproachS32(gActors[actor_index].hitboxAY0, gActors[actor_index].unk_120, gActors[actor_index].var_110);
         gActors[actor_index].hitboxAY1 = Math_ApproachS32(gActors[actor_index].hitboxAY1, gActors[actor_index].unk_124, gActors[actor_index].unk_114);
         gActors[actor_index].hitboxBY0 = gActors[actor_index].hitboxAY0;
         gActors[actor_index].hitboxBY1 = gActors[actor_index].hitboxAY1;
@@ -3824,7 +3824,7 @@ u16 func_800327B4(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u1
         gActors[actor_index].health = 1;
         gActors[actor_index].unk_118 = arg9;
         gActors[actor_index].unk_11C = arg10;
-        gActors[actor_index].timer_110 = arg11;
+        gActors[actor_index].var_110 = arg11;
         gActors[actor_index].unk_114 = arg12;
         gActors[actor_index].var_154 = arg7;
         gActors[actor_index].var_158 = arg8;
@@ -3877,7 +3877,7 @@ void func_80032900(u16 actor_index) {
             gActors[actor_index].hitboxBX1 = gActors[actor_index].unk_11C * gActors[actor_t9].scaleX;
         }
         gActors[actor_index].posY.whole = gActors[actor_t9].posY.whole + (gActors[actor_index].var_158 * gActors[actor_t9].scaleY);
-        gActors[actor_index].hitboxBY0 = gActors[actor_index].timer_110 * gActors[actor_t9].scaleY;
+        gActors[actor_index].hitboxBY0 = gActors[actor_index].var_110 * gActors[actor_t9].scaleY;
         gActors[actor_index].hitboxBY1 = gActors[actor_index].unk_114 * gActors[actor_t9].scaleY;
         gActors[actor_index].posZ.raw = gActors[actor_t9].posZ.raw + gActors[actor_index].var_15C;
     }
@@ -4097,7 +4097,7 @@ void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
         gActors[actor_index].unk_164 = -1;
         gActors[actor_index].scaleX = 1.2f;
         gActors[actor_index].scaleY = 1.2f;
-        gActors[actor_index].timer_110 = -0.02f;
+        gActors[actor_index].var_110 = -0.02f;
         gActors[actor_index].unk_114 = -0.02f;
         temp = Rand();
         gActors[actor_index].velocityX.raw = FIXED_UNIT(1.875) - ((temp & 0xF) << 0xE);
@@ -4163,7 +4163,7 @@ void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3) {
             gActors[actor_index].posY.raw = pos_y;
             gActors[actor_index].posZ.raw = pos_z;
             gActors[actor_index].colorA = 0xA0;
-            gActors[actor_index].timer_110 = 32.0f;
+            gActors[actor_index].var_110 = 32.0f;
             Actor_SetColorRgb(actor_index, 0x5F);
             gActors[actor_index].scaleX = 0.15f;
             gActors[actor_index].scaleY = 0.05f;
@@ -4173,8 +4173,8 @@ void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3) {
 
 void func_80033B54(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
-        gActors[actor_index].timer_110 -= 1.0f;
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        gActors[actor_index].var_110 -= 1.0f;
+        if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].flags = 0;
         }
         else if (func_80012C04(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole) & 0x7F) {
@@ -4256,7 +4256,7 @@ void func_80033E7C(s32 arg0, s16 x, s16 y, s16 z, s32 velocity, u32 pos_scale, u
             gActors[actor_index].colorA = 0xD0;
             gActors[actor_index].scaleX = 0.2f;
             gActors[actor_index].scaleY = 0.2f;
-            gActors[actor_index].timer_110 = -0.01f;
+            gActors[actor_index].var_110 = -0.01f;
             gActors[actor_index].unk_114 = -0.01f;
             gActors[actor_index].unk_148 = 16.0f;
             temp_a0 = Rand();
@@ -4300,7 +4300,7 @@ void func_800340CC(u16 actor_index, s16 arg1, u16 arg2) {
             gActors[index].scaleY = -1.0f;
             gActors[index].var_154 = -0xA;
             gActors[index].palette_18C = PALETTE_8022D548;
-            gActors[index].timer_110 = 0.1f;
+            gActors[index].var_110 = 0.1f;
             gActors[index].unk_114 = 0.1f;
         }
         pos_z++;
@@ -4314,7 +4314,7 @@ void func_800340CC(u16 actor_index, s16 arg1, u16 arg2) {
             gActors[index].unk_164 = -4;
             gActors[index].palette_18C = PALETTE_8022D548;
             gActors[index].var_150 = 0x800000;
-            gActors[index].timer_110 = -0.02f;
+            gActors[index].var_110 = -0.02f;
             gActors[index].unk_114 = -0.02f;
         }
         break;
@@ -4326,7 +4326,7 @@ void func_800340CC(u16 actor_index, s16 arg1, u16 arg2) {
             gActors[index].scaleY = 0.4f;
             gActors[index].colorA = 0xF0;
             gActors[index].var_154 = -4;
-            gActors[index].timer_110 = 0.03f;
+            gActors[index].var_110 = 0.03f;
             gActors[index].unk_114 = 0.03f;
         }
         angle = Rand();
@@ -4338,7 +4338,7 @@ void func_800340CC(u16 actor_index, s16 arg1, u16 arg2) {
                 gActors[index].scaleY = 0.8f;
                 gActors[index].unk_148 = 16.0f;
                 gActors[index].colorA = 0xE0;
-                gActors[index].timer_110 = -0.02f;
+                gActors[index].var_110 = -0.02f;
                 gActors[index].unk_114 = -0.02f;
                 angle &= 0x3F0;
                 velocity_x = COS(angle) * 245760.0f;
@@ -4370,7 +4370,7 @@ void func_80034644(u16 actor_index) {
         gActors[index].var_160 = (temp_v0 & 7) << 21;
         gActors[index].var_150 = 0x01000000;
         gActors[index].var_154 = -0x40;
-        gActors[index].timer_110 = 0.5f;
+        gActors[index].var_110 = 0.5f;
         gActors[index].unk_114 = 0.3f;
         gActors[index].unk_148 = 2.0f;
     }
@@ -4381,7 +4381,7 @@ void func_80034644(u16 actor_index) {
         Actor_SetColorRgb(index, 0x7F);
         gActors[index].colorA = 0xC0;
         gActors[index].var_154 = -0x20;
-        gActors[index].timer_110 = 0.5f;
+        gActors[index].var_110 = 0.5f;
         gActors[index].unk_114 = 0.5f;
         gActors[index].scaleX = 2.0f;
         gActors[index].scaleY = 2.0f;
@@ -4526,12 +4526,12 @@ void Clanpot_InitItems(u16 actor_index, u16* vals, u16 unused_a2) {
 // add item to Clanpot.
 // @param item_index index of item to add.
 // @param flags flags on properties to add
-// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
-// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @param pot_index index of Clanpot.
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon, u16 pot_index) {
+s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon, u16 pot_index) {
     u16 index;
     u16 actor_v0;
 
@@ -4549,7 +4549,7 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 ico
             gActors[actor_v0].scaleX = 1.5f;
             gActors[actor_v0].scaleY = 1.5f;
             gActors[actor_v0].var_154 = -8;
-            gActors[actor_v0].timer_110 = -0.05f;
+            gActors[actor_v0].var_110 = -0.05f;
             gActors[actor_v0].unk_114 = -0.05f;
             gActors[actor_v0].var_15C = -0x4000;
             gActors[actor_v0].velocityX.raw = D_800D229C[index];
@@ -4565,16 +4565,16 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 ico
     gActors[pot_index].unk_170 -= 5;
     gClanpotItems[gActors[pot_index].unk_170] = item_index + flags;
     if (flags & CLANPOT_NEW_110) {
-        gClanpotItems[gActors[pot_index].unk_170 + 1] = unk_110;
+        gClanpotItems[gActors[pot_index].unk_170 + 1] = var_110;
     }
     else {
-        gClanpotItems[gActors[pot_index].unk_170 + 1] = (u16) gActors[item_index].timer_110;
+        gClanpotItems[gActors[pot_index].unk_170 + 1] = (u16) gActors[item_index].var_110;
     }
     if (flags & CLANPOT_NEW_D8) {
-        gClanpotItems[gActors[pot_index].unk_170 + 2] = unk_0d8;
+        gClanpotItems[gActors[pot_index].unk_170 + 2] = var_0D8;
     }
     else {
-        gClanpotItems[gActors[pot_index].unk_170 + 2] = gActors[item_index].unk_0D8;
+        gClanpotItems[gActors[pot_index].unk_170 + 2] = gActors[item_index].var_0D8;
     }
     gClanpotItems[gActors[pot_index].unk_170 + 3] = gActors[item_index].actorType;
     gClanpotItems[gActors[pot_index].unk_170 + 4] = icon;
@@ -4584,18 +4584,18 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 ico
 // add item to Clanpot with check for valid collision.
 // @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
-// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
+s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
     u16 index;
 
     // check if hit from below by clanpot
     index = gActors[item_index].unk_0CC & 0xFF;
     if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
         if ((gActors[item_index].flags_098 & ACTOR_FLAG3_UNK5) && (gActors[index].actorType == ACTORTYPE_CLANPOT)) {
-            return Clanpot_AddItem(item_index, flags, unk_110, unk_0d8, icon, index);
+            return Clanpot_AddItem(item_index, flags, var_110, var_0D8, icon, index);
         }
     }
     return -1;
@@ -4603,35 +4603,35 @@ s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u1
 // add item to Clanpot with check for valid collision.
 // @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
-// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8) {
-    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, 0);
+s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 var_110, u16 var_0D8) {
+    return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, 0);
 }
 
 // add item to Clanpot with check for valid collision.
 // unused. Identical to used version.
 // @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
-// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
-    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, icon);
+s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
+    return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, icon);
 }
 
 // add item to Clanpot with check for valid collision.
 // @param item_index index of item to add.
 // Identical to unused version.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param unk_110 overrides item's timer_110 if (flags & 0x2000)
-// @param unk_0d8 overrides item's unk_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if pot is "full."
-s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 unk_110, u16 unk_0d8, u16 icon) {
-    return Clanpot_AddItemCheck(item_index, flags, unk_110, unk_0d8, icon);
+s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
+    return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, icon);
 }
 
 //move items in clanpot.
@@ -4671,8 +4671,8 @@ u16 Clanpot_SpawnNow(u16 actor_index) {
 
     gActors[index].actorType = gActors[actor_index].unk_180;
     Actor_Initialize(index);
-    gActors[index].timer_110 = gActors[actor_index].unk_178;
-    gActors[index].unk_0D8 = gActors[actor_index].unk_17C;
+    gActors[index].var_110 = gActors[actor_index].unk_178;
+    gActors[index].var_0D8 = gActors[actor_index].unk_17C;
     gActors[index].posX.whole = gActors[gActors[actor_index].var_150].posX.whole;
     gActors[index].posY.whole = gActors[gActors[actor_index].var_150].posY.whole + 16;
     gActors[index].posZ.whole = gActors[gActors[actor_index].var_150].posZ.whole;
@@ -4722,8 +4722,8 @@ u16 Clanpot_TakeItem(u16 pot_index, u16 actor_index0) {
         }
         gActors[actor_index1].actorType = gClanpotItems[gActors[pot_index].unk_170 + 3];
         Actor_Initialize(actor_index1);
-        gActors[actor_index1].timer_110 = gClanpotItems[gActors[pot_index].unk_170 + 1];
-        gActors[actor_index1].unk_0D8 = gClanpotItems[gActors[pot_index].unk_170 + 2];
+        gActors[actor_index1].var_110 = gClanpotItems[gActors[pot_index].unk_170 + 1];
+        gActors[actor_index1].var_0D8 = gClanpotItems[gActors[pot_index].unk_170 + 2];
     }
     else {
         actor_index1 = gClanpotItems[gActors[pot_index].unk_170] & CLANPOT_INDEXMASK;
@@ -4817,7 +4817,7 @@ void ClanpotIcon_State1(u16 actor_index) {
     case 1:
         if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == ACTORTYPE_CLANPOTMIX)) {
             gActors[actor_index].colorA = gActors[index].colorA * 2;
-            gActors[actor_index].unk_104 = gActors[actor_index].unk_104 - (gActors[index].unk_170 / 0x1000);
+            gActors[actor_index].unk_104 = gActors[actor_index].unk_104 - (gActors[index].unk_170 / 0x10000);
             gActors[actor_index].unk_10C = COS(gActors[actor_index].unk_104) * gActors[index].unk_16C;
             gActors[actor_index].posY.raw = (SIN(gActors[actor_index].unk_104) * gActors[index].unk_16C) + gActors[index].posY.raw;
             if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
@@ -4881,8 +4881,8 @@ u16 func_80035D34(u16 actor_index) {
             vals = &gClanpotItems[index];
             gActors[actor1].actorType = vals[4];
             Actor_Initialize(actor1);
-            gActors[actor1].timer_110 = vals[1];
-            gActors[actor1].unk_0D8 = vals[2];
+            gActors[actor1].var_110 = vals[1];
+            gActors[actor1].var_0D8 = vals[2];
         }
         gActors[actor1].unk_0F8.raw = actor_index;
         gActors[actor1].unk_0CE = 1;
@@ -5430,8 +5430,8 @@ u16 Clanpot_MixSequenceIcon(u16 actor_index, s16 val_index) {
         else {
             gActors[actor1].actorType = gClanpotItems[val_index + 4];
             Actor_Initialize(actor1);
-            gActors[actor1].timer_110 = gClanpotItems[val_index + 1];
-            gActors[actor1].unk_0D8 = gClanpotItems[val_index + 2];
+            gActors[actor1].var_110 = gClanpotItems[val_index + 1];
+            gActors[actor1].var_0D8 = gClanpotItems[val_index + 2];
         }
         gActors[actor1].colorA = 0;
         gActors[actor1].unk_0FC.raw = 1;
@@ -5577,14 +5577,14 @@ void ActorUpdate_Clanpot(u16 actor_index) {
         case 0:
             gActors[actor_index].state++;
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-            gActors[actor_index].flags = ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+            gActors[actor_index].flags = (ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
             ACTOR_GFX_INIT(actor_index, D_800E2514);
             gActors[actor_index].unk_0DF = 0x40;
             gActors[actor_index].health = 10;
             gActors[actor_index].damage = 10;
             gActors[actor_index].unk_0CE = 10;
             gActors[actor_index].scaleY = 0.8f;
-            if ((gActors[actor_index].unk_0D8 & 0x8000) == 0) {
+            if ((gActors[actor_index].var_0D8 & 0x8000) == 0) {
                 gActors[actor_index].unk_170 = 0xA0;
             }
             Clanpot_SetHitboxB(actor_index);
@@ -5656,9 +5656,9 @@ void ActorUpdate_Clanpot(u16 actor_index) {
             func_80040858(actor_index);
             gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM0;
             temp_v0 = func_800291AC(actor_index, 4, 
-                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW),
+                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW),
                  2,
-                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 |  ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW));
+                (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW));
             switch (temp_v0) {
             case 3:
                 gActors[actor_index].velocityX.raw = 0;
@@ -5821,7 +5821,7 @@ void func_80038868(u16 actor_index, u16 arg1) {
                         gActors[actor1].unk_18C = 0x8022D528;
                     }
                     gActors[actor1].var_150 = 0x800000;
-                    gActors[actor1].timer_110 = 0.03f;
+                    gActors[actor1].var_110 = 0.03f;
                     gActors[actor1].unk_114 = -0.01f;
                     gActors[actor1].unk_118 = -0.01f;
                     gActors[actor1].unk_11C = -0.01f;
@@ -5915,10 +5915,10 @@ void func_80038D1C(u16 actor_index) {
 
 void func_80038E1C(u16 actor_index) {
     gActors[actor_index].state++;
-    gActors[actor_index].var_150 = gActors[actor_index].timer_110;
+    gActors[actor_index].var_150 = gActors[actor_index].var_110;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    if ((u16)gActors[actor_index].timer_110 & 0x8000) {
+    if ((u16)gActors[actor_index].var_110 & 0x8000) {
         gActors[actor_index].flags |= ACTOR_FLAG_ONSCREEN_ONLY;
     }
     ACTOR_GFX_INIT(actor_index, D_800E2528);
@@ -5949,8 +5949,8 @@ void func_80038FF4(u16 actor_index, u16 actor_type, u16 arg2, u16 arg3) {
     SpawnParticle_RingSparkle(actor_index, 0, 1.2f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 4);
     gActors[actor_index].actorType = actor_type;
     Actor_Initialize(actor_index);
-    gActors[actor_index].timer_110 = arg2;
-    gActors[actor_index].unk_0D8 = arg3;
+    gActors[actor_index].var_110 = arg2;
+    gActors[actor_index].var_0D8 = arg3;
 }
 
 void func_800390BC(u16 actor_index) {
@@ -5965,7 +5965,7 @@ void func_80039134(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         func_80038E1C(actor_index);
-        index = gActors[actor_index].unk_0D8 * 2;
+        index = gActors[actor_index].var_0D8 * 2;
         gActors[actor_index].unk_114 = D_800D2504[index + 0];
         gActors[actor_index].unk_140_f32 = D_800D2504[index + 1];
         // fallthrough
@@ -5986,7 +5986,7 @@ void func_8003929C(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         func_80038E1C(actor_index);
-        index = gActors[actor_index].unk_0D8 * 6;
+        index = gActors[actor_index].var_0D8 * 6;
         vals = &D_800D2514[index];
         gActors[actor_index].var_150 |= vals[1];
         gActors[actor_index].var_15C = vals[2];
@@ -6015,7 +6015,7 @@ void func_80039468(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         func_80038E1C(actor_index);
-        index = gActors[actor_index].unk_0D8 * 6;
+        index = gActors[actor_index].var_0D8 * 6;
         vals = &D_800D258C[index];
         gActors[actor_index].var_150 |= vals[1];
         gActors[actor_index].var_15C = vals[2];
@@ -6057,10 +6057,10 @@ u16 func_80039644(u16 actor_index) {
 void func_80039724(u16 actor_index) {
     gActors[actor_index].state++;
     if (gCurrentScene == SCENE_CLANBALLLAND) {
-        gActors[actor_index].var_150 = gActors[actor_index].timer_110;
+        gActors[actor_index].var_150 = gActors[actor_index].var_110;
     }
     else {
-        gActors[actor_index].var_150 = (s32) gActors[actor_index].timer_110 & ~0x1000;
+        gActors[actor_index].var_150 = (s32) gActors[actor_index].var_110 & ~0x1000;
     }
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     if (gActors[actor_index].var_150 & 0x700) {
@@ -6113,14 +6113,14 @@ void func_80039A1C(u16 actor_index, u16* vals) {
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = vals[0] - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = vals[1] - gScreenPosCurrentY.whole;
-    gActors[actor_index].timer_110 = vals[2];
-    gActors[actor_index].unk_0D8 = vals[3];
+    gActors[actor_index].var_110 = vals[2];
+    gActors[actor_index].var_0D8 = vals[3];
 }
 
 u16 func_80039ADC(u16 actor0, u16 actor1) {
     u16* vals;
 
-    vals = &D_800D25BC[(gActors[actor0].unk_0D8 & 0xFF) * 5];
+    vals = &D_800D25BC[(gActors[actor0].var_0D8 & 0xFF) * 5];
     func_80039A1C(actor1, vals);
     func_800398F8(actor0, actor1);
     SpawnParticle_RingWaveGreen(1.0f, gActors[actor1].posX.whole, gActors[actor1].posY.whole, gActors[actor1].posZ.whole);
@@ -6136,7 +6136,7 @@ u16 func_80039ADC(u16 actor0, u16 actor1) {
 u16 func_80039C1C(u16 actor0, u16 actor1) {
     u16* vals;
 
-    vals = &D_800D2690[(gActors[actor0].unk_0D8 & 0xFF) * 3];
+    vals = &D_800D2690[(gActors[actor0].var_0D8 & 0xFF) * 3];
     if ((vals[2] == ACTORTYPE_GEM) && (vals[0] == (GEMFLAG_COMMON | GEMFLAG_YELLOW))) {
         if (YellowGem_GetFlag(gCurrentStage)) {
             return 0;
@@ -6146,15 +6146,15 @@ u16 func_80039C1C(u16 actor0, u16 actor1) {
     Actor_Initialize(actor1);
     gActors[actor1].posX.whole = gActors[actor0].posX.whole;
     gActors[actor1].posY.whole = gActors[actor0].posY.whole;
-    gActors[actor1].timer_110 = vals[0];
-    gActors[actor1].unk_0D8 = vals[1];
+    gActors[actor1].var_110 = vals[0];
+    gActors[actor1].var_0D8 = vals[1];
     func_80039970(actor0, actor1);
     SpawnParticle_RingWaveRed(1.0f, gActors[actor1].posX.whole, gActors[actor1].posY.whole, gActors[actor1].posZ.whole);
     return actor1;
 }
 
 u16 func_80039DA0(u16 actor_index) {
-    if (gActors[actor_index].unk_0D8 & 0x8000) {
+    if (gActors[actor_index].var_0D8 & 0x8000) {
         return Actor_RangeFindInactive(gActors[actor_index].unk_180 + 0x71, 0x90);
     }
     else if ((gActors[actor_index].var_150 & 0x8000) && (gActors[(u16)gActors[actor_index].unk_188].actorType == 0x61)) {
@@ -6169,8 +6169,8 @@ void func_80039E7C(u16 actor_index) {
     s16 temp_t7;
     u16 index;
 
-    temp_t7 = (gActors[actor_index].unk_0D8 & 0x7000) / 4096;
-    switch (gActors[actor_index].unk_0D8 & 0xF00) {
+    temp_t7 = (gActors[actor_index].var_0D8 & 0x7000) / 4096;
+    switch (gActors[actor_index].var_0D8 & 0xF00) {
     case 0x0:
         if (gActors[actor_index].unk_180 < temp_t7) {
             index = func_80039DA0(actor_index);
@@ -6394,7 +6394,7 @@ void ActorUpdate_Type28(u16 actor_index) {
                         gActors[index].graphicIndex = GINDEX_BIGARROW;
                         gActors[index].var_160 = var_t1;
                         gActors[index].var_154 = -12;
-                        gActors[index].timer_110 = -0.05f;
+                        gActors[index].var_110 = -0.05f;
                         gActors[index].unk_114 = -0.05f;
                         gActors[index].unk_148 = 15.0f;
                         gActors[index].velocityX.raw = vel_x * FIXED_UNIT(0.0234375);
@@ -6427,7 +6427,7 @@ void func_8003A9B8(u16 actor_index) {
 }
 
 void func_8003AA18(u16 actor_index) {
-    if (((u16)gActors[actor_index].timer_110 & 0x4000) == 0) {
+    if (((u16)gActors[actor_index].var_110 & 0x4000) == 0) {
         gActors[(u16)gActors[actor_index].var_158].unk_138 += 32.0f;
         Sound_PlaySfxAtActor2(0x114, actor_index);
     }
@@ -6437,7 +6437,7 @@ void func_8003AA18(u16 actor_index) {
 }
 
 void func_8003AB24(u16 actor_index) {
-    if (((u16)gActors[actor_index].timer_110 & 0x4000) == 0) {
+    if (((u16)gActors[actor_index].var_110 & 0x4000) == 0) {
         gActors[(u16)gActors[actor_index].var_158].unk_138 -= 32.0f;
         Sound_PlaySfxAtActor2(0x114, actor_index);
     }
@@ -6465,11 +6465,11 @@ void func_8003AC30(u16 actor_index) {
         gActors[actor_index].posZ.raw = FIXED_UNIT(0.5);
         gActors[actor_index].scaleX = 0.9f;
         gActors[actor_index].scaleY = 1.5f;
-        gActors[actor_index].var_15C = (u16)gActors[actor_index].timer_110 & 3;
-        gActors[actor_index].unk_170 = ((u16)gActors[actor_index].timer_110 & 0x300) << 0x10;
+        gActors[actor_index].var_15C = (u16)gActors[actor_index].var_110 & 3;
+        gActors[actor_index].unk_170 = ((u16)gActors[actor_index].var_110 & 0x300) << 0x10;
 
         var_a2 = 0x20;
-        switch ((u16)gActors[actor_index].timer_110 & 0x3000) {
+        switch ((u16)gActors[actor_index].var_110 & 0x3000) {
         case 0x1000:
             var_a2 = 0x40;
             break;
@@ -6572,7 +6572,7 @@ void func_8003AC30(u16 actor_index) {
                     }
                 }
 
-                switch ((u16)gActors[actor_index].timer_110 & 0x30) {
+                switch ((u16)gActors[actor_index].var_110 & 0x30) {
                 case 0x10:
                     var_a2 = 0x40;
                     break;
@@ -6619,7 +6619,7 @@ void func_8003AC30(u16 actor_index) {
                 dy = gActors[index].posY.whole - gActors[actor_index].posY.whole;
                 dist = sqrtf(SQ(dx) + SQ(dy));
 
-                if ((u16)gActors[actor_index].timer_110 & 0x4000) {
+                if ((u16)gActors[actor_index].var_110 & 0x4000) {
                     gActors[var_a2].graphicFlags = (gActors[actor_index].graphicFlags & ACTOR_GFLAG_UNK8) + (ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
                     gActors[var_a2].graphicIndex = 0x3064;
                     gActors[var_a2].scaleX = -((dist / 13.0f) / 2);
@@ -6644,9 +6644,9 @@ void func_8003AC30(u16 actor_index) {
 
 void func_8003B630(u16 actor_index) {
     if (gActors[actor_index].state) {
-        if (gActors[actor_index].unk_0D8 & 0x1) {
+        if (gActors[actor_index].var_0D8 & 0x1) {
             gActors[actor_index].state = 3;
-            gActors[actor_index].unk_0D8 &= 0xFFFE;
+            gActors[actor_index].var_0D8 &= 0xFFFE;
         }
     }
 
@@ -6698,8 +6698,8 @@ void func_8003B630(u16 actor_index) {
             gActors[actor_index].actorType = 0x3F;
             Actor_Initialize(actor_index);
             gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
-            gActors[actor_index].timer_110 = 1027.0f;
-            gActors[actor_index].unk_0D8 = 1;
+            gActors[actor_index].var_110 = 1027.0f;
+            gActors[actor_index].var_0D8 = 1;
             return;
         }
         if (gActors[actor_index].graphicTimer == 0) {
@@ -6712,7 +6712,7 @@ void func_8003B630(u16 actor_index) {
 }
 
 void func_8003B8CC(u16 actor_index) {
-    if ((gActors[actor_index].unk_0D8 & 0x3410) == 0x3410) {
+    if ((gActors[actor_index].var_0D8 & 0x3410) == 0x3410) {
         func_8003B630(actor_index);
         return;
     }
@@ -6720,8 +6720,8 @@ void func_8003B8CC(u16 actor_index) {
     if ((gActors[actor_index].state != 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9)) {
         gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
         gActors[actor_index].unk_188 = 1;
-        if ((gActors[actor_index].unk_0D8 & 1) && !(gActors[actor_index].var_150 & 0x40000000)) {
-            gActors[actor_index].unk_0D8 &= 0xFFFE;
+        if ((gActors[actor_index].var_0D8 & 1) && !(gActors[actor_index].var_150 & 0x40000000)) {
+            gActors[actor_index].var_0D8 &= 0xFFFE;
             gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
         }
     }
@@ -6775,7 +6775,7 @@ void func_8003B8CC(u16 actor_index) {
             gActors[actor_index].unk_170 = gActors[actor_index].unk_178;
             gActors[actor_index].unk_174 = gActors[actor_index].unk_17C;
             if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
-                if ((u16)gActors[actor_index].timer_110 & 0x1000) {
+                if ((u16)gActors[actor_index].var_110 & 0x1000) {
                     if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
                         gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0x20000, 0x20000);
                     }
@@ -6931,7 +6931,7 @@ void func_8003C328(u16 actor_index) {
     case 0:
         gActors[actor_index].state++;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[actor_index].var_150 = (u16)gActors[actor_index].timer_110;
+        gActors[actor_index].var_150 = (u16)gActors[actor_index].var_110;
         if (gActors[actor_index].var_150 & 0x800) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].graphicIndex = 0x2CA;
@@ -7319,7 +7319,7 @@ u16 func_8003D628(u16 arg0) {
     gActors[index].actorType = 0x6B;
     Actor_Initialize(index);
     gActors[index].flags = ACTOR_FLAG_ACTIVE;
-    gActors[index].timer_110 = 180.0f;
+    gActors[index].var_110 = 180.0f;
     gActors[index].unk_188 = arg0;
     func_8005CA34(8, 0x3C);
     return index;
@@ -7373,7 +7373,7 @@ void AreaClear_State0(u16 actor_index) {
     u16 index;
     f32 scale;
 
-    var_v0 = gActors[actor_index].timer_110;
+    var_v0 = gActors[actor_index].var_110;
     if (var_v0 != 0x8C) {
         if (!var_v0 && !var_v0) {} // fakematch: https://decomp.me/scratch/KqzpM
         if (var_v0 != 0xAA) {
@@ -7407,7 +7407,7 @@ void AreaClear_State0(u16 actor_index) {
                 gActors[index].unk_108 = -2;
                 scale = 2.0f;
                 gActors[index].scaleX = scale * 3.0f;
-                gActors[index].timer_110 = 0.5f;
+                gActors[index].var_110 = 0.5f;
                 gActors[index].unk_114 = 0.5f;
                 gActors[index].scaleY = scale * 1.0f;
                 Actor_SetColorRgb(index, 0x40);
@@ -7424,7 +7424,7 @@ void AreaClear_State0(u16 actor_index) {
             gActors[index].var_154 = -0x10;
             gActors[index].scaleX = 13.5f;
             gActors[index].scaleY = 13.5f;
-            gActors[index].timer_110 = 0.05f;
+            gActors[index].var_110 = 0.05f;
             gActors[index].unk_114 = 0.05f;
             gActors[index].unk_148 = 480.0f;
         }
@@ -7435,13 +7435,13 @@ void ActorUpdate_AreaClear(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         AreaClear_State0(actor_index);
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        if (gActors[actor_index].var_110 < 0.0f) {
             if (gActors[actor_index].unk_188 & 0x8000) {
                 gActors[actor_index].state = 4;
             }
             else {
                 gActors[actor_index].state++;
-                gActors[actor_index].timer_110 = 120.0f;
+                gActors[actor_index].var_110 = 120.0f;
                 gActors[actor_index].var_154 = 0;
                 gActors[actor_index].unk_16C = 0x80;
                 gActors[actor_index].unk_170 = 0xB0;
@@ -7450,9 +7450,9 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         break;
     case 1:
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].state++;
-            gActors[actor_index].timer_110 = 10.0f;
+            gActors[actor_index].var_110 = 10.0f;
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, 0x200000, 0x8000);
@@ -7463,9 +7463,9 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         break;
     case 2:
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].state++;
-            gActors[actor_index].timer_110 = 120.0f;
+            gActors[actor_index].var_110 = 120.0f;
             gActors[actor_index].var_154 = 0;
             gActors[actor_index].unk_16C = 0x80;
             gActors[actor_index].unk_170 = 0xB0;
@@ -7473,9 +7473,9 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         break;
     case 3:
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].state++;
-            gActors[actor_index].timer_110 = 10.0f;
+            gActors[actor_index].var_110 = 10.0f;
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, 0x200000, 0x8000);
@@ -7486,13 +7486,13 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         break;
     case 4:
-        if (gActors[actor_index].timer_110 < 0.0f) {
+        if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].flags = 0;
             gStageCinemaState += 1;
         }
         break;
     }
-    gActors[actor_index].timer_110 -= 1.0f;
+    gActors[actor_index].var_110 -= 1.0f;
 }
 
 void func_8003DF78(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y) {
@@ -7549,12 +7549,12 @@ void func_8003E230(u16 actor_index) {
             gActors[index].pfn_17C = func_80030B0C;
             gActors[index].unk_104 = 0x14;
             gActors[index].unk_108 = -4;
-            gActors[index].scaleY = gActors[actor_index].timer_110 * 1.0;
-            gActors[index].scaleX = gActors[actor_index].timer_110 * (2.0 + 0); // need `2.0` to get double, but 2 to get lui at,0x4000
-            gActors[index].timer_110 = gActors[actor_index].timer_110 * 0.3;
-            gActors[index].unk_114 = gActors[index].timer_110;
-            gActors[index].unk_118 = gActors[index].timer_110 * -0.015;
-            gActors[index].unk_11C = gActors[index].timer_110 * -0.015;
+            gActors[index].scaleY = gActors[actor_index].var_110 * 1.0;
+            gActors[index].scaleX = gActors[actor_index].var_110 * (2.0 + 0); // need `2.0` to get double, but 2 to get lui at,0x4000
+            gActors[index].var_110 = gActors[actor_index].var_110 * 0.3;
+            gActors[index].unk_114 = gActors[index].var_110;
+            gActors[index].unk_118 = gActors[index].var_110 * -0.015;
+            gActors[index].unk_11C = gActors[index].var_110 * -0.015;
             Actor_SetColorRgb(index, 0x40);
             gActors[index].colorG = 0x7F;
             gActors[index].unk_148 = 100.0f;
@@ -7568,12 +7568,12 @@ void func_8003E230(u16 actor_index) {
             gActors[index].pfn_17C = func_80030B0C;
             gActors[index].unk_104 = 0x14;
             gActors[index].unk_108 = -4;
-            gActors[index].scaleY = gActors[actor_index].timer_110 * 1.0;
-            gActors[index].scaleX = gActors[actor_index].timer_110 * 1.0;
-            gActors[index].timer_110 = gActors[actor_index].timer_110 * 0.1;
-            gActors[index].unk_114 = gActors[index].timer_110;
-            gActors[index].unk_118 = gActors[index].timer_110 * -0.002;
-            gActors[index].unk_11C = gActors[index].timer_110 * -0.002;
+            gActors[index].scaleY = gActors[actor_index].var_110 * 1.0;
+            gActors[index].scaleX = gActors[actor_index].var_110 * 1.0;
+            gActors[index].var_110 = gActors[actor_index].var_110 * 0.1;
+            gActors[index].unk_114 = gActors[index].var_110;
+            gActors[index].unk_118 = gActors[index].var_110 * -0.002;
+            gActors[index].unk_11C = gActors[index].var_110 * -0.002;
             gActors[index].palette_18C = D_800D1A04;
             gActors[index].unk_148 = 100.0f;
         }
@@ -7595,7 +7595,7 @@ void func_8003E52C(u16 arg0, s16 arg1, s16 arg2, f32 arg3) {
         gActors[actor_index].unk_170 = arg1;
         gActors[actor_index].unk_174 = arg2;
         gActors[actor_index].var_150 = arg0;
-        gActors[actor_index].timer_110 = arg3;
+        gActors[actor_index].var_110 = arg3;
         Sound_PlaySfxAtActor2(0x26, actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
@@ -7683,7 +7683,7 @@ void SpawnCrosshair(u16 flags, u16 actor_index) {
     gActors[index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[index].graphicIndex = GINDEX_CROSSHAIR;
     gActors[index].palette_18C =  gCrosshairPalette;
-    gActors[index].timer_110 = 31.0f;
+    gActors[index].var_110 = 31.0f;
     gActors[index].var_150 = actor_index;
     Crosshair_SetPos(index);
     gActors[index].unk_170 = flags;
@@ -7695,8 +7695,8 @@ void func_8003E854(u16 actor_index) {
     u16 temp_t4;
     u16 temp_a0;
 
-    gActors[actor_index].timer_110 -= 1.0f;
-    temp_f0 = gActors[actor_index].timer_110;
+    gActors[actor_index].var_110 -= 1.0f;
+    temp_f0 = gActors[actor_index].var_110;
     if (temp_f0 <= 0.0f) {
         gActors[actor_index].flags = 0;
         return;
@@ -7805,7 +7805,7 @@ void func_8003EC0C(u16 arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
         gActors[actor_index].var_160 = (gActiveFrames & 0xF) << 0x16;
         gActors[actor_index].var_150 = (D_800D282C[arg1] << 0x10) + 0xFFFC0000;
         gActors[actor_index].var_154 = -0x40;
-        gActors[actor_index].timer_110 = 0.0f;
+        gActors[actor_index].var_110 = 0.0f;
         gActors[actor_index].unk_114 = 0.0f;
     }
 }
@@ -7820,7 +7820,7 @@ void func_8003ED48(u16 unused_arg0, s32 arg1, s16 x, s16 y, s16 z) {
         gActors[actor_index].var_154 = -0x12;
         gActors[actor_index].scaleX = 0.0f;
         gActors[actor_index].scaleY = 0.0f;
-        gActors[actor_index].timer_110 = 0.3f;
+        gActors[actor_index].var_110 = 0.3f;
         gActors[actor_index].unk_114 = 0.3f;
         gActors[actor_index].unk_148 = 15.0f;
     }
@@ -7834,7 +7834,7 @@ u16 func_8003EDF4(f32 arg0, s16 x, s16 y, s16 z) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = arg0 * 0.45;
         gActors[actor_index].scaleY = arg0 * 0.45;
-        gActors[actor_index].timer_110 = arg0 * 0.04;
+        gActors[actor_index].var_110 = arg0 * 0.04;
         gActors[actor_index].unk_114 = arg0 * 0.04;
         gActors[actor_index].var_154 = -16;
     }
@@ -7851,7 +7851,7 @@ u16 func_8003EEC0(f32 arg0, s16 arg1, s16 arg2, s16 arg3) {
         gActors[actor_index].palette_18C =  D_800D84E8;
         gActors[actor_index].scaleX = arg0 * 1.5;
         gActors[actor_index].scaleY = arg0 * 1.5;
-        gActors[actor_index].timer_110 = arg0 * 0.23;
+        gActors[actor_index].var_110 = arg0 * 0.23;
         gActors[actor_index].unk_114 = arg0 * 0.23;
     }
     return actor_index;
@@ -7865,7 +7865,7 @@ u16 func_8003EF98(f32 arg0, s16 x, s16 y, s16 z) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
         Actor_SetColorRgb(actor_index, 0x7F);
         gActors[actor_index].var_154 = -10;
-        gActors[actor_index].timer_110 = arg0 * 0.14;
+        gActors[actor_index].var_110 = arg0 * 0.14;
         gActors[actor_index].unk_114 = arg0 * 0.14;
     }
     return actor_index;
@@ -7881,7 +7881,7 @@ u16 func_8003F05C(f32 arg0, s16 x, s16 y, s16 z) {
         gActors[actor_index].unk_164 = -3;
         gActors[actor_index].scaleX = arg0 * 1.5;
         gActors[actor_index].scaleY = arg0 * 1.5;
-        gActors[actor_index].timer_110 = arg0 * 0.01;
+        gActors[actor_index].var_110 = arg0 * 0.01;
         gActors[actor_index].unk_114 = arg0 * 0.01;
         gActors[actor_index].velocityZ.raw = FIXED_UNIT(1.0);
     }
@@ -7918,7 +7918,7 @@ void func_8003F248(u16 actor_index, s16 x, s16 y, s16 z) {
         gActors[index].scaleX = 0.0f;
         gActors[index].scaleY = 0.0f;
         scale = 0.15f;
-        gActors[index].timer_110 = scale;
+        gActors[index].var_110 = scale;
         gActors[index].unk_114 = scale;
         gActors[index].unk_118 = -scale / 30.0f;
         gActors[index].unk_11C = -scale / 30.0f;
@@ -7964,7 +7964,7 @@ void func_8003F360(u16 actor_index) {
             val = Rand();
             gActors[index].var_150 = (-(val & 3) * 0x10000) + 0x20000;
             gActors[index].unk_114 = gActors[actor_index].scaleY * -0.25;
-            gActors[index].timer_110 = -gActors[index].unk_114 / 2;
+            gActors[index].var_110 = -gActors[index].unk_114 / 2;
             gActors[index].unk_148 = 7.0f;
             angle = gActors[index].var_160 / 0x10000;
             gActors[index].velocityX.raw = (196608.0f * COS(angle)) + gActors[actor_index].velocityX.raw;
@@ -7991,7 +7991,7 @@ u16 SpawnParticle_Exclamation(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = scale;
         gActors[actor_index].scaleY = scale;
-        gActors[actor_index].timer_110 = scale * 0.1;
+        gActors[actor_index].var_110 = scale * 0.1;
         gActors[actor_index].unk_114 = scale * 0.1;
         gActors[actor_index].unk_118 = scale * -0.009;
         gActors[actor_index].unk_11C = scale * -0.009;
@@ -8022,7 +8022,7 @@ u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
         Actor_SetColorRgb(actor_index, 0x40);
         gActors[actor_index].scaleX = 0.5f;
         gActors[actor_index].scaleY = 0.5f;
-        gActors[actor_index].timer_110 = arg0 * 0.14;
+        gActors[actor_index].var_110 = arg0 * 0.14;
         gActors[actor_index].unk_114 = arg0 * 0.14;
         gActors[actor_index].unk_118 = arg0 * -0.02;
         gActors[actor_index].unk_11C = arg0 * -0.02;
@@ -8046,7 +8046,7 @@ u16 SpawnParticle_HeartBubble(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = scale;
         gActors[actor_index].scaleY = scale;  // precice decimals required for match.
-        gActors[actor_index].timer_110 = scale * 0.15000000000000002;
+        gActors[actor_index].var_110 = scale * 0.15000000000000002;
         gActors[actor_index].unk_114 = scale * 0.15000000000000002;
         gActors[actor_index].unk_118 = scale * -0.013499999999999998;
         gActors[actor_index].unk_11C = scale * -0.013499999999999998;
@@ -8081,7 +8081,7 @@ u16 func_8003F9E0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
         Actor_SetColorRgb(actor_index, 0x30);
         gActors[actor_index].scaleX = arg0 * 0.5;
         gActors[actor_index].scaleY = arg0 * 0.5;
-        gActors[actor_index].timer_110 = arg0 * 0.2;
+        gActors[actor_index].var_110 = arg0 * 0.2;
         gActors[actor_index].unk_114 = arg0 * 0.2;
         gActors[actor_index].unk_118 = arg0 * -0.01;
         gActors[actor_index].unk_11C = arg0 * -0.01;
@@ -8109,7 +8109,7 @@ void SpawnParticle_RingSparkle(u16 parent, s32 unused_arg1, f32 scale, s16 pos_x
         gActors[actor_index].var_154 = -0x10;
         gActors[actor_index].scaleX = scale * 0.8;
         gActors[actor_index].scaleY = scale * 0.8;
-        gActors[actor_index].timer_110 = scale * -0.05;
+        gActors[actor_index].var_110 = scale * -0.05;
         gActors[actor_index].unk_114 = scale * -0.05;
         Actor_SetColorRgb(actor_index, 0x7F);
     }
@@ -8153,7 +8153,7 @@ u16 SpawnParticle_RingWave(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z, u16 type)
         gActors[actor_index].scaleY = 0.0f;
         Actor_SetColorRgb(actor_index, 0x3F);
         gActors[actor_index].var_154 = -0x12;
-        gActors[actor_index].timer_110 = scale * 0.4;
+        gActors[actor_index].var_110 = scale * 0.4;
         gActors[actor_index].unk_118 = scale * -0.02;
         gActors[actor_index].unk_114 = scale * 0.4;
         gActors[actor_index].unk_11C = scale * -0.02;
@@ -8218,7 +8218,7 @@ u16 func_8003FF68(u16 actor_index, f32 scale) {
         gActors[index].unk_144 = 4.0f;
         temp_f2 = scale * 0.15;
         gActors[index].unk_188 = -0x500000;
-        gActors[index].timer_110 = temp_f2;
+        gActors[index].var_110 = temp_f2;
         gActors[index].unk_114 = temp_f2;
         gActors[index].unk_118 = (-temp_f2 / 20.0f) * scale;
         gActors[index].unk_11C = (-temp_f2 / 10.0f) * scale;
@@ -8497,7 +8497,7 @@ void WarpGate_Sparkle(u16 actor_index, u16 no_random) {
                 gActors[index].unk_18C = gActors[actor_index].unk_18C;
                 gActors[index].var_150 = 0x800000;
                 gActors[index].unk_148 = 7.0f;
-                gActors[index].timer_110 = -0.1f;
+                gActors[index].var_110 = -0.1f;
                 gActors[index].unk_114 = -0.033333335f;
                 Actor_SetColorRgb(index, 0x7F);
                 gActors[index].velocityZ.raw = FIXED_UNIT(4.0);
@@ -8515,7 +8515,7 @@ void WarpGate_UpdateAppearance(u16 actor_index) {
     u32 pad1;
 
     gActors[actor_index].colorA = ((u32)gActors[actor_index].unk_120) & 0xFF;
-    if ((((u8)gActors[actor_index].timer_110) & 0xF) == 1) {
+    if ((((u8)gActors[actor_index].var_110) & 0xF) == 1) {
         gActors[actor_index].scaleX = gActors[actor_index].unk_11C * 1.0;
         if ((gActiveFrames) & 0x10) {
             gActors[actor_index].palette_18C = PALETTE_8022D548;
@@ -8543,7 +8543,7 @@ void WarpGate_UpdateAppearance(u16 actor_index) {
         gActors[actor_index].unk_148 = Math_ApproachF32(gActors[actor_index].unk_148, -20.0f, 0.2f);
     }
     gActors[actor_index].unk_12C += Math_AbsS32(gActors[actor_index].unk_148);
-    if (((u8)gActors[actor_index].timer_110 & 0x80) && (gActors[actor_index].unk_12C > 360.0f)) {
+    if (((u8)gActors[actor_index].var_110 & 0x80) && (gActors[actor_index].unk_12C > 360.0f)) {
         Sound_PlaySfxAtActor3(0x140, actor_index);
         gActors[actor_index].unk_12C -= 360.0f;
     }
@@ -8673,7 +8673,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             D_800D295C = actor_index;
             gActors[actor_index].var_160 = 0;
             gActors[actor_index].unk_164 = 0;
-            switch ((u16)gActors[actor_index].timer_110 & 0xF) {
+            switch ((u16)gActors[actor_index].var_110 & 0xF) {
             case 1:
             case 3:
                 D_800D28FC |= 0x100;
@@ -8698,21 +8698,21 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             gActors[actor_index].unk_14C = 60.0f;
             gActors[actor_index].state++;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
-            if ((u16)gActors[actor_index].timer_110 & 0x10) {
+            if ((u16)gActors[actor_index].var_110 & 0x10) {
                 gActors[actor_index].unk_180 = 1;
             }
-            if ((u16)gActors[actor_index].timer_110 & 0x20) {
+            if ((u16)gActors[actor_index].var_110 & 0x20) {
                 D_800D28FC |= 1;
             }
-            switch ((u16)gActors[actor_index].timer_110 & 0xF) {
+            switch ((u16)gActors[actor_index].var_110 & 0xF) {
             case 1:
                 gActors[actor_index].unk_180 = 1;
-                D_800D28F0 = gActors[actor_index].unk_0D8;
+                D_800D28F0 = gActors[actor_index].var_0D8;
                 D_800D28E4 = 0x64;
                 break;
             case 2:
                 gActors[actor_index].state++;
-                WarpGate_MoveFaceUser(actor_index, &D_800D2860[gActors[actor_index].unk_0D8]);
+                WarpGate_MoveFaceUser(actor_index, &D_800D2860[gActors[actor_index].var_0D8]);
                 break;
             case 4:
                 gActors[actor_index].state++;
@@ -8721,7 +8721,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             case 3:
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
-                gStageCinemaState = gActors[actor_index].unk_0D8;
+                gStageCinemaState = gActors[actor_index].var_0D8;
                 break;
             }
         }
@@ -8804,14 +8804,14 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         break;
     }
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
-    if ((u16)gActors[actor_index].timer_110 & 0x40) {
+    if ((u16)gActors[actor_index].var_110 & 0x40) {
         sp24 = gActors[actor_index].posX.whole;
         sp22 = gActors[actor_index].posY.whole;
-        temp = (u16)gActors[actor_index].timer_110 & 0xF;
+        temp = (u16)gActors[actor_index].var_110 & 0xF;
         switch (temp) {
         case 2:
             // fakematch: the zero term keeps IDO from reusing v1 for timer_idx
-            timer_idx = gActors[actor_index].unk_0D8 + (sp24 * 0);
+            timer_idx = gActors[actor_index].var_0D8 + (sp24 * 0);
             WarpGate_MoveUser(actor_index, &D_800D2860[timer_idx]);
             break;
         case 4:

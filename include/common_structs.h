@@ -100,8 +100,8 @@ typedef struct {
     /* 0x02 */ u16 index; // index of actor to set
     /* 0x04 */ u16 posX;  // x-position of actor in stage
     /* 0x06 */ u16 posY;  // y-position of actor in stage
-    /* 0x08 */ u16 timer_110; // value of actor->timer_110
-    /* 0x0A */ u16 unk_0D8; // value of actor->unk_0D8
+    /* 0x08 */ u16 var_110; // value of actor->var_110
+    /* 0x0A */ u16 var_0D8; // value of actor->var_0D8
     /* 0x0C */ u16 type; // value of actor->actorType
 } ActorSpawnRecord; /* size = 0xE */
 

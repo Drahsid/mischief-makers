@@ -74,7 +74,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index + 1].unk_180 = 0;
-            if (((u16)gActors[actor_index].timer_110) == 0) {
+            if (((u16)gActors[actor_index].var_110) == 0) {
                 gActors[actor_index].state = 0x4000;
             }
             break;

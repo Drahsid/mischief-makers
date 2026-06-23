@@ -51,7 +51,7 @@ void func_801A6980_76F420(u16 actor_index) {
     if ((gActiveFrames & 3) == 0) {
         temp_v0 = Actor_RangeFindInactive(0x30, 0x90);
         if (temp_v0 != 0) {
-            temp_index = gActors[actor_index].unk_0D8 * 5;
+            temp_index = gActors[actor_index].var_0D8 * 5;
             temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
             gActors[actor_index].posY.whole = temp_v1->posY;
             gActors[actor_index].posZ.whole = temp_v1->posZ;
@@ -93,7 +93,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
 
     if ((gActiveFrames & 3) == 0) {
         func_8005CA34(4, 5);
-        temp_index = gActors[actor_index].unk_0D8 * 5;
+        temp_index = gActors[actor_index].var_0D8 * 5;
         temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
         temp_v0 = SpawnParticle_Image_90C0_16(GRAPHIC_FRAME(DASHEFFECT,1), gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
 
@@ -101,7 +101,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
             gActors[temp_v0].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ);
             gActors[temp_v0].scaleX = (1.0 - ((Rand() & 0xF) / 28.0f));
             gActors[temp_v0].scaleY = (((Rand() & 0xF) / 18.0f) + 2.5);
-            gActors[temp_v0].timer_110 = 0.2f;
+            gActors[temp_v0].var_110 = 0.2f;
             gActors[temp_v0].var_160 = ((Rand() & 0x1F) << 0x10) + 0x2F00000;
             gActors[temp_v0].palette_18C = PALETTE_8022D4E8;
             gActors[temp_v0].unk_148 = 3.0f;
@@ -132,7 +132,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].var_154 = -0x10;
             gActors[temp_v0].unk_138 = -16.0f;
             gActors[temp_v0].unk_13C = 16.0f;
-            gActors[temp_v0].timer_110 = 0.55f;
+            gActors[temp_v0].var_110 = 0.55f;
             gActors[temp_v0].unk_118 = -0.02f;
             gActors[temp_v0].unk_11C = -0.02f;
             gActors[temp_v0].unk_140_f32 = -20.0f;
@@ -143,8 +143,8 @@ void func_801A6CAC_76F74C(u16 actor_index) {
 void func_801A6E4C_76F8EC(u16 actor_index) {
     u16 temp_v1;
 
-    gActors[actor_index].timer_110 += 1.0f;
-    temp_v1 = (u16)gActors[actor_index].timer_110 % 0xF0;
+    gActors[actor_index].var_110 += 1.0f;
+    temp_v1 = (u16)gActors[actor_index].var_110 % 0xF0;
 
     if ((temp_v1 >= 0x1E) && (temp_v1 < 0xD3)) {
         if (Actor_IsOutsideRegion(actor_index, 0x40) == 0) {

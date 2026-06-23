@@ -909,14 +909,14 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     Actor_LoadSpawnTable(D_801BCD6C_7E5ECC);
 
     if (arg2 == 0x2C) {
-        gActors[0x4F].timer_110 = gActors[0x4F].timer_110 - 4096.0f;
+        gActors[0x4F].var_110 = gActors[0x4F].var_110 - 4096.0f;
     }
 
     if (gStageCinemaState != 0) {
         for (index = 0; index < 8; index++) {
             if (saved[index] == 0) {
-                snapped = gActors[index + 0x48].timer_110;
-                gActors[index + 0x48].timer_110 = snapped & ~0x7F;
+                snapped = gActors[index + 0x48].var_110;
+                gActors[index + 0x48].var_110 = snapped & ~0x7F;
             }
         }
     }

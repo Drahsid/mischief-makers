@@ -309,21 +309,21 @@ void func_80096A14(u16 arg0) {
 }
 
 void func_80096A1C(u16 actor_index) {
-    gActors[actor_index + 1].unk_0D8 = 1;
+    gActors[actor_index + 1].var_0D8 = 1;
     func_8008FB20(actor_index);
 }
 
 void func_80096A70(u16 actor_index) {
-    gActors[actor_index + 1].unk_0D8 = 2;
+    gActors[actor_index + 1].var_0D8 = 2;
     func_8008FD08(actor_index);
 }
 
 void func_80096AC4(u16 actor_index) {
-    gActors[actor_index + 1].unk_0D8 = 3;
+    gActors[actor_index + 1].var_0D8 = 3;
     func_80090064(actor_index);
 }
 
 void func_80096B18(u16 actor_index) {
-    gActors[actor_index + 1].unk_0D8 = 5;
+    gActors[actor_index + 1].var_0D8 = 5;
     func_800902B0(actor_index);
 }

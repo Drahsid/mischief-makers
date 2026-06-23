@@ -110,12 +110,12 @@ void func_80192528_6D2BA8(u16 actor_index) {
         gActors[new_actor_index].posY.whole = (s32)((Rand() * 0.125) + 16.0);
         gActors[new_actor_index].posZ.whole = -gActors[new_actor_index].posY.whole;
         if (Rand() & 1) {
-            gActors[new_actor_index].timer_110 = 256.0f;
+            gActors[new_actor_index].var_110 = 256.0f;
         }
         else {
-            gActors[new_actor_index].timer_110 = 0.0f;
+            gActors[new_actor_index].var_110 = 0.0f;
         }
-        gActors[new_actor_index].unk_0D8 = 0;
+        gActors[new_actor_index].var_0D8 = 0;
         gActors[new_actor_index].var_154 = gActors[new_actor_index].posZ.whole;
         gActors[new_actor_index].unk_170 = gActors[new_actor_index].posY.whole;
     }
@@ -1205,7 +1205,7 @@ void func_80194E0C_6D548C(u16 actor_index) {
             gActors[new_actor_index].unk_140_f32 = 0.0f;
             gActors[new_actor_index].unk_144 = 4.0f;
             gActors[new_actor_index].unk_148 = 20.0f;
-            gActors[new_actor_index].timer_110 = 0.06f;
+            gActors[new_actor_index].var_110 = 0.06f;
             gActors[new_actor_index].unk_118 = -0.008f;
             gActors[new_actor_index].unk_114 = 0.1f;
             gActors[new_actor_index].unk_11C = -0.01f;
@@ -1236,7 +1236,7 @@ void func_80194F1C_6D559C(u16 actor_index) {
         gActors[new_actor_index].colorA = 0xFE;
         gActors[new_actor_index].var_154 = -0xA;
         temp_f0 = gActors[new_actor_index].unk_148 = 20.0f; // FAKEMATCH
-        gActors[new_actor_index].timer_110 = temp_f2;
+        gActors[new_actor_index].var_110 = temp_f2;
         gActors[new_actor_index].unk_114 = temp_f2;
         gActors[new_actor_index].scaleX = 1.0f;
         temp_f6 = -0.05f; // FAKEMATCH
@@ -1501,7 +1501,7 @@ void func_80196FC8_6D7648(u16 actor_index) {
         gActors[new_actor_index].var_15C = 0;
         gActors[new_actor_index].unk_168 = 0;
         gActors[new_actor_index].unk_16C = 0;
-        gActors[new_actor_index].timer_110 = -0.03f;
+        gActors[new_actor_index].var_110 = -0.03f;
         gActors[new_actor_index].unk_114 = -0.03f;
         gActors[new_actor_index].unk_118 = 0.0f;
         gActors[new_actor_index].unk_148 = 10.0f;

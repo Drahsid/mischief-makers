@@ -160,7 +160,7 @@ typedef struct {
     /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
-    /* 0x0D8 */ u16 unk_0D8;
+    /* 0x0D8 */ u16 var_0D8; // often used as second set of inital actor paramaters.
     /* 0x0DA */ u8 unk_0DA;
     /* 0x0DB */ u8 unk_0DB;
     /* 0x0DC */ u8 unk_0DC;
@@ -193,7 +193,7 @@ typedef struct {
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
     /* 0x10C */ s32 unk_10C;
-    /* 0x110 */ f32 timer_110; // often used as timer in "state machines", other times as "general purpose" field.
+    /* 0x110 */ f32 var_110; // often used as first set of inital actor paramaters.
     /* 0x114 */ f32 unk_114;
     /* 0x118 */ f32 unk_118;
     /* 0x11C */ f32 unk_11C;

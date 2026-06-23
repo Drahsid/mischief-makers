@@ -367,7 +367,7 @@ void func_801B35E0_7BF530(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7BC840/7BC850/func_801B3648_7BF598.s")
 
 void func_801B3F18_7BFE68(u16 actor_index) {
-    u16 temp = gActors[actor_index].unk_0D8 & 7;
+    u16 temp = gActors[actor_index].var_0D8 & 7;
 
     if (gActors[actor_index].state == 0) {
         gActors[actor_index].state++;

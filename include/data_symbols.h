@@ -25,7 +25,7 @@ extern u16 D_800CA230;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
 extern u16 D_800D1A04[];
-extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, timer_110, unk_0D8, type, icon}
+extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, var_110, var_0D8, type, icon}
 
 // counts for items in clanpot. checked for mixing.
 // indecies of items counted:

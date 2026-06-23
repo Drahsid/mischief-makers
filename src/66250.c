@@ -445,7 +445,7 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].iFrames--;
         }
 
-        func_80066964(actor_index, (gActors[actor_index].unk_0D8 & 0x7000) / 0x1000);
+        func_80066964(actor_index, (gActors[actor_index].var_0D8 & 0x7000) / 0x1000);
         func_80066A10(actor_index);
 
         if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
@@ -725,7 +725,7 @@ void ActorUpdate_Type2(u16 arg0) {
 
 void func_8007406C(u16 actor_index, u16 arg1, s32 arg2) {
     func_80073EF4(actor_index);
-    gActors[actor_index].unk_0D8 = arg1 & 0x7000;
+    gActors[actor_index].var_0D8 = arg1 & 0x7000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800740C8.s")
