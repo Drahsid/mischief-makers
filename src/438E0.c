@@ -119,7 +119,7 @@ void Actor_LoadSpawnTable(void* spawn_table) {
     jndex = 0;
     spawn = spawn_table;
     flags = spawn->flags;
-    while (flags != 0xFF00) {
+    while (flags != SPAWNRECORD_END) {
         if (!(flags & 0x2000)) {
             actor_index = func_8004398C(spawn);
             flags = spawn->flags;
@@ -376,7 +376,7 @@ s32 func_80045F08(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045FA4.s")
 
-void func_80046148(void* arg0, s32 arg1){
+void func_80046148(void* arg0, u16* arg1){
     func_80045FA4(arg0,arg1);
     gActors[0].flags &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4.unk_00_s32 = 4;

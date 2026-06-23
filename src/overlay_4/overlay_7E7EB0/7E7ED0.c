@@ -844,9 +844,9 @@ void func_801BA984_7E8F54(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BBC08_7EA1D8, 0);
-            gDrawMidground = 0;
-            gDrawEnvLayer = 0;
+            func_80046148(D_801BBC08_7EA1D8, (u16*)NULL);
+            gDrawMidground = FALSE;
+            gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BBC18_7EA1E8);
             Actor_LoadSpawnTable(D_801BBC28_7EA1F8);
@@ -939,7 +939,7 @@ void func_801BACBC_7E928C(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BBC54_7EA224, 0);
+            func_80046148(D_801BBC54_7EA224, (u16*)NULL);
             Actor_LoadSpawnTable(D_801BBC64_7EA234);
             Actor_LoadSpawnTable(D_801BBCA0_7EA270);
             D_800BE544 = 0x8000;

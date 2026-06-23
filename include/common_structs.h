@@ -96,6 +96,8 @@ typedef union {
     };
 } UnkStruct_D_800BE5F4;
 
+#define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
+
 // data for setting actors in a stage (may actually be u16[] - often ending with a 0xff00.)
 typedef struct {
     /* 0x00 */ u16 flags; 

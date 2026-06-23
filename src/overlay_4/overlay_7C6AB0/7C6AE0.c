@@ -1500,7 +1500,7 @@ void func_801B9AC0_7C6CA0(void) {
 
         case 0x1000:
             gStageCinemaState++;
-            func_80046148(D_801BC7CC_7C99AC, (s32)D_801BC7DC_7C99BC);
+            func_80046148(D_801BC7CC_7C99AC, (u16*)D_801BC7DC_7C99BC);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BCBE0_7C9DC0);
             Sound_StopSfx(0xBD);
@@ -1637,7 +1637,7 @@ void func_801BA38C_7C756C(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BD4A0_7CA680, (s32)D_801BD4D0_7CA6B0);
+            func_80046148(D_801BD4A0_7CA680, (u16*)D_801BD4D0_7CA6B0);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BDF74_7CB154);
             Actor_LoadSpawnTable(D_801BDFE8_7CB1C8);
@@ -1670,7 +1670,7 @@ void func_801BA38C_7C756C(void) {
 
         case 0x100:
             gStageCinemaState++;
-            func_80046148(D_801BD4B0_7CA690, (s32)D_801BD8F4_7CAAD4);
+            func_80046148(D_801BD4B0_7CA690, (u16*)D_801BD8F4_7CAAD4);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BDF74_7CB154);
             Actor_LoadSpawnTable(D_801BE190_7CB370);
@@ -1790,7 +1790,7 @@ void func_801BA89C_7C7A7C(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BEC00_7CBDE0, (s32)D_801BEC10_7CBDF0);
+            func_80046148(D_801BEC00_7CBDE0, (u16*)D_801BEC10_7CBDF0);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BF034_7CC214);
             D_800BE544 = 0x8000;
@@ -1838,7 +1838,7 @@ void func_801BA89C_7C7A7C(void) {
 
         case 0x1000:
             gStageCinemaState++;
-            func_80046148(D_801BEC00_7CBDE0, (s32)D_801BEC10_7CBDF0);
+            func_80046148(D_801BEC00_7CBDE0, (u16*)D_801BEC10_7CBDF0);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BF034_7CC214);
             gActors[0x37].flags = 0;
@@ -2246,7 +2246,7 @@ void func_801BB6D0_7C88B0(void) {
 
         case 1:
             gStageCinemaState++;
-            func_80046148(D_801BF740_7CC920, (s32)D_801BF778_7CC958);
+            func_80046148(D_801BF740_7CC920, (u16*)D_801BF778_7CC958);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BF7D0_7CC9B0);
             Actor_LoadSpawnTable(D_801BF80C_7CC9EC);

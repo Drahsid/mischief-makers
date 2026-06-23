@@ -139,7 +139,7 @@ extern void Palette_AdjustScenePalettes(
 extern void Actor_LoadSpawnTable(void* spawn_table);
 extern void func_80043D30(void* spawn);
 extern void func_80045FA4(void* arg0, u16* arg1);
-extern void func_80046148(void* arg0, s32 arg1);
+extern void func_80046148(void* arg0, u16* arg1);
 extern void func_80046188(void* arg0, void* arg1);
 extern void func_80046218(u16 arg0, u16 arg1);
 extern void Camera_UpdateViewBounds(void);

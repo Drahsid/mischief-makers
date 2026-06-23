@@ -1240,7 +1240,7 @@ void func_801B9900_7D40F0(void);
 void func_801B9F3C_7D472C(u16 arg0, u16 arg1);
 s32 func_801B9F70_7D4760(u16 actor_index);
 void func_801BAC6C_7D545C(void);
-void func_801BAE84_7D5674(void* arg0, s32 arg1);
+void func_801BAE84_7D5674(void* arg0, u16* arg1);
 void func_801BB444_7D5C34(void* arg0, s32 arg1, void* arg2);
 void func_801BC010_7D6800(u16 arg0, u16 arg1);
 s32 func_801BC01C_7D680C(u16 actor_index);
@@ -1842,7 +1842,7 @@ void func_801BAC6C_7D545C(void) {
     gActors[0x97].scaleY = gActors[0x97].scaleX;
 }
 
-void func_801BAE84_7D5674(void* arg0, s32 arg1) {
+void func_801BAE84_7D5674(void* arg0, u16* arg1) {
     func_80045FA4(arg0, arg1);
     func_80042F2C(-4, -8, -0xC);
     Actor_ClearRange(0x10, 0xC7);
@@ -1863,7 +1863,7 @@ void func_801BAF14_7D5704(void) {
     switch (gStageCinemaState) {
         case 0:
             Palette_AdjustScenePalettes(-0x15, -0x1A, -0x20, 0, 0, 0, -0x13, -0x1F, -0x20);
-            func_801BAE84_7D5674(D_801BE0B8_7D88A8, (s32)D_801BE318_7D8B08);
+            func_801BAE84_7D5674(D_801BE0B8_7D88A8, (u16*)D_801BE318_7D8B08);
             gStageCinemaState = 1;
             break;
 
@@ -1934,21 +1934,21 @@ void func_801BAF14_7D5704(void) {
 
         case 0x1001:
             func_801B9C0C_7D43FC(-0x58, -0x28);
-            func_801BAE84_7D5674(D_801BE0C8_7D88B8, -7);
+            func_801BAE84_7D5674(D_801BE0C8_7D88B8, (u16*)-7);
             gActors[0x31].posX.whole = 0x1B0 - gScreenPosCurrentX.whole;
             gActors[0x31].posY.whole = 0x180 - gScreenPosCurrentY.whole;
             break;
 
         case 0x1003:
             func_801B9C0C_7D43FC(-0x58, -0x28);
-            func_801BAE84_7D5674(D_801BE0D8_7D88C8, -7);
+            func_801BAE84_7D5674(D_801BE0D8_7D88C8, (u16*)-7);
             gActors[0x31].posX.whole = 0x8B0 - gScreenPosCurrentX.whole;
             gActors[0x31].posY.whole = 0x160 - gScreenPosCurrentY.whole;
             break;
 
         case 0x1005:
             func_801B9C0C_7D43FC(-0x58, -0x28);
-            func_801BAE84_7D5674(D_801BE0E8_7D88D8, -7);
+            func_801BAE84_7D5674(D_801BE0E8_7D88D8, (u16*)-7);
             gActors[0x31].posX.whole = 0xE30 - gScreenPosCurrentX.whole;
             gActors[0x31].posY.whole = 0x180 - gScreenPosCurrentY.whole;
             break;
@@ -2348,7 +2348,7 @@ void func_801BBE90_7D6680(void) {
 
         case 4:
             Actor_ClearRange_30To90();
-            func_80045FA4(D_801BFB3C_7DA32C, -7);
+            func_80045FA4(D_801BFB3C_7DA32C, (u16*)-7);
             func_801BBDF8_7D65E8(D_801BFF78_7DA768);
             D_800BE5F4.unk_00_u32 = 10;
             gActors[0].flags |= ACTOR_FLAG_FLIPPED;

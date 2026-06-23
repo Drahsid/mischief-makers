@@ -1906,7 +1906,7 @@ void func_801BACDC_7DDBAC(void) {
             Actor_ClearRange_30To90();
             gDrawEnvLayer = 0;
             D_800BE544 = 0x8000;
-            func_80046148(D_801BD9F4_7E08C4, 0);
+            func_80046148(D_801BD9F4_7E08C4, (u16*)NULL);
             Actor_LoadSpawnTable(D_801BE1A8_7E1078);
             gStageCinemaState++;
             Sound_PlayMusic(BGM_YUJYA);
@@ -1921,7 +1921,7 @@ void func_801BACDC_7DDBAC(void) {
         case 0xA03:
             gStageCinemaState++;
             Actor_ClearSceneActors();
-            func_80046148(D_801BD9F4_7E08C4, 0);
+            func_80046148(D_801BD9F4_7E08C4, (u16*)NULL);
             D_800BE544 = 0x8000;
             gDrawMidground = 0;
             gDrawEnvLayer = 0;

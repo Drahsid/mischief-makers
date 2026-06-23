@@ -11,41 +11,29 @@ u32 D_801B9BC0_7EA690[] = {
     0x0000FFEB,
 };
 
-u32 D_801B9BD0_7EA6A0[] = {
-    0x00000031,
-    0x05800184,
-    0x00000000,
-    0x16000000,
-    0x00900390,
-    0x0166FE07,
-    0x0006000D,
-    0x00000091,
-    0x03900166,
-    0x04070006,
-    0x000D0000,
-    0x00920390,
-    0x0166FE07,
-    0x000A000D,
-    0x00000093,
-    0x03900166,
-    0x0407000A,
-    0x000DFF00,
+// an actor spawn table.
+u16 D_801B9BD0_7EA6A0[] = {
+//  flags  index posX    posY    0x110   0xD8    type    
+    0,     0x31, 0x0580, 0x0184, 0x0000, 0,      0x1600,
+    0,     0x90, 0x0390, 0x0166, 0xFE07, 6,      0x000D,
+    0,     0x91, 0x0390, 0x0166, 0x0407, 6,      0x000D,
+    0,     0x92, 0x0390, 0x0166, 0xFE07, 10,     0x000D,
+    0,     0x93, 0x0390, 0x0166, 0x0407, 10,     0x000D,
+    SPAWNRECORD_END
 };
 
-u32 D_801B9C18_7EA6E8[] = {
-    0x00000011,
-    0x00000000,
-    0x00000000,
-    0x1609FF00,
+// an actor spawn entry.
+u16 D_801B9C18_7EA6E8[] = {
+//  flags  index posX    posY    0x110   0xD8    type        
+    0,     0x11, 0,      0,      0,      0,      0x1609,
+    SPAWNRECORD_END
 };
 
-u32 D_801B9C28_7EA6F8[] = {
-    0x00000030,
-    0x00000000,
-    0x00000003,
-    0x0075FF00,
-    0x00000000,
-    0x00000000,
+// an actor spawn entry.
+u16 D_801B9C28_7EA6F8[] = {
+//  flags  index posX    posY    0x110   0xD8    type        
+    0,     0x30,  0,      0,     0,      3,      0x75,
+    SPAWNRECORD_END
 };
 
 // cinematic "state machine" for "Final Battle!!"
@@ -61,7 +49,7 @@ void func_801B9900_7EA3D0(void) {
             }
             else {
                 gStageCinemaState = gStageCinemaState + 1;
-                func_80046148(D_801B9BC0_7EA690, 0);
+                func_80046148(D_801B9BC0_7EA690, (u16*)NULL);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
                 gLetterboxMode = LETTERBOX_DEFAULT;
             }

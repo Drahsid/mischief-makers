@@ -840,7 +840,7 @@ void func_801BAD9C_7DBF9C(void) {
             }
             else {
                 gStageCinemaState++;
-                func_80046148(D_801BB470_7DC670, 0);
+                func_80046148(D_801BB470_7DC670, (u16*)NULL);
                 Actor_LoadSpawnTable(D_801BB480_7DC680);
                 Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
                 D_800BE544 = 0x8000;
