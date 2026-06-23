@@ -48,7 +48,7 @@ typedef struct {
 
 // struct storing data about Marina player actor
 typedef struct {
-    /* 0x00 */ FixedCoord unk_00[2]; // used for storing and modding sime axtors' x-and-y positions.
+    /* 0x00 */ FixedCoord unk_00[2]; // used for storing and modding some actors' x-and-y positions.
     /* 0x08 */ s16 unk_08;
     /* 0x0A */ s8 unk_0A;
     /* 0x0B */ s8 unk_0B;
@@ -68,7 +68,7 @@ typedef struct {
     /* 0x44 */ s32 fallWhistle; // boolean(?) used while playing the "fall Whistle" sound in "Freefall!"
     /* 0x48 */ u8 unk_48[8]; // unused?
 
-    // the foling 4 values are displayed through the debug OSD when non-zero.
+    // the following 4 values are displayed through the debug OSD when non-zero.
 
     /* 0x50 */ u32 debugPosX; // set during Marina's "flymode" state with her global X position.
     /* 0x54 */ u32 debugPosY; // set during Marina's "flymode" state with her global Y position.
