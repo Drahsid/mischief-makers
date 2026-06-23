@@ -78,5 +78,7 @@ extern u16 gActorsFront[240]; // indecies of actors to draw in "front"
 extern u16 gActorsTop[240]; // indecies of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
 
 extern UnkStruct_D_801373E0 D_801373E0;
+extern s8 D_801373F2;
+extern u32 D_80137458;
 
 #endif

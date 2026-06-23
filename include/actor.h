@@ -213,15 +213,14 @@ typedef struct {
     /* 0x130 */ f32 unk_130;
     /* 0x134 */ f32 unk_134;
     /* 0x138 */ f32 unk_138;
-    /* 0x13C */ f32 unk_13C;
+    union {
+        /* 0x13C */ f32 unk_13C_f32;
+        /* 0x13C */ u16 unk_13C_u16[2];
+    };
     union {
         /* 0x140 */ f32 unk_140_f32;
-        struct {
-            /* 0x140 */ u8 unk_140_u8;
-            /* 0x141 */ u8 unk_141_u8;
-            /* 0x142 */ u8 unk_142_u8;
-            /* 0x143 */ u8 unk_143_u8;
-        };
+        /* 0x140 */ u16 unk_140_u16[2];
+        /* 0x140 */ u8 unk_140_u8[4];
     };
     /* 0x144 */ f32 unk_144;
     /* 0x148 */ f32 unk_148;
@@ -246,7 +245,11 @@ typedef struct {
     /* 0x164 */ s32 unk_164;
     /* 0x168 */ s32 unk_168;
     /* 0x16C */ s32 unk_16C;
-    /* 0x170 */ s32 unk_170;
+    union {
+        /* 0x170 */ s32 unk_170;
+        /* 0x170 */ u16 unk_170_u16[2];
+        /* 0x170 */ s8 unk_170_s8[4];
+    };
     /* 0x174 */ s32 unk_174;
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
     union{
@@ -255,7 +258,10 @@ typedef struct {
         /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
         /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
     };
-    /* 0x180 */ s32 unk_180;
+    union {
+        /* 0x180 */ s32 unk_180;
+        /* 0x180 */ s8 unk_180_u8[4];
+    };
     union {
         /* 0x184 */ s32 unk_184;
         /* 0x184 */ s16 unk_184_s16[2];

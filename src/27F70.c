@@ -89,10 +89,8 @@ extern s16 D_800E2528[];
 extern s32 D_800E3578; // nearest actor delta X
 extern s32 D_800E357C; // nearest actor delta Y
 extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
-extern s8 D_801373F2;
 extern s32 D_80137444;
 extern u16 D_80137450;
-extern u32 D_80137458;
 extern u16 gRedGems;
 
 extern Unk800D1788 D_800D1788[];
@@ -679,7 +677,7 @@ s32 func_80028E1C(u16 actor_index) {
     s16 actor0_pos;
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         if (D_80137450 == actor_index) {
-            if ((gActors[0].unk_140_u8 == 0) && (gActors[0].posY.whole < gActors[actor_index].posY.whole)) {
+            if ((gActors[0].unk_140_u8[0] == 0) && (gActors[0].posY.whole < gActors[actor_index].posY.whole)) {
                 actor0_pos = gActors[0].posY.whole;
                 while (actor0_pos < gActors[actor_index].posY.whole) {
                     if (func_8001FCA0(actor_index, gActors[0].posX.whole, actor0_pos) & 0x80) {
@@ -692,7 +690,7 @@ s32 func_80028E1C(u16 actor_index) {
                     actor0_pos += 16;
                 }
             }
-            else if (gActors[0].unk_140_u8 == 4) {
+            else if (gActors[0].unk_140_u8[0] == 4) {
                 if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
                     actor0_pos = gActors[0].posX.whole;
                     while (gActors[actor_index].posX.whole < actor0_pos) {
@@ -1278,10 +1276,10 @@ s32 func_8002A658(u16 actor_index) {
     u8 var_v1;
 
     // BUG: UB, var_v1 may be uninitialized
-    if (gActors[0].unk_140_u8 & 0x80) {
+    if (gActors[0].unk_140_u8[0] & 0x80) {
         var_v0 = ((gActors[actor_index].rotateZ / RadStep) / 64) + 4.0;
         var_v0 &= 0xF;
-        switch (gActors[0].unk_140_u8 & 0xF) {
+        switch (gActors[0].unk_140_u8[0] & 0xF) {
             case 0:
                 if (!(gActors[0].flags & ACTOR_FLAG_FLIPPED)) {
                     var_v1 = ((var_v0 == 0) || (var_v0 >= 8)) ? 2 : 14;
@@ -1308,7 +1306,7 @@ s32 func_8002A658(u16 actor_index) {
         return (-var_v1 << 22) + 0x01000000;
     }
     else {
-        return (-gActors[0].unk_140_u8 << 22) + 0x01000000;
+        return (-gActors[0].unk_140_u8[0] << 22) + 0x01000000;
     }
 }
 
@@ -2205,7 +2203,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     gActors[actor_index].unk_130 = 0.0f;
     gActors[actor_index].unk_134 = 0.0f;
     gActors[actor_index].unk_138 = 0.0f;
-    gActors[actor_index].unk_13C = 0.0f;
+    gActors[actor_index].unk_13C_f32 = 0.0f;
     gActors[actor_index].unk_140_f32 = 0.0f;
     gActors[actor_index].unk_144 = 0.0f;
     gActors[actor_index].unk_148 = 0.0f;
@@ -3607,7 +3605,7 @@ void ActorUpdate_Particle(u16 actor_index) {
                     gActors[actor_index].posX.whole += (s16) gActors[actor_index].unk_134;
                     gActors[actor_index].posY.whole += (s16) gActors[actor_index].unk_138;
                 }
-                gActors[actor_index].posZ.raw = gActors[index].posZ.raw + gActors[actor_index].unk_13C;
+                gActors[actor_index].posZ.raw = gActors[index].posZ.raw + gActors[actor_index].unk_13C_f32;
                 return;
             }
         }
@@ -3669,7 +3667,7 @@ u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u1
         gActors[actor_index].unk_130 = arg2;
         gActors[actor_index].unk_134 = arg3;
         gActors[actor_index].unk_138 = arg25;
-        gActors[actor_index].unk_13C = arg26;
+        gActors[actor_index].unk_13C_f32 = arg26;
         gActors[actor_index].unk_0DA = arg5;
         gActors[actor_index].unk_0DB = arg6;
         gActors[actor_index].damage = arg27;
@@ -3729,8 +3727,8 @@ void func_800320F8(u16 actor_index) {
         (&gActors[actor_130].var_150)[index] &= 0xFFFF0EFF;
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
             (&gActors[actor_130].var_150)[index] |= 0x100;
-            if (gActors[actor_index].unk_13C != 0.0f) {
-                Sound_PlaySfxAtActor2((s32)gActors[actor_index].unk_13C, actor_index);
+            if (gActors[actor_index].unk_13C_f32 != 0.0f) {
+                Sound_PlaySfxAtActor2((s32)gActors[actor_index].unk_13C_f32, actor_index);
             }
             if ((&gActors[actor_130].var_150)[index] & 2) {
                 gActors[actor_index].flags = 0;
@@ -3757,8 +3755,8 @@ void func_800320F8(u16 actor_index) {
                 count++;
             }
             if (count != 0) {
-                if (gActors[actor_index].unk_13C != 0.0f) {
-                    Sound_PlaySfxAtActor2((s32)gActors[actor_index].unk_13C, actor_index);
+                if (gActors[actor_index].unk_13C_f32 != 0.0f) {
+                    Sound_PlaySfxAtActor2((s32)gActors[actor_index].unk_13C_f32, actor_index);
                 }
                 gActors[actor_index].flags = 0;
                 return;
@@ -5437,7 +5435,7 @@ void func_80037B90(u16 actor_index) {
             d_pos_x = -d_pos_x;
         }
         if (gActors[actor_index].state != 3) {
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0) && (gActors[0].unk_140_u8 == 8)) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_0D6 == 0) && (gActors[0].unk_140_u8[0] == 8)) {
                 if (((gActors[0].posY.whole - gActors[actor_index].posY.whole) >= 0x1B) && (d_pos_x < 0xC)) {
                     func_80035524(actor_index, 0);
                     gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK9;
@@ -6113,7 +6111,7 @@ void func_8003A120(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].unk_188 = (gActors[actor_index].var_150 & 0xFF) & 0xFF; // fakematch
         gActors[actor_index].unk_138 = 32.0f;
-        gActors[actor_index].unk_13C = 32.0f;
+        gActors[actor_index].unk_13C_f32 = 32.0f;
         gActors[actor_index].unk_148 = 0.0f;
         gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
         gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
@@ -6280,7 +6278,7 @@ void func_8003A120(u16 actor_index) {
     }
     if (gActors[actor_index].var_150 & 0x8000) {
         gActors[(u16)gActors[actor_index].unk_188].flags_098 |= gActors[actor_index].flags_098;
-        gActors[actor_index].unk_13C = Math_ApproachF32(gActors[actor_index].unk_13C, gActors[actor_index].unk_138, 4.0f);
+        gActors[actor_index].unk_13C_f32 = Math_ApproachF32(gActors[actor_index].unk_13C_f32, gActors[actor_index].unk_138, 4.0f);
     }
     else {
         gActors[actor_index].posX.whole = (gActors[actor_index].unk_170 + (gActors[actor_index].var_154 / 65536)) - gScreenPosCurrentX.whole;
@@ -6472,7 +6470,7 @@ void func_8003AC30(u16 actor_index) {
 
         for (loop_var = gActors[actor_index].var_15C; loop_var >= 0; index--, loop_var--, angle += D_800D2714[gActors[actor_index].var_15C]) {
             angle &= 0x3FF;
-            dx = gActors[index].unk_13C * 65536.0f;
+            dx = gActors[index].unk_13C_f32 * 65536.0f;
             gActors[index].posX.raw = (dx * COS(angle) + gActors[actor_index].posX.raw) + gActors[index].var_154;
             gActors[index].posY.raw = (dx * SIN(angle) + gActors[actor_index].posY.raw) + gActors[index].var_158;
 

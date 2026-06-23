@@ -131,7 +131,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].velocityZ.raw = FIXED_UNIT(1.0);
             gActors[temp_v0].var_154 = -0x10;
             gActors[temp_v0].unk_138 = -16.0f;
-            gActors[temp_v0].unk_13C = 16.0f;
+            gActors[temp_v0].unk_13C_f32 = 16.0f;
             gActors[temp_v0].timer_110 = 0.55f;
             gActors[temp_v0].unk_118 = -0.02f;
             gActors[temp_v0].unk_11C = -0.02f;
