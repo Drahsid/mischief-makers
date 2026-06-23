@@ -4,11 +4,9 @@
 
 extern u8 D_8010692C;
 
-u32 D_801B9BC0_7EA690[] = {
-    0x05800198,
-    0xFFF02090,
-    0x02080128,
-    0x0000FFEB,
+u16 D_801B9BC0_7EA690[] = {
+//  GlobalX GlobalY D_800D2920 D_800D2924 D_800D2918 D_800D291C PlayerX PlayerY
+    0x0580, 0x0198, 0xFFF0,    0x2090,    0x0208,    0x0128,    0x0000, 0xFFEB
 };
 
 // an actor spawn table.
