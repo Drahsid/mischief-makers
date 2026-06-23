@@ -2384,6 +2384,7 @@ void func_801BBE90_7D6680(void) {
     Camera_UpdateViewBounds();
 }
 
+// would add yellow gem, but case is already done in Clanpot_TryMix
 void func_801BC010_7D6800(u16 arg0, u16 arg1) {
 }
 

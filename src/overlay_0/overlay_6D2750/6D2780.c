@@ -1306,15 +1306,15 @@ void func_801961D0_6D6850(u16 actor_index) {
                     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ;
                     switch (gActors[actor_index].graphicIndex) {
                         case 0x1802:
-                            gActors[actor_index].unk_164 = (s32)D_80199070_6D96F0;
+                            gActors[actor_index].unk_164 = (intptr_t)D_80199070_6D96F0;
                             break;
 
                         case 0x1804:
-                            gActors[actor_index].unk_164 = (s32)D_80199090_6D9710;
+                            gActors[actor_index].unk_164 = (intptr_t)D_80199090_6D9710;
                             break;
 
                         case 0x1806:
-                            gActors[actor_index].unk_164 = (s32)D_801990B0_6D9730;
+                            gActors[actor_index].unk_164 = (intptr_t)D_801990B0_6D9730;
                             break;
                     }
                     func_801960BC_6D673C(actor_index, (UnkStruct_func_801960BC_6D673C*)gActors[actor_index].unk_164, 0);
@@ -1428,10 +1428,10 @@ void func_801961D0_6D6850(u16 actor_index) {
                     gActors[actor_index].stateUpper++;
                     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ;
                     if (gActors[actor_index].graphicIndex == 0x802) {
-                        gActors[actor_index].unk_164 = (s32)D_801990D0_6D9750;
+                        gActors[actor_index].unk_164 = (intptr_t)D_801990D0_6D9750;
                     }
                     else {
-                        gActors[actor_index].unk_164 = (s32)D_80199100_6D9780;
+                        gActors[actor_index].unk_164 = (intptr_t)D_80199100_6D9780;
                     }
                     func_801960BC_6D673C(actor_index, (UnkStruct_func_801960BC_6D673C*)gActors[actor_index].unk_164, 0);
                     gActors[actor_index].unk_114 = 8.0f;
@@ -1680,7 +1680,7 @@ void func_8019897C_6D8FFC(u16 actor_index) {
                 if (timer <= 0) {
                     actor->stateUpper++;
                     func_8008105C(actor_index, D_800E5E48, D_800E5D30);
-                    actor->unk_178 = (s32)D_800E8820;
+                    actor->unk_178 = (intptr_t)D_800E8820;
                     func_80081478(actor_index, D_800E5E48, 1);
                     func_80081790(actor_index, D_800E8EAC);
                     func_800819A8(actor_index, D_800E5E48);

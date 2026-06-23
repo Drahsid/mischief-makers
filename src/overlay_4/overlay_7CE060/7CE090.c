@@ -1836,13 +1836,13 @@ void func_801BB0F0_7CF880(void) {
     }
 
     // set coordinates for warp gates (casting required to match)
-    gActors[0x30].unk_190 = (s32)D_801BEBAC_7D333C;
-    gActors[0x31].unk_190 = (s32)D_801BEBB4_7D3344;
-    gActors[0x32].unk_190 = (s32)D_801BEBBC_7D334C;
-    gActors[0x33].unk_190 = (s32)D_801BEBC4_7D3354;
-    gActors[0x36].unk_190 = (s32)D_801BEBCC_7D335C;
-    gActors[0x35].unk_190 = (s32)D_801BEBCC_7D335C;
-    gActors[0x34].unk_190 = (s32)D_801BEBCC_7D335C;
+    gActors[0x30].unk_190 = (intptr_t)D_801BEBAC_7D333C;
+    gActors[0x31].unk_190 = (intptr_t)D_801BEBB4_7D3344;
+    gActors[0x32].unk_190 = (intptr_t)D_801BEBBC_7D334C;
+    gActors[0x33].unk_190 = (intptr_t)D_801BEBC4_7D3354;
+    gActors[0x36].unk_190 = (intptr_t)D_801BEBCC_7D335C;
+    gActors[0x35].unk_190 = (intptr_t)D_801BEBCC_7D335C;
+    gActors[0x34].unk_190 = (intptr_t)D_801BEBCC_7D335C;
 
     switch (gStageCinemaState) {
         case 0:

@@ -38,7 +38,7 @@ enum DebugFlags {
     DEBUGFLAG_THROTTLE = (1U << 1U), 
     
     // game runs with perspective view when set, orthographic when unset
-    // set during initalization.
+    // set during initialization.
     DEBUGFLAG_PERSPECTIVE = (1U << 2U), 
     DEBUGFLAG_UNK3 = (1U << 3U), // unknown/unused
     DEBUGFLAG_UNK4 = (1U << 4U), // unset in func_800012F0

@@ -262,7 +262,7 @@ void func_80095A10(u16 actor_index) {
 void func_80095FC8(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     func_8008105C(actor_index, D_800E9414, D_800E93C4);
-    gActors[actor_index].unk_178 = (s32)D_800E961C;
+    gActors[actor_index].unk_178 = (intptr_t)D_800E961C;
     func_80081790(actor_index, D_800E95E8);
 }
 
@@ -279,7 +279,7 @@ void func_80095FC8(u16 actor_index) {
 void func_8009685C(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     func_8008105C(actor_index, D_800E9654, D_800E9634);
-    gActors[actor_index].unk_178 = (s32)D_800E9720;
+    gActors[actor_index].unk_178 = (intptr_t)D_800E9720;
     func_80081790(actor_index, D_800E9700);
 }
 

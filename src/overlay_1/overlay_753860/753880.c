@@ -154,7 +154,7 @@ void func_8019B230_7539B0(u16 actor_index) {
     gActors[actor_index].flags = 0x3403;
     func_8002AC30(actor_index, 4);
     func_8008105C(actor_index, D_8019B8DC_75405C, D_8019B850_753FD0);
-    gActors[actor_index].unk_178 = (s32)D_8019BCC4_754444;
+    gActors[actor_index].unk_178 = (intptr_t)D_8019BCC4_754444;
     func_80081478(actor_index, D_8019B8DC_75405C, 0);
     func_80081790(actor_index, D_8019BCFC_75447C);
     func_800819A8(actor_index, (s16*)D_8019B8DC_75405C);

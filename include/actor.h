@@ -160,7 +160,7 @@ typedef struct {
     /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
-    /* 0x0D8 */ u16 var_0D8; // often used as second set of inital actor paramaters.
+    /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
     /* 0x0DA */ u8 unk_0DA;
     /* 0x0DB */ u8 unk_0DB;
     /* 0x0DC */ u8 unk_0DC;
@@ -187,13 +187,22 @@ typedef struct {
     /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
     /* 0x0F0 */ FixedCoord velocityY; // applied to posY in func_80014af0 
     /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in func_80014af0
+
+    // the following values are used by actors for purposes depending on their type
+    // examples: Clanbombs will use offset 0x150 for the fuse timer,
+    // or the crosshair actor will use it for the index of its "parent",
+    // or player-controlled Teran will count his jumps with it.
+    
+    // NOTE: trying to use unions for these variables for different datatypes (u8[4],u16[2])
+    //  may cause mismatch due to "narrowing"
+
     /* 0x0F8 */ FixedCoord unk_0F8; // related to x-axis velocity. Usage varies.
     /* 0x0FC */ FixedCoord unk_0FC; // related to y-axis velocity. Usage varies.
     /* 0x100 */ s32 unk_100; // cleared in Actor_Initialize, but otherwise (seemingly) unused. z-axis value?
     /* 0x104 */ s32 unk_104;
     /* 0x108 */ s32 unk_108;
     /* 0x10C */ s32 unk_10C;
-    /* 0x110 */ f32 var_110; // often used as first set of inital actor paramaters.
+    /* 0x110 */ f32 var_110; // often used as first set of initial actor paramaters.
     /* 0x114 */ f32 unk_114;
     /* 0x118 */ f32 unk_118;
     /* 0x11C */ f32 unk_11C;
@@ -227,14 +236,6 @@ typedef struct {
     /* 0x148 */ f32 unk_148;
     /* 0x14C */ f32 unk_14C;
 
-    // the following values are used by actors for purposes depending on their type
-    // examples: Clanbombs will use offset 0x150 for the fuse timer,
-    // or the crosshair actor will use it for the index of its "parent",
-    // or player-controlled Teran will count his jumps with it.
-    
-    // NOTE: trying to use unions for these variables for different datatypes (u8[4],u16[2])
-    //  may cause mismatch due to "narrowing"
-
     /* 0x150 */ s32 var_150;
     /* 0x154 */ s32 var_154;
     /* 0x158 */ s32 var_158;
@@ -250,7 +251,7 @@ typedef struct {
     };
     union{
         /* 0x16C */ s32 unk_16C;
-        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing.
+        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing. returns true if 
     };
     /* 0x170 */ s32 unk_170;
     /* 0x174 */ s32 unk_174;
@@ -296,13 +297,13 @@ extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 // despite being indentical on a human-readable level.
 // test for mismatches before fully utilizing.
 
-// a common macro for initalizing actors.
+// a common macro for initializing actors.
 // can cause mismatches.
 #define ACTOR_INIT(index, type)\
  gActors[index].actorType = type;\
  Actor_Initialize(index)
 
-// a common macro for initalizing graphic lists
+// a common macro for initializing graphic lists
 // can cause mismatches.
 #define ACTOR_GFX_INIT(index, graphicsP)\
  gActors[index].graphicList = (s16*)graphicsP;\

@@ -332,7 +332,7 @@ u16 func_8002801C(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
         if (*str != 0) {
             func_80027370(actor_index, x, y, z);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-            gActors[actor_index].unk_18C = (s32)D_800D17FC; // required to match
+            gActors[actor_index].unk_18C = (intptr_t)D_800D17FC; // required to match
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].graphicIndex = ALPHA_GLYPH_INDEX(*str);
             actor_index++;
@@ -3638,7 +3638,7 @@ void ActorUpdate_Particle(u16 actor_index) {
         y = gActors[actor_index].unk_144 * gActors[actor_index].scaleY;
         dist = sqrtf(SQ(x) + SQ(y)) * 65536.0f;
         angle = Math_Atan2(x, y);
-        angle = (gActors[actor_index].var_160 / 65536) + angle;
+        angle = (gActors[actor_index].var_160 / 0x10000) + angle;
         gActors[actor_index].posX.raw = gActors[actor_index].unk_184 + (COS(angle) * dist);
         gActors[actor_index].posY.raw = gActors[actor_index].unk_188 + (SIN(angle) * dist);
     }
@@ -3989,7 +3989,7 @@ void func_800333A0(s16 x, s16 y, s16 z, f32 arg3) {
 // spawns an "after-image" of an actor behind it.
 // copies pos, rot, scale, facing and graphicFlags.
 // @param src_index "parent" to copy.
-// @param alpha inital alpha value.
+// @param alpha initial alpha value.
 // @param rate rate at which the image will fade.
 // @param arg3 if gActiveFrames & arg3 != 0, the spawn will fail.
 // @returns index of actor, or 0 if failed.
@@ -5321,7 +5321,11 @@ u16 Clanpot_TryMix(u16 actor_index) {
     gActors[actor_index].var_160 = -1;
     gActors[actor_index].unk_164 = -1;
     gActors[actor_index].unk_168 = -1;
-    if (((gActors[actor1].unk_16C != 0) && (((s32 (*)(u16, u16)) gActors[actor1].unk_16C)(actor_index, index1) != 0)) || (Clanpot_MixClanbomb(actor_index) != 0) || (Clanpot_MixBoomerang(actor_index) != 0) || (Clanpot_MixShuriken(actor_index) != 0) || ((Clanpot_MixGreenGem(actor_index) != 0))) {
+    // run clanpot mix checks. first actor-based if available.
+    if ((gActors[actor1].clanpot_pfn1 != NULL) && ((gActors[actor1].clanpot_pfn1(actor_index)))  ||
+    // then check the rest.
+       (Clanpot_MixClanbomb(actor_index)) || (Clanpot_MixBoomerang(actor_index)) ||
+       (Clanpot_MixShuriken(actor_index)) || ((Clanpot_MixGreenGem(actor_index)))) {
         return TRUE;
     }
     else {
@@ -7978,7 +7982,7 @@ void func_8003F360(u16 actor_index) {
 }
 
 // spawns an "!" speech bubble particle.
-// @param scale inital scale of "!"
+// @param scale initial scale of "!"
 // @param pos_x x-postion of actor.
 // @param pos_y y-postion of actor.
 // @param pos_z z-postion of actor.
@@ -8033,7 +8037,7 @@ u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 }
 
 // spawns a "heart bubble" particle that expands and fades
-// @param scale inital scale of heart
+// @param scale initial scale of heart
 // @param pos_x x-postion of actor.
 // @param pos_y y-postion of actor.
 // @param pos_z z-postion of actor.
@@ -8095,7 +8099,7 @@ u16 func_8003F9E0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 // spawn an expanding ring particle with a sparkle in the middle.
 // @param parent index of parent actor. unused.
 // @param unused_arg1 unused.
-// @param scale inital scale of ring
+// @param scale initial scale of ring
 // @param pos_x x-postion of actors.
 // @param pos_y y-postion of actors.
 // @param pos_z z-postion of actors.

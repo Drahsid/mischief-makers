@@ -20,8 +20,8 @@ void func_801B1000_7970D0(u16 actor_index) {
     actor->unk_12C = scale;
     actor->scaleY = scale;
     actor->scaleX = scale;
-    actor->unk_0F8.raw = (s32)(81920.0f * scale);
-    actor->unk_0FC.raw = (s32)(212992.0f * scale);
+    actor->unk_0F8.raw = (0x14000 * scale);
+    actor->unk_0FC.raw = (0x34000 * scale);
     func_8002ABE4(actor_index, (s16)(s32)(16.0f * scale));
     actor->posX.whole = actor->var_15C - gScreenPosCurrentX.whole;
     actor->velocityX.raw = 0;

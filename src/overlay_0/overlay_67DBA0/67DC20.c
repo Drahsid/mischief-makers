@@ -260,8 +260,8 @@ void func_80193790_67F2B0(u16 actor_index) {
 
     func_80193728_67F248(0x31);
     func_8008105C(0x31, D_8019B200_686D20, D_8019B1DC_686CFC);
-    gActors[0x31].unk_178 = (s32)D_8019BF20_687A40;
-    temp[0] = (s32)D_8019BF20_687A40;
+    gActors[0x31].unk_178 = (intptr_t)D_8019BF20_687A40;
+    temp[0] = (intptr_t)D_8019BF20_687A40;
 
     func_80193728_67F248(0x38);
     func_8008105C(0x38, D_8019B200_686D20, D_8019B1DC_686CFC);
@@ -270,21 +270,21 @@ void func_80193790_67F2B0(u16 actor_index) {
 
     func_80193728_67F248(0x3F);
     func_8008105C(0x3F, D_8019C054_687B74, D_8019C010_687B30);
-    gActors[0x3F].unk_178 = (s32)D_8019C830_688350;
+    gActors[0x3F].unk_178 = (intptr_t)D_8019C830_688350;
     gActors[0x3F].unk_168 = 0x2980;
     gActors[0x3F].unk_128 = 67.0f;
     gActors[0x3F].unk_12C = 66.0f;
 
     func_80193728_67F248(0x4D);
     func_8008105C(0x4D, D_8019C8D8_6883F8, D_8019C884_6883A4);
-    gActors[0x4D].unk_178 = (s32)D_8019D6E0_689200;
+    gActors[0x4D].unk_178 = (intptr_t)D_8019D6E0_689200;
     gActors[0x52].graphicFlags |= ACTOR_GFLAG_ROTY;
     gActors[0x53].graphicFlags |= ACTOR_GFLAG_ROTY;
     gActors[0x5B].flags |= ACTOR_FLAG_FLIPPED;
 
     func_80193728_67F248(0x5C);
     func_8008105C(0x5C, D_8019B194_686CB4, D_8019B18C_686CAC);
-    gActors[0x5C].unk_178 = (s32)D_8019B1D4_686CF4;
+    gActors[0x5C].unk_178 = (intptr_t)D_8019B1D4_686CF4;
 
     func_80081478(0x31, D_8019B200_686D20, 0);
     func_80081478(0x38, D_8019B200_686D20, 0);
@@ -658,7 +658,7 @@ void func_80198708_684228(u16 actor_index) {
         gActors[new_actor_index].scaleX = gActors[actor_index].unk_118;
         gActors[new_actor_index].colorA = 0x80;
         gActors[new_actor_index].var_154 = -0x21;
-        gActors[new_actor_index].unk_178 = (s32)D_800E0648;
+        gActors[new_actor_index].unk_178 = (intptr_t)D_800E0648;
         gActors[new_actor_index].var_110 = 0.5f;
         gActors[new_actor_index].unk_114 = 0.5f;
         gActors[new_actor_index].scaleY = gActors[new_actor_index].scaleX;
