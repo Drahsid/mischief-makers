@@ -134,7 +134,7 @@ void func_800427E0(u16 arg0) {
     u16 index;
 
     index = gActors[arg0].var_154;
-    if (gActors[index].actorType == 0xC) {
+    if (gActors[index].actorType == ACTORTYPE_12) {
         gActors[index].posX.whole = gActors[arg0].posX.whole;
         gActors[index].posY.whole = gActors[arg0].posY.whole;
         gActors[index].posZ.whole = gActors[arg0].posZ.whole;
@@ -189,7 +189,7 @@ void func_80042A0C(u16 actor_index) {
         gActors[actor_index].state += 1;
         gActors[actor_index].var_154 = index;
         gActors[actor_index].var_110 -= 1.0f;
-        gActors[index].actorType = 0xC;
+        gActors[index].actorType = ACTORTYPE_12;
         Actor_Initialize(index);
         gActors[index].graphicFlags = 0;
         gActors[index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE;

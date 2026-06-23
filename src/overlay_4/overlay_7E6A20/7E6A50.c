@@ -287,7 +287,7 @@ void func_801B9900_7E6A50(u16 actor_index) {
 void func_801B996C_7E6ABC(void) {
     s32 temp;
 
-    if ((gActors[0x90].actorType == 0xD) && ((gActors[0x90].flags & ACTOR_FLAG_ACTIVE) != 0)) {
+    if ((gActors[0x90].actorType == ACTORTYPE_13) && ((gActors[0x90].flags & ACTOR_FLAG_ACTIVE) != 0)) {
         func_801B9900_7E6A50(0x90);
         func_801B9900_7E6A50(0x91);
     }

@@ -139,7 +139,7 @@ void func_80016E70(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL1_12:
+        case ACTOR_OVL1_BEE:
             D_8019B000[index](actor_index);
             break;
 
@@ -396,7 +396,7 @@ void func_80017F08(void) {
 }
 
 void func_80017FE8(u16 actor_index) {
-    gActors[actor_index].actorType = 0;
+    gActors[actor_index].actorType = ACTORTYPE_ZERO;
     Actor_Initialize(actor_index);
 
     gActors[actor_index].posX.whole = -2;

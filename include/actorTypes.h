@@ -26,7 +26,7 @@ typedef enum {
     ACTOR_OVL1_9,
     ACTOR_OVL1_10,
     ACTOR_OVL1_11,
-    ACTOR_OVL1_12,
+    ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
     ACTOR_OVL1_13,
     ACTOR_OVL3_14,
     ACTOR_OVL0_CALPHA, // actors in Overlay 0 code of "Cerberus Alpha" 
@@ -70,13 +70,19 @@ typedef enum{
     ACTORTYPE_2, // Essentially Stubbed
     ACTORTYPE_3, // Stubbed
     ACTORTYPE_4, // Stubbed
-    ACTORTYPE_5,
+    ACTORTYPE_5, // has "spawn" that goes unused.
     ACTORTYPE_DIZZYSTAR, // stars when a Clancer is KO'd.
     ACTORTYPE_AFTERIMAGE, // spawns an after-image of an actor behind it.
     ACTORTYPE_GEM, // gem actor.
     ACTORTYPE_PARTICLE, // moving sprites.
     ACTORTYPE_10, // Stubbed
-    ACTORTYPE_17 = 0x11, // stubbed code is in overlay script F00D0.c
+    ACTORTYPE_11,
+    ACTORTYPE_12,
+    ACTORTYPE_13,
+    ACTORTYPE_14,
+    ACTORTYPE_15,
+    ACTORTYPE_16,
+    ACTORTYPE_17, // stubbed code is in overlay script F00D0.c
     ACTORTYPE_18, // stubbed code is in overlay script F00D0.c
     ACTORTYPE_19, // stubbed code is in overlay script F00D0.c
     ACTORTYPE_20, // stubbed code is in overlay script F00D0.c
@@ -90,30 +96,100 @@ typedef enum{
     ACTORTYPE_28, // controls for Blockman?
     ACTORTYPE_GRAPHICONLY, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
     ACTORTYPE_30, // Stubbed
-    ACTORTYPE_PORTRAIT = 0x27,
-    ACTORTYPE_MARINAAFTERIMAGE = 0x2E, // when marina dashes. Has unused alternate version.
-    ACTORTYPE_WARPGATE = 0x32,
-    ACTORTYPE_TEXTBUBBLE = 0X35, // used many times in Japan version. in English versions, only used by the coach in "the day before".
-    ACTORTYPE_PARTICLE56 = 0x38, // a "child class" of ACTORTYPE_PARTICLE. extended behavior.
-    ACTORTYPE_GEM61 = 61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
-    ACTORTYPE_FLOWER = 0X43, // flowers with a slow, sine-wave fall.
+    ACTORTYPE_31,
+    ACTORTYPE_32,
+    ACTORTYPE_33,
+    ACTORTYPE_34,
+    ACTORTYPE_35,
+    ACTORTYPE_36,
+    ACTORTYPE_37,
+    ACTORTYPE_38,
+    ACTORTYPE_PORTRAIT,
+    ACTORTYPE_40,
+    ACTORTYPE_41,
+    ACTORTYPE_42,
+    ACTORTYPE_43,
+    ACTORTYPE_44,
+    ACTORTYPE_45,
+    ACTORTYPE_MARINAAFTERIMAGE, // when marina dashes. Has unused alternate version.
+    ACTORTYPE_47,
+    ACTORTYPE_48,
+    ACTORTYPE_49,
+    ACTORTYPE_WARPGATE,
+    ACTORTYPE_51,
+    ACTORTYPE_52,
+    ACTORTYPE_TEXTBUBBLE, // used many times in Japan version. in English versions, only used by the coach in "the day before".
+    ACTORTYPE_54,
+    ACTORTYPE_55,
+    ACTORTYPE_PARTICLE56, // a "child class" of ACTORTYPE_PARTICLE. extended behavior.
+    ACTORTYPE_57,
+    ACTORTYPE_58,
+    ACTORTYPE_59,
+    ACTORTYPE_60,
+    ACTORTYPE_GEM61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
+    ACTORTYPE_62,
+    ACTORTYPE_63,
+    ACTORTYPE_64,
+    ACTORTYPE_65,
+    ACTORTYPE_66,
+    ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
     ACTORTYPE_HAT, // hats worn by clancers
     ACTORTYPE_CLANBOMB,
-    ACTORTYPE_DIGGINGSPOT = 0x57, // grab the ground for treasures.
-    ACTORTYPE_CLANCERGHOST = 0X63,
-    ACTORTYPE_GEMICON = 0X66, // clanpot icon for gems.
+    ACTORTYPE_70,
+    ACTORTYPE_71,
+    ACTORTYPE_72,
+    ACTORTYPE_73,
+    ACTORTYPE_74,
+    ACTORTYPE_75,
+    ACTORTYPE_76,
+    ACTORTYPE_77,
+    ACTORTYPE_78,
+    ACTORTYPE_79,
+    ACTORTYPE_80,
+    ACTORTYPE_81,
+    ACTORTYPE_82,
+    ACTORTYPE_83,
+    ACTORTYPE_84,
+    ACTORTYPE_85,
+    ACTORTYPE_86,
+    ACTORTYPE_DIGGINGSPOT, // grab the ground for treasures.
+    ACTORTYPE_88,
+    ACTORTYPE_89,
+    ACTORTYPE_90,
+    ACTORTYPE_91,
+    ACTORTYPE_92,
+    ACTORTYPE_93,
+    ACTORTYPE_94,
+    ACTORTYPE_95,
+    ACTORTYPE_96,
+    ACTORTYPE_97,
+    ACTORTYPE_98,
+    ACTORTYPE_CLANCERGHOST,
+    ACTORTYPE_100,
+    ACTORTYPE_101,
+    ACTORTYPE_GEMICON, // clanpot icon for gems.
     ACTORTYPE_GHOSTICON, // clanpot icon for Clancer Ghosts.
     ACTORTYPE_CLANPOTICON, // clanpot icon for items.
     ACTORTYPE_CLANCERICON, // clanpot icon is the appropriate clancer.
-    ACTORTYPE_AREACLEAR = 0X6B, // "Get out of trouble!" "Go to the next area!"
-    ACTORTYPE_MARINAOHNO = 0X70, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
-    ACTORTYPE_CROSSHAIR = 0X71, // Crosshair appearing over actors for a second. Arrows can be toggled.
-    ACTORTYPE_STAGECLEAR = 0X74, // actors for the "stage clear" animation.
+    ACTORTYPE_106,
+    ACTORTYPE_AREACLEAR, // "Get out of trouble!" "Go to the next area!"
+    ACTORTYPE_108,
+    ACTORTYPE_109,
+    ACTORTYPE_110,
+    ACTORTYPE_111,
+    ACTORTYPE_MARINAOHNO, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
+    ACTORTYPE_CROSSHAIR, // Crosshair appearing over actors for a second. Arrows can be toggled.
+    ACTORTYPE_114,
+    ACTORTYPE_115,
+    ACTORTYPE_STAGECLEAR, // actors for the "stage clear" animation.
     ACTORTYPE_LEVELCLEAR, // actors for the "level clear" animation.
-    ACTORTYPE_CLANPOTMIX = 0x78, // sequence for mixing clanpot items.
+    ACTORTYPE_ITEMSPAWN,
+    ACTORTYPE_119,
+    ACTORTYPE_CLANPOTMIX, // sequence for mixing clanpot items.
     ACTORTYPE_CLANPOTMENU, // mwnu when looking into clanpot.
-    ACTORTYPE_MSHINT = 0X7A, // Ms. Hint
-    ACTORTYPE_GEMRING = 0X7B, // Ring of gems when buying hint for recieving reward.
+    ACTORTYPE_MSHINT, // Ms. Hint
+    ACTORTYPE_GEMRING, // Ring of gems when buying hint or recieving reward.
+    ACTORTYPE_GEM124,
     
     // actors in dispatch table D_800E5AC0
 
@@ -130,6 +206,45 @@ typedef enum{
     ACTORTYPE_MAIN8_10,
     ACTORTYPE_MAIN8_11,
     ACTORTYPE_MAIN8_12, // stubbed
+
+    // actors in dispatch table D_8019B000_742CA0
+    
+    ACTORTYPE_OVL1_BEE_BOSS = (ACTOR_OVL1_BEE << 8), // bee boss
+    ACTORTYPE_OVL1_BEE_1,
+    ACTORTYPE_OVL1_BEE_DRONESHAKE, // bee drone spawned when shaking head
+    ACTORTYPE_OVL1_BEE_DRONERING, // bee drone spawned in ring formation.
+
+    // actors in dispatch table D_80192000_68A090
+
+    ACTORTYPE_OVL0_CALPHA_0 = (ACTOR_OVL0_CALPHA << 8),
+    ACTORTYPE_OVL0_CALPHA_1,
+    ACTORTYPE_OVL0_CALPHA_2, 
+    ACTORTYPE_OVL0_CALPHA_3,
+    ACTORTYPE_OVL0_CALPHA_4,
+    ACTORTYPE_OVL0_CALPHA_5,
+    ACTORTYPE_OVL0_CALPHA_6,
+    ACTORTYPE_OVL0_CALPHA_7,
+    ACTORTYPE_OVL0_CALPHA_8,
+    ACTORTYPE_OVL0_CALPHA_9,
+    ACTORTYPE_OVL0_CALPHA_10,
+    ACTORTYPE_OVL0_CALPHA_11,
+    ACTORTYPE_OVL0_CALPHA_12,
+    ACTORTYPE_OVL0_CALPHA_13,
+    ACTORTYPE_OVL0_CALPHA_14,
+    ACTORTYPE_OVL0_CALPHA_15,
+    ACTORTYPE_OVL0_CALPHA_16,
+    ACTORTYPE_OVL0_CALPHA_17,
+    ACTORTYPE_OVL0_CALPHA_18,
+    ACTORTYPE_OVL0_CALPHA_19,
+    ACTORTYPE_OVL0_CALPHA_20,
+    
+    //entries 21, 22, and 23 invalid(?)
+    
+    ACTORTYPE_OVL0_CALPHA_24 = (ACTOR_OVL0_CALPHA << 8)+24,
+    ACTORTYPE_OVL0_CALPHA_25,
+    ACTORTYPE_OVL0_CALPHA_26,
+    ACTORTYPE_OVL0_CALPHA_27,
+
 
     // actors in dispatch table D_801A6800_78B430
 
