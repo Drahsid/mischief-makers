@@ -156,7 +156,7 @@ typedef enum{
     ACTORTYPE_88,
     ACTORTYPE_89,
     ACTORTYPE_90,
-    ACTORTYPE_91,
+    ACTORTYPE_CLANCER,
     ACTORTYPE_92,
     ACTORTYPE_93,
     ACTORTYPE_94,
@@ -189,7 +189,7 @@ typedef enum{
     ACTORTYPE_CLANPOTMENU, // mwnu when looking into clanpot.
     ACTORTYPE_MSHINT, // Ms. Hint
     ACTORTYPE_GEMRING, // Ring of gems when buying hint or recieving reward.
-    ACTORTYPE_GEM124,
+    ACTORTYPE_GEM124, // gem in "Enter Marina" and "Crisis: Nepton" ?
     
     // actors in dispatch table D_800E5AC0
 
