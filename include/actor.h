@@ -251,7 +251,7 @@ typedef struct {
     };
     union{
         /* 0x16C */ s32 unk_16C;
-        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing. returns true if 
+        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing. returns true if requirements mat.
     };
     /* 0x170 */ s32 unk_170;
     /* 0x174 */ s32 unk_174;

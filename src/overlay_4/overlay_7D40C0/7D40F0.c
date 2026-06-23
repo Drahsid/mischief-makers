@@ -1406,12 +1406,14 @@ void func_801B9CA0_7D4490(void) {
     Camera_UpdateViewBounds();
 }
 
+// add rocketeer to clanpot count
 void func_801B9F3C_7D472C(u16 arg0, u16 arg1) {
     if (arg0 == 0x1C07) {
         gClanpotItemCount[0]++;
     }
 }
 
+// create rideable Rocketeer if 3 are in pot
 s32 func_801B9F70_7D4760(u16 actor_index) {
     u16 actor_type;
     u16 actor_count;
