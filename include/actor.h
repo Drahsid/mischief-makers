@@ -7,6 +7,7 @@
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
+typedef void (*Actor2Func2)(u16 actor_0, u16 actor_1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
