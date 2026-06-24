@@ -258,13 +258,9 @@ void func_8004FB30(u16 actor_index, s32 index) {
     }
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/MFNFc
 s32 func_8004FC68(u16 actor_0, u16 actor_1) {
     s16 var_v0;
-    s16 temp;
-    s32 var_a3;
-    s32 var_t0;
+    s16 var_t0;
 
     var_v0 = D_800D4130[0];
     var_t0 = D_800D413C[0];
@@ -279,7 +275,7 @@ s32 func_8004FC68(u16 actor_0, u16 actor_1) {
     }
     else {
         var_v0 = -var_v0;
-        if (-D_800D4130[1] < (var_v0 + gActors[actor_1].hitboxBX1)) {
+        if ((var_v0 + gActors[actor_1].hitboxBX1) > -D_800D4130[1]) {
             var_v0 = -D_800D4130[1] - gActors[actor_1].hitboxBX1;
         }
         var_v0 += gActors[actor_1].hitboxBX0;
@@ -287,21 +283,15 @@ s32 func_8004FC68(u16 actor_0, u16 actor_1) {
             var_v0 += 2;
         }
     }
-    var_a3 = var_t0 + gActors[actor_1].hitboxBY1;
-    if (var_a3 < D_800D413C[1]) {
-        temp = D_800D413C[1];
-        temp -= gActors[actor_1].hitboxBY1;
-        var_a3 = temp + gActors[actor_1].hitboxBY1;
+    if ((var_t0 + gActors[actor_1].hitboxBY1) < D_800D413C[1]) {
+        var_t0 = D_800D413C[1] - gActors[actor_1].hitboxBY1;
     }
-    if (func_8001FCA0(actor_1, gActors[actor_0].posX.whole + var_v0, gActors[actor_0].posY.whole + var_a3) & 0x80) {
+    var_t0 += gActors[actor_1].hitboxBY1;
+    if (func_8001FCA0(actor_1, gActors[actor_0].posX.whole + var_v0, gActors[actor_0].posY.whole + var_t0) & 0x80) {
         return 1;
     }
     return 0;
 }
-#else
-s32 func_8004FC68(u16 actor_index, u16 arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FC68.s")
-#endif
 
 void func_8004FDF8(u16 actor_index) {
     u16 index;
