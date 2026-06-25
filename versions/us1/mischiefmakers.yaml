@@ -41,6 +41,8 @@ options:
     - symbol_addrs_libultra.txt
     - symbol_addrs_functions.txt
     - symbol_addrs_data.txt
+    - symbol_addrs_ovl0.txt
+    - symbol_addrs_ovl1.txt
     
   reloc_addrs_path:
     - reloc_addrs.txt
@@ -893,8 +895,9 @@ segments:
     start: 0x73D090
     subsegments:
       - [0x73D090, c, overlay_1/overlay_73D070/73D090] # object segment 73D090->742CA0 (0x5C10)
-      - [0x742870, data, overlay_73D070/73D090]
-      - [0x742A50, rodata, overlay_73D070/73D090]
+      - [0x742870, .data, overlay_1/overlay_73D070/73D090]
+      - [0x742A10, .rodata, overlay_1/overlay_73D070/73D090]
+      - { name: overlay_1/overlay_73D070/73D090, type: .bss, vram: 0x801A0D10 }
 
   - name: overlay_742CA0_dispatch_table # blackgamma7: Flambee
     exclusive_ram_id: overlay_742CA0_dispatch_table
@@ -1127,8 +1130,9 @@ segments:
     start: 0x78B440
     subsegments:
       - [0x78B440, c, overlay_2/overlay_78B430/78B440] # object segment 78B440->78CB60 (0x1720)
-      - [0x78C9E0, data, overlay_78B430/78B440]
-      - [0x78CAC0, rodata, overlay_78B430/78B440]
+      - [0x78C9E0, .data, overlay_2/overlay_78B430/78B440]
+      - [0x78CAB0, .rodata, overlay_2/overlay_78B430/78B440]
+      - { name: overlay_2/overlay_78B430/78B440, type: .bss, vram: 0x801A8020 }
 
   - name: overlay_78CB60_dispatch_table # blackgamma7: Festival
     exclusive_ram_id: overlay_78CB60_dispatch_table
@@ -1145,7 +1149,7 @@ segments:
     bss_size: 0x10
     subsegments:
       - [0x78CBF0, c, overlay_2/overlay_78CB60/78CBF0] # object segment 78CBF0->7969B0 (0x9DC0)
-      - [0x7958C0, data, overlay_78CB60/78CBF0] # has the "Foul!", "100M", "Jump", etc. strings
+      - [0x7958C0, .data, overlay_2/overlay_78CB60/78CBF0]
       - [0x7963E0, rodata, overlay_78CB60/78CBF0]
       - { name: overlay_78CB60/78CBF0, type: bss, vram: 0x801B06C0 }
 

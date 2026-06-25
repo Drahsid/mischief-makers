@@ -563,7 +563,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x200:
             gStageCinemaState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -8, -4, 0);
-            func_80045FA4(D_801BAFF8_7E95C8, (s32)D_801BB3C8_7E9998);
+            func_80045FA4(D_801BAFF8_7E95C8, (u16*)D_801BB3C8_7E9998);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB264_7E9834);
@@ -727,7 +727,7 @@ void func_801BA634_7E8C04(void) {
         case 0:
             gCannotPause = TRUE;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -2, -3, -4);
-            func_80045FA4(D_801BBA20_7E9FF0, (s32)D_801BBA30_7EA000);
+            func_80045FA4(D_801BBA20_7E9FF0, (u16*)D_801BBA30_7EA000);
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BBA34_7EA004);
             D_800BE5F4.unk_00_s32 = 7;
@@ -813,7 +813,7 @@ void func_801BA634_7E8C04(void) {
             break;
 
         case 0x1000:
-            func_80045FA4(D_801BBA20_7E9FF0, (s32)D_801BBA30_7EA000);
+            func_80045FA4(D_801BBA20_7E9FF0, (u16*)D_801BBA30_7EA000);
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BBA34_7EA004);
             D_800BE5F4.unk_00_s32 = 7;
@@ -844,9 +844,9 @@ void func_801BA984_7E8F54(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BBC08_7EA1D8, 0);
-            gDrawMidground = 0;
-            gDrawEnvLayer = 0;
+            func_80046148(D_801BBC08_7EA1D8, (u16*)NULL);
+            gDrawMidground = FALSE;
+            gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BBC18_7EA1E8);
             Actor_LoadSpawnTable(D_801BBC28_7EA1F8);
@@ -939,7 +939,7 @@ void func_801BACBC_7E928C(void) {
             }
 
             gStageCinemaState++;
-            func_80046148(D_801BBC54_7EA224, 0);
+            func_80046148(D_801BBC54_7EA224, (u16*)NULL);
             Actor_LoadSpawnTable(D_801BBC64_7EA234);
             Actor_LoadSpawnTable(D_801BBCA0_7EA270);
             D_800BE544 = 0x8000;

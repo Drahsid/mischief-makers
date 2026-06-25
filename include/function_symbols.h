@@ -106,6 +106,8 @@ extern void func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8005DF40(s32 arg0, s32 arg1);
 extern void func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
+
+// warning: has 7th arg - is used in func, but isn't loaded in many calls.
 extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 extern u16 SpawnTextBubble(u16, u16*, s16, s16, s32);
 extern void func_8007EA14(void*, u16, s16, s32, s32, void*, s32, s32, s32, s32, s32, f32);
@@ -136,8 +138,8 @@ extern void Palette_AdjustScenePalettes(
 );
 extern void Actor_LoadSpawnTable(void* spawn_table);
 extern void func_80043D30(void* spawn);
-extern void func_80045FA4(void* arg0, s32 arg1);
-extern void func_80046148(void* arg0, s32 arg1);
+extern void func_80045FA4(void* arg0, u16* arg1);
+extern void func_80046148(void* arg0, u16* arg1);
 extern void func_80046188(void* arg0, void* arg1);
 extern void func_80046218(u16 arg0, u16 arg1);
 extern void Camera_UpdateViewBounds(void);

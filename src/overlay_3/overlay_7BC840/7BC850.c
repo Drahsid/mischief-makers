@@ -25,10 +25,10 @@ s32 func_801B0944_7BC894(u16 actor_index) {
         func_80081790(actor_index, D_800E3488);
         Sound_PlaySfxAtActor2(0x2F, actor_index);
         Sound_PlaySfxAtActor2(0xA4, actor_index);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_801B0A10_7BC960(u16 actor_index) {

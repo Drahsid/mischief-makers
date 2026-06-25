@@ -18,7 +18,7 @@ extern u32 D_800E3584; // nearest actor facing
 extern u8 D_801376BC[];
 extern u64 D_80171B10;
 extern u64 D_801781F0;
-extern u8 D_801781F8[];
+extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CA230;

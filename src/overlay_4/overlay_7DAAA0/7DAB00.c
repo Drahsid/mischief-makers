@@ -222,7 +222,7 @@ void func_801B9908_7DAB08(void) {
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB168_7DC368);
-            *(s16*)&D_801781F8[0x2C] = 9;
+            gFestivalData.currentEvent = FESTGAME_SELECT;
             break;
 
         case 1:
@@ -639,7 +639,7 @@ void func_801BA6EC_7DB8EC(void) {
 }
 
 void func_801BA740_7DB940(void) {
-    func_80045FA4(D_801BB2F4_7DC4F4, (s32)D_801BB314_7DC514);
+    func_80045FA4(D_801BB2F4_7DC4F4, (u16*)D_801BB314_7DC514);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB3D0_7DC5D0);
     D_800BE544 = 0x8000;
@@ -840,7 +840,7 @@ void func_801BAD9C_7DBF9C(void) {
             }
             else {
                 gStageCinemaState++;
-                func_80046148(D_801BB470_7DC670, 0);
+                func_80046148(D_801BB470_7DC670, (u16*)NULL);
                 Actor_LoadSpawnTable(D_801BB480_7DC680);
                 Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
                 D_800BE544 = 0x8000;

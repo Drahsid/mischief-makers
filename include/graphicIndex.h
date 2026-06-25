@@ -2,8 +2,8 @@
 #define GRAPHIC_INDEX_H
 
 
-// indecies used by "graphicIndex" field of Actor and Portrait structs
-// many graphic indecies use even entries for graphics facing one size,
+// indecies used by "graphicIndex" feild of Actor and Portrait structs
+// many graphic indecies use even entries for graphics facing one side,
 // and odd facing the other. for more complex aninmations,
 // Like those of Marina, Clancers, and Beastector, they instead increment normally.
 

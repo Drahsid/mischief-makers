@@ -28,10 +28,10 @@ extern u32 D_801BAA08_7E7B58[];
 extern u32 D_801BAB78_7E7CC8[];
 extern u32 D_801BA784_7E78D4[];
 extern u32 D_801BACCC_7E7E1C[];
-extern u32 D_801BACDC_7E7E2C[];
+extern u16 D_801BACDC_7E7E2C[];
 extern u32 D_801BACE0_7E7E30[];
 extern u32 D_801BACF0_7E7E40[];
-extern u32 D_801BAD00_7E7E50[];
+extern u16 D_801BAD00_7E7E50[];
 extern u32 D_801BAD04_7E7E54[];
 
 
@@ -244,8 +244,8 @@ u32 D_801BACCC_7E7E1C[] = {
     0x1000019C, 0x00007FFF, 0x020C012C, 0xFFE0FFEB,
 };
 
-u32 D_801BACDC_7E7E2C[] = {
-    0x00000000,
+u16 D_801BACDC_7E7E2C[] = {
+    0,0
 };
 
 u32 D_801BACE0_7E7E30[] = {
@@ -256,8 +256,8 @@ u32 D_801BACF0_7E7E40[] = {
     0x1000019C, 0x00007FFF, 0x020C012C, 0xFFE0FFEB,
 };
 
-u32 D_801BAD00_7E7E50[] = {
-    0x00000000,
+u16 D_801BAD00_7E7E50[] = {
+    0,0
 };
 
 u32 D_801BAD04_7E7E54[] = {
@@ -424,7 +424,7 @@ void func_801B9E7C_7E6FCC(void) {
     s32 temp;
 
     if (D_800D2928 < 4) {
-        func_80045FA4(D_801BA6A0_7E77F0, D_801BA6B0_7E7800[D_800D2928].unk_0C);
+        func_80045FA4(D_801BA6A0_7E77F0, (u16*)D_801BA6B0_7E7800[D_800D2928].unk_0C);
 
         entry = &D_801BA6B0_7E7800[D_800D2928];
         temp = entry->unk_10;
@@ -543,7 +543,7 @@ void func_801BA1DC_7E732C(void) {
 
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
             Palette_AdjustRgb5551Array((void*)0x802F8068, (void*)0x802F7E68, 0xFF, -2, -3, -4);
-            func_80045FA4(D_801BA794_7E78E4, (s32)D_801BA9A4_7E7AF4);
+            func_80045FA4(D_801BA794_7E78E4, (u16*)D_801BA9A4_7E7AF4);
             if (!D_801BA7A4_7E78F4) {
             }
             D_800D2924 = 0x2000;
@@ -575,7 +575,7 @@ void func_801BA3C4_7E7514(void) {
     switch (gStageCinemaState) {
         case 0:
             gStageCinemaState++;
-            func_80045FA4(D_801BACCC_7E7E1C, (s32)D_801BACDC_7E7E2C);
+            func_80045FA4(D_801BACCC_7E7E1C, D_801BACDC_7E7E2C);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BACE0_7E7E30);
 
@@ -596,7 +596,7 @@ void func_801BA480_7E75D0(void) {
     switch (gStageCinemaState) {
         case 0:
             gStageCinemaState++;
-            func_80045FA4(D_801BACF0_7E7E40, (s32)D_801BAD00_7E7E50);
+            func_80045FA4(D_801BACF0_7E7E40, D_801BAD00_7E7E50);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BAD04_7E7E54);
 

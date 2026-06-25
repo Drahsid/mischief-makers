@@ -43,13 +43,12 @@ typedef struct {
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
-    /* 0x8C */ void* palette;
+    /* 0x8C */ u16* palette;
 } UnkStruct_801069E0; /* sizeof = 0x90 */
 
 // struct storing data about Marina player actor
 typedef struct {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
+    /* 0x00 */ FixedCoord unk_00[2]; // used for storing and modding some actors' x-and-y positions.
     /* 0x08 */ s16 unk_08;
     /* 0x0A */ s8 unk_0A;
     /* 0x0B */ s8 unk_0B;
@@ -68,10 +67,13 @@ typedef struct {
     /* 0x43 */ s8 unk_43;
     /* 0x44 */ s32 fallWhistle; // boolean(?) used while playing the "fall Whistle" sound in "Freefall!"
     /* 0x48 */ u8 unk_48[8]; // unused?
+
+    // the following 4 values are displayed through the debug OSD when non-zero.
+
     /* 0x50 */ u32 debugPosX; // set during Marina's "flymode" state with her global X position.
     /* 0x54 */ u32 debugPosY; // set during Marina's "flymode" state with her global Y position.
-    /* 0x58 */ u32 unk_58; // another dislayed Debug value? unused.
-    /* 0x5C */ u32 unk_5C; // another dislayed Debug value? unused.
+    /* 0x58 */ u32 debugVal2; // another dislayed Debug value? unused.
+    /* 0x5C */ u32 debugVal3; // another dislayed Debug value? unused.
     /* 0x60 */ u32 unk_60; 
     /* 0x64 */ u32 marina_Flags_098; // stores Marina's "flags_098" value
     /* 0x68 */ s32 marina_Unk_0F8; // stores Marina's "unk_0F8" value when ACTOR_FLAG3_UNK1 is set.
@@ -93,6 +95,8 @@ typedef union {
         u8 unk_03;
     };
 } UnkStruct_D_800BE5F4;
+
+#define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
 
 // data for setting actors in a stage (may actually be u16[] - often ending with a 0xff00.)
 typedef struct {

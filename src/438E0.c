@@ -119,7 +119,7 @@ void Actor_LoadSpawnTable(void* spawn_table) {
     jndex = 0;
     spawn = spawn_table;
     flags = spawn->flags;
-    while (flags != 0xFF00) {
+    while (flags != SPAWNRECORD_END) {
         if (!(flags & 0x2000)) {
             actor_index = func_8004398C(spawn);
             flags = spawn->flags;
@@ -376,7 +376,11 @@ s32 func_80045F08(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80045FA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046148.s")
+void func_80046148(void* arg0, u16* arg1){
+    func_80045FA4(arg0,arg1);
+    gActors[0].flags &= ~ACTOR_FLAG_DRAW;
+    D_800BE5F4.unk_00_s32 = 4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046188.s")
 
@@ -424,7 +428,12 @@ void func_800463C0(void) {
     D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800463F0.s")
+s32 func_800463F0(void) {
+    if((D_800D28FC & 0x1000) || (func_8005DEFC())) {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80046434.s")
 
@@ -479,7 +488,9 @@ void func_8004732C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800475EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80047648.s")
+void func_80047648(s16 arg0){
+    D_800D2914 = (arg0 - gActors[0].health / 10) + 100;
+}
 
 void func_80047674(void) {
 }
