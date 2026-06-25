@@ -8,10 +8,10 @@ s32 func_80042290(u16 actor_index) {
     if ((gActors[actor_index].actorType == 0x90C) &&
         (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) &&
        !(gActors[actor_index].unk_188 & 0x8000)) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -168,7 +168,7 @@ void func_80042864(u16 actor_index) {
 void func_800429A4(u16 actor_index) {
     gActors[actor_index].state++;
     gActors[actor_index].graphicFlags = 0;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = 0x1CE;
     gActors[actor_index].colorR = 0x80;
     gActors[actor_index].timer_110 = 30.0f;

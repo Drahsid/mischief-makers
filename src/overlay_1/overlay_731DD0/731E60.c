@@ -13,6 +13,8 @@ extern u32 D_801A5280_73BFE0[];
 extern u32 D_801A54B4_73C214[];
 extern u32 D_801A54C4_73C224[];
 
+void func_801A1D4C_738AAC(u16);
+
 void func_8019B100_731E60(s32 arg0) {
 }
 
@@ -141,7 +143,7 @@ void func_8019DD08_734A68(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019E364_7350C4.s")
 
 void func_8019EB14_735874(u16 actor_index) {
-    gActors[actor_index].graphicFlags |= 1;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
     func_8008105C(actor_index, D_801A5280_73BFE0, D_801A5200_73BF60);
     gActors[actor_index].unk_178 = (s32)D_801A54C4_73C224;
     func_80081790(actor_index, D_801A54B4_73C214);
@@ -213,7 +215,11 @@ void func_8019EBA8_735908(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A1E74_738BD4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A206C_738DCC.s")
+void func_801A206C_738DCC(u16 arg0) {
+    gActors[0].flags_098 |= ACTOR_FLAG3_UNK16;
+    gActors[0].unk_0F8.raw = 0;
+    gActors[0].unk_0FC.raw = FIXED_UNIT(-1.0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A2098_738DF8.s")
 
@@ -255,8 +261,12 @@ void func_8019EBA8_735908(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A406C_73ADCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A4730_73B490.s")
+void func_801A4730_73B490(u16 arg0){
+    func_801A1D4C_738AAC(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A4758_73B4B8.s")
+void func_801A4758_73B4B8(u16 arg0){
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A4760_73B4C0.s")
+void func_801A4760_73B4C0(u16 arg0){
+}

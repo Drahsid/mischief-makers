@@ -1,0 +1,7 @@
+// symbols for "Overlay 0" code and data
+
+
+// 6D2480.c (intro cinematic)
+
+Intro_LerpF32 = 0x8019265C; // type:func rom:0x6D2CDC
+Intro_LerpS32 = 0x80192698; // type:func rom:0x6D2D18

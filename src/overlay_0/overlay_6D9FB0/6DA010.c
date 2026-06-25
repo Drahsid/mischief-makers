@@ -92,4 +92,6 @@ void func_8019A3AC_6E22BC(s32 arg0) {
 void func_8019A3B4_6E22C4(s32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6D9FB0/6DA010/func_8019A3BC_6E22CC.s")
+void func_8019A3BC_6E22CC(u16 arg0) {
+
+}

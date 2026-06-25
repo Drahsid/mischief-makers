@@ -10,6 +10,7 @@
 #include "cosine.h"
 #include "letterbox.h"
 #include "gameText.h"
+#include "festival.h"
 
 typedef s32 DEFAULT_INT; // use this to explicitly show when the original programmer likely forgot to write the return type
 

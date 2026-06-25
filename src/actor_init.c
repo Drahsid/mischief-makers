@@ -45,7 +45,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
         gActors[actor_index].hitboxBY1 = -16;
         gActors[actor_index].health = 10;
         gActors[actor_index].damage = 10;
-        gActors[actor_index].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
+        gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[actor_index].graphicList = gGraphicListBlank;
     }
 

@@ -321,12 +321,15 @@ gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;
 
 gStageTime = 0x801781E0;// type:u16 size:0x2
+gFestivalData =  0x801781F8; // size:0xB4
 
 gActorsBack = 0x80171B30; // size:0x100
 gActorsMiddle = 0x80171C30; //size:0x100
 gActorsFront = 0x80171D30; // size:0x1e0
 gActorsTop = 0x80171F10; // size:0x1e0
 
+
+gFestivalRecords = 0x80171AE8; // size:0x28
 
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;

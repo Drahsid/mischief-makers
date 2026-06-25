@@ -20,6 +20,19 @@ typedef struct {
     /* 0x0A */ s16 target_y;
 } IntroActorMotion;
 
+
+// struct to initalize boulders, 
+// used in func_8019293C_6D2FBC
+typedef struct {
+    /* 0x00 */ s16 pos_x;
+    /* 0x02 */ s16 pos_y;
+    /* 0x04 */ s32 vel_x;
+    /* 0x08 */ s32 vel_y;
+    /* 0x0C */ s32 vel_z;
+    /* 0x10 */ f32 scale;
+} IntroBoulderInit;
+
+
 extern u8 D_800BE70C;
 extern s16 D_800E1604[];
 extern s16 D_800E5D30[];
@@ -27,6 +40,7 @@ extern s16 D_800E5E48[];
 extern s16 D_800E8820[];
 extern s16 D_800E8EAC[];
 extern u16 D_800D85A8[];
+extern IntroBoulderInit D_80198DE0_6D9460[];
 extern s16 D_80199B30_6DA1B0;
 extern UnkStruct_func_801960BC_6D673C D_80199070_6D96F0[];
 extern UnkStruct_func_801960BC_6D673C D_80199090_6D9710[];
@@ -52,7 +66,7 @@ void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16
     gActors[actor_index].actorType = actor_type;
     func_8001E2D0(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].graphicIndex = graphic_index;
     gActors[actor_index].posX.whole = pos_x;
@@ -122,7 +136,7 @@ void func_80192528_6D2BA8(u16 actor_index) {
 }
 
 // linear interpolate (lerp) float values
-f32 func_8019265C_6D2CDC(f32 arg0, f32 arg1, f32* arg2) {
+f32 Intro_LerpF32(f32 arg0, f32 arg1, f32* arg2) {
     f32 temp_f2 = arg2[0];
     if (temp_f2 == 0.0f) {
         return arg1;
@@ -131,8 +145,8 @@ f32 func_8019265C_6D2CDC(f32 arg0, f32 arg1, f32* arg2) {
 }
 
 // linear interpolate (lerp) integer values
-s32 func_80192698_6D2D18(s32 arg0, s32 arg1, f32* arg2) {
-    return func_8019265C_6D2CDC(arg0, arg1, arg2);
+s32 Intro_LerpS32(s32 arg0, s32 arg1, f32* arg2) {
+    return Intro_LerpF32(arg0, arg1, arg2);
 }
 
 f32 func_801926E0_6D2D60(f32 arg0, f32 arg1, f32 arg2, u16 arg3) {
@@ -303,7 +317,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
             switch (gActors[actor_index].stateUpper) {
                 case 0:
                     gActors[actor_index].stateUpper++;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x10);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x10);
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
                     func_80192224_6D28A4(0x33, 0x34, 0x180A, -0x1F, 0x69, 1);
@@ -485,7 +499,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[0x37].stateUpper = 0;
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x11);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x11);
                     break;
 
                 case 1:
@@ -548,7 +562,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_801922F4_6D2974(actor_index, 0x37, 0x804, -0xDD, -4, 8);
                     func_80192224_6D28A4(0x33, 0x34, 0x802, 0, 0, 1);
                     func_80192224_6D28A4(0x37, 0x35, 0x806, 0, 0, 1);
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0);
                     break;
 
                 case 1:
@@ -639,7 +653,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[actor_index].stateUpper++;
                     func_801921C8_6D2848(actor_index, 0x33, 0x1008, 0x18, 0, 0x10);
                     gActors[0x34].flags = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, 0x2D0, 0, 0, 0x100);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x100);
                     func_801923AC_6D2A2C(actor_index, 0x50, 0x1800, 0, 0, 0x20);
                     func_80192438_6D2AB8(0x50, 0x51, 0x1802, -0x15, 0x22, -4);
                     func_80192438_6D2AB8(0x50, 0x52, 0x1804, -0x4D, 0xA, -2);
@@ -839,7 +853,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
     func_8001E2D0(actor_index);
     if (temp_actor_index) {} // FAKEMATCH
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = 0x2800;
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = pos_y;
@@ -852,7 +866,7 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
 
 void func_801943E4_6D4A64(u16 arg0) {
     gActors[arg0].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4;
-    gActors[arg0].flags = ACTOR_FLAG_FREEZE_POS |ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[arg0].flags = ACTOR_FLAG_FREEZE_POS |ACTOR_FLAG_ENABLED;
     gActors[arg0].colorA = 0xFF;
     gActors[arg0].posX.whole = -2;
     gActors[arg0].posY.whole = 3;
@@ -924,7 +938,7 @@ void func_8019444C_6D4ACC(u16 actor_index) {
 
 void func_801945EC_6D4C6C(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].colorR = 0xFF;
     gActors[actor_index].colorG = 0xFF;
     gActors[actor_index].colorB = 0xFF;
@@ -972,7 +986,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     break;
 
                 case 2:
-                    actor->colorA = func_80192698_6D2D18(gActors[actor_index].colorA, 0xFF, &gActors[actor_index].unk_114);
+                    actor->colorA = Intro_LerpS32(gActors[actor_index].colorA, 0xFF, &gActors[actor_index].unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->stateUpper++;
                         actor->colorA = 0xFF;
@@ -1002,7 +1016,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     break;
 
                 case 2:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0xFF, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0xFF, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->stateUpper++;
                         actor->colorA = 0xFF;
@@ -1027,7 +1041,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     break;
 
                 case 2:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0xFF, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0xFF, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->stateUpper++;
                         actor->colorA = 0xFF;
@@ -1052,7 +1066,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     // fallthrough
 
                 case 1:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->flags = 0;
                         actor->stateUpper++;
@@ -1079,7 +1093,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     // fallthrough
 
                 case 1:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->flags = 0;
                         actor->stateUpper++;
@@ -1103,7 +1117,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     // fallthrough
 
                 case 1:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->unk_114 = 0.0f;
                     }
@@ -1137,7 +1151,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     break;
 
                 case 2:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0xFF, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0xFF, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->stateUpper++;
                         actor->colorA = 0xFF;
@@ -1157,7 +1171,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     break;
 
                 case 1:
-                    actor->colorA = func_80192698_6D2D18(actor->colorA, 0, &actor->unk_114);
+                    actor->colorA = Intro_LerpS32(actor->colorA, 0, &actor->unk_114);
                     if (actor->unk_114-- <= 0.0f) {
                         actor->flags = 0;
                         actor->stateUpper++;
@@ -1178,7 +1192,7 @@ void func_80194D2C_6D53AC(u16 actor_index) {
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = 1;
         gActors[new_actor_index].flags = 0x23;
-        gActors[new_actor_index].graphicIndex = 0x1D8;
+        gActors[new_actor_index].graphicIndex = GINDEX_IMPACTEFFECTA;
         gActors[new_actor_index].scaleX = 0.5f;
         gActors[new_actor_index].scaleY = 0.5f;
         gActors[new_actor_index].unk_114 = -0.01f;
@@ -1193,7 +1207,7 @@ void func_80194E0C_6D548C(u16 actor_index) {
 
     if ((gActiveFrames & 3) == 0) {
         new_actor_index = SpawnParticle_Image_90C0_16(
-            0x1D8,
+            GINDEX_IMPACTEFFECTA,
             gActors[actor_index].posX.whole - 8,
             gActors[actor_index].posY.whole - 0x10,
             gActors[actor_index].posZ.whole + 1
@@ -1288,9 +1302,9 @@ void func_801960BC_6D673C(u16 actor_index, UnkStruct_func_801960BC_6D673C* arg1,
 void func_8019611C_6D679C(u16 actor_index, UnkStruct_func_801960BC_6D673C* arg1, u16 arg2, f32* arg3) {
     UnkStruct_func_801960BC_6D673C* temp_v0 = &arg1[arg2];
 
-    gActors[actor_index].var_158 = func_80192698_6D2D18(gActors[actor_index].var_158, temp_v0->unk_04, arg3);
-    gActors[actor_index].var_15C = func_80192698_6D2D18(gActors[actor_index].var_15C, temp_v0->unk_08, arg3);
-    gActors[actor_index].rotateZ = func_8019265C_6D2CDC(gActors[actor_index].rotateZ, temp_v0->unk_00, arg3);
+    gActors[actor_index].var_158 = Intro_LerpS32(gActors[actor_index].var_158, temp_v0->unk_04, arg3);
+    gActors[actor_index].var_15C = Intro_LerpS32(gActors[actor_index].var_15C, temp_v0->unk_08, arg3);
+    gActors[actor_index].rotateZ = Intro_LerpF32(gActors[actor_index].rotateZ, temp_v0->unk_00, arg3);
 }
 
 // Attached portrait-part animation controller
@@ -1599,10 +1613,10 @@ void func_80198274_6D88F4(u16 actor_index) {
                     gActors[actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
                     // fallthrough
                 case 1:
-                    gActors[actor_index].unk_118 = func_8019265C_6D2CDC(gActors[actor_index].unk_118, 1000.0f, &gActors[actor_index].unk_114);
+                    gActors[actor_index].unk_118 = Intro_LerpF32(gActors[actor_index].unk_118, 1000.0f, &gActors[actor_index].unk_114);
                     gActors[actor_index].scaleX = 100.0 / (gActors[actor_index].unk_118 / 1000.0);
                     gActors[actor_index].scaleY = gActors[actor_index].scaleX;
-                    gActors[actor_index].rotateZ = func_8019265C_6D2CDC(gActors[actor_index].rotateZ, 10.0f, &gActors[actor_index].unk_114);
+                    gActors[actor_index].rotateZ = Intro_LerpF32(gActors[actor_index].rotateZ, 10.0f, &gActors[actor_index].unk_114);
                     if (gActors[actor_index].unk_114-- <= 0.0f) {
                         gActors[actor_index].state++;
                     }
@@ -1623,7 +1637,7 @@ void func_80198274_6D88F4(u16 actor_index) {
                     gActors[actor_index].unk_118 = 1000.0f;
                     // fallthrough
                 case 1:
-                    gActors[actor_index].unk_118 = func_8019265C_6D2CDC(gActors[actor_index].unk_118, 400000.0f, &gActors[actor_index].unk_114);
+                    gActors[actor_index].unk_118 = Intro_LerpF32(gActors[actor_index].unk_118, 400000.0f, &gActors[actor_index].unk_114);
                     gActors[actor_index].scaleX = 100.0 / (gActors[actor_index].unk_118 / 1000.0);
                     gActors[actor_index].scaleY = gActors[actor_index].scaleX;
                     if (gActors[actor_index].unk_114-- <= 0.0f) {
@@ -1644,7 +1658,7 @@ void func_801987F0_6D8E70(u16 actor_index) {
 
     if (new_actor_index != 0) {
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[new_actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
+        gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].colorA = 0xFF;
         gActors[new_actor_index].scaleX = 1.5f;
         gActors[new_actor_index].scaleY = 1.5f;

@@ -63,7 +63,18 @@ s32 func_800486F4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048CE4.s")
+s32 func_80048CE4(void) {
+    if (gActors[0].stateLower == 1) {
+        return 1;
+    }
+    if (gActors[0].stateLower < 0x2e) {
+        return 0;
+    }
+    if (gActors[0].stateLower < 0x37) {
+        return 2;
+    }
+    return 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048D30.s")
 

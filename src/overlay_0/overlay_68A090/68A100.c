@@ -1,12 +1,13 @@
 #include "common.h"
 #include "actor.h"
 
-// "overlay 0" code used in "Sasqutach Beta"
+// "overlay 0" code used in "Cerberus Alpha"
 
 extern u16 D_801A80DE_6A00DE;
 extern s16 D_801A80EE_6A00EE;
 extern s16 D_801A80F0_6A00F0;
 extern s16 D_801A80F2_6A00F2;
+extern s16 D_801A7258_69F258;
 extern s16 D_801A3D40_69BD40[];
 extern u16 D_801A67FC_69E7FC[];
 extern u16 D_801A6848_69E848[];
@@ -14,9 +15,14 @@ extern u16 D_801A6894_69E894[];
 extern u16 D_801A682A_69E82A[];
 extern u16 D_801A6876_69E876[];
 extern u16 D_801A68C2_69E8C2[];
+extern u16 D_801A6CC0_69ECC0[];
+extern u16 D_801A3E50_69BE50[];
+
+extern u16 D_801A80C2_6A00C2;
 
 void func_8002AC30(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
+void func_80195F04_68DF04(u16,u16);
 
 extern u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6,
      s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, s16 arg14, s16 arg15,
@@ -34,7 +40,7 @@ s32 func_8019226C_68A26C(u16 arg0, u16 arg1) {
 void func_801922A0_68A2A0(s32 arg0) {
     gActors[0xC1].actorType = 0xF0A;
     func_8001E2D0(0xC1);
-    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW);
+    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
     gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
     gActors[0xC1].posX.whole = 0;
@@ -353,7 +359,9 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80197414_68F414.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801974A4_68F4A4.s")
+void func_801974A4_68F4A4() {
+     D_801A7258_69F258 = gActors[0x8f].health / 10;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801974C8_68F4C8.s")
 
@@ -377,11 +385,24 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199DB0_691DB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199E90_691E90.s")
+void func_80199E90_691E90(u16 arg0) {
+    if (gButtonPress & gButton_CDown) {
+        func_80195F04_68DF04(arg0, 2);
+        func_80081790(arg0, D_801A6CC0_69ECC0);
+        func_800819A8(arg0, D_801A3E50_69BE50);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199EF0_691EF0.s")
+void func_80199EF0_691EF0(u16 arg0) {
+    if (gButtonPress & gButton_CDown) {
+        func_80195F04_68DF04(arg0, 2);
+        func_80081790(arg0, D_801A6CC0_69ECC0);
+        func_800819A8(arg0, D_801A3E50_69BE50);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199F50_691F50.s")
+void func_80199F50_691F50(u16 arg0){
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80199F58_691F58.s")
 
@@ -441,7 +462,11 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_8019CCC4_694CC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_8019CD94_694D94.s")
+func_8019CD94_694D94(u16 arg0){
+    if(D_801A80C2_6A00C2 < 0xFFFE){
+        D_801A80C2_6A00C2++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_8019CDC0_694DC0.s")
 
@@ -461,7 +486,9 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A1178_699178.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A1CCC_699CCC.s")
+void func_801A1CCC_699CCC(u16 arg0){
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A1CD4_699CD4.s")
 
@@ -483,11 +510,15 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A30B8_69B0B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A32C8_69B2C8.s")
+void func_801A32C8_69B2C8(u16 actor_index){
+    gActors[actor_index].posZ.whole = gActors[0].posZ.whole;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A3304_69B304.s")
+void func_801A3304_69B304(u16 arg0){
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A330C_69B30C.s")
+void func_801A330C_69B30C(u16 arg0){
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A3314_69B314.s")
 
@@ -501,4 +532,5 @@ void func_80197288_68F288(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A3858_69B858.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A3D1C_69BD1C.s")
+void func_801A3D1C_69BD1C(u16 arg0){
+}

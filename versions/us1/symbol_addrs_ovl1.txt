@@ -1,0 +1,10 @@
+// symbols for "overlay 1" code and data
+
+
+// 73D0090.c (Wormin' up)
+
+Worm_ApproachS32 = 0x8019BE98; // type:func rom:0x73DE28
+Worm_SetSegmentFlags = 0x8019E920; // type:func rom:0x7408B0
+sWormSegGraphics = 0x801A0960; // size:0x18 rom:0x7428F0
+sWormSegFlags = 0x801A0990; // size:0x18 rom:0x742920
+sWormSegSizes = 0x801A09E8; // size:0x40 rom:0x742978
