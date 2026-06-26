@@ -30,7 +30,6 @@ extern s8 D_801373F3;
 s32 func_80049040(u16);
 void func_80055C2C(u16, u16);
 void func_80058924(u16);
-s32 func_8005D370(u16, u16);
 u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2);
 
 s32 func_8004F2B0(u16 actor_index) {
@@ -991,7 +990,7 @@ void func_80051324(u16 actor_index) {
 }
 
 void func_80051C48(u16 actor_index) {
-    UnkStruct_func_80059F30 sp34;
+    s32 sp34[5];
     s32 angle;
     u16 index;
 
@@ -1018,12 +1017,12 @@ void func_80051C48(u16 actor_index) {
             break;
         }
         gActors[actor_index].velocityY.raw = func_80048C94(0xF);
-        sp34.posX = gActors[actor_index].posX.whole;
-        sp34.posY = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1 + 4;
-        sp34.posZ = gActors[actor_index].posZ.whole + 1;
-        sp34.unk_0C = 0x1AA;
-        sp34.unk_10 = 0;
-        func_80059F30(actor_index, &sp34, 1.0f, 0x14);
+        sp34[0] = gActors[actor_index].posX.whole;
+        sp34[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1 + 4;
+        sp34[2] = gActors[actor_index].posZ.whole + 1;
+        sp34[3] = 0x1AA;
+        sp34[4] = 0;
+        func_80059F30(actor_index, sp34, 1.0f, 0x14);
         gActors[actor_index].stateUpper = 0x14;
         break;
     case 10:

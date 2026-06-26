@@ -109,16 +109,6 @@ typedef struct {
     /* 0x0C */ u16 type; // value of actor->actorType
 } ActorSpawnRecord; /* size = 0xE */
 
-// data passed to func_80059F30 arg1
-// posX/Y/Z may be FixedCoord
-typedef struct {
-    /* 0x00 */ s32 posX;
-    /* 0x04 */ s32 posY;
-    /* 0x08 */ s32 posZ;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ s32 unk_10;
-} UnkStruct_func_80059F30;
-
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000))
 
 #endif
