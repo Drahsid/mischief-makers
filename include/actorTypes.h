@@ -16,7 +16,7 @@
 typedef enum {
     ACTOR_MAIN, // actors with code in the main segment.
     ACTOR_OVL3_1,
-    ACTOR_OVL1_2,
+    ACTOR_OVL1_WORM,
     ACTOR_OVL1_3,
     ACTOR_OVL3_4,
     ACTOR_OVL3_WORLD2,
@@ -191,6 +191,16 @@ typedef enum{
     ACTORTYPE_GEMRING, // Ring of gems when buying hint or recieving reward.
     ACTORTYPE_GEM124, // gem in "Enter Marina" and "Crisis: Nepton" ?
     
+    // actors in dispatch table D_8019B000_73D070
+
+    ACTORTYPE_OVL1_WORM_BOSS = (ACTOR_OVL1_WORM << 8), // Worm Boss.
+    ACTORTYPE_OVL1_WORM_1,
+    ACTORTYPE_OVL1_WORM_2, // stubbed
+    ACTORTYPE_OVL1_WORM_3, // stubbed
+    ACTORTYPE_OVL1_WORM_4, // stubbed
+    ACTORTYPE_OVL1_WORM_5, // stubbed
+    ACTORTYPE_OVL1_WORM_6, // stubbed
+
     // actors in dispatch table D_800E5AC0
 
     ACTORTYPE_MAIN8_0 = (ACTOR_MAIN_8 << 8),

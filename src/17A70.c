@@ -99,7 +99,7 @@ void func_80016E70(u16 actor_index) {
             D_801B0800[index](actor_index);
             break;
 
-        case ACTOR_OVL1_2:
+        case ACTOR_OVL1_WORM:
             D_8019B000[index](actor_index);
             break;
 
