@@ -103,9 +103,9 @@ void func_801A6E48_78B988(u16 arg0) {
     actor_index = Actor_RangeFindInactive(0x49, 0x4C);
     if (actor_index != 0) {
         gActors[actor_index].actorType = 0x2002;
-        func_8001E2D0(actor_index);
-        gActors[actor_index].timer_110 = (Rand() & 19) << 8;
-        gActors[actor_index].unk_0D8 = 0;
+        Actor_Initialize(actor_index);
+        gActors[actor_index].var_110 = (Rand() & 19) << 8;
+        gActors[actor_index].var_0D8 = 0;
         gActors[actor_index].posX.whole = gActors[arg0].posX.whole;
         gActors[actor_index].posY.whole = gActors[arg0].posY.whole + 0x10;
         switch (gActors[arg0].health & 0x300) {

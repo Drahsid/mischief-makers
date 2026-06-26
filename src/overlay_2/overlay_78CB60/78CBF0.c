@@ -714,7 +714,7 @@ u16 func_801A7424_78D714(u16 arg0) {
     actor_index = Actor_RangeFindInactive(0x90, 0xb8);
     if (actor_index != 0) {
         gActors[actor_index].actorType = 0x1a01;
-        func_8001E2D0(actor_index);
+        Actor_Initialize(actor_index);
         gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
     }
     return actor_index;
@@ -762,7 +762,7 @@ void func_801A7C0C_78DEFC(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801A7E98_78E188.s")
 
 void func_801A821C_78E50C(u16 actor_index) {
-    if (gActors[actor_index].unk_0D8 > 1) {
+    if (gActors[actor_index].var_0D8 > 1) {
         func_801A7C14_78DF04(actor_index);
         func_801A7CA4_78DF94(actor_index);
     }
@@ -959,7 +959,7 @@ void func_801AB474_791764(u16 arg0){
     for (index = 0; index < FESTGAME_TOTAL; index++){
         actor_index = index+0x40;
         gActors[actor_index].actorType =0;
-        func_8001E2D0(actor_index);
+        Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
         gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
@@ -1056,7 +1056,7 @@ void func_801AC360_792650(u16 actor_index) {
 
     actorP=&gActors[0x3a];
     actorP->actorType = 0x1A08;
-    func_8001E2D0(0x3A);
+    Actor_Initialize(0x3A);
     actorP->flags |= ACTOR_FLAG_FREEZE_POS;
     actorP->posX.whole = 0;
     actorP->posY.whole = 0;
@@ -1078,7 +1078,7 @@ void func_801AC448_792738(u16 actor_index) {
     
     actorP =&gActors[0x32];
     actorP->actorType = 0;
-    func_8001E2D0(0x32);
+    Actor_Initialize(0x32);
     actorP->graphicFlags = 0x800;
     actorP->flags = 0x2003;
     actorP->graphicIndex = 0x81C;
@@ -1093,7 +1093,7 @@ void func_801AC448_792738(u16 actor_index) {
 
     actorP =&gActors[0x34];
     actorP->actorType = 0;
-    func_8001E2D0(0x34);
+    Actor_Initialize(0x34);
     actorP->flags = 0x2002;
     actorP->graphicIndex = 0;
     actorP->posX.whole = -0x2C;
@@ -1106,7 +1106,7 @@ void func_801AC448_792738(u16 actor_index) {
     
     actorP =&gActors[0x35];
     actorP->actorType = 0;
-    func_8001E2D0(0x35);
+    Actor_Initialize(0x35);
     actorP->flags = 0x2002;
     actorP->graphicIndex = 0;
     actorP->posX.whole = 0x2C;
@@ -1119,11 +1119,11 @@ void func_801AC448_792738(u16 actor_index) {
 
     actorP =&gActors[0x33];
     actorP->actorType = 0x1A00;
-    func_8001E2D0(0x33);
+    Actor_Initialize(0x33);
     actorP->posX.whole = 0;
     actorP->posY.whole = 0x48;
     actorP->posZ.whole = -1;
-    actorP->timer_110 = -1.0f;
+    actorP->var_110 = -1.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AC624_792914.s")
