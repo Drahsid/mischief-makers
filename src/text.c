@@ -70,10 +70,10 @@ u8 gEngTextKerning[]={
 u16 gTextPaletteBase[]={0,0x001,0x39cf,0x7bdf};
 
 // set a text character actor.
-// @param actor_index index of acctor.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param actor_index index of actor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z) {
     gActors[actor_index].actorType = 0;
     func_8001E2D0(actor_index);
@@ -85,22 +85,22 @@ void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z) {
 }
 
 // set a text character actor with graphic
-// @param actor_index index of acctor.
+// @param actor_index index of actor.
 // @param graphic_index index of graphic.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 void Text_InitActorGraphic(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16 z) {
     Text_InitActor(actor_index, x, y, z);
     gActors[actor_index].graphicIndex = graphic_index;
 }
 
 // set a text character actor with graphic and color.
-// @param actor_index index of acctor.
+// @param actor_index index of actor.
 // @param graphic_index index of graphic.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 // @param red red value of actor color.
 // @param green green value of actor color.
 // @param blue blue value of actor color.
@@ -117,11 +117,11 @@ void Text_InitActorGraphicRGB(u16 actor_index, u16 graphic_index, u16 x, u16 y, 
 }
 
 // set a text character actor with graphic list
-// @param actor_index index of acctor.
+// @param actor_index index of actor.
 // @param graphic_list pointer of graphic list.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 void Text_InitActorGList(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z) {
     Text_InitActor(actor_index, x, y, z);
     ACTOR_GFX_INIT(actor_index, graphic_list);
@@ -143,11 +143,11 @@ u16* Text_SetColor(u16 arg0, u8 red, u8 blue, u8 green) {
 }
 
 // set a text character actor with graphic and palette.
-// @param actor_index index of acctor.
+// @param actor_index index of actor.
 // @param graphic_index index of graphic.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 // @param palette pointer of palette.
 void Text_InitActorPalette(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16 z, u16* palette) {
     Text_InitActorGraphic(actor_index, graphic_index, x, y, z);
@@ -158,11 +158,11 @@ void Text_InitActorPalette(u16 actor_index, u16 graphic_index, u16 x, u16 y, u16
 
 // render string to screen horizontally
 // e.g. used in title screen "PRESS START"
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ASCII string.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 // @param palette pointer of palette.
 u16 Text_PrintASCII(u16 actor_index, char* str, u16 x, u16 y, u16 z, u16* palette) {
     char ch;
@@ -182,11 +182,11 @@ u16 Text_PrintASCII(u16 actor_index, char* str, u16 x, u16 y, u16 z, u16* palett
 }
 
 // render 2-digit number
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param num number >=0 to print.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 // @param palette pointer of palette.
 // @returns actor_index+2
 u16 Text_Print2Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palette) {
@@ -203,11 +203,11 @@ u16 Text_Print2Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palett
 }
 
 // render 3-digit number
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param num number >=0 to print.
-// @param x x-position of acctor.
-// @param y y-position of acctor.
-// @param z z-position of acctor.
+// @param x x-position of actor.
+// @param y y-position of actor.
+// @param z z-position of actor.
 // @param palette pointer of palette.
 // @returns actor_index+3
 u16 Text_Print3Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palette) {
@@ -261,7 +261,7 @@ u16 Text_GetWidth2(u16* str) {
 }
 
 // "frees" actors based on string length.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
 // @returns last applicable actor index + 1
 u16 Text_FreeString(u16 actor_index, u16* str) {
@@ -276,11 +276,11 @@ u16 Text_FreeString(u16 actor_index, u16* str) {
 }
 
 // render text in screenspace with given position.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
-// @param x x-position of first acctor.
-// @param y y-position of first acctor.
-// @param z z-position of first acctor.
+// @param x x-position of first actor.
+// @param y y-position of first actor.
+// @param z z-position of first actor.
 // @returns last applicable actor index + 1
 u16 Text_PrintString(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
@@ -300,11 +300,11 @@ u16 Text_PrintString(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 }
 
 // render text in screenspace with given position and color.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
-// @param x x-position of first acctor.
-// @param y y-position of first acctor.
-// @param z z-position of first acctor.
+// @param x x-position of first actor.
+// @param y y-position of first actor.
+// @param z z-position of first actor.
 // @param red red value of actor color.
 // @param green green value of actor color.
 // @param blue blue value of actor color.
@@ -333,11 +333,11 @@ u16 Text_PrintStringRGB(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, 
 }
 
 // render text in screenspace with given position, color and scale.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
-// @param x x-position of first acctor.
-// @param y y-position of first acctor.
-// @param z z-position of first acctor.
+// @param x x-position of first actor.
+// @param y y-position of first actor.
+// @param z z-position of first actor.
 // @param red red value of actor color.
 // @param green green value of actor color.
 // @param blue blue value of actor color.
@@ -370,11 +370,11 @@ u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 
 }
 
 // render text in screenspace with given position using gray palette.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
-// @param x x-position of first acctor.
-// @param y y-position of first acctor.
-// @param z z-position of first acctor.
+// @param x x-position of first actor.
+// @param y y-position of first actor.
+// @param z z-position of first actor.
 // @returns last applicable actor index + 1
 u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
@@ -396,11 +396,11 @@ u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 }
 
 // render text in screenspace with given position.
-// @param actor_index index of first acctor.
+// @param actor_index index of first actor.
 // @param str ALPHABET_* string
-// @param x x-position of first acctor.
-// @param y y-position of first acctor.
-// @param z z-position of first acctor.
+// @param x x-position of first actor.
+// @param y y-position of first actor.
+// @param z z-position of first actor.
 // @returns last applicable actor index + 1
 u16 Text_PrintString2(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
