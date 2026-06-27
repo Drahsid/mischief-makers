@@ -93,7 +93,7 @@ typedef enum{
     ACTORTYPE_25, // Stubbed
     ACTORTYPE_26, // Stubbed
     ACTORTYPE_27, // Stubbed
-    ACTORTYPE_28, // Teran?
+    ACTORTYPE_28,
     ACTORTYPE_GRAPHICONLY, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
     ACTORTYPE_30, // Stubbed
     ACTORTYPE_31,
