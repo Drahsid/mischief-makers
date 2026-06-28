@@ -27,10 +27,10 @@ s32 func_8005739C(u16 actor_index, s16 health_decrement) {
 
     if (actor_index == 0) {
         if (gActors[actor_index].unk_0DC & 2) {
-            gActors[actor_index].unk_13C_u16[1] = 0;
+            gActors[actor_index].unk_13C_s16[1] = 0;
         }
         else {
-            gActors[actor_index].unk_13C_u16[1] = health_decrement / 2;
+            gActors[actor_index].unk_13C_s16[1] = health_decrement / 2;
         }
     }
     if (health_decrement == 0) {
@@ -338,7 +338,7 @@ void func_80057C98(u16 actor_index) {
         gActors[actor_index].unk_0FC.raw = gActors[actor_index].velocityY.raw;
         if (func_8005C6D0(gActors[actor_index].velocityX.raw) > 0x28000) {
             if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK3 | ACTOR_FLAG3_UNK2)) {
-                if (func_8005739C(actor_index, (s16) gActors[actor_index].unk_13C_u16[1]) == 3) {
+                if (func_8005739C(actor_index, (s16) gActors[actor_index].unk_13C_s16[1]) == 3) {
                     gActors[actor_index].health = 0;
                 }
                 gActors[actor_index].velocityX.raw = 0;
@@ -378,10 +378,10 @@ void func_80057C98(u16 actor_index) {
                 }
             }
             if (func_800490BC(actor_index, -1, -1) != 0) {
-                if (func_8005739C(actor_index, gActors[actor_index].unk_13C_u16[1]) == 3) {
+                if (func_8005739C(actor_index, gActors[actor_index].unk_13C_s16[1]) == 3) {
                     gActors[actor_index].health = 0;
                 }
-                gActors[actor_index].unk_13C_u16[1] = 0;
+                gActors[actor_index].unk_13C_s16[1] = 0;
                 if (gActors[actor_index].var_15C == 0) {
                     gActors[actor_index].unk_170 = 0x9A;
                 }
@@ -447,7 +447,7 @@ void func_80057C98(u16 actor_index) {
 }
 
 void func_800584D4(u16 actor_index) {
-    s16 var_v0;
+    s32 var_v0;
     gActors[actor_index].unk_12E_u8 |= 0x41;
     func_8005C550(actor_index, -8);
     switch (gActors[actor_index].stateUpper) {

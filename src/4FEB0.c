@@ -145,7 +145,7 @@ u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3) {
     }
     gActors[temp_s0].unk_0FC.raw = arg2;
     if (temp_s0 == 0) {
-        gActors[temp_s0].unk_13C_u16[1] = arg3;
+        gActors[temp_s0].unk_13C_s16[1] = arg3;
         var_v0 = func_8005C774(2);
         func_8005C520(var_v0 + 1, 6);
     }
