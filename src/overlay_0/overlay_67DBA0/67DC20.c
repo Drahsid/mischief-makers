@@ -99,7 +99,7 @@ void func_801926CC_67E1EC(s32 arg0, s32 arg1) {
         gActors[actor_index].unk_14C = (f32)(u16)gActors[0x37].actorType;
         gActors[actor_index].unk_134 = 0.0f;
         gActors[actor_index].unk_138 = 0.0f;
-        gActors[actor_index].unk_13C = 1.0f;
+        gActors[actor_index].unk_13C_f32 = 1.0f;
     }
 }
 
@@ -362,14 +362,14 @@ void func_80193B4C_67F66C(u16 actor_index) {
     for (index = 0; index < 6; index++) {
         if (value < threshold) {
             actor[0x20].graphicIndex = D_8019DB58_689678[index];
-            actor[0x20].unk_13C = 11.0f;
+            actor[0x20].unk_13C_f32 = 11.0f;
             return;
         }
         threshold += 0x8000;
     }
 
     actor[0x20].graphicIndex = 0x80C;
-    actor[0x20].unk_13C = 10.0f;
+    actor[0x20].unk_13C_f32 = 10.0f;
 }
 
 void func_80193C14_67F734(u16 actor_index) {
@@ -564,7 +564,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 
     if (gActors[0x37].flags_098 & ACTOR_FLAG3_UNK9) {
         gActors[0x37].flags &= ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9);
-        if (gActors[0].unk_140_u8 == 0) {
+        if (gActors[0].unk_140_u8[0] == 0) {
             gActors[index].state = 0x400;
             func_80193DF0_67F910(index, 0x10);
             return 1;

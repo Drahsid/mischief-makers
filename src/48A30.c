@@ -5,9 +5,6 @@
 
 extern ActorFunc D_800D3D20[];
 extern void func_8004F514(u16 actor_index, u16 arg1);
-extern void func_8005C550(u16 actor_index, s32 arg1);
-extern s32 func_8005D338(u16 actor_index);
-extern s32 func_8005D418(u16 actor_index);
 
 extern u16 D_801370CC;
 extern u16 D_801370CE;

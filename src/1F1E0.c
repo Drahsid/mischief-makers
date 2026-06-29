@@ -57,7 +57,6 @@ extern u16 D_800D2978[];
 extern s16 gGraphicListGemIcon[];
 extern s16 D_800E13FC[];
 
-extern u32 D_80137458;
 extern u32 D_801374DC; // time duration
 
 extern u16 gRedGems;
