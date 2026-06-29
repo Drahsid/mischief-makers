@@ -56,7 +56,6 @@ u16 func_8001B244(void);
 void Sound_StopMusic(void);
 s32 Sound_PlaySfx2(u32 arg0);
 void func_80043918(void);
-void func_8008310C(void);
 void func_80083454(void);
 void func_8008379C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_80083810(s32 arg0, s32 arg1, u16* arg2, s32 arg3);

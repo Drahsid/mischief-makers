@@ -34,6 +34,10 @@ extern s32 D_800D2930;
 extern s32 D_800D2934;
 extern u16 D_800D2954;
 extern u16 D_800D2960;
+extern u16 D_800D5820;
+extern u16 D_800D5824;
+extern u16 D_800D5828;
+extern u16 D_800D582C;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
 extern u16 D_800D88B8[]; // guess

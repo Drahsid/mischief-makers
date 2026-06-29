@@ -7,7 +7,7 @@
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
-typedef void (*Actor2Func2)(u16 actor_0, u16 actor_1);
+typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
@@ -235,7 +235,10 @@ typedef struct {
     // NOTE: trying to use unions for these variables for different datatypes (u8[4],u16[2])
     //  may cause mismatch due to "narrowing"
 
-    /* 0x150 */ s32 var_150;
+    union {
+        /* 0x150 */ s32 var_150;
+        /* 0x150 */ s16 var_150_s16[2];
+    };
     /* 0x154 */ s32 var_154;
     /* 0x158 */ s32 var_158;
     /* 0x15C */ s32 var_15C;

@@ -10,9 +10,9 @@ typedef struct {
     s8 unkE;
 } Unk800D4000;
 
-extern Actor2Func2 D_800D3EB0[];
-extern Actor2Func2 D_800D3F10[];
-extern Actor2Func2 D_800D3F70[];
+extern Actor2Func D_800D3EB0[];
+extern Actor2Func D_800D3F10[];
+extern Actor2Func D_800D3F70[];
 extern Unk800D4000 D_800D4000;
 extern s8* D_800D410C[];
 extern s16 D_800D4130[];

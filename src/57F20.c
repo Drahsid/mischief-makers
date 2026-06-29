@@ -1,7 +1,7 @@
 #include "common.h"
 #include "boot.h"
 
-extern Actor2Func2 D_800D3F70[];
+extern Actor2Func D_800D3F70[];
 extern s32 D_800D57E0;
 
 extern void func_8004F514(u16 actor0, u16 actor1);

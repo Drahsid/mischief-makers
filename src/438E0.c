@@ -53,7 +53,6 @@ extern void func_800472D4(void);
 extern void func_80047994(void);
 
 void func_80043D04(ActorSpawnRecord* spawn);
-void func_80042D84(u32 arg0);
 void func_800451E4(void* arg0);
 
 void func_80042CE0(void) {
@@ -65,9 +64,31 @@ void func_80042CE8(u32 arg0) {
 void func_80042CF0(u32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042CF8.s")
+void func_80042CF8(u16* arg0) {
+    u16 index;
+    u16* var_v1; // BUG: UB, var_v1 is never set!
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042D84.s")
+    index = 0;
+    if (var_v1 != NULL) {
+        while (var_v1[0] != 0) {
+            D_800D2978[0 + index] = var_v1[0];
+            D_800D2978[1 + index] = var_v1[1];
+            D_800D2978[2 + index] = var_v1[2];
+            index += 3;
+            var_v1 += 3;
+        }
+    }
+    for (; index != 0x600; index += 3) {
+        D_800D2978[0 + index] = 0;
+    }
+}
+
+void func_80042D84(u16 arg0) {
+    u16 base = 0;
+    for (; arg0 != 0x600; arg0 += 3) {
+        D_800D2978[base + arg0] = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042DBC.s")
 
