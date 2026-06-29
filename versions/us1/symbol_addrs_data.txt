@@ -321,7 +321,7 @@ gDebugMenuCursorFlash = 0x801781A0;
 gStageTime = 0x801781E0;// type:u16 size:0x2
 gFestivalData =  0x801781F8; // size:0xB4
 
-gActorInitStats = 0x800C9700; // size:0x368
+gActorInitStats = 0x800C9700; // size:0x6d8
 gActorInitFlags = 0x800C9DD8; // size:0x1F4
 gActorInitGraphics = 0x800C9FCC; // size:0x1F4
 

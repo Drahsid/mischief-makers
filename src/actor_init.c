@@ -9,9 +9,9 @@ extern s16 D_800E2550[]; // graphic list for Clanball
 s16 gActorInitStats[]={
 //  AX    AY    BX    BY      HP   dmg ?
     0,    0,    0,    0,      0,   0,  10, // ACTORTYPE_ZERO
-    0x10, 0x10, 0x10, 0x10,   10,  10, 52, // ACTORTYPE_1
-    0x10, 0x10, 0x10, 0x10,   10,  10, 3,  // ACTORTYPE_2
-    0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_3
+    0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_1
+    0x10, 0x10, 0x10, 0x10,   10,  10, 52,  // ACTORTYPE_2
+    0x10, 0x10, 0x10, 0x10,   10,  10,  3, // ACTORTYPE_3
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_4
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_5
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_DIZZYSTAR
@@ -29,8 +29,8 @@ s16 gActorInitStats[]={
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_18
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_19
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_20,
-    0x10, 0x10, 0x10, 0x10,    0,   0, 10, // ACTORTYPE_3DICON,
-    0x10, 0x10, 0x10, 0x10, 1000,  10, 53, // ACTORTYPE_MARINA,
+    0x10, 0x10, 0x10, 0x10,    0,   0, 50, // ACTORTYPE_3DICON,
+    0x14, 0x18, 0x0C, 0x10, 1000,  10, 53, // ACTORTYPE_MARINA,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_23,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_CLANPOT,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_25,
@@ -67,8 +67,8 @@ s16 gActorInitStats[]={
     0,       0,    0,    0,    0,   0,  0, // ACTORTYPE_PARTICLE56,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_57,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_58,
-    0x08, 0x08, 0x08, 0x08,    0,   0, 10, // ACTORTYPE_59,
-    0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_60,
+    0x08, 0x08, 0x08, 0x08,    0,   0,  0, // ACTORTYPE_59,
+    0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_60,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_GEM61,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_62,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_63,
@@ -133,6 +133,7 @@ s16 gActorInitStats[]={
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_MSHINT,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_GEMRING,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_GEM124,
+    0
 };
 
 s32 gActorInitFlags[]= {
@@ -389,7 +390,7 @@ s16* gActorInitGraphics[]={
     gGraphicListBlank, // ACTORTYPE_MSHINT,
     gGraphicListBlank, // ACTORTYPE_GEMRING,
     gGraphicListBlank, // ACTORTYPE_GEM124,
-}
+};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DBA0.s")
 
