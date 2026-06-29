@@ -193,7 +193,7 @@ void func_80042A0C(u16 actor_index) {
         Actor_Initialize(index);
         gActors[index].graphicFlags = 0;
         gActors[index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ACTIVE;
-        func_8002AC30(index, 4);
+        Actor_SetHitboxB(index, 4);
         gActors[index].var_150 = gActors[actor_index].var_150;
         func_800427E0(actor_index);
     }

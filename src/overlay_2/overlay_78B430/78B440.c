@@ -174,6 +174,6 @@ void func_801A7C78_78C7B8(u16 actor_index) {
       }
     }
     func_80038D1C(actor_index);
-    func_8002ABE4(actor_index, 2);
+    Actor_SetHitboxA(actor_index, 2);
     gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
 }

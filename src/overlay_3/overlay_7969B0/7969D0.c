@@ -22,7 +22,7 @@ void func_801B1000_7970D0(u16 actor_index) {
     actor->scaleX = scale;
     actor->unk_0F8.raw = (FIXED_UNIT(1.25) * scale);
     actor->unk_0FC.raw = (FIXED_UNIT(3.25) * scale);
-    func_8002ABE4(actor_index, (s16)(s32)(16.0f * scale));
+    Actor_SetHitboxA(actor_index, (s16)(s32)(16.0f * scale));
     actor->posX.whole = actor->var_15C - gScreenPosCurrentX.whole;
     actor->velocityX.raw = 0;
     actor->unk_16C = 0x10;

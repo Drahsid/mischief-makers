@@ -4725,7 +4725,7 @@
           }
         },
         {
-          "name": "func_8002ABE4",
+          "name": "Actor_SetHitboxA",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4733,7 +4733,7 @@
           }
         },
         {
-          "name": "func_8002AC30",
+          "name": "Actor_SetHitboxB",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4741,7 +4741,7 @@
           }
         },
         {
-          "name": "func_8002AC7C",
+          "name": "Actor_SetHitboxAX",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4749,7 +4749,7 @@
           }
         },
         {
-          "name": "func_8002ACFC",
+          "name": "Actor_SetHitboxBX",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {

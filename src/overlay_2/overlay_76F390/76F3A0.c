@@ -73,7 +73,7 @@ void func_801A6980_76F420(u16 actor_index) {
                 gActors[temp_v0].graphicIndex = GRAPHIC_FRAME(FIREBALL,1);
             }
 
-            func_8002ABE4(temp_v0, 0x10);
+            Actor_SetHitboxA(temp_v0, 0x10);
             Actor_SetColorRgb(temp_v0, ((u16*)&gActors[actor_index].var_158)[1]);
             gActors[temp_v0].colorA = gActors[actor_index].var_154;
             gActors[temp_v0].velocityX.whole = temp_v1->velX;

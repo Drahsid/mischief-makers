@@ -4,7 +4,7 @@
 // "Overlay 1" code used in most scenes.
 
 void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3);
-void func_8002ABE4(u16 actor_index, s16 val);
+void Actor_SetHitboxA(u16 actor_index, s16 val);
 void Actor_UpdateVelocityX(u16 actor_index, s32 dvx);
 void func_8007B73C(u16 actor_index);
 
@@ -82,7 +82,7 @@ void func_8019C1C4_732F24(u16 actor_index) {
     gActors[actor_index].unk_0FC.raw = 0x40000;
     gActors[actor_index].unk_0F8.raw = 0x48000;
     gActors[actor_index].damage = 0x14;
-    func_8002ABE4(actor_index, 0xC);
+    Actor_SetHitboxA(actor_index, 0xC);
 }
 
 

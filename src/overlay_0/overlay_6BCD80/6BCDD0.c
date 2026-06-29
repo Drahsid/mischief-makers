@@ -279,7 +279,7 @@ void func_80194C14_6BF8E4(u16 actor_index) {
 void func_80194C70_6BF940(u16 actor_index, u16 val) {
     gActors[actor_index].flags |= (ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10);
     gActors[actor_index].health = 10;
-    func_8002AC30(actor_index, val);
+    Actor_SetHitboxB(actor_index, val);
 }
 
 s32 func_80194CE8_6BF9B8(u16 actor_index) {

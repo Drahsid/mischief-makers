@@ -3,7 +3,7 @@
 
 // "overlay 1" code for "Chilly Dog!!"
 
-void func_8002AC30(u16 actor_index, s16 val);
+void Actor_SetHitboxB(u16 actor_index, s16 val);
 void func_8019B100_749CB0(u16 actor_index);
 void func_8019BD50_74A900(u16 actor_index);
 void func_801A202C_750BDC(u16 actor_index);
@@ -14,7 +14,7 @@ extern ActorFunc D_801A4838_7533E8[];
 
 void func_8019B184_749D34(u16 actor_index) {
     gActors[actor_index].flags |= ACTOR_FLAG_UNK10;
-    func_8002AC30(actor_index, 8);
+    Actor_SetHitboxB(actor_index, 8);
 }
 
 void func_8019B1E4_749D94(u16 actor_index) {

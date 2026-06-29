@@ -46,9 +46,9 @@ void func_80193B4C_67F66C(u16 actor_index);
 void func_80193C14_67F734(u16 actor_index);
 void func_800816AC(u16 actor_index, void* arg1, s32 arg2);
 void func_80081720(u16 actor_index, void* arg1, s32 arg2);
-void func_8002ACFC(u16 actor_index, s16 arg1, s16 arg2);
-void func_8002AC7C(u16 actor_index, s16 arg1, s16 arg2);
-void func_8002AC30(u16 actor_index, s16 val);
+void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
+void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
+void Actor_SetHitboxB(u16 actor_index, s16 val);
 s32 func_80048C94(s32 arg0);
 
 void func_80192100_67DC20(s32 arg0) {
@@ -235,19 +235,19 @@ void func_801935A4_67F0C4(void) {
 void func_80193600_67F120(u16 actor_index) {
     gActors[actor_index].hitboxBY0 = 8;
     gActors[actor_index].hitboxBY1 = -0x18;
-    func_8002ACFC(actor_index, -0xE, 0x14);
+    Actor_SetHitboxBX(actor_index, -0xE, 0x14);
     gActors[actor_index].hitboxAY0 = 0x12;
     gActors[actor_index].hitboxAY1 = -8;
-    func_8002AC7C(actor_index, -0xC, 0xA);
+    Actor_SetHitboxAX(actor_index, -0xC, 0xA);
 }
 
 void func_80193694_67F1B4(u16 actor_index) {
     gActors[actor_index].hitboxBY0 = 0x10;
     gActors[actor_index].hitboxBY1 = -0xC;
-    func_8002ACFC(actor_index, -4, 0x1A);
+    Actor_SetHitboxBX(actor_index, -4, 0x1A);
     gActors[actor_index].hitboxAY0 = 0xC;
     gActors[actor_index].hitboxAY1 = -0xC;
-    func_8002AC7C(actor_index, -0x10, 6);
+    Actor_SetHitboxAX(actor_index, -0x10, 6);
 }
 
 void func_80193728_67F248(u16 actor_index) {
@@ -712,7 +712,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = (ACTOR_FLAG_UNK12 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG_ENABLED);
-    func_8002AC30(actor_index, 0xC);
+    Actor_SetHitboxB(actor_index, 0xC);
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
     gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;

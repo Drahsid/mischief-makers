@@ -762,7 +762,7 @@ void func_80029134(u16 actor_index) {
 // related to Marina grabbing an actor?
 s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
-        func_8002AC30(actor_index, 8);
+        Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK19;
         gActors[actor_index].velocityX.raw = 0;
         gActors[actor_index].velocityY.raw = 0;
@@ -1371,21 +1371,21 @@ void func_8002AA20(u16 actor_index, s32 arg1) {
     }
 }
 
-void func_8002ABE4(u16 actor_index, s16 val) {
+void Actor_SetHitboxA(u16 actor_index, s16 val) {
     gActors[actor_index].hitboxAY0 = val;
     gActors[actor_index].hitboxAY1 = -val;
     gActors[actor_index].hitboxAX0 = -val;
     gActors[actor_index].hitboxAX1 = val;
 }
 
-void func_8002AC30(u16 actor_index, s16 val) {
+void Actor_SetHitboxB(u16 actor_index, s16 val) {
     gActors[actor_index].hitboxBY0 = val;
     gActors[actor_index].hitboxBY1 = -val;
     gActors[actor_index].hitboxBX0 = -val;
     gActors[actor_index].hitboxBX1 = val;
 }
 
-void func_8002AC7C(u16 actor_index, s16 arg1, s16 arg2) {
+void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2) {
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].hitboxAX1 = -arg1;
         gActors[actor_index].hitboxAX0 = -arg2;
@@ -1396,7 +1396,7 @@ void func_8002AC7C(u16 actor_index, s16 arg1, s16 arg2) {
     }
 }
 
-void func_8002ACFC(u16 actor_index, s16 arg1, s16 arg2) {
+void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2) {
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].hitboxBX1 = -arg1;
         gActors[actor_index].hitboxBX0 = -arg2;
@@ -1981,12 +1981,12 @@ s32 func_8002C3C8(u16 actor_index) {
 
 void func_8002C510(u16 actor_index) {
     if (gActors[actor_index].flags & ACTOR_FLAG_UNK7) {
-        func_8002ABE4(actor_index, gActors[actor_index].var_158 + 6);
+        Actor_SetHitboxA(actor_index, gActors[actor_index].var_158 + 6);
     }
     else {
-        func_8002ABE4(actor_index, gActors[actor_index].var_158 - 8);
+        Actor_SetHitboxA(actor_index, gActors[actor_index].var_158 - 8);
     }
-    func_8002AC30(actor_index, gActors[actor_index].var_158);
+    Actor_SetHitboxB(actor_index, gActors[actor_index].var_158);
 }
 
 void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16 arg5) {
@@ -2403,8 +2403,8 @@ void func_8002D670(u16 actor_index) {
         gActors[actor_index].unk_0DF = 0x40;
         gActors[actor_index].unk_0DB = 0x17;
         gActors[actor_index].damage = 0;
-        func_8002ABE4(actor_index, 4);
-        func_8002AC30(actor_index, 2);
+        Actor_SetHitboxA(actor_index, 4);
+        Actor_SetHitboxB(actor_index, 2);
         gActors[actor_index].unk_114 = gActors[actor_index].var_110 + (0, 16.0f); // fakematch
         gActors[actor_index].palette_18C =  D_800D8A98;
         /* fallthrough */
@@ -2473,7 +2473,7 @@ void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s3
     gActors[actor_index].flags = ACTOR_FLAG_UNK10 | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = GINDEX_BOOM1;
     gActors[actor_index].colorA = 0x60;
-    func_8002AC30(actor_index, 8);
+    Actor_SetHitboxB(actor_index, 8);
     gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].scaleY = 1.2f;
     gActors[actor_index].unk_0DF = 0x20;
@@ -2482,7 +2482,7 @@ void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s3
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.5); \
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.25);
     gActors[actor_index].damage = 50;
-    func_8002ABE4(actor_index, 4);
+    Actor_SetHitboxA(actor_index, 4);
     gActors[actor_index].posX.raw = pos_x;
     gActors[actor_index].posY.raw = pos_y;
     gActors[actor_index].posZ.raw = pos_z + FIXED_UNIT(2.0);
@@ -2560,7 +2560,7 @@ void func_8002DFC0(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     gActors[actor_index].damage = 50;
     gActors[actor_index].scaleX = 0.8f;
     gActors[actor_index].scaleY = 0.8f;
-    func_8002ABE4(actor_index, 2);
+    Actor_SetHitboxA(actor_index, 2);
     gActors[actor_index].var_158 = angle;
     gActors[actor_index].posX.raw = pos_x;
     gActors[actor_index].posY.raw = pos_y;
@@ -2644,7 +2644,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     gActors[actor_index].damage = 0x50;
     gActors[actor_index].scaleX = -0.0f;
     gActors[actor_index].scaleY = 2.0f;
-    func_8002ABE4(actor_index, 2);
+    Actor_SetHitboxA(actor_index, 2);
     gActors[actor_index].var_158 = angle;
     gActors[actor_index].posX.raw = pos_x;
     gActors[actor_index].posY.raw = pos_y;
@@ -2750,8 +2750,8 @@ void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) 
     gActors[actor_index].unk_0DB = 4;
     gActors[actor_index].scaleX = 0.8f;
     gActors[actor_index].scaleY = 0.8f;
-    func_8002ABE4(actor_index, 4);
-    func_8002AC30(actor_index, 8);
+    Actor_SetHitboxA(actor_index, 4);
+    Actor_SetHitboxB(actor_index, 8);
     gActors[actor_index].health = 1;
     gActors[actor_index].damage = 30;
     gActors[actor_index].posX.whole = pos_x;
@@ -3113,8 +3113,8 @@ void func_80030008(u16 actor_index) {
         gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].var_110];
-        func_8002ABE4(actor_index, 6);
-        func_8002AC30(actor_index, 8);
+        Actor_SetHitboxA(actor_index, 6);
+        Actor_SetHitboxB(actor_index, 8);
         /* fallthrough */
     case 1:
         if (D_800D28FC & 0x4000) {
@@ -3157,8 +3157,8 @@ void ActorUpdate_Gem(u16 actor_index) {
         gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
         gActors[actor_index].colorA = 0xFE;
-        func_8002ABE4(actor_index, 6);
-        func_8002AC30(actor_index, 8);
+        Actor_SetHitboxA(actor_index, 6);
+        Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].var_154 = (u16)gActors[actor_index].var_110 & 0xF;
         gActors[actor_index].palette_18C = D_800D1958[gActors[actor_index].var_154];
         if (gActors[actor_index].var_150 == 0) {
@@ -5910,8 +5910,8 @@ void func_80038D1C(u16 actor_index) {
         gActors[actor_index].scaleX = gActors[actor_index].unk_148;
     }
     gActors[actor_index].scaleY = gActors[actor_index].scaleX;
-    func_8002ABE4(actor_index, (s16) (gActors[actor_index].scaleX * 8.0f));
-    func_8002AC30(actor_index, gActors[actor_index].hitboxAY0);
+    Actor_SetHitboxA(actor_index, (s16) (gActors[actor_index].scaleX * 8.0f));
+    Actor_SetHitboxB(actor_index, gActors[actor_index].hitboxAY0);
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
@@ -6069,7 +6069,7 @@ void func_80039724(u16 actor_index) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
         gActors[actor_index].unk_18C = D_800D26E0[(gActors[actor_index].var_150 & 0x700) / 256];
     }
-    func_8002AC30(actor_index, 0xE);
+    Actor_SetHitboxB(actor_index, 0xE);
 }
 
 void func_80039838(u16 actor_index) {
@@ -6662,7 +6662,7 @@ void func_8003B630(u16 actor_index) {
         gActors[actor_index].posZ.whole = -1;
         func_8006CD5C(actor_index);
         func_8006CC70(actor_index);
-        func_8002AC30(actor_index, 0xA);
+        Actor_SetHitboxB(actor_index, 0xA);
         /* fallthrough */
     case 1:
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
@@ -6828,8 +6828,8 @@ void func_8003BE3C(u16 actor_index) {
         gActors[actor_index].unk_0DF = 0x40;
         gActors[actor_index].unk_0DE = 1;
         gActors[actor_index].unk_0DB = 7;
-        func_8002ABE4(actor_index, 0xC);
-        func_8002AC30(actor_index, 8);
+        Actor_SetHitboxA(actor_index, 0xC);
+        Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].unk_170 = 0;
         /* fallthrough */
     case 1:
@@ -8445,7 +8445,7 @@ void WarpGate_Init(u16 actor_index) {
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = GINDEX_WARPGATE;
     gActors[actor_index].unk_0DF = 0x40;
-    func_8002AC30(actor_index, 10);
+    Actor_SetHitboxB(actor_index, 10);
     gActors[actor_index].posZ.whole = -1;
     gActors[actor_index].unk_11C = 1.0f;
     gActors[actor_index].unk_120 = 255.0f;

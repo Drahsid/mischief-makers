@@ -20,7 +20,7 @@ extern u16 D_801A3E50_69BE50[];
 
 extern u16 D_801A80C2_6A00C2;
 
-void func_8002AC30(u16 actor_index, s16 val);
+void Actor_SetHitboxB(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 void func_80195F04_68DF04(u16,u16);
 
@@ -198,7 +198,7 @@ void func_80195CA8_68DCA8(u16 actor_index) {
     gActors[actor_index].unk_0DA = 4;\
     gActors[actor_index].unk_0DB = 3;
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
-    func_8002ABE4(actor_index, 0xC);
+    Actor_SetHitboxA(actor_index, 0xC);
 }
 
 void func_80195D28_68DD28(void) {
@@ -238,7 +238,7 @@ void func_80195E0C_68DE0C(u16 actor_index) {
     gActors[actor_index].unk_0DB = 4;
     gActors[actor_index].unk_0F8.raw = 0x30000;\
     gActors[actor_index].unk_0FC.raw = 0x20000;
-    func_8002ABE4(actor_index, 0xE);
+    Actor_SetHitboxA(actor_index, 0xE);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80195EA4_68DEA4.s")
@@ -317,30 +317,30 @@ void func_80196F48_68EF48(u16 actor_index) {
 
 void func_80196F98_68EF98(s32 arg0) {
     func_80196F48_68EF48(0x36);
-    func_8002AC30(0x36, 0x12);
+    Actor_SetHitboxB(0x36, 0x12);
     func_80196F48_68EF48(0x3C);
-    func_8002AC30(0x3C, 0x12);
+    Actor_SetHitboxB(0x3C, 0x12);
     func_80196F48_68EF48(0x38);
-    func_8002AC30(0x38, 0x12);
+    Actor_SetHitboxB(0x38, 0x12);
     gActors[0x38].flags &= ~ACTOR_FLAG_UNK12;
     func_80196F48_68EF48(0x3A);
-    func_8002AC30(0x3A, 0xE);
+    Actor_SetHitboxB(0x3A, 0xE);
     func_80196F48_68EF48(0x45);
-    func_8002AC30(0x45, 0xA);
+    Actor_SetHitboxB(0x45, 0xA);
     func_80196F48_68EF48(0x47);
-    func_8002AC30(0x47, 0xA);
+    Actor_SetHitboxB(0x47, 0xA);
     func_80196F48_68EF48(0x4B);
-    func_8002AC30(0x4B, 0xA);
+    Actor_SetHitboxB(0x4B, 0xA);
     func_80196F48_68EF48(0x4D);
-    func_8002AC30(0x4D, 0xA);
+    Actor_SetHitboxB(0x4D, 0xA);
     func_80196F48_68EF48(0x51);
-    func_8002AC30(0x51, 0xA);
+    Actor_SetHitboxB(0x51, 0xA);
     func_80196F48_68EF48(0x53);
-    func_8002AC30(0x53, 0xA);
+    Actor_SetHitboxB(0x53, 0xA);
     func_80196F48_68EF48(0x57);
-    func_8002AC30(0x57, 0xA);
+    Actor_SetHitboxB(0x57, 0xA);
     func_80196F48_68EF48(0x59);
-    func_8002AC30(0x59, 0xA);
+    Actor_SetHitboxB(0x59, 0xA);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801970BC_68F0BC.s")

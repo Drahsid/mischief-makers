@@ -132,7 +132,7 @@ void func_8019BC64_73DBF4(u16 actor_index) {
         gActors[index].colorA = 0xFE;
         gActors[actor_index].unk_18C |= 0x200;
         gActors[index].unk_0CE = 8;
-        func_8002AC30(index, 6);
+        Actor_SetHitboxB(index, 6);
     }
     
     gActors[index2].graphicFlags |= 4;
@@ -142,7 +142,7 @@ void func_8019BC64_73DBF4(u16 actor_index) {
     gActors[index2].hitboxBX1 = 0xC;
 
     index3 = actor_index + 2;
-    func_8002AC30(index3, 0x10);
+    Actor_SetHitboxB(index3, 0x10);
     D_800BE678 = 0x68;
     D_800BE67C = 0xB8;
     D_800BE680 = 0xB8;
