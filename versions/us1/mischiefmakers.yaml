@@ -114,7 +114,7 @@ segments:
       - [0x059EA0, c]
       - [0x05D120, c]
       - [0x05E230, c]
-      - [0x060CF0, asm]
+      - [0x060CF0, c]
       - [0x061B80, asm]
       - [0x066250, c]
       - [0x07D8E0, asm]
@@ -378,7 +378,7 @@ segments:
       - [0x0ECAA0, .rodata, 57F20]
       - [0x0ECAC0, .rodata, 59EA0]
       - [0x0ECB90, .rodata, 5E230]
-      - [0x0ECCF0, rodata] # 60CF0?
+      - [0x0ECCF0, .rodata, 60CF0]
       - [0x0ECD80, rodata] # 61B80?
       - [0x0ED0E0, rodata] # 66250?
       - [0x0EDBC0, rodata] # 7D8E0?
