@@ -83,8 +83,6 @@ extern void func_80026F2C(u16 index);
 extern void func_800270E4(u16 index);
 extern void func_800271B0(u16 index);
 extern void func_8002729C(u16 index);
-extern void func_800273FC(u16 actor_index, u16 arg1, u16 x, u16 y, u16 z);
-extern void func_80027510(u16 actor_index, s16* graphic_list, u16 x, u16 y, u16 z);
 extern void func_80028380(void);
 extern u16 Actor_IsOutsideRegion(u16 actor_index, s16 arg1);
 extern s32 func_80028C08(u16 actor_index);

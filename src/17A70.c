@@ -30,9 +30,22 @@ extern u8 D_801376BD;
 extern u8 D_800E9634[];
 extern u8 D_800E9654[];
 extern u8 D_800E9720[];
-extern char D_800C8F68[];
-extern char D_800C8F74[];
-extern char D_800C8F88[];
+
+//.data
+
+extern Gfx D_800c8EC8[];
+extern char D_800C8F68[]; // "PRESS START"
+extern char D_800C8F74[]; // "@1997 TREASURE/ENIX"
+extern char D_800C8F88[]; // "LICENCED TO NINTENDO" (not in Japanese version)
+extern u16 D_800C8FA0[];
+extern u16 D_800C8FC0[];
+extern u16 D_800C9080[];
+extern u16 D_800C9280[]; // "Sound test" SFX indecies.
+extern char D_800C94CC[]; // "BGM"
+extern char D_800C94D0[]; // "S.E"
+extern u16 D_800C94D8[]; // positions of Sound Test icons
+
+
 
 extern u16 D_80178152;
 
@@ -55,10 +68,6 @@ void func_8001ACA8(s32 arg0, s32 arg1, s32 arg2);
 void func_8001B02C(void);
 void func_8001B1A0(void);
 u16 func_8001B244(void);
-void Sound_StopMusic(void);
-s32 Sound_PlaySfx2(u32 arg0);
-s32 func_80027588(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-u16 func_800276DC(u16 actor_index, char* str, u16 x, u16 y, u16 z, s32 arg5);
 void func_80043918(void);
 void func_8008310C(void);
 void func_80083454(void);
@@ -377,22 +386,18 @@ void DebugMenu_UpdateCursorFlash(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/17A70/GameState_Intro.s")
 
+// 
 void func_80017F08(void) {
-    s32 palette_index;
-    s32 color;
-    s32 palette;
+    u16* palette;
 
     DebugMenu_UpdateCursorFlash();
-    palette = func_80027588(
-        (palette_index = 0),
-        (color = (0x1F - (gDebugMenuCursorFlash[0] / 4)) & 0xFF),
-        color & 0xFF,
-        0x1F);
-    func_800276DC(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
-    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
-    func_800276DC(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
-    palette = func_80027588(2, 0x1F, 0x1F, 0x18);
-    func_800276DC(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
+    palette = Text_SetColor(0,(0x1F - (gDebugMenuCursorFlash[0] / 4)),(0x1F - (gDebugMenuCursorFlash[0] / 4)),0x1f);
+    Text_PrintASCII(0x39, D_800C8F68, -0x36, -0x1C, 0, palette);
+    palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
+    Text_PrintASCII(0x49, D_800C8F74, -0x56, -0x40, 0, palette);
+    // last 2 lines ommited in Japanese version.
+    palette = Text_SetColor(2, 0x1F, 0x1F, 0x18);
+    Text_PrintASCII(0x60, D_800C8F88, -0x5A, -0x52, 0, palette);
 }
 
 void func_80017FE8(u16 actor_index) {
@@ -402,7 +407,7 @@ void func_80017FE8(u16 actor_index) {
     gActors[actor_index].posX.whole = -2;
     gActors[actor_index].posY.whole = 4;
     gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
-    gActors[actor_index].graphicFlags |= 0x801;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].posZ.whole = 0x100;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].scaleX = 18.0f;
@@ -410,14 +415,15 @@ void func_80017FE8(u16 actor_index) {
     gActors[actor_index].colorR = gActors[actor_index].colorG = gActors[actor_index].colorB = gActors[actor_index].colorA = 0xFF;
 }
 
+// move subtitle graphic (visible only in Japanese version.)
 void func_8001809C(void) {
     if (gActors[0x34].posX.whole == -0x18) {
         return;
     }
 
-    gActors[0x34].velocityX.raw = (-0x180000 - gActors[0x34].posX.raw) / 4;
-    if (gActors[0x34].velocityX.raw < -0x200000) {
-        gActors[0x34].posX.raw += -0x200000;
+    gActors[0x34].velocityX.raw = (FIXED_UNIT(-24.0) - gActors[0x34].posX.raw) / 4;
+    if (gActors[0x34].velocityX.raw < FIXED_UNIT(-32.0)) {
+        gActors[0x34].posX.raw += FIXED_UNIT(-32.0);
         return;
     }
     gActors[0x34].posX.raw += gActors[0x34].velocityX.raw;
@@ -429,6 +435,7 @@ void func_800180FC(void) {
     func_8001809C();
     func_80017F08();
 
+    // blink "press start" text
     if ((D_80178166++ & 4) == 0) {
         for (index = 0x39; index < 0x43; index++) {
             gActors[index].flags = 0;

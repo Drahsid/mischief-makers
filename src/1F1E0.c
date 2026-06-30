@@ -35,7 +35,6 @@ extern u16 D_800CA234;
 extern u16 D_800CA2B0[];
 
 extern UnkFunc800CA1C0 D_800CA1C0[];
-extern u16 D_800CA230;
 extern u16 D_800CA238; // attract demo index
 extern u16 D_800CA23C;
 extern u16 D_800CA240;
@@ -763,7 +762,7 @@ void func_80020A90(void) {
     case 1:
         actor_index = 0xC8;
         if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) {
-            func_800273FC(actor_index + 4, 0, 0, 0xC, 0x401);
+            Text_InitActorGraphic(actor_index + 4, 0, 0, 0xC, 0x401);
             gActors[actor_index + 4].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
             func_80083454();
             func_800836A0(4, 0, D_800CA254, 1);
@@ -772,15 +771,15 @@ void func_80020A90(void) {
             func_8002034C();
             func_800205DC();
             func_800207DC();
-            func_80027510(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
+            Text_InitActorGList(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
             gActors[actor_index + 5].palette_18C =  D_800D88B8;
-            func_80027510(actor_index + 6, gGraphicListGemIcon, 8, 0xC, 0x401);
+            Text_InitActorGList(actor_index + 6, gGraphicListGemIcon, 8, 0xC, 0x401);
             gActors[actor_index + 6].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 6].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
             gActors[actor_index + 6].palette_18C =  D_800D8C78;
-            func_80027510(actor_index + 7, D_800E13FC, 0xFFC4, 0xFFF8, 0x401);
+            Text_InitActorGList(actor_index + 7, D_800E13FC, 0xFFC4, 0xFFF8, 0x401);
             gActors[actor_index + 7].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 7].graphicFlags |= ACTOR_GFLAG_UNK6;
             gGameStateSubState = 0x10;

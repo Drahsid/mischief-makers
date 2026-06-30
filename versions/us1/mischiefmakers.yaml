@@ -103,7 +103,8 @@ segments:
       - [0x023910, asm, soft_reset]
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c] # might be a fake split
-      - [0x027F70, c] # has to do with on screen text
+      - [0x027f70, c, text] # code for printing game's text
+      - [0x028EF0, c] 
       - [0x042E90, c]
       - [0x0438E0, c]
       - [0x048A30, c]
@@ -318,7 +319,8 @@ segments:
       - [0x0CA300, .data, actor_init]
       - [0x0CADC0, data]
       - [0x0CDC80, .data, 26A00]
-      - [0x0D22D0, data]
+      - [0x0D22D0, .data, text]
+      - [0x0D2410, data]
       - [0x0E44A0, .data, E44A0] # previously placed in boot.c
       - [0x0E4760, data]
       - [0x0E4920, data] # 84BB0?
@@ -369,7 +371,7 @@ segments:
       - [0x0EBEA0, rodata] # 17A70 jump tables
       - [0x0EC190, .rodata, 1F1E0]
       - [0x0EC220, .rodata, 241E0]
-      - [0x0EC280, .rodata, 27F70]
+      - [0x0EC280, .rodata, 28EF0]
       - [0x0EC910, .rodata, 42E90]
       - [0x0EC920, rodata] # 438E0?
       - [0x0EC960, rodata] # marina?

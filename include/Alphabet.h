@@ -307,7 +307,7 @@
 
 // a slimmer English alphabet charset
 // used as primary "font" in localization.
-// implements kerning.
+
 
 #define ALPHA_EN2_UPPER_A 0x005B
 #define ALPHA_EN2_UPPER_B 0x005C
@@ -372,6 +372,7 @@
 
 
 // a third English Alphabet, used for titles and names
+// implements kerning in english version.
 
 #define ALPHA_EN3_LOWER_A 0x011E
 #define ALPHA_EN3_LOWER_B 0x011F
@@ -436,4 +437,3 @@
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 
 #endif
-
