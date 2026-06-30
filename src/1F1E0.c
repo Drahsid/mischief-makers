@@ -209,10 +209,10 @@ void func_8001EC1C(void) {
         count_a2 = 0;
         index_s1 = 0;
         spBB8[0] = 0;
-        sp978[0] = gActors[0].posX.whole + gActors[0].hitboxBX1 + 0x30;
-        sp738[0] = (gActors[0].posX.whole + gActors[0].hitboxBX0) - 0x30;
-        sp3D8[0] = gActors[0].posY.whole + gActors[0].hitboxBY0 + 0x28;
-        sp198[0] = (gActors[0].posY.whole + gActors[0].hitboxBY1) - 0x28;
+        sp978[0] = gMarina.posX.whole + gMarina.hitboxBX1 + 0x30;
+        sp738[0] = (gMarina.posX.whole + gMarina.hitboxBX0) - 0x30;
+        sp3D8[0] = gMarina.posY.whole + gMarina.hitboxBY0 + 0x28;
+        sp198[0] = (gMarina.posY.whole + gMarina.hitboxBY1) - 0x28;
         count_t0 = 1;
         for (; index_s1 < 0x90; index_s1++) {
             if (gActors[index_s1].flags & ACTOR_FLAG_UNK7) {
@@ -297,10 +297,10 @@ void func_8001EC1C(void) {
         count_a2 = 0;
         index_s1 = 0;
         spBB8[0] = 0;
-        sp978[0] = gActors[0].posX.whole + gActors[0].hitboxBX1 + 0x30;
-        sp738[0] = (gActors[0].posX.whole + gActors[0].hitboxBX0) - 0x30;
-        sp3D8[0] = gActors[0].posY.whole + gActors[0].hitboxBY0 + 0x28;
-        sp198[0] = (gActors[0].posY.whole + gActors[0].hitboxBY1) - 0x28;
+        sp978[0] = gMarina.posX.whole + gMarina.hitboxBX1 + 0x30;
+        sp738[0] = (gMarina.posX.whole + gMarina.hitboxBX0) - 0x30;
+        sp3D8[0] = gMarina.posY.whole + gMarina.hitboxBY0 + 0x28;
+        sp198[0] = (gMarina.posY.whole + gMarina.hitboxBY1) - 0x28;
         count_t0 = 1;
         for (; index_s1 < 0x90; index_s1++) {
             if (((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK11)) {
@@ -547,7 +547,7 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gActors[0].flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
+    gMarina.flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
 }
 
 void func_8001FF50(void) {
@@ -925,7 +925,7 @@ void GameState_Attract(void) {
         D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
         D_800CA234 = 0xA00;
         gSkipStageIntro = TRUE;
-        gActors[0].health = 1000;
+        gMarina.health = 1000;
         D_800BE668 = 50;
         gRngSeed = 0x1234;
         GameState_Loading();

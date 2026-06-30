@@ -168,7 +168,7 @@ s32 func_801B11F0_7BD140(u16 actor_index) {
 }
 
 s32 func_801B1390_7BD2E0(u16 actor_index) {
-    if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
+    if (gActors[actor_index].posX.whole < gMarina.posX.whole) {
         if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
             gActors[actor_index].state = 0x22;
             return 1;
@@ -183,7 +183,7 @@ s32 func_801B1390_7BD2E0(u16 actor_index) {
 }
 
 s32 func_801B141C_7BD36C(u16 actor_index) {
-    if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
+    if (gActors[actor_index].posX.whole < gMarina.posX.whole) {
         if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
             return 1;

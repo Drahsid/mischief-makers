@@ -128,35 +128,40 @@ u32 D_801BBC3C_7D03CC[] = {
     0x00500DD8, 0x02100000,
 };
 
-u32 D_801BC0F4_7D0884[] = {
-    0x00000040, 0x0120014A, 0x0000001B, 0x05150000,
-    0x00410180, 0x014A0000, 0x001A0515, 0x00000042,
-    0x0150014A, 0x0000001D, 0x05150000, 0x004301E0,
-    0x014A0000, 0x00110515, 0x00000044, 0x01B0014A,
-    0x00000016, 0x05150000, 0x00450240, 0x014A0000,
-    0x00080515, 0x00000046, 0x0210014A, 0x0000000F,
-    0x05150000, 0x00490300, 0x014A0000, 0x00080515,
-    0x0000004A, 0x0360014A, 0x00000011, 0x05150000,
-    0x004B03C0, 0x014A0000, 0x00180515, 0x0000004C,
-    0x0420014A, 0x00000011, 0x05150000, 0x004D0480,
-    0x014A0000, 0x00080515, 0x00000050, 0x0550014A,
-    0x00000018, 0x05150000, 0x005105B0, 0x014A0000,
-    0x00190515, 0x00000052, 0x0610014A, 0x0000001A,
-    0x05150000, 0x00530670, 0x014A0000, 0x001B0515,
-    0x00000054, 0x0730014A, 0x0000001B, 0x05150000,
-    0x00550790, 0x014A0000, 0x001A0515, 0x00000056,
-    0x07F0014A, 0x00000019, 0x05150000, 0x00570850,
-    0x014A0000, 0x00180515, 0x00000058, 0x0580014A,
-    0x00000017, 0x05150000, 0x005905E0, 0x014A0000,
-    0x00160515, 0x0000005A, 0x0640014A, 0x00000015,
-    0x05150000, 0x005D0760, 0x014A0000, 0x00150515,
-    0x0000005E, 0x07C0014A, 0x00000016, 0x05150000,
-    0x005F0820, 0x014A0000, 0x00170515, 0x01000034,
-    0x028A01B8, 0x03000000, 0x001C0000, 0x00360850,
-    0x01987300, 0x1009001C, 0x00000068, 0x01800188,
-    0xE1120000, 0x005F0000, 0x006901E0, 0x0178E222,
-    0x0000005F, 0x0000006A, 0x02400168, 0xAA320000,
-    0x005FFF00,
+u16 D_801BC0F4_7D0884[] = {
+//  flags   index   posX    posY    0x110   0xD8    type
+    0x0000, 0x0040, 0x0120, 0x014A, 0x0000, 0x001B, 0x0515,
+    0x0000, 0x0041, 0x0180, 0x014A, 0x0000, 0x001A, 0x0515,
+    0x0000, 0x0042, 0x0150, 0x014A, 0x0000, 0x001D, 0x0515,
+    0x0000, 0x0043, 0x01E0, 0x014A, 0x0000, 0x0011, 0x0515,
+    0x0000, 0x0044, 0x01B0, 0x014A, 0x0000, 0x0016, 0x0515,
+    0x0000, 0x0045, 0x0240, 0x014A, 0x0000, 0x0008, 0x0515,
+    0x0000, 0x0046, 0x0210, 0x014A, 0x0000, 0x000F, 0x0515,
+    0x0000, 0x0049, 0x0300, 0x014A, 0x0000, 0x0008, 0x0515,
+    0x0000, 0x004A, 0x0360, 0x014A, 0x0000, 0x0011, 0x0515,
+    0x0000, 0x004B, 0x03C0, 0x014A, 0x0000, 0x0018, 0x0515,
+    0x0000, 0x004C, 0x0420, 0x014A, 0x0000, 0x0011, 0x0515,
+    0x0000, 0x004D, 0x0480, 0x014A, 0x0000, 0x0008, 0x0515,
+    0x0000, 0x0050, 0x0550, 0x014A, 0x0000, 0x0018, 0x0515,
+    0x0000, 0x0051, 0x05B0, 0x014A, 0x0000, 0x0019, 0x0515,
+    0x0000, 0x0052, 0x0610, 0x014A, 0x0000, 0x001A, 0x0515,
+    0x0000, 0x0053, 0x0670, 0x014A, 0x0000, 0x001B, 0x0515,
+    0x0000, 0x0054, 0x0730, 0x014A, 0x0000, 0x001B, 0x0515,
+    0x0000, 0x0055, 0x0790, 0x014A, 0x0000, 0x001A, 0x0515,
+    0x0000, 0x0056, 0x07F0, 0x014A, 0x0000, 0x0019, 0x0515,
+    0x0000, 0x0057, 0x0850, 0x014A, 0x0000, 0x0018, 0x0515,
+    0x0000, 0x0058, 0x0580, 0x014A, 0x0000, 0x0017, 0x0515,
+    0x0000, 0x0059, 0x05E0, 0x014A, 0x0000, 0x0016, 0x0515,
+    0x0000, 0x005A, 0x0640, 0x014A, 0x0000, 0x0015, 0x0515,
+    0x0000, 0x005D, 0x0760, 0x014A, 0x0000, 0x0015, 0x0515,
+    0x0000, 0x005E, 0x07C0, 0x014A, 0x0000, 0x0016, 0x0515,
+    0x0000, 0x005F, 0x0820, 0x014A, 0x0000, 0x0017, 0x0515,
+    0x0100, 0x0034, 0x028A, 0x01B8, 0x0300, 0x0000, ACTORTYPE_28,
+    0x0000, 0x0036, 0x0850, 0x0198, 0x7300, 0x1009, ACTORTYPE_28,
+    0x0000, 0x0068, 0x0180, 0x0188, 0xE112, 0x0000, ACTORTYPE_95,
+    0x0000, 0x0069, 0x01E0, 0x0178, 0xE222, 0x0000, ACTORTYPE_95,
+    0x0000, 0x006A, 0x0240, 0x0168, 0xAA32, 0x0000, ACTORTYPE_95,
+    SPAWNRECORD_END
 };
 
 u32 D_801BC2A8_7D0A38[] = {
@@ -1158,16 +1163,16 @@ u16 D_801BF7BC_7D3F4C[] = {
 
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
-        if (gActors[0].stateUpper == 4) {
+        if (gMarina.stateUpper == 4) {
             func_8005739C(0, 100);
-            if (gActors[0].health >= 0) {
+            if (gMarina.health >= 0) {
                 return TRUE;
             }
 
             if (gGameState == GAMESTATE_GAMEPLAY) {
                 gGameState = GAMESTATE_CONTINUE;
                 gGameStateSubState = 0;
-                gActors[0].velocityX.raw = gActors[0].velocityY.raw = gPlayerVelYMirror.raw = 0;
+                gMarina.velocityX.raw = gMarina.velocityY.raw = gPlayerVelYMirror.raw = 0;
                 gPlayerVelXMirror.raw = 0;
             }
 
@@ -1179,11 +1184,11 @@ s32 func_801B9900_7CE090(void) {
 }
 
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
-    gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
+    gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
-    gActors[0].posX.whole = arg0;
-    gActors[0].posY.whole = arg1;
+    gMarina.posX.whole = arg0;
+    gMarina.posY.whole = arg1;
     D_800BE5F4.unk_00_u32 = 0xA;
 }
 
@@ -1197,7 +1202,7 @@ void func_801B9A0C_7CE19C(u16 arg0) {
 void func_801B9A40_7CE1D0(void) {
     if (gActors[0x5E].flags & (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_PLATFORM0)) {
         func_801B99AC_7CE13C(0, gActors[0x5E].posY.whole + 8);
-        gActors[0].iFrames = 120;
+        gMarina.iFrames = 120;
     }
 }
 
@@ -1229,7 +1234,7 @@ void func_801B9B08_7CE298(void) {
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
-        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gActors[0].velocityX.raw = (((gActors[0].velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
+        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gMarina.velocityX.raw = (((gMarina.velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
         gPlayerVelXMirror.raw = 0;
         func_801B9A0C_7CE19C(gStageCinemaState + 1);
     }
@@ -1580,7 +1585,7 @@ handle_cutscene_index:
 void func_801BA818_7CEFA8(void) {
     if (func_801B9900_7CE090() != 0) {
         func_801B99AC_7CE13C(gActors[0x60].posX.whole, gActors[0x60].posY.whole + 0x18);
-        gActors[0].iFrames = 120;
+        gMarina.iFrames = 120;
     }
 }
 
@@ -1836,7 +1841,7 @@ void func_801BAFEC_7CF77C(void) {
 }
 
 void func_801BB0F0_7CF880(void) {
-    gLookatEyeZ = (gActors[0].posY.whole * 2) + 0x1C0;
+    gLookatEyeZ = (gMarina.posY.whole * 2) + 0x1C0;
     if (gLookatEyeZ < 448.0f) {
         gLookatEyeZ = 448.0f;
     }
@@ -2107,19 +2112,19 @@ void func_801BB360_7CFAF0(void) {
             Sound_PlayMusic(BGM_BOSS);
             D_800BE5F4.unk_00_s32 = 7;
             D_801373E0.unk_78 |= 1;
-            gActors[0].flags |= ACTOR_FLAG_FLIPPED;
+            gMarina.flags |= ACTOR_FLAG_FLIPPED;
             D_800BE544 = 0x8000;
             gDrawEnvLayer = 0;
             gActorDepthMiddle = -0xC0;
             gActorDepthBack = -0xC0;
             gScreenPosTargetY.whole = 0x19C;
-            gActors[0].velocityY.raw = 0;
-            gActors[0].velocityX.raw = 0;
+            gMarina.velocityY.raw = 0;
+            gMarina.velocityX.raw = 0;
             gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
             gPlayerPosX.whole = gScreenPosCurrentX.whole + 0x30;
-            gActors[0].posX.whole = 0x30;
+            gMarina.posX.whole = 0x30;
             gPlayerPosY.whole = gScreenPosCurrentY.whole - 0x36;
-            gActors[0].posY.whole = -0x36;
+            gMarina.posY.whole = -0x36;
             D_800D28FC |= 2;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;

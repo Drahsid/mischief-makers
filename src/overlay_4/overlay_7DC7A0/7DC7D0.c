@@ -976,13 +976,13 @@ u32 D_801BF77C_7E264C[] = {
 
 
 void func_801B9900_7DC7D0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gActors[0].posY.whole < -0x30) {
+    if (gMarina.posY.whole < -0x30) {
         D_800D291C = arg0 - 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x40) || (gActors[0].posX.whole >= 0x41)) {
+    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -990,13 +990,13 @@ void func_801B9900_7DC7D0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B99B8_7DC888(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gActors[0].posY.whole >= 0x31) {
+    if (gMarina.posY.whole >= 0x31) {
         D_800D2918 = arg0 + 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x40) || (gActors[0].posX.whole >= 0x41)) {
+    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -1016,7 +1016,7 @@ void func_801B9A70_7DC940(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x60) || (gActors[0].posX.whole >= 0x61)) {
+    if ((gMarina.posX.whole < -0x60) || (gMarina.posX.whole >= 0x61)) {
         if (gScreenPosCurrentY.whole < ((arg0 + arg1) / 2)) {
             D_800D2918 = arg0 + 0x70;
             gStageCinemaState -= arg2;
@@ -1051,7 +1051,7 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gActors[0].posY.whole < -0x60) || (gActors[0].posY.whole >= 0x61)) {
+    if ((gMarina.posY.whole < -0x60) || (gMarina.posY.whole >= 0x61)) {
         if (arg2 != 0) {
             if (gScreenPosCurrentX.whole < ((arg0 + arg1) / 2)) {
                 func_801B9B8C_7DCA5C(arg1);
@@ -1076,8 +1076,8 @@ void func_801B9D38_7DCC08(void) {
     D_800D2950 = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gActors[0].posX.whole;
-    gActors[0x30].posY.whole = gActors[0].posY.whole;
+    gActors[0x30].posX.whole = gMarina.posX.whole;
+    gActors[0x30].posY.whole = gMarina.posY.whole;
 }
 
 void func_801B9D84_7DCC54(void) {
@@ -1594,7 +1594,7 @@ void func_801BACDC_7DDBAC(void) {
             gStageCinemaState = 0x800;
             D_800BE5F4.unk_00_s32 = 7;
             D_800BE544 = 0x8000;
-            gActors[0].flags |= ACTOR_FLAG_FLIPPED;
+            gMarina.flags |= ACTOR_FLAG_FLIPPED;
 
         case 0x800:
             if (func_80046D5C() != 0) {
@@ -1843,7 +1843,7 @@ void func_801BACDC_7DDBAC(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BE0C4_7E0F94);
             D_800BE5F4.unk_00_s32 = 0xB;
-            gActors[0].flags |= 0x20;
+            gMarina.flags |= 0x20;
             gStageCinemaState++;
             Sound_PlayMusic(BGM_GET);
             break;
@@ -1974,8 +1974,8 @@ void func_801BBCBC_7DEB8C(void) {
     D_800D2950 = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gActors[0].posX.whole;
-    gActors[0x30].posY.whole = gActors[0].posY.whole;
+    gActors[0x30].posX.whole = gMarina.posX.whole;
+    gActors[0x30].posY.whole = gMarina.posY.whole;
 }
 
 void func_801BBD08_7DEBD8(void) {
@@ -2291,7 +2291,7 @@ void func_801BC75C_7DF62C(void* arg0, s32 arg1) {
 }
 
 void func_801BC7C4_7DF694(void) {
-    if (gActors[0].health >= 0) {
+    if (gMarina.health >= 0) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x61;
         gStageCinemaState = 1;
@@ -2322,7 +2322,7 @@ void func_801BC828_7DF6F8(void) {
 
         case 3:
             if ((gScreenPosCurrentY.whole + gActors->posY.whole) < 0xA0) {
-                func_8005739C(0, 0x64);
+                func_8005739C(0, 100);
                 func_801BC7C4_7DF694();
             }
             break;

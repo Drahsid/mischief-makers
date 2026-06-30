@@ -511,7 +511,7 @@ void func_801A1CCC_699CCC(u16 arg0){
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_801A30B8_69B0B8.s")
 
 void func_801A32C8_69B2C8(u16 actor_index){
-    gActors[actor_index].posZ.whole = gActors[0].posZ.whole;
+    gActors[actor_index].posZ.whole = gMarina.posZ.whole;
 }
 
 void func_801A3304_69B304(u16 arg0){

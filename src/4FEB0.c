@@ -303,7 +303,7 @@ void func_8004FDF8(u16 actor_index) {
             gActors[actor_index].var_150 = 0;
             gActors[actor_index].var_154 = 0;
             gActors[actor_index].unk_170 = 0x65;
-            Sound_PlaySfx(0xB3);
+            Sound_PlaySfx(SFX_MARINA_SHAKE);
             gActors[actor_index].stateUpper += 1;
         }
         if ((gActors[actor_index].unk_170_s8[0] == 0) && (gActors[actor_index].unk_170_s8[1] == 7)) {
@@ -1367,7 +1367,7 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
         if (!(gActors[actor_1].unk_0DF & 8) && (var_v1 == 0x58)) {
             temp_v0 = func_8005D338(actor_0);
             if (var_v1 != temp_v0) {
-                Sound_PlaySfx(0xB3);
+                Sound_PlaySfx(SFX_MARINA_SHAKE);
             }
         }
         gActors[actor_0].unk_170 = var_v1;
@@ -2468,8 +2468,8 @@ void func_80055C2C(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gActors[0].unk_120;
-            gActors[actor_0].velocityY.raw *= gActors[0].unk_120;
+            gActors[actor_0].velocityX.raw *= gMarina.unk_120;
+            gActors[actor_0].velocityY.raw *= gMarina.unk_120;
             Sound_PlaySfx(0x24);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -2541,8 +2541,8 @@ void func_80055F8C(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gActors[0].unk_120;
-            gActors[actor_0].velocityY.raw *= gActors[0].unk_120;
+            gActors[actor_0].velocityX.raw *= gMarina.unk_120;
+            gActors[actor_0].velocityY.raw *= gMarina.unk_120;
             Sound_PlaySfx(0x24);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -2614,8 +2614,8 @@ void func_800562EC(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gActors[0].unk_120;
-            gActors[actor_0].velocityY.raw *= gActors[0].unk_120;
+            gActors[actor_0].velocityX.raw *= gMarina.unk_120;
+            gActors[actor_0].velocityY.raw *= gMarina.unk_120;
             Sound_PlaySfx(0x24);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -2687,8 +2687,8 @@ void func_8005664C(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gActors[0].unk_120;
-            gActors[actor_0].velocityY.raw *= gActors[0].unk_120;
+            gActors[actor_0].velocityX.raw *= gMarina.unk_120;
+            gActors[actor_0].velocityY.raw *= gMarina.unk_120;
             Sound_PlaySfx(0x24);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -2751,8 +2751,8 @@ void func_800569AC(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gActors[0].unk_120;
-            gActors[actor_0].velocityY.raw *= gActors[0].unk_120;
+            gActors[actor_0].velocityX.raw *= gMarina.unk_120;
+            gActors[actor_0].velocityY.raw *= gMarina.unk_120;
             Sound_PlaySfx(0x24);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);

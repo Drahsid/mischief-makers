@@ -289,7 +289,7 @@ typedef struct {
         /* 0x190 */ u16* warpGate_coords; // coordinates for a warp gate. {x,y,x-facing}
         /* 0x190 */ ActorFunc pfn_190;
     };
-    /* 0x194 */ u8 unk_194[0x4];
+    /* 0x194 */ u8 unk_194[0x4]; // unknown/unused
 } Actor; /* size = 0x198 */
 
 extern Actor gActors[];
@@ -298,6 +298,12 @@ extern ActorFunc D_80192000[]; // "overlay 0" dispatch table.
 extern ActorFunc D_8019B000[]; // "overlay 1" dispatch table.
 extern ActorFunc D_801A6800[]; // "overlay 2" dispatch table.
 extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
+
+
+#define PLAYER_INDEX 0
+
+// actor 0 is always the player character, Marina
+#define gMarina gActors[PLAYER_INDEX]
 
 
 // the following two macros are based on common patterns in the code.

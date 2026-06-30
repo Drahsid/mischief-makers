@@ -524,13 +524,13 @@ u16 D_801BD8C0_7E6A20;
 
 
 void func_801B9900_7E2A60(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gActors[0].posY.whole < -0x30) {
+    if (gMarina.posY.whole < -0x30) {
         D_800D291C = arg0 - 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x40) || (gActors[0].posX.whole >= 0x41)) {
+    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -538,13 +538,13 @@ void func_801B9900_7E2A60(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B99B8_7E2B18(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gActors[0].posY.whole >= 0x31) {
+    if (gMarina.posY.whole >= 0x31) {
         D_800D2918 = arg0 + 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x40) || (gActors[0].posX.whole >= 0x41)) {
+    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -566,7 +566,7 @@ void func_801B9A70_7E2BD0(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gActors[0].posX.whole < -0x60) || (gActors[0].posX.whole >= 0x61)) {
+    if ((gMarina.posX.whole < -0x60) || (gMarina.posX.whole >= 0x61)) {
         if (position_y < ((arg0 + arg1) / 2)) {
             D_800D2918 = arg0 + 0x70;
             gStageCinemaState -= arg2;
@@ -601,7 +601,7 @@ void func_801B9BF4_7E2D54(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gActors[0].posY.whole < -0x60) || (gActors[0].posY.whole >= 0x61)) {
+    if ((gMarina.posY.whole < -0x60) || (gMarina.posY.whole >= 0x61)) {
         if (arg2 != 0) {
             if (gScreenPosCurrentX.whole < ((arg0 + arg1) / 2)) {
                 func_801B9B8C_7E2CEC(arg1);
@@ -630,16 +630,16 @@ void func_801B9D38_7E2E98(void* arg0, u16* arg1, void* arg2) {
 
 void func_801B9D78_7E2ED8(void) {
     if (func_80048CE4() == 1) {
-        if (gActors[0].stateUpper == 4) {
+        if (gMarina.stateUpper == 4) {
             s32 actor_index = func_8003FF68(0, 1.0f);
 
-            gActors[actor_index].posX.whole = gActors[0].posX.whole;
+            gActors[actor_index].posX.whole = gMarina.posX.whole;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = (u16*)0x8022D568;
             Sound_PlaySfxAtActor2(0xAA, 0);
-            func_8005739C(0, 0x64);
+            func_8005739C(0, 100);
 
-            if (gActors[0].health >= 0) {
+            if (gMarina.health >= 0) {
                 D_800D28F0 = D_800D28E4;
                 gStageCinemaState = 4;
                 D_800D28E4 = 0x61;
@@ -714,9 +714,9 @@ void func_801B9E74_7E2FD4(void) {
                     break;
             }
 
-            gActors[0x40].posX.whole = gActors[0].posX.whole + 0x40;
-            gActors[0x40].posY.whole = gActors[0].posY.whole - 0x10;
-            gActors[0x30].posX.whole = gActors[0].posX.whole - 0xF0;
+            gActors[0x40].posX.whole = gMarina.posX.whole + 0x40;
+            gActors[0x40].posY.whole = gMarina.posY.whole - 0x10;
+            gActors[0x30].posX.whole = gMarina.posX.whole - 0xF0;
 
             if (D_800D292C != 0) {
                 D_800BE5F4.unk_00_s32 = 0xA;
@@ -754,7 +754,7 @@ void func_801B9E74_7E2FD4(void) {
             func_801B9D78_7E2ED8();
 
             if ((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x2070) {
-                gActors[0].flags_098 |= 0x10000;
+                gMarina.flags_098 |= 0x10000;
 
                 if ((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) < 0x1FD8) {
                     gActors[0x40].flags = 0;
@@ -783,7 +783,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 7:
             gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
-            gActors[0].velocityX.raw = 0;
+            gMarina.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
                 D_801373E0.unk_20 = gButton_DRight;
@@ -804,7 +804,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 0xA:
             gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
-            gActors[0].velocityX.raw = 0;
+            gMarina.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageCinemaState == 0xB) {
                 D_800BE5F4.unk_00_s32 = 2;
@@ -891,9 +891,9 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     s16 saved[8];
 
     gScreenPosCurrentX.whole = arg0;
-    gActors[0].posX.whole = 0;
+    gMarina.posX.whole = 0;
     gScreenPosCurrentY.whole = arg1;
-    gActors[0].posY.whole = -0x3E;
+    gMarina.posY.whole = -0x3E;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
 
@@ -931,10 +931,10 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     gActors[0x67].warpGate_coords = D_801BC934_7E5A94;
 
     if ((arg0 == 0x182) || (arg0 == 0x982)) {
-        gActors[0].flags |= ACTOR_FLAG_FLIPPED;
+        gMarina.flags |= ACTOR_FLAG_FLIPPED;
     }
     else {
-        gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
+        gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
     }
 
     if (arg0 < 0x800) {
@@ -1237,7 +1237,7 @@ void func_801BB1F4_7E4354(void) {
     func_80045FA4(D_801BCF84_7E60E4, (u16*)D_801BCFB0_7E6110);
     Actor_LoadSpawnTable(D_801BBEB0_7E5010);
     Actor_LoadSpawnTable(D_801BD23C_7E639C);
-    gActors[0].flags |= 0x20;
+    gMarina.flags |= 0x20;
     D_800BE568.whole = 0xF2;
     D_800BE56C.whole = 0x712;
     D_800BE570.whole = 0x1EC;
@@ -1247,7 +1247,7 @@ void func_801BB1F4_7E4354(void) {
 
 void func_801BB28C_7E43EC(void) {
     if ((func_801BB184_7E42E4() != 0) && (gStageCinemaState < 0x800) && (D_800D28E4 < 0x61) 
-      && (gGameState != GAMESTATE_CONTINUE) && (gActors[0].health >= 0)) {
+      && (gGameState != GAMESTATE_CONTINUE) && (gMarina.health >= 0)) {
         gStageCinemaState = 0x800;
     }
 
@@ -1347,7 +1347,7 @@ void func_801BB28C_7E43EC(void) {
             if (gAudioFadeMode != 1) {
                 if (D_800D28E4 < 0x61) {
                     if (gGameState != GAMESTATE_CONTINUE) {
-                        if (gActors[0].health >= 0) {
+                        if (gMarina.health >= 0) {
                             D_800D2938 = 0;
                             D_800D28F0 = D_800D28E4;
                             D_800D28E4 = 0x61;
@@ -1363,7 +1363,7 @@ void func_801BB28C_7E43EC(void) {
             Actor_LoadSpawnTable(D_801BBEB0_7E5010);
             Actor_LoadSpawnTable(D_801BD4B4_7E6614);
             Clanpot_InitItems(0x48, D_801BD4D4_7E6634);
-            gActors[0].flags |= 0x20;
+            gMarina.flags |= 0x20;
             D_800BE5F4.unk_00_s32 = 5;
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_GLOOMY);

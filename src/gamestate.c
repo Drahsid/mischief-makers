@@ -28,7 +28,7 @@ void func_800012F0(void) {
         }
         else if ((gButtonPress & gButton_Start) && (gCannotPause == 0) && (gGameStateSubState == 0)) {
             // player->health >= 0
-            if (gActors[0].health >= 0) {
+            if (gMarina.health >= 0) {
                 gGamePaused = TRUE;
                 gDebugBitfield &= ~DEBUGFLAG_UNK4;
                 if (gDebugBitfield & DEBUGFLAG_BLANKPAUSE) {

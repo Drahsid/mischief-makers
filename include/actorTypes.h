@@ -141,7 +141,7 @@ typedef enum{
     ACTORTYPE_73,
     ACTORTYPE_74,
     ACTORTYPE_75,
-    ACTORTYPE_76,
+    ACTORTYPE_76, // spikeball?
     ACTORTYPE_77,
     ACTORTYPE_78,
     ACTORTYPE_79,

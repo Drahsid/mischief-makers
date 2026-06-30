@@ -98,17 +98,6 @@ typedef union {
 
 #define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
 
-// data for setting actors in a stage (may actually be u16[] - often ending with a 0xff00.)
-typedef struct {
-    /* 0x00 */ u16 flags; 
-    /* 0x02 */ u16 index; // index of actor to set
-    /* 0x04 */ u16 posX;  // x-position of actor in stage
-    /* 0x06 */ u16 posY;  // y-position of actor in stage
-    /* 0x08 */ u16 var_110; // value of actor->var_110
-    /* 0x0A */ u16 var_0D8; // value of actor->var_0D8
-    /* 0x0C */ u16 type; // value of actor->actorType
-} ActorSpawnRecord; /* size = 0xE */
-
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000))
 
 #endif
