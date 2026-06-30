@@ -100,7 +100,7 @@ DEFAULT_INT func_8001E2D0(u16 actor_index) {
     gActors[actor_index].unk_130 =
     gActors[actor_index].unk_134 =
     gActors[actor_index].unk_138 =
-    gActors[actor_index].unk_13C =
+    gActors[actor_index].unk_13C_f32 =
     gActors[actor_index].unk_140_f32 =
     gActors[actor_index].unk_144 =
     gActors[actor_index].unk_148 =
