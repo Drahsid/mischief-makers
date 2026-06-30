@@ -19,8 +19,8 @@ extern s16 D_801783F2;
 extern s16 D_801783F4;
 extern s16 D_801783F6;
 extern s16 D_801783F8[];
-extern s16 D_80178418[];
-extern u16 D_80178438; // end of D_80178418
+extern s16 D_80178418[16];
+extern u16 D_80178438;
 extern u16 D_8017843A;
 extern u16 D_8017843C;
 extern u16 D_8017843E;
@@ -30,167 +30,164 @@ extern s16 D_80178442;
 extern s16 D_800D5838[];
 extern s8* D_800D73C0[];
 
-#define D_8019B000 ((Actor2Func*)0x8019B000)
-#define D_80192020 ((Actor2Func*)0x80192020)
-#define D_80192030 ((Actor2Func*)0x80192030)
-#define D_80192060 ((Actor2Func*)0x80192060)
-#define D_801A6840 ((Actor2Func*)0x801A6840)
+#define OVERLAY0_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY0_DISPATCH_TABLE_VRAM)
+#define OVERLAY1_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY1_DISPATCH_TABLE_VRAM)
+#define OVERLAY2_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY2_DISPATCH_TABLE_VRAM)
 
 #define D_801C1000 ((s32*)0x801C1000)
 
 u16 func_8005EC20(s16, s16, s32);
 
 void func_8005D630(u16 arg0) {
-    D_8019B000[3](arg0, 0);
+    OVERLAY1_DISPATCH_ACTOR2[3](arg0, 0);
 }
 
 void func_8005D664(u16 arg0, u16 arg1) {
-    D_8019B000[4](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[4](arg0, arg1);
 }
 
 void func_8005D6A0(u16 arg0, u16 arg1) {
-    D_8019B000[5](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, arg1);
 }
 
 void func_8005D6DC(u16 arg0, u16 arg1) {
-    D_8019B000[6](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[6](arg0, arg1);
 }
 
 void func_8005D718(u16 arg0) {
-    D_80192020[3](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[11](arg0, 0);
 }
 
 void func_8005D74C(u16 arg0) {
-    D_80192020[4](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[12](arg0, 0);
 }
 
-// same as func_8005D6A0
 void func_8005D780(u16 arg0, u16 arg1) {
-    D_8019B000[5](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, arg1);
 }
 
 void func_8005D7BC(u16 arg0, u16 arg1) {
-    D_8019B000[6](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[6](arg0, arg1);
 }
 
 void func_8005D7F8(u16 arg0) {
-    D_8019B000[7](arg0, 0);
+    OVERLAY1_DISPATCH_ACTOR2[7](arg0, 0);
 }
 
 void func_8005D82C(u16 arg0) {
-    D_8019B000[7](arg0, 0);
+    OVERLAY1_DISPATCH_ACTOR2[7](arg0, 0);
 }
 
 void func_8005D860(u16 arg0) {
-    D_8019B000[5](arg0, 0);
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, 0);
 }
 
 void func_8005D894(u16 arg0, u16 arg1) {
-    D_8019B000[3](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[3](arg0, arg1);
 }
 
 void func_8005D8D0(u16 arg0, u16 arg1) {
-    D_8019B000[4](arg0, arg1);
+    OVERLAY1_DISPATCH_ACTOR2[4](arg0, arg1);
 }
 
 void func_8005D90C(u16 arg0, u16 arg1) {
-    D_80192060[0](arg0, arg1); // TODO: which base? address is D_80192060
+    OVERLAY0_DISPATCH_ACTOR2[24](arg0, arg1);
 }
 
 void func_8005D948(u16 arg0, u16 arg1) {
-    D_80192060[1](arg0, arg1);
+    OVERLAY0_DISPATCH_ACTOR2[25](arg0, arg1);
 }
 
 void func_8005D984(u16 arg0) {
-    D_80192060[2](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[26](arg0, 0);
 }
 
 void func_8005D9B8(u16 arg0) {
-    D_80192060[3](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[27](arg0, 0);
 }
 
 void func_8005D9EC(u16 arg0) {
-    D_80192060[4](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[28](arg0, 0);
 }
 
 void func_8005DA20(u16 arg0, u16 arg1) {
-    D_80192030[3](arg0, arg1);
+    OVERLAY0_DISPATCH_ACTOR2[15](arg0, arg1);
 }
 
 void func_8005DA5C(u16 arg0, u16 arg1) {
-    D_80192060[1](arg0, arg1);
+    OVERLAY0_DISPATCH_ACTOR2[25](arg0, arg1);
 }
 
 void func_8005DA98(u16 arg0) {
-    D_801A6840[1](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[17](arg0, 0);
 }
 
 void func_8005DACC(u16 arg0) {
-    D_801A6840[2](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[18](arg0, 0);
 }
 
 void func_8005DB00(u16 arg0) {
-    D_801A6840[3](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[19](arg0, 0);
 }
 
 void func_8005DB34(u16 arg0) {
-    D_801A6840[4](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[20](arg0, 0);
 }
 
 void func_8005DB68(u16 arg0) {
-    D_801A6840[5](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[21](arg0, 0);
 }
 
 void func_8005DB9C(u16 arg0) {
-    D_801A6840[6](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[22](arg0, 0);
 }
 
 void func_8005DBD0(u16 arg0) {
-    D_801A6840[7](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[23](arg0, 0);
 }
 
 void func_8005DC04(u16 arg0) {
-    D_801A6840[8](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[24](arg0, 0);
 }
 
 void func_8005DC38(void) {
-    D_801A6840[9](0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[25](0, 0);
 }
 
 void func_8005DC64(u16 arg0) {
-    D_801A6840[10](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[26](arg0, 0);
 }
 
 void func_8005DC98(u16 arg0) {
-    D_801A6840[11](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[27](arg0, 0);
 }
 
 void func_8005DCCC(u16 arg0) {
-    D_801A6840[12](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[28](arg0, 0);
 }
 
 void func_8005DD00(u16 arg0) {
-    D_801A6840[13](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[29](arg0, 0);
 }
 
 void func_8005DD34(u16 arg0) {
-    D_801A6840[14](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[30](arg0, 0);
 }
 
 void func_8005DD68(u16 arg0) {
-    D_801A6840[15](arg0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[31](arg0, 0);
 }
 
 void func_8005DD9C(void) {
-    D_801A6840[16](0, 0);
+    OVERLAY2_DISPATCH_ACTOR2[32](0, 0);
 }
 
 void func_8005DDC8(u16 arg0) {
-    D_80192020[0](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[8](arg0, 0);
 }
 
 void func_8005DDFC(u16 arg0) {
-    D_80192020[2](arg0, 0);
+    OVERLAY0_DISPATCH_ACTOR2[10](arg0, 0);
 }
 
 void func_8005DE30(void) {
@@ -349,7 +346,7 @@ void func_8005E260(u16 actor_index) {
         gActors[actor_index].hitboxBX1 += gActors[actor_1].hitboxBX1;
         gActors[actor_index].hitboxBY0 += gActors[actor_1].hitboxBY0;
         gActors[actor_index].hitboxBY1 += gActors[actor_1].hitboxBY1;
-        gActors[actor_index].timer_110 += 0.05; //D_800EBF94;
+        gActors[actor_index].timer_110 += 0.05;
         if (gActors[actor_index].timer_110 >= 1.0) {
             gActors[actor_index].timer_110 = 1.0f;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
@@ -372,7 +369,7 @@ void func_8005E260(u16 actor_index) {
     case 3:
         func_8005E1CC(actor_index, gActors[actor_index].timer_110);
         if (gActors[actor_index].timer_110 > 0.0f) {
-            gActors[actor_index].timer_110 -= 0.05; // D_800EBF98;
+            gActors[actor_index].timer_110 -= 0.05;
         }
         else {
             gActors[actor_index].flags = 0;

@@ -7,9 +7,7 @@ typedef struct {
     u8 blue;
     u16 unk4;
     u8 pad6[2];
-    s32 unk8; // possible base of s32[5]
-    s32 unkC;
-    s32 unk10;
+    s32 unk8[3];
     u8 pad14[4];
     s32 unk18;
     s32 unk1C;
@@ -490,7 +488,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
     var_s3 = arg0->unk20;
     Palette_AdjustRgb5551Array(&D_800D82EA, &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
     for (index = 0; index < 8; index++) {
-        actor_index = func_800592A0(arg0->unk4, &arg0->unk8);
+        actor_index = func_800592A0(arg0->unk4, arg0->unk8);
         if (actor_index == 0) {
             return 0;
         }
@@ -519,8 +517,8 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
         gActors[actor_index].var_160 = temp_v1_2;
         temp_f4 = (16 * temp_f20);
         angle = temp_v1_2 / 0x10000;
-        arg0->unk8 += (temp_f4 * COS(angle));
-        arg0->unkC += (temp_f4 * SIN(angle));
+        arg0->unk8[0] += (temp_f4 * COS(angle));
+        arg0->unk8[1] += (temp_f4 * SIN(angle));
         var_s3 -= temp_f4;
         if (var_s3 < 0) {
             break;
@@ -848,9 +846,9 @@ void func_8005BBC0(u16 actor_index) {
     gActors[actor_index].colorB = 0x7F;
     gActors[actor_index].colorB = (Rand() & 0x3F) + 0x40;
     sp1C.unk4 = actor_index;
-    sp1C.unk8 = gActors[actor_index].posX.whole;
-    sp1C.unkC = gActors[actor_index].posY.whole;
-    sp1C.unk10 = gActors[actor_index].posZ.whole + 1;
+    sp1C.unk8[0] = gActors[actor_index].posX.whole;
+    sp1C.unk8[1] = gActors[actor_index].posY.whole;
+    sp1C.unk8[2] = gActors[actor_index].posZ.whole + 1;
     sp1C.unk18 = 0x1EE;
     sp1C.unk20 = gActors[actor_index].hitboxBY0 + func_8005C708(9);
     sp1C.unk1C = func_8005C708(0) << 0x12;
