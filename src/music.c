@@ -625,7 +625,7 @@ void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length) {
 
 // start next song
 // @param sequence_id ID of new song (should use BGM_*)
-void Sound_PlayMusic(u32 sequence_id) {
+void Sound_PlayMusic(s32 sequence_id) {
     MusicSequenceParams* params;
     u16 patch_index;
     u8 channel_index;

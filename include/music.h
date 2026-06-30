@@ -57,7 +57,7 @@ void Sound_StopMusic(void);
 void Sound_StopAllSfx(void);
 void func_800040A0(void);
 
-void Sound_PlayMusic(u32 sequence_id);
+void Sound_PlayMusic(s32 sequence_id);
 s32 Sound_AddSfx(u32 arg0, s16 arg1, s8 arg2, u8 arg3, u16 arg4, u16 arg5);
 s32 Sound_StopSfx(u32 arg0);
 s32 Sound_PlaySfx(u32 sound_id);

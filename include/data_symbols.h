@@ -28,7 +28,11 @@ extern u16 D_800D1A04[];
 extern u16 D_800D22BC[];
 extern u8 D_800D24D8[];
 extern u8 D_800D24F0;
+extern s32 D_800D2504[];
+extern u16 D_800D2690[]; // grouped by step count 3 (0x6 bytes)
+extern s16 D_800D26F4[];
 extern f32 D_800D2904;
+extern s16 D_800D2924;
 extern s32 D_800D292C;
 extern s32 D_800D2930;
 extern s32 D_800D2934;
@@ -72,6 +76,7 @@ extern s32 D_800F43A8;
 extern s16 D_800F43B0;
 extern s32 D_800F7510;
 extern u16 gLetterboxMode;
+extern u16 gRedGems;
 
 // func_8000147C
 extern s8 D_801373F0;

@@ -4,7 +4,6 @@
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern u16 D_800D2914;
 extern s16 D_800D2950;
 
