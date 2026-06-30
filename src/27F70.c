@@ -30,7 +30,7 @@ extern u16 D_800D24A8[];
 extern u16 D_800D24B4[];
 extern u16 D_800D24C0[];
 extern u16 D_800D24CC[];
-extern s32 D_800D24F4[];
+extern s16* D_800D24F4[]; // spikeball colors
 extern s32 D_800D2504[];
 extern s32 D_800D2514[];
 extern s32 D_800D258C[];
@@ -5949,7 +5949,7 @@ void Spikeball_State0(u16 actor_index) {
     gActors[actor_index].unk_0DB = 4;
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
-    gActors[actor_index].unk_18C = D_800D24F4[(gActors[actor_index].var_150 & 0x300) / 256];
+    gActors[actor_index].palette_18C = D_800D24F4[(gActors[actor_index].var_150 & 0x300) / 0x100];
 }
 
 // unused actor "spawn" code. add a sound and partiicle effect as they appear.

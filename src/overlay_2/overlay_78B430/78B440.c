@@ -102,7 +102,7 @@ void func_801A6E48_78B988(u16 arg0) {
     
     actor_index = Actor_RangeFindInactive(0x49, 0x4C);
     if (actor_index != 0) {
-        gActors[actor_index].actorType = 0x2002;
+        gActors[actor_index].actorType = ACTORTPYE_OVL2_W5B_SPIKEBALL;
         Actor_Initialize(actor_index);
         gActors[actor_index].var_110 = (Rand() & 19) << 8;
         gActors[actor_index].var_0D8 = 0;
@@ -138,7 +138,7 @@ void func_801A6E48_78B988(u16 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78B430/78B440/func_801A7100_78BC40.s")
 
 // behavior of pirate's spike balls.
-// unk_12C: number of bounces.
+// 0x12C: number of bounces.
 void func_801A7C78_78C7B8(u16 actor_index) {
     Spikeball_Update(actor_index);
     if (gActors[actor_index].state == 0) {

@@ -83,7 +83,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK2 = (1U << 2U),
     ACTOR_FLAG3_UNK3 = (1U << 3U),
     ACTOR_FLAG3_UNK4 = (1U << 4U),
-    ACTOR_FLAG3_UNK5 = (1U << 5U),
+    ACTOR_FLAG3_UNK5 = (1U << 5U), // on the floor?
     ACTOR_FLAG3_UNK6 = (1U << 6U),
     ACTOR_FLAG3_UNK7 = (1U << 7U),
     ACTOR_FLAG3_UNK8 = (1U << 8U),
