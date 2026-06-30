@@ -436,23 +436,3 @@
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 
-// macro for when we need to differentiate between
-// English and Japanese "ALPHA_*" arrays
-#if 0 //GAME_VERSION==GAME_VERSION_JP
-// used to decide between english and japanese text during pre-processing
-#define ALPHA_ARRAY(name,jp,en) u16 ##name [] =jp
-#else
-#endif
-// used to decide between english and japanese text during pre-processing
-#define ALPHA_ARRAY(name,jp,en) u16 ##name [] = en
-/* example:
-  ALPHA_ARRAY(D_800CA280,
-   // "コ-スからでる" / "exit course"
-   {ALPHA_JP_KATA_KO,ALPHA_MINUS,ALPHA_JP_HIRA_KA,ALPHA_JP_HIRA_RA,
-   ALPHA_JP_HIRA_DE,ALPHA_JP_HIRA_RU,ALPHA_NULL},
-   // " exit"
-   {ALPHA_SPACE,ALPHA_EN2_UPPER_E,ALPHA_EN2_LOWER_X,ALPHA_EN2_LOWER_I,ALPHA_EN2_LOWER_T,ALPHA_NULL}
-);*/
-
-#endif
-
