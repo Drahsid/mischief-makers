@@ -138,10 +138,10 @@ typedef enum{
     ACTORTYPE_70,
     ACTORTYPE_71,
     ACTORTYPE_72,
-    ACTORTYPE_73,
-    ACTORTYPE_74,
-    ACTORTYPE_75,
-    ACTORTYPE_76, // spikeball?
+    ACTORTYPE_SPIKEBALL_S, // stationary spikeball
+    ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball?
+    ACTORTYPE_SPIKEBALL_V, // up/down spikeball?
+    ACTORTYPE_SPIKEBALL_O, // orbital spikeball?
     ACTORTYPE_77,
     ACTORTYPE_78,
     ACTORTYPE_79,

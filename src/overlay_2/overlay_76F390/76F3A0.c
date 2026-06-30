@@ -39,7 +39,7 @@ void func_801A6900_76F3A0(u16 actor_index) {
 }
 
 void func_801A694C_76F3EC(u16 actor_index) {
-    func_80039134(actor_index);
+    ActorUpdate_Spikeball_Static(actor_index);
     func_801A6900_76F3A0(actor_index);
 }
 

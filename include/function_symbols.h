@@ -101,7 +101,7 @@ extern void SpawnGemRing(u16 arg0);
 extern void func_80030A24(u16 actor_index);
 extern void func_80033204(u16 arg0, u16 arg1, u16 arg2, f32 arg3, u16 arg4);
 extern void Clanpot_SetMixedItem(u16 actor_index, u16 arg1, u16* arg2);
-extern void func_80039134(u16 actor_index);
+extern void ActorUpdate_Spikeball_Static(u16 actor_index);
 extern void SpawnCrosshair(u16 arg0, u16 actor_index);
 extern u16 func_8003EEC0(f32, s16 x, s16 y, s16 z);
 extern void func_8003F138(f32 arg0, s16 arg1, s16 arg2, s16 arg3);

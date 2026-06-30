@@ -96,7 +96,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087BDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087D2C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_Orbit.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087EAC.s")
 

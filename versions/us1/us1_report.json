@@ -5989,7 +5989,7 @@
           }
         },
         {
-          "name": "func_800384FC",
+          "name": "Spikeball_MoveX",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5997,7 +5997,7 @@
           }
         },
         {
-          "name": "func_80038600",
+          "name": "Spikeball_MoveY",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6005,7 +6005,7 @@
           }
         },
         {
-          "name": "func_80038704",
+          "name": "Spikeball_Jitter",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6013,7 +6013,7 @@
           }
         },
         {
-          "name": "func_80038794",
+          "name": "Spikeball_ScaleWave",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6021,7 +6021,7 @@
           }
         },
         {
-          "name": "func_80038868",
+          "name": "Spikeball_State1End",
           "size": "1068",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6029,7 +6029,7 @@
           }
         },
         {
-          "name": "func_80038C94",
+          "name": "Spikeball_Update",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6037,7 +6037,7 @@
           }
         },
         {
-          "name": "func_80038D1C",
+          "name": "Spikeball_UpdateHitbox",
           "size": "256",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6045,7 +6045,7 @@
           }
         },
         {
-          "name": "func_80038E1C",
+          "name": "Spikeball_State0",
           "size": "472",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6069,7 +6069,7 @@
           }
         },
         {
-          "name": "func_80039134",
+          "name": "ActorUpdate_Spikeball_Static",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6077,7 +6077,7 @@
           }
         },
         {
-          "name": "func_8003929C",
+          "name": "ActorUpdate_Spikeball_Hori",
           "size": "460",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6085,7 +6085,7 @@
           }
         },
         {
-          "name": "func_80039468",
+          "name": "ActorUpdate_Spikeball_Vert",
           "size": "476",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13613,7 +13613,7 @@
           }
         },
         {
-          "name": "func_80087D2C",
+          "name": "ActorUpdate_Spikeball_Orbit",
           "size": "384",
           "metadata": {
             "virtual_address": "2148039980"

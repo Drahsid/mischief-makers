@@ -5740,11 +5740,11 @@ void func_80038398(u16 actor_index) {
     }
 }
 
-void func_800384FC(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
+void Spikeball_MoveX(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
     if (gActors[actor_index].var_150 & 0x10000000) {
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, vel_target, vel_step);
         if (gActors[actor_index].unk_178 < gActors[actor_index].unk_180) {
-            gActors[actor_index].var_150 &= 0xEFFFFFFF;
+            gActors[actor_index].var_150 &= ~0x10000000;
             gActors[actor_index].unk_178 = gActors[actor_index].unk_170 + arg3;
         }
     }
@@ -5757,11 +5757,11 @@ void func_800384FC(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 
     }
 }
 
-void func_80038600(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
+void Spikeball_MoveY(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
     if (gActors[actor_index].var_150 & 0x20000000) {
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, vel_target, vel_step);
         if (gActors[actor_index].unk_17C < gActors[actor_index].unk_184) {
-            gActors[actor_index].var_150 &= 0xDFFFFFFF;
+            gActors[actor_index].var_150 &= ~0x20000000;
             gActors[actor_index].unk_17C = gActors[actor_index].unk_174 + arg3;
         }
     }
@@ -5774,19 +5774,21 @@ void func_80038600(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 
     }
 }
 
-void func_80038704(u16 actor_index) {
+// add a slight jitter to stationary spikeballs
+void Spikeball_Jitter(u16 actor_index) {
     u16 temp_t9;
     u16 sp24;
 
     sp24 = Rand();
     temp_t9 = Rand();
-    func_800384FC(actor_index, 0x4000, 0x400, -(sp24 & 3), temp_t9 & 3);
+    Spikeball_MoveX(actor_index, 0x4000, 0x400, -(sp24 & 3), temp_t9 & 3);
     sp24 = Rand();
     temp_t9 = Rand();
-    func_80038600(actor_index, 0x4000, 0x400, -(sp24 & 1), temp_t9 & 1);
+    Spikeball_MoveY(actor_index, 0x4000, 0x400, -(sp24 & 1), temp_t9 & 1);
 }
 
-void func_80038794(u16 actor_index) {
+// add pulsation to spikeball scale
+void Spikeball_ScaleWave(u16 actor_index) {
     if (gActiveFrames & 0x20) {
         gActors[actor_index].unk_148 = Math_ApproachF32(gActors[actor_index].unk_148, 0.9f, 0.02f);
     }
@@ -5795,7 +5797,8 @@ void func_80038794(u16 actor_index) {
     }
 }
 
-void func_80038868(u16 actor_index, u16 arg1) {
+// called at the end of a spikeball actor's "state 1"
+void Spikeball_State1End(u16 actor_index, u16 arg1) {
     u16 index;
     u16 actor1;
 
@@ -5885,7 +5888,7 @@ void func_80038868(u16 actor_index, u16 arg1) {
     default:
         gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
         gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
-        func_80038794(actor_index);
+        Spikeball_ScaleWave(actor_index);
         func_80038398(actor_index);
         break;
     }
@@ -5893,7 +5896,8 @@ void func_80038868(u16 actor_index, u16 arg1) {
     gActors[actor_index].colorB = gActors[actor_index].colorR;
 }
 
-void func_80038C94(u16 actor_index) {
+// called at the start of each spikeball actor's tick
+void Spikeball_Update(u16 actor_index) {
     gActors[actor_index].unk_190 = 0;
     gActors[actor_index].unk_180 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
     gActors[actor_index].unk_184 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
@@ -5902,7 +5906,8 @@ void func_80038C94(u16 actor_index) {
     }
 }
 
-void func_80038D1C(u16 actor_index) {
+// update spikeball's hitbox and scale
+void Spikeball_UpdateHitbox(u16 actor_index) {
     if (gActors[actor_index].var_150 & 0x1000) {
         gActors[actor_index].scaleX = gActors[actor_index].unk_148 / 1.5;
     }
@@ -5915,7 +5920,8 @@ void func_80038D1C(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
-void func_80038E1C(u16 actor_index) {
+// initalization for every spikeball actor
+void Spikeball_State0(u16 actor_index) {
     gActors[actor_index].state++;
     gActors[actor_index].var_150 = gActors[actor_index].var_110;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
@@ -5946,6 +5952,7 @@ void func_80038E1C(u16 actor_index) {
     gActors[actor_index].unk_18C = D_800D24F4[(gActors[actor_index].var_150 & 0x300) / 256];
 }
 
+// unused actor "spawn" code. add a sound and partiicle effect as they appear.
 void func_80038FF4(u16 actor_index, u16 actor_type, u16 arg2, u16 arg3) {
     Sound_PlaySfxAtActor2(0x6E, actor_index);
     SpawnParticle_RingSparkle(actor_index, 0, 1.2f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 4);
@@ -5955,39 +5962,40 @@ void func_80038FF4(u16 actor_index, u16 actor_type, u16 arg2, u16 arg3) {
     gActors[actor_index].var_0D8 = arg3;
 }
 
+// add a particle effect as an actor dissappears
 void func_800390BC(u16 actor_index) {
     SpawnParticle_RingSparkle(actor_index, 0, 1.2f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 4);
     gActors[actor_index].flags = 0;
 }
 
-void func_80039134(u16 actor_index) {
+void ActorUpdate_Spikeball_Static(u16 actor_index) {
     u16 index;
 
-    func_80038C94(actor_index);
+    Spikeball_Update(actor_index);
     switch (gActors[actor_index].state) {
     case 0:
-        func_80038E1C(actor_index);
+        Spikeball_State0(actor_index);
         index = gActors[actor_index].var_0D8 * 2;
         gActors[actor_index].unk_114 = D_800D2504[index + 0];
         gActors[actor_index].unk_140_f32 = D_800D2504[index + 1];
         // fallthrough
     case 1:
-        func_80038704(actor_index);
-        func_80038868(actor_index, gActors[actor_index].unk_114);
+        Spikeball_Jitter(actor_index);
+        Spikeball_State1End(actor_index, gActors[actor_index].unk_114);
         break;
     }
-    func_80038D1C(actor_index);
+    Spikeball_UpdateHitbox(actor_index);
 }
 
-void func_8003929C(u16 actor_index) {
+void ActorUpdate_Spikeball_Hori(u16 actor_index) {
     s32 temp_v0;
     u16 index;
     s32* vals;
 
-    func_80038C94(actor_index);
+    Spikeball_Update(actor_index);
     switch (gActors[actor_index].state) {
     case 0:
-        func_80038E1C(actor_index);
+        Spikeball_State0(actor_index);
         index = gActors[actor_index].var_0D8 * 6;
         vals = &D_800D2514[index];
         gActors[actor_index].var_150 |= vals[1];
@@ -5998,25 +6006,25 @@ void func_8003929C(u16 actor_index) {
         gActors[actor_index].unk_114 = vals[0];
         /* fallthrough */
     case 1:
-        func_800384FC(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
+        Spikeball_MoveX(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
         temp_v0 = Rand();
-        func_80038600(actor_index, 0x4000, 0x400, -(temp_v0 & 1), 0);
-        func_80038868(actor_index, gActors[actor_index].unk_114);
+        Spikeball_MoveY(actor_index, 0x4000, 0x400, -(temp_v0 & 1), 0);
+        Spikeball_State1End(actor_index, gActors[actor_index].unk_114);
         break;
     }
-    func_80038D1C(actor_index);
+    Spikeball_UpdateHitbox(actor_index);
 }
 
-void func_80039468(u16 actor_index) {
+void ActorUpdate_Spikeball_Vert(u16 actor_index) {
     u16 index;
     s32* vals;
     u16 temp_v0;
     u16 sp2C;
 
-    func_80038C94(actor_index);
+    Spikeball_Update(actor_index);
     switch (gActors[actor_index].state) {
     case 0:
-        func_80038E1C(actor_index);
+        Spikeball_State0(actor_index);
         index = gActors[actor_index].var_0D8 * 6;
         vals = &D_800D258C[index];
         gActors[actor_index].var_150 |= vals[1];
@@ -6029,12 +6037,12 @@ void func_80039468(u16 actor_index) {
     case 1:
         sp2C = Rand();
         temp_v0 = Rand();
-        func_800384FC(actor_index, 0x4000, 0x400, -(sp2C & 1), temp_v0 & 1);
-        func_80038600(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
-        func_80038868(actor_index, (u16)gActors[actor_index].unk_114);
+        Spikeball_MoveX(actor_index, 0x4000, 0x400, -(sp2C & 1), temp_v0 & 1);
+        Spikeball_MoveY(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
+        Spikeball_State1End(actor_index, (u16)gActors[actor_index].unk_114);
         break;
     }
-    func_80038D1C(actor_index);
+    Spikeball_UpdateHitbox(actor_index);
 }
 
 u16 func_80039644(u16 actor_index) {

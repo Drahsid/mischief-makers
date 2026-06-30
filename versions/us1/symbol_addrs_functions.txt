@@ -167,6 +167,20 @@ ActorUpdate_ClanpotMixSequence = 0x8003766C; //type:func
 Clanpot_SpawnMixSequence = 0x80037B18; //type:func
 ActorUpdate_Clanpot = 0x80037B90; //type:func
 
+Spikeball_MoveX = 0x800384FC; //type:func
+Spikeball_MoveY = 0x80038600; //type:func
+Spikeball_Jitter = 0x80038704; //type:func
+Spikeball_ScaleWave = 0x80038794; //type:func
+Spikeball_State1End = 0x80038868; //type:func
+Spikeball_Update = 0x80038C94; //type:func
+Spikeball_UpdateHitbox = 0x80038D1C; //type:func
+Spikeball_State0 = 0x80038E1C; //type:func
+ActorUpdate_Spikeball_Static = 0x80039134; //type:func
+ActorUpdate_Spikeball_Hori = 0x8003929c; //type:func
+ActorUpdate_Spikeball_Vert = 0x80039468; //type:func
+
+ActorUpdate_Spikeball_Orbit = 0x80087D2C; //type:func
+
 ActorUpdate_Type28 = 0x8003A120; //type:func
 
 AreaClear_State0 = 0x8003D794; //type:func
