@@ -436,3 +436,4 @@
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 
+#endif
