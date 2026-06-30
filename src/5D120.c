@@ -27,14 +27,14 @@ s32 func_8005C550(u16 actor_index, s16 arg1) {
 }
 
 s32 func_8005C5E0(u16 actor_index) {
-    gActors[actor_index].flags |= 0x1000;
-    gActors[actor_index].flags &= 0xFFFF7FFF;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
+    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK15;
     if (gActors[actor_index].unk_13C_s16[0] == 0) {
         return 0;
     }
-    gActors[actor_index].flags &= ~0x1000;
+    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
     if (gActors[actor_index].unk_13C_s16[0] > 0) {
-        gActors[actor_index].flags |= 0x8000;
+        gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
     }
     if ((gActors[actor_index].unk_13C_s16[0] == 0x7FFF) || (gActors[actor_index].unk_13C_s16[0] == -0x8000)) {
         if (func_8005D418(actor_index) != 0) {
@@ -161,7 +161,7 @@ void func_8005CAA8(u16 actor_index, s8* arg1) {
     if (gActors[actor_index].unk_17C_s8[0] == 0) {
         index = gActors[actor_index].unk_17C_s16[1] * 4;
         if (gActors[actor_index].unk_17C_s8[1] == 0) {
-            if (!(gActors[actor_index].flags & 0x20)) {
+            if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_index].hitboxBX0 = arg1[index + 0];
                 gActors[actor_index].hitboxBX1 = arg1[index + 1];
             }
@@ -177,7 +177,7 @@ void func_8005CAA8(u16 actor_index, s8* arg1) {
             gActors[actor_index].hitboxBY1 *= gActors[0].unk_120;
         }
         else {
-            if (!(gActors[actor_index].flags & 0x20)) {
+            if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
                 if (gActors[actor_index].hitboxBX0 < arg1[index + 0] * gActors[0].unk_120) {
                     count = 1;
                     gActors[actor_index].hitboxBX0 += (1 * gActors[0].unk_120);
@@ -248,7 +248,7 @@ s32 func_8005D1E8(u16 actor_index) {
         ((gActors[actor_index].hitboxAY0 + gActors[actor_index].posY.whole) >= (gActors[0].hitboxBY1 + gActors[0].posY.whole))) {
         return 1;
     }
-    if ((gActors[0].flags & 0x800) && 
+    if ((gActors[0].flags & ACTOR_FLAG_UNK11) && 
         ((gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX1) >= (gActors[0].hitboxAX0 + gActors[0].posX.whole)) &&
         ((gActors[0].posX.whole + gActors[0].hitboxAX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&
         ((gActors[0].posY.whole + gActors[0].hitboxAY0) >= (gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY1)) &&
