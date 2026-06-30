@@ -234,7 +234,7 @@ u16 Text_Print3Digits(u16 actor_index, u16 num, u16 x, u16 y, u16 z, u16* palett
 
 // get pixel width of character by alphabet symbol
 // Not in Japanese version - text is monospace.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @returns character width
 u16 Text_GetWidth(u16* str) {
     if (*str < ALPHA_EN3_LOWER_A) {
@@ -250,7 +250,7 @@ u16 Text_GetWidth(u16* str) {
 
 // get pixel width of 2 characters by alphabet symbol
 // Not in Japanese version - text is monospace.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @returns characters' width
 u16 Text_GetWidth2(u16* str) {
     u16 len0;
@@ -262,7 +262,7 @@ u16 Text_GetWidth2(u16* str) {
 
 // "frees" actors based on string length.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @returns last applicable actor index + 1
 u16 Text_FreeString(u16 actor_index, u16* str) {
     while (*str != ALPHA_NULL) {
@@ -277,7 +277,7 @@ u16 Text_FreeString(u16 actor_index, u16* str) {
 
 // render text in screenspace with given position.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @param x x-position of first actor.
 // @param y y-position of first actor.
 // @param z z-position of first actor.
@@ -301,7 +301,7 @@ u16 Text_PrintString(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 
 // render text in screenspace with given position and color.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @param x x-position of first actor.
 // @param y y-position of first actor.
 // @param z z-position of first actor.
@@ -334,7 +334,7 @@ u16 Text_PrintStringRGB(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, 
 
 // render text in screenspace with given position, color and scale.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @param x x-position of first actor.
 // @param y y-position of first actor.
 // @param z z-position of first actor.
@@ -371,7 +371,7 @@ u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 
 
 // render text in screenspace with given position using gray palette.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @param x x-position of first actor.
 // @param y y-position of first actor.
 // @param z z-position of first actor.
@@ -397,7 +397,7 @@ u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
 
 // render text in screenspace with given position.
 // @param actor_index index of first actor.
-// @param str ALPHABET_* string
+// @param str ALPHA_* string
 // @param x x-position of first actor.
 // @param y y-position of first actor.
 // @param z z-position of first actor.
