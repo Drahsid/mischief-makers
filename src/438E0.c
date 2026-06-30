@@ -52,7 +52,7 @@ extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern void func_800472D4(void);
 extern void func_80047994(void);
 
-void func_80043D04(ActorSpawnRecord* spawn);
+void func_80043D04(u16* spawn);
 void func_80042D84(u32 arg0);
 void func_800451E4(void* arg0);
 
@@ -102,7 +102,7 @@ void func_8004320C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004398C.s")
 
 #ifdef NON_MATCHING
-extern u16 func_8004398C(ActorSpawnRecord* spawn);
+extern u16 func_8004398C(u16* spawn);
 
 // https://decomp.me/scratch/oqVJs
 void Actor_LoadSpawnTable(void* spawn_table) {

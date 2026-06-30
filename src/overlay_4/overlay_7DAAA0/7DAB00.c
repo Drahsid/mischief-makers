@@ -5,7 +5,7 @@
 
 extern s16 D_800D2924;
 extern u16 D_800D28F8;
-extern u32 D_80178288;
+extern u16* D_80178288;
 
 u16 D_801BB030_7DC230[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
@@ -672,14 +672,14 @@ void func_801BA6EC_7DB8EC(void) {
 }
 
 void func_801BA740_7DB940(void) {
-    func_80045FA4(D_801BB2F4_7DC4F4, D_801BB314_7DC514);
+    func_80045FA4(D_801BB2F4_7DC4F4, (u16*)D_801BB314_7DC514);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB3D0_7DC5D0);
     D_800BE544 = 0x8000;
     D_800D2924 = 0x7FFF;
     D_800BE56C.whole  = D_800D2924;
     D_800BE710 = TRUE;
-    D_80178288 = (u32)D_801BB314_7DC514;
+    D_80178288 = (u16*)D_801BB314_7DC514;
 }
 
 void func_801BA7C4_7DB9C4(void) {

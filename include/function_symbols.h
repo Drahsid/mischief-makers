@@ -108,7 +108,7 @@ extern void func_8003F138(f32 arg0, s16 arg1, s16 arg2, s16 arg3);
 extern void func_80040858(u16 actor_index);
 extern void func_80042E28(s32 arg0);
 extern void func_80042F2C(s32 arg0, s32 arg1, s32 arg2);
-extern void func_80043D04(ActorSpawnRecord* spawn);
+extern void func_80043D04(u16* spawn);
 extern s32 func_80043D6C(void* arg0);
 extern void func_80045500(void);
 extern s16 func_800456DC(void);

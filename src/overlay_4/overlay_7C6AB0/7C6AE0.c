@@ -2526,7 +2526,7 @@ void func_801BB6D0_7C88B0(void) {
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
                 D_800BE5F4.unk_00_s32 = 5;
-                func_80043D04((ActorSpawnRecord*)D_801BF910_7CCAF0);
+                func_80043D04(D_801BF910_7CCAF0);
                 D_800D28F8 = 5;
                 Sound_PlaySfx(0x11A);
             }
@@ -2544,7 +2544,7 @@ void func_801BB6D0_7C88B0(void) {
                 else {
                     Sound_PlaySfx(0x11A);
                     func_80045500();
-                    func_80043D04((ActorSpawnRecord*)D_801BF910_7CCAF0);
+                    func_80043D04(D_801BF910_7CCAF0);
                 }
             }
 
