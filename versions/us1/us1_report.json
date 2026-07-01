@@ -5101,7 +5101,7 @@
           }
         },
         {
-          "name": "func_8002D670",
+          "name": "ActorUpdate_Landmine",
           "size": "660",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6181,7 +6181,7 @@
           }
         },
         {
-          "name": "ActorUpdate_Type28",
+          "name": "ActorUpdate_Clanball_28",
           "size": "2104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6253,7 +6253,7 @@
           }
         },
         {
-          "name": "func_8003C328",
+          "name": "ActorUpdate_ClanballSpring",
           "size": "4592",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13781,14 +13781,14 @@
           }
         },
         {
-          "name": "func_80089814",
+          "name": "DiggingSpot_SpawnActor",
           "size": "368",
           "metadata": {
             "virtual_address": "2148046868"
           }
         },
         {
-          "name": "func_80089984",
+          "name": "DiggingSpot_SpawnActorCheck",
           "size": "140",
           "metadata": {
             "virtual_address": "2148047236"
@@ -13837,7 +13837,7 @@
           }
         },
         {
-          "name": "func_8008A6E4",
+          "name": "ActorUpdate_DiggingSpot",
           "size": "836",
           "metadata": {
             "virtual_address": "2148050660"

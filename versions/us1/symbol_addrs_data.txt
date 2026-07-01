@@ -52,6 +52,7 @@ gCrosshairPalette = 0x800D27F8; // size:0x1A
 gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
 D_800D292C = 0x800D292C;
 D_800D2930 = 0x800D2930;
+gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
 D_800D74E0 = 0x800D74E0;
 D_800D8468 = 0x800D8468;

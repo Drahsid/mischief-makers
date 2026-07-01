@@ -78,7 +78,7 @@ enum ActorGFlags {
 
 // bits used by the "flags_098" field
 enum ActorFlags3 {
-    ACTOR_FLAG3_UNK0 = (1U << 0U),
+    ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
     ACTOR_FLAG3_UNK2 = (1U << 2U),
     ACTOR_FLAG3_UNK3 = (1U << 3U),
@@ -99,7 +99,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
-    ACTOR_FLAG3_UNK21 = (1U << 21U), //using warp gate
+    ACTOR_FLAG3_UNK21 = (1U << 21U), // using warp gate
     ACTOR_FLAG3_UNK22 = (1U << 22U),
     ACTOR_FLAG3_UNK23 = (1U << 23U),
     ACTOR_FLAG3_UNK24 = (1U << 24U),
@@ -196,7 +196,8 @@ typedef struct {
     // or player-controlled Teran will count his jumps with it.
     
     // NOTE: trying to use unions for these variables for different datatypes (u8[4],u16[2])
-    //  may cause mismatch due to "narrowing"
+    // may cause mismatch due to "narrowing":
+    // when a wider data type is truncated to fit a smaller data type, ex: s32 -> s16
 
     /* 0x0F8 */ FixedCoord unk_0F8; // related to x-axis velocity. Usage varies.
     /* 0x0FC */ FixedCoord unk_0FC; // related to y-axis velocity. Usage varies.

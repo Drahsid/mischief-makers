@@ -11,7 +11,7 @@ typedef enum {
     GEMFLAG_MASK = GEMFLAG_GREEN, // used to find type of gem.
     GEMFLAG_BOUNCE = (1 << 4), // bounce up when spawned
     GEMFLAG_FINITE = (1 << 5), // has timer of 120 ticks.
-    GEMFLAG_GLIMMER = (1 << 6), // flickers for 40 ticks instead of 12. never set(?)
+    GEMFLAG_GLIMMER = (1 << 6), // flickers for 40 ticks instead of 12. from dug-up gems.
     // gems actors almost always spawn bouncing and finite
     GEMFLAG_COMMON = GEMFLAG_BOUNCE|GEMFLAG_FINITE 
 } GemFlags;

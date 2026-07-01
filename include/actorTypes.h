@@ -17,7 +17,7 @@ typedef enum {
     ACTOR_MAIN, // actors with code in the main segment.
     ACTOR_OVL3_1,
     ACTOR_OVL1_WORM,
-    ACTOR_OVL1_3,
+    ACTOR_OVL1_DOG,
     ACTOR_OVL3_4,
     ACTOR_OVL3_WORLD2,
     ACTOR_OVL0_6,
@@ -38,11 +38,11 @@ typedef enum {
     ACTOR_OVL0_21,
     ACTOR_OVL0_FINALBAT, // actors in Overlay 0 Code for "Final Battle"
     ACTOR_OVL2_23,
-    ACTOR_OVL2_24,
+    ACTOR_OVL2_WORLD1, // "Overlay 2" actors for many of World 1's stages
     ACTOR_OVL0_25,
     ACTOR_OVL2_FESTIVAL,
     ACTOR_OVL3_27,
-    ACTOR_OVL2_28,
+    ACTOR_OVL2_WORLD3,
     ACTOR_OVL2_29,
     ACTOR_OVL2_30,
     ACTOR_OVL2_31,
@@ -59,13 +59,13 @@ typedef enum {
     ACTOR_OVL3_42,
     ACTOR_OVL0_INTRO, // actors in Overlay 0 code of intro cinematic.
     ACTOR_OVL0_ENDING // actors in Overlay 0 code of Ending.
-}ActorOverlayIDs;
+} ActorOverlayIDs;
 
 
 typedef enum{
     // actors in main code segment
 
-    ACTORTYPE_ZERO= (ACTOR_MAIN << 8), // used for images. has a stubbed "tick" function.
+    ACTORTYPE_ZERO = (ACTOR_MAIN << 8), // used for images. has a stubbed "tick" function.
     ACTORTYPE_1, // HitboxA changes size over time, based on 0x110.
     ACTORTYPE_2, // Essentially Stubbed
     ACTORTYPE_3, // Stubbed
@@ -93,14 +93,14 @@ typedef enum{
     ACTORTYPE_25, // Stubbed
     ACTORTYPE_26, // Stubbed
     ACTORTYPE_27, // Stubbed
-    ACTORTYPE_28,
+    ACTORTYPE_CLANBALL_28, // default clanball
     ACTORTYPE_GRAPHICONLY, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
     ACTORTYPE_30, // Stubbed
     ACTORTYPE_31,
     ACTORTYPE_32,
     ACTORTYPE_33,
     ACTORTYPE_34,
-    ACTORTYPE_35,
+    ACTORTYPE_LANDMINE,
     ACTORTYPE_36,
     ACTORTYPE_37,
     ACTORTYPE_38,
@@ -115,7 +115,7 @@ typedef enum{
     ACTORTYPE_47,
     ACTORTYPE_48,
     ACTORTYPE_49,
-    ACTORTYPE_WARPGATE,
+    ACTORTYPE_WARPGATE, // aka Warp Star
     ACTORTYPE_51,
     ACTORTYPE_52,
     ACTORTYPE_TEXTBUBBLE, // used many times in Japan version. in English versions, only used by the coach in "the day before".
@@ -127,11 +127,11 @@ typedef enum{
     ACTORTYPE_59,
     ACTORTYPE_60,
     ACTORTYPE_GEM61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
-    ACTORTYPE_62,
+    ACTORTYPE_CLANBALLWHEEL,
     ACTORTYPE_63,
     ACTORTYPE_64,
     ACTORTYPE_65,
-    ACTORTYPE_66,
+    ACTORTYPE_CLANBALLSPRING,
     ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
     ACTORTYPE_HAT, // hats worn by clancers
     ACTORTYPE_CLANBOMB,
@@ -142,27 +142,27 @@ typedef enum{
     ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball?
     ACTORTYPE_SPIKEBALL_V, // up/down spikeball?
     ACTORTYPE_SPIKEBALL_O, // orbital spikeball?
-    ACTORTYPE_77,
-    ACTORTYPE_78,
-    ACTORTYPE_79,
-    ACTORTYPE_80,
-    ACTORTYPE_81,
-    ACTORTYPE_82,
-    ACTORTYPE_83,
-    ACTORTYPE_84,
-    ACTORTYPE_85,
-    ACTORTYPE_86,
+    ACTORTYPE_SPIKEBALL_77,
+    ACTORTYPE_SPIKEBALL_78,
+    ACTORTYPE_SPIKEBALL_79,
+    ACTORTYPE_SPIKEBALL_80,
+    ACTORTYPE_SPIKEBALL_81,
+    ACTORTYPE_SPIKEBALL_82,
+    ACTORTYPE_83, // stubbed
+    ACTORTYPE_CLANCER_84,
+    ACTORTYPE_CLANCER_85,
+    ACTORTYPE_CLANCER_86,
     ACTORTYPE_DIGGINGSPOT, // grab the ground for treasures.
-    ACTORTYPE_88,
+    ACTORTYPE_CLANBLOCK_88,
     ACTORTYPE_89,
     ACTORTYPE_90,
-    ACTORTYPE_CLANCER,
+    ACTORTYPE_CLANCER_91,
     ACTORTYPE_92,
-    ACTORTYPE_93,
+    ACTORTYPE_93, // 
     ACTORTYPE_94,
-    ACTORTYPE_95,
+    ACTORTYPE_CLANBLOB,
     ACTORTYPE_96,
-    ACTORTYPE_97,
+    ACTORTYPE_CLANBALL_RAIL, // clanball on rail track.
     ACTORTYPE_98,
     ACTORTYPE_CLANCERGHOST,
     ACTORTYPE_100,
@@ -174,7 +174,7 @@ typedef enum{
     ACTORTYPE_106,
     ACTORTYPE_AREACLEAR, // "Get out of trouble!" "Go to the next area!"
     ACTORTYPE_108,
-    ACTORTYPE_109,
+    ACTORTYPE_109, // Calina's staff during transformation?
     ACTORTYPE_110,
     ACTORTYPE_111,
     ACTORTYPE_MARINAOHNO, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
@@ -184,7 +184,7 @@ typedef enum{
     ACTORTYPE_STAGECLEAR, // actors for the "stage clear" animation.
     ACTORTYPE_LEVELCLEAR, // actors for the "level clear" animation.
     ACTORTYPE_ITEMSPAWN,
-    ACTORTYPE_119,
+    ACTORTYPE_CLANCER_119,
     ACTORTYPE_CLANPOTMIX, // sequence for mixing clanpot items.
     ACTORTYPE_CLANPOTMENU, // mwnu when looking into clanpot.
     ACTORTYPE_MSHINT, // Ms. Hint
@@ -200,6 +200,14 @@ typedef enum{
     ACTORTYPE_OVL1_WORM_4, // stubbed
     ACTORTYPE_OVL1_WORM_5, // stubbed
     ACTORTYPE_OVL1_WORM_6, // stubbed
+
+    // actors in dispatch table D_8019B000_749C90
+
+    ACTORTYPE_OVL1_DOG_BOSS = (ACTOR_OVL1_DOG << 8), // Dog Boss.
+    ACTORTYPE_OVL1_DOG_1,
+    ACTORTYPE_OVL1_DOG_2,  // stubbed
+    ACTORTYPE_OVL1_DOG_3,  // stubbed
+    ACTORTYPE_OVL1_DOG_4,  // stubbed
 
     // actors in dispatch table D_800E5AC0
 
@@ -255,6 +263,71 @@ typedef enum{
     ACTORTYPE_OVL0_CALPHA_26,
     ACTORTYPE_OVL0_CALPHA_27,
 
+    // actors in dispatch table D_801A6800_766080
+
+    ACTORTYPE_OVL2_W1_CLANCER_0 = (ACTOR_OVL2_WORLD1 << 8),
+    ACTORTYPE_OVL2_W1_1,
+    ACTORTYPE_OVL2_W1_2,
+    ACTORTYPE_OVL2_W1_CLANCER_3,
+    ACTORTYPE_OVL2_W1_CLANCER_4,
+    ACTORTYPE_OVL2_W1_CLANCER_5,
+    ACTORTYPE_OVL2_W1_6,
+    ACTORTYPE_OVL2_W1_7,
+    ACTORTYPE_OVL2_W1_8,
+    ACTORTYPE_OVL2_W1_9,
+    ACTORTYPE_OVL2_W1_10,
+    ACTORTYPE_OVL2_W1_11,
+    ACTORTYPE_OVL2_W1_12,
+    ACTORTYPE_OVL2_W1_13,
+    ACTORTYPE_OVL2_W1_14,
+    ACTORTYPE_OVL2_W1_15,
+    ACTORTYPE_OVL2_W1_16,
+    ACTORTYPE_OVL2_W1_17,
+    ACTORTYPE_OVL2_W1_18,
+    ACTORTYPE_OVL2_W1_19,
+    ACTORTYPE_OVL2_W1_20,
+    ACTORTYPE_OVL2_W1_CELES_WORM, // Celes in "Wormin' Up!"
+    ACTORTYPE_OVL2_W1_22,
+    ACTORTYPE_OVL2_W1_23,
+    ACTORTYPE_OVL2_W1_24,
+    ACTORTYPE_OVL2_W1_25,
+    ACTORTYPE_OVL2_W1_26,
+    ACTORTYPE_OVL2_W1_27,
+    ACTORTYPE_OVL2_W1_28,
+    ACTORTYPE_OVL2_W1_29,
+    ACTORTYPE_OVL2_W1_30,
+    ACTORTYPE_OVL2_W1_31,
+    ACTORTYPE_OVL2_W1_CLANCER_32, // Clanball Land patron
+    ACTORTYPE_OVL2_W1_33,
+    ACTORTYPE_OVL2_W1_34,
+
+    // actors in dispatch table D_801A6800_76FD60
+
+    ACTORTYPE_OVL2_W3_0 = (ACTOR_OVL2_WORLD3 << 8),
+    ACTORTYPE_OVL2_W3_1,
+    ACTORTYPE_OVL2_W3_2,
+    ACTORTYPE_OVL2_W3_3,
+    ACTORTYPE_OVL2_W3_4,
+    ACTORTYPE_OVL2_W3_5,
+    ACTORTYPE_OVL2_W3_6,
+    ACTORTYPE_OVL2_W3_ROCKETEER, // rocketeer Clancer
+    ACTORTYPE_OVL2_W3_8,
+    ACTORTYPE_OVL2_W3_9,
+    ACTORTYPE_OVL2_W3_CLANCER_10,
+    ACTORTYPE_OVL2_W3_11,
+    ACTORTYPE_OVL2_W3_12,
+    ACTORTYPE_OVL2_W3_13,
+    ACTORTYPE_OVL2_W3_14,
+    ACTORTYPE_OVL2_W3_15,
+    ACTORTYPE_OVL2_W3_16,
+    ACTORTYPE_OVL2_W3_17,
+    ACTORTYPE_OVL2_W3_18,
+    ACTORTYPE_OVL2_W3_19,
+    ACTORTYPE_OVL2_W3_20,
+    ACTORTYPE_OVL2_W3_21,
+    ACTORTYPE_OVL2_W3_22,
+    ACTORTYPE_OVL2_W3_23,
+    ACTORTYPE_OVL2_W3_24,
 
     // actors in dispatch table D_801A6800_78B430
 
@@ -274,9 +347,9 @@ typedef enum{
     ACTORTYPE_OVL0_GEN_BOMB1, // elliptical explosive weapon
     ACTORTYPE_OVL0_GEN_SHURIKEN, // throwing star
     ACTORTYPE_OVL0_GEN_BOOMERANG,
-    ACTORTYPE_OVL0_GEN_4,
-    ACTORTYPE_OVL0_GEN_5,
-    ACTORTYPE_OVL0_GEN_6,
+    ACTORTYPE_OVL0_GEN_FLAME,
+    ACTORTYPE_OVL0_GEN_BLOCK, // destructible block
+    ACTORTYPE_OVL0_GEN_6, // statue?
     ACTORTYPE_OVL0_GEN_7,
     ACTORTYPE_OVL0_GEN_8,
     ACTORTYPE_OVL0_GEN_9,

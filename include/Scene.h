@@ -81,7 +81,7 @@
 #define SCENE_CLANCEWAR2        0x4D
 #define SCENE_BEESTHEONE        0x4E
 #define SCENE_INNERSTRUGGLE     0x4F
-#define SCENE_UNK80             0x50 // crash. data suggest more stages were planned for world 5. Also index of "level clear" graphics.
+#define SCENE_UNK80             0x50 // index of "level clear" graphics.
 #define SCENE_UNK81             0x51
 #define SCENE_UNK82             0x52
 #define SCENE_UNK83             0x53

@@ -6,7 +6,7 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern u16 D_800D2914;
-extern s16 D_800D2950;
+extern u16 gGuestActorIndex;
 
 // "overlay 4" code for demo and intro scenes
 
@@ -187,7 +187,7 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D2904 = 0.0f;
             func_80045F14(D_801B9FF0_7EAE20);
             D_800D294C = 0;
-            D_800D2950 = 0;
+            gGuestActorIndex = 0;
             D_801373E0.unk_78 &= 0xFFFEFFFA;
             D_801373E0.unk_78 |= 2;
             func_80045500();

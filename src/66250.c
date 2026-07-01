@@ -27,7 +27,7 @@ extern u8 D_800E223C[];
 extern u8 D_800E2250[];
 extern u8 D_800E2274[];
 extern u8 D_800E2564[];
-extern u16 D_800D2950;
+extern u16 gGuestActorIndex;
 extern ActorFunc D_800D7F00[];
 extern u8 D_800E1788[];
 extern u16 D_800E3580;
@@ -475,7 +475,7 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].unk_148 = gActors[actor_index].scaleX;
         }
 
-        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) && (D_800D2950 != actor_index)) {
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) && (gGuestActorIndex != actor_index)) {
             func_80028C00(actor_index);
         }
     }

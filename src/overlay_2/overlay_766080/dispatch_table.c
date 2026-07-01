@@ -59,7 +59,7 @@ ActorFunc D_801A6800_766080[] = {
     func_801AD534_76CD44,
     func_801AB058_76A868,
     func_801AB2AC_76AABC,
-    func_801AB574_76AD84,
+    func_801AB574_76AD84, // Celes in "Wormin' Up"?
     func_801ABA44_76B254,
     func_801ABDB4_76B5C4,
     func_801ACC38_76C448,

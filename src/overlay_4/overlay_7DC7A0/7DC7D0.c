@@ -10,7 +10,7 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern void func_80064AA0(u16 arg0, void* arg1);
-extern u16 D_800D2950;
+extern u16 gGuestActorIndex;
 extern s32 WarpGate_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
@@ -1073,7 +1073,7 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
 
 void func_801B9D38_7DCC08(void) {
     D_800BE5F4.unk_00_u32 = 4;
-    D_800D2950 = 0x30;
+    gGuestActorIndex = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
     gActors[0x30].posX.whole = gMarina.posX.whole;
@@ -1971,7 +1971,7 @@ void func_801BACDC_7DDBAC(void) {
 
 void func_801BBCBC_7DEB8C(void) {
     D_800BE5F4.unk_00_u32 = 4;
-    D_800D2950 = 0x30;
+    gGuestActorIndex = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
     gActors[0x30].posX.whole = gMarina.posX.whole;

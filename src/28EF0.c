@@ -44,7 +44,7 @@ extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern u16 D_800D2950;
+extern u16 gGuestActorIndex;
 extern u16 D_800D2954;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D295C;
@@ -2118,8 +2118,8 @@ void func_8002D5E4(u16 actor_index) {
     SpawnParticle_RingSparkle(actor_index, 0, 0.5f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
 }
 
-void func_8002D670(u16 actor_index) {
-    if ((gActiveFrames % 20) == 0) {
+void ActorUpdate_Landmine(u16 actor_index) {
+    if ((gActiveFrames % 20) == 0) { // blink for visibility
         gActors[actor_index].colorR = 0x7F;
     }
     gActors[actor_index].colorR = Math_ApproachS32(gActors[actor_index].colorR, 0, 0x20);
@@ -2641,7 +2641,7 @@ void SpawnGemRing(u16 flags) {
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8;
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
         ACTOR_GFX_INIT(index, gGraphicListGem);
-        gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 256];
+        gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 0x100];
         gActors[index].var_150 = flags & 0x8000;
         gActors[index].var_154 = flags & 0xF;
         gActors[index].var_158 = (360 / gActors[index].var_154) / RadStep;
@@ -2739,7 +2739,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
     if (palette == D_800D88B8) {
         gRedGems += 1;
         RedGems_Clamp();
-        SpawnParticle_RingSparkle(actor_index, 0, 1.0f, pos_x, pos_y, gActors[D_800D2950].posZ.whole);
+        SpawnParticle_RingSparkle(actor_index, 0, 1.0f, pos_x, pos_y, gActors[gGuestActorIndex].posZ.whole);
         if (is_static) {
             Sound_PlaySfxAtObject(SFX_GEM_RED, actor_index);
         }
@@ -2749,8 +2749,8 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
     }
     // grab blue gem
     else if (palette == D_800D86D8) {
-        if (D_800D2950 != 0) {
-            gActors[D_800D2950].health += 30;
+        if (gGuestActorIndex != 0) {
+            gActors[gGuestActorIndex].health += 30;
         }
         else {
             func_80057320(0, 30);
@@ -2766,8 +2766,8 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
     // grab yellow gem
     else if (palette == D_800D8C78) {
         YellowGem_SetFlag();
-        if (D_800D2950 != 0) {
-            gActors[D_800D2950].health += 500;
+        if (gGuestActorIndex != 0) {
+            gActors[gGuestActorIndex].health += 500;
         }
         else {
             func_80057320(0, 500);
@@ -2782,9 +2782,9 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
     }
     // grab green gem
     else {
-        SpawnParticle_HeartBubble(1.0f, pos_x, pos_y, gActors[D_800D2950].posZ.whole);
-        if (D_800D2950 != 0) {
-            gActors[D_800D2950].health += 300;
+        SpawnParticle_HeartBubble(1.0f, pos_x, pos_y, gActors[gGuestActorIndex].posZ.whole);
+        if (gGuestActorIndex != 0) {
+            gActors[gGuestActorIndex].health += 300;
         }
         else {
             func_80057320(0, 300);
@@ -2799,7 +2799,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
 }
 
 u16 GemCollect_Actor(u16 actor_index) {
-    if ((D_800D2950 != 0) && (gActors[D_800D2950].health == 0)) {
+    if ((gGuestActorIndex != 0) && (gActors[gGuestActorIndex].health == 0)) {
         return gActors[actor_index].flags;
     }
     if (func_8005D1E8(actor_index) != 0) {
@@ -2810,7 +2810,7 @@ u16 GemCollect_Actor(u16 actor_index) {
 }
 
 s32 GemCollect_Static(u16 actor_index) {
-    if ((D_800D2950 != 0) && (gActors[D_800D2950].health == 0)) {
+    if ((gGuestActorIndex != 0) && (gActors[gGuestActorIndex].health == 0)) {
         return 0;
     }
 
@@ -4265,8 +4265,8 @@ void Clanpot_InitItems(u16 actor_index, u16* vals, u16 unused_a2) {
 // add item to Clanpot.
 // @param item_index index of item to add.
 // @param flags flags on properties to add
-// @param var_110 overrides item's var_110 if (flags & 0x2000)
-// @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
+// @param var_110 overrides item's var_110 if (flags & CLANPOT_NEW_110)
+// @param var_0D8 overrides item's var_0D8 if (flags & CLANPOT_NEW_D8) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @param pot_index index of Clanpot.
 // @returns index of next clanpot item, -1 if pot is "full."
@@ -5909,7 +5909,7 @@ u16 func_80039DA0(u16 actor_index) {
         return Actor_RangeFindInactive(gActors[actor_index].unk_180 + 0x71, 0x90);
     }
     else if ((gActors[actor_index].var_150 & 0x8000) && 
-      (gActors[(u16)gActors[actor_index].unk_188].actorType == ACTORTYPE_97)) {
+      (gActors[(u16)gActors[actor_index].unk_188].actorType == ACTORTYPE_CLANBALL_RAIL)) {
         return (gActors[actor_index].unk_180 + actor_index + 2);
     }
     else {
@@ -5972,9 +5972,8 @@ void func_80039E7C(u16 actor_index) {
     }
 }
 
-// update for actor type 28
-// (controls for Blockman?)
-void ActorUpdate_Type28(u16 actor_index) {
+// update for Clanball
+void ActorUpdate_Clanball_28(u16 actor_index) {
     s32 pad;
     s32 vel_x;
     s32 vel_y;
@@ -6557,7 +6556,7 @@ void func_8003B8CC(u16 actor_index) {
     if (gActors[actor_index].unk_170 > 0x100000) {
         gActors[actor_index].unk_170 = 0x100000;
     }
-    func_80032E60(actor_index, 0x240, 0x100, gActors[actor_index].scaleY * 12.0f, 1, gActors[actor_index].scaleX, gActors[actor_index].scaleY);
+    func_80032E60(actor_index, GINDEX_HAT_TERAN, 0x100, gActors[actor_index].scaleY * 12.0f, 1, gActors[actor_index].scaleX, gActors[actor_index].scaleY);
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
@@ -6669,7 +6668,7 @@ void func_8003BE3C(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
-void func_8003C328(u16 actor_index) {
+void ActorUpdate_ClanballSpring(u16 actor_index) {
     u16 prev;
     u16 var_a2;
     s32 angle;
@@ -6715,7 +6714,7 @@ void func_8003C328(u16 actor_index) {
             gActors[actor_index].var_15C = func_800298D0(gActors[actor_index].unk_170, gActors[actor_index].var_15C, 0x100000);
         }
         pos_x = 0;
-        angle = gActors[actor_index].var_15C / 65536;
+        angle = gActors[actor_index].var_15C / 0x10000;
         gActors[actor_index].rotateZ = (angle - 0x100) * RadStep;
         pos_y = 0;
         switch (angle) {
@@ -7029,7 +7028,7 @@ void func_8003C328(u16 actor_index) {
             gActors[var_a2].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[var_a2].flags = ACTOR_FLAG_ENABLED;
             gActors[var_a2].graphicIndex = 0x3004;
-            gActors[var_a2].scaleY = gActors[actor_index].var_160 / 2097152.0f;
+            gActors[var_a2].scaleY = gActors[actor_index].var_160 / (f32)(FIXED_UNIT(32.0));
             gActors[var_a2].posX.raw = gActors[actor_index].posX.raw - (((gActors[actor_index].posX.raw - gActors[prev].posX.raw) + pos_x) / 2);
             gActors[var_a2].posY.raw = gActors[actor_index].posY.raw - (((gActors[actor_index].posY.raw - gActors[prev].posY.raw) + pos_y) / 2);
             gActors[var_a2].posZ.whole = gActors[actor_index].posZ.whole - 1;
@@ -8180,11 +8179,11 @@ s32 func_800409E0(u16 actor_index) {
 }
 
 s32 func_80040A64(void) {
-    if (D_800D2950 == 0) {
+    if (gGuestActorIndex == 0) {
         return func_80048CE4();
     }
     else if (D_800D2954 > 0) {
-        return func_800409E0(D_800D2950);
+        return func_800409E0(gGuestActorIndex);
     }
     // BUG: UB, missing return
 }
@@ -8200,7 +8199,7 @@ void WarpGate_Init(u16 actor_index) {
     gActors[actor_index].unk_120 = 255.0f;
 }
 
-// spawn ring of star particles when Warp Star is used or appears.
+// spawn ring of star particles when Warp Gate is used or appears.
 void WarpGate_StarRing(u16 actor_index) {
     s32 angle;
     u16 index;
@@ -8225,8 +8224,8 @@ void WarpGate_StarRing(u16 actor_index) {
     }
 }
 
-// sparkle effect around warp gate
-// @param actor_index index of star
+// sparkle effect around actor
+// @param actor_index index of actor to sparkle
 // @param no_random if set, stars appear without random offset
 void WarpGate_Sparkle(u16 actor_index, u16 no_random) {
     u16 index;

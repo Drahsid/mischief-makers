@@ -112,7 +112,7 @@ void func_80016E70(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL1_3:
+        case ACTOR_OVL1_DOG:
             D_8019B000[index](actor_index);
             break;
 
@@ -196,7 +196,7 @@ void func_80016E70(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_24:
+        case ACTOR_OVL2_WORLD1:
             D_801A6800[index](actor_index);
             break;
 
@@ -212,7 +212,7 @@ void func_80016E70(u16 actor_index) {
             D_801B0800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_28:
+        case ACTOR_OVL2_WORLD3:
             D_801A6800[index](actor_index);
             break;
 

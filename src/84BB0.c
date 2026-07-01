@@ -144,9 +144,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800896AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089814.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/DiggingSpot_SpawnActor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089984.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/DiggingSpot_SpawnActorCheck.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089A10.s")
 
@@ -160,7 +160,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008A50C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008A6E4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_DiggingSpot.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008AA28.s")
 
