@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern ActorFunc D_800C7F20[];
+extern ActorFunc D_800C7F60[];
+extern ActorFunc D_800C7FA0[];
+
 void func_80014AF0(void) {
     u16 index;
 

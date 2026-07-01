@@ -89,7 +89,6 @@ extern void func_800457C8(void);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
-extern u8 func_8005C870(u8);
 extern void func_8005C8A4(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
