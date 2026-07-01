@@ -761,7 +761,7 @@ u16 D_801BE98C_7CBB6C[] = {
     SPAWNRECORD_END
 };
 
-// Cowboty miniboss in "Western World"?
+// Cowboy miniboss in "Western World"?
 u16 D_801BEB24_7CBD04[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0050, 0x07F5, 0x018E, 0x0000, 0x0010, ACTORTYPE_OVL2_W1_18,

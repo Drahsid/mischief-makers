@@ -29,6 +29,8 @@ void func_801B5000_7C5220(u16 actor_index);
 void func_801B530C_7C552C(u16 actor_index);
 void func_801B63E4_7C6604(u16 actor_index);
 
+
+// dispatch table for actors in the latter half of World 5.
 ActorFunc D_801B0800_7C0AB0[] = {
     func_801B1C68_7C1E88,
     func_801B2154_7C2374,
@@ -51,7 +53,7 @@ ActorFunc D_801B0800_7C0AB0[] = {
     func_801B616C_7C638C,
     func_801B3308_7C3528,
     func_801B3550_7C3770,
-    func_801B3CF0_7C3F10,
+    func_801B3CF0_7C3F10, // turret in 3rd area of "Trapped"
     func_801B4950_7C4B70,
     func_801B4BCC_7C4DEC,
     func_801B5000_7C5220,
