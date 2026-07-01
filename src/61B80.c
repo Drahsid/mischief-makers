@@ -475,12 +475,12 @@ void func_80062174(u16 actor_index) {
 }
 
 void func_80062300(u16 actor_index) {
-    gActors[actor_index].posX.raw = (((gActors[actor_index].posX.raw + gScreenPosCurrentX.raw) & 0xFFF00000) - gScreenPosCurrentX.raw) + 0x80000;
+    gActors[actor_index].posX.raw = (((gActors[actor_index].posX.raw + gScreenPosCurrentX.raw) & 0xFFF00000) - gScreenPosCurrentX.raw) + FIXED_UNIT(8.0);
     gActors[actor_index].velocityX.raw = 0;
 }
 
 void func_80062360(u16 actor_index) {
-    gActors[actor_index].posY.raw = (((gActors[actor_index].posY.raw + gScreenPosCurrentY.raw) & 0xFFF00000) - gScreenPosCurrentY.raw) + 0x80000;
+    gActors[actor_index].posY.raw = (((gActors[actor_index].posY.raw + gScreenPosCurrentY.raw) & 0xFFF00000) - gScreenPosCurrentY.raw) + FIXED_UNIT(8.0);
     gActors[actor_index].velocityY.raw = 0;
 }
 
@@ -1411,7 +1411,7 @@ void func_80064CB4(u16 actor_index) {
                 gActors[actor_index].posZ.whole = gActors[actor_index + 1].posZ.whole - 1;
                 if (gActors[actor_index].actorType == 8) {
                     gActors[actor_index].var_150 = 0x78;
-                    gActors[actor_index].velocityY.raw = 0x40000;
+                    gActors[actor_index].velocityY.raw = FIXED_UNIT(4.0);
                     Sound_PlaySfxAtActor2(0x51, actor_index);
                 }
                 else {

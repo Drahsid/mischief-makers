@@ -11,7 +11,10 @@ extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern u8 func_80012C04(s16, s16);
 extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
 
+extern void func_800109B0(void);
 extern void func_80010C20(u16 arg0);
+extern void func_8001A584(void);
+extern void func_800230B8(void);
 extern void func_800282F0(s16 arg0, s16 arg1);
 extern u16 func_8002877C(u16 actor_index);
 extern s32 Math_AbsS32(s32 val);

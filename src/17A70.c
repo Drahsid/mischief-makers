@@ -76,8 +76,6 @@ void Sound_StopMusic(void);
 s32 Sound_PlaySfx2(u32 arg0);
 void func_80043918(void);
 void func_80083454(void);
-void func_8008379C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-void func_80083810(s32 arg0, s32 arg1, u16* arg2, s32 arg3);
 void func_8008391C(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
 
 ActorFunc D_800E5AC0[] = {

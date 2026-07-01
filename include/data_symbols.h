@@ -6,6 +6,8 @@
 
 extern u16 D_800D28E4;
 extern u16 gStageCinemaState; // state for cinematics (intro/dialog/outro) for stages.
+extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
+extern u16 gStageTimeBest;
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
@@ -22,12 +24,16 @@ extern u16 D_801370D8[];
 extern s16 D_801371D8[];
 extern s16 D_801372D8[];
 extern u8 D_801376BC[];
+extern u32 D_801376D4;
+extern u32 D_80137714;
+extern u32 D_80137718;
 extern u64 D_80171B10;
 extern u64 D_801781F0;
 extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CA230;
+extern u16 D_800CBF50;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
 extern u16 D_800D1A04[];
@@ -56,6 +62,7 @@ extern u16 D_800D8C78[]; // guess
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
 extern s16 gGraphicListBlank[]; // default graphics list. contains {0,0}
+extern s16 gGraphicListGemIcon[];
 extern s16 D_800E1540[];
 extern s16 D_800E154C[]; // graphic index for "!" bubble
 extern s16 D_800E156C[];

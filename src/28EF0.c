@@ -7,7 +7,8 @@
 #include "music.h"
 
 
-
+extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
+extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
 extern u16* D_800D1810[];
 extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
 extern u16* D_800D1958[]; // palettes of gems
@@ -77,6 +78,7 @@ extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 extern s32 D_80137444;
 extern u16 D_80137450;
 
+extern u16 D_800D17FC[]; // text palette
 extern s8 D_800D2204[]; // LUT in atan2
 extern s8 D_800D2228[]; // entries used in atan2
 extern s8 D_800D222C[]; // entries used in atan2

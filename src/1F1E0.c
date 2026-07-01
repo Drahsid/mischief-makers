@@ -52,7 +52,6 @@ extern u16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2978[];
 
-extern s16 gGraphicListGemIcon[];
 extern s16 D_800E13FC[];
 
 extern u32 D_801374DC; // time duration
@@ -66,7 +65,6 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
 extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
