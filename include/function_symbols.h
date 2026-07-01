@@ -9,6 +9,7 @@ extern u16 Rand(void);
 extern void func_80012288(void);
 extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern u8 func_80012C04(s16, s16);
+extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
 
 extern void func_80010C20(u16 arg0);
 extern void func_800282F0(s16 arg0, s16 arg1);

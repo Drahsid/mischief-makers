@@ -92,7 +92,7 @@ segments:
       - [0x012DD0, asm] # has to do with spawning the player actor, and the camera
       - [0x0134E0, c]
       - [0x013850, asm, gameover] # gameover gamestate
-      - [0x0156F0, asm]
+      - [0x0156F0, c]
       - [0x017A70, c]
       - [0x019A00, c, debug_level_select]
       - [0x01A120, c]

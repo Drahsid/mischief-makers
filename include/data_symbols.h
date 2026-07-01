@@ -15,6 +15,12 @@ extern s16 D_800D294C;
 extern u16 D_800D8588[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
+extern s16 D_801370D0;
+extern s16 D_801370D2;
+extern u16 D_801370D4;
+extern u16 D_801370D8[];
+extern s16 D_801371D8[];
+extern s16 D_801372D8[];
 extern u8 D_801376BC[];
 extern u64 D_80171B10;
 extern u64 D_801781F0;
