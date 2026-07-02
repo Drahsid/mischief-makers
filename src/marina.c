@@ -6,6 +6,10 @@
 
 #include "input.h"
 
+extern u16 D_801373D8;
+extern s32 D_800D5794[];
+extern s16* D_800D54EC[];
+
 u8 func_80048600(u16 actor_index) {
     u8 ret;
 
@@ -59,9 +63,32 @@ s32 func_800486F4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048BB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C28.s")
+u8 func_80048C28(s32 arg0) {
+    u8 ret;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
+    if ((arg0 != 0) && !(D_801373D8 & 0x33)) {
+        return 0xFF;
+    }
+
+    ret = 4;
+    if (D_801373D8 & 0x10) {
+        ret = 8;
+        if (D_801373D8 & 3) {
+            ret = 6;
+        }
+    }
+    if (D_801373D8 & 0x20) {
+        ret = 0;
+        if (D_801373D8 & 3) {
+            ret = 2;
+        }
+    }
+    return ret;
+}
+
+s32 func_80048C94(s32 arg0) {
+    return D_800D5794[arg0] * gActors[0].unk_120;
+}
 
 s32 func_80048CE4(void) {
     if (gActors[0].stateLower == 1) {
@@ -98,11 +125,43 @@ s32 func_80048CE4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80049AC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A8E0.s")
+void func_8004A8E0(u16 actor_index) {
+    gActors[actor_index].unk_12E_u8 = 0xFF;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A918.s")
+void func_8004A918(u16 actor_index) {
+    gActors[actor_index].unk_12E_u8 |= 0x41;
+    gActors[actor_index].flags = gActors[actor_index].var_150;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A960.s")
+void func_8004A960(u16 actor_index) {
+    Actor* actor = &gActors[actor_index];
+    s32 i;
+
+    actor->unk_12E_u8 |= 0x41;
+
+    for (i = 0; i < 0x20; i++) {
+        ((u32*)&D_801373E0)[i] = 0;
+    }
+
+    D_801373E0.unk_13 = 0;
+    D_801373E0.unk_12 = 100;
+    actor->unk_140_u16[1] = 0;
+    actor->unk_140_u8[1] = 0;
+    actor->unk_180 = 0;
+    actor->unk_12F_u8 = 0;
+    actor->graphicLists = D_800D54EC;
+    actor->velocityX.raw = actor->velocityY.raw = actor->velocityZ.raw = 0;
+    actor->graphicFlags |= 0x501;
+    actor->flags &= ACTOR_FLAG_FLIPPED;
+    actor->flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED;
+    actor->unk_0DE = 1;
+    actor->unk_0DF = 1;
+    actor->unk_17C = 0;
+    gActors[0].unk_120 = actor->unk_124 = actor->unk_128 = 1.0f;
+    actor->unk_170 = 1;
+    actor->state = 3;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004AA64.s")
 
