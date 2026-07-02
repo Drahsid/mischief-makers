@@ -152,7 +152,7 @@ void func_8004A960(u16 actor_index) {
     actor->unk_12F_u8 = 0;
     actor->graphicLists = D_800D54EC;
     actor->velocityX.raw = actor->velocityY.raw = actor->velocityZ.raw = 0;
-    actor->graphicFlags |= 0x501;
+    actor->graphicFlags |= ACTOR_GFLAG_UNK10 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
     actor->flags &= ACTOR_FLAG_FLIPPED;
     actor->flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED;
     actor->unk_0DE = 1;
