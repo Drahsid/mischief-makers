@@ -110,5 +110,6 @@ typedef struct {
 } ActorSpawnRecord; /* size = 0xE */
 
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000))
+#define FROM_FIXED(value) ((value) / FIXED_UNIT(1.0))
 
 #endif

@@ -381,8 +381,8 @@ u16 func_8005A320(u16 actor_index, s32* arg1, s32 angle, f32 scale) {
     if (actor_1 == 0) {
         return actor_1;
     }
-    gActors[actor_1].velocityX.raw = SIN(angle / 0x10000) * (0 * scale);
-    gActors[actor_1].velocityY.raw = COS(angle / 0x10000) * -(0 * scale);
+    gActors[actor_1].velocityX.raw = SIN(FROM_FIXED(angle)) * (0 * scale);
+    gActors[actor_1].velocityY.raw = COS(FROM_FIXED(angle)) * -(0 * scale);
     gActors[actor_1].scaleX = scale / 2;
     gActors[actor_1].scaleY = scale / 4;
     gActors[actor_1].unk_11C *= 2;
@@ -516,7 +516,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
         temp_v1_2 = (Rand() << 0x10) + arg0->unk1C - 0x800000;
         gActors[actor_index].var_160 = temp_v1_2;
         temp_f4 = (16 * temp_f20);
-        angle = temp_v1_2 / 0x10000;
+        angle = FROM_FIXED(temp_v1_2);
         arg0->unk8[0] += (temp_f4 * COS(angle));
         arg0->unk8[1] += (temp_f4 * SIN(angle));
         var_s3 -= temp_f4;

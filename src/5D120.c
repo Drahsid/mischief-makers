@@ -106,10 +106,10 @@ void func_8005C8A4(void) {
     }
     else {
         if (!(gCamShakeTime & 1)) {
-            gCamShakeV = gCamShakeMag / 0x10000;
+            gCamShakeV = FROM_FIXED(gCamShakeMag);
         }
         else {
-            gCamShakeV = -gCamShakeMag / 0x10000;
+            gCamShakeV = FROM_FIXED(-gCamShakeMag);
         }
         gCamShakeTime--;
         switch (gCamShakeType) {
@@ -120,7 +120,7 @@ void func_8005C8A4(void) {
             break;
         case 2:
             if (!(gCamShakeTime & 2)) {
-                gCamShakeV = func_8005C708(gCamShakeMag / 0x10000);
+                gCamShakeV = func_8005C708(FROM_FIXED(gCamShakeMag));
             }
             break;
         default:
