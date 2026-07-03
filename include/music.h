@@ -51,10 +51,7 @@ extern u8 gSfxChannelPans[8];
 void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
 void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
 
-void Sound_ActorPanVol(u8 arg0);
 void func_80003D64(u8 arg0);
-void Sound_StopMusic(void);
-void Sound_StopAllSfx(void);
 void func_800040A0(void);
 
 void Sound_PlayMusic(s32 sequence_id);

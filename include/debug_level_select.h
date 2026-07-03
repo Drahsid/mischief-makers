@@ -3,6 +3,7 @@
 
 #include "common.h"
 
+extern u8 gDebugMenuCursorFlash[];
 extern const char* gDebugStageSelectRowPrefixes[];
 extern u16 gStageRowCounts[];
 extern u16 gStageGroupOptionOffsets[];

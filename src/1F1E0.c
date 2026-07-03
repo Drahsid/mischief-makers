@@ -6,6 +6,7 @@
 #include "input.h"
 #include "music.h"
 #include "globalData.h"
+#include "17A70.h"
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
@@ -77,7 +78,6 @@ extern void func_80014AF0(void);
 extern void func_80014C44(void);
 extern void func_80016CB4(void);
 extern void func_80016D94(void);
-extern void func_8001751C(void);
 extern void func_8001DE30(void);
 extern void func_8001FF30(void);
 extern void func_8001FF50(void);
