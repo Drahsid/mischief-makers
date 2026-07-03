@@ -894,13 +894,11 @@ void DebugMenu_UpdateCursorFlash(void) {
         }
     }
 
-    index = 0;
-    do {
+    for (index = 0; index < 8; index++) {
         if (cursor_index != index) {
             cursor_colors[index] = 0x3F;
         }
-        index++;
-    } while (index < 8);
+    }
 }
 
 void GameState_Intro(void) {
@@ -1728,19 +1726,17 @@ s16 func_8001A758(u16 time, u16 stage) {
 }
 
 // print the Rank letter for (stage) based on (time)
-void func_8001A7E0(s16 arg0, u16 arg1, u16 time, u16 stage, s16 arg4) {
-    func_8008379C(arg0, arg1, D_800C9694[func_8001A758(time, stage)], arg4);
+void func_8001A7E0(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
+    s16 index = func_8001A758(time, stage);
+    func_8008379C(arg0, arg1, D_800C9694[index], arg4);
 }
 
 // print the Rank review for (stage) based on (time)
-void func_8001A838(s16 arg0, u16 arg1, u16 arg2, u16 arg3, s16 arg4) {
-    func_80083810(arg0, arg1, D_800C96A0[func_8001A758(arg2, arg3)], arg4);
+void func_8001A838(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
+    s16 index = func_8001A758(time, stage);
+    func_80083810(arg0, arg1, D_800C96A0[index], arg4);
 }
 
-#ifdef NON_MATCHING
-// need to resolve types of parameters
-// func_8001A890 matches if func_8001A7E0/func_8001A838 arg4 are u16
-// https://decomp.me/scratch/i3dTx
 void func_8001A890(void) {
     u16 var_v0;
 
@@ -1754,9 +1750,6 @@ void func_8001A890(void) {
     func_8001A7E0(6, 4, gStageTime, gCurrentStage, var_v0);
     func_8001A838(9, 4, gStageTime, gCurrentStage, var_v0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/func_8001A890.s")
-#endif
 
 void func_8001A96C(void) {
     u16 stage_time;

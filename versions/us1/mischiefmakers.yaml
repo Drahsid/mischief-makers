@@ -122,7 +122,7 @@ segments:
       - [0x080D90, c]
       - [0x082920, asm]
       - [0x082DB0, asm] # has to do with loading marina's graphics
-      - [0x082F80, asm]
+      - [0x082F80, c]
       - [0x0844E0, asm, osd_debug_text]
       - [0x084BB0, asm]
       - [0x08D0A0, c]
