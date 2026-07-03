@@ -1,6 +1,7 @@
 #define FUNC_8001E2D0_RET void
 #include "common.h"
 #include "actor.h"
+#include "boot.h"
 #include "data_symbols.h"
 #include "debug_level_select.h"
 #include "input.h"
@@ -902,7 +903,150 @@ void DebugMenu_UpdateCursorFlash(void) {
     } while (index < 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/GameState_Intro.s")
+void GameState_Intro(void) {
+    u16 actor_index_30 = 0x30;
+    u16 actor_index_31 = 0x31;
+    u16* palette = PALETTE_80380200;
+    s32 color;
+
+    switch (gGameStateSubState) {
+    case 0:
+        Sound_StopMusic();
+        gCurrentScene = 0x15;
+        func_80025C38();
+        func_80010C20(gCurrentScene);
+        palette[1] = palette[2] = 1;
+        Text_InitActorGraphic(actor_index_30, 0x2000, 0, 4, 0);
+        gActors[actor_index_30].graphicFlags |= ACTOR_GFLAG_PALETTE;
+        gActors[actor_index_30].flags |= ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28;
+        gActors[actor_index_30].hitboxBX0 = 0x80;
+        gActors[actor_index_30].hitboxBX1 = 1;
+        gActors[actor_index_30].hitboxBY0 = 0x10;
+        gActors[actor_index_30].hitboxBY1 = 8;
+        gActors[actor_index_30].unk_17C = 0x8034E4C8;
+        gActors[actor_index_30].unk_180 = (s32) D_800C9080;
+        gActors[actor_index_30].var_154 = -0x1F;
+        color = gActors[actor_index_30].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x803524C8, D_800C9080, 0xFF, color, color, color);
+        gGameStateSubState++;
+        break;
+    case 1:
+        color = gActors[actor_index_30].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x803524C8, D_800C9080, 0xFF, color, color, color);
+        if (gFramesInScene & 1) {
+            if (gActors[actor_index_30].var_154++ == 0) {
+                gGameStateSubState++;
+                gActors[actor_index_30].var_158 = 0x80;
+            }
+        }
+        break;
+    case 2:
+        if (gActors[actor_index_30].var_158-- == 0) {
+            gGameStateSubState++;
+        }
+        break;
+    case 3:
+        color = gActors[actor_index_30].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x803524C8, D_800C9080, 0xFF, color, color, color);
+        if (gFramesInScene & 1) {
+            if ((gActors[actor_index_30].var_154-- + 0x1F) == 0) {
+                Text_InitActorGraphic(0x30, 0x2000, 0, 4, 0);
+                gActors[actor_index_30].graphicFlags |= ACTOR_GFLAG_PALETTE;
+                gActors[actor_index_30].flags |= ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28;
+                gActors[actor_index_30].hitboxBX0 = 0x50;
+                gActors[actor_index_30].hitboxBX1 = 1;
+                gActors[actor_index_30].hitboxBY0 = 0x18;
+                gActors[actor_index_30].hitboxBY1 = 4;
+                gActors[actor_index_30].unk_17C = 0x80340240;
+                gActors[actor_index_30].unk_180 = (s32) D_800C8FA0;
+                gActors[actor_index_30].var_154 = -0x1F;
+                color = gActors[actor_index_30].var_154;
+                Palette_AdjustRgb5551Array((u16* )0x80342040, D_800C8FA0, 0xF, color, color, color);
+                gGameStateSubState = 0xA;
+            }
+        }
+        break;
+    case 10:
+        color = gActors[actor_index_30].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x80342040, D_800C8FA0, 0xF, color, color, color);
+        if (gFramesInScene & 1) {
+            if (gActors[actor_index_30].var_154++ == 0) {
+                gGameStateSubState++;
+                gActors[actor_index_30].var_158 = 0x80;
+            }
+        }
+        break;
+    case 11:
+        if (gActors[actor_index_30].var_158-- == 0) {
+            gGameStateSubState++;
+        }
+        break;
+    case 12:
+        color = gActors[actor_index_30].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x80342040, D_800C8FA0, 0xF, color, color, color);
+        if (gFramesInScene & 1) {
+            if ((gActors[actor_index_30].var_154-- + 0x1F) == 0) {
+                gActors[actor_index_30].flags = 0;
+                Text_InitActorGraphic(actor_index_31, 0x2002, 0, 8, 0);
+                gActors[actor_index_31].graphicFlags |= ACTOR_GFLAG_PALETTE;
+                gActors[actor_index_31].flags |= ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28;
+                gActors[actor_index_31].hitboxBX0 = 0x48;
+                gActors[actor_index_31].hitboxBX1 = 1;
+                gActors[actor_index_31].hitboxBY0 = 0x18;
+                gActors[actor_index_31].hitboxBY1 = 4;
+                gActors[actor_index_31].unk_17C = 0x80342068;
+                gActors[actor_index_31].unk_180 = (s32) D_800C8FC0;
+                gActors[actor_index_31].var_154 = -0x1F;
+                color = gActors[actor_index_31].var_154;
+                Palette_AdjustRgb5551Array((u16* )0x80343B68, D_800C8FC0, 0x5F, color, color, color);
+                gGameStateSubState += 1;
+            }
+        }
+        break;
+    case 13:
+        color = gActors[actor_index_31].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x80343B68, D_800C8FC0, 0x5F, color, color, color);
+        if (gFramesInScene & 1) {
+            if (gActors[actor_index_31].var_154++ == 0) {
+                gGameStateSubState++;
+                gActors[actor_index_31].var_158 = 0x80;
+            }
+        }
+        break;
+    case 14:
+        if (gActors[actor_index_31].var_158-- == 0) {
+            gGameStateSubState++;
+        }
+        break;
+    case 15:
+        color = gActors[actor_index_31].var_154;
+        Palette_AdjustRgb5551Array((u16* )0x80343B68, D_800C8FC0, 0x5F, color, color, color);
+        if (gFramesInScene & 1) {
+            if ((gActors[actor_index_31].var_154-- + 0x1F) == 0) {
+                gActors[actor_index_31].flags = 0;
+                gGameStateSubState++;
+            }
+        }
+        break;
+    case 16:
+        gSPDisplayList(gDisplayListHead++, D_800C8EF0);
+        gActors[actor_index_30].flags = 0;
+        gActors[actor_index_31].flags = 0;
+        D_80171B18 = gCurrentStage = 0;
+        gCurrentScene = 0xB;
+        D_800D28E4 = 0x59;
+        D_800C5008 = 0;
+        gGameState = 0xC;
+        gGameStateSubState = 0x41;
+        break;
+    }
+    if (gButtonPress & gButton_Start) {
+        if (gGameStateSubState > 0) {
+            gGameState = 2;
+            gGameStateSubState = 0;
+        }
+    }
+}
 
 void func_80017F08(void) {
     u16* palette;
@@ -1693,11 +1837,59 @@ void func_8001B02C(void) {
     }
 }
 
-// need to figure out .rodata for jump table
-void func_8001B078(u16, u16*, u16*, u16*);
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/func_8001B078.s")
+void func_8001B078(u16 arg0, u16* arg1, u16* arg2, u16* arg3) {
+    u16 count;
+    u16 index;
 
-// maybe split
+    for (index = 0, count = 0; index < 0x16; index++) {
+        count += gStageRowCounts[index];
+        if (arg0 < count) {
+            break;
+        }
+    }
+    
+    switch (index) {
+    case 2:
+        *arg1 = 0;
+        break;
+    case 3:
+    case 4:
+        *arg1 = 1;
+        break;
+    case 6:
+    case 7:
+    case 8:
+        *arg1 = 2;
+        break;
+    case 10:
+    case 11:
+    case 12:
+        *arg1 = 3;
+        break;
+    case 14:
+    case 15:
+    case 16:
+        *arg1 = 4;
+        break;
+    case 18:
+    case 19:
+        *arg1 = 5;
+        break;
+    default:
+        *arg1 = 6;
+        break;
+    }
+
+    if (*arg1 == 5) {
+        *arg1 = 4;
+        *arg3 = gStageGroupOptionOffsetsTail[0];
+        *arg2 = (arg0 - *arg3) - 1;
+    }
+    else {
+        *arg3 = gStageGroupOptionOffsets[*arg1];
+        *arg2 = arg0 - *arg3;
+    }
+}
 
 void func_8001B1A0(void) {
     func_8001B078(gCurrentStage, &D_8017815C, &D_80178156, &D_80178154);
@@ -2055,4 +2247,114 @@ void func_8001D60C(s16 arg0) {
     func_8001D5B8(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/GameState_Records.s")
+void GameState_Records(void) {
+    u16 count;
+    u16 temp_a0;
+    u16 index;
+
+    temp_a0 = func_8001CC34();
+    switch (gGameStateSubState) {
+    case 0x0:
+        func_8008310C();
+        func_80083454();
+        func_8001983C();
+        Text_InitActorGraphic(0x30, 0x3002, 0, 0x4C, 2);
+        Text_InitActorGraphic(0x31, 0x3002, 0, 0xFFB9, 2);
+        func_8001C834();
+        gActors[0x32].posX.whole = gActors[0x33].posX.whole = 2;
+        gActors[0x32].posY.whole = 0x20;
+        gActors[0x33].posY.whole = -0x1C;
+        count = Text_PrintStringGray(0x34, D_800C96B4, 0xFFE8, 0x4B, 2);
+        for (index = 0x34; index < count; index++) {
+            gActors[index].unk_18C = (s32)D_800C9664; // palette_18C causes mismatch
+        }
+        func_8001D240();
+        gActors[0x70].var_154 = 2;
+        func_8001CD30(2);
+        for (index = 0x30; index < 0x4F; index++) {
+            gActors[index].posX.whole -= 0x120;
+        }
+        gGameStateSubState = 8;
+        break;
+    case 0x8:
+        for (index = 0x30; index < 0x4F; index++) {
+            gActors[index].posX.whole += 0x20;
+        }
+        if (gActors[0x30].posX.whole == 0) {
+            gGameStateSubState = 0x90;
+        }
+        break;
+    case 0x90:
+        if (func_8001CC8C() < temp_a0) {
+            func_8001CAA8(gActors[0x70].var_154);
+            func_8001D60C(4);
+            Sound_PlaySfx2(0x22);
+            gGameStateSubState = 0x98;
+        }
+        else {
+            gGameStateSubState = 0x10;
+        }
+        func_8001CE04();
+        break;
+    case 0x10:
+        if (gButtonHold & gButton_DDown) {
+            if (func_8001CC8C() < temp_a0) {
+                func_8001CAA8(gActors[0x70].var_154);
+                func_8001D60C(4);
+                Sound_PlaySfx2(0x22);
+                gGameStateSubState = 0x18;
+            }
+        }
+        if ((gButtonHold & gButton_DUp) && (gActors[0x70].var_154 >= 3)) {
+            func_8001D040();
+            func_8001CB6C(gActors[0x70].var_154);
+            func_8001D60C(0x10);
+            Sound_PlaySfx2(0x22);
+            gGameStateSubState = 0x20;
+        }
+        if ((gButtonPress & gButton_B) || (gButtonPress & gButton_A) || (gButtonPress & gButton_Start)) {
+            Sound_PlaySfx(0x48);
+            gGameStateSubState = 0xF0;
+        }
+        break;
+    case 0x18:
+    case 0x98:
+        func_8001D60C(4);
+        if (gActors[0x32].posY.whole == 0x30) {
+            func_8001CFDC();
+            gActors[0x32].posY.whole = 0x1C;
+            gActors[0x33].posY.whole = -0x20;
+            gGameStateSubState += 1;
+        }
+        func_8001CE04();
+        break;
+    case 0x19:
+    case 0x99:
+        func_8001D60C(4);
+        func_8001CD30(gActors[0x70].var_154);
+        gGameStateSubState -= 9;
+        func_8001CE04();
+        break;
+    case 0x20:
+        func_8001D60C(-4);
+        func_8001CF14(gActors[0x70].var_154);
+        gGameStateSubState = 0x21;
+        break;
+    case 0x21:
+        func_8001D60C(-4);
+        if (gActors[0x32].posY.whole == 0x20) {
+            gActors[0x4E].flags = 0;
+            gGameStateSubState = 0x10;
+        }
+        break;
+    case 0xF0:
+        for (index = 0x30; index < 0x4F; index++) {
+            gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x30].posX.whole < -0x120) {
+            gGameState = 0xC;
+            gGameStateSubState = 0x23;
+        }
+        break;
+    }
+}
