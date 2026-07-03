@@ -30,8 +30,8 @@ extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting 
 // counts for items in clanpot. checked for mixing.
 // indecies of items counted:
 // 0x00: rocketeers needed for rideable rocketeer.
-// 0x10: ACTORTYPE_OVL0_GEN_BOMB0
-// 0x11: ACTORTYPE_OVL0_GEN_BOMB1
+// 0x10: round bomb
+// 0x11: elliptical bomb
 // 0x12: flower
 // 0x13: hat
 // 0x14: shuriken

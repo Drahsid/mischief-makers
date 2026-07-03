@@ -38,7 +38,7 @@ extern u16 D_800D2814[];
 extern f32 D_800D281C[];
 extern u16 D_800D282C[];
 extern u16 D_800D2854[]; // graphic indecies of shock effect?
-extern u16 D_800D2860[];
+extern u16 D_800D2860[]; // warp gate coords in main segment.
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern s16 D_800D291C;
@@ -4326,7 +4326,7 @@ s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 ico
 // @param var_110 overrides item's var_110 if (flags & 0x2000)
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
-// @returns index of next clanpot item, -1 if pot is "full."
+// @returns index of next clanpot item, -1 if failed
 s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
     u16 index;
 
@@ -4344,7 +4344,7 @@ s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u1
 // @param flags flags on properties to add. (uses ClanpotFlags)
 // @param var_110 overrides item's var_110 if (flags & 0x2000)
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
-// @returns index of next clanpot item, -1 if pot is "full."
+// @returns index of next clanpot item, -1 if failed
 s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 var_110, u16 var_0D8) {
     return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, 0);
 }
@@ -4356,7 +4356,7 @@ s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 var_110, u16 var_0D8) {
 // @param var_110 overrides item's var_110 if (flags & 0x2000)
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
-// @returns index of next clanpot item, -1 if pot is "full."
+// @returns index of next clanpot item, -1 if failed
 s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
     return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, icon);
 }
@@ -4368,7 +4368,7 @@ s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u
 // @param var_110 overrides item's var_110 if (flags & 0x2000)
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
-// @returns index of next clanpot item, -1 if pot is "full."
+// @returns index of next clanpot item, -1 failed
 s16 Clanpot_AddItemCheck3(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon) {
     return Clanpot_AddItemCheck(item_index, flags, var_110, var_0D8, icon);
 }
@@ -8381,7 +8381,7 @@ void WarpGate_MoveFaceUser(u16 actor_index, u16* coords) {
     }
 }
 
-// if warpstar is state 2,
+// if Warp Gate is state 2,
 // the player has just grabbed it
 s32 WarpGate_IsGrabbed(u16 actor_index) {
     if (gActors[actor_index].state == 2) {
@@ -8442,7 +8442,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         gActors[actor_index].unk_11C = Math_ApproachF32(gActors[actor_index].unk_11C, 0.0f, 0.02f);
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 0.0f, 16.0f);
         gActors[actor_index].var_160 -= 16;
-        gActors[actor_index].unk_164 += (262144.0f * gActors[actor_index].unk_11C);
+        gActors[actor_index].unk_164 += ((f32)(FIXED_UNIT(4.0)) * gActors[actor_index].unk_11C);
         WarpGate_StarRing(actor_index);
         gActors[actor_index].unk_14C -= 1.0f;
         if (gActors[actor_index].unk_14C < 0.0f) {
@@ -8534,7 +8534,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         gActors[actor_index].state++;
         WarpGate_Init(actor_index);
         gActors[actor_index].var_160 = 0;
-        gActors[actor_index].unk_164 = 0x680000;
+        gActors[actor_index].unk_164 = FIXED_UNIT(6.5);
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
         gActors[actor_index].unk_11C = 0.0f;
         gActors[actor_index].unk_120 = 0.0f;
@@ -8549,7 +8549,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_160 += 0x10;
-            gActors[actor_index].unk_164 -= (425984.0 * (1.0 - gActors[actor_index].unk_11C));
+            gActors[actor_index].unk_164 -= ((f32)(FIXED_UNIT(6.5)) * (1.0 - gActors[actor_index].unk_11C));
             WarpGate_StarRing(actor_index);
         }
         break;
