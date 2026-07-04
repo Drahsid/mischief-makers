@@ -1,109 +1,157 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D630.s")
+#define OVERLAY0_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY0_DISPATCH_TABLE_VRAM)
+#define OVERLAY1_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY1_DISPATCH_TABLE_VRAM)
+#define OVERLAY2_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY2_DISPATCH_TABLE_VRAM)
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D664.s")
+void OverlayABI_Slot1_fn3_u16(u16 arg0) {
+    OVERLAY1_DISPATCH_ACTOR2[3](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D6A0.s")
+void OverlayABI_Slot1_fn4_u16_u16_0(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[4](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D6DC.s")
+void OverlayABI_Slot1_fn5_u16_u16_0(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D718.s")
+void OverlayABI_Slot1_fn6_u16_u16_0(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[6](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D74C.s")
+void OverlayABI_Slot0_fn11_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[11](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D780.s")
+void OverlayABI_Slot0_fn12_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[12](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D7BC.s")
+void OverlayABI_Slot1_fn5_u16_u16_1(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D7F8.s")
+void OverlayABI_Slot1_fn6_u16_u16_1(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[6](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D82C.s")
+void OverlayABI_Slot1_fn7_u16_0(u16 arg0) {
+    OVERLAY1_DISPATCH_ACTOR2[7](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D860.s")
+void OverlayABI_Slot1_fn7_u16_1(u16 arg0) {
+    OVERLAY1_DISPATCH_ACTOR2[7](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D894.s")
+void OverlayABI_Slot1_fn5_u16(u16 arg0) {
+    OVERLAY1_DISPATCH_ACTOR2[5](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D8D0.s")
+void OverlayABI_Slot1_fn3_u16_u16(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[3](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D90C.s")
+void OverlayABI_Slot1_fn4_u16_u16_1(u16 arg0, u16 arg1) {
+    OVERLAY1_DISPATCH_ACTOR2[4](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D948.s")
+void OverlayABI_Slot0_fn24_u16_u16(u16 arg0, u16 arg1) {
+    OVERLAY0_DISPATCH_ACTOR2[24](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D984.s")
+void OverlayABI_Slot0_fn25_u16_u16_0(u16 arg0, u16 arg1) {
+    OVERLAY0_DISPATCH_ACTOR2[25](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D9B8.s")
+void OverlayABI_Slot0_fn26_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[26](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D9EC.s")
+void OverlayABI_Slot0_fn27_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[27](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA20.s")
+void OverlayABI_Slot0_fn28_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[28](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA5C.s")
+void OverlayABI_Slot0_fn15_u16_u16(u16 arg0, u16 arg1) {
+    OVERLAY0_DISPATCH_ACTOR2[15](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA98.s")
+void OverlayABI_Slot0_fn25_u16_u16_1(u16 arg0, u16 arg1) {
+    OVERLAY0_DISPATCH_ACTOR2[25](arg0, arg1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DACC.s")
+void OverlayABI_Slot2_fn17_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[17](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB00.s")
+void OverlayABI_Slot2_fn18_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[18](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB34.s")
+void OverlayABI_Slot2_fn19_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[19](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB68.s")
+void OverlayABI_Slot2_fn20_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[20](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB9C.s")
+void OverlayABI_Slot2_fn21_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[21](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DBD0.s")
+void OverlayABI_Slot2_fn22_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[22](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC04.s")
+void OverlayABI_Slot2_fn23_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[23](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC38.s")
+void OverlayABI_Slot2_fn24_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[24](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC64.s")
+void OverlayABI_Slot2_fn25_void(void) {
+    OVERLAY2_DISPATCH_ACTOR2[25](0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC98.s")
+void OverlayABI_Slot2_fn26_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[26](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DCCC.s")
+void OverlayABI_Slot2_fn27_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[27](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD00.s")
+void OverlayABI_Slot2_fn28_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[28](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD34.s")
+void OverlayABI_Slot2_fn29_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[29](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD68.s")
+void OverlayABI_Slot2_fn30_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[30](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD9C.s")
+void OverlayABI_Slot2_fn31_u16(u16 arg0) {
+    OVERLAY2_DISPATCH_ACTOR2[31](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDC8.s")
+void OverlayABI_Slot2_fn32_void(void) {
+    OVERLAY2_DISPATCH_ACTOR2[32](0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDFC.s")
+void OverlayABI_Slot0_fn8_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[8](arg0, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DE30.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DEFC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF30.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DF5C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DFC8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E09C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E0B0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E1CC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E260.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E56C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005E8F8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005EC20.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005EE24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005F088.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005F6D4.s")
+void OverlayABI_Slot0_fn10_u16(u16 arg0) {
+    OVERLAY0_DISPATCH_ACTOR2[10](arg0, 0);
+}

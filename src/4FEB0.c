@@ -10,9 +10,9 @@ typedef struct {
     s8 unkE;
 } Unk800D4000;
 
-extern Actor2Func2 D_800D3EB0[];
-extern Actor2Func2 D_800D3F10[];
-extern Actor2Func2 D_800D3F70[];
+extern Actor2Func D_800D3EB0[];
+extern Actor2Func D_800D3F10[];
+extern Actor2Func D_800D3F70[];
 extern Unk800D4000 D_800D4000;
 extern s8* D_800D410C[];
 extern s16 D_800D4130[];
@@ -29,7 +29,6 @@ extern s8 D_801373F3;
 
 s32 func_80049040(u16);
 void func_80055C2C(u16, u16);
-void func_80058924(u16);
 u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2);
 
 s32 func_8004F2B0(u16 actor_index) {
