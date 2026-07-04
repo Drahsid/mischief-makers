@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "debug_level_select.h"
+#include "stage.h"
 #include "function_symbols.h"
 
 // "overlay 4" code for the World 1 scenes.

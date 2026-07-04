@@ -2,9 +2,9 @@
 #include "actor.h"
 #include "cosine.h"
 #include "boot.h"
-#include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
+#include "stage.h"
 #include "globalData.h"
 #include "17A70.h"
 

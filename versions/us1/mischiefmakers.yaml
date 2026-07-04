@@ -94,7 +94,7 @@ segments:
       - [0x013850, asm, gameover] # gameover gamestate
       - [0x0156F0, c]
       - [0x017A70, c]
-      - [0x018280, c, debug_level_select]
+      - [0x018280, c, stage]
       - [0x01E7A0, c, actor_init]
       - [0x01F1E0, c]
       - [0x022290, c, letterbox]
@@ -314,7 +314,7 @@ segments:
       - [0x0C8910, data, gameover]
       - [0x0C8B20, data] # 156F0
       - [0x0C8BE0, data] # main actor/update dispatch table
-      - [0x0C8DE0, .data, debug_level_select]
+      - [0x0C8DE0, .data, stage]
       - [0x0CA300, data] # 241E0 references D_800CD034 implying end at 0x0CDC80
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
@@ -365,7 +365,7 @@ segments:
       - [0x0EBBE0, rodata] # 11820?
       - [0x0EBC00, rodata, gameover]
       - [0x0EBC50, .rodata, 17A70]
-      - [0x0EBD00, .rodata, debug_level_select]
+      - [0x0EBD00, .rodata, stage]
       - [0x0EC190, .rodata, 1F1E0]
       - [0x0EC220, .rodata, 241E0]
       - [0x0EC280, .rodata, 28EF0]

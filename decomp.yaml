@@ -87,7 +87,7 @@ tools:
             - gameover
             - "156F0"
             - "17A70"
-            - debug_level_select
+            - stage
             - actor_init
             - "1F1E0"
             - letterbox

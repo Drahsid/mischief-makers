@@ -3,11 +3,11 @@
 #include "actor.h"
 #include "boot.h"
 #include "data_symbols.h"
-#include "debug_level_select.h"
 #include "input.h"
 #include "dma.h"
 #include "linker.h"
 #include "rle.h"
+#include "stage.h"
 
 #define DEBUG_STAGE_SELECT_ROW_COUNT 22
 #define DEBUG_STAGE_SELECT_COLUMN_ROWS 11
@@ -1102,7 +1102,7 @@ void func_800180FC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/GameState_TitleScreen.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/stage/GameState_TitleScreen.s")
 
 void GameState_DebugSoundTest(void) {
     s32 pad0;
@@ -1949,8 +1949,7 @@ void func_8001B3D0(void) {
     func_80005770();
 }
 
-// need to figure out .rodata for jump table
-#pragma GLOBAL_ASM("asm/nonmatchings/debug_level_select/GameState_Transition.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/stage/GameState_Transition.s")
 
 // sets bit if yellow gem was collected in this stage
 void YellowGem_SetFlag(void) {

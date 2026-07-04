@@ -1,6 +1,6 @@
 #define FUNC_8001E2D0_RET void
 #include "common.h"
-#include "debug_level_select.h"
+#include "stage.h"
 
 typedef struct {
     u8 unk0[0x20];

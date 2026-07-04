@@ -1915,7 +1915,7 @@
       }
     },
     {
-      "name": "debug_level_select",
+      "name": "stage",
       "measures": {
         "fuzzy_match_percent": 73.71755,
         "total_code": "25888",

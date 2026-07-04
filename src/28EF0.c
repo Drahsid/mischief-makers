@@ -2,9 +2,9 @@
 #include "common.h"
 #include "actor.h"
 #include "Alphabet.h"
-#include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
+#include "stage.h"
 
 
 extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
