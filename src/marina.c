@@ -135,10 +135,9 @@ void func_8004A918(u16 actor_index) {
 }
 
 void func_8004A960(u16 actor_index) {
-    Actor* actor = &gActors[actor_index];
     s32 index;
 
-    actor->unk_12E_u8 |= 0x41;
+    gActors[actor_index].unk_12E_u8 |= 0x41;
 
     for (index = 0; index < 0x20; index++) {
         D_801373E0.raw[index] = 0;
@@ -146,21 +145,21 @@ void func_8004A960(u16 actor_index) {
 
     D_801373E0.unk_13 = 0;
     D_801373E0.unk_12 = 100;
-    actor->unk_140_u16[1] = 0;
-    actor->unk_140_u8[1] = 0;
-    actor->unk_180 = 0;
-    actor->unk_12F_u8 = 0;
-    actor->graphicLists = D_800D54EC;
-    actor->velocityX.raw = actor->velocityY.raw = actor->velocityZ.raw = 0;
-    actor->graphicFlags |= ACTOR_GFLAG_UNK10 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-    actor->flags &= ACTOR_FLAG_FLIPPED;
-    actor->flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED;
-    actor->unk_0DE = 1;
-    actor->unk_0DF = 1;
-    actor->unk_17C = 0;
-    gActors[0].unk_120 = actor->unk_124 = actor->unk_128 = 1.0f;
-    actor->unk_170 = 1;
-    actor->state = 3;
+    gActors[actor_index].unk_140_u16[1] = 0;
+    gActors[actor_index].unk_140_u8[1] = 0;
+    gActors[actor_index].unk_180 = 0;
+    gActors[actor_index].unk_12F_u8 = 0;
+    gActors[actor_index].graphicLists = D_800D54EC;
+    gActors[actor_index].velocityX.raw = gActors[actor_index].velocityY.raw = gActors[actor_index].velocityZ.raw = 0;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK10 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
+    gActors[actor_index].flags &= ACTOR_FLAG_FLIPPED;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED;
+    gActors[actor_index].unk_0DE = 1;
+    gActors[actor_index].unk_0DF = 1;
+    gActors[actor_index].unk_17C = 0;
+    gActors[0].unk_120 = gActors[actor_index].unk_124 = gActors[actor_index].unk_128 = 1.0f;
+    gActors[actor_index].unk_170 = 1;
+    gActors[actor_index].state = 3;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004AA64.s")
