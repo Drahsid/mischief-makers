@@ -99,5 +99,6 @@ typedef union {
 #define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
 
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000))
+#define FROM_FIXED(value) ((value) / FIXED_UNIT(1.0))
 
 #endif

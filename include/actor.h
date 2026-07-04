@@ -8,7 +8,7 @@
 #include "common_structs.h"
 
 typedef void (*ActorFunc)(u16 actor_index);
-typedef void (*Actor2Func2)(u16 actor_0, u16 actor_1);
+typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
@@ -238,7 +238,10 @@ typedef struct {
     /* 0x148 */ f32 unk_148;
     /* 0x14C */ f32 unk_14C;
 
-    /* 0x150 */ s32 var_150;
+    union {
+        /* 0x150 */ s32 var_150;
+        /* 0x150 */ s16 var_150_s16[2];
+    };
     /* 0x154 */ s32 var_154;
     /* 0x158 */ s32 var_158;
     /* 0x15C */ s32 var_15C;
@@ -264,12 +267,14 @@ typedef struct {
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
     union{
         /* 0x17C */ s32 unk_17C;
+        /* 0x17C */ s16 unk_17C_s16[2];
         /* 0x17C */ s8 unk_17C_s8[4];
         /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
         /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
     };
     union {
         /* 0x180 */ s32 unk_180;
+        /* 0x180 */ u16 unk_180_u16[2];
         /* 0x180 */ u8 unk_180_u8[4];
     };
     union {

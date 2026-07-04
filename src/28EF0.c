@@ -48,8 +48,6 @@ extern u16 gGuestActorIndex;
 extern u16 D_800D2954;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D295C;
-extern u16 D_800D5820;
-extern u16 D_800D5824;
 extern u16 D_800D84E8[];
 extern u16 D_800D8508[];
 extern u16 D_800D8528[];
