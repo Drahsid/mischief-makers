@@ -56,7 +56,6 @@ typedef struct {
 
 extern u8 D_800EF4D0; // folded addr required for fakematching
 extern u16 gAudioFadeMode;
-extern u32 gAudioUpdateCounter;
 extern u8 gAudioHeapBuffer[];
 
 extern u8 gAudioInitialized;

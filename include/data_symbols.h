@@ -23,6 +23,7 @@ extern u16 D_801370D4;
 extern u16 D_801370D8[];
 extern s16 D_801371D8[];
 extern s16 D_801372D8[];
+extern u16* D_801376A0;
 extern u8 D_801376BC[];
 extern u32 D_801376D4;
 extern u32 D_80137714;

@@ -45,7 +45,7 @@ extern u16 gSfxActorIndices[4];
 extern u16 gSfxStopTimers[4];
 extern u8 gSfxChannelVolumes[8];
 extern u8 gSfxChannelPans[8];
-
+extern u32 gAudioUpdateCounter;
 
 
 void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
