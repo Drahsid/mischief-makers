@@ -66,6 +66,7 @@ extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
+extern void func_80025578(void);
 extern void func_800255B4(u16 arg0);
 extern void func_80025BFC(void);
 extern void func_80025C38(void);
@@ -139,6 +140,7 @@ extern void func_80045E58(void* arg0);
 extern s32 func_80045F08(u32 arg0);
 extern void* func_80045F14(void* arg0);
 extern void func_80046A9C(void);
+extern s32 func_80046EBC(void);
 extern void func_800472D4(void);
 extern s32 func_8004735C(s32 arg0, s32 arg1);
 extern s32 func_800486F4(void);
@@ -234,5 +236,8 @@ extern void func_80083E74(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);
+
+void OverlayABI_Slot2_fn32_void(void);
+
 
 #endif

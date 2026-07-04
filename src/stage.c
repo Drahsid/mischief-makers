@@ -1944,7 +1944,8 @@ void func_8001A96C(void) {
     stage_time = gStageTime;
     if (((((stage_time % 60) * 0x1F4) / 3) % 100) < 0x32) {
         value = ((stage_time % 60) * 5) / 3;
-    } else {
+    }
+    else {
         value = (((stage_time % 60) * 5) / 3) + 1;
     }
     if (stage_time == 36000) {
@@ -2018,7 +2019,7 @@ void func_8001B078(u16 arg0, u16* arg1, u16* arg2, u16* arg3) {
             break;
         }
     }
-    
+
     switch (index) {
     case 2:
         *arg1 = 0;
@@ -2127,7 +2128,392 @@ void func_8001B3D0(void) {
     func_80005770();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/stage/GameState_Transition.s")
+void GameState_Transition(void) {
+    u16 temp;
+    u16 index;
+
+    func_8001B23C();
+    Text_SetColor(0, 0x1F, 0x1F, 0x1F);
+    Text_SetColor(1, 0x10, 0x1F, 0x1F);
+    switch (gGameStateSubState) {
+    case 0x0:
+        if (func_80046EBC()) {
+            gCurrentStage = D_80171B18;
+            gGameStateSubState = 7;
+        }
+        break;
+    case 0x7:
+    case 0x8:
+        temp = gGameStateSubState;
+        func_8001B078(D_80171B18, &D_8017815C, &D_80178156, &D_80178154);
+        if (D_8017815C == 6) {
+            func_8001B078(D_80171B18 + 1, &D_8017815C, &D_80178156, &D_80178154);
+        }
+        D_8017815E = D_8017815C;
+        D_80178158 = D_80178156;
+        func_8001B1A0();
+        D_80178152 = 0;
+        if ((gGameStateSubState == 8) && (D_8017815C == 4) && (D_80178156 >= 8)) {
+            gGameStateSubState = 0x41;
+        }
+        if (gGameStateSubState == 0x41) {
+            if (gCurrentStage == 0) {
+                func_8001B1F8();
+                gGameStateSubState = 0x41;
+            }
+            else if (temp == 7) {
+                Sound_StartFade(1, 0x18);
+                gGameStateSubState = 0x42;
+            }
+            else {
+                func_8001B2F4();
+                func_8001B1F8();
+                gGameStateSubState = 0x1E;
+            }
+        }
+        else if (D_800CBF40 != 0) {
+            gGameStateSubState = 0x1E;
+        }
+        else {
+            gGameStateSubState = 9;
+        }
+        D_800CBF40 = 0;
+        break;
+    case 0x9:
+        /* fallthrough */
+    case 0x89:
+        if (gGameStateSubState == 9) {
+            func_8001B2F4();
+        }
+        func_8008310C();
+        func_80083454();
+        func_800198B4();
+        D_80178154 = gStageGroupOptionOffsets[D_8017815C];
+        if (gCurrentStage >= 0x38) {
+            D_80178156 = (gCurrentStage - D_80178154) - 1;
+        }
+        else {
+            D_80178156 = gCurrentStage - D_80178154;
+        }
+        func_800199DC(D_80178156);
+        func_80019E48();
+        func_80083810(0, 5, D_800C94E0, 0);
+        func_80083810(0, 6, D_800C9500, 0);
+        func_8001A890();
+        func_8001A96C();
+        func_8001B004();
+        func_80083810(5, 0, D_800CA26C, 0);
+        func_80083810(5, 1, D_800C952C, 0);
+        Text_InitActorGList(0x78, D_800C962C, 0xFFC8, 0xFFEF, 1);
+        if (YellowGem_GetFlag(gCurrentStage) != 0) {
+            Text_InitActorGList(0x51, gGraphicListGemIcon, 0xFFA8, 0x3A, 0xFFFF);
+            gActors[0x51].graphicFlags |= 0x240;
+            gActors[0x51].unk_18C = (s32) D_800D8C78;
+        }
+        for (index = 0x30; index < 0x90; index++) {
+            gActors[index].colorA = 0x4F;
+        }
+        for (index = 0; index < 0x40; index++) {
+            gPortraits[index].alpha = 0xFE;
+        }
+        gPortraitTint = 0xFF;
+        if (gGameStateSubState != 9) {
+            Sound_StartFade(1, 0x28);
+        }
+        gGameStateSubState++;
+        break;
+    case 0xB:
+    case 0x8B:
+        func_8001A890();
+        func_8001A96C();
+        if ((gButtonPress & gButton_DUp) && (gActors[0x78].posY.whole != -0x11)) {
+            Sound_PlaySfx(0x22);
+            gActors[0x78].posY.whole += 0x14;
+        }
+        if ((gButtonPress & gButton_DDown) && (gActors[0x78].posY.whole != -0x25)) {
+            Sound_PlaySfx(0x22);
+            gActors[0x78].posY.whole -= 0x14;
+        }
+        if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
+            if (gActors[0x78].posY.whole == -0x11) { // unk3FCC: BFCC [0x78].0x8C
+                Sound_PlaySfx(0x48);
+                gGameStateSubState = 0xD;
+            }
+            else {
+                gActors[0x78].var_154 = 0x30; // unk4094 = C094 [0x78].0x154
+                Sound_StartFade(1, 0x30);
+                Sound_PlaySfx(0x23);
+                gGameStateSubState = 0xC;
+            }
+        }
+        break;
+    case 0xC:
+        if (gActors[0x78].var_154-- == 0) {
+            gGameState = 0;
+            gGameStateSubState = 0;
+        }
+        break;
+    case 0xD:
+        func_8001A890();
+        func_8001A96C();
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x32].posX.whole == -0x120) {
+            func_8001B1F8();
+            if (gGameStateSubState == 0xD) {
+                func_80019EC4();
+                for (index = 0x30; index < 0xBC; index++) {
+                    gActors[index].posX.whole += 0x100;
+                }
+                gGameStateSubState = 0xE;
+            }
+            else if (gGameStateSubState == 0x41) {
+                Sound_StartFade(1, 0x18);
+                gGameStateSubState = 0x42;
+            }
+        }
+        break;
+    case 0xE:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x32].posX.whole <= 0) {
+            gGameStateSubState = 0x20;
+        }
+        break;
+    case 0x1E:
+        func_80019EC4();
+        for (index = 0x30; index < 0x90; index++) {
+            gActors[index].colorA = 0x4F;
+        }
+        for (index = 0; index < 0x40; index++) {
+            gPortraits[index].alpha = 0xFE;
+        }
+        gPortraitTint = 0xFF;
+        gGameStateSubState = 0x1F;
+        break;
+    case 0xA:
+    case 0x8A:
+        func_8001A890();
+        func_8001A96C();
+        /* fallthrough */
+    case 0x1F:
+        gPortraitTint -= 4;
+        for (index = 0x30; index < 0x90; index++) {
+            gActors[index].colorA += 4;
+        }
+        if (gPortraitTint == 0x4F) {
+            gAudioFadeMode = 0;
+            Sound_PlayMusic(0x10);
+            *D_800C81E0 = 0xFFFF;
+            gGameStateSubState++;
+        }
+        break;
+    case 0x20:
+        if (D_80178152 != 0) {
+            if (gActors[0x78].posX.whole < D_800C95F4[D_80178156]) {
+                gActors[0x78].posX.whole++;
+            }
+            temp = ((gActors[0x78].posX.whole + 0x81) / 23);
+            func_8001A15C(temp);
+            if (((gActors[0x78].posX.whole + 0xE) % 23) == 0) {
+                func_80019F04(temp);
+                for (index = 0x8C; index < 0x9B; index++) {
+                    gActors[index].flags = 0;
+                }
+                func_800199DC(temp);
+            }
+            if ((gActors[0x78].posX.whole >= D_800C95F4[D_80178156]) && (gActors[*D_800C81E0 + 1].rotateX == 180.0f)) {
+                D_80178152 = 0;
+                D_80178158 = D_8017815A;
+                D_8017815E = D_80178160;
+                gGameStateSubState++;
+            }
+        }
+        else {
+            gGameStateSubState++;
+        }
+        break;
+    case 0x21:
+        temp = ((gActors[0x78].posX.whole + 0x81) / 23);
+        func_8001A15C(temp);
+        temp = D_80178156;
+        if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[0xA].colorB) != 0) {
+            temp--;
+        }
+        else if (Input_CheckButtonRepeat(gButton_DRight, &gActors[0xB].colorB) != 0) {
+            temp++;
+        }
+        if (temp == 0xFFFF) {
+            temp = 0;
+        }
+        if (temp >= D_800C8C04[D_8017815C]) {
+            temp = (D_800C8C04[D_8017815C] - 1);
+        }
+        if (D_80171B18 >= 0x38) {
+            index = ((D_80171B18 - D_80178154) - 1);
+        }
+        else {
+            index = (D_80171B18 - D_80178154);
+        }
+
+        if ((index >= temp) && (temp != D_80178156)) {
+            D_80178156 = temp;
+            gActors[0x78].posX.whole = D_800C95F4[D_80178156]; // 0xBFC8 = [0x78].0x88
+            Sound_PlaySfx2(0x22);
+            for (index = 0x8C; index < 0x9B; index++) {
+                gActors[index].flags = 0;
+            }
+            func_800199DC(D_80178156);
+        }
+        if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
+            Sound_StartFade(0x81, 0x50);
+            Sound_PlaySfx(0xD2);
+            gGameStateSubState = 0x30;
+        }
+        else if (gButtonPress & gButton_B) {
+            Sound_PlaySfx(0x48);
+            gGameStateSubState = 0x22;
+        }
+        else if ((gButtonPress & gButton_LTrig) && (D_8017815C != 0)) {
+            Sound_PlaySfx(0x48);
+            gGameStateSubState = 0x25;
+        }
+        else if ((gButtonPress & gButton_RTrig) && (D_8017815C < D_8017815E)) {
+            Sound_PlaySfx(0x48);
+            gGameStateSubState = 0x27;
+        }
+        break;
+    case 0x22:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole += 0x20;
+        }
+        if (gActors[0x30].posX.whole >= 0x121) {
+            gGameState = 0xE;
+            gGameStateSubState = 0;
+        }
+        break;
+    case 0x23:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].flags = 0;
+        }
+        func_80019EC4();
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole += 0x120;
+        }
+        gGameStateSubState++;
+        break;
+    case 0x24:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x30].posX.whole == 0) {
+            *D_800C81E0 = 0xFFFF;
+            gGameStateSubState = 0x21;
+        }
+        break;
+    case 0x25:
+        for (index = 0x30; index < 0xBC; index++) {
+             gActors[index].posX.whole += 0x20;
+        }
+        if (gActors[0x30].posX.whole >= 0x121) {
+            D_8017815C--;
+            D_80178154 = gStageGroupOptionOffsets[D_8017815C];
+            D_80178156 = D_800C8C04[D_8017815C] - 1;
+            for (index = 0x30; index < 0xBC; index++) {
+                gActors[index].flags = 0;
+            }
+            func_80019EC4();
+            for (index = 0x30; index < 0xBC; index++) {
+                gActors[index].posX.whole -= 0x120;
+            }
+            gGameStateSubState++;
+        }
+        break;
+    case 0x26:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole += 0x20;
+        }
+        if (gActors[0x30].posX.whole == 0) {
+            *D_800C81E0 = 0xFFFF;
+            gGameStateSubState = 0x21;
+        }
+        break;
+    case 0x27:
+        for (index = 0x30; index < 0xBC; index++) {
+             gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x30].posX.whole < -0x120) {
+            D_8017815C++;
+            if (D_8017815C < D_8017815E) {
+                D_80178154 = gStageGroupOptionOffsets[D_8017815C];
+                D_80178156 = D_800C8C04[D_8017815C] - 1;
+            }
+            else {
+                func_8001B078((u16) D_80171B18, &D_8017815C, &D_80178156, &D_80178154);
+            }
+            for (index = 0x30; index < 0xBC; index++) {
+                gActors[index].flags = 0;
+            }
+            func_80019EC4();
+            for (index = 0x30; index < 0xBC; index++) {
+                gActors[index].posX.whole += 0x120;
+            }
+            gGameStateSubState++;
+        }
+        break;
+    case 0x28:
+        for (index = 0x30; index < 0xBC; index++) {
+            gActors[index].posX.whole -= 0x20;
+        }
+        if (gActors[0x30].posX.whole == 0) {
+            *D_800C81E0 = 0xFFFF;
+            gGameStateSubState = 0x21;
+        }
+        break;
+    case 0x30:
+        gPortraitTint += 2;
+        for (index = 0x30; index < 0x90; index++) {
+            gActors[index].colorA -= 2;
+        }
+        if (gPortraitTint == 0xFF) {
+            for (index = 0; index < 0x40; index++) {
+                gPortraits[index].alpha = 0xFF;
+            }
+            func_800230B8();
+            gGameStateSubState = 0x40;
+        }
+        break;
+    case 0x40:
+        func_800271B0(0);
+        gCurrentStage = D_80178154 + D_80178156;
+        if (gCurrentStage >= 0x37) {
+            gCurrentStage++;
+        }
+        gGameStateSubState++;
+        break;
+    case 0x41:
+        D_8013747C = 0;
+        gAudioFadeMode = 0;
+        gCurrentScene = gStageScenes[gCurrentStage];
+        D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
+        func_80025578();
+        if (gCurrentStage == 0x21) {
+            func_8002601C(0x10);
+            OverlayABI_Slot2_fn32_void();
+        }
+        gGameState = 5;
+        gGameStateSubState = 0;
+        D_800CBF40 = 0;
+        break;
+    case 0x42:
+        if (gAudioFadeMode == 3) {
+            gGameStateSubState = 0x41;
+        }
+        break;
+    }
+}
 
 // sets bit if yellow gem was collected in this stage
 void YellowGem_SetFlag(void) {

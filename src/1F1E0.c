@@ -43,7 +43,6 @@ extern u16 D_800CA244;
 extern u16 D_800CA248;
 extern u16 D_800CA24C;
 extern u16 D_800CA250;
-extern s16 D_800CBF40;
 extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 

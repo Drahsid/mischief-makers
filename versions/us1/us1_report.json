@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 29.194897,
+    "fuzzy_match_percent": 29.442205,
     "total_code": "1994280",
-    "matched_code": "582228",
-    "matched_code_percent": 29.194897,
+    "matched_code": "587160",
+    "matched_code_percent": 29.442205,
     "matched_data_percent": 100.0,
     "total_functions": 4708,
-    "matched_functions": 2063,
-    "matched_functions_percent": 43.81903,
+    "matched_functions": 2064,
+    "matched_functions_percent": 43.84027,
     "complete_data_percent": 100.0,
     "total_units": 415
   },
@@ -1917,21 +1917,21 @@
     {
       "name": "stage",
       "measures": {
-        "fuzzy_match_percent": 80.94871,
+        "fuzzy_match_percent": 100.0,
         "total_code": "25888",
-        "matched_code": "20956",
-        "matched_code_percent": 80.94871,
+        "matched_code": "25888",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 62,
-        "matched_functions": 61,
-        "matched_functions_percent": 98.3871,
+        "matched_functions": 62,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "25888",
-          "fuzzy_match_percent": 80.94871,
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147579520"
           }
@@ -2283,6 +2283,7 @@
         {
           "name": "GameState_Transition",
           "size": "4932",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147595360"
           }
@@ -49100,14 +49101,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 50.18845,
+        "fuzzy_match_percent": 50.942863,
         "total_code": "653752",
-        "matched_code": "328108",
-        "matched_code_percent": 50.188454,
+        "matched_code": "333040",
+        "matched_code_percent": 50.942867,
         "matched_data_percent": 100.0,
         "total_functions": 1799,
-        "matched_functions": 1114,
-        "matched_functions_percent": 61.92329,
+        "matched_functions": 1115,
+        "matched_functions_percent": 61.978878,
         "complete_data_percent": 100.0,
         "total_units": 264
       }

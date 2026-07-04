@@ -34,6 +34,8 @@ extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CA230;
+extern u16 D_800CA26C[];
+extern u16 D_800CBF40;
 extern u16 D_800CBF50;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
