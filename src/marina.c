@@ -136,12 +136,12 @@ void func_8004A918(u16 actor_index) {
 
 void func_8004A960(u16 actor_index) {
     Actor* actor = &gActors[actor_index];
-    s32 i;
+    s32 index;
 
     actor->unk_12E_u8 |= 0x41;
 
-    for (i = 0; i < 0x20; i++) {
-        ((u32*)&D_801373E0)[i] = 0;
+    for (index = 0; index < 0x20; index++) {
+        D_801373E0.raw[index] = 0;
     }
 
     D_801373E0.unk_13 = 0;
