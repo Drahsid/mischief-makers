@@ -10,7 +10,7 @@ s16 gActorInitStats[]={
 //  AX    AY    BX    BY      HP   dmg ?
     0,    0,    0,    0,      0,   0,  10, // ACTORTYPE_ZERO
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_1
-    0x10, 0x10, 0x10, 0x10,   10,  10, 52,  // ACTORTYPE_2
+    0x10, 0x10, 0x10, 0x10,   10,  10, 52, // ACTORTYPE_2
     0x10, 0x10, 0x10, 0x10,   10,  10,  3, // ACTORTYPE_3
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_4
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_5
