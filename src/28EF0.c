@@ -21,7 +21,7 @@ extern u16 D_800D24A8[];
 extern u16 D_800D24B4[];
 extern u16 D_800D24C0[];
 extern u16 D_800D24CC[];
-extern s16* D_800D24F4[]; // spikeball colors
+extern u16* D_800D24F4[]; // spikeball colors
 extern s32 D_800D2504[];
 extern s32 D_800D2514[];
 extern s32 D_800D258C[];
@@ -8532,7 +8532,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         gActors[actor_index].state++;
         WarpGate_Init(actor_index);
         gActors[actor_index].var_160 = 0;
-        gActors[actor_index].unk_164 = FIXED_UNIT(6.5);
+        gActors[actor_index].unk_164 = FIXED_UNIT(104);
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
         gActors[actor_index].unk_11C = 0.0f;
         gActors[actor_index].unk_120 = 0.0f;

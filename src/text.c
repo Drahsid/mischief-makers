@@ -76,7 +76,7 @@ u16 gTextPaletteBase[]={0,0x001,0x39cf,0x7bdf};
 // @param z z-position of actor.
 void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z) {
     gActors[actor_index].actorType = 0;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK11;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].posX.whole = x;

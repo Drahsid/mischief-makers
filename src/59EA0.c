@@ -38,7 +38,7 @@ u16 func_800592A0(u16 actor_index, s32* arg1) {
         return free_actor;
     }
     gActors[free_actor].actorType = 9;
-    func_8001E2D0(free_actor);
+    Actor_Initialize(free_actor);
     gActors[free_actor].graphicFlags |= gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5);
     gActors[free_actor].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19;
     gActors[free_actor].colorA = 0xFE;
@@ -121,7 +121,7 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
     sp9C[0] = gActors[actor_index].posX.whole + ((gActors[actor_index].hitboxAX0 + gActors[actor_index].hitboxAX1) / 2);
     sp9C[1] = gActors[actor_index].posY.whole + ((gActors[actor_index].hitboxAY0 + gActors[actor_index].hitboxAY1) / 2);
     sp9C[2] = gActors[actor_index].posZ.whole + 1;
-    actor_1 = gActors[actor_index].unk_0D6;
+    actor_1 = gActors[actor_index].parentIndex;
     if (actor_1 != 0xFFFF) {
         if (func_8005C6D0(gActors[actor_1].hitboxBX1 - gActors[actor_1].hitboxBX0) < 0x30) {
             sp9C[0] = (gActors[actor_1].posX.whole + sp9C[0] + ((gActors[actor_1].hitboxBX0 + gActors[actor_1].hitboxBX1) / 2)) / 2;
@@ -145,7 +145,7 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
     gActors[actor_2].graphicIndex = 0x168;
     gActors[actor_2].scaleX = 0.5 * scale;
     gActors[actor_2].scaleY = 0.5 * scale;
-    gActors[actor_2].timer_110 = -gActors[actor_2].scaleX / 30.0;
+    gActors[actor_2].var_110 = -gActors[actor_2].scaleX / 30.0;
     gActors[actor_2].unk_114 = -gActors[actor_2].scaleY / 30.0;
     gActors[actor_2].colorA = 0xC0;
     gActors[actor_2].var_154 = -0xA;
@@ -168,7 +168,7 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
         gActors[actor_1].unk_148 = 20.0f;
         gActors[actor_1].scaleX = 2.0 * scale;
         gActors[actor_1].scaleY = 0.1 * scale;
-        gActors[actor_1].timer_110 = -gActors[actor_1].scaleX / 30.0;
+        gActors[actor_1].var_110 = -gActors[actor_1].scaleX / 30.0;
         gActors[actor_1].unk_114 = -gActors[actor_1].scaleY / 30.0;
         gActors[actor_1].var_154 = -0xF;
         gActors[actor_1].var_160 = Rand() << 0x12;
@@ -193,7 +193,7 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     s32 pad;
     u16 actor_1;
 
-    actor_1 = gActors[actor_index].unk_0D6;
+    actor_1 = gActors[actor_index].parentIndex;
     sp34[0] = gActors[actor_index].posX.whole + ((gActors[actor_index].hitboxAX0 + gActors[actor_index].hitboxAX1) / 2);
     sp34[1] = gActors[actor_index].posY.whole + ((gActors[actor_index].hitboxAY0 + gActors[actor_index].hitboxAY1) / 2);
     sp34[2] = gActors[actor_index].posZ.whole + 1;
@@ -223,7 +223,7 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     gActors[actor_1].scaleX = scale;
     gActors[actor_1].scaleY = scale;
     gActors[actor_1].unk_114 = -gActors[actor_1].scaleY / 30.0f;
-    gActors[actor_1].timer_110 = -gActors[actor_1].scaleX / 30.0f;
+    gActors[actor_1].var_110 = -gActors[actor_1].scaleX / 30.0f;
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
         gActors[actor_1].var_150 = 0x220000;
     }
@@ -256,7 +256,7 @@ u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale) {
     gActors[actor_1].scaleX = scale / 2;
     gActors[actor_1].scaleY = scale / 2;
     gActors[actor_1].unk_114 = (scale / 30.0f) / 2;
-    gActors[actor_1].timer_110 = (scale / 30.0f) / 2;
+    gActors[actor_1].var_110 = (scale / 30.0f) / 2;
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
         gActors[actor_1].var_150 = 0x220000;
     }
@@ -294,9 +294,9 @@ u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3) {
         return actor_1;
     }
     gActors[actor_1].var_154 = -(200 / arg3);
-    gActors[actor_1].timer_110 = scale / arg3;
+    gActors[actor_1].var_110 = scale / arg3;
     gActors[actor_1].unk_114 = scale / arg3;
-    gActors[actor_1].unk_118 = -gActors[actor_1].timer_110 / arg3;
+    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / arg3;
     gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / arg3;
     return actor_1;
 }
@@ -324,9 +324,9 @@ u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4) {
         return actor_1;
     }
     gActors[actor_1].var_154 = -(200 / arg4);
-    gActors[actor_1].timer_110 = scale / arg4;
+    gActors[actor_1].var_110 = scale / arg4;
     gActors[actor_1].unk_114 = scale / arg4;
-    gActors[actor_1].unk_118 = -gActors[actor_1].timer_110 / arg4;
+    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / arg4;
     gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / arg4;
     return actor_1;
 }
@@ -344,7 +344,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].var_154 = -0xA;
     gActors[actor_1].scaleY = scale * 0.8;
     gActors[actor_1].scaleX = scale * 0.8;
-    gActors[actor_1].timer_110 = -0.05f;
+    gActors[actor_1].var_110 = -0.05f;
     gActors[actor_1].unk_114 = -0.05f;
     gActors[actor_1].unk_18C = 0x8022D568;
 
@@ -360,7 +360,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].scaleY = scale * 1.0;
     gActors[actor_1].scaleX = scale * 1.0;
     gActors[actor_1].unk_114 = -0.05f;
-    gActors[actor_1].timer_110 = -0.05f;
+    gActors[actor_1].var_110 = -0.05f;
     gActors[actor_1].unk_18C = 0x8022D4E8;
     return actor_1;
 }
@@ -469,7 +469,7 @@ u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3) {
     gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
     arg2 *= 3.0;
     arg3 *= 3.0;
-    gActors[actor_1].timer_110 = arg2 / 120.0f;
+    gActors[actor_1].var_110 = arg2 / 120.0f;
     gActors[actor_1].unk_114 = arg3 / 30.0f;
     gActors[actor_1].unk_118 = -gActors[actor_1].unk_114 / 180;
     gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / 32;
@@ -655,7 +655,7 @@ void func_8005B1E8(u16 actor_index) {
             gActors[actor_1].unk_140_f32 = 0.0f;
             gActors[actor_1].unk_144 = 4.0f;
             gActors[actor_1].unk_148 = 20.0f;
-            gActors[actor_1].timer_110 = 0.06f;
+            gActors[actor_1].var_110 = 0.06f;
             gActors[actor_1].unk_118 = -0.008f;
             gActors[actor_1].unk_114 = 0.1f;
             gActors[actor_1].unk_11C = -0.01f;
@@ -702,7 +702,7 @@ void func_8005B3F4(u16 actor_index) {
         gActors[actor_1].graphicIndex = 0x1C6;
         gActors[actor_1].var_154 = -0xA;
         gActors[actor_1].unk_148 = 20.0f;
-        gActors[actor_1].timer_110 = 0.06f;
+        gActors[actor_1].var_110 = 0.06f;
         gActors[actor_1].unk_118 = -0.008f;
         gActors[actor_1].unk_114 = 0.1f;
         gActors[actor_1].unk_11C = -0.01f;
@@ -747,7 +747,7 @@ void func_8005B5FC(u16 actor_index) {
         gActors[actor_index].unk_180_u8[0] = gActors[actor_1].unk_148;
         if (gActors[actor_index].unk_180_u8[2] == 0) {
             gActors[actor_1].scaleX = 0.0f;
-            gActors[actor_1].timer_110 = 0.1f;
+            gActors[actor_1].var_110 = 0.1f;
             gActors[actor_1].unk_118 = -0.002f;
             gActors[actor_1].scaleY = 0.0f;
             gActors[actor_1].unk_114 = 0.0f;
@@ -756,7 +756,7 @@ void func_8005B5FC(u16 actor_index) {
         }
         else {
             gActors[actor_1].scaleX = 0.0f;
-            gActors[actor_1].timer_110 = 0.0f;
+            gActors[actor_1].var_110 = 0.0f;
             gActors[actor_1].unk_118 = 0.0f;
             gActors[actor_1].scaleY = 0.0f;
             gActors[actor_1].unk_114 = 0.1f;
@@ -832,7 +832,7 @@ void func_8005BA38(u16 actor_index) {
             gActors[actor_1].colorA = 0xC0;
             gActors[actor_1].var_150 = 0xC0000;
             gActors[actor_1].scaleX = gActors[actor_1].scaleY = 0.5f;
-            gActors[actor_1].timer_110 = gActors[actor_1].unk_114 = 0.05f;
+            gActors[actor_1].var_110 = gActors[actor_1].unk_114 = 0.05f;
             gActors[actor_1].unk_118 = gActors[actor_1].unk_11C = -0.005f;
             gActors[actor_1].unk_148 = 20.0f;
             gActors[actor_1].var_15C = Rand() * 8;
@@ -879,8 +879,8 @@ void func_8005BCF8(u16 actor_index) {
         gActors[actor_1].var_160 = Rand() << 0x12;
         gActors[actor_1].scaleX = ((f32) func_8005C708(0) * 0.0078125 * 0.3) + 0.5;
         gActors[actor_1].scaleY = ((f32) func_8005C708(0) * 0.0078125 * 0.1) + 0.2;
-        gActors[actor_1].timer_110 =  (f32) func_8005C708(0) * 0.0078125;
-        gActors[actor_1].unk_118 = -(gActors[actor_1].timer_110 / gActors[actor_1].unk_148);
+        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * 0.0078125;
+        gActors[actor_1].unk_118 = -(gActors[actor_1].var_110 / gActors[actor_1].unk_148);
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
         gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
@@ -926,9 +926,9 @@ void func_8005C098(u16 actor_index, s32 arg1) {
 // unused variant of after-image. uses arrays to store history.
 u16 func_8005C0CC(u16 actor_index) {
     gActors[0x2D].actorType = gActors[0x2E].actorType = gActors[0x2F].actorType = 0x2E;
-    func_8001E2D0(0x2D);
-    func_8001E2D0(0x2E);
-    func_8001E2D0(0x2F);
+    Actor_Initialize(0x2D);
+    Actor_Initialize(0x2E);
+    Actor_Initialize(0x2F);
     gActors[0x2D].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
     gActors[0x2E].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
     gActors[0x2F].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
@@ -958,7 +958,7 @@ u16 func_8005C250(u16 actor_index) {
         return actor_1;
     }
     gActors[actor_1].actorType = 0x2E;
-    func_8001E2D0(actor_1);
+    Actor_Initialize(actor_1);
     gActors[actor_1].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
     gActors[actor_1].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19 | ACTOR_FLAG_UNK27;
     // fakematch: & 0xFFFF

@@ -53,7 +53,7 @@ extern void func_800472D4(void);
 extern void func_80047994(void);
 
 void func_80043D04(u16* spawn);
-void func_80042D84(u32 arg0);
+void func_80042D84(u16 arg0);
 void func_800451E4(void* arg0);
 
 void func_80042CE0(void) {

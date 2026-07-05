@@ -192,7 +192,7 @@ u16 D_801BB3C8_7E9998[] = {
 };
 
 // spawn actors in start in "Trapped"
-u8 D_801BB588_7E9B58[] = {
+u16 D_801BB588_7E9B58[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0070, 0x0D90, 0x021C, 0x0012, 0x0000, ACTORTYPE_OVL3_W5_26,
     0x0000, 0x0071, 0x0D90, 0x021C, 0x0012, 0x0002, ACTORTYPE_OVL3_W5_26,
