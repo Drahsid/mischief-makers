@@ -436,6 +436,8 @@ segments:
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: 82F80, type: .bss, vram: 0x80178470 }
+      - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }
       - { name: ultralib/io/vimgr, type: .bss, vram: 0x801826D0 }
       - { name: ultralib/io/pimgr, type: .bss, vram: 0x801838F0 }
