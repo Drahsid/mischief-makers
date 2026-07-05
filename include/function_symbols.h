@@ -20,6 +20,7 @@ extern void func_800109B0(void);
 extern void func_80010C20(u16 arg0);
 extern void func_8001A584(void);
 extern void func_800230B8(void);
+extern void func_80025B7C(void);
 extern void func_800282F0(s16 arg0, s16 arg1);
 extern u16 func_8002877C(u16 actor_index);
 extern s32 Math_AbsS32(s32 val);
@@ -59,6 +60,7 @@ extern u16 func_8005D338(u16 actor_index);
 extern s32 func_8005D370(u16 actor_index, u16 arg1);
 extern void func_8005D3D8(u16 actor_index);
 extern u16 func_8005D418(u16 actor_index);
+extern void func_8005D450(u16 actor_index);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
@@ -174,8 +176,10 @@ extern void func_80081720(u16 arg0, void* arg1, s32 arg2);
 extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);
+extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
 extern void func_8008C710(u16 arg0);
+extern void func_8002092C(void);
 extern void func_80022D10(void);
 #ifndef Actor_Initialize_RET
   #define Actor_Initialize_RET DEFAULT_INT
@@ -243,6 +247,8 @@ extern void func_80083E74(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);
+
+extern void GameState_Gameplay(void);
 
 void OverlayABI_Slot2_fn32_void(void);
 

@@ -8,7 +8,7 @@ void func_800121D0(void) {
 
     actor_index = 0;
     index = gActors[actor_index].health;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
     gActors[actor_index].health = index;
     gActors[0].posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;

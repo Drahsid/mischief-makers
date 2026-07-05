@@ -89,7 +89,6 @@ extern void UpdateCameraShake(void);
 extern void func_8005C8A4(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
-extern void func_800836A0(s32, s32, u16*, s32); // guess on types
 extern void func_80083A74(s32, s32, s32); // guess
 extern void func_80083C54(s16, s32, s32); // guess
 extern void func_8008C528(u16); // guess

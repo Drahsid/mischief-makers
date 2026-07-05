@@ -15,6 +15,7 @@ extern s32 D_800D2928;
 extern s32 D_800D2938;
 extern s16 D_800D294C;
 extern u16 D_800D8588[]; // all-white palette
+extern s16 D_800E13FC[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
