@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 30.290028,
+    "fuzzy_match_percent": 30.382294,
     "total_code": "1994280",
-    "matched_code": "604068",
-    "matched_code_percent": 30.290028,
+    "matched_code": "605908",
+    "matched_code_percent": 30.382294,
     "matched_data_percent": 100.0,
     "total_functions": 4708,
-    "matched_functions": 2089,
-    "matched_functions_percent": 44.371284,
+    "matched_functions": 2092,
+    "matched_functions_percent": 44.435005,
     "complete_data_percent": 100.0,
     "total_units": 414
   },
@@ -2491,21 +2491,21 @@
     {
       "name": "actor_init",
       "measures": {
-        "fuzzy_match_percent": 29.87805,
+        "fuzzy_match_percent": 100.0,
         "total_code": "2624",
-        "matched_code": "784",
-        "matched_code_percent": 29.87805,
+        "matched_code": "2624",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 4,
-        "matched_functions": 1,
-        "matched_functions_percent": 25.0,
+        "matched_functions": 4,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "2624",
-          "fuzzy_match_percent": 29.87805,
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147605408"
           }
@@ -2522,6 +2522,7 @@
         {
           "name": "func_8001DBA0",
           "size": "192",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147605408"
           }
@@ -2529,6 +2530,7 @@
         {
           "name": "func_8001DC60",
           "size": "464",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147605600"
           }
@@ -2536,6 +2538,7 @@
         {
           "name": "func_8001DE30",
           "size": "1184",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147606064"
           }
@@ -49140,14 +49143,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 53.529167,
+        "fuzzy_match_percent": 53.81062,
         "total_code": "653752",
-        "matched_code": "349948",
-        "matched_code_percent": 53.529167,
+        "matched_code": "351788",
+        "matched_code_percent": 53.81062,
         "matched_data_percent": 100.0,
         "total_functions": 1799,
-        "matched_functions": 1140,
-        "matched_functions_percent": 63.36854,
+        "matched_functions": 1143,
+        "matched_functions_percent": 63.535297,
         "complete_data_percent": 100.0,
         "total_units": 261
       }
