@@ -35,13 +35,13 @@ s32 D_80180FC0;
 void func_80082380(Gfx* display_list, s32 x_offset, s32 y_offset, s32* texture_images, u16* tlut, u8 arg5) {
     s32 upper_x;
     s32 upper_y;
-    s32 temp_t1;
+    s32 texture_image;
     s32 y_index;
     s32 delta_x;
     s32 delta_y;
     s32 dsdx;
     s32 x_index;
-    Gfx* var_v0;
+    Gfx* working_dlist;
 
     if (D_801376BC[arg5] != 0) {
         gSPDisplayList(gDisplayListHead++, D_800E3590);
@@ -61,21 +61,21 @@ void func_80082380(Gfx* display_list, s32 x_offset, s32 y_offset, s32* texture_i
         dsdx = 1;
     }
 
-    var_v0 = display_list;
+    working_dlist = display_list;
     for (y_index = 0; y_index < 7; y_index++) {
         for (x_index = 0; x_index < 10; x_index++) {
-            temp_t1 = texture_images[10 * y_index + x_index];
-            if (temp_t1 != 0) {
+            texture_image = texture_images[10 * y_index + x_index];
+            if (texture_image != 0) {
                 upper_x = (x_index * 32) + x_offset;
                 upper_y = (y_index * 32) + y_offset;
                 if (((upper_x + 32) < 0) || ((upper_y + 32) < 0)) {
                     continue;
                 }
-                gDPLoadTextureBlock(var_v0++, temp_t1, G_IM_FMT_CI, G_IM_SIZ_8b,
+                gDPLoadTextureBlock(working_dlist++, texture_image, G_IM_FMT_CI, G_IM_SIZ_8b,
                                     32, 32, 0, 
                                     G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 
                                     5, 5, G_TX_NOLOD, G_TX_NOLOD);
-                gSPTextureRectangle(var_v0++, 
+                gSPTextureRectangle(working_dlist++, 
                                     MAX(0, upper_x) << 2,
                                     MAX(0, upper_y) << 2,
                                     ((upper_x - delta_x) + 32) << 2, 
@@ -89,29 +89,27 @@ void func_80082380(Gfx* display_list, s32 x_offset, s32 y_offset, s32* texture_i
         }
     }
     gDPLoadTLUT_pal256(gDisplayListHead++, tlut);
-    gSPEndDisplayList(var_v0);
+    gSPEndDisplayList(working_dlist);
     gSPDisplayList(gDisplayListHead++, display_list);
     gDPPipeSync(gDisplayListHead++);
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/j3YGA
-void func_80082820(Gfx* arg0, s32* arg1, u16* arg2, u8 arg3) {
-    s32 temp_v1;
-    s32 temp_a3;
-    s32 temp_t0;
-    s32 temp_t1;
-    s32 var_s1;
-    s32 spB0;
-    s32 spAC;
-    s32 spA8;
-    s32 var_t4;
-    Gfx* var_v0;
+void func_80082820(Gfx* display_list, s32* texture_images, u16* tlut, u8 arg3) {
+    s32 upper_x_delta;
+    s32 upper_x;
+    s32 upper_y;
+    s32 texture_image;
+    s32 y_index;
+    s32 delta_x;
+    s32 delta_y;
+    s32 dsdx;
+    s32 x_index;
+    Gfx* working_dlist;
 
     if (D_801376BC[arg3] != 0) {
         gSPDisplayList(gDisplayListHead++, D_800E3590);
-        spB0 = spAC = 1;
-        spA8 = 4;
+        delta_x = delta_y = 1;
+        dsdx = 4;
     }
     else {
         gSPDisplayList(gDisplayListHead++, D_800E35E0);
@@ -122,50 +120,52 @@ void func_80082820(Gfx* arg0, s32* arg1, u16* arg2, u8 arg3) {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
         }
         gDPSetEnvColor(gDisplayListHead++, D_801376A8[arg3], D_801376AC[arg3], D_801376B0[arg3], D_801376B4[arg3]);
-        spB0 = spAC = 0;
-        spA8 = 1;
+        delta_x = delta_y = 0;
+        dsdx = 1;
     }
 
-    var_v0 = arg0;
-    for (var_s1 = 0; var_s1 < 7; var_s1++) {
-        if (D_8011D3B0[var_s1][0] == 0xFFFF) {
+    working_dlist = display_list;
+    for (y_index = 0; y_index < 7; y_index++) {
+        if (D_8011D3B0[y_index][0] == 0xFFFF) {
             continue;
         }
-        temp_v1 = (14 - ((D_8011D3B0[var_s1][0] - 2) & 0x1F));
-        for (var_t4 = 0; var_t4 < 10; var_t4++) {
-            temp_t1 = arg1[10 * var_s1 + var_t4];
-            if (temp_t1 != 0) {
-                temp_t0 = (var_s1 * 32) + D_800BE6E0;
-                temp_a3 = (var_t4 * 32) + temp_v1;
-                if (((temp_a3 + 32) < 0) || ((temp_t0 + 32) < 0)) {
-                    continue;
-                }
-                gDPLoadTextureBlock(var_v0++, temp_t1, G_IM_FMT_CI, G_IM_SIZ_8b,
-                                    32, 32, 0, 
-                                    G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 
-                                    5, 5, G_TX_NOLOD, G_TX_NOLOD);
-                gSPTextureRectangle(var_v0++, 
-                                    MAX(0, temp_a3) << 2, // ((temp_a3 < 0) ? 0 : temp_a3) * 4,
-                                    MAX(0, temp_t0) << 2, // ((temp_t0 < 0) ? 0 : temp_t0) * 4, 
-                                    ((temp_a3 - spB0) + 32) << 2, 
-                                    ((temp_t0 - spAC) + 32) << 2, 
-                                    G_TX_RENDERTILE,
-                                    ((temp_a3 < 0) ? -temp_a3 : 0) * 32,
-                                    ((temp_t0 < 0) ? -temp_t0 : 0) * 32,
-                                    spA8 << 10,
-                                    1 << 10);
+        upper_x_delta = (14 - ((D_8011D3B0[y_index][0] - 2) & 0x1F));
+        for (x_index = 0; x_index < 10; x_index++) {
+            texture_image = texture_images[10 * y_index + x_index];
+            if (texture_image == 0) {
+                continue;
             }
+            upper_x = (x_index * 32) + upper_x_delta;
+            if ((upper_x + 32) < 0) {
+                continue;
+            }
+            upper_y = (y_index * 32) + D_800BE6E0;
+            if ((upper_y + 32) < 0) {
+                continue;
+            }
+            gDPLoadTextureBlock(working_dlist++, texture_image, G_IM_FMT_CI, G_IM_SIZ_8b,
+                                32, 32, 0,
+                                G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                5, 5, G_TX_NOLOD, G_TX_NOLOD);
+            gSPTextureRectangle(working_dlist++,
+                                MAX(0, upper_x) << 2,
+                                MAX(0, upper_y) << 2,
+                                ((upper_x - delta_x) + 32) << 2,
+                                ((upper_y - delta_y) + 32) << 2,
+                                G_TX_RENDERTILE,
+                                ((upper_x < 0) ? -upper_x : 0) * 32,
+                                ((upper_y < 0) ? -upper_y : 0) * 32,
+                                dsdx << 10,
+                                1 << 10);
         }
     }
-    gDPLoadTLUT_pal256(gDisplayListHead++, arg2);
-    gSPEndDisplayList(var_v0);
-    gSPDisplayList(gDisplayListHead++, arg0);
+    gDPLoadTLUT_pal256(gDisplayListHead++, tlut);
+    gSPEndDisplayList(working_dlist);
+    gSPDisplayList(gDisplayListHead++, display_list);
+    if (D_8011D3B0 && D_8011D3B0) {} // fakematch
     gDPPipeSync(gDisplayListHead++);
 }
-#else
-void func_80082820(Gfx* arg0, s32* arg1, u16* arg2, u8 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80082820.s")
-#endif
+
 
 void func_80082CFC(void) {
     Gfx* display_list;
