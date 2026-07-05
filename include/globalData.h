@@ -152,8 +152,8 @@ extern u32 D_800BE60C; // unused
 extern u32 D_800BE610; // zero'd during GameState_Loading, otherwise unused.
 extern u32 D_800BE614; // zero'd during GameState_Loading, otherwise unused.
 extern u32 D_800BE618; // zero'd during GameState_Loading, otherwise unused.
-extern u32 D_800BE61C; // zero'd during 2 functions, otherwise unused.
-extern u32 D_800BE620; // zero'd during 2 functions, otherwise unused.
+extern s32 D_800BE61C; // zero'd during 2 functions, otherwise unused.
+extern s32 D_800BE620; // zero'd during 2 functions, otherwise unused.
 extern u32 D_800BE624; // unused.
 extern u32 D_800BE628; // unused.
 extern u16 gScreenXLock; // locks X-axis screen scrolling. always false

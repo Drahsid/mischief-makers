@@ -143,6 +143,8 @@ extern s16 func_800456DC(void);
 extern void func_80045E58(void* arg0);
 extern s32 func_80045F08(u32 arg0);
 extern void* func_80045F14(void* arg0);
+extern void func_80046498(u16);
+extern void func_8004667C(void);
 extern void func_80046A9C(void);
 extern s32 func_80046EBC(void);
 extern void func_800472D4(void);

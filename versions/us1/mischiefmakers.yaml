@@ -89,7 +89,7 @@ segments:
       - [0x005A70, asm] # has to do with the save file
       - [0x00A540, c] # has to do with drawing and the persp/ortho view
       - [0x011820, asm] # collision builder?
-      - [0x012DD0, asm] # has to do with spawning the player actor, and the camera
+      - [0x012DD0, c] # has to do with spawning the player actor, and the camera
       - [0x0134E0, c]
       - [0x013850, asm, gameover] # gameover gamestate
       - [0x0156F0, c]
