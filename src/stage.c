@@ -1,4 +1,4 @@
-#define FUNC_8001E2D0_RET void
+#define Actor_Initialize_RET void
 #include "common.h"
 #include "actor.h"
 #include "boot.h"
@@ -813,22 +813,27 @@ char* D_800C9680[] = {
 };
 
 s16 D_800C9694[] = {
-    0x00FA, 0x00E8, 0x00E9, 0x00EA, 0x00EB, 0x0000
+    0x00FA, 0x00E8, 0x00E9, 0x00EA, 0x00EB
 };
 
 u16* D_800C96A0[] = {
     D_800C9564, D_800C957C, D_800C9594, D_800C95AC, D_800C95C4
 };
 
+// "Record"
 u16 D_800C96B4[] = {
-    0x0149, 0x0122, 0x0120, 0x012C, 0x012F, 0x0121, 0x8FFF, 0x0000
+    0x0149, 0x0122, 0x0120, 0x012C, 0x012F, 0x0121, 0x8FFF
 };
 
+// " h  m  s"
 u16 D_800C96C4[] = {
     0x0000, 0x0125, 0x0000, 0x0000, 0x012A, 0x0000, 0x0000, 0x0130,
-    0x8FFF, 0x0000, 0x0051, 0x0052, 0x0053, 0x0054, 0x0055, 0x0056,
-    0x0057, 0x0058, 0x0059, 0x005A, 0x0083, 0x0084, 0x0085, 0x0000,
-    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
+    0x8FFF
+};
+
+u16 D_800C96D8[] = {
+    0x0051, 0x0052, 0x0053, 0x0054, 0x0055, 0x0056, 0x0057,
+    0x0058, 0x0059, 0x005A, 0x0083, 0x0084, 0x0085, 
 };
 
 s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
@@ -1062,7 +1067,7 @@ void func_80017F08(void) {
 
 void func_80017FE8(u16 actor_index) {
     gActors[actor_index].actorType = 0;
-    func_8001E2D0(actor_index);
+    Actor_Initialize(actor_index);
 
     gActors[actor_index].posX.whole = -2;
     gActors[actor_index].posY.whole = 4;
@@ -1173,7 +1178,7 @@ void GameState_TitleScreen(void) {
 
         actor_index = 0x30;
         gActors[actor_index].actorType = 0;
-        func_8001E2D0(actor_index);
+        Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags |= 0x200;
         gActors[actor_index].flags |= 0x30000000;
         gActors[actor_index].unk_17C = (s32)0x80343C28;
@@ -1295,21 +1300,21 @@ void GameState_DebugSoundTest(void) {
     switch (gGameStateSubState) {
     case 0:
         gActors[actor_index].actorType = 0x15;
-        func_8001E2D0(actor_index);
-        gActors[actor_index].unk_0D8 = 0xB;
+        Actor_Initialize(actor_index);
+        gActors[actor_index].var_0D8 = 0xB;
         gActors[actor_index].posX.whole = -0x38;
         gActors[actor_index].posY.whole = 0x30;
-        gActors[actor_index].timer_110 = 0.0f;
+        gActors[actor_index].var_110 = 0.0f;
         gActors[actor_index].var_154 = 2;
 
         actor_index++;
         gActors[actor_index].actorType = 0x15;
-        func_8001E2D0(actor_index);
-        gActors[actor_index].unk_0D8 = 0xB;
+        Actor_Initialize(actor_index);
+        gActors[actor_index].var_0D8 = 0xB;
         gActors[actor_index].posX.whole = 0x38;
         gActors[actor_index].posY.whole = 0x30;
         gActors[actor_index].var_154 = 3;
-        gActors[actor_index].timer_110 = 0.0f;
+        gActors[actor_index].var_110 = 0.0f;
 
         gActors[0xD].colorB = 0;
         gActors[7].colorB = 0;

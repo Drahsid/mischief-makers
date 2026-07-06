@@ -1,10 +1,6 @@
 #include "common.h"
 #include "actor.h"
 
-extern void Spikeball_State1End(u16 actor_index, u16 arg1);
-extern void Spikeball_UpdateHitbox(u16 actor_index);
-extern void Spikeball_Update(u16 actor_index);
-extern void Spikeball_State0(u16 actor_index);
 extern u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
 
 // "overlay 2" code for "Trapped", "Merco!!" and 2 unused scenes.

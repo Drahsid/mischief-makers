@@ -168,7 +168,7 @@ void Graphics_Begin_Frame(u16 buffer_index) {
     u16* framebuffer;
 
     gCurrentGraphicsTask = &gGraphicsTasks[buffer_index];
-    gCurrentGfxData = gDisplayListData[buffer_index];
+    gCurrentGfxData = &gDisplayListData[buffer_index];
     gDisplayListHead = gCurrentGfxData->dlist;
 
     if (buffer_index) {

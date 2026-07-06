@@ -179,7 +179,7 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
         gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
         gActors[actor_1].unk_140_f32 = func_8005C708(10);
         gActors[actor_1].unk_144 = 0.0f;
-        gActors[actor_1].unk_18C = arg2;
+        gActors[actor_1].palette_18C = arg2;
     }
     return actor_2;
 }
@@ -874,10 +874,10 @@ void func_8005BCF8(u16 actor_index) {
         gActors[actor_1].var_154 = 4;
         gActors[actor_1].unk_164 = -4;
         gActors[actor_1].unk_148 = 8.0f;
-        gActors[actor_1].var_160 = Rand() << 0x12;
-        gActors[actor_1].scaleX = ((f32) func_8005C708(0) * (1.0f/128) * 0.3) + 0.5;
-        gActors[actor_1].scaleY = ((f32) func_8005C708(0) * (1.0f/128) * 0.1) + 0.2;
-        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * (1.0f/128);
+        gActors[actor_1].var_160 = Rand() << 0x12;        // 1/128
+        gActors[actor_1].scaleX = ((f32) func_8005C708(0) * 0.0078125 * 0.3) + 0.5;
+        gActors[actor_1].scaleY = ((f32) func_8005C708(0) * 0.0078125 * 0.1) + 0.2;
+        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * 0.0078125;
         gActors[actor_1].unk_118 = -(gActors[actor_1].var_110 / gActors[actor_1].unk_148);
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;

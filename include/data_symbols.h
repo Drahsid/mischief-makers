@@ -34,12 +34,17 @@ extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CA230;
-extern u16 D_800CA26C[];
+extern u16 D_800CA254[]; // "d  h  m  s"
+extern u16 D_800CA26C[]; // "Continue"
 extern u16 D_800CBF40;
 extern u16 D_800CBF50;
 extern u8 D_800CC428;
 extern u16 D_800D16C4[];
 extern u16 D_800D1A04[];
+extern u16 D_800D2690[]; // LUT of digging spot items.
+extern s16 D_800D26F4[];
+extern u16 D_800D2714[];
+extern s16 D_800D271C[];
 extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, var_110, var_0D8, type, icon}
 
 // counts for items in clanpot. checked for mixing.

@@ -6,6 +6,7 @@
 #include "music.h"
 #include "stage.h"
 
+extern u16* D_800D1810[]; // palettes of particles.
 extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
 extern u16* D_800D1958[]; // palettes of gems
 extern u16* D_800D19F4[]; // palettes of "wave rings",

@@ -315,7 +315,6 @@ segments:
       - [0x0C8B20, data] # 156F0
       - [0x0C8BE0, data] # main actor/update dispatch table
       - [0x0C8DE0, .data, stage]
-      - [0x0C90F0, data] # remaining stage/level label tables
       - [0x0CA300, .data, actor_init]
       - [0x0CADC0, data]
       - [0x0CDC80, .data, 26A00]
