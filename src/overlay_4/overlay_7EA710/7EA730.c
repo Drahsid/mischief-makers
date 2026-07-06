@@ -84,7 +84,7 @@ void func_801B9900_7EA730(void) {
             func_80045FA4(D_801B9FB0_7EADE0, 0);
             Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
             D_800BE5F4.unk_00_u32 = 4;
-            gMarina.flags = 0;
+            gPlayerActor.flags = 0;
             D_800CA230 = 1;
             gStageCinemaState++;
 
@@ -151,7 +151,7 @@ void func_801B9BB4_7EA9E4(void) {
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
             D_800BE5F4.unk_00_u32 = 4;
-            gMarina.flags = 0;
+            gPlayerActor.flags = 0;
             D_800CA230 = 1;
             gStageCinemaState++;
             D_800BE578 = temp;
@@ -238,7 +238,7 @@ void func_801B9EA4_7EACD4(void) {
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
             D_800BE5F4.unk_00_u32 = 4;
-            gMarina.flags = 0;
+            gPlayerActor.flags = 0;
             D_800CA230 = 1;
             gStageCinemaState++;
             D_800BE578 = 2;

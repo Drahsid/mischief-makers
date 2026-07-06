@@ -282,8 +282,8 @@ void func_80057C98(u16 actor_index) {
     case 1:
         gActors[actor_index].unk_104 = gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
         gActors[actor_index].unk_108 = gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
-        gActors[actor_index].velocityX.raw /= gMarina.unk_120;
-        gActors[actor_index].velocityY.raw /= gMarina.unk_120;
+        gActors[actor_index].velocityX.raw /= gPlayerActor.unk_120;
+        gActors[actor_index].velocityY.raw /= gPlayerActor.unk_120;
         if ((gActors[actor_index].stateLower == 0x33) || (gActors[actor_index].stateLower == 0x34)) {
             Sound_PlaySfx(SFX_MARINA_OW3);
         }

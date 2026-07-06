@@ -308,8 +308,11 @@ extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 
 #define PLAYER_INDEX 0
 
-// actor 0 is always the player character, Marina
-#define gMarina gActors[PLAYER_INDEX]
+// actor 0 is always the main character, Marina
+#define gPlayerActor gActors[PLAYER_INDEX]
+
+// actor represtenting guest player actor, Teran
+#define gGuestPlayerActor gActors[gGuestActorIndex]
 
 
 // the following two macros are based on common patterns in the code.

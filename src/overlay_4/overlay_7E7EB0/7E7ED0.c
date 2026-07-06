@@ -404,7 +404,7 @@ u16 D_801BBCC0_7EA290[] = {
 s32 func_801B9900_7E7ED0(u16 arg0, s16 arg1, s16 arg2) {
     if (Math_AbsS32(arg1 - gPlayerPosX.whole) < 0x12) {
         if (Math_AbsS32(arg2 - gPlayerPosY.whole) < 0x80) {
-            if (gMarina.health >= 0) {
+            if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
                 gStageCinemaState = arg0;
@@ -571,7 +571,7 @@ void func_801B9D00_7E82D0(void) {
             func_801B9A3C_7E800C(0x8C);
             Actor_LoadSpawnTable(D_801BB39C_7E996C);
             func_801B9A3C_7E800C(0x97);
-            func_800282F0(gMarina.posX.whole, gMarina.posY.whole);
+            func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
             D_800BE5F4.unk_00_s32 = 8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
@@ -608,7 +608,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB904_7E9ED4);
             func_801B9A3C_7E800C(0x8C);
-            func_800282F0(gMarina.posX.whole, gMarina.posY.whole);
+            func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
             D_800BE5F4.unk_00_s32 = 8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
@@ -648,7 +648,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB588_7E9B58);
             func_801B9A3C_7E800C(0x81);
-            func_800282F0(gMarina.posX.whole, gMarina.posY.whole);
+            func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
             D_800BE5F4.unk_00_s32 = 8;
             gLookatEyeY = 44.0f;
             gLookatAtY = 44.0f;
@@ -675,7 +675,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(D_801BB6DC_7E9CAC);
             func_801B9A3C_7E800C(0x50);
             func_801B9A3C_7E800C(0x58);
-            func_800282F0(gMarina.posX.whole, gMarina.posY.whole);
+            func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
             D_800BE5F4.unk_00_s32 = 8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
@@ -702,7 +702,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB8D8_7E9EA8);
             gDrawBackground = FALSE;
-            func_800282F0(gMarina.posX.whole, gMarina.posY.whole);
+            func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
             D_800BE5F4.unk_00_s32 = 0xA;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;

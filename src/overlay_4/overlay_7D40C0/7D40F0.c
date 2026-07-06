@@ -1395,7 +1395,7 @@ s32 func_801B9B90_7D4380(void) {
     if (gPlayerPosY.whole < 0x100) {
         func_8005739C(0, 100);
 
-        if (gMarina.health >= 0) {
+        if (gPlayerActor.health >= 0) {
             D_800BE5F4.unk_00_u32 = 4;
             return TRUE;
         }
@@ -1410,11 +1410,11 @@ s32 func_801B9B90_7D4380(void) {
 }
 
 void func_801B9C0C_7D43FC(s16 arg0, s16 arg1) {
-    gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
+    gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
-    gMarina.posX.whole = arg0;
-    gMarina.posY.whole = arg1;
+    gPlayerActor.posX.whole = arg0;
+    gPlayerActor.posY.whole = arg1;
     D_800BE5F4.unk_00_u32 = 10;
 }
 
@@ -1539,11 +1539,11 @@ void func_801BA084_7D4874(void) {
 }
 
 void func_801BA0FC_7D48EC(s16 arg0) {
-    if ((gMarina.posY.whole + gScreenPosCurrentY.whole) < arg0) {
+    if ((gPlayerActor.posY.whole + gScreenPosCurrentY.whole) < arg0) {
         func_8005739C(0, 100);
         func_80028380();
 
-        if (gMarina.health >= 0) {
+        if (gPlayerActor.health >= 0) {
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
             gStageCinemaState++;
@@ -2334,10 +2334,10 @@ void func_801BB768_7D5F58(void) {
 }
 
 void func_801BBAA8_7D6298(void) {
-    if (gMarina.posY.whole < -0xA0) {
+    if (gPlayerActor.posY.whole < -0xA0) {
         func_8005739C(0, 100);
 
-        if (gMarina.health >= 0) {
+        if (gPlayerActor.health >= 0) {
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
             gStageCinemaState++;
@@ -2350,11 +2350,11 @@ void func_801BBAA8_7D6298(void) {
 }
 
 void func_801BBB30_7D6320(u16 arg0, u16 arg1, u16 arg2, u16 arg3, void* arg4) {
-    gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
+    gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     gScreenPosCurrentX.whole = arg0;
     gScreenPosCurrentY.whole = arg1;
-    gMarina.posX.whole = arg2;
-    gMarina.posY.whole = arg3;
+    gPlayerActor.posX.whole = arg2;
+    gPlayerActor.posY.whole = arg3;
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
     D_800BE5F4.unk_00_u32 = 10;
@@ -2464,7 +2464,7 @@ void func_801BBE90_7D6680(void) {
             func_80045FA4(D_801BFB3C_7DA32C, (u16*)-7);
             func_801BBDF8_7D65E8(D_801BFF78_7DA768);
             D_800BE5F4.unk_00_u32 = 10;
-            gMarina.flags |= ACTOR_FLAG_FLIPPED;
+            gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageCinemaState++;
             break;
 

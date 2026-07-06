@@ -14,9 +14,6 @@ extern s32 WarpGate_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 extern s16 D_800D28F8;
-extern s16 D_801BC9E2_7DF8B2;
-extern s16 D_801BC9EA_7DF8BA;
-extern s16 D_801BC9F2_7DF8C2;
 
 
 
@@ -1011,13 +1008,13 @@ u16 D_801BF77C_7E264C[] = {
 
 
 void func_801B9900_7DC7D0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gMarina.posY.whole < -0x30) {
+    if (gPlayerActor.posY.whole < -0x30) {
         D_800D291C = arg0 - 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
+    if ((gPlayerActor.posX.whole < -0x40) || (gPlayerActor.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -1025,13 +1022,13 @@ void func_801B9900_7DC7D0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_801B99B8_7DC888(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    if (gMarina.posY.whole >= 0x31) {
+    if (gPlayerActor.posY.whole >= 0x31) {
         D_800D2918 = arg0 + 0x70;
         gStageCinemaState += arg3;
         return;
     }
 
-    if ((gMarina.posX.whole < -0x40) || (gMarina.posX.whole >= 0x41)) {
+    if ((gPlayerActor.posX.whole < -0x40) || (gPlayerActor.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
         gStageCinemaState -= arg3;
@@ -1051,7 +1048,7 @@ void func_801B9A70_7DC940(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gMarina.posX.whole < -0x60) || (gMarina.posX.whole >= 0x61)) {
+    if ((gPlayerActor.posX.whole < -0x60) || (gPlayerActor.posX.whole >= 0x61)) {
         if (gScreenPosCurrentY.whole < ((arg0 + arg1) / 2)) {
             D_800D2918 = arg0 + 0x70;
             gStageCinemaState -= arg2;
@@ -1086,7 +1083,7 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
         return;
     }
 
-    if ((gMarina.posY.whole < -0x60) || (gMarina.posY.whole >= 0x61)) {
+    if ((gPlayerActor.posY.whole < -0x60) || (gPlayerActor.posY.whole >= 0x61)) {
         if (arg2 != 0) {
             if (gScreenPosCurrentX.whole < ((arg0 + arg1) / 2)) {
                 func_801B9B8C_7DCA5C(arg1);
@@ -1111,8 +1108,8 @@ void func_801B9D38_7DCC08(void) {
     gGuestActorIndex = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gMarina.posX.whole;
-    gActors[0x30].posY.whole = gMarina.posY.whole;
+    gActors[0x30].posX.whole = gPlayerActor.posX.whole;
+    gActors[0x30].posY.whole = gPlayerActor.posY.whole;
 }
 
 void func_801B9D84_7DCC54(void) {
@@ -1367,19 +1364,19 @@ void func_801B9ED4_7DCDA4(void) {
 
             if (WarpGate_IsGrabbed(0x8A)) {
                 if (gActiveFrames & 0x40) {
-                    D_801BC9EA_7DF8BA = 0x2AC;
+                    D_801BC9E8_7DF8B8[1] = 0x2AC;
                 }
                 else {
-                    D_801BC9EA_7DF8BA = 0x24C;
+                    D_801BC9E8_7DF8B8[1] = 0x24C;
                 }
             }
 
             if (WarpGate_IsGrabbed(0x8B)) {
                 if ((gActiveFrames % 48) >= 0x1C) {
-                    D_801BC9F2_7DF8C2 = 0x24C;
+                    D_801BC9F0_7DF8C0[1] = 0x24C;
                 }
                 else {
-                    D_801BC9F2_7DF8C2 = 0x2AC;
+                    D_801BC9F0_7DF8C0[1] = 0x2AC;
                 }
             }
 
@@ -1438,7 +1435,8 @@ void func_801B9ED4_7DCDA4(void) {
         gActors[0x90].colorB = 0x10;
     }
 
-    if ((gActors[0x30].flags & 2) && (gActors[0x30].health != 0)) {
+    // move Teran's HP to global var.
+    if ((gActors[0x30].flags & ACTOR_FLAG_ACTIVE) && (gActors[0x30].health != 0)) {
         if (gActors[0x30].actorType == 0x1D02) {
             gFestivalData.guestHP = gActors[0x30].health;
         }
@@ -1629,7 +1627,7 @@ void func_801BACDC_7DDBAC(void) {
             gStageCinemaState = 0x800;
             D_800BE5F4.unk_00_s32 = 7;
             D_800BE544 = 0x8000;
-            gMarina.flags |= ACTOR_FLAG_FLIPPED;
+            gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
 
         case 0x800:
             if (func_80046D5C() != 0) {
@@ -1878,7 +1876,7 @@ void func_801BACDC_7DDBAC(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BE0C4_7E0F94);
             D_800BE5F4.unk_00_s32 = 0xB;
-            gMarina.flags |= 0x20;
+            gPlayerActor.flags |= 0x20;
             gStageCinemaState++;
             Sound_PlayMusic(BGM_GET);
             break;
@@ -2009,8 +2007,8 @@ void func_801BBCBC_7DEB8C(void) {
     gGuestActorIndex = 0x30;
     D_800D2954 = 1;
     gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gMarina.posX.whole;
-    gActors[0x30].posY.whole = gMarina.posY.whole;
+    gActors[0x30].posX.whole = gPlayerActor.posX.whole;
+    gActors[0x30].posY.whole = gPlayerActor.posY.whole;
 }
 
 void func_801BBD08_7DEBD8(void) {
@@ -2326,7 +2324,7 @@ void func_801BC75C_7DF62C(void* arg0, u16* arg1) {
 }
 
 void func_801BC7C4_7DF694(void) {
-    if (gMarina.health >= 0) {
+    if (gPlayerActor.health >= 0) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x61;
         gStageCinemaState = 1;

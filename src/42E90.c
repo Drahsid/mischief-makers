@@ -66,7 +66,7 @@ void func_800423A0(u16 actor_index) {
             angle = 0x01FF8000;
         }
         else if (gButtonHold & gButton_DUp) {
-            if (gMarina.flags & ACTOR_FLAG_FLIPPED) {
+            if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
                 angle = 0x01008000;
             }
             else {
@@ -74,7 +74,7 @@ void func_800423A0(u16 actor_index) {
             }
         }
         else if (gButtonHold & gButton_DDown) {
-            if (gMarina.flags & ACTOR_FLAG_FLIPPED) {
+            if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
                 angle = 0x02FF8000;
             }
             else {
@@ -105,7 +105,7 @@ void func_800423A0(u16 actor_index) {
     }
     gActors[actor_index].var_158 = angle;
     angle /= 0x10000;
-    if (gMarina.flags & ACTOR_FLAG_FLIPPED) {
+    if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].unk_16C += 24;
     }
     else {
@@ -113,8 +113,8 @@ void func_800423A0(u16 actor_index) {
     }
     x = COS(gActors[actor_index].unk_16C) * 294912.0f;
     y = SIN(gActors[actor_index].unk_16C) * 294912.0f;
-    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gMarina.posX.whole + gScreenPosCurrentX.whole;
-    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gMarina.posY.whole + gScreenPosCurrentY.whole;
+    x = (((COS(angle) * 2621440.0f) + x) / 65536.0f) + gPlayerActor.posX.whole + gScreenPosCurrentX.whole;
+    y = (((SIN(angle) * 2621440.0f) + y) / 65536.0f) + gPlayerActor.posY.whole + gScreenPosCurrentY.whole;
     
     var_a1_2 = (x << 0x10) + (y & 0xFFFF);
     for (var_v1 = 0; var_v1 < 8; var_v1++) {

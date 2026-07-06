@@ -399,7 +399,7 @@ s32 func_80045F08(u32 arg0) {
 
 void func_80046148(void* arg0, u16* arg1){
     func_80045FA4(arg0,arg1);
-    gMarina.flags &= ~ACTOR_FLAG_DRAW;
+    gPlayerActor.flags &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4.unk_00_s32 = 4;
 }
 
@@ -510,7 +510,7 @@ void func_8004732C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800475EC.s")
 
 void func_80047648(s16 arg0){
-    D_800D2914 = (arg0 - gMarina.health / 10) + 100;
+    D_800D2914 = (arg0 - gPlayerActor.health / 10) + 100;
 }
 
 void func_80047674(void) {

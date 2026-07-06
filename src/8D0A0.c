@@ -99,8 +99,8 @@ void func_8008D128(u16 actor_index) {
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16| ACTOR_FLAG_UNK8);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     gActors[actor_index].unk_118 = 1.0f;
-    gActors[actor_index].unk_184 = gMarina.unk_0F8.raw;
-    gActors[actor_index].unk_188 = gMarina.unk_0FC.raw;
+    gActors[actor_index].unk_184 = gPlayerActor.unk_0F8.raw;
+    gActors[actor_index].unk_188 = gPlayerActor.unk_0FC.raw;
 
     if (gActors[actor_index].unk_184 > 0) {
         gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
@@ -116,8 +116,8 @@ void func_8008D1E8(u16 actor_index) {
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
     gActors[actor_index].palette_18C = D_800D4958;
     gActors[actor_index].unk_118 = 1.0f;
-    gActors[actor_index].unk_184 = gMarina.unk_0F8.raw;
-    gActors[actor_index].unk_188 = gMarina.unk_0FC.raw;
+    gActors[actor_index].unk_184 = gPlayerActor.unk_0F8.raw;
+    gActors[actor_index].unk_188 = gPlayerActor.unk_0FC.raw;
 
     if (gActors[actor_index].unk_184 > 0) {
         gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
@@ -226,7 +226,7 @@ void func_8008DCE0(u16 actor_index) {
 
     gActors[actor_index].unk_120 -= 1.0f;
     if ((gActors[actor_index].unk_120 < 0.0f) || ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) && (gActors[actor_index].flags & ACTOR_FLAG_UNK17))) {
-        if ((gMarina.health == 0) || (gMarina.health & 0x8000)) {
+        if ((gPlayerActor.health == 0) || (gPlayerActor.health & 0x8000)) {
             func_8008DC70(actor_index);
         }
         else {

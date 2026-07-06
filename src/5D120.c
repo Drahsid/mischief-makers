@@ -3,7 +3,7 @@
 extern s16 D_800CCC78[];
 
 void func_8005C520(s8 arg0, s8 arg1) {
-    gMarina.unk_0DC |= 0x40;
+    gPlayerActor.unk_0DC |= 0x40;
     D_801373E0.unk_0A = arg0;
     D_801373E0.unk_0B = arg1;
 }
@@ -171,63 +171,63 @@ void func_8005CAA8(u16 actor_index, s8* arg1) {
             }
             gActors[actor_index].hitboxBY0 = arg1[index + 2];
             gActors[actor_index].hitboxBY1 = arg1[index + 3];
-            gActors[actor_index].hitboxBX0 *= gMarina.unk_120;
-            gActors[actor_index].hitboxBX1 *= gMarina.unk_120;
-            gActors[actor_index].hitboxBY0 *= gMarina.unk_120;
-            gActors[actor_index].hitboxBY1 *= gMarina.unk_120;
+            gActors[actor_index].hitboxBX0 *= gPlayerActor.unk_120;
+            gActors[actor_index].hitboxBX1 *= gPlayerActor.unk_120;
+            gActors[actor_index].hitboxBY0 *= gPlayerActor.unk_120;
+            gActors[actor_index].hitboxBY1 *= gPlayerActor.unk_120;
         }
         else {
             if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
-                if (gActors[actor_index].hitboxBX0 < arg1[index + 0] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX0 < arg1[index + 0] * gPlayerActor.unk_120) {
                     count = 1;
-                    gActors[actor_index].hitboxBX0 += (1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX0 += (1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX0 > arg1[index + 0] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX0 > arg1[index + 0] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX0 += -(1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX0 += -(1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX1 < arg1[index + 1] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX1 < arg1[index + 1] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX1 += (1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX1 += (1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX1 > arg1[index + 1] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX1 > arg1[index + 1] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX1 += -(1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX1 += -(1 * gPlayerActor.unk_120);
                 }
             }
             else {
-                if (gActors[actor_index].hitboxBX0 < -arg1[index + 1] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX0 < -arg1[index + 1] * gPlayerActor.unk_120) {
                     count = 1;
-                    gActors[actor_index].hitboxBX0 += (1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX0 += (1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX0 > -arg1[index + 1] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX0 > -arg1[index + 1] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX0 += -(1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX0 += -(1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX1 < -arg1[index + 0] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX1 < -arg1[index + 0] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX1 += (1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX1 += (1 * gPlayerActor.unk_120);
                 }
-                if (gActors[actor_index].hitboxBX1 > -arg1[index + 0] * gMarina.unk_120) {
+                if (gActors[actor_index].hitboxBX1 > -arg1[index + 0] * gPlayerActor.unk_120) {
                     count++;
-                    gActors[actor_index].hitboxBX1 += -(1 * gMarina.unk_120);
+                    gActors[actor_index].hitboxBX1 += -(1 * gPlayerActor.unk_120);
                 }
             }
-            if (gActors[actor_index].hitboxBY0 < arg1[index + 2] * gMarina.unk_120) {
+            if (gActors[actor_index].hitboxBY0 < arg1[index + 2] * gPlayerActor.unk_120) {
                 count++;
-                gActors[actor_index].hitboxBY0 += (1 * gMarina.unk_120);
+                gActors[actor_index].hitboxBY0 += (1 * gPlayerActor.unk_120);
             }
-            if (gMarina.unk_120 * arg1[index + 2] < gActors[actor_index].hitboxBY0) {
+            if (gPlayerActor.unk_120 * arg1[index + 2] < gActors[actor_index].hitboxBY0) {
                 count++;
-                gActors[actor_index].hitboxBY0 += -(1 * gMarina.unk_120);
+                gActors[actor_index].hitboxBY0 += -(1 * gPlayerActor.unk_120);
             }
-            if (gActors[actor_index].hitboxBY1 < arg1[index + 3] * gMarina.unk_120) {
+            if (gActors[actor_index].hitboxBY1 < arg1[index + 3] * gPlayerActor.unk_120) {
                 count++;
-                gActors[actor_index].hitboxBY1 += (1 * gMarina.unk_120);
+                gActors[actor_index].hitboxBY1 += (1 * gPlayerActor.unk_120);
             }
-            if (gActors[actor_index].hitboxBY1 > arg1[index + 3] * gMarina.unk_120) {
+            if (gActors[actor_index].hitboxBY1 > arg1[index + 3] * gPlayerActor.unk_120) {
                 count++;
-                gActors[actor_index].hitboxBY1 += -(1 * gMarina.unk_120);
+                gActors[actor_index].hitboxBY1 += -(1 * gPlayerActor.unk_120);
             }
         }
         if (count == 0) {
@@ -242,17 +242,17 @@ u8 func_8005D1B0(u16 actor_index) {
 }
 
 s32 func_8005D1E8(u16 actor_index) {
-    if (((gActors[actor_index].hitboxAX1 + gActors[actor_index].posX.whole) >= (gMarina.hitboxBX0 + gMarina.posX.whole)) &&
-        ((gMarina.posX.whole + gMarina.hitboxBX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&
-        ((gMarina.posY.whole + gMarina.hitboxBY0) >= (gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY1)) &&
-        ((gActors[actor_index].hitboxAY0 + gActors[actor_index].posY.whole) >= (gMarina.hitboxBY1 + gMarina.posY.whole))) {
+    if (((gActors[actor_index].hitboxAX1 + gActors[actor_index].posX.whole) >= (gPlayerActor.hitboxBX0 + gPlayerActor.posX.whole)) &&
+        ((gPlayerActor.posX.whole + gPlayerActor.hitboxBX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&
+        ((gPlayerActor.posY.whole + gPlayerActor.hitboxBY0) >= (gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY1)) &&
+        ((gActors[actor_index].hitboxAY0 + gActors[actor_index].posY.whole) >= (gPlayerActor.hitboxBY1 + gPlayerActor.posY.whole))) {
         return 1;
     }
-    if ((gMarina.flags & ACTOR_FLAG_UNK11) && 
-        ((gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX1) >= (gMarina.hitboxAX0 + gMarina.posX.whole)) &&
-        ((gMarina.posX.whole + gMarina.hitboxAX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&
-        ((gMarina.posY.whole + gMarina.hitboxAY0) >= (gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY1)) &&
-        ((gActors[actor_index].hitboxAY0 + gActors[actor_index].posY.whole) >= (gMarina.hitboxAY1 + gMarina.posY.whole))) {
+    if ((gPlayerActor.flags & ACTOR_FLAG_UNK11) && 
+        ((gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX1) >= (gPlayerActor.hitboxAX0 + gPlayerActor.posX.whole)) &&
+        ((gPlayerActor.posX.whole + gPlayerActor.hitboxAX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&
+        ((gPlayerActor.posY.whole + gPlayerActor.hitboxAY0) >= (gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY1)) &&
+        ((gActors[actor_index].hitboxAY0 + gActors[actor_index].posY.whole) >= (gPlayerActor.hitboxAY1 + gPlayerActor.posY.whole))) {
         return 2;
     }
     return 0;

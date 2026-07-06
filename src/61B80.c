@@ -731,13 +731,13 @@ void func_8006330C(u16 actor_index) {
 }
 
 void func_800633C4(u16 actor_index) {
-    if ((gActors[actor_index].posY.whole + 0xC0) < gMarina.posY.whole) {
+    if ((gActors[actor_index].posY.whole + 0xC0) < gPlayerActor.posY.whole) {
         gActors[actor_index].state = 0x7C;
     }
 }
 
 void func_80063418(u16 actor_index) {
-    if ((gActors[actor_index].posY.whole - 0xC0) > gMarina.posY.whole) {
+    if ((gActors[actor_index].posY.whole - 0xC0) > gPlayerActor.posY.whole) {
         gActors[actor_index].state = 0x7E;
     }
 }
@@ -753,11 +753,11 @@ void func_8006346C(u16 actor_index) {
         }
         else if (gActors[actor_index - 1].actorType == 0x500) {
             if (((s32) gActors[actor_index - 1].var_110 & 0xF) == 1) {
-                if ((gMarina.flags & ACTOR_FLAG_ATTACHED) && ((actor_index + 1) == gMarina.parentIndex)) {
+                if ((gPlayerActor.flags & ACTOR_FLAG_ATTACHED) && ((actor_index + 1) == gPlayerActor.parentIndex)) {
                     Sound_PlaySfxAtActor2(0x120, actor_index);
                 }
             }
-            else if ((gMarina.flags & ACTOR_FLAG_ATTACHED) && (((actor_index + 1) == gMarina.parentIndex) || ((actor_index + 2) == gMarina.parentIndex) || ((actor_index + 3) == gMarina.parentIndex) || ((actor_index + 4) == gMarina.parentIndex))) {
+            else if ((gPlayerActor.flags & ACTOR_FLAG_ATTACHED) && (((actor_index + 1) == gPlayerActor.parentIndex) || ((actor_index + 2) == gPlayerActor.parentIndex) || ((actor_index + 3) == gPlayerActor.parentIndex) || ((actor_index + 4) == gPlayerActor.parentIndex))) {
                 Sound_PlaySfxAtActor2(0x120, actor_index);
             }
         }

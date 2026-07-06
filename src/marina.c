@@ -64,13 +64,13 @@ s32 func_800486F4(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
 
 s32 func_80048CE4(void) {
-    if (gMarina.stateLower == 1) {
+    if (gPlayerActor.stateLower == 1) {
         return 1;
     }
-    if (gMarina.stateLower < 0x2e) {
+    if (gPlayerActor.stateLower < 0x2e) {
         return 0;
     }
-    if (gMarina.stateLower < 0x37) {
+    if (gPlayerActor.stateLower < 0x37) {
         return 2;
     }
     return 3;

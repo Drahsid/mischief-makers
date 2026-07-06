@@ -473,8 +473,8 @@ void func_801B9E7C_7E6FCC(void) {
         D_800BE574.whole = 0x20F;
         gScreenPosCurrentX.whole = temp + 0x90;
         gScreenPosCurrentY.whole = 0x27F;
-        gMarina.posX.whole = -0x90;
-        gMarina.posY.whole = -0x15;
+        gPlayerActor.posX.whole = -0x90;
+        gPlayerActor.posY.whole = -0x15;
     }
 }
 

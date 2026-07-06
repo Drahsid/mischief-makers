@@ -1220,16 +1220,16 @@ u16 D_801BF7BC_7D3F4C[] = {
 
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
-        if (gMarina.stateUpper == 4) {
+        if (gPlayerActor.stateUpper == 4) {
             func_8005739C(0, 100);
-            if (gMarina.health >= 0) {
+            if (gPlayerActor.health >= 0) {
                 return TRUE;
             }
 
             if (gGameState == GAMESTATE_GAMEPLAY) {
                 gGameState = GAMESTATE_CONTINUE;
                 gGameStateSubState = 0;
-                gMarina.velocityX.raw = gMarina.velocityY.raw = gPlayerVelYMirror.raw = 0;
+                gPlayerActor.velocityX.raw = gPlayerActor.velocityY.raw = gPlayerVelYMirror.raw = 0;
                 gPlayerVelXMirror.raw = 0;
             }
 
@@ -1241,11 +1241,11 @@ s32 func_801B9900_7CE090(void) {
 }
 
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
-    gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
+    gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
-    gMarina.posX.whole = arg0;
-    gMarina.posY.whole = arg1;
+    gPlayerActor.posX.whole = arg0;
+    gPlayerActor.posY.whole = arg1;
     D_800BE5F4.unk_00_u32 = 0xA;
 }
 
@@ -1259,7 +1259,7 @@ void func_801B9A0C_7CE19C(u16 arg0) {
 void func_801B9A40_7CE1D0(void) {
     if (gActors[0x5E].flags & (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_PLATFORM0)) {
         func_801B99AC_7CE13C(0, gActors[0x5E].posY.whole + 8);
-        gMarina.iFrames = 120;
+        gPlayerActor.iFrames = 120;
     }
 }
 
@@ -1291,7 +1291,7 @@ void func_801B9B08_7CE298(void) {
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
-        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gMarina.velocityX.raw = (((gMarina.velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
+        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gPlayerActor.velocityX.raw = (((gPlayerActor.velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
         gPlayerVelXMirror.raw = 0;
         func_801B9A0C_7CE19C(gStageCinemaState + 1);
     }
@@ -1642,7 +1642,7 @@ handle_cutscene_index:
 void func_801BA818_7CEFA8(void) {
     if (func_801B9900_7CE090() != 0) {
         func_801B99AC_7CE13C(gActors[0x60].posX.whole, gActors[0x60].posY.whole + 0x18);
-        gMarina.iFrames = 120;
+        gPlayerActor.iFrames = 120;
     }
 }
 
@@ -1898,7 +1898,7 @@ void func_801BAFEC_7CF77C(void) {
 }
 
 void func_801BB0F0_7CF880(void) {
-    gLookatEyeZ = (gMarina.posY.whole * 2) + 0x1C0;
+    gLookatEyeZ = (gPlayerActor.posY.whole * 2) + 0x1C0;
     if (gLookatEyeZ < 448.0f) {
         gLookatEyeZ = 448.0f;
     }
@@ -2169,19 +2169,19 @@ void func_801BB360_7CFAF0(void) {
             Sound_PlayMusic(BGM_BOSS);
             D_800BE5F4.unk_00_s32 = 7;
             D_801373E0.unk_78 |= 1;
-            gMarina.flags |= ACTOR_FLAG_FLIPPED;
+            gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             D_800BE544 = 0x8000;
             gDrawEnvLayer = 0;
             gActorDepthMiddle = -0xC0;
             gActorDepthBack = -0xC0;
             gScreenPosTargetY.whole = 0x19C;
-            gMarina.velocityY.raw = 0;
-            gMarina.velocityX.raw = 0;
+            gPlayerActor.velocityY.raw = 0;
+            gPlayerActor.velocityX.raw = 0;
             gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
             gPlayerPosX.whole = gScreenPosCurrentX.whole + 0x30;
-            gMarina.posX.whole = 0x30;
+            gPlayerActor.posX.whole = 0x30;
             gPlayerPosY.whole = gScreenPosCurrentY.whole - 0x36;
-            gMarina.posY.whole = -0x36;
+            gPlayerActor.posY.whole = -0x36;
             D_800D28FC |= 2;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;

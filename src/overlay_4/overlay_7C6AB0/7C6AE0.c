@@ -1529,9 +1529,9 @@ void func_801B9AC0_7C6CA0(void) {
                 D_800D28F8 = 0x3C;
                 D_800BE5F4.unk_00_s32 = 9;
                 gPlayerPosX.whole = gScreenPosCurrentX.whole - 0x80;
-                gMarina.posX.whole = -0x80;
+                gPlayerActor.posX.whole = -0x80;
                 gPlayerPosY.whole = gScreenPosCurrentY.whole - 0x2E;
-                gMarina.posY.whole = -0x2E;
+                gPlayerActor.posY.whole = -0x2E;
             }
 
             Cutscene_CheckSkipInput();
@@ -1643,7 +1643,7 @@ void func_801BA008_7C71E8(void) {
                 if ((gActors && gActors) && gActors) {
                 }
 
-                gMarina.flags |= 0x20;
+                gPlayerActor.flags |= 0x20;
                 Actor_LoadSpawnTable(D_801BC684_7C9864);
                 Actor_LoadSpawnTable(D_801BD288_7CA468);
                 D_800BE544 = 0x8000;
@@ -1691,7 +1691,7 @@ void func_801BA008_7C71E8(void) {
             break;
 
         case 9:
-            if ((func_8005DEFC() == 0) && (gMarina.health >= 0)) {
+            if ((func_8005DEFC() == 0) && (gPlayerActor.health >= 0)) {
                 func_80064AA0(0x803C, D_801BD474_7CA654);
                 gStageCinemaState += 1;
             }
@@ -1714,7 +1714,7 @@ void func_801BA008_7C71E8(void) {
         case 0x1000:
             func_80045FA4(D_801BCD40_7C9F20, (u16*)D_801BCD50_7C9F30);
             D_800BE5F4.unk_00_s32 = 5;
-            gMarina.flags |= 0x20;
+            gPlayerActor.flags |= 0x20;
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BD288_7CA468);
             gStageCinemaState += 1;
@@ -1786,7 +1786,7 @@ void func_801BA38C_7C756C(void) {
                 gStageCinemaState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_s32 = 0xA;
-                gMarina.flags |= ACTOR_FLAG_FLIPPED;
+                gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             }
             break;
 
@@ -2032,7 +2032,7 @@ void func_801BAB34_7C7D14(void) {
 
             if (D_800D28F8 == 0x1E) {
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1002; 
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1002; 
             }
 
             if (D_800D28F8 < 0) {
@@ -2040,7 +2040,7 @@ void func_801BAB34_7C7D14(void) {
                 func_8005DF5C(2);
 
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1001; 
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001; 
 
                 Sound_PlayMusic(BGM_OUT);
             }
@@ -2064,7 +2064,7 @@ void func_801BAB34_7C7D14(void) {
                 gStageCinemaState++;
                 func_8005DF5C(3);
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1001;
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
             }
 
             Cutscene_CheckSkipInput();
@@ -2086,9 +2086,9 @@ void func_801BAB34_7C7D14(void) {
                 gStageCinemaState++;
                 func_8005DF5C(4);
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1001;
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1001;
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
             }
 
             Cutscene_CheckSkipInput();
@@ -2112,7 +2112,7 @@ void func_801BAB34_7C7D14(void) {
                 func_8005DF5C(5);
 
                 // FAKEMATCH
-                *(&gMarina.unk_174 + 0x1FE0) = 0x1100;
+                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1100;
             }
 
             Cutscene_CheckSkipInput();
@@ -2213,7 +2213,7 @@ void func_801BAB34_7C7D14(void) {
             Sound_PlayMusic(BGM_OUT);
 
             // FAKEMATCH
-            *(&gMarina.unk_174 + 0x1FE0) = 0x1100;
+            *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1100;
             break;
 
         case 0x1001:
@@ -2414,7 +2414,7 @@ void func_801BB6D0_7C88B0(void) {
                         break;
 
                     case 0xC:
-                        *(&gMarina.unk_174 + 0x1FE0) = 1; // FAKEMATCH
+                        *(&gPlayerActor.unk_174 + 0x1FE0) = 1; // FAKEMATCH
                         break;
 
                     case 0xE:
@@ -2513,7 +2513,7 @@ void func_801BB6D0_7C88B0(void) {
 
         case 0x1000:
             gStageCinemaState++;
-            gMarina.flags |= ACTOR_FLAG_FLIPPED;
+            gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             func_80045FA4(D_801BF740_7CC920, (u16*)D_801BF778_7CC958);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BF7D0_7CC9B0);
