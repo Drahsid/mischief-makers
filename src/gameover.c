@@ -112,7 +112,7 @@ void GameState_ContinueScreen(void) {
     case 1:
         GameState_Gameplay();
         actor_index = 0xC8;
-        if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) { // (gActors[0xC8].unk3DA == gActors[0xC8].unk574)
+        if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) {
             D_80178132 = gDrawMidground;
             D_80178133 = gDrawEnvLayer;
             D_80178134 = gDrawBackground;
@@ -562,7 +562,7 @@ void GameState_ContinueScreen(void) {
             func_80025B7C();
             gActors[0].unk_170 = 1;
             gCannotPause = 1;
-            gGameState = 6;
+            gGameState = GAMESTATE_GAMEPLAY;
             gGameStateSubState = 0;
         }
         break;

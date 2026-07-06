@@ -101,7 +101,7 @@ void GameState_SoftReset(void) {
         D_800CBF44 = 0;
         gActors[0].health = 0x3E8;
         gRedGems = 0x1E;
-        gGameState = 1;
+        gGameState = GAMESTATE_INTRO;
         gGameStateSubState = 0;
         break;
     }
