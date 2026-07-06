@@ -1740,7 +1740,7 @@ void func_801BA9E0_7CF170(void) {
     }
 
     if ((gActiveFrames & 7) == 0) {
-        func_8005CA34(-4 - (Rand() & 3), 0xA);
+        CameraShake(-4 - (Rand() & 3), 10);
     }
 }
 

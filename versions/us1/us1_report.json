@@ -6349,7 +6349,7 @@
           }
         },
         {
-          "name": "func_8003DF78",
+          "name": "BossDeathExplode",
           "size": "696",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9308,7 +9308,7 @@
           }
         },
         {
-          "name": "func_8005C8A4",
+          "name": "UpdateCameraShake",
           "size": "400",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9316,7 +9316,7 @@
           }
         },
         {
-          "name": "func_8005CA34",
+          "name": "CameraShake",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9324,7 +9324,7 @@
           }
         },
         {
-          "name": "func_8005CA98",
+          "name": "GetCameraShakeTime",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {

@@ -11,8 +11,8 @@ typedef union {
 } FixedCoord;
 
 typedef struct {
-    /* 0x0000 */ u8 unk_000[0x180];
-    /* 0x0180 */ Gfx dlist[3072];
+    /* 0x0000 */ Mtx matricies[6]; // {ortho, ? ,ortho, lookAt, ?, ?}
+    /* 0x0180 */ Gfx dlist[0xC00];
 } GfxData; /* sizeof = 0x6180 */
 
 // portraits seem to use the same graphic flags as actors with this one exception.

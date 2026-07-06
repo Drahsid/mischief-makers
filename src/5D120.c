@@ -100,7 +100,7 @@ u8 func_8005C870(u8 arg0) {
     return arg0;
 }
 
-void func_8005C8A4(void) {
+void UpdateCameraShake(void) {
     if (gCamShakeTime == 0) {
         gCamShakeV = 0;
     }
@@ -134,7 +134,7 @@ void func_8005C8A4(void) {
     }
 }
 
-void func_8005CA34(s32 shake_time, s32 shake_time_div) {
+void CameraShake(s32 shake_time, s32 shake_time_div) {
     gCamShakeType = 0;
     gCamShakeTime = shake_time_div;
     gCamShakeMag = shake_time << 0x10;
@@ -142,7 +142,7 @@ void func_8005CA34(s32 shake_time, s32 shake_time_div) {
     gCamShakeV = 0;
 }
 
-s16 func_8005CA98(void) {
+s16 GetCameraShakeTime(void) {
     return gCamShakeTime;
 }
 

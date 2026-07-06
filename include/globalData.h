@@ -60,7 +60,7 @@ enum DebugFlags {
 // has mix of types of data (sound, collision, etc.), for some reason.
 
 
-extern Gfx* gCurrentDisplayListBase;
+extern GfxData* gCurrentGfxData;
 extern u32 D_800EF500; // unknown/unused
 extern u32 D_800EF504; // unknown/unused
 extern u8 D_80104090[4];

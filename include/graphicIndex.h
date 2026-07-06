@@ -44,7 +44,8 @@
 #define GINDEX_RAILANGLELT     0x00B0
 #define GINDEX_RAILANGLETR     0x00B2
 #define GINDEX_RAILANGLEBR     0x00B4
-#define GINDEX_RAILSTOP        0x00B6 // rail with an (X) in it.
+
+#define GINDEX_BOMB_ELLIPSE    0x00B6 // elliptical bomb.
 
 #define GINDEX_GEM             0x00B8 // 6 animation frames
 

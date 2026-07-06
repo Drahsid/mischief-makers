@@ -106,7 +106,10 @@ Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 ActorUpdate_Type27 = 0x8002C1D8; // type:func
 ActorUpdate_Type30 = 0x8002C6DC; // type:func
 ActorUpdate_Type1 = 0x8002D260; // type:func
+
+Landmine_TriggerEffect = 0x8002D5E4; // type:func
 ActorUpdate_Landmine = 0x8002D670; // type:func
+
 SpawnGemActor = 0x8002EFE4; // type:func
 SpawnGemRing = 0x8002F2A8; // type:func
 GemRing_MakeGems = 0x8002F420; // type:func
@@ -192,6 +195,8 @@ ActorUpdate_ClanballSpring = 0x8003C328; // type:func
 
 AreaClear_State0 = 0x8003D794; // type:func
 ActorUpdate_AreaClear = 0x8003DBD0; // type:func
+
+BossDeathExplode = 0x8003DF78; // type:func
 
 Crosshair_SetPos = 0x8003E640; // type:func
 SpawnCrosshair = 0x8003E6A4; // type:func
@@ -285,6 +290,11 @@ Text_PrintStringRGBScale = 0x80027D94; // type:func
 Text_PrintStringGray = 0x8002801C; // type:func
 Text_PrintString2 = 0x80028150; // type:func
 Text_SetHCColor = 0x80028260; // type:func
+
+UpdateCameraShake = 0x8005C8A4; // type:func
+CameraShake = 0x8005CA34; // type:func
+GetCameraShakeTime = 0x8005CA98; // type:func
+
 
 // 5E230.c
 OverlayABI_Slot1_fn3_u16        = 0x8005D630; // type:func

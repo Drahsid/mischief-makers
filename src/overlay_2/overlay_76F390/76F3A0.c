@@ -92,7 +92,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
     FlameArchInit* temp_v1;
 
     if ((gActiveFrames & 3) == 0) {
-        func_8005CA34(4, 5);
+        CameraShake(4, 5);
         temp_index = gActors[actor_index].var_0D8 * 5;
         temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
         temp_v0 = SpawnParticle_Image_90C0_16(GRAPHIC_FRAME(DASHEFFECT,1), gActors[actor_index].posX.whole, temp_v1->posY, temp_v1->posZ + 1);
@@ -182,7 +182,7 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
     }
 
     if ((gActiveFrames & 3) == 0) {
-        func_8005CA34(2, 4);
+        CameraShake(2, 4);
     }
 
     gActors[actor_index].unk_114 = 0.1f;

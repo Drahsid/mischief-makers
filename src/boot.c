@@ -168,8 +168,8 @@ void Graphics_Begin_Frame(u16 buffer_index) {
     u16* framebuffer;
 
     gCurrentGraphicsTask = &gGraphicsTasks[buffer_index];
-    gCurrentDisplayListBase = gDisplayListData[buffer_index].unk_000;
-    gDisplayListHead = gCurrentDisplayListBase + 48;
+    gCurrentGfxData = gDisplayListData[buffer_index];
+    gDisplayListHead = gCurrentGfxData->dlist;
 
     if (buffer_index) {
         framebuffer = FRAMEBUFFER0;
@@ -179,7 +179,7 @@ void Graphics_Begin_Frame(u16 buffer_index) {
     }
 
     gSPSegment(gDisplayListHead++, 0, 0);
-    gSPSegment(gDisplayListHead++, 6, osVirtualToPhysical(gCurrentDisplayListBase));
+    gSPSegment(gDisplayListHead++, 6, osVirtualToPhysical(gCurrentGfxData));
     gSPDisplayList(gDisplayListHead++, gDefaultViewportSetupDisplayList);
     gSPDisplayList(gDisplayListHead++, gDefaultRenderSetupDisplayList);
     gDPPipeSync(gDisplayListHead++);

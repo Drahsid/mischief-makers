@@ -121,7 +121,7 @@ u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3) {
     sp34[0] = 0x12;
     sp34[1] = D_800D413C[2 * index];
     sp34[2] = 1;
-    sp34[4] = 0x8022D4E8;
+    sp34[4] = (intptr_t)PALETTE_8022D4E8;
 
     func_80059D88(actor_index, sp34, 0, 3.0f);
     gActors[actor_index].flags &= ~ACTOR_FLAG_ATTACHED;

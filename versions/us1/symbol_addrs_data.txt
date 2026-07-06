@@ -154,7 +154,7 @@ gCurrentFramebufferIndex = 0x800BE700; // size:0x2
 gCameraRot = 0x800be72c; // type:s32 size:0x4 rom:0xbf32c
 gCameraRotDelta = 0x800be730; // type:s32 size:0x4 rom:0xbf330
 
-gCurrentDisplayListBase = 0x800EF4F4; // size:0x4
+gCurrentGfxData = 0x800EF4F4; // size:0x4
 gActors = 0x800EF510; // size:0x14B80
 
 gPlatform0Actors = 0x8011CDF8; // size:0x120

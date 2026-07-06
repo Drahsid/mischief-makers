@@ -9,7 +9,7 @@ s32 gMusicSequenceId;
 s32 D_800EF4DC; // unused.
 u8 gMusicChannelFxMixes[16];
 u8 gSfxPlayerFlags[4];
-Gfx* gCurrentDisplayListBase;
+Gfx* gCurrentGfxData;
 s16 gSfxPlayerVolumes[4];
 u32 D_800EF500; // unknown/unused
 u32 D_800EF504; // unknown/unused
@@ -42,7 +42,7 @@ s16 gPlatforms0Y1[144];
 s16 gPlatforms1Y1[144];
 u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 u16 gButtonPressHistory[64];
-u64 gYeildData[0x900];
+u64 gYeildData[OS_YIELD_DATA_SIZE];
 u16 gButtonHoldHistory[64];
 
 // initial values of global data near start of .data

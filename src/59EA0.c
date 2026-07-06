@@ -18,10 +18,10 @@ extern ActorFunc D_800D3FD0[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
-extern s16 D_801370D0;
-extern u16 D_801370D8[];
-extern s16 D_801371D8[];
-extern s16 D_801372D8[];
+extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
+extern u16 D_801370D8[]; // Marina graphic history. used for unused after-image state
+extern s16 D_801371D8[]; // Marina X-position history. used for unused after-image state
+extern s16 D_801372D8[]; // Marina Y-position history. used for unused after-image state
 extern s32 D_8013745C;
 extern u16 D_80137480[];
 
@@ -57,7 +57,7 @@ void func_800593DC(u16 actor_index) {
 
     sp4C[0] = -0x10;
     sp4C[1] = -0x40;
-    sp4C[2] = 0xA;
+    sp4C[2] = 10;
     actor_1 = func_800592A0(actor_index, sp4C);
     if (actor_1 == 0) {
         return;
@@ -111,7 +111,7 @@ void func_800593DC(u16 actor_index) {
     }
 }
 
-u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
+u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
     s32 sp9C[5];
     s32 pad;
     s32 index;
@@ -150,7 +150,7 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
     gActors[actor_2].colorA = 0xC0;
     gActors[actor_2].var_154 = -0xA;
     gActors[actor_2].unk_148 = 20.0f;
-    gActors[actor_2].unk_18C = arg2;
+    gActors[actor_2].palette_18C = arg2;
 
     for (index = 0; index < 5; index++) {
         actor_1 = func_800592A0(actor_index, sp9C);
@@ -160,10 +160,10 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_1].posZ.raw -= 1;
         if (!(Rand() & 1)) {
-            gActors[actor_1].graphicIndex = 0x1D6;
+            gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
         }
         else {
-            gActors[actor_1].graphicIndex = 0x160;
+            gActors[actor_1].graphicIndex = GINDEX_CONE;
         }
         gActors[actor_1].unk_148 = 20.0f;
         gActors[actor_1].scaleX = 2.0 * scale;
@@ -181,7 +181,7 @@ u16 func_80059624(u16 actor_index, f32 scale, s32 arg2) {
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
         gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
-        gActors[actor_1].unk_140_f32 = func_8005C708(0xA);
+        gActors[actor_1].unk_140_f32 = func_8005C708(10);
         gActors[actor_1].unk_144 = 0.0f;
         gActors[actor_1].unk_18C = arg2;
     }
@@ -230,7 +230,7 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     else {
         gActors[actor_1].var_150 = -0x220000;
     }
-    gActors[actor_1].unk_18C = 0x8022D568;
+    gActors[actor_1].palette_18C = PALETTE_8022D568;
     return actor_1;
 }
 
@@ -346,14 +346,14 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].scaleX = scale * 0.8;
     gActors[actor_1].var_110 = -0.05f;
     gActors[actor_1].unk_114 = -0.05f;
-    gActors[actor_1].unk_18C = 0x8022D568;
+    gActors[actor_1].palette_18C = PALETTE_8022D568;
 
     actor_1 = func_800592A0(actor_index, arg1);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = 0x1D6;
+    gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
     gActors[actor_1].unk_148 = 20.0f;
     gActors[actor_1].var_154 = -0xA;
     gActors[actor_1].var_150 = 0x100000;
@@ -361,7 +361,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].scaleX = scale * 1.0;
     gActors[actor_1].unk_114 = -0.05f;
     gActors[actor_1].var_110 = -0.05f;
-    gActors[actor_1].unk_18C = 0x8022D4E8;
+    gActors[actor_1].palette_18C = PALETTE_8022D4E8;
     return actor_1;
 }
 
@@ -444,6 +444,8 @@ u16 func_8005A6D0(u16 actor_index, s32* arg1, s32 arg2) {
     return actor_1;
 }
 
+
+
 u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3) {
     u16 actor_1;
 
@@ -452,7 +454,7 @@ u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = 0x16C;
+    gActors[actor_1].graphicIndex = GINDEX_GROUNDFLAME;
     gActors[actor_1].unk_148 = 60.0f;
     gActors[actor_1].var_154 = -3;
     if (arg1[4] == 0) {
@@ -541,7 +543,7 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     sp54[0] = gActors[actor_index].posX.whole;
     sp54[1] = gActors[actor_index].posY.whole;
     sp54[2] = gActors[actor_index].posZ.whole - 1;
-    sp54[4] = 0x8022D528;
+    sp54[4] = (intptr_t)PALETTE_8022D528;
     var_t2 = 0;
     var_s0 = 0x01000000;
     var_v0 = 0;
@@ -605,7 +607,7 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     }
     if (!arg2) {
         sp54[3] = 0x182;
-        sp54[4] = 0x8022D568;
+        sp54[4] = (intptr_t)PALETTE_8022D568;
         actor_1 = func_8005A068(actor_index, sp54, var_s0, 0.7f, 8);
         if (actor_1 == 0) {
             return;
@@ -797,11 +799,11 @@ void func_8005B82C(u16 actor_index) {
         gActors[actor_index].unk_180_u16[0] = 0;
     }
     if (!(gActors[actor_index].unk_184 & 0xF)) {
-        sp34[4] = 0x8022D4E8;
+        sp34[4] = (intptr_t)PALETTE_8022D4E8;
         scale = gActors[actor_index].unk_144;
         scale -= (gActors[actor_index].unk_144 / 100.0f) * gActors[actor_index].unk_184;
         actor_1 = func_80059F30(actor_index, sp34, scale, 0x1E);
-        gActors[actor_1].graphicIndex = 0x16C;
+        gActors[actor_1].graphicIndex = GINDEX_GROUNDFLAME;
         gActors[actor_1].scaleX /= 4;
         gActors[actor_1].unk_144 = 15.0f;
         if (actor_1 != 0) {
@@ -828,7 +830,7 @@ void func_8005BA38(u16 actor_index) {
         actor_1 = func_800592A0(actor_index, sp2C);
         if (actor_1 != 0) {
             gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-            gActors[actor_1].graphicIndex = 0x1D6;
+            gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
             gActors[actor_1].colorA = 0xC0;
             gActors[actor_1].var_150 = 0xC0000;
             gActors[actor_1].scaleX = gActors[actor_1].scaleY = 0.5f;
@@ -877,9 +879,9 @@ void func_8005BCF8(u16 actor_index) {
         gActors[actor_1].unk_164 = -4;
         gActors[actor_1].unk_148 = 8.0f;
         gActors[actor_1].var_160 = Rand() << 0x12;
-        gActors[actor_1].scaleX = ((f32) func_8005C708(0) * 0.0078125 * 0.3) + 0.5;
-        gActors[actor_1].scaleY = ((f32) func_8005C708(0) * 0.0078125 * 0.1) + 0.2;
-        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * 0.0078125;
+        gActors[actor_1].scaleX = ((f32) func_8005C708(0) * (1.0f/128) * 0.3) + 0.5;
+        gActors[actor_1].scaleY = ((f32) func_8005C708(0) * (1.0f/128) * 0.1) + 0.2;
+        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * (1.0f/128);
         gActors[actor_1].unk_118 = -(gActors[actor_1].var_110 / gActors[actor_1].unk_148);
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
@@ -925,7 +927,7 @@ void func_8005C098(u16 actor_index, s32 arg1) {
 
 // unused variant of after-image. uses arrays to store history.
 u16 func_8005C0CC(u16 actor_index) {
-    gActors[0x2D].actorType = gActors[0x2E].actorType = gActors[0x2F].actorType = 0x2E;
+    gActors[0x2D].actorType = gActors[0x2E].actorType = gActors[0x2F].actorType = ACTORTYPE_MARINAAFTERIMAGE;
     Actor_Initialize(0x2D);
     Actor_Initialize(0x2E);
     Actor_Initialize(0x2F);
@@ -981,7 +983,7 @@ void func_8005C3C8(u16 actor_index) {
     s32 temp_t1;
 
     switch (gActors[actor_index].state) {
-    case 0:
+    case 0: // unused state - after-image uses arrays of position/image history
         temp_v0 = (D_801370D0 - gActors[actor_index].var_158);
         temp_t1 = temp_v0 & 0x7F;
         gActors[actor_index].graphicIndex = D_801370D8[temp_t1];

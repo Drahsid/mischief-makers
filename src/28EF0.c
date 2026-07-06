@@ -39,6 +39,9 @@ extern f32 D_800D281C[];
 extern u16 D_800D282C[];
 extern u16 D_800D2854[]; // graphic indecies of shock effect?
 extern u16 D_800D2860[]; // warp gate coords in main segment.
+
+//.data file break?
+
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern s16 D_800D291C;
@@ -1938,7 +1941,7 @@ void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
     case 0x306E:
         gActors[actor_index].var_0D8 = 0x1C;
         break;
-    case 0x246:
+    case GINDEX_BALLSPIKE:
         gActors[actor_index].var_0D8 = 0x1E;
         break;
     }
@@ -1994,7 +1997,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     u16 index;
 
     Sound_PlaySfxAtActor2(0x43, actor_index);
-    func_8005CA34(-6, 0xA);
+    CameraShake(-6, 10);
     gActors[actor_index].actorType = ACTORTYPE_1;
     gActors[actor_index].hitboxAY0 = 8;
     gActors[actor_index].hitboxAY1 = -8;
@@ -2109,13 +2112,18 @@ void func_8002D488(u16 actor_index) {
     }
 }
 
-void func_8002D5E4(u16 actor_index) {
+// landmine is tripped, play sound and particle effects
+void Landmine_TriggerEffect(u16 actor_index) {
     Sound_PlaySfxAtActor2(0x64, actor_index);
-    gActors[actor_index].unk_188 = 1;
+    gActors[actor_index].unk_188 = TRUE;
     gActors[actor_index].scaleY = 0.1f;
     SpawnParticle_RingSparkle(actor_index, 0, 0.5f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
 }
 
+// tick behavior for landmines.
+// 0x110: initial fuse time in ticks + 16
+// 0x114: remaining fuse time in ticks
+// 0x188: boolean if mine is tripped
 void ActorUpdate_Landmine(u16 actor_index) {
     if ((gActiveFrames % 20) == 0) { // blink for visibility
         gActors[actor_index].colorR = 0x7F;
@@ -2136,7 +2144,7 @@ void ActorUpdate_Landmine(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ENABLED;
-        gActors[actor_index].graphicIndex = GINDEX_RAILSTOP;
+        gActors[actor_index].graphicIndex = GINDEX_BOMB_ELLIPSE;
         gActors[actor_index].scaleX = 1.5f;
         gActors[actor_index].scaleY = 0.4f;
         gActors[actor_index].unk_0DF = 0x40;
@@ -2153,11 +2161,11 @@ void ActorUpdate_Landmine(u16 actor_index) {
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
-            func_8002D5E4(actor_index);
+            Landmine_TriggerEffect(actor_index);
         }
         else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
-            func_8002D5E4(actor_index);
+            Landmine_TriggerEffect(actor_index);
         }
         break;
     case 2:
@@ -5562,7 +5570,7 @@ void Spikeball_State1End(u16 actor_index, u16 arg1) {
                     }
                     else {
                         gActors[actor1].var_160 = 0x01000000;
-                        gActors[actor1].unk_18C = 0x8022D528;
+                        gActors[actor1].palette_18C = PALETTE_8022D528;
                     }
                     gActors[actor1].var_150 = 0x800000;
                     gActors[actor1].var_110 = 0.03f;
@@ -6381,7 +6389,7 @@ void func_8003AC30(u16 actor_index) {
 
                 gActors[var_a2].scaleY = 1.0f;
                 gActors[var_a2].posZ.whole = gActors[actor_index].posZ.whole - 4;
-                gActors[var_a2].unk_18C = 0x8022D528;
+                gActors[var_a2].palette_18C = PALETTE_8022D528;
                 gActors[var_a2].unk_148 = 1.0f;
             }
         }
@@ -7070,7 +7078,7 @@ u16 func_8003D628(u16 arg0) {
     gActors[index].flags = ACTOR_FLAG_ACTIVE;
     gActors[index].var_110 = 180.0f;
     gActors[index].unk_188 = arg0;
-    func_8005CA34(8, 0x3C);
+    CameraShake(8, 60);
     return index;
 }
 // draw a colored box to specified position and dimensions.
@@ -7244,11 +7252,16 @@ void ActorUpdate_AreaClear(u16 actor_index) {
     gActors[actor_index].var_110 -= 1.0f;
 }
 
-void func_8003DF78(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y) {
+// bouncing and explosions when a (mini)boss is defeated
+// @param arg0 unknown/unused
+// @param actor_index index of (mini)boss actor
+// @param scale_x x-axis offset mod of explosiion effects.
+// @param scale_y y-axis offset mod of explosiion effects.
+void BossDeathExplode(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y) {
     u16 pad;
 
     if ((gActiveFrames & 0x7) == 0) {
-        func_8005CA34(-6, 7);
+        CameraShake(-6, 7);
         if (Rand() & 0x3) {
             Sound_PlaySfx(0x43);
         }
@@ -7590,18 +7603,19 @@ u16 func_8003EDF4(f32 arg0, s16 x, s16 y, s16 z) {
     return actor_index;
 }
 
-u16 func_8003EEC0(f32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+//draw an explosion effect
+u16 func_8003EEC0(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
 
-    actor_index = SpawnParticle_Image_90C0_16(GINDEX_BLASTB, arg1, arg2, arg3);
+    actor_index = SpawnParticle_Image_90C0_16(GINDEX_BLASTB, pos_x, pos_y, pos_z);
     if (actor_index != 0) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].var_154 = -32;
         gActors[actor_index].palette_18C =  D_800D84E8;
-        gActors[actor_index].scaleX = arg0 * 1.5;
-        gActors[actor_index].scaleY = arg0 * 1.5;
-        gActors[actor_index].var_110 = arg0 * 0.23;
-        gActors[actor_index].unk_114 = arg0 * 0.23;
+        gActors[actor_index].scaleX = scale * 1.5;
+        gActors[actor_index].scaleY = scale * 1.5;
+        gActors[actor_index].var_110 = scale * 0.23;
+        gActors[actor_index].unk_114 = scale * 0.23;
     }
     return actor_index;
 }
@@ -7637,6 +7651,7 @@ u16 func_8003F05C(f32 arg0, s16 x, s16 y, s16 z) {
     return actor_index;
 }
 
+// spawn 3 types of explosion particles
 void func_8003F138(f32 arg0, s16 x, s16 y, s16 z) {
     s32 actor_index;
 
@@ -8369,7 +8384,7 @@ void WarpGate_MoveFaceUser(u16 actor_index, u16* coords) {
         WarpGate_MoveUser(gActors[actor_index].unk_174, coords);
     }
     else {
-        WarpGate_MoveUser(0, coords);
+        WarpGate_MoveUser(PLAYER_INDEX, coords);
         gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
         gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
         gMarina.flags &= ~ACTOR_FLAG_FLIPPED;
@@ -8395,7 +8410,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
     u16 idx;
     s16 sp24;
     s16 sp22;
-    u16 timer_idx;
+    u16 coord_index;
     s32 temp;
 
     switch (gActors[actor_index].state) {
@@ -8559,9 +8574,9 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         temp = (u16)gActors[actor_index].var_110 & 0xF;
         switch (temp) {
         case 2:
-            // fakematch: the zero term keeps IDO from reusing v1 for timer_idx
-            timer_idx = gActors[actor_index].var_0D8 + (sp24 * 0);
-            WarpGate_MoveUser(actor_index, &D_800D2860[timer_idx]);
+            // fakematch: the zero term keeps IDO from reusing v1 for coord_index
+            coord_index = gActors[actor_index].var_0D8 + (sp24 * 0);
+            WarpGate_MoveUser(actor_index, &D_800D2860[coord_index]);
             break;
         case 4:
             WarpGate_MoveUser(actor_index,gActors[actor_index].warpGate_coords);

@@ -92,7 +92,7 @@ extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
 extern u8 func_8005C870(u8);
-extern void func_8005C8A4(void);
+extern void UpdateCameraShake(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
 extern void func_800836A0(s32, s32, u16*, s32); // guess on types
@@ -616,7 +616,7 @@ void func_80020024(void) {
     func_8008CA90();
     func_8001751C();
     func_80014C44();
-    func_8005C8A4();
+    UpdateCameraShake();
     func_8001FF50();
     func_8005F6D4();
     func_80022470();

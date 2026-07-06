@@ -674,7 +674,7 @@ void func_801B9D78_7E2ED8(void) {
 
             gActors[actor_index].posX.whole = gMarina.posX.whole;
             gActors[actor_index].posY.whole = -0x50;
-            gActors[actor_index].palette_18C = (u16*)0x8022D568;
+            gActors[actor_index].palette_18C = PALETTE_8022D568;
             Sound_PlaySfxAtActor2(0xAA, 0);
             func_8005739C(0, 100);
 

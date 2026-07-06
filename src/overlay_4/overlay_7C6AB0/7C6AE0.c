@@ -2010,7 +2010,7 @@ void func_801BAB34_7C7D14(void) {
             D_800D28F8--;
 
             if ((D_800D28F8 < 0x5A) && ((gActiveFrames & 7) == 0)) {
-                func_8005CA34(-7, 7);
+                CameraShake(-7, 7);
 
                 if ((gActiveFrames % 10) == 0) {
                     Sound_PlaySfx(0x11C);
@@ -2020,7 +2020,7 @@ void func_801BAB34_7C7D14(void) {
             if (D_800D28F8 < 0) {
                 gStageCinemaState++;
                 gActors[0x31].state++;
-                func_8005CA34(-8, 0xA);
+                CameraShake(-8, 10);
                 Sound_StartFade(0x81, 0x50);
                 D_800D28F8 = 0x50;
             }

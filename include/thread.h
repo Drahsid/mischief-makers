@@ -15,10 +15,10 @@ extern OSThread gRmonThread;
 
 
 // an error on the developer's part: yeild data is WAY TOO BIG.
-// OS_YEILD_DATA_SIZE (0x900) should be divided by sizeof(u64),
+// OS_YIELD_DATA_SIZE (0x900) should be divided by sizeof(u64),
 // but instead it's made 8 times larger than it should be,
 // taking up a significant ammount of the .bss
-extern u64 gYeildData[0x900];
+extern u64 gYeildData[OS_YIELD_DATA_SIZE];
 
 extern u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 extern u64 gBootStack[STACK_SIZE / sizeof(u64)]; // 80123670->80124670

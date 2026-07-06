@@ -771,7 +771,7 @@ f32 func_80199208_6C3ED8(u16 actor_index) {
 
 void func_80199254_6C3F24(s32 arg0, s32 arg1) {
     D_801A5F98_6D0C68 = arg1;
-    func_8005CA34(arg0, arg1);
+    CameraShake(arg0, arg1);
 }
 
 
@@ -1052,7 +1052,7 @@ void func_8019E564_6C9234(u16 actor_index) {
                 gActors[actor_index].state++;
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-3.0);
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
-                func_8005CA34(5, 8);
+                CameraShake(5, 8);
                 Sound_PlaySfxAtVol(0x59, 0xC8);
             }
             break;
@@ -1085,7 +1085,7 @@ void func_8019E564_6C9234(u16 actor_index) {
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
                 gActors[0x76].colorR = 0x7F;
-                func_8005CA34(8, 5);
+                CameraShake(8, 5);
                 Sound_PlaySfx(0x59);
             }
             break;
@@ -1165,7 +1165,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
                 gActors[0x43].colorR = 0x7F;
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
-                func_8005CA34(8, 5);
+                CameraShake(8, 5);
                 Sound_PlaySfx(0x59);
             }
             func_8019E7E8_6C94B8(actor_index);
