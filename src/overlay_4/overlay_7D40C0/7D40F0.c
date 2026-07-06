@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "debug_level_select.h"
+#include "stage.h"
 
 // "overlay 4" code of most the World 3 stages, excluding "The Day Of", "Cat-tastrophe" and "Cerberus Alpha"
 

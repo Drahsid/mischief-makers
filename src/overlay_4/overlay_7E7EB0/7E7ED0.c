@@ -5,7 +5,6 @@
 // "overlay 4" code for "Trapped", "Phoenix Gamma", "Inner Struggle", "Merco", and several unused scenes.
 
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern s32 D_800D2928;
 extern u32 D_80137458;
 

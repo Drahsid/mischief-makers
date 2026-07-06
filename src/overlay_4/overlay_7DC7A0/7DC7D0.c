@@ -8,7 +8,6 @@
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern void func_80064AA0(u16 arg0, void* arg1);
 extern u16 gGuestActorIndex;
 extern s32 WarpGate_IsGrabbed(u16 arg0);

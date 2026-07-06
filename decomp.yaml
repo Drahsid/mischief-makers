@@ -87,8 +87,7 @@ tools:
             - gameover
             - "156F0"
             - "17A70"
-            - debug_level_select
-            - "1A120"
+            - stage
             - actor_init
             - "1F1E0"
             - letterbox
@@ -105,6 +104,7 @@ tools:
             - "59EA0"
             - "5D120"
             - "5E230"
+            - "5EA30"
             - "60CF0"
             - "61B80"
             - "66250"

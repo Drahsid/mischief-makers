@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "debug_level_select.h"
+#include "stage.h"
 #include "function_symbols.h"
 
 // "overlay 4" code for the World 1 scenes.
@@ -10,7 +10,6 @@ extern s32 D_800D2934;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern s16 D_800D3B74;
 extern s16 D_800D36FC[];
 extern s16 D_800E1C84[];

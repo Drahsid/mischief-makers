@@ -6,7 +6,6 @@
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.
 
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D28F8;

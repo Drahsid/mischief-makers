@@ -22,7 +22,6 @@ extern s16 D_800D413C[];
 extern s32 D_800D57E0;
 extern s32 D_800E3630[]; // could be array of structs of length 0x28
 
-extern s16 D_801370D2;
 extern u16 D_801373D8;
 extern s16 D_801373EE;
 extern s8 D_801373F3;

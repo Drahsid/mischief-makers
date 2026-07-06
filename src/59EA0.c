@@ -18,10 +18,6 @@ extern ActorFunc D_800D3FD0[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
-extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
-extern u16 D_801370D8[]; // Marina graphic history. used for unused after-image state
-extern s16 D_801371D8[]; // Marina X-position history. used for unused after-image state
-extern s16 D_801372D8[]; // Marina Y-position history. used for unused after-image state
 extern s32 D_8013745C;
 extern u16 D_80137480[];
 

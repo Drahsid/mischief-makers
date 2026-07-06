@@ -14,7 +14,6 @@ extern s32 D_800D2928;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern s32 D_800D2938;
 extern u16 D_800D2968;
 extern s16 D_800D296C;
