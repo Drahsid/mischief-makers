@@ -6,7 +6,6 @@
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.
 
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D28F8;
@@ -15,7 +14,6 @@ extern u32 D_800D28FC;
 extern s16 D_801BD8C2_7E6A22;
 extern u32 D_80137458;
 
-extern s32 func_8003FF68(s32 arg0, f32 arg1);
 extern void func_80034D80(u16 actor_index, u16* vals); // BUG: incorrect prototype!
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern s16 func_8005DEFC(void);

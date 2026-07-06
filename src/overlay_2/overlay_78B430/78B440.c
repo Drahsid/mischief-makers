@@ -1,10 +1,6 @@
 #include "common.h"
 #include "actor.h"
 
-extern void func_80038868(u16 actor_index, u16 arg1);
-extern void func_80038D1C(u16 actor_index);
-extern void func_80038C94(u16 actor_index);
-extern void func_80038E1C(u16 actor_index);
 extern u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
 
 // "overlay 2" code for "Trapped", "Merco!!" and 2 unused scenes.

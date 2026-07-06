@@ -6,7 +6,6 @@
 // "overlay 4" data for World 2 stages
 
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern void func_80064AA0(s32 arg0, void* arg1);
 extern s16 func_8005DEFC(void);
 

@@ -1,9 +1,8 @@
 #include "common.h"
 #include "dma.h"
+#include "rle.h"
 
 #include "linker.h"
-
-extern s32 Trouble_RLE_Type1(u8* src, u8* dst);
 
 typedef struct {
     u8* dispatch_table_rom_start;
@@ -21,7 +20,6 @@ typedef struct {
     u32 unk_14;
 } UnkStruct_D_800D0E84;
 
-extern u16 D_800CBF50;
 extern u16 D_800CBF54;
 extern u8 D_800DE348[];
 extern u32 D_8013772C;
@@ -39,7 +37,6 @@ extern u32 D_801376C4;
 extern u32 D_801376C8;
 extern u32 D_801376CC;
 extern u32 D_801376D0;
-extern u32 D_801376D4;
 extern u32 D_801376D8;
 extern u32 D_801376DC;
 extern u32 D_801376E0;
@@ -55,8 +52,6 @@ extern u32 D_80137704;
 extern u32 D_80137708;
 extern u32 D_8013770C;
 extern u32 D_80137710;
-extern u32 D_80137714;
-extern u32 D_80137718;
 extern u32 D_8013771C;
 extern u32 D_80137720;
 extern u32 D_80137724;
@@ -71,31 +66,6 @@ extern u32 D_80137784;
 extern u32 D_80137788;
 extern u32 D_8013778C;
 extern u32 D_80137790;
-
-#define RLE_SCRATCH_HIGH      ((u8*)0x80259000)
-#define RLE_SCRATCH_LOW       ((u8*)0x801C4400)
-#define SEGMENT_06_DEST       ((u8*)0x80200400)
-#define SEGMENT_06_SCRATCH    ((u8*)0x80267DC0)
-#define SEGMENT_07_DEST       ((u8*)0x80296000)
-#define MAP_BANK_DEST         ((u8*)0x80380000)
-#define MAP_BANK_DEST_ALT     ((u8*)0x8038DE00)
-#define MAP_BANK_DATA_DEST    ((u8*)0x80388000)
-#define MAP_COLLISION_DEST    ((u8*)0x803A0600)
-#define ACTOR_LIST_DEST       ((u8*)0x801C3000)
-#define COLLISION_DEST        ((u8*)0x801C4300)
-#define COLLISION_SCRATCH_ALT ((u8*)0x801D4400)
-#define STAGE_TABLE0_DEST     ((u8*)0x801C2000)
-#define STAGE_TABLE1_DEST     ((u8*)0x801C4200)
-#define STAGE_TABLE2_DEST     ((u8*)0x801C1000)
-#define ASSET_DEST0           ((u8*)0x802CA500)
-#define ASSET_DEST1           ((u8*)0x802E0000)
-#define ASSET_DEST2           ((u8*)0x80300000)
-#define ASSET_DEST3           ((u8*)0x80320000)
-#define ASSET_DEST4           ((u8*)0x80340000)
-#define ASSET_DEST5           ((u8*)0x80360000)
-#define ASSET_DEST6           ((u8*)0x803CE800)
-#define ASSET_DEST6_TABLE     ((u8*)0x803D7748)
-#define D_800D0E84_PU32       ((u32*)D_800D0E84) // TODO
 
 extern u32 D_800CEC10[];
 extern u32 D_800D0E88[];

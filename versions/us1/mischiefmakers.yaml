@@ -92,10 +92,9 @@ segments:
       - [0x012DD0, asm] # has to do with spawning the player actor, and the camera
       - [0x0134E0, c]
       - [0x013850, asm, gameover] # gameover gamestate
-      - [0x0156F0, asm]
+      - [0x0156F0, c]
       - [0x017A70, c]
-      - [0x019A00, c, debug_level_select]
-      - [0x01A120, c]
+      - [0x018280, c, stage]
       - [0x01E7A0, c, actor_init]
       - [0x01F1E0, c]
       - [0x022290, c, letterbox]
@@ -116,14 +115,14 @@ segments:
       - [0x05E230, c]
       - [0x05EA30, c]
       - [0x060CF0, c]
-      - [0x061B80, asm]
+      - [0x061B80, c]
       - [0x066250, c]
       - [0x07D8E0, asm]
       - [0x0805E0, asm]
       - [0x080D90, c]
       - [0x082920, asm]
       - [0x082DB0, asm] # has to do with loading marina's graphics
-      - [0x082F80, asm]
+      - [0x082F80, c]
       - [0x0844E0, asm, osd_debug_text]
       - [0x084BB0, asm]
       - [0x08D0A0, c]
@@ -315,8 +314,7 @@ segments:
       - [0x0C8910, data, gameover]
       - [0x0C8B20, data] # 156F0
       - [0x0C8BE0, data] # main actor/update dispatch table
-      - [0x0C8DE0, .data, debug_level_select]
-      - [0x0C90F0, data] # remaining stage/level label tables
+      - [0x0C8DE0, .data, stage]
       - [0x0CA300, data] # 241E0 references D_800CD034 implying end at 0x0CDC80
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
@@ -367,8 +365,7 @@ segments:
       - [0x0EBBE0, rodata] # 11820?
       - [0x0EBC00, rodata, gameover]
       - [0x0EBC50, .rodata, 17A70]
-      - [0x0EBD00, .rodata, debug_level_select]
-      - [0x0EBEA0, rodata] # 17A70 jump tables
+      - [0x0EBD00, .rodata, stage]
       - [0x0EC190, .rodata, 1F1E0]
       - [0x0EC220, .rodata, 241E0]
       - [0x0EC280, .rodata, 28EF0]
@@ -380,7 +377,7 @@ segments:
       - [0x0ECAC0, .rodata, 59EA0]
       - [0x0ECB90, .rodata, 5E230]
       - [0x0ECCF0, .rodata, 60CF0]
-      - [0x0ECD80, rodata] # 61B80?
+      - [0x0ECD80, .rodata, 61B80]
       - [0x0ED0E0, rodata] # 66250?
       - [0x0EDBC0, rodata] # 7D8E0?
       - [0x0EDC10, rodata] # 805E0?
@@ -439,6 +436,8 @@ segments:
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: 82F80, type: .bss, vram: 0x80178470 }
+      - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }
       - { name: ultralib/io/vimgr, type: .bss, vram: 0x801826D0 }
       - { name: ultralib/io/pimgr, type: .bss, vram: 0x801838F0 }

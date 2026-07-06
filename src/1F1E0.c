@@ -2,10 +2,11 @@
 #include "actor.h"
 #include "cosine.h"
 #include "boot.h"
-#include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
+#include "stage.h"
 #include "globalData.h"
+#include "17A70.h"
 
 typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
 
@@ -42,7 +43,6 @@ extern u16 D_800CA244;
 extern u16 D_800CA248;
 extern u16 D_800CA24C;
 extern u16 D_800CA250;
-extern s16 D_800CBF40;
 extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 
@@ -50,15 +50,12 @@ extern u16 D_800D28E4;
 extern u16 D_800D2918;
 extern u16 D_800D291C;
 extern u16 D_800D2920;
-extern u16 D_800D2924;
 extern u16 D_800D2978[];
 
-extern s16 gGraphicListGemIcon[];
 extern s16 D_800E13FC[];
 
 extern u32 D_801374DC; // time duration
 
-extern u16 gRedGems;
 extern s16 D_801781C0[]; // SFX volumes stored during pause
 extern u16 D_801781C8;
 extern u16 D_801781CA;
@@ -68,7 +65,6 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
 extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
@@ -81,7 +77,6 @@ extern void func_80014AF0(void);
 extern void func_80014C44(void);
 extern void func_80016CB4(void);
 extern void func_80016D94(void);
-extern void func_8001751C(void);
 extern void func_8001DE30(void);
 extern void func_8001FF30(void);
 extern void func_8001FF50(void);
@@ -91,7 +86,6 @@ extern void func_800457C8(void);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
-extern u8 func_8005C870(u8);
 extern void func_8005C8A4(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types

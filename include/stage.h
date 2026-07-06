@@ -1,8 +1,9 @@
-#ifndef DEBUG_LEVEL_SELECT_H
-#define DEBUG_LEVEL_SELECT_H
+#ifndef STAGE_H
+#define STAGE_H
 
-#include "common.h"
+#include <PR/ultratypes.h>
 
+extern u8 gDebugMenuCursorFlash[];
 extern const char* gDebugStageSelectRowPrefixes[];
 extern u16 gStageRowCounts[];
 extern u16 gStageGroupOptionOffsets[];

@@ -2,12 +2,13 @@
 #include "common.h"
 #include "actor.h"
 #include "Alphabet.h"
-#include "debug_level_select.h"
 #include "input.h"
 #include "music.h"
+#include "stage.h"
 
 
-
+extern u16 D_800D16D0[]; // LUT (ASCII - 0x20)->index
+extern u8 D_800D17B8[]; // LUT of (Alphbet-0x10E)->width
 extern u16* D_800D1810[];
 extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
 extern u16* D_800D1958[]; // palettes of gems
@@ -26,13 +27,10 @@ extern u8 D_800D24EA;
 extern u8 D_800D24EC;
 extern u8 D_800D24EE;
 extern s32 D_800D24F4[];
-extern s32 D_800D2504[];
 extern s32 D_800D2514[];
 extern s32 D_800D258C[];
 extern u16 D_800D25BC[]; // grouped by step count 5 (0xA bytes)
-extern u16 D_800D2690[]; // grouped by step count 3 (0x6 bytes)
 extern s32 D_800D26E0[];
-extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];
 extern u8 D_800D2750[];
@@ -47,7 +45,6 @@ extern u16 D_800D28F0;
 extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s16 D_800D2924;
 extern u16 D_800D2950;
 extern u16 D_800D2954;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
@@ -80,8 +77,8 @@ extern s32 D_800E357C; // nearest actor delta Y
 extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 extern s32 D_80137444;
 extern u16 D_80137450;
-extern u16 gRedGems;
 
+extern u16 D_800D17FC[]; // text palette
 extern s8 D_800D2204[]; // LUT in atan2
 extern s8 D_800D2228[]; // entries used in atan2
 extern s8 D_800D222C[]; // entries used in atan2
@@ -98,7 +95,6 @@ void Actor_Clamp_0FC(u16 actor_index, s32 max_val);
 void func_80030B0C(u16);
 void func_80031D58(u16 arg0, u16 arg1);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 arg3);
-s16 func_8003526C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
 void func_800358DC(u16 actor_index);
 void func_80035A20(u16 actor_index);
 u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue);
@@ -109,7 +105,6 @@ u16 func_8003F9E0(f32, s16, s16, s16);
 void SpawnParticle_RingSparkle(u16 unused_arg0, s32 unused_arg1, f32 scale, s16 pos_x, s16 pos_y, s16 pos_z);
 u16 SpawnParticle_RingWaveGreen(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 x, s16 y, s16 z);
-u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
 u16 func_8003FF68(u16 actor_index, f32 scale);
 void func_80040E08(u16 actor_index, u16 arg1);

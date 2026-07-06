@@ -18,10 +18,6 @@ extern ActorFunc D_800D3FD0[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
-extern s16 D_801370D0;
-extern u16 D_801370D8[];
-extern s16 D_801371D8[];
-extern s16 D_801372D8[];
 extern s32 D_8013745C;
 extern u16 D_80137480[];
 
