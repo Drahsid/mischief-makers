@@ -100,7 +100,7 @@ s16 D_800BE57C = 0;
 s16 D_800BE580 = 0;
 s16 D_800BE584 = 0;
 u16 D_800BE588 = 0;
-s16 D_800BE58C = 0;
+u16 D_800BE58C = 0;
 
 s16 gCamShakeTime = 0;
 s16 gCamShakeV = 0;

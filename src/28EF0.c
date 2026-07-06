@@ -225,7 +225,7 @@ void Actor_ClearRange_C0ToC7(void) {
 // unset all portrait structs (except lifebar and bust)
 void func_800286C8(void) {
     u16 index;
-    for (index = 0; index < (u16)(ARRAYLENGTH(gPortraits) - 2); index++) {
+    for (index = 0; index < ARRAYLENGTH(gPortraits) - 2; index++) {
         gPortraits[index].flags = 0;
     }
 }

@@ -63,7 +63,6 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
 extern void Sound_StartFade(u16, u16);
@@ -81,8 +80,6 @@ extern void func_8001FF50(void);
 extern void func_80022470(void);
 extern void func_800253B0(void);
 extern void func_800457C8(void);
-extern void func_80047C98(void);
-extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
 extern u8 func_8005C870(u8);
 extern void UpdateCameraShake(void);

@@ -1,7 +1,5 @@
 #include "common.h"
 
-void func_8004A960(u16 actor_index);
-
 void func_800121D0(void) {
     u16 index;
     u16 actor_index;

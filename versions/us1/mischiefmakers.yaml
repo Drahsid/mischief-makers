@@ -99,7 +99,7 @@ segments:
       - [0x01F1E0, c]
       - [0x022290, c, letterbox]
       - [0x023070, c, lifebar]
-      - [0x023910, asm, soft_reset]
+      - [0x023910, c, soft_reset]
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c] # might be a fake split
       - [0x027f70, c, text] # code for printing game's text
@@ -437,6 +437,8 @@ segments:
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: soft_reset, type: .bss, vram: 0x801781F0 }
+      - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }

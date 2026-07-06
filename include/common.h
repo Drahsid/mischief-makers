@@ -49,7 +49,7 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 #define SCREEN_WIDTH (320)
 #define SCREEN_HEIGHT (240)
 
-#define ARRAYLENGTH(arr) (sizeof(arr)/sizeof(arr[0]))
+#define ARRAYLENGTH(arr) (s32)(sizeof(arr)/sizeof(arr[0]))
 #define ARRAYEND(arr) arr+ARRAYLENGTH(arr) //for stacks and a few while loops.
 
 #define ABS(x) ((x) > 0 ? (x) : -(x))

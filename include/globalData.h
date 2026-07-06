@@ -117,7 +117,7 @@ extern s16 D_800BE57C;
 extern s16 D_800BE580;
 extern s16 D_800BE584;
 extern u16 D_800BE588;
-extern s16 D_800BE58C;
+extern u16 D_800BE58C;
 extern s16 gCamShakeTime; // time shaking camera.
 extern s16 gCamShakeV; // vertical offset of camera shake.
 extern s16 gCamShakeType; // type of camera shake. ranges from 0-2.

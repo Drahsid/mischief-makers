@@ -44,9 +44,6 @@ extern s8 D_800E3C48[];
 extern s16 D_801373DC;
 extern s16 D_801373DE;
 extern s32* D_8013746C; // guess, related to type of D_800C71A0
-extern u16* D_8013769C;
-extern u16* D_801376A0;
-extern u16* D_801376A4;
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
 

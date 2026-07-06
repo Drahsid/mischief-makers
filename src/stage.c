@@ -50,7 +50,6 @@ extern u8 D_801376BD;
 s16 func_8001A758(u16 time, u16 stage);
 
 void func_80005770(void);
-void func_80043918(void);
 void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3);
 void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 void func_8008391C(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);

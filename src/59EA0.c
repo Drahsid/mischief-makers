@@ -19,7 +19,6 @@ extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
 extern s32 D_8013745C;
-extern u16 D_80137480[];
 
 u16 func_800592A0(u16 actor_index, s32* arg1) {
     u16 free_actor;
