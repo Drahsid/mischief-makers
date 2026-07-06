@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "music.h"
 
+// "Overlay 0" code for "Final Battle"
+
 extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
 extern s16 D_801A2110_6CCDE0;

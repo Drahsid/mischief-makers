@@ -2754,7 +2754,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 30;
         }
         else {
-            func_80057320(0, 30);
+            func_80057320(PLAYER_INDEX, 30);
         }
         SpawnParticle_SineUp(pos_x, pos_y, 4, GINDEX_HEARTBUBBLE);
         if (is_static) {
@@ -2771,7 +2771,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 500;
         }
         else {
-            func_80057320(0, 500);
+            func_80057320(PLAYER_INDEX, 500);
         }
         func_8003F9CC(2.5f, pos_x, pos_y, 0);
         if (is_static) {
@@ -2788,7 +2788,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 300;
         }
         else {
-            func_80057320(0, 300);
+            func_80057320(PLAYER_INDEX, 300);
         }
         if (is_static != 0) {
             Sound_PlaySfxAtObject(SFX_GEM_GREEN, actor_index);

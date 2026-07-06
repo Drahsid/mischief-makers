@@ -1105,11 +1105,11 @@ void func_801B9BF4_7DCAC4(u16 arg0, u16 arg1, u16 arg2) {
 
 void func_801B9D38_7DCC08(void) {
     D_800BE5F4.unk_00_u32 = 4;
-    gGuestActorIndex = 0x30;
+    gGuestActorIndex = TERAN_PLAYER_INDEX;
     D_800D2954 = 1;
-    gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gPlayerActor.posX.whole;
-    gActors[0x30].posY.whole = gPlayerActor.posY.whole;
+    gTeranPlayerActor.health = gFestivalData.guestHP;
+    gTeranPlayerActor.posX.whole = gPlayerActor.posX.whole;
+    gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
 
 void func_801B9D84_7DCC54(void) {
@@ -1123,13 +1123,13 @@ s32 func_801B9DB0_7DCC80(void) {
     s32 new_var2;
     s32 new_var;
 
-    if ((gScreenPosCurrentY.whole + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
+    if ((gScreenPosCurrentY.whole + gTeranPlayerActor.posY.whole) < (new_var2 = 0x100)) {
         new_var = 0x40;
-        if (gActors[0x30].state != new_var) {
-            gActors[0x30].state = 0x40;
-            gActors[0x30].health -= 200;
-            if (gActors[0x30].health <= 0) {
-                gActors[0x30].health = 0;
+        if (gTeranPlayerActor.state != new_var) {
+            gTeranPlayerActor.state = 0x40;
+            gTeranPlayerActor.health -= 200;
+            if (gTeranPlayerActor.health <= 0) {
+                gTeranPlayerActor.health = 0;
                 func_801B9D84_7DCC54();
                 return TRUE;
             }
@@ -1139,7 +1139,7 @@ s32 func_801B9DB0_7DCC80(void) {
         }
     }
 
-    if (gActors[0x30].flags == 0) {
+    if (gTeranPlayerActor.flags == 0) {
         func_801B9D84_7DCC54();
         return TRUE;
     }
@@ -1176,7 +1176,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD63C_7E050C);
             gActors[0x8D].var_158 = 1;
-            gActors[0x8D].unk_178 = 0x30;
+            gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
             gFestivalData.guestHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0x8000;
@@ -1206,7 +1206,7 @@ void func_801B9ED4_7DCDA4(void) {
                         break;
 
                     case 1:
-                        gActors[0x30].unk_174 = 1;
+                        gTeranPlayerActor.unk_174 = 1;
                         break;
 
                     case 2:
@@ -1219,7 +1219,7 @@ void func_801B9ED4_7DCDA4(void) {
 
                     case 4:
                         gActors[0x53].unk_174 = 0;
-                        gActors[0x30].unk_174 = 1;
+                        gTeranPlayerActor.unk_174 = 1;
                         break;
 
                     case 5:
@@ -1227,7 +1227,7 @@ void func_801B9ED4_7DCDA4(void) {
                         break;
 
                     case 6:
-                        gActors[0x30].unk_174 = 1;
+                        gTeranPlayerActor.unk_174 = 1;
                         break;
 
                     case 7:
@@ -1235,7 +1235,7 @@ void func_801B9ED4_7DCDA4(void) {
                         break;
 
                     case 8:
-                        gActors[0x30].unk_174 = 1;
+                        gTeranPlayerActor.unk_174 = 1;
                         break;
 
                     case 9:
@@ -1255,7 +1255,7 @@ void func_801B9ED4_7DCDA4(void) {
                     case 4:
                     case 6:
                     case 8:
-                        gActors[0x30].unk_174 = 0;
+                        gTeranPlayerActor.unk_174 = 0;
                         break;
 
                     case 2:
@@ -1290,7 +1290,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD684_7E0554);
             gActors[0x8D].var_158 = 1;
-            gActors[0x8D].unk_178 = 0x30;
+            gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
             gFestivalData.guestHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0;
@@ -1312,19 +1312,19 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BD730_7E0600);
             // set warp gates to wait for Teran to "use" them.
             gActors[0x88].var_158 = 1;
-            gActors[0x88].unk_178 = 0x30;
+            gActors[0x88].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x89].var_158 = 1;
-            gActors[0x89].unk_178 = 0x30;
+            gActors[0x89].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x8A].var_158 = 1;
-            gActors[0x8A].unk_178 = 0x30;
+            gActors[0x8A].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x8B].var_158 = 1;
-            gActors[0x8B].unk_178 = 0x30;
+            gActors[0x8B].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x8C].var_158 = 1;
-            gActors[0x8C].unk_178 = 0x30;
+            gActors[0x8C].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x8E].var_158 = 1;
-            gActors[0x8E].unk_178 = 0x30;
+            gActors[0x8E].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x8F].var_158 = 1;
-            gActors[0x8F].unk_178 = 0x30;
+            gActors[0x8F].unk_178 = TERAN_PLAYER_INDEX;
             gActors[0x89].warpGate_coords = D_801BC9E0_7DF8B0;
             gActors[0x8A].warpGate_coords = D_801BC9E8_7DF8B8;
             gActors[0x8B].warpGate_coords = D_801BC9F0_7DF8C0;
@@ -1346,7 +1346,7 @@ void func_801B9ED4_7DCDA4(void) {
                     (gActors[0x8D].flags == 0)) {
                     Actor_LoadSpawnTable(D_801BD948_7E0818);
                     gActors[0x8D].var_158 = 1;
-                    gActors[0x8D].unk_178 = 0x30;
+                    gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
                     Sound_PlaySfx(0x136);
                 }
             }
@@ -1414,7 +1414,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BD958_7E0828);
             gActors[0x8D].var_158 = 1;
-            gActors[0x8D].unk_178 = 0x30;
+            gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
             func_801B9D38_7DCC08();
 
         case 0x21:
@@ -1436,9 +1436,9 @@ void func_801B9ED4_7DCDA4(void) {
     }
 
     // move Teran's HP to global var.
-    if ((gActors[0x30].flags & ACTOR_FLAG_ACTIVE) && (gActors[0x30].health != 0)) {
-        if (gActors[0x30].actorType == 0x1D02) {
-            gFestivalData.guestHP = gActors[0x30].health;
+    if ((gTeranPlayerActor.flags & ACTOR_FLAG_ACTIVE) && (gTeranPlayerActor.health != 0)) {
+        if (gTeranPlayerActor.actorType == 0x1D02) {
+            gFestivalData.guestHP = gTeranPlayerActor.health;
         }
     }
 }
@@ -2004,11 +2004,11 @@ void func_801BACDC_7DDBAC(void) {
 
 void func_801BBCBC_7DEB8C(void) {
     D_800BE5F4.unk_00_u32 = 4;
-    gGuestActorIndex = 0x30;
+    gGuestActorIndex = TERAN_PLAYER_INDEX;
     D_800D2954 = 1;
-    gActors[0x30].health = gFestivalData.guestHP;
-    gActors[0x30].posX.whole = gPlayerActor.posX.whole;
-    gActors[0x30].posY.whole = gPlayerActor.posY.whole;
+    gTeranPlayerActor.health = gFestivalData.guestHP;
+    gTeranPlayerActor.posX.whole = gPlayerActor.posX.whole;
+    gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
 
 void func_801BBD08_7DEBD8(void) {
@@ -2023,10 +2023,10 @@ s32 func_801BBD34_7DEC04(void) {
 
     for (actor_index = 0x60; actor_index < 0x70; actor_index++) {
         if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
-            gActors[0x30].state = 0x41;
-            gActors[0x30].iFrames = 60;
-            gActors[0x30].posX.whole = gActors[actor_index].posX.whole;
-            gActors[0x30].posY.whole = gActors[actor_index].posY.whole + 0x28;
+            gTeranPlayerActor.state = 0x41;
+            gTeranPlayerActor.iFrames = 60;
+            gTeranPlayerActor.posX.whole = gActors[actor_index].posX.whole;
+            gTeranPlayerActor.posY.whole = gActors[actor_index].posY.whole + 0x28;
             return TRUE;
         }
     }
@@ -2037,11 +2037,11 @@ s32 func_801BBD34_7DEC04(void) {
 s32 func_801BBDB0_7DEC80(void) {
     s32 new_var2;
 
-    if ((gScreenPosCurrentY.whole + gActors[0x30].posY.whole) < (new_var2 = 0x100)) {
-        gActors[0x30].state = 0x40;
-        gActors[0x30].health -= 0xC8;
-        if ((gActors[0x30].health & 0x8000) || (gActors[0x30].health == 0)) {
-            gActors[0x30].health = 0;
+    if ((gScreenPosCurrentY.whole + gTeranPlayerActor.posY.whole) < (new_var2 = 0x100)) {
+        gTeranPlayerActor.state = 0x40;
+        gTeranPlayerActor.health -= 200;
+        if ((gTeranPlayerActor.health & 0x8000) || (gTeranPlayerActor.health == 0)) {
+            gTeranPlayerActor.health = 0;
             func_801BBD08_7DEBD8();
             return TRUE;
         }
@@ -2052,12 +2052,12 @@ s32 func_801BBDB0_7DEC80(void) {
             }
         }
 
-        gActors[0x30].health = 0;
+        gTeranPlayerActor.health = 0;
         func_801BBD08_7DEBD8();
         return TRUE;
     }
 
-    if (gActors[0x30].flags == 0) {
+    if (gTeranPlayerActor.flags == 0) {
         func_801BBD08_7DEBD8();
         return TRUE;
     }
@@ -2185,7 +2185,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x3A:
-            if ((gButtonPress & gButton_ZTrig) || (gActors[0x30].flags == 0)) {
+            if ((gButtonPress & gButton_ZTrig) || (gTeranPlayerActor.flags == 0)) {
                 func_801BBE80_7DED50();
                 D_800D2928 = 1;
             }
@@ -2221,7 +2221,7 @@ void func_801BBEBC_7DED8C(void) {
                 func_80045F14(D_801BE204_7E10D4);
                 D_800D28FC &= ~2;
                 func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
-                gActors[0x30].var_0D8 &= ~1;
+                gTeranPlayerActor.var_0D8 &= ~1;
                 gActors[0x40].var_0D8 &= ~1;
                 D_800BE544 = 0x8000;
             }
@@ -2306,9 +2306,9 @@ void func_801BBEBC_7DED8C(void) {
         gActors[0x90].colorB = 0x10;
     }
 
-    if ((gActors[0x30].flags & 2) && (gActors[0x30].health != 0)) {
-        if (gActors[0x30].actorType == 0x1D02) {
-            gFestivalData.guestHP = gActors[0x30].health;
+    if ((gTeranPlayerActor.flags & ACTOR_FLAG_ACTIVE) && (gTeranPlayerActor.health != 0)) {
+        if (gTeranPlayerActor.actorType == 0x1D02) {
+            gFestivalData.guestHP = gTeranPlayerActor.health;
         }
     }
 }

@@ -311,7 +311,12 @@ extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 // actor 0 is always the main character, Marina
 #define gPlayerActor gActors[PLAYER_INDEX]
 
-// actor represtenting guest player actor, Teran
+#define TERAN_PLAYER_INDEX 0x30
+
+// Teran when he is playable in "Rescue"
+#define gTeranPlayerActor gActors[TERAN_PLAYER_INDEX]
+
+// actor represtenting guest player actor by global var
 #define gGuestPlayerActor gActors[gGuestActorIndex]
 
 
