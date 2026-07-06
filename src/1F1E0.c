@@ -825,11 +825,11 @@ void func_80020A90(void) {
         D_801782B8++;
         func_8002034C();
         if ((gButtonPress & gButton_DUp) && (gActors[0xCF].posY.whole != -8)) {
-            Sound_PlaySfx(0x22);
+            Sound_PlaySfx(SFX_MENU_BLIP);
             gActors[0xCF].posY.whole = -8;
         }
         if ((gButtonPress & gButton_DDown) && (gActors[0xCF].posY.whole != -28)) {
-            Sound_PlaySfx(0x22);
+            Sound_PlaySfx(SFX_MENU_BLIP);
             gActors[0xCF].posY.whole = -28;
         }
         break;

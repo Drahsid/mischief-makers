@@ -287,7 +287,7 @@ void func_80061624(u16 actor_index) {
             gActors[actor_index].state = 0x50;
         case 0x50:
             gActors[actor_index].posY.whole = 0x120 - gScreenPosCurrentY.whole;
-            if (gCurrentScene == 6) {
+            if (gCurrentScene == SCENE_ENDING) {
                 gActors[actor_index].posX.whole = ((gActors[actor_index].var_150 - gScreenPosCurrentX.whole) & 0x3FF) - 0x200;
                 if (gLookatEyeZ == 448.0f) {
                     if ((gActors[actor_index].posX.whole < -0x100) || (gActors[actor_index].posX.whole >= 0x101)) {
@@ -1359,7 +1359,7 @@ void func_80064B60(u16 actor_index) {
     case 0:
         if (gActors[actor_index].var_154-- == 0) {
             Actor_LoadSpawnTable((void* ) gActors[actor_index].var_158);
-            Sound_PlayMusic(0x1E);
+            Sound_PlayMusic(BGM_GET);
             D_800BE5F4.unk_00_u32 = 0xE;
             gActors[actor_index].var_154 = 0x168;
             gActors[actor_index].state += 1;
@@ -1368,7 +1368,7 @@ void func_80064B60(u16 actor_index) {
     case 1:
         if (gActors[actor_index].var_154-- == 0) {
             if (gActors[actor_index].var_15C != 0) {
-                if (gCurrentScene == 0x34) {
+                if (gCurrentScene == SCENE_3CLANCERKIDS) {
                     if (D_800D28E4 == 1) {
                         Sound_PlayMusic(gActors[actor_index].var_15C);
                     }
@@ -1449,7 +1449,7 @@ void func_80064F4C(u16 actor_index) {
                     return;
                 }
             }
-            else if (gCurrentScene == 0x48) {
+            else if (gCurrentScene == SCENE_CLANPOTSHAKE) {
                 if ((func_8004089C((actor_index + 0x8000), D_800D7560[index]) == 0x800) && (gActors[actor_index].unk_16C == 0)) {
                     gActors[actor_index].unk_16C = 1;
                     gActors[actor_index].var_0D8 += 3;
@@ -1467,7 +1467,7 @@ void func_80064F4C(u16 actor_index) {
         func_80064EB4(actor_index);
         if (gAudioFadeMode != 0x81) {
             gAudioFadeMode = 0;
-            Sound_PlayMusic(0x1E);
+            Sound_PlayMusic(BGM_GET);
             gActors[actor_index].var_150 |= 0x1000;
             D_800D2924 = D_800BE56C.whole = 0xE12;
             D_800BE5F4.unk_00_u32 = 0xE;

@@ -551,8 +551,8 @@ void func_8005878C(u16 actor_index) {
         if (gActors[actor_index].health >= 0) {
             gActors[actor_index].state = 3;
         }
-        else if (gGameState == 6) {
-            gGameState = 7;
+        else if (gGameState == GAMESTATE_GAMEPLAY) {
+            gGameState = GAMESTATE_CONTINUE;
             gGameStateSubState = 0;
             gActors[actor_index].var_150 = gActors[actor_index].flags & ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK7);
             gActors[actor_index].unk_170 = 0xA4;
