@@ -139,8 +139,8 @@ void func_8004A960(u16 actor_index) {
 
     gActors[actor_index].unk_12E_u8 |= 0x41;
 
-    for (index = 0; index < 0x20; index++) {
-        D_801373E0.raw[index] = 0;
+    for (index = 0; index < sizeof(D_801373E0) / sizeof(u32); index++) {
+        ((u32*)&D_801373E0)[index] = 0;
     }
 
     D_801373E0.unk_13 = 0;
