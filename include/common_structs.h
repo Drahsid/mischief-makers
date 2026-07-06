@@ -47,10 +47,7 @@ typedef struct {
 } UnkStruct_801069E0; /* sizeof = 0x90 */
 
 // struct storing data about Marina player actor
-// cleared word-by-word on Marina init (func_8004A960), hence the raw word view.
-typedef union {
-    u32 raw[0x20];
-    struct {
+typedef struct {
     /* 0x00 */ FixedCoord unk_00[2]; // used for storing and modding some actors' x-and-y positions.
     /* 0x08 */ s16 unk_08;
     /* 0x0A */ s8 unk_0A;
@@ -85,7 +82,6 @@ typedef union {
     /* 0x72 */ u8 unk_72[6]; // unused?
     /* 0x78 */ u32 unk_78; // bitfield. 0x8 allows marina actor to update.
     /* 0x7C */ u32 unk_7C;
-    };
 } UnkStruct_D_801373E0; /* sizeof = 0x80 */
 
 // D_800BE5F4 is treated as both word and 4 bytes.
