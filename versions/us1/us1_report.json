@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 30.382294,
+    "fuzzy_match_percent": 30.49301,
     "total_code": "1994280",
-    "matched_code": "605908",
-    "matched_code_percent": 30.382294,
+    "matched_code": "608116",
+    "matched_code_percent": 30.49301,
     "matched_data_percent": 100.0,
     "total_functions": 4708,
-    "matched_functions": 2092,
-    "matched_functions_percent": 44.435005,
+    "matched_functions": 2093,
+    "matched_functions_percent": 44.456245,
     "complete_data_percent": 100.0,
     "total_units": 414
   },
@@ -2946,15 +2946,21 @@
     {
       "name": "lifebar",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "2208",
+        "matched_code": "2208",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "2208",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147624048"
           }
@@ -2964,6 +2970,7 @@
         {
           "name": "func_80022470",
           "size": "2208",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147624048"
           }
@@ -49143,14 +49150,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 53.81062,
+        "fuzzy_match_percent": 54.14836,
         "total_code": "653752",
-        "matched_code": "351788",
-        "matched_code_percent": 53.81062,
+        "matched_code": "353996",
+        "matched_code_percent": 54.148365,
         "matched_data_percent": 100.0,
         "total_functions": 1799,
-        "matched_functions": 1143,
-        "matched_functions_percent": 63.535297,
+        "matched_functions": 1144,
+        "matched_functions_percent": 63.590885,
         "complete_data_percent": 100.0,
         "total_units": 261
       }

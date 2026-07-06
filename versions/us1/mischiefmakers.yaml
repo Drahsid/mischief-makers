@@ -98,7 +98,7 @@ segments:
       - [0x01E7A0, c, actor_init]
       - [0x01F1E0, c]
       - [0x022290, c, letterbox]
-      - [0x023070, asm, lifebar]
+      - [0x023070, c, lifebar]
       - [0x023910, asm, soft_reset]
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c] # might be a fake split
