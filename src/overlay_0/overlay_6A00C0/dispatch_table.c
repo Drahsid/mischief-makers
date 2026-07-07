@@ -25,7 +25,7 @@ void* D_80192000_6A00C0[] = {
     (void*)func_80199320_6A7320,
     (void*)func_80196908_6A4908,
     (void*)func_80199A1C_6A7A1C,
-    (void*)func_80192394_6A0394,
+    (void*)func_80192394_6A0394, // shell shot from Sasquatch Beta
     (void*)func_80193120_6A1120,
     (void*)func_80193394_6A1394,
     D_80199C28_6A7C28,

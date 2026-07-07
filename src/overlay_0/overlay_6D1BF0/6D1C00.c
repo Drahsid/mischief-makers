@@ -95,7 +95,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(4.5);
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(0.75);
                 func_80081790(actor_index, D_800E58D4);
-                ACTOR_INIT(temp_index_22,ACTORTYPE_GRAPHICONLY);
+                ACTOR_INIT(temp_index_22, ACTORTYPE_GRAPHICONLY);
                 gActors[temp_index_22].var_150 = (intptr_t)D_800E1180;
                 gActors[temp_index_22].var_154 = 1;
                 gActors[temp_index_22].flags = ACTOR_FLAG_ENABLED;

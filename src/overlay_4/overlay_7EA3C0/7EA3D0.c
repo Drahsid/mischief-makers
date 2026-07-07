@@ -36,17 +36,17 @@ u16 D_801B9C28_7EA6F8[] = {
 
 // cinematic "state machine" for "Final Battle!!"
 void func_801B9900_7EA3D0(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             D_800D28FC |= 4;
             D_8010692C = 0x40;
             D_800BE544 = 0x8000;
             if (gSkipStageIntro) {
-                gStageCinemaState = 0x2000;
+                gStageState = 0x2000;
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
             }
             else {
-                gStageCinemaState = gStageCinemaState + 1;
+                gStageState = gStageState + 1;
                 func_80046148(D_801B9BC0_7EA690, (u16*)NULL);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
                 gLetterboxMode = LETTERBOX_DEFAULT;
@@ -56,7 +56,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                gStageCinemaState = gStageCinemaState + 1;
+                gStageState = gStageState + 1;
                 gCannotPause = TRUE;
             }
             break;
@@ -66,7 +66,7 @@ void func_801B9900_7EA3D0(void) {
             break;
 
         case 0x100:
-            gStageCinemaState = gStageCinemaState + 1;
+            gStageState = gStageState + 1;
             D_800D28FC &= ~4;
             D_800D28FC |= 8;
             gLetterboxMode = LETTERBOX_HORIZONTAL;
@@ -77,7 +77,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x1000:
             Actor_ClearSceneActors();
-            gStageCinemaState = gStageCinemaState + 1;
+            gStageState = gStageState + 1;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
@@ -87,13 +87,13 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x1001:
             if (func_80046D5C() != 0) {
-                gStageCinemaState = 0x100;
+                gStageState = 0x100;
                 gCannotPause = TRUE;
             }
             break;
 
         case 0x2000:
-            gStageCinemaState = 0x1001;
+            gStageState = 0x1001;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
@@ -105,7 +105,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x8001:
             if (func_80046D5C() != 0) {
-                gStageCinemaState = gStageCinemaState + 1;
+                gStageState = gStageState + 1;
             }
             break;
 

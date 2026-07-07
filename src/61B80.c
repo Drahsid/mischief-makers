@@ -1378,7 +1378,7 @@ void func_80064B60(u16 actor_index) {
                 }
             }
             gActors[actor_index].flags = 0;
-            gStageCinemaState++;
+            gStageState++;
         }
         if (gActors[actor_index].var_154 == 0x15E) {
             Sound_PlaySfx(0x136);

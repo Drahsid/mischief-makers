@@ -81,7 +81,7 @@ void func_80016E70(u16 actor_index) {
             D_800E5AC0[index](actor_index);
             break;
 
-        case ACTOR_OVL1_9:
+        case ACTOR_OVL1_GEN:
             D_8019B000[index](actor_index);
             break;
 
@@ -109,11 +109,11 @@ void func_80016E70(u16 actor_index) {
             D_80192000[index](actor_index);
             break;
 
-        case ACTOR_OVL0_16:
+        case ACTOR_OVL0_WORLD1:
             D_80192000[index](actor_index);
             break;
 
-        case ACTOR_OVL1_17:
+        case ACTOR_OVL1_MOLE:
             D_8019B000[index](actor_index);
             break;
 
@@ -125,7 +125,7 @@ void func_80016E70(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL0_20:
+        case ACTOR_OVL0_SBETA:
             D_80192000[index](actor_index);
             break;
 
@@ -153,7 +153,7 @@ void func_80016E70(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL3_27:
+        case ACTOR_OVL3_WORLD3:
             D_801B0800[index](actor_index);
             break;
 

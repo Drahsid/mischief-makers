@@ -7240,7 +7240,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
     case 4:
         if (gActors[actor_index].var_110 < 0.0f) {
             gActors[actor_index].flags = 0;
-            gStageCinemaState += 1;
+            gStageState += 1;
         }
         break;
     }
@@ -8480,7 +8480,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             case 3:
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
-                gStageCinemaState = gActors[actor_index].var_0D8;
+                gStageState = gActors[actor_index].var_0D8;
                 break;
             }
         }

@@ -329,7 +329,7 @@ void func_80023F5C(void) {
 void func_80024004(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
-        if (gStageCinemaState < 3) {
+        if (gStageState < 3) {
             gScreenPosTargetY.raw = gPlayerPosY.raw + 0x280000;
         }
         else {

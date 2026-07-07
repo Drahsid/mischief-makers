@@ -17,7 +17,7 @@ extern func_801B2498_7A8A18(u16);
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0A58_7A6FD8.s")
 
 void func_801B0BFC_7A717C(u16 arg0) {
-    gStageCinemaState = 0;
+    gStageState = 0;
     D_800D28F0 = arg0;
     D_800D28E4 = 0x62;
 }
@@ -45,13 +45,13 @@ void func_801B0C20_7A71A0(u16 actor_index){
 void func_801B0CBC_7A723C(u16 arg0) {
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x63;
-    gStageCinemaState = 4;
+    gStageState = 4;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_3/overlay_7A6E60/7A6E80/func_801B0CEC_7A726C.s")
 
 void func_801B0DA0_7A7320(u16 arg0) {
-    gStageCinemaState = 0;
+    gStageState = 0;
     D_800D28F0 = 50;
     D_800D28E4 = 0x62;
 }

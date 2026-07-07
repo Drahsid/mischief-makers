@@ -39,20 +39,20 @@ extern u8 D_801A4FAC_73BD0C[];
 
 void* D_8019B000_731DD0[] = {
     (void*)func_8019D77C_7344DC,
-    (void*)func_8019DD08_734A68,
+    (void*)func_8019DD08_734A68, // passes Rocketeer behavior in main segment.
     (void*)func_8019E364_7350C4,
     (void*)func_801A0C0C_73796C,
     (void*)func_801A0F5C_737CBC,
     (void*)func_801A0FC0_737D20,
     (void*)func_801A1024_737D84,
-    (void*)func_801A2664_7393C4,
+    (void*)func_801A2664_7393C4, // Jump / "Pogo" Clancer
     (void*)func_801A2720_739480,
     (void*)func_801A27D8_739538,
     (void*)func_801A283C_73959C,
     (void*)func_8019EBD8_735938,
-    (void*)func_801A406C_73ADCC,
-    (void*)func_801A2920_739680,
-    (void*)func_801A3290_739FF0,
+    (void*)func_801A406C_73ADCC, // rifle/missle launcher
+    (void*)func_801A2920_739680, // missles fired from launcher
+    (void*)func_801A3290_739FF0, // bullets fired from rifle
     (void*)func_8019B100_731E60,
     (void*)func_8019DB10_734870,
     (void*)func_8019DB58_7348B8,

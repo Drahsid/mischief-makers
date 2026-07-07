@@ -570,7 +570,7 @@ void func_80020024(void) {
 
     gActiveFrames++;
     D_801782B8++;
-    if ((gStageTime < 36000) && (gStageCinemaState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
+    if ((gStageTime < 36000) && (gStageState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         gStageTime++;
     }
     func_800122B0();
@@ -786,7 +786,7 @@ void func_80020A90(void) {
         }
         break;
     case 32:
-        if ((gActors[0xCF].posY.whole == -28) && (gStageCinemaState >= 2)) {
+        if ((gActors[0xCF].posY.whole == -28) && (gStageState >= 2)) {
             for (actor_index = 0; actor_index < 0xC8; actor_index++) {
                 gActors[actor_index].flags = 0;
             }

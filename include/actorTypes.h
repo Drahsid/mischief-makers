@@ -23,25 +23,25 @@ typedef enum {
     ACTOR_OVL0_MIGEN,
     ACTOR_OVL3_7,
     ACTOR_MAIN_8, // a secondary dispatch table in the main segment.
-    ACTOR_OVL1_9,
+    ACTOR_OVL1_GEN, // actors in Overlay 0 code for many stages.
     ACTOR_OVL1_10,
     ACTOR_OVL1_11,
     ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
     ACTOR_OVL1_13,
     ACTOR_OVL3_14,
     ACTOR_OVL0_CALPHA, // actors in Overlay 0 code of "Cerberus Alpha" 
-    ACTOR_OVL0_16,
-    ACTOR_OVL1_17,
+    ACTOR_OVL0_WORLD1, // Commander and stubbed actor in "Meet Marina"
+    ACTOR_OVL1_MOLE, // "Overlay 1" actors for "Moley Cow"
     ACTOR_OVL1_18,
     ACTOR_OVL1_19,
-    ACTOR_OVL0_20,
+    ACTOR_OVL0_SBETA, // actors in Overlay 0 code of "Sasquatch Beta" 
     ACTOR_OVL0_21,
     ACTOR_OVL0_FINALBAT, // actors in Overlay 0 Code for "Final Battle"
     ACTOR_OVL2_23,
     ACTOR_OVL2_WORLD1, // "Overlay 2" actors for many of World 1's stages
     ACTOR_OVL0_25,
     ACTOR_OVL2_FESTIVAL,
-    ACTOR_OVL3_27,
+    ACTOR_OVL3_WORLD3,
     ACTOR_OVL2_WORLD3,
     ACTOR_OVL2_29,
     ACTOR_OVL2_30,
@@ -280,6 +280,38 @@ typedef enum {
     ACTORTYPE_MAIN8_11,
     ACTORTYPE_MAIN8_12, // stubbed
 
+    // actors in dispatch table D_8019B000_731DD0
+
+    ACTORTYPE_OVL1_GEN_WALKER = (ACTOR_OVL1_GEN << 8), // walker mech
+    ACTORTYPE_OVL1_GEN_ROCKETEER,
+    ACTORTYPE_OVL1_GEN_HOVERCRAFT,
+    ACTORTYPE_OVL1_GEN_TREADS, // clancer with treads for legs and guns for arms
+    ACTORTYPE_OVL1_GEN_4,
+    ACTORTYPE_OVL1_GEN_5,
+    ACTORTYPE_OVL1_GEN_6,
+    ACTORTYPE_OVL1_GEN_POGO, // Jump/"Pogo" clancer
+    ACTORTYPE_OVL1_GEN_8,
+    ACTORTYPE_OVL1_GEN_9,
+    ACTORTYPE_OVL1_GEN_10,
+    ACTORTYPE_OVL1_GEN_11,
+    ACTORTYPE_OVL1_GEN_GUN, //rifle or missle launcher
+    ACTORTYPE_OVL1_GEN_GUNMISSLE,
+    ACTORTYPE_OVL1_GEN_GUNBULLET,
+    ACTORTYPE_OVL1_GEN_15, // stubbed
+    ACTORTYPE_OVL1_GEN_16,
+    ACTORTYPE_OVL1_GEN_17,
+    ACTORTYPE_OVL1_GEN_18,
+    ACTORTYPE_OVL1_GEN_19,
+    ACTORTYPE_OVL1_GEN_20,
+    ACTORTYPE_OVL1_GEN_21,
+    ACTORTYPE_OVL1_GEN_22,
+
+    // 23-31 are likely invalid.
+    
+    ACTORTYPE_OVL1_GEN_32 = (ACTOR_OVL1_GEN << 8) + 32,
+    ACTORTYPE_OVL1_GEN_33,
+    ACTORTYPE_OVL1_GEN_34,
+
     // actors in dispatch table D_8019B000_742CA0
     
     ACTORTYPE_OVL1_BEE_BOSS = (ACTOR_OVL1_BEE << 8), // bee boss
@@ -317,6 +349,40 @@ typedef enum {
     ACTORTYPE_OVL0_CALPHA_25,
     ACTORTYPE_OVL0_CALPHA_26,
     ACTORTYPE_OVL0_CALPHA_27,
+
+    // actors in disptch table D_80192000_6D1BF0
+    
+    ACTORTYPE_OVL0_W1_CMDR = (ACTOR_OVL0_WORLD1 << 8), // commander in "Meet Marina" intro
+    ACTORTYPE_OVL0_W1_1, // stubbed
+
+    // actors in disptch table D_8019B000_75D630
+
+    ACTORTYPE_OVL1_MOLE_BOSS = (ACTOR_OVL1_MOLE << 8),
+    ACTORTYPE_OVL1_MOLE_1,
+    ACTORTYPE_OVL1_MOLE_DIZZYSTAR,
+    ACTORTYPE_OVL1_MOLE_3,
+    ACTORTYPE_OVL1_MOLE_4,
+    ACTORTYPE_OVL1_MOLE_5,
+    ACTORTYPE_OVL1_MOLE_6,
+
+    // actors in disptch table D_80192000_6A00C0
+
+    ACTORTYPE_OVL0_SBETA_MAIN = (ACTOR_OVL0_SBETA << 8),
+    ACTORTYPE_OVL0_SBETA_THEO, // Theo being rescued
+    ACTORTYPE_OVL0_SBETA_2, // intro animation?
+    ACTORTYPE_OVL0_SBETA_3, // boss defeat animation?
+    ACTORTYPE_OVL0_SBETA_4, 
+    ACTORTYPE_OVL0_SBETA_5, // stubbed
+    ACTORTYPE_OVL0_SBETA_TANKSHELL, // shell shot from Sasquatch Beta
+    ACTORTYPE_OVL0_SBETA_ROCK, // rocks thrown
+    ACTORTYPE_OVL0_SBETA_8, // stubbed
+
+    //entries 9, 10, and 11 invalid(?)
+
+    ACTORTYPE_OVL0_SBETA_12 = (ACTOR_OVL0_SBETA << 8) + 12,
+    ACTORTYPE_OVL0_SBETA_13,
+    ACTORTYPE_OVL0_SBETA_14,
+    ACTORTYPE_OVL0_SBETA_15,
 
     // actors in dispatch table D_801A6800_766080
 
@@ -407,7 +473,7 @@ typedef enum {
     ACTORTYPE_OVL0_GEN_STATUE, // Movable statue. unused params to be different statue or taiko(drum).
     ACTORTYPE_OVL0_GEN_7,
     ACTORTYPE_OVL0_GEN_CLANPOTICON, // icon for ACTORTYPE_OVL0_GEN_7
-    ACTORTYPE_OVL0_GEN_9,
+    ACTORTYPE_OVL0_GEN_TRIKE, // tricycle
     ACTORTYPE_OVL0_GEN_BOOMGFX, // explosion graphic
 
     // actors in dispatch table D_801B0800_7C0AB0

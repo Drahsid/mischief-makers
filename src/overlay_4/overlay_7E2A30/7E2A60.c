@@ -207,7 +207,7 @@ u16 D_801BC83C_7E599C[] = {
     0x0000, 0x0093, 0x0100, 0x014A, 0x0206, 0x0000, ACTORTYPE_13,
     0x0000, 0x0030, 0x0088, 0x014C, 0x0000, 0x0000, 0x270D,
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, 0x2711,
-    0x0000, 0x0040, 0x0220, 0x0170, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_9,
+    0x0000, 0x0040, 0x0220, 0x0170, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_TRIKE,
     0x0000, 0x0041, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_GRAPHICONLY,
     0x0000, 0x0042, 0x1E28, 0x0170, 0x0000, 0x0000, 0x2712,
     0x0000, 0x0050, 0x20D0, 0x015C, 0x0080, 0x0030, 0x2702,
@@ -220,7 +220,7 @@ u16 D_801BC8BC_7E5A1C[] = {
 
 u16 D_801BC8CC_7E5A2C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0282, 0x016E, 0x0000, 0x0000, 0x1100,
+    0x0000, 0x0030, 0x0282, 0x016E, 0x0000, 0x0000, ACTORTYPE_OVL1_MOLE_BOSS,
     SPAWNRECORD_END
 };
 
@@ -540,10 +540,15 @@ u16 D_801BD5A8_7E6708[] = {
     SPAWNRECORD_END
 };
 
+// spawn table for "Sasquatch Beta"
 u16 D_801BD5E4_7E6744[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x008F, 0x0440, 0x0184, 0x0001, 0x0000, 0x1402,
-    SPAWNRECORD_END, 
+    0x0000, 0x008F, 0x0440, 0x0184, 0x0001, 0x0000, ACTORTYPE_OVL0_SBETA_2,
+    SPAWNRECORD_END
+};
+
+// unused spawn table
+u16 D_801BD5F4_7E6754[]= {
     0x0000, 0x0090, 0x0390, 0x01A6, 0xFE03, 0x0004, ACTORTYPE_13,
     0x0000, 0x0091, 0x0390, 0x01A6, 0x0403, 0x0004, ACTORTYPE_13,
     0x0000, 0x0092, 0x0390, 0x01A6, 0xFE03, 0x0008, ACTORTYPE_13,
@@ -563,28 +568,28 @@ u16 D_801BD8C0_7E6A20;
 void func_801B9900_7E2A60(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
     if (gPlayerActor.posY.whole < -0x30) {
         D_800D291C = arg0 - 0x70;
-        gStageCinemaState += arg3;
+        gStageState += arg3;
         return;
     }
 
     if ((gPlayerActor.posX.whole < -0x40) || (gPlayerActor.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
-        gStageCinemaState -= arg3;
+        gStageState -= arg3;
     }
 }
 
 void func_801B99B8_7E2B18(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
     if (gPlayerActor.posY.whole >= 0x31) {
         D_800D2918 = arg0 + 0x70;
-        gStageCinemaState += arg3;
+        gStageState += arg3;
         return;
     }
 
     if ((gPlayerActor.posX.whole < -0x40) || (gPlayerActor.posX.whole >= 0x41)) {
         D_800D2920 = arg1 - 0x90;
         D_800D2924 = arg2 + 0x90;
-        gStageCinemaState -= arg3;
+        gStageState -= arg3;
     }
 }
 
@@ -593,38 +598,38 @@ void func_801B9A70_7E2BD0(u16 arg0, u16 arg1, u16 arg2) {
 
     if (position_y >= arg1) {
         D_800D291C = arg1 - 0x70;
-        gStageCinemaState += arg2;
+        gStageState += arg2;
         return;
     }
 
     if (arg0 >= position_y) {
         D_800D2918 = arg0 + 0x70;
-        gStageCinemaState -= arg2;
+        gStageState -= arg2;
         return;
     }
 
     if ((gPlayerActor.posX.whole < -0x60) || (gPlayerActor.posX.whole >= 0x61)) {
         if (position_y < ((arg0 + arg1) / 2)) {
             D_800D2918 = arg0 + 0x70;
-            gStageCinemaState -= arg2;
+            gStageState -= arg2;
             return;
         }
 
         D_800D291C = arg1 - 0x70;
-        gStageCinemaState += arg2;
+        gStageState += arg2;
     }
 }
 
 void func_801B9B8C_7E2CEC(u16 arg0) {
     D_800D2920 = arg0 - 0xB0;
     D_800D2924 = arg0 + 0xB0;
-    gStageCinemaState++;
+    gStageState++;
 }
 
 void func_801B9BC0_7E2D20(u16 arg0) {
     D_800D2920 = arg0 - 0xB0;
     D_800D2924 = arg0 + 0xB0;
-    gStageCinemaState--;
+    gStageState--;
 }
 
 void func_801B9BF4_7E2D54(u16 arg0, u16 arg1, u16 arg2) {
@@ -678,7 +683,7 @@ void func_801B9D78_7E2ED8(void) {
 
             if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;
-                gStageCinemaState = 4;
+                gStageState = 4;
                 D_800D28E4 = 0x61;
             }
             else if (gGameState == GAMESTATE_GAMEPLAY) {
@@ -690,14 +695,14 @@ void func_801B9D78_7E2ED8(void) {
 }
 
 void func_801B9E74_7E2FD4(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             if (gSkipStageIntro) {
-                gStageCinemaState = 0x1000;
+                gStageState = 0x1000;
                 break;
             }
 
-            gStageCinemaState++;
+            gStageState++;
             Palette_AdjustScenePalettes(8, 8, -2, 2, 2, -0x1F, 8, 0, -0x1F);
             func_801B9D38_7E2E98(D_801BBEC0_7E5020, (u16*)D_801BBF10_7E5070, D_801BC7FC_7E595C);
             D_800BE5F4.unk_00_s32 = 4;
@@ -714,16 +719,16 @@ void func_801B9E74_7E2FD4(void) {
             }
             if (func_80046D5C() != 0) {
                 D_800D28F8 = 4;
-                gStageCinemaState++;
+                gStageState++;
                 gCannotPause = TRUE;
             }
             break;
 
         case 2:
             func_80047714(1, 1, 1, 3);
-            if (gStageCinemaState == 3) {
+            if (gStageState == 3) {
                 D_800D2938 = 0;
-                gStageCinemaState = 3;
+                gStageState = 3;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
                 D_800BE5F4.unk_00_s32 = 4;
@@ -732,11 +737,11 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 3:
-            gStageCinemaState++;
+            gStageState++;
             D_800BE544 = 0;
 
         case 4:
-            gStageCinemaState++;
+            gStageState++;
             switch (D_800D2928) {
                 case 0:
                     func_801B9D38_7E2E98(D_801BBEE0_7E5040, (u16*)-7, D_801BC83C_7E599C);
@@ -761,7 +766,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 5:
             if (func_80046D5C() != 0) {
-                gStageCinemaState++;
+                gStageState++;
                 D_800D28FC |= 8;
                 D_800D292C = 1;
                 gCannotPause = FALSE;
@@ -808,10 +813,10 @@ void func_801B9E74_7E2FD4(void) {
                 if (((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) >= 0x2000) &&
                     ((gScreenPosCurrentY.whole + (gActors + 0x41)->posY.whole) >= 0x140) &&
                     (gActors[0x40].flags & 2)) {
-                    gStageCinemaState = 7;
+                    gStageState = 7;
                 }
                 else {
-                    gStageCinemaState = 0xA;
+                    gStageState = 0xA;
                 }
 
                 gCannotPause = TRUE;
@@ -827,14 +832,14 @@ void func_801B9E74_7E2FD4(void) {
                 D_801373E0.unk_24 = 0;
             }
             func_80047714(2, 1, 1, 8);
-            if (gStageCinemaState == 8) {
+            if (gStageState == 8) {
                 D_800BE5F4.unk_00_s32 = 2;
             }
             break;
 
         case 8:
             D_800D2938 = 0;
-            gStageCinemaState = 0xC;
+            gStageState = 0xC;
             D_800D28F0 = 0;
             D_800D28E4 = 0x64;
             break;
@@ -843,7 +848,7 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
-            if (gStageCinemaState == 0xB) {
+            if (gStageState == 0xB) {
                 D_800BE5F4.unk_00_s32 = 2;
             }
             break;
@@ -852,7 +857,7 @@ void func_801B9E74_7E2FD4(void) {
             D_800D2938 = 0;
             D_800D2928 = 0;
             D_800D292C = 0;
-            gStageCinemaState = 0x1000;
+            gStageState = 0x1000;
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
             break;
@@ -862,7 +867,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0x1000:
-            gStageCinemaState = 3;
+            gStageState = 3;
             D_800D2928 = 0;
             D_800D292C = 0;
             D_800D2930 = 0;
@@ -880,17 +885,17 @@ void func_801B9E74_7E2FD4(void) {
 }
 
 void func_801BA534_7E3694(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             Palette_AdjustScenePalettes(4, 4, 8, -10, -10, -4, -4, -4, 8);
             func_80045FA4(D_801BC8BC_7E5A1C, 0);
             Actor_LoadSpawnTable(D_801BBEB0_7E5010);
             Actor_LoadSpawnTable(D_801BC8CC_7E5A2C);
-            gStageCinemaState++;
+            gStageState++;
 
         case 1:
             if (func_80046D5C() != 0) {
-                gStageCinemaState++;
+                gStageState++;
                 D_800D28FC |= 8;
             }
             break;
@@ -901,7 +906,7 @@ void func_801BA534_7E3694(void) {
         case 3:
             func_8003D628(0);
             Sound_StartFade(0x81, 0x168);
-            gStageCinemaState++;
+            gStageState++;
             break;
 
         case 4:
@@ -909,7 +914,7 @@ void func_801BA534_7E3694(void) {
 
         case 5:
             func_80064AA0(1, D_801BC8DC_7E5A3C);
-            gStageCinemaState++;
+            gStageState++;
             break;
 
         case 6:
@@ -934,7 +939,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
 
-    if (gStageCinemaState != 0) {
+    if (gStageState != 0) {
         for (index = 0; index < 8; index++) {
             saved[index] = gActors[index + 0x48].unk_188_s16;
         }
@@ -949,7 +954,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
         gActors[0x4F].var_110 = gActors[0x4F].var_110 - 4096.0f;
     }
 
-    if (gStageCinemaState != 0) {
+    if (gStageState != 0) {
         for (index = 0; index < 8; index++) {
             if (saved[index] == 0) {
                 snapped = gActors[index + 0x48].var_110;
@@ -986,22 +991,22 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     D_800D2918 = arg1 + 0x70;
     D_800D291C = arg1 - 0x70;
     D_800BE5F4.unk_00_s32 = 0xA;
-    gStageCinemaState = 8;
+    gStageState = 8;
     D_801BD8C0_7E6A20 = arg2;
 }
 
 void func_801BA950_7E3AB0(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             if (gSkipStageIntro) {
-                gStageCinemaState = 0x1000;
+                gStageState = 0x1000;
                 break;
             }
 
             Palette_AdjustScenePalettes(2, 4, -2, -8, -2, -8, -3, 3, -3);
             func_80045FA4(D_801BC8EC_7E5A4C, (u16*)D_801BC93C_7E5A9C);
             func_801BA674_7E37D4(0x182, 0xE7C, 0x10);
-            gStageCinemaState = 1;
+            gStageState = 1;
             D_800BE5F4.unk_00_s32 = 7;
             break;
 
@@ -1009,13 +1014,13 @@ void func_801BA950_7E3AB0(void) {
             if (func_80046D5C() != 0) {
                 gCannotPause = TRUE;
                 D_800D28F8 = 4;
-                gStageCinemaState++;
+                gStageState++;
             }
             break;
 
         case 2:
             func_80047714(1, 1, 1, 3);
-            if (gStageCinemaState == 3) {
+            if (gStageState == 3) {
                 D_800BE5F4.unk_00_s32 = 5;
                 D_800D28FC |= 8;
             }
@@ -1024,13 +1029,13 @@ void func_801BA950_7E3AB0(void) {
 
         case 3:
             gCannotPause = FALSE;
-            gStageCinemaState = 0x10;
+            gStageState = 0x10;
             break;
 
         case 8:
             if (func_80046D5C() != 0) {
                 D_800D28FC |= 8;
-                gStageCinemaState = D_801BD8C0_7E6A20;
+                gStageState = D_801BD8C0_7E6A20;
             }
             break;
 
@@ -1148,7 +1153,7 @@ void func_801BA950_7E3AB0(void) {
                 D_800BE5D4 = 1;
                 Sound_PlaySfx(0x3E);
                 D_801BD8C2_7E6A22 = 0;
-                gStageCinemaState++;
+                gStageState++;
             }
             break;
 
@@ -1241,13 +1246,13 @@ void func_801BA950_7E3AB0(void) {
             func_80045FA4(D_801BC8EC_7E5A4C, (u16*)D_801BC93C_7E5A9C);
             func_801BA674_7E37D4(0x182, 0xE7C, 0x10);
             D_800BE5F4.unk_00_s32 = 5;
-            gStageCinemaState = 0x1001;
+            gStageState = 0x1001;
             break;
 
         case 0x1001:
             if (func_80046D5C() != 0) {
                 D_800D28FC |= 8;
-                gStageCinemaState = 3;
+                gStageState = 3;
             }
             break;
     }
@@ -1279,19 +1284,19 @@ void func_801BB1F4_7E4354(void) {
     D_800BE56C.whole = 0x712;
     D_800BE570.whole = 0x1EC;
     D_800BE574.whole = 0x10C;
-    gStageCinemaState++;
+    gStageState++;
 }
 
 void func_801BB28C_7E43EC(void) {
-    if ((func_801BB184_7E42E4() != 0) && (gStageCinemaState < 0x800) && (D_800D28E4 < 0x61) 
+    if ((func_801BB184_7E42E4() != 0) && (gStageState < 0x800) && (D_800D28E4 < 0x61) 
       && (gGameState != GAMESTATE_CONTINUE) && (gPlayerActor.health >= 0)) {
-        gStageCinemaState = 0x800;
+        gStageState = 0x800;
     }
 
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             if (gSkipStageIntro) {
-                gStageCinemaState = 0x1000;
+                gStageState = 0x1000;
                 break;
             }
 
@@ -1304,13 +1309,13 @@ void func_801BB28C_7E43EC(void) {
             if (func_80046D5C() != 0) {
                 gCannotPause = TRUE;
                 D_800D28F8 = 4;
-                gStageCinemaState++;
+                gStageState++;
             }
             break;
 
         case 2:
             func_80047714(1, 1, 1, 3);
-            if (gStageCinemaState == 3) {
+            if (gStageState == 3) {
                 D_800BE5F4.unk_00_u32 = 5;
                 D_800D28FC |= 8;
             }
@@ -1320,7 +1325,7 @@ void func_801BB28C_7E43EC(void) {
         case 3:
             func_80045F14(D_801BCF74_7E60D4);
             gCannotPause = FALSE;
-            gStageCinemaState = 20;
+            gStageState = 20;
             break;
 
         case 16:
@@ -1377,7 +1382,7 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x800:
             Sound_StartFade(1, 0x60);
-            gStageCinemaState++;
+            gStageState++;
             break;
 
         case 0x801:
@@ -1388,7 +1393,7 @@ void func_801BB28C_7E43EC(void) {
                             D_800D2938 = 0;
                             D_800D28F0 = D_800D28E4;
                             D_800D28E4 = 0x61;
-                            gStageCinemaState++;
+                            gStageState++;
                         }
                     }
                 }
@@ -1405,20 +1410,20 @@ void func_801BB28C_7E43EC(void) {
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_GLOOMY);
             Camera_UpdateViewBounds();
-            gStageCinemaState++;
+            gStageState++;
             break;
 
         case 0x803:
             if (func_80046D5C() != 0) {
                 D_800D28F8 = 4;
                 func_8005DF40(0, 0xC);
-                gStageCinemaState++;
+                gStageState++;
             }
             break;
 
         case 0x804:
             func_80047714(4, 1, 2, 0x805);
-            if (gStageCinemaState == 0x805) {
+            if (gStageState == 0x805) {
                 SpawnGemRing(10);
                 D_800D28FC |= 8;
                 D_800D2928 = 0x40;
@@ -1444,7 +1449,7 @@ void func_801BB28C_7E43EC(void) {
         case 0x1001:
             if (func_80046D5C() != 0) {
                 D_800D28FC |= 8;
-                gStageCinemaState = 3;
+                gStageState = 3;
             }
             break;
     }
@@ -1454,7 +1459,7 @@ void func_801BB28C_7E43EC(void) {
 
 // state machine for intro/end of "Taurus!!"
 void func_801BB85C_7E49BC(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             gCannotPause = TRUE;
             Palette_AdjustScenePalettes(2, 2, 6, 0, 0, -1, 0, 0, -6);
@@ -1464,10 +1469,10 @@ void func_801BB85C_7E49BC(void) {
             Actor_LoadSpawnTable(D_801BD578_7E66D8);
             D_800BE5F4.unk_00_s32 = 7;
             if (!gSkipStageIntro) {
-                gStageCinemaState = 1;
+                gStageState = 1;
             }
             else {
-                gStageCinemaState = 0x1000;
+                gStageState = 0x1000;
             }
             break;
 
@@ -1475,7 +1480,7 @@ void func_801BB85C_7E49BC(void) {
             if (func_80046D5C() != 0) {
                 gCannotPause = TRUE;
                 func_8005DF5C(1);
-                gStageCinemaState = 2;
+                gStageState = 2;
             }
             Cutscene_CheckSkipInput();
             break;
@@ -1483,7 +1488,7 @@ void func_801BB85C_7E49BC(void) {
         case 2:
             Cutscene_CheckSkipInput();
             if (func_8005DEFC() == 0) {
-                gStageCinemaState = 3;
+                gStageState = 3;
             }
             break;
 
@@ -1498,26 +1503,26 @@ void func_801BB85C_7E49BC(void) {
             func_8005DF5C(5);
             func_8005DF5C(6);
             Cutscene_CheckSkipInput();
-            gStageCinemaState = 5;
+            gStageState = 5;
             break;
 
         case 5:
             Cutscene_CheckSkipInput();
             if (func_8005DEFC() == 0) {
-                gStageCinemaState = 10;
+                gStageState = 10;
             }
             break;
 
         case 10:
             D_800BE5F4.unk_00_s32 = 5;
-            gStageCinemaState = 20;
+            gStageState = 20;
             D_800D28FC |= 8;
 
         case 20:
             gCannotPause = FALSE;
             if (gActors[0x30].health == 0) {
                 Sound_StartFade(0x81, 0x3C);
-                gStageCinemaState = 21;
+                gStageState = 21;
             }
             break;
 
@@ -1525,7 +1530,7 @@ void func_801BB85C_7E49BC(void) {
             if (gAudioFadeMode != 0x81) {
                 D_800BE5F4.unk_00_u32 = 0x1F;
                 Sound_PlayMusic(BGM_GET);
-                gStageCinemaState = 22;
+                gStageState = 22;
             }
             break;
 
@@ -1534,12 +1539,12 @@ void func_801BB85C_7E49BC(void) {
             func_8005DF5C(8);
             func_8005DF5C(9);
             func_8005DF5C(10);
-            gStageCinemaState = 24;
+            gStageState = 24;
             break;
 
         case 24:
             if (func_8005DEFC() == 0) {
-                gStageCinemaState = 25;
+                gStageState = 25;
             }
             break;
 
@@ -1555,7 +1560,7 @@ void func_801BB85C_7E49BC(void) {
             Actor_LoadSpawnTable(D_801BBEB0_7E5010);
             Actor_LoadSpawnTable(D_801BD578_7E66D8);
             D_800BE5F4.unk_00_s32 = 7;
-            gStageCinemaState = 0x1001;
+            gStageState = 0x1001;
             break;
 
         case 0x1001:
@@ -1590,13 +1595,13 @@ void func_801BB85C_7E49BC(void) {
 }
 
 void func_801BBC00_7E4D60(void) {
-    switch (gStageCinemaState) {
+    switch (gStageState) {
         case 0:
             if (gSkipStageIntro) {
-                gStageCinemaState = 0x1000;
+                gStageState = 0x1000;
             }
             else {
-                gStageCinemaState++;
+                gStageState++;
                 func_80046148(D_801BD598_7E66F8, (u16*)NULL);
                 Actor_LoadSpawnTable(D_801BD5A8_7E6708);
                 Actor_LoadSpawnTable(D_801BD5E4_7E6744);
@@ -1606,7 +1611,7 @@ void func_801BBC00_7E4D60(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                gStageCinemaState++;
+                gStageState++;
                 gCannotPause = TRUE;
             }
             break;
@@ -1616,7 +1621,7 @@ void func_801BBC00_7E4D60(void) {
             break;
 
         case 3:
-            gStageCinemaState++;
+            gStageState++;
             D_800D28FC |= 8;
             D_801373E0.unk_78 |= 1;
             gCannotPause = FALSE;
@@ -1625,23 +1630,23 @@ void func_801BBC00_7E4D60(void) {
             break;
 
         case 5:
-            gStageCinemaState++;
+            gStageState++;
             D_800BE544 = 0x8000;
             D_800D28FC |= 4;
             D_800D28FC &= ~8;
             break;
 
         case 7:
-            gStageCinemaState++;
+            gStageState++;
             Actor_LoadSpawnTable(D_801BD5A8_7E6708);
             break;
 
         case 9:
-            gStageCinemaState = 0xC000;
+            gStageState = 0xC000;
             break;
 
         case 0x1000:
-            gStageCinemaState++;
+            gStageState++;
             func_80045FA4(D_801BD598_7E66F8, 0);
             Actor_LoadSpawnTable(D_801BD5A8_7E6708);
             Actor_LoadSpawnTable(D_801BD5E4_7E6744);
@@ -1651,7 +1656,7 @@ void func_801BBC00_7E4D60(void) {
 
         case 0x1001:
             if (func_80046D5C() != 0) {
-                gStageCinemaState = 3;
+                gStageState = 3;
             }
             break;
 
@@ -1660,7 +1665,7 @@ void func_801BBC00_7E4D60(void) {
 
         case 0xC001:
             if (func_80046D5C() != 0) {
-                gStageCinemaState++;
+                gStageState++;
             }
             break;
 

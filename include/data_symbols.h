@@ -5,7 +5,7 @@
 #include "inttypes.h"
 
 extern u16 D_800D28E4;
-extern u16 gStageCinemaState; // state for cinematics (intro/dialog/outro) for stages.
+extern u16 gStageState; // state for stages, determining cinematics, actor spawns, level logic, etc.
 extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
 extern u16 gStageTimeBest;
 extern u16 D_800D28F0;

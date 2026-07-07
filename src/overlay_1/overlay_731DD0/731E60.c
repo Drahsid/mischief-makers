@@ -145,7 +145,7 @@ void func_8019DD08_734A68(u16 actor_index) {
 void func_8019EB14_735874(u16 actor_index) {
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
     func_8008105C(actor_index, D_801A5280_73BFE0, D_801A5200_73BF60);
-    gActors[actor_index].unk_178 = (s32)D_801A54C4_73C224;
+    gActors[actor_index].unk_178 = (intptr_t)D_801A54C4_73C224;
     func_80081790(actor_index, D_801A54B4_73C214);
 }
 
@@ -258,8 +258,10 @@ void func_801A206C_738DCC(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A3C6C_73A9CC.s")
 
+// fire from gun?
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A3EE8_73AC48.s")
 
+// behavior of rifles and missle launchers
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A406C_73ADCC.s")
 
 void func_801A4730_73B490(u16 arg0){

@@ -1028,7 +1028,7 @@ u32 func_801AB6B4_7919A4(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801ABAE4_791DD4.s")
 
 void func_801ABB44_791E34(u16 actor_index, u16 arg1) {
-    gStageCinemaState = 0;
+    gStageState = 0;
     D_800D28F0 = D_801AF7C4_795AB4[arg1 * 2+1];
     D_800D28E4 = 0x62;
 }
