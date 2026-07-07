@@ -98,7 +98,7 @@ void func_801A6E48_78B988(u16 arg0) {
     
     actor_index = Actor_RangeFindInactive(0x49, 0x4C);
     if (actor_index != 0) {
-        gActors[actor_index].actorType = ACTORTPYE_OVL2_W5B_SPIKEBALL;
+        gActors[actor_index].actorType = ACTORTYPE_OVL2_W5B_SPIKEBALL;
         Actor_Initialize(actor_index);
         gActors[actor_index].var_110 = (Rand() & 19) << 8;
         gActors[actor_index].var_0D8 = 0;

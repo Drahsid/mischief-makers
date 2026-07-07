@@ -96,13 +96,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087BDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_Orbit.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_OrbitXY.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087EAC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088010.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088164.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_77.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800882E8.s")
 
@@ -110,7 +110,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088518.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008855C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_78.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800886E0.s")
 
@@ -128,13 +128,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088B08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088CB0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_OrbitYZ.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088E38.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088E90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80089084.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Spikeball_80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800891EC.s")
 

@@ -22,25 +22,26 @@ extern s32 func_8008D418(u16 actor_index);
 extern s32 func_8008D480(u16 actor_index);
 extern void func_8008CF60(u16 actor_index);
 
-void func_8008C4A0(u32 arg0) {
+void ActorUpdate_Type15(u16 arg0) {
 }
 
-void func_8008C4A8(u32 arg0) {
+void ActorUpdate_Type16(u16 arg0) {
 }
 
+// unknown/unused
 void func_8008C4B0(u32 arg0, u32 arg1, u32 arg2) {
 }
 
-void func_8008C4C0(u32 arg0) {
+void ActorUpdate_Type37(u16 arg0) {
 }
 
-void func_8008C4C8(u32 arg0) {
+void ActorUpdate_Type43(u16 arg0) {
 }
 
-void func_8008C4D0(u32 arg0) {
+void ActorUpdate_Type65(u16 arg0) {
 }
 
-void func_8008C4D8(u32 arg0) {
+void ActorUpdate_Type83(u16 arg0) {
 }
 
 void func_8008C4E0(u16 actor_index) {
@@ -267,15 +268,15 @@ void func_8008DEBC(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E1A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E310.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/SpawnMarinaOhNo.s")
 
-void func_8008E3C0(u16 actor_index) {
+void ActorUpdate_MarinaOhNo(u16 actor_index) {
     D_800BE5F4.unk_00_u32 = 4;
     func_8008DF20(actor_index);
     if (gActors[actor_index].state == 0x10) {
         D_800BE5F4.unk_00_u32 = 4;
         gActors[actor_index].state = 0x30;
-        gActors[actor_index].palette_18C = D_800D46A8;
+        gActors[actor_index].palette_18C = D_800D46A8; // Marina rolling
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
         gActors[actor_index].unk_118 = 1.0f;
         Sound_StopSfx(SFX_MARINA_OW1);

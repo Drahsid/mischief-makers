@@ -35,8 +35,8 @@ extern u16 D_801BAD04_7E7E54[];
 typedef struct {
     /* 0x00 */ u16 unk_00;
     /* 0x02 */ u8 unk_02[0x2];
-    /* 0x04 */ void* unk_04;
-    /* 0x08 */ void* unk_08;
+    /* 0x04 */ u16* unk_04;
+    /* 0x08 */ u16* unk_08;
     /* 0x0C */ u16* unk_0C;
     /* 0x10 */ u16 unk_10;
     /* 0x12 */ u16 unk_12;
@@ -109,7 +109,7 @@ UnkStruct_801BA6B0 D_801BA6B0_7E7800[] = {
 };
 
 u16 D_801BA700_7E7850[] = {
-    0,0
+    0, 0
 };
 
 u16 D_801BA704_7E7854[] = {

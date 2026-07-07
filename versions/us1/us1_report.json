@@ -5367,7 +5367,7 @@
           }
         },
         {
-          "name": "func_80030008",
+          "name": "ActorUpdate_Gem124",
           "size": "928",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10367,7 +10367,7 @@
           }
         },
         {
-          "name": "func_800645F4",
+          "name": "ActorUpdate_Spikeball_81",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10375,7 +10375,7 @@
           }
         },
         {
-          "name": "func_8006475C",
+          "name": "ActorUpdate_Spikeball_82",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10447,7 +10447,7 @@
           }
         },
         {
-          "name": "func_80065270",
+          "name": "ActorUpdate_MsHint",
           "size": "992",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -12448,14 +12448,14 @@
           }
         },
         {
-          "name": "func_80076D40",
+          "name": "Clanblob_Update",
           "size": "3800",
           "metadata": {
             "virtual_address": "2147970368"
           }
         },
         {
-          "name": "func_80077C18",
+          "name": "ActorUpdate_Clanblob",
           "size": "268",
           "metadata": {
             "virtual_address": "2147974168"
@@ -13965,7 +13965,7 @@
           }
         },
         {
-          "name": "ActorUpdate_Spikeball_Orbit",
+          "name": "ActorUpdate_Spikeball_OrbitXY",
           "size": "384",
           "metadata": {
             "virtual_address": "2148039980"
@@ -13986,7 +13986,7 @@
           }
         },
         {
-          "name": "func_80088164",
+          "name": "ActorUpdate_Spikeball_77",
           "size": "388",
           "metadata": {
             "virtual_address": "2148041060"
@@ -14014,7 +14014,7 @@
           }
         },
         {
-          "name": "func_8008855C",
+          "name": "ActorUpdate_Spikeball_78",
           "size": "388",
           "metadata": {
             "virtual_address": "2148042076"
@@ -14077,7 +14077,7 @@
           }
         },
         {
-          "name": "func_80088CB0",
+          "name": "ActorUpdate_Spikeball_OrbitYZ",
           "size": "392",
           "metadata": {
             "virtual_address": "2148043952"
@@ -14098,7 +14098,7 @@
           }
         },
         {
-          "name": "func_80089084",
+          "name": "ActorUpdate_Spikeball_80",
           "size": "360",
           "metadata": {
             "virtual_address": "2148044932"
@@ -14369,7 +14369,7 @@
       ],
       "functions": [
         {
-          "name": "func_8008C4A0",
+          "name": "ActorUpdate_Type15",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14377,7 +14377,7 @@
           }
         },
         {
-          "name": "func_8008C4A8",
+          "name": "ActorUpdate_Type16",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14393,7 +14393,7 @@
           }
         },
         {
-          "name": "func_8008C4C0",
+          "name": "ActorUpdate_Type37",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14401,7 +14401,7 @@
           }
         },
         {
-          "name": "func_8008C4C8",
+          "name": "ActorUpdate_Type43",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14409,7 +14409,7 @@
           }
         },
         {
-          "name": "func_8008C4D0",
+          "name": "ActorUpdate_Type65",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14417,7 +14417,7 @@
           }
         },
         {
-          "name": "func_8008C4D8",
+          "name": "ActorUpdate_Type83",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14686,14 +14686,14 @@
           }
         },
         {
-          "name": "func_8008E310",
+          "name": "SpawnMarinaOhNo",
           "size": "176",
           "metadata": {
             "virtual_address": "2148066064"
           }
         },
         {
-          "name": "func_8008E3C0",
+          "name": "ActorUpdate_MarinaOhNo",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {

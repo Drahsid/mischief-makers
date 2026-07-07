@@ -164,7 +164,7 @@ u16 D_801BC7AC_7D6F9C[] = {
 
 // contents of second Clanpot in "Go Marzen 64"
 u16 D_801BC7BC_7D6FAC[] = {
-//  flags                                   0x110   0xD8 type                         Icon    
+//  flags                                  0x110   0xD8  type                         Icon    
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,    ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,    ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,    ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 
@@ -1526,8 +1526,8 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
 // init clanpot containg 3 Rocketeers
 void func_801BA040_7D4830(void) {
     Clanpot_InitItems(0x5F, D_801BC7BC_7D6FAC);
-    gActors[0x5F].clanpot_pfn0 = func_801B9F3C_7D472C;
-    gActors[0x5F].clanpot_pfn1 = func_801B9F70_7D4760;
+    gActors[0x5F].clanpotTally = func_801B9F3C_7D472C;
+    gActors[0x5F].clanpotCheck = func_801B9F70_7D4760;
 }
 
 void func_801BA084_7D4874(void) {
@@ -2510,6 +2510,6 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
 }
 
 void func_801BC11C_7D690C(void) {
-    gActors[0x39].clanpot_pfn0 = func_801BC010_7D6800;
-    gActors[0x39].clanpot_pfn1 = func_801BC01C_7D680C;
+    gActors[0x39].clanpotTally = func_801BC010_7D6800;
+    gActors[0x39].clanpotCheck = func_801BC01C_7D680C;
 }

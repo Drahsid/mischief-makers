@@ -861,9 +861,9 @@ void func_800756FC(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80076BF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80076D40.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/66250/Clanblob_Update.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80077C18.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/66250/ActorUpdate_Clanblob.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80077D24.s")
 

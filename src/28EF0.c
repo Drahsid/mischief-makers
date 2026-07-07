@@ -2847,7 +2847,7 @@ void ActorUpdate_GemIcon(u16 actor_index) {
     }
 }
 
-void func_80030008(u16 actor_index) {
+void ActorUpdate_Gem124(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         gActors[actor_index].state++;
@@ -5049,8 +5049,8 @@ u16 Clanpot_TryMix(u16 actor_index) {
             }
             break;
         default:
-            if (gActors[actor1].clanpot_pfn0 != NULL) {
-                gActors[actor1].clanpot_pfn0(gClanpotItems[index1 + 3], index1);
+            if (gActors[actor1].clanpotTally != NULL) {
+                gActors[actor1].clanpotTally(gClanpotItems[index1 + 3], index1);
             }
             break;
         }
@@ -5062,7 +5062,7 @@ u16 Clanpot_TryMix(u16 actor_index) {
     gActors[actor_index].unk_164 = -1;
     gActors[actor_index].unk_168 = -1;
     // run clanpot mix checks. first actor-based if available.
-    if ((gActors[actor1].clanpot_pfn1 != NULL) && ((gActors[actor1].clanpot_pfn1(actor_index)))  ||
+    if ((gActors[actor1].clanpotCheck != NULL) && ((gActors[actor1].clanpotCheck(actor_index)))  ||
     // then check the rest.
        (Clanpot_MixClanbomb(actor_index)) || (Clanpot_MixBoomerang(actor_index)) ||
        (Clanpot_MixShuriken(actor_index)) || ((Clanpot_MixGreenGem(actor_index)))) {
@@ -8475,7 +8475,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
                 break;
             case 4:
                 gActors[actor_index].state++;
-                WarpGate_MoveFaceUser(actor_index,gActors[actor_index].warpGate_coords);
+                WarpGate_MoveFaceUser(actor_index,gActors[actor_index].warpgateCoords);
                 break;
             case 3:
                 D_800D28F0 = D_800D28E4;
@@ -8574,7 +8574,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             WarpGate_MoveUser(actor_index, &D_800D2860[coord_index]);
             break;
         case 4:
-            WarpGate_MoveUser(actor_index,gActors[actor_index].warpGate_coords);
+            WarpGate_MoveUser(actor_index,gActors[actor_index].warpgateCoords);
             break;
         default:
             return;

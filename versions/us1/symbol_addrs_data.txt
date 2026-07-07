@@ -176,7 +176,7 @@ gPlatforms1Y1 = 0x8011D850; // size:0x120
 
 gDramStack = 0x8011D970; // size:0x400
 gButtonPressHistory = 0x8011DD70; // size:0x80
-gYeildData = 0x8011DDF0; // size:0x4800
+gYieldData = 0x8011DDF0; // size:0x4800
 gButtonHoldHistory = 0x801225F0; // size:0x80
 
 gAudioCustomFxParams = 0x800C3858; // size:0xA8

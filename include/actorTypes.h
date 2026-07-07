@@ -62,7 +62,7 @@ typedef enum {
 } ActorOverlayIDs;
 
 
-typedef enum{
+typedef enum {
     // actors in main code segment
 
     ACTORTYPE_ZERO = (ACTOR_MAIN << 8), // used for images. has a stubbed "tick" function.
@@ -139,12 +139,12 @@ typedef enum{
     ACTORTYPE_71,
     ACTORTYPE_72,
     ACTORTYPE_SPIKEBALL_S, // stationary spikeball
-    ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball?
-    ACTORTYPE_SPIKEBALL_V, // up/down spikeball?
-    ACTORTYPE_SPIKEBALL_O, // orbital spikeball?
+    ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball
+    ACTORTYPE_SPIKEBALL_V, // up/down spikeball
+    ACTORTYPE_SPIKEBALL_O, // XY orbital spikeball
     ACTORTYPE_SPIKEBALL_77,
     ACTORTYPE_SPIKEBALL_78,
-    ACTORTYPE_SPIKEBALL_79,
+    ACTORTYPE_SPIKEBALL_O2, // YZ orbital spikeball
     ACTORTYPE_SPIKEBALL_80,
     ACTORTYPE_SPIKEBALL_81,
     ACTORTYPE_SPIKEBALL_82,
@@ -287,7 +287,7 @@ typedef enum{
     
     //entries 21, 22, and 23 invalid(?)
     
-    ACTORTYPE_OVL0_CALPHA_24 = (ACTOR_OVL0_CALPHA << 8)+24,
+    ACTORTYPE_OVL0_CALPHA_24 = (ACTOR_OVL0_CALPHA << 8) + 24,
     ACTORTYPE_OVL0_CALPHA_25,
     ACTORTYPE_OVL0_CALPHA_26,
     ACTORTYPE_OVL0_CALPHA_27,
@@ -360,9 +360,9 @@ typedef enum{
 
     // actors in dispatch table D_801A6800_78B430
 
-    ACTORTPYE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor
-    ACTORTPYE_OVL2_W5B_PIRATE, // pirate at end of "Trapped"
-    ACTORTPYE_OVL2_W5B_SPIKEBALL, // spikeballs of pirate at end of "trapped"
+    ACTORTYPE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor
+    ACTORTYPE_OVL2_W5B_PIRATE, // pirate at end of "Trapped"
+    ACTORTYPE_OVL2_W5B_SPIKEBALL, // spikeballs of pirate at end of "trapped"
     
     // actors in dispatch table D_801A6800_76F390
     
@@ -378,13 +378,13 @@ typedef enum{
     ACTORTYPE_OVL0_GEN_BOOMERANG,
     ACTORTYPE_OVL0_GEN_FLAME,
     ACTORTYPE_OVL0_GEN_BLOCK, // destructible block
-    ACTORTYPE_OVL0_GEN_6, // statue?
+    ACTORTYPE_OVL0_GEN_STATUE, // Movable statue. unused params to be different statue or taiko(drum).
     ACTORTYPE_OVL0_GEN_7,
-    ACTORTYPE_OVL0_GEN_8,
+    ACTORTYPE_OVL0_GEN_CLANPOTICON, // icon for ACTORTYPE_OVL0_GEN_7
     ACTORTYPE_OVL0_GEN_9,
-    ACTORTYPE_OVL0_GEN_10,
+    ACTORTYPE_OVL0_GEN_BOOMGFX, // explosion graphic
 
-    // actors in dispatich table D_801B0800_7C0AB0
+    // actors in dispatch table D_801B0800_7C0AB0
 
     ACTORTYPE_OVL3_W5_0 = (ACTOR_OVL3_WORLD5B << 8),
     ACTORTYPE_OVL3_W5_1,
@@ -414,7 +414,7 @@ typedef enum{
     ACTORTYPE_OVL3_W5_25,
     ACTORTYPE_OVL3_W5_26, // graphic-only actors?
 
-    // actors in dispatch rable D_80192000_6F9330
+    // actors in dispatch table D_80192000_6F9330
     
     ACTORTYPE_OVL0_END_0 = (ACTOR_OVL0_ENDING << 8),
     ACTORTYPE_OVL0_END_1,

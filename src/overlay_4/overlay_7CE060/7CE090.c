@@ -1752,7 +1752,7 @@ void func_801BABE8_7CF378(void) {
             func_80046148(D_801BD364_7D1AF4, (u16*)D_801BD37C_7D1B0C);
             Actor_LoadSpawnTable(D_801BBC00_7D0390);
             Actor_LoadSpawnTable(D_801BDB74_7D2304);
-            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
+            gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(0x5E);
             break;
@@ -1772,7 +1772,7 @@ void func_801BABE8_7CF378(void) {
             gScreenPosTargetX.whole = 0x130;
             gScreenPosTargetY.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
-            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
+            gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 4:
@@ -1800,7 +1800,7 @@ void func_801BABE8_7CF378(void) {
             gScreenPosTargetX.whole = 0x6F0;
             gScreenPosTargetY.whole = 0x190;
             func_801B9BF4_7CE384(D_801BDB74_7D2304);
-            gActors[0x30].warpGate_coords = D_801BD374_7D1B04;
+            gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 7:

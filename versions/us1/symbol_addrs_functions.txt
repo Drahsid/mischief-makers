@@ -119,6 +119,7 @@ GemCollect = 0x8002F93C; // type:func
 GemCollect_Actor = 0x8002FC30; // type:func
 GemCollect_Static = 0x8002FD48; // type:func
 ActorUpdate_GemIcon = 0x8002FEF8; // type:func
+ActorUpdate_Gem124 = 0x80030008; // type:func
 ActorUpdate_Gem = 0x800303A8; // type:func
 ActorUpdate_Gem61 = 0x80030964; // type:func
 
@@ -183,11 +184,30 @@ ActorUpdate_Spikeball_Static = 0x80039134; // type:func
 ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
 ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
 
+ActorUpdate_Type15 = 0x8008C4A0; // type:func
+ActorUpdate_Type16 = 0x8008C4A8; // type:func
+ActorUpdate_Type37 = 0x8008C4C0; // type:func
+ActorUpdate_Type43 = 0x8008C4C8; // type:func
+ActorUpdate_Type65 = 0x8008C4D0; // type:func
+ActorUpdate_Type83 = 0x8008C4D8; // type:func
+
+ActorUpdate_Spikeball_77 = 0x80088164; // type:func
+ActorUpdate_Spikeball_78 = 0x8008855C; // type:func
+ActorUpdate_Spikeball_OrbitYZ = 0x80088cb0; // type:func
+ActorUpdate_Spikeball_80 = 0x80089084; // type:func
+ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
+ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
+
+ActorUpdate_MsHint = 0x80065270; // type:func
+
 DiggingSpot_SpawnActor = 0x80089814; // type:func
 DiggingSpot_SpawnActorCheck = 0x80089984; // type:func
 ActorUpdate_DiggingSpot = 0x8008A6E4; // type:func
 
-ActorUpdate_Spikeball_Orbit = 0x80087D2C; // type:func
+ActorUpdate_Spikeball_OrbitXY = 0x80087D2C; // type:func
+
+SpawnMarinaOhNo = 0x8008e310; // type:func
+ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
 
 ActorUpdate_Clanball_28 = 0x8003A120; // type:func
 ActorUpdate_ClanballSpring = 0x8003C328; // type:func
@@ -228,6 +248,10 @@ Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
+
+Clanblob_Update = 0x80076d40; // type:func
+ActorUpdate_Clanblob = 0x80077c18; // type:func
+
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
 

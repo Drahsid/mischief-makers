@@ -3,9 +3,9 @@
 // script releated to dialouge code.
 
 extern u16* D_800D1958[]; // gem palettes
-extern s16 D_800E1474[]; // grpahic list for "press L/R prompt"
+extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
 
-extern s8* D_801782D8; // offsets from GINDEX_PORTRAIT_MARINAA for speaker portrairts
+extern s8* D_801782D8; // dialog data stream?
 extern s8 D_801782DC;
 extern s16 D_801782DE; // index of portrait for current speaker.
 extern s16 D_801782E0;

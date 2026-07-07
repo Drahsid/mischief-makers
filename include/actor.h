@@ -9,6 +9,8 @@
 
 typedef void (*ActorFunc)(u16 actor_index);
 typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
+typedef void (*ClanpotTally)(u16 item_type,u16 actor_index);
+typedef s32 (*ClanpotCheck)(u16 actor_index);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
@@ -252,11 +254,11 @@ typedef struct {
     /* 0x164 */ s32 unk_164;
     union{
         /* 0x168 */ s32 unk_168;
-        /* 0x17C */ void(*clanpot_pfn0)(u16 item_type,u16 actor_index); // used by clanpots when mixing to tally items
+        /* 0x168 */ ClanpotTally clanpotTally; // used by clanpots when mixing to tally items
     };
     union{
         /* 0x16C */ s32 unk_16C;
-        /* 0x17C */ s32(*clanpot_pfn1)(u16 actor_index); // used by clanpots when mixing. returns true if requirements mat.
+        /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
     };
     union {
         /* 0x170 */ s32 unk_170;
@@ -292,7 +294,7 @@ typedef struct {
     union {
         /* 0x190 */ s32 unk_190;
         /* 0x190 */ void* unk_190_p;
-        /* 0x190 */ u16* warpGate_coords; // coordinates for a warp gate. {x,y,x-facing}
+        /* 0x190 */ u16* warpgateCoords; // coordinates for a warp gate. {x,y,x-facing}
         /* 0x190 */ ActorFunc pfn_190;
     };
     /* 0x194 */ u8 unk_194[0x4]; // unknown/unused

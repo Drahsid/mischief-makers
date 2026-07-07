@@ -243,7 +243,7 @@ void Thread_MainProc(void* unused) {
         gCurrentGraphicsTask->t.data_size = (u32)(
             (gDisplayListHead - gDisplayListData[gCurrentFramebufferIndex].dlist) * sizeof(Gfx)
         );
-        gCurrentGraphicsTask->t.yield_data_ptr = gYeildData;
+        gCurrentGraphicsTask->t.yield_data_ptr = gYieldData;
         gCurrentGraphicsTask->t.yield_data_size = YEILD_DATA_SIZE; // SHOULD be this big.
 
         osWritebackDCacheAll();

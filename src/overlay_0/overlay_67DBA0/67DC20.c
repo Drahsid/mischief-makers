@@ -251,7 +251,7 @@ void func_80193694_67F1B4(u16 actor_index) {
 }
 
 void func_80193728_67F248(u16 actor_index) {
-    ACTOR_INIT(actor_index,ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHICONLY);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
 }
 

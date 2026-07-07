@@ -1257,7 +1257,7 @@ void func_80064528(u16 actor_index) {
     }
 }
 
-void func_800645F4(u16 actor_index) {
+void ActorUpdate_Spikeball_81(u16 actor_index) {
     Spikeball_Update(actor_index);
     switch (gActors[actor_index].state) {
     case 0:
@@ -1274,7 +1274,7 @@ void func_800645F4(u16 actor_index) {
     gActors[actor_index].flags |= ACTOR_FLAG_ONSCREEN_ONLY;
 }
 
-void func_8006475C(u16 actor_index) {
+void ActorUpdate_Spikeball_82(u16 actor_index) {
     u16 index;
 
     Spikeball_Update(actor_index);
@@ -1507,15 +1507,15 @@ void func_80065218(void) {
     }
 }
 
-void func_80065270(u16 actor_index) {
+void ActorUpdate_MsHint(u16 actor_index) {
     u16 actor_prev;
 
     gActors[actor_index - 1].posX.raw = gActors[actor_index].posX.raw + gActors[actor_index - 1].var_154;
     gActors[actor_index - 1].posY.raw = gActors[actor_index].posY.raw + gActors[actor_index - 1].var_158;
     switch (gActors[actor_index].state) {
-    case 0:
+    case 0: // spawn clanball
         actor_prev = actor_index - 1;
-        gActors[actor_prev].actorType = 0x1C;
+        gActors[actor_prev].actorType = ACTORTYPE_CLANBALL_28;
         Actor_Initialize(actor_prev);
         gActors[actor_prev].var_110 = (((s32) gActors[actor_index].var_110 | 0x8000 | actor_index) & ~0x1000);
         gActors[actor_prev].var_0D8 = 0;
@@ -1524,27 +1524,27 @@ void func_80065270(u16 actor_index) {
         gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
         gActors[actor_index].state++;
         /* fallthrough */
-    case 1:
+    case 1: // prepare dialog
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
             func_8005E09C(func_8005DF5C(1), 0x2000);
             func_80065218();
             gActors[actor_index].state++;
         }
         break;
-    case 2:
+    case 2: // no longer grabbed, close textbox
         if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
             func_8005DFC8(0);
             gActors[actor_index].state = 1;
         }
         if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
-            if ((gActors[actor_index].parentIndex == 0) && (D_801373E0.unk_12 == 0) && (D_801373E0.unk_10 == 8)) {
+            if ((gActors[actor_index].parentIndex == PLAYER_INDEX) && (D_801373E0.unk_12 == 0) && (D_801373E0.unk_10 == 8)) {
                 SpawnParticle_RingWaveRed(1.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
-                if (gRedGems < 0xA) {
+                if (gRedGems < 0xA) { // not enough gems, tell her so.
                     Sound_PlaySfxAtActor2(0x134, actor_index);
                     func_8005E09C(func_8005DFC8(2), 0x2000);
                 }
-                else {
-                    Sound_PlaySfxAtActor2(0x51, actor_index);
+                else { // take gems, tell hint
+                    Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);
                     SpawnGemRing(0x800A);
                     func_8005DFC8(gActors[actor_index].var_0D8 & 0xF);
                 }
