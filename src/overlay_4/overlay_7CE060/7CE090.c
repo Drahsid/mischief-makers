@@ -1191,17 +1191,17 @@ u32 D_801BF728_7D3EB8[] = {
 
 u16 D_801BF738_7D3EC8[] = {
 //  flags index posX posY 0x110 0xD8 type
-    0,    0x61, 0,   0,   0,    0,   0x0607,
-    0,    0x62, 0,   0,   0,    0,   0x0604,
-    0,    0x64, 0,   0,   0,    0,   0x0602,
+    0,    0x61, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_PLATFORM,
+    0,    0x62, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_SRMAIN,
+    0,    0x64, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_THEO,
     SPAWNRECORD_END
 };
 
 u16 D_801BF764_7D3EF4[] = {
 //  flags index posX posY 0x110 0xD8 type
-    0,    0x61, 0,   0,   0,    0,   0x0607,
-    0,    0x62, 0,   0,   0,    0,   0x060A,
-    0,    0x64, 0,   0,   0,    0,   0x0602,
+    0,    0x61, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_PLATFORM,
+    0,    0x62, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_10,
+    0,    0x64, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_THEO,
     SPAWNRECORD_END
 };
 
@@ -1961,6 +1961,7 @@ void func_801BB2AC_7CFA3C(void) {
     Camera_UpdateViewBounds();
 }
 
+// stage stae machine for "Migen Brawl"
 void func_801BB360_7CFAF0(void) {
     D_800BE708 = 1;
 

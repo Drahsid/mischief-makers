@@ -55,7 +55,7 @@ void func_801A6980_76F420(u16 actor_index) {
             temp_v1 = (FlameArchInit*)&((s16*)D_801A7250_76FCF0)[temp_index];
             gActors[actor_index].posY.whole = temp_v1->posY;
             gActors[actor_index].posZ.whole = temp_v1->posZ;
-            ACTOR_INIT(temp_v0,ACTORTYPE_OVL2_SOL_ARCHFLAME);
+            ACTOR_INIT(temp_v0, ACTORTYPE_OVL2_SOL_ARCHFLAME);
             gActors[temp_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[temp_v0].flags = (Rand() & ACTOR_FLAG_FLIPPED) + (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE);
             gActors[temp_v0].damage = 100;

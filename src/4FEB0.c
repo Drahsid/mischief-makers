@@ -54,10 +54,10 @@ s32 func_8004F35C(u16 actor_index, u32* arg1) {
     if (!(*arg1 & 0x40000000)) {
         if ((*arg1 & 0x3FFFFFFF) >= 0x10) {
             if (func_8005D338(actor_index) == 0x6B) {
-                Sound_PlaySfx(0xB4);
+                Sound_PlaySfx(SFX_MARINA_YELL1);
             }
             else {
-                Sound_PlaySfx(0xCA);
+                Sound_PlaySfx(SFX_MARINA_YELL3);
             }
             *arg1 |= 0x40000000;
         }
@@ -717,7 +717,7 @@ void func_80050F3C(u16 actor_index) {
     if (gActors[actor_index].stateUpper == 0) {
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6);
         Sound_PlaySfx(0xAE);
-        Sound_PlaySfx(0xB4);
+        Sound_PlaySfx(SFX_MARINA_YELL1);
         func_8005C098(actor_index, 1);
         gActors[actor_index].damage = 0;
         gActors[actor_index].unk_0DA = 1;
@@ -2393,9 +2393,9 @@ void func_800558F8(u16 actor_0, u16 actor_1) {
             }
             func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 0x1E);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
-            Sound_StopSfx(0xB4);
-            Sound_StopSfx(0xCA);
-            Sound_PlaySfx(0xB9);
+            Sound_StopSfx(SFX_MARINA_YELL1);
+            Sound_StopSfx(SFX_MARINA_YELL3);
+            Sound_PlaySfx(SFX_MARINA_YELL4);
             D_800D57E0 = 0;
             if (gActors[actor_0].unk_140_u8[0] >= 5) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -2443,24 +2443,24 @@ void func_80055C2C(u16 actor_0, u16 actor_1) {
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
             switch (gActors[actor_0].unk_140_u8[0]) {
             case 0:
-                gActors[actor_0].velocityX.raw = 0x20000;
-                gActors[actor_0].velocityY.raw = 0x88000;
+                gActors[actor_0].velocityX.raw = FIXED_UNIT(2.0);
+                gActors[actor_0].velocityY.raw = FIXED_UNIT(8.5);
                 break;
             case 2:
-                gActors[actor_0].velocityX.raw = 0x28000;
-                gActors[actor_0].velocityY.raw = 0x74000;
+                gActors[actor_0].velocityX.raw = FIXED_UNIT(2.5);
+                gActors[actor_0].velocityY.raw = FIXED_UNIT(7.25);
                 break;
             case 4:
-                gActors[actor_0].velocityX.raw = 0x30000;
-                gActors[actor_0].velocityY.raw = 0x20000;
+                gActors[actor_0].velocityX.raw = FIXED_UNIT(3.0);
+                gActors[actor_0].velocityY.raw = FIXED_UNIT(2.0);
                 break;
             case 6:
-                gActors[actor_0].velocityX.raw = 0x28000;
+                gActors[actor_0].velocityX.raw = FIXED_UNIT(2.5);
                 gActors[actor_0].velocityY.raw = 0;
                 break;
             case 8:
-                gActors[actor_0].velocityX.raw = 0x20000;
-                gActors[actor_0].velocityY.raw = -0x10000;
+                gActors[actor_0].velocityX.raw = FIXED_UNIT(2.0);
+                gActors[actor_0].velocityY.raw = FIXED_UNIT(-1.0);
                 break;
             }
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {

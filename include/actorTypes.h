@@ -20,7 +20,7 @@ typedef enum {
     ACTOR_OVL1_DOG,
     ACTOR_OVL3_4,
     ACTOR_OVL3_WORLD2,
-    ACTOR_OVL0_6,
+    ACTOR_OVL0_MIGEN,
     ACTOR_OVL3_7,
     ACTOR_MAIN_8, // a secondary dispatch table in the main segment.
     ACTOR_OVL1_9,
@@ -237,6 +237,32 @@ typedef enum {
     ACTORTYPE_OVL3_W2_23,
     ACTORTYPE_OVL3_W2_24,
     ACTORTYPE_OVL3_W2_25,
+
+    // actors in dispatch table D_80192000_67DBA0
+
+    ACTORTYPE_OVL0_MIGEN_JRMAIN = (ACTOR_OVL0_MIGEN << 8), // main Migen Jr actor
+    ACTORTYPE_OVL0_MIGEN_1,
+    ACTORTYPE_OVL0_MIGEN_THEO,
+    ACTORTYPE_OVL0_MIGEN_3, // stubbed
+    ACTORTYPE_OVL0_MIGEN_SRMAIN, // main Migen Sr. behavior
+    ACTORTYPE_OVL0_MIGEN_5, // stubbed
+    ACTORTYPE_OVL0_MIGEN_SRBALL,
+    ACTORTYPE_OVL0_MIGEN_PLATFORM, // platform for fight
+    ACTORTYPE_OVL0_MIGEN_8,
+    ACTORTYPE_OVL0_MIGEN_JRFIREBALL,
+    ACTORTYPE_OVL0_MIGEN_10,
+    ACTORTYPE_OVL0_MIGEN_GEM, // gem Migen Sr uses to heal son.
+    ACTORTYPE_OVL0_MIGEN_12, // stubbed
+
+    // 13-21 like invalid entries.
+
+    ACTORTYPE_OVL0_MIGEN_22 = (ACTOR_OVL0_MIGEN << 8) + 22,
+    ACTORTYPE_OVL0_MIGEN_23,
+    ACTORTYPE_OVL0_MIGEN_24,
+    ACTORTYPE_OVL0_MIGEN_25,
+    ACTORTYPE_OVL0_MIGEN_26,
+    ACTORTYPE_OVL0_MIGEN_27,
+    ACTORTYPE_OVL0_MIGEN_28,
 
     // actors in dispatch table D_800E5AC0
 

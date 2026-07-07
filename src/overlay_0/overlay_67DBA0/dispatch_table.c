@@ -32,18 +32,18 @@ extern u8 D_8019C8D8_6883F8[];
 extern u8 D_8019D6E0_689200[];
 
 void* D_80192000_67DBA0[] = {
-    (void*)func_80194F8C_680AAC,
+    (void*)func_80194F8C_680AAC, // main behavior for Migen Jr.
     (void*)func_80192C4C_67E76C,
-    (void*)func_8019809C_683BBC,
+    (void*)func_8019809C_683BBC, // theo?
     (void*)func_80197F98_683AB8,
-    (void*)func_801992AC_684DCC,
+    (void*)func_801992AC_684DCC, // main behavior for Migen Sr.
     (void*)func_80198ED8_6849F8,
-    (void*)func_8019893C_68445C,
-    (void*)func_8019A604_686124,
+    (void*)func_8019893C_68445C, // Migen Sr.'s attack
+    (void*)func_8019A604_686124, // platform
     (void*)func_8019A3B8_685ED8,
-    (void*)func_80192FE4_67EB04,
+    (void*)func_80192FE4_67EB04, // Migen Jr.'s Fireball
     (void*)func_80199F5C_685A7C,
-    (void*)func_80199DA8_6858C8,
+    (void*)func_80199DA8_6858C8, // gem used to heal Migen Jr.
     (void*)func_80199F54_685A74,
     D_8019B1DC_686CFC,
     D_8019B200_686D20,

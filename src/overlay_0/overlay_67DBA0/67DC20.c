@@ -29,7 +29,9 @@ extern f32 D_8019DD98_6898B8;
 extern f32 D_8019DD9C_6898BC;
 extern f64 D_8019E378_689E98;
 extern f32 D_8019E4C8_689FE8;
-extern s16 D_8019E570_68A090;
+extern s16 D_8019E570_68A090; // red gems in Migen's face
+extern s16 D_8019E572_68A092; // blue gems in platform
+extern s16 D_8019E574_68A094; // times caught fireballs
 extern s32 D_8019E578_68A098;
 extern s32 D_8019E57C_68A09C;
 extern s16 D_8019DB1C_68963C[];
@@ -156,14 +158,15 @@ void func_801928A8_67E3C8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_80192C4C_67E76C.s")
 
+// Migen Jr spits fireball
 void func_80192E68_67E988(u16 actor_index, u16 arg1) {
     u16 new_actor_index;
 
     new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
     if (new_actor_index != 0) {
-        ACTOR_INIT(new_actor_index,0x609);
+        ACTOR_INIT(new_actor_index, ACTORTYPE_OVL0_MIGEN_JRFIREBALL);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[new_actor_index].flags = 0x8403;
+        gActors[new_actor_index].flags = ACTOR_GFLAG_UNK14 | ACTOR_GFLAG_UNK10 | ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].graphicList = D_800E1540;
         gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].posX.whole = gActors[0x50].posX.whole;
@@ -197,10 +200,11 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
     }
 }
 
+// Migen Jr. fireball behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_80192FE4_67EB04.s")
 
 void func_801934F0_67F010(void) {
-    ACTOR_INIT(0x5E,0x2F);
+    ACTOR_INIT(0x5E, ACTORTYPE_47);
     gActors[0x5E].flags = (ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_ACTIVE);
     gActors[0x5E].health = 1;
     gActors[0x5E].hitboxBY0 = -0xC;
@@ -223,8 +227,9 @@ void func_80193594_67F0B4(void) {
 void func_8019359C_67F0BC(void) {
 }
 
+// init platform 
 void func_801935A4_67F0C4(void) {
-    ACTOR_INIT(0x61,0x607);
+    ACTOR_INIT(0x61, ACTORTYPE_OVL0_MIGEN_PLATFORM);
     gActors[0x61].flags = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_PLATFORM0);
     gActors[0x61].hitboxBY0 = 0x10;
     gActors[0x61].hitboxBY1 = -0x10;
@@ -513,7 +518,7 @@ void func_801949B8_6804D8(s32 arg0) {
 }
 
 void func_80194A38_680558(void) {
-    ACTOR_INIT(0x60,ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(0x60, ACTORTYPE_GRAPHICONLY);
     gActors[0x60].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0x60].colorR = 0x4F;
     gActors[0x60].colorG = 0x7F;
@@ -668,16 +673,18 @@ void func_80198708_684228(u16 actor_index) {
     }
 }
 
+// get a free index for Migen Sr.'s energy ball.
 u16 func_8019882C_68434C(void) {
     return Actor_RangeFindInactive(0x67, 0x68);
 }
 
+// Migen Sr. Fires an energy ball.
 void func_80198850_684370(u16 actor_index) {
     u16 new_actor_index;
 
     new_actor_index = func_8019882C_68434C();
     if (new_actor_index != 0) {
-        ACTOR_INIT(new_actor_index,0x606);
+        ACTOR_INIT(new_actor_index, ACTORTYPE_OVL0_MIGEN_SRBALL);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_ROTX;
         gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
         gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole;
@@ -729,6 +736,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[next_actor_index].graphicTimer = 1;
 }
 
+// copy Migen Sr.'s position, scale and opacity to his cape
 void func_80199094_684BB4(u16 actor_index) {
     u16 next_actor_index = actor_index + 1;
 

@@ -405,7 +405,7 @@ void func_80057C98(u16 actor_index) {
                     gActors[actor_index].stateUpper = 5;
                 }
                 else {
-                    gActors[actor_index].unk_0DC &= 0xFFBF;
+                    gActors[actor_index].unk_0DC &= ~0x40;
                     gActors[actor_index].stateUpper = 6;
                 }
                 gActors[actor_index].stateLower = 0x31;
@@ -750,7 +750,7 @@ s32 func_80058F9C(u16 actor_index) {
     if ((gActors[actor_index].unk_0DD < 12) || (gActors[actor_index].unk_0DD > 14)) {
         sp20 = func_8005739C(actor_index, gActors[actor_index].pendingDamage);
         gActors[actor_index].pendingDamage = 0;
-        gActors[actor_index].unk_0DC &= 0xFF7F;
+        gActors[actor_index].unk_0DC &= ~0x80;
         if (sp20 >= 3) {
             func_800575C0(actor_index);
             if (sp20 == 3) {

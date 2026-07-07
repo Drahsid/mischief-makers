@@ -61,6 +61,7 @@ s32 func_800486F4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C28.s")
 
+// get velocity for Marina's actions and multiply it by field 0x12C
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C94.s")
 
 s32 func_80048CE4(void) {
