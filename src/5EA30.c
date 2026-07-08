@@ -2,7 +2,7 @@
 
 // script releated to dialouge code.
 
-extern u16* D_800D1958[]; // gem palettes
+extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
 
 extern s8* D_801782D8; // dialog data stream?
@@ -402,7 +402,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
             // macro mismatches.
             gActors[actor_index].graphicList = gGraphicListGem;
             gActors[actor_index].graphicTimer = 1;
-            gActors[actor_index].palette_18C = D_800D1958[func_8005C6D0(arg0) - 1];
+            gActors[actor_index].palette_18C = gGemPalettes[func_8005C6D0(arg0) - 1];
         }
         else {
             gActors[actor_index].graphicIndex = arg0;

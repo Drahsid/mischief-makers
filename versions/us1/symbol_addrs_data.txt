@@ -33,6 +33,26 @@ gCurrentScene = 0x800be5d0; // type:u16 size:0x2 rom:0xbf1d0
 
 D_800BE544 = 0x800BE544; // size:0x2
 
+gOSDSprite = 0x800c4e5c; // size:0x44
+gOSDSpriteColR = 0x800c4eac; // type:u8 size:0x1
+gOSDSpriteColG = 0x800c4eb0; // type:u8 size:0x1
+gOSDSpriteColB = 0x800c4eb4; // type:u8 size:0x1
+gOSDSpriteColA = 0x800c4eb8; // type:u8 size:0x1
+gOSDSpritePosX = 0x800c4ebc; // type:s32 size:0x4
+gOSDSpritePosY = 0x800c4ea0; // type:s32 size:0x4
+gOSDSpriteTxtLength = 0x800c4ea4; // type:s32 size:0x4
+gOSDSpriteTxtLines = 0x800c4ea8; // type:s32 size:0x4
+gOSDSpriteScaleX = 0x800c4ed0; // type:f64 size:0x8
+gOSDSpriteScaleY = 0x800c4ed8; // type:f64 size:0x8
+
+gEEPROMID = 0x800c4f20; // size:0x8
+gTimeRecords = 0x800c4f28; // size:0x80
+gDefaultFileName = 0x800c4fa8; // size:0x16
+gNameEntrySpace = 0x800c4fe8; // size:0x16
+gSelectedSex = 0x800c5000; // type:u8 size:0x1
+gSelectedAge = 0x800c5004; // type:u8 size:0x1
+gCurrentSaveSlot = 0x800c5004; // type:u8 size:0x1
+
 gLetterboxMode = 0x800CBF58; //size:0x2
 gSceneBgm = 0x800CCFDC; // size:0x58
 D_800CEC0C = 0x800CEC0C; // size:0x4
@@ -46,6 +66,7 @@ gEngTextKerning = 0x800D17c8; // size:0x34
 gTextPaletteBase = 0x800D17fc; // size:0x8
 D_800D18F8 = 0x800D18F8;
 D_800D1918 = 0x800D1918;
+gGemPalettes = 0x800d1958; // size:0x10
 gClanpotItems = 0x800D22BC; // size:0x140
 gClanpotItemCount = 0x800D24D8; //size:0x1A
 gStageState = 0x800D28E8; // type:u16 size:0x2
@@ -59,6 +80,12 @@ D_800D74E0 = 0x800D74E0;
 D_800D8468 = 0x800D8468;
 D_800D8488 = 0x800D8488;
 D_800D84A8 = 0x800D84A8;
+
+gPaletteGemRed = 0x800d88b8; // size:0x78
+gPaletteGemBlue = 0x800d86d8; // size:0x78
+gPaletteGemGreen = 0x800d8a98; // size:0x78
+gPaletteGemYellow = 0x800d8c78; // size:0x78
+
 D_800D91C4 = 0x800D91C4;
 D_800D9204 = 0x800D9204;
 D_800D9ADC = 0x800D9ADC;
@@ -320,7 +347,7 @@ gStageGroupOptionOffsets = 0x800C8268;
 gStageGroupOptionOffsetsTail = 0x800C8270;
 gDebugStageSelectOptionSuffixes = 0x800C8278;
 gStageScenes = 0x800C8378;
-gDebugStageSelectStageIds = 0x800C83F8;
+gStageIds = 0x800C83F8;
 gStageTimesToBeat = 0x800C8478;
 gStageTimeBest = 0x80178150;// type:u16 size:0x2
 gCurrentStage = 0x80178162;
@@ -335,12 +362,27 @@ gActorInitStats = 0x800C9700; // size:0x6d8
 gActorInitFlags = 0x800C9DD8; // size:0x1F4
 gActorInitGraphics = 0x800C9FCC; // size:0x1F4
 
+gFileNames = 0x80171aa0; // size:0x2c
+gFileAges = 0x80171acc; // size:0x2
+gFileSexes = 0x80171ace; // size:0x2
+gFileRedGems = 0x80171ad0; // size:0x4
+gFileYellowGems = 0x80171ad4; // size:0x4
+gFilePlayTimes = 0x80171ad8; // size:0x10
+gFestivalRecords = 0x80171AE8; // size:0x28
+gYellowGemBitfield = 0x80171b10; // type:u64 size:0x8
+gWorldProgress = 0x80171b18; // type:u8 size:0x1
+
 gActorsBack = 0x80171B30; // size:0x100
 gActorsMiddle = 0x80171C30; //size:0x100
 gActorsFront = 0x80171D30; // size:0x1e0
 gActorsTop = 0x80171F10; // size:0x1e0
 
-
+gFileNames = 0x80171aa0; // size:0x2c
+gFileAges = 0x80171acc; // size:0x2
+gFileSexes = 0x80171ace; // size:0x2
+gFileRedGems = 0x80171ad0; // size:0x4
+gFileYellowGems = 0x80171ad4; // size:0x4
+gFilePlayTimes = 0x80171ad8; // size:0x10
 gFestivalRecords = 0x80171AE8; // size:0x28
 
 // TODO:

@@ -10,7 +10,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800843E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800844B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Flower_Falling.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800846A8.s")
 
@@ -18,11 +18,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008486C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800848A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Flower_IsGrabbed.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084924.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084974.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Flower.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084D18.s")
 
@@ -40,7 +40,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085350.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800853C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Hat.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085844.s")
 

@@ -18,6 +18,9 @@
 #define DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX 10
 #define DEBUG_STAGE_SELECT_REPEAT_RIGHT_ACTOR_INDEX 11
 
+#define CURSOR_INDEX_A \
+gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB
+
 // .data
 extern u16 D_800C4F28[]; // list of stage times
 extern u8 D_800C5008;
@@ -25,8 +28,7 @@ extern u8 D_800C5008;
 extern u16 D_80171AD0[];
 extern u16 D_80171AD4[];
 extern u64 D_80171AD8[];
-extern u64 D_80171B10; // bitfield of yellow gem collection
-extern u8 D_80171B18; // related to gCurrentStage
+extern u8 gWorldProgress; // max available stages
 extern u16 D_80178152;
 extern u16 D_80178154;
 extern u16 D_80178156;
@@ -101,7 +103,7 @@ u16 gStageScenes[] = {
     0x0042, 0x004F, 0x001B, 0x0006, 0x0006, 0x0003, 0x0002, 0x0004, 0x0000,
 };
 
-u16 gDebugStageSelectStageIds[] = {
+u16 gStageIds[] = {
     0x0059, 0x005A, 0x0000, 0x0009, 0x0002, 0x0004, 0x0001, 0x0008, 0x0005, 0x0007, 0x0003,
     0x0006, 0x000A, 0x0011, 0x000B, 0x000E, 0x000C, 0x000D, 0x000F, 0x0012, 0x0010, 0x0013,
     0x0014, 0x005B, 0x001E, 0x0015, 0x0019, 0x001D, 0x0016, 0x001A, 0x001B, 0x001C, 0x0017,
@@ -110,14 +112,68 @@ u16 gDebugStageSelectStageIds[] = {
     0x005E, 0x0056, 0x0058, 0x005F, 0x0060, 0x0066, 0x0067, 0x0066, 0x0000,
 };
 
+#define TIME_MINSEC(m,s) (m*3600+s*60)
+
 // times to beat per stage to get S-rank.
 u16 gStageTimesToBeat[] = {
-    0x0000, 0x0000, 0x0438, 0x03FC, 0x05DC, 0x01E0, 0x07BC, 0x0870, 0x0528, 0x0A14, 0x06CC,
-    0x02D0, 0x0870, 0x0618, 0x0294, 0x08E8, 0x02D0, 0x0654, 0x0690, 0x0528, 0x05DC, 0x05DC,
-    0x1A04, 0x0000, 0x0780, 0x0708, 0x0BB8, 0x0528, 0x10E0, 0x0528, 0x0E10, 0x0438, 0x08AC,
-    0x2490, 0x0294, 0x0E88, 0x0000, 0x0654, 0x0690, 0x4B00, 0x0A14, 0x0708, 0x03C0, 0x1338,
-    0x0924, 0x08AC, 0x07F8, 0x0D98, 0x0000, 0x14A0, 0x0690, 0x0F21, 0x03FC, 0x12C0, 0x0CE4,
-    0x0000, 0x1194, 0x1428,
+    0,
+    0,     // Demo World 1
+    1080,  // Meet Marina
+    1020,  // Meet Calina
+    1500,  // Clanball Land
+    480,   // Spike Land
+    1980,  // 3 Clancer Kids
+    2160,  // Blockman Rises
+    1320,  // Wormin' Up
+    2580,  // Crisis Nepton
+    1740,  // Western World
+    740,   // Volcano
+    2160,  // Sea of Lava
+    1560,  // Vertigo
+    660,   // Sink or Float
+    2280,  // Hot Rush
+    720,   // Searin' Swing
+    1620,  // Flambee
+    1680,  // Tightrope Ride
+    1320,  // Freefall
+    1500,  // Magma Rafts
+    1500,  // Seasick Climb
+    6660,  // Migen Brawl
+    0,     // Demo World 3
+    1920,  // Clanpot Shake
+    1800,  // Clance War
+    3000,  // Missle Surf
+    1320,  // Clanball Lift
+    4320,  // Go Marzen 64
+    1320,  // Chilly Dog
+    3600,  // Snowstorm Maze
+    1080,  // Lunar
+    2220,  // The Day Before
+    9360,  // The Day Of
+    660,   // Cat-astrophe
+    3720,  // Carberus Alpha
+    0,     // Demo World 4
+    1620,  // Rolling Rock
+    1680,  // Toadly Raw
+    19200, // 7 Clancer Kids
+    2580,  // Rescue Act 1
+    1800,  // Rescue Act 2
+    960,   // Taurus
+    4920,  // Ghost Catcher
+    2340,  // Aster's Tryke
+    2220,  // Moley Cow
+    2040,  // Aster's Maze
+    3480,  // Sasquatch Beta
+    0,     // Demo World 5
+    5280,  // Clance War II
+    1680,  // Counterattack
+    3873,  // Bee's the One
+    1020,  // Merco
+    4800,  // Trapped
+    3300,  // Phoenix Gamma
+    0,     // Demo Final
+    4500,  // Inner Struggle
+    5160,  // Final Battle
 };
 
 char D_800C84EC[] = "1-1";
@@ -881,7 +937,7 @@ void DebugMenu_UpdateCursorFlash(void) {
     u16 index;
 
     cursor_colors = gDebugMenuCursorFlash;
-    cursor_index = gActors[7].colorB;
+    cursor_index = CURSOR_INDEX_A;
     cursor_color_ptr = cursor_colors;
     cursor_color_ptr += cursor_index;
     cursor_color = *cursor_color_ptr;
@@ -1036,7 +1092,7 @@ void GameState_Intro(void) {
         gSPDisplayList(gDisplayListHead++, D_800C8EF0);
         gActors[actor_index_30].flags = 0;
         gActors[actor_index_31].flags = 0;
-        D_80171B18 = gCurrentStage = 0;
+        gWorldProgress = gCurrentStage = 0;
         gCurrentScene = SCENE_INTRO;
         D_800D28E4 = 0x59;
         D_800C5008 = 0;
@@ -1163,7 +1219,7 @@ void GameState_TitleScreen(void) {
         gGameStateSubState++;
         break;
     case 24:
-        gActors[7].colorB = 0;
+        CURSOR_INDEX_A = 0;
         gDebugMenuCursorFlash[0] = 0;
 
         actor_index = 0x10;
@@ -1212,17 +1268,17 @@ void GameState_TitleScreen(void) {
         }
         if ((gButtonHold & gButton_A) && (gButtonHold & gButton_CLeft) && (gButtonHold & gButton_CRight) && (gButtonHold & gButton_LTrig) && 
             !(gButtonHold & gButton_B) && !(gButtonHold & gButton_CDown) && !(gButtonHold & gButton_CUp) && !(gButtonHold & gButton_RTrig)) {
-            gActors[7].colorB = 1;
+            CURSOR_INDEX_A = 1;
         }
         else {
-            gActors[7].colorB = 0;
+            CURSOR_INDEX_A = 0;
         }
         func_80017F08();
         if (gButtonPress & gButton_Start) {
             Sound_PlaySfx(0x23);
             Sound_StartFade(1, 0x40);
             D_80178166 = 0;
-            if (gActors[7].colorB != 0) {
+            if (CURSOR_INDEX_A != 0) {
                 gGameStateSubState = 0x30;
             }
             else {
@@ -1317,7 +1373,7 @@ void GameState_DebugSoundTest(void) {
         gActors[actor_index].var_110 = 0.0f;
 
         gActors[0xD].colorB = 0;
-        gActors[7].colorB = 0;
+        CURSOR_INDEX_A = 0;
         gActors[2].velocityX.raw = 0;
         gActors[3].velocityX.raw = 0;
         gActors[1].velocityX.raw = 0;
@@ -1325,10 +1381,10 @@ void GameState_DebugSoundTest(void) {
         /* fallthrough */
     case 1:
         if ((gButtonPress & gButton_DDown) || (gButtonPress & gButton_DUp)) {
-            gActors[7].colorB ^= 1;
+            CURSOR_INDEX_A ^= 1;
             Sound_PlaySfx(SFX_MENU_BLIP);
         }
-        switch (gActors[7].colorB) {
+        switch (CURSOR_INDEX_A) {
         case 0:
             if ((Input_CheckButtonRepeat(gButton_DLeft, &gActors[8].colorB)) && (gActors[2].velocityX.raw > 0)) {
                 gActors[2].velocityX.raw -= 1;
@@ -1365,7 +1421,7 @@ void GameState_DebugSoundTest(void) {
         DebugMenu_UpdateCursorFlash();
         func_80060F88(0x30);
         func_80060F88(0x31);
-        gActors[0x30].posY.whole = gActors[0x31].posY.whole = D_800C94D8[gActors[7].colorB];
+        gActors[0x30].posY.whole = gActors[0x31].posY.whole = D_800C94D8[CURSOR_INDEX_A];
         palette = Text_SetColor(4, 0x1F, 0x1F - (gDebugMenuCursorFlash[0] / 4), (0x1F - (gDebugMenuCursorFlash[0] / 4)));
         Text_PrintASCII(actor_index + 0x1A, D_800C94CC, 0xFFD8, 0x30, 0, palette);
         Text_Print2Digits(actor_index + 0x1D, (gActors[2].velocityX.raw + 1), 0x20, 0x30, 0, palette);
@@ -1410,7 +1466,7 @@ void DebugStageSelect_DrawMenu() {
 
     scale = 1.0f;
     for (index = 0; index < DEBUG_STAGE_SELECT_ROW_COUNT; index++) {
-        if (index != gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB) {
+        if (index != CURSOR_INDEX_A) {
             func_8008391C(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
                           0x58 - ((index % DEBUG_STAGE_SELECT_COLUMN_ROWS) << 4), 0x60, 0x40,
                           0x20, 0xFF, scale, scale);
@@ -1418,8 +1474,8 @@ void DebugStageSelect_DrawMenu() {
         else {
             func_8008391C(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
                           0x58 - ((index % DEBUG_STAGE_SELECT_COLUMN_ROWS) << 4),
-                          ((gDebugMenuCursorFlash[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] * 2) + 0x80) & 0xFF,
-                          ((gDebugMenuCursorFlash[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] * 2) + 0x80) & 0xFF,
+                          ((gDebugMenuCursorFlash[CURSOR_INDEX_A] * 2) + 0x80) & 0xFF,
+                          ((gDebugMenuCursorFlash[CURSOR_INDEX_A] * 2) + 0x80) & 0xFF,
                           0x20, 0xFF, scale, scale);
         }
     }
@@ -1476,7 +1532,7 @@ void GameState_DebugStageSelect(void) {
                 }
             }
 
-            gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = 0;
+            CURSOR_INDEX_A = 0;
             gCurrentScene = 0;
             DebugStageSelect_DrawMenu();
             D_801376BD = 0;
@@ -1491,24 +1547,24 @@ void GameState_DebugStageSelect(void) {
         case 1:
             DebugMenu_UpdateCursorFlash();
 
-            if (Input_CheckButtonRepeat(gButton_DUp, &gActors[DEBUG_STAGE_SELECT_REPEAT_UP_ACTOR_INDEX].colorB) != 0) {
-                gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB--;
-                if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == 0xFF) {
-                    gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = DEBUG_STAGE_SELECT_ROW_COUNT - 1;
+            if (Input_CheckButtonRepeat(gButton_DUp, &CURSOR_INDEX_A) != 0) {
+                CURSOR_INDEX_A--;
+                if (CURSOR_INDEX_A == 0xFF) {
+                    CURSOR_INDEX_A = DEBUG_STAGE_SELECT_ROW_COUNT - 1;
                 }
                 Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
-            if (Input_CheckButtonRepeat(gButton_DDown, &gActors[DEBUG_STAGE_SELECT_REPEAT_DOWN_ACTOR_INDEX].colorB) != 0) {
-                gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB++;
-                if (gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB == DEBUG_STAGE_SELECT_ROW_COUNT) {
-                    gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB = 0;
+            if (Input_CheckButtonRepeat(gButton_DDown, &CURSOR_INDEX_A) != 0) {
+                CURSOR_INDEX_A++;
+                if (CURSOR_INDEX_A == DEBUG_STAGE_SELECT_ROW_COUNT) {
+                    CURSOR_INDEX_A = 0;
                 }
                 Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
-            if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[DEBUG_STAGE_SELECT_REPEAT_LEFT_ACTOR_INDEX].colorB) != 0) {
-                selected_entry = &gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
+            if (Input_CheckButtonRepeat(gButton_DLeft, &CURSOR_INDEX_A) != 0) {
+                selected_entry = &gDebugStageSelectSelectedOptions[CURSOR_INDEX_A];
                 selected_value = *selected_entry;
                 if (selected_value > 0) {
                     *selected_entry = selected_value - 1;
@@ -1516,22 +1572,22 @@ void GameState_DebugStageSelect(void) {
                 }
             }
 
-            if (Input_CheckButtonRepeat(gButton_DRight, &gActors[DEBUG_STAGE_SELECT_REPEAT_RIGHT_ACTOR_INDEX].colorB) != 0) {
-                selected_entry = &gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
+            if (Input_CheckButtonRepeat(gButton_DRight, &CURSOR_INDEX_A) != 0) {
+                selected_entry = &gDebugStageSelectSelectedOptions[CURSOR_INDEX_A];
                 selected_value = *selected_entry;
                 if (selected_value <
-                    (gStageRowCounts[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] - 1)) {
+                    (gStageRowCounts[CURSOR_INDEX_A] - 1)) {
                     *selected_entry = selected_value + 1;
                     Sound_PlaySfx2(SFX_MENU_BLIP);
                 }
             }
 
-            index = gDebugStageSelectOptionBaseOffsets[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB] +
-                    gDebugStageSelectSelectedOptions[gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB];
+            index = gDebugStageSelectOptionBaseOffsets[CURSOR_INDEX_A] +
+                    gDebugStageSelectSelectedOptions[CURSOR_INDEX_A];
             selected_index = index + 0;
             gCurrentStage = index;
             gCurrentScene = gStageScenes[selected_index];
-            D_800D28E4 = gDebugStageSelectStageIds[selected_index];
+            D_800D28E4 = gStageIds[selected_index];
             DebugStageSelect_DrawMenu(&gCurrentStage);
 
             if (gButtonPress & gButton_Start) {
@@ -1543,7 +1599,7 @@ void GameState_DebugStageSelect(void) {
 
         case 2:
             D_800C5008 = 0;
-            D_80171B18 = gCurrentStage;
+            gWorldProgress = gCurrentStage;
             gGameState = GAMESTATE_TRANSITION;
             gGameStateSubState = 0x41;
             break;
@@ -1636,7 +1692,7 @@ void func_800198B4(void) {
     Text_InitActorGList(0x79, D_800C9648, 0xFF88, 0xFFB4, 0);
     end = Text_PrintStringGray(0x7C, D_800C8BE4[D_8017815C], D_800C8BF8[D_8017815C], 0x4E, 0);
     for (index = 0x7C; index < end; index++) {
-        gActors[index].unk_18C = (s32)D_800C9664; // palette_18C doesn't match instruction ordering
+        gActors[index].unk_18C = (intptr_t)D_800C9664; // palette_18C doesn't match instruction ordering
     }
 }
 
@@ -1799,12 +1855,12 @@ void func_8001A254(void) {
         count = 0;
     }
     else if (D_8017815C == D_8017815E) {
-        if (D_80171B18 >= 0x3B) {
+        if (gWorldProgress >= 0x3B) {
             count = 9;
         }
         else {
             count = D_80178158;
-            if ((D_80178152 != 0) && (D_80171B18 != 0x38)) {
+            if ((D_80178152 != 0) && (gWorldProgress != 0x38)) {
                 if (D_80178156 == 0) {
                     count = 0;
                 }
@@ -1826,13 +1882,13 @@ void func_8001A254(void) {
         if (stage >= 0x37) {
             stage++;
         }
-        if (YellowGem_GetFlag(stage) != 0) {
+        if (YellowGem_GetFlag(stage)) {
             y_offset = (((index % 2) * 0x36) - 0x1B);
             Text_InitActorGList(index + 0x9C, gGraphicListGemIcon, D_800C95F4[index] + 6, D_800C9610[index] - y_offset, 0);
             gActors[index + 0x9C].scaleY = 0.75f;
             gActors[index + 0x9C].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_SCALE;
             gActors[index + 0x9C].scaleX = 0.75f;
-            gActors[index + 0x9C].unk_18C = (s32)D_800D8C78; // palette_18C doesn't match instruction ordering
+            gActors[index + 0x9C].unk_18C = (intptr_t)gPaletteGemYellow; // palette_18C doesn't match instruction ordering
         }
         if (stage == 0x3A) {
             gActors[index + 0x9C].posX.whole = 0x37;
@@ -1859,7 +1915,7 @@ void func_8001A584(void) {
             if (D_80178156 == 0) {
                 stage_count = 0;
             }
-            else if (D_80171B18 == 0x38) {
+            else if (gWorldProgress == 0x38) {
                 stage_count--;
             }
         }
@@ -2007,9 +2063,9 @@ void func_8001B004(void) {
 }
 
 void func_8001B02C(void) {
-    if ((gCurrentStage >= D_80171B18) && (D_80171B18 < 0x3B)) {
+    if ((gCurrentStage >= gWorldProgress) && (gWorldProgress < 0x3B)) {
         gCurrentStage = gCurrentStage + 1;
-        D_80171B18 = gCurrentStage;
+        gWorldProgress = gCurrentStage;
         D_80178152 = 1;
     }
 }
@@ -2085,7 +2141,7 @@ void func_8001B1F8(void) {
 void func_8001B23C(void) {
 }
 
-// count bits set in D_80171B10
+// count bits set in gYellowGemBitfield
 u16 func_8001B244(void) {
     u64 bit_mask;
     u16 index;
@@ -2094,7 +2150,7 @@ u16 func_8001B244(void) {
     bit_mask = 0x1;
     count = 0;
     for (index = 0; index < 63; index++) {
-        if (D_80171B10 & bit_mask) {
+        if (gYellowGemBitfield & bit_mask) {
             count++;
         }
         bit_mask <<= 1;
@@ -2105,26 +2161,26 @@ u16 func_8001B244(void) {
 void func_8001B2F4(void) {
     s16 sp1E;
 
-    sp1E = D_80171B18;
+    sp1E = gWorldProgress;
     gStageTimeBest = D_800C4F28[gCurrentStage];
     if (gStageTime < D_800C4F28[gCurrentStage]) {
         D_800C4F28[gCurrentStage] = gStageTime;
     }
-    if (gCurrentStage == D_80171B18) {
-        D_80171B18 = gCurrentStage + 1;
+    if (gCurrentStage == gWorldProgress) {
+        gWorldProgress = gCurrentStage + 1;
     }
     D_80171AD0[D_800C5008] = gRedGems;
     D_80171AD4[D_800C5008] = func_8001B244();
     D_80171AD8[D_800C5008] = gFramesInPlayTime;
     func_80005770();
-    D_80171B18 = sp1E;
+    gWorldProgress = sp1E;
 }
 
 void func_8001B3D0(void) {
     u16 yellow_gem_count;
     u32 save_slot_index;
 
-    D_80171B18 = gCurrentStage;
+    gWorldProgress = gCurrentStage;
     D_80171AD0[D_800C5008] = gRedGems;
     yellow_gem_count = func_8001B244();
     save_slot_index = D_800C5008;
@@ -2143,16 +2199,16 @@ void GameState_Transition(void) {
     switch (gGameStateSubState) {
     case 0x0:
         if (func_80046EBC()) {
-            gCurrentStage = D_80171B18;
+            gCurrentStage = gWorldProgress;
             gGameStateSubState = 7;
         }
         break;
     case 0x7:
     case 0x8:
         temp = gGameStateSubState;
-        func_8001B078(D_80171B18, &D_8017815C, &D_80178156, &D_80178154);
+        func_8001B078(gWorldProgress, &D_8017815C, &D_80178156, &D_80178154);
         if (D_8017815C == 6) {
-            func_8001B078(D_80171B18 + 1, &D_8017815C, &D_80178156, &D_80178154);
+            func_8001B078(gWorldProgress + 1, &D_8017815C, &D_80178156, &D_80178154);
         }
         D_8017815E = D_8017815C;
         D_80178158 = D_80178156;
@@ -2213,7 +2269,7 @@ void GameState_Transition(void) {
         if (YellowGem_GetFlag(gCurrentStage) != 0) {
             Text_InitActorGList(0x51, gGraphicListGemIcon, 0xFFA8, 0x3A, 0xFFFF);
             gActors[0x51].graphicFlags |= 0x240;
-            gActors[0x51].unk_18C = (s32) D_800D8C78;
+            gActors[0x51].unk_18C = (s32) gPaletteGemYellow;
         }
         for (index = 0x30; index < 0x90; index++) {
             gActors[index].colorA = 0x4F;
@@ -2356,11 +2412,11 @@ void GameState_Transition(void) {
         if (temp >= D_800C8C04[D_8017815C]) {
             temp = (D_800C8C04[D_8017815C] - 1);
         }
-        if (D_80171B18 >= 0x38) {
-            index = ((D_80171B18 - D_80178154) - 1);
+        if (gWorldProgress >= 0x38) {
+            index = ((gWorldProgress - D_80178154) - 1);
         }
         else {
-            index = (D_80171B18 - D_80178154);
+            index = (gWorldProgress - D_80178154);
         }
 
         if ((index >= temp) && (temp != D_80178156)) {
@@ -2456,7 +2512,7 @@ void GameState_Transition(void) {
                 D_80178156 = D_800C8C04[D_8017815C] - 1;
             }
             else {
-                func_8001B078((u16) D_80171B18, &D_8017815C, &D_80178156, &D_80178154);
+                func_8001B078((u16) gWorldProgress, &D_8017815C, &D_80178156, &D_80178154);
             }
             for (index = 0x30; index < 0xBC; index++) {
                 gActors[index].flags = 0;
@@ -2502,7 +2558,7 @@ void GameState_Transition(void) {
         D_8013747C = 0;
         gAudioFadeMode = 0;
         gCurrentScene = gStageScenes[gCurrentStage];
-        D_800D28E4 = gDebugStageSelectStageIds[gCurrentStage];
+        D_800D28E4 = gStageIds[gCurrentStage];
         func_80025578();
         if (gCurrentStage == 0x21) {
             func_8002601C(0x10);
@@ -2522,14 +2578,14 @@ void GameState_Transition(void) {
 
 // sets bit if yellow gem was collected in this stage
 void YellowGem_SetFlag(void) {
-    D_80171B10 |= (u64)1 << gCurrentStage;
+    gYellowGemBitfield |= (u64)1 << gCurrentStage;
 }
 
 // returns bit if yellow gem was collected in this stage
 u64 YellowGem_GetFlag(u16 stage) {
     u64 mask = (u64)1 << stage;
 
-    return D_80171B10 & mask;
+    return gYellowGemBitfield & mask;
 }
 
 void func_8001C834(void) {
@@ -2561,7 +2617,7 @@ void func_8001C97C(u16 actor, u16 stage) {
     if (YellowGem_GetFlag(stage) != 0) {
         Text_InitActorGList(actor + 0x48, gGraphicListGemIcon, 108, 52 - (actor * 20), 0xFFFF);
         gActors[actor + 0x48].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
-        gActors[actor + 0x48].palette_18C = D_800D8C78;
+        gActors[actor + 0x48].palette_18C = gPaletteGemYellow;
     }
     else {
         gActors[actor + 0x48].flags = 0;
@@ -2613,7 +2669,7 @@ void func_8001CB6C(u16 stage) {
 u16 func_8001CC34(void) {
     u16 stage;
 
-    stage = D_80171B18;
+    stage = gWorldProgress;
     if ((stage == 0x18) || (stage == 0x25) || (stage == 0x31) || (stage == 0x38)) {
         stage--;
     }
@@ -2751,18 +2807,18 @@ u16 func_8001D0A4(void) {
         }
     }
     if (D_80178168 < times) {
-        return 0x566;
+        return GINDEX_RANK_S;
     }
     if (D_80178168 < (var_s3 * 1800) + times) {
-        return 0x542;
+        return GINDEX_RANK_A;
     }
     if (D_80178168 < (var_s3 * 7200) + times) {
-        return 0x544;
+        return GINDEX_RANK_B;
     }
     if (D_80178168 < (var_s3 * 18000) + times) {
-        return 0x546;
+        return GINDEX_RANK_C;
     }
-    return 0x548;
+    return GINDEX_RANK_D;
 }
 
 void func_8001D240(void) {
@@ -2773,7 +2829,7 @@ void func_8001D240(void) {
     var_a1 = func_8001D0A4();
     time = D_80178168;
     Text_InitActorGraphicRGB(0x3C, var_a1, 0x5A, 0xFFB8, 2, 0, 0, 0xC0);
-    if (((((time % 60) * 0x1F4) / 3) % 100) < 0x32) {
+    if (((((time % 60) * 500) / 3) % 100) < 50) {
         value = ((time % 60) * 5) / 3;
     }
     else {

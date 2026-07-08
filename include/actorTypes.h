@@ -137,7 +137,7 @@ typedef enum {
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_70,
     ACTORTYPE_71,
-    ACTORTYPE_TANKCAT,
+    ACTORTYPE_CATTANK,
     ACTORTYPE_SPIKEBALL_S, // stationary spikeball
     ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball
     ACTORTYPE_SPIKEBALL_V, // up/down spikeball

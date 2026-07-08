@@ -187,6 +187,10 @@ ActorUpdate_Spikeball_Static = 0x80039134; // type:func
 ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
 ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
 
+Flower_Falling = 0x800844b8; // type:func
+Flower_IsGrabbed = 0x800848a0; // type:func
+ActorUpdate_Hat = 0x800853c8; // type:func
+ActorUpdate_Flower = 0x80084974; // type:func
 
 ActorUpdate_Clanbomb = 0x80086c7c; // type:func
 

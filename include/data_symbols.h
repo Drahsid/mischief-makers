@@ -28,7 +28,7 @@ extern u8 D_801376BC[];
 extern u32 D_801376D4;
 extern u32 D_80137714;
 extern u32 D_80137718;
-extern u64 D_80171B10;
+extern u64 gYellowGemBitfield;
 extern u64 D_801781F0;
 extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
@@ -73,9 +73,9 @@ extern u16 D_800D5828;
 extern u16 D_800D582C;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
-extern u16 D_800D88B8[]; // guess
-extern u16 D_800D8A98[];
-extern u16 D_800D8C78[]; // guess
+extern u16 gPaletteGemRed[];
+extern u16 gPaletteGemGreen[];
+extern u16 gPaletteGemYellow[];
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
 extern s16 gGraphicListBlank[]; // default graphics list. contains {0,0}

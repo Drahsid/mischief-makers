@@ -8,7 +8,7 @@
 
 extern u16* D_800D1810[]; // palettes of particles.
 extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
-extern u16* D_800D1958[]; // palettes of gems
+extern u16* gGemPalettes[]; // palettes of gems
 extern u16* D_800D19F4[]; // palettes of "wave rings",
 extern u16 D_800D2294[];
 extern s32 D_800D229C[];
@@ -54,7 +54,7 @@ extern u16 D_800D8548[];
 extern u16 D_800D8608[];
 extern u16 D_800D8628[];
 extern u16 D_800D86A0[];
-extern u16 D_800D86D8[]; // guess
+extern u16 gPaletteGemBlue[];
 extern u16 D_800D9AE4[];
 extern u8 D_800D9AF4[];
 extern u16 D_800D9B64[];
@@ -2148,7 +2148,7 @@ void ActorUpdate_Landmine(u16 actor_index) {
         Actor_SetHitboxA(actor_index, 4);
         Actor_SetHitboxB(actor_index, 2);
         gActors[actor_index].unk_114 = gActors[actor_index].var_110 + (0, 16.0f); // fakematch
-        gActors[actor_index].palette_18C =  D_800D8A98;
+        gActors[actor_index].palette_18C =  gPaletteGemGreen;
         /* fallthrough */
     case 1:
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
@@ -2642,7 +2642,7 @@ void SpawnGemRing(u16 flags) {
         gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8;
         gActors[index].flags = ACTOR_FLAG_ACTIVE;
         ACTOR_GFX_INIT(index, gGraphicListGem);
-        gActors[index].palette_18C = D_800D1958[(flags & 0x300) / 0x100];
+        gActors[index].palette_18C = gGemPalettes[(flags & 0x300) / 0x100];
         gActors[index].var_150 = flags & 0x8000;
         gActors[index].var_154 = flags & 0xF;
         gActors[index].var_158 = (360 / gActors[index].var_154) / RadStep;
@@ -2737,7 +2737,7 @@ void ActorUpdate_GemRing(u16 actor_index) {
 // @param pos_y y-position of gem
 void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 pos_y) {
     // grab red gem
-    if (palette == D_800D88B8) {
+    if (palette == gPaletteGemRed) {
         gRedGems += 1;
         RedGems_Clamp();
         SpawnParticle_RingSparkle(actor_index, 0, 1.0f, pos_x, pos_y, gGuestPlayerActor.posZ.whole);
@@ -2749,7 +2749,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
         }
     }
     // grab blue gem
-    else if (palette == D_800D86D8) {
+    else if (palette == gPaletteGemBlue) {
         if (gGuestActorIndex != 0) {
             gGuestPlayerActor.health += 30;
         }
@@ -2765,7 +2765,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
         }
     }
     // grab yellow gem
-    else if (palette == D_800D8C78) {
+    else if (palette == gPaletteGemYellow) {
         YellowGem_SetFlag();
         if (gGuestActorIndex != 0) {
             gGuestPlayerActor.health += 500;
@@ -2839,7 +2839,7 @@ s32 GemCollect_Static(u16 actor_index) {
 void ActorUpdate_GemIcon(u16 actor_index) {
     if (gActors[actor_index].state == 0) {
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-        gActors[actor_index].palette_18C = D_800D1958[((u16)gActors[actor_index].var_110) & 3];
+        gActors[actor_index].palette_18C = gGemPalettes[((u16)gActors[actor_index].var_110) & 3];
         func_800358DC(actor_index);
     }
     else {
@@ -2854,7 +2854,7 @@ void ActorUpdate_Gem124(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-        gActors[actor_index].palette_18C = D_800D1958[(u16)gActors[actor_index].var_110];
+        gActors[actor_index].palette_18C = gGemPalettes[(u16)gActors[actor_index].var_110];
         Actor_SetHitboxA(actor_index, 6);
         Actor_SetHitboxB(actor_index, 8);
         /* fallthrough */
@@ -2902,7 +2902,7 @@ void ActorUpdate_Gem(u16 actor_index) {
         Actor_SetHitboxA(actor_index, 6);
         Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].var_154 = (u16)gActors[actor_index].var_110 & 0xF;
-        gActors[actor_index].palette_18C = D_800D1958[gActors[actor_index].var_154];
+        gActors[actor_index].palette_18C = gGemPalettes[gActors[actor_index].var_154];
         if (gActors[actor_index].var_150 == 0) {
             gActors[actor_index].var_150 = 120;
         }

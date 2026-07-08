@@ -796,7 +796,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
             ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-            gActors[actor_index].palette_18C = D_800D8A98;
+            gActors[actor_index].palette_18C = gPaletteGemGreen;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
             Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);

@@ -13671,7 +13671,7 @@
           }
         },
         {
-          "name": "func_800844B8",
+          "name": "Flower_Falling",
           "size": "496",
           "metadata": {
             "virtual_address": "2148025528"
@@ -13699,7 +13699,7 @@
           }
         },
         {
-          "name": "func_800848A0",
+          "name": "Flower_IsGrabbed",
           "size": "132",
           "metadata": {
             "virtual_address": "2148026528"
@@ -13713,7 +13713,7 @@
           }
         },
         {
-          "name": "func_80084974",
+          "name": "ActorUpdate_Flower",
           "size": "932",
           "metadata": {
             "virtual_address": "2148026740"
@@ -13776,7 +13776,7 @@
           }
         },
         {
-          "name": "func_800853C8",
+          "name": "ActorUpdate_Hat",
           "size": "1148",
           "metadata": {
             "virtual_address": "2148029384"
