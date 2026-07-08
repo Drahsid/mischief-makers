@@ -43,6 +43,7 @@ extern u16 SpawnAreaClear(u16);
 extern void func_80042D84(u16 arg0);
 extern void func_80042DBC(u16* vals);
 extern u8 func_80048C28(s32);
+extern u16 func_8004571C(void);
 extern void func_80045D84(u32 arg0, u32 arg1);
 extern void func_80052C4C(u16 actor_0, u16 actor_1);
 extern s32 func_80057320(u16, s16);

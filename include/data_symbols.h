@@ -14,7 +14,7 @@ extern u32 D_800D28FC;
 extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
 extern s32 D_800D2928;
 extern s32 D_800D2938;
-extern s16 D_800D294C;
+extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
 extern s16 gNoHit;
 extern u16 D_800D8588[]; // all-white palette

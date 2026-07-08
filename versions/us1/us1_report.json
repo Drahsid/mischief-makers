@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 35.935978,
+    "fuzzy_match_percent": 36.204544,
     "total_code": "1994280",
-    "matched_code": "716664",
-    "matched_code_percent": 35.935978,
+    "matched_code": "722020",
+    "matched_code_percent": 36.204544,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2334,
-    "matched_functions_percent": 49.585724,
+    "matched_functions": 2346,
+    "matched_functions_percent": 49.84066,
     "complete_data_percent": 100.0,
     "total_units": 404
   },
@@ -14517,21 +14517,21 @@
     {
       "name": "8D0A0",
       "measures": {
-        "fuzzy_match_percent": 34.362747,
+        "fuzzy_match_percent": 100.0,
         "total_code": "8160",
-        "matched_code": "2804",
-        "matched_code_percent": 34.362747,
+        "matched_code": "8160",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 43,
-        "matched_functions": 31,
-        "matched_functions_percent": 72.093025,
+        "matched_functions": 43,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "8160",
-          "fuzzy_match_percent": 34.362747,
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148058272"
           }
@@ -14605,6 +14605,7 @@
         {
           "name": "func_8008C528",
           "size": "488",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148058408"
           }
@@ -14612,6 +14613,7 @@
         {
           "name": "func_8008C710",
           "size": "896",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148058896"
           }
@@ -14619,6 +14621,7 @@
         {
           "name": "func_8008CA90",
           "size": "368",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148059792"
           }
@@ -14626,6 +14629,7 @@
         {
           "name": "func_8008CC00",
           "size": "144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148060160"
           }
@@ -14633,6 +14637,7 @@
         {
           "name": "func_8008CC90",
           "size": "308",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148060304"
           }
@@ -14640,6 +14645,7 @@
         {
           "name": "func_8008CDC4",
           "size": "332",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148060612"
           }
@@ -14735,6 +14741,7 @@
         {
           "name": "func_8008D510",
           "size": "536",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148062480"
           }
@@ -14750,6 +14757,7 @@
         {
           "name": "func_8008D730",
           "size": "552",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148063024"
           }
@@ -14789,6 +14797,7 @@
         {
           "name": "func_8008DA4C",
           "size": "548",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148063820"
           }
@@ -14844,6 +14853,7 @@
         {
           "name": "func_8008DF20",
           "size": "640",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148065056"
           }
@@ -14851,6 +14861,7 @@
         {
           "name": "func_8008E1A0",
           "size": "368",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148065696"
           }
@@ -14858,6 +14869,7 @@
         {
           "name": "SpawnMarinaOhNo",
           "size": "176",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148066064"
           }
@@ -49210,14 +49222,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 58.72135,
+        "fuzzy_match_percent": 59.540623,
         "total_code": "653752",
-        "matched_code": "383892",
-        "matched_code_percent": 58.72135,
+        "matched_code": "389248",
+        "matched_code_percent": 59.540623,
         "matched_data_percent": 100.0,
         "total_functions": 1799,
-        "matched_functions": 1230,
-        "matched_functions_percent": 68.37132,
+        "matched_functions": 1242,
+        "matched_functions_percent": 69.03835,
         "complete_data_percent": 100.0,
         "total_units": 261
       }

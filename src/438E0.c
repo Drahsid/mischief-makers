@@ -849,8 +849,9 @@ s16 func_800456DC(void) {
     if (D_801782B8 & 0x20) {
         return 0xF - (D_801782B8 & 0x1F);
     }
-
-    return (D_801782B8 & 0x1F) - 0xF;
+    else {
+        return (D_801782B8 & 0x1F) - 0xF;
+    }
 }
 
 u16 func_8004571C(void) {
@@ -1005,10 +1006,10 @@ s32 func_80045D9C(void) {
     }
 
     if (var_v0 == 0) {
-        return 1;
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1058,17 +1059,17 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     D_800D294C = 0;
     gGuestActorIndex = 0;
     D_800BE5F4.unk_00_u32 = 5;
-    gActors[0].posX.whole = pos_vals[0];
-    gActors[0].posY.whole = pos_vals[1];
+    gPlayerActor.posX.whole = pos_vals[0];
+    gPlayerActor.posY.whole = pos_vals[1];
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
     D_801373E0.unk_78 &= ~0x10005;
     D_801373E0.unk_78 |= 2;
-    gActors[0].flags &= ~ACTOR_FLAG_FLIPPED;
-    if (gActors[0].health < 0) {
-        gActors[0].health = 0;
+    gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
+    if (gPlayerActor.health < 0) {
+        gPlayerActor.health = 0;
     }
-    gNoHit = gActors[0].health;
+    gNoHit = gPlayerActor.health;
     func_80045500();
     D_800D28FC &= ~0x758A;
     D_800D28FC |= 4;
@@ -1097,7 +1098,7 @@ void func_80045FA4(u16* arg0, u16* arg1) {
 
 void func_80046148(u16* arg0, u16* arg1){
     func_80045FA4(arg0, arg1);
-    gActors[0].flags &= ~ACTOR_FLAG_DRAW;
+    gPlayerActor.flags &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4.unk_00_s32 = 4;
 }
 
@@ -1178,11 +1179,13 @@ s32 func_800463F0(void) {
     if((D_800D28FC & 0x1000) || (func_8005DEFC())) {
         return TRUE;
     }
-    return FALSE;
+    else {
+        return FALSE;
+    }
 }
 
 void func_80046434(void) {
-    if (gActors[0].flags & ACTOR_FLAG_FLIPPED) {
+    if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
         D_801782B0 = Math_ApproachS32(D_801782B0, FIXED_UNIT(-48.0), FIXED_UNIT(8.0));
     }
     else {
@@ -1191,10 +1194,10 @@ void func_80046434(void) {
 }
 
 void func_80046498(void) {
-    if (gActors[0].velocityX.raw < 0) {
+    if (gPlayerActor.velocityX.raw < 0) {
         D_801782B0 = Math_ApproachS32(D_801782B0, FIXED_UNIT(-64.0), FIXED_UNIT(4.0));
     }
-    else if (gActors[0].velocityX.raw > 0) {
+    else if (gPlayerActor.velocityX.raw > 0) {
         D_801782B0 = Math_ApproachS32(D_801782B0, FIXED_UNIT(64.0), FIXED_UNIT(4.0));
     }
     else if (func_800463F0() != 0) {
@@ -1219,11 +1222,11 @@ void func_80046498(void) {
 }
 
 s32 func_800465F4(void) {
-    if ((D_800D28FC & 0x2000) || (gActors[0].stateLower == 0x28) || (func_8005DEFC())) {
-        return 1;
+    if ((D_800D28FC & 0x2000) || (gPlayerActor.stateLower == 0x28) || (func_8005DEFC())) {
+        return TRUE;
     }
     else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1232,10 +1235,10 @@ void func_8004664C(void) {
 }
 
 void func_8004667C(void) {
-    if (gActors[0].velocityY.raw < FIXED_UNIT(-3.0)) {
+    if (gPlayerActor.velocityY.raw < FIXED_UNIT(-3.0)) {
         D_801782B4 = Math_ApproachS32(D_801782B4, FIXED_UNIT(-64.0), FIXED_UNIT(2.0));
     }
-    else if (gActors[0].velocityY.raw > FIXED_UNIT(3.0)) {
+    else if (gPlayerActor.velocityY.raw > FIXED_UNIT(3.0)) {
         D_801782B4 = Math_ApproachS32(D_801782B4, 0, FIXED_UNIT(2.0));
     }
     else if (func_800465F4()) {
@@ -1285,7 +1288,7 @@ s32 func_80046934(u16* arg0) {
 
     D_800D2974 &= 0xFFFE;
     if (gActors[0xC1].flags != 0) {
-       return 0;
+       return FALSE;
     }
 
     D_800D2968 = 0xFFFF;
@@ -1296,7 +1299,7 @@ s32 func_80046934(u16* arg0) {
         if (temp_a2 == 0xFFFF) {
             D_800D2974 |= 0x8000;
             D_800D2964 = 0xFFFF;
-            return 1;
+            return TRUE;
         }
         D_800D2968 = arg0[index + 1];
         D_800D296C = arg0[index + 2];
@@ -1309,7 +1312,7 @@ s32 func_80046934(u16* arg0) {
     else {
         D_800D296C--;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_80046A30(void) {
@@ -1392,7 +1395,7 @@ s32 func_80046D5C(void) {
 
     switch (D_800D2938) {
     case 0:
-        gCannotPause = 1;
+        gCannotPause = TRUE;
         gPortraits[0].alpha = Math_ApproachS32(gPortraits[0].alpha, 0, 0x10);
         if (gPortraits[0].alpha == 0) {
             D_800D2938++;
@@ -1408,7 +1411,7 @@ s32 func_80046D5C(void) {
     default:
         break;
     case 1:
-        gCannotPause = 0;
+        gCannotPause = FALSE;
         D_800BE5D4 = 0;
         return TRUE;
     }
@@ -1493,7 +1496,7 @@ s32 func_80046EBC(void) {
         }
         else if (gAudioUpdateCounter >= 0x121) {
             Sound_StopAllSfx();
-            return 1;
+            return TRUE;
         }
         break;
     case 4:
@@ -1505,11 +1508,11 @@ s32 func_80046EBC(void) {
         break;
     case 5:
         if (D_800D2940-- < 0) {
-            return 1;
+            return TRUE;
         }
         break;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_800472D4(void) {
@@ -1530,7 +1533,7 @@ s32 func_8004735C(u16 stage_stage, u32 actor_flags) {
     if (D_800D2928 < 0) {
         D_800D28FC &= ~6;
         func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
-        gActors[0].flags |= actor_flags;
+        gPlayerActor.flags |= actor_flags;
         D_800BE5F4.unk_00_u32 = 5;
         gStageState = stage_stage;
         return TRUE;
@@ -1570,10 +1573,10 @@ s32 func_80047410(void) {
         }
         break;
     case 2:
-        gCannotPause = 0;
-        return 1;
+        gCannotPause = FALSE;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s16 func_800475EC(void) {
@@ -1678,7 +1681,7 @@ void func_80047A14(void) {
 }
 
 void func_80047A54(void) {
-    gCannotPause = 1;
+    gCannotPause = TRUE;
     D_800D28E4++;
     D_800D2928 = 0;
     D_800D28FC |= 4;
@@ -1776,8 +1779,8 @@ void func_80047CCC(void) {
     D_800D28FC &= ~0x300;
     D_800D2960 = 0;
     if (gNoHit >= 0) {
-        if (gActors[0].health >= gNoHit) {
-            gNoHit = gActors[0].health;
+        if (gPlayerActor.health >= gNoHit) {
+            gNoHit = gPlayerActor.health;
         }
         else {
             gNoHit = -1;
