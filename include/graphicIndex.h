@@ -223,6 +223,13 @@
 
 #define GINDEX_HATPIRATE         0X3014
 
+#define GINDEX_303E                 0x303E
+#define GINDEX_3040                 0x3040
+#define GINDEX_3042                 0x3042
+#define GINDEX_3044                 0x3044
+#define GINDEX_3046                 0x3046
+#define GINDEX_3048                 0x3048
+#define GINDEX_304A                 0x304A
 
 // indecies used by the world map graphics
 
@@ -234,7 +241,7 @@
 #define GINDEX_WM_PATHSECTIONLEFT   0X3010
 #define GINDEX_WM_PATHSECTIONMID    0X3012
 #define GINDEX_WM_PATHSECTIONRIGHT  0X3014
-#define GINDEX_WM_CLANCERMIC       0X3016 // 4 animation frames
+#define GINDEX_WM_CLANCERMIC        0X3016 // 4 animation frames
 #define GINDEX_WM_STAGEICONDESERT   0X301E
 #define GINDEX_WM_STAGEICONLAVA     0X3020
 #define GINDEX_WM_STAGEICONMIGEN    0X3022

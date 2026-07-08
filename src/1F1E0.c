@@ -45,8 +45,8 @@ extern u16* D_800CBDFC[];
 extern u16* D_800CBE0C[];
 
 extern u16 D_800D28E4;
-extern u16 D_800D2918;
-extern u16 D_800D291C;
+extern s16 D_800D2918;
+extern s16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2978[];
 
@@ -63,7 +63,6 @@ extern u16 D_801781D0;
 extern u16 D_801781D2;
 extern u16 D_801781D4;
 extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
-extern u16 D_801782B8;
 
 extern void GameState_Loading(void);
 extern void Sound_StartFade(u16, u16);
@@ -81,15 +80,12 @@ extern void func_8001FF50(void);
 extern void func_80022470(void);
 extern void func_800253B0(void);
 extern void func_800457C8(void);
-extern void func_80047C98(void);
-extern void func_80047CCC(void);
 extern void func_8004ED10(u16);
 extern u8 func_8005C870(u8);
 extern void UpdateCameraShake(void);
 extern void func_8005C8A4(void);
 extern void func_8005F6D4(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
-extern void func_800836A0(s32, s32, u16*, s32); // guess on types
 extern void func_80083A74(s32, s32, s32); // guess
 extern void func_80083C54(s16, s32, s32); // guess
 extern void func_8008C528(u16); // guess

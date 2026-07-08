@@ -43,7 +43,6 @@ extern u16 D_800D357C[];
 extern u16 D_800D361C[];
 extern s32 D_801782B4;
 extern u16* D_801782BC;
-extern u16 D_801782B8;
 extern u16 D_801782C0;
 extern u16 D_801782C2;
 

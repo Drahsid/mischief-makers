@@ -117,7 +117,7 @@ extern s16 D_800BE57C;
 extern s16 D_800BE580;
 extern s16 D_800BE584;
 extern u16 D_800BE588;
-extern s16 D_800BE58C;
+extern u16 D_800BE58C;
 extern s16 gCamShakeTime; // time shaking camera.
 extern s16 gCamShakeV; // vertical offset of camera shake.
 extern s16 gCamShakeType; // type of camera shake. ranges from 0-2.
@@ -152,8 +152,8 @@ extern u32 D_800BE60C; // unused
 extern u32 D_800BE610; // zero'd during GameState_Loading, otherwise unused.
 extern u32 D_800BE614; // zero'd during GameState_Loading, otherwise unused.
 extern u32 D_800BE618; // zero'd during GameState_Loading, otherwise unused.
-extern u32 D_800BE61C; // zero'd during 2 functions, otherwise unused.
-extern u32 D_800BE620; // zero'd during 2 functions, otherwise unused.
+extern s32 D_800BE61C; // zero'd during 2 functions, otherwise unused.
+extern s32 D_800BE620; // zero'd during 2 functions, otherwise unused.
 extern u32 D_800BE624; // unused.
 extern u32 D_800BE628; // unused.
 extern u16 gScreenXLock; // locks X-axis screen scrolling. always false

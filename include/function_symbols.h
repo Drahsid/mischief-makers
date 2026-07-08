@@ -7,14 +7,25 @@ extern int sprintf(char* str, const char* fmt, ...);
 
 extern u16 Rand(void);
 extern void func_80012288(void);
-extern u8 func_80012AB4(s16 arg0, s16 arg1);
+
+// hacky workaround as we need the default proto of a func for func_80012AB4 in 66250.c
+#ifndef func_80012AB4_ARGS
+#define func_80012AB4_ARGS s16 arg0, s16 arg1
+#endif
+extern u8 func_80012AB4(func_80012AB4_ARGS);
 extern u8 func_80012C04(s16, s16);
 extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
 
+extern void func_80004FFC(s32);
+extern void func_800050B4(void);
 extern void func_800109B0(void);
+extern void func_80010A10(void);
 extern void func_80010C20(u16 arg0);
 extern void func_8001A584(void);
+extern void func_8001DC60(void);
 extern void func_800230B8(void);
+extern void func_80025B7C(void);
+extern void func_80025E6C(void);
 extern void func_800282F0(s16 arg0, s16 arg1);
 extern u16 func_8002877C(u16 actor_index);
 extern s32 Math_AbsS32(s32 val);
@@ -27,6 +38,7 @@ extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, 
 extern u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 extern void Actor_ClearRange_30To90(void);
 extern u16 SpawnAreaClear(u16);
+extern void func_80042D84(u16 arg0);
 extern void func_80042DBC(void* arg0);
 extern u8 func_80048C28(s32);
 extern void func_80045D84(u32 arg0, u32 arg1);
@@ -54,6 +66,7 @@ extern u16 func_8005D338(u16 actor_index);
 extern s32 func_8005D370(u16 actor_index, u16 arg1);
 extern void func_8005D3D8(u16 actor_index);
 extern u16 func_8005D418(u16 actor_index);
+extern void func_8005D450(u16 actor_index);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
@@ -131,6 +144,8 @@ extern u16 func_8004089C(u16 actor_index, u16* arg1);
 extern s32 func_80040A64(void);
 extern void func_80042E28(s32 arg0);
 extern void func_80042F2C(s32 arg0, s32 arg1, s32 arg2);
+extern void func_80043478(void);
+extern void func_80043918(void);
 extern void func_80043D04(u16* spawn);
 extern s32 func_80043D6C(void* arg0);
 extern void func_80045500(void);
@@ -138,16 +153,21 @@ extern s16 func_800456DC(void);
 extern void func_80045E58(void* arg0);
 extern s32 func_80045F08(u32 arg0);
 extern void* func_80045F14(void* arg0);
+extern void func_80046498(u16);
+extern void func_8004667C(void);
 extern void func_80046A9C(void);
 extern s32 func_80046EBC(void);
 extern void func_800472D4(void);
 extern s32 func_8004735C(s32 arg0, s32 arg1);
+extern void func_80047C98(void);
+extern void func_80047CCC(void);
 extern s32 func_800486F4(void);
 extern s32 func_80048CE4(void);
 extern s32 func_80048C94(s32);
 extern s32 func_80048F70(u16, u16);
 extern s32 func_800490BC(u16, s32, s32);
 extern s32 func_800491B8(u16, s32, s32);
+extern void func_8004A960(u16 actor_index);
 extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);
 extern u8 func_8005D1B0(u16 actor_index);
 extern void func_8005DF40(s16 arg0, s16 arg1);
@@ -167,8 +187,11 @@ extern void func_80081720(u16 arg0, void* arg1, s32 arg2);
 extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);
+extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
+extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
+extern void func_8002092C(void);
 extern void func_80022D10(void);
 #ifndef Actor_Initialize_RET
   #define Actor_Initialize_RET DEFAULT_INT
@@ -236,6 +259,8 @@ extern void func_80083E74(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);
+
+extern void GameState_Gameplay(void);
 
 void OverlayABI_Slot2_fn32_void(void);
 

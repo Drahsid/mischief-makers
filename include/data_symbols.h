@@ -15,6 +15,7 @@ extern s32 D_800D2928;
 extern s32 D_800D2938;
 extern s16 D_800D294C;
 extern u16 D_800D8588[]; // all-white palette
+extern s16 D_800E13FC[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
@@ -23,13 +24,25 @@ extern u16 D_801370D4;
 extern u16 D_801370D8[]; // Marina graphic history. used for unused after-image state
 extern s16 D_801371D8[]; // Marina X-position history. used for unused after-image state
 extern s16 D_801372D8[]; // Marina Y-position history. used for unused after-image state
-extern u16* D_801376A0;
+extern u16 D_80137480[];
+extern u16 D_801374F0[]; // source of texture images
+extern u16 D_80137580[]; // source of texture images
+extern u16 D_80137610[]; // source of texture images
+extern u16* D_8013769C; // palette
+extern u16* D_801376A0; // palette
+extern u16* D_801376A4; // palette
+extern u8 D_801376A8[];
+extern u8 D_801376AC[];
+extern u8 D_801376B0[];
+extern u8 D_801376B4[];
+extern u8 D_801376B8[];
 extern u8 D_801376BC[];
 extern u32 D_801376D4;
 extern u32 D_80137714;
 extern u32 D_80137718;
 extern u64 gYellowGemBitfield;
 extern u64 D_801781F0;
+extern u16 D_801782B8;
 extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;

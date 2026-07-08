@@ -9,18 +9,6 @@ extern s32 D_800BE6E0; // texture y offset
 extern Gfx D_800E3590[];
 extern Gfx D_800E35E0[];
 
-extern u16 D_801374F0[]; // source of texture images
-extern u16 D_80137580[]; // source of texture images
-extern u16 D_80137610[]; // source of texture images
-extern u16* D_8013769C; // tlut
-extern u16* D_801376A4; // tlut
-extern u8 D_801376A8[];
-extern u8 D_801376AC[];
-extern u8 D_801376B0[];
-extern u8 D_801376B4[];
-extern u8 D_801376B8[];
-extern u8 D_801376BC[];
-
 Gfx D_80178470[708];
 Gfx D_80179A90[708];
 Gfx D_8017B0B0[708];

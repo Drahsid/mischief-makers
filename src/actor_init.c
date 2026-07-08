@@ -392,11 +392,214 @@ s16* gActorInitGraphics[]={
     gGraphicListBlank, // ACTORTYPE_GEM124,
 };
 
-#pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DBA0.s")
+extern u16* D_8013776C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DC60.s")
+void func_8001DBA0(u16* arg0, u16 actor_index) {
+    gActors[actor_index].actorType = arg0[5];
+    Actor_Initialize(actor_index);
+    gActors[actor_index].posX.whole = arg0[1] - gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole = arg0[2] - gScreenPosCurrentY.whole;
+    gActors[actor_index].var_110 = arg0[3];
+    gActors[actor_index].var_0D8 = arg0[4];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/actor_init/func_8001DE30.s")
+void func_8001DC60(void) {
+    u16 x_min;
+    u16 x_max;
+    u16 y_min;
+    u16 y_max;
+    u16 pos_y;
+    u16 pos_x;
+    u16 actor_index;
+    u16* vals;
+
+    x_min = (gScreenPosCurrentX.whole - 0xD0);
+    x_max = (gScreenPosCurrentX.whole + 0xD0);
+    y_min = (gScreenPosCurrentY.whole - 0xA0);
+    y_max = (gScreenPosCurrentY.whole + 0xA0);
+    if (D_800BE664 != 0) {
+        for (vals = D_8013776C; vals[0] != 0xFFFF; vals += 6) {
+            pos_y = vals[2];
+            if (y_max < pos_y) {
+                continue;
+            }
+            if (pos_y < y_min) {
+                break;
+            }
+            pos_x = vals[1];
+            if (pos_x < x_min) {
+                continue;
+            }
+            if (x_max < pos_x) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+    }
+    else {
+        for (vals = D_8013776C; vals[0] != 0xFFFF; vals += 6) {
+            pos_x = vals[1];
+            if (pos_x < x_min) {
+                continue;
+            }
+            if (x_max < pos_x) {
+                break;
+            }
+            pos_y = vals[2];
+            if (pos_y < y_min) {
+                continue;
+            }
+            if (y_max < pos_y) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+    }
+}
+
+void func_8001DE30(void) {
+    u16* vals;
+    u16 x_min_0;
+    u16 x_min_1;
+    u16 x_max_1;
+    u16 x_max_0;
+    u16 y_min_0;
+    u16 y_max_0;
+    u16 y_min_1;
+    u16 y_max_1;
+    u16 actor_index;
+    u16 pos_x;
+    u16 pos_y;
+
+    if (D_800BE664 != 0) {
+        x_min_0 = gScreenPosCurrentX.whole - 0xD0;
+        x_min_1 = gScreenPosCurrentX.whole - 0xB0;
+        x_max_1 = gScreenPosCurrentX.whole + 0xB0;
+        x_max_0 = gScreenPosCurrentX.whole + 0xD0;
+        y_min_0 = gScreenPosCurrentY.whole - 0xA0;
+        y_min_1 = gScreenPosCurrentY.whole - 0x80;
+        y_max_1 = gScreenPosCurrentY.whole + 0x80;
+        y_max_0 = gScreenPosCurrentY.whole + 0xA0;
+        for (vals = D_8013776C; vals[0] != 0xFFFF; vals += 6) {
+            pos_y = vals[2];
+            if (y_max_0 < pos_y) {
+                continue;
+            }
+            if (pos_y < y_max_1) {
+                break;
+            }
+            pos_x = vals[1];
+            if ((pos_x < x_min_0) || (x_max_0 < pos_x)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+        
+        for (; vals[0] != 0xFFFF; vals += 6) {
+            pos_y = vals[2];
+            if (pos_y < y_min_1) {
+                break;
+            }
+            pos_x = vals[1];
+            if ((pos_x < x_min_0) || (x_max_0 < pos_x)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if ((x_min_1 < pos_x) && (pos_x < x_max_1)) {
+                continue;
+            }
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+            if (y_max_0) {} // fakematch
+        }
+        
+        for (; vals[0] != 0xFFFF; vals += 6) {
+            pos_y = vals[2];
+            if (pos_y < y_min_0) {
+                break;
+            }
+            pos_x = vals[1];
+            if ((pos_x < x_min_0) || (x_max_0 < pos_x)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+    }
+    else {
+        x_min_0 = gScreenPosCurrentX.whole - 0xD0;
+        x_min_1 = gScreenPosCurrentX.whole - 0xB0;
+        x_max_1 = gScreenPosCurrentX.whole + 0xB0;
+        x_max_0 = gScreenPosCurrentX.whole + 0xD0;
+        y_min_0 = gScreenPosCurrentY.whole - 0xA0;
+        y_min_1 = gScreenPosCurrentY.whole - 0x80;
+        y_max_1 = gScreenPosCurrentY.whole + 0x80;
+        y_max_0 = gScreenPosCurrentY.whole + 0xA0;
+
+        for (vals = D_8013776C; vals[0] != 0xFFFF; vals += 6) {
+            pos_x = vals[1];
+            if (pos_x < x_min_0){
+                continue;
+            }
+            if (x_min_1 < pos_x) {
+                break;
+            }
+            pos_y = vals[2];
+            if ((pos_y < y_min_0) || (y_max_0 < pos_y)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+        for (; vals[0] != 0xFFFF; vals += 6) {
+            pos_x = vals[1];
+            if (x_max_1 < pos_x) {
+                break;
+            }
+            pos_y = vals[2];
+            if ((pos_y < y_min_0) || (y_max_0 < pos_y)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if ((y_min_1 < pos_y) && (pos_y < y_max_1)) {
+                continue;
+            }
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+            if (x_min_0) {} // fakematch
+        }
+        
+        for (; vals[0] != 0xFFFF; vals += 6) {
+            pos_x = vals[1];
+            if (x_max_0 < pos_x) {
+                break;
+            }
+            pos_y = vals[2];
+            if ((pos_y < y_min_0) || (y_max_0 < pos_y)) {
+                continue;
+            }
+            actor_index = vals[0];
+            if (gActors[actor_index].flags == 0) {
+                func_8001DBA0(vals, actor_index);
+            }
+        }
+    }
+}
 
 // Thanks to inspectredc for helping with this one!
 DEFAULT_INT Actor_Initialize(u16 actor_index) {
