@@ -166,7 +166,7 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
     if (new_actor_index != 0) {
         ACTOR_INIT(new_actor_index, ACTORTYPE_OVL0_MIGEN_JRFIREBALL);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-        gActors[new_actor_index].flags = ACTOR_GFLAG_UNK14 | ACTOR_GFLAG_UNK10 | ACTOR_FLAG_ENABLED;
+        gActors[new_actor_index].flags = ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].graphicList = D_800E1540;
         gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].posX.whole = gActors[0x50].posX.whole;
