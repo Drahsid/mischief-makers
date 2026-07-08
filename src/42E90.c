@@ -5,7 +5,7 @@
 extern ActorFunc D_800D28B0[];
 
 s32 func_80042290(u16 actor_index) {
-    if ((gActors[actor_index].actorType == 0x90C) &&
+    if ((gActors[actor_index].actorType == ACTORTYPE_OVL1_GEN_GUN) &&
         (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) &&
        !(gActors[actor_index].unk_188 & 0x8000)) {
         return TRUE;
@@ -15,6 +15,7 @@ s32 func_80042290(u16 actor_index) {
     }
 }
 
+// update function for actor type 4
 void ActorUpdate_Type4(u16 arg0) {
 }
 

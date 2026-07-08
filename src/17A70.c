@@ -161,7 +161,7 @@ void func_80016E70(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_29:
+        case ACTOR_OVL2_WORLD4:
             D_801A6800[index](actor_index);
             break;
 

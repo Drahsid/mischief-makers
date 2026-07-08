@@ -200,6 +200,7 @@ u16 D_801BC7FC_7E595C[] = {
     SPAWNRECORD_END, 0,// blank/unused table?
 };
 
+// actor spawn table for "Aster's Tryke"
 u16 D_801BC83C_7E599C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0001, 0x2700,
@@ -694,6 +695,7 @@ void func_801B9D78_7E2ED8(void) {
     }
 }
 
+// stage state machine for "Aster's Tryke"
 void func_801B9E74_7E2FD4(void) {
     switch (gStageState) {
         case 0:
@@ -743,6 +745,7 @@ void func_801B9E74_7E2FD4(void) {
         case 4:
             gStageState++;
             switch (D_800D2928) {
+                // (re)start the actors based on progress.
                 case 0:
                     func_801B9D38_7E2E98(D_801BBEE0_7E5040, (u16*)-7, D_801BC83C_7E599C);
                     break;
@@ -995,6 +998,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
     D_801BD8C0_7E6A20 = arg2;
 }
 
+// stage state machine for "Aster's Maze"
 void func_801BA950_7E3AB0(void) {
     switch (gStageState) {
         case 0:
@@ -1151,7 +1155,7 @@ void func_801BA950_7E3AB0(void) {
             if (gPlayerPosY.whole < 0x7E0) {
                 gCannotPause = TRUE;
                 D_800BE5D4 = 1;
-                Sound_PlaySfx(0x3E);
+                Sound_PlaySfx(SFX_FALLWHISTLE);
                 D_801BD8C2_7E6A22 = 0;
                 gStageState++;
             }

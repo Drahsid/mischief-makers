@@ -746,12 +746,13 @@ void func_8006346C(u16 actor_index) {
     gActors[actor_index - 1].posX.raw = gActors[actor_index].posX.raw + gActors[actor_index - 1].var_154;
     gActors[actor_index - 1].posY.raw = gActors[actor_index].posY.raw + gActors[actor_index - 1].var_158;
     if (!(gActiveFrames & 0xF)) {
-        if ((gActors[actor_index - 1].actorType == 0x3E) || (gActors[actor_index - 1].actorType == 0x42)) {
+        if ((gActors[actor_index - 1].actorType == ACTORTYPE_CLANBALLWHEEL) ||
+           (gActors[actor_index - 1].actorType == ACTORTYPE_CLANBALLSPRING)) {
             if ((gActors[actor_index].state >= 0x60) && (gActors[actor_index - 1].var_158 != 0)) {
                 Sound_PlaySfxAtActor2(0x120, actor_index);
             }
         }
-        else if (gActors[actor_index - 1].actorType == 0x500) {
+        else if (gActors[actor_index - 1].actorType == ACTORTYPE_OVL3_W2_CLANCERSWING) {
             if (((s32) gActors[actor_index - 1].var_110 & 0xF) == 1) {
                 if ((gPlayerActor.flags & ACTOR_FLAG_ATTACHED) && ((actor_index + 1) == gPlayerActor.parentIndex)) {
                     Sound_PlaySfxAtActor2(0x120, actor_index);
@@ -1381,7 +1382,7 @@ void func_80064B60(u16 actor_index) {
             gStageState++;
         }
         if (gActors[actor_index].var_154 == 0x15E) {
-            Sound_PlaySfx(0x136);
+            Sound_PlaySfx(SFX_STAR_APPEAR);
         }
         break;
     }
@@ -1402,7 +1403,8 @@ void func_80064CB4(u16 actor_index) {
         if (((gActors[actor_index + 1].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index + 1].flags_098 & ACTOR_FLAG3_UNK17) && (gActors[actor_index].var_0D8 & 0x100)) ||
             ((gActors[actor_index + 1].flags == 0) && !(gActors[actor_index].var_0D8 & 0x100))) {
             vals = &D_800D2690[(gActors[actor_index].var_0D8 & 0xFF) * 3];
-            if ((vals[2] == 8) && (vals[0] == 0x32) && YellowGem_GetFlag(gCurrentStage)) {
+            if ((vals[2] == ACTORTYPE_GEM) && (vals[0] == (GEMFLAG_COMMON | GEMFLAG_YELLOW)) &&
+             YellowGem_GetFlag(gCurrentStage)) { // don't spawn yellow gem if you already got it.
                 gActors[actor_index].flags = 0;
             }
             else {
@@ -1411,10 +1413,10 @@ void func_80064CB4(u16 actor_index) {
                 gActors[actor_index].var_110 = vals[0];
                 gActors[actor_index].var_0D8 = vals[1];
                 gActors[actor_index].posZ.whole = gActors[actor_index + 1].posZ.whole - 1;
-                if (gActors[actor_index].actorType == 8) {
-                    gActors[actor_index].var_150 = 0x78;
+                if (gActors[actor_index].actorType == ACTORTYPE_GEM) {
+                    gActors[actor_index].var_150 = 120;
                     gActors[actor_index].velocityY.raw = FIXED_UNIT(4.0);
-                    Sound_PlaySfxAtActor2(0x51, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);
                 }
                 else {
                     Sound_PlaySfxAtActor2(0x116, actor_index);
