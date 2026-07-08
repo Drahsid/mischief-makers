@@ -75,7 +75,7 @@ u16 D_801BA63C_7E778C[] = {
 };
 
 // unused spawn table
-u16 D_801BA64C_7E779C[] ={
+u16 D_801BA64C_7E779C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, 0x1F01,
     SPAWNRECORD_END,
@@ -114,49 +114,49 @@ u16 D_801BA700_7E7850[] = {
 
 u16 D_801BA704_7E7854[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_0,
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
 u16 D_801BA714_7E7864[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0080, 0x07C0, 0x0260, 0x0001, 0x0060, ACTORTYPE_OVL3_W5_6,
+    0x0000, 0x0080, 0x07C0, 0x0260, 0x0001, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
 u16 D_801BA724_7E7874[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL3_W5_0,
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
 u16 D_801BA734_7E7884[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0080, 0x12C0, 0x0260, 0x2101, 0x0060, ACTORTYPE_OVL3_W5_6,
+    0x0000, 0x0080, 0x12C0, 0x0260, 0x2101, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
 u16 D_801BA744_7E7894[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0002, ACTORTYPE_OVL3_W5_0, 
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0002, ACTORTYPE_OVL3_W5_SPAWNER_0, 
     SPAWNRECORD_END
 };
 
 u16 D_801BA754_7E78A4[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0080, 0x1FC0, 0x0260, 0x2201, 0x0060, ACTORTYPE_OVL3_W5_6,
+    0x0000, 0x0080, 0x1FC0, 0x0260, 0x2201, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
 u16 D_801BA764_7E78B4[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0003, ACTORTYPE_OVL3_W5_0,
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0003, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
 u16 D_801BA774_7E78C4[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0080, 0x2DC0, 0x0260, 0x2301, 0x0060, ACTORTYPE_OVL3_W5_6, 
+    0x0000, 0x0080, 0x2DC0, 0x0260, 0x2301, 0x0060, ACTORTYPE_OVL3_W5_WALKER, 
     SPAWNRECORD_END
 };
 
@@ -341,7 +341,7 @@ void func_801B99F4_7E6B44(u16 arg0) {
 
 void func_801B9A08_7E6B58(void) {
     if ((gButtonPress & gButton_LTrig) != 0) {
-        D_800CC428 = 1;
+        D_800CC428 = TRUE;
     }
 
     switch (gStageState) {
@@ -523,7 +523,7 @@ void func_801B9FC8_7E7118(void) {
             if (gActors[0x80].flags == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
-                func_8003D628(0);
+                SpawnAreaClear(0);
                 D_800D2928++;
                 D_800D2930 = 0xA;
             }

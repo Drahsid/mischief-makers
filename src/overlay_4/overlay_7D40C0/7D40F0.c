@@ -1475,7 +1475,7 @@ void func_801B9CA0_7D4490(void) {
             if (D_800F7510 == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
-                func_8003D628(0);
+                SpawnAreaClear(0);
             }
             func_801B9900_7D40F0();
             break;
@@ -1672,7 +1672,7 @@ void func_801BA290_7D4A80(void) {
             if (D_800F7510 == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
-                func_8003D628(0);
+                SpawnAreaClear(0);
             }
             Camera_UpdateViewBounds();
             func_801B9900_7D40F0();
@@ -2091,7 +2091,7 @@ void func_801BB314_7D5B04(void) {
             break;
 
         case 3:
-            func_8003D628(0);
+            SpawnAreaClear(0);
             Sound_StartFade(0x81, 0x168);
             gStageState++;
             break;

@@ -904,7 +904,7 @@ void func_801BA534_7E3694(void) {
             break;
 
         case 3:
-            func_8003D628(0);
+            SpawnAreaClear(0);
             Sound_StartFade(0x81, 0x168);
             gStageState++;
             break;

@@ -547,7 +547,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x102:
             func_801B99A4_7E7F74(D_801BAFE4_7E95B4, 0xE0);
             if (gActors[0x30].flags == 0) {
-                func_8003D628(0x8000);
+                SpawnAreaClear(0x8000);
                 func_801B9B64_7E8134(0xA1, 0x718, 0x238);
                 Actor_LoadSpawnTable(D_801BB1E8_7E97B8);
                 func_801B9A3C_7E800C(0xA7);
@@ -625,7 +625,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x602:
             func_801B99A4_7E7F74(D_801BB07C_7E964C, 0);
             if (gActors[0x30].flags == 0) {
-                func_8003D628(0x8000);
+                SpawnAreaClear(0x8000);
                 func_801B9B64_7E8134(0x94, 0xCF8, 0x208);
                 Actor_LoadSpawnTable(D_801BB9F4_7E9FC4);
                 func_801B9A3C_7E800C(0x97);

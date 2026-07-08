@@ -84,7 +84,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086B74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086C7C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_Clanbomb.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087568.s")
 

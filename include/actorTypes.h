@@ -137,7 +137,7 @@ typedef enum {
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_70,
     ACTORTYPE_71,
-    ACTORTYPE_72,
+    ACTORTYPE_TANKCAT,
     ACTORTYPE_SPIKEBALL_S, // stationary spikeball
     ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball
     ACTORTYPE_SPIKEBALL_V, // up/down spikeball
@@ -155,7 +155,7 @@ typedef enum {
     ACTORTYPE_DIGGINGSPOT, // grab the ground for treasures.
     ACTORTYPE_CLANBLOCK_88,
     ACTORTYPE_89,
-    ACTORTYPE_90,
+    ACTORTYPE_REDBLOCKBOOM, // start of destruction trail for red clanblocks
     ACTORTYPE_CLANCER_91,
     ACTORTYPE_92,
     ACTORTYPE_93,
@@ -211,18 +211,18 @@ typedef enum {
 
     // actors in dispatch table D_801B0800_7986D0
 
-    ACTORTYPE_OVL3_W2_0 = (ACTOR_OVL3_WORLD2 << 8),
+    ACTORTYPE_OVL3_W2_CLANCERSWING = (ACTOR_OVL3_WORLD2 << 8),
     ACTORTYPE_OVL3_W2_1,
-    ACTORTYPE_OVL3_W2_2,
-    ACTORTYPE_OVL3_W2_3,
-    ACTORTYPE_OVL3_W2_4,
-    ACTORTYPE_OVL3_W2_5,
-    ACTORTYPE_OVL3_W2_6,
-    ACTORTYPE_OVL3_W2_7,
-    ACTORTYPE_OVL3_W2_8,
-    ACTORTYPE_OVL3_W2_3DPLATFORM,
-    ACTORTYPE_OVL3_W2_10,
-    ACTORTYPE_OVL3_W2_11,
+    ACTORTYPE_OVL3_W2_CLANCER_2, // shuriken-throwing clancers in "Sink or Float"
+    ACTORTYPE_OVL3_W2_3, // stubbed
+    ACTORTYPE_OVL3_W2_4, // stubbed
+    ACTORTYPE_OVL3_W2_5, // stubbed
+    ACTORTYPE_OVL3_W2_6, // stubbed
+    ACTORTYPE_OVL3_W2_7, // stubbed
+    ACTORTYPE_OVL3_W2_3DPLATFROM_8, // platforms in vertical stages
+    ACTORTYPE_OVL3_W2_3DPLATFORM_9,
+    ACTORTYPE_OVL3_W2_SPIKEBALLGEN, // generates ACTORTYPE_OVL3_W2_SPIKEBALL_11 in "Seasick Climb"
+    ACTORTYPE_OVL3_W2_SPIKEBALL_11,
     ACTORTYPE_OVL3_W2_12,
     ACTORTYPE_OVL3_W2_13,
     ACTORTYPE_OVL3_W2_14,
@@ -232,8 +232,8 @@ typedef enum {
     ACTORTYPE_OVL3_W2_18,
     ACTORTYPE_OVL3_W2_19,
     ACTORTYPE_OVL3_W2_20,
-    ACTORTYPE_OVL3_W2_21,
-    ACTORTYPE_OVL3_W2_22,
+    ACTORTYPE_OVL3_W2_3DPLATFORM_21, // static 3D platform
+    ACTORTYPE_OVL3_W2_3DPLATFORM_22, // sinking 3D platforms
     ACTORTYPE_OVL3_W2_23,
     ACTORTYPE_OVL3_W2_24,
     ACTORTYPE_OVL3_W2_25,
@@ -294,7 +294,7 @@ typedef enum {
     ACTORTYPE_OVL1_GEN_9,
     ACTORTYPE_OVL1_GEN_10,
     ACTORTYPE_OVL1_GEN_11,
-    ACTORTYPE_OVL1_GEN_GUN, //rifle or missle launcher
+    ACTORTYPE_OVL1_GEN_GUN, // rifle or missle launcher
     ACTORTYPE_OVL1_GEN_GUNMISSLE,
     ACTORTYPE_OVL1_GEN_GUNBULLET,
     ACTORTYPE_OVL1_GEN_15, // stubbed
@@ -478,13 +478,13 @@ typedef enum {
 
     // actors in dispatch table D_801B0800_7C0AB0
 
-    ACTORTYPE_OVL3_W5_0 = (ACTOR_OVL3_WORLD5B << 8),
+    ACTORTYPE_OVL3_W5_SPAWNER_0 = (ACTOR_OVL3_WORLD5B << 8), // handles spawning enemies in "Clance War II"
     ACTORTYPE_OVL3_W5_1,
-    ACTORTYPE_OVL3_W5_2,
+    ACTORTYPE_OVL3_W5_CLANCER_2,
     ACTORTYPE_OVL3_W5_3,
     ACTORTYPE_OVL3_W5_4,
     ACTORTYPE_OVL3_W5_5,
-    ACTORTYPE_OVL3_W5_6,
+    ACTORTYPE_OVL3_W5_WALKER, // references overlay 1 table directly
     ACTORTYPE_OVL3_W5_7,
     ACTORTYPE_OVL3_W5_8,
     ACTORTYPE_OVL3_W5_9,

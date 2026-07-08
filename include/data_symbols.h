@@ -38,7 +38,7 @@ extern u16 D_800CA254[]; // "d  h  m  s"
 extern u16 D_800CA26C[]; // "Continue"
 extern u16 D_800CBF40;
 extern u16 D_800CBF50;
-extern u8 D_800CC428;
+extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
 extern u16 D_800D1A04[];
 extern u16 D_800D2690[]; // LUT of digging spot items.

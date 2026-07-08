@@ -837,7 +837,7 @@ void func_800756FC(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80075D50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80075DC4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/66250/ActorUpdate_CatTank.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80076228.s")
 

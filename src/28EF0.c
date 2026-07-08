@@ -7065,7 +7065,8 @@ void func_8003D5A0(u16 arg0, u16 arg1, s32 arg2, s32 arg3, s32 arg4) {
     }
 }
 
-u16 func_8003D628(u16 arg0) {
+// spawn "Got out of Trouble" animation
+u16 SpawnAreaClear(u16 arg0) {
     u16 index;
     index = 0xC0;
     gActors[index].actorType = ACTORTYPE_AREACLEAR;
@@ -7076,6 +7077,7 @@ u16 func_8003D628(u16 arg0) {
     CameraShake(8, 60);
     return index;
 }
+
 // draw a colored box to specified position and dimensions.
 // @param graphic_flag settings for graphicFlags.
 // ACTOR_GFLAG_3DOBJ is instead used to determine box duration.

@@ -8,8 +8,9 @@ DMA_ReadSync = 0x800011F0; // type:func
 DMA_AwaitMessage = 0x80001264; // type:func 
 DMA_Read = 0x80001290; // type:func
 
-Sound_DmaCallback = 0x800017D0; // type:func
 Rand = 0x8000178c; // type:func rom:0x238c
+
+Sound_DmaCallback = 0x800017D0; // type:func
 Sound_DmaNew = 0x80001988; // type:func
 Sound_CleanDmaBuffers = 0x80001A80; // type:func
 Sound_InitPlayers = 0x80001B38; // type:func
@@ -44,6 +45,7 @@ Sound_StopMusic = 0x80003A38; // type:func
 Sound_StopAllSfx = 0x80003A64; // type:func
 Sound_ActorPanVol = 0x80003AD4; // type:func
 Sound_StartFade = 0x80003F24; // type:func
+
 Font_TextSprite = 0x80004380; // type:func
 Font_FindChar = 0x800045F8; // type:func
 Font_Init = 0x80004648; // type:func
@@ -54,6 +56,7 @@ Font_SetScale = 0x80004760; // type:func
 Font_SetColor = 0x8000477C; // type:func
 Font_SetTransparent = 0x800047B0; // type:func
 Font_ShowString = 0x80004804; // type:func
+
 Trouble_RLE_Type1 = 0x80004910; // type:func
 
 LookAt_Update = 0x80010898; // type:func
@@ -184,12 +187,8 @@ ActorUpdate_Spikeball_Static = 0x80039134; // type:func
 ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
 ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
 
-ActorUpdate_Type15 = 0x8008C4A0; // type:func
-ActorUpdate_Type16 = 0x8008C4A8; // type:func
-ActorUpdate_Type37 = 0x8008C4C0; // type:func
-ActorUpdate_Type43 = 0x8008C4C8; // type:func
-ActorUpdate_Type65 = 0x8008C4D0; // type:func
-ActorUpdate_Type83 = 0x8008C4D8; // type:func
+
+ActorUpdate_Clanbomb = 0x80086c7c; // type:func
 
 ActorUpdate_Spikeball_77 = 0x80088164; // type:func
 ActorUpdate_Spikeball_78 = 0x8008855C; // type:func
@@ -197,6 +196,13 @@ ActorUpdate_Spikeball_OrbitYZ = 0x80088cb0; // type:func
 ActorUpdate_Spikeball_80 = 0x80089084; // type:func
 ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
 ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
+
+ActorUpdate_Type15 = 0x8008C4A0; // type:func
+ActorUpdate_Type16 = 0x8008C4A8; // type:func
+ActorUpdate_Type37 = 0x8008C4C0; // type:func
+ActorUpdate_Type43 = 0x8008C4C8; // type:func
+ActorUpdate_Type65 = 0x8008C4D0; // type:func
+ActorUpdate_Type83 = 0x8008C4D8; // type:func
 
 ActorUpdate_MsHint = 0x80065270; // type:func
 
@@ -212,7 +218,7 @@ ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
 ActorUpdate_Clanball_28 = 0x8003A120; // type:func
 ActorUpdate_ClanballSpring = 0x8003C328; // type:func
 
-
+SpawnAreaClear = 0x8003d628; // type:func
 AreaClear_State0 = 0x8003D794; // type:func
 ActorUpdate_AreaClear = 0x8003DBD0; // type:func
 
@@ -248,6 +254,8 @@ Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
+
+ActorUpdate_CatTank = 0x80075dc4; // type:func
 
 Clanblob_Update = 0x80076d40; // type:func
 ActorUpdate_Clanblob = 0x80077c18; // type:func

@@ -26,7 +26,7 @@ extern u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s
 extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 extern u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 extern void Actor_ClearRange_30To90(void);
-extern u16 func_8003D628(u16);
+extern u16 SpawnAreaClear(u16);
 extern void func_80042DBC(void* arg0);
 extern u8 func_80048C28(s32);
 extern void func_80045D84(u32 arg0, u32 arg1);
@@ -197,7 +197,7 @@ extern void func_80046148(void* arg0, u16* arg1);
 extern void func_80046188(void* arg0, void* arg1);
 extern void func_80046218(u16 arg0, u16 arg1);
 extern void Camera_UpdateViewBounds(void);
-extern s32 func_80046D5C(void);
+extern s32 func_80046D5C(void); // fade portraits out after stage loads. return true when complete.
 extern s32 Cutscene_CheckSkipInput(void);
 extern void func_80047714(s32 arg0, u16 arg1, u16 arg2, u16 arg3);
 extern s32 func_8005DFC8(s32 arg0);

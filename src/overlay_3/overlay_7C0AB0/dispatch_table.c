@@ -30,7 +30,7 @@ void func_801B530C_7C552C(u16 actor_index);
 void func_801B63E4_7C6604(u16 actor_index);
 
 
-// dispatch table for actors in the latter half of World 5.
+// dispatch table for actors in World 5.
 ActorFunc D_801B0800_7C0AB0[] = {
     func_801B1C68_7C1E88,
     func_801B2154_7C2374,
