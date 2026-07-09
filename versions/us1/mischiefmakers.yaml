@@ -371,7 +371,7 @@ segments:
       - [0x0EC220, .rodata, 241E0]
       - [0x0EC280, .rodata, 28EF0]
       - [0x0EC910, .rodata, 42E90]
-      - [0x0EC920, rodata] # 438E0?
+      - [0x0EC920, .rodata, 438E0]
       - [0x0EC960, rodata] # marina?
       - [0x0EC9D0, .rodata, 4FEB0]
       - [0x0ECAA0, .rodata, 57F20]

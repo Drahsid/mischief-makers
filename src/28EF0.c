@@ -44,7 +44,6 @@ extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern u16 gGuestActorIndex;
 extern u16 D_800D2954;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D295C;
@@ -1378,13 +1377,8 @@ void Palette_SetRgbTableIndexArray(u16* src_idx, u16* dst) {
 }
 
 void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, s16 green_offset, s16 red_offset) {
-    u16 result;
-    while (count > 0) {
-        result = Palette_AdjustRgb5551(*src, blue_offset, green_offset, red_offset);
-        count--;
-        src++;
-        dst++;
-        dst[-1] = result; // wtf??
+    for (; count > 0; count--, src++, dst++) {
+        *dst = Palette_AdjustRgb5551(*src, blue_offset, green_offset, red_offset);
     }
 }
 
@@ -8269,7 +8263,6 @@ void WarpGate_Sparkle(u16 actor_index, u16 no_random) {
     }
 }
 
-
 void WarpGate_UpdateAppearance(u16 actor_index) {
     u16 index;
     u32 pad0;
@@ -8331,15 +8324,15 @@ void WarpGate_UpdateAppearance(u16 actor_index) {
 // @returns true if they are using.
 s32 WarpGate_IsGuestUsing(u16 star_index, u16 guest_index) {
     if (((gActors[guest_index].flags & ACTOR_FLAG_ENABLED) == ACTOR_FLAG_ENABLED) && (gActors[guest_index].health != 0)) {
-        if ((gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole) && 
-            (gActors[guest_index].posX.whole + gActors[guest_index].hitboxBX1) >= (gActors[star_index].posX.whole - 8) && 
-            (gActors[guest_index].posY.whole + gActors[guest_index].hitboxBY0) >= (gActors[star_index].posY.whole - 8) && 
-            (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxBY1 + gActors[guest_index].posY.whole)) ||
+        if ((((gActors[star_index].posX.whole + 8) >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posX.whole - 8) <= (gActors[guest_index].hitboxBX1 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posY.whole - 8) <= (gActors[guest_index].hitboxBY0 + gActors[guest_index].posY.whole)) && 
+             ((gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxBY1 + gActors[guest_index].posY.whole))) ||
             (((gActors[guest_index].flags & (ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK7)) != 0) && 
-              (gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxAX0 + gActors[guest_index].posX.whole)) && 
-              (gActors[guest_index].posX.whole + gActors[guest_index].hitboxAX1) >= (gActors[star_index].posX.whole - 8) && 
-              (gActors[guest_index].posY.whole + gActors[guest_index].hitboxAY0) >= (gActors[star_index].posY.whole - 8) && 
-              (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxAY1 + gActors[guest_index].posY.whole))) {
+             ((gActors[star_index].posX.whole + 8) >= (gActors[guest_index].hitboxAX0 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posX.whole - 8) <= (gActors[guest_index].hitboxAX1 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posY.whole - 8) <= (gActors[guest_index].hitboxAY0 + gActors[guest_index].posY.whole)) && 
+             ((gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxAY1 + gActors[guest_index].posY.whole)))) {
 
             gActors[star_index].unk_174 = guest_index;
             gActors[guest_index].flags_098 |= ACTOR_FLAG3_UNK21;

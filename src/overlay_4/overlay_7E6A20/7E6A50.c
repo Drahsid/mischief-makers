@@ -374,7 +374,7 @@ void func_801B9A08_7E6B58(void) {
         case 0x200:
             gStageState++;
             Actor_ClearSceneActors();
-            func_80045FA4(D_801BA63C_7E778C, 0);
+            func_80045FA4(D_801BA63C_7E778C, NULL);
             D_800BE5F4.unk_00_u32 = 4;
             D_800BE544 = 0x8000;
             gDrawMidground = FALSE;
@@ -403,7 +403,7 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x300:
             gStageState++;
-            func_80045FA4(D_801BA63C_7E778C, 0);
+            func_80045FA4(D_801BA63C_7E778C, NULL);
             Actor_LoadSpawnTable(D_801BA540_7E7690);
             Actor_LoadSpawnTable(D_801BA66C_7E77BC);
             gLifebar.posY.whole = -0x58;

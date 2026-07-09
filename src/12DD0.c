@@ -70,7 +70,7 @@ void func_80012438(void) {
     FixedCoord step_x;
 
     if (D_800BE544 == 0) {
-        func_80046498(D_800BE544);
+        func_80046498();
     }
     else if (D_800BE544 != 0x8000) {
         gScreenPosTargetX.raw = (gActors[D_800BE544].posX.raw + gScreenPosCurrentX.raw + gPlayerPosX.raw) / 2;

@@ -69,7 +69,6 @@ extern void Sound_StartFade(u16, u16);
 extern void func_8001107C(void);
 extern void func_800122B0(void);
 extern void func_80012830(void);
-extern u8 func_80012AB4(s16 arg0, s16 arg1);
 extern void func_80014AF0(void);
 extern void func_80014C44(void);
 extern void func_80016CB4(void);
