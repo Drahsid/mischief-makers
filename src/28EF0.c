@@ -38,7 +38,7 @@ extern u16 D_800D2860[]; // warp gate coords in main segment.
 
 //.data file break?
 
-extern u16 D_800D28F0;
+
 extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;

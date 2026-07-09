@@ -17,8 +17,19 @@
 #define CURSOR_INDEX_A \
 gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB
 
+#define SOUND_TEST_BGM_INDEX \
+gActors[2].velocityX.raw
+
 #define SOUND_TEST_SFX_INDEX \
 gActors[3].velocityX.raw
+
+// abreviation for overall Rank graphics
+
+#define GINDEX_RANK_S ALPHA_GLYPH(EN3_UPPER_S)
+#define GINDEX_RANK_A ALPHA_GLYPH(EN3_UPPER_A)
+#define GINDEX_RANK_B ALPHA_GLYPH(EN3_UPPER_B)
+#define GINDEX_RANK_C ALPHA_GLYPH(EN3_UPPER_C)
+#define GINDEX_RANK_D ALPHA_GLYPH(EN3_UPPER_D)
 
 // stages in the game are in a different order than the "scenes",
 // which also include states like the intro cinematic

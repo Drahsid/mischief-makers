@@ -24,7 +24,7 @@
 
 #define SFX_THEO_GRUNT1   0x00D8
 #define SFX_THEO_CONTINUE 0x00D9 // "Let's Continue!"
-#define SFX_THEO_YAY1     0x00D8 // "Way to Go Marina!"
+#define SFX_THEO_YAY1     0x00DA // "Way to Go Marina!"
 #define SFX_THEO_GOODBYE  0x00DB // "Goodbye..."
 #define SFX_THEO_HELP1    0x00DC // "Heeeeeelp!"
 #define SFX_THEO_HELP2    0x00DD // "Help me, Marina!"

@@ -4,24 +4,24 @@
 extern s16 D_800C7D10;
 extern char D_800C7D1C[];
 extern char D_800C7D24[];
-extern u16 D_800C7D54;
-extern u16 D_800C7D74;
-extern u16 D_800C7D94;
-extern u16 D_800C7DB4;
-extern u16 D_800C7DD4;
-extern u16 D_800C7DF4;
-extern u16 D_800C7E14;
-extern u16 D_800C7E54;
-extern u16 D_800C7E5C;
-extern u16 D_800C7E88;
-extern u16 D_800C7E90;
-extern u16 D_800C7EB8;
+extern u16 D_800C7D54[];
+extern u16 D_800C7D74[];
+extern u16 D_800C7D94[];
+extern u16 D_800C7DB4[];
+extern u16 D_800C7DD4[];
+extern u16 D_800C7DF4[];
+extern u16 D_800C7E14[];
+extern u16 D_800C7E54[];
+extern u16 D_800C7E5C[];
+extern u16 D_800C7E88[];
+extern u16 D_800C7E90[];
+extern u16 D_800C7EB8[];
 extern u16 D_800C7EC0;
 extern u16 D_800C7EE4;
 extern u16 D_800C7EEC;
 extern u16 D_800C7F04;
 
-extern u16 D_80178130;
+extern u16 gContinueTimer;
 extern u8 D_80178132;
 extern u8 D_80178133;
 extern u8 D_80178134;
@@ -30,20 +30,20 @@ extern s32 D_8017813C;
 extern u8 D_80178140;
 extern s16 D_80178142;
 
-void func_80012C50(u16 actor_index, u16 x, u16 y) {
+void Continue_DrawGem(u16 actor_index, u16 x, u16 y) {
     Text_InitActorGList(actor_index, gGraphicListGemIcon, x, y, 0x403);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-    gActors[actor_index].palette_18C = D_800D88B8;
+    gActors[actor_index].palette_18C = gPaletteGemRed;
 }
 
-void func_80012CD4(void) {
+void Continue_GameOver(void) {
     u16 actor_index;
 
     gActors[0x31].flags = gActors[0x32].flags = 0;
     for (actor_index = 0x41; actor_index < 0x62; actor_index++) {
         gActors[actor_index].flags = 0;
     }
-    Text_PrintStringRGBScale(0x33, &D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
+    Text_PrintStringRGBScale(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
     actor_index = 0x30;
     Text_InitActorGraphic(actor_index, 0x262, 0xFFFE, 3, 0x402);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
@@ -51,16 +51,16 @@ void func_80012CD4(void) {
     gActors[actor_index].unk_12C = 6.0f;
     gActors[actor_index].rotateX = 90.0f;
     gActors[actor_index].colorA = 0;
-    Sound_PlayMusic(0x19);
-    D_80178130 = 0x2C0;
+    Sound_PlayMusic(BGM_INT);
+    gContinueTimer = 0x2C0;
     gGameStateSubState++;
 }
 
-void func_80012DF0(u16 red_gem_threshold) {
+void Continue_PayGems(u16 price) {
     u16 actor_index;
 
-    if (gRedGems >= red_gem_threshold) {
-        D_80178138 = red_gem_threshold / 10;
+    if (gRedGems >= price) {
+        D_80178138 = price / 10;
         for (actor_index = 0x30; actor_index < 0x31; actor_index++) {
             gActors[actor_index].flags = 0;
         }
@@ -70,11 +70,11 @@ void func_80012DF0(u16 red_gem_threshold) {
         for (actor_index = 0x41; actor_index < 0x4B; actor_index++) {
             Text_InitActorGList(actor_index, gGraphicListGemIcon, 0, 0xA0, 0x403);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-            gActors[actor_index].unk_18C = (s32) D_800D88B8;
+            gActors[actor_index].unk_18C = (intptr_t) gPaletteGemRed;
             gActors[actor_index].var_154 = 0xC0;
             gActors[actor_index].var_158 = (actor_index * 1023 - 66495) / 10;
         }
-        D_80178130 = 0x180;
+        gContinueTimer = 0x180;
         gGameStateSubState = 6;
     }
     else {
@@ -106,7 +106,7 @@ void GameState_ContinueScreen(void) {
         gPortraits[0x41].flags = 0;
         Sound_StartFade(1, 0x60);
         func_8002092C();
-        D_80178130 = 0x60;
+        gContinueTimer = 0x60;
         gGameStateSubState++;
         /* fallthrough */
     case 1:
@@ -122,7 +122,7 @@ void GameState_ContinueScreen(void) {
             for (actor_index = 1; actor_index < 0xC0; actor_index++) {
                 gActors[actor_index].flags = 0;
             }
-            D_80178130 = 0xBB9;
+            gContinueTimer = 3001;
             actor_1 = actor_index;
             gActors[actor_1 + 3].flags = 0;
             gActors[actor_1 + 2].flags = 0;
@@ -147,7 +147,7 @@ void GameState_ContinueScreen(void) {
             gActors[actor_index].hitboxBY1--;
             gActors[actor_index + 1].hitboxBY0++;
             actor_index = 0xCA;
-            if (D_80178130-- % 2) {
+            if (gContinueTimer-- % 2) {
                 gActors[actor_index].hitboxBX0 -= 2;
                 gActors[actor_index + 1].hitboxBX1 += 2;
             }
@@ -159,10 +159,10 @@ void GameState_ContinueScreen(void) {
     default:
         break;
     case 2:
-        D_80178130--;
-        if (D_80178130 < 0x9C4) {
-            if ((D_80178130 % 100) >= 0x5D) {
-                var_v1 = ((-(D_80178130 % 100) * 8) + 0x318);
+        gContinueTimer--;
+        if (gContinueTimer < 0x9C4) {
+            if ((gContinueTimer % 100) >= 0x5D) {
+                var_v1 = ((-(gContinueTimer % 100) * 8) + 0x318);
             }
             else {
                 var_v1 = 0x40;
@@ -174,13 +174,13 @@ void GameState_ContinueScreen(void) {
         }
         Text_PrintASCII(0x55, D_800C7D1C, 0x28, 0x20, 0x403, gTextPalettes[0]);
         Text_PrintASCII(0x59, D_800C7D24, 0x68, 0x20, 0x403, gTextPalettes[0]);
-        Text_Print2Digits(0x5A, (D_80178130 / 100), 0x58, 0x20, 0x403, gTextPalettes[0]);
-        Text_Print2Digits(0x5C, (D_80178130 % 100), 0x70, 0x20, 0x403, gTextPalettes[0]);
-        if (D_80178130 == 0xBB8) {
+        Text_Print2Digits(0x5A, (gContinueTimer / 100), 0x58, 0x20, 0x403, gTextPalettes[0]);
+        Text_Print2Digits(0x5C, (gContinueTimer % 100), 0x70, 0x20, 0x403, gTextPalettes[0]);
+        if (gContinueTimer == 3000) {
             func_80026D88(0);
             gAudioFadeMode = 0;
             D_8017813C = gMusicSequenceId;
-            Sound_PlayMusic(0x16);
+            Sound_PlayMusic(BGM_CONTINUE);
             gPlayerActor.unk_170 = 0xA4;
             D_80178140 = 1;
             gPlayerActor.graphicFlags |= ACTOR_GFLAG_UNK11;
@@ -206,13 +206,13 @@ void GameState_ContinueScreen(void) {
             func_800836A0(3, 2, &D_800C7E5C, 0);
             func_800836A0(1, 3, &D_800C7EE4, 1);
             func_800836A0(3, 3, &D_800C7EEC, 0);
-            func_80012C50(0x31, 0xFF96, 0x20);
-            func_80012C50(0x42, 0xFF96, 0xFFEC);
-            func_80012C50(0x43, 0xFF96, 0xFFD8);
-            func_80012C50(0x44, 0xFF96, 0xFFC4);
-            func_80012C50(0x45, 0xFF96, 0xFFB0);
-            if (gRedGems > 0x270F) {
-                gRedGems = 0x270F;
+            Continue_DrawGem(0x31, 0xFF96, 0x20);
+            Continue_DrawGem(0x42, 0xFF96, 0xFFEC);
+            Continue_DrawGem(0x43, 0xFF96, 0xFFD8);
+            Continue_DrawGem(0x44, 0xFF96, 0xFFC4);
+            Continue_DrawGem(0x45, 0xFF96, 0xFFB0);
+            if (gRedGems > 9999) {
+                gRedGems = 9999;
             }
             Text_Print2Digits(0x5E, (gRedGems / 100), 0xFFA6, 0x20, 0x403, gTextPalettes[1]);
             Text_Print2Digits(0x60, (gRedGems % 100), 0xFFB8, 0x20, 0x403, gTextPalettes[1]);
@@ -222,11 +222,11 @@ void GameState_ContinueScreen(void) {
             Text_SetColor(0, 0, 0, 0);
             Text_SetColor(1, 0, 0, 0);
         }
-        else if (D_80178130 >= 0x9C5) {
-            if (D_80178130 == 0xB9A) {
-                Sound_PlaySfx(0xD9);
+        else if (gContinueTimer >= 2501) {
+            if (gContinueTimer == 2970) {
+                Sound_PlaySfx(SFX_THEO_CONTINUE);
             }
-            if (D_80178130 < 0xB9A) {
+            if (gContinueTimer < 2970) {
                 actor_1 = 0;
                 if (gActors[actor_1].colorA < 0xFC) { \
                     color_a = gActors[actor_1].colorA + 4; \
@@ -262,29 +262,29 @@ void GameState_ContinueScreen(void) {
             Text_SetColor(0, color_temp_0 / 16, color_temp_0 / 16, color_temp_0 / 8);
             Text_SetColor(1, color_temp_0 / 8, color_temp_0 / 8, color_temp_0 / 32);
         }
-        else if (D_80178130 == 0x9C4) {
-            Sound_PlaySfx(0xDA);
+        else if (gContinueTimer == 2500) {
+            Sound_PlaySfx(SFX_THEO_YAY1);
             Text_PrintStringRGBScale(0x33, &D_800C7D74, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
-        else if (D_80178130 == 0x7D0) {
-            Sound_PlaySfx(0xDD);
+        else if (gContinueTimer == 2000) {
+            Sound_PlaySfx(SFX_THEO_HELP2);
             Text_PrintStringRGBScale(0x33, &D_800C7D94, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
-        else if (D_80178130 == 0x5DC) {
-            Sound_PlaySfx(0xDC);
+        else if (gContinueTimer == 1500) {
+            Sound_PlaySfx(SFX_THEO_HELP1);
             Text_PrintStringRGBScale(0x33, &D_800C7DB4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
-        else if (D_80178130 == 0x3E8) {
-            Sound_PlaySfx(0xE4);
+        else if (gContinueTimer == 1000) {
+            Sound_PlaySfx(SFX_THEO_YELL);
             Text_PrintStringRGBScale(0x33, &D_800C7DD4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
-        else if (D_80178130 == 0x1F4) {
-            Sound_PlaySfx(0xDB);
+        else if (gContinueTimer == 500) {
+            Sound_PlaySfx(SFX_THEO_GOODBYE);
             Text_PrintStringRGBScale(0x33, &D_800C7DF4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
-        if (D_80178130 < 0xB5A) {
-            if (button_press & 0x800) {
-                Sound_PlaySfx(0x22);
+        if (gContinueTimer < 2906) {
+            if (button_press & CONT_UP) {
+                Sound_PlaySfx(SFX_MENU_BLIP);
                 if (gActors[0x32].posY.whole == -0x13) {
                     gActors[0x32].posY.whole = -0x4F;
                 }
@@ -292,8 +292,8 @@ void GameState_ContinueScreen(void) {
                     gActors[0x32].posY.whole += 0x14;
                 }
             }
-            else if (button_press & 0x400) {
-                Sound_PlaySfx(0x22);
+            else if (button_press & CONT_DOWN) {
+                Sound_PlaySfx(SFX_MENU_BLIP);
                 if (gActors[0x32].posY.whole == -0x4F) {
                     gActors[0x32].posY.whole = -0x13;
                 }
@@ -301,42 +301,42 @@ void GameState_ContinueScreen(void) {
                     gActors[0x32].posY.whole -= 0x14;
                 }
             }
-            else if ((button_press & 0x1000) || (button_press & 0x8000)) {
+            else if ((button_press & CONT_START) || (button_press & CONT_A)) {
                 if (gActors[0x32].posY.whole == -0x13) {
-                    func_80012DF0(0xA);
+                    Continue_PayGems(10);
                 }
                 else if (gActors[0x32].posY.whole == -0x27) {
-                    func_80012DF0(0x1E);
+                    Continue_PayGems(30);
                 }
                 else if (gActors[0x32].posY.whole == -0x3B) {
-                    func_80012DF0(0x64);
+                    Continue_PayGems(100);
                 }
                 else if (gActors[0x32].posY.whole == -0x4F) {
-                    func_80012CD4();
+                    Continue_GameOver();
                 }
             }
-            else if (D_80178130 == 0) {
-                func_80012CD4();
+            else if (gContinueTimer == 0) {
+                Continue_GameOver();
             }
         }
         break;
     case 3:
-        D_80178130--;
+        gContinueTimer--;
         actor_index = 0x30;
         gActors[actor_index].rotateY += 8.0f;
         if (gActors[actor_index].colorA != 0xFC) {
             gActors[actor_index].colorA += 2;
         }
-        if (D_80178130 == 0x280) {
+        if (gContinueTimer == 0x280) {
             func_8005D3D8(0);
             D_80178140 = 0;
-            Sound_PlaySfx(0xC9);
+            Sound_PlaySfx(SFX_MARINA_GAMEOVER);
         }
-        else if ((D_80178130 < 0x280) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
+        else if ((gContinueTimer < 640) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
             gPlayerActor.unk_170 = 0xA5;
             D_80178140 = 1;
         }
-        if (D_80178130 == 0x200) {
+        if (gContinueTimer == 0x200) {
             for (actor_index = 0x33; actor_index < 0x41; actor_index++) { \
                 gActors[actor_index].flags = 0;
             }
@@ -344,13 +344,13 @@ void GameState_ContinueScreen(void) {
         }
         break;
     case 4:
-        D_80178130--;
+        gContinueTimer--;
         actor_index = 0x30;
         gActors[actor_index].rotateY += 8.0f;
         if (gActors[actor_index].colorA != 0xFE) {
             gActors[actor_index].colorA += 2;
         }
-        if (D_80178130 == 0x1C0) {
+        if (gContinueTimer == 0x1C0) {
             actor_index = 0x30;
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
     
@@ -366,7 +366,7 @@ void GameState_ContinueScreen(void) {
         }
         break;
     case 5:
-        D_80178130--;
+        gContinueTimer--;
         actor_index = 0x30;
         gActors[actor_index].rotateY += 8.0f;
         if (gPlayerActor.colorA) {
@@ -377,7 +377,7 @@ void GameState_ContinueScreen(void) {
         }
         if (gActors[actor_index].colorA != 0) {
             gActors[actor_index].colorA -= 1;
-            if (D_80178130 % 2) {
+            if (gContinueTimer % 2) {
                 gActors[actor_index].colorR += 1;
                 gActors[actor_index].colorG += 1;
                 gActors[actor_index].colorB += 1;
@@ -409,16 +409,16 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.scaleX = (gPlayerActor.scaleX - 0.005);
             gPlayerActor.scaleY = (gPlayerActor.scaleY - 0.005);
         }
-        if (D_80178130 == 0x180) {
-            Sound_PlaySfx(0xDD);
+        if (gContinueTimer == 0x180) {
+            Sound_PlaySfx(SFX_THEO_HELP2);
         }
-        else if (D_80178130 == 0) {
+        else if (gContinueTimer == 0) {
             gGameState = 0;
             gGameStateSubState = 0;
         }
         break;
     case 6:
-        D_80178130--;
+        gContinueTimer--;
         for (actor_index = 0x41; actor_index < 0x4B; actor_index++) {
             gActors[actor_index].var_154 -= 1;
             gActors[actor_index].var_158 += 8;
@@ -449,38 +449,38 @@ void GameState_ContinueScreen(void) {
                 gActors[actor_index].flags = 0;
             }
         }
-        if (!(D_80178130 & 0xF)) {
-            if (D_80178130 >= 0xE0) {
-                Sound_PlaySfx(0x95);
+        if (!(gContinueTimer & 0xF)) {
+            if (gContinueTimer >= 0xE0) {
+                Sound_PlaySfx(SFX_GEM_BLUE);
                 gRedGems -= D_80178138;
                 Text_Print2Digits(0x5E, (gRedGems / 100), 0xFFA6, 0x20, 0x403, gTextPalettes[1]);
                 Text_Print2Digits(0x60, (gRedGems % 100), 0xFFB8, 0x20, 0x403, gTextPalettes[1]);
             }
         }
-        if (D_80178130 == 0xE0) {
+        if (gContinueTimer == 0xE0) {
             D_80178140 = 0;
         }
-        else if ((D_80178130 < 0xE0) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
+        else if ((gContinueTimer < 0xE0) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
             gPlayerActor.unk_170 = 0xA6;
             D_80178140 = 1;
         }
-        if (D_80178130 == 0xC0) {
+        if (gContinueTimer == 0xC0) {
             switch (Rand() % 3) {
             case 0:
-                Sound_PlaySfx(0xC8);
+                Sound_PlaySfx(SFX_MARINA_LETSGO);
                 break;
             case 1:
-                Sound_PlaySfx(0xCE);
+                Sound_PlaySfx(SFX_MARINA_YAY);
                 break;
             case 2:
-                Sound_PlaySfx(0xD4);
+                Sound_PlaySfx(SFX_MARINA_AHH);
                 break;
             }
             gGameStateSubState++;
         }
         break;
     case 7:
-        D_80178130--;
+        gContinueTimer--;
         for (actor_index = 0x62; actor_index < 0x8A; actor_index++) {
             gActors[actor_index].rotateZ += 8.0f;
             gActors[actor_index].scaleX -= 0.03;
@@ -500,10 +500,10 @@ void GameState_ContinueScreen(void) {
             }
         }
 
-        if (D_80178130 == 0x60) {
+        if (gContinueTimer == 0x60) {
             Sound_StartFade(1, 0x60);
         }
-        if (D_80178130 < 0x20) {
+        if (gContinueTimer < 0x20) {
             if (gActors[0x31].colorA < 8) {
                 gActors[0x31].flags = 0;
                 gActors[0x5E].flags = 0;
@@ -528,20 +528,20 @@ void GameState_ContinueScreen(void) {
             Text_SetColor(0, color_temp_0 / 16, color_temp_0 / 16, color_temp_0 / 8);
             Text_SetColor(1, color_temp_0 / 8, color_temp_0 / 8, color_temp_0 / 32);
         }
-        if (D_80178130 == 0) {
+        if (gContinueTimer == 0) {
             D_800D2938 = 0;
             gStageState = 0;
             D_800D28F0 = gDebugStageSelectStageIds[gCurrentStage];
             D_800D28E4 = 0x61;
             gSkipStageIntro = 1;
             if (D_80178138 == 1) {
-                gPlayerActor.health = 0x3E8;
+                gPlayerActor.health = 1000;
             }
             else if (D_80178138 == 3) {
-                gPlayerActor.health = 0x7D0;
+                gPlayerActor.health = 2000;
             }
             else {
-                gPlayerActor.health = 0xBB8;
+                gPlayerActor.health = 3000;
             }
             gHealthDisplayed = (u16) gPlayerActor.health;
             gDrawMidground = D_80178132;
@@ -551,17 +551,17 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.graphicFlags &= ~ACTOR_GFLAG_UNK11;
             gPlayerActor.colorA = 0xFF;
             gAudioFadeMode = 0;
-            if ((gCurrentScene >= 0xF) && (gCurrentScene < 0x13)) {
+            if ((gCurrentScene > SCENE_DAYOF0) && (gCurrentScene <= SCENE_DAYOF2)) {
                 D_800D28F0 = 0x1F;
-                gCurrentScene = 0x10;
+                gCurrentScene = SCENE_DAYOF0;
             }
-            if (gCurrentScene != 0x38) {
+            if (gCurrentScene != SCENE_WORMINUP) {
                 func_80025578();
             }
             func_800255B4(gCurrentScene);
             func_80025B7C();
             gPlayerActor.unk_170 = 1;
-            gCannotPause = 1;
+            gCannotPause = TRUE;
             gGameState = GAMESTATE_GAMEPLAY;
             gGameStateSubState = 0;
         }

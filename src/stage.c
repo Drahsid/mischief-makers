@@ -23,7 +23,7 @@ extern u16 D_80178154;
 extern u16 D_80178156;
 extern u16 D_80178158;
 extern u16 D_8017815A;
-extern u16 D_8017815C;
+extern u16 gCurrentWorld;
 extern u16 D_8017815E;
 extern u16 D_80178160;
 extern u16 D_80178164;
@@ -170,28 +170,28 @@ u16 gStageTimesToBeat[] = {
     5160,  // Final Battle
 };
 
-char D_800C84EC[] = "1-1";
-char D_800C84F0[] = "1-2";
-char D_800C84F4[] = "1-3";
-char D_800C84F8[] = "1-4";
-char D_800C84FC[] = "1-5";
-char D_800C8500[] = "1-6";
-char D_800C8504[] = "1-7";
-char D_800C8508[] = "1-8";
-char D_800C850C[] = "1-9";
-char D_800C8510[] = "1-10";
+char gStrStage1_1[] = "1-1";
+char gStrStage1_2[] = "1-2";
+char gStrStage1_3[] = "1-3";
+char gStrStage1_4[] = "1-4";
+char gStrStage1_5[] = "1-5";
+char gStrStage1_6[] = "1-6";
+char gStrStage1_7[] = "1-7";
+char gStrStage1_8[] = "1-8";
+char gStrStage1_9[] = "1-9";
+char gStrStage1_10[] = "1-10";
 
-char D_800C8518[] = "2-1";
-char D_800C851C[] = "2-2";
-char D_800C8520[] = "2-3";
-char D_800C8524[] = "2-4";
-char D_800C8528[] = "2-5";
-char D_800C852C[] = "2-6";
-char D_800C8530[] = "2-7";
-char D_800C8534[] = "2-8";
-char D_800C8538[] = "2-9";
-char D_800C853C[] = "2-10";
-char D_800C8544[] = "2-11";
+char gStrStage2_1[] = "2-1";
+char gStrStage2_2[] = "2-2";
+char gStrStage2_3[] = "2-3";
+char gStrStage2_4[] = "2-4";
+char gStrStage2_5[] = "2-5";
+char gStrStage2_6[] = "2-6";
+char gStrStage2_7[] = "2-7";
+char gStrStage2_8[] = "2-8";
+char gStrStage2_9[] = "2-9";
+char gStrStage2_10[] = "2-10";
+char gStrStage2_11[] = "2-11";
 
 char D_800C854C[] = "3-1";
 char D_800C8550[] = "3-2";
@@ -261,110 +261,110 @@ u16 gNameWorld5[] = {
     ALPHA_EN3_UPPER_H, ALPHA_EN3_UPPER_Q, ALPHA_NULL
 };
 
-u16 D_800C8668[] = {
+u16 gNameStage1_1[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_T, 
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_A, ALPHA_EXCLAMATION2,
     ALPHA_NULL
 };
 
-u16 D_800C8684[] = {
+u16 gNameStage1_2[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_T,
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_A, ALPHA_EXCLAMATION2,
     ALPHA_NULL
 };
 
-u16 D_800C86A0[] = {
+u16 gNameStage1_3[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_B, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L,
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D,
     ALPHA_NULL,
 };
 
-u16 D_800C86BC[] = {
+u16 gNameStage1_4[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_I, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D,
     ALPHA_NULL
 };
 
-u16 D_800C86D4[] = {
+u16 gNameStage1_5[] = {
     ALPHA_THIN_3, ALPHA_SPACE, ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E,
     ALPHA_EN3_LOWER_R, ALPHA_SPACE, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
-u16 D_800C86F4[] = {
+u16 gNameStage1_6[] = {
     ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N,
     ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
-u16 D_800C8714[] = {
+u16 gNameStage1_7[] = {
     ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_APOSTROPHE, ALPHA_SPACE,
     ALPHA_EN3_UPPER_U, ALPHA_EN3_LOWER_P, ALPHA_EXCLAMATION2, ALPHA_NULL,
 };
 
-u16 D_800C872C[] = {
+u16 gNameStage1_8[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_COLON, ALPHA_SPACE,
     ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_N, ALPHA_NULL
 };
 
-u16 D_800C874C[] = {
+u16 gNameStage1_9[] = {
     ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_N, ALPHA_SPACE,
     ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_D, ALPHA_NULL,
 };
 
-u16 D_800C8768[] = {
+u16 gNameStage1_10[] = {
     ALPHA_EN3_UPPER_V, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_O, ALPHA_EXCLAMATION2, ALPHA_NULL, ALPHA_SPACE,
 };
 
-u16 D_800C877C[] = {
+u16 gNameStage2_1[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_F, ALPHA_SPACE, ALPHA_EN3_UPPER_L,
     ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_V, ALPHA_EN3_LOWER_A, ALPHA_NULL,
 };
 
-u16 D_800C8794[] = {
+u16 gNameStage2_2[] = {
     ALPHA_EN3_UPPER_V, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_O, ALPHA_EXCLAMATION2, ALPHA_NULL, ALPHA_SPACE,
 };
 
-u16 D_800C87A8[] = {
+u16 gNameStage2_3[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_UPPER_K, ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_SPACE,
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_T, ALPHA_EXCLAMATION, ALPHA_NULL
 };
 
-u16 D_800C87C8[] = {
+u16 gNameStage2_4[] = {
     ALPHA_EN3_UPPER_H, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_T, ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_R, ALPHA_NULL
 };
 
-u16 D_800C87DC[] = {
+u16 gNameStage2_5[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_APOSTROPHE, ALPHA_SPACE,
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_W, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G, ALPHA_EXCLAMATION, ALPHA_NULL
 };
 
-u16 D_800C87FC[] = {
+u16 gNameStage2_6[] = {
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_B, ALPHA_E_ACCENT, ALPHA_E_ACCENT, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
-u16 D_800C8810[] = {
+u16 gNameStage2_7[] = {
     ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_P,
     ALPHA_EN3_LOWER_E, ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
-u16 D_800C8830[] = {
+u16 gNameStage2_8[] = {
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_F, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L, ALPHA_EXCLAMATION2, ALPHA_NULL,
 };
 
-u16 D_800C8844[] = {
+u16 gNameStage2_9[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_A, ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_F, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_S, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
-u16 D_800C8860[] = {
+u16 gNameStage2_10[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_SPACE,
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_B, ALPHA_NULL,
 };
 
-u16 D_800C887C[] = {
+u16 gNameStage2_11[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_N, ALPHA_SPACE, ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_R,
     ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_W, ALPHA_EN3_LOWER_L, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
@@ -482,6 +482,7 @@ u16 D_800C8AE4[] = {
     ALPHA_EN3_UPPER_H, ALPHA_SPACE, ALPHA_BETA, ALPHA_NULL,
 };
 
+// Clace War II
 u16 D_800C8AFC[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE,
@@ -490,6 +491,7 @@ u16 D_800C8AFC[] = {
     ALPHA_II, ALPHA_NULL
 };
 
+// Counterattack
 u16 D_800C8B18[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_NULL,
@@ -517,21 +519,22 @@ u16 D_800C8B88[] = {
     ALPHA_EN3_UPPER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_SPACE, ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_T,
     ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
-
+// Final Battle
 u16 D_800C8BA8[] = {
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_SPACE, ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
-
+// Ending
 u16 D_800C8BC4[] = {
     ALPHA_EN2_UPPER_E, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G,ALPHA_NULL
 };
 
+// Credits
 u16 D_800C8BD4[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
-u16* D_800C8BE4[] = {
+u16* gWorldNames[] = {
     gNameWorld1, gNameWorld2, gNameWorld3, gNameWorld4, gNameWorld5
 };
 
@@ -543,77 +546,77 @@ u16 D_800C8C04[] = {
     0x000A, 0x000B, 0x000C, 0x000B, 0x000A, 0x0000
 };
 
-u16* D_800C8C10[] = {
-    D_800C8668, D_800C8684, D_800C86A0, D_800C86BC,
-    D_800C86D4, D_800C86F4, D_800C8714, D_800C872C,
-    D_800C874C, D_800C8768
+u16* gWorld1StageNames[] = {
+    gNameStage1_1, gNameStage1_2, gNameStage1_3, gNameStage1_4,
+    gNameStage1_5, gNameStage1_6, gNameStage1_7, gNameStage1_8,
+    gNameStage1_9, gNameStage1_10
 };
 
-u16* D_800C8C38[] = {
-    D_800C877C, D_800C8794, D_800C87A8, D_800C87C8,
-    D_800C87DC, D_800C87FC, D_800C8810, D_800C8830,
-    D_800C8844, D_800C8860, D_800C887C
+u16* gWorld2StageNames[] = {
+    gNameStage2_1, gNameStage2_2, gNameStage2_3, gNameStage2_4,
+    gNameStage2_5, gNameStage2_6, gNameStage2_7, gNameStage2_8,
+    gNameStage2_9, gNameStage2_10, gNameStage2_11
 };
 
-u16* D_800C8C64[] = {
+u16* gWorld3StageNames[] = {
     D_800C8898, D_800C88B4, D_800C88CC, D_800C88E8,
     D_800C8908, D_800C8924, D_800C893C, D_800C895C,
     D_800C896C, D_800C898C, D_800C89A4, D_800C89C0
 };
 
-u16* D_800C8C94[] = {
+u16* gWorld4StageNames[] = {
     D_800C89D8, D_800C89F4, D_800C8A0C, D_800C8A2C,
     D_800C8A48, D_800C8A64, D_800C8A74, D_800C8A94,
     D_800C8AB0, D_800C8AC8, D_800C8AE4
 };
 
-u16* D_800C8CC0[] = {
+u16* gWorld5StageNames[] = {
     D_800C8AFC, D_800C8B18, D_800C8B34, D_800C8B50,
     D_800C8B60, D_800C8B74, D_800C8B88, D_800C8BA8,
     D_800C8BC4, D_800C8BD4
 };
 
-u16** D_800C8CE8[] = {
-    D_800C8C10, D_800C8C38, D_800C8C64, D_800C8C94, D_800C8CC0
+u16** gStageNames[] = {
+    gWorld1StageNames, gWorld2StageNames, gWorld3StageNames, gWorld4StageNames, gWorld5StageNames
 };
 
-u16 D_800C8CFC[] = {
+u16 gWorld1StageNameXoffsets[] = {
     0xFFD0, 0xFFD4, 0xFFD4, 0xFFDC, 0xFFC8, 0xFFC8, 0xFFD0, 0xFFC8, 0xFFC8, 0xFFE4
 };
 
-u16 D_800C8D10[] = {
+u16 gWorld2StageNameXoffsets[] = {
     0xFFD0, 0xFFE4, 0xFFC4, 0xFFE4, 0xFFC4, 0xFFE0, 0xFFC8, 0xFFE4,
     0xFFC8, 0xFFD0, 0xFFD0, 0x0000
 };
 
-u16 D_800C8D28[] = {
+u16 gWorld3StageNameXoffsets[] = {
     0xFFCC, 0xFFDC, 0xFFD4, 0xFFD4, 0xFFC8, 0xFFE0, 0xFFC0, 0xFFE4,
     0xFFC4, 0xFFD8, 0xFFC8, 0xFFD0
 };
 
-u16 D_800C8D40[] = {
+u16 gWorld4StageNameXoffsets[] = {
     0xFFD0, 0xFFD8, 0xFFC8, 0xFFC4, 0xFFC4, 0xFFE4, 0xFFC4, 0xFFC8,
     0xFFDC, 0xFFC8, 0xFFC8, 0x0000
 };
 
-u16 D_800C8D58[] = {
+u16 gWorld5StageNameXoffsets[] = {
     0xFFCC, 0xFFCA, 0xFFC4, 0xFFE8, 0xFFE0, 0xFFDC, 0xFFC4, 0xFFD8, 0xFFEC, 0xFFE8
 };
 
-u16* D_800C8D6C[] = {
-    D_800C8CFC, D_800C8D10, D_800C8D28, D_800C8D40, D_800C8D58
+u16* gStageNameXoffsets[] = {
+    gWorld1StageNameXoffsets, gWorld2StageNameXoffsets, gWorld3StageNameXoffsets, gWorld4StageNameXoffsets, gWorld5StageNameXoffsets
 };
 
 char* D_800C8D80[] = {
-    D_800C84EC, D_800C84F0, D_800C84F4, D_800C84F8,
-    D_800C84FC, D_800C8500, D_800C8504, D_800C8508,
-    D_800C850C, D_800C8510
+    gStrStage1_1, gStrStage1_2, gStrStage1_3, gStrStage1_4,
+    gStrStage1_5, gStrStage1_6, gStrStage1_7, gStrStage1_8,
+    gStrStage1_9, gStrStage1_10
 };
 
 char* D_800C8DA8[] = {
-    D_800C8518, D_800C851C, D_800C8520, D_800C8524,
-    D_800C8528, D_800C852C, D_800C8530, D_800C8534,
-    D_800C8538, D_800C853C, D_800C8544
+    gStrStage2_1, gStrStage2_2, gStrStage2_3, gStrStage2_4,
+    gStrStage2_5, gStrStage2_6, gStrStage2_7, gStrStage2_8,
+    gStrStage2_9, gStrStage2_10, gStrStage2_11
 };
 
 char* D_800C8DD4[] = {
@@ -758,10 +761,12 @@ u16 D_800C9080[] = {
 };
 
 // "Sound test" SFX indecies.
-u16 D_800C9280[] = {
-    0x0021, 0x00B4, 0x00CB, 0x00CA, 0x00B9, 0x00B5, 0x00CC, 0x00B2,
-    0x00D0, 0x00B3, 0x00CE, 0x00D1, 0x00B7, 0x00CD, 0x00C9, 0x00D3,
-    0x00C8, 0x00D4, 0x00D8, 0x00D9, 0x00DA, 0x00DB, 0x00DC, 0x00DD,
+u16 gSoudTestIndices[] = {
+    SFX_MARINA_TITLE, SFX_MARINA_YELL1, SFX_MARINA_YELL2, SFX_MARINA_YELL3, SFX_MARINA_YELL4,
+    SFX_MARINA_OW1, SFX_MARINA_OW2, SFX_MARINA_OW3, SFX_MARINA_HEY, SFX_MARINA_SHAKE,
+    SFX_MARINA_YAY, SFX_MARINA_HUM, SFX_MARINA_STOP, SFX_MARINA_OHNO,
+    SFX_MARINA_GAMEOVER, SFX_MARINA_GROWL, SFX_MARINA_LETSGO, SFX_MARINA_AHH,
+    SFX_THEO_GRUNT1, SFX_THEO_CONTINUE, SFX_THEO_YAY1, 0x00DB, 0x00DC, 0x00DD,
     0x00DE, 0x00DF, 0x00E0, 0x00E4, 0x00E5, 0x00E6, 0x00E7, 0x00E8,
     0x00E9, 0x00EA, 0x00EB, 0x00EC, 0x00ED, 0x00EF, 0x00F0, 0x00F1,
     0x00F2, 0x00F3, 0x00F5, 0x00F6, 0x00F7, 0x00F8, 0x00F9, 0x00FA,
@@ -871,8 +876,13 @@ s16 D_800C9610[] = { // y-coord
 };
 
 s16 D_800C962C[] = {
-    0x3008, 0x0006, 0x300A, 0x0006, 0x300C, 0x0006, 0x300E, 0x0006,
-    0x300C, 0x0006, 0x300A, 0x0006,   -0xC, 0x0000
+    GINDEX_WM_MARINAICON, 6, 
+    GRAPHIC_FRAME(WM_MARINAICON, 1), 6, 
+    GRAPHIC_FRAME(WM_MARINAICON, 2), 6, 
+    GRAPHIC_FRAME(WM_MARINAICON, 3), 6,
+    GRAPHIC_FRAME(WM_MARINAICON, 2), 6, 
+    GRAPHIC_FRAME(WM_MARINAICON, 1), 6,   
+    -0xC, 0x0000
 };
 
 s16 D_800C9648[] = {
@@ -1369,9 +1379,6 @@ void GameState_TitleScreen(void) {
     }
 }
 
-
-
-
 void GameState_DebugSoundTest(void) {
     s32 pad0;
     s32 pad1;
@@ -1403,7 +1410,7 @@ void GameState_DebugSoundTest(void) {
 
         gActors[0xD].colorB = 0;
         CURSOR_INDEX_A = 0;
-        gActors[2].velocityX.raw = 0;
+        SOUND_TEST_BGM_INDEX = 0;
         SOUND_TEST_SFX_INDEX = 0;
         gActors[1].velocityX.raw = 0;
         gGameStateSubState += 1;
@@ -1415,16 +1422,16 @@ void GameState_DebugSoundTest(void) {
         }
         switch (CURSOR_INDEX_A) {
         case 0:
-            if ((Input_CheckButtonRepeat(gButton_DLeft, &gActors[8].colorB)) && (gActors[2].velocityX.raw > 0)) {
-                gActors[2].velocityX.raw -= 1;
+            if ((Input_CheckButtonRepeat(gButton_DLeft, &gActors[8].colorB)) && (SOUND_TEST_BGM_INDEX > 0)) {
+                SOUND_TEST_BGM_INDEX -= 1;
                 Sound_StopMusic();
             }
-            if ((Input_CheckButtonRepeat(gButton_DRight, &gActors[9].colorB)) && (gActors[2].velocityX.raw < 0x20)) {
-                gActors[2].velocityX.raw += 1;
+            if ((Input_CheckButtonRepeat(gButton_DRight, &gActors[9].colorB)) && (SOUND_TEST_BGM_INDEX < 0x20)) {
+                SOUND_TEST_BGM_INDEX += 1;
                 Sound_StopMusic();
             }
             if (gButtonPress & A_BUTTON) {
-                Sound_PlayMusic(gActors[2].velocityX.raw);
+                Sound_PlayMusic(SOUND_TEST_BGM_INDEX);
                 gActors[0xC].colorB = 8;
                 gActors[1].velocityX.raw = 0;
             }
@@ -1440,7 +1447,7 @@ void GameState_DebugSoundTest(void) {
                 SOUND_TEST_SFX_INDEX++;
             }
             if (gButtonPress & A_BUTTON) {
-                Sound_PlaySfx(D_800C9280[SOUND_TEST_SFX_INDEX]);
+                Sound_PlaySfx(gSoudTestIndices[SOUND_TEST_SFX_INDEX]);
             }
             if (gButtonPress & B_BUTTON) {
                 Sound_StopAllSfx();
@@ -1453,10 +1460,10 @@ void GameState_DebugSoundTest(void) {
         gActors[0x30].posY.whole = gActors[0x31].posY.whole = D_800C94D8[CURSOR_INDEX_A];
         palette = Text_SetColor(4, 0x1F, 0x1F - (gDebugMenuCursorFlash[0] / 4), (0x1F - (gDebugMenuCursorFlash[0] / 4)));
         Text_PrintASCII(actor_index + 0x1A, D_800C94CC, 0xFFD8, 0x30, 0, palette);
-        Text_Print2Digits(actor_index + 0x1D, (gActors[2].velocityX.raw + 1), 0x20, 0x30, 0, palette);
+        Text_Print2Digits(actor_index + 0x1D, (SOUND_TEST_BGM_INDEX + 1), 0x20, 0x30, 0, palette);
         palette = Text_SetColor(5, 0x1F, 0x1F - (D_801781A1 / 4), 0x1F - (D_801781A1 / 4));
         Text_PrintASCII(actor_index + 0x1F, D_800C94D0, 0xFFD8, 0x20, 0, palette);
-        Text_Print3Digits(actor_index + 0x23, gActors[3].velocityX.raw + 1, 0x18, 0x20, 0, palette);
+        Text_Print3Digits(actor_index + 0x23, SOUND_TEST_SFX_INDEX + 1, 0x18, 0x20, 0, palette);
         gActors[actor_index + 0x26].flags = 0;
         if (gButtonPress & gButton_Start) {
             actor_index = 0x33;
@@ -1667,13 +1674,13 @@ void func_80019688(void) {
         time_1 = func_80019520(gFestivalRecords[FESTGAME_200M]);
         time_0 = func_80019520(gFestivalRecords[FESTGAME_100M]);
         gStageTime = func_80019520(gFestivalRecords[FESTGAME_HURDLE]) + time_0 + time_1 + time_2;
-        if (gFestivalRecords[3] < 1800) {
+        if (gFestivalRecords[FESTGAME_JUMP] < 1800) {
             gStageTime = (gStageTime - gFestivalRecords[FESTGAME_JUMP]) + 1800;
         }
-        if (gFestivalRecords[4] < 1800) {
+        if (gFestivalRecords[FESTGAME_BALL] < 1800) {
             gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_BALL] * 10)) + 1800;
         }
-        if (gFestivalRecords[6] < 1800) {
+        if (gFestivalRecords[FESTGAME_MATH] < 1800) {
             gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_MATH] * 10)) + 1800;
         }
     }
@@ -1692,9 +1699,9 @@ void func_800197A0(void) {
 }
 
 void func_8001983C(void) {
-    gDrawMidground = 0;
-    gDrawEnvLayer = 0;
-    gDrawBackground = 0;
+    gDrawMidground = FALSE;
+    gDrawEnvLayer = FALSE;
+    gDrawBackground = FALSE;
     func_800230B8();
     gActorDepthMiddle = -0x100;
     gActorDepthBack = -0x200;
@@ -1711,15 +1718,15 @@ void func_800198B4(void) {
     u16 index;
 
     func_8001983C();
-    Text_InitActorGraphic(0x30, 0x3002, 0, 0x50, 0);
+    Text_InitActorGraphic(0x30, GINDEX_WM_WORLDTITLEBG, 0, 0x50, 0);
     index = 0x31;
-    Text_InitActorGraphic(index, 0x3000, 0, 0xFFB5, 0);
+    Text_InitActorGraphic(index, GINDEX_WM_SPEECHBUBBLE, 0, 0xFFB5, 0);
     gActors[index].graphicFlags |= ACTOR_GFLAG_UNK4;
     gActors[index].colorR = 0x40;
     gActors[index].colorG = 0x40;
     gActors[index].colorB = 0x40;
     Text_InitActorGList(0x79, D_800C9648, 0xFF88, 0xFFB4, 0);
-    end = Text_PrintStringGray(0x7C, D_800C8BE4[D_8017815C], D_800C8BF8[D_8017815C], 0x4E, 0);
+    end = Text_PrintStringGray(0x7C, gWorldNames[gCurrentWorld], D_800C8BF8[gCurrentWorld], 0x4E, 0);
     for (index = 0x7C; index < end; index++) {
         gActors[index].unk_18C = (intptr_t)D_800C9664; // palette_18C doesn't match instruction ordering
     }
@@ -1731,9 +1738,10 @@ void func_800199DC(u16 arg0) {
     for (index = 0x8C; index < 0x9C; index++) {
         gActors[index].flags = 0;
     }
-    Text_PrintStringGray(0x8C, D_800C8CE8[D_8017815C][arg0], D_800C8D6C[D_8017815C][arg0], 0xFFB4, 0);
+    Text_PrintStringGray(0x8C, gStageNames[gCurrentWorld][arg0], gStageNameXoffsets[gCurrentWorld][arg0], 0xFFB4, 0);
 }
 
+// draw sprites of world map.
 void func_80019A80(void) {
     u16 actor_index;
     u16 index;
@@ -1743,34 +1751,37 @@ void func_80019A80(void) {
     actor_index = 0xB5;
     Text_InitActorGraphic(actor_index++, 0x3010, 0xFF7B, 0xFFF2, 0xFFFF);
     for (index = 0; index < 5; index++) {
-        Text_InitActorGraphic(actor_index++, 0x3012, ((index * 46) - 100), 2, 0xFFFF);
+        Text_InitActorGraphic(actor_index++, GINDEX_WM_PATHSECTIONMID, ((index * 46) - 100), 2, 0xFFFF);
     }
-    if (D_8017815C != 4) {
-        Text_InitActorGraphic(actor_index, 0x3014, 0x80, 0x12, 0xFFFF);
+    if (gCurrentWorld != 4) {
+        Text_InitActorGraphic(actor_index, GINDEX_WM_PATHSECTIONRIGHT, 0x80, 0x12, 0xFFFF);
     }
-    if (D_8017815C != 0) {
-        Text_InitActorGraphic(0xB4, 0x110, 0xFF78, 0xFFD0, 0);
-        Text_InitActorGraphic(0x7A, 0x11A, 0xFF78, 0xFFDC, 0);
+    if (gCurrentWorld != 0) {
+        Text_InitActorGraphic(0xB4, GINDEX_BUTTONB, 0xFF78, 0xFFD0, 0);
+        Text_InitActorGraphic(0x7A, GINDEX_BUTTONL, 0xFF78, 0xFFDC, 0);
     }
     else {
-        Text_InitActorGraphic(0xB4, 0x110, 0xFF78, 0xFFDC, 0);
+        Text_InitActorGraphic(0xB4, GINDEX_BUTTONB, 0xFF78, 0xFFDC, 0);
     }
-    if (D_8017815C < D_8017815E) {
-        Text_InitActorGraphic(0x7B, 0x11E, 0x82, 0x30, 0);
+    if (gCurrentWorld < D_8017815E) {
+        Text_InitActorGraphic(0x7B, GINDEX_BUTTONR, 0x82, 0x30, 0);
     }
 
     actor_index = 0x39;
-    for (index = 0; index < D_800C8C04[D_8017815C]; index++) {
-        temp_s1 = D_800C8EDC[D_8017815C][index];
+    for (index = 0; index < D_800C8C04[gCurrentWorld]; index++) {
+        temp_s1 = D_800C8EDC[gCurrentWorld][index];
         Text_InitActorGraphic(actor_index, temp_s1, D_800C95F4[index], D_800C9610[index], 0);
         actor_index++;
-        if ((temp_s1 == 0x3022) || (temp_s1 == 0x3026) || (temp_s1 == 0x302E) || (temp_s1 == 0x3034) || ((temp_s1 == 0x3036))) {
-            Text_InitActorGraphic(actor_index++, 0x3006, D_800C95F4[index], D_800C9610[index], 0);
+        // show different "locked" icon for main boss stages.
+        if ((temp_s1 == GINDEX_WM_STAGEICONMIGEN) || (temp_s1 == GINDEX_WM_STAGEICONLUNAR) || 
+          (temp_s1 == GINDEX_WM_STAGEICONTAURUS) || (temp_s1 == GINDEX_WM_STAGEICONMERCO) || ((temp_s1 == GINDEX_WM_STAGEICONFINAL))) {
+            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONBLOCKED, D_800C95F4[index], D_800C9610[index], 0);
         }
         else {
-            Text_InitActorGraphic(actor_index++, 0x3004, D_800C95F4[index], D_800C9610[index], 0);
+            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONUNKNOWN, D_800C95F4[index], D_800C9610[index], 0);
         }
-        if ((D_8017815C == 4) && (index == 9)) {
+        // special case - move "Credits" icon to center and end of path.
+        if ((gCurrentWorld == 4) && (index == 9)) {
             gActors[actor_index - 1].posX.whole = 0x6E;
             gActors[actor_index - 2].posX.whole = gActors[actor_index - 1].posX.whole;
             gActors[actor_index - 1].posY.whole = 2;
@@ -1832,8 +1843,8 @@ void func_80019F04(u16 actor_index) {
 }
 
 void func_80019FB4(u16 actor_index, u16 stage_index) {
-    Text_PrintASCII(actor_index, D_800C8E58[D_8017815C][stage_index], D_800C95F4[stage_index] - 9, D_800C9610[stage_index] - 7, 1, gTextPalettes[0]);
-    if (D_800C85E0 == D_800C8E58[D_8017815C][stage_index]) {
+    Text_PrintASCII(actor_index, D_800C8E58[gCurrentWorld][stage_index], D_800C95F4[stage_index] - 9, D_800C9610[stage_index] - 7, 1, gTextPalettes[0]);
+    if (D_800C85E0 == D_800C8E58[gCurrentWorld][stage_index]) {
         gActors[actor_index + 0].posX.whole += 0x1F;
         gActors[actor_index + 1].posX.whole += 0x1D;
         gActors[actor_index + 2].posX.whole += 0x1A;
@@ -1880,35 +1891,35 @@ void func_8001A254(void) {
     s16 string_index;
     u16 count;
 
-    if (D_8017815E < D_8017815C) {
+    if (D_8017815E < gCurrentWorld) {
         count = 0;
     }
-    else if (D_8017815C == D_8017815E) {
+    else if (gCurrentWorld == D_8017815E) {
         if (gWorldProgress >= STAGE_MAX) {
             count = 9;
         }
         else {
             count = D_80178158;
-            if ((D_80178152 != 0) && (gWorldProgress != 0x38)) {
+            if ((D_80178152 != 0) && (gWorldProgress != STAGE_ENDING)) {
                 if (D_80178156 == 0) {
                     count = 0;
                 }
-                else if (count != D_800C8C04[D_8017815C]) {
+                else if (count != D_800C8C04[gCurrentWorld]) {
                     count++;
                 }
             }
         }
     }
     else {
-        count = D_800C8C04[D_8017815C];
-        if (D_8017815C == 4) {
+        count = D_800C8C04[gCurrentWorld];
+        if (gCurrentWorld == 4) {
             count = 9;
         }
     }
 
     for (index = 0; index < count; index++) {
         stage = D_80178154 + index;
-        if (stage >= 0x37) {
+        if (stage >= STAGE_FINALBATTLE) {
             stage++;
         }
         if (YellowGem_GetFlag(stage)) {
@@ -1919,7 +1930,7 @@ void func_8001A254(void) {
             gActors[index + 0x9C].scaleX = 0.75f;
             gActors[index + 0x9C].unk_18C = (intptr_t)gPaletteGemYellow; // palette_18C doesn't match instruction ordering
         }
-        if (stage == 0x3A) {
+        if (stage == STAGE_ENDING) {
             gActors[index + 0x9C].posX.whole = 0x37;
         }
         else {
@@ -1935,10 +1946,10 @@ void func_8001A584(void) {
     u16 stage_count;
     u16 actor_index;
 
-    if (D_8017815E < D_8017815C) {
+    if (D_8017815E < gCurrentWorld) {
         stage_count = 0;
     }
-    else if (D_8017815C == D_8017815E) {
+    else if (gCurrentWorld == D_8017815E) {
         stage_count = D_80178158 + 1;
         if (D_80178152 != 0) {
             if (D_80178156 == 0) {
@@ -1950,7 +1961,7 @@ void func_8001A584(void) {
         }
     }
     else {
-        stage_count = D_800C8C04[D_8017815C];
+        stage_count = D_800C8C04[gCurrentWorld];
     }
 
     for (stage_index = 0; stage_index < stage_count; stage_index++) {
@@ -2154,8 +2165,8 @@ void func_8001B078(u16 arg0, u16* arg1, u16* arg2, u16* arg3) {
 }
 
 void func_8001B1A0(void) {
-    func_8001B078(gCurrentStage, &D_8017815C, &D_80178156, &D_80178154);
-    if (D_8017815C == 6) {
+    func_8001B078(gCurrentStage, &gCurrentWorld, &D_80178156, &D_80178154);
+    if (gCurrentWorld == 6) {
         gGameStateSubState = 0x41;
     }
 }
@@ -2163,7 +2174,7 @@ void func_8001B1A0(void) {
 void func_8001B1F8(void) {
     func_8001B02C();
     func_8001B1A0();
-    D_80178160 = D_8017815C;
+    D_80178160 = gCurrentWorld;
     D_8017815A = D_80178156;
 }
 
@@ -2235,15 +2246,15 @@ void GameState_Transition(void) {
     case 0x7:
     case 0x8:
         temp = gGameStateSubState;
-        func_8001B078(gWorldProgress, &D_8017815C, &D_80178156, &D_80178154);
-        if (D_8017815C == 6) {
-            func_8001B078(gWorldProgress + 1, &D_8017815C, &D_80178156, &D_80178154);
+        func_8001B078(gWorldProgress, &gCurrentWorld, &D_80178156, &D_80178154);
+        if (gCurrentWorld == 6) {
+            func_8001B078(gWorldProgress + 1, &gCurrentWorld, &D_80178156, &D_80178154);
         }
-        D_8017815E = D_8017815C;
+        D_8017815E = gCurrentWorld;
         D_80178158 = D_80178156;
         func_8001B1A0();
         D_80178152 = 0;
-        if ((gGameStateSubState == 8) && (D_8017815C == 4) && (D_80178156 >= 8)) {
+        if ((gGameStateSubState == 8) && (gCurrentWorld == 4) && (D_80178156 >= 8)) {
             gGameStateSubState = 0x41;
         }
         if (gGameStateSubState == 0x41) {
@@ -2278,7 +2289,7 @@ void GameState_Transition(void) {
         func_8008310C();
         func_80083454();
         func_800198B4();
-        D_80178154 = gStageGroupOptionOffsets[D_8017815C];
+        D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
         if (gCurrentStage >= STAGE_INNERSTRUGGLE) {
             D_80178156 = (gCurrentStage - D_80178154) - 1;
         }
@@ -2438,8 +2449,8 @@ void GameState_Transition(void) {
         if (temp == 0xFFFF) {
             temp = 0;
         }
-        if (temp >= D_800C8C04[D_8017815C]) {
-            temp = (D_800C8C04[D_8017815C] - 1);
+        if (temp >= D_800C8C04[gCurrentWorld]) {
+            temp = (D_800C8C04[gCurrentWorld] - 1);
         }
         if (gWorldProgress >= STAGE_INNERSTRUGGLE) {
             index = ((gWorldProgress - D_80178154) - 1);
@@ -2466,11 +2477,11 @@ void GameState_Transition(void) {
             Sound_PlaySfx(0x48);
             gGameStateSubState = 0x22;
         }
-        else if ((gButtonPress & gButton_LTrig) && (D_8017815C != 0)) {
+        else if ((gButtonPress & gButton_LTrig) && (gCurrentWorld != 0)) {
             Sound_PlaySfx(0x48);
             gGameStateSubState = 0x25;
         }
-        else if ((gButtonPress & gButton_RTrig) && (D_8017815C < D_8017815E)) {
+        else if ((gButtonPress & gButton_RTrig) && (gCurrentWorld < D_8017815E)) {
             Sound_PlaySfx(0x48);
             gGameStateSubState = 0x27;
         }
@@ -2508,9 +2519,9 @@ void GameState_Transition(void) {
              gActors[index].posX.whole += 0x20;
         }
         if (gActors[0x30].posX.whole >= 0x121) {
-            D_8017815C--;
-            D_80178154 = gStageGroupOptionOffsets[D_8017815C];
-            D_80178156 = D_800C8C04[D_8017815C] - 1;
+            gCurrentWorld--;
+            D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
+            D_80178156 = D_800C8C04[gCurrentWorld] - 1;
             for (index = 0x30; index < 0xBC; index++) {
                 gActors[index].flags = 0;
             }
@@ -2535,13 +2546,13 @@ void GameState_Transition(void) {
              gActors[index].posX.whole -= 0x20;
         }
         if (gActors[0x30].posX.whole < -0x120) {
-            D_8017815C++;
-            if (D_8017815C < D_8017815E) {
-                D_80178154 = gStageGroupOptionOffsets[D_8017815C];
-                D_80178156 = D_800C8C04[D_8017815C] - 1;
+            gCurrentWorld++;
+            if (gCurrentWorld < D_8017815E) {
+                D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
+                D_80178156 = D_800C8C04[gCurrentWorld] - 1;
             }
             else {
-                func_8001B078((u16) gWorldProgress, &D_8017815C, &D_80178156, &D_80178154);
+                func_8001B078((u16) gWorldProgress, &gCurrentWorld, &D_80178156, &D_80178154);
             }
             for (index = 0x30; index < 0xBC; index++) {
                 gActors[index].flags = 0;
@@ -2865,18 +2876,18 @@ void func_8001D240(void) {
         value = (((time % 60) * 5) / 3) + 1;
     }
     Text_PrintStringRGBScale(0x3D, D_800C96C4, 0xFFAA, 0xFFB8, 2, 0, 0, 0, 1.0f, 1.0f);
-    Text_InitActorGraphic(0x41, ((value / 10) * 2) + 0x414, 0x2A, 0xFFB8, 2);
-    Text_InitActorGraphic(0x42, ((value % 10) * 2) + 0x414, 0x3A, 0xFFB8, 2);
+    Text_InitActorGraphic(0x41, ((value / 10) * 2) + ALPHA_GLYPH(THIN_0), 0x2A, 0xFFB8, 2);
+    Text_InitActorGraphic(0x42, ((value % 10) * 2) + ALPHA_GLYPH(THIN_0), 0x3A, 0xFFB8, 2);
     time /= 60;
     value = time % 60;
-    Text_InitActorGraphic(0x43, ((value / 10) * 2) + 0x414, 0xFFFA, 0xFFB8, 2);
-    Text_InitActorGraphic(0x44, ((value % 10) * 2) + 0x414, 0xA, 0xFFB8, 2);
+    Text_InitActorGraphic(0x43, ((value / 10) * 2) + ALPHA_GLYPH(THIN_0), 0xFFFA, 0xFFB8, 2);
+    Text_InitActorGraphic(0x44, ((value % 10) * 2) + ALPHA_GLYPH(THIN_0), 0xA, 0xFFB8, 2);
     time /= 60;
     value = time % 60;
-    Text_InitActorGraphic(0x45, ((value / 10) * 2) + 0x414, 0xFFCA, 0xFFB8, 2);
-    Text_InitActorGraphic(0x46, ((value % 10) * 2) + 0x414, 0xFFDA, 0xFFB8, 2);
+    Text_InitActorGraphic(0x45, ((value / 10) * 2) + ALPHA_GLYPH(THIN_0), 0xFFCA, 0xFFB8, 2);
+    Text_InitActorGraphic(0x46, ((value % 10) * 2) + ALPHA_GLYPH(THIN_0), 0xFFDA, 0xFFB8, 2);
     time /= 60;
-    Text_InitActorGraphic(0x47, (time * 2) + 0x414, 0xFFAA, 0xFFB8, 2);
+    Text_InitActorGraphic(0x47, (time * 2) + ALPHA_GLYPH(THIN_0), 0xFFAA, 0xFFB8, 2);
 }
 
 void func_8001D5B8(s16 arg0) {

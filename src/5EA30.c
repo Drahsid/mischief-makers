@@ -411,7 +411,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
         gActors[actor_index].state = 0xA;
     }
     else { // arg0 treated as (ALPHA_* - 0x50)
-        gActors[actor_index].graphicIndex = (arg0 * 2) + ALPHA_GLYPH_INDEX(ALPHA_EN_BRACKETRIGHT);
+        gActors[actor_index].graphicIndex = (arg0 * 2) + ALPHA_GLYPH(EN_BRACKETRIGHT);
     }
     gActors[actor_index].scaleY = 1.0f;
     gActors[actor_index].scaleX = 1.0f;

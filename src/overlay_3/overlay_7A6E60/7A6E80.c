@@ -3,7 +3,6 @@
 
 // "overlay 3" code for Festival Games.
 
-extern u16 D_800D28F0;
 extern u16 D_800D9AE4[];
 
 void func_801B0DA0_7A7320(u16);

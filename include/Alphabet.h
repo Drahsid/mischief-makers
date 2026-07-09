@@ -440,13 +440,8 @@
 #define ALPHA_NULL 0x8FFF
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
+#define ALPHA_GLYPH(c) ( (ALPHA_## c * 2) + GINDEX_ALPHASTART) // shorter vesion of graphic index getter for hard-coded values
 
-// abreviation for overall Rank graphics
 
-#define GINDEX_RANK_S ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_S)
-#define GINDEX_RANK_A ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_A)
-#define GINDEX_RANK_B ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_B)
-#define GINDEX_RANK_C ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_C)
-#define GINDEX_RANK_D ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_D)
 
 #endif

@@ -1626,7 +1626,7 @@
       ],
       "functions": [
         {
-          "name": "func_80012C50",
+          "name": "Continue_DrawGem",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1634,7 +1634,7 @@
           }
         },
         {
-          "name": "func_80012CD4",
+          "name": "Continue_GameOver",
           "size": "284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1642,7 +1642,7 @@
           }
         },
         {
-          "name": "func_80012DF0",
+          "name": "Continue_PayGems",
           "size": "424",
           "fuzzy_match_percent": 100.0,
           "metadata": {
