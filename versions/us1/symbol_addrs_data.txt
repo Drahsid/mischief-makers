@@ -342,7 +342,7 @@ gPortraitTint= 0x800be6f0; // type:u8 size:0x1 rom:0xbf2f0
 
 gRedGems = 0x80178136; //type:u16 size:0x2
 
-// debug_level_select.c
+// stage.c
 gDebugStageSelectRowPrefixes = 0x800C81E4;
 gStageRowCounts = 0x800C823C;
 gStageGroupOptionOffsets = 0x800C8268;
@@ -350,7 +350,26 @@ gStageGroupOptionOffsetsTail = 0x800C8270;
 gDebugStageSelectOptionSuffixes = 0x800C8278;
 gStageScenes = 0x800C8378;
 gStageIds = 0x800C83F8;
+gStrPressStart = 0x800C8F68; //  size:0xC
+gStrCopyright = 0x800C8F74; //  size:0x14
+gStrLicence = 0x800C8F88; // size:0x15
 gStageTimesToBeat = 0x800C8478;
+gNameWorld1 = 0x800C85E8;
+gNameWorld2 = 0x800C8608;
+gNameWorld3 = 0x800C8624;
+gNameWorld4 = 0x800C8638;
+gNameWorld5 = 0x800C8650;
+gNameStage1_1 = 0x800C8668;
+gNameStage1_2 = 0x800C8684;
+gNameStage1_3 = 0x800C86A0;
+gNameStage1_4 = 0x800C86BC;
+gNameStage1_5 = 0x800C86D4;
+gNameStage1_6 = 0x800C86F4;
+gNameStage1_7 = 0x800C8714;
+gNameStage1_8 = 0x800C872C;
+gNameStage1_9 = 0x800C874C;
+gNameStage1_10 = 0x800C8794;
+gNameStage2_1 = 0x800C877C;
 gStageTimeBest = 0x80178150;// type:u16 size:0x2
 gCurrentStage = 0x80178162;
 gDebugStageSelectSelectedOptions = 0x80178170;

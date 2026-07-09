@@ -46,7 +46,7 @@ void func_80022D88(void) {
     gCamShakeTime = 0;
     D_800BE678 = 0;
     gPortraitTint = 0xFF;
-    gHealthDisplayed = gActors[0].health;
+    gHealthDisplayed = gPlayerActor.health;
     Sound_StopMusic();
     Sound_StopAllSfx();
     func_800230B8();
@@ -99,7 +99,7 @@ void GameState_SoftReset(void) {
         gButton_RTrig = R_TRIG;
         gFestivalData.unk_00 = 0;
         D_800CBF44 = 0;
-        gActors[0].health = 0x3E8;
+        gPlayerActor.health = 0x3E8;
         gRedGems = 0x1E;
         gGameState = GAMESTATE_INTRO;
         gGameStateSubState = 0;
@@ -174,7 +174,7 @@ void GameState_Loading(void) {
     }
 
     gPortraitTint = 0xFF;
-    gHealthDisplayed = gActors[0].health;
+    gHealthDisplayed = gPlayerActor.health;
     gActorDepthFront = -8;
     gDebugBitfield = 4;
 
@@ -192,8 +192,8 @@ void GameState_Loading(void) {
     gCamShakeV =
     gCamShakeTime =
     D_800BE6A4 =
-    gActors[0].posX.raw =
-    gActors[0].posY.raw =
+    gPlayerActor.posX.raw =
+    gPlayerActor.posY.raw =
     gPlayerPosX.raw =
     gPlayerPosY.raw =
     gPlayerVelXMirror.raw =
@@ -211,7 +211,7 @@ void GameState_Loading(void) {
     gScreenPosNextY.raw =
     D_800BE588 =
     D_800BE58C =
-    gActors[0].state =
+    gPlayerActor.state =
     D_800BE6FC =
     gAudioFadeMode =
     D_800CA230 =

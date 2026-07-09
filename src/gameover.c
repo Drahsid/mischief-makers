@@ -181,14 +181,14 @@ void GameState_ContinueScreen(void) {
             gAudioFadeMode = 0;
             D_8017813C = gMusicSequenceId;
             Sound_PlayMusic(0x16);
-            gActors[0].unk_170 = 0xA4;
+            gPlayerActor.unk_170 = 0xA4;
             D_80178140 = 1;
-            gActors[0].graphicFlags |= ACTOR_GFLAG_UNK11;
-            gActors[0].flags |= ACTOR_FLAG_DRAW;
-            gActors[0].posX.whole = -4;
-            gActors[0].posY.whole = 0x14;
-            gActors[0].posZ.whole = 0x403;
-            gActors[0].colorA = 0;
+            gPlayerActor.graphicFlags |= ACTOR_GFLAG_UNK11;
+            gPlayerActor.flags |= ACTOR_FLAG_DRAW;
+            gPlayerActor.posX.whole = -4;
+            gPlayerActor.posY.whole = 0x14;
+            gPlayerActor.posZ.whole = 0x403;
+            gPlayerActor.colorA = 0;
             Text_InitActorGList(0x30, &D_800C7D10, 0xFF88, 0x50, 0x403);
             Text_InitActorGList(0x32, D_800E13FC, 0xFF80, 0xFFED, 0x403);
             Text_PrintStringRGBScale(0x33, &D_800C7D54, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
@@ -239,11 +239,11 @@ void GameState_ContinueScreen(void) {
                 }
                 if ((color_a < 0xFC) && !(color_a & 7)) {
                     if (1) { } if (1) { } // fakematch
-                    gActors[0].colorA = color_a;
+                    gPlayerActor.colorA = color_a;
                     D_80178142++;
                 }
                 else {
-                    gActors[0].colorA = color_a;
+                    gPlayerActor.colorA = color_a;
                     if (color_a == 0xFC) {
                         D_80178142 = 0;
                     }
@@ -258,7 +258,7 @@ void GameState_ContinueScreen(void) {
                     }
                 }
             }
-            color_temp_0 = gActors[0].colorA;
+            color_temp_0 = gPlayerActor.colorA;
             Text_SetColor(0, color_temp_0 / 16, color_temp_0 / 16, color_temp_0 / 8);
             Text_SetColor(1, color_temp_0 / 8, color_temp_0 / 8, color_temp_0 / 32);
         }
@@ -333,7 +333,7 @@ void GameState_ContinueScreen(void) {
             Sound_PlaySfx(0xC9);
         }
         else if ((D_80178130 < 0x280) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
-            gActors[0].unk_170 = 0xA5;
+            gPlayerActor.unk_170 = 0xA5;
             D_80178140 = 1;
         }
         if (D_80178130 == 0x200) {
@@ -369,11 +369,11 @@ void GameState_ContinueScreen(void) {
         D_80178130--;
         actor_index = 0x30;
         gActors[actor_index].rotateY += 8.0f;
-        if (gActors[0].colorA) {
-            gActors[0].colorA -= 1;
+        if (gPlayerActor.colorA) {
+            gPlayerActor.colorA -= 1;
         }
         else {
-            gActors[0].flags = 0;
+            gPlayerActor.flags = 0;
         }
         if (gActors[actor_index].colorA != 0) {
             gActors[actor_index].colorA -= 1;
@@ -401,13 +401,13 @@ void GameState_ContinueScreen(void) {
         gActors[actor_index].posX.whole = SIN(gActors[actor_index].var_158) * gActors[actor_index].var_154;
         gActors[actor_index].posY.whole = COS(gActors[actor_index].var_158) * gActors[actor_index].var_154;
         gActors[actor_index].rotateZ += 16.0f;
-        gActors[0].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-        gActors[0].rotateZ += 10.0f;
+        gPlayerActor.graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
+        gPlayerActor.rotateZ += 10.0f;
         if (gActors[actor_index].scaleX > 0.005) {
             gActors[actor_index].scaleX -= 0.0075;
             gActors[actor_index].scaleY -= 0.0075;
-            gActors[0].scaleX = (gActors[0].scaleX - 0.005);
-            gActors[0].scaleY = (gActors[0].scaleY - 0.005);
+            gPlayerActor.scaleX = (gPlayerActor.scaleX - 0.005);
+            gPlayerActor.scaleY = (gPlayerActor.scaleY - 0.005);
         }
         if (D_80178130 == 0x180) {
             Sound_PlaySfx(0xDD);
@@ -422,8 +422,8 @@ void GameState_ContinueScreen(void) {
         for (actor_index = 0x41; actor_index < 0x4B; actor_index++) {
             gActors[actor_index].var_154 -= 1;
             gActors[actor_index].var_158 += 8;
-            gActors[actor_index].posX.whole = gActors[0].posX.whole + (SIN(gActors[actor_index].var_158) * gActors[actor_index].var_154);
-            gActors[actor_index].posY.whole = gActors[0].posY.whole + (COS(gActors[actor_index].var_158) * gActors[actor_index].var_154);
+            gActors[actor_index].posX.whole = gPlayerActor.posX.whole + (SIN(gActors[actor_index].var_158) * gActors[actor_index].var_154);
+            gActors[actor_index].posY.whole = gPlayerActor.posY.whole + (COS(gActors[actor_index].var_158) * gActors[actor_index].var_154);
             for (actor_0 = actor_index + 0x1F; actor_0 < actor_index + 0x47; actor_0 += 10) {
                 if (gActors[actor_0].flags == 0) {
                     Text_InitActorGraphic(actor_0, 0x1D6,
@@ -461,7 +461,7 @@ void GameState_ContinueScreen(void) {
             D_80178140 = 0;
         }
         else if ((D_80178130 < 0xE0) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
-            gActors[0].unk_170 = 0xA6;
+            gPlayerActor.unk_170 = 0xA6;
             D_80178140 = 1;
         }
         if (D_80178130 == 0xC0) {
@@ -518,13 +518,13 @@ void GameState_ContinueScreen(void) {
                 gActors[0x60].colorA -= 8;
                 gActors[0x61].colorA -= 8;
             }
-            if (gActors[0].colorA < 8) {
-                gActors[0].colorA = 0;
+            if (gPlayerActor.colorA < 8) {
+                gPlayerActor.colorA = 0;
             }
             else {
-                gActors[0].colorA -= 8;
+                gPlayerActor.colorA -= 8;
             }
-            color_temp_0 = gActors[0].colorA;
+            color_temp_0 = gPlayerActor.colorA;
             Text_SetColor(0, color_temp_0 / 16, color_temp_0 / 16, color_temp_0 / 8);
             Text_SetColor(1, color_temp_0 / 8, color_temp_0 / 8, color_temp_0 / 32);
         }
@@ -535,21 +535,21 @@ void GameState_ContinueScreen(void) {
             D_800D28E4 = 0x61;
             gSkipStageIntro = 1;
             if (D_80178138 == 1) {
-                gActors[0].health = 0x3E8;
+                gPlayerActor.health = 0x3E8;
             }
             else if (D_80178138 == 3) {
-                gActors[0].health = 0x7D0;
+                gPlayerActor.health = 0x7D0;
             }
             else {
-                gActors[0].health = 0xBB8;
+                gPlayerActor.health = 0xBB8;
             }
-            gHealthDisplayed = (u16) gActors[0].health;
+            gHealthDisplayed = (u16) gPlayerActor.health;
             gDrawMidground = D_80178132;
             gDrawEnvLayer = D_80178133;
             gDrawBackground = D_80178134;
-            gActors[0].posZ.whole = 0;
-            gActors[0].graphicFlags &= ~ACTOR_GFLAG_UNK11;
-            gActors[0].colorA = 0xFF;
+            gPlayerActor.posZ.whole = 0;
+            gPlayerActor.graphicFlags &= ~ACTOR_GFLAG_UNK11;
+            gPlayerActor.colorA = 0xFF;
             gAudioFadeMode = 0;
             if ((gCurrentScene >= 0xF) && (gCurrentScene < 0x13)) {
                 D_800D28F0 = 0x1F;
@@ -560,7 +560,7 @@ void GameState_ContinueScreen(void) {
             }
             func_800255B4(gCurrentScene);
             func_80025B7C();
-            gActors[0].unk_170 = 1;
+            gPlayerActor.unk_170 = 1;
             gCannotPause = 1;
             gGameState = GAMESTATE_GAMEPLAY;
             gGameStateSubState = 0;

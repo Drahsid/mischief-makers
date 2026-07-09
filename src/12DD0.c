@@ -4,14 +4,14 @@ void func_800121D0(void) {
     u16 index;
     u16 actor_index;
 
-    actor_index = 0;
+    actor_index = PLAYER_INDEX;
     index = gActors[actor_index].health;
     Actor_Initialize(actor_index);
     gActors[actor_index].health = index;
-    gActors[0].posZ.whole = 1;
+    gPlayerActor.posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;
     gPlayerVelYMirror.raw = 0;
-    gActors[0].unk_0CC = 0;
+    gPlayerActor.unk_0CC = 0;
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
     D_800BE5F8 = 0;
@@ -23,7 +23,7 @@ void func_800121D0(void) {
 }
 
 void func_80012288(void) {
-    gActors[0].actorType = 0x16;
+    gPlayerActor.actorType = ACTORTYPE_MARINA;
     func_800121D0();
 }
 
@@ -50,19 +50,19 @@ void func_800123AC(void) {
     delta_x = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     if (delta_x < -0x90) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole - 0x90;
-        gActors[0].posX.whole = -0x90;
+        gPlayerActor.posX.whole = -0x90;
     }
     else if (delta_x >= 0x91) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole + 0x90;
-        gActors[0].posX.whole = 0x90;
+        gPlayerActor.posX.whole = 0x90;
     }
     else {
-        gActors[0].posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
+        gPlayerActor.posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     }
 }
 
 void func_80012418(void) {
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
 void func_80012438(void) {
@@ -74,11 +74,11 @@ void func_80012438(void) {
     }
     else if (D_800BE544 != 0x8000) {
         gScreenPosTargetX.raw = (gActors[D_800BE544].posX.raw + gScreenPosCurrentX.raw + gPlayerPosX.raw) / 2;
-        if (gScreenPosTargetX.raw > gPlayerPosX.raw + 0x300000) {
-            gScreenPosTargetX.raw = gPlayerPosX.raw + 0x300000;
+        if (gScreenPosTargetX.raw > gPlayerPosX.raw + FIXED_UNIT(48.0)) {
+            gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(48.0);
         }
-        if (gScreenPosTargetX.raw < gPlayerPosX.raw + -0x300000) {
-            gScreenPosTargetX.raw = gPlayerPosX.raw + -0x300000;
+        if (gScreenPosTargetX.raw < gPlayerPosX.raw + FIXED_UNIT(-48.0)) {
+            gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(-48.0);
         }
     }
     
@@ -100,7 +100,7 @@ void func_80012438(void) {
     if (gScreenPosCurrentX.whole > D_800BE56C.whole - 0x90) {
         gScreenPosCurrentX.whole = D_800BE56C.whole - 0x90;
     }
-    gActors[0].posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
+    gPlayerActor.posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
 }
 
 void func_80012634(void) {
@@ -112,11 +112,11 @@ void func_80012634(void) {
     }
     else if (D_800BE544 != 0x8000) {
         gScreenPosTargetY.raw = (gActors[D_800BE544].posY.raw + gScreenPosCurrentY.raw + gPlayerPosY.raw) / 2;
-        if (gScreenPosTargetY.raw > gPlayerPosY.raw + 0x500000) {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + 0x500000;
+        if (gScreenPosTargetY.raw > gPlayerPosY.raw + FIXED_UNIT(80.0)) {
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(80.0);
         }
-        if (gScreenPosTargetY.raw < gPlayerPosY.raw + -0x500000) {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + -0x500000;
+        if (gScreenPosTargetY.raw < gPlayerPosY.raw + FIXED_UNIT(-80.0)) {
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(-80.0);
         }
     }
     D_800BE620 = 0;
@@ -137,7 +137,7 @@ void func_80012634(void) {
     if (gScreenPosCurrentY.whole > D_800BE570.whole - 0x70) {
         gScreenPosCurrentY.whole = D_800BE570.whole - 0x70;
     }
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
 void func_80012830(void) {

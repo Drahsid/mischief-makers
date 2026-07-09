@@ -202,6 +202,7 @@
 #define ALPHA_JP_QUOTERP 0x00AC // .」
 
 
+
 #define ALPHA_ELLIPSIS     0x00B0 // ...
 #define ALPHA_EXCLAMATION  0x00B1 // !
 #define ALPHA_EXCLAMATION2 0x00B2 // !!
@@ -215,6 +216,7 @@
 #define ALPHA_TILDE        0x00BA // ~
 #define ALPHA_COLON        0x00BB // :
 #define ALPHA_COMMA        0x00BC // ,
+#define ALPHA_APOSTROPHE  0x00BD // '
 #define ALPHA_PERIOD       0x00BE // .
 #define ALPHA_PLUS         0x00BF // +
 #define ALPHA_MINUS        0x00C0 // -
@@ -355,20 +357,23 @@
 #define ALPHA_EN2_LOWER_Q 0x0085
 #define ALPHA_EN2_LOWER_R 0x0086
 #define ALPHA_EN2_LOWER_S 0x0087
-#define ALPHA_EN2_LOWER_T 0x0089
-#define ALPHA_EN2_LOWER_U 0x008A
-#define ALPHA_EN2_LOWER_V 0x008B
-#define ALPHA_EN2_LOWER_W 0x008D
-#define ALPHA_EN2_LOWER_X 0x008D
-#define ALPHA_EN2_LOWER_Y 0x008E
-#define ALPHA_EN2_LOWER_Z 0x008F
+#define ALPHA_EN2_LOWER_T 0x0088
+#define ALPHA_EN2_LOWER_U 0x0089
+#define ALPHA_EN2_LOWER_V 0x008A
+#define ALPHA_EN2_LOWER_W 0x008B
+#define ALPHA_EN2_LOWER_X 0x008C
+#define ALPHA_EN2_LOWER_Y 0x008D
+#define ALPHA_EN2_LOWER_Z 0x008E
 
+
+#define ALPHA_EN2_APOSTROPHE 0x0092 // '
 
 #define ALPHA_II           0x00CD // II
 #define ALPHA_APLHA        0x00CE // α
 #define ALPHA_BETA         0x00CF // β
 #define ALPHA_GAMMA        0x00D0 // γ
 #define ALPHA_APOSTROPHE_S 0x00D1 // 's
+#define ALPHA_E_ACCENT     0x00D2 // é
 
 
 // a third English Alphabet, used for titles and names
@@ -436,7 +441,7 @@
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 
-// Rank graphics, changes beween Japanese and English versions.
+// abreviation for overall Rank graphics
 
 #define GINDEX_RANK_S ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_S)
 #define GINDEX_RANK_A ALPHA_GLYPH_INDEX(ALPHA_EN3_UPPER_A)
