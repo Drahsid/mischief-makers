@@ -367,6 +367,7 @@
 
 
 #define ALPHA_EN2_APOSTROPHE 0x0092 // '
+#define ALPHA_EN2_EXLAMATION 0x0093 // !
 
 #define ALPHA_II           0x00CD // II
 #define ALPHA_APLHA        0x00CE // α
@@ -441,7 +442,7 @@
 
 #define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
 #define ALPHA_GLYPH(c) ( (ALPHA_## c * 2) + GINDEX_ALPHASTART) // shorter vesion of graphic index getter for hard-coded values
-
+#define ALPHA_OFFSET(c) (ALPHA_## c - 0x50) // some print functions use a 0x50 offet to print the char.
 
 
 #endif
