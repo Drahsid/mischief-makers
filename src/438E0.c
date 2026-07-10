@@ -340,7 +340,7 @@ void Actor_LoadSpawnTable(u16* spawn) {
     index = 0;
     jndex = 0;
     counter = 0;
-    while (spawn[0] != 0xFF00) {
+    while (spawn[0] != SPAWNRECORD_END) {
         if (!(spawn[0] & 0x2000)) {
             actor_index = func_8004398C(spawn);
 
@@ -382,7 +382,7 @@ void func_80043C10(u16* spawn) {
     x_max = gScreenPosCurrentX.whole + 176;
     y_max = gScreenPosCurrentY.whole + 144;
     y_min = gScreenPosCurrentY.whole - 144;
-    for (; spawn[0] != 0xFF00; spawn += 7) {
+    for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
         if ((spawn[0] & 0x800)) {
             continue;
         }
@@ -394,7 +394,7 @@ void func_80043C10(u16* spawn) {
 }
 
 void func_80043D04(u16* spawn) {
-    for (; spawn[0] != 0xFF00; spawn += 7) {
+    for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
         spawn[0] &= ~0x2800;
     }
 }
@@ -411,7 +411,7 @@ s32 func_80043D6C(u16* spawn) {
     s32 var_s3;
 
     var_s3 = FALSE;
-    for (; spawn[0] != 0xFF00; spawn += 7) {
+    for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
         if ((spawn[0] & 0x2000) == 0) {
             if (!(gActors[spawn[1]].flags & ACTOR_FLAG_ACTIVE)) {
                 var_s3 = TRUE;
@@ -472,7 +472,7 @@ void func_8004400C(u16* arg0, s16 pos_x, s16 pos_y) {
     u16 actor_index; // BUG: UB, actor_index may be used uninitialized
     u16 index;
 
-    for (; arg0[0] != 0xFF00; arg0 += 5) {
+    for (; arg0[0] != SPAWNRECORD_END; arg0 += 5) {
         actor_index = arg0[1];
         if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
             actor_index = 0;
