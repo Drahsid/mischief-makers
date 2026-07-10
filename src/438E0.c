@@ -7,6 +7,8 @@
 #include "music.h"
 #include "stage.h"
 
+typedef void (*FuncVoidVoid)(void);
+
 extern u16 D_800D28E4;
 extern u16 D_800D28F0;
 extern u32 D_800D28FC;
@@ -63,7 +65,7 @@ extern void (*D_800D37BC[])(void);
 extern u16 D_800D3888[];
 extern s16 D_800D38B8[];
 extern s16 D_800D3AE8[];
-extern void (*D_800D3B78[])(void);
+extern FuncVoidVoid D_800D3B78[];
 
 extern u16 D_800D82DC[];
 extern u16 D_800D84E8[];
@@ -1759,7 +1761,7 @@ void func_80047CCC(void) {
     }
     if (D_800D28E4 <= 0x60) {
         // 0x60 and lower are function ptr ptr
-        (*(void (**)(void))D_800D3B78[D_800D28E4])();
+        (*(FuncVoidVoid*)D_800D3B78[D_800D28E4])();
     }
     else {
         // 0x61 and higher are function ptr
