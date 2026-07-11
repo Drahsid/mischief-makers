@@ -102,7 +102,7 @@ void func_801A6B28_76F5C8(u16 actor_index) {
             gActors[temp_v0].scaleX = (1.0 - ((Rand() & 0xF) / 28.0f));
             gActors[temp_v0].scaleY = (((Rand() & 0xF) / 18.0f) + 2.5);
             gActors[temp_v0].var_110 = 0.2f;
-            gActors[temp_v0].var_160 = ((Rand() & 0x1F) << 0x10) + 0x2F00000;
+            gActors[temp_v0].var_160 = TO_FIXED(Rand() & 0x1F) + FIXED_UNIT(752.0);
             gActors[temp_v0].palette_18C = PALETTE_8022D4E8;
             gActors[temp_v0].unk_148 = 3.0f;
         }
@@ -124,7 +124,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].colorR = 0x7F;
             temp_v1 = Rand();
             gActors[temp_v0].palette_18C = PALETTE_8022D4E8;
-            gActors[temp_v0].var_160 = ((((temp_v1 * 4) & 0x1F0) + 0x200) << 2) << 14;
+            gActors[temp_v0].var_160 = ((((temp_v1 * 4) & 0x1F0) + 0x200) << 2) * FIXED_UNIT(0.25);
             gActors[temp_v0].unk_130 = actor_index;
             gActors[temp_v0].unk_14C = gActors[actor_index].actorType;
             gActors[temp_v0].unk_134 = 0.0f;

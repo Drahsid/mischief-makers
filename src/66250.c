@@ -78,8 +78,8 @@ void func_80065724(u16 actor_index) {
         gActors[actor_index].posX.whole,
         gActors[actor_index].posY.whole + 6,
         gActors[actor_index].posZ.whole + 1,
-        0x6000,
-        0x80000,
+        FIXED_UNIT(0.375),
+        FIXED_UNIT(8.0),
         3);
 }
 
@@ -943,15 +943,15 @@ void func_80079760(u16 actor_index) {
 
     func_80078F54(actor_index);
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-        arg0 = 0x2000000;
+        arg0 = FIXED_UNIT(512.0);
     }
     else {
         arg0 = 0;
     }
 
     gActors[actor_index].unk_168 = func_800298D0(arg0, gActors[actor_index].unk_168, FIXED_UNIT(24));
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index].var_158 + 0x80);
-    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, gActors[actor_index].var_15C + 0x80);
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index].var_158 + FIXED_UNIT(0.001953125));
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, gActors[actor_index].var_15C + FIXED_UNIT(0.001953125));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80079810.s")
@@ -1128,7 +1128,7 @@ s32 func_8007AB44(u16 arg0) {
 
     if ((gActors[arg0].flags_098 & ACTOR_FLAG3_UNK9) && (func_80029044(arg0) == 0)) {
         var_a3 = FIXED_UNIT(16) - Math_AbsS32(gActors[arg0].velocityX.raw * 2);
-        var_a3 /= FIXED_UNIT(1);
+        var_a3 = FROM_FIXED(var_a3);
         if (var_a3 < 2) {
             var_a3 = 2;
         }
@@ -1182,15 +1182,16 @@ s32 func_8007AB44(u16 arg0) {
     else {
         var_v0_2 = (s32) (var_f0 / 0.3515625) + 0x130;
     }
-    gActors[arg0].var_160 = func_800298D0(var_v0_2 << 0x10, gActors[arg0].var_160, FIXED_UNIT(8));
-    angle = (gActors[arg0].var_160 / FIXED_UNIT(1));
-    var_f0 = COS(angle) * 32.0f * 65536.0f;
+    gActors[arg0].var_160 = func_800298D0(TO_FIXED(var_v0_2), gActors[arg0].var_160, FIXED_UNIT(8));
+    angle = FROM_FIXED(gActors[arg0].var_160);
+    // The two float multiplies are required for matching.
+    var_f0 = COS(angle) * 32.0f * (f32)FIXED_UNIT(1.0);
     gPlayerActor.posX.raw = gActors[arg0].posX.raw + (s32) var_f0;
-    var_f0 = SIN(angle) * 32.0f * 65536.0f;
+    var_f0 = SIN(angle) * 32.0f * (f32)FIXED_UNIT(1.0);
     gPlayerActor.posY.raw = gActors[arg0].posY.raw + (s32) var_f0;
     gPlayerPosX.raw = gPlayerActor.posX.raw + gScreenPosCurrentX.raw;
     gPlayerPosY.raw = gPlayerActor.posY.raw + gScreenPosCurrentY.raw;
-    gPlayerActor.posZ.raw = gActors[arg0].posZ.raw - 0x1000;
+    gPlayerActor.posZ.raw = gActors[arg0].posZ.raw - FIXED_UNIT(0.0625);
     var_a3 = gActors[arg0].posY.whole + gScreenPosCurrentY.whole + 0x10;
     if (D_800D2918 < var_a3) {
         gActors[arg0].posY.whole += D_800D2918 - var_a3;
@@ -1239,14 +1240,14 @@ s32 func_8007AB44(u16 arg0) {
     }
     var_a3 = gButtonHold & gButton_LTrig;
     if (var_a3 || (gButtonHold & gButton_RTrig)) {
-        gActors[arg0].var_15C = Math_ClampLimit(gActors[arg0].var_15C, 0x28000);
-        var_a3 = 0x40000;
-        var_a3 |= 0x8000;
+        gActors[arg0].var_15C = Math_ClampLimit(gActors[arg0].var_15C, FIXED_UNIT(2.5));
+        var_a3 = FIXED_UNIT(4.0);
+        var_a3 |= FIXED_UNIT(0.5);
     }
     else {
         gActors[arg0].var_15C = Math_ClampLimit(gActors[arg0].var_15C, FIXED_UNIT(8));
-        var_a3 = 0x30000;
-        var_a3 |= 0x8000;
+        var_a3 = FIXED_UNIT(3.0);
+        var_a3 |= FIXED_UNIT(0.5);
     }
     
     if (gActors[arg0].unk_118 >= 0.0f) {

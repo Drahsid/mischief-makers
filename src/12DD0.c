@@ -74,11 +74,11 @@ void func_80012438(void) {
     }
     else if (D_800BE544 != 0x8000) {
         gScreenPosTargetX.raw = (gActors[D_800BE544].posX.raw + gScreenPosCurrentX.raw + gPlayerPosX.raw) / 2;
-        if (gScreenPosTargetX.raw > gPlayerPosX.raw + 0x300000) {
-            gScreenPosTargetX.raw = gPlayerPosX.raw + 0x300000;
+        if (gScreenPosTargetX.raw > gPlayerPosX.raw + FIXED_UNIT(48.0)) {
+            gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(48.0);
         }
-        if (gScreenPosTargetX.raw < gPlayerPosX.raw + -0x300000) {
-            gScreenPosTargetX.raw = gPlayerPosX.raw + -0x300000;
+        if (gScreenPosTargetX.raw < gPlayerPosX.raw + FIXED_UNIT(-48.0)) {
+            gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(-48.0);
         }
     }
     
@@ -86,8 +86,8 @@ void func_80012438(void) {
     temp_x = (gScreenPosTargetX.raw + D_800BE61C - gScreenPosCurrentX.raw) / D_800BE704;
     step_x.raw = temp_x;
     temp_x = func_8005C6D0(temp_x);
-    if (temp_x < 0x10000) {
-        temp_x = 0x10000;
+    if (temp_x < FIXED_UNIT(1.0)) {
+        temp_x = FIXED_UNIT(1.0);
     }
     step_x.raw = temp_x;
     if (temp_x > D_800BE548.raw) {
@@ -112,19 +112,19 @@ void func_80012634(void) {
     }
     else if (D_800BE544 != 0x8000) {
         gScreenPosTargetY.raw = (gActors[D_800BE544].posY.raw + gScreenPosCurrentY.raw + gPlayerPosY.raw) / 2;
-        if (gScreenPosTargetY.raw > gPlayerPosY.raw + 0x500000) {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + 0x500000;
+        if (gScreenPosTargetY.raw > gPlayerPosY.raw + FIXED_UNIT(80.0)) {
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(80.0);
         }
-        if (gScreenPosTargetY.raw < gPlayerPosY.raw + -0x500000) {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + -0x500000;
+        if (gScreenPosTargetY.raw < gPlayerPosY.raw + FIXED_UNIT(-80.0)) {
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(-80.0);
         }
     }
     D_800BE620 = 0;
     temp_y = (gScreenPosTargetY.raw + D_800BE620 - gScreenPosCurrentY.raw) / D_800BE708;
     step_y.raw = temp_y;
     temp_y = func_8005C6D0(temp_y);
-    if (temp_y < 0x10000) {
-        temp_y = 0x10000;
+    if (temp_y < FIXED_UNIT(1.0)) {
+        temp_y = FIXED_UNIT(1.0);
     }
     step_y.raw = temp_y;
     if (temp_y > D_800BE54C.raw) {

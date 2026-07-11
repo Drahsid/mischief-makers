@@ -43,7 +43,6 @@ extern u32 D_80137718;
 extern u64 D_80171B10;
 extern u64 D_801781F0;
 extern u16 D_801782B8;
-extern FestivalStruct gFestivalData; // data related mostly to Festival Games.
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CA230;
@@ -114,10 +113,6 @@ extern s16 D_800E5910[];
 extern s16 D_800E5938[];
 extern s16 D_800E5970[];
 extern s16 D_800E59E0[];
-extern s16 D_800F4268;
-extern s32 D_800F43A8;
-extern s16 D_800F43B0;
-extern s32 D_800F7510;
 extern u16 gLetterboxMode;
 extern u16 gRedGems;
 

@@ -336,7 +336,7 @@ void func_801B996C_7E6ABC(void) {
 }
 
 void func_801B99F4_7E6B44(u16 arg0) {
-    D_800BE73C = 0x60000;
+    D_800BE73C = FIXED_UNIT(6.0);
 }
 
 void func_801B9A08_7E6B58(void) {

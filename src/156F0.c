@@ -43,8 +43,8 @@ void func_80014C44(void) {
             actor_1 = gActors[index].unk_0CC;
             if (actor_1) {
                 actor_1 &= 0x7FFF;
-                delta_x = (((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].unk_0C8) << 0x10);
-                delta_y = (((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].unk_0CA) << 0x10);
+                delta_x = TO_FIXED((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].unk_0C8);
+                delta_y = TO_FIXED((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].unk_0CA);
                 gActors[index].posX.raw += delta_x;
                 gActors[index].posY.raw += delta_y;
                 gActors[index].posX.raw += gActors[actor_1].velocityX.raw;
@@ -54,12 +54,12 @@ void func_80014C44(void) {
     }
     gPlayerPosX.raw = gPlayerActor.posX.raw + gScreenPosCurrentX.raw;
     gPlayerPosY.raw = gPlayerActor.posY.raw + gScreenPosCurrentY.raw;
-    if (((gPlayerActor.hitboxBX0 << 0x10) + gPlayerPosX.raw) < D_800BE568.raw) {
+    if ((TO_FIXED(gPlayerActor.hitboxBX0) + gPlayerPosX.raw) < D_800BE568.raw) {
         if (D_801373E0.unk_78 & 4) {
             D_801373E0.unk_78 &= ~6;
         }
         if (D_801373E0.unk_78 & 2) {
-            gPlayerPosX.raw = D_800BE568.raw - (gPlayerActor.hitboxBX0 << 0x10);
+            gPlayerPosX.raw = D_800BE568.raw - TO_FIXED(gPlayerActor.hitboxBX0);
             gPlayerActor.posX.raw = gPlayerPosX.raw - gScreenPosCurrentX.raw;
             if (gPlayerActor.velocityX.raw < 0) {
                 gPlayerVelXMirror.raw = gPlayerActor.velocityX.raw = 0;
@@ -68,12 +68,12 @@ void func_80014C44(void) {
         }
     }
     else {
-        if (D_800BE56C.raw < ((gPlayerActor.hitboxBX1 << 0x10) + gPlayerPosX.raw)) {
+        if (D_800BE56C.raw < (TO_FIXED(gPlayerActor.hitboxBX1) + gPlayerPosX.raw)) {
             if (D_801373E0.unk_78 & 4) {
                 D_801373E0.unk_78 &= ~6;
             }
             if (D_801373E0.unk_78 & 2) {
-                gPlayerPosX.raw = D_800BE56C.raw - (gPlayerActor.hitboxBX1 << 0x10);
+                gPlayerPosX.raw = D_800BE56C.raw - TO_FIXED(gPlayerActor.hitboxBX1);
                 gPlayerActor.posX.raw = gPlayerPosX.raw - gScreenPosCurrentX.raw;
                 if (gPlayerActor.velocityX.raw > 0) {
                     gPlayerVelXMirror.raw = gPlayerActor.velocityX.raw = 0;

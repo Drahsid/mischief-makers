@@ -827,7 +827,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 7:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
@@ -848,7 +848,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xA:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, 0x4000);
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageState == 0xB) {

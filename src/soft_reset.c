@@ -5,7 +5,34 @@ extern s16 D_800CBF44;
 
 // .bss
 u64 D_801781F0; // must be declared in TU
-FestivalStruct gFestivalData;
+u16 gFestivalData_unk_00;
+u8 gFestivalData_unk_02[2];
+u8 gFestivalData_unk_04[4];
+u8 gFestivalData_unk_08[8];
+u8 gFestivalData_unk_10[8];
+u8 gFestivalData_unk_18[8];
+u8 gFestivalData_unk_20[8];
+u16 gFestivalData_eventState;
+u16 gFestivalData_unk_2A;
+u16 gFestivalData_currentEvent;
+u16 gFestivalData_competitorCount;
+u16 gFestivalData_fouls;
+u8 gFestivalData_unk_32[2];
+u8 gFestivalData_unk_34[4];
+u16 gFestivalData_competitorIndices[4];
+FestivalPlayer gFestivalData_competitors[4];
+u16* gFestivalData_unk_90;
+u8 gFestivalData_eventClearCount;
+u8 gFestivalData_unk_95;
+u16 gFestivalData_pointsRed;
+u16 gFestivalData_pointsWhite;
+u8 gFestivalData_unk_9A;
+u8 gFestivalData_isTimeBeat;
+s32 gFestivalData_timeCurrent;
+s32 gFestivalData_timeToBeat;
+u8 gFestivalData_unk_A4[4];
+u8 gFestivalData_eventsPlayed[FESTGAME_TOTAL];
+s16 gFestivalData_guestHP;
 
 // forward declarations
 void func_80023168(void);
@@ -97,7 +124,7 @@ void GameState_SoftReset(void) {
         gButton_ZTrig = Z_TRIG;
         gButton_LTrig = L_TRIG;
         gButton_RTrig = R_TRIG;
-        gFestivalData.unk_00 = 0;
+        gFestivalData_unk_00 = 0;
         D_800CBF44 = 0;
         gActors[0].health = 0x3E8;
         gRedGems = 0x1E;

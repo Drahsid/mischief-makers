@@ -52,7 +52,7 @@ void func_8019B300_732060(u16 actor_index, u16 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019B68C_7323EC.s")
 
 void func_8019B738_732498(u16 actor_index) {
-    Actor_UpdateVelocityX(actor_index, 0x2000);
+    Actor_UpdateVelocityX(actor_index, FIXED_UNIT(0.125));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019B764_7324C4.s")
@@ -77,10 +77,10 @@ void func_8019C0A0_732E00(u16 actor_index) {
 void func_8019C1C4_732F24(u16 actor_index) {
     // FAKEMATCH ???
     gActors[actor_index].unk_0DB = 8;\
-    gActors[actor_index].unk_0F8.raw = 0x48000;\
+    gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);\
     if (1) { }\
-    gActors[actor_index].unk_0FC.raw = 0x40000;
-    gActors[actor_index].unk_0F8.raw = 0x48000;
+    gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
+    gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);
     gActors[actor_index].damage = 0x14;
     Actor_SetHitboxA(actor_index, 0xC);
 }

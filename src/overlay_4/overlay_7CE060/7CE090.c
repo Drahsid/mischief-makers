@@ -2038,7 +2038,7 @@ void func_801BB360_7CFAF0(void) {
             if (D_800D2928 < 0) {
                 gStageState++;
                 gScreenPosTargetY.whole = 0x19C;
-                D_800BE54C.raw = 0x20000;
+                D_800BE54C.raw = FIXED_UNIT(2.0);
             }
             Cutscene_CheckSkipInput();
             break;

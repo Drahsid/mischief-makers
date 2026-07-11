@@ -3,6 +3,7 @@
 
 #include <PR/gbi.h>
 #include <PR/ultratypes.h>
+#include "inttypes.h"
 #include "graphicIndex.h"
 #include "actorTypes.h"
 #include "common_structs.h"
@@ -11,6 +12,7 @@ typedef void (*ActorFunc)(u16 actor_index);
 typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
 typedef void (*ClanpotTally)(u16 item_type,u16 actor_index);
 typedef s32 (*ClanpotCheck)(u16 actor_index);
+typedef s32 (*ActorVarFunc)(u16 actor_index, u16 arg1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
@@ -226,48 +228,64 @@ typedef struct {
     };
     /* 0x130 */ f32 unk_130;
     /* 0x134 */ f32 unk_134;
-    /* 0x138 */ f32 unk_138;
     union {
-        /* 0x13C */ f32 unk_13C_f32;
-        /* 0x13C */ s16 unk_13C_s16[2];
+        struct {
+            /* 0x138 */ f32 unk_138;
+            union {
+                /* 0x13C */ f32 unk_13C_f32;
+                /* 0x13C */ s16 unk_13C_s16[2];
+            };
+            union {
+                /* 0x140 */ f32 unk_140_f32;
+                /* 0x140 */ u16 unk_140_u16[2];
+                /* 0x140 */ u8 unk_140_u8[4];
+            };
+            /* 0x144 */ f32 unk_144;
+            /* 0x148 */ f32 unk_148;
+            /* 0x14C */ f32 unk_14C;
+        };
+        /* 0x138 */ f32 unk_138_arr[6];
     };
-    union {
-        /* 0x140 */ f32 unk_140_f32;
-        /* 0x140 */ u16 unk_140_u16[2];
-        /* 0x140 */ u8 unk_140_u8[4];
-    };
-    /* 0x144 */ f32 unk_144;
-    /* 0x148 */ f32 unk_148;
-    /* 0x14C */ f32 unk_14C;
 
     union {
         /* 0x150 */ s32 var_150;
         /* 0x150 */ s16 var_150_s16[2];
     };
     /* 0x154 */ s32 var_154;
-    /* 0x158 */ s32 var_158;
+    union {
+        /* 0x158 */ s32 var_158;
+        /* 0x158 */ ActorVarFunc pfn_158;
+    };
     /* 0x15C */ s32 var_15C;
     union {
         /* 0x160 */ s32 var_160;
         /* 0x160 */ u8 var_160_u8;
     };
     /* 0x164 */ s32 unk_164;
-    union{
+    union {
         /* 0x168 */ s32 unk_168;
         /* 0x168 */ ClanpotTally clanpotTally; // used by clanpots when mixing to tally items
     };
-    union{
+    union {
         /* 0x16C */ s32 unk_16C;
+        /* 0x16C */ u32 unk_16C_u32;
+        /* 0x16C */ u16 unk_16C_u16[2];
         /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
     };
     union {
         /* 0x170 */ s32 unk_170;
+        /* 0x170 */ s16 unk_170_s16[2];
         /* 0x170 */ u16 unk_170_u16[2];
         /* 0x170 */ s8 unk_170_s8[4];
     };
-    /* 0x174 */ s32 unk_174;
+    union {
+        /* 0x174 */ s32 unk_174;
+        /* 0x174 */ s16 unk_174_s16[2];
+        /* 0x174 */ u16 unk_174_u16[2];
+        /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
+    };
     /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
-    union{
+    union {
         /* 0x17C */ s32 unk_17C;
         /* 0x17C */ s16 unk_17C_s16[2];
         /* 0x17C */ s8 unk_17C_s8[4];
@@ -278,6 +296,7 @@ typedef struct {
         /* 0x180 */ s32 unk_180;
         /* 0x180 */ u16 unk_180_u16[2];
         /* 0x180 */ u8 unk_180_u8[4];
+        /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
     };
     union {
         /* 0x184 */ s32 unk_184;
@@ -302,11 +321,50 @@ typedef struct {
 
 extern Actor gActors[];
 
+// required to match instances where the codegen suggests unique and impossible linker entries for individual fields in actors
+#define ACTOR_FIXEDADDRESS_SET(actor_index_, field_, value_) \
+{ \
+    u16 fixed_index_ = (actor_index_); \
+    if (gActors && gActors) { \
+    } \
+    gActors[fixed_index_].field_ = value_; \
+}
+
+#define ACTOR_FIXEDADDRESS_OR(actor_index_, field_, value_) \
+{ \
+    u16 fixed_index_ = (actor_index_); \
+    if (gActors && gActors) { \
+    } \
+    gActors[fixed_index_].field_ |= (value_); \
+}
+
+#define ACTOR_FIXEDADDRESS_DIRECT_SET(actor_index_, field_, value_) \
+{ \
+    if (gActors && gActors) { \
+    } \
+    gActors[(actor_index_)].field_ = (value_); \
+}
+
+#define ACTOR_FIXEDADDRESS_INDEX_VAR_SET(index_var_, actor_index_, field_, value_) \
+{ \
+    index_var_ = (actor_index_); \
+    if (gActors && gActors) { \
+    } \
+    gActors[index_var_].field_ = (value_); \
+}
+
+#define ACTOR_FIXEDADDRESS_INDEX_VAR_OR(index_var_, actor_index_, field_, value_) \
+{ \
+    index_var_ = (actor_index_); \
+    if (gActors && gActors) { \
+    } \
+    gActors[index_var_].field_ |= (value_); \
+}
+
 extern ActorFunc D_80192000[]; // "overlay 0" dispatch table.
 extern ActorFunc D_8019B000[]; // "overlay 1" dispatch table.
 extern ActorFunc D_801A6800[]; // "overlay 2" dispatch table.
 extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
-
 
 #define PLAYER_INDEX 0
 
@@ -329,15 +387,15 @@ extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 
 // a common macro for initializing actors.
 // can cause mismatches.
-#define ACTOR_INIT(index, type)\
- gActors[index].actorType = type;\
- Actor_Initialize(index)
+#define ACTOR_INIT(index, type) \
+    gActors[index].actorType = type; \
+    Actor_Initialize(index)
 
 // a common macro for initializing graphic lists
 // can cause mismatches.
-#define ACTOR_GFX_INIT(index, graphicsP)\
- gActors[index].graphicList = (s16*)graphicsP;\
- gActors[index].graphicTimer = 1
+#define ACTOR_GFX_INIT(index, graphicsP) \
+    gActors[index].graphicList = (s16*)graphicsP; \
+    gActors[index].graphicTimer = 1
 
 
 #endif

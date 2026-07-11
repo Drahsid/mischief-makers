@@ -146,8 +146,8 @@ void func_8008D320(u16 actor_index) {
 }
 
 void func_8008D39C(u16 actor_index) {
-    gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, 0x1000);
-    gActors[actor_index].unk_188 = Math_ApproachS32(gActors[actor_index].unk_188, 0xFFF98000, 0x3800);
+    gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, FIXED_UNIT(0.0625));
+    gActors[actor_index].unk_188 = Math_ApproachS32(gActors[actor_index].unk_188, FIXED_UNIT(-6.5), FIXED_UNIT(0.21875));
 }
 
 s32 func_8008D418(u16 actor_index) {

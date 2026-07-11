@@ -1472,7 +1472,8 @@ void func_801B9CA0_7D4490(void) {
         case 0x102:
             func_80043D6C(D_801BC770_7D6F60);
             func_80043D04(D_801BC770_7D6F60);
-            if (D_800F7510 == 0) {
+            // required to produce fixed address within gActors
+            if ((gActors + 0x50)->flags == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
                 SpawnAreaClear(0);
@@ -1669,7 +1670,8 @@ void func_801BA290_7D4A80(void) {
             break;
 
         case 0x102:
-            if (D_800F7510 == 0) {
+            // required to produce fixed address within gActors
+            if ((gActors + 0x50)->flags == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
                 SpawnAreaClear(0);
@@ -1739,7 +1741,7 @@ void func_801BA690_7D4E80(void) {
 
         case 0x102:
             func_80045FA4(D_801BD6A4_7D7E94, D_801BDCA8_7D8498);
-            gFestivalData.currentEvent = FESTGAME_INTRO;
+            gFestivalData_currentEvent = FESTGAME_INTRO;
             Actor_LoadSpawnTable(D_801BDCAC_7D849C);
             gStageState++;
             D_800BE544 = 0x8000;
@@ -1799,7 +1801,7 @@ void func_801BAA0C_7D51FC(void) {
             else {
                 gStageState++;
                 func_80045FA4(D_801BDE8C_7D867C, 0);
-                gFestivalData.currentEvent = FESTGAME_DODGEBALL;
+                gFestivalData_currentEvent = FESTGAME_DODGEBALL;
                 Actor_LoadSpawnTable(D_801BDE9C_7D868C);
                 D_800BE5F4.unk_00_u32 = 7;
             }
@@ -1825,7 +1827,8 @@ void func_801BAA0C_7D51FC(void) {
         case 0x11:
             if (func_8004735C(0x12, 0) != 0) {
                 D_800BE5F4.unk_00_u32 = 5;
-                D_800F4268 = 0;
+                // required to produce fixed address within gActors
+                (gActors + 0x30)->var_0D8 = 0;
             }
             break;
 
@@ -1844,14 +1847,14 @@ void func_801BAA0C_7D51FC(void) {
         case 0x1000:
             gStageState++;
             func_80045FA4(D_801BDE8C_7D867C, 0);
-            gFestivalData.currentEvent = FESTGAME_DODGEBALL;
+            gFestivalData_currentEvent = FESTGAME_DODGEBALL;
             Actor_LoadSpawnTable(D_801BDE9C_7D868C);
-            D_800F4268 = 1;
+            (gActors + 0x30)->var_0D8 = 1; // required to produce fixed address within gActors
             D_800BE5F4.unk_00_u32 = 7;
-            ((s32*)&D_800F7510)[0x462] = 0;
-            ((s32*)&D_800F7510)[0x4C8] = 0;
-            ((s32*)&D_800F7510)[0x52E] = 0;
-            ((s32*)&D_800F7510)[0x594] = 0;
+            (gActors + 0x5B)->flags = 0; // required to produce fixed address within gActors
+            (gActors + 0x5C)->flags = 0; // required to produce fixed address within gActors
+            (gActors + 0x5D)->flags = 0; // required to produce fixed address within gActors
+            (gActors + 0x5E)->flags = 0; // required to produce fixed address within gActors
             break;
 
         case 0x1001:
@@ -1919,7 +1922,7 @@ void func_801BAC6C_7D545C(void) {
     gActors[0x96].posY.whole = gActors[0x90].posY.whole - 0x10;
     gActors[0x97].posY.whole = gActors[0x96].posY.whole;
     gActors[0x96].posZ.whole = gActors[0x90].posZ.whole - 1;
-    gActors[0x97].posZ.raw = gActors[0x96].posZ.raw + 0x8000;
+    gActors[0x97].posZ.raw = gActors[0x96].posZ.raw + FIXED_UNIT(0.5);
 
     gActors[0x90].colorA = 0x80;
     gActors[0x91].colorA = 0x80;
@@ -1990,12 +1993,14 @@ void func_801BAF14_7D5704(void) {
             }
 
         case 2:
-            if ((func_801B9B90_7D4380() != 0) || (D_800F43A8 == 0)) {
+            // required to produce fixed address within gActors
+            if ((func_801B9B90_7D4380() != 0) || ((gActors + 0x31)->flags == 0)) {
                 func_801B9C6C_7D445C(0x1001);
             }
 
             func_801BAC6C_7D545C();
-            if ((gScreenPosCurrentX.whole + D_800F43B0) >= 0x901) {
+            // required to produce fixed address within gActors
+            if ((gScreenPosCurrentX.whole + (gActors + 0x31)->posX.whole) >= 0x901) {
                 gStageState = 4;
             }
             break;
@@ -2007,12 +2012,14 @@ void func_801BAF14_7D5704(void) {
             }
 
         case 4:
-            if ((func_801B9B90_7D4380() != 0) || (D_800F43A8 == 0)) {
+            // required to produce fixed address within gActors
+            if ((func_801B9B90_7D4380() != 0) || ((gActors + 0x31)->flags == 0)) {
                 func_801B9C6C_7D445C(0x1003);
             }
 
             func_801BAC6C_7D545C();
-            if ((gScreenPosCurrentX.whole + D_800F43B0) >= 0xE81) {
+            // required to produce fixed address within gActors
+            if ((gScreenPosCurrentX.whole + (gActors + 0x31)->posX.whole) >= 0xE81) {
                 gStageState = 6;
             }
             break;
@@ -2024,7 +2031,8 @@ void func_801BAF14_7D5704(void) {
             }
 
         case 6:
-            if ((func_801B9B90_7D4380() != 0) || (D_800F43A8 == 0)) {
+            // required to produce fixed address within gActors
+            if ((func_801B9B90_7D4380() != 0) || (gActors + 0x31)->flags == 0) {
                 func_801B9C6C_7D445C(0x1005);
             }
 

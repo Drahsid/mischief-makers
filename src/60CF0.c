@@ -121,7 +121,7 @@ void func_800601FC(u16 actor_index) {
         sp4C[2] = gActors[actor_index].posZ.whole + 1;
         sp4C[3] = 0x1EE;
         sp4C[4] = (intptr_t)PALETTE_8022D568;
-        func_8005A068(actor_index, sp4C, Rand() * 0x40000, gActors[actor_index].var_110 * 1.5, 4);
+        func_8005A068(actor_index, sp4C, Rand() * FIXED_UNIT(4.0), gActors[actor_index].var_110 * 1.5, 4);
     }
 }
 
@@ -179,11 +179,11 @@ void func_8006098C(u16 actor_index) {
             }
         }
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, FIXED_UNIT(0.0), func_8005C6D0(gActors[actor_index].velocityX.raw / 10));
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-1.0), func_8005C6D0(gActors[actor_index].velocityY.raw / 10) + 0x200);
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-1.0), func_8005C6D0(gActors[actor_index].velocityY.raw / 10) + FIXED_UNIT(0.0078125));
         gActors[actor_index].scaleX += 0.002;
         gActors[actor_index].scaleY += 0.004;
         gActors[actor_index].var_158 = 0x14;
-        if ((func_8005C6D0(gActors[actor_index].velocityX.raw) + func_8005C6D0(gActors[actor_index].velocityY.raw)) >= 0x18001) {
+        if ((func_8005C6D0(gActors[actor_index].velocityX.raw) + func_8005C6D0(gActors[actor_index].velocityY.raw)) > FIXED_UNIT(1.5)) {
             gActors[actor_index].scaleX += 0.05;
             gActors[actor_index].scaleY += 0.025;
             gActors[actor_index].var_158 = 4;
@@ -213,7 +213,7 @@ void func_8006098C(u16 actor_index) {
             gActors[actor_1].scaleX = gActors[actor_1].scaleY = 0.2f;
             gActors[actor_1].var_110 = 0.005f;
             gActors[actor_1].unk_114 = 0.01f;
-            gActors[actor_1].var_15C = -0x200;
+            gActors[actor_1].var_15C = FIXED_UNIT(-0.0078125);
         }
     }
 }

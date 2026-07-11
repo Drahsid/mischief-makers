@@ -73,6 +73,7 @@ extern s32 func_8005DF5C(s32 arg0);
 extern void func_80060F88(u16 actor_index);
 extern void func_80066BCC(u16 actor_index);
 extern void func_80067EF0(u16);
+extern void func_8006CB88(u16);
 extern void func_8006CC70(u16);
 extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
@@ -175,7 +176,7 @@ extern void func_8005E09C(s32 arg0, s32 arg1);
 extern void func_80067E9C(u16 actor_index);
 extern void func_8007325C(u16 actor_index);
 extern s32 func_80073320(u16 actor_index); // return could be u16
-extern void func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern Actor* func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 
 // warning: has 7th arg - is used in func, but isn't loaded in many calls.
@@ -213,7 +214,7 @@ extern void Palette_AdjustScenePalettes(
     s16 blue_offset_1, s16 green_offset_1, s16 red_offset_1,
     s16 blue_offset_2, s16 green_offset_2, s16 red_offset_2
 );
-extern void Actor_LoadSpawnTable(void* spawn_table);
+extern void Actor_LoadSpawnTable(u16* spawn_table);
 extern void func_80043D30(void* spawn);
 extern void func_80045FA4(void* arg0, u16* arg1);
 extern void func_80046148(void* arg0, u16* arg1);

@@ -37,9 +37,9 @@ u16 func_800592A0(u16 actor_index, s32* arg1) {
     gActors[free_actor].graphicFlags |= gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5);
     gActors[free_actor].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19;
     gActors[free_actor].colorA = 0xFE;
-    gActors[free_actor].posX.raw = arg1[0] << 0x10;
-    gActors[free_actor].posY.raw = arg1[1] << 0x10;
-    gActors[free_actor].posZ.raw = arg1[2] << 0x10;
+    gActors[free_actor].posX.raw = TO_FIXED(arg1[0]);
+    gActors[free_actor].posY.raw = TO_FIXED(arg1[1]);
+    gActors[free_actor].posZ.raw = TO_FIXED(arg1[2]);
     gActors[free_actor].unk_130 = -1.0f;
     return free_actor;
 }
@@ -64,7 +64,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].unk_148 = 0.0f;
     if (!(D_801373E0.unk_7C & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
-        gActors[actor_1].var_160 = 0x01000000;
+        gActors[actor_1].var_160 = FIXED_UNIT(256.0);
     }
     sp4C[0] += 0x10;
     actor_1 = func_800592A0(actor_index, sp4C);
@@ -100,7 +100,7 @@ void func_800593DC(u16 actor_index) {
         gActors[actor_1].unk_148 = 0.0f;
         gActors[actor_1].scaleX = 0.75f;
         gActors[actor_1].scaleY = 0.75f;
-        gActors[actor_1].var_160 = 0x03000000;
+        gActors[actor_1].var_160 = FIXED_UNIT(768.0);
         sp4C[1] += 8;
         sp4C[2] -= 1;
     }
@@ -166,12 +166,12 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
         gActors[actor_1].var_110 = -gActors[actor_1].scaleX / 30.0;
         gActors[actor_1].unk_114 = -gActors[actor_1].scaleY / 30.0;
         gActors[actor_1].var_154 = -0xF;
-        gActors[actor_1].var_160 = Rand() << 0x12;
+        gActors[actor_1].var_160 = Rand() * FIXED_UNIT(4.0);
         if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
-            gActors[actor_1].var_150 = -0x100000;
+            gActors[actor_1].var_150 = FIXED_UNIT(-16.0);
         }
         else {
-            gActors[actor_1].var_150 = 0x100000;
+            gActors[actor_1].var_150 = FIXED_UNIT(16.0);
         }
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
@@ -220,10 +220,10 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     gActors[actor_1].unk_114 = -gActors[actor_1].scaleY / 30.0f;
     gActors[actor_1].var_110 = -gActors[actor_1].scaleX / 30.0f;
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
-        gActors[actor_1].var_150 = 0x220000;
+        gActors[actor_1].var_150 = FIXED_UNIT(34.0);
     }
     else {
-        gActors[actor_1].var_150 = -0x220000;
+        gActors[actor_1].var_150 = FIXED_UNIT(-34.0);
     }
     gActors[actor_1].palette_18C = PALETTE_8022D568;
     return actor_1;
@@ -253,10 +253,10 @@ u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale) {
     gActors[actor_1].unk_114 = (scale / 30.0f) / 2;
     gActors[actor_1].var_110 = (scale / 30.0f) / 2;
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
-        gActors[actor_1].var_150 = 0x220000;
+        gActors[actor_1].var_150 = FIXED_UNIT(34.0);
     }
     else {
-        gActors[actor_1].var_150 = -0x220000;
+        gActors[actor_1].var_150 = FIXED_UNIT(-34.0);
     }
     if (arg1[4] == 0) {
         gActors[actor_1].graphicFlags &= ~ACTOR_GFLAG_PALETTE;
@@ -351,7 +351,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
     gActors[actor_1].unk_148 = 20.0f;
     gActors[actor_1].var_154 = -0xA;
-    gActors[actor_1].var_150 = 0x100000;
+    gActors[actor_1].var_150 = FIXED_UNIT(16.0);
     gActors[actor_1].scaleY = scale * 1.0;
     gActors[actor_1].scaleX = scale * 1.0;
     gActors[actor_1].unk_114 = -0.05f;
@@ -398,16 +398,17 @@ u16 func_8005A4B0(u16 actor_index, f32 scale) {
         return actor_1;
     }
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
-    gActors[actor_1].velocityX.raw = 65536.0f * scale;
+    // FIXED_UNIT-first multiplication is required for matching.
+    gActors[actor_1].velocityX.raw = (f32)FIXED_UNIT(1.0) * scale;
     gActors[actor_1].var_158 = -gActors[actor_1].velocityX.raw / 20;
-    gActors[actor_1].var_15C = 1024.0f * scale;
+    gActors[actor_1].var_15C = (f32)FIXED_UNIT(0.015625) * scale;
     actor_1 = func_80059F30(actor_index, sp2C, (f64)scale, 0x14);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].flags |= ACTOR_FLAG_FLIPPED;
-    gActors[actor_1].velocityX.raw = -65536.0f * scale;
-    gActors[actor_1].var_15C = 1024.0f * scale;
+    gActors[actor_1].velocityX.raw = (f32)FIXED_UNIT(-1.0) * scale;
+    gActors[actor_1].var_15C = (f32)FIXED_UNIT(0.015625) * scale;
     gActors[actor_1].var_158 = -gActors[actor_1].velocityX.raw / 20;
     return actor_1;
 }
@@ -510,7 +511,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
         gActors[actor_index].unk_18C = (s32)D_800D84C8; // palette_18C doesn't match instruction ordering
         temp_f20 = arg0->unk20 / (((Rand() % arg0->unk0) * 16) + 32);
         gActors[actor_index].scaleX = temp_f20;
-        temp_v1_2 = (Rand() << 0x10) + arg0->unk1C - 0x800000;
+        temp_v1_2 = TO_FIXED(Rand()) + arg0->unk1C - FIXED_UNIT(128.0);
         gActors[actor_index].var_160 = temp_v1_2;
         temp_f4 = (16 * temp_f20);
         angle = FROM_FIXED(temp_v1_2);
@@ -540,22 +541,22 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     sp54[2] = gActors[actor_index].posZ.whole - 1;
     sp54[4] = (intptr_t)PALETTE_8022D528;
     var_t2 = 0;
-    var_s0 = 0x01000000;
+    var_s0 = FIXED_UNIT(256.0);
     var_v0 = 0;
     switch (arg1) {
     case 0:
         var_v1 = -10;
-        var_v0 = 0x400000;
+        var_v0 = FIXED_UNIT(64.0);
         break;
     case 8:
         var_v1 = -10;
-        var_s0 = -0x1000000;
-        var_v0 = -0x400000;
+        var_s0 = FIXED_UNIT(-256.0);
+        var_v0 = FIXED_UNIT(-64.0);
         break;
     default:
         var_v1 = -12;
         var_t2 = 4;
-        var_v0 = 0x01000000;
+        var_v0 = FIXED_UNIT(256.0);
         break;
     }
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
@@ -827,7 +828,7 @@ void func_8005BA38(u16 actor_index) {
             gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
             gActors[actor_1].colorA = 0xC0;
-            gActors[actor_1].var_150 = 0xC0000;
+            gActors[actor_1].var_150 = FIXED_UNIT(12.0);
             gActors[actor_1].scaleX = gActors[actor_1].scaleY = 0.5f;
             gActors[actor_1].var_110 = gActors[actor_1].unk_114 = 0.05f;
             gActors[actor_1].unk_118 = gActors[actor_1].unk_11C = -0.005f;
@@ -848,7 +849,7 @@ void func_8005BBC0(u16 actor_index) {
     sp1C.unk8[2] = gActors[actor_index].posZ.whole + 1;
     sp1C.unk18 = 0x1EE;
     sp1C.unk20 = gActors[actor_index].hitboxBY0 + func_8005C708(9);
-    sp1C.unk1C = func_8005C708(0) << 0x12;
+    sp1C.unk1C = func_8005C708(0) * FIXED_UNIT(4.0);
     sp1C.blue = Rand();
     if (sp1C.blue < 0x80) {
         sp1C.blue += 0x80;
@@ -873,7 +874,7 @@ void func_8005BCF8(u16 actor_index) {
         gActors[actor_1].var_154 = 4;
         gActors[actor_1].unk_164 = -4;
         gActors[actor_1].unk_148 = 8.0f;
-        gActors[actor_1].var_160 = Rand() << 0x12;        // 1/128
+        gActors[actor_1].var_160 = Rand() * FIXED_UNIT(4.0); // 1/128
         gActors[actor_1].scaleX = ((f32) func_8005C708(0) * 0.0078125 * 0.3) + 0.5;
         gActors[actor_1].scaleY = ((f32) func_8005C708(0) * 0.0078125 * 0.1) + 0.2;
         gActors[actor_1].var_110 =  (f32) func_8005C708(0) * 0.0078125;

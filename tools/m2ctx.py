@@ -18,7 +18,7 @@ CPP_FLAGS = [
     "-Iultralib/include/PR",
     "-D_LANGUAGE_C",
     "-D_FINALROM",
-    "-DF3DEX_GBI",
+    "-DF3D_GBI",
     "-DGAME_VERSION=US1",
     "-DBUILD_VERSION=VERSION_H",
     "-D_MIPS_SZLONG=32",
