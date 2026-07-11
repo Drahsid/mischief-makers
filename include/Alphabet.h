@@ -377,9 +377,9 @@
 #define ALPHA_GAMMA        0x00D0 // γ
 #define ALPHA_APOSTROPHE_S 0x00D1 // 's
 #define ALPHA_E_ACCENT     0x00D2 // é
-#define APLHA_THIN_10      0X00D3 // 10
-#define APLHA_THIN_11      0X00D4 // 11
-#define APLHA_THIN_12      0X00D3 // 12
+#define ALPHA_THIN_10      0X00D3 // 10
+#define ALPHA_THIN_11      0X00D4 // 11
+#define ALPHA_THIN_12      0X00D5 // 12
 
 // a third English Alphabet, used for titles and names
 // implements kerning in english version.

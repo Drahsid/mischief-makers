@@ -238,7 +238,7 @@ void GameState_Loading(void) {
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
-    D_801781F0 = D_80171B10;
+    D_801781F0 = gYellowGemBitfield;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameStateSubState = 0;
 }

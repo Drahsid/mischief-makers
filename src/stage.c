@@ -37,11 +37,9 @@ u16 D_80178166;
 u32 D_80178168;
 u32 D_8017816C; // unused (file break?)
 u8 gDebugStageSelectSelectedOptions[DEBUG_STAGE_SELECT_ROW_COUNT];
+u16 D_80178186;
 u8 gDebugStageSelectOptionBaseOffsets[24];
 u8 gDebugMenuCursorFlash[DEBUG_STAGE_SELECT_ROW_COUNT];
-
-
-extern u8 D_801781A1;
 
 extern u8 D_801376A9;
 extern u8 D_801376AD;
@@ -134,7 +132,7 @@ u16 gStageTimesToBeat[] = {
     1320,  // Wormin' Up
     2580,  // Crisis Nepton
     1740,  // Western World
-    740,   // Volcano
+    720,   // Volcano
     2160,  // Sea of Lava
     1560,  // Vertigo
     660,   // Sink or Float
@@ -254,14 +252,14 @@ u16 gNameWorld1[] = {
 u16 gNameWorld2[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_N, ALPHA_APOSTROPHE_S,
     ALPHA_SPACE,
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_NULL
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
 // "Mt. Snow"
 u16 gNameWorld3[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_T, ALPHA_PERIOD, 
     ALPHA_SPACE, 
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_O, ALPHA_EN2_LOWER_W,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_W,
     ALPHA_NULL
 };
 
@@ -305,7 +303,7 @@ u16 gNameStage1_3[] = {
 
 // "Spike Land"
 u16 gNameStage1_4[] = {
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_I, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D,
     ALPHA_NULL
@@ -314,12 +312,12 @@ u16 gNameStage1_4[] = {
 // "3 Clancer Kids"
 u16 gNameStage1_5[] = {
     ALPHA_THIN_3, ALPHA_SPACE, ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E,
-    ALPHA_EN3_LOWER_R, ALPHA_SPACE, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_S, ALPHA_NULL
+    ALPHA_EN3_LOWER_R, ALPHA_SPACE, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
 // "Blockman Rises"
 u16 gNameStage1_6[] = {
-    ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N,
+    ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N,
     ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
@@ -359,7 +357,7 @@ u16 gNameStage2_2[] = {
 
 // "Sink or Float!"
 u16 gNameStage2_3[] = {
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_UPPER_K, ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_K, ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_SPACE,
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_T, ALPHA_EXCLAMATION, ALPHA_NULL
 };
 
@@ -374,14 +372,14 @@ u16 gNameStage2_5[] = {
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_W, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G, ALPHA_EXCLAMATION, ALPHA_NULL
 };
 
-// "Flambéé"
+// "Flambéé!"
 u16 gNameStage2_6[] = {
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_B, ALPHA_E_ACCENT, ALPHA_E_ACCENT, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
 // "Tightrope Ride"
 u16 gNameStage2_7[] = {
-    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_P,
+    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_P,
     ALPHA_EN3_LOWER_E, ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
@@ -398,7 +396,7 @@ u16 gNameStage2_9[] = {
 
 // "Seasick Climb"
 u16 gNameStage2_10[] = {
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_K, ALPHA_SPACE,
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_B, ALPHA_NULL,
 };
 
@@ -413,7 +411,7 @@ u16 gNameStage2_11[] = {
 // "Clanpot Shake"
 u16 gNameStage3_1[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_T, ALPHA_SPACE,
-    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_A, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E, ALPHA_NULL,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_E, ALPHA_NULL,
 };
 
 // "Clance War"
@@ -442,8 +440,9 @@ u16 gNameStage3_5[] = {
 
 // "Chilly Dog!!"
 u16 gNameStage3_6[] = {
-    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_Y, ALPHA_SPACE, ALPHA_EN3_UPPER_A,
-    ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_G, ALPHA_EXCLAMATION2, ALPHA_NULL,
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_Y,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_G, ALPHA_EXCLAMATION2, ALPHA_NULL,
 };
 
 // "Snowstorm Maze"
@@ -459,32 +458,38 @@ u16 gNameStage3_8[] = {
 
 // "The Day Before"
 u16 gNameStage3_9[] = {
-    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_SPACE, ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_Y, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_E,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_Y, ALPHA_SPACE,
     ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_F, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
 // "The Day Of"
 u16 gNameStage3_10[] = {
-    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_SPACE, ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_Y, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_E,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_Y, ALPHA_SPACE,
     ALPHA_EN3_UPPER_O, ALPHA_EN3_LOWER_F, ALPHA_NULL
 };
 
 // "Car-astrophe"
 u16 gNameStage3_11[] = {
-    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_T, ALPHA_MINUS, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R,
-    ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION2, ALPHA_NULL,
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_T,
+    ALPHA_MINUS,
+    ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R,
+    ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION2, ALPHA_NULL,
 };
 
 // "CERBERUS α"
 u16 gNameStage3_12[] = {
-    ALPHA_EN3_UPPER_C, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_B, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_U, ALPHA_EN3_UPPER_S,
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_B, ALPHA_EN3_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_U, ALPHA_EN3_UPPER_S,
     ALPHA_SPACE, ALPHA_APLHA, ALPHA_NULL
 };
 
 // "Rolling Rock!!"
 u16 gNameStage4_1[] = {
     ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G, ALPHA_SPACE,
-    ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_EXCLAMATION2, ALPHA_NULL,
+    ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_K, ALPHA_EXCLAMATION2, ALPHA_NULL,
 };
 
 // "Toadly Raw!!"
@@ -527,7 +532,7 @@ u16 gNameStage4_7[] = {
 u16 gNameStage4_8[] = {
     ALPHA_EN3_UPPER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_APOSTROPHE_S,
     ALPHA_SPACE,
-    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Y, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
+    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Y, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
 };
 
 // "Moley Cow!!"
@@ -561,18 +566,18 @@ u16 gNameStage5_1[] = {
 // "Counterattack"
 u16 gNameStage5_2[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_NULL,
+    ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_K, ALPHA_NULL,
 };
 
 // "Bee's the One!"
 u16 gNameStage5_3[] = {
-    ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_APOSTROPHE_S, ALPHA_SPACE, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_APOSTROPHE_S, ALPHA_SPACE, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
 };
 
 // "MERCO!!"
 u16 gNameStage5_4[] = {
-    ALPHA_EN3_UPPER_M, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_C, ALPHA_EN3_UPPER_O, ALPHA_EXCLAMATION2, ALPHA_NULL
+    ALPHA_EN3_UPPER_M, ALPHA_EN3_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_C, ALPHA_EN3_UPPER_O, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
 // "Trapped!?"
@@ -582,7 +587,7 @@ u16 gNameStage5_5[] = {
 
 // "PHOENIX γ"
 u16 gNameStage5_6[] = {
-    ALPHA_EN3_UPPER_P, ALPHA_EN3_UPPER_H, ALPHA_EN3_UPPER_O, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_N, ALPHA_EN3_UPPER_I, ALPHA_EN3_UPPER_X,
+    ALPHA_EN3_UPPER_P, ALPHA_EN3_UPPER_H, ALPHA_EN3_UPPER_O, ALPHA_EN3_UPPER_E, ALPHA_EN3_UPPER_N, ALPHA_EN3_UPPER_I, ALPHA_EN3_UPPER_X,
     ALPHA_SPACE, ALPHA_GAMMA, ALPHA_NULL
 };
 
@@ -600,7 +605,7 @@ u16 gNameStage5_8[] = {
 
 // "Ending"
 u16 gNameStage5_9[] = {
-    ALPHA_EN2_UPPER_E, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G,ALPHA_NULL
+    ALPHA_EN3_UPPER_E, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G,ALPHA_NULL
 };
 
 // "Credits"
@@ -883,11 +888,11 @@ u16 gSoudTestIndices[] = {
     SFX_009C, SFX_00A0, SFX_012D, SFX_012E, SFX_012F, 0
 };
 
-char D_800C94CC[] = "BGM";
-char D_800C94D0[] = "S.E.";
+char gSoundTestStrBGM[] = "BGM";
+char gSoundTestStrSE[] = "S.E.";
 
 // positions of Sound Test icons
-s32 D_800C94D8[] = {
+s32 gSoundTestCursorPos[] = {
     0x30, 0x20
 };
 // "   Current Time"
@@ -1102,12 +1107,12 @@ void GameState_Intro(void) {
         palette[1] = palette[2] = 1;
         Text_InitActorGraphic(actor_index_30, 0x2000, 0, 4, 0);
         gActors[actor_index_30].graphicFlags |= ACTOR_GFLAG_PALETTE;
-        gActors[actor_index_30].flags |= ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28;
+        gActors[actor_index_30].flags |= (ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28);
         gActors[actor_index_30].hitboxBX0 = 0x80;
         gActors[actor_index_30].hitboxBX1 = 1;
         gActors[actor_index_30].hitboxBY0 = 0x10;
         gActors[actor_index_30].hitboxBY1 = 8;
-        gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_803524C8;
+        gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_8034E4C8;
         gActors[actor_index_30].unk_180 = (intptr_t) gIntroPalette3;
         gActors[actor_index_30].var_154 = -0x1F;
         color = gActors[actor_index_30].var_154;
@@ -1141,7 +1146,7 @@ void GameState_Intro(void) {
                 gActors[actor_index_30].hitboxBX1 = 1;
                 gActors[actor_index_30].hitboxBY0 = 0x18;
                 gActors[actor_index_30].hitboxBY1 = 4;
-                gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_80342040;
+                gActors[actor_index_30].unk_17C = (intptr_t) PALETTE_80340240;
                 gActors[actor_index_30].unk_180 = (intptr_t) gIntroPalette1;
                 gActors[actor_index_30].var_154 = -0x1F;
                 color = gActors[actor_index_30].var_154;
@@ -1178,18 +1183,18 @@ void GameState_Intro(void) {
                 gActors[actor_index_31].hitboxBX1 = 1;
                 gActors[actor_index_31].hitboxBY0 = 0x18;
                 gActors[actor_index_31].hitboxBY1 = 4;
-                gActors[actor_index_31].unk_17C = (intptr_t)PALETTE_803524C8;
+                gActors[actor_index_31].unk_17C = (intptr_t)PALETTE_80342068;
                 gActors[actor_index_31].unk_180 = (intptr_t) gIntroPalette2;
                 gActors[actor_index_31].var_154 = -0x1F;
                 color = gActors[actor_index_31].var_154;
-                Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
+                Palette_AdjustRgb5551Array(PALETTE_80343B68, gIntroPalette2, 0x5F, color, color, color);
                 gGameStateSubState += 1;
             }
         }
         break;
     case 13:
         color = gActors[actor_index_31].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_80343B68, gIntroPalette2, 0x5F, color, color, color);
         if (gFramesInScene & 1) {
             if (gActors[actor_index_31].var_154++ == 0) {
                 gGameStateSubState++;
@@ -1204,7 +1209,7 @@ void GameState_Intro(void) {
         break;
     case 15:
         color = gActors[actor_index_31].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_80343B68, gIntroPalette2, 0x5F, color, color, color);
         if (gFramesInScene & 1) {
             if ((gActors[actor_index_31].var_154-- + 0x1F) == 0) {
                 gActors[actor_index_31].flags = 0;
@@ -1512,11 +1517,11 @@ void GameState_DebugSoundTest(void) {
         }
         switch (CURSOR_INDEX_A) {
         case 0:
-            if ((Input_CheckButtonRepeat(gButton_DLeft, &gActors[8].colorB)) && (SOUND_TEST_BGM_INDEX > 0)) {
+            if ((Input_CheckButtonRepeat(gButton_DLeft, &gActors[8].colorB) != 0) && (SOUND_TEST_BGM_INDEX > 0)) {
                 SOUND_TEST_BGM_INDEX -= 1;
                 Sound_StopMusic();
             }
-            if ((Input_CheckButtonRepeat(gButton_DRight, &gActors[9].colorB)) && (SOUND_TEST_BGM_INDEX < 0x20)) {
+            if ((Input_CheckButtonRepeat(gButton_DRight, &gActors[9].colorB) != 0) && (SOUND_TEST_BGM_INDEX < 0x20)) {
                 SOUND_TEST_BGM_INDEX += 1;
                 Sound_StopMusic();
             }
@@ -1547,12 +1552,13 @@ void GameState_DebugSoundTest(void) {
         DebugMenu_UpdateCursorFlash();
         ActorUpdate_3DIcon(0x30);
         ActorUpdate_3DIcon(0x31);
-        gActors[0x30].posY.whole = gActors[0x31].posY.whole = D_800C94D8[CURSOR_INDEX_A];
+        gActors[0x30].posY.whole = gActors[0x31].posY.whole = gSoundTestCursorPos[CURSOR_INDEX_A];
         palette = Text_SetColor(4, 0x1F, 0x1F - (gDebugMenuCursorFlash[0] / 4), (0x1F - (gDebugMenuCursorFlash[0] / 4)));
-        Text_PrintASCII(actor_index + 0x1A, D_800C94CC, 0xFFD8, 0x30, 0, palette);
+        Text_PrintASCII(actor_index + 0x1A, gSoundTestStrBGM, 0xFFD8, 0x30, 0, palette);
         Text_Print2Digits(actor_index + 0x1D, (SOUND_TEST_BGM_INDEX + 1), 0x20, 0x30, 0, palette);
-        palette = Text_SetColor(5, 0x1F, 0x1F - (D_801781A1 / 4), 0x1F - (D_801781A1 / 4));
-        Text_PrintASCII(actor_index + 0x1F, D_800C94D0, 0xFFD8, 0x20, 0, palette);
+        palette = Text_SetColor(5, 0x1F, 0x1F - (gDebugMenuCursorFlash[1] / 4),
+                        0x1F - (gDebugMenuCursorFlash[1] / 4));
+        Text_PrintASCII(actor_index + 0x1F, gSoundTestStrSE, 0xFFD8, 0x20, 0, palette);
         Text_Print3Digits(actor_index + 0x23, SOUND_TEST_SFX_INDEX + 1, 0x18, 0x20, 0, palette);
         gActors[actor_index + 0x26].flags = 0;
         if (gButtonPress & gButton_Start) {
@@ -1673,7 +1679,7 @@ void GameState_DebugStageSelect(void) {
         case 1:
             DebugMenu_UpdateCursorFlash();
 
-            if (Input_CheckButtonRepeat(gButton_DUp, &CURSOR_INDEX_A) != 0) {
+            if (Input_CheckButtonRepeat(gButton_DUp, &STAGE_SELECT_UP_REPEAT) != 0) {
                 CURSOR_INDEX_A--;
                 if (CURSOR_INDEX_A == 0xFF) {
                     CURSOR_INDEX_A = DEBUG_STAGE_SELECT_ROW_COUNT - 1;
@@ -1681,7 +1687,7 @@ void GameState_DebugStageSelect(void) {
                 Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
-            if (Input_CheckButtonRepeat(gButton_DDown, &CURSOR_INDEX_A) != 0) {
+            if (Input_CheckButtonRepeat(gButton_DDown, &STAGE_SELECT_DOWN_REPEAT) != 0) {
                 CURSOR_INDEX_A++;
                 if (CURSOR_INDEX_A == DEBUG_STAGE_SELECT_ROW_COUNT) {
                     CURSOR_INDEX_A = 0;
@@ -1689,7 +1695,7 @@ void GameState_DebugStageSelect(void) {
                 Sound_PlaySfx2(SFX_MENU_BLIP);
             }
 
-            if (Input_CheckButtonRepeat(gButton_DLeft, &CURSOR_INDEX_A) != 0) {
+            if (Input_CheckButtonRepeat(gButton_DLeft, &STAGE_SELECT_LEFT_REPEAT) != 0) {
                 selected_entry = &gDebugStageSelectSelectedOptions[CURSOR_INDEX_A];
                 selected_value = *selected_entry;
                 if (selected_value > 0) {
@@ -1698,7 +1704,7 @@ void GameState_DebugStageSelect(void) {
                 }
             }
 
-            if (Input_CheckButtonRepeat(gButton_DRight, &CURSOR_INDEX_A) != 0) {
+            if (Input_CheckButtonRepeat(gButton_DRight, &STAGE_SELECT_RIGHT_REPEAT) != 0) {
                 selected_entry = &gDebugStageSelectSelectedOptions[CURSOR_INDEX_A];
                 selected_value = *selected_entry;
                 if (selected_value <
@@ -1993,7 +1999,7 @@ void WorldMap_PrintStageLabels(void) {
         }
         else {
             count = D_80178158;
-            if ((gStageUnlocked) && (gWorldProgress != STAGE_ENDING)) {
+            if ((gStageUnlocked) && (gWorldProgress != STAGE_INNERSTRUGGLE)) {
                 if (gSelectedStage == 0) {
                     count = 0;
                 }
@@ -2012,11 +2018,11 @@ void WorldMap_PrintStageLabels(void) {
 
     for (index = 0; index < count; index++) {
         stage = D_80178154 + index;
-        if (stage >= STAGE_FINALBATTLE) {
+        if (stage >= STAGE_DEMO_FINAL) {
             stage++;
         }
         // print gem icon if applicable
-        if (YellowGem_GetFlag(stage)) {
+        if (YellowGem_GetFlag(stage) != 0) {
             y_offset = (((index % 2) * 0x36) - 0x1B);
             Text_InitActorGList(index + 0x9C, gGraphicListGemIcon, gStageIconPosX[index] + 6, gStageIconPosY[index] - y_offset, 0);
             gActors[index + 0x9C].scaleY = 0.75f;

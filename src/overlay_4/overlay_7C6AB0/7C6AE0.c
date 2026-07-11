@@ -2113,7 +2113,7 @@ void func_801BAB34_7C7D14(void) {
 
             if (D_800D28F8 < 0) {
                 gStageState++;
-                Sound_PlaySfx(SFX_00B7);
+                Sound_PlaySfx(SFX_MARINA_STOP);
                 func_8005DF5C(5);
 
                 // FAKEMATCH

@@ -1,7 +1,7 @@
 #include "common.h"
 #include "stage.h"
 
-extern s16 D_800C7D10;
+extern s16 D_800C7D10[];
 extern char D_800C7D1C[];
 extern char D_800C7D24[];
 extern u16 D_800C7D54[];
@@ -190,14 +190,14 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.posY.whole = 20;
             gPlayerActor.posZ.whole = 0x403;
             gPlayerActor.colorA = 0;
-            Text_InitActorGList(0x30, &D_800C7D10, 0xFF88, 0x50, 0x403);
+            Text_InitActorGList(0x30, D_800C7D10, 0xFF88, 0x50, 0x403);
             Text_InitActorGList(0x32, D_800E13FC, 0xFF80, 0xFFED, 0x403);
-            Text_PrintStringRGBScale(0x33, &D_800C7D54, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
-            Text_InitActorGList(0x30, &D_800C7D10, 0xFF88, 0x50, 0x403);
+            Text_PrintStringRGBScale(0x33, D_800C7D54, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_InitActorGList(0x30, D_800C7D10, 0xFF88, 0x50, 0x403);
             Text_InitActorGraphic(0x41, 0, 0x1C, 0xFFD8, 0x403);
             gActors[0x41].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
             D_80178142 = -0x1F;
-            Palette_AdjustRgb5551Array(&D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
+            Palette_AdjustRgb5551Array(D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
             func_80083454();
             func_800836A0(1, 0, D_800C7EB8, 1);
             func_800836A0(3, 0, D_800C7EC0, 0);
@@ -249,7 +249,7 @@ void GameState_ContinueScreen(void) {
                         D_80178142 = 0;
                     }
                 }
-                Palette_AdjustRgb5551Array(&D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
+                Palette_AdjustRgb5551Array(D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
                 for (actor_index = 0x30; actor_index < 0x62; actor_index++) {
                     if (gActors[actor_index].colorA < 0xFC) {
                         gActors[actor_index].colorA += 4;
@@ -356,7 +356,7 @@ void GameState_ContinueScreen(void) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
     
             actor_index = 0x31;
-            Text_InitActorGList(actor_index, &D_800C7D10, 0, 0x100, 0x403);
+            Text_InitActorGList(actor_index, D_800C7D10, 0, 0x100, 0x403);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[actor_index].var_154 = 0x100;
             gActors[actor_index].var_158 = 0;
@@ -532,7 +532,7 @@ void GameState_ContinueScreen(void) {
         if (gContinueTimer == 0) {
             D_800D2938 = 0;
             gStageState = 0;
-            D_800D28F0 = gDebugStageSelectStageIds[gCurrentStage];
+            D_800D28F0 = gStageIds[gCurrentStage];
             D_800D28E4 = 0x61;
             gSkipStageIntro = 1;
             if (gContinueChoice == 1) {
@@ -552,7 +552,7 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.graphicFlags &= ~ACTOR_GFLAG_UNK11;
             gPlayerActor.colorA = 0xFF;
             gAudioFadeMode = 0;
-            if ((gCurrentScene > SCENE_DAYOF0) && (gCurrentScene <= SCENE_DAYOF2)) {
+            if ((gCurrentScene >= 15) && (gCurrentScene < 19)) {
                 D_800D28F0 = 0x1F;
                 gCurrentScene = SCENE_DAYOF0;
             }

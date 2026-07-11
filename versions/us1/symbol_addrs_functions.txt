@@ -338,9 +338,9 @@ WorldMap_Reset = 0x8001983C; // type:func
 WorldMap_PrintWorldName = 0x800198B4; // type:func
 WorldMap_PrintStageName = 0x800199DC; // type:func
 WorldMap_DrawSprites = 0x80019A80; // type:func
-WorldMap_PrintStageLabel - 0x80019FB4; // type:func
+WorldMap_PrintStageLabel = 0x80019FB4; // type:func
 WorldMap_PrintWarpedStageIcon = 0x8001A15C; // type:func
-WorldMap_PrintStageLabels - 0x8001A254; // type:func
+WorldMap_PrintStageLabels = 0x8001A254; // type:func
 
 WorldMap_GetStageRank = 0x8001A758; // type:func
 WorldMap_PrintRankLetter = 0x8001A7E0; // type:func
