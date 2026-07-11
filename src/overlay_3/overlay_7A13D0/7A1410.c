@@ -265,9 +265,9 @@ void func_801B090C_7A141C(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].state++;
-            gActors[actor_index].graphicFlags = 9;
+            gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].posZ.whole = -1;
-            gActors[actor_index].flags = 0x11427;
+            gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16;
             gActors[actor_index].unk_0DE = 1;
             gActors[actor_index].unk_0DF = 0x41;
             gActors[actor_index].hitboxBY0 = 0xE;\
@@ -301,7 +301,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= 0xFFDFF9FF;
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK21);
 }
 
 void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
@@ -317,8 +317,8 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
             arg1->unk_08 = 6;
             arg1->unk_0A = 0;
             arg1->unk_05 = 1;
-            gActors[actor_index].flags &= 0xFFFE7D7F;
-            gActors[actor_index].flags |= 0x20020;
+            gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK16);
+            gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK17;
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
 
@@ -337,7 +337,7 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
     }
     if ((arg1->unk_08 == 1) || (arg1->unk_08 == 2)) {
         count = 0;
-        position_x = gActors[actor_index].posX.whole - 0x10;
+        position_x = gActors[actor_index].posX.whole - 16;
         position_y = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
         for (index = 0; index < 3; index++) {
             tile_u8 = func_80012AB4(position_x, position_y);
@@ -345,7 +345,7 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
                 count++;
             }
 
-            position_x += 0x10;
+            position_x += 16;
         }
 
         if (count > 0) {
@@ -401,7 +401,7 @@ void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             state->unk_0A++;
             func_8002AA20(actor_index, 1);
             if (D_800E3584 & 0xC0000) {
-                gActors[actor_index].flags ^= 0x20;
+                gActors[actor_index].flags ^= ACTOR_FLAG_FLIPPED;
             }
             break;
 
@@ -445,7 +445,7 @@ void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         case 11:
             if (gActors[actor_index].graphicTimer == 0) {
                 state->unk_0A++;
-                gActors[actor_index].flags |= 0x20;
+                gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
                 gActors[actor_index].graphicList = D_801B5FEC_7A6AFC; \
                 gActors[actor_index].graphicTimer = 1;
             }
@@ -456,7 +456,7 @@ void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 state->unk_0A = 0x64;
                 gActors[actor_index].graphicList = D_801B5FBC_7A6ACC; \
                 gActors[actor_index].graphicTimer = 1;
-                func_801B3804_7A4314(actor_index, 0xC, -0x12, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
+                func_801B3804_7A4314(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
                 return;
             }
             break;
@@ -479,7 +479,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (gActors[actor_index].rotateZ == 0.0f) {
                 hit_count = 0;
                 index = 0;
-                position_x = gActors[actor_index].posX.whole - 0x10;
+                position_x = gActors[actor_index].posX.whole - 16;
                 position_y = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1 - 4;
 
                 for (index = 0; index < 3; index++) {
@@ -487,15 +487,15 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                         hit_count++;
                     }
 
-                    position_x += 0x10;
+                    position_x += 16;
                 }
 
                 if (hit_count == 0) {
                     state->unk_0A = 3;
                     state->unk_06 = 1;
-                    gActors[actor_index].flags |= 0x20000;
-                    gActors[actor_index].flags &= 0xFFFEFFFF; \
-                    gActors[actor_index].flags_098 &= ~0x20;
+                    gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
+                    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+                    gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
                 }
             }
         }
@@ -567,8 +567,8 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (gActors[actor_index].flags_098 & 0x20) {
                 gActors[actor_index].velocityY.raw = 0;
                 Sound_PlaySfxAtActor2(0xAC, actor_index);
-                gActors[actor_index].flags |= 0x10000;
-                (gActors[actor_index].flags &= 0xFFFDFFFF, gActors[actor_index].flags_098 &= ~0x40);
+                gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
+                (gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17, gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6);
                 state->unk_06 = 0;
                 state->unk_0A = 2;
             }
@@ -577,20 +577,20 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
 void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
-    Actor* actor = &gActors[actor_index]; // Required for matching
+    Actor* actor = &gActors[actor_index];
     s32 abs_velocity_x;
     u8 tile;
 
     if (actor->flags_098 & 0x20) {
-        actor->flags |= 0x10000; \
-        actor->flags &= 0xFFFDFFFF; \
-        actor->flags_098 &= ~0x40;
+        actor->flags |= ACTOR_FLAG_UNK16; \
+        actor->flags &= ~ACTOR_FLAG_UNK17; \
+        actor->flags_098 &= ~ACTOR_FLAG3_UNK6;
         actor->velocityY.raw = 0;
     }
     else {
-        actor->flags |= 0x20000;
-        actor->flags &= 0xFFFEFFFF;
-        actor->flags_098 &= ~0x20;
+        actor->flags |= ACTOR_FLAG_UNK17;
+        actor->flags &= ~ACTOR_FLAG_UNK16;
+        actor->flags_098 &= ~ACTOR_FLAG3_UNK5;
         actor->velocityY.raw -= FIXED_UNIT(0.25);
         if (actor->velocityY.raw <= FIXED_UNIT(-7.5)) {
             actor->velocityY.raw = FIXED_UNIT(-7.5);
@@ -602,7 +602,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             u16 child_actor_index = actor->parentIndex;
             if (((Overlay_7A13D0_Actor_State*)&gActors[child_actor_index].var_150)->unk_04 != 0) {
                 actor->unk_0FC.raw = 0;
-                actor->flags &= ~0x280;
+                actor->flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                 state->unk_0A = 0;
                 state->unk_08 = 3;
             }
@@ -619,7 +619,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 actor->hitboxAY1 = -0xB;
                 actor->hitboxAX0 = -0xB; \
                 actor->hitboxAX1 = 0xB;
-                actor->flags |= 0x280;
+                actor->flags |= ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9;
                 actor->unk_0F8.raw = FIXED_UNIT(2.0);
                 actor->unk_0FC.raw = FIXED_UNIT(7.0);
                 actor->unk_0DA = 1;
@@ -627,7 +627,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 actor->damage = 0x20;
             }
             else {
-                actor->flags &= ~0x280;
+                actor->flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                 actor->colorR = 0;
             }
         }
@@ -654,7 +654,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         case 1:
             if (actor->velocityX.raw != 0) {
                 if ((actor->velocityX.raw < 0) && (actor->flags_098 & 4)) {
-                    actor->flags &= ~0x280;
+                    actor->flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                     actor->velocityX.raw = -(actor->velocityX.raw >> 2);
                     state->unk_0A++;
                     break;
@@ -677,7 +677,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 if (abs_velocity_x >= FIXED_UNIT(1.0)) {
                     state->unk_2C--;
                     if (state->unk_2C <= 0) {
-                        func_801B3314_7A3E24(actor_index, 8, -0xC, 2, D_801B6040_7A6B50[Rand() & 7]);
+                        func_801B3314_7A3E24(actor_index, 8, -12, 2, D_801B6040_7A6B50[Rand() & 7]);
                         state->unk_2C = state->unk_2D;
                     }
                 }
@@ -687,7 +687,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         case 2:
             if (actor->velocityX.raw != 0) {
                 if ((actor->velocityX.raw > 0) && (actor->flags_098 & 8)) {
-                    actor->flags &= ~0x280;
+                    actor->flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                     actor->velocityX.raw = -(actor->velocityX.raw >> 2);
                     state->unk_0A--;
                     break;
@@ -711,7 +711,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 if (abs_velocity_x >= FIXED_UNIT(1.0)) {
                     state->unk_2C--;
                     if (state->unk_2C <= 0) {
-                        func_801B3314_7A3E24(actor_index, 8, -0xC, 2, D_801B6040_7A6B50[Rand() & 7]);
+                        func_801B3314_7A3E24(actor_index, 8, -12, 2, D_801B6040_7A6B50[Rand() & 7]);
                         state->unk_2C = state->unk_2D;
                     }
                 }
@@ -721,7 +721,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
 void func_801B1A10_7A2520(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
-    Actor* actor = &gActors[actor_index]; // Required for matching
+    Actor* actor = &gActors[actor_index];
     s32 unused;
 
     switch (state->unk_0A) {
@@ -730,9 +730,9 @@ void func_801B1A10_7A2520(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             actor->velocityX.raw = -(actor->velocityX.raw >> 1);
             actor->velocityY.raw = actor->unk_0FC.raw;
             state->unk_38 = 0;
-            actor->flags |= 0x20000;
-            actor->flags &= 0xFFFEFFFF;\
-            actor->flags_098 &= ~0x20;
+            actor->flags |= ACTOR_FLAG_UNK17;
+            actor->flags &= ~ACTOR_FLAG_UNK16;\
+            actor->flags_098 &= ~ACTOR_FLAG3_UNK5;
             break;
 
         case 1:
@@ -744,14 +744,14 @@ void func_801B1A10_7A2520(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (actor->velocityY.raw < 0) {
                 if (actor->flags_098 & 0x20) {
                     state->unk_3C++;
-                    func_801B36C0_7A41D0(actor_index, 0xC, -0x12, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
-                    func_801B36C0_7A41D0(actor_index, -0xC, -0x12, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
+                    func_801B36C0_7A41D0(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
+                    func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
                     if (state->unk_38 >= 3) {
                         state->unk_0A++;
                         Sound_PlaySfxAtActor2(0xAC, actor_index);
-                        actor->flags |= 0x10000;
-                        actor->flags &= 0xFFFDFFFF;\
-                        actor->flags_098 &= ~0x40;
+                        actor->flags |= ACTOR_FLAG_UNK16;
+                        actor->flags &= ~ACTOR_FLAG_UNK17;\
+                        actor->flags_098 &= ~ACTOR_FLAG3_UNK6;
                     }
                 }
             }
@@ -785,9 +785,9 @@ void func_801B1C30_7A2740(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
 void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     switch (state->unk_0A) {
         case 0:
-            gActors[actor_index].flags |= 0x20000;
-            gActors[actor_index].flags &= 0xFFFEFFFF; \
-            gActors[actor_index].flags_098 &= ~0x20;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+            gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
             gActors[actor_index].velocityY.raw = FIXED_UNIT(6.0);
             state->unk_38 = 0;
 
@@ -825,8 +825,8 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                     state->unk_08 = 4;
                     state->unk_0A = 0;
                     Sound_PlaySfxAtActor2(0xAC, actor_index);
-                    gActors[actor_index].flags &= 0xFFFDFD7F;
-                    gActors[actor_index].flags |= 0x10000;
+                    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK17);
+                    gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
                     state->unk_02 = 0;
                     gActors[actor_index].rotateZ = (f32)state->unk_02;
                 }
@@ -874,7 +874,7 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 gActors[actor_index].hitboxAX1 = 0xB; \
                 gActors[actor_index].hitboxAY1 = -0xB; \
                 gActors[actor_index].hitboxAX0 = -0xB;
-                gActors[actor_index].flags |= 0x80;
+                gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
                 gActors[actor_index].iFrames = 0xA;
                 state->unk_02 = 0xC;
             }
@@ -885,9 +885,9 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
 
             state->unk_05 = 0;
-            gActors[actor_index].flags |= 0x20000;
-            gActors[actor_index].flags &= 0xFFFEFFFF; \
-            gActors[actor_index].flags_098 &= ~0x20;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+            gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
             break;
 
         case 1:
@@ -897,8 +897,8 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
 
             if (gActors[actor_index].flags_098 & 0x20) {
-                func_801B36C0_7A41D0(actor_index, 0xC, -0x12, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
-                func_801B36C0_7A41D0(actor_index, -0xC, -0x12, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
+                func_801B36C0_7A41D0(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
+                func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
                 Sound_PlaySfxAtActor2(0xAC, actor_index);
                 if (state->unk_04 == 0) {
                     state->unk_08 = 1;
@@ -908,9 +908,9 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 }
 
                 state->unk_0A = 0;
-                gActors[actor_index].flags |= 0x10000;
-                gActors[actor_index].flags &= 0xFFFDFFFF; \
-                gActors[actor_index].flags_098 &= ~0x40;
+                gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
+                gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17; \
+                gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6;
                 gActors[actor_index].velocityY.raw = 0;
             }
             break;
@@ -932,7 +932,7 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             gActors[actor_index].unk_0DB = 4;
             gActors[actor_index].unk_0DA = 1;
             gActors[actor_index].damage = 0x20;
-            gActors[actor_index].flags |= 0x1000;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             break;
 
         case 1:
@@ -962,7 +962,7 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
             if (((gActors[actor_index].velocityX.raw != 0) && (gActors[actor_index].velocityX.raw < 0) && (gActors[actor_index].flags_098 & 4)) ||
                 ((gActors[actor_index].velocityX.raw > 0) && (gActors[actor_index].flags_098 & 8))) {
-                gActors[actor_index].flags &= ~0x280;
+                gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                 gActors[actor_index].velocityX.raw = -(gActors[actor_index].velocityX.raw >> 1);
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(1.0);
                 if (state->unk_3C == 0) {
@@ -973,7 +973,7 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
 
             if (gActors[actor_index].flags_098 & 1) {
-                gActors[actor_index].flags &= ~0x280;
+                gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                 gActors[actor_index].velocityX.raw = -(gActors[actor_index].velocityX.raw >> 1);
                 gActors[actor_index].velocityY.raw = -(gActors[actor_index].velocityY.raw >> 1);
                 if (state->unk_3C == 0) {
@@ -983,7 +983,7 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
 
             if ((gActors[actor_index].velocityY.raw > 0) && (gActors[actor_index].flags_098 & 0x10)) {
-                gActors[actor_index].flags &= ~0x280;
+                gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9);
                 gActors[actor_index].velocityX.raw = -(gActors[actor_index].velocityX.raw >> 1);
                 gActors[actor_index].velocityY.raw = 0;
                 if (state->unk_3C == 0) {
@@ -1008,12 +1008,12 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
                 if (state->unk_3A >= 3) {
                     state->unk_0A++;
-                    gActors[actor_index].flags &= ~0x20280;
-                    gActors[actor_index].flags |= 0x10000;
+                    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK17);
+                    gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
                 }
                 else {
-                    func_801B36C0_7A41D0(actor_index, 0xC, -0x12, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
-                    func_801B36C0_7A41D0(actor_index, -0xC, -0x12, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
+                    func_801B36C0_7A41D0(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
+                    func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
                 }
 
                 if (state->unk_3C == 0) {
@@ -1081,11 +1081,11 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 if (gActors[actor_index].flags_098 & 0x20) {
                     state->unk_0A++;
                     Sound_PlaySfxAtActor2(0xAC, actor_index);
-                    gActors[actor_index].flags |= 0x10000;
-                    gActors[actor_index].flags &= 0xFFFDFFFF; \
-                    gActors[actor_index].flags_098 &= ~0x40;
-                    func_801B36C0_7A41D0(actor_index, 0xC, -0x12, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
-                    func_801B36C0_7A41D0(actor_index, -0xC, -0x12, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
+                    gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
+                    gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17; \
+                    gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6;
+                    func_801B36C0_7A41D0(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
+                    func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
                 }
             }
             break;
@@ -1106,7 +1106,7 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
 void func_801B2954_7A3464(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
-    Actor* actor; // Required for matching
+    Actor* actor;
     s32 velocity;
     s16 value;
     s16 count;
@@ -1246,11 +1246,11 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             state->unk_38 = 0;
             state->unk_3A = 0;
             state->unk_3C = 0;
-            gActors[actor_index].flags |= 0x20000; \
-            gActors[actor_index].flags &= 0xFFFEFFFF; \
-            gActors[actor_index].flags_098 &= -0x21;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK17; \
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+            gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
             gActors[actor_index].iFrames = 5;
-            gActors[actor_index].flags |= 0x1000;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             state->unk_05 = 0;
             if (gActors[gActors[actor_index].parentIndex].flags & 0x20) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-0.5);
@@ -1271,11 +1271,11 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             state->unk_38 = 0;
             state->unk_3A = 0;
             state->unk_3C = 0;
-            gActors[actor_index].flags |= 0x20000; \
-            gActors[actor_index].flags &= 0xFFFEFFFF; \
-            gActors[actor_index].flags_098 &= -0x21;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK17; \
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+            gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
             gActors[actor_index].iFrames = 5;
-            gActors[actor_index].flags |= 0x1000;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             state->unk_05 = 0;
             gActors[actor_index].velocityX.raw = (gActors[gActors[actor_index].parentIndex].flags & 0x20) ? FIXED_UNIT(-0.5) : FIXED_UNIT(0.5);
             gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
@@ -1288,11 +1288,11 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         case 4:
             state->unk_08 = 8;
             state->unk_0A = 0;
-            gActors[actor_index].flags |= 0x20000; \
-            gActors[actor_index].flags &= 0xFFFEFFFF; \
-            gActors[actor_index].flags_098 &= -0x21;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK17; \
+            gActors[actor_index].flags &= ~ACTOR_FLAG_UNK16; \
+            gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK5;
             gActors[actor_index].iFrames = 5;
-            gActors[actor_index].flags |= 0x1000;
+            gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             state->unk_05 = 0;
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
@@ -1312,7 +1312,7 @@ void func_801B3064_7A3B74(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     s32 position_y;
     s32 velocity_x;
     s32 rand;
-    Actor* new_actor; // Required for matching
+    Actor* new_actor;
     u16 new_actor_index;
 
     if (state->unk_04 != 0) {
@@ -1348,8 +1348,8 @@ void func_801B3064_7A3B74(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         }
 
         new_actor = &gActors[new_actor_index];
-        new_actor->graphicFlags = 0x19;
-        new_actor->flags = 3;
+        new_actor->graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
+        new_actor->flags = ACTOR_FLAG_ENABLED;
         new_actor->graphicList = D_801B5F54_7A6A64;
         new_actor->graphicTimer = 1;
         new_actor->unk_148 = 28.0f;
@@ -1369,15 +1369,15 @@ void func_801B3064_7A3B74(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
 void func_801B3218_7A3D28(u16 actor_index, s32 arg1) {
-    Actor* actor = &gActors[actor_index]; // Required for matching
-    Actor* new_actor; // Required for matching
+    Actor* actor = &gActors[actor_index];
+    Actor* new_actor;
     u16 new_actor_index;
 
-    new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, actor->posX.whole + 0x14, actor->posY.whole - 0xB, 1);
+    new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, actor->posX.whole + 20, actor->posY.whole - 11, 1);
     if (new_actor_index != 0) {
         new_actor = &gActors[new_actor_index];
-        new_actor->graphicFlags = 0x19;
-        new_actor->flags = 0x23;
+        new_actor->graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
+        new_actor->flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED;
         new_actor->graphicList = D_801B5F7C_7A6A8C;
         new_actor->graphicTimer = 1;
         new_actor->unk_148 = 28.0f;
@@ -1398,8 +1398,8 @@ void func_801B3314_7A3E24(u16 actor_index, s32 offset_x, s32 offset_y, s32 offse
         gActors[actor_index].posY.whole + (s16)offset_y, 1
     );
     if (new_actor_index != 0) {
-        gActors[new_actor_index].graphicFlags = 0x19;
-        gActors[new_actor_index].flags = 3;
+        gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
+        gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].graphicList = D_801B5FB0_7A6AC0;
         gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].unk_148 = 60.0f;
@@ -1426,9 +1426,9 @@ void func_801B3450_7A3F60(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
 
             if (arg1->unk_2E <= 0) {
                 velocity_x = gActors[actor_index].velocityX.raw;
-                offset_x = 0x18;
+                offset_x = 24;
                 if (velocity_x > 0) {
-                    offset_x = -0x18;
+                    offset_x = -24;
                 }
 
                 func_801B3500_7A4010(actor_index, offset_x, -8);
@@ -1439,7 +1439,7 @@ void func_801B3450_7A3F60(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
 }
 
 void func_801B3500_7A4010(u16 actor_index, s32 offset_x, s32 offset_y) {
-    Actor* new_actor; // Required for matching
+    Actor* new_actor;
     f32* table;
     u16 new_actor_index;
 
@@ -1447,8 +1447,8 @@ void func_801B3500_7A4010(u16 actor_index, s32 offset_x, s32 offset_y) {
     new_actor_index = SpawnParticle_List_90C0_16(gGraphicListBlank, gActors[actor_index].posX.whole + (s16)offset_x, gActors[actor_index].posY.whole + (s16)offset_y, 1);
     if (new_actor_index != 0) {
         new_actor = &gActors[new_actor_index];
-        new_actor->graphicFlags = 9;
-        new_actor->flags = 3;
+        new_actor->graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
+        new_actor->flags = ACTOR_FLAG_ENABLED;
         new_actor->graphicIndex = 0x16C;
         new_actor->unk_148 = 36.0f;
         new_actor->posZ.whole = gActors[actor_index].posZ.whole;
@@ -1478,8 +1478,8 @@ void func_801B36C0_7A41D0(u16 actor_index, s32 offset_x, s32 offset_y, s32 veloc
         if (1.200000048f) {
         }
 
-        gActors[new_actor_index].graphicFlags = 0x19;
-        gActors[new_actor_index].flags = 3;
+        gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
+        gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].graphicList = D_801B5F8C_7A6A9C;
         gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].unk_148 = 60.0f;
@@ -1510,8 +1510,8 @@ void func_801B3804_7A4314(u16 actor_index, s32 offset_x, s32 offset_y, s32 veloc
         if (0.8000000119f) {
         }
 
-        gActors[new_actor_index].graphicFlags = 0x19;
-        gActors[new_actor_index].flags = 3;
+        gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
+        gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].graphicList = D_801B5F8C_7A6A9C;
         gActors[new_actor_index].graphicTimer = 1;
         gActors[new_actor_index].unk_148 = 60.0f;
@@ -1537,7 +1537,7 @@ void func_801B3948_7A4458(u16 actor_index) {
     switch ((gActors + actor_index)->state) {
         case 0:
             state = (gActors + actor_index)->state;
-            (gActors + actor_index)->flags = 2;
+            (gActors + actor_index)->flags = ACTOR_FLAG_ACTIVE;
             D_801376B0[1] = 0;
             D_801376AC[1] = 0;
             D_801376A8[1] = 0;
@@ -1575,7 +1575,7 @@ void func_801B3AE0_7A45F0(u16 actor_index) {
     gActors[actor_index].velocityX.raw = 0;
     gActors[actor_index].graphicList = D_800E1384;
     gActors[actor_index].graphicTimer = 1;
-    gActors[actor_index].graphicFlags &= 0xFFFE;
+    gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_SCALE;
     gActors[actor_index].colorA = 0x80;
     Sound_PlaySfxAtActor2(0x43, actor_index);
     gActors[actor_index].var_154 = 0x18;
@@ -1585,8 +1585,8 @@ void func_801B3AE0_7A45F0(u16 actor_index) {
 void func_801B3B78_7A4688(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
-            gActors[actor_index].graphicFlags |= 1;
-            gActors[actor_index].flags |= 0x2000;
+            gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
+            gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM0;
             gActors[actor_index].hitboxBY1 = -4;
             gActors[actor_index].hitboxBY0 = 4;
             gActors[actor_index].hitboxBX0 = -0x18;
@@ -1597,18 +1597,18 @@ void func_801B3B78_7A4688(u16 actor_index) {
             break;
 
         case 1:
-            if ((gActors[actor_index].posX.whole >= -0xBF) && (gActors[actor_index].posX.whole < 0xC0)) {
+            if ((gActors[actor_index].posX.whole >= -191) && (gActors[actor_index].posX.whole < 192)) {
                 func_801A85E0_771AB0(actor_index, 0x3F000000);
             }
 
-            if ((gActors[actor_index].posX.whole >= -0xFF) && (gActors[actor_index].posX.whole < 0x100)) {
+            if ((gActors[actor_index].posX.whole >= -255) && (gActors[actor_index].posX.whole < 256)) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-0.5);
             }
             else {
                 gActors[actor_index].velocityX.raw = 0;
             }
 
-            if (func_80012AB4(gActors[actor_index].posX.whole - 0x10, gActors[actor_index].posY.whole) != 0) {
+            if (func_80012AB4(gActors[actor_index].posX.whole - 16, gActors[actor_index].posY.whole) != 0) {
                 func_801B3AE0_7A45F0(actor_index);
             }
             break;
@@ -1624,8 +1624,8 @@ void func_801B3B78_7A4688(u16 actor_index) {
 void func_801B3CE8_7A47F8(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
-            gActors[actor_index].graphicFlags |= 9;
-            gActors[actor_index].flags |= 0x20;
+            gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
+            gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
             gActors[actor_index].graphicIndex = 0x25C;
             gActors[actor_index].state++;
             gActors[actor_index].rotateZ = 90.0f;
@@ -1633,24 +1633,24 @@ void func_801B3CE8_7A47F8(u16 actor_index) {
             break;
 
         case 1:
-            if ((gActors[actor_index].posX.whole >= -0x7F) && (gActors[actor_index].posX.whole < 0x80)) {
+            if ((gActors[actor_index].posX.whole >= -127) && (gActors[actor_index].posX.whole < 128)) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(1.0);
                 gActors[actor_index].state++;
             }
             break;
 
         case 2:
-            if ((gActors[actor_index].posX.whole >= -0xBF) && (gActors[actor_index].posX.whole < 0xC0)) {
+            if ((gActors[actor_index].posX.whole >= -191) && (gActors[actor_index].posX.whole < 192)) {
                 func_801A85E0_771AB0(actor_index, 0x3F000000);
             }
 
-            if (func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + 0x18) != 0) {
+            if (func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + 24) != 0) {
                 func_801B3AE0_7A45F0(actor_index);
                 return;
             }
 
             if (((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) >= -3) && ((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) < 4)) {
-                if (((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) >= -0x13) && ((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) < 0x14)) {
+                if (((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) >= -19) && ((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) < 20)) {
                     func_801B3AE0_7A45F0(actor_index);
                     gActors[0x61].flags = 0;
                 }
@@ -1719,7 +1719,7 @@ void func_801B4048_7A4B58(u16 actor_index) {
 
 void func_801B4110_7A4C20(u16 arg0) {
     u16 actor_index = arg0;
-    Actor* actor = &gActors[actor_index]; // Required for matching
+    Actor* actor = &gActors[actor_index];
     s32 state;
     s32 table_index;
 
@@ -1741,7 +1741,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
     state = actor->unk_174;
     if (state < 2) {
-        if ((actor->posX.whole + gScreenPosCurrentX.whole) >= 0xC01) {
+        if ((actor->posX.whole + gScreenPosCurrentX.whole) >= 3073) {
             actor->unk_174 = 2;
         }
     }
@@ -1852,7 +1852,7 @@ void func_801B455C_7A506C(u16 actor_index) {
     u16 new_actor_index;
 
     pair_actor_index = actor_index + 1;
-    gActors[pair_actor_index].posX.whole = gActors[actor_index].posX.whole - 0x28;
+    gActors[pair_actor_index].posX.whole = gActors[actor_index].posX.whole - 40;
     gActors[pair_actor_index].posY.whole = gActors[actor_index].posY.whole;
 
     switch (gActors[actor_index].state) {
@@ -1860,9 +1860,9 @@ void func_801B455C_7A506C(u16 actor_index) {
             gActors[pair_actor_index].actorType = 0;
             Actor_Initialize(pair_actor_index);
             gActors[pair_actor_index].graphicIndex = 0x28A;
-            gActors[pair_actor_index].flags = 0x23;
-            gActors[actor_index].graphicFlags |= 1;
-            gActors[actor_index].flags |= 0x2000;
+            gActors[pair_actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED;
+            gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
+            gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM0;
             gActors[actor_index].hitboxBY1 = -4;
             gActors[actor_index].hitboxBY0 = 4;
             gActors[actor_index].hitboxBX0 = -0x24;
@@ -1874,24 +1874,24 @@ void func_801B455C_7A506C(u16 actor_index) {
             break;
 
         case 1:
-            if (gActors[actor_index].posX.whole < 0x100) {
+            if (gActors[actor_index].posX.whole < 256) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-0.5);
                 gActors[actor_index].state++;
             }
             break;
 
         case 2:
-            if (((gActors[actor_index].posX.whole - 0xE0) < gActors[0].posX.whole) && (gActors[0].posX.whole < (gActors[actor_index].posX.whole - 0xC0))) {
+            if (((gActors[actor_index].posX.whole - 224) < gActors[0].posX.whole) && (gActors[0].posX.whole < (gActors[actor_index].posX.whole - 192))) {
                 new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
                 if (new_actor_index != 0) {
                     gActors[new_actor_index].actorType = 0x1B07;
                     Actor_Initialize(new_actor_index);
-                    gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole - 0x38;
+                    gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole - 56;
                     gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole - 4;
                     gActors[new_actor_index].graphicList = D_801B60C8_7A6BD8;
                     gActors[new_actor_index].graphicTimer = 1;
-                    gActors[new_actor_index].flags = 0x8627;
-                    gActors[new_actor_index].graphicFlags |= 1;
+                    gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK15;
+                    gActors[new_actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
                     gActors[new_actor_index].scaleY = 0.3000000119f;
                     gActors[new_actor_index].hitboxAX0 = -0xC;
                     gActors[new_actor_index].hitboxAX1 = 0xC;
@@ -1913,21 +1913,21 @@ void func_801B455C_7A506C(u16 actor_index) {
             }
             // fallthrough
         case 3:
-            if ((gActors[actor_index].posX.whole >= -0xBF) && (gActors[actor_index].posX.whole < 0xC0)) {
+            if ((gActors[actor_index].posX.whole >= -191) && (gActors[actor_index].posX.whole < 192)) {
                 func_801A85E0_771AB0(actor_index, 0x3F000000);
             }
 
-            if (gActors[actor_index].posX.whole < -0x100) {
+            if (gActors[actor_index].posX.whole < -256) {
                 gActors[actor_index].flags = 0;
                 gActors[actor_index + 1].flags = 0;
             }
 
-            if (func_80012AB4(gActors[actor_index].posX.whole - 0x20, gActors[actor_index].posY.whole) != 0) {
+            if (func_80012AB4(gActors[actor_index].posX.whole - 32, gActors[actor_index].posY.whole) != 0) {
                 gActors[actor_index + 1].flags = 0;
                 gActors[actor_index].velocityX.raw = 0;
                 gActors[actor_index].graphicList = D_800E1384;
                 gActors[actor_index].graphicTimer = 1;
-                gActors[actor_index].graphicFlags &= 0xFFFE;
+                gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_SCALE;
                 gActors[actor_index].colorA = 0x80;
                 Sound_PlaySfxAtActor2(0x43, actor_index);
                 gActors[actor_index].var_154 = 0x18;
@@ -1993,7 +1993,7 @@ void func_801B4B64_7A5674(u16 actor_index) {
 
     spawn_records = D_801B60F8_7A6C08;
     new_actor_index = 0x50;
-    position_x = 0xE70;
+    position_x = 3696;
     index_u16 = 0;
     actor_type = 0x4F;
     for (index = 0; index < 0xB; index++) {
@@ -2003,7 +2003,7 @@ void func_801B4B64_7A5674(u16 actor_index) {
         gActors[new_actor_index].var_110 = (f32)(u32)spawn_records[index].timer;
         gActors[new_actor_index].var_0D8 = spawn_records[index].unk_02;
         gActors[new_actor_index].posX.whole = position_x - gScreenPosCurrentX.whole;
-        gActors[new_actor_index].posY.whole = 0x190 - gScreenPosCurrentY.whole;
+        gActors[new_actor_index].posY.whole = 400 - gScreenPosCurrentY.whole;
         if (index_u16 == 5) {
             gActors[new_actor_index].unk_16C = (s32)func_801B4A40_7A5550;
         }
@@ -2012,7 +2012,7 @@ void func_801B4B64_7A5674(u16 actor_index) {
         }
         gActors[new_actor_index].unk_118 = (f32)(u32)index;
         new_actor_index++;
-        position_x += 0x16;
+        position_x += 22;
     }
 }
 
@@ -2035,20 +2035,20 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
                 if (gActors[actor_index].var_158 != 0) {
                     if (gActors->iFrames == 0) {
                         new_actor_index = SpawnGemActor(actor_index, 0x30, 0);
-                        gActors[new_actor_index].posX.whole = 0xEE0 - gScreenPosCurrentX.whole;
-                        gActors[new_actor_index].posY.whole = 0x1B8 - gScreenPosCurrentY.whole;
+                        gActors[new_actor_index].posX.whole = 3808 - gScreenPosCurrentX.whole;
+                        gActors[new_actor_index].posY.whole = 440 - gScreenPosCurrentY.whole;
                         gActors[actor_index].var_154 = 1;
                         gActors[actor_index].var_15C++;
                     }
                 }
                 else {
-                    if (gScreenPosCurrentY.whole + gActors->posY.whole < 0x15F) {
+                    if (gScreenPosCurrentY.whole + gActors->posY.whole < 351) {
                         gActors[actor_index].var_158 = 1;
                     }
                 }
             }
 
-            if ((gScreenPosCurrentX.whole + gActors->posX.whole < 0xE6A) || (gScreenPosCurrentX.whole + gActors->posX.whole >= 0xF56)) {
+            if ((gScreenPosCurrentX.whole + gActors->posX.whole < 3690) || (gScreenPosCurrentX.whole + gActors->posX.whole >= 3926)) {
                 gActors[actor_index].var_158 = 0;
             }
 
@@ -2060,8 +2060,8 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
                 gFestivalEventState++;
                 func_801B4CD0_7A57E0(actor_index);
                 new_actor_index = SpawnGemActor(actor_index, 0x12, 0);
-                gActors[new_actor_index].posX.whole = 0xEE0 - gScreenPosCurrentX.whole;
-                gActors[new_actor_index].posY.whole = 0x1B8 - gScreenPosCurrentY.whole;
+                gActors[new_actor_index].posX.whole = 3808 - gScreenPosCurrentX.whole;
+                gActors[new_actor_index].posY.whole = 440 - gScreenPosCurrentY.whole;
                 gActors[actor_index].state++;
             }
             break;
@@ -2072,7 +2072,7 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
 }
 
 void func_801B4F78_7A5A88(u16 actor_index, u16* arg1) {
-    Actor* actor = &gActors[actor_index]; // Required for matching
+    Actor* actor = &gActors[actor_index];
 
     if (actor->unk_16C == 0) {
         if (func_8004089C((u16)(actor_index + 0x8000), arg1) == 0x800) {
@@ -2343,8 +2343,8 @@ void func_801B57C8_7A62D8(u16 actor_index) {
                                 SpawnTextBubble(actor_index, D_801B6168_7A6C78, 0, -0x30, 0x19);
                                 gActors[actor_index].state = 0x190;
                                 action_index = SpawnGemActor(actor_index, 0x30, 0);
-                                gActors[action_index].posX.whole = 0xD60 - gScreenPosCurrentX.whole;
-                                gActors[action_index].posY.whole = 0x164 - gScreenPosCurrentY.whole;
+                                gActors[action_index].posX.whole = 3424 - gScreenPosCurrentX.whole;
+                                gActors[action_index].posY.whole = 356 - gScreenPosCurrentY.whole;
                             }
                             else {
                                 SpawnTextBubble(actor_index, D_801B615C_7A6C6C, 0, -0x30, 0x19);
@@ -2365,7 +2365,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
 
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
-                            if ((gActors[actor_index].unk_16C == 3) && ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 0xA91)) {
+                            if ((gActors[actor_index].unk_16C == 3) && ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
                                 func_8007D0F4(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
@@ -2399,7 +2399,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
     }
 
     if (gActors[actor_index].unk_16C == 3) {
-        if ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 0xD28) {
+        if ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
             if (!(gActors[actor_index].unk_170 & 0x30000)) {
                 if (gActors[actor_index].unk_170 & 0xFFFF) {
                     if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
@@ -2449,5 +2449,5 @@ void func_801B5D04_7A6814(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags &= ~0x1780;
+    gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK12);
 }
