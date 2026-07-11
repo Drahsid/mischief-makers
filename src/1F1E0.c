@@ -54,15 +54,19 @@ extern s16 D_800E13FC[];
 
 extern u32 D_801374DC; // time duration
 
-extern s16 D_801781C0[]; // SFX volumes stored during pause
-extern u16 D_801781C8;
-extern u16 D_801781CA;
-extern u16 D_801781CC;
-extern u16 D_801781CE;
-extern u16 D_801781D0;
-extern u16 D_801781D2;
-extern u16 D_801781D4;
-extern u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
+s16 D_801781C0[4]; // SFX volumes stored during pause
+u16 D_801781C8;
+u16 D_801781CA;
+u16 D_801781CC;
+u16 D_801781CE;
+u16 D_801781D0;
+u16 D_801781D2;
+u16 D_801781D4;
+u32 D_801781D8; // unused
+u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
+u16 D_801781DE; // unused
+u16 gStageTime;
+
 
 extern void GameState_Loading(void);
 extern void Sound_StartFade(u16, u16);

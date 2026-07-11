@@ -60,6 +60,7 @@ Font_ShowString = 0x80004804; // type:func
 Trouble_RLE_Type1 = 0x80004910; // type:func
 
 LookAt_Update = 0x80010898; // type:func
+LookAt_Reset = 0x800109B0; // type:func
 
 YellowGem_SetFlag = 0x8001C7A4; // type:func
 YellowGem_GetFlag = 0x8001C7F0; // type:func
@@ -205,6 +206,8 @@ ActorUpdate_Spikeball_80 = 0x80089084; // type:func
 ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
 ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
 
+ActorUpdate_3DIcon = 0x80060f88; // type:func
+
 ActorUpdate_SpiralClouds = 0x80062174; //type:func
 
 ActorUpdate_ClanballRail = 0x8006346C; // type:func
@@ -280,10 +283,8 @@ SpawnTextBubble = 0x8007D0DC; // type:func
 
 
 GameState_SoftReset = 0x80022F48; // type:func
-GameState_Intro = 0x80017800; // type:func
-GameState_TitleScreen = 0x8001817C; // type:func
-GameState_DebugSoundTest = 0x800188CC; // type:func
-GameState_DebugStageSelect = 0x800191B8; // type:func
+
+
 GameState_Loading = 0x800232A4; // type:func
 GameState_Gameplay = 0x80021034; // type:func
 Continue_DrawGem = 0x80012C50; // type:func
@@ -294,6 +295,7 @@ GameState_State8Overlay = 0x80388000; // type:func
 GameState_State9Overlay = 0x80388008; // type:func
 GameState_Attract = 0x80021270; // type:func
 GameState_FileSelect = 0x80007C8C; // type:func
+
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 Trouble_RLE_Type2 = 0x80098B50; // type:func
@@ -316,10 +318,44 @@ ActorUpdate_Type26 = 0x80042350; // type:func
 ActorUpdate_Type71 = 0x80042358; // type:func
 Actor_AdvanceState = 0x80042360; // type:func
 
-// debug_level_select.c
+// stage.c
 Input_CheckButtonRepeat = 0x80017680; // type:func
+Input_CheckButtonRepeat2 = 0x800176F8; // type:func
+Title_LegalText = 0x80017F08; // type:func
+Title_WhiteScreen = 0x80017FE8; // type:func
+GameState_Intro = 0x80017800; // type:func
+Title_MoveSubtitle = 0x8001809C; // type:func
+Title_UpdateText = 0x800180FC; // type:func
 DebugMenu_UpdateCursorFlash = 0x80017770; // type:func
 DebugStageSelect_DrawMenu = 0x80018E00; // type:func
+GameState_TitleScreen = 0x8001817C; // type:func
+GameState_DebugSoundTest = 0x800188CC; // type:func
+GameState_DebugStageSelect = 0x800191B8; // type:func
+GetRaceTimeRecord = 0x80019520; // type:func
+GetFestivalTimeRecords = 0x80019688; // type:func
+WorldMap_LoadGraphics = 0x800197A0; // type:func
+WorldMap_Reset = 0x8001983C; // type:func
+WorldMap_PrintWorldName = 0x800198B4; // type:func
+WorldMap_PrintStageName = 0x800199DC; // type:func
+WorldMap_DrawSprites = 0x80019A80; // type:func
+WorldMap_PrintStageLabel - 0x80019FB4; // type:func
+WorldMap_PrintWarpedStageIcon = 0x8001A15C; // type:func
+WorldMap_PrintStageLabels - 0x8001A254; // type:func
+
+WorldMap_GetStageRank = 0x8001A758; // type:func
+WorldMap_PrintRankLetter = 0x8001A7E0; // type:func
+WorldMap_PrintRankReview = 0x8001A838; // type:func
+WorldMap_PrintRankLetterReview = 0x8001A890; // type:func
+WorldMap_PrintCurrStageTime = 0x8001A96C; // type:func
+WorldMap_PrintStageTime = 0x8001ACA8; // type:func
+WorldMap_PrintPrevStageTime = 0x8001B004; // type:func
+
+WorldMap_StageProgress = 0x8001B02C; // type:func
+CountYellowGems = 0x8001B244; // type:func
+WorldMap_UpdateSaveFile = 0x8001B2F4; // type:func
+WorldMap_UpdateSaveFile2 = 0x8001B3D0; // type:func
+
+PlaySceneBGM = 0x80025578; // type:func
 
 //text.c
 Text_InitActor = 0x80027370; // type:func

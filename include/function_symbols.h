@@ -18,7 +18,7 @@ extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
 
 extern void func_80004FFC(s32);
 extern void func_800050B4(void);
-extern void func_800109B0(void);
+extern void LookAt_Reset(void);
 extern void func_80010A10(void);
 extern void func_80010C20(u16 arg0);
 extern void func_8001A584(void);
@@ -70,7 +70,7 @@ extern void func_8005D450(u16 actor_index);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
-extern void func_80060F88(u16 actor_index);
+extern void ActorUpdate_3DIcon(u16 actor_index);
 extern void func_80066BCC(u16 actor_index);
 extern void func_80067EF0(u16);
 extern void func_8006CC70(u16);
@@ -78,7 +78,7 @@ extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
-extern void func_80025578(void);
+extern void PlaySceneBGM(void);
 extern void func_800255B4(u16 arg0);
 extern void func_80025BFC(void);
 extern void func_80025C38(void);
@@ -259,6 +259,8 @@ extern void func_80083E74(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);
+
+extern void WorldMap_UpdateSaveFile2(void); // used in "Ending" code
 
 extern void GameState_Gameplay(void);
 

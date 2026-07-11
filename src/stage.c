@@ -12,23 +12,35 @@
 
 // .data
 extern u16 gTimeRecords[]; // list of stage times
-extern u8 D_800C5008;
+extern u8 gCurrentSaveSlot;
 
-extern u16 D_80171AD0[];
-extern u16 D_80171AD4[];
-extern u64 D_80171AD8[];
+extern u16 gFileRedGems[];
+extern u16 gFileYellowGems[];
+extern u64 gFilePlayTimes[];
+
 extern u8 gWorldProgress; // max available stages
-extern u16 D_80178152;
-extern u16 D_80178154;
-extern u16 D_80178156;
-extern u16 D_80178158;
-extern u16 D_8017815A;
-extern u16 gCurrentWorld;
-extern u16 D_8017815E;
-extern u16 D_80178160;
-extern u16 D_80178164;
-extern u16 D_80178166;
-extern u32 D_80178168;
+
+// .bss
+
+u16 gStageTimeBest;
+u16 gStageUnlocked; // set if a new stage is unlocked
+u16 D_80178154;
+u16 gSelectedStage;
+u16 D_80178158;
+u16 D_8017815A;
+u16 gCurrentWorld;
+u16 D_8017815E;
+u16 D_80178160;
+u16 gCurrentStage;
+u16 D_80178164;
+u16 D_80178166;
+u32 D_80178168;
+u32 D_8017816C; // unused (file break?)
+u8 gDebugStageSelectSelectedOptions[DEBUG_STAGE_SELECT_ROW_COUNT];
+u8 gDebugStageSelectOptionBaseOffsets[24];
+u8 gDebugMenuCursorFlash[DEBUG_STAGE_SELECT_ROW_COUNT];
+
+
 extern u8 D_801781A1;
 
 extern u8 D_801376A9;
@@ -38,14 +50,14 @@ extern u8 D_801376B5;
 extern u8 D_801376B9;
 extern u8 D_801376BD;
 
-s16 func_8001A758(u16 time, u16 stage);
+s16 WorldMap_GetStageRank(u16 time, u16 stage);
 
 void func_80005770(void);
 void func_80043918(void);
 void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3);
 void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 void func_8008391C(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
-void func_8001A254(void);
+void WorldMap_PrintStageLabels(void);
 
 // Stage transition focus actor indices?
 u16 D_800C81E0[] = {
@@ -64,11 +76,12 @@ u16 gStageRowCounts[] = {
 };
 
 u16 gStageGroupOptionOffsets[] = {
-    0x0002, 0x000C, 0x0018, 0x0025,
+    2, 12, 24, 37,
 };
 
+// combine with gStageGroupOptionOffsets?
 u16 gStageGroupOptionOffsetsTail[] = {
-    0x0031, 0x003A, 0x0000, 0x0000,
+    49, 58, 0, 0,
 };
 
 const char* gDebugStageSelectOptionSuffixes[] = {
@@ -503,15 +516,18 @@ u16 gNameStage4_6[] = {
     ALPHA_EN3_UPPER_T, ALPHA_EN3_UPPER_A, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_U, ALPHA_EN3_UPPER_S, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
-
+// "Ghost Catcher!"
 u16 gNameStage4_7[] = {
-    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_SPACE, ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EXCLAMATION, ALPHA_NULL
+    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EXCLAMATION, ALPHA_NULL
 };
 
+// "Aster's Tryke!"
 u16 gNameStage4_8[] = {
-    ALPHA_EN3_UPPER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_APOSTROPHE_S, ALPHA_SPACE, ALPHA_EN3_UPPER_T,
-    ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Y, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
+    ALPHA_EN3_UPPER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_APOSTROPHE_S,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Y, ALPHA_EN3_UPPER_K, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
 };
 
 // "Moley Cow!!"
@@ -534,7 +550,7 @@ u16 gNameStage4_11[] = {
 };
 
 // "Clace War II"
-u16 D_800C8AFC[] = {
+u16 gNameStage5_1[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE,
     ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R,
@@ -543,51 +559,52 @@ u16 D_800C8AFC[] = {
 };
 
 // "Counterattack"
-u16 D_800C8B18[] = {
+u16 gNameStage5_2[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_C, ALPHA_EN3_UPPER_K, ALPHA_NULL,
 };
 
-u16 D_800C8B34[] = {
+// "Bee's the One!"
+u16 gNameStage5_3[] = {
     ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_E, ALPHA_APOSTROPHE_S, ALPHA_SPACE, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E,
     ALPHA_SPACE, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION, ALPHA_NULL,
 };
 
 // "MERCO!!"
-u16 D_800C8B50[] = {
+u16 gNameStage5_4[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_R, ALPHA_EN3_UPPER_C, ALPHA_EN3_UPPER_O, ALPHA_EXCLAMATION2, ALPHA_NULL
 };
 
 // "Trapped!?"
-u16 D_800C8B60[] = {
+u16 gNameStage5_5[] = {
     ALPHA_EN3_UPPER_T, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_P, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_D, ALPHA_QEXCLAIM, ALPHA_NULL
 };
 
 // "PHOENIX γ"
-u16 D_800C8B74[] = {
+u16 gNameStage5_6[] = {
     ALPHA_EN3_UPPER_P, ALPHA_EN3_UPPER_H, ALPHA_EN3_UPPER_O, ALPHA_EN2_UPPER_E, ALPHA_EN3_UPPER_N, ALPHA_EN3_UPPER_I, ALPHA_EN3_UPPER_X,
     ALPHA_SPACE, ALPHA_GAMMA, ALPHA_NULL
 };
 
 // "Inner Struggle"
-u16 D_800C8B88[] = {
+u16 gNameStage5_7[] = {
     ALPHA_EN3_UPPER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R, ALPHA_SPACE, ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_T,
     ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
 // "Final Battle"
-u16 D_800C8BA8[] = {
+u16 gNameStage5_8[] = {
     ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_SPACE, ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_E, ALPHA_NULL
 };
 
 // "Ending"
-u16 D_800C8BC4[] = {
+u16 gNameStage5_9[] = {
     ALPHA_EN2_UPPER_E, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G,ALPHA_NULL
 };
 
 // "Credits"
-u16 D_800C8BD4[] = {
+u16 gNameStage5_10[] = {
     ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
@@ -595,12 +612,12 @@ u16* gWorldNames[] = {
     gNameWorld1, gNameWorld2, gNameWorld3, gNameWorld4, gNameWorld5
 };
 
-u16 D_800C8BF8[] = {
-    0xFFC6, 0xFFC6, 0xFFD8, 0xFFCE, 0xFFCC, 0x0000
+u16 gWorldNameXOffsets[] = {
+    0xFFC6, 0xFFC6, 0xFFD8, 0xFFCE, 0xFFCC
 };
 
-u16 D_800C8C04[] = {
-    0x000A, 0x000B, 0x000C, 0x000B, 0x000A, 0x0000
+u16 gWorldStageCounts[] = {
+    10, 11, 12, 11, 10
 };
 
 u16* gWorld1StageNames[] = {
@@ -628,9 +645,9 @@ u16* gWorld4StageNames[] = {
 };
 
 u16* gWorld5StageNames[] = {
-    D_800C8AFC, D_800C8B18, D_800C8B34, D_800C8B50,
-    D_800C8B60, D_800C8B74, D_800C8B88, D_800C8BA8,
-    D_800C8BC4, D_800C8BD4
+    gNameStage5_1, gNameStage5_2, gNameStage5_3, gNameStage5_4,
+    gNameStage5_5, gNameStage5_6, gNameStage5_7, gNameStage5_8,
+    gNameStage5_9, gNameStage5_10
 };
 
 u16** gStageNames[] = {
@@ -664,50 +681,50 @@ u16* gStageNameXoffsets[] = {
     gWorld1StageNameXoffsets, gWorld2StageNameXoffsets, gWorld3StageNameXoffsets, gWorld4StageNameXoffsets, gWorld5StageNameXoffsets
 };
 
-char* D_800C8D80[] = {
+char* gWorld1StageStrings[] = {
     gStrStage1_1, gStrStage1_2, gStrStage1_3, gStrStage1_4,
     gStrStage1_5, gStrStage1_6, gStrStage1_7, gStrStage1_8,
     gStrStage1_9, gStrStage1_10
 };
 
-char* D_800C8DA8[] = {
+char* gWorld2StageStrings[] = {
     gStrStage2_1, gStrStage2_2, gStrStage2_3, gStrStage2_4,
     gStrStage2_5, gStrStage2_6, gStrStage2_7, gStrStage2_8,
     gStrStage2_9, gStrStage2_10, gStrStage2_11
 };
 
-char* D_800C8DD4[] = {
+char* gWorld3StageStrings[] = {
     gStrStage3_1, gStrStage3_2, gStrStage3_3, gStrStage3_4,
     gStrStage3_5, gStrStage3_6, gStrStage3_7, gStrStage3_8,
     gStrStage3_9, gStrStage3_10, gStrStage3_11, gStrStage3_12
 };
 
-char* D_800C8E04[] = {
+char* gWorld4StageStrings[] = {
     gStrStage4_1, gStrStage4_2, gStrStage4_3, gStrStage4_4,
     gStrStage4_5, gStrStage4_6, gStrStage4_7, gStrStage4_8,
     gStrStage4_9, gStrStage4_10, gStrStage4_11
 };
 
-char* D_800C8E30[] = {
+char* gWorld5StageStrings[] = {
     gStrStage5_1, gStrStage5_2, gStrStage5_3, gStrStage5_4,
     gStrStage5_5, gStrStage5_6, gStrStage5_7, gStrStage5_8,
     gStrStage5_9, gStrStage5_10
 };
 
 // array of array of string stage IDs
-char** D_800C8E58[] = {
-    D_800C8D80, D_800C8DA8, D_800C8DD4, D_800C8E04, D_800C8E30
+char** gStageStrings[] = {
+    gWorld1StageStrings, gWorld2StageStrings, gWorld3StageStrings, gWorld4StageStrings, gWorld5StageStrings
 };
 
 
-u16 D_800C8E6C[] = {
+u16 gWorld1Icons[] = {
     GINDEX_WM_STAGEICONPLAINS, GINDEX_WM_STAGEICONPLAINS, GINDEX_WM_STAGEICONPLAINS,
     GINDEX_WM_STAGEICONPLAINS, GINDEX_WM_STAGEICONPLAINS, GINDEX_WM_STAGEICONDESERT,
     GINDEX_WM_STAGEICONDESERT, GINDEX_WM_STAGEICONPLAINS, GINDEX_WM_STAGEICONDESERT,
     GINDEX_WM_STAGEICONDESERT
 };
 
-u16 D_800C8E80[] = {
+u16 gWorld2Icons[] = {
     GINDEX_WM_STAGEICONLAVA, GINDEX_WM_STAGEICONVERTICAL, GINDEX_WM_STAGEICONLAVA,
     GINDEX_WM_STAGEICONLAVA, GINDEX_WM_STAGEICONLAVA, GINDEX_WM_STAGEICONLAVA,
     GINDEX_WM_STAGEICONLAVA, GINDEX_WM_STAGEICONVERTICAL, GINDEX_WM_STAGEICONLAVA,
@@ -715,32 +732,33 @@ u16 D_800C8E80[] = {
 };
 
 
-u16 D_800C8E98[] = {
+u16 gWorld3Icons[] = {
     GINDEX_WM_STAGEICONSNOW, GINDEX_WM_STAGEICONSNOW, GINDEX_WM_STAGEICONSNOW,
     GINDEX_WM_STAGEICONSNOW, GINDEX_WM_STAGEICONSNOW, GINDEX_WM_STAGEICONSNOW,
     GINDEX_WM_STAGEICONSNOW, GINDEX_WM_STAGEICONLUNAR, GINDEX_WM_STAGEICONSNOW,
     GINDEX_WM_STAGEICONCITY, GINDEX_WM_STAGEICONCITY, GINDEX_WM_STAGEICONLUNAR
 };
 
-u16 D_800C8EB0[] = {
+u16 gWorld4Icons[] = {
     GINDEX_WM_STAGEICONCAVE1, GINDEX_WM_STAGEICONCAVE1, GINDEX_WM_STAGEICONCAVE1,
     GINDEX_WM_STAGEICONCAVE1, GINDEX_WM_STAGEICONCAVE1, GINDEX_WM_STAGEICONTAURUS,
     GINDEX_WM_STAGEICONCAVE2, GINDEX_WM_STAGEICONCAVE2, GINDEX_WM_STAGEICONCAVE2,
     GINDEX_WM_STAGEICONCAVE2, GINDEX_WM_STAGEICONTAURUS
 };
 
-u16 D_800C8EC8[] = {
+u16 gWorld5Icons[] = {
     GINDEX_WM_STAGEICONIMPHQ1, GINDEX_WM_STAGEICONIMPHQ1, GINDEX_WM_STAGEICONIMPHQ1,
     GINDEX_WM_STAGEICONMERCO, GINDEX_WM_STAGEICONIMPHQ2, GINDEX_WM_STAGEICONMERCO,
     GINDEX_WM_STAGEICONIMPHQ2, GINDEX_WM_STAGEICONFINAL, GINDEX_WM_STAGEICONENDING,
     GINDEX_WM_STAGEICONENDING
 };
 
-u16* D_800C8EDC[] = {
-    D_800C8E6C, D_800C8E80, D_800C8E98, D_800C8EB0, D_800C8EC8
+u16* gStageIcons[] = {
+    gWorld1Icons, gWorld2Icons, gWorld3Icons, gWorld4Icons, gWorld5Icons
 };
 
-Gfx D_800C8EF0[] = {
+// dlist used for intro and title screen
+Gfx gIntroDList[] = {
     gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
     gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 1372, 0),
     gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
@@ -762,12 +780,12 @@ char gStrPressStart[] = "PRESS START";
 char gStrCopyright[] = "@1997 TREASURE/ENIX";
 char gStrLicence[] = "LICENSED TO NINTENDO"; // not in Japanese version
 
-u16 D_800C8FA0[] = {
+u16 gIntroPalette1[] = {
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001
 };
 
-u16 D_800C8FC0[] = {
+u16 gIntroPalette2[] = {
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
@@ -782,7 +800,7 @@ u16 D_800C8FC0[] = {
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
 };
 
-u16 D_800C9080[] = {
+u16 gIntroPalette3[] = {
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
@@ -872,72 +890,72 @@ char D_800C94D0[] = "S.E.";
 s32 D_800C94D8[] = {
     0x30, 0x20
 };
-// "   Current Timw"
-u16 D_800C94E0[] = {
-    0x0000, 0x0000, 0x0000, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_E,
-    ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, 0x0000, ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_E, ALPHA_NULL
+// "   Current Time"
+u16 gStrCurrentTime[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_E,
+    ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, ALPHA_SPACE, ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_E, ALPHA_NULL
 };
-// "  Previous Timw"
-u16 D_800C9500[] = {
-    0x0000, 0x0000, ALPHA_EN2_UPPER_P, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_V, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_O,
-    ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_S, 0x0000, ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_E, ALPHA_NULL
+// "  Previous Time"
+u16 gStrPrevTime[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_P, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_V, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_O,
+    ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_S, ALPHA_SPACE, ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_E, ALPHA_NULL
 };
  // "m  s"
-u16 D_800C9520[] = {
-    ALPHA_EN3_LOWER_M, 0x0000, 0x0000, ALPHA_EN3_LOWER_S, ALPHA_NULL
+u16 gStrResultMS[] = {
+    ALPHA_EN3_LOWER_M, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 // "I'm Done"
-u16 D_800C952C[] = {
-    0x0000, ALPHA_EN2_UPPER_I, ALPHA_EN2_APOSTROPHE, ALPHA_EN2_LOWER_M, 0x0000, ALPHA_EN2_UPPER_D, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_E, ALPHA_NULL
+u16 gStrResultQuit[] = {
+    ALPHA_SPACE, ALPHA_EN2_UPPER_I, ALPHA_EN2_APOSTROPHE, ALPHA_EN2_LOWER_M, ALPHA_SPACE, ALPHA_EN2_UPPER_D, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_E, ALPHA_NULL
 };
 // "     Rank"
-u16 D_800C9540[] = {
-    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, ALPHA_EN2_UPPER_R, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_K, ALPHA_NULL
+u16 gStrResultRank[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_R, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_K, ALPHA_NULL
 };
 // "-m--s--"
-u16 D_800C9554[] = {
+u16 gStrResultOT[] = {
     ALPHA_MINUS, ALPHA_EN3_LOWER_M, ALPHA_MINUS, ALPHA_MINUS, ALPHA_EN3_LOWER_S, ALPHA_MINUS, ALPHA_MINUS, ALPHA_NULL
 };
 // "Perfect!!!"
-u16 D_800C9564[] = {
+u16 gStrResult_S[] = {
     ALPHA_EN2_UPPER_P, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_F, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_C, ALPHA_EN2_LOWER_T, ALPHA_EN2_EXLAMATION,
-    ALPHA_EN2_EXLAMATION, ALPHA_EN2_EXLAMATION, ALPHA_NULL, 0x0000,
+    ALPHA_EN2_EXLAMATION, ALPHA_EN2_EXLAMATION, ALPHA_NULL
 };
 // "Excellent!"
-u16 D_800C957C[] = {
+u16 gStrResult_A[] = {
     ALPHA_EN2_UPPER_E, ALPHA_EN2_LOWER_X, ALPHA_EN2_LOWER_C, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_L, ALPHA_EN2_LOWER_L, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_N,
-    ALPHA_EN2_LOWER_T, ALPHA_EN2_EXLAMATION, ALPHA_NULL, 0x0000,
+    ALPHA_EN2_LOWER_T, ALPHA_EN2_EXLAMATION, ALPHA_NULL
 };
 // "Very Good!"
-u16 D_800C9594[] = {
-    ALPHA_EN2_UPPER_V, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_Y, 0x0000, ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_O,
-    ALPHA_EN2_LOWER_D, ALPHA_EN2_EXLAMATION, ALPHA_NULL, 0x0000,
+u16 gStrResult_B[] = {
+    ALPHA_EN2_UPPER_V, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_Y, ALPHA_SPACE, ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_O,
+    ALPHA_EN2_LOWER_D, ALPHA_EN2_EXLAMATION, ALPHA_NULL
 };
 // "   Good   "
-u16 D_800C95AC[] = {
-    0x0000, 0x0000, 0x0000, ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_D, 0x0000,
-    0x0000, 0x0000, ALPHA_NULL, 0x0000,
+u16 gStrResult_C[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_D, ALPHA_SPACE,
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_NULL
 };
 // "Try Harder"
-u16 D_800C95C4[] = {
-    ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_Y, 0x0000, ALPHA_EN2_UPPER_H, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_D,
-    ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_NULL, 0x0000,
+u16 gStrResult_D[] = {
+    ALPHA_EN2_UPPER_T, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_Y, ALPHA_SPACE, ALPHA_EN2_UPPER_H, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_D,
+    ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_NULL
 };
 
 // array of actor indexes
-u16 D_800C95DC[] = {
+u16 gStageIconIndexes[] = {
     0x51, 0x54, 0x57, 0x5A, 0x5D, 0x60, 0x63, 0x66, 0x69, 0x6C, 0x70, 0x74
 };
 
-s16 D_800C95F4[] = {
-    -129, -106, -83, -60, -37, -14, 9, 32, 55, 78, 101, 124, 124, 0x0000
+s16 gStageIconPosX[] = {
+    -129, -106, -83, -60, -37, -14, 9, 32, 55, 78, 101, 124, 124, 0
 };
 
-s16 D_800C9610[] = { // y-coord
-    26, -22, 26, -22, 26, -22, 26, -22, 26, -22, 26, -22, -18, 0x0000
+s16 gStageIconPosY[] = { // y-coord
+    26, -22, 26, -22, 26, -22, 26, -22, 26, -22, 26, -22, -18, 0
 };
 
-s16 D_800C962C[] = {
+s16 gGraphicIndexWMMarina[] = {
     GINDEX_WM_MARINAICON, 6, 
     GRAPHIC_FRAME(WM_MARINAICON, 1), 6, 
     GRAPHIC_FRAME(WM_MARINAICON, 2), 6, 
@@ -947,7 +965,7 @@ s16 D_800C962C[] = {
     -0xC, 0
 };
 
-s16 D_800C9648[] = {
+s16 gGraphicIndexWMic[] = {
     GINDEX_WM_CLANCERMIC, 5,
     GRAPHIC_FRAME(WM_CLANCERMIC, 1), 5,
     GRAPHIC_FRAME(WM_CLANCERMIC, 2), 5,
@@ -957,43 +975,45 @@ s16 D_800C9648[] = {
     -0xC, 0
 };
 
-u16 D_800C9664[] = { // palette
+u16 gWorldMapNamePalette[] = { // palette
     0x0000, 0xFFC1, 0xC601, 0x8401
 };
 
-char D_800C966C[] = "S";
-char D_800C9670[] = "A";
-char D_800C9674[] = "B";
-char D_800C9678[] = "C";
-char D_800C967C[] = "D";
+char gStrRank_S[] = "S";
+char gStrRank_A[] = "A";
+char gStrRank_B[] = "B";
+char gStrRank_C[] = "C";
+char gStrRank_D[] = "D";
 
-char* D_800C9680[] = {
-    D_800C966C, D_800C9670, D_800C9674, D_800C9678, D_800C967C
+char* gRankLetters[] = {
+    gStrRank_S, gStrRank_A, gStrRank_B, gStrRank_C, gStrRank_D
 };
 
 // Rank letters, with an offset.
-s16 D_800C9694[] = {
+s16 gRankLetters2[] = {
     ALPHA_OFFSET(EN3_UPPER_S), ALPHA_OFFSET(EN3_UPPER_A), ALPHA_OFFSET(EN3_UPPER_B), ALPHA_OFFSET(EN3_UPPER_C), ALPHA_OFFSET(EN3_UPPER_D)
 };
 
-u16* D_800C96A0[] = {
-    D_800C9564, D_800C957C, D_800C9594, D_800C95AC, D_800C95C4
+u16* gRankResults[] = {
+    gStrResult_S, gStrResult_A, gStrResult_B, gStrResult_C, gStrResult_D
 };
 
 // "Record"
-u16 D_800C96B4[] = {
+u16 gStrRecord[] = {
     ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_D, ALPHA_NULL
 };
 
 // " h  m  s"
-u16 D_800C96C4[] = {
+u16 gStrResultHMS[] = {
     ALPHA_SPACE, ALPHA_EN3_LOWER_H, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN3_LOWER_M, ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN3_LOWER_S,
     ALPHA_NULL
 };
 
 u16 D_800C96D8[] = {
-    0x0051, 0x0052, 0x0053, 0x0054, 0x0055, 0x0056, 0x0057,
-    0x0058, 0x0059, 0x005A, 0x0083, 0x0084, 0x0085, 
+    ALPHA_OFFSET(THIN_0), ALPHA_OFFSET(THIN_1), ALPHA_OFFSET(THIN_2), ALPHA_OFFSET(THIN_3),
+    ALPHA_OFFSET(THIN_4), ALPHA_OFFSET(THIN_5), ALPHA_OFFSET(THIN_6),
+    ALPHA_OFFSET(THIN_7), ALPHA_OFFSET(THIN_8), ALPHA_OFFSET(THIN_9),
+    ALPHA_OFFSET(THIN_10), ALPHA_OFFSET(THIN_11), ALPHA_OFFSET(THIN_12), 
 };
 
 s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
@@ -1014,7 +1034,7 @@ s32 Input_CheckButtonRepeat(u16 button, u8* repeat_timer) {
     return FALSE;
 }
 
-s32 func_800176F8(u16 button, u8* repeat_timer) {
+s32 Input_CheckButtonRepeat2(u16 button, u8* repeat_timer) {
     if (!(gButtonHold & button)) {
         *repeat_timer = 0;
     }
@@ -1088,15 +1108,15 @@ void GameState_Intro(void) {
         gActors[actor_index_30].hitboxBY0 = 0x10;
         gActors[actor_index_30].hitboxBY1 = 8;
         gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_803524C8;
-        gActors[actor_index_30].unk_180 = (intptr_t) D_800C9080;
+        gActors[actor_index_30].unk_180 = (intptr_t) gIntroPalette3;
         gActors[actor_index_30].var_154 = -0x1F;
         color = gActors[actor_index_30].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C9080, 0xFF, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette3, 0xFF, color, color, color);
         gGameStateSubState++;
         break;
     case 1:
         color = gActors[actor_index_30].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C9080, 0xFF, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette3, 0xFF, color, color, color);
         if (gFramesInScene & 1) {
             if (gActors[actor_index_30].var_154++ == 0) {
                 gGameStateSubState++;
@@ -1111,7 +1131,7 @@ void GameState_Intro(void) {
         break;
     case 3:
         color = gActors[actor_index_30].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C9080, 0xFF, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette3, 0xFF, color, color, color);
         if (gFramesInScene & 1) {
             if ((gActors[actor_index_30].var_154-- + 0x1F) == 0) {
                 Text_InitActorGraphic(0x30, 0x2000, 0, 4, 0);
@@ -1122,17 +1142,17 @@ void GameState_Intro(void) {
                 gActors[actor_index_30].hitboxBY0 = 0x18;
                 gActors[actor_index_30].hitboxBY1 = 4;
                 gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_80342040;
-                gActors[actor_index_30].unk_180 = (intptr_t) D_800C8FA0;
+                gActors[actor_index_30].unk_180 = (intptr_t) gIntroPalette1;
                 gActors[actor_index_30].var_154 = -0x1F;
                 color = gActors[actor_index_30].var_154;
-                Palette_AdjustRgb5551Array(PALETTE_80342040, D_800C8FA0, 0xF, color, color, color);
+                Palette_AdjustRgb5551Array(PALETTE_80342040, gIntroPalette1, 0xF, color, color, color);
                 gGameStateSubState = 10;
             }
         }
         break;
     case 10:
         color = gActors[actor_index_30].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_80342040, D_800C8FA0, 0xF, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_80342040, gIntroPalette1, 0xF, color, color, color);
         if (gFramesInScene & 1) {
             if (gActors[actor_index_30].var_154++ == 0) {
                 gGameStateSubState++;
@@ -1147,7 +1167,7 @@ void GameState_Intro(void) {
         break;
     case 12:
         color = gActors[actor_index_30].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_80342040, D_800C8FA0, 0xF, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_80342040, gIntroPalette1, 0xF, color, color, color);
         if (gFramesInScene & 1) {
             if ((gActors[actor_index_30].var_154-- + 0x1F) == 0) {
                 gActors[actor_index_30].flags = 0;
@@ -1159,17 +1179,17 @@ void GameState_Intro(void) {
                 gActors[actor_index_31].hitboxBY0 = 0x18;
                 gActors[actor_index_31].hitboxBY1 = 4;
                 gActors[actor_index_31].unk_17C = (intptr_t)PALETTE_803524C8;
-                gActors[actor_index_31].unk_180 = (intptr_t) D_800C8FC0;
+                gActors[actor_index_31].unk_180 = (intptr_t) gIntroPalette2;
                 gActors[actor_index_31].var_154 = -0x1F;
                 color = gActors[actor_index_31].var_154;
-                Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C8FC0, 0x5F, color, color, color);
+                Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
                 gGameStateSubState += 1;
             }
         }
         break;
     case 13:
         color = gActors[actor_index_31].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C8FC0, 0x5F, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
         if (gFramesInScene & 1) {
             if (gActors[actor_index_31].var_154++ == 0) {
                 gGameStateSubState++;
@@ -1184,7 +1204,7 @@ void GameState_Intro(void) {
         break;
     case 15:
         color = gActors[actor_index_31].var_154;
-        Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C8FC0, 0x5F, color, color, color);
+        Palette_AdjustRgb5551Array(PALETTE_803524C8, gIntroPalette2, 0x5F, color, color, color);
         if (gFramesInScene & 1) {
             if ((gActors[actor_index_31].var_154-- + 0x1F) == 0) {
                 gActors[actor_index_31].flags = 0;
@@ -1193,13 +1213,13 @@ void GameState_Intro(void) {
         }
         break;
     case 16:
-        gSPDisplayList(gDisplayListHead++, D_800C8EF0);
+        gSPDisplayList(gDisplayListHead++, gIntroDList);
         gActors[actor_index_30].flags = 0;
         gActors[actor_index_31].flags = 0;
         gWorldProgress = gCurrentStage = 0;
         gCurrentScene = SCENE_INTRO;
         D_800D28E4 = 0x59;
-        D_800C5008 = 0;
+        gCurrentSaveSlot = 0;
         gGameState = GAMESTATE_TRANSITION;
         gGameStateSubState = 0x41;
         break;
@@ -1212,7 +1232,7 @@ void GameState_Intro(void) {
     }
 }
 
-void func_80017F08(void) {
+void Title_LegalText(void) {
     u16* palette;
 
     DebugMenu_UpdateCursorFlash();
@@ -1225,7 +1245,7 @@ void func_80017F08(void) {
     Text_PrintASCII(0x60, gStrLicence, -0x5A, -0x52, 0, palette);
 }
 
-void func_80017FE8(u16 actor_index) {
+void Title_WhiteScreen(u16 actor_index) {
     gActors[actor_index].actorType = ACTORTYPE_ZERO;
     Actor_Initialize(actor_index);
 
@@ -1241,24 +1261,24 @@ void func_80017FE8(u16 actor_index) {
 }
 
 // move subtitle graphic (visible only in Japanese version.)
-void func_8001809C(void) {
-    if (gActors[0x34].posX.whole == -0x18) {
+void Title_MoveSubtitle(void) {
+    if (gSubtitleActor.posX.whole == -0x18) {
         return;
     }
 
-    gActors[0x34].velocityX.raw = (FIXED_UNIT(-24.0) - gActors[0x34].posX.raw) / 4;
-    if (gActors[0x34].velocityX.raw < FIXED_UNIT(-32.0)) {
-        gActors[0x34].posX.raw += FIXED_UNIT(-32.0);
+    gSubtitleActor.velocityX.raw = (FIXED_UNIT(-24.0) - gSubtitleActor.posX.raw) / 4;
+    if (gSubtitleActor.velocityX.raw < FIXED_UNIT(-32.0)) {
+        gSubtitleActor.posX.raw += FIXED_UNIT(-32.0);
         return;
     }
-    gActors[0x34].posX.raw += gActors[0x34].velocityX.raw;
+    gSubtitleActor.posX.raw += gSubtitleActor.velocityX.raw;
 }
 
-void func_800180FC(void) {
+void Title_UpdateText(void) {
     u16 index;
 
-    func_8001809C();
-    func_80017F08();
+    Title_MoveSubtitle();
+    Title_LegalText();
 
     // blink "press start" text
     if ((D_80178166++ & 4) == 0) {
@@ -1279,22 +1299,22 @@ void GameState_TitleScreen(void) {
         gGameStateSubState = 16;
         /* fallthrough */
     case 16:
-        gSPDisplayList(gDisplayListHead++, D_800C8EF0);
+        gSPDisplayList(gDisplayListHead++, gIntroDList);
         func_800230B8();
-        func_80017FE8(0x33);
+        Title_WhiteScreen(0x33);
         gCurrentScene = SCENE_TITLE;
         gGameStateSubState++;
         break;
     case 17:
-        func_80026E60(0x50);
+        func_80026E60(SCENE_UNK80);
         gGameStateSubState++;
         break;
     case 18:
-        func_80026F2C(0x50);
+        func_80026F2C(SCENE_UNK80);
         gGameStateSubState++;
         break;
     case 19:
-        func_800270E4(0x15);
+        func_800270E4(SCENE_SPLASHSCREEN);
         gGameStateSubState++;
         break;
     case 20:
@@ -1311,7 +1331,7 @@ void GameState_TitleScreen(void) {
         break;
     case 23:
         func_80025BFC();
-        Palette_AdjustRgb5551Array((u16* )0x803DA400, PALETTE_80380200, 0xFF, 2, 0, 0);
+        Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 2, 0, 0);
         D_800BE578 = 2;
         D_800BE580 = -0xC;
         D_801376A0 = PALETTE_80380200;
@@ -1328,21 +1348,21 @@ void GameState_TitleScreen(void) {
 
         actor_index = 0x10;
         Text_InitActorGraphic(actor_index, 0x800, 0x70, 0xFF68, 0);
-        gActors[actor_index].graphicFlags |= 0x100;
+        gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8;
         gActors[actor_index].colorA = 0x80;
 
         actor_index++;
         Text_InitActorGraphic(actor_index, 0x1000, 0xFF88, 0xFF68, 0);
-        gActors[actor_index].graphicFlags |= 0x100;
+        gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8;
         gActors[actor_index].colorA = 0x80;
 
         actor_index = 0x30;
-        gActors[actor_index].actorType = 0;
+        gActors[actor_index].actorType = ACTORTYPE_ZERO;
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-        gActors[actor_index].flags |= 0x30000000;
-        gActors[actor_index].unk_17C = (s32)0x80343C28;
-        gActors[actor_index].unk_180 = (s32)0x80349728;
+        gActors[actor_index].flags |= (ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28);
+        gActors[actor_index].unk_17C = (intptr_t)0x80343C28;
+        gActors[actor_index].unk_180 = (intptr_t)0x80349728;
         gActors[actor_index].posX.whole = 14;
         gActors[actor_index].posY.whole = 42;
         gActors[actor_index].hitboxBX0 = 224;
@@ -1354,7 +1374,7 @@ void GameState_TitleScreen(void) {
         gGameStateSubState++;
         break;
     case 25:
-        func_80017F08();
+        Title_LegalText();
         if (gActors[0x33].colorA == 7) {
             gActors[0x33].flags = 0;
             gActors[0x33].var_154 = 0x10040;
@@ -1366,29 +1386,31 @@ void GameState_TitleScreen(void) {
         break;
     case 26:
         gActors[0x33].var_154--;
-        func_8001809C();
+        Title_MoveSubtitle();
         if (gActors[0x33].var_154 == 0x10000) {
             Sound_PlaySfx(SFX_MARINA_TITLE);
         }
+        // button sequence for Sound test
         if ((gButtonHold & gButton_A) && (gButtonHold & gButton_CLeft) && (gButtonHold & gButton_CRight) && (gButtonHold & gButton_LTrig) && 
             !(gButtonHold & gButton_B) && !(gButtonHold & gButton_CDown) && !(gButtonHold & gButton_CUp) && !(gButtonHold & gButton_RTrig)) {
-            CURSOR_INDEX_A = 1;
+            CURSOR_INDEX_A = TRUE;
         }
         else {
-            CURSOR_INDEX_A = 0;
+            CURSOR_INDEX_A = FALSE;
         }
-        func_80017F08();
+        Title_LegalText();
         if (gButtonPress & gButton_Start) {
             Sound_PlaySfx(SFX_MENU_DING);
             Sound_StartFade(1, 0x40);
             D_80178166 = 0;
-            if (CURSOR_INDEX_A != 0) {
+            if (CURSOR_INDEX_A) {
                 gGameStateSubState = 0x30;
             }
             else {
                 gGameStateSubState = 0x20;
             }
         }
+        // timer to swich to attract mode
         if (((gAudioUpdateCounter > 0x1140) || (gButtonPress & gButton_B)) && !(gButtonPress & gButton_Start)) {
             Sound_StartFade(1, 0x20);
             actor_index = 0x33;
@@ -1400,8 +1422,8 @@ void GameState_TitleScreen(void) {
         }
         break;
     case 27:
-        func_8001809C();
-        func_80017F08();
+        Title_MoveSubtitle();
+        Title_LegalText();
         if (gActors[0x33].colorA == 0xFF) {
             gAudioFadeMode = 0;
             gGameState = GAMESTATE_ATTRACT;
@@ -1412,7 +1434,7 @@ void GameState_TitleScreen(void) {
         }
         break;
     case 32:
-        func_800180FC();
+        Title_UpdateText();
         if (gAudioFadeMode == 3) {
             gAudioFadeMode = 0;
             D_80178164 = 0x20;
@@ -1420,14 +1442,14 @@ void GameState_TitleScreen(void) {
         }
         break;
     case 33:
-        func_800180FC();
+        Title_UpdateText();
         if (D_80178164-- == 0) {
             gGameState = GAMESTATE_FILESELECT;
             gGameStateSubState = 0;
         }
         break;
     case 48:
-        func_800180FC();
+        Title_UpdateText();
         if (gAudioFadeMode == 3) {
             gAudioFadeMode = 0;
             D_80178164 = 0x20;
@@ -1435,7 +1457,7 @@ void GameState_TitleScreen(void) {
         }
         break;
     case 49:
-        func_800180FC();
+        Title_UpdateText();
         if (D_80178164-- == 0) {
             func_800230B8();
             gActors[0x10].flags = ACTOR_FLAG_ENABLED;
@@ -1523,8 +1545,8 @@ void GameState_DebugSoundTest(void) {
             break;
         }
         DebugMenu_UpdateCursorFlash();
-        func_80060F88(0x30);
-        func_80060F88(0x31);
+        ActorUpdate_3DIcon(0x30);
+        ActorUpdate_3DIcon(0x31);
         gActors[0x30].posY.whole = gActors[0x31].posY.whole = D_800C94D8[CURSOR_INDEX_A];
         palette = Text_SetColor(4, 0x1F, 0x1F - (gDebugMenuCursorFlash[0] / 4), (0x1F - (gDebugMenuCursorFlash[0] / 4)));
         Text_PrintASCII(actor_index + 0x1A, D_800C94CC, 0xFFD8, 0x30, 0, palette);
@@ -1535,7 +1557,7 @@ void GameState_DebugSoundTest(void) {
         gActors[actor_index + 0x26].flags = 0;
         if (gButtonPress & gButton_Start) {
             actor_index = 0x33;
-            func_80017FE8(actor_index);
+            Title_WhiteScreen(actor_index);
             gActors[actor_index].colorA = 7;
             Sound_PlaySfx(SFX_MENU_DING);
             Sound_StartFade(0x81, 0x20);
@@ -1702,7 +1724,7 @@ void GameState_DebugStageSelect(void) {
             break;
 
         case 2:
-            D_800C5008 = 0;
+            gCurrentSaveSlot = 0;
             gWorldProgress = gCurrentStage;
             gGameState = GAMESTATE_TRANSITION;
             gGameStateSubState = 0x41;
@@ -1711,7 +1733,7 @@ void GameState_DebugStageSelect(void) {
 }
 
 // convert from nibble-encoded time to counter 0x000MSSTt
-s32 func_80019520(s32 time) {
+s32 GetRaceTimeRecord(s32 time) {
     s32 temp_t0;
     s32 var_v1;
     s32 seconds_ones;
@@ -1732,16 +1754,16 @@ s32 func_80019520(s32 time) {
     return var_v1 + minutes + seconds_tens + seconds_ones;
 }
 
-void func_80019688(void) {
+void GetFestivalTimeRecords(void) {
     s32 time_0;
     s32 time_1;
     s32 time_2;
 
     if (gCurrentStage == STAGE_THEDAYOF) {
-        time_2 = func_80019520(gFestivalRecords[FESTGAME_400M]);
-        time_1 = func_80019520(gFestivalRecords[FESTGAME_200M]);
-        time_0 = func_80019520(gFestivalRecords[FESTGAME_100M]);
-        gStageTime = func_80019520(gFestivalRecords[FESTGAME_HURDLE]) + time_0 + time_1 + time_2;
+        time_2 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_400M]);
+        time_1 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_200M]);
+        time_0 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_100M]);
+        gStageTime = GetRaceTimeRecord(gFestivalRecords[FESTGAME_HURDLE]) + time_0 + time_1 + time_2;
         if (gFestivalRecords[FESTGAME_JUMP] < 1800) {
             gStageTime = (gStageTime - gFestivalRecords[FESTGAME_JUMP]) + 1800;
         }
@@ -1757,7 +1779,7 @@ void func_80019688(void) {
     gGameStateSubState = 8;
 }
 
-void func_800197A0(void) {
+void WorldMap_LoadGraphics(void) {
     D_80137714 = D_80137718 = (u32)ASSET_DEST5;
     D_800CBF50 = 0;
     DMA_ReadSync((void*)((u32)rle_0047_3FAB30_011B1BF0 + (u32)Segment_01_ROM_START - (u32)Segment_01_DATA_START),
@@ -1766,26 +1788,26 @@ void func_800197A0(void) {
     D_801376D4 = (u32)ASSET_DEST5_TABLE;
 }
 
-void func_8001983C(void) {
+void WorldMap_Reset(void) {
     gDrawMidground = FALSE;
     gDrawEnvLayer = FALSE;
     gDrawBackground = FALSE;
     func_800230B8();
     gActorDepthMiddle = -0x100;
     gActorDepthBack = -0x200;
-    func_800197A0();
+    WorldMap_LoadGraphics();
     D_8013747C = 1;
     D_800BE6A8 = 0;
     gCamShakeV = 0;
     gCamShakeTime = 0;
-    func_800109B0();
+    LookAt_Reset();
 }
 
-void func_800198B4(void) {
+void WorldMap_PrintWorldName(void) {
     u16 end;
     u16 index;
 
-    func_8001983C();
+    WorldMap_Reset();
     Text_InitActorGraphic(0x30, GINDEX_WM_WORLDTITLEBG, 0, 0x50, 0);
     index = 0x31;
     Text_InitActorGraphic(index, GINDEX_WM_SPEECHBUBBLE, 0, 0xFFB5, 0);
@@ -1793,14 +1815,14 @@ void func_800198B4(void) {
     gActors[index].colorR = 0x40;
     gActors[index].colorG = 0x40;
     gActors[index].colorB = 0x40;
-    Text_InitActorGList(0x79, D_800C9648, 0xFF88, 0xFFB4, 0);
-    end = Text_PrintStringGray(0x7C, gWorldNames[gCurrentWorld], D_800C8BF8[gCurrentWorld], 0x4E, 0);
+    Text_InitActorGList(0x79, gGraphicIndexWMic, 0xFF88, 0xFFB4, 0);
+    end = Text_PrintStringGray(0x7C, gWorldNames[gCurrentWorld], gWorldNameXOffsets[gCurrentWorld], 0x4E, 0);
     for (index = 0x7C; index < end; index++) {
-        gActors[index].unk_18C = (intptr_t)D_800C9664; // palette_18C doesn't match instruction ordering
+        gActors[index].unk_18C = (intptr_t)gWorldMapNamePalette; // palette_18C doesn't match instruction ordering
     }
 }
 
-void func_800199DC(u16 arg0) {
+void WorldMap_PrintStageName(u16 arg0) {
     u16 index;
 
     for (index = 0x8C; index < 0x9C; index++) {
@@ -1810,12 +1832,12 @@ void func_800199DC(u16 arg0) {
 }
 
 // draw sprites of world map.
-void func_80019A80(void) {
+void WorldMap_DrawSprites(void) {
     u16 actor_index;
     u16 index;
     u16 temp_s1;
 
-    func_800198B4();
+    WorldMap_PrintWorldName();
     actor_index = 0xB5;
     Text_InitActorGraphic(actor_index++, 0x3010, 0xFF7B, 0xFFF2, 0xFFFF);
     for (index = 0; index < 5; index++) {
@@ -1836,17 +1858,17 @@ void func_80019A80(void) {
     }
 
     actor_index = 0x39;
-    for (index = 0; index < D_800C8C04[gCurrentWorld]; index++) {
-        temp_s1 = D_800C8EDC[gCurrentWorld][index];
-        Text_InitActorGraphic(actor_index, temp_s1, D_800C95F4[index], D_800C9610[index], 0);
+    for (index = 0; index < gWorldStageCounts[gCurrentWorld]; index++) {
+        temp_s1 = gStageIcons[gCurrentWorld][index];
+        Text_InitActorGraphic(actor_index, temp_s1, gStageIconPosX[index], gStageIconPosY[index], 0);
         actor_index++;
         // show different "locked" icon for main boss stages.
         if ((temp_s1 == GINDEX_WM_STAGEICONMIGEN) || (temp_s1 == GINDEX_WM_STAGEICONLUNAR) || 
           (temp_s1 == GINDEX_WM_STAGEICONTAURUS) || (temp_s1 == GINDEX_WM_STAGEICONMERCO) || ((temp_s1 == GINDEX_WM_STAGEICONFINAL))) {
-            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONBLOCKED, D_800C95F4[index], D_800C9610[index], 0);
+            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONBLOCKED, gStageIconPosX[index], gStageIconPosY[index], 0);
         }
         else {
-            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONUNKNOWN, D_800C95F4[index], D_800C9610[index], 0);
+            Text_InitActorGraphic(actor_index++, GINDEX_WM_STAGEICONUNKNOWN, gStageIconPosX[index], gStageIconPosY[index], 0);
         }
         // special case - move "Credits" icon to center and end of path.
         if ((gCurrentWorld == 4) && (index == 9)) {
@@ -1856,21 +1878,21 @@ void func_80019A80(void) {
             gActors[actor_index - 2].posY.whole = gActors[actor_index - 1].posY.whole;
         }
     }
-    Text_InitActorGList(0x78, D_800C962C, 0xFF78, 2, 1);
+    Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicIndexWMMarina, 0xFF78, 2, 1);
     func_8001A584();
-    if (D_80178152 != 0) {
-        if (D_80178156 == 0) {
-            func_800199DC(D_80178156);
-            gActors[0x78].posX.whole = D_800C95F4[D_80178156] - 8;
+    if (gStageUnlocked) {
+        if (gSelectedStage == 0) {
+            WorldMap_PrintStageName(gSelectedStage);
+            gPlayerCursorActor.posX.whole = gStageIconPosX[gSelectedStage] - 8;
         }
         else {
-            func_800199DC(D_80178156 - 1);
-            gActors[0x78].posX.whole = D_800C95F4[D_80178156 - 1];
+            WorldMap_PrintStageName(gSelectedStage - 1);
+            gPlayerCursorActor.posX.whole = gStageIconPosX[gSelectedStage - 1];
         }
     }
     else {
-        func_800199DC(D_80178156);
-        gActors[0x78].posX.whole = D_800C95F4[D_80178156];
+        WorldMap_PrintStageName(gSelectedStage);
+        gPlayerCursorActor.posX.whole = gStageIconPosX[gSelectedStage];
     }
 }
 
@@ -1889,9 +1911,9 @@ void func_80019E48(void) {
 void func_80019EC4(void) {
     func_8008310C();
     func_80083454();
-    func_80019A80();
+    WorldMap_DrawSprites();
     func_80019E48();
-    func_8001A254();
+    WorldMap_PrintStageLabels();
 }
 
 void func_80019F04(u16 actor_index) {
@@ -1910,15 +1932,17 @@ void func_80019F04(u16 actor_index) {
     }
 }
 
-void func_80019FB4(u16 actor_index, u16 stage_index) {
-    Text_PrintASCII(actor_index, D_800C8E58[gCurrentWorld][stage_index], D_800C95F4[stage_index] - 9, D_800C9610[stage_index] - 7, 1, gTextPalettes[0]);
-    if (gStrStage5_10 == D_800C8E58[gCurrentWorld][stage_index]) {
+void WorldMap_PrintStageLabel(u16 actor_index, u16 stage_index) {
+    Text_PrintASCII(actor_index, gStageStrings[gCurrentWorld][stage_index], gStageIconPosX[stage_index] - 9, gStageIconPosY[stage_index] - 7, 1, gTextPalettes[0]);
+    // adjust "Credits"'s label
+    if (gStrStage5_10 == gStageStrings[gCurrentWorld][stage_index]) {
         gActors[actor_index + 0].posX.whole += 0x1F;
         gActors[actor_index + 1].posX.whole += 0x1D;
         gActors[actor_index + 2].posX.whole += 0x1A;
         gActors[actor_index + 3].posX.whole += 0x18;
         gActors[actor_index + 0].posY.whole = gActors[actor_index + 1].posY.whole = gActors[actor_index + 2].posY.whole = gActors[actor_index + 3].posY.whole = -1;
     }
+    // adjust labels of stages 10+
     else if (stage_index >= 9) {
         gActors[actor_index + 1].posX.whole -= 2;
         gActors[actor_index + 2].posX.whole -= 6;
@@ -1926,7 +1950,8 @@ void func_80019FB4(u16 actor_index, u16 stage_index) {
     }
 }
 
-void func_8001A15C(u16 index) {
+// print skewed stage icon during transition
+void WorldMap_PrintWarpedStageIcon(u16 index) {
     u16 actor_index;
 
     actor_index = D_800C81E0[0];
@@ -1938,8 +1963,8 @@ void func_8001A15C(u16 index) {
         gActors[actor_index + 0].graphicFlags &= ~(ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX);
         gActors[actor_index + 1].flags = 0;
         D_800C81E0[0] = 0xFFFF;
-        actor_index = D_800C95DC[index];
-        func_80019FB4(actor_index, index);
+        actor_index = gStageIconIndexes[index];
+        WorldMap_PrintStageLabel(actor_index, index);
     }
     else {
         gActors[actor_index + 0].rotateX += 9.0f;
@@ -1952,11 +1977,11 @@ void func_8001A15C(u16 index) {
     }
 }
 
-void func_8001A254(void) {
+void WorldMap_PrintStageLabels(void) {
     u16 stage;
     u16 index;
     u16 y_offset;
-    s16 string_index;
+    s16 rank;
     u16 count;
 
     if (D_8017815E < gCurrentWorld) {
@@ -1968,18 +1993,18 @@ void func_8001A254(void) {
         }
         else {
             count = D_80178158;
-            if ((D_80178152 != 0) && (gWorldProgress != STAGE_ENDING)) {
-                if (D_80178156 == 0) {
+            if ((gStageUnlocked) && (gWorldProgress != STAGE_ENDING)) {
+                if (gSelectedStage == 0) {
                     count = 0;
                 }
-                else if (count != D_800C8C04[gCurrentWorld]) {
+                else if (count != gWorldStageCounts[gCurrentWorld]) {
                     count++;
                 }
             }
         }
     }
     else {
-        count = D_800C8C04[gCurrentWorld];
+        count = gWorldStageCounts[gCurrentWorld];
         if (gCurrentWorld == 4) {
             count = 9;
         }
@@ -1990,9 +2015,10 @@ void func_8001A254(void) {
         if (stage >= STAGE_FINALBATTLE) {
             stage++;
         }
+        // print gem icon if applicable
         if (YellowGem_GetFlag(stage)) {
             y_offset = (((index % 2) * 0x36) - 0x1B);
-            Text_InitActorGList(index + 0x9C, gGraphicListGemIcon, D_800C95F4[index] + 6, D_800C9610[index] - y_offset, 0);
+            Text_InitActorGList(index + 0x9C, gGraphicListGemIcon, gStageIconPosX[index] + 6, gStageIconPosY[index] - y_offset, 0);
             gActors[index + 0x9C].scaleY = 0.75f;
             gActors[index + 0x9C].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_SCALE;
             gActors[index + 0x9C].scaleX = 0.75f;
@@ -2003,8 +2029,8 @@ void func_8001A254(void) {
         }
         else {
             y_offset = (((index % 2) * 0x36) - 0x1B);
-            string_index = func_8001A758(gTimeRecords[stage], stage);
-            Text_PrintASCII(index + 0xA8, D_800C9680[string_index], D_800C95F4[index] - 4, D_800C9610[index] - y_offset, 0, gTextPalettes[1]);
+            rank = WorldMap_GetStageRank(gTimeRecords[stage], stage);
+            Text_PrintASCII(index + 0xA8, gRankLetters[rank], gStageIconPosX[index] - 4, gStageIconPosY[index] - y_offset, 0, gTextPalettes[1]);
         }
     }
 }
@@ -2019,8 +2045,8 @@ void func_8001A584(void) {
     }
     else if (gCurrentWorld == D_8017815E) {
         stage_count = D_80178158 + 1;
-        if (D_80178152 != 0) {
-            if (D_80178156 == 0) {
+        if (gStageUnlocked) {
+            if (gSelectedStage == 0) {
                 stage_count = 0;
             }
             else if (gWorldProgress == STAGE_INNERSTRUGGLE) {
@@ -2029,7 +2055,7 @@ void func_8001A584(void) {
         }
     }
     else {
-        stage_count = D_800C8C04[gCurrentWorld];
+        stage_count = gWorldStageCounts[gCurrentWorld];
     }
 
     for (stage_index = 0; stage_index < stage_count; stage_index++) {
@@ -2038,21 +2064,21 @@ void func_8001A584(void) {
         gActors[actor_index + 0].graphicFlags &= ~(ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX);
         gActors[actor_index + 1].flags = 0;
 
-        actor_index = D_800C95DC[stage_index];
-        func_80019FB4(actor_index, stage_index);
+        actor_index = gStageIconIndexes[stage_index];
+        WorldMap_PrintStageLabel(actor_index, stage_index);
     }
 
     D_800C81E0[0] = 0xFFFF;
-    gActors[0x78].posX.whole = D_800C95F4[D_80178156];
+    gPlayerCursorActor.posX.whole = gStageIconPosX[gSelectedStage];
     for (actor_index = 0x8C; actor_index < 0x9B; actor_index++) {
         gActors[actor_index].flags = 0;
     }
-    func_800199DC(D_80178156);
+    WorldMap_PrintStageName(gSelectedStage);
 }
 
 // returns the time rank of (stage) compared to (time)
 // 0=S Rank, 1=A, 2=B, 3=C, 4=D
-s16 func_8001A758(u16 time, u16 stage) {
+s16 WorldMap_GetStageRank(u16 time, u16 stage) {
     if (time < gStageTimesToBeat[stage]) {
         return 0;
     }
@@ -2073,36 +2099,38 @@ s16 func_8001A758(u16 time, u16 stage) {
 }
 
 // print the Rank letter for (stage) based on (time)
-void func_8001A7E0(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = func_8001A758(time, stage);
-    func_8008379C(arg0, arg1, D_800C9694[index], arg4);
+void WorldMap_PrintRankLetter(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
+    s16 index = WorldMap_GetStageRank(time, stage);
+    func_8008379C(arg0, arg1, gRankLetters2[index], arg4);
 }
 
 // print the Rank review for (stage) based on (time)
-void func_8001A838(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = func_8001A758(time, stage);
-    func_80083810(arg0, arg1, D_800C96A0[index], arg4);
+void WorldMap_PrintRankReview(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
+    s16 index = WorldMap_GetStageRank(time, stage);
+    func_80083810(arg0, arg1, gRankResults[index], arg4);
 }
 
-void func_8001A890(void) {
+void WorldMap_PrintRankLetterReview(void) {
     u16 var_v0;
 
+    // blink if new PB
     if (gStageTime < gStageTimeBest) {
         var_v0 = ((gFramesInScene / 4) % 4);
     }
     else {
         var_v0 = 1;
     }
-    func_80083810(1, 4, D_800C9540, var_v0);
-    func_8001A7E0(6, 4, gStageTime, gCurrentStage, var_v0);
-    func_8001A838(9, 4, gStageTime, gCurrentStage, var_v0);
+    func_80083810(1, 4, gStrResultRank, var_v0);
+    WorldMap_PrintRankLetter(6, 4, gStageTime, gCurrentStage, var_v0);
+    WorldMap_PrintRankReview(9, 4, gStageTime, gCurrentStage, var_v0);
 }
 
-void func_8001A96C(void) {
+void WorldMap_PrintCurrStageTime(void) {
     u16 stage_time;
     u16 value;
     s16 var_s0;
 
+    // blink if new PB
     if (gStageTime < gStageTimeBest) {
         var_s0 = (gFramesInScene / 4) % 4;
     }
@@ -2111,17 +2139,18 @@ void func_8001A96C(void) {
     }
 
     stage_time = gStageTime;
-    if (((((stage_time % 60) * 0x1F4) / 3) % 100) < 0x32) {
+    if (((((stage_time % 60) * 500) / 3) % 100) < 50) {
         value = ((stage_time % 60) * 5) / 3;
     }
     else {
         value = (((stage_time % 60) * 5) / 3) + 1;
     }
+    // stage time over recordable
     if (stage_time == 36000) {
-        func_80083810(9, 5, D_800C9554, 0);
+        func_80083810(9, 5, gStrResultOT, 0);
     }
     else {
-        func_80083810(0xA, 5, D_800C9520, var_s0);
+        func_80083810(0xA, 5, gStrResultMS, var_s0);
 
         func_8008379C(0xE, 5, (value / 10) + 0x51, var_s0);
         func_8008379C(0xF, 5, (value % 10) + 0x51, var_s0);
@@ -2134,15 +2163,15 @@ void func_8001A96C(void) {
     }
 }
 
-void func_8001ACA8(u16 arg0, u16 arg1, u16 arg2) {
+void WorldMap_PrintStageTime(u16 x, u16 y, u16 stage) {
     u16 stage_time;
     u16 value;
 
-    if (arg2 == 0xFFFF) {
+    if (stage == 0xFFFF) {
         stage_time = gStageTimeBest;
     }
     else {
-        stage_time = gTimeRecords[arg2];
+        stage_time = gTimeRecords[stage];
     }
     if (((((stage_time % 60) * 500) / 3) % 100) < 50) {
         value = ((stage_time % 60) * 5) / 3;
@@ -2150,107 +2179,108 @@ void func_8001ACA8(u16 arg0, u16 arg1, u16 arg2) {
     else {
         value = (((stage_time % 60) * 5) / 3) + 1;
     }
-    if (stage_time == 0x8CA0) {
-        func_80083810(arg0, arg1, D_800C9554, 0);
+    // stage time over recordable
+    if (stage_time == 36000) {
+        func_80083810(x, y, gStrResultOT, 0);
     }
     else {
-        func_80083810(arg0 + 1, arg1, D_800C9520, 0);
-        func_8008379C(arg0 + 5, arg1, (value / 10) + 0x51, 0);
-        func_8008379C(arg0 + 6, arg1, (value % 10) + 0x51, 0);
+        func_80083810(x + 1, y, gStrResultMS, 0);
+        func_8008379C(x + 5, y, (value / 10) + 0x51, 0);
+        func_8008379C(x + 6, y, (value % 10) + 0x51, 0);
         stage_time /= 60;
         value = stage_time % 60;
-        func_8008379C(arg0 + 2, arg1, (value / 10) + 0x51, 0);
-        func_8008379C(arg0 + 3, arg1, (value % 10) + 0x51, 0);
+        func_8008379C(x + 2, y, (value / 10) + 0x51, 0);
+        func_8008379C(x + 3, y, (value % 10) + 0x51, 0);
         stage_time /= 60;
-        func_8008379C(arg0, arg1, stage_time + 0x51, 0);
+        func_8008379C(x, y, stage_time + 0x51, 0);
     }
 }
 
-void func_8001B004(void) {
-    func_8001ACA8(9, 6, 0xFFFF);
+void WorldMap_PrintPrevStageTime(void) {
+    WorldMap_PrintStageTime(9, 6, 0xFFFF);
 }
 
-void func_8001B02C(void) {
-    if ((gCurrentStage >= gWorldProgress) && (gWorldProgress < 0x3B)) {
+void WorldMap_StageProgress(void) {
+    if ((gCurrentStage >= gWorldProgress) && (gWorldProgress < STAGE_MAX)) {
         gCurrentStage = gCurrentStage + 1;
         gWorldProgress = gCurrentStage;
-        D_80178152 = 1;
+        gStageUnlocked = TRUE;
     }
 }
 
-void func_8001B078(u16 arg0, u16* arg1, u16* arg2, u16* arg3) {
+void func_8001B078(u16 stage, u16* world_out, u16* stage_out, u16* arg3) {
     u16 count;
     u16 index;
 
     for (index = 0, count = 0; index < 0x16; index++) {
         count += gStageRowCounts[index];
-        if (arg0 < count) {
+        if (stage < count) {
             break;
         }
     }
 
     switch (index) {
     case 2:
-        *arg1 = 0;
+        *world_out = 0;
         break;
     case 3:
     case 4:
-        *arg1 = 1;
+        *world_out = 1;
         break;
     case 6:
     case 7:
     case 8:
-        *arg1 = 2;
+        *world_out = 2;
         break;
     case 10:
     case 11:
     case 12:
-        *arg1 = 3;
+        *world_out = 3;
         break;
     case 14:
     case 15:
     case 16:
-        *arg1 = 4;
+        *world_out = 4;
         break;
     case 18:
     case 19:
-        *arg1 = 5;
+        *world_out = 5;
         break;
     default:
-        *arg1 = 6;
+        *world_out = 6;
         break;
     }
 
-    if (*arg1 == 5) {
-        *arg1 = 4;
+    if (*world_out == 5) {
+        *world_out = 4;
         *arg3 = gStageGroupOptionOffsetsTail[0];
-        *arg2 = (arg0 - *arg3) - 1;
+        *stage_out = (stage - *arg3) - 1;
     }
     else {
-        *arg3 = gStageGroupOptionOffsets[*arg1];
-        *arg2 = arg0 - *arg3;
+        *arg3 = gStageGroupOptionOffsets[*world_out];
+        *stage_out = stage - *arg3;
     }
 }
 
 void func_8001B1A0(void) {
-    func_8001B078(gCurrentStage, &gCurrentWorld, &D_80178156, &D_80178154);
+    func_8001B078(gCurrentStage, &gCurrentWorld, &gSelectedStage, &D_80178154);
     if (gCurrentWorld == 6) {
         gGameStateSubState = 0x41;
     }
 }
 
 void func_8001B1F8(void) {
-    func_8001B02C();
+    WorldMap_StageProgress();
     func_8001B1A0();
     D_80178160 = gCurrentWorld;
-    D_8017815A = D_80178156;
+    D_8017815A = gSelectedStage;
 }
 
 void func_8001B23C(void) {
 }
 
 // count bits set in gYellowGemBitfield
-u16 func_8001B244(void) {
+u16 CountYellowGems(void) {
     u64 bit_mask;
     u16 index;
     u16 count;
@@ -2266,7 +2296,8 @@ u16 func_8001B244(void) {
     return count;
 }
 
-void func_8001B2F4(void) {
+// update save file progress after finishing stage
+void WorldMap_UpdateSaveFile(void) {
     s16 sp1E;
 
     sp1E = gWorldProgress;
@@ -2277,23 +2308,24 @@ void func_8001B2F4(void) {
     if (gCurrentStage == gWorldProgress) {
         gWorldProgress = gCurrentStage + 1;
     }
-    D_80171AD0[D_800C5008] = gRedGems;
-    D_80171AD4[D_800C5008] = func_8001B244();
-    D_80171AD8[D_800C5008] = gFramesInPlayTime;
+    gFileRedGems[gCurrentSaveSlot] = gRedGems;
+    gFileYellowGems[gCurrentSaveSlot] = CountYellowGems();
+    gFilePlayTimes[gCurrentSaveSlot] = gFramesInPlayTime;
     func_80005770();
     gWorldProgress = sp1E;
 }
 
-void func_8001B3D0(void) {
+// update save file progress during "Ending"
+void WorldMap_UpdateSaveFile2(void) {
     u16 yellow_gem_count;
     u32 save_slot_index;
 
     gWorldProgress = gCurrentStage;
-    D_80171AD0[D_800C5008] = gRedGems;
-    yellow_gem_count = func_8001B244();
-    save_slot_index = D_800C5008;
-    D_80171AD4[save_slot_index] = yellow_gem_count;
-    D_80171AD8[save_slot_index] = (u64)gFramesInPlayTime;
+    gFileRedGems[gCurrentSaveSlot] = gRedGems;
+    yellow_gem_count = CountYellowGems();
+    save_slot_index = gCurrentSaveSlot;
+    gFileYellowGems[save_slot_index] = yellow_gem_count;
+    gFilePlayTimes[save_slot_index] = (u64)gFramesInPlayTime;
     func_80005770();
 }
 
@@ -2314,19 +2346,19 @@ void GameState_Transition(void) {
     case 0x7:
     case 0x8:
         temp = gGameStateSubState;
-        func_8001B078(gWorldProgress, &gCurrentWorld, &D_80178156, &D_80178154);
+        func_8001B078(gWorldProgress, &gCurrentWorld, &gSelectedStage, &D_80178154);
         if (gCurrentWorld == 6) {
-            func_8001B078(gWorldProgress + 1, &gCurrentWorld, &D_80178156, &D_80178154);
+            func_8001B078(gWorldProgress + 1, &gCurrentWorld, &gSelectedStage, &D_80178154);
         }
         D_8017815E = gCurrentWorld;
-        D_80178158 = D_80178156;
+        D_80178158 = gSelectedStage;
         func_8001B1A0();
-        D_80178152 = 0;
-        if ((gGameStateSubState == 8) && (gCurrentWorld == 4) && (D_80178156 >= 8)) {
+        gStageUnlocked = FALSE;
+        if ((gGameStateSubState == 8) && (gCurrentWorld == 4) && (gSelectedStage >= 8)) {
             gGameStateSubState = 0x41;
         }
         if (gGameStateSubState == 0x41) {
-            if (gCurrentStage == 0) {
+            if (gCurrentStage == STAGE_INTRO) {
                 func_8001B1F8();
                 gGameStateSubState = 0x41;
             }
@@ -2335,7 +2367,7 @@ void GameState_Transition(void) {
                 gGameStateSubState = 0x42;
             }
             else {
-                func_8001B2F4();
+                WorldMap_UpdateSaveFile();
                 func_8001B1F8();
                 gGameStateSubState = 0x1E;
             }
@@ -2352,31 +2384,31 @@ void GameState_Transition(void) {
         /* fallthrough */
     case 0x89:
         if (gGameStateSubState == 9) {
-            func_8001B2F4();
+            WorldMap_UpdateSaveFile();
         }
         func_8008310C();
         func_80083454();
-        func_800198B4();
+        WorldMap_PrintWorldName();
         D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
         if (gCurrentStage >= STAGE_INNERSTRUGGLE) {
-            D_80178156 = (gCurrentStage - D_80178154) - 1;
+            gSelectedStage = (gCurrentStage - D_80178154) - 1;
         }
         else {
-            D_80178156 = gCurrentStage - D_80178154;
+            gSelectedStage = gCurrentStage - D_80178154;
         }
-        func_800199DC(D_80178156);
+        WorldMap_PrintStageName(gSelectedStage);
         func_80019E48();
-        func_80083810(0, 5, D_800C94E0, 0);
-        func_80083810(0, 6, D_800C9500, 0);
-        func_8001A890();
-        func_8001A96C();
-        func_8001B004();
+        func_80083810(0, 5, gStrCurrentTime, 0);
+        func_80083810(0, 6, gStrPrevTime, 0);
+        WorldMap_PrintRankLetterReview();
+        WorldMap_PrintCurrStageTime();
+        WorldMap_PrintPrevStageTime();
         func_80083810(5, 0, D_800CA26C, 0);
-        func_80083810(5, 1, D_800C952C, 0);
-        Text_InitActorGList(0x78, D_800C962C, 0xFFC8, 0xFFEF, 1);
-        if (YellowGem_GetFlag(gCurrentStage) != 0) {
+        func_80083810(5, 1, gStrResultQuit, 0);
+        Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicIndexWMMarina, 0xFFC8, 0xFFEF, 1);
+        if (YellowGem_GetFlag(gCurrentStage)) {
             Text_InitActorGList(0x51, gGraphicListGemIcon, 0xFFA8, 0x3A, 0xFFFF);
-            gActors[0x51].graphicFlags |= 0x240;
+            gActors[0x51].graphicFlags |= (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6);
             gActors[0x51].unk_18C = (intptr_t) gPaletteGemYellow;
         }
         for (index = 0x30; index < 0x90; index++) {
@@ -2393,23 +2425,23 @@ void GameState_Transition(void) {
         break;
     case 0xB:
     case 0x8B:
-        func_8001A890();
-        func_8001A96C();
-        if ((gButtonPress & gButton_DUp) && (gActors[0x78].posY.whole != -0x11)) {
+        WorldMap_PrintRankLetterReview();
+        WorldMap_PrintCurrStageTime();
+        if ((gButtonPress & gButton_DUp) && (gPlayerCursorActor.posY.whole != -0x11)) {
             Sound_PlaySfx(SFX_MENU_BLIP);
-            gActors[0x78].posY.whole += 0x14;
+            gPlayerCursorActor.posY.whole += 0x14;
         }
-        if ((gButtonPress & gButton_DDown) && (gActors[0x78].posY.whole != -0x25)) {
+        if ((gButtonPress & gButton_DDown) && (gPlayerCursorActor.posY.whole != -0x25)) {
             Sound_PlaySfx(SFX_MENU_BLIP);
-            gActors[0x78].posY.whole -= 0x14;
+            gPlayerCursorActor.posY.whole -= 0x14;
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
-            if (gActors[0x78].posY.whole == -0x11) { // unk3FCC: BFCC [0x78].0x8C
+            if (gPlayerCursorActor.posY.whole == -0x11) { // unk3FCC: BFCC [0x78].0x8C
                 Sound_PlaySfx(SFX_WOOSH_0048);
                 gGameStateSubState = 0xD;
             }
             else {
-                gActors[0x78].var_154 = 0x30; // unk4094 = C094 [0x78].0x154
+                gPlayerCursorActor.var_154 = 0x30; // unk4094 = C094 [0x78].0x154
                 Sound_StartFade(1, 0x30);
                 Sound_PlaySfx(SFX_MENU_DING);
                 gGameStateSubState = 0xC;
@@ -2417,14 +2449,14 @@ void GameState_Transition(void) {
         }
         break;
     case 0xC:
-        if (gActors[0x78].var_154-- == 0) {
+        if (gPlayerCursorActor.var_154-- == 0) {
             gGameState = GAMESTATE_SOFTRESET;
             gGameStateSubState = 0;
         }
         break;
     case 0xD:
-        func_8001A890();
-        func_8001A96C();
+        WorldMap_PrintRankLetterReview();
+        WorldMap_PrintCurrStageTime();
         for (index = 0x30; index < 0xBC; index++) {
             gActors[index].posX.whole -= 0x20;
         }
@@ -2464,8 +2496,8 @@ void GameState_Transition(void) {
         break;
     case 0xA:
     case 0x8A:
-        func_8001A890();
-        func_8001A96C();
+        WorldMap_PrintRankLetterReview();
+        WorldMap_PrintCurrStageTime();
         /* fallthrough */
     case 0x1F:
         gPortraitTint -= 4;
@@ -2480,21 +2512,21 @@ void GameState_Transition(void) {
         }
         break;
     case 0x20:
-        if (D_80178152 != 0) {
-            if (gActors[0x78].posX.whole < D_800C95F4[D_80178156]) {
-                gActors[0x78].posX.whole++;
+        if (gStageUnlocked) {
+            if (gPlayerCursorActor.posX.whole < gStageIconPosX[gSelectedStage]) {
+                gPlayerCursorActor.posX.whole++;
             }
-            temp = ((gActors[0x78].posX.whole + 0x81) / 23);
-            func_8001A15C(temp);
-            if (((gActors[0x78].posX.whole + 0xE) % 23) == 0) {
+            temp = ((gPlayerCursorActor.posX.whole + 0x81) / 23);
+            WorldMap_PrintWarpedStageIcon(temp);
+            if (((gPlayerCursorActor.posX.whole + 0xE) % 23) == 0) {
                 func_80019F04(temp);
                 for (index = 0x8C; index < 0x9B; index++) {
                     gActors[index].flags = 0;
                 }
-                func_800199DC(temp);
+                WorldMap_PrintStageName(temp);
             }
-            if ((gActors[0x78].posX.whole >= D_800C95F4[D_80178156]) && (gActors[*D_800C81E0 + 1].rotateX == 180.0f)) {
-                D_80178152 = 0;
+            if ((gPlayerCursorActor.posX.whole >= gStageIconPosX[gSelectedStage]) && (gActors[*D_800C81E0 + 1].rotateX == 180.0f)) {
+                gStageUnlocked = FALSE;
                 D_80178158 = D_8017815A;
                 D_8017815E = D_80178160;
                 gGameStateSubState++;
@@ -2505,9 +2537,9 @@ void GameState_Transition(void) {
         }
         break;
     case 0x21:
-        temp = ((gActors[0x78].posX.whole + 0x81) / 23);
-        func_8001A15C(temp);
-        temp = D_80178156;
+        temp = ((gPlayerCursorActor.posX.whole + 0x81) / 23);
+        WorldMap_PrintWarpedStageIcon(temp);
+        temp = gSelectedStage;
         if (Input_CheckButtonRepeat(gButton_DLeft, &gActors[0xA].colorB) != 0) {
             temp--;
         }
@@ -2517,8 +2549,8 @@ void GameState_Transition(void) {
         if (temp == 0xFFFF) {
             temp = 0;
         }
-        if (temp >= D_800C8C04[gCurrentWorld]) {
-            temp = (D_800C8C04[gCurrentWorld] - 1);
+        if (temp >= gWorldStageCounts[gCurrentWorld]) {
+            temp = (gWorldStageCounts[gCurrentWorld] - 1);
         }
         if (gWorldProgress >= STAGE_INNERSTRUGGLE) {
             index = ((gWorldProgress - D_80178154) - 1);
@@ -2527,14 +2559,14 @@ void GameState_Transition(void) {
             index = (gWorldProgress - D_80178154);
         }
 
-        if ((index >= temp) && (temp != D_80178156)) {
-            D_80178156 = temp;
-            gActors[0x78].posX.whole = D_800C95F4[D_80178156]; // 0xBFC8 = [0x78].0x88
+        if ((index >= temp) && (temp != gSelectedStage)) {
+            gSelectedStage = temp;
+            gPlayerCursorActor.posX.whole = gStageIconPosX[gSelectedStage]; // 0xBFC8 = [0x78].0x88
             Sound_PlaySfx2(SFX_MENU_BLIP);
             for (index = 0x8C; index < 0x9B; index++) {
                 gActors[index].flags = 0;
             }
-            func_800199DC(D_80178156);
+            WorldMap_PrintStageName(gSelectedStage);
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_StartFade(0x81, 0x50);
@@ -2589,7 +2621,7 @@ void GameState_Transition(void) {
         if (gActors[0x30].posX.whole >= 0x121) {
             gCurrentWorld--;
             D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
-            D_80178156 = D_800C8C04[gCurrentWorld] - 1;
+            gSelectedStage = gWorldStageCounts[gCurrentWorld] - 1;
             for (index = 0x30; index < 0xBC; index++) {
                 gActors[index].flags = 0;
             }
@@ -2617,10 +2649,10 @@ void GameState_Transition(void) {
             gCurrentWorld++;
             if (gCurrentWorld < D_8017815E) {
                 D_80178154 = gStageGroupOptionOffsets[gCurrentWorld];
-                D_80178156 = D_800C8C04[gCurrentWorld] - 1;
+                gSelectedStage = gWorldStageCounts[gCurrentWorld] - 1;
             }
             else {
-                func_8001B078((u16) gWorldProgress, &gCurrentWorld, &D_80178156, &D_80178154);
+                func_8001B078((u16) gWorldProgress, &gCurrentWorld, &gSelectedStage, &D_80178154);
             }
             for (index = 0x30; index < 0xBC; index++) {
                 gActors[index].flags = 0;
@@ -2656,7 +2688,7 @@ void GameState_Transition(void) {
         break;
     case 0x40:
         func_800271B0(0);
-        gCurrentStage = D_80178154 + D_80178156;
+        gCurrentStage = D_80178154 + gSelectedStage;
         if (gCurrentStage >= STAGE_DEMO_FINAL) {
             gCurrentStage++;
         }
@@ -2667,7 +2699,7 @@ void GameState_Transition(void) {
         gAudioFadeMode = 0;
         gCurrentScene = gStageScenes[gCurrentStage];
         D_800D28E4 = gStageIds[gCurrentStage];
-        func_80025578();
+        PlaySceneBGM();
         if (gCurrentStage == STAGE_THEDAYOF) {
             func_8002601C(SCENE_DAYOF0);
             OverlayABI_Slot2_fn32_void();
@@ -2717,8 +2749,8 @@ void func_8001C8B0(u16 arg0, u16 stage) {
     func_8008379C(1, arg0, D_800C96D8[sp2E + 1], 2);
     func_8008379C(2, arg0, 0x70, 2);
     func_8008379C(3, arg0, D_800C96D8[sp2C + 1], 2);
-    func_8001ACA8(5, arg0, stage);
-    func_8001A7E0(0xD, arg0, gTimeRecords[stage], stage, 1);
+    WorldMap_PrintStageTime(5, arg0, stage);
+    WorldMap_PrintRankLetter(0xD, arg0, gTimeRecords[stage], stage, 1);
 }
 
 void func_8001C97C(u16 actor, u16 stage) {
@@ -2943,7 +2975,7 @@ void func_8001D240(void) {
     else {
         value = (((time % 60) * 5) / 3) + 1;
     }
-    Text_PrintStringRGBScale(0x3D, D_800C96C4, 0xFFAA, 0xFFB8, 2, 0, 0, 0, 1.0f, 1.0f);
+    Text_PrintStringRGBScale(0x3D, gStrResultHMS, 0xFFAA, 0xFFB8, 2, 0, 0, 0, 1.0f, 1.0f);
     Text_InitActorGraphic(0x41, ((value / 10) * 2) + ALPHA_GLYPH(THIN_0), 0x2A, 0xFFB8, 2);
     Text_InitActorGraphic(0x42, ((value % 10) * 2) + ALPHA_GLYPH(THIN_0), 0x3A, 0xFFB8, 2);
     time /= 60;
@@ -2982,16 +3014,16 @@ void GameState_Records(void) {
     case 0x0:
         func_8008310C();
         func_80083454();
-        func_8001983C();
+        WorldMap_Reset();
         Text_InitActorGraphic(0x30, 0x3002, 0, 0x4C, 2);
         Text_InitActorGraphic(0x31, 0x3002, 0, 0xFFB9, 2);
         func_8001C834();
         gActors[0x32].posX.whole = gActors[0x33].posX.whole = 2;
         gActors[0x32].posY.whole = 0x20;
         gActors[0x33].posY.whole = -0x1C;
-        count = Text_PrintStringGray(0x34, D_800C96B4, 0xFFE8, 0x4B, 2);
+        count = Text_PrintStringGray(0x34, gStrRecord, 0xFFE8, 0x4B, 2);
         for (index = 0x34; index < count; index++) {
-            gActors[index].unk_18C = (s32)D_800C9664; // palette_18C causes mismatch
+            gActors[index].unk_18C = (intptr_t)gWorldMapNamePalette; // palette_18C causes mismatch
         }
         func_8001D240();
         gActors[0x70].var_154 = 2;

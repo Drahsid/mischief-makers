@@ -117,7 +117,7 @@ typedef enum {
     ACTORTYPE_SPIRALCLOUDS,
     ACTORTYPE_WARPGATE, // aka Warp Star
     ACTORTYPE_51,
-    ACTORTYPE_GRAPHIC_52, // another type of "graphic only" actor. seems to only las 1-2 ticks before needing respawned.
+    ACTORTYPE_GRAPHIC_52, // another type of "graphic only" actor. seems to only last 1-2 ticks before needing respawned.
     ACTORTYPE_TEXTBUBBLE, // used many times in Japan version. in English versions, only used by the coach in "the day before".
     ACTORTYPE_54,
     ACTORTYPE_55,

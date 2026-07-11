@@ -1222,7 +1222,7 @@
           }
         },
         {
-          "name": "func_800109B0",
+          "name": "LookAt_Reset",
           "size": "96",
           "metadata": {
             "virtual_address": "2147551664"
@@ -1992,7 +1992,7 @@
           }
         },
         {
-          "name": "func_800176F8",
+          "name": "Input_CheckButtonRepeat2",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2016,7 +2016,7 @@
           }
         },
         {
-          "name": "func_80017F08",
+          "name": "Title_LegalText",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2024,7 +2024,7 @@
           }
         },
         {
-          "name": "func_80017FE8",
+          "name": "Title_WhiteScreen",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2032,7 +2032,7 @@
           }
         },
         {
-          "name": "func_8001809C",
+          "name": "Title_MoveSubtitle",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2040,7 +2040,7 @@
           }
         },
         {
-          "name": "func_800180FC",
+          "name": "Title_UpdateText",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2080,7 +2080,7 @@
           }
         },
         {
-          "name": "func_80019520",
+          "name": "GetRaceTimeRecord",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2088,7 +2088,7 @@
           }
         },
         {
-          "name": "func_80019688",
+          "name": "GetFestivalTimeRecords",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2096,7 +2096,7 @@
           }
         },
         {
-          "name": "func_800197A0",
+          "name": "WorldMap_LoadGraphics",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2104,7 +2104,7 @@
           }
         },
         {
-          "name": "func_8001983C",
+          "name": "WorldMap_Reset",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2112,7 +2112,7 @@
           }
         },
         {
-          "name": "func_800198B4",
+          "name": "WorldMap_PrintWorldName",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2120,7 +2120,7 @@
           }
         },
         {
-          "name": "func_800199DC",
+          "name": "WorldMap_PrintStageName",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2128,7 +2128,7 @@
           }
         },
         {
-          "name": "func_80019A80",
+          "name": "WorldMap_DrawSprites",
           "size": "968",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2160,7 +2160,7 @@
           }
         },
         {
-          "name": "func_80019FB4",
+          "name": "WorldMap_PrintStageLabel",
           "size": "424",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2168,7 +2168,7 @@
           }
         },
         {
-          "name": "func_8001A15C",
+          "name": "WorldMap_PrintWarpedStageIcon",
           "size": "248",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2176,7 +2176,7 @@
           }
         },
         {
-          "name": "func_8001A254",
+          "name": "WorldMap_PrintStageLabels",
           "size": "816",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2192,7 +2192,7 @@
           }
         },
         {
-          "name": "func_8001A758",
+          "name": "WorldMap_GetStageRank",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2200,7 +2200,7 @@
           }
         },
         {
-          "name": "func_8001A7E0",
+          "name": "WorldMap_PrintRankLetter",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2208,7 +2208,7 @@
           }
         },
         {
-          "name": "func_8001A838",
+          "name": "WorldMap_PrintRankReview",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2216,7 +2216,7 @@
           }
         },
         {
-          "name": "func_8001A890",
+          "name": "WorldMap_PrintRankLetterReview",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2224,7 +2224,7 @@
           }
         },
         {
-          "name": "func_8001A96C",
+          "name": "WorldMap_PrintCurrStageTime",
           "size": "828",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2232,7 +2232,7 @@
           }
         },
         {
-          "name": "func_8001ACA8",
+          "name": "WorldMap_PrintStageTime",
           "size": "860",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2240,7 +2240,7 @@
           }
         },
         {
-          "name": "func_8001B004",
+          "name": "WorldMap_PrintPrevStageTime",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2248,7 +2248,7 @@
           }
         },
         {
-          "name": "func_8001B02C",
+          "name": "WorldMap_StageProgress",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2288,7 +2288,7 @@
           }
         },
         {
-          "name": "func_8001B244",
+          "name": "CountYellowGems",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2296,7 +2296,7 @@
           }
         },
         {
-          "name": "func_8001B2F4",
+          "name": "WorldMap_UpdateSaveFile",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2304,7 +2304,7 @@
           }
         },
         {
-          "name": "func_8001B3D0",
+          "name": "WorldMap_UpdateSaveFile2",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3720,7 +3720,7 @@
           }
         },
         {
-          "name": "func_80025578",
+          "name": "PlaySceneBGM",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10123,7 +10123,7 @@
           }
         },
         {
-          "name": "func_80060F88",
+          "name": "ActorUpdate_3DIcon",
           "size": "848",
           "fuzzy_match_percent": 100.0,
           "metadata": {

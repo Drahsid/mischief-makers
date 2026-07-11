@@ -793,7 +793,7 @@ void func_800253B0(void) {
     D_800CC58C[gCurrentScene]();
 }
 
-void func_80025578(void) {
+void PlaySceneBGM(void) {
     if (gSceneBgm[gCurrentScene] != 0xff) {
         Sound_PlayMusic(gSceneBgm[gCurrentScene]);
     }
@@ -1001,5 +1001,5 @@ void func_80025C38(void) {
     func_80025B7C();
     D_800CC42C[gCurrentScene]();
     D_800CC58C[gCurrentScene]();
-    func_80025578();
+    PlaySceneBGM();
 }

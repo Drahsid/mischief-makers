@@ -16,19 +16,20 @@ extern u16 D_800C7E5C[];
 extern u16 D_800C7E88[];
 extern u16 D_800C7E90[];
 extern u16 D_800C7EB8[];
-extern u16 D_800C7EC0;
-extern u16 D_800C7EE4;
-extern u16 D_800C7EEC;
-extern u16 D_800C7F04;
+extern u16 D_800C7EC0[];
+extern u16 D_800C7EE4[];
+extern u16 D_800C7EEC[];
+extern u16 D_800C7F04[];
 
-extern u16 gContinueTimer;
-extern u8 D_80178132;
-extern u8 D_80178133;
-extern u8 D_80178134;
-extern u16 D_80178138;
-extern s32 D_8017813C;
-extern u8 D_80178140;
-extern s16 D_80178142;
+u16 gContinueTimer;
+u8 gContinueMidground;// temporailly store layer toggle
+u8 gContinueEnvLayer;// temporailly store layer toggle
+u8 gContinueBackground;// temporailly store layer toggle
+u16 gRedGems;
+u16 gContinueChoice;
+s32 gContinueBGM; // stored, but not restored
+u8 D_80178140;
+s16 D_80178142;
 
 void Continue_DrawGem(u16 actor_index, u16 x, u16 y) {
     Text_InitActorGList(actor_index, gGraphicListGemIcon, x, y, 0x403);
@@ -45,7 +46,7 @@ void Continue_GameOver(void) {
     }
     Text_PrintStringRGBScale(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
     actor_index = 0x30;
-    Text_InitActorGraphic(actor_index, 0x262, 0xFFFE, 3, 0x402);
+    Text_InitActorGraphic(actor_index, GINDEX_SPIRAL, 0xFFFE, 3, 0x402);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
     gActors[actor_index].scaleX = 6.0f;
     gActors[actor_index].unk_12C = 6.0f;
@@ -60,7 +61,7 @@ void Continue_PayGems(u16 price) {
     u16 actor_index;
 
     if (gRedGems >= price) {
-        D_80178138 = price / 10;
+        gContinueChoice = price / 10;
         for (actor_index = 0x30; actor_index < 0x31; actor_index++) {
             gActors[actor_index].flags = 0;
         }
@@ -113,9 +114,9 @@ void GameState_ContinueScreen(void) {
         GameState_Gameplay();
         actor_index = 0xC8;
         if (gActors[actor_index + 2].hitboxBX0 == gActors[actor_index + 3].hitboxBX1) {
-            D_80178132 = gDrawMidground;
-            D_80178133 = gDrawEnvLayer;
-            D_80178134 = gDrawBackground;
+            gContinueMidground = gDrawMidground;
+            gContinueEnvLayer = gDrawEnvLayer;
+            gContinueBackground = gDrawBackground;
             gDrawMidground = 0;
             gDrawEnvLayer = 0;
             gDrawBackground = 0;
@@ -179,10 +180,10 @@ void GameState_ContinueScreen(void) {
         if (gContinueTimer == 3000) {
             func_80026D88(0);
             gAudioFadeMode = 0;
-            D_8017813C = gMusicSequenceId;
+            gContinueBGM = gMusicSequenceId;
             Sound_PlayMusic(BGM_CONTINUE);
             gPlayerActor.unk_170 = 0xA4;
-            D_80178140 = 1;
+            D_80178140 = TRUE;
             gPlayerActor.graphicFlags |= ACTOR_GFLAG_UNK11;
             gPlayerActor.flags |= ACTOR_FLAG_DRAW;
             gPlayerActor.posX.whole = -4;
@@ -198,14 +199,14 @@ void GameState_ContinueScreen(void) {
             D_80178142 = -0x1F;
             Palette_AdjustRgb5551Array(&D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
             func_80083454();
-            func_800836A0(1, 0, &D_800C7EB8, 1);
-            func_800836A0(3, 0, &D_800C7EC0, 0);
-            func_800836A0(1, 1, &D_800C7E88, 1);
-            func_800836A0(3, 1, &D_800C7E90, 0);
-            func_800836A0(0, 2, &D_800C7E54, 1);
-            func_800836A0(3, 2, &D_800C7E5C, 0);
-            func_800836A0(1, 3, &D_800C7EE4, 1);
-            func_800836A0(3, 3, &D_800C7EEC, 0);
+            func_800836A0(1, 0, D_800C7EB8, 1);
+            func_800836A0(3, 0, D_800C7EC0, 0);
+            func_800836A0(1, 1, D_800C7E88, 1);
+            func_800836A0(3, 1, D_800C7E90, 0);
+            func_800836A0(0, 2, D_800C7E54, 1);
+            func_800836A0(3, 2, D_800C7E5C, 0);
+            func_800836A0(1, 3, D_800C7EE4, 1);
+            func_800836A0(3, 3, D_800C7EEC, 0);
             Continue_DrawGem(0x31, 0xFF96, 0x20);
             Continue_DrawGem(0x42, 0xFF96, 0xFFEC);
             Continue_DrawGem(0x43, 0xFF96, 0xFFD8);
@@ -264,23 +265,23 @@ void GameState_ContinueScreen(void) {
         }
         else if (gContinueTimer == 2500) {
             Sound_PlaySfx(SFX_THEO_YAY1);
-            Text_PrintStringRGBScale(0x33, &D_800C7D74, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, D_800C7D74, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 2000) {
             Sound_PlaySfx(SFX_THEO_HELP2);
-            Text_PrintStringRGBScale(0x33, &D_800C7D94, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, D_800C7D94, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 1500) {
             Sound_PlaySfx(SFX_THEO_HELP1);
-            Text_PrintStringRGBScale(0x33, &D_800C7DB4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, D_800C7DB4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 1000) {
             Sound_PlaySfx(SFX_THEO_YELL);
-            Text_PrintStringRGBScale(0x33, &D_800C7DD4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, D_800C7DD4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 500) {
             Sound_PlaySfx(SFX_THEO_GOODBYE);
-            Text_PrintStringRGBScale(0x33, &D_800C7DF4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, D_800C7DF4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         if (gContinueTimer < 2906) {
             if (button_press & CONT_UP) {
@@ -329,12 +330,12 @@ void GameState_ContinueScreen(void) {
         }
         if (gContinueTimer == 0x280) {
             func_8005D3D8(0);
-            D_80178140 = 0;
+            D_80178140 = FALSE;
             Sound_PlaySfx(SFX_MARINA_GAMEOVER);
         }
-        else if ((gContinueTimer < 640) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
+        else if ((gContinueTimer < 640) && (!D_80178140) && (func_8005D418(0) != 0)) {
             gPlayerActor.unk_170 = 0xA5;
-            D_80178140 = 1;
+            D_80178140 = TRUE;
         }
         if (gContinueTimer == 0x200) {
             for (actor_index = 0x33; actor_index < 0x41; actor_index++) { \
@@ -452,17 +453,17 @@ void GameState_ContinueScreen(void) {
         if (!(gContinueTimer & 0xF)) {
             if (gContinueTimer >= 0xE0) {
                 Sound_PlaySfx(SFX_GEM_BLUE);
-                gRedGems -= D_80178138;
+                gRedGems -= gContinueChoice;
                 Text_Print2Digits(0x5E, (gRedGems / 100), 0xFFA6, 0x20, 0x403, gTextPalettes[1]);
                 Text_Print2Digits(0x60, (gRedGems % 100), 0xFFB8, 0x20, 0x403, gTextPalettes[1]);
             }
         }
         if (gContinueTimer == 0xE0) {
-            D_80178140 = 0;
+            D_80178140 = FALSE;
         }
         else if ((gContinueTimer < 0xE0) && (D_80178140 == 0) && (func_8005D418(0) != 0)) {
             gPlayerActor.unk_170 = 0xA6;
-            D_80178140 = 1;
+            D_80178140 = TRUE;
         }
         if (gContinueTimer == 0xC0) {
             switch (Rand() % 3) {
@@ -534,19 +535,19 @@ void GameState_ContinueScreen(void) {
             D_800D28F0 = gDebugStageSelectStageIds[gCurrentStage];
             D_800D28E4 = 0x61;
             gSkipStageIntro = 1;
-            if (D_80178138 == 1) {
+            if (gContinueChoice == 1) {
                 gPlayerActor.health = 1000;
             }
-            else if (D_80178138 == 3) {
+            else if (gContinueChoice == 3) {
                 gPlayerActor.health = 2000;
             }
             else {
                 gPlayerActor.health = 3000;
             }
             gHealthDisplayed = (u16) gPlayerActor.health;
-            gDrawMidground = D_80178132;
-            gDrawEnvLayer = D_80178133;
-            gDrawBackground = D_80178134;
+            gDrawMidground = gContinueMidground;
+            gDrawEnvLayer = gContinueEnvLayer;
+            gDrawBackground = gContinueBackground;
             gPlayerActor.posZ.whole = 0;
             gPlayerActor.graphicFlags &= ~ACTOR_GFLAG_UNK11;
             gPlayerActor.colorA = 0xFF;
@@ -556,7 +557,7 @@ void GameState_ContinueScreen(void) {
                 gCurrentScene = SCENE_DAYOF0;
             }
             if (gCurrentScene != SCENE_WORMINUP) {
-                func_80025578();
+                PlaySceneBGM();
             }
             func_800255B4(gCurrentScene);
             func_80025B7C();

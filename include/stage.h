@@ -14,14 +14,30 @@
 
 // actor fields are used for variables in several menus
 
+// actor feild used for title/debug state controls
 #define CURSOR_INDEX_A \
 gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB
+
+// index of actor representing selection on world map
+#define PLAYER_CURSOR_INDEX 0x78
+
+// index of subtitle graphic
+#define SUBTITLE_ACTOR_INDEX 0x34
+
+// subtitle graphic
+#define gSubtitleActor \
+gActors[SUBTITLE_ACTOR_INDEX]
+
+// actor representing selection on world map
+#define gPlayerCursorActor \
+gActors[PLAYER_CURSOR_INDEX]
 
 #define SOUND_TEST_BGM_INDEX \
 gActors[2].velocityX.raw
 
 #define SOUND_TEST_SFX_INDEX \
 gActors[3].velocityX.raw
+
 
 // abreviation for overall Rank graphics
 

@@ -25,7 +25,7 @@ extern u16 D_80178454;
 void func_80060F80(u16 arg0) {
 }
 
-void func_80060F88(u16 actor_index) {
+void ActorUpdate_3DIcon(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
@@ -445,7 +445,7 @@ void ActorUpdate_SpiralClouds(u16 actor_index) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_DRAW;
-        gActors[actor_index].graphicIndex = 0x262;
+        gActors[actor_index].graphicIndex = GINDEX_SPIRAL;
         gActors[actor_index].graphicTimer = 0;
         gActors[actor_index].posX.whole = 0;
         gActors[actor_index].posY.whole = 0x30;

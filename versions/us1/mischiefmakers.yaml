@@ -437,6 +437,9 @@ segments:
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: gameover, type: .bss, vram: 0x80178130 }
+      - { name: stage, type: .bss, vram: 0x80178150 }
+      - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
       - { name: soft_reset, type: .bss, vram: 0x801781F0 }
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }

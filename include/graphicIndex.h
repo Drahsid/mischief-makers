@@ -178,6 +178,8 @@
 
 #define GINDEX_SAGECLOUD       0x0260
 
+#define GINDEX_SPIRAL          0x0262
+
 #define GINDEX_CLANPOT         0x0264 // 3 animation frames
 #define GINDEX_CLANBALL        0x026A // 3 animation frames
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
