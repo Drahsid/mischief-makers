@@ -196,6 +196,32 @@ gCameraRotDelta = 0x800be730; // type:s32 size:0x4 rom:0xbf330
 gCurrentGfxData = 0x800EF4F4; // size:0x4
 gActors = 0x800EF510; // size:0x14B80
 
+// gameover.c
+gGraphicListContinue = 0x800C7D10;
+gStrContinueTIME = 0x800C7D1C;
+gStrContinueColon = 0x800C7D24;
+gStrContinueUnused1 = 0x800C7D28;
+gStrContinueUnused2 = 0x800C7D3C;
+
+gStrContinue1 = 0x800C7D54;
+gStrContinue2 = 0x800C7D74;
+gStrContinue3 = 0x800C7D94;
+gStrContinue4 = 0x800C7DB4;
+gStrContinue5 = 0x800C7DD4;
+gStrContinue6 = 0x800C7DF4;
+gStrGameOver = 0x800C7E14;
+
+gStrContinuePrice100 = 0x800C7E54;
+gStrContinueDesc100 = 0x800C7E5C;
+gStrContinuePrice30 = 0x800C7E88;
+gStrContinueDesc30 = 0x800C7E90;
+gStrContinuePrice10 = 0x800C7EB8;
+gStrContinueDesc10 = 0x800C7EC0;
+gStrContinuePrice0 = 0x800C7EE4;
+gStrContinueDesc0 = 0x800C7EEC;
+
+gStrContinuePalette = 0x800C7F04;
+
 gPlatform0Actors = 0x8011CDF8; // size:0x120
 gPlatform1Actors = 0x8011CF20; // size:0x120
 gPlatforms0X1 = 0x8011D048; // size:0x120

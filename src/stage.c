@@ -37,7 +37,6 @@ u16 D_80178166;
 u32 D_80178168;
 u32 D_8017816C; // unused (file break?)
 u8 gDebugStageSelectSelectedOptions[DEBUG_STAGE_SELECT_ROW_COUNT];
-u16 D_80178186;
 u8 gDebugStageSelectOptionBaseOffsets[24];
 u8 gDebugMenuCursorFlash[DEBUG_STAGE_SELECT_ROW_COUNT];
 

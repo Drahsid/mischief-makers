@@ -1,25 +1,140 @@
 #include "common.h"
 #include "stage.h"
+#include "Alphabet.h"
 
-extern s16 D_800C7D10[];
-extern char D_800C7D1C[];
-extern char D_800C7D24[];
-extern u16 D_800C7D54[];
-extern u16 D_800C7D74[];
-extern u16 D_800C7D94[];
-extern u16 D_800C7DB4[];
-extern u16 D_800C7DD4[];
-extern u16 D_800C7DF4[];
-extern u16 D_800C7E14[];
-extern u16 D_800C7E54[];
-extern u16 D_800C7E5C[];
-extern u16 D_800C7E88[];
-extern u16 D_800C7E90[];
-extern u16 D_800C7EB8[];
-extern u16 D_800C7EC0[];
-extern u16 D_800C7EE4[];
-extern u16 D_800C7EEC[];
-extern u16 D_800C7F04[];
+s16 gGraphicListContinue[] = {
+    0x2804, 8,
+    0x2806, 8,
+    -4,0
+};
+
+char gStrContinueTIME[] = {
+    "TIME"
+};
+
+char gStrContinueColon[]={
+    ":"
+};
+
+// two unused/untranslated strings
+
+// "if you use 10 of them,"
+u16 gStrContinueUnused1[] = {
+    ALPHA_JP_HIRA_WO, ALPHA_THIN_1, ALPHA_THIN_0, 
+    ALPHA_JP_HIRA_KO, ALPHA_JP_HIRA_TSU, ALPHA_JP_HIRA_KA, ALPHA_JP_HIRA_U, ALPHA_JP_HIRA_TO,
+    ALPHA_NULL
+};
+
+// "Power is restored"
+u16 gStrContinueUnused2[]={
+    ALPHA_JP_KATA_PA, ALPHA_JP_KATA_WA, ALPHA_MINUS, ALPHA_JP_HIRA_GA, ALPHA_JP_HIRA_KA, ALPHA_JP_HIRA_I,
+    ALPHA_JP_HIRA_FU, ALPHA_JP_HIRA_KU, ALPHA_JP_HIRA_SHI, ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_SU,
+    ALPHA_NULL
+};
+
+u16 gStrContinue1[]={
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_E,
+    ALPHA_SPACE,
+    ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_NULL
+};
+
+u16 gStrContinue2[] = {
+    ALPHA_EN3_UPPER_P, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_T, ALPHA_SPACE,
+    ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_NULL
+};
+
+u16 gStrContinue3[] = {
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_E, 
+    ALPHA_SPACE, ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_W, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_NULL
+};
+
+u16 gStrContinue4[] = {
+    ALPHA_EN3_UPPER_P, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_I, ALPHA_EN3_LOWER_T, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_W, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_NULL
+};
+
+u16 gStrContinue5[] = {
+    ALPHA_EN3_UPPER_D, ALPHA_EN3_LOWER_O, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_I, ALPHA_EN3_LOWER_T, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_O, ALPHA_EN3_LOWER_V, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_R,
+    ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_EXCLAMATION, ALPHA_NULL
+};
+
+u16 gStrContinue6[]={
+    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_G,
+    ALPHA_SPACE, ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_EXCLAMATION,
+    ALPHA_NULL
+};
+
+// "G......AME......OV...E...R"
+u16 gStrGameOver[] = {
+    ALPHA_EN3_UPPER_G, ALPHA_ELLIPSIS, ALPHA_ELLIPSIS, ALPHA_EN3_UPPER_A, ALPHA_EN3_UPPER_M, ALPHA_EN3_UPPER_E,
+    ALPHA_ELLIPSIS, ALPHA_ELLIPSIS, ALPHA_EN3_UPPER_O, ALPHA_EN3_UPPER_V, ALPHA_ELLIPSIS, ALPHA_EN3_UPPER_E,
+    ALPHA_ELLIPSIS, ALPHA_EN3_UPPER_R, ALPHA_NULL
+};
+
+s16 D_800C7E34[] ={
+    -0x90, -0x90, 0x90, -0x90
+};
+
+s16 D_800C7E3C[] ={
+    0x90, 0x90, 0x90, -0x90
+};
+
+s16 D_800C7E44[] ={
+    0x60, -0x60, -0x60, -0x60
+};
+
+s16 D_800C7E4C[] ={
+    0x60, -0x60, 0x60, 0x60
+};
+
+u16 gStrContinuePrice100[] = {
+    ALPHA_THIN_1, ALPHA_THIN_0, ALPHA_THIN_0, ALPHA_NULL
+};
+
+u16 gStrContinueDesc100[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_M, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_X, ALPHA_SPACE, ALPHA_EN2_UPPER_P, ALPHA_EN2_LOWER_O,
+    ALPHA_EN2_LOWER_W, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_R, ALPHA_SPACE, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T,
+    ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_E, ALPHA_NULL
+};
+
+u16 gStrContinuePrice30[]={
+    ALPHA_THIN_3, ALPHA_THIN_0, ALPHA_NULL
+};
+
+u16 gStrContinueDesc30[]={
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_L, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_F, ALPHA_EN2_LOWER_E,
+    ALPHA_SPACE, ALPHA_EN2_UPPER_U, ALPHA_EN2_LOWER_P, ALPHA_SPACE, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_O,
+    ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_E,
+    ALPHA_NULL
+};
+
+u16 gStrContinuePrice10[] ={
+    ALPHA_THIN_1, ALPHA_THIN_0, ALPHA_NULL
+};
+
+u16 gStrContinueDesc10[] = {
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_N, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_L,
+    ALPHA_SPACE, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_U,
+    ALPHA_EN2_LOWER_E, ALPHA_NULL
+};
+
+u16 gStrContinuePrice0[]={
+    ALPHA_MINUS, ALPHA_MINUS, ALPHA_NULL
+};
+
+// "I'm Done"
+u16 gStrContinueDesc0[]={
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_I, ALPHA_EN2_APOSTROPHE, ALPHA_EN2_LOWER_M, ALPHA_SPACE,
+    ALPHA_EN2_UPPER_D, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_E, ALPHA_NULL
+};
+
+u16 gStrContinuePalette[] = {
+    0, 0xFFFF, 0xC631, 0x8421, 0x0000, 0xFFC1, 0xC601, 0x8401
+};
 
 u16 gContinueTimer;
 u8 gContinueMidground;// temporailly store layer toggle
@@ -44,7 +159,7 @@ void Continue_GameOver(void) {
     for (actor_index = 0x41; actor_index < 0x62; actor_index++) {
         gActors[actor_index].flags = 0;
     }
-    Text_PrintStringRGBScale(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
+    Text_PrintStringRGBScale(0x33, gStrGameOver, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
     actor_index = 0x30;
     Text_InitActorGraphic(actor_index, GINDEX_SPIRAL, 0xFFFE, 3, 0x402);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
@@ -173,8 +288,8 @@ void GameState_ContinueScreen(void) {
             Text_SetColor(0, color_temp_1, color_temp_1, color_temp_0);
             Text_SetColor(1, color_temp_0, color_temp_0, 8);
         }
-        Text_PrintASCII(0x55, D_800C7D1C, 0x28, 0x20, 0x403, gTextPalettes[0]);
-        Text_PrintASCII(0x59, D_800C7D24, 0x68, 0x20, 0x403, gTextPalettes[0]);
+        Text_PrintASCII(0x55, gStrContinueTIME, 0x28, 0x20, 0x403, gTextPalettes[0]);
+        Text_PrintASCII(0x59, gStrContinueColon, 0x68, 0x20, 0x403, gTextPalettes[0]);
         Text_Print2Digits(0x5A, (gContinueTimer / 100), 0x58, 0x20, 0x403, gTextPalettes[0]);
         Text_Print2Digits(0x5C, (gContinueTimer % 100), 0x70, 0x20, 0x403, gTextPalettes[0]);
         if (gContinueTimer == 3000) {
@@ -190,23 +305,23 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.posY.whole = 20;
             gPlayerActor.posZ.whole = 0x403;
             gPlayerActor.colorA = 0;
-            Text_InitActorGList(0x30, D_800C7D10, 0xFF88, 0x50, 0x403);
+            Text_InitActorGList(0x30, gGraphicListContinue, 0xFF88, 0x50, 0x403);
             Text_InitActorGList(0x32, D_800E13FC, 0xFF80, 0xFFED, 0x403);
-            Text_PrintStringRGBScale(0x33, D_800C7D54, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
-            Text_InitActorGList(0x30, D_800C7D10, 0xFF88, 0x50, 0x403);
+            Text_PrintStringRGBScale(0x33, gStrContinue1, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_InitActorGList(0x30, gGraphicListContinue, 0xFF88, 0x50, 0x403);
             Text_InitActorGraphic(0x41, 0, 0x1C, 0xFFD8, 0x403);
             gActors[0x41].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28 | ACTOR_FLAG_FREEZE_POS;
             D_80178142 = -0x1F;
-            Palette_AdjustRgb5551Array(D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
+            Palette_AdjustRgb5551Array(gStrContinuePalette, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
             func_80083454();
-            func_800836A0(1, 0, D_800C7EB8, 1);
-            func_800836A0(3, 0, D_800C7EC0, 0);
-            func_800836A0(1, 1, D_800C7E88, 1);
-            func_800836A0(3, 1, D_800C7E90, 0);
-            func_800836A0(0, 2, D_800C7E54, 1);
-            func_800836A0(3, 2, D_800C7E5C, 0);
-            func_800836A0(1, 3, D_800C7EE4, 1);
-            func_800836A0(3, 3, D_800C7EEC, 0);
+            func_800836A0(1, 0, gStrContinuePrice10, 1);
+            func_800836A0(3, 0, gStrContinueDesc10, 0);
+            func_800836A0(1, 1, gStrContinuePrice30, 1);
+            func_800836A0(3, 1, gStrContinueDesc30, 0);
+            func_800836A0(0, 2, gStrContinuePrice100, 1);
+            func_800836A0(3, 2, gStrContinueDesc100, 0);
+            func_800836A0(1, 3, gStrContinuePrice0, 1);
+            func_800836A0(3, 3, gStrContinueDesc0, 0);
             Continue_DrawGem(0x31, 0xFF96, 0x20);
             Continue_DrawGem(0x42, 0xFF96, 0xFFEC);
             Continue_DrawGem(0x43, 0xFF96, 0xFFD8);
@@ -249,7 +364,7 @@ void GameState_ContinueScreen(void) {
                         D_80178142 = 0;
                     }
                 }
-                Palette_AdjustRgb5551Array(D_800C7F04, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
+                Palette_AdjustRgb5551Array(gStrContinuePalette, (u16* )0x802651F8, 8, D_80178142, D_80178142, D_80178142);
                 for (actor_index = 0x30; actor_index < 0x62; actor_index++) {
                     if (gActors[actor_index].colorA < 0xFC) {
                         gActors[actor_index].colorA += 4;
@@ -265,23 +380,23 @@ void GameState_ContinueScreen(void) {
         }
         else if (gContinueTimer == 2500) {
             Sound_PlaySfx(SFX_THEO_YAY1);
-            Text_PrintStringRGBScale(0x33, D_800C7D74, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, gStrContinue2, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 2000) {
             Sound_PlaySfx(SFX_THEO_HELP2);
-            Text_PrintStringRGBScale(0x33, D_800C7D94, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, gStrContinue3, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 1500) {
             Sound_PlaySfx(SFX_THEO_HELP1);
-            Text_PrintStringRGBScale(0x33, D_800C7DB4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, gStrContinue4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 1000) {
             Sound_PlaySfx(SFX_THEO_YELL);
-            Text_PrintStringRGBScale(0x33, D_800C7DD4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, gStrContinue5, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         else if (gContinueTimer == 500) {
             Sound_PlaySfx(SFX_THEO_GOODBYE);
-            Text_PrintStringRGBScale(0x33, D_800C7DF4, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
+            Text_PrintStringRGBScale(0x33, gStrContinue6, 0xFFA0, 0x50, 0x403, 0x40, 0, 0x40, 1.0f, 1.0f);
         }
         if (gContinueTimer < 2906) {
             if (button_press & CONT_UP) {
@@ -356,7 +471,7 @@ void GameState_ContinueScreen(void) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
     
             actor_index = 0x31;
-            Text_InitActorGList(actor_index, D_800C7D10, 0, 0x100, 0x403);
+            Text_InitActorGList(actor_index, gGraphicListContinue, 0, 0x100, 0x403);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[actor_index].var_154 = 0x100;
             gActors[actor_index].var_158 = 0;

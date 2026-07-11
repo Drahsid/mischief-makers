@@ -216,7 +216,7 @@
 #define ALPHA_TILDE        0x00BA // ~
 #define ALPHA_COLON        0x00BB // :
 #define ALPHA_COMMA        0x00BC // ,
-#define ALPHA_APOSTROPHE  0x00BD // '
+#define ALPHA_APOSTROPHE   0x00BD // '
 #define ALPHA_PERIOD       0x00BE // .
 #define ALPHA_PLUS         0x00BF // +
 #define ALPHA_MINUS        0x00C0 // -
