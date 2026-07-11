@@ -754,23 +754,23 @@ void func_801B159C_7A7B1C(u16 actor_index) {
 
     switch (gFestivalCurrentEvent) {
         case 0:
-            divisor = 0x64;
+            divisor = 100;
             break;
 
         case 1:
-            divisor = 0xC8;
+            divisor = 200;
             break;
 
         case 2:
-            divisor = 0x190;
+            divisor = 400;
             break;
 
         case 7:
-            divisor = 0x64;
+            divisor = 100;
             break;
 
         case 5:
-            divisor = 0x64;
+            divisor = 100;
             break;
     }
 
@@ -959,33 +959,27 @@ s16 func_801B1E80_7A8400(u16 actor_index) {
     s32 old_value;
 
     count = gFestivalCompetitorCount;
-    outer_remaining = (flags = 0);
-    if (count > 0) {
-        do {
-            first_actor = gFestivalCompetitors[outer_remaining].actorIndex;
-            if (((s16)gScreenPosCurrentX.whole + gActors[first_actor].posX.whole) >= gActors[actor_index].unk_174) {
-                if (gFestivalCompetitors[outer_remaining].rank == 0) {
-                    s32 rank_value;
+    for (outer_remaining = (flags = 0); outer_remaining < count; outer_remaining = (outer_remaining + 1) & 0xFFFF) {
+        first_actor = gFestivalCompetitors[outer_remaining].actorIndex;
+        if (((s16)gScreenPosCurrentX.whole + gActors[first_actor].posX.whole) >= gActors[actor_index].unk_174) {
+            if (gFestivalCompetitors[outer_remaining].rank == 0) {
+                s32 rank_value;
 
-                    rank_value = gActors[actor_index].unk_170;
-                    gActors[actor_index].unk_170 = rank_value + 1;
-                    gFestivalCompetitors[outer_remaining].rank = rank_value;
-                    if (first_actor == 0) {
-                        flags |= 1;
-                    }
+                rank_value = gActors[actor_index].unk_170;
+                gActors[actor_index].unk_170 = rank_value + 1;
+                gFestivalCompetitors[outer_remaining].rank = rank_value;
+                if (first_actor == 0) {
+                    flags |= 1;
+                }
 
-                    if (gActors[actor_index].unk_170 == 2) {
-                        flags |= 2;
-                    }
+                if (gActors[actor_index].unk_170 == 2) {
+                    flags |= 2;
                 }
             }
+        }
 
-            if (!(&gScreenPosCurrentX)) {
-            }
-
-            outer_remaining++;
-            outer_remaining = outer_remaining & 0xFFFF;
-        } while (outer_remaining < count);
+        if (!(&gScreenPosCurrentX)) {
+        }
     }
 
     remaining = count - 1 + (outer_remaining * 0);
@@ -1061,18 +1055,15 @@ DEFAULT_INT func_801B2498_7A8A18(u16 actor_index) {
     u16 index = 0;
     s32 count = gFestivalCompetitorCount;
 
-    if (count > 0) {
-        do {
-            u16 other_actor = gFestivalCompetitorIndices[index];
-            if (other_actor != 0) {
-                u16 record_index = gActors[other_actor].unk_16C_u16[1];
-                if (gFestivalCompetitors[record_index].rank == 0) {
-                    gFestivalCompetitors[record_index].rank = gActors[actor_index].unk_170;
-                    gActors[actor_index].unk_170++;
-                }
+    for (; index < count; index++) {
+        u16 other_actor = gFestivalCompetitorIndices[index];
+        if (other_actor != 0) {
+            u16 record_index = gActors[other_actor].unk_16C_u16[1];
+            if (gFestivalCompetitors[record_index].rank == 0) {
+                gFestivalCompetitors[record_index].rank = gActors[actor_index].unk_170;
+                gActors[actor_index].unk_170++;
             }
-            index++;
-        } while (index < count);
+        }
     }
     gFestivalEventsPlayed[gFestivalCurrentEvent] = 1;
     gFestivalTimeToBeat = gActors[actor_index].unk_178;
@@ -1135,45 +1126,49 @@ void func_801B2658_7A8BD8(u16 actor_index) {
 void func_801B2738_7A8CB8(u16 actor_index) {
     u16 frame;
 
-    if (gActors[actor_index].unk_180 != 0) {
-        if (gFestivalCompetitors[0].rank == 1) {
-            frame = gActiveFrames;
-            frame &= 7;
+    if (gActors[actor_index].unk_180 == 0) {
+        return;
+    }
 
-            switch (frame) {
-                case 0:
-                    gActors[0x6E].unk_18C = (s32)D_800D9AE4;
-                    break;
+    if (gFestivalCompetitors[0].rank != 1) {
+        return;
+    }
 
-                case 1:
-                    gActors[0x6E].unk_18C = (s32)D_800D9AF4;
-                    break;
+    frame = gActiveFrames;
+    frame &= 7;
 
-                case 2:
-                    gActors[0x6E].unk_18C = (s32)D_800D9B04;
-                    break;
+    switch (frame) {
+        case 0:
+            gActors[0x6E].unk_18C = (s32)D_800D9AE4;
+            break;
 
-                case 3:
-                    gActors[0x6E].unk_18C = (s32)D_800D9AE4;
-                    break;
+        case 1:
+            gActors[0x6E].unk_18C = (s32)D_800D9AF4;
+            break;
 
-                case 4:
-                    gActors[0x6E].unk_18C = (s32)D_800D9B14;
-                    break;
+        case 2:
+            gActors[0x6E].unk_18C = (s32)D_800D9B04;
+            break;
 
-                case 5:
-                    gActors[0x6E].unk_18C = (s32)D_800D9B24;
-                    break;
+        case 3:
+            gActors[0x6E].unk_18C = (s32)D_800D9AE4;
+            break;
 
-                case 6:
-                    gActors[0x6E].unk_18C = (s32)D_800D9B34;
-                    break;
+        case 4:
+            gActors[0x6E].unk_18C = (s32)D_800D9B14;
+            break;
 
-                case 7:
-                    gActors[0x6E].unk_18C = (s32)D_800D9B44;
-                    break;
-            }
-        }
+        case 5:
+            gActors[0x6E].unk_18C = (s32)D_800D9B24;
+            break;
+
+        case 6:
+            gActors[0x6E].unk_18C = (s32)D_800D9B34;
+            break;
+
+        case 7:
+            gActors[0x6E].unk_18C = (s32)D_800D9B44;
+            break;
     }
 }
 
@@ -1359,8 +1354,7 @@ u16 func_801B2FE4_7A9564(u16 position_x, s16 position_z, u16 timer, u16 random_b
 
     new_actor_index = Actor_RangeFindInactive(0x50, 0x60);
     if (new_actor_index != 0) {
-        gActors[new_actor_index].actorType = 0x105;
-        Actor_Initialize(new_actor_index);
+        ACTOR_INIT(new_actor_index, 0x105);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
         gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].posX.whole = position_x - gScreenPosCurrentX.whole;
@@ -1416,8 +1410,7 @@ void func_801B3180_7A9700(u16 actor_index) {
 
     min_x = gScreenPosCurrentX.whole - 900;
     max_x = gScreenPosCurrentX.whole + 900;
-    index = 0;\
-    do {
+    for (index = 0; index < 6; index++) {
         switch (gFestivalCurrentEvent) {
             case 0:
                 entry = &D_801B54AC_7ABA2C[index];
@@ -1449,8 +1442,7 @@ void func_801B3180_7A9700(u16 actor_index) {
                 gActors[new_actor_index].unk_178 = index;
             }
         }
-        index++;
-    } while (index < 6);
+    }
 }
 
 void func_801B3370_7A98F0(u16 actor_index) {

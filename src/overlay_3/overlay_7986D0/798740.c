@@ -1353,8 +1353,7 @@ void func_801B0D6C_798BAC(u16 actor_index) {
 
     timer_flag = (timer >> 12) & 1;
     for (index = 0; index < count; index++) {
-        gActors[child_index].actorType = 0x500;
-        Actor_Initialize(child_index);
+        ACTOR_INIT(child_index, 0x500);
         gActors[child_index].graphicIndex = 0x102C;
         gActors[child_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ;
         gActors[child_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
@@ -1413,8 +1412,8 @@ DEFAULT_INT func_801B1124_798F64(u16 arg0, u16 actor_index) {
     gActors[actor_index].hitboxBX0 = gActors[actor_index].hitboxBX1 = SIN(angle) * gActors[actor_index].unk_170_s16[0];
 }
 
-// I dunno how to clean this one up: https://decomp.me/scratch/yIPw7
 void func_801B1244_799084(u16 actor_index) {
+    Actor* actor;
     Actor* target;
     u16 target_index;
     s32 angle;
@@ -1425,11 +1424,11 @@ void func_801B1244_799084(u16 actor_index) {
     f32 delta;
     s32 new_var;
     f32 step;
-    s32 count;
-    u16 next_count;
+    u16 count;
 
     delta = 0.0f;
-    target_index = gActors[actor_index].var_154;
+    actor = &gActors[actor_index];
+    target_index = actor->var_154;
     target = &gActors[target_index];
     angle = target->var_160;
     original_angle = target->unk_14C;
@@ -1454,20 +1453,16 @@ void func_801B1244_799084(u16 actor_index) {
 
         step = target->unk_130;
         loop_angle = upper_angle;
-loop_1:
-        count++;
-        if (loop_angle >= 270.0f) {
-            delta -= step;
-        }
-        else {
-            delta += step;
-        }
-        loop_angle += delta;
-        if (!(loop_angle <= original_angle)) {
-            next_count = count;
-            count = next_count;
-            if (count < 0x78) {
-                goto loop_1;
+        for (count = 0; count < 0x78; count++) {
+            if (loop_angle >= 270.0f) {
+                delta -= step;
+            }
+            else {
+                delta += step;
+            }
+            loop_angle += delta;
+            if (loop_angle <= original_angle) {
+                break;
             }
         }
         target->unk_128 = delta;
@@ -1481,20 +1476,16 @@ loop_1:
 
         step = target->unk_130;
         loop_angle = lower_angle;
-loop_2:
-        count++;
-        if (loop_angle >= 270.0f) {
-            delta -= step;
-        }
-        else {
-            delta += step;
-        }
-        loop_angle += delta;
-        if (!(original_angle <= loop_angle)) {
-            next_count = count;
-            count = next_count;
-            if (count < 0x78) {
-                goto loop_2;
+        for (count = 0; count < 0x78; count++) {
+            if (loop_angle >= 270.0f) {
+                delta -= step;
+            }
+            else {
+                delta += step;
+            }
+            loop_angle += delta;
+            if (original_angle <= loop_angle) {
+                break;
             }
         }
         target->unk_128 = delta;
@@ -1525,7 +1516,7 @@ DEFAULT_INT func_801B1530_799370(u16 actor_index) {
     Actor* actor;
 
     actor = &gActors[actor_index];
-    if (actor->flags_098 & 0x20000) {
+    if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
         if (gActors[actor->var_154].unk_114 == 0.0f) {
             if (func_800486F4() == 0) {
                 if (actor->var_15C == 1) {
@@ -2641,21 +2632,25 @@ void func_801B3AF8_79B938(u16 actor_index) {
 void func_801B3EB4_79BCF4(u16 actor_index) {
     u16 new_actor_index;
 
-    if (gActors[actor_index].posY.whole >= -191) {
-        if (gActors[actor_index].posY.whole < 192) {
-            if (((gActors[actor_index].var_15C++) % 0x30) == 0) {
-                new_actor_index = Actor_RangeFindInactive(0x70, 0x90);
-                if (new_actor_index != 0) {
-                    gActors[new_actor_index].actorType = 0x50B;
-                    Actor_Initialize(new_actor_index);
-                    gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
-                    gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole;
-                    gActors[new_actor_index].var_110 = (Rand() & 3) << 8;
-                    if (gActors[new_actor_index].var_110 == 768.0f) {
-                        gActors[new_actor_index].var_110 = 0.0f;
-                    }
-                }
-            }
+    if (gActors[actor_index].posY.whole < -191) {
+        return;
+    }
+    if (gActors[actor_index].posY.whole >= 192) {
+        return;
+    }
+    if (((gActors[actor_index].var_15C++) % 0x30) == 0) {
+        new_actor_index = Actor_RangeFindInactive(0x70, 0x90);
+        if (new_actor_index == 0) {
+            return;
+        }
+
+        gActors[new_actor_index].actorType = 0x50B;
+        Actor_Initialize(new_actor_index);
+        gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
+        gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole;
+        gActors[new_actor_index].var_110 = (Rand() & 3) << 8;
+        if (gActors[new_actor_index].var_110 == 768.0f) {
+            gActors[new_actor_index].var_110 = 0.0f;
         }
     }
 }
@@ -2887,8 +2882,7 @@ void func_801B480C_79C64C(u16 actor_index) {
                 }
 
                 index = gActors[actor_index].var_15C;
-                gActors[index + 0].actorType = 0x1C;
-                Actor_Initialize(index + 0);
+                ACTOR_INIT(index + 0, 0x1C);
                 gActors[index + 0].posX.whole = D_801B9144_7A0F84[gActors[actor_index].var_158] - gScreenPosCurrentX.whole;
                 gActors[index + 0].posY.whole = 1152 - gScreenPosCurrentY.whole;
                 gActors[index + 0].var_110 = ((gActors[actor_index].var_158 & 3) << 8) + index + 0x8101;
