@@ -626,7 +626,7 @@ void func_8005B164(u16 actor_index) {
     func_8005ACB0(actor_index, gActors[actor_index].unk_180_u8[2], gActors[actor_index].unk_180_u8[0]);
     gActors[actor_index].unk_180_u8[0]++;
     if (gActors[actor_index].unk_180_u8[0] >= 0x10) {
-        gActors[actor_index].unk_180_u16[0] = 0;
+        gActors[actor_index].unk_180_s16[0] = 0;
     }
 }
 
@@ -775,7 +775,7 @@ void func_8005B5FC(u16 actor_index) {
     gActors[actor_index].unk_144 += 2.5e-06;
     gActors[actor_index].unk_180_u8[0]--;
     if (!(gActors[actor_index].unk_180_u8[0])) {
-        gActors[actor_index].unk_180_u16[0] = 0;
+        gActors[actor_index].unk_180_s16[0] = 0;
     }
 }
 
@@ -792,7 +792,7 @@ void func_8005B82C(u16 actor_index) {
     gActors[actor_index].colorR = ((gActors[actor_index].unk_184 & 0xC) * 7) + 0x1C;
     gActors[actor_index].colorG = gActors[actor_index].colorR / 2;
     if (gActors[actor_index].unk_184 >= 0x4C) {
-        gActors[actor_index].unk_180_u16[0] = 0;
+        gActors[actor_index].unk_180_s16[0] = 0;
     }
     if (!(gActors[actor_index].unk_184 & 0xF)) {
         sp34[4] = (intptr_t)PALETTE_8022D4E8;
@@ -918,7 +918,7 @@ void func_8005BFA4(u16 actor_index) {
 }
 
 void func_8005C098(u16 actor_index, s32 arg1) {
-    gActors[actor_index].unk_180_u16[0] = arg1;
+    gActors[actor_index].unk_180_s16[0] = arg1;
 }
 
 // unused variant of after-image. uses arrays to store history.

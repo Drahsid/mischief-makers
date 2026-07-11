@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "music.h"
+#include "80D90.h"
 
 // "Overlay 0" code for "Final Battle"
 

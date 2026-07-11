@@ -1,5 +1,7 @@
 #include "common.h"
 #include "actor.h"
+#include "805E0.h"
+#include "80D90.h"
 
 void func_80192C00_6D2700(u16 actor_index);
 void ClancerCommanderMech_Init(u16 actor_index);

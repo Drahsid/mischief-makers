@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "80D90.h"
 
 // "Overlay 1" code used in most scenes.
 
