@@ -154,7 +154,7 @@ void func_801A7C78_78C7B8(u16 actor_index) {
       if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         // bounce ball if it hits the floor and has more "bounces" left.
         if (gActors[actor_index].unk_12C >= 0.0f) {
-            Sound_PlaySfxAtActor2(0x9B, actor_index);
+            Sound_PlaySfxAtActor2(SFX_009B, actor_index);
         }
         // 25% less bounce.
         gActors[actor_index].velocityY.raw = (s32) ((f64) -(f32) gActors[actor_index].velocityY.raw * 0.75);

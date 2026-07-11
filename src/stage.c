@@ -110,7 +110,7 @@ u16 gStageIds[] = {
 
 // times to beat per stage to get S-rank.
 u16 gStageTimesToBeat[] = {
-    0,
+    0,     // Intro
     0,     // Demo World 1
     1080,  // Meet Marina
     1020,  // Meet Calina
@@ -833,32 +833,32 @@ u16 gSoudTestIndices[] = {
     SFX_MERCO_OW, SFX_TUARUS_INTRO1, SFX_TUARUS_INTRO2, SFX_TUARUS_HENSHIN1,
     SFX_TUARUS_HENSHIN2, SFX_TUARUS_LAUGH1, SFX_TUARUS_YELL1, SFX_TUARUS_YELL2,
     SFX_TUARUS_OW, SFX_TUARUS_DEFEAT, SFX_TUARUS_YELL3, SFX_TUARUS_TAUNT1, SFX_TUARUS_TAUNT2,
-    SFX_0142, SFX_0143, SFX_MENU_BLIP, SFX_MENU_DING, SFX_STAGE_OPEN, SFX_0024, SFX_0025, 
+    SFX_BEASTECTOR_GRUNT1, SFX_BEASTECTOR_GRUNT2, SFX_MENU_BLIP, SFX_MENU_DING, SFX_STAGE_OPEN, SFX_JUMP_0024, SFX_LAND_0025, 
     SFX_00AE, SFX_0116, SFX_0034, SFX_008A, SFX_005F, SFX_0060, SFX_00AB, SFX_00A6, SFX_00B6,
-    SFX_0056, SFX_0059, SFX_0076, SFX_0074, SFX_00FE, SFX_0037, SFX_006F, SFX_0041,
+    SFX_MECHSTEP_0056, SFX_MECHSTEP_0059, SFX_0076, SFX_0074, SFX_00FE, SFX_0037, SFX_006F, SFX_BOOM_0041,
     SFX_GEM_APPEAR, SFX_GEM_RED, SFX_GEM_BLUE, SFX_GEM_GREEN, SFX_GEM_YELLOW,
      SFX_007C, SFX_0078, SFX_005B, SFX_007A, SFX_003F, SFX_0066,
-    SFX_CROSSHAIR, SFX_0145, SFX_00B0, SFX_STAR_APPEAR, SFX_STAR_TP, SFX_00B8, SFX_0140, SFX_0144,
-    SFX_TURMPETFANFARE, SFX_00BD, SFX_00BF, SFX_00BA, SFX_00BE, SFX_013C, SFX_013D, SFX_0026,
+    SFX_CROSSHAIR, SFX_SHAKEREVEAL, SFX_00B0, SFX_STAR_APPEAR, SFX_STAR_TP, SFX_00B8, SFX_GLIMMER_0140, SFX_0144,
+    SFX_TURMPETFANFARE, SFX_00BD, SFX_00BF, SFX_00BA, SFX_00BE, SFX_013C, SFX_013D, SFX_BOOM_0026,
     SFX_0027, SFX_0028, SFX_0029, SFX_002A, SFX_002B, SFX_002C, SFX_002D, SFX_002E,
-    SFX_002F, SFX_0030, SFX_0031, SFX_0032, SFX_0033, SFX_0035, SFX_0036, SFX_0038,
-    SFX_0039, SFX_003C, SFX_003D, SFX_FALLWHISTLE, SFX_0040, SFX_0042, SFX_0043, SFX_0045,
-    SFX_0046, SFX_0048, SFX_004A, SFX_004B, SFX_004C, SFX_004D, SFX_004E, SFX_004F,
+    SFX_GRAB_002F, SFX_0030, SFX_0031, SFX_0032, SFX_0033, SFX_0035, SFX_0036, SFX_0038,
+    SFX_0039, SFX_CLANCERDEATH, SFX_BLING, SFX_FALLWHISTLE, SFX_0040, SFX_MEOW, SFX_BOOM_0043, SFX_BOOM_0045,
+    SFX_0046, SFX_WOOSH_0048, SFX_004A, SFX_004B, SFX_004C, SFX_004D, SFX_004E, SFX_004F,
     SFX_0050, SFX_0052, SFX_0053, SFX_0054, SFX_0055, SFX_0058, SFX_POP, SFX_005C,
-    SFX_005D, SFX_005E, SFX_0061, SFX_0062, SFX_0063, SFX_0064, SFX_0065, SFX_0068,
+    SFX_005D, SFX_005E, SFX_0061, SFX_GRABDEFLECT, SFX_0063, SFX_0064, SFX_0065, SFX_0068,
     SFX_0069, SFX_006A, SFX_006B, SFX_006C, SFX_006D, SFX_006E, SFX_0070, SFX_0071,
     SFX_0072, SFX_0073, SFX_0075, SFX_TXTGRUNT_DEFAULT, SFX_TXTGRUNT_CLANCER, SFX_007B, SFX_0080, SFX_0081,
     SFX_0082, SFX_0083, SFX_0084, SFX_0085, SFX_0086, SFX_0087, SFX_0088, SFX_0089,
     SFX_008B, SFX_008C, SFX_008D, SFX_008E, SFX_008F, SFX_0090, SFX_0091, SFX_0092,
     SFX_0093, SFX_0094, SFX_0096, SFX_0097, SFX_0098, SFX_0099, SFX_009A, SFX_009B,
     SFX_00A3, SFX_00A5, SFX_00A9, SFX_00AA, SFX_00AC, SFX_00AD, SFX_00AF, SFX_00B1,
-    SFX_STAGE_TILES, SFX_00BC, SFX_00C0, SFX_00C1, SFX_00C2, SFX_00C3, SFX_00C5, SFX_00C6,
-    SFX_00CF, SFX_00D5, SFX_00D6, SFX_00E1, SFX_00E2, SFX_00E3, SFX_00EE, SFX_00FC,
+    SFX_STAGE_TILES, SFX_00BC, SFX_00C0, SFX_00C1, SFX_SHAKE_00C2, SFX_00C3, SFX_00C5, SFX_00C6,
+    SFX_00CF, SFX_00D5, SFX_00D6, SFX_00E1, SFX_00E2, SFX_CORRECT_00E3, SFX_00EE, SFX_CLANPOTGLOW,
     SFX_00FD, SFX_0101, SFX_0106, SFX_010D, SFX_010E, SFX_TXTGRUNT_MARINA, SFX_TXTGRUNT_THEOLEO, SFX_TXTGRUNT_MERCO,
     SFX_TXTGRUNT_LUNAR, SFX_TXTGRUNT_TAURUS, SFX_0114, SFX_0115, SFX_0117, SFX_0118, SFX_0119, SFX_011B,
-    SFX_011C, SFX_011D, SFX_011E, SFX_011F, SFX_0120, SFX_0121, SFX_0122, SFX_0124,
+    SFX_011C, SFX_011D, SFX_011E, SFX_011F, SFX_0120, SFX_0121, SFX_RUMBLE_0122, SFX_0124,
     SFX_0126, SFX_0127, SFX_0128, SFX_0129, SFX_012A, SFX_012B, SFX_012C, SFX_0131,
-    SFX_0132, SFX_0133, SFX_0134, SFX_0135, SFX_0137, SFX_0139, SFX_013E, SFX_013F,
+    SFX_0132, SFX_CORRECT_0133, SFX_WRONG_0134, SFX_0135, SFX_0137, SFX_0139, SFX_013E, SFX_013F,
     SFX_LIFEBAR, SFX_013B, SFX_0047, SFX_00F4, SFX_00C4, SFX_010A, SFX_010C, SFX_0138,
     SFX_013A, SFX_00D7, SFX_003A, SFX_009E, SFX_00A2, SFX_009F, SFX_009D, SFX_00A1,
     SFX_0067, SFX_0044, SFX_007F, SFX_011A, SFX_0049, SFX_00A4, SFX_00A7, SFX_00A8,
@@ -1087,7 +1087,7 @@ void GameState_Intro(void) {
         gActors[actor_index_30].hitboxBX1 = 1;
         gActors[actor_index_30].hitboxBY0 = 0x10;
         gActors[actor_index_30].hitboxBY1 = 8;
-        gActors[actor_index_30].unk_17C = 0x8034E4C8;
+        gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_803524C8;
         gActors[actor_index_30].unk_180 = (intptr_t) D_800C9080;
         gActors[actor_index_30].var_154 = -0x1F;
         color = gActors[actor_index_30].var_154;
@@ -1121,7 +1121,7 @@ void GameState_Intro(void) {
                 gActors[actor_index_30].hitboxBX1 = 1;
                 gActors[actor_index_30].hitboxBY0 = 0x18;
                 gActors[actor_index_30].hitboxBY1 = 4;
-                gActors[actor_index_30].unk_17C = 0x80340240;
+                gActors[actor_index_30].unk_17C = (intptr_t)PALETTE_80342040;
                 gActors[actor_index_30].unk_180 = (intptr_t) D_800C8FA0;
                 gActors[actor_index_30].var_154 = -0x1F;
                 color = gActors[actor_index_30].var_154;
@@ -1158,8 +1158,8 @@ void GameState_Intro(void) {
                 gActors[actor_index_31].hitboxBX1 = 1;
                 gActors[actor_index_31].hitboxBY0 = 0x18;
                 gActors[actor_index_31].hitboxBY1 = 4;
-                gActors[actor_index_31].unk_17C = 0x80342068;
-                gActors[actor_index_31].unk_180 = (s32) D_800C8FC0;
+                gActors[actor_index_31].unk_17C = (intptr_t)PALETTE_803524C8;
+                gActors[actor_index_31].unk_180 = (intptr_t) D_800C8FC0;
                 gActors[actor_index_31].var_154 = -0x1F;
                 color = gActors[actor_index_31].var_154;
                 Palette_AdjustRgb5551Array(PALETTE_803524C8, D_800C8FC0, 0x5F, color, color, color);
@@ -1311,13 +1311,13 @@ void GameState_TitleScreen(void) {
         break;
     case 23:
         func_80025BFC();
-        Palette_AdjustRgb5551Array((u16* )0x803DA400, (u16* )0x80380200, 0xFF, 2, 0, 0);
+        Palette_AdjustRgb5551Array((u16* )0x803DA400, PALETTE_80380200, 0xFF, 2, 0, 0);
         D_800BE578 = 2;
         D_800BE580 = -0xC;
-        D_801376A0 = (u16* )0x80380200;
-        gDrawMidground = 0;
-        gDrawEnvLayer = 1;
-        gDrawBackground = 0;
+        D_801376A0 = PALETTE_80380200;
+        gDrawMidground = FALSE;
+        gDrawEnvLayer = TRUE;
+        gDrawBackground = FALSE;
         D_800BE70C = 1;
         func_80010C20(gCurrentScene);
         gGameStateSubState++;
@@ -1379,7 +1379,7 @@ void GameState_TitleScreen(void) {
         }
         func_80017F08();
         if (gButtonPress & gButton_Start) {
-            Sound_PlaySfx(0x23);
+            Sound_PlaySfx(SFX_MENU_DING);
             Sound_StartFade(1, 0x40);
             D_80178166 = 0;
             if (CURSOR_INDEX_A != 0) {
@@ -1537,7 +1537,7 @@ void GameState_DebugSoundTest(void) {
             actor_index = 0x33;
             func_80017FE8(actor_index);
             gActors[actor_index].colorA = 7;
-            Sound_PlaySfx(0x23);
+            Sound_PlaySfx(SFX_MENU_DING);
             Sound_StartFade(0x81, 0x20);
             gGameStateSubState++;
         }
@@ -1897,7 +1897,7 @@ void func_80019EC4(void) {
 void func_80019F04(u16 actor_index) {
     s32 index;
     if (D_800C81E0[0] == 0xFFFF) {
-        Sound_PlaySfx2(0xA9);
+        Sound_PlaySfx2(SFX_00A9);
         index = D_800C81E0[0] = (2 * actor_index + 0x39);
         gActors[index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX;
         gActors[index + 1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX;
@@ -2405,13 +2405,13 @@ void GameState_Transition(void) {
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             if (gActors[0x78].posY.whole == -0x11) { // unk3FCC: BFCC [0x78].0x8C
-                Sound_PlaySfx(0x48);
+                Sound_PlaySfx(SFX_WOOSH_0048);
                 gGameStateSubState = 0xD;
             }
             else {
                 gActors[0x78].var_154 = 0x30; // unk4094 = C094 [0x78].0x154
                 Sound_StartFade(1, 0x30);
-                Sound_PlaySfx(0x23);
+                Sound_PlaySfx(SFX_MENU_DING);
                 gGameStateSubState = 0xC;
             }
         }
@@ -2538,19 +2538,19 @@ void GameState_Transition(void) {
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_StartFade(0x81, 0x50);
-            Sound_PlaySfx(0xD2);
+            Sound_PlaySfx(SFX_STAGE_OPEN);
             gGameStateSubState = 0x30;
         }
         else if (gButtonPress & gButton_B) {
-            Sound_PlaySfx(0x48);
+            Sound_PlaySfx(SFX_WOOSH_0048);
             gGameStateSubState = 0x22;
         }
         else if ((gButtonPress & gButton_LTrig) && (gCurrentWorld != 0)) {
-            Sound_PlaySfx(0x48);
+            Sound_PlaySfx(SFX_WOOSH_0048);
             gGameStateSubState = 0x25;
         }
         else if ((gButtonPress & gButton_RTrig) && (gCurrentWorld < D_8017815E)) {
-            Sound_PlaySfx(0x48);
+            Sound_PlaySfx(SFX_WOOSH_0048);
             gGameStateSubState = 0x27;
         }
         break;
@@ -2669,7 +2669,7 @@ void GameState_Transition(void) {
         D_800D28E4 = gStageIds[gCurrentStage];
         func_80025578();
         if (gCurrentStage == STAGE_THEDAYOF) {
-            func_8002601C(0x10);
+            func_8002601C(SCENE_DAYOF0);
             OverlayABI_Slot2_fn32_void();
         }
         gGameState = GAMESTATE_LOADING;
@@ -2844,7 +2844,7 @@ void func_8001CE04(void) {
             func_8001CD30(gActors[0x70].var_154);
             gActors[0x32].posY.whole = 0x20;
             gActors[0x33].posY.whole = -0x1C;
-            Sound_PlaySfx(0x23);
+            Sound_PlaySfx(SFX_MENU_DING);
             gGameStateSubState = 0x10;
         }
     }
@@ -3038,7 +3038,7 @@ void GameState_Records(void) {
             gGameStateSubState = 0x20;
         }
         if ((gButtonPress & gButton_B) || (gButtonPress & gButton_A) || (gButtonPress & gButton_Start)) {
-            Sound_PlaySfx(0x48);
+            Sound_PlaySfx(SFX_WOOSH_0048);
             gGameStateSubState = 0xF0;
         }
         break;

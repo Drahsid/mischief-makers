@@ -127,7 +127,7 @@ void func_8008D1E8(u16 actor_index) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
     }
 
-    Sound_PlaySfx(0x63);
+    Sound_PlaySfx(SFX_0063);
 }
 
 void func_8008D2B0(u16 actor_index) {

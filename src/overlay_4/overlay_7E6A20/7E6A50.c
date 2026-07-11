@@ -3,8 +3,6 @@
 
 // "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
 
-extern void func_80064AA0(s32 arg0, void* arg1);
-
 extern u16 D_801BA540_7E7690[];
 extern u16 D_801BA63C_7E778C[];
 extern u16 D_801BA65C_7E77AC[];
@@ -48,7 +46,7 @@ u16 D_801BA540_7E7690[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0990, 0x0253, 0x0000, 0x0000, ACTORTYPE_13,
     0x0000, 0x0091, 0x0990, 0x0253, 0x0200, 0x0000, ACTORTYPE_13,
-    0x0000, 0x0092, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_94,
+    0x0000, 0x0092, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_WHITEFADE,
     SPAWNRECORD_END
 };
 
@@ -91,7 +89,7 @@ u16 D_801BA66C_7E77BC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
     0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, 0x1F03,
-    SPAWNRECORD_END,
+    SPAWNRECORD_END
     0, 0, 0, // might be a seperate unused table
     0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
     SPAWNRECORD_END
@@ -542,7 +540,7 @@ void func_801B9FC8_7E7118(void) {
             func_801B9FB4_7E7104();
             if (D_800D2928 >= 4) {
                 gStageState++;
-                func_80064AA0(1, D_801BA784_7E78D4);
+                SpawnStageClear(1, D_801BA784_7E78D4);
                 return;
             }
             gStageState = 1;

@@ -114,10 +114,10 @@ typedef enum {
     ACTORTYPE_MARINAAFTERIMAGE, // when marina dashes. Has unused alternate version.
     ACTORTYPE_47,
     ACTORTYPE_48,
-    ACTORTYPE_49,
+    ACTORTYPE_SPIRALCLOUDS,
     ACTORTYPE_WARPGATE, // aka Warp Star
     ACTORTYPE_51,
-    ACTORTYPE_52,
+    ACTORTYPE_GRAPHIC_52, // another type of "graphic only" actor. seems to only las 1-2 ticks before needing respawned.
     ACTORTYPE_TEXTBUBBLE, // used many times in Japan version. in English versions, only used by the coach in "the day before".
     ACTORTYPE_54,
     ACTORTYPE_55,
@@ -133,7 +133,7 @@ typedef enum {
     ACTORTYPE_65,
     ACTORTYPE_CLANBALLSPRING,
     ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
-    ACTORTYPE_HAT, // hats worn by clancers
+    ACTORTYPE_HAT, // unused?
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_70,
     ACTORTYPE_71,
@@ -159,7 +159,7 @@ typedef enum {
     ACTORTYPE_CLANCER_91,
     ACTORTYPE_92,
     ACTORTYPE_93,
-    ACTORTYPE_94,
+    ACTORTYPE_WHITEFADE,
     ACTORTYPE_CLANBLOB,
     ACTORTYPE_96,
     ACTORTYPE_CLANBALL_RAIL, // clanball on rail track.
@@ -175,7 +175,7 @@ typedef enum {
     ACTORTYPE_AREACLEAR, // "Get out of trouble!" "Go to the next area!"
     ACTORTYPE_108,
     ACTORTYPE_109, // Calina's staff during transformation?
-    ACTORTYPE_110,
+    ACTORTYPE_110, // Calina transformation?
     ACTORTYPE_111,
     ACTORTYPE_MARINAOHNO, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
     ACTORTYPE_CROSSHAIR, // Crosshair appearing over actors for a second. Arrows can be toggled.
@@ -414,7 +414,7 @@ typedef enum {
     ACTORTYPE_OVL2_W1_25,
     ACTORTYPE_OVL2_W1_26,
     ACTORTYPE_OVL2_W1_27,
-    ACTORTYPE_OVL2_W1_28,
+    ACTORTYPE_OVL2_W1_28, // static props / the background birds in "Western World"
     ACTORTYPE_OVL2_W1_29,
     ACTORTYPE_OVL2_W1_30,
     ACTORTYPE_OVL2_W1_31,

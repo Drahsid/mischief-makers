@@ -10,7 +10,6 @@ extern void Clanpot_InitItems(u16 actor_index, u16* vals);
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern void func_80064AA0(s32 arg0, void* arg1);
 
 
 extern s16 D_800D28F8;
@@ -1376,7 +1375,7 @@ void func_801B9900_7D40F0(void) {
         D_801BC150_7D6940.whole = -0x14;
         D_801BC154_7D6944.whole = -0x18;
         CameraShake(-6, 20);
-        Sound_PlaySfx(0x4D);
+        Sound_PlaySfx(SFX_004D);
     }
 
     if ((D_801BC140_7D6930.whole != -0x15) || (D_801BC144_7D6934.whole != -0x1A) || (D_801BC148_7D6938.whole != -0x20)) {
@@ -1486,7 +1485,7 @@ void func_801B9CA0_7D4490(void) {
 
         case 0x104:
             gStageState++;
-            func_80064AA0(0x3C, D_801BC7AC_7D6F9C);
+            SpawnStageClear(60, D_801BC7AC_7D6F9C);
 
         case 0x105:
         case 0x106:
@@ -1684,7 +1683,7 @@ void func_801BA290_7D4A80(void) {
 
         case 0x104:
             gStageState++;
-            func_80064AA0(0x3C, D_801BD684_7D7E74);
+            SpawnStageClear(60, D_801BD684_7D7E74);
 
         case 0x105:
         case 0x106:
@@ -1832,7 +1831,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x13:
             gStageState++;
             D_800D28F8 = 0xB4;
-            func_80064AA0(0x3C, D_801BE0A8_7D8898);
+            SpawnStageClear(60, D_801BE0A8_7D8898);
 
         case 0x14:
             D_800D28F8--;
@@ -1967,7 +1966,7 @@ void func_801BAE84_7D5674(void* arg0, u16* arg1) {
     gActorDepthBack = -0x30;
     gDrawBackground = FALSE;
     func_801BAC6C_7D545C();
-    Sound_PlaySfx(0x74);
+    Sound_PlaySfx(SFX_0074);
     gStageState &= 0xF;
 }
 
@@ -2097,7 +2096,7 @@ void func_801BB314_7D5B04(void) {
             break;
 
         case 5:
-            func_80064AA0(1, D_801BED00_7D94F0);
+            SpawnStageClear(1, D_801BED00_7D94F0);
             gStageState++;
             break;
 
@@ -2117,7 +2116,7 @@ void func_801BB444_7D5C34(void* arg0, u16* arg1, void* arg2) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg2);
     D_800BE5F4.unk_00_u32 = 10;
-    Sound_PlaySfx(0xBA);
+    Sound_PlaySfx(SFX_00BA);
     D_801C02B6_7DAAA6 = gStageState;
     gStageState = 1;
 }
@@ -2180,7 +2179,7 @@ void func_801BB4A4_7D5C94(void) {
                 }
 
                 if (actor_count == 0) {
-                    func_80064AA0(0x78, D_801BF23C_7D9A2C);
+                    SpawnStageClear(120, D_801BF23C_7D9A2C);
                     gActors[0x8E].flags = 0;
                     gStageState++;
                 }
@@ -2207,6 +2206,7 @@ void func_801BB4A4_7D5C94(void) {
     Camera_UpdateViewBounds();
 }
 
+// stage state machine for "Lunar"
 void func_801BB768_7D5F58(void) {
     switch (gStageState) {
         case 0:
@@ -2215,7 +2215,7 @@ void func_801BB768_7D5F58(void) {
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
             D_800BE5F4.unk_00_u32 = 7;
             if (!gSkipStageIntro) {
-                Sound_PlaySfx(0xBA);
+                Sound_PlaySfx(SFX_00BA);
                 gStageState = 1;
             }
             else {
@@ -2298,7 +2298,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 0x1000:
-            Sound_PlaySfx(0xBA);
+            Sound_PlaySfx(SFX_00BA);
             if (gMusicSequenceId != BGM_YUJYA) {
                 Sound_PlayMusic(BGM_YUJYA);
             }

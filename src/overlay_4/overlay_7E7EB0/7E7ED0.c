@@ -471,7 +471,7 @@ void func_801B9A3C_7E800C(u16 actor_index) {
 
 void func_801B9B64_7E8134(u16 actor_index, s16 arg1, s16 arg2) {
     gStageState++;
-    Sound_PlaySfx(0x93);
+    Sound_PlaySfx(SFX_0093);
     gActors[actor_index].flags = 0;
     func_80011F44(arg1, arg2, 2, 8);
 }
@@ -751,7 +751,7 @@ void func_801BA634_7E8C04(void) {
         case 2:
             Cutscene_CheckSkipInput();
             if (func_8005DEFC() == 0) {
-                Sound_PlaySfx(0xAF);
+                Sound_PlaySfx(SFX_00AF);
                 gStageState = 3;
             }
             break;

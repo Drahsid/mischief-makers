@@ -108,6 +108,10 @@ Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
 
 ActorUpdate_Type27 = 0x8002C1D8; // type:func
 ActorUpdate_Type30 = 0x8002C6DC; // type:func
+
+SpawnWhiteFade1 = 0x8002D2F4; // type:func
+SpawnWhiteFade2 = 0x8002D3C0; // type:func
+ActorUpdate_WhiteFade = 0x8002d488; // type:func
 ActorUpdate_Type1 = 0x8002D260; // type:func
 
 Landmine_TriggerEffect = 0x8002D5E4; // type:func
@@ -201,6 +205,12 @@ ActorUpdate_Spikeball_80 = 0x80089084; // type:func
 ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
 ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
 
+ActorUpdate_SpiralClouds = 0x80062174; //type:func
+
+ActorUpdate_ClanballRail = 0x8006346C; // type:func
+SpawnStageClear = 0x80064AA0; // type:func
+ActorUpdate_StageClear = 0x80064b60; // type:func
+
 ActorUpdate_Type15 = 0x8008C4A0; // type:func
 ActorUpdate_Type16 = 0x8008C4A8; // type:func
 ActorUpdate_Type37 = 0x8008C4C0; // type:func
@@ -255,6 +265,7 @@ Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
 Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
+ActorUpdate_Marina = 0x8004ed10; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func

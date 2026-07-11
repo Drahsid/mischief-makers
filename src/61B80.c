@@ -439,7 +439,8 @@ void func_80061E98(u16 actor_index) {
     }
 }
 
-void func_80062174(u16 actor_index) {
+// swirling clouds in "Volcano"
+void ActorUpdate_SpiralClouds(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
@@ -448,12 +449,12 @@ void func_80062174(u16 actor_index) {
         gActors[actor_index].graphicTimer = 0;
         gActors[actor_index].posX.whole = 0;
         gActors[actor_index].posY.whole = 0x30;
-        gActors[actor_index].posZ.whole = -0x212;
+        gActors[actor_index].posZ.whole = -530;
         gActors[actor_index].unk_188 = -0x22;
         gActors[actor_index].scaleX = 9.0f;
         gActors[actor_index].unk_12C = 9.0f;
         gActors[actor_index].rotateX = -8.0f;
-        Sound_PlaySfx(0xBF);
+        Sound_PlaySfx(SFX_00BF);
         gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
         gActors[actor_index].colorA = 3;
         gActors[actor_index].state += 1;
@@ -463,7 +464,7 @@ void func_80062174(u16 actor_index) {
         if (gActiveFrames & 1) {
             gActors[actor_index].colorA += 4;
             if (gActors[actor_index].colorA == 0xFF) {
-                gDrawBackground = 0;
+                gDrawBackground = FALSE;
                 gActors[0x8C].unk_18C = 1;
                 gActors[actor_index].state++;
             }
@@ -742,43 +743,43 @@ void func_80063418(u16 actor_index) {
     }
 }
 
-void func_8006346C(u16 actor_index) {
+void ActorUpdate_ClanballRail(u16 actor_index) {
     gActors[actor_index - 1].posX.raw = gActors[actor_index].posX.raw + gActors[actor_index - 1].var_154;
     gActors[actor_index - 1].posY.raw = gActors[actor_index].posY.raw + gActors[actor_index - 1].var_158;
     if (!(gActiveFrames & 0xF)) {
         if ((gActors[actor_index - 1].actorType == ACTORTYPE_CLANBALLWHEEL) ||
            (gActors[actor_index - 1].actorType == ACTORTYPE_CLANBALLSPRING)) {
             if ((gActors[actor_index].state >= 0x60) && (gActors[actor_index - 1].var_158 != 0)) {
-                Sound_PlaySfxAtActor2(0x120, actor_index);
+                Sound_PlaySfxAtActor2(SFX_0120, actor_index);
             }
         }
         else if (gActors[actor_index - 1].actorType == ACTORTYPE_OVL3_W2_CLANCERSWING) {
             if (((s32) gActors[actor_index - 1].var_110 & 0xF) == 1) {
                 if ((gPlayerActor.flags & ACTOR_FLAG_ATTACHED) && ((actor_index + 1) == gPlayerActor.parentIndex)) {
-                    Sound_PlaySfxAtActor2(0x120, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_0120, actor_index);
                 }
             }
             else if ((gPlayerActor.flags & ACTOR_FLAG_ATTACHED) && (((actor_index + 1) == gPlayerActor.parentIndex) || ((actor_index + 2) == gPlayerActor.parentIndex) || ((actor_index + 3) == gPlayerActor.parentIndex) || ((actor_index + 4) == gPlayerActor.parentIndex))) {
-                Sound_PlaySfxAtActor2(0x120, actor_index);
+                Sound_PlaySfxAtActor2(SFX_0120, actor_index);
             }
         }
         else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
             if (gActors[actor_index].var_0D8 < 0x60) {
                 if (gActors[actor_index].state >= 0x60) {
-                    Sound_PlaySfxAtActor2(0x120, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_0120, actor_index);
                 }
             }
             else if (gActors[actor_index].var_0D8 < 0x70) {
-                Sound_PlaySfxAtActor2(0x120, actor_index);
+                Sound_PlaySfxAtActor2(SFX_0120, actor_index);
             }
             else if (gActors[actor_index].state >= 0x78) {
-                Sound_PlaySfxAtActor2(0x120, actor_index);
+                Sound_PlaySfxAtActor2(SFX_0120, actor_index);
             }
         }
     }
     if (gActors[actor_index].unk_188 == 2) {
         if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
-            Sound_PlaySfxAtActor2(0x115, actor_index);
+            Sound_PlaySfxAtActor2(SFX_0115, actor_index);
         }
     }
     gActors[actor_index].unk_188 = gActors[actor_index - 1].state;
@@ -1332,10 +1333,11 @@ void func_800648C4(u16 actor_index) {
     }
 }
 
-void func_80064AA0(u16 duration, void* arg1) {
+// Spawn "Stage Clear" Actor
+void SpawnStageClear(u16 duration, u16* spawn_table) {
     u16 actor_index = 0xC0;
 
-    gActors[actor_index].actorType = 0x74;
+    gActors[actor_index].actorType = ACTORTYPE_STAGECLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = 0;
@@ -1352,14 +1354,14 @@ void func_80064AA0(u16 duration, void* arg1) {
         Sound_StartFade(0x81, duration);
         gActors[actor_index].var_15C = 0;
     }
-    gActors[actor_index].var_158 = (s32)arg1;
+    gActors[actor_index].var_158 = (intptr_t)spawn_table;
 }
 
-void func_80064B60(u16 actor_index) {
+void ActorUpdate_StageClear(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         if (gActors[actor_index].var_154-- == 0) {
-            Actor_LoadSpawnTable((void* ) gActors[actor_index].var_158);
+            Actor_LoadSpawnTable((u16* ) gActors[actor_index].var_158);
             Sound_PlayMusic(BGM_GET);
             D_800BE5F4.unk_00_u32 = 0xE;
             gActors[actor_index].var_154 = 0x168;
@@ -1419,7 +1421,7 @@ void func_80064CB4(u16 actor_index) {
                     Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);
                 }
                 else {
-                    Sound_PlaySfxAtActor2(0x116, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_0116, actor_index);
                 }
             }
         }
@@ -1542,7 +1544,7 @@ void ActorUpdate_MsHint(u16 actor_index) {
             if ((gActors[actor_index].parentIndex == PLAYER_INDEX) && (D_801373E0.unk_12 == 0) && (D_801373E0.unk_10 == 8)) {
                 SpawnParticle_RingWaveRed(1.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
                 if (gRedGems < 0xA) { // not enough gems, tell her so.
-                    Sound_PlaySfxAtActor2(0x134, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_WRONG_0134, actor_index);
                     func_8005E09C(func_8005DFC8(2), 0x2000);
                 }
                 else { // take gems, tell hint
@@ -1571,7 +1573,7 @@ void ActorUpdate_MsHint(u16 actor_index) {
         break;
     }
     if ((gActors[actor_index].unk_188 == 2) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
-        Sound_PlaySfxAtActor2(0x115, actor_index);
+        Sound_PlaySfxAtActor2(SFX_0115, actor_index);
     }
     gActors[actor_index].unk_188 = gActors[actor_index - 1].state;
     gActors[actor_index].posY.whole = (gActors[actor_index].unk_174 + D_800D26F4[(gActiveFrames / 2) & 0xF]) - gScreenPosCurrentY.whole;

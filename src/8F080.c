@@ -200,7 +200,7 @@ void func_800930AC(u16 arg0) {
     }
 }
 
-void func_800930E4(u32 arg0) {
+void func_800930E4(u16 arg0) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_800930EC.s")
@@ -253,7 +253,7 @@ void func_80095A10(u16 actor_index) {
     gActors[actor_index].unk_118 += gActors[actor_index].unk_114;
     if (gActors[actor_index].unk_118 > 360.0f) {
         gActors[actor_index].unk_118 -= 360.0f;
-        Sound_PlaySfx2(0x116);
+        Sound_PlaySfx2(SFX_0116);
     }
 }
 

@@ -18,7 +18,6 @@ extern s16 D_800E1C84[];
 extern s32 func_800475EC(void);
 extern void func_80047648(s16 arg0);
 extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
-extern void func_80064AA0(s32 arg0, void* arg1);
 extern void func_80045544(s32 arg0, s32 arg1);
 extern void func_80045610(s32 arg0, s32 arg1);
 extern void func_80043D30(void* arg0);
@@ -152,6 +151,7 @@ u32 D_801BC7DC_7C99BC[] = {
     0x025E0000,
 };
 
+// actor spawn table for "Meet Marina" intro
 u16 D_801BCB50_7C9D30[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008A, 0x0420, 0x0180, 0x0013, 0x0070, ACTORTYPE_OVL2_W1_28, 
@@ -1002,7 +1002,7 @@ u32 D_801BF36C_7CC54C[] = {
 
 u16 D_801BF5FC_7CC7DC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0088, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_49,
+    0x0000, 0x0088, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_SPIRALCLOUDS,
     0x0000, 0x004D, 0x1AB0, 0x0170, 0x0000, 0xFFF7, ACTORTYPE_OVL2_W1_28,
     0x0000, 0x004E, 0x1ACF, 0x0170, 0x0001, 0xFFF7, ACTORTYPE_OVL2_W1_28, 
     0x0000, 0x004F, 0x1ACF, 0x0150, 0x0002, 0x0009, ACTORTYPE_OVL2_W1_28,
@@ -1503,7 +1503,7 @@ void func_801B9AC0_7C6CA0(void) {
             gScreenPosTargetY.whole = 0x200;
             gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
             gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
-            Sound_PlaySfx(0xBD);
+            Sound_PlaySfx(SFX_00BD);
             gCannotPause = TRUE;
             break;
 
@@ -1614,7 +1614,7 @@ void func_801B9AC0_7C6CA0(void) {
             func_80046148(D_801BC7CC_7C99AC, (u16*)D_801BC7DC_7C99BC);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BCBE0_7C9DC0);
-            Sound_StopSfx(0xBD);
+            Sound_StopSfx(SFX_00BD);
             gActors[0x34].unk_174 = 0x1003;
             func_80025EC4(1);
 
@@ -1697,7 +1697,7 @@ void func_801BA008_7C71E8(void) {
 
         case 9:
             if ((func_8005DEFC() == 0) && (gPlayerActor.health >= 0)) {
-                func_80064AA0(0x803C, D_801BD474_7CA654);
+                SpawnStageClear(0x803C, D_801BD474_7CA654);
                 gStageState += 1;
             }
             break;
@@ -2017,7 +2017,7 @@ void func_801BAB34_7C7D14(void) {
                 CameraShake(-7, 7);
 
                 if ((gActiveFrames % 10) == 0) {
-                    Sound_PlaySfx(0x11C);
+                    Sound_PlaySfx(SFX_011C);
                 }
             }
 
@@ -2113,7 +2113,7 @@ void func_801BAB34_7C7D14(void) {
 
             if (D_800D28F8 < 0) {
                 gStageState++;
-                Sound_PlaySfx(0xB7);
+                Sound_PlaySfx(SFX_00B7);
                 func_8005DF5C(5);
 
                 // FAKEMATCH
@@ -2199,7 +2199,7 @@ void func_801BAB34_7C7D14(void) {
             break;
 
         case 0x102:
-            func_80064AA0(1, D_801BF34C_7CC52C);
+            SpawnStageClear(1, D_801BF34C_7CC52C);
             gStageState++;
             break;
 
@@ -2241,6 +2241,7 @@ void func_801BAB34_7C7D14(void) {
     D_800D36FC[0] = 0x31;
 }
 
+// stage state machine for "Volcano"
 void func_801BB310_7C84F0(void) {
     switch (gStageState) {
         case 0:
@@ -2265,7 +2266,7 @@ void func_801BB310_7C84F0(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (func_80046D5C()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2386,7 +2387,7 @@ void func_801BB6D0_7C88B0(void) {
 
                 if (D_800D28F8 == 0x78) {
                     func_801BB6AC_7C888C(1);
-                    Sound_PlaySfx(0x11A);
+                    Sound_PlaySfx(SFX_011A);
                 }
             }
 
@@ -2415,7 +2416,7 @@ void func_801BB6D0_7C88B0(void) {
 
                     case 8:
                         func_801BB6AC_7C888C(1);
-                        Sound_PlaySfx(0x11A);
+                        Sound_PlaySfx(SFX_011A);
                         break;
 
                     case 0xC:
@@ -2478,7 +2479,7 @@ void func_801BB6D0_7C88B0(void) {
                     case 0xC:
                     {
                         ACTOR_GFX_INIT(0x50, D_800E1C84);
-                        Sound_PlaySfx(0x2B);
+                        Sound_PlaySfx(SFX_002B);
                         func_801BB6AC_7C888C(0);
                         D_800D28F8 = 0xB4;
                         break;
@@ -2541,7 +2542,7 @@ void func_801BB6D0_7C88B0(void) {
                 D_800BE5F4.unk_00_s32 = 5;
                 func_80043D04(D_801BF910_7CCAF0);
                 D_800D28F8 = 5;
-                Sound_PlaySfx(0x11A);
+                Sound_PlaySfx(SFX_011A);
             }
             break;
 
@@ -2551,11 +2552,11 @@ void func_801BB6D0_7C88B0(void) {
 
                 if (D_800D28F8 < 0) {
                     gStageState++;
-                    func_80064AA0(0x78, D_801BF94C_7CCB2C);
+                    SpawnStageClear(0x78, D_801BF94C_7CCB2C);
                     D_800D28F8 = 0xB4;
                 }
                 else {
-                    Sound_PlaySfx(0x11A);
+                    Sound_PlaySfx(SFX_011A);
                     func_80045500();
                     func_80043D04(D_801BF910_7CCAF0);
                 }

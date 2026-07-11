@@ -78,7 +78,7 @@ void Continue_PayGems(u16 price) {
         gGameStateSubState = 6;
     }
     else {
-        Sound_PlaySfx(0x134);
+        Sound_PlaySfx(SFX_WRONG_0134);
     }
 }
 
@@ -186,7 +186,7 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.graphicFlags |= ACTOR_GFLAG_UNK11;
             gPlayerActor.flags |= ACTOR_FLAG_DRAW;
             gPlayerActor.posX.whole = -4;
-            gPlayerActor.posY.whole = 0x14;
+            gPlayerActor.posY.whole = 20;
             gPlayerActor.posZ.whole = 0x403;
             gPlayerActor.colorA = 0;
             Text_InitActorGList(0x30, &D_800C7D10, 0xFF88, 0x50, 0x403);

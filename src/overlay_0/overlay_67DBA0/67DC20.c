@@ -525,7 +525,7 @@ void func_80194A38_680558(void) {
     gActors[0x60].colorB = 0x7F;
     gActors[0x60].graphicFlags = (ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 |
         ACTOR_GFLAG_ROTX | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE);
-    gActors[0x60].graphicIndex = 0x262;
+    gActors[0x60].graphicIndex = GINDEX_SPIRAL;
     gActors[0x60].colorA = 0;
     gActors[0x60].posX.whole = 0;
     gActors[0x60].posY.whole = 0;

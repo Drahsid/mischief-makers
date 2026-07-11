@@ -398,7 +398,7 @@ void func_80057C98(u16 actor_index) {
                     gActors[actor_index].unk_170 = 0x9B;
                 }
                 gActors[actor_index].velocityY.raw = 0;
-                Sound_PlaySfx(0x94);
+                Sound_PlaySfx(SFX_0094);
                 if (gActors[actor_index].unk_11C == 0.0f) {
                     gActors[actor_index].velocityX.raw = 0;
                     gActors[actor_index].var_150 = 4;
@@ -486,7 +486,7 @@ void func_800584D4(u16 actor_index) {
         func_8005739C(actor_index, gActors[actor_index].pendingDamage / 5);
         gActors[actor_index].var_15C = ((gActors[actor_index].pendingDamage - gActors[actor_index].pendingDamage / 5) / 180) + 1;
         gActors[actor_index].pendingDamage = 0;
-        Sound_PlaySfxAtActorTimed(0x65, actor_index, gActors[actor_index].var_150);
+        Sound_PlaySfxAtActorTimed(SFX_0065, actor_index, gActors[actor_index].var_150);
         gActors[actor_index].stateUpper = 1;
         /* fallthrough */
     case 1:
@@ -506,10 +506,10 @@ void func_800584D4(u16 actor_index) {
         gActors[actor_index].var_150--;
         if ((gActors[actor_index].var_150 <= 0) || (gActors[actor_index].health < 0)) {
             func_8005C550(actor_index, 0x3C);
-            Sound_StopSfx(0x65);
+            Sound_StopSfx(SFX_0065);
             if (gActors[actor_index].health < 0) {
                 func_800575C0(actor_index);
-                Sound_PlaySfx(0x3C);
+                Sound_PlaySfx(SFX_CLANCERDEATH);
             }
             if (!(gActors[actor_index].unk_0DC & 1)) {
                 gActors[actor_index].state = 0x30;
@@ -708,7 +708,7 @@ s32 func_80058F9C(u16 actor_index) {
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].unk_170 = 0x9E;
             gActors[actor_index].unk_17C = 6;
-            Sound_PlaySfx(0x2F);
+            Sound_PlaySfx(SFX_GRAB_002F);
             gActors[actor_index].state = 0x2F;
         }
         return 1;
@@ -744,7 +744,7 @@ s32 func_80058F9C(u16 actor_index) {
             gActors[actor_index].iFrames = 0;
             func_8005C550(actor_index, 0x12C);
             func_800575C0(actor_index);
-            Sound_PlaySfx(0x63);
+            Sound_PlaySfx(SFX_0063);
         }
     }
     if ((gActors[actor_index].unk_0DD < 12) || (gActors[actor_index].unk_0DD > 14)) {
@@ -754,7 +754,7 @@ s32 func_80058F9C(u16 actor_index) {
         if (sp20 >= 3) {
             func_800575C0(actor_index);
             if (sp20 == 3) {
-                Sound_PlaySfx(0x3C);
+                Sound_PlaySfx(SFX_CLANCERDEATH);
             }
         }
     }

@@ -80,7 +80,7 @@ extern void func_8001FF50(void);
 extern void func_80022470(void);
 extern void func_800253B0(void);
 extern void func_800457C8(void);
-extern void func_8004ED10(u16);
+extern void ActorUpdate_Marina(u16);
 extern u8 func_8005C870(u8);
 extern void UpdateCameraShake(void);
 extern void func_8005C8A4(void);
@@ -598,7 +598,7 @@ void func_80020024(void) {
     func_8001EC1C();
     func_8001107C();
     if (D_800CA230 == 0) {
-        func_8004ED10(0);
+        ActorUpdate_Marina(PLAYER_INDEX);
         func_8008C528(0x41);
     }
     func_8001FF30();

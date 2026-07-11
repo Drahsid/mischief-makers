@@ -305,7 +305,7 @@ void func_8004FDF8(u16 actor_index) {
             gActors[actor_index].stateUpper += 1;
         }
         if ((gActors[actor_index].unk_170_s8[0] == 0) && (gActors[actor_index].unk_170_s8[1] == 7)) {
-            Sound_PlaySfx(0xC2);
+            Sound_PlaySfx(SFX_SHAKE_00C2);
         }
         if ((D_801373E0.unk_12 == 0) && (D_801373E0.unk_10 >= 5) && (D_801373E0.unk_10 < 0xC) && (gActors[actor_index].var_154 < 8)) {
             gActors[index].flags_098 |= ACTOR_FLAG3_UNK17;
@@ -2751,7 +2751,7 @@ void func_800569AC(u16 actor_0, u16 actor_1) {
             }
             gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
             gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
-            Sound_PlaySfx(0x24);
+            Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;

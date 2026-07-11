@@ -5211,7 +5211,7 @@
           }
         },
         {
-          "name": "func_8002D2F4",
+          "name": "SpawnWhiteFade1",
           "size": "204",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5219,7 +5219,7 @@
           }
         },
         {
-          "name": "func_8002D3C0",
+          "name": "SpawnWhiteFade2",
           "size": "200",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5227,7 +5227,7 @@
           }
         },
         {
-          "name": "func_8002D488",
+          "name": "ActorUpdate_WhiteFade",
           "size": "348",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8346,7 +8346,7 @@
           }
         },
         {
-          "name": "func_8004ED10",
+          "name": "ActorUpdate_Marina",
           "size": "1440",
           "metadata": {
             "virtual_address": "2147806480"
@@ -10195,7 +10195,7 @@
           }
         },
         {
-          "name": "func_80062174",
+          "name": "ActorUpdate_SpiralClouds",
           "size": "396",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10379,7 +10379,7 @@
           }
         },
         {
-          "name": "func_8006346C",
+          "name": "ActorUpdate_ClanballRail",
           "size": "2952",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10459,7 +10459,7 @@
           }
         },
         {
-          "name": "func_80064AA0",
+          "name": "SpawnStageClear",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10467,7 +10467,7 @@
           }
         },
         {
-          "name": "func_80064B60",
+          "name": "ActorUpdate_StageClear",
           "size": "340",
           "fuzzy_match_percent": 100.0,
           "metadata": {

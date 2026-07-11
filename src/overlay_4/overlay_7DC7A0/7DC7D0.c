@@ -8,7 +8,6 @@
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern void func_80064AA0(u16 arg0, void* arg1);
 extern u16 gGuestActorIndex;
 extern s32 WarpGate_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
@@ -1505,7 +1504,7 @@ void func_801BA774_7DD644(void) {
             break;
 
         case 5:
-            func_80064AA0(1, D_801BD9A4_7E0874);
+            SpawnStageClear(1, D_801BD9A4_7E0874);
             gStageState++;
             break;
 
@@ -2048,6 +2047,7 @@ void func_801BBCBC_7DEB8C(void) {
     gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
 
+// Teran has died in "Rescue: Act 2"
 void func_801BBD08_7DEBD8(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
         gGameState = GAMESTATE_CONTINUE;
@@ -2110,7 +2110,7 @@ void func_801BBE80_7DED50(void) {
     D_800D28E4 = 0x61;
 }
 
-// cinematic "state machine" for "Rescue: Act 2"
+// stage state machine for "Rescue: Act 2"
 void func_801BBEBC_7DED8C(void) {
     switch (gStageState) {
         case 0:

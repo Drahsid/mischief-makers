@@ -1088,7 +1088,7 @@ void func_8007A8B0(u16 actor_index) {
     case 6:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_009D);
         break;
     case 11:
         func_80028B90(actor_index);
@@ -1099,7 +1099,7 @@ void func_8007A8B0(u16 actor_index) {
     case 9:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_009D);
         break;
     case 14:
         func_80028B90(actor_index);
@@ -1110,10 +1110,10 @@ void func_8007A8B0(u16 actor_index) {
     case 12:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_009D);
         break;
     case 19:
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_009D);
         gActors[actor_index].flags = 0;
         gActors[actor_index].health = 0;
         break;
@@ -1162,12 +1162,12 @@ s32 func_8007AB44(u16 arg0) {
         if ((gActors[arg0].velocityY.raw > FIXED_UNIT(3)) || (gActors[arg0].velocityY.raw < FIXED_UNIT(-3))) {
             if ((u16)gActors[arg0].unk_134) {
                 gActors[arg0].unk_134 = 0.0f;
-                Sound_PlaySfxAtActor3(0xFD, arg0);
+                Sound_PlaySfxAtActor3(SFX_00FD, arg0);
             }
         }
         else if (!(gActiveFrames & 0xF)) {
             gActors[arg0].unk_134 = 93.0f;
-            Sound_PlaySfxAtActor3(0xFD, arg0);
+            Sound_PlaySfxAtActor3(SFX_00FD, arg0);
         }
     }
     gActors[arg0].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -1177,10 +1177,10 @@ s32 func_8007AB44(u16 arg0) {
     }
     gActors[arg0].rotateZ = var_f0;
     if (gActors[arg0].flags & ACTOR_FLAG_FLIPPED) {
-        var_v0_2 = (s32) (var_f0 / 0.3515625) + 0xD0;
+        var_v0_2 = (s32) (var_f0 / RadStep) + 0xD0;
     }
     else {
-        var_v0_2 = (s32) (var_f0 / 0.3515625) + 0x130;
+        var_v0_2 = (s32) (var_f0 / RadStep) + 0x130;
     }
     gActors[arg0].var_160 = func_800298D0(var_v0_2 << 0x10, gActors[arg0].var_160, FIXED_UNIT(8));
     angle = (gActors[arg0].var_160 / FIXED_UNIT(1));
@@ -1218,7 +1218,7 @@ s32 func_8007AB44(u16 arg0) {
     }
     if (((gButtonPress & gButton_LTrig) || (gButtonPress & gButton_RTrig)) && (gActors[arg0].unk_118 < 0.0f)) {
         gActors[arg0].unk_118 = 16.0f;
-        Sound_PlaySfxAtActor2(0x43, arg0);
+        Sound_PlaySfxAtActor2(SFX_BOOM_0043, arg0);
         gActors[arg0].velocityX.raw -= ((f32) gActors[arg0].velocityX.raw * 0.8);
         gActors[arg0].var_15C -= ((f32) gActors[arg0].var_15C * 1.5);
         gActors[arg0].velocityY.raw -= ((f32) gActors[arg0].velocityY.raw * 1.4);

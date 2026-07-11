@@ -153,4 +153,4 @@ void func_8004E1DC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EC60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004ED10.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/marina/ActorUpdate_Marina.s")

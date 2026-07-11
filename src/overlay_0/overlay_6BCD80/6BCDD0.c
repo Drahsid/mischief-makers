@@ -662,7 +662,7 @@ void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {
     func_80197A04_6C26D4(actor_index);
     D_801A5204_6CFED4 = 1;
     D_801A5F9C_6D0C6C = 0;
-    Sound_PlaySfx(0x2F);
+    Sound_PlaySfx(SFX_GRAB_002F);
 }
 
 void func_80198858_6C3528(s32 arg0, u16 actor_index) {
@@ -1088,7 +1088,7 @@ void func_8019E564_6C9234(u16 actor_index) {
                 gActors[0x75].colorR = 0x7F;
                 gActors[0x76].colorR = 0x7F;
                 CameraShake(8, 5);
-                Sound_PlaySfx(0x59);
+                Sound_PlaySfx(SFX_MECHSTEP_0059);
             }
             break;
 
@@ -1168,7 +1168,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
                 CameraShake(8, 5);
-                Sound_PlaySfx(0x59);
+                Sound_PlaySfx(SFX_MECHSTEP_0059);
             }
             func_8019E7E8_6C94B8(actor_index);
             break;

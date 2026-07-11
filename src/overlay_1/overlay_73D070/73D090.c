@@ -262,7 +262,7 @@ void Worm_SetSegmentFlags(u16 actor_index){
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019EA6C_7409FC.s")
 
 void func_8019EB10_740AA0(s32 arg0) {
-    Sound_PlaySfx(0xC0);
+    Sound_PlaySfx(SFX_00C0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019EB34_740AC4.s")

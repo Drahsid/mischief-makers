@@ -36,7 +36,7 @@ extern Unk800CC58CFunc D_800CC42C[];
 extern Unk800CC58CFunc D_800CC58C[];
 extern s16 D_800CC6EC[];
 extern s16 D_800CCC6C[];
-extern u8 gSceneBgm[]; // music for start os scene (0xff if none)
+extern u8 gSceneBgm[]; // music for start of scene (0xff if none)
 extern u8 D_800CD034[]; // scene properties of BG layers?
 extern u8 D_800E3BC8[];
 extern s8 D_800E3C48[];
@@ -373,7 +373,7 @@ void func_800240E8(void) {
             D_800BE720 = 0x20000;
         }
         if (D_800BE71C < 0x600000) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
             D_800BE634 += 1;
         }
         break;
@@ -392,7 +392,7 @@ void func_800240E8(void) {
     case 2:
         gCameraRotDelta -= 0x200;
         if (gCameraRotDelta == 0) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
         }
         else if (gCameraRotDelta == -0xC000) {
             D_800BE634 += 1;
@@ -401,7 +401,7 @@ void func_800240E8(void) {
     case 3:
         gCameraRotDelta += 0x200;
         if (gCameraRotDelta == 0) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
         }
         else if (gCameraRotDelta == 0xC000) {
             D_800BE634 -= 1;

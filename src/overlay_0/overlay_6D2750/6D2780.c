@@ -288,7 +288,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     if (gActors[actor_index].var_150-- <= 0) {
                         gActors[actor_index].stateUpper++;
                         func_801921C8_6D2848(actor_index, 0x33, 0x800, 0x20, -0x57, 0xA);
-                        Sound_PlaySfx(0x3D); // shock/sparkle
+                        Sound_PlaySfx(SFX_BLING); // shock/sparkle
                         gActors[actor_index].var_150 = 0x28;
                     }
                     break;
@@ -542,7 +542,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     if (gActors[actor_index].var_150-- <= 0) {
                         gActors[actor_index].stateUpper--;
                         func_80192528_6D2BA8(actor_index);
-                        Sound_PlaySfxAtActor2(0x3C, actor_index);
+                        Sound_PlaySfxAtActor2(SFX_CLANCERDEATH, actor_index);
                     }
                     break;
             }
@@ -589,7 +589,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_80192438_6D2AB8(0x50, 0x52, 0x1810, 0xF, 0x14, -2);
                     func_80192438_6D2AB8(0x50, 0x53, 0x1812, -0x1D, 7, -2);
                     func_80192438_6D2AB8(0x50, 0x54, 0x1814, -1, -0x17, -2);
-                    Sound_PlaySfx(0x9D); // clancer throw?
+                    Sound_PlaySfx(SFX_009D); // clancer throw?
                     gActors[actor_index].var_150 = 0x1E;
                     // fallthrough
 
@@ -660,7 +660,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_80192438_6D2AB8(0x50, 0x54, 0x1808, 0xA, -0x44, -6);
                     func_80192438_6D2AB8(0x50, 0x55, 0x180A, -0x1F, 0x36, -6);
                     Sound_PlaySfx(SFX_MARINA_YELL4);
-                    Sound_PlaySfx(0x13C);
+                    Sound_PlaySfx(SFX_013C);
                     gActors[actor_index].var_150 = 0x3C;
                     // fallthrough
 
@@ -729,7 +729,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_801921C8_6D2848(actor_index, 0x33, 0xD8, 0, 0, 0x28);
                     gActors[0x33].flags = ACTOR_FLAG_ACTIVE;
                     gActors[actor_index].var_150 = 0xA;
-                    Sound_PlaySfx(0x26);
+                    Sound_PlaySfx(SFX_BOOM_0026);
                     // fallthrough
 
                 case 1:
@@ -1084,10 +1084,10 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     actor->unk_114 = 20.0f;
                     actor->stateUpper++;
                     if (actor->stateLower == 8) {
-                        Sound_PlaySfx(0x7A); // lunar impact?
+                        Sound_PlaySfx(SFX_007A); // lunar impact?
                     }
                     else {
-                        Sound_PlaySfx(0x5B); // tarus impact?
+                        Sound_PlaySfx(SFX_005B); // tarus impact?
                     }
                     // fallthrough
 
@@ -1112,7 +1112,7 @@ void func_801946BC_6D4D3C(u16 actor_index) {
                     actor->var_150 = 2;
                     actor->flags |= 0x200;
                     actor->unk_18C = 0x8033B808;
-                    Sound_PlaySfx(0x39); // merco slash?
+                    Sound_PlaySfx(SFX_0039); // merco slash?
                     // fallthrough
 
                 case 1:

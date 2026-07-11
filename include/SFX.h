@@ -107,12 +107,12 @@
 #define SFX_CROSSHAIR      0x00C7
 #define SFX_TURMPETFANFARE 0x0130
 
-// sfx indecies in need of names/description
+// sfx indecies in need of names/description/organization
 
-#define SFX_0142 0x0142
-#define SFX_0143 0x0143
-#define SFX_0024 0x0024
-#define SFX_0025 0x0025
+#define SFX_BEASTECTOR_GRUNT1 0x0142
+#define SFX_BEASTECTOR_GRUNT2 0x0143
+#define SFX_JUMP_0024 0x0024
+#define SFX_LAND_0025 0x0025
 #define SFX_00AE 0x00AE
 #define SFX_0116 0x0116
 #define SFX_0034 0x0034
@@ -122,24 +122,24 @@
 #define SFX_00AB 0x00AB
 #define SFX_00A6 0x00A6
 #define SFX_00B6 0x00B6
-#define SFX_0056 0x0056
-#define SFX_0059 0x0059
+#define SFX_MECHSTEP_0056 0x0056
+#define SFX_MECHSTEP_0059 0x0059
 #define SFX_0076 0x0076
 #define SFX_0074 0x0074
 #define SFX_00FE 0x00FE
 #define SFX_0037 0x0037
 #define SFX_006F 0x006F
-#define SFX_0041 0x0041
+#define SFX_BOOM_0041 0x0041
 #define SFX_007C 0x007C
 #define SFX_0078 0x0078
 #define SFX_005B 0x005B
 #define SFX_007A 0x007A
 #define SFX_003F 0x003F
 #define SFX_0066 0x0066
-#define SFX_0145 0x0145
+#define SFX_SHAKEREVEAL 0x0145
 #define SFX_00B0 0x00B0
 #define SFX_00B8 0x00B8
-#define SFX_0140 0x0140
+#define SFX_GLIMMER_0140 0x0140
 #define SFX_0144 0x0144
 #define SFX_00BD 0x00BD
 #define SFX_00BF 0x00BF
@@ -147,7 +147,7 @@
 #define SFX_00BE 0x00BE
 #define SFX_013C 0x013C
 #define SFX_013D 0x013D
-#define SFX_0026 0x0026
+#define SFX_BOOM_0026 0x0026
 #define SFX_0027 0x0027
 #define SFX_0028 0x0028
 #define SFX_0029 0x0029
@@ -156,7 +156,7 @@
 #define SFX_002C 0x002C
 #define SFX_002D 0x002D
 #define SFX_002E 0x002E
-#define SFX_002F 0x002F
+#define SFX_GRAB_002F 0x002F
 #define SFX_0030 0x0030
 #define SFX_0031 0x0031
 #define SFX_0032 0x0032
@@ -165,14 +165,14 @@
 #define SFX_0036 0x0036
 #define SFX_0038 0x0038
 #define SFX_0039 0x0039
-#define SFX_003C 0x003C
-#define SFX_003D 0x003D
+#define SFX_CLANCERDEATH 0x003C // also used for forming sound in Intro
+#define SFX_BLING 0x003D
 #define SFX_0040 0x0040
-#define SFX_0042 0x0042
-#define SFX_0043 0x0043
-#define SFX_0045 0x0045
+#define SFX_MEOW 0x0042
+#define SFX_BOOM_0043 0x0043
+#define SFX_BOOM_0045 0x0045
 #define SFX_0046 0x0046
-#define SFX_0048 0x0048
+#define SFX_WOOSH_0048 0x0048
 #define SFX_004A 0x004A
 #define SFX_004B 0x004B
 #define SFX_004C 0x004C
@@ -189,7 +189,6 @@
 #define SFX_005D 0x005D
 #define SFX_005E 0x005E
 #define SFX_0061 0x0061
-#define SFX_0062 0x0062
 #define SFX_0063 0x0063
 #define SFX_0064 0x0064
 #define SFX_0065 0x0065
@@ -243,7 +242,7 @@
 #define SFX_00BC 0x00BC
 #define SFX_00C0 0x00C0
 #define SFX_00C1 0x00C1
-#define SFX_00C2 0x00C2
+#define SFX_SHAKE_00C2 0x00C2
 #define SFX_00C3 0x00C3
 #define SFX_00C5 0x00C5
 #define SFX_00C6 0x00C6
@@ -252,9 +251,9 @@
 #define SFX_00D6 0x00D6
 #define SFX_00E1 0x00E1
 #define SFX_00E2 0x00E2
-#define SFX_00E3 0x00E3
+#define SFX_CORRECT_00E3 0x00E3
 #define SFX_00EE 0x00EE
-#define SFX_00FC 0x00FC
+#define SFX_CLANPOTGLOW 0x00FC
 #define SFX_00FD 0x00FD
 #define SFX_0101 0x0101
 #define SFX_0106 0x0106
@@ -272,7 +271,7 @@
 #define SFX_011F 0x011F
 #define SFX_0120 0x0120
 #define SFX_0121 0x0121
-#define SFX_0122 0x0122
+#define SFX_RUMBLE_0122 0x0122 //ambient sound in "Seasick Climb"
 #define SFX_0124 0x0124
 #define SFX_0126 0x0126
 #define SFX_0127 0x0127
@@ -283,8 +282,8 @@
 #define SFX_012C 0x012C
 #define SFX_0131 0x0131
 #define SFX_0132 0x0132
-#define SFX_0133 0x0133
-#define SFX_0134 0x0134
+#define SFX_CORRECT_0133 0x0133
+#define SFX_WRONG_0134 0x0134
 #define SFX_0135 0x0135
 #define SFX_0137 0x0137
 #define SFX_0139 0x0139

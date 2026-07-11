@@ -15,7 +15,6 @@ extern s16 D_801BD8C2_7E6A22;
 extern u32 D_80137458;
 
 extern void Clanpot_InitItems(u16 actor_index, u16* vals); // BUG: incorrect prototype!
-extern void func_80064AA0(s32 arg0, void* arg1);
 extern s16 func_8005DEFC(void);
 
 void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2);
@@ -679,7 +678,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posX.whole = gPlayerActor.posX.whole;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
-            Sound_PlaySfxAtActor2(0xAA, 0);
+            Sound_PlaySfxAtActor2(SFX_00AA, 0);
             func_8005739C(0, 100);
 
             if (gPlayerActor.health >= 0) {
@@ -916,7 +915,7 @@ void func_801BA534_7E3694(void) {
             break;
 
         case 5:
-            func_80064AA0(1, D_801BC8DC_7E5A3C);
+            SpawnStageClear(1, D_801BC8DC_7E5A3C);
             gStageState++;
             break;
 
@@ -1437,7 +1436,7 @@ void func_801BB28C_7E43EC(void) {
         case 0x805:
             if ((u32)D_800D2928-- < 1U) {
                 D_800BE5F4.unk_00_u32 = 5;
-                func_80064AA0(0x3C, D_801BD558_7E66B8);
+                SpawnStageClear(0x3C, D_801BD558_7E66B8);
             }
             break;
 
