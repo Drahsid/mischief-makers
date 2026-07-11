@@ -1952,7 +1952,7 @@ void func_801B4914_7A5424(u16 actor_index) {
 }
 
 void func_801B4998_7A54A8(u16 actor_index) {
-    if (gFestivalData_eventState != 0) {
+    if (gFestivalEventState != 0) {
         gActors[actor_index].unk_118 -= 1.0f;
 
         if (gActors[actor_index].unk_118 < 0.0f) {
@@ -2026,7 +2026,7 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
         case 0:
             func_801B4B64_7A5674(actor_index);
             gActors[actor_index].var_158 = 2;
-            gFestivalData_eventState = 0;
+            gFestivalEventState = 0;
             gActors[actor_index].state++;
             // fallthrough
         case 1:
@@ -2057,7 +2057,7 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
             }
 
             if (gActors[actor_index].var_15C >= 0x14) {
-                gFestivalData_eventState++;
+                gFestivalEventState++;
                 func_801B4CD0_7A57E0(actor_index);
                 new_actor_index = SpawnGemActor(actor_index, 0x12, 0);
                 gActors[new_actor_index].posX.whole = 0xEE0 - gScreenPosCurrentX.whole;
@@ -2428,7 +2428,7 @@ void func_801B5D04_7A6814(u16 actor_index) {
         case 0x61:
             func_80067E50(actor_index, D_800E1700);
             if ((func_800734C4(actor_index, 8) & 0x8000) == 0) {
-                if ((D_801B6350_7A6E60 >= (FIXED_UNIT(256.0) - (Rand() * FIXED_UNIT(0.5)))) && (gFestivalData_eventState == 0)) {
+                if ((D_801B6350_7A6E60 >= (FIXED_UNIT(256.0) - (Rand() * FIXED_UNIT(0.5)))) && (gFestivalEventState == 0)) {
                     gActors[actor_index].unk_11C = (f32)((Rand() * 0xC8) + FIXED_UNIT(6.0));
                     gActors[actor_index].state = 0x120;
                     gActors[actor_index].unk_120 = 0.0f;

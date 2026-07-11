@@ -859,20 +859,20 @@ void func_801AA2A4_790594(u16 actor_index){
 }
 
 void func_801AA2FC_7905EC(s32 arg0, s32 arg1) {
-    gFestivalData_unk_9A = 0;
+    D_80178292 = 0;
 }
 
 void func_801AA310_790600(s32 arg0, s32 arg1){
     u16 index;
     u8* n;
 
-    n = gFestivalData_eventsPlayed;
+    n = gFestivalEventsPlayed;
     for (index = 0; index < FESTGAME_TOTAL; index++){
         n[index] = FALSE;
     }
-    gFestivalData_eventClearCount = 0;
-    gFestivalData_pointsWhite = 0;
-    gFestivalData_pointsRed = 0;
+    gFestivalEventClearCount = 0;
+    gFestivalPointsWhite = 0;
+    gFestivalPointsRed = 0;
     gLetterboxMode = LETTERBOX_HORIZONTAL;
 }
 
@@ -994,7 +994,7 @@ void func_801AB610_791900(u16 actor_index){
         start = gActors[actor_index].unk_17C * 7;
         for (index = start; index < start + 7; index++) {
             // if local pointer, operand order incorrect
-            if (gFestivalData_eventsPlayed[index]) {
+            if (gFestivalEventsPlayed[index]) {
                 actor_index2 = index + 0x40;
                 gActors[actor_index2].flags |= 1;
             }
@@ -1005,7 +1005,7 @@ void func_801AB610_791900(u16 actor_index){
 // has the selected event been completed?
 u32 func_801AB6B4_7919A4(u16 actor_index) {
     if(!D_80171B19) {
-        return gFestivalData_eventsPlayed[gActors[actor_index].unk_170];
+        return gFestivalEventsPlayed[gActors[actor_index].unk_170];
     }
     return FALSE;
 }
@@ -1025,7 +1025,7 @@ void func_801ABB44_791E34(u16 actor_index, u16 arg1) {
 }
 
 void func_801ABB80_791E70(u16 actor_index) {
-    gFestivalData_currentEvent = D_801AF798_795A88[actor_index * 3+2];
+    gFestivalCurrentEvent = D_801AF798_795A88[actor_index * 3+2];
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801ABBAC_791E9C.s")
@@ -1133,7 +1133,7 @@ void func_801ACEE8_7931D8(u16 actor_index) {
     Actor* actorP;
     
     actorP =&gActors[60];
-    func_801AC3C0_7926B0(60, D_801AF7C4_795AB4[gFestivalData_currentEvent * 2]);
+    func_801AC3C0_7926B0(60, D_801AF7C4_795AB4[gFestivalCurrentEvent * 2]);
     actorP->posX.whole = 0;
     actorP->posY.whole = 0x20;
     actorP->unk_164 = 0x280A;
@@ -1148,7 +1148,7 @@ void func_801ACEE8_7931D8(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_2/overlay_78CB60/78CBF0/func_801AD4F4_7937E4.s")
 
 void func_801AD628_793918(u16 arg0){
-    if (gFestivalData_isTimeBeat){
+    if (gFestivalIsTimeBeat){
         func_801AD4F4_7937E4(0x41);
     }
 }

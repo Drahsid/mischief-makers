@@ -1139,7 +1139,7 @@ void func_801B9D38_7DCC08(void) {
     D_800BE5F4.unk_00_u32 = 4;
     gGuestActorIndex = TERAN_PLAYER_INDEX;
     D_800D2954 = 1;
-    gTeranPlayerActor.health = gFestivalData_guestHP;
+    gTeranPlayerActor.health = gGuestActorHP;
     gTeranPlayerActor.posX.whole = gPlayerActor.posX.whole;
     gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
@@ -1213,7 +1213,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BD63C_7E050C);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
-            gFestivalData_guestHP = 1000;
+            gGuestActorHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0x8000;
             break;
@@ -1327,7 +1327,7 @@ void func_801B9ED4_7DCDA4(void) {
             Actor_LoadSpawnTable(D_801BD684_7E0554);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
-            gFestivalData_guestHP = 1000;
+            gGuestActorHP = 1000;
             func_801B9D38_7DCC08();
             D_800BE544 = 0;
 
@@ -1475,7 +1475,7 @@ void func_801B9ED4_7DCDA4(void) {
     // move Teran's HP to global var.
     if ((gTeranPlayerActor.flags & ACTOR_FLAG_ACTIVE) && (gTeranPlayerActor.health != 0)) {
         if (gTeranPlayerActor.actorType == ACTORTYPE_OVL2_W4_TERAN) {
-            gFestivalData_guestHP = gTeranPlayerActor.health;
+            gGuestActorHP = gTeranPlayerActor.health;
         }
     }
 }
@@ -2043,7 +2043,7 @@ void func_801BBCBC_7DEB8C(void) {
     D_800BE5F4.unk_00_u32 = 4;
     gGuestActorIndex = TERAN_PLAYER_INDEX;
     D_800D2954 = 1;
-    gTeranPlayerActor.health = gFestivalData_guestHP;
+    gTeranPlayerActor.health = gGuestActorHP;
     gTeranPlayerActor.posX.whole = gPlayerActor.posX.whole;
     gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
@@ -2116,7 +2116,7 @@ void func_801BBEBC_7DED8C(void) {
         case 0:
             Palette_AdjustScenePalettes(2, 1, 0, 0, -5, -8, 4, 7, 0);
             gStageState = 0x30;
-            gFestivalData_guestHP = 1000;
+            gGuestActorHP = 1000;
             break;
 
         case 1:
@@ -2345,7 +2345,7 @@ void func_801BBEBC_7DED8C(void) {
 
     if ((gTeranPlayerActor.flags & ACTOR_FLAG_ACTIVE) && (gTeranPlayerActor.health != 0)) {
         if (gTeranPlayerActor.actorType == ACTORTYPE_OVL2_W4_TERAN) {
-            gFestivalData_guestHP = gTeranPlayerActor.health;
+            gGuestActorHP = gTeranPlayerActor.health;
         }
     }
 }

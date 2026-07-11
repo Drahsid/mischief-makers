@@ -34,33 +34,20 @@ typedef struct {
     /* 0x12 */ u16 unk_12;
 } FestivalPlayer;
 
-extern u16 gFestivalData_unk_00; // some control lock?
-extern u8 gFestivalData_unk_02[2];
-extern u8 gFestivalData_unk_04[4];
-extern u8 gFestivalData_unk_08[8];
-extern u8 gFestivalData_unk_10[8];
-extern u8 gFestivalData_unk_18[8];
-extern u8 gFestivalData_unk_20[8];
-extern u16 gFestivalData_eventState;
-extern u16 gFestivalData_unk_2A;
-extern u16 gFestivalData_currentEvent;
-extern u16 gFestivalData_competitorCount;
-extern u16 gFestivalData_fouls; // "no flying" warnings
-extern u8 gFestivalData_unk_32[2];
-extern u8 gFestivalData_unk_34[4];
-extern u16 gFestivalData_competitorIndices[4];
-extern FestivalPlayer gFestivalData_competitors[4];
-extern u16* gFestivalData_unk_90;
-extern u8 gFestivalData_eventClearCount;
-extern u8 gFestivalData_unk_95; // align byte?
-extern u16 gFestivalData_pointsRed;
-extern u16 gFestivalData_pointsWhite;
-extern u8 gFestivalData_unk_9A;
-extern u8 gFestivalData_isTimeBeat; // set new record in event
-extern s32 gFestivalData_timeCurrent;
-extern s32 gFestivalData_timeToBeat;
-extern u8 gFestivalData_unk_A4[4]; // unused?
-extern u8 gFestivalData_eventsPlayed[FESTGAME_TOTAL]; // booleans set when event is completed.
-extern s16 gFestivalData_guestHP; // used by Teran in "Rescue"
+
+extern u16 gFestivalEventState;
+extern u16 gFestivalCurrentEvent;
+extern u16 gFestivalCompetitorCount;
+extern u16 gFestivalFouls; // "no flying" warnings
+extern u16 gFestivalCompetitorIndices[4];
+extern FestivalPlayer gFestivalCompetitors[4];
+extern u8 gFestivalEventClearCount;
+extern u16 gFestivalPointsRed;
+extern u16 gFestivalPointsWhite;
+extern u8 gFestivalIsTimeBeat; // set new record in event
+extern s32 gFestivalTimeCurrent;
+extern s32 gFestivalTimeToBeat;
+extern u8 gFestivalEventsPlayed[FESTGAME_TOTAL]; // booleans set when event is completed.
+extern s16 gGuestActorHP; // used by Teran in "Rescue"
 
 #endif

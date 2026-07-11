@@ -1741,7 +1741,7 @@ void func_801BA690_7D4E80(void) {
 
         case 0x102:
             func_80045FA4(D_801BD6A4_7D7E94, D_801BDCA8_7D8498);
-            gFestivalData_currentEvent = FESTGAME_INTRO;
+            gFestivalCurrentEvent = FESTGAME_INTRO;
             Actor_LoadSpawnTable(D_801BDCAC_7D849C);
             gStageState++;
             D_800BE544 = 0x8000;
@@ -1801,7 +1801,7 @@ void func_801BAA0C_7D51FC(void) {
             else {
                 gStageState++;
                 func_80045FA4(D_801BDE8C_7D867C, 0);
-                gFestivalData_currentEvent = FESTGAME_DODGEBALL;
+                gFestivalCurrentEvent = FESTGAME_DODGEBALL;
                 Actor_LoadSpawnTable(D_801BDE9C_7D868C);
                 D_800BE5F4.unk_00_u32 = 7;
             }
@@ -1847,7 +1847,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x1000:
             gStageState++;
             func_80045FA4(D_801BDE8C_7D867C, 0);
-            gFestivalData_currentEvent = FESTGAME_DODGEBALL;
+            gFestivalCurrentEvent = FESTGAME_DODGEBALL;
             Actor_LoadSpawnTable(D_801BDE9C_7D868C);
             (gActors + 0x30)->var_0D8 = 1; // required to produce fixed address within gActors
             D_800BE5F4.unk_00_u32 = 7;

@@ -257,7 +257,7 @@ void func_801B9908_7DAB08(void) {
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB168_7DC368);
-            gFestivalData_currentEvent = FESTGAME_SELECT;
+            gFestivalCurrentEvent = FESTGAME_SELECT;
             break;
 
         case 1:
@@ -681,7 +681,7 @@ void func_801BA740_7DB940(void) {
     D_800D2924 = 0x7FFF;
     D_800BE56C.whole  = D_800D2924;
     D_800BE710 = TRUE;
-    gFestivalData_unk_90 = (u16*)D_801BB314_7DC514;
+    D_80178288 = (u16*)D_801BB314_7DC514;
 }
 
 void func_801BA7C4_7DB9C4(void) {
