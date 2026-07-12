@@ -75,7 +75,7 @@ tools:
             - boot
             - input
             - dma
-            - gamestate
+            - game_state
             - music
             - font
             - rle_type1
@@ -138,7 +138,6 @@ tools:
             - C8910
             - C8B20
             - C8BE0
-            - CADC0
             - D2410
             - E44A0
             - E4760
