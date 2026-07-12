@@ -118,7 +118,6 @@ extern void func_80028380(void);
 extern u16 Actor_IsOutsideRegion(u16 actor_index, s16 arg1);
 extern s32 func_80028C08(u16 actor_index);
 extern void func_80029134(u16 actor_index);
-extern s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2);
 extern u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2);
 extern u32 func_80029B74(s16 arg0);
 extern s32 func_800298D0(s32 arg0, s32 arg1, s32 arg2);

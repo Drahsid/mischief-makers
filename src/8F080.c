@@ -2515,14 +2515,11 @@ void func_800919C8(u16 actor_index) {
     }
 }
 
-DEFAULT_INT func_80091BDC(u16 arg0) {
-    s32 temp_v0;
-
-    func_80040858(arg0);
-    temp_v0 = func_800291AC(arg0, 0x1C0, 0x214A3, 0x150, 0x21423);
-    switch (temp_v0 & 0xFFFFFFFF) { // fakematch: & 0xFFFFFFFF
+DEFAULT_INT func_80091BDC(u16 actor_index) {
+    func_80040858(actor_index);
+    switch (func_800291AC(actor_index, 0x1C0, 0x214A3, 0x150, 0x21423)) {
     case 0:
-        gActors[arg0].posZ.raw = gActors[arg0].unk_10C - FIXED_UNIT(1.0);
+        gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C - FIXED_UNIT(1.0);
         break;
     case 1:
     case 2:

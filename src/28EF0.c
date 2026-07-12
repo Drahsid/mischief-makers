@@ -494,7 +494,7 @@ void func_80029134(u16 actor_index) {
 #define ACTOR_FLAG_MASK (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)
 
 // related to Marina grabbing an actor?
-s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
+u16 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK19;
