@@ -207,7 +207,7 @@ void func_801B0ECC_7BCE1C(u16 actor_index) {
     s32 large_y;
 
     child_actor_index = actor_index + 3;
-    large_angle = (u32)((f64)gActors[child_actor_index].rotateZ / D_801B4728_7C0678 + 976.0);
+    large_angle = (u32)(gActors[child_actor_index].rotateZ / D_801B4728_7C0678 + 976.0);
     small_angle = large_angle - 0x70;
 
     if (gActors[child_actor_index].flags & ACTOR_FLAG_FLIPPED) {

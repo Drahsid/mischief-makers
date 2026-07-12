@@ -107,7 +107,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             break;
 
         case 0x10:
-            if ((gActors[0x88].actorType == 0x31) && (gActors[0x88].flags & 2)) {
+            if ((gActors[0x88].actorType == 0x31) && (gActors[0x88].flags & ACTOR_FLAG_ACTIVE)) {
                 func_801B0A10_796AE0(actor_index);
                 gActors[actor_index].state++;
             }
@@ -122,7 +122,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
                 gActors[actor_index].var_15C++;
                 gActors[0x31].colorA = 0;
             }
-            else if (gActors[0x88].flags & 1) {
+            else if (gActors[0x88].flags & ACTOR_FLAG_DRAW) {
                 gActors[0x31].colorA = gActors[0x88].colorA * 0.5;
                 if (Rand() < (gActors[0x88].colorA >> 5)) {
                     Sound_PlaySfxAtVol(0xBE, 0x93);
@@ -140,6 +140,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             if (gActors[actor_index].colorR == 0x80) {
                 gActors[actor_index].colorB = 0x7F;
 
+                // fakematch
                 if (temp && temp) {
                 }
                 
@@ -467,7 +468,7 @@ void func_801B182C_7978FC(u16 actor_index) {
             // fallthrough
 
         case 1:
-            if (actor->flags_098 & 0x20) {
+            if (actor->flags_098 & ACTOR_FLAG3_UNK5) {
                 actor->graphicFlags = ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
                 actor->flags = ACTOR_FLAG_ENABLED;
                 actor->velocityX.raw = 0;
@@ -691,7 +692,7 @@ void func_801B21C8_798298(u16 actor_index) {
             // fallthrough
 
         case 1: {
-            if (gActors[actor_index].flags_098 & 0x80) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) {
                 gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 0.5f, 0.05f);
             }
             else {
