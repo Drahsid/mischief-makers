@@ -74,9 +74,9 @@ extern void func_8001107C(void);
 extern void func_800122B0(void);
 extern void func_80012830(void);
 extern u8 func_80012AB4(s16 arg0, s16 arg1);
-extern void func_80014AF0(void);
-extern void func_80014C44(void);
-extern void func_80016CB4(void);
+extern void ActorsUpdate_Velocity(void);
+extern void ActorsUpdate_Position(void);
+extern void ActorsUpdate_Physics(void);
 extern void func_80016D94(void);
 extern void func_8001DE30(void);
 extern void func_8001FF30(void);
@@ -88,7 +88,7 @@ extern void ActorUpdate_Marina(u16);
 extern u8 func_8005C870(u8);
 extern void UpdateCameraShake(void);
 extern void func_8005C8A4(void);
-extern void func_8005F6D4(void);
+extern void UpdateDialog(void);
 extern void func_80083518(s32, s32, s16, s32); // guess on types
 extern void func_80083A74(s32, s32, s32); // guess
 extern void func_80083C54(s16, s32, s32); // guess
@@ -430,7 +430,7 @@ void func_8001EC1C(void) {
 }
 
 // find actors with either "platform" flag and add their position+hitbox offsets to lists
-void func_8001F88C(void) {
+void Actors_SetPlatforms(void) {
     u16 index;
 
     if (!(D_80137458 & 0x10)) {
@@ -457,7 +457,7 @@ void func_8001F88C(void) {
 
 // see if gActors[actor_index] collides with a platform-flagged actor
 // based on (x) and (y) coords
-u8 func_8001FA78(u16 actor_index, s16 x, s16 y) {
+u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y) {
     u16 var_a3;
     u16 index;
 
@@ -594,9 +594,9 @@ void func_80020024(void) {
         }
     }
     func_800253B0();
-    func_8001F88C();
-    func_80014AF0();
-    func_80016CB4();
+    Actors_SetPlatforms();
+    ActorsUpdate_Velocity();
+    ActorsUpdate_Physics();
     func_80012830();
     func_80016D94();
     func_8001EC1C();
@@ -608,11 +608,11 @@ void func_80020024(void) {
     func_8001FF30();
     func_8001DE30();
     func_8008CA90();
-    func_8001751C();
-    func_80014C44();
+    ActorsUpdate();
+    ActorsUpdate_Position();
     UpdateCameraShake();
     func_8001FF50();
-    func_8005F6D4();
+    UpdateDialog();
     func_80022470();
     if (gGameState == GAMESTATE_GAMEPLAY) {
         func_80047CCC();
@@ -627,7 +627,7 @@ void func_80020024(void) {
     }
 }
 
-void func_8002034C(void) {
+void Pause_PrintPlayTime(void) {
     u32 val;
     u32 time_remain;
 
@@ -637,19 +637,19 @@ void func_8002034C(void) {
     }
     time_remain = gFramesInPlayTime / 60;
     val = time_remain % 60;
-    func_80083518(11, 0, (val / 10) + 0x51, 0);
-    func_80083518(12, 0, (val % 10) + 0x51, 0);
+    func_80083518(11, 0, (val / 10) + ALPHA_OFFSET(THIN_0), 0);
+    func_80083518(12, 0, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     time_remain /= 60;
     val = time_remain % 60;
-    func_80083518(8, 0, (val / 10) + 0x51, 0);
-    func_80083518(9, 0, (val % 10) + 0x51, 0);
+    func_80083518(8, 0, (val / 10) + ALPHA_OFFSET(THIN_0), 0);
+    func_80083518(9, 0, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     time_remain /= 60;
     val = time_remain % 24;
-    func_80083518(5, 0, (val / 10) + 0x51, 0);
-    func_80083518(6, 0, (val % 10) + 0x51, 0);
+    func_80083518(5, 0, (val / 10) + ALPHA_OFFSET(THIN_0), 0);
+    func_80083518(6, 0, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     time_remain /= 24;
-    func_80083518(2, 0, (time_remain / 10) + 0x51, 0);
-    func_80083518(3, 0, (time_remain % 10) + 0x51, 0);
+    func_80083518(2, 0, (time_remain / 10) + ALPHA_OFFSET(THIN_0), 0);
+    func_80083518(3, 0, (time_remain % 10) + ALPHA_OFFSET(THIN_0), 0);
 }
 
 void func_800205DC(void) {
@@ -762,7 +762,7 @@ void func_80020A90(void) {
             func_800836A0(4, 0, D_800CA254, 1);
             func_800836A0(5, 2, D_800CA26C, 0);
             func_800836A0(5, 3, D_800CA280, 0);
-            func_8002034C();
+            Pause_PrintPlayTime();
             func_800205DC();
             func_800207DC();
             Text_InitActorGList(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
@@ -817,13 +817,13 @@ void func_80020A90(void) {
         }
         break;
     case 35:
-        if (gGameState == 6) {
+        if (gGameState == GAMESTATE_GAMEPLAY) {
             func_80047CCC();
         }
         break;
     case 16:
         D_801782B8++;
-        func_8002034C();
+        Pause_PrintPlayTime();
         if ((gButtonPress & gButton_DUp) && (gActors[0xCF].posY.whole != -8)) {
             Sound_PlaySfx(SFX_MENU_BLIP);
             gActors[0xCF].posY.whole = -8;

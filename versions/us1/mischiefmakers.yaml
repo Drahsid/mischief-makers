@@ -113,7 +113,7 @@ segments:
       - [0x059EA0, c]
       - [0x05D120, c]
       - [0x05E230, c]
-      - [0x05EA30, c]
+      - [0x05EA30, c, dialog]
       - [0x060CF0, c]
       - [0x061B80, c]
       - [0x066250, c]
@@ -376,7 +376,7 @@ segments:
       - [0x0EC9D0, .rodata, 4FEB0]
       - [0x0ECAA0, .rodata, 57F20]
       - [0x0ECAC0, .rodata, 59EA0]
-      - [0x0ECB90, .rodata, 5E230]
+      - [0x0ECB90, .rodata, dialog]
       - [0x0ECCF0, .rodata, 60CF0]
       - [0x0ECD80, .rodata, 61B80]
       - [0x0ED0E0, .rodata, 66250]
@@ -442,6 +442,8 @@ segments:
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
       - { name: soft_reset, type: .bss, vram: 0x801781F0 }
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
+      - { name: dialog, type: .bss, vram: 0x801782D0 }
+      - { name: bss_80178450, type: bss, vram: 0x80178450 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }
@@ -560,7 +562,7 @@ segments:
     exclusive_ram_id: audio_seq_bank
 
   # Actor overlay loader tables D_800CD08C/D_800CD60C/D_800CDB8C/D_800CE10C/D_800CE68C store two ROM ranges per stage and overlay slot.
-  # The first range is a loaded actor dispatch table. func_80016E70 indexes it as ActorFunc callbacks.
+  # The first range is a loaded actor dispatch table. ActorsUpdate_Overlay indexes it as ActorFunc callbacks.
   # The second range is the overlay object segment.
 
   # Overlay slot 0: dispatch table -> 0x80192000, object -> 0x80192100

@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-void func_8001751C(void);
+void ActorsUpdate(void);
 
 #endif

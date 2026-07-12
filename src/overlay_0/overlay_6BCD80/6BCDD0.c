@@ -871,7 +871,7 @@ void func_8019D908_6C85D8(void) {
     ACTOR_INIT(0xC1,0x160D);
     gActors[0xC1].graphicFlags = 0;
     gActors[0xC1].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[0xC1].posZ.whole = 0xE0;
     gActors[0xC1].var_154 = 4;
     gActors[0xC1].scaleX = 20.0f;

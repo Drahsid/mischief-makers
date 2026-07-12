@@ -1691,7 +1691,7 @@
       ],
       "functions": [
         {
-          "name": "func_80014AF0",
+          "name": "ActorsUpdate_Velocity",
           "size": "340",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1699,7 +1699,7 @@
           }
         },
         {
-          "name": "func_80014C44",
+          "name": "ActorsUpdate_Position",
           "size": "720",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1851,14 +1851,14 @@
           }
         },
         {
-          "name": "func_800160EC",
+          "name": "ActorUpdate_Physics",
           "size": "3016",
           "metadata": {
             "virtual_address": "2147573996"
           }
         },
         {
-          "name": "func_80016CB4",
+          "name": "ActorsUpdate_Physics",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1921,7 +1921,7 @@
       ],
       "functions": [
         {
-          "name": "func_80016E70",
+          "name": "ActorsUpdate_Overlay",
           "size": "1708",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1929,7 +1929,7 @@
           }
         },
         {
-          "name": "func_8001751C",
+          "name": "ActorsUpdate",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2672,7 +2672,7 @@
           }
         },
         {
-          "name": "func_8001F88C",
+          "name": "Actors_SetPlatforms",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2680,7 +2680,7 @@
           }
         },
         {
-          "name": "func_8001FA78",
+          "name": "Actor_CheckPlatforms",
           "size": "552",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2752,7 +2752,7 @@
           }
         },
         {
-          "name": "func_8002034C",
+          "name": "Pause_PrintPlayTime",
           "size": "656",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4283,7 +4283,7 @@
           }
         },
         {
-          "name": "func_800284B0",
+          "name": "ActorUpdate_GraphicOnly",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4307,7 +4307,7 @@
           }
         },
         {
-          "name": "func_8002854C",
+          "name": "Actor_RangeFindInactiveMove",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9844,7 +9844,7 @@
       }
     },
     {
-      "name": "5EA30",
+      "name": "dialog",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "8896",
@@ -9939,7 +9939,7 @@
           }
         },
         {
-          "name": "func_8005E1CC",
+          "name": "AnimateSpeechBubble",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9995,7 +9995,7 @@
           }
         },
         {
-          "name": "func_8005F6D4",
+          "name": "UpdateDialog",
           "size": "2588",
           "fuzzy_match_percent": 100.0,
           "metadata": {

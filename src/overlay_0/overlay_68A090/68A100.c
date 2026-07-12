@@ -42,7 +42,7 @@ void func_801922A0_68A2A0(s32 arg0) {
     Actor_Initialize(0xC1);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[0xC1].posX.whole = 0;
     gActors[0xC1].posY.whole = 0;
     gActors[0xC1].posZ.whole = 0x80;

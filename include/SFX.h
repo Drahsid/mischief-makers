@@ -257,8 +257,8 @@
 #define SFX_00FD 0x00FD
 #define SFX_0101 0x0101
 #define SFX_0106 0x0106
-#define SFX_010D 0x010D
-#define SFX_010E 0x010E
+#define SFX_SPEECHSTART 0x010D
+#define SFX_SPEECHEND 0x010E
 #define SFX_0114 0x0114
 #define SFX_0115 0x0115
 #define SFX_0117 0x0117

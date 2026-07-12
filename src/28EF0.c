@@ -160,7 +160,7 @@ void func_800283BC(u32 sfx_id, u16 arg1) {
 }
 
 // update function of ACTORTYPE_GRAPHICONLY
-void func_800284B0(s32 arg0) {
+void ActorUpdate_GraphicOnly(s32 arg0) {
 }
 
 // find actor in a range without the ACTOR_FLAG_ACTIVE flag
@@ -180,7 +180,7 @@ u16 Actor_RangeFindInactive_90ToC0(void) {
 
 // find actor in range 0x90-0xC0 without the ACTOR_FLAG_ACTIVE flag
 // and set to given type and postion.
-u16 func_8002854C(u16 actor_type, s16 pos_x, s16 pos_y, s16 pos_z) {
+u16 Actor_RangeFindInactiveMove(u16 actor_type, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x90, 0xC0);
@@ -2057,7 +2057,7 @@ void SpawnWhiteFade1(u16 actor_index, u16 arg1) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;
     gActors[actor_index].state = 1;
-    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[actor_index].posZ.whole = 0xE0;
     gActors[actor_index].scaleX = 20.0f;
     gActors[actor_index].scaleY = 20.0f;
@@ -2074,7 +2074,7 @@ void SpawnWhiteFade2(u16 actor_index, u16 arg1) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;
     gActors[actor_index].state = 2;
-    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[actor_index].posZ.whole = 0xE0;
     gActors[actor_index].scaleX = 20.0f;
     gActors[actor_index].scaleY = 20.0f;
@@ -7358,7 +7358,7 @@ void func_8003E52C(u16 arg0, s16 arg1, s16 arg2, f32 arg3) {
         Sound_PlaySfxAtActor2(SFX_BOOM_0026, actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;
-        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
         gActors[actor_index].posX.whole = 0;
         gActors[actor_index].posY.whole = 0;
         gActors[actor_index].posZ.whole = 0xF0;
@@ -7670,7 +7670,7 @@ void func_8003F248(u16 actor_index, s16 x, s16 y, s16 z) {
     u16 index;
     f32 scale;
 
-    index = func_8002854C(ACTORTYPE_PARTICLE56, x, y, z);
+    index = Actor_RangeFindInactiveMove(ACTORTYPE_PARTICLE56, x, y, z);
     if (index != 0) {
         Sound_PlaySfxAtActor2(SFX_0093, actor_index);
         gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;

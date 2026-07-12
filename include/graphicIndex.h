@@ -191,7 +191,7 @@
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
-#define GINDEX_SOLIDSQARE      0x02D0 // used as a fill for transisions
+#define GINDEX_SOLIDSQUARE     0x02D0 // used as a fill for transisions
 #define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
 

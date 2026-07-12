@@ -67,6 +67,11 @@ YellowGem_GetFlag = 0x8001C7F0; // type:func
 
 Actor_Initialize = 0x8001E2D0; // type:func
 
+Actors_SetPlatforms = 0x8001f88c; // type:func
+Actor_CheckPlatforms = 0x8001FA78; // type:func
+
+Pause_PrintPlayTime = 0x8002034C; // type:func
+
 Gfx_DrawBorderRect = 0x80021690; // type:func
 Gfx_DrawLetterboxStandard = 0x8002170C; // type:func
 Gfx_DrawLetterbox = 0x800218FC; // type:func
@@ -299,8 +304,10 @@ GameState_FileSelect = 0x80007C8C; // type:func
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 Trouble_RLE_Type2 = 0x80098B50; // type:func
+ActorUpdate_GraphicOnly = 0x800284b0; // type:func
 Actor_RangeFindInactive = 0x800284B8; // type:func
 Actor_RangeFindInactive_90ToC0 = 0x80028528; // type:func
+Actor_RangeFindInactiveMove = 0x8002854C; // type:func
 Actor_ClearRange_10To20 = 0x80028638; // type:func
 Actor_ClearRange_30To90 = 0x8002865C; // type:func
 Actor_ClearRange_90ToC0 = 0x80028680; // type:func
@@ -317,6 +324,13 @@ ActorUpdate_Type25 = 0x80042348; // type:func
 ActorUpdate_Type26 = 0x80042350; // type:func
 ActorUpdate_Type71 = 0x80042358; // type:func
 Actor_AdvanceState = 0x80042360; // type:func
+
+ActorsUpdate_Velocity = 0x80014af0; // type:func
+ActorsUpdate_Position = 0x80014C44; // type:func
+ActorUpdate_Physics = 0x800160ec; // type:func
+ActorsUpdate_Physics = 0x80016cb4; // type:func
+ActorsUpdate_Overlay = 0x80016E70; // type:func
+ActorsUpdate = 0x8001751C; // type:func
 
 // stage.c
 Input_CheckButtonRepeat = 0x80017680; // type:func
@@ -376,6 +390,10 @@ Text_PrintStringRGBScale = 0x80027D94; // type:func
 Text_PrintStringGray = 0x8002801C; // type:func
 Text_PrintString2 = 0x80028150; // type:func
 Text_SetHCColor = 0x80028260; // type:func
+
+AnimateSpeechBubble = 0x8005E1CC; // type:func
+
+UpdateDialog = 0x8005F6D4; // type:func
 
 UpdateCameraShake = 0x8005C8A4; // type:func
 CameraShake = 0x8005CA34; // type:func

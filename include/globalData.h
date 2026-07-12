@@ -207,7 +207,7 @@ extern u8 gDrawEnvLayer; // draws "EnvLayer" if set.
 extern u8 gDrawBackground; // draws "Background" if set.
 extern u8 gPortraitTint; // determines brightness of portrait transition.
 extern u32 D_800BE6F4; // unused.
-extern u16 D_800BE6F8; // "timer" in func_80014AF0. decremented, but never set or triggering anything.
+extern u16 D_800BE6F8; // "timer" in ActorsUpdate_Velocity. decremented, but never set or triggering anything.
 extern u16 D_800BE6FC;
 extern u16 gCurrentFramebufferIndex; // index of current frame buffer.
 extern u16 D_800BE704; // seems to detrmine camera x-speed.

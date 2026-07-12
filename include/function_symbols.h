@@ -14,7 +14,7 @@ extern void func_80012288(void);
 #endif
 extern u8 func_80012AB4(func_80012AB4_ARGS);
 extern u8 func_80012C04(s16, s16);
-extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
+extern u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y);
 
 extern void func_80004FFC(s32);
 extern void func_800050B4(void);

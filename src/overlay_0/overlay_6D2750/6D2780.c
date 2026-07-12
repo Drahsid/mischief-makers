@@ -216,7 +216,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
     switch (gActors[actor_index].stateLower) {
         // Bootstrap the intro overlay after the logo fades
         case 0:
-            func_80192350_6D29D0(actor_index, 0x8F, GINDEX_SOLIDSQARE, 0, 0, 0x10);
+            func_80192350_6D29D0(actor_index, 0x8F, GINDEX_SOLIDSQUARE, 0, 0, 0x10);
             func_80192920_6D2FA0(3);
             D_80199B30_6DA1B0 = 0x30;
             break;
@@ -316,7 +316,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
             switch (gActors[actor_index].stateUpper) {
                 case 0:
                     gActors[actor_index].stateUpper++;
-                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x10);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQUARE, 0, 0, 0x10);
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
                     func_80192224_6D28A4(0x33, 0x34, 0x180A, -0x1F, 0x69, 1);
@@ -498,7 +498,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[0x37].stateUpper = 0;
                     gActors[0x33].stateLower = gActors[actor_index].stateLower;
                     gActors[0x33].stateUpper = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x11);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQUARE, 0, 0, 0x11);
                     break;
 
                 case 1:
@@ -561,7 +561,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_801922F4_6D2974(actor_index, 0x37, 0x804, -0xDD, -4, 8);
                     func_80192224_6D28A4(0x33, 0x34, 0x802, 0, 0, 1);
                     func_80192224_6D28A4(0x37, 0x35, 0x806, 0, 0, 1);
-                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQUARE, 0, 0, 0);
                     break;
 
                 case 1:
@@ -652,7 +652,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     gActors[actor_index].stateUpper++;
                     func_801921C8_6D2848(actor_index, 0x33, 0x1008, 0x18, 0, 0x10);
                     gActors[0x34].flags = 0;
-                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQARE, 0, 0, 0x100);
+                    func_80192350_6D29D0(actor_index, 0x32, GINDEX_SOLIDSQUARE, 0, 0, 0x100);
                     func_801923AC_6D2A2C(actor_index, 0x50, 0x1800, 0, 0, 0x20);
                     func_80192438_6D2AB8(0x50, 0x51, 0x1802, -0x15, 0x22, -4);
                     func_80192438_6D2AB8(0x50, 0x52, 0x1804, -0x4D, 0xA, -2);
@@ -829,7 +829,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
 void func_8019429C_6D491C(u16 actor_index) {
     gActors[actor_index].graphicFlags =  ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_DRAW;
     gActors[actor_index].flags = ACTOR_GFLAG_ROTZ| ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].colorR = 0;
     gActors[actor_index].colorG = 0;

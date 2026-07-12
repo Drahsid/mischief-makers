@@ -715,7 +715,7 @@ u16 func_801A7424_78D714(u16 arg0) {
     if (actor_index != 0) {
         gActors[actor_index].actorType = 0x1a01;
         Actor_Initialize(actor_index);
-        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     }
     return actor_index;
 }
@@ -962,7 +962,7 @@ void func_801AB474_791764(u16 arg0){
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
         gActors[actor_index].posZ.whole = 0x81;
         gActors[actor_index].scaleX = 7.0f;
         gActors[actor_index].scaleY = 0.2f;

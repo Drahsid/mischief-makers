@@ -156,6 +156,12 @@ D_800E8E98 = 0x800E8E98;
 D_800E8F04 = 0x800E8F04;
 D_800E8F7C = 0x800E8F7C;
 
+gDialogPortraitGraphic = 0x801782DE; // type:s16 size:0x2
+gDialogTextboxIndex = 0x80178438; // type:u16 size:0x2
+gDialogTextBGIndex = 0x8017843A; // type:u16 size:0x2
+gDialogPortraitIndex = 0x8017843C; // type:u16 size:0x2
+gDialogLRIndex = 0x8017843E; // type:u16 size:0x2
+
 D_80178450 = 0x80178450; // size:0x2
 D_80178452 = 0x80178452; // size:0x2
 D_80178454 = 0x80178454; // size:0x2
@@ -221,6 +227,8 @@ gStrContinuePrice0 = 0x800C7EE4;
 gStrContinueDesc0 = 0x800C7EEC;
 
 gStrContinuePalette = 0x800C7F04;
+
+gMainActorTable = 0x800c7fe0; // size:0x200
 
 gPlatform0Actors = 0x8011CDF8; // size:0x120
 gPlatform1Actors = 0x8011CF20; // size:0x120
