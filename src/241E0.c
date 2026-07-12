@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "input.h"
+#include "1F1E0.h"
 
 typedef struct {
     s16 unk0;

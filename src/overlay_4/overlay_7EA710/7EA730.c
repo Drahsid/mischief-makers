@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "1F1E0.h"
 
 extern s16 D_800D2918;
 extern s16 D_800D291C;

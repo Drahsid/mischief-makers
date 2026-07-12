@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 import decomp_settings
@@ -15,6 +16,12 @@ import mapfile_parser
 MATCHED_ASM_PREFIXES = (
     "build/asm/data/rsp/",
 )
+
+ANSI_RESET = "\033[0m"
+ANSI_BOLD_YELLOW = "\033[1;33m"
+ANSI_RED = "\033[31m"
+ANSI_MAGENTA = "\033[35m"
+ANSI_CYAN = "\033[36m"
 
 
 def markMatchedAsm(mapFile: mapfile_parser.MapFile):
@@ -32,6 +39,73 @@ def markMatchedAsm(mapFile: mapfile_parser.MapFile):
 
             for symbol in section:
                 symbol.nonmatchingSymExists = False
+
+
+def findCategoryWarnings(report, categories, reportData):
+    unitNames = sorted({unit.name for unit in report.units})
+
+    categoryPaths = [
+        (category.ide, path)
+        for category in categories
+        for path in category.paths
+    ]
+
+    emptyCategories = [
+        category.ide for category in categories if len(category.paths) == 0
+    ]
+    bogusPaths = [
+        (categoryId, path)
+        for categoryId, path in categoryPaths
+        if not any(unitName.startswith(path) for unitName in unitNames)
+    ]
+
+    uncategorizedUnits = sorted(
+        {
+            unit.name
+            for unit in report.units
+            if (reportData or unit.measures.total_code > 0)
+            and not any(unit.name.startswith(path) for _, path in categoryPaths)
+        }
+    )
+
+    return emptyCategories, bogusPaths, uncategorizedUnits
+
+
+def printCategoryWarnings(report, categories, reportData):
+    emptyCategories, bogusPaths, uncategorizedUnits = findCategoryWarnings(
+        report,
+        categories,
+        reportData,
+    )
+    if not emptyCategories and not bogusPaths and not uncategorizedUnits:
+        return
+
+    useColor = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+
+    def color(text: str, ansiCode: str) -> str:
+        if not useColor:
+            return text
+        return f"{ansiCode}{text}{ANSI_RESET}"
+
+    print()
+    print(color("decomp.yaml warnings:", ANSI_BOLD_YELLOW))
+    for categoryId in emptyCategories:
+        print(
+            f"  {color('Empty category:', ANSI_RED)} "
+            f"{color(categoryId, ANSI_CYAN)} has no paths."
+        )
+    for categoryId, path in bogusPaths:
+        print(
+            f"  {color('Bogus category:', ANSI_RED)} "
+            f"{color(categoryId, ANSI_CYAN)}: "
+            f"{color(path, ANSI_MAGENTA)} matches no unit."
+        )
+    for unitName in uncategorizedUnits:
+        print(
+            f"  {color('Uncategorized:', ANSI_RED)} "
+            f"{color(unitName, ANSI_MAGENTA)} is missing a "
+            "decomp.yaml path."
+        )
 
 
 def doThing(
@@ -97,6 +171,11 @@ def doThing(
         remaining=summaryTableConfig.remaining,
     )
     print(table, end="")
+    printCategoryWarnings(
+        report,
+        specificSettings.categories,
+        specificSettings.reportData,
+    )
 
     summaryPath = os.getenv("GITHUB_STEP_SUMMARY")
     if summaryPath is not None:

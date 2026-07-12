@@ -5,6 +5,7 @@
 #include "input.h"
 #include "music.h"
 #include "stage.h"
+#include "1F1E0.h"
 #include "28EF0.h"
 
 extern u16* D_800D1810[]; // palettes of particles.

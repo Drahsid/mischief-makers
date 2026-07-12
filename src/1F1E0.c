@@ -1,59 +1,46 @@
 #include "common.h"
+#include "actor_init.h"
 #include "actor.h"
-#include "cosine.h"
 #include "boot.h"
+#include "cosine.h"
+#include "debug.h"
+#include "game_state.h"
+#include "globalData.h"
 #include "input.h"
+#include "lifebar.h"
+#include "marina.h"
 #include "music.h"
 #include "stage.h"
-#include "globalData.h"
+#include "11820.h"
+#include "12DD0.h"
+#include "156F0.h"
 #include "17A70.h"
+#include "1F1E0.h"
+#include "241E0.h"
+#include "438E0.h"
+#include "5D120.h"
+#include "5EA30.h"
+#include "82F80.h"
+#include "8D0A0.h"
 
-typedef void (*UnkFunc800CA1C0)(u16, u16, Actor*);
-
-extern u16 gRngSeed;
-extern u16 gAudioFadeMode;
-
-extern u16 D_800BE4D0;
-extern u16 D_800BE4D4;
-extern u16 D_800BE4D8;
-extern u16 D_800BE544;
-extern u16 D_800BE668;
-extern u16 D_800BE6B4;
-extern u16 D_800BE6B8;
-
-extern u16 D_800CA280[]; // " Exit"
-extern u16 D_800CA28C[]; // " Not Yet"
-extern u16 D_800CA2A0[]; // " Got it"
-
+// C84A0 data
 extern s16 D_800C7CA4[];
 extern s16 D_800C7CAC[];
 extern s16 D_800C7CB4[];
 extern s16 D_800C7CBC[];
-extern u16 D_800C83F8[];
-extern u16 D_800CA234;
-extern u16 D_800CA2B0[];
 
-extern UnkFunc800CA1C0 D_800CA1C0[];
-extern u16 D_800CA238; // attract demo index
-extern u16 D_800CA23C;
-extern u16 D_800CA240;
-extern u16 D_800CA244;
-extern u16 D_800CA248;
-extern u16 D_800CA24C;
-extern u16 D_800CA250;
-extern u16* D_800CBDFC[];
-extern u16* D_800CBE0C[];
-
+// D2410 data
 extern u16 D_800D28E4;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2978[];
-
 extern s16 D_800E13FC[];
 
+// .bss bss_801370D0
 extern u32 D_801374DC; // time duration
 
+// .bss
 s16 D_801781C0[4]; // SFX volumes stored during pause
 u16 D_801781C8;
 u16 D_801781CA;
@@ -62,38 +49,1843 @@ u16 D_801781CE;
 u16 D_801781D0;
 u16 D_801781D2;
 u16 D_801781D4;
-u32 D_801781D8; // unused
+u32 pad_D_801781D8; // unused
 u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
 u16 D_801781DE; // unused
 u16 gStageTime;
+u32 pad_D_801781D8;
+u16 D_801781DC; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
 
+// forward declarations
+void func_8001E9DC(u16 arg0, u16 arg1);
+void func_8001E808(u16 arg0, u16 arg1);
+void func_8001E814(u16 arg0, u16 arg1);
+void func_8001E8E4(u16 arg0, u16 arg1);
+void func_8001E964(u16 arg0, u16 arg1);
+void func_8001EADC(u16 arg0, u16 arg1);
 
-extern void GameState_Loading(void);
-extern void Sound_StartFade(u16, u16);
-extern void func_8001107C(void);
-extern void func_800122B0(void);
-extern void func_80012830(void);
-extern u8 func_80012AB4(s16 arg0, s16 arg1);
-extern void ActorsUpdate_Velocity(void);
-extern void ActorsUpdate_Position(void);
-extern void ActorsUpdate_Physics(void);
-extern void func_80016D94(void);
-extern void func_8001DE30(void);
-extern void func_8001FF30(void);
-extern void func_8001FF50(void);
-extern void func_80022470(void);
-extern void func_800253B0(void);
-extern void func_800457C8(void);
-extern void ActorUpdate_Marina(u16);
-extern u8 func_8005C870(u8);
-extern void UpdateCameraShake(void);
-extern void func_8005C8A4(void);
-extern void UpdateDialog(void);
-extern void func_80083518(s32, s32, s16, s32); // guess on types
-extern void func_80083A74(s32, s32, s32); // guess
-extern void func_80083C54(s16, s32, s32); // guess
-extern void func_8008C528(u16); // guess
-extern void func_8008CA90(void);
+Actor2Func D_800CA1C0[] = {
+    func_8001E808,
+    func_8001E808,
+    func_8001E814,
+    func_8001E8E4,
+    func_8001E964,
+    func_8001E9DC,
+    func_8001E814,
+    func_8001E8E4,
+    func_8001E964,
+    func_8001E814,
+    func_8001E8E4,
+    func_8001E964,
+    func_8001E814,
+    func_8001E8E4,
+    func_8001E964,
+    func_8001E8E4,
+    func_8001E808,
+    func_8001E808,
+    func_8001E808,
+    func_8001E808,
+    func_8001E808,
+    func_8001E814,
+    func_8001EADC,
+    func_8001E808,
+    func_8001E808,
+    NULL,
+    NULL,
+    NULL
+};
+u16 D_800CA230 = 0;
+u16 D_800CA234 = 0;
+u16 D_800CA238 = 0; // attract demo index
+u16 D_800CA23C = 0;
+u16 D_800CA240 = 0;
+u16 D_800CA244 = 0;
+u16 D_800CA248 = 0;
+u16 D_800CA24C = 0;
+u16 D_800CA250 = 0;
+
+// "d  h  m  s" 
+u16 D_800CA254[] = {
+    0x0121, 0x0000, 0x0000,
+    0x0125, 0x0000, 0x0000,
+    0x012A, 0x0000, 0x0000,
+    0x0130, 0x8FFF, 0x0000
+};
+
+// " Continue"
+u16 D_800CA26C[] = { 0x0000, 0x005D, 0x0083, 0x0082, 0x0088, 0x007D, 0x0082, 0x0089, 0x0079, 0x8FFF };
+// " Exit"
+u16 D_800CA280[] = { 0x0000, 0x005F, 0x008C, 0x007D, 0x0088, 0x8FFF };
+// " Not Yet"
+u16 D_800CA28C[] = { 0x0000, 0x0068, 0x0083, 0x0088, 0x0000, 0x008D, 0x0079, 0x0088, 0x8FFF, 0x0000 };
+// " Got it"
+u16 D_800CA2A0[] = { 0x0000, 0x0061, 0x0083, 0x0088, 0x0000, 0x007D, 0x0088, 0x8FFF };
+u16 D_800CA2B0[] = { 4, 10, 21, 22 };
+
+u16 D_800CA2B8[] = {
+    0x004C, CONT_RIGHT,
+    0x0010, CONT_A | CONT_RIGHT,
+    0x000F, CONT_RIGHT,
+    0x0078, CONT_A | CONT_RIGHT,
+    0x0004, CONT_RIGHT,
+    0x0016, 0,
+    0x000F, CONT_A,
+    0x0007, CONT_A | CONT_RIGHT,
+    0x0008, CONT_RIGHT,
+    0x0007, 0,
+    0x001A, CONT_A,
+    0x000A, 0,
+    0x0007, CONT_B,
+    0x0008, 0,
+    0x0003, CONT_RIGHT,
+    0x0024, CONT_UP | CONT_RIGHT,
+    0x0004, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0004, CONT_UP | CONT_RIGHT,
+    0x0005, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0007, CONT_UP | CONT_RIGHT,
+    0x001B, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0006, CONT_UP | CONT_RIGHT,
+    0x001E, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0005, CONT_UP | CONT_RIGHT,
+    0x0005, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0005, CONT_UP | CONT_RIGHT,
+    0x001D, CONT_B | CONT_UP | CONT_RIGHT,
+    0x0006, CONT_UP | CONT_RIGHT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0010, CONT_LEFT,
+    0x0008, CONT_UP | CONT_LEFT,
+    0x0003, CONT_LEFT,
+    0x000C, 0,
+    0x000B, CONT_UP | CONT_LEFT,
+    0x0004, CONT_B | CONT_UP | CONT_LEFT,
+    0x0005, CONT_UP | CONT_LEFT,
+    0x0005, CONT_B | CONT_UP | CONT_LEFT,
+    0x0008, CONT_UP | CONT_LEFT,
+    0x0018, CONT_B | CONT_UP | CONT_LEFT,
+    0x0007, CONT_UP | CONT_LEFT,
+    0x0002, CONT_LEFT,
+    0x0002, 0,
+    0x000A, CONT_DOWN,
+    0x0001, CONT_DOWN | CONT_LEFT,
+    0x0013, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0006, CONT_DOWN | CONT_LEFT,
+    0x0005, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0008, CONT_DOWN | CONT_LEFT,
+    0x0016, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0008, CONT_DOWN | CONT_LEFT,
+    0x002B, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0005, CONT_DOWN | CONT_LEFT,
+    0x0005, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0005, CONT_DOWN | CONT_LEFT,
+    0x001C, CONT_B | CONT_DOWN | CONT_LEFT,
+    0x0006, CONT_DOWN | CONT_LEFT,
+    0x0001, CONT_DOWN,
+    0x0001, 0,
+    0x000B, CONT_RIGHT,
+    0x0007, CONT_UP | CONT_RIGHT,
+    0x0022, CONT_RIGHT,
+    0x0003, CONT_DOWN | CONT_RIGHT,
+    0x0008, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0004, CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0006, CONT_DOWN | CONT_RIGHT,
+    0x001A, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0007, CONT_DOWN | CONT_RIGHT,
+    0x0012, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0006, CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0007, CONT_DOWN | CONT_RIGHT,
+    0x0014, CONT_RIGHT,
+    0x0020, 0,
+    0x0049, CONT_LEFT,
+    0x0005, 0,
+    0x000D, CONT_A,
+    0x0009, 0,
+    0x0007, CONT_B,
+    0x0007, 0,
+    0x001A, CONT_DOWN,
+    0x0005, 0,
+    0x0006, CONT_DOWN,
+    0x0007, 0,
+    0x002C, CONT_DOWN,
+    0x0007, 0,
+    0x0006, CONT_DOWN,
+    0x0007, 0,
+    0x000E, CONT_DOWN,
+    0x0006, 0,
+    0x0005, CONT_DOWN,
+    0x0008, 0,
+    0x0012, CONT_B,
+    0x0008, 0,
+    0x0009, CONT_RIGHT,
+    0x000F, CONT_A | CONT_RIGHT,
+    0x0008, CONT_RIGHT,
+    0x000E, 0,
+    0x000B, CONT_LEFT,
+    0x0006, 0,
+    0x0006, CONT_A,
+    0x000C, 0,
+    0x0006, CONT_B,
+    0x0008, 0,
+    0x0065, CONT_LEFT,
+    0x0009, CONT_A | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x000F, 0,
+    0x003E, CONT_A,
+    0x000B, 0,
+    0x0006, CONT_B,
+    0x0005, 0,
+    0x0009, CONT_DOWN,
+    0x0006, 0,
+    0x0004, CONT_DOWN,
+    0x0005, 0,
+    0x0006, CONT_DOWN,
+    0x0006, 0,
+    0x0004, CONT_DOWN,
+    0x0005, 0,
+    0x0059, CONT_RIGHT,
+    0x0006, 0,
+    0x0005, CONT_RIGHT,
+    0x0006, 0,
+    0x0005, CONT_RIGHT,
+    0x0006, 0,
+    0x0006, CONT_RIGHT,
+    0x0003, 0,
+    0x000F, CONT_RIGHT,
+    0x0007, 0,
+    0x0006, CONT_RIGHT,
+    0x0006, 0,
+    0x00AC, CONT_LEFT,
+    0x0005, 0,
+    0x0012, CONT_A,
+    0x000A, 0,
+    0x0006, CONT_B,
+    0x0005, 0,
+    0x0014, CONT_RIGHT,
+    0x0006, 0,
+    0x0005, CONT_RIGHT,
+    0x0006, 0,
+    0x001E, CONT_UP,
+    0x0005, 0,
+    0x0005, CONT_UP,
+    0x0007, 0,
+    0x002D, CONT_UP,
+    0x0005, 0,
+    0x0005, CONT_UP,
+    0x0007, 0,
+    0x001C, CONT_DOWN,
+    0x0004, 0,
+    0x0005, CONT_DOWN,
+    0x0006, 0,
+    0x0016, CONT_UP,
+    0x0005, 0,
+    0x0005, CONT_UP,
+    0x0006, 0,
+    0x0011, CONT_RIGHT,
+    0x0004, 0,
+    0x0006, CONT_RIGHT,
+    0x0007, 0,
+    0x002A, CONT_LEFT,
+    0x0001, CONT_UP | CONT_LEFT,
+    0x0003, CONT_UP,
+    0x0002, CONT_UP | CONT_LEFT,
+    0x0005, CONT_B | CONT_UP | CONT_LEFT,
+    0x0005, CONT_UP | CONT_LEFT,
+    0x0005, CONT_B | CONT_UP | CONT_LEFT,
+    0x0005, CONT_UP | CONT_LEFT,
+    0x0015, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0005, 0,
+    0x0019, CONT_UP,
+    0x0006, 0,
+    0x0005, CONT_UP,
+    0x0006, 0,
+    0x001F, CONT_LEFT,
+    0x0007, 0,
+    0x0003, CONT_LEFT,
+    0x0006, 0,
+    0x001A, CONT_DOWN,
+    0x0007, 0,
+    0x0005, CONT_DOWN,
+    0x0006, 0,
+    0x001F, CONT_B,
+    0x0007, 0,
+    0x0012, CONT_LEFT,
+    0x0006, 0,
+    0x0006, CONT_LEFT,
+    0x0007, 0,
+    0xFFFF, 0
+};
+u16 D_800CA5C0[] = {
+    0x004C, CONT_RIGHT,
+    0x0001, 0,
+    0x000F, CONT_A,
+    0x0001, 0,
+    0x0086, CONT_A,
+    0x0001, 0,
+    0x0028, CONT_A,
+    0x0001, 0,
+    0x0006, CONT_RIGHT,
+    0x0001, 0,
+    0x0028, CONT_A,
+    0x0001, 0,
+    0x0010, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x0023, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0021, CONT_B,
+    0x0001, 0,
+    0x0023, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0021, CONT_B,
+    0x0001, 0,
+    0x0017, CONT_LEFT,
+    0x0001, 0,
+    0x0007, CONT_UP,
+    0x0001, 0,
+    0x0019, CONT_UP | CONT_LEFT,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001F, CONT_B,
+    0x0001, 0,
+    0x0014, CONT_DOWN,
+    0x0001, CONT_LEFT,
+    0x0001, 0,
+    0x0012, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x001D, CONT_B,
+    0x0001, 0,
+    0x0032, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0020, CONT_B,
+    0x0001, 0,
+    0x0012, CONT_RIGHT,
+    0x0001, 0,
+    0x0006, CONT_UP,
+    0x0001, 0,
+    0x0024, CONT_DOWN,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x001F, CONT_B,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x0083, CONT_LEFT,
+    0x0001, 0,
+    0x0011, CONT_A,
+    0x0001, 0,
+    0x000F, CONT_B,
+    0x0001, 0,
+    0x0020, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0032, CONT_DOWN,
+    0x0001, 0,
+    0x000C, CONT_DOWN,
+    0x0001, 0,
+    0x0014, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0019, CONT_B,
+    0x0001, 0,
+    0x0010, CONT_RIGHT,
+    0x0001, 0,
+    0x000E, CONT_A,
+    0x0001, 0,
+    0x0020, CONT_LEFT,
+    0x0001, 0,
+    0x000B, CONT_A,
+    0x0001, 0,
+    0x0011, CONT_B,
+    0x0001, 0,
+    0x006C, CONT_LEFT,
+    0x0001, 0,
+    0x0008, CONT_A,
+    0x0001, 0,
+    0x0052, CONT_A,
+    0x0001, 0,
+    0x0010, CONT_B,
+    0x0001, 0,
+    0x000D, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x005D, CONT_RIGHT,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x000B, CONT_RIGHT,
+    0x0001, 0,
+    0x0011, CONT_RIGHT,
+    0x0001, 0,
+    0x000C, CONT_RIGHT,
+    0x0001, 0,
+    0x00B1, CONT_LEFT,
+    0x0001, 0,
+    0x0016, CONT_A,
+    0x0001, 0,
+    0x000F, CONT_B,
+    0x0001, 0,
+    0x0018, CONT_RIGHT,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x0023, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0033, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0022, CONT_DOWN,
+    0x0001, 0,
+    0x0008, CONT_DOWN,
+    0x0001, 0,
+    0x001B, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0016, CONT_RIGHT,
+    0x0001, 0,
+    0x0009, CONT_RIGHT,
+    0x0001, 0,
+    0x0030, CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_LEFT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001E, CONT_B,
+    0x0001, 0,
+    0x001D, CONT_UP,
+    0x0001, 0,
+    0x000A, CONT_UP,
+    0x0001, 0,
+    0x0024, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_LEFT,
+    0x0001, 0,
+    0x001F, CONT_DOWN,
+    0x0001, 0,
+    0x000B, CONT_DOWN,
+    0x0001, 0,
+    0x0024, CONT_B,
+    0x0001, 0,
+    0x0018, CONT_LEFT,
+    0x0001, 0,
+    0x000B, CONT_LEFT,
+    0x0001, 0,
+    0xFFFF, 0
+};
+u16 D_800CA8BC[] = {
+    0x0045, CONT_RIGHT,
+    0x0025, CONT_A | CONT_RIGHT,
+    0x000D, CONT_RIGHT,
+    0x0057, 0,
+    0x004D, CONT_RIGHT,
+    0x0008, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0006, CONT_B | CONT_RIGHT,
+    0x0004, CONT_RIGHT,
+    0x0006, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0006, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0007, CONT_RIGHT,
+    0x0038, CONT_A | CONT_RIGHT,
+    0x0008, CONT_RIGHT,
+    0x000B, 0,
+    0x0008, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0001, 0,
+    0x0019, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0004, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0005, CONT_UP,
+    0x0014, 0,
+    0x000F, CONT_RIGHT,
+    0x0011, 0,
+    0x000A, CONT_LEFT,
+    0x0006, 0,
+    0x0013, CONT_B,
+    0x000B, 0,
+    0x0010, CONT_LEFT,
+    0x001C, 0,
+    0x0008, CONT_RIGHT,
+    0x000B, 0,
+    0x002A, CONT_A,
+    0x0001, CONT_A | CONT_RIGHT,
+    0x000D, CONT_A,
+    0x0007, 0,
+    0x0009, CONT_RIGHT,
+    0x0012, 0,
+    0x0017, CONT_DOWN,
+    0x0007, 0,
+    0x0004, CONT_DOWN,
+    0x0008, 0,
+    0x002D, CONT_RIGHT,
+    0x0050, CONT_A | CONT_RIGHT,
+    0x001C, CONT_RIGHT,
+    0x0014, CONT_A | CONT_RIGHT,
+    0x0014, CONT_RIGHT,
+    0x0011, 0,
+    0x0026, CONT_A,
+    0x0012, CONT_A | CONT_LEFT,
+    0x000E, 0,
+    0x000B, CONT_RIGHT,
+    0x0017, 0,
+    0x0007, CONT_LEFT,
+    0x0001, CONT_UP | CONT_LEFT,
+    0x0002, CONT_B | CONT_UP | CONT_LEFT,
+    0x0003, CONT_UP | CONT_LEFT,
+    0x0006, CONT_B | CONT_UP | CONT_LEFT,
+    0x0007, CONT_UP | CONT_LEFT,
+    0x0003, CONT_LEFT,
+    0x0001, 0,
+    0x000F, CONT_RIGHT,
+    0x0028, CONT_A | CONT_RIGHT,
+    0x0010, CONT_RIGHT,
+    0x0018, CONT_A | CONT_RIGHT,
+    0x0010, CONT_RIGHT,
+    0x0025, 0,
+    0x0027, CONT_B,
+    0x000A, 0,
+    0x0008, CONT_LEFT,
+    0x0021, CONT_A | CONT_LEFT,
+    0x0005, CONT_A,
+    0x000B, CONT_A | CONT_RIGHT,
+    0x0011, CONT_A,
+    0x0001, 0,
+    0x000E, CONT_A,
+    0x0005, 0,
+    0x0003, CONT_RIGHT,
+    0x0001, CONT_DOWN | CONT_RIGHT,
+    0x0003, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_B | CONT_DOWN | CONT_RIGHT,
+    0x0006, CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_DOWN,
+    0x0003, 0,
+    0x0011, CONT_RIGHT,
+    0x0057, CONT_A | CONT_RIGHT,
+    0x0015, CONT_RIGHT,
+    0x002D, CONT_A | CONT_RIGHT,
+    0x0009, CONT_RIGHT,
+    0x0017, 0,
+    0x0047, CONT_A,
+    0x0005, 0,
+    0x0007, CONT_B,
+    0x0005, 0,
+    0x0017, CONT_LEFT,
+    0x000A, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0007, CONT_A | CONT_LEFT,
+    0x0014, CONT_LEFT,
+    0x001D, 0,
+    0x000A, CONT_RIGHT,
+    0x001A, 0,
+    0x000F, CONT_RIGHT,
+    0x0012, CONT_A | CONT_RIGHT,
+    0x000A, CONT_RIGHT,
+    0x0008, CONT_B | CONT_RIGHT,
+    0x0003, CONT_RIGHT,
+    0x0006, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0014, 0,
+    0x000A, CONT_A,
+    0x0008, 0,
+    0x0011, CONT_LEFT,
+    0x0007, CONT_B | CONT_LEFT,
+    0x0004, 0,
+    0x0013, CONT_RIGHT,
+    0x0004, CONT_B | CONT_RIGHT,
+    0x0004, CONT_RIGHT,
+    0x0001, 0,
+    0x000D, CONT_DOWN,
+    0x0005, 0,
+    0x0005, CONT_DOWN,
+    0x0006, 0,
+    0x0004, CONT_DOWN,
+    0x0007, 0,
+    0x0017, CONT_A,
+    0x000C, 0,
+    0x0008, CONT_RIGHT,
+    0x000C, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0008, CONT_RIGHT,
+    0x000B, 0,
+    0x000F, CONT_RIGHT,
+    0x000D, 0,
+    0x0002, CONT_A,
+    0x000D, CONT_A | CONT_UP,
+    0x0001, CONT_A | CONT_UP | CONT_RIGHT,
+    0x0001, CONT_UP,
+    0x0005, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0004, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0005, CONT_UP,
+    0x000A, 0,
+    0x000C, CONT_LEFT,
+    0x0012, CONT_A | CONT_LEFT,
+    0x0012, CONT_LEFT,
+    0x0007, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0008, 0,
+    0x0022, CONT_A,
+    0x0005, CONT_A | CONT_LEFT,
+    0x0004, CONT_LEFT,
+    0x000B, 0,
+    0x001B, CONT_LEFT,
+    0x0014, 0,
+    0x0007, CONT_RIGHT,
+    0x0007, 0,
+    0x001B, CONT_A,
+    0x000A, 0,
+    0x0001, CONT_RIGHT,
+    0x000D, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0009, CONT_RIGHT,
+    0x0005, 0,
+    0x000E, CONT_LEFT,
+    0x000F, 0,
+    0x0002, CONT_RIGHT,
+    0x000A, CONT_B | CONT_RIGHT,
+    0x0007, CONT_RIGHT,
+    0x0008, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0006, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0007, 0,
+    0xFFFF, 0
+};
+u16 D_800CABB4[] = {
+    0x0045, CONT_RIGHT,
+    0x0001, 0,
+    0x0024, CONT_A,
+    0x0001, 0,
+    0x00B0, CONT_RIGHT,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x003E, CONT_A,
+    0x0001, 0,
+    0x001A, CONT_LEFT,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x001F, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0027, CONT_RIGHT,
+    0x0001, 0,
+    0x001A, CONT_LEFT,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x001A, CONT_LEFT,
+    0x0001, 0,
+    0x0023, CONT_RIGHT,
+    0x0001, 0,
+    0x0034, CONT_A,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x001C, CONT_RIGHT,
+    0x0001, 0,
+    0x0028, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0034, CONT_RIGHT,
+    0x0001, 0,
+    0x004F, CONT_A,
+    0x0001, 0,
+    0x002F, CONT_A,
+    0x0001, 0,
+    0x004A, CONT_A,
+    0x0001, 0,
+    0x0011, CONT_LEFT,
+    0x0001, 0,
+    0x0018, CONT_RIGHT,
+    0x0001, 0,
+    0x001D, CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0001, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0019, CONT_RIGHT,
+    0x0001, 0,
+    0x0027, CONT_A,
+    0x0001, 0,
+    0x0027, CONT_A,
+    0x0001, 0,
+    0x005B, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_LEFT,
+    0x0001, 0,
+    0x0020, CONT_A,
+    0x0001, 0,
+    0x000F, CONT_RIGHT,
+    0x0001, 0,
+    0x001F, CONT_A,
+    0x0001, 0,
+    0x0007, CONT_RIGHT,
+    0x0001, CONT_DOWN,
+    0x0001, 0,
+    0x0002, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001E, CONT_RIGHT,
+    0x0001, 0,
+    0x0056, CONT_A,
+    0x0001, 0,
+    0x0041, CONT_A,
+    0x0001, 0,
+    0x0066, CONT_A,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x001B, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x000C, CONT_A,
+    0x0001, 0,
+    0x003A, CONT_RIGHT,
+    0x0001, 0,
+    0x0028, CONT_RIGHT,
+    0x0001, 0,
+    0x0011, CONT_A,
+    0x0001, 0,
+    0x0011, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0022, CONT_A,
+    0x0001, 0,
+    0x0018, CONT_LEFT,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x0016, CONT_RIGHT,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x001D, CONT_A,
+    0x0001, 0,
+    0x0013, CONT_RIGHT,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0021, CONT_RIGHT,
+    0x0001, 0,
+    0x000E, CONT_A,
+    0x0001, 0,
+    0x000C, CONT_UP,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0005, CONT_B,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001A, CONT_LEFT,
+    0x0001, 0,
+    0x0011, CONT_A,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x002E, CONT_A,
+    0x0001, 0,
+    0x0004, CONT_LEFT,
+    0x0001, 0,
+    0x0029, CONT_LEFT,
+    0x0001, 0,
+    0x001A, CONT_RIGHT,
+    0x0001, 0,
+    0x0021, CONT_A,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x000C, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0x001B, CONT_LEFT,
+    0x0001, 0,
+    0x0010, CONT_RIGHT,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x000E, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_B,
+    0x0001, 0,
+    0xFFFF, 0
+};
+u16 D_800CAEA8[] = {
+    0x0033, CONT_DOWN,
+    0x0003, CONT_A | CONT_DOWN,
+    0x0002, CONT_A | CONT_DOWN | CONT_RIGHT,
+    0x0001, CONT_DOWN | CONT_RIGHT,
+    0x0002, CONT_DOWN,
+    0x0001, 0,
+    0x0002, CONT_A,
+    0x000F, 0,
+    0x0004, CONT_B,
+    0x0008, 0,
+    0x000A, CONT_DOWN,
+    0x0005, 0,
+    0x0004, CONT_DOWN,
+    0x0006, 0,
+    0x000D, CONT_LEFT,
+    0x0005, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0016, CONT_B,
+    0x0008, 0,
+    0x0024, CONT_LEFT,
+    0x000A, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x002B, 0,
+    0x0013, CONT_RIGHT,
+    0x000B, 0,
+    0x0065, CONT_RIGHT,
+    0x0014, CONT_A | CONT_RIGHT,
+    0x0023, CONT_RIGHT,
+    0x001C, CONT_A | CONT_RIGHT,
+    0x0002, CONT_A | CONT_UP | CONT_RIGHT,
+    0x0001, CONT_A | CONT_UP,
+    0x0016, CONT_UP,
+    0x0002, CONT_B | CONT_UP,
+    0x0006, CONT_B,
+    0x0004, 0,
+    0x0008, CONT_DOWN,
+    0x0007, 0,
+    0x0003, CONT_DOWN,
+    0x0004, CONT_DOWN | CONT_RIGHT,
+    0x0001, CONT_DOWN,
+    0x0002, 0,
+    0x0004, CONT_DOWN,
+    0x0004, 0,
+    0x0013, CONT_DOWN,
+    0x0006, 0,
+    0x0003, CONT_DOWN,
+    0x0001, CONT_DOWN | CONT_RIGHT,
+    0x0005, CONT_DOWN,
+    0x0001, 0,
+    0x000B, CONT_RIGHT,
+    0x0006, 0,
+    0x0003, CONT_RIGHT,
+    0x0007, 0,
+    0x0012, CONT_UP,
+    0x0005, 0,
+    0x0004, CONT_UP,
+    0x0007, 0,
+    0x000B, CONT_LEFT,
+    0x0006, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0018, 0,
+    0x0011, CONT_A,
+    0x0007, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0005, CONT_A | CONT_UP,
+    0x000A, CONT_A,
+    0x0008, 0,
+    0x0006, CONT_RIGHT,
+    0x001B, CONT_A,
+    0x000A, CONT_A | CONT_UP,
+    0x0005, CONT_A,
+    0x0006, CONT_A | CONT_UP,
+    0x0007, CONT_A,
+    0x0006, 0,
+    0x0006, CONT_RIGHT,
+    0x0020, 0,
+    0x0008, CONT_LEFT,
+    0x0007, 0,
+    0x000C, CONT_DOWN,
+    0x0002, CONT_A | CONT_DOWN,
+    0x0004, 0,
+    0x0004, CONT_A,
+    0x0004, CONT_A | CONT_LEFT,
+    0x000D, CONT_LEFT,
+    0x0006, 0,
+    0x0007, CONT_RIGHT,
+    0x0015, 0,
+    0x000B, CONT_DOWN,
+    0x0002, CONT_A | CONT_DOWN,
+    0x0002, CONT_A | CONT_DOWN | CONT_RIGHT,
+    0x0002, CONT_DOWN,
+    0x0001, 0,
+    0x0003, CONT_A,
+    0x0007, CONT_A | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0018, 0,
+    0x0007, CONT_A,
+    0x000B, CONT_A | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0005, 0,
+    0x0001, CONT_B,
+    0x0006, 0,
+    0x000A, CONT_RIGHT,
+    0x000C, 0,
+    0x000E, CONT_DOWN,
+    0x0001, CONT_DOWN | CONT_RIGHT,
+    0x0004, 0,
+    0x0004, CONT_DOWN,
+    0x0002, CONT_DOWN | CONT_RIGHT,
+    0x0002, CONT_DOWN,
+    0x0003, 0,
+    0x001F, CONT_DOWN,
+    0x0005, 0,
+    0x0004, CONT_DOWN,
+    0x0008, 0,
+    0x0020, CONT_LEFT,
+    0x001C, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0005, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0007, 0,
+    0x0012, CONT_RIGHT,
+    0x0015, 0,
+    0x0020, CONT_RIGHT,
+    0x000B, 0,
+    0x0009, CONT_LEFT,
+    0x0008, 0,
+    0x000C, CONT_DOWN,
+    0x0003, CONT_A | CONT_DOWN,
+    0x0003, 0,
+    0x0004, CONT_A,
+    0x0003, CONT_A | CONT_LEFT,
+    0x0010, 0,
+    0x000D, CONT_RIGHT,
+    0x001B, 0,
+    0x0005, CONT_A,
+    0x000A, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0004, CONT_UP,
+    0x0007, 0,
+    0x0001, CONT_B,
+    0x0008, 0,
+    0x0020, CONT_DOWN,
+    0x0006, 0,
+    0x0007, CONT_DOWN,
+    0x0007, 0,
+    0x0004, CONT_DOWN,
+    0x000F, 0,
+    0x0012, CONT_RIGHT,
+    0x0029, CONT_B | CONT_RIGHT,
+    0x0002, CONT_B,
+    0x0004, 0,
+    0x0033, CONT_DOWN,
+    0x0007, 0,
+    0x0004, CONT_DOWN,
+    0x0007, 0,
+    0x0004, CONT_DOWN,
+    0x000B, CONT_DOWN | CONT_RIGHT,
+    0x0002, CONT_DOWN,
+    0x0001, 0,
+    0x001F, CONT_LEFT,
+    0x000C, 0,
+    0x000D, CONT_B,
+    0x0007, 0,
+    0x001E, CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0004, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0017, CONT_B | CONT_RIGHT,
+    0x0007, 0,
+    0x000B, CONT_LEFT,
+    0x0008, CONT_B | CONT_LEFT,
+    0x0004, CONT_LEFT,
+    0x0005, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0016, CONT_B | CONT_LEFT,
+    0x0002, CONT_B,
+    0x0005, 0,
+    0x0017, CONT_DOWN,
+    0x0006, 0,
+    0x0005, CONT_DOWN,
+    0x0007, 0,
+    0x001A, CONT_RIGHT,
+    0x0015, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0004, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0036, 0,
+    0x0019, CONT_A,
+    0x000F, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0009, CONT_UP,
+    0x0005, CONT_B | CONT_UP,
+    0x0007, CONT_B,
+    0x0002, 0,
+    0x001F, CONT_LEFT,
+    0x0002, CONT_UP | CONT_LEFT,
+    0x0001, CONT_LEFT,
+    0x0002, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0013, CONT_UP | CONT_LEFT,
+    0x0001, CONT_LEFT,
+    0x0001, 0,
+    0x0001, CONT_B,
+    0x0007, 0,
+    0x000B, CONT_RIGHT,
+    0x000A, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0004, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x003C, 0,
+    0x0009, CONT_LEFT,
+    0x0014, CONT_A | CONT_LEFT,
+    0x0010, CONT_LEFT,
+    0x0006, CONT_B | CONT_LEFT,
+    0x0003, CONT_B,
+    0x0004, 0,
+    0x000F, CONT_DOWN,
+    0x0005, 0,
+    0x0005, CONT_DOWN,
+    0x0007, 0,
+    0x0003, CONT_DOWN,
+    0x0003, 0,
+    0x0017, CONT_DOWN,
+    0x0006, 0,
+    0x0003, CONT_DOWN,
+    0x0008, 0,
+    0x000F, CONT_LEFT,
+    0x0008, 0,
+    0x0003, CONT_LEFT,
+    0x0009, 0,
+    0x0017, CONT_UP,
+    0x0006, 0,
+    0x0003, CONT_UP,
+    0x0007, 0,
+    0x0010, CONT_UP,
+    0x0006, 0,
+    0x0013, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0003, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0014, 0,
+    0x0003, CONT_B,
+    0x0008, 0,
+    0xFFFF, 0
+};
+u16 D_800CB2AC[] = {
+    0x0033, CONT_DOWN,
+    0x0001, 0,
+    0x0002, CONT_A,
+    0x0001, 0,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0005, CONT_A,
+    0x0001, 0,
+    0x0012, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_DOWN,
+    0x0001, 0,
+    0x0008, CONT_DOWN,
+    0x0001, 0,
+    0x0012, CONT_LEFT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001B, CONT_B,
+    0x0001, 0,
+    0x002B, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0043, CONT_RIGHT,
+    0x0001, 0,
+    0x006F, CONT_RIGHT,
+    0x0001, 0,
+    0x0013, CONT_A,
+    0x0001, 0,
+    0x003E, CONT_A,
+    0x0001, 0,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x0003, CONT_RIGHT,
+    0x0001, 0,
+    0x0006, CONT_DOWN,
+    0x0001, 0,
+    0x0016, CONT_DOWN,
+    0x0001, 0,
+    0x0008, CONT_DOWN,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0010, CONT_RIGHT,
+    0x0001, 0,
+    0x0008, CONT_RIGHT,
+    0x0001, 0,
+    0x0018, CONT_UP,
+    0x0001, 0,
+    0x0008, CONT_UP,
+    0x0001, 0,
+    0x0011, CONT_LEFT,
+    0x0001, 0,
+    0x0005, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x002E, CONT_A,
+    0x0001, 0,
+    0x0006, CONT_UP,
+    0x0001, 0,
+    0x000A, CONT_UP,
+    0x0001, 0,
+    0x0017, CONT_RIGHT,
+    0x0001, 0,
+    0x001A, CONT_A,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x000A, CONT_UP,
+    0x0001, 0,
+    0x0012, CONT_RIGHT,
+    0x0001, 0,
+    0x0027, CONT_LEFT,
+    0x0001, 0,
+    0x0012, CONT_DOWN,
+    0x0001, 0,
+    0x0001, CONT_A,
+    0x0001, 0,
+    0x0007, CONT_A,
+    0x0001, 0,
+    0x0003, CONT_LEFT,
+    0x0001, 0,
+    0x0019, CONT_RIGHT,
+    0x0001, 0,
+    0x001F, CONT_DOWN,
+    0x0001, 0,
+    0x0001, CONT_A,
+    0x0001, 0,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0005, CONT_A,
+    0x0001, 0,
+    0x0006, CONT_RIGHT,
+    0x0001, 0,
+    0x0024, CONT_A,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x000F, CONT_RIGHT,
+    0x0001, 0,
+    0x0019, CONT_DOWN,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0007, CONT_DOWN,
+    0x0001, 0,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0023, CONT_DOWN,
+    0x0001, 0,
+    0x0008, CONT_DOWN,
+    0x0001, 0,
+    0x0027, CONT_LEFT,
+    0x0001, 0,
+    0x001B, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x001E, CONT_RIGHT,
+    0x0001, 0,
+    0x0034, CONT_RIGHT,
+    0x0001, 0,
+    0x0013, CONT_LEFT,
+    0x0001, 0,
+    0x0013, CONT_DOWN,
+    0x0001, 0,
+    0x0002, CONT_A,
+    0x0001, 0,
+    0x0006, CONT_A,
+    0x0001, 0,
+    0x0002, CONT_LEFT,
+    0x0001, 0,
+    0x001C, CONT_RIGHT,
+    0x0001, 0,
+    0x001F, CONT_A,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x0027, CONT_DOWN,
+    0x0001, 0,
+    0x000C, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0020, CONT_RIGHT,
+    0x0001, 0,
+    0x0028, CONT_B,
+    0x0001, 0,
+    0x0038, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x0021, CONT_LEFT,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x0024, CONT_RIGHT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x001C, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_LEFT,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x001B, CONT_B,
+    0x0001, 0,
+    0x001D, CONT_DOWN,
+    0x0001, 0,
+    0x000A, CONT_DOWN,
+    0x0001, 0,
+    0x0020, CONT_RIGHT,
+    0x0001, 0,
+    0x0014, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0054, CONT_A,
+    0x0001, 0,
+    0x000E, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x000D, CONT_B,
+    0x0001, 0,
+    0x0027, CONT_LEFT,
+    0x0001, 0,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0017, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_B,
+    0x0001, 0,
+    0x0011, CONT_RIGHT,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x004A, CONT_LEFT,
+    0x0001, 0,
+    0x0013, CONT_A,
+    0x0001, 0,
+    0x0015, CONT_B,
+    0x0001, 0,
+    0x0015, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x0009, CONT_DOWN,
+    0x0001, 0,
+    0x0019, CONT_DOWN,
+    0x0001, 0,
+    0x0008, CONT_DOWN,
+    0x0001, 0,
+    0x0016, CONT_LEFT,
+    0x0001, 0,
+    0x000A, CONT_LEFT,
+    0x0001, 0,
+    0x001F, CONT_UP,
+    0x0001, 0,
+    0x0008, CONT_UP,
+    0x0001, 0,
+    0x0016, CONT_UP,
+    0x0001, 0,
+    0x0018, CONT_LEFT,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x001C, CONT_B,
+    0x0001, 0,
+    0xFFFF, 0
+};
+u16 D_800CB6C8[] = {
+    0x0102, CONT_LEFT,
+    0x0021, CONT_UP | CONT_LEFT,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x0001, CONT_RIGHT,
+    0x0014, 0,
+    0x000F, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0002, CONT_UP | CONT_LEFT,
+    0x0002, CONT_LEFT,
+    0x0017, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x001F, 0,
+    0x0026, CONT_RIGHT,
+    0x0011, 0,
+    0x0078, CONT_RIGHT,
+    0x0001, CONT_UP | CONT_RIGHT,
+    0x0001, CONT_RIGHT,
+    0x0002, CONT_UP,
+    0x0002, 0,
+    0x0002, CONT_UP,
+    0x0005, CONT_B | CONT_UP,
+    0x0009, CONT_UP,
+    0x000D, 0,
+    0x0008, CONT_UP,
+    0x0003, CONT_UP | CONT_RIGHT,
+    0x0006, CONT_UP,
+    0x0003, 0,
+    0x000B, CONT_UP,
+    0x0003, 0,
+    0x0002, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0005, CONT_UP | CONT_RIGHT,
+    0x0004, CONT_RIGHT,
+    0x0008, CONT_B | CONT_RIGHT,
+    0x0007, CONT_RIGHT,
+    0x0010, 0,
+    0x0038, CONT_LEFT,
+    0x000D, 0,
+    0x0015, CONT_RIGHT,
+    0x0018, CONT_B | CONT_RIGHT,
+    0x0008, CONT_RIGHT,
+    0x000C, 0,
+    0x000B, CONT_UP | CONT_RIGHT,
+    0x0002, CONT_RIGHT,
+    0x0006, 0,
+    0x000E, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0004, CONT_UP | CONT_RIGHT,
+    0x0005, CONT_B | CONT_RIGHT,
+    0x0005, CONT_RIGHT,
+    0x0003, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x0002, CONT_B | CONT_RIGHT,
+    0x0006, CONT_RIGHT,
+    0x002A, 0,
+    0x0008, CONT_LEFT,
+    0x002C, 0,
+    0x0068, CONT_LEFT,
+    0x000F, CONT_UP | CONT_LEFT,
+    0x0002, CONT_UP,
+    0x0005, CONT_B | CONT_UP,
+    0x0005, CONT_UP,
+    0x0003, CONT_B | CONT_UP,
+    0x0004, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0003, CONT_UP,
+    0x0001, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0007, 0,
+    0x0009, CONT_LEFT,
+    0x000A, CONT_UP | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0001, CONT_UP,
+    0x0001, CONT_UP | CONT_RIGHT,
+    0x0001, CONT_UP,
+    0x0001, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0010, CONT_UP | CONT_LEFT,
+    0x0003, CONT_B | CONT_UP | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0002, CONT_B | CONT_LEFT,
+    0x0005, CONT_LEFT,
+    0x0004, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0010, 0,
+    0x001E, CONT_RIGHT,
+    0x001F, 0,
+    0x0054, CONT_A,
+    0x0011, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0008, CONT_A | CONT_UP,
+    0x0005, CONT_A,
+    0x0003, CONT_A | CONT_UP,
+    0x0005, CONT_A,
+    0x0002, CONT_A | CONT_UP,
+    0x0003, CONT_A,
+    0x0001, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0005, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0005, CONT_A,
+    0x0005, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0004, CONT_A | CONT_UP,
+    0x0006, CONT_A,
+    0x0003, CONT_A | CONT_UP,
+    0x0009, CONT_A,
+    0x0001, 0,
+    0x0024, CONT_LEFT,
+    0x0010, 0,
+    0x0010, CONT_LEFT,
+    0x0007, 0,
+    0x0008, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0008, CONT_UP,
+    0x0012, 0,
+    0x000B, CONT_RIGHT,
+    0x0011, 0,
+    0x0003, CONT_LEFT,
+    0x0005, CONT_B | CONT_LEFT,
+    0x0006, CONT_LEFT,
+    0x0026, 0,
+    0x000B, CONT_LEFT,
+    0x0005, CONT_B | CONT_LEFT,
+    0x0007, CONT_LEFT,
+    0x002F, 0,
+    0x000E, CONT_UP,
+    0x0007, CONT_B | CONT_UP,
+    0x0008, CONT_UP,
+    0x000C, 0,
+    0x0009, CONT_LEFT,
+    0x0012, CONT_UP | CONT_LEFT,
+    0x0002, CONT_UP,
+    0x0001, 0,
+    0x0007, CONT_UP,
+    0x0007, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0009, 0,
+    0x0007, CONT_LEFT,
+    0x000D, 0,
+    0x0007, CONT_RIGHT,
+    0x0014, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x000B, 0,
+    0x0008, CONT_DOWN,
+    0x0004, CONT_B | CONT_DOWN,
+    0x0006, CONT_DOWN,
+    0x0004, CONT_B | CONT_DOWN,
+    0x0005, CONT_DOWN,
+    0x0003, CONT_B | CONT_DOWN,
+    0x0007, CONT_DOWN,
+    0x000D, 0,
+    0x000F, CONT_LEFT,
+    0x000B, 0,
+    0x000D, CONT_LEFT,
+    0x0005, 0,
+    0x0007, CONT_LEFT,
+    0x0006, 0,
+    0x000C, CONT_RIGHT,
+    0x0039, 0,
+    0x0008, CONT_LEFT,
+    0x0004, CONT_UP | CONT_LEFT,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x0007, CONT_UP,
+    0x0002, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0009, 0,
+    0x0009, CONT_LEFT,
+    0x0026, CONT_UP | CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0012, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0003, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0003, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0003, CONT_B | CONT_UP,
+    0x0003, CONT_UP,
+    0x0007, 0,
+    0x000E, CONT_LEFT,
+    0x0017, 0,
+    0x0004, CONT_LEFT,
+    0x000A, 0,
+    0x0015, CONT_RIGHT,
+    0x0033, 0,
+    0x0005, CONT_LEFT,
+    0x0021, 0,
+    0x0015, CONT_RIGHT,
+    0x000B, CONT_UP | CONT_RIGHT,
+    0x0001, CONT_UP,
+    0x0004, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0007, CONT_UP | CONT_LEFT,
+    0x0001, CONT_LEFT,
+    0x0009, CONT_UP | CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_UP | CONT_RIGHT,
+    0x0002, CONT_UP,
+    0x0007, CONT_B | CONT_UP,
+    0x0006, CONT_UP,
+    0x0011, CONT_UP | CONT_LEFT,
+    0x0002, CONT_LEFT,
+    0x0008, CONT_UP | CONT_LEFT,
+    0x0001, CONT_UP,
+    0x0006, CONT_B | CONT_UP,
+    0x0007, CONT_UP,
+    0x0011, 0,
+    0x0006, CONT_UP,
+    0x0004, 0,
+    0xFFFF, 0
+};
+u16 D_800CBA60[] = {
+    0x0102, CONT_LEFT,
+    0x0001, 0,
+    0x0020, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_RIGHT,
+    0x0001, 0,
+    0x0022, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_LEFT,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x004A, CONT_RIGHT,
+    0x0001, 0,
+    0x0088, CONT_RIGHT,
+    0x0001, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x001D, CONT_UP,
+    0x0001, 0,
+    0x0002, CONT_RIGHT,
+    0x0001, 0,
+    0x0013, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_UP,
+    0x0001, 0,
+    0x0005, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x000B, CONT_B,
+    0x0001, 0,
+    0x004E, CONT_LEFT,
+    0x0001, 0,
+    0x0021, CONT_RIGHT,
+    0x0001, 0,
+    0x0017, CONT_B,
+    0x0001, 0,
+    0x001E, CONT_UP | CONT_RIGHT,
+    0x0001, 0,
+    0x0015, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x000A, CONT_RIGHT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0037, CONT_LEFT,
+    0x0001, 0,
+    0x0093, CONT_LEFT,
+    0x0001, 0,
+    0x000E, CONT_UP,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0015, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0005, CONT_UP,
+    0x0001, 0,
+    0x0001, CONT_UP,
+    0x0001, CONT_RIGHT,
+    0x0001, 0,
+    0x0001, CONT_B,
+    0x0001, 0,
+    0x0015, CONT_LEFT,
+    0x0001, 0,
+    0x0002, CONT_B,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0033, CONT_RIGHT,
+    0x0001, 0,
+    0x0072, CONT_A,
+    0x0001, 0,
+    0x0010, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x000D, CONT_UP,
+    0x0001, 0,
+    0x0007, CONT_UP,
+    0x0001, 0,
+    0x0006, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0008, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0008, CONT_UP,
+    0x0001, 0,
+    0x002D, CONT_LEFT,
+    0x0001, 0,
+    0x001F, CONT_LEFT,
+    0x0001, 0,
+    0x000E, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0024, CONT_RIGHT,
+    0x0001, 0,
+    0x0013, CONT_LEFT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0036, CONT_LEFT,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x0043, CONT_UP,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x001C, CONT_LEFT,
+    0x0001, 0,
+    0x0011, CONT_UP,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x0016, CONT_LEFT,
+    0x0001, 0,
+    0x0013, CONT_RIGHT,
+    0x0001, 0,
+    0x0013, CONT_UP,
+    0x0001, 0,
+    0x0005, CONT_B,
+    0x0001, 0,
+    0x0019, CONT_DOWN,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0007, CONT_B,
+    0x0001, 0,
+    0x0022, CONT_LEFT,
+    0x0001, 0,
+    0x0017, CONT_LEFT,
+    0x0001, 0,
+    0x000B, CONT_LEFT,
+    0x0001, 0,
+    0x0011, CONT_RIGHT,
+    0x0001, 0,
+    0x0040, CONT_LEFT,
+    0x0001, 0,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x000A, CONT_UP,
+    0x0001, 0,
+    0x0001, CONT_B,
+    0x0001, 0,
+    0x0018, CONT_LEFT,
+    0x0001, 0,
+    0x0025, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_B,
+    0x0001, 0,
+    0x0018, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0009, CONT_B,
+    0x0001, 0,
+    0x0017, CONT_LEFT,
+    0x0001, 0,
+    0x001A, CONT_LEFT,
+    0x0001, 0,
+    0x001E, CONT_RIGHT,
+    0x0001, 0,
+    0x0037, CONT_LEFT,
+    0x0001, 0,
+    0x0035, CONT_RIGHT,
+    0x0001, 0,
+    0x000A, CONT_UP,
+    0x0001, 0,
+    0x0004, CONT_B,
+    0x0001, 0,
+    0x000D, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0003, CONT_UP | CONT_RIGHT,
+    0x0001, 0,
+    0x0008, CONT_B,
+    0x0001, 0,
+    0x0016, CONT_LEFT,
+    0x0001, 0,
+    0x0009, CONT_UP,
+    0x0001, 0,
+    0x0006, CONT_B,
+    0x0001, 0,
+    0x001D, CONT_UP,
+    0x0001, 0,
+    0xFFFF, 0
+};
+
+u16* D_800CBDFC[] = { D_800CA2B8, D_800CA8BC, D_800CAEA8, D_800CB6C8 };
+u16* D_800CBE0C[] = { D_800CA5C0, D_800CABB4, D_800CB2AC, D_800CBA60 };
 
 // quantizes NEGSIN to `n` number of angles
 #define UPPER_N_BITS(n, s) (((1 << ((n) / 2)) - 1) << ((s) - ((n) / 2)))
@@ -117,7 +1909,7 @@ s32 func_8001E6F4(u16 actor0, u16 actor1, s32 arg2) {
     return SIN(v) * (sp20 * arg2 * 2);
 }
 
-void func_8001E808(s32 arg0, s32 arg1) {
+void func_8001E808(u16 arg0, u16 arg1) {
 }
 
 void func_8001E814(u16 arg0, u16 arg1) {
@@ -171,7 +1963,7 @@ void func_8001EADC(u16 arg0, u16 arg1) {
 void func_8001EB8C(u16 arg0, u16 arg1) {
     gActors[arg1].unk_0DC = gActors[arg0].unk_0DA;
     gActors[arg1].unk_0DD = gActors[arg0].unk_0DB;
-    D_800CA1C0[gActors[arg0].unk_0DB](arg0, arg1, gActors);
+    D_800CA1C0[gActors[arg0].unk_0DB](arg0, arg1);
 }
 
 void func_8001EC1C(void) {
@@ -198,24 +1990,117 @@ void func_8001EC1C(void) {
     s16 sp198[0x90];
     s16 sp78[0x90];
 
-    if (!(D_80137458 & 0x10) && (gGameState == 6)) {
-        count_a2 = 0;
-        index_s1 = 0;
-        spBB8[0] = 0;
-        sp978[0] = gPlayerActor.posX.whole + gPlayerActor.hitboxBX1 + 0x30;
-        sp738[0] = (gPlayerActor.posX.whole + gPlayerActor.hitboxBX0) - 0x30;
-        sp3D8[0] = gPlayerActor.posY.whole + gPlayerActor.hitboxBY0 + 0x28;
-        sp198[0] = (gPlayerActor.posY.whole + gPlayerActor.hitboxBY1) - 0x28;
-        count_t0 = 1;
-        for (; index_s1 < 0x90; index_s1++) {
-            if (gActors[index_s1].flags & ACTOR_FLAG_UNK7) {
-                spBB8[count_t0] = index_s1;
-                sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
-                sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
-                sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
-                sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
+    if ((D_80137458 & 0x10) || (gGameState != 6)) {
+        return;
+    }
+
+    count_a2 = 0;
+    index_s1 = 0;
+    spBB8[0] = 0;
+    sp978[0] = gPlayerActor.posX.whole + gPlayerActor.hitboxBX1 + 0x30;
+    sp738[0] = (gPlayerActor.posX.whole + gPlayerActor.hitboxBX0) - 0x30;
+    sp3D8[0] = gPlayerActor.posY.whole + gPlayerActor.hitboxBY0 + 0x28;
+    sp198[0] = (gPlayerActor.posY.whole + gPlayerActor.hitboxBY1) - 0x28;
+    count_t0 = 1;
+    for (; index_s1 < 0x90; index_s1++) {
+        if (gActors[index_s1].flags & ACTOR_FLAG_UNK7) {
+            spBB8[count_t0] = index_s1;
+            sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
+            sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
+            sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
+            sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
+        }
+        if ((gActors[index_s1].flags & ACTOR_FLAG_UNK10) != 0) {
+            spA98[count_a2] = index_s1;
+            sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
+            sp618[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX0;
+            sp2B8[count_a2] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY0;
+            sp78[count_a2++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY1;
+        }
+    }
+
+    for (index_fp = 0; index_fp < count_a2; index_fp++) {
+        actor_index = spA98[index_fp];
+        gActors[actor_index].pendingDamage = 0;
+        for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
+            index_s1 = spBB8[index_s4];
+            if (index_s1 != actor_index) {
+                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) &&
+                    (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp]) && (sp78[index_fp] < sp3D8[index_s4])) {
+
+                    if (index_s4 == 0) {
+                        if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
+                            (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
+                            gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
+                        }
+                    }
+                    else {
+                        do {
+                            if ((gActors[actor_index].unk_0DF & 0x20) & 0xFF) { // fakematch? `& 0xFF` for regalloc
+                                if ((gActors[index_s1].unk_0DA & 0x20) == 0) {
+                                    break;
+                                }
+
+                                if (gActors[index_s1].unk_0DB == 0x12) {
+                                    gActors[index_s1].unk_0F8.raw = gActors[actor_index].velocityX.raw;
+                                    gActors[index_s1].unk_0FC.raw = gActors[actor_index].velocityY.raw;
+                                }
+                            }
+                            else if (gActors[index_s1].unk_0DB == 0x12) {
+                                break;
+                            }
+
+                            if (gActors[index_s1].unk_0DB < 0x15) {
+                                // This unreachable branch preserves IDO's reload before the contact-owner store.
+                                if ((!gActors) && (!gActors)) {
+                                }
+                                gActors[index_s1].parentIndex = actor_index;
+                            }
+                            if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
+                                (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
+                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
+                                if (gActors[index_s1].unk_0DB < 0x17) {
+                                    gActors[actor_index].parentIndex = index_s1;
+                                    gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
+                                    gActors[actor_index].pendingDamage += gActors[index_s1].damage;
+                                }
+                            }
+                        } while (0);
+                    }
+                }
             }
-            if ((gActors[index_s1].flags & ACTOR_FLAG_UNK10) != 0) {
+        }
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
+            func_8001EB8C(gActors[actor_index].parentIndex, actor_index);
+        }
+        if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
+            if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                gActors[actor_index].health -= gActors[actor_index].pendingDamage;
+            }
+            else {
+                gActors[actor_index].health = 0;
+            }
+        }
+    }
+
+    count_a2 = 0;
+    index_s1 = 0;
+    spBB8[0] = 0;
+    sp978[0] = gPlayerActor.posX.whole + gPlayerActor.hitboxBX1 + 0x30;
+    sp738[0] = (gPlayerActor.posX.whole + gPlayerActor.hitboxBX0) - 0x30;
+    sp3D8[0] = gPlayerActor.posY.whole + gPlayerActor.hitboxBY0 + 0x28;
+    sp198[0] = (gPlayerActor.posY.whole + gPlayerActor.hitboxBY1) - 0x28;
+    count_t0 = 1;
+    for (; index_s1 < 0x90; index_s1++) {
+        if (((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK11)) {
+            spBB8[count_t0] = index_s1;
+            sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
+            sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
+            sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
+            sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
+        }
+        if (gActors[index_s1].iFrames == 0) {
+            if ((gActors[index_s1].health >= 0) && ((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK12) && ((index_s1 == 0) || (gActors[index_s1].health != 0))) {
                 spA98[count_a2] = index_s1;
                 sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
                 sp618[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX0;
@@ -223,207 +2108,119 @@ void func_8001EC1C(void) {
                 sp78[count_a2++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY1;
             }
         }
+    }
+
+    for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
+        index_s1 = spBB8[index_s4];
+        var_t2 = 0x80000001;
+        var_t3 = 0x7FFF;
         for (index_fp = 0; index_fp < count_a2; index_fp++) {
             actor_index = spA98[index_fp];
-            gActors[actor_index].pendingDamage = 0;
-            for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
-                index_s1 = spBB8[index_s4];
-                if (index_s1 != actor_index) {
-                    if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) &&
-                        (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp]) && (sp78[index_fp] < sp3D8[index_s4])) {
-
-                        if (index_s4 == 0) {
-                            if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
-                                (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
-                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
-                            }
-                        }
-                        else {
-                            do {
-                                if ((gActors[actor_index].unk_0DF & 0x20) & 0xFF) { // fakematch? `& 0xFF` for regalloc
-                                    if ((gActors[index_s1].unk_0DA & 0x20) == 0) {
-                                        break;
-                                    }
-
-                                    if (gActors[index_s1].unk_0DB == 0x12) {
-                                        gActors[index_s1].unk_0F8.raw = gActors[actor_index].velocityX.raw;
-                                        gActors[index_s1].unk_0FC.raw = gActors[actor_index].velocityY.raw;
-                                    }
-                                }
-                                else if (gActors[index_s1].unk_0DB == 0x12) {
-                                    break;
-                                }
-
-                                if (gActors[index_s1].unk_0DB < 0x15) {
-                                    // This unreachable branch preserves IDO's reload before the contact-owner store.
-                                    if ((!gActors) && (!gActors)) {
-                                    }
-                                    gActors[index_s1].parentIndex = actor_index;
-                                }
-                                if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
-                                    (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
-                                    gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
-                                    if (gActors[index_s1].unk_0DB < 0x17) {
-                                        gActors[actor_index].parentIndex = index_s1;
-                                        gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
-                                    }
-                                }
-                            } while (0);
-                        }
-                    }
-                }
-            }
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
-                func_8001EB8C(gActors[actor_index].parentIndex, actor_index);
-            }
-            if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
-                    gActors[actor_index].health -= gActors[actor_index].pendingDamage;
-                }
-                else {
-                    gActors[actor_index].health = 0;
-                }
-            }
-        }
-
-        count_a2 = 0;
-        index_s1 = 0;
-        spBB8[0] = 0;
-        sp978[0] = gPlayerActor.posX.whole + gPlayerActor.hitboxBX1 + 0x30;
-        sp738[0] = (gPlayerActor.posX.whole + gPlayerActor.hitboxBX0) - 0x30;
-        sp3D8[0] = gPlayerActor.posY.whole + gPlayerActor.hitboxBY0 + 0x28;
-        sp198[0] = (gPlayerActor.posY.whole + gPlayerActor.hitboxBY1) - 0x28;
-        count_t0 = 1;
-        for (; index_s1 < 0x90; index_s1++) {
-            if (((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK11)) {
-                spBB8[count_t0] = index_s1;
-                sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
-                sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
-                sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
-                sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
-            }
-            if (gActors[index_s1].iFrames == 0) {
-                if ((gActors[index_s1].health >= 0) && ((gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) == 0) && (gActors[index_s1].flags & ACTOR_FLAG_UNK12) && ((index_s1 == 0) || (gActors[index_s1].health != 0))) {
-                    spA98[count_a2] = index_s1;
-                    sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
-                    sp618[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX0;
-                    sp2B8[count_a2] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY0;
-                    sp78[count_a2++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY1;
-                }
-            }
-        }
-
-        for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
-            index_s1 = spBB8[index_s4];
-            var_t2 = 0x80000001;
-            var_t3 = 0x7FFF;
-            for (index_fp = 0; index_fp < count_a2; index_fp++) {
-                actor_index = spA98[index_fp];
-                if ((actor_index != 0xFFFF) && (index_s1 != actor_index)) {
-                    if (gActors[actor_index].unk_0DB != 0x18) {
-                        if (gActors[actor_index].posZ.raw >= var_t2) {
-                            spCDE = ABS(gActors[index_s1].posX.whole - gActors[actor_index].posX.whole) +
-                                    ABS(gActors[index_s1].posY.whole - gActors[actor_index].posY.whole);
-                            if ((var_t2 == gActors[actor_index].posZ.raw) && (var_t3 < spCDE)) {
-                                continue;
-                            }
-                        }
-                        else {
+            if ((actor_index != 0xFFFF) && (index_s1 != actor_index)) {
+                if (gActors[actor_index].unk_0DB != 0x18) {
+                    if (gActors[actor_index].posZ.raw >= var_t2) {
+                        spCDE = ABS(gActors[index_s1].posX.whole - gActors[actor_index].posX.whole) +
+                                ABS(gActors[index_s1].posY.whole - gActors[actor_index].posY.whole);
+                        if ((var_t2 == gActors[actor_index].posZ.raw) && (var_t3 < spCDE)) {
                             continue;
                         }
                     }
+                    else {
+                        continue;
+                    }
+                }
 
-                    if ((sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
-                        if (sp78[index_fp] < sp3D8[index_s4]) {
-                            if (index_s4 == 0) {
-                                if (!(gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK0)) {
-                                    gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
-                                }
-                                break;
+                if ((sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
+                    if (sp78[index_fp] < sp3D8[index_s4]) {
+                        if (index_s4 == 0) {
+                            if (!(gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK0)) {
+                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
                             }
-                            else if (gActors[actor_index].unk_0DB == 0x18) {
+                            break;
+                        }
+                        else if (gActors[actor_index].unk_0DB == 0x18) {
+                            gActors[actor_index].parentIndex = index_s1;
+                            gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK0;
+                        }
+                        else {
+                            var_t2 = gActors[actor_index].posZ.raw;
+                            var_t3 = spCDE;
+                            spA98[index_fp] = 0xFFFF;
+                            gActors[index_s1].parentIndex = actor_index;
+                            gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (spCDE) {} // fakematch to get lh/sh spCDE around for loop above
+
+    if (gGameState != 6) {
+        return;
+    }
+
+    count_t0 = 0;
+    count_a2 = 0;
+    index_s1 = 0;
+    for (; index_s1 < 0x90; index_s1++) {
+        if (!(gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) && (gActors[index_s1].flags & ACTOR_FLAG_UNK9)) {
+            spBB8[count_t0] = index_s1;
+            sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
+            sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
+            sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
+            sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
+        }
+        if (gActors[index_s1].flags & ACTOR_FLAG_UNK8) {
+            spA98[count_a2] = index_s1;
+            sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
+            sp618[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX0;
+            sp4F8[count_a2] = gActors[index_s1].posX.whole;
+            sp2B8[count_a2] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY0;
+            sp78[count_a2++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY1;
+        }
+    }
+
+    for (index_fp = 0; index_fp < count_a2; index_fp++) {
+        actor_index = spA98[index_fp];
+        spCE6 = gActors[actor_index].pendingDamage;
+        gActors[actor_index].pendingDamage = 0;
+        for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
+            index_s1 = spBB8[index_s4];
+            if (index_s1 != actor_index) {
+                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
+                    if (sp78[index_fp] < sp3D8[index_s4]) {
+                        gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
+                        if ((gActors[index_s1].unk_0DB < 0x14) || (gActors[index_s1].unk_0DB == 0x18)) {
+                            gActors[index_s1].parentIndex = actor_index;
+                        }
+                        if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
+                            gActors[actor_index].iFrames = 60;
+                        }
+                        if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
+                            if (gActors[index_s1].unk_0DB < 0x14) {
+                                gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
+                                gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                 gActors[actor_index].parentIndex = index_s1;
-                                gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK0;
-                            }
-                            else {
-                                var_t2 = gActors[actor_index].posZ.raw;
-                                var_t3 = spCDE;
-                                spA98[index_fp] = 0xFFFF;
-                                gActors[index_s1].parentIndex = actor_index;
-                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK8;
+                                func_8001EB8C(index_s1, actor_index);
                             }
                         }
                     }
                 }
             }
         }
-
-        if (spCDE) {} // fakematch to get lh/sh spCDE around for loop above
-
-        if (gGameState == 6) {
-            count_t0 = 0;
-            count_a2 = 0;
-            index_s1 = 0;
-            for (; index_s1 < 0x90; index_s1++) {
-                if (!(gActors[index_s1].flags_098 & ACTOR_FLAG3_UNK1) && (gActors[index_s1].flags & ACTOR_FLAG_UNK9)) {
-                    spBB8[count_t0] = index_s1;
-                    sp978[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX1;
-                    sp738[count_t0] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxAX0;
-                    sp3D8[count_t0] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY0;
-                    sp198[count_t0++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxAY1;
-                }
-                if (gActors[index_s1].flags & ACTOR_FLAG_UNK8) {
-                    spA98[count_a2] = index_s1;
-                    sp858[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX1;
-                    sp618[count_a2] = gActors[index_s1].posX.whole + gActors[index_s1].hitboxBX0;
-                    sp4F8[count_a2] = gActors[index_s1].posX.whole;
-                    sp2B8[count_a2] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY0;
-                    sp78[count_a2++] = gActors[index_s1].posY.whole + gActors[index_s1].hitboxBY1;
-                }
+        if (actor_index == 0) {
+            if (gActors[actor_index].pendingDamage == 0) {
+                gActors[actor_index].pendingDamage = spCE6;
             }
-
-            for (index_fp = 0; index_fp < count_a2; index_fp++) {
-                actor_index = spA98[index_fp];
-                spCE6 = gActors[actor_index].pendingDamage;
-                gActors[actor_index].pendingDamage = 0;
-                for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
-                    index_s1 = spBB8[index_s4];
-                    if (index_s1 != actor_index) {
-                        if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
-                            if (sp78[index_fp] < sp3D8[index_s4]) {
-                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
-                                if ((gActors[index_s1].unk_0DB < 0x14) || (gActors[index_s1].unk_0DB == 0x18)) {
-                                    gActors[index_s1].parentIndex = actor_index;
-                                }
-                                if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
-                                    gActors[actor_index].iFrames = 60;
-                                }
-                                if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
-                                    if (gActors[index_s1].unk_0DB < 0x14) {
-                                        gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                        gActors[actor_index].pendingDamage += gActors[index_s1].damage;
-                                        gActors[actor_index].parentIndex = index_s1;
-                                        func_8001EB8C(index_s1, actor_index);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                if (actor_index == 0) {
-                    if (gActors[actor_index].pendingDamage == 0) {
-                        gActors[actor_index].pendingDamage = spCE6;
-                    }
-                }
-                else if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
-                    if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
-                        gActors[actor_index].health -= gActors[actor_index].pendingDamage;
-                    }
-                    else {
-                        gActors[actor_index].health = 0;
-                    }
-                }
+        }
+        else if (!(gActors[actor_index].flags & ACTOR_FLAG_UNK15)) {
+            if (gActors[actor_index].pendingDamage < gActors[actor_index].health) {
+                gActors[actor_index].health -= gActors[actor_index].pendingDamage;
+            }
+            else {
+                gActors[actor_index].health = 0;
             }
         }
     }
@@ -433,24 +2230,26 @@ void func_8001EC1C(void) {
 void Actors_SetPlatforms(void) {
     u16 index;
 
-    if (!(D_80137458 & 0x10)) {
-        for (index = 0, gPlatform1ActorCount = 0, gPlatform0ActorCount = 0; index < 144; index++) {
-            if (gActors[index].flags & ACTOR_FLAG_PLATFORM1) {
-                gPlatform1Actors[gPlatform1ActorCount] = index;
-                gPlatforms1X1[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
-                gPlatforms1X0[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
-                gPlatforms1Y0[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
-                gPlatforms1Y1[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY1;
-                gPlatform1ActorCount++;
-            }
-            if (gActors[index].flags & ACTOR_FLAG_PLATFORM0) {
-                gPlatform0Actors[gPlatform0ActorCount] = index;
-                gPlatforms0X1[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
-                gPlatforms0X0[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
-                gPlatforms0Y0[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
-                gPlatforms0Y1[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0 - 8;
-                gPlatform0ActorCount++;
-            }
+    if ((D_80137458 & 0x10)) {
+        return;
+    }
+
+    for (index = 0, gPlatform1ActorCount = 0, gPlatform0ActorCount = 0; index < 144; index++) {
+        if (gActors[index].flags & ACTOR_FLAG_PLATFORM1) {
+            gPlatform1Actors[gPlatform1ActorCount] = index;
+            gPlatforms1X1[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+            gPlatforms1X0[gPlatform1ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+            gPlatforms1Y0[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+            gPlatforms1Y1[gPlatform1ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY1;
+            gPlatform1ActorCount++;
+        }
+        if (gActors[index].flags & ACTOR_FLAG_PLATFORM0) {
+            gPlatform0Actors[gPlatform0ActorCount] = index;
+            gPlatforms0X1[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX1;
+            gPlatforms0X0[gPlatform0ActorCount] = gActors[index].posX.whole + gActors[index].hitboxBX0;
+            gPlatforms0Y0[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0;
+            gPlatforms0Y1[gPlatform0ActorCount] = gActors[index].posY.whole + gActors[index].hitboxBY0 - 8;
+            gPlatform0ActorCount++;
         }
     }
 }

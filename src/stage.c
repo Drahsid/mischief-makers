@@ -8,6 +8,7 @@
 #include "linker.h"
 #include "rle.h"
 #include "stage.h"
+#include "1F1E0.h"
 
 
 // .data

@@ -82,7 +82,7 @@ segments:
       - [0x001050, c, boot]
       - [0x001BE0, c, input]
       - [0x001DF0, c, dma]
-      - [0x001EF0, c, gamestate]
+      - [0x001EF0, c, game_state]
       - [0x0023D0, c, music] # music.c from rodata
       - [0x004F80, c, font] # SDK FONT.C-derived sprite text
       - [0x005510, c, rle_type1]
@@ -91,7 +91,7 @@ segments:
       - [0x011820, asm] # collision builder?
       - [0x012DD0, c] # has to do with spawning the player actor, and the camera
       - [0x0134E0, c]
-      - [0x013850, c, gameover] # gameover gamestate
+      - [0x013850, c, gameover] # gameover game_state
       - [0x0156F0, c]
       - [0x017A70, c]
       - [0x018280, c, stage]
@@ -316,7 +316,8 @@ segments:
       - [0x0C8BE0, data] # main actor/update dispatch table
       - [0x0C8DE0, .data, stage]
       - [0x0CA300, .data, actor_init]
-      - [0x0CADC0, data]
+      - [0x0CADC0, .data, 1F1E0]
+      - [0x0CCA20, data, lifebar]
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
       - [0x0D2410, data] # 62250
@@ -359,7 +360,7 @@ segments:
       - [0x0EB7B0, .data, libc/xlitob]
       - [0x0EB7E0, .data, ultralib/log/log]
       # rodata
-      - [0x0EB7F0, .rodata, gamestate]
+      - [0x0EB7F0, .rodata, game_state]
       - [0x0EB830, .rodata, music]
       - [0x0EBB10, rodata] # 5A70?
       - [0x0EBBC0, rodata] # A540?

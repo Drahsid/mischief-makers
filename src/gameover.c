@@ -1,6 +1,7 @@
 #include "common.h"
+#include "game_state.h"
 #include "stage.h"
-#include "Alphabet.h"
+#include "1F1E0.h"
 
 s16 gGraphicListContinue[] = {
     0x2804, 8,

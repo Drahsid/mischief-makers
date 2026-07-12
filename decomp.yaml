@@ -75,7 +75,7 @@ tools:
             - boot
             - input
             - dma
-            - gamestate
+            - game_state
             - music
             - font
             - rle_type1
@@ -95,12 +95,14 @@ tools:
             - soft_reset
             - "241E0"
             - "26A00"
-            - "27F70"
+            - text
+            - "28EF0"
             - "42E90"
             - "438E0"
             - "48A30"
             - marina
             - "4FEB0"
+            - "57F20"
             - "59EA0"
             - "5D120"
             - "5E230"
@@ -127,43 +129,28 @@ tools:
             - assets/
             - cosineTable
             - floatTable
-            - BF0D0
-            - BF0F0
+            - globals
             - music_data
             - C5B20
             - C6200
             - C7DA0
             - C84A0
+            - C8910
             - C8B20
             - C8BE0
-            - C90F0
-            - CA300
-            - D22D0
+            - D2410
             - E44A0
             - E4760
             - E4920
             - E5160
-            - E6700
             - EBB10
             - EBBC0
             - EBBE0
-            - EBEA0
-            - EC190
-            - EC220
-            - EC920
             - EC960
-            - EC9D0
-            - ECAC0
-            - ECB90
-            - ECCF0
-            - ECD80
-            - ED0E0
             - EDBC0
-            - EDC10
             - EDC20
             - EDC50
             - EDCE0
-            - EDEF0
             - bss_
 
         - id: overlays

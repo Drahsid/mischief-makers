@@ -1,4 +1,5 @@
 #include "common.h"
+#include "1F1E0.h"
 
 extern u16 D_800CA238;
 extern s16 D_800CBF44;

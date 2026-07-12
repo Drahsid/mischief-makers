@@ -2,6 +2,8 @@
 #include "actor.h"
 #include "boot.h"
 #include "input.h"
+#include "game_state.h"
+#include "1F1E0.h"
 
 void func_800012F0(void);
 void func_8000147C(void);
@@ -111,21 +113,8 @@ void func_8000147C(void) {
     func_80083E74(); // DebugText_Tick
 }
 
-
-extern void GameState_SoftReset(void);
-extern void GameState_Intro(void);
-extern void GameState_TitleScreen(void);
-extern void GameState_DebugSoundTest(void);
-extern void GameState_DebugStageSelect(void);
-extern void GameState_Loading(void);
-extern void GameState_Gameplay(void);
-extern void GameState_ContinueScreen(void);
 extern void GameState_State8Overlay(void);
 extern void GameState_State9Overlay(void);
-extern void GameState_Attract(void);
-extern void GameState_FileSelect(void);
-extern void GameState_Transition(void);
-extern void GameState_Records(void);
 
 void func_80001670(void) {
     switch (gGameState) {

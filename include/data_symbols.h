@@ -49,9 +49,6 @@ extern u64 D_801781F0;
 extern u16 D_801782B8;
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
-extern u16 D_800CA230;
-extern u16 D_800CA254[]; // "d  h  m  s"
-extern u16 D_800CA26C[]; // "Continue"
 extern u16 D_800CBF40;
 extern u16 D_800CBF50;
 extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
