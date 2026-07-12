@@ -83,8 +83,8 @@ void func_80192224_6D28A4(u16 parent_index, u16 actor_index, u16 graphic_index, 
     gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + pos_x;
     gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + pos_y;
     gActors[actor_index].posZ.whole = gActors[parent_index].posZ.whole + pos_z;
-    gActors[actor_index].var_158 = pos_x << 0x10;
-    gActors[actor_index].var_15C = pos_y << 0x10;
+    gActors[actor_index].var_158 = TO_FIXED(pos_x);
+    gActors[actor_index].var_15C = TO_FIXED(pos_y);
     gActors[actor_index].var_154 = parent_index;
     gActors[actor_index].var_160 = pos_z;
 }
@@ -183,10 +183,10 @@ f32 func_801927F8_6D2E78(u16 actor_index, f32 arg1, u16 arg2) {
     s32 velocity_y = gActors[actor_index].velocityY.raw;
     s32 temp_v0 = func_8008412C(actor_index, 1.0f, arg1, arg2);
 
-    gActors[actor_index].unk_11C = gActors[actor_index].velocityY.raw / 65536.0;
+    gActors[actor_index].unk_11C = FROM_FIXED((f64)gActors[actor_index].velocityY.raw);
     gActors[actor_index].velocityX.raw = velocity_x;
     gActors[actor_index].velocityY.raw = velocity_y;
-    return (f32)temp_v0 / 65536.0;
+    return FROM_FIXED((f64)(f32)temp_v0);
 }
 
 f32 func_801928B8_6D2F38(u16 arg0, f32 arg1, u16 arg2) {
@@ -1272,8 +1272,8 @@ void func_80195EA0_6D6520(u16 actor_index) {
 void func_80195F28_6D65A8(u16 actor_index) {
     u16 parent_index = ((u16*)&gActors[actor_index].var_154)[1];
 
-    gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + (gActors[actor_index].var_158 / 0x10000);
-    gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + (gActors[actor_index].var_15C / 0x10000);
+    gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + FROM_FIXED(gActors[actor_index].var_158);
+    gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + FROM_FIXED(gActors[actor_index].var_15C);
     gActors[actor_index].posZ.whole = gActors[parent_index].posZ.whole + gActors[actor_index].var_160;
     gActors[actor_index].colorA = gActors[parent_index].colorA;
 }
@@ -1400,8 +1400,8 @@ void func_801961D0_6D6850(u16 actor_index) {
                 case 2:
                     gActors[actor_index].stateUpper++;
                     gActors[actor_index].unk_114 = 30.0f;
-                    gActors[actor_index].unk_16C = (s32)(func_801927F8_6D2E78(actor_index, -16.0f, 0x3C) * 65536.0f);
-                    gActors[actor_index].unk_168 = (s32)(gActors[actor_index].unk_11C * 65536.0f);
+                    gActors[actor_index].unk_16C = (s32)TO_FIXED(func_801927F8_6D2E78(actor_index, -16.0f, 0x3C));
+                    gActors[actor_index].unk_168 = (s32)TO_FIXED(gActors[actor_index].unk_11C);
                     break;
 
                 case 3:
@@ -1508,8 +1508,8 @@ void func_80196FC8_6D7648(u16 actor_index) {
         gActors[new_actor_index].posX.whole = (s32)((Rand() - 0x80) * 0.3);
         gActors[new_actor_index].posY.whole = (s32)(((Rand() - 0x80) * 0.3) + 48.0);
         angle = Math_Atan2(-gActors[actor_index].posX.whole, 0x30 - gActors[actor_index].posY.whole);
-        gActors[new_actor_index].velocityX.raw = FIXED_UNIT(COS(angle));
-        gActors[new_actor_index].velocityY.raw = FIXED_UNIT(SIN(angle));
+        gActors[new_actor_index].velocityX.raw = TO_FIXED(COS(angle));
+        gActors[new_actor_index].velocityY.raw = TO_FIXED(SIN(angle));
         gActors[new_actor_index].var_158 = 0;
         gActors[new_actor_index].var_15C = 0;
         gActors[new_actor_index].unk_168 = 0;
@@ -1518,8 +1518,8 @@ void func_80196FC8_6D7648(u16 actor_index) {
         gActors[new_actor_index].unk_114 = -0.03f;
         gActors[new_actor_index].unk_118 = 0.0f;
         gActors[new_actor_index].unk_148 = 10.0f;
-        gActors[new_actor_index].var_160 = Rand() << 0x10;
-        gActors[new_actor_index].var_150 = Rand() << 0x10;
+        gActors[new_actor_index].var_160 = TO_FIXED(Rand());
+        gActors[new_actor_index].var_150 = TO_FIXED(Rand());
         gActors[new_actor_index].var_154 = -4;
     }
 }
@@ -1558,19 +1558,19 @@ void func_80198274_6D88F4(u16 actor_index) {
                     gActors[actor_index].posX.whole = D_801993C0_6D9A40[table_index].pos_x;
                     gActors[actor_index].posY.whole = D_801993C0_6D9A40[table_index].pos_y;
                     gActors[actor_index].unk_16C =
-                        (s32)(func_801927F8_6D2E78(
+                        (s32)TO_FIXED(func_801927F8_6D2E78(
                             actor_index,
                             D_801993C0_6D9A40[table_index].target_x - gActors[actor_index].posX.whole,
                             0x28
-                        ) * 65536.0f);
-                    gActors[actor_index].unk_168 = (s32)(gActors[actor_index].unk_11C * 65536.0f);
+                        ));
+                    gActors[actor_index].unk_168 = (s32)TO_FIXED(gActors[actor_index].unk_11C);
                     gActors[actor_index].unk_174 =
-                        (s32)(func_801927F8_6D2E78(
+                        (s32)TO_FIXED(func_801927F8_6D2E78(
                             actor_index,
                             D_801993C0_6D9A40[table_index].target_y - gActors[actor_index].posY.whole,
                             0x28
-                        ) * 65536.0f);
-                    gActors[actor_index].unk_170 = (s32)(gActors[actor_index].unk_11C * 65536.0f);
+                        ));
+                    gActors[actor_index].unk_170 = (s32)TO_FIXED(gActors[actor_index].unk_11C);
                     break;
                 }
 
@@ -1777,12 +1777,12 @@ void func_80198B18_6D9198(u16 actor_index) {
                                 break;
                             case 3:
                                 gActors[actor_index].state = 0x120;
-                                gActors[actor_index].unk_11C = 360448.0f;
+                                gActors[actor_index].unk_11C = (f32)FIXED_UNIT(5.5);
                                 if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-                                    gActors[actor_index].unk_120 = -131072.0f;
+                                    gActors[actor_index].unk_120 = (f32)FIXED_UNIT(-2.0);
                                 }
                                 else {
-                                    gActors[actor_index].unk_120 = 131072.0f;
+                                    gActors[actor_index].unk_120 = (f32)FIXED_UNIT(2.0);
                                 }
                                 break;
                             case 4:

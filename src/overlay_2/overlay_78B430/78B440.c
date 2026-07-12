@@ -39,7 +39,7 @@ void func_801A6900_78B440(s32 actor_index) {
 }
 
 void func_801A6908_78B448(u16 actor_index) {
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, 0x2000);
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
 }
 
 // init chain link for grappling hook hand for pirate mini-boss in "Trapped!"
@@ -106,7 +106,7 @@ void func_801A6E48_78B988(u16 arg0) {
         gActors[actor_index].posY.whole = gActors[arg0].posY.whole + 0x10;
         switch (gActors[arg0].health & 0x300) {
             case 0x200:
-            gActors[actor_index].velocityX.raw = gActors[arg0+1].unk_130 * FIXED_UNIT(1);
+            gActors[actor_index].velocityX.raw = TO_FIXED(gActors[arg0+1].unk_130);
             gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.0);
             gActors[actor_index].unk_12C = 2.0f;
             break;
@@ -150,7 +150,7 @@ void func_801A7C78_78C7B8(u16 actor_index) {
         gActors[actor_index].rotateZ += 10.0f;
       }
     
-      gActors[actor_index].velocityY.raw-= 0x2000;
+      gActors[actor_index].velocityY.raw-= FIXED_UNIT(0.125);
       if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         // bounce ball if it hits the floor and has more "bounces" left.
         if (gActors[actor_index].unk_12C >= 0.0f) {

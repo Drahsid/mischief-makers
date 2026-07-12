@@ -1,6 +1,7 @@
 #define Actor_Initialize_RET void
 #include "common.h"
 #include "stage.h"
+#include "28EF0.h"
 
 typedef struct {
     u8 unk0[0x20];
@@ -786,7 +787,7 @@ void ActorUpdate_ClanballRail(u16 actor_index) {
     switch (gActors[actor_index].state) {                        /* switch 1 */
     case 0:
         gActors[actor_index].unk_164 = (s32) gActors[actor_index].var_110 & 0x3FFF;
-        gActors[actor_index].var_15C = gActors[actor_index].unk_164 << 0x10;
+        gActors[actor_index].var_15C = TO_FIXED(gActors[actor_index].unk_164);
         gActors[actor_index].var_160 = gActors[actor_index].unk_164 * 7;
         if ((s32) gActors[actor_index].var_110 & 0x8000) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4;
@@ -1215,8 +1216,8 @@ s32 func_80064328(u16 actor_index) {
 }
 
 void func_800643CC(u16 actor_index) {
-    Spikeball_MoveX(actor_index, 0x8000, 0x800, -(Rand() & 3), (Rand() & 3));
-    Spikeball_MoveY(actor_index, 0x8000, 0x400, -(Rand() & 1), (Rand() & 1));
+    Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.03125), -(Rand() & 3), (Rand() & 3));
+    Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.015625), -(Rand() & 1), (Rand() & 1));
     switch (gActors[actor_index].var_15C) {
     case 0:
         if (func_80064328(actor_index) != 0) {

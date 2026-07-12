@@ -1,3 +1,4 @@
+D_800E1180 = 0x800E1180;
 gCosineLookup = 0x800BCCD0; // size:0x1000
 gUnusedFloatTable = 0x800BDCD0; // size:0x800
 gActiveFrames = 0x800BE4E0; // size:0x2
@@ -578,7 +579,20 @@ gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;
 
 gStageTime = 0x801781E0;// type:u16 size:0x2
-gFestivalData =  0x801781F8; // size:0xB4
+gFestivalEventState = 0x80178220;
+gFestivalCurrentEvent = 0x80178224;
+gFestivalCompetitorCount = 0x80178226;
+gFestivalFouls = 0x80178228;
+gFestivalCompetitorIndices = 0x80178230;
+gFestivalCompetitors = 0x80178238;
+gFestivalEventClearCount = 0x8017828C;
+gFestivalPointsRed = 0x8017828E;
+gFestivalPointsWhite = 0x80178290;
+gFestivalIsTimeBeat = 0x80178293;
+gFestivalTimeCurrent = 0x80178294;
+gFestivalTimeToBeat = 0x80178298;
+gFestivalEventsPlayed = 0x801782A0;
+gGuestActorHP = 0x801782AA;
 
 gActorInitStats = 0x800C9700; // size:0x6d8
 gActorInitFlags = 0x800C9DD8; // size:0x1F4

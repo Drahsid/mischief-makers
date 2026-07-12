@@ -4,7 +4,6 @@
 // "overlay 4" code for the festival games and "Cerberus Alpha"
 
 extern u16 D_800D28F8;
-extern u16* D_80178288;
 
 u16 D_801BB030_7DC230[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
@@ -258,7 +257,7 @@ void func_801B9908_7DAB08(void) {
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB168_7DC368);
-            gFestivalData.currentEvent = FESTGAME_SELECT;
+            gFestivalCurrentEvent = FESTGAME_SELECT;
             break;
 
         case 1:

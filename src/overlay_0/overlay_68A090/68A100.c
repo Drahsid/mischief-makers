@@ -143,7 +143,7 @@ void func_80194754_68C754(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 0x14), 0xF, 0x200, 0x84, 8, 0x50000, 0x20000, 0xA, 0, -0x18, 0,
+    func_80031E38(0x80, 0x90, (actor_index + 0x14), 0xF, 0x200, 0x84, 8, FIXED_UNIT(5.0), FIXED_UNIT(2.0), 0xA, 0, -0x18, 0,
         0x10, -8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x28, 0, 0x6E, 0x46, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 0x14].unk_18C = 2;
@@ -157,7 +157,7 @@ void func_801949B4_68C9B4(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 6), 0xF, 0x200, 0x84, 8, 0x80000, 0x40000, 0xA, 0, -0x16, 0x10,
+    func_80031E38(0x80, 0x90, (actor_index + 6), 0xF, 0x200, 0x84, 8, FIXED_UNIT(8.0), FIXED_UNIT(4.0), 0xA, 0, -0x16, 0x10,
         0x16, -0x16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x14, 0, 0x2D, 0x50, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 6].unk_18C = 2;
@@ -215,9 +215,9 @@ void func_80195D28_68DD28(void) {
     gActors[0x39].hitboxBY0 = 0x18;
     gActors[0x39].hitboxBY1 = -0x18;
     func_80195CA8_68DCA8(0x43);
-    gActors[0x43].unk_0F8.raw = 0x110000;
+    gActors[0x43].unk_0F8.raw = FIXED_UNIT(17.0);
     func_80195CA8_68DCA8(0x46);
-    gActors[0x46].unk_0F8.raw = 0x50000;
+    gActors[0x46].unk_0F8.raw = FIXED_UNIT(5.0);
 }
 
 void func_80195DCC_68DDCC(void) {
@@ -230,14 +230,13 @@ void func_80195DCC_68DDCC(void) {
 }
 
 void func_80195E0C_68DE0C(u16 actor_index) {
-    gActors[actor_index].graphicList = D_801A3D40_69BD40;\
-    gActors[actor_index].graphicTimer = 1;
+    ACTOR_GFX_INIT(actor_index, D_801A3D40_69BD40);
     gActors[actor_index].flags |= 0x200;
     gActors[actor_index].damage = 0;
     gActors[actor_index].unk_0DA = 0x80;\
     gActors[actor_index].unk_0DB = 4;
-    gActors[actor_index].unk_0F8.raw = 0x30000;\
-    gActors[actor_index].unk_0FC.raw = 0x20000;
+    gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);\
+    gActors[actor_index].unk_0FC.raw = FIXED_UNIT(2.0);
     Actor_SetHitboxA(actor_index, 0xE);
 }
 

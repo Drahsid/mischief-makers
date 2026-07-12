@@ -29,7 +29,7 @@ Gfx gDefaultRenderSetupDisplayList[] = {
 Gfx gDefaultViewportSetupDisplayList[] = {
     gsSPViewport(&gDefaultViewport),
     gsSPClipRatio(FRUSTRATIO_2),
-    gsSPClearGeometryMode(G_ZBUFFER | G_TEXTURE_ENABLE | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING | 0xFF60CDF8),
+    gsSPClearGeometryMode(G_ZBUFFER | G_TEXTURE_ENABLE | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING | 0xFFE0CDF8),
     gsSPSetGeometryMode(G_TEXTURE_GEN_LINEAR),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
     gsSPEndDisplayList(),

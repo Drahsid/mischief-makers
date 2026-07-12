@@ -136,10 +136,10 @@ u32 D_8019BD24_7544A4[] = {
 };
 
 void func_8019B100_753880(u16 actor_index) {
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index + 1].unk_12C * 2048.0f);
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, gActors[actor_index + 1].unk_12C * FIXED_UNIT(0.03125));
 
     if (gActors[actor_index].unk_16C & 1) {
-        gActors[actor_index].velocityX.raw = 81920.0f * gActors[actor_index + 1].unk_12C * gActors[actor_index + 1].unk_130;
+        gActors[actor_index].velocityX.raw = FIXED_UNIT(1.25) * gActors[actor_index + 1].unk_12C * gActors[actor_index + 1].unk_130;
     }
 }
 

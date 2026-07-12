@@ -73,6 +73,7 @@ extern s32 func_8005DF5C(s32 arg0);
 extern void ActorUpdate_3DIcon(u16 actor_index);
 extern void func_80066BCC(u16 actor_index);
 extern void func_80067EF0(u16);
+extern void func_8006CB88(u16);
 extern void func_8006CC70(u16);
 extern void func_8006CD5C(u16);
 extern void func_8008BFB0(void);
@@ -116,7 +117,7 @@ extern void func_80029134(u16 actor_index);
 extern u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2);
 extern u32 func_80029B74(s16 arg0);
 extern s32 func_800298D0(s32 arg0, s32 arg1, s32 arg2);
-extern void Actor_Clamp_0F8_0FC(u16 actor_index, s32 max_val);
+extern void func_8002ABE4(u16 actor_index, s16 val);
 extern void Actor_SetHitboxA(u16 actor_index, s16 val);
 extern void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
 extern void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
@@ -127,7 +128,6 @@ extern u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos
 extern void func_80033204(u16 arg0, u16 arg1, u16 arg2, f32 arg3, u16 arg4);
 extern void Clanpot_SetMixedItem(u16 actor_index, u16 arg1, u16* arg2);
 extern void ActorUpdate_Spikeball_Static(u16 actor_index);
-extern s16 Clanpot_AddItemCheck3(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
 extern void Spikeball_MoveX(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4);
 extern void Spikeball_MoveY(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4);
 extern void Spikeball_Jitter(u16 actor_index);
@@ -175,7 +175,7 @@ extern void func_8005E09C(s32 arg0, s32 arg1);
 extern void func_80067E9C(u16 actor_index);
 extern void func_8007325C(u16 actor_index);
 extern s32 func_80073320(u16 actor_index); // return could be u16
-extern void func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern Actor* func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 
 // warning: has 7th arg - is used in func, but isn't loaded in many calls.
@@ -213,7 +213,7 @@ extern void Palette_AdjustScenePalettes(
     s16 blue_offset_1, s16 green_offset_1, s16 red_offset_1,
     s16 blue_offset_2, s16 green_offset_2, s16 red_offset_2
 );
-extern void Actor_LoadSpawnTable(void* spawn_table);
+extern void Actor_LoadSpawnTable(u16* spawn_table);
 extern void func_80043D30(void* spawn);
 extern void func_80045FA4(void* arg0, u16* arg1);
 extern void func_80046148(void* arg0, u16* arg1);

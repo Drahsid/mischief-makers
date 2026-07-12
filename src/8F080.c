@@ -130,7 +130,7 @@ void func_8008F294(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80090F48.s")
 
 void func_80091158(u16 actor_index) {
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, 0x800);
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.03125));
     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-6.5)) {
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.265625);
     }

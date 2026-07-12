@@ -86,8 +86,8 @@ void func_80012438(void) {
     temp_x = (gScreenPosTargetX.raw + D_800BE61C - gScreenPosCurrentX.raw) / D_800BE704;
     step_x.raw = temp_x;
     temp_x = func_8005C6D0(temp_x);
-    if (temp_x < 0x10000) {
-        temp_x = 0x10000;
+    if (temp_x < FIXED_UNIT(1.0)) {
+        temp_x = FIXED_UNIT(1.0);
     }
     step_x.raw = temp_x;
     if (temp_x > D_800BE548.raw) {
@@ -123,8 +123,8 @@ void func_80012634(void) {
     temp_y = (gScreenPosTargetY.raw + D_800BE620 - gScreenPosCurrentY.raw) / D_800BE708;
     step_y.raw = temp_y;
     temp_y = func_8005C6D0(temp_y);
-    if (temp_y < 0x10000) {
-        temp_y = 0x10000;
+    if (temp_y < FIXED_UNIT(1.0)) {
+        temp_y = FIXED_UNIT(1.0);
     }
     step_y.raw = temp_y;
     if (temp_y > D_800BE54C.raw) {

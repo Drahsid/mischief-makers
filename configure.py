@@ -95,7 +95,7 @@ OK_PATH = f"build/{BASENAME}.ok"
 
 GAME_VERSION_DEFINE = f"-DGAME_VERSION=GAME_VERSION_{GAME_VERSION.upper()}"
 
-IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3DEX_GBI {GAME_VERSION_DEFINE} -DBUILD_VERSION=VERSION_H"
+IDO_DEFS = f"-D_LANGUAGE_C -D_DEBUG -DF3D_GBI {GAME_VERSION_DEFINE} -DBUILD_VERSION=VERSION_H"
 COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/PR -I ultralib/src"
 
 # Stock libultra_d.a version H IDO flags from ultralib/makefiles/ido.mk

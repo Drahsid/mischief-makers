@@ -137,7 +137,7 @@ void UpdateCameraShake(void) {
 void CameraShake(s32 shake_time, s32 shake_time_div) {
     gCamShakeType = 0;
     gCamShakeTime = shake_time_div;
-    gCamShakeMag = shake_time << 0x10;
+    gCamShakeMag = TO_FIXED(shake_time);
     gCamShakeMagDelta = gCamShakeMag / shake_time_div;
     gCamShakeV = 0;
 }

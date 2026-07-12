@@ -119,65 +119,49 @@ void func_8004320C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043918.s")
 
+s32 func_8004398C(u16* spawn);
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004398C.s")
 
-#ifdef NON_MATCHING
-extern u16 func_8004398C(u16* spawn);
-
-// https://decomp.me/scratch/oqVJs
-void Actor_LoadSpawnTable(void* spawn_table) {
-    ActorSpawnRecord* spawn;
-    u16 flags;
-    u16 actor_index;
+void Actor_LoadSpawnTable(u16* spawn) {
+    s32 actor_index;
     u16 jndex;
     u16 index;
     u16 counter;
-    u16* entry;
 
     index = 0;
-    counter = 0;
     jndex = 0;
-    spawn = spawn_table;
-    flags = spawn->flags;
-    while (flags != SPAWNRECORD_END) {
-        if (!(flags & 0x2000)) {
+    counter = 0;
+    while (spawn[0] != 0xFF00) {
+        if (!(spawn[0] & 0x2000)) {
             actor_index = func_8004398C(spawn);
-            flags = spawn->flags;
 
-            if (flags & 0x8000) {
-                entry = &D_800D357C[index];
-                entry[0] = actor_index;
-                entry[1] = gActors[actor_index].actorType;
-                flags = spawn->flags;
+            if (spawn[0] & 0x8000) {
+                D_800D357C[index + 0] = actor_index;
+                D_800D357C[index + 1] = gActors[actor_index].actorType;
                 index += 2;
             }
 
-            if (flags & 0x1000) {
-                entry = &D_800D361C[jndex];
-                entry[0] = actor_index;
-                entry[1] = gActors[actor_index].actorType;
-                entry[2] = counter;
+            if (spawn[0] & 0x1000) {
+                D_800D361C[jndex + 0] = actor_index;
+                D_800D361C[jndex + 1] = gActors[actor_index].actorType;
+                D_800D361C[jndex + 2] = counter;
                 jndex += 3;
             }
         }
 
-        flags = spawn[1].flags;
         counter += 7;
-        spawn++;
+        spawn += 0xE / sizeof(u16);
     }
 
-    while (index < 0x40) {
-        D_800D357C[index] = 0;\
-        index += 2;
+    for (; index < 0x40; index = actor_index + 2) {
+        actor_index = index;
+        D_800D357C[actor_index] = 0;
     }
-    while (jndex < 0x60) {
-        D_800D361C[jndex] = 0;\
-        jndex += 3;
+    for (; jndex < 0x60; jndex = actor_index + 3) {
+        actor_index = jndex;
+        D_800D361C[actor_index] = 0;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/Actor_LoadSpawnTable.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043C10.s")
 
@@ -462,7 +446,7 @@ s32 func_800463F0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_800465F4.s")
 
 void func_8004664C(void) {
-    D_801782B4 = Math_ApproachS32(D_801782B4, 0, 0x10000);
+    D_801782B4 = Math_ApproachS32(D_801782B4, 0, FIXED_UNIT(1.0));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004667C.s")

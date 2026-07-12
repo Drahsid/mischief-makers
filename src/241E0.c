@@ -56,7 +56,7 @@ void func_800235F4(void) {
     s32 angle;
 
     gCameraRot += gCameraRotDelta;
-    angle = gCameraRot / 0x10000;
+    angle = FROM_FIXED(gCameraRot);
     gLookatUpX = SIN(angle);
     gLookatUpY = COS(angle);
 }
@@ -111,15 +111,15 @@ void func_800237F0(void) {
 void func_80023894(void) {
     func_800237F0();
     D_800BE544 = 0x8000;
-    D_800BE548.raw = 0x80000;
+    D_800BE548.raw = FIXED_UNIT(8.0);
     if (D_800BE634 != 0) {
-        gScreenPosTargetX.raw = gPlayerPosX.raw - 0x600000;
+        gScreenPosTargetX.raw = gPlayerPosX.raw - FIXED_UNIT(96.0);
         if (gPlayerPosX.whole < 0xB98) {
             D_800BE634 = 0;
         }
     }
     else {
-        gScreenPosTargetX.raw = gPlayerPosX.raw + 0x600000;
+        gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(96.0);
         if (gPlayerPosX.whole >= 0xF89) {
             D_800BE634 = 1;
         }
@@ -135,7 +135,7 @@ void func_80023968(void) {
     gActors[0x31].posY.whole = 320 - gScreenPosCurrentY.whole;
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
-        gScreenPosTargetX.raw = gPlayerPosX.raw + 0x400000;
+        gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(64.0);
         gScreenPosTargetY.raw = gPlayerPosY.raw;
         D_800BE578 = gScreenPosCurrentX.whole / 2;
         D_800BE580 = (gScreenPosCurrentY.whole / 2) - 212;
@@ -152,7 +152,7 @@ void func_80023A34(void) {
     func_800237F0();
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
-        gScreenPosTargetX.raw = gPlayerPosX.raw + 0x200000;
+        gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(32.0);
         gScreenPosTargetY.raw = gPlayerPosY.raw;
         D_800BE704 = 1;
     }
@@ -277,14 +277,14 @@ void func_80023E40(void) {
 }
 
 void func_80023E48(void) {
-    D_800BE73C = (gScreenPosCurrentX.whole - gScreenPosNextX.whole) << 0x10;
+    D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
 void func_80023E6C(void) {
 }
 
 void func_80023E74(void) {
-    D_800BE73C = (gScreenPosCurrentX.whole - gScreenPosNextX.whole) << 0x10;
+    D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
 void func_80023E98(void) {
@@ -301,12 +301,12 @@ void func_80023EDC(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
-            gScreenPosTargetX.raw = gPlayerPosX.raw - 0x300000;
+            gScreenPosTargetX.raw = gPlayerPosX.raw - FIXED_UNIT(48.0);
         }
         else {
-            gScreenPosTargetX.raw = gPlayerPosX.raw + 0x300000;
+            gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(48.0);
         }
-        gScreenPosTargetY.raw = gPlayerPosY.raw + 0x280000;
+        gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(40.0);
     }
 }
 
@@ -314,11 +314,11 @@ void func_80023F5C(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw;
-        if ((gPlayerActor.parentIndex == 0x31) && (gActors[0x30].actorType == 0x907) && (gActors[0x32].unk_180 & 0x8000)) {
-            gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + 0x180000;
+        if ((gPlayerActor.parentIndex == ACTORTYPE_49) && (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
+            gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + FIXED_UNIT(24.0);
         }
         else {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + 0x280000;
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(40.0);
         }
     }
 }
@@ -327,7 +327,7 @@ void func_80024004(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         if (gStageState < 3) {
-            gScreenPosTargetY.raw = gPlayerPosY.raw + 0x280000;
+            gScreenPosTargetY.raw = gPlayerPosY.raw + FIXED_UNIT(40.0);
         }
         else {
             gScreenPosTargetY.raw = gPlayerPosY.raw;
@@ -341,10 +341,10 @@ void func_80024074(void) {
     D_800BE6A8 = 2;
     D_800BE708 = 1;
     D_800BE710 = 1;
-    D_800BE71C = 0x01000000;
+    D_800BE71C = FIXED_UNIT(256.0);
     D_800BE720 = 0;
-    D_800BE724 = 0x01C00000;
-    D_800BE728 = 0xFFFF0000;
+    D_800BE724 = FIXED_UNIT(448.0);
+    D_800BE728 = FIXED_UNIT(-1.0);
     gCameraRot = 0;
     gCameraRotDelta = 0;
     D_800BE638 = 0;
@@ -353,14 +353,14 @@ void func_80024074(void) {
 void func_800240E8(void) {
     switch (D_800BE638) {
     case 0:
-        D_800BE728 += 0x400;
-        if (D_800BE728 == 0x18000) {
+        D_800BE728 += FIXED_UNIT(0.015625);
+        if (D_800BE728 == FIXED_UNIT(1.5)) {
             D_800BE638++;
         }
         break;
     case 1:
-        D_800BE728 -= 0x400;
-        if (D_800BE728 == -0x18000) {
+        D_800BE728 -= FIXED_UNIT(0.015625);
+        if (D_800BE728 == FIXED_UNIT(-1.5)) {
             D_800BE638--;
         }
         break;
@@ -368,42 +368,42 @@ void func_800240E8(void) {
 
     switch (D_800BE634) {
     case 0:
-        D_800BE720 = (0x100000 - D_800BE71C) / 16;
-        if (D_800BE720 > 0x80000) {
-            D_800BE720 = 0x20000;
+        D_800BE720 = (FIXED_UNIT(16.0) - D_800BE71C) / 16;
+        if (D_800BE720 > FIXED_UNIT(8.0)) {
+            D_800BE720 = FIXED_UNIT(2.0);
         }
-        if (D_800BE71C < 0x600000) {
+        if (D_800BE71C < FIXED_UNIT(96.0)) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
             D_800BE634 += 1;
         }
         break;
     case 1:
-        D_800BE720 = (0x100000 - D_800BE71C) / 16;
-        if (D_800BE720 > 0x80000) {
-            D_800BE720 = 0x20000;
+        D_800BE720 = (FIXED_UNIT(16.0) - D_800BE71C) / 16;
+        if (D_800BE720 > FIXED_UNIT(8.0)) {
+            D_800BE720 = FIXED_UNIT(2.0);
         }
-        if (D_800BE71C < 0x120000) {
+        if (D_800BE71C < FIXED_UNIT(18.0)) {
             D_800BE720 = 0;
-            D_800BE71C = 0x100000;
-            gCameraRotDelta = 0xC000;
+            D_800BE71C = FIXED_UNIT(16.0);
+            gCameraRotDelta = FIXED_UNIT(0.75);
             D_800BE634 += 1;
         }
         break;
     case 2:
-        gCameraRotDelta -= 0x200;
+        gCameraRotDelta -= FIXED_UNIT(0.0078125);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }
-        else if (gCameraRotDelta == -0xC000) {
+        else if (gCameraRotDelta == FIXED_UNIT(-0.75)) {
             D_800BE634 += 1;
         }
         break;
     case 3:
-        gCameraRotDelta += 0x200;
+        gCameraRotDelta += FIXED_UNIT(0.0078125);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }
-        else if (gCameraRotDelta == 0xC000) {
+        else if (gCameraRotDelta == FIXED_UNIT(0.75)) {
             D_800BE634 -= 1;
         }
         break;
@@ -411,9 +411,9 @@ void func_800240E8(void) {
         break;
     }
     D_800BE71C += D_800BE720;
-    gLookatEyeY = (f32) (D_800BE71C / 0x10000);
+    gLookatEyeY = (f32) FROM_FIXED(D_800BE71C);
     D_800BE724 += D_800BE728;
-    gLookatEyeZ = (f32) (D_800BE724 / 0x10000);
+    gLookatEyeZ = (f32) FROM_FIXED(D_800BE724);
 }
 
 void func_80024428(void) {
@@ -421,9 +421,9 @@ void func_80024428(void) {
 
     func_800240E8();
     func_800235F4();
-    angle = gCameraRot / 0x10000;
-    D_800E3C48[0x10] = SIN(angle + COSPiOver4) * 128.0f;
-    D_800E3C48[0x11] = COS(angle + COSPiOver4) * 128.0f;
+    angle = FROM_FIXED(gCameraRot);
+    D_800E3C48[0x10] = SIN(angle + COS_DEG_45) * 128.0f;
+    D_800E3C48[0x11] = COS(angle + COS_DEG_45) * 128.0f;
 }
 
 void func_800244F8(void) {
@@ -436,7 +436,7 @@ void func_800244F8(void) {
 void func_80024528(void) {
     s32 angle;
 
-    angle = gCameraRot / 0x10000;
+    angle = FROM_FIXED(gCameraRot);
     gLookatUpX = SIN(angle);
     gLookatUpY = COS(angle);
 }
@@ -466,7 +466,7 @@ void func_800245F8(void) {
 }
 
 void func_80024600(void) {
-    D_800BE73C = (gScreenPosCurrentX.whole - gScreenPosNextX.whole) << 0x10;
+    D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
 void func_80024624(void) {
@@ -482,7 +482,7 @@ void func_80024668(void) {
     s16 var_v1;
 
     func_800235F4();
-    D_800BE73C = (gScreenPosCurrentX.whole - gScreenPosNextX.whole) << 0x10;
+    D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
     var_v0 = gScreenPosCurrentX.whole / 1.55;
     var_v1 = gScreenPosTargetX.whole / 1.55;
     if (var_v0 < 0x200) {
@@ -509,10 +509,10 @@ void func_80024854(void) {
 
 void func_8002488C(void) {
     D_800BE734 += D_800BE73C / 4;
-    D_800BE578 = D_800BE734 / 0x10000;
+    D_800BE578 = FROM_FIXED(D_800BE734);
     D_800BE580 = (gScreenPosCurrentY.whole / 1.55) - 422.0;
     D_800BE738 += D_800BE73C / 8;
-    D_800BE57C = D_800BE738 / 0x10000;
+    D_800BE57C = FROM_FIXED(D_800BE738);
     D_800BE584 = (gScreenPosCurrentY.whole / 1.55) - 326.0;
 }
 
@@ -525,13 +525,13 @@ void func_800249B8(void) {
         if ((D_800CC428) && (temp_f10 > 0x06000000)) {
             D_800CC428 = FALSE;
             temp_f10 = (temp_f10 & 0x01FFFFFF) + 0x12000000;
-            gScreenPosCurrentX.whole = (temp_f10 * 1.55) / 65536.0;
+            gScreenPosCurrentX.whole = FROM_FIXED(temp_f10 * 1.55);
             gScreenPosTargetX.raw = gScreenPosCurrentX.raw + D_800BE73C;
             D_800BE634 += 1;
         }
         else if (temp_f10 > 0x10000000) {
             temp_f10 = (temp_f10 & 0x07FFFFFF) + 0x08000000;
-            gScreenPosCurrentX.whole = (temp_f10 * 1.55) / 65536.0;
+            gScreenPosCurrentX.whole = FROM_FIXED(temp_f10 * 1.55);
             gScreenPosTargetX.raw = gScreenPosCurrentX.raw + D_800BE73C;
         }
         else {
@@ -545,13 +545,13 @@ void func_800249B8(void) {
             gDrawBackground = TRUE;
             D_800CC428 = FALSE;
             temp_f10 = (temp_f10 & 0x01FFFFFF) + 0x02000000;
-            gScreenPosCurrentX.whole = (temp_f10 * 1.55) / 65536.0;
+            gScreenPosCurrentX.whole = FROM_FIXED(temp_f10 * 1.55);
             gScreenPosTargetX.raw = gScreenPosCurrentX.raw + D_800BE73C;
             D_800BE634 -= 1;
         }
         else if (temp_f10 >= 0x20000001) {
             temp_f10 = (temp_f10 & 0x07FFFFFF) + 0x18000000;
-            gScreenPosCurrentX.whole = (temp_f10 * 1.55) / 65536.0;
+            gScreenPosCurrentX.whole = FROM_FIXED(temp_f10 * 1.55);
             gScreenPosTargetX.raw = gScreenPosCurrentX.raw + D_800BE73C;
         }
         else {
@@ -572,7 +572,7 @@ void func_80024D5C(void) {
 }
 
 void func_80024D6C(void) {
-    D_800BE73C = (gScreenPosCurrentX.whole - gScreenPosNextX.whole) << 0x10;
+    D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
     func_8002488C();
 }
 
@@ -627,14 +627,14 @@ void func_80024EA0(void) {
         break;
     case 2:
         gScreenPosTargetY.raw += 0x319A;
-        D_800BE738 += 0x20000;
+        D_800BE738 += FIXED_UNIT(2.0);
         if (gScreenPosCurrentY.whole > 0x4B0) {
             gDrawEnvLayer = FALSE;
             D_800BE634 += 1;
         }
         break;
     case 3:
-        D_800BE738 += 0x20000;
+        D_800BE738 += FIXED_UNIT(2.0);
         break;
     }
     if (gScreenPosCurrentX.whole < 0x1900) {
