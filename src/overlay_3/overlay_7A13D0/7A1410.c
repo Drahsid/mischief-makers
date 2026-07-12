@@ -127,7 +127,12 @@ s16 D_801B5F38_7A6A48[14] = {
     0x686B, 8, 0x686C, 8, 0x686D, 8, 0x686E, 8, 0x686F, 8, 0x6870, 8, 0, 0,
 };
 
-s16 D_801B5F54_7A6A64[8] = { 0x0168, 0xA, 0x0168, 0xA, 0x0168, 0xA, 0, 0 };
+s16 D_801B5F54_7A6A64[8] = {
+    GINDEX_BLASTB, 0xA,
+    GINDEX_BLASTB, 0xA,
+    GINDEX_BLASTB, 0xA,
+    0, 0,
+};
 
 s16 D_801B5F64_7A6A74[4] = { 0x201A, 5, 0, 0 };
 
@@ -136,11 +141,18 @@ s16 D_801B5F6C_7A6A7C[8] = { 0x2018, 5, 0x2016, 5, 0x2014, 5, 0, 0 };
 s16 D_801B5F7C_7A6A8C[8] = { 0x01E0, 6, 0x01E2, 6, 0x01E4, 6, 0, 0 };
 
 s16 D_801B5F8C_7A6A9C[18] = {
-    0x01C6, 5, 0x01C8, 5, 0x01CA, 5, 0x01CC, 5, 0x01CE, 5,
-    0x01D0, 5, 0x01D2, 5, 0x01D4, 5, 0, 0,
+    GINDEX_POOF, 5,
+    GRAPHIC_FRAME(POOF, 1), 5,
+    GRAPHIC_FRAME(POOF, 2), 5,
+    GRAPHIC_FRAME(POOF, 3), 5,
+    GRAPHIC_FRAME(POOF, 4), 5,
+    GRAPHIC_FRAME(POOF, 5), 5,
+    GRAPHIC_FRAME(POOF, 6), 5,
+    GRAPHIC_FRAME(POOF, 7), 5,
+    0, 0,
 };
 
-s16 D_801B5FB0_7A6AC0[6] = { 0x01C6, 0x40, 0x01C6, 5, 0, 0 };
+s16 D_801B5FB0_7A6AC0[6] = { GINDEX_POOF, 0x40, GINDEX_POOF, 5, 0, 0 };
 
 s16* D_801B5FBC_7A6ACC = D_801B5E90_7A69A0;
 s16* D_801B5FC0_7A6AD0 = D_801B5E98_7A69A8;
@@ -415,7 +427,7 @@ void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
                     new_actor_index = Actor_RangeFindInactive(0x70, 0x7A);
                     if (new_actor_index != 0) {
-                        gActors[new_actor_index].actorType = 0x2601;
+                        gActors[new_actor_index].actorType = ACTORTYPE_OVL0_GEN_BOMB1;
                         Actor_Initialize(new_actor_index);
                         gActors[new_actor_index].posX.raw = gActors[actor_index].posX.raw;
                         gActors[new_actor_index].posY.raw = gActors[actor_index].posY.raw;
@@ -1453,7 +1465,7 @@ void func_801B3500_7A4010(u16 actor_index, s32 offset_x, s32 offset_y) {
     new_actor = &gActors[new_actor_index];
     new_actor->graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
     new_actor->flags = ACTOR_FLAG_ENABLED;
-    new_actor->graphicIndex = 0x16C;
+    new_actor->graphicIndex = GINDEX_GROUNDFLAME;
     new_actor->unk_148 = 36.0f;
     new_actor->posZ.whole = gActors[actor_index].posZ.whole;
     new_actor->scaleX = 0.200000003f;
@@ -1597,7 +1609,7 @@ void func_801B3B78_7A4688(u16 actor_index) {
             gActors[actor_index].hitboxBY0 = 4;
             gActors[actor_index].hitboxBX0 = -0x18;
             gActors[actor_index].hitboxBX1 = 0x18;
-            gActors[actor_index].graphicIndex = 0x25C;
+            gActors[actor_index].graphicIndex = GINDEX_MISSLE;
             gActors[actor_index].state++;
             gActors[actor_index].scaleX = 2.0f;
             break;
@@ -1632,7 +1644,7 @@ void func_801B3CE8_7A47F8(u16 actor_index) {
         case 0:
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
-            gActors[actor_index].graphicIndex = 0x25C;
+            gActors[actor_index].graphicIndex = GINDEX_MISSLE;
             gActors[actor_index].state++;
             gActors[actor_index].rotateZ = 90.0f;
             gActors[actor_index].scaleX = 2.0f;
@@ -1863,7 +1875,7 @@ void func_801B455C_7A506C(u16 actor_index) {
 
     switch (gActors[actor_index].state) {
         case 0:
-            ACTOR_INIT(pair_actor_index, 0);
+            ACTOR_INIT(pair_actor_index, ACTORTYPE_ZERO);
             gActors[pair_actor_index].graphicIndex = 0x28A;
             gActors[pair_actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED;
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
@@ -1872,7 +1884,7 @@ void func_801B455C_7A506C(u16 actor_index) {
             gActors[actor_index].hitboxBY0 = 4;
             gActors[actor_index].hitboxBX0 = -0x24;
             gActors[actor_index].hitboxBX1 = 0x24;
-            gActors[actor_index].graphicIndex = 0x25C;
+            gActors[actor_index].graphicIndex = GINDEX_MISSLE;
             gActors[actor_index].state++;
             gActors[actor_index].scaleX = 3.0f;
             gActors[actor_index].scaleY = 1.5f;
@@ -1999,7 +2011,7 @@ void func_801B4B64_7A5674(u16 actor_index) {
     new_actor_index = 0x50;
     position_x = 3696;
     index_u16 = 0;
-    actor_type = 0x4F;
+    actor_type = ACTORTYPE_SPIKEBALL_O2;
     for (index = 0; index < 0xB; index++) {
         index_u16 = index;
         gActors[new_actor_index].actorType = actor_type;

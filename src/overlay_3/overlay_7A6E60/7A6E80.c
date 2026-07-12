@@ -168,7 +168,9 @@ f32 D_801B52FC_7AB87C[62] = {
 };
 
 u16 D_801B53F4_7AB974[16] = {
-    0x46, 0x48, 0x4A, 0x48, 0x21, 0x20, 0x24, 0x22,
+    GINDEX_CLANBLOCKSQAURE, GRAPHIC_FRAME(CLANBLOCKSQAURE, 1),
+    GRAPHIC_FRAME(CLANBLOCKSQAURE, 2), GRAPHIC_FRAME(CLANBLOCKSQAURE, 1),
+    0x21, 0x20, 0x24, 0x22,
     0x23, 0x26, 0x28, 0x1F, 0x1F, 0x1F, 0x1F, 0x32,
 };
 Overlay_7A6E60_Graphic_Index_Table D_801B5414_7AB994 = {
@@ -558,9 +560,9 @@ void func_801B0CBC_7A723C(u16 arg0) {
 }
 
 void func_801B0CEC_7A726C(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x31, actorType, 0);
+    ACTOR_FIXEDADDRESS_SET(0x31, actorType, ACTORTYPE_ZERO);
     Actor_Initialize(0x31);
-    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, 0x2D0);
+    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, GINDEX_SOLIDSQARE);
     ACTOR_FIXEDADDRESS_OR(0x31, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK11);
     ACTOR_FIXEDADDRESS_OR(0x31, flags, ACTOR_FLAG_FREEZE_POS);
     ACTOR_FIXEDADDRESS_SET(0x31, posX.whole, 0);
@@ -706,11 +708,11 @@ s32 func_801B12F0_7A7870(u16 actor_index) {
 }
 
 void func_801B13F8_7A7978(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x69, actorType, 0x1D);
+    ACTOR_FIXEDADDRESS_SET(0x69, actorType, ACTORTYPE_GRAPHICONLY);
     Actor_Initialize(0x69);
     ACTOR_FIXEDADDRESS_SET(0x69, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK11);
     ACTOR_FIXEDADDRESS_SET(0x69, flags, ACTOR_FLAG_ENABLED | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x69, graphicIndex, 0x2D0);
+    ACTOR_FIXEDADDRESS_SET(0x69, graphicIndex, GINDEX_SOLIDSQARE);
     ACTOR_FIXEDADDRESS_SET(0x69, colorB, 0xBA);
     ACTOR_FIXEDADDRESS_SET(0x69, colorA, 0xB2);
     ACTOR_FIXEDADDRESS_SET(0x69, posX.whole, 55);
@@ -849,7 +851,7 @@ void func_801B195C_7A7EDC(u16 actor_index) {
 
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK11;
         gActors[new_actor_index].flags &= ~ACTOR_FLAG_ONSCREEN_ONLY;
-        gActors[new_actor_index].graphicIndex = (graphic_data.indices[index] * 2) + 0x2D2;
+        gActors[new_actor_index].graphicIndex = (graphic_data.indices[index] * 2) + GINDEX_ALPHASTART;
         gActors[new_actor_index].posX.whole = gActors[actor_index].unk_174 - gScreenPosCurrentX.whole + 64;
         gActors[new_actor_index].posY.whole = 350 - gScreenPosCurrentY.whole;
         gActors[new_actor_index].posZ.whole = -255;

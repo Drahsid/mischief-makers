@@ -1200,7 +1200,7 @@ f32 D_801B9100_7A0F40[16] = {
     0.0625f, 0.125f, 0.1875f, 0.25f,
 };
 
-u16 D_801B9140_7A0F80[2] = { 0x5F, 0x54 };
+u16 D_801B9140_7A0F80[2] = { ACTORTYPE_CLANBLOB, ACTORTYPE_CLANCER_84 };
 
 u16 D_801B9144_7A0F84[8] = {
     4408, 4504, 4408, 4504,
@@ -1353,7 +1353,7 @@ void func_801B0D6C_798BAC(u16 actor_index) {
 
     timer_flag = (timer >> 12) & 1;
     for (index = 0; index < count; index++) {
-        ACTOR_INIT(child_index, 0x500);
+        ACTOR_INIT(child_index, ACTORTYPE_OVL3_W2_CLANCERSWING);
         gActors[child_index].graphicIndex = 0x102C;
         gActors[child_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ;
         gActors[child_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
@@ -2410,7 +2410,7 @@ void func_801B3634_79B474(u16 actor_index) {
 }
 
 void func_801B36FC_79B53C(u16 arg0, u16 actor_index) {
-    gActors[actor_index].actorType = 0x508;
+    gActors[actor_index].actorType = ACTORTYPE_OVL3_W2_3DPLATFROM_8;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = 400 - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = (arg0 << 6) - (gScreenPosCurrentY.whole & 0x3F) - 192;
@@ -2644,7 +2644,7 @@ void func_801B3EB4_79BCF4(u16 actor_index) {
             return;
         }
 
-        gActors[new_actor_index].actorType = 0x50B;
+        gActors[new_actor_index].actorType = ACTORTYPE_OVL3_W2_SPIKEBALL_11;
         Actor_Initialize(new_actor_index);
         gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
         gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole;
@@ -2723,7 +2723,7 @@ void func_801B42D8_79C118(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK6;
-            gActors[actor_index].graphicIndex = 0xA8;
+            gActors[actor_index].graphicIndex = GINDEX_RAILSTRAIGHTV;
             gActors[actor_index].unk_188 = 0;
             gActors[actor_index].posZ.whole = -272;
             gActors[actor_index].state++;
@@ -2839,7 +2839,7 @@ void func_801B46D8_79C518(u16 actor_index) {
                     (gActors[actor_index].posX.whole < (gActors[0].posX.whole + 192))) {
                     u16 new_actor_index = gActors[actor_index].var_154;
                     if (gActors[new_actor_index].flags == 0) {
-                        gActors[new_actor_index].actorType = 0x5F;
+                        gActors[new_actor_index].actorType = ACTORTYPE_CLANBLOB;
                         Actor_Initialize(new_actor_index);
                         gActors[new_actor_index].var_110 = gActors[actor_index].var_110;
                         gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
@@ -2882,12 +2882,12 @@ void func_801B480C_79C64C(u16 actor_index) {
                 }
 
                 index = gActors[actor_index].var_15C;
-                ACTOR_INIT(index + 0, 0x1C);
+                ACTOR_INIT(index + 0, ACTORTYPE_CLANBALL_28);
                 gActors[index + 0].posX.whole = D_801B9144_7A0F84[gActors[actor_index].var_158] - gScreenPosCurrentX.whole;
                 gActors[index + 0].posY.whole = 1152 - gScreenPosCurrentY.whole;
                 gActors[index + 0].var_110 = ((gActors[actor_index].var_158 & 3) << 8) + index + 0x8101;
                 gActors[index + 1].var_0D8 = 0;
-                gActors[index + 1].actorType = 0x61;
+                gActors[index + 1].actorType = ACTORTYPE_CLANBALL_RAIL;
                 Actor_Initialize(index + 1);
                 gActors[index + 1].posX.whole = gActors[index + 0].posX.whole;
                 gActors[index + 1].posY.whole = gActors[index + 0].posY.whole;
@@ -3159,7 +3159,7 @@ void func_801B53A8_79D1E8(u16 actor_index) {
                         break;
                 }
 
-                gActors[actor_index].graphicIndex = 0xA2;
+                gActors[actor_index].graphicIndex = GINDEX_RAILSTRAIGHTH;
                 gActors[actor_index].state = 0x40;
             }
             else {
@@ -3194,7 +3194,7 @@ void func_801B53A8_79D1E8(u16 actor_index) {
                         break;
                 }
 
-                gActors[actor_index].graphicIndex = 0xA8;
+                gActors[actor_index].graphicIndex = GINDEX_RAILSTRAIGHTV;
                 gActors[actor_index].state = 0x10;
             }
             break;
