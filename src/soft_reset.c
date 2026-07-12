@@ -142,7 +142,7 @@ void func_800230B8(void) {
         gActors[index].graphicList = NULL;
     }
         for(index = 0; index < 0x40; index++){
-        D_801069E0[index].graphicIndex = 0;
+        gStaticObjects[index].graphicIndex = 0;
     }
 }
 

@@ -44,7 +44,7 @@ typedef struct {
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
     /* 0x8C */ u16* palette;
-} UnkStruct_801069E0; /* sizeof = 0x90 */
+} StaticObject; /* sizeof = 0x90 */
 
 // struct storing data about Marina player actor
 typedef struct {

@@ -20,7 +20,7 @@ u32 D_80104094;
 PortraitStruct gPortraits[66]; 
 s8 gSfxPanOverrides[4];
 u32 D_801069DC;
-UnkStruct_801069E0 D_801069E0[64];
+StaticObject gStaticObjects[64];
 u16 gSfxActorIndices[4];
 u8 D_80108DE8[512][32];
 u16 gSfxStopTimers[4];

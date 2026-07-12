@@ -994,11 +994,11 @@ s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index) {
     s8 temp_a;
     s16 temp_b;
 
-    if ((D_801069E0[index].posX.whole < -0x17F) || (D_801069E0[index].posX.whole >= 0x180)) {
+    if ((gStaticObjects[index].posX.whole < -0x17F) || (gStaticObjects[index].posX.whole >= 0x180)) {
         return -1;
     }
 
-    Sound_CalculatePanVol(D_801069E0[index].posX.whole, D_801069E0[index].posY.whole, &temp_a, &temp_b);
+    Sound_CalculatePanVol(gStaticObjects[index].posX.whole, gStaticObjects[index].posY.whole, &temp_a, &temp_b);
 
     if (temp_b < 0x80) {
         return -1;

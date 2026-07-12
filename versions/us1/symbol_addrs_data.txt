@@ -267,6 +267,7 @@ gSfxBankIds = 0x800C2280;
 gSfxSoundIds = 0x800C26DC;
 gSfxSampleParams = 0x800C2E00;
 gSfxPanOverrides = 0x801069D8; // size:0x4
+gStaticObjects = 0x801069E0; // size:0x2400
 gPortraits = 0x80104098; // size:0x2940
 gSfxActorIndices = 0x80108DE0; // size:0x8
 gSfxStopTimers = 0x8010CDE8; // size:0x8

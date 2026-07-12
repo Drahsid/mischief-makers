@@ -2815,20 +2815,20 @@ s32 GemCollect_Static(u16 actor_index) {
         return 0;
     }
 
-    if (((D_801069E0[actor_index].posX.whole + 6) >= (gActors->posX.whole + gActors->hitboxBX0)) && 
-        ((D_801069E0[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxBX1)) &&
-        ((D_801069E0[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxBY0)) && 
-        ((D_801069E0[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxBY1))) {
-        GemCollect(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
+    if (((gStaticObjects[actor_index].posX.whole + 6) >= (gActors->posX.whole + gActors->hitboxBX0)) && 
+        ((gStaticObjects[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxBX1)) &&
+        ((gStaticObjects[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxBY0)) && 
+        ((gStaticObjects[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxBY1))) {
+        GemCollect(actor_index, TRUE, gStaticObjects[actor_index].palette, gStaticObjects[actor_index].posX.whole, gStaticObjects[actor_index].posY.whole);
         return 1;
     }
 
     if ((gActors->flags & ACTOR_FLAG_UNK11) && 
-        ((D_801069E0[actor_index].posX.whole + 6) >= (gActors->posX.whole + gActors->hitboxAX0)) && 
-        ((D_801069E0[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxAX1)) && 
-        ((D_801069E0[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxAY0)) && 
-        ((D_801069E0[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxAY1))) {
-        GemCollect(actor_index, TRUE, D_801069E0[actor_index].palette, D_801069E0[actor_index].posX.whole, D_801069E0[actor_index].posY.whole);
+        ((gStaticObjects[actor_index].posX.whole + 6) >= (gActors->posX.whole + gActors->hitboxAX0)) && 
+        ((gStaticObjects[actor_index].posX.whole - 6) <= (gActors->posX.whole + gActors->hitboxAX1)) && 
+        ((gStaticObjects[actor_index].posY.whole - 6) <= (gActors->posY.whole + gActors->hitboxAY0)) && 
+        ((gStaticObjects[actor_index].posY.whole + 6) >= (gActors->posY.whole + gActors->hitboxAY1))) {
+        GemCollect(actor_index, TRUE, gStaticObjects[actor_index].palette, gStaticObjects[actor_index].posX.whole, gStaticObjects[actor_index].posY.whole);
         return 2;
     }
 
