@@ -46,7 +46,7 @@ void func_800601FC(u16 actor_index) {
     switch (gActors[actor_index].stateLower) {
     case 0x0:
         actor_1 = gActors[actor_index].unk_14C;
-        gActors[actor_index].rotateZ = Math_Atan2(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw) * 0.3515625;
+        gActors[actor_index].rotateZ = INDEX_TO_DEG(Math_Atan2(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw));
         gActors[actor_index].posX.raw = gActors[actor_1].posX.raw + gActors[actor_index].unk_0F8.raw;
         gActors[actor_index].posY.raw = gActors[actor_1].posY.raw + gActors[actor_index].unk_0FC.raw;
         func_80052C4C(actor_index, actor_1);
@@ -62,7 +62,7 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].var_110 -= 0.0075;
         }
         else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
-            gActors[actor_index].rotateZ = Math_PlaneOctant(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw) * 0.3515625;
+            gActors[actor_index].rotateZ = INDEX_TO_DEG(Math_PlaneOctant(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw));
             gActors[actor_index].var_158 = gActors[actor_index].unk_0F8.raw;
             gActors[actor_index].var_15C = gActors[actor_index].unk_0FC.raw;
             gActors[actor_index].velocityX.raw = -gActors[actor_index].unk_0F8.raw / 8;

@@ -368,7 +368,7 @@ void func_8019654C_6C121C(u16 actor_index) {
 
     rand = Rand();\
     D_801A2190_6CCE60 = (Math_Atan2(gPlayerActor.posX.whole - gActors[actor_index + 8].posX.whole,
-                                       gPlayerActor.posY.whole - gActors[actor_index + 8].posY.whole) - (rand & 0x3F) - 0x310) & 0x3FF;
+                                       gPlayerActor.posY.whole - gActors[actor_index + 8].posY.whole) - (rand & 0x3F) - 0x310) & COS_MASK;
 }
 
 void func_801965D0_6C12A0(u16 actor_index, u16 angle) {

@@ -1,6 +1,7 @@
 #define Actor_Initialize_RET void
 #include "common.h"
 #include "stage.h"
+#include "28EF0.h"
 
 typedef struct {
     u8 unk0[0x20];

@@ -93,7 +93,7 @@ extern void func_8008CA90(void);
 
 // quantizes NEGSIN to `n` number of angles
 #define UPPER_N_BITS(n, s) (((1 << ((n) / 2)) - 1) << ((s) - ((n) / 2)))
-#define NEGSIN_QUANTIZE(x, n) gCosineLookup[(((x) + COSPiOver2) & UPPER_N_BITS(n, 10)) & COSLEN]
+#define NEGSIN_QUANTIZE(x, n) gCosineLookup[(((x) + COS_DEG_90) & UPPER_N_BITS(n, 10)) & COS_MASK]
 
 s32 func_8001E5E0(u16 actor0, u16 actor1, s32 arg2) {
     s32 v;

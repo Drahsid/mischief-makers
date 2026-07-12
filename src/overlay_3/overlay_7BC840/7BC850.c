@@ -1,4 +1,5 @@
 #include "common.h"
+#include "28EF0.h"
 
 extern s16 gNoHit;
 extern s16 D_800E1714[];
@@ -48,7 +49,6 @@ s16 D_801B4B6C_7C0ABC;
 s16 D_801B4B6E_7C0ABE;
 u8 D_801B4B70_7C0AC0;
 
-extern s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2);
 extern void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16 arg5);
 extern void func_8002C6E4(u16 actor_index);
 extern void func_800339BC(s32 arg0, s32 arg1, s32 arg2, u16 arg3);
