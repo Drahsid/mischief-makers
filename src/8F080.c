@@ -1831,7 +1831,7 @@ s32 func_8008F094(u16 actor_index, u16 arg1) {
 }
 
 // needs return to match some callers
-s32 func_8008F108(u16 actor_index) {
+DEFAULT_INT func_8008F108(u16 actor_index) {
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0));
 }
 
@@ -2515,7 +2515,7 @@ void func_800919C8(u16 actor_index) {
     }
 }
 
-s32 func_80091BDC(u16 arg0) {
+DEFAULT_INT func_80091BDC(u16 arg0) {
     s32 temp_v0;
 
     func_80040858(arg0);
