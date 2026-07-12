@@ -1243,14 +1243,14 @@ void func_80079CE8(u16 arg0) {
     sp1E = Actor_RangeFindInactive_90ToC0();
     if (sp1E != 0) {
         func_800333A0(gActors[arg0].posX.whole, gActors[arg0].posY.whole, gActors[arg0].posZ.whole, 1.5f);
-        Sound_PlaySfx(0x93);
+        Sound_PlaySfx(SFX_0093);
         func_80073FD8(sp1E, gActors[arg0].var_110, gActors[arg0].var_0D8);
     }
 }
 
 void func_80079DF8(u16 actor_index) {
     func_80034644(actor_index);
-    Sound_PlaySfx(0x2D);
+    Sound_PlaySfx(SFX_002D);
     gActors[actor_index].unk_118 = 4.0f;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
     gActors[actor_index].unk_114 += 5.0f;
@@ -1734,11 +1734,11 @@ void func_8007B73C(u16 actor_index) {
             if ((actor->flags_098 & ACTOR_FLAG3_UNK9) && !(actor->var_150 & 0x100000)) {
                 if (actor->unk_0DE == 1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
-                    Sound_PlaySfx(0x67);
+                    Sound_PlaySfx(SFX_0067);
                     func_80079AB4(actor_index);
                 }
                 else {
-                    Sound_PlaySfx(0x2F);
+                    Sound_PlaySfx(SFX_GRAB_002F);
                     func_80079B28(actor_index);
                 }
             }
@@ -1998,7 +1998,7 @@ void func_8007B73C(u16 actor_index) {
                 }
                 func_80033E7C(actor_index, actor->posX.whole + var_v0, actor->posY.whole + 8, actor->posZ.whole - 1, FIXED_UNIT(1), FIXED_UNIT(8), 3);
                 if (actor->flags_098 & ACTOR_FLAG3_UNK1) {
-                    Sound_PlaySfx(0x9D);
+                    Sound_PlaySfx(SFX_009D);
                     ACTOR_GFX_INIT(actor_index, D_800D821C);
                 }
                 else if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
@@ -2030,7 +2030,7 @@ void func_8007B73C(u16 actor_index) {
             actor->var_15C = actor->flags & (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
             actor->unk_114 = 30.0f;
             actor->unk_118 = -1.0f;
-            Sound_PlaySfx(0x45);
+            Sound_PlaySfx(SFX_0045);
             actor->unk_168 = Math_Atan2(actor->velocityX.raw, actor->velocityY.raw) << 0x10;
         }
         break;
@@ -2042,8 +2042,8 @@ void func_8007B73C(u16 actor_index) {
         actor->unk_0FC.raw = FIXED_UNIT(5.25);
         actor->damage = 10;
         if ((actor->velocityY.raw < 0 && (actor->flags_098 & ACTOR_FLAG3_UNK5)) || (actor->velocityY.raw > 0 && actor->flags_098 & ACTOR_FLAG3_UNK4)) {
-            Actor_ReduceHealth(actor_index, 0x32);
-            Sound_PlaySfx(0xAC);
+            Actor_ReduceHealth(actor_index, 50);
+            Sound_PlaySfx(SFX_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw /= 4;
             break;
@@ -2060,8 +2060,8 @@ void func_8007B73C(u16 actor_index) {
 
         if ((actor->velocityX.raw > 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK3) || (actor->var_150 & 8)))
            || (actor->velocityX.raw < 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK2) || (actor->var_150 & 4)))) {
-            Actor_ReduceHealth(actor_index, 0x32);
-            Sound_PlaySfx(0xAC);
+            Actor_ReduceHealth(actor_index, 50);
+            Sound_PlaySfx(SFX_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw = (s32) -actor->velocityX.raw / 2;
             break;
@@ -2103,12 +2103,12 @@ void func_8007B73C(u16 actor_index) {
             func_80079810(actor_index);
         }
         if ((actor->velocityY.raw < 0) && (actor->flags_098 & ACTOR_FLAG3_UNK5)) {
-            Sound_PlaySfx(0x36);
+            Sound_PlaySfx(SFX_0036);
             ACTOR_GFX_INIT(actor_index, D_800D81F8);
             actor->velocityY.raw = -actor->velocityY.raw;
         }
         if (((actor->velocityX.raw < 0) && (actor->flags_098 & ACTOR_FLAG3_UNK2)) || ((actor->velocityX.raw > 0) && (actor->flags_098 & ACTOR_FLAG3_UNK3))) {
-            Sound_PlaySfx(0x36);
+            Sound_PlaySfx(SFX_0036);
             ACTOR_GFX_INIT(actor_index, D_800D81F8);
             actor->velocityX.raw = -actor->velocityX.raw;
         }

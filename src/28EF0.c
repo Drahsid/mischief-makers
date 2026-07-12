@@ -2426,7 +2426,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
         gActors[index].unk_118 = -0.0077f;
         gActors[index].unk_11C = 0.0065f;
     }
-    Sound_PlaySfxAtActor2(0x2E, actor_index);
+    Sound_PlaySfxAtActor2(SFX_002E, actor_index);
 }
 
 void func_8002E89C(u16 actor_index) {

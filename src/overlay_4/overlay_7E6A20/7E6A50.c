@@ -540,7 +540,7 @@ void func_801B9FC8_7E7118(void) {
             func_801B9FB4_7E7104();
             if (D_800D2928 >= 4) {
                 gStageState++;
-                SpawnStageClear(1, D_801BA784_7E78D4);
+                SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BA784_7E78D4);
                 return;
             }
             gStageState = 1;

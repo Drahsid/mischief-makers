@@ -1485,7 +1485,7 @@ void func_801B9CA0_7D4490(void) {
 
         case 0x104:
             gStageState++;
-            SpawnStageClear(60, D_801BC7AC_7D6F9C);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BC7AC_7D6F9C);
 
         case 0x105:
         case 0x106:
@@ -1684,7 +1684,7 @@ void func_801BA290_7D4A80(void) {
 
         case 0x104:
             gStageState++;
-            SpawnStageClear(60, D_801BD684_7D7E74);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BD684_7D7E74);
 
         case 0x105:
         case 0x106:
@@ -1833,7 +1833,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x13:
             gStageState++;
             D_800D28F8 = 0xB4;
-            SpawnStageClear(60, D_801BE0A8_7D8898);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BE0A8_7D8898);
 
         case 0x14:
             D_800D28F8--;
@@ -2103,7 +2103,7 @@ void func_801BB314_7D5B04(void) {
             break;
 
         case 5:
-            SpawnStageClear(1, D_801BED00_7D94F0);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BED00_7D94F0);
             gStageState++;
             break;
 
@@ -2186,7 +2186,7 @@ void func_801BB4A4_7D5C94(void) {
                 }
 
                 if (actor_count == 0) {
-                    SpawnStageClear(120, D_801BF23C_7D9A2C);
+                    SpawnStageClear(STAGE_CLEAR_TIMED(120), D_801BF23C_7D9A2C);
                     gActors[0x8E].flags = 0;
                     gStageState++;
                 }

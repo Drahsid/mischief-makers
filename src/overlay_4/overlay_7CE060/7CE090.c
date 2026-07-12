@@ -1664,6 +1664,7 @@ void func_801BA818_7CEFA8(void) {
     }
 }
 
+// stage state machine for "Flambee"
 void func_801BA868_7CEFF8(void) {
     switch (gStageState) {
         case 0:
@@ -1696,7 +1697,7 @@ void func_801BA868_7CEFF8(void) {
             break;
 
         case 4:
-            SpawnStageClear(1, D_801BCB10_7D12A0);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BCB10_7D12A0);
             gStageState++;
 
         case 5:

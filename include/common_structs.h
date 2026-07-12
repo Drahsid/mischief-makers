@@ -107,4 +107,8 @@ typedef union {
 #define TO_FIXED(value) ((value) * FIXED_UNIT(1.0)) // use for conversions
 #define FROM_FIXED(value) ((value) / FIXED_UNIT(1.0)) // use for conversions
 
+#define STAGE_CLEAR_FLAGS(instant , time, keepBGM) (instant |time | keepBGM << 15U)
+#define STAGE_CLEAR_INSTANT STAGE_CLEAR_FLAGS(TRUE, 0, FALSE)
+#define STAGE_CLEAR_TIMED(time) STAGE_CLEAR_FLAGS(FALSE, time, FALSE)
+
 #endif

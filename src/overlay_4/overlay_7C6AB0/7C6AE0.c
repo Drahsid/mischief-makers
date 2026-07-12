@@ -1695,7 +1695,7 @@ void func_801BA008_7C71E8(void) {
 
         case 9:
             if ((func_8005DEFC() == 0) && (gPlayerActor.health >= 0)) {
-                SpawnStageClear(0x803C, D_801BD474_7CA654);
+                SpawnStageClear(STAGE_CLEAR_FLAGS(FALSE, 60, TRUE), D_801BD474_7CA654);
                 gStageState += 1;
             }
             break;
@@ -2190,14 +2190,14 @@ void func_801BAB34_7C7D14(void) {
         case 0x100:
             if (gActors[0x31].flags == 0) {
                 SpawnAreaClear(0);
-                Sound_StartFade(0x81, 0x168);
+                Sound_StartFade(0x81, 360);
                 gStageState++;
                 D_800BE544 = 0;
             }
             break;
 
         case 0x102:
-            SpawnStageClear(1, D_801BF34C_7CC52C);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BF34C_7CC52C);
             gStageState++;
             break;
 
@@ -2550,7 +2550,7 @@ void func_801BB6D0_7C88B0(void) {
 
                 if (D_800D28F8 < 0) {
                     gStageState++;
-                    SpawnStageClear(0x78, D_801BF94C_7CCB2C);
+                    SpawnStageClear(STAGE_CLEAR_TIMED(120), D_801BF94C_7CCB2C);
                     D_800D28F8 = 0xB4;
                 }
                 else {

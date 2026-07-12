@@ -914,7 +914,7 @@ void func_801BA534_7E3694(void) {
             break;
 
         case 5:
-            SpawnStageClear(1, D_801BC8DC_7E5A3C);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BC8DC_7E5A3C);
             gStageState++;
             break;
 
@@ -1435,7 +1435,7 @@ void func_801BB28C_7E43EC(void) {
         case 0x805:
             if ((u32)D_800D2928-- < 1U) {
                 D_800BE5F4.unk_00_u32 = 5;
-                SpawnStageClear(0x3C, D_801BD558_7E66B8);
+                SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BD558_7E66B8);
             }
             break;
 

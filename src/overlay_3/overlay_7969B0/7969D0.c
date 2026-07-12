@@ -110,13 +110,13 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             gActors[actor_index].unk_188 = -0x20;
             gActors[actor_index].posZ.whole = -528;
             gActors[actor_index].state = 0x10;
-            if (gCurrentScene == 0x36) {
+            if (gCurrentScene == SCENE_WESTERNWORLD) {
                 func_801B2018_7980E8(actor_index);
             }
             break;
 
         case 0x10:
-            if ((gActors[0x88].actorType == ACTORTYPE_49) && (gActors[0x88].flags & ACTOR_FLAG_ACTIVE)) {
+            if ((gActors[0x88].actorType == ACTORTYPE_SPIRALCLOUDS) && (gActors[0x88].flags & ACTOR_FLAG_ACTIVE)) {
                 func_801B0A10_796AE0(actor_index);
                 gActors[actor_index].state++;
             }
@@ -125,7 +125,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
         case 0x11:
             if (gActors[actor_index].unk_18C != 0) {
                 gActors[actor_index].var_154 = 4;
-                Sound_PlaySfxAtActor2(0xBE, actor_index);
+                Sound_PlaySfxAtActor2(SFX_00BE, actor_index);
                 func_801B0900_7969D0(actor_index);
                 gActors[actor_index].state = 0x20;
                 gActors[actor_index].var_15C++;
@@ -134,7 +134,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             else if (gActors[0x88].flags & ACTOR_FLAG_DRAW) {
                 gActors[0x31].colorA = gActors[0x88].colorA * 0.5;
                 if (Rand() < (gActors[0x88].colorA >> 5)) {
-                    Sound_PlaySfxAtVol(0xBE, 0x93);
+                    Sound_PlaySfxAtVol(SFX_00BE, 0x93);
                     gActors[0x31].colorA = 0;
                 }
             }
@@ -179,7 +179,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
                 }
                 else {
                     gActors[actor_index].var_15C++;
-                    Sound_PlaySfxAtActor2(0xBE, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_00BE, actor_index);
                     gActors[actor_index].state--;
                 }
             }
@@ -196,7 +196,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             gActors[actor_index - 1].posZ.whole = -527;
             gActors[actor_index - 1].colorA = 0;
             gActors[actor_index - 1].state = 0x50;
-            Sound_PlaySfxAtActor2(0x47, actor_index);
+            Sound_PlaySfxAtActor2(SFX_0047, actor_index);
             gActors[actor_index].state++;
             break;
 
@@ -226,7 +226,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
                     other_actor->flags = 0;
                     gActors[actor_index].state = 0x50;
                     gActors[actor_index - 2].state = 0x40;
-                    Sound_PlayMusic(0xF);
+                    Sound_PlayMusic(BGM_POSITION);
                     if (gStageState == 2) {
                         gStageState = 3;
                     }
@@ -391,11 +391,11 @@ void func_801B1414_7974E4(u16 actor_index) {
             }
 
             if (on_ground && (actor->parentIndex == 0)) {
-                Sound_PlaySfxAtActor2(0x45, actor_index);
-                gActors[0].iFrames = 0x5A;
+                Sound_PlaySfxAtActor2(SFX_BOOM_0045, actor_index);
+                gPlayerActor.iFrames = 90;
             }
             else {
-                Sound_PlaySfxAtActor2(0x45, actor_index);
+                Sound_PlaySfxAtActor2(SFX_BOOM_0045, actor_index);
             }
             actor->flags = 0;
             func_801B131C_7973EC(actor_index);
@@ -513,7 +513,7 @@ void func_801B182C_7978FC(u16 actor_index) {
 s32 func_801B1A28_797AF8(u16 actor_index, s16 left_offset, s16 right_offset) {
     s16 player_screen_x;
 
-    player_screen_x = gScreenPosCurrentX.whole - ((left_offset * 0) - gActors[0].posX.whole);
+    player_screen_x = gScreenPosCurrentX.whole - ((left_offset * 0) - gPlayerActor.posX.whole);
     left_offset = (gScreenPosCurrentX.whole - ((gActors[actor_index].posX.whole * 0) - gActors[actor_index].posX.whole)) + left_offset;
     right_offset = (gScreenPosCurrentX.whole - ((right_offset * 0) - gActors[actor_index].posX.whole)) + right_offset;
     
@@ -570,7 +570,7 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
             gActors[particle_index].scaleX = 1.0f;
         }
 
-        Sound_PlaySfx(0x43);
+        Sound_PlaySfx(SFX_0043);
     }
 
     return new_actor_index;

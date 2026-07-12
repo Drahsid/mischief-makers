@@ -46,7 +46,7 @@ s32 func_8004F2B0(u16 actor_index) {
 s32 func_8004F35C(u16 actor_index, u32* arg1) {
     if (func_8005D418(actor_index) != 0) {
         gActors[actor_index].unk_12F_u8 = 0;
-        Sound_PlaySfx(0xAD);
+        Sound_PlaySfx(SFX_00AD);
         return 1;
     }
     *arg1 += 1;
@@ -478,10 +478,10 @@ void func_8005060C(u16 actor_index) {
     if (gActors[actor_index].stateUpper == 0) {
         func_8005A4B0(actor_index, 1.0f);
         if (func_8005D1B0(index) != 2) {
-            Sound_PlaySfx(0xAC);
+            Sound_PlaySfx(SFX_00AC);
         }
         else {
-            Sound_PlaySfx(0xAC);
+            Sound_PlaySfx(SFX_00AC);
         }
         if (gActors[actor_index].unk_140_u8[0] == 0) {
             gActors[actor_index].unk_170 = 0x2C;
@@ -532,7 +532,7 @@ void func_8005074C(u16 actor_index) {
         }
     }
     if ((gActors[actor_index].unk_170_s8[0] == 0) && ((gActors[actor_index].unk_170_s8[1] == 2) || (gActors[actor_index].unk_170_s8[1] == 8))) {
-        Sound_PlaySfx(0x53U);
+        Sound_PlaySfx(SFX_0053);
     }
     if (!(D_801373D8 & 3) || (D_801373D8 & 0x80)) {
         gActors[actor_index].state = 4;
@@ -572,7 +572,7 @@ void func_800509C0(u16 actor_index) {
     gActors[actor_index].unk_12C_u16[0] = 2;
     sp28 = func_8004F7D8(actor_index);
     if (gActors[actor_index].stateUpper == 0) {
-        Sound_PlaySfx(0x27);
+        Sound_PlaySfx(SFX_0027);
         gActors[actor_index].var_150 = 0x10;
         if (D_801373F0 == 4) {
             if (!(sp28 & 8)) {
@@ -715,7 +715,7 @@ void func_80050F3C(u16 actor_index) {
     }
     if (gActors[actor_index].stateUpper == 0) {
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6);
-        Sound_PlaySfx(0xAE);
+        Sound_PlaySfx(SFX_00AE);
         Sound_PlaySfx(SFX_MARINA_YELL1);
         func_8005C098(actor_index, 1);
         gActors[actor_index].damage = 0;
@@ -906,7 +906,7 @@ void func_80051324(u16 actor_index) {
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
             }
-            Sound_PlaySfx(0x81);
+            Sound_PlaySfx(SFX_0081);
         }
         else {
             if (gActors[actor_index].stateLower == 0x12) {
@@ -1069,7 +1069,7 @@ void func_80051C48(u16 actor_index) {
         gActors[actor_index].unk_17C = 4;
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16); \
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-        Sound_PlaySfx(0x24);
+        Sound_PlaySfx(SFX_JUMP_0024);
         gActors[actor_index].state = 0x1A;
     }
 }
@@ -1910,7 +1910,7 @@ void func_80054320(u16 actor_0, u16 actor_1) {
         if (sp24 >= 3) {
             func_800575C0(actor_0);
             if (sp24 == 3) {
-                Sound_PlaySfx(0x3C);
+                Sound_PlaySfx(SFX_CLANCERDEATH);
             }
         }
         D_800D3F70[gActors[actor_1].unk_0DB](actor_0, actor_1);
@@ -2048,7 +2048,7 @@ void func_8005498C(u16 actor_0, u16 actor_1) {
         gActors[actor_0].graphicFlags &= ~ACTOR_GFLAG_ROTZ;
         gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16); \
         gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
-        Sound_PlaySfx(0x24);
+        Sound_PlaySfx(SFX_JUMP_0024);
     }
     if (sp34 == 3) {
         if (gActors[actor_0].unk_0F8.raw > 0) {
@@ -2237,7 +2237,7 @@ void func_800551F8(u16 actor_index) {
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
         D_801373F3 = 0;
-        Sound_PlaySfx(0x24);
+        Sound_PlaySfx(SFX_JUMP_0024);
         gActors[actor_index].state = 0x16;
     }
 }
@@ -2467,7 +2467,7 @@ void func_80055C2C(u16 actor_0, u16 actor_1) {
             }
             gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
             gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
-            Sound_PlaySfx(0x24);
+            Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -2540,7 +2540,7 @@ void func_80055F8C(u16 actor_0, u16 actor_1) {
             }
             gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
             gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
-            Sound_PlaySfx(0x24);
+            Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -2613,7 +2613,7 @@ void func_800562EC(u16 actor_0, u16 actor_1) {
             }
             gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
             gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
-            Sound_PlaySfx(0x24);
+            Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -2686,7 +2686,7 @@ void func_8005664C(u16 actor_0, u16 actor_1) {
             }
             gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
             gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
-            Sound_PlaySfx(0x24);
+            Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;

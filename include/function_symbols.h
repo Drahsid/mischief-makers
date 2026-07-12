@@ -283,6 +283,6 @@ void OverlayABI_Slot2_fn32_void(void);
 
 extern void BossDeathExplode(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y);
 
-extern void SpawnStageClear(u16 duration, u16* spawn_table);
+extern void SpawnStageClear(u16 flags, u16* spawn_table);
 
 #endif

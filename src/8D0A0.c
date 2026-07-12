@@ -579,19 +579,19 @@ void func_8008DF20(u16 actor_index) {
     D_800E5A80[gActors[actor_index].state / 16](actor_index);
     if (gActors[actor_index].state >= 0x61) {
         if (gActors[actor_index].unk_184 >= FIXED_UNIT(8.0)) {
-            gActors[actor_index].velocityX.raw = FIXED_UNIT(7.9999847412109375);
+            gActors[actor_index].velocityX.raw = (FIXED_UNIT(8.0) - 1);
         }
         else if (gActors[actor_index].unk_184 <= FIXED_UNIT(-8.0)) {
-            gActors[actor_index].velocityX.raw = FIXED_UNIT(-7.9999847412109375);
+            gActors[actor_index].velocityX.raw = (FIXED_UNIT(-8.0) + 1);
         }
         else {
             gActors[actor_index].velocityX.raw = gActors[actor_index].unk_184;
         }
         if (gActors[actor_index].unk_188 >= FIXED_UNIT(8.0)) {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(7.9999847412109375);
+            gActors[actor_index].velocityY.raw = (FIXED_UNIT(8.0) - 1);
         }
         else if (gActors[actor_index].unk_188 <= FIXED_UNIT(-8.0)) {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.9999847412109375);
+            gActors[actor_index].velocityY.raw = (FIXED_UNIT(-8.0) + 1);
         }
         else {
             gActors[actor_index].velocityY.raw = gActors[actor_index].unk_188;

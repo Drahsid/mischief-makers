@@ -1457,9 +1457,9 @@ s32 func_80046EBC(void) {
         /* fallthrough */
     case 1:
         if (!(D_800D28FC & 4)) {
-            Sound_PlaySfx(0xBB);
+            Sound_PlaySfx(SFX_STAGE_TILES);
             if (D_800CBF40 == 0) {
-                Sound_PlayMusic(0x19);
+                Sound_PlayMusic(BGM_INT);
             }
             D_800D2938++;
         }
@@ -1554,7 +1554,7 @@ s32 func_80047410(void) {
         D_800D2938++;
         D_800D293C = 0;
         D_800D2940 = 0x19;
-        Sound_PlaySfx(0xBC);
+        Sound_PlaySfx(SFX_00BC);
         /* fallthrough */
     case 1:
         if ((D_800D293C == 0x23) && (--D_800D2940 < 0)) {
@@ -1652,6 +1652,7 @@ void func_80047714(u16 arg0, u16 arg1, u16 arg2, u16 stage_state) {
     }
 }
 
+// load indexed festival scene
 void func_80047958(void) {
     u16 index = D_800D28F0 - 0x1F;
 
@@ -1723,13 +1724,13 @@ void func_80047B68(void) {
     case 1:
         if (func_80046D5C()) {
             gStageState++;
-            Sound_PlayMusic(0x18);
+            Sound_PlayMusic(BGM_STCLR);
         }
         /* fallthrough */
     case 2:
         D_800D28FC |= 0x80;
         if (gButtonPress & gButton_B) {
-            Sound_PlayMusic(0x18);
+            Sound_PlayMusic(BGM_STCLR);
         }
         break;
     }
