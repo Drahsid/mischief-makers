@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-
+#include "80D90.h"
 
 
 void func_8019B100_753880(u16 actor_index);

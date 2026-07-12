@@ -9,15 +9,19 @@ extern u16 gStageState; // state for stages, determining cinematics, actor spawn
 extern u16 gStageTime; // time in current stage. does not count time during cutscenes.
 extern u16 gStageTimeBest;
 extern u16 D_800D28F0;
+extern s16 D_800D28F8;
 extern u32 D_800D28FC;
 extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
 extern s32 D_800D2928;
 extern s32 D_800D2938;
-extern s16 D_800D294C;
+extern u16 D_800D294C;
+extern u16 gGuestActorIndex;
+extern s16 gNoHit;
 extern u16 D_800D8588[]; // all-white palette
 extern s16 D_800E13FC[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
+extern s32 D_800E3630[]; // could be array of structs of length 0x28
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
 extern s16 D_801370D2;
 extern u16 D_801370D4;
@@ -52,6 +56,7 @@ extern u16 D_800CBF40;
 extern u16 D_800CBF50;
 extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
+extern u16* D_800D1958[]; // palettes of gems
 extern u16 D_800D1A04[];
 extern u16 D_800D2690[]; // LUT of digging spot items.
 extern s16 D_800D26F4[];
@@ -79,6 +84,7 @@ extern s32 D_800D2930;
 extern s32 D_800D2934;
 extern u16 D_800D2954;
 extern u16 D_800D2960;
+extern u16 D_800D3B74;
 extern u16 D_800D5820;
 extern u16 D_800D5824;
 extern u16 D_800D5828;

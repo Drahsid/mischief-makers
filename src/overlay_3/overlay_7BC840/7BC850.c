@@ -1,5 +1,7 @@
 #include "common.h"
+#include "actor.h"
 #include "28EF0.h"
+#include "80D90.h"
 
 extern s16 gNoHit;
 extern s16 D_800E1714[];

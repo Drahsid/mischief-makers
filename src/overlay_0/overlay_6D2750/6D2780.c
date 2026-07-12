@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "80D90.h"
 #include "SFX.h"
 
 // "overlay 0" code for intro scene

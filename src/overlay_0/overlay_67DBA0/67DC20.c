@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "function_symbols.h"
+#include "80D90.h"
 
 // "Overlay 0" code for "Migen Brawl"
 
@@ -46,8 +46,6 @@ void func_80193A4C_67F56C(u16 actor_index);
 void func_80193ACC_67F5EC(u16 actor_index);
 void func_80193B4C_67F66C(u16 actor_index);
 void func_80193C14_67F734(u16 actor_index);
-void func_800816AC(u16 actor_index, void* arg1, s32 arg2);
-void func_80081720(u16 actor_index, void* arg1, s32 arg2);
 void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxB(u16 actor_index, s16 val);

@@ -44,7 +44,6 @@ extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
-extern u16 gGuestActorIndex;
 extern u16 D_800D2954;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D295C;
@@ -96,12 +95,10 @@ void func_80031D58(u16 arg0, u16 arg1);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 arg3);
 s16 func_8003526C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
 void func_800358DC(u16 actor_index);
-u16 func_8003D68C(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 pos_x, s32 pos_y, s32 pos_z, u16 red, u16 green, u16 blue);
+void ClanpotIcon_State1(u16 actor_index);
 void func_8003ED48(u16 unused_arg0, s32 arg1, s16 x, s16 y, s16 z);
-u16 SpawnParticle_HeartBubble(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z);
 void func_8003F9CC(f32, s32, s32, s32);
 u16 func_8003F9E0(f32, s16, s16, s16);
-void SpawnParticle_RingSparkle(u16 unused_arg0, s32 unused_arg1, f32 scale, s16 pos_x, s16 pos_y, s16 pos_z);
 u16 SpawnParticle_RingWaveGreen(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
@@ -497,7 +494,7 @@ void func_80029134(u16 actor_index) {
 #define ACTOR_FLAG_MASK (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW)
 
 // related to Marina grabbing an actor?
-s32 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
+u16 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags2) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK19;
@@ -1378,13 +1375,8 @@ void Palette_SetRgbTableIndexArray(u16* src_idx, u16* dst) {
 }
 
 void Palette_AdjustRgb5551Array(u16* src, u16* dst, s16 count, s16 blue_offset, s16 green_offset, s16 red_offset) {
-    u16 result;
-    while (count > 0) {
-        result = Palette_AdjustRgb5551(*src, blue_offset, green_offset, red_offset);
-        count--;
-        src++;
-        dst++;
-        dst[-1] = result; // wtf??
+    for (; count > 0; count--, src++, dst++) {
+        *dst = Palette_AdjustRgb5551(*src, blue_offset, green_offset, red_offset);
     }
 }
 
@@ -8269,7 +8261,6 @@ void WarpGate_Sparkle(u16 actor_index, u16 no_random) {
     }
 }
 
-
 void WarpGate_UpdateAppearance(u16 actor_index) {
     u16 index;
     u32 pad0;
@@ -8331,15 +8322,15 @@ void WarpGate_UpdateAppearance(u16 actor_index) {
 // @returns true if they are using.
 s32 WarpGate_IsGuestUsing(u16 star_index, u16 guest_index) {
     if (((gActors[guest_index].flags & ACTOR_FLAG_ENABLED) == ACTOR_FLAG_ENABLED) && (gActors[guest_index].health != 0)) {
-        if ((gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole) && 
-            (gActors[guest_index].posX.whole + gActors[guest_index].hitboxBX1) >= (gActors[star_index].posX.whole - 8) && 
-            (gActors[guest_index].posY.whole + gActors[guest_index].hitboxBY0) >= (gActors[star_index].posY.whole - 8) && 
-            (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxBY1 + gActors[guest_index].posY.whole)) ||
+        if ((((gActors[star_index].posX.whole + 8) >= (gActors[guest_index].hitboxBX0 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posX.whole - 8) <= (gActors[guest_index].hitboxBX1 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posY.whole - 8) <= (gActors[guest_index].hitboxBY0 + gActors[guest_index].posY.whole)) && 
+             ((gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxBY1 + gActors[guest_index].posY.whole))) ||
             (((gActors[guest_index].flags & (ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK7)) != 0) && 
-              (gActors[star_index].posX.whole + 8 >= (gActors[guest_index].hitboxAX0 + gActors[guest_index].posX.whole)) && 
-              (gActors[guest_index].posX.whole + gActors[guest_index].hitboxAX1) >= (gActors[star_index].posX.whole - 8) && 
-              (gActors[guest_index].posY.whole + gActors[guest_index].hitboxAY0) >= (gActors[star_index].posY.whole - 8) && 
-              (gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxAY1 + gActors[guest_index].posY.whole))) {
+             ((gActors[star_index].posX.whole + 8) >= (gActors[guest_index].hitboxAX0 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posX.whole - 8) <= (gActors[guest_index].hitboxAX1 + gActors[guest_index].posX.whole)) && 
+             ((gActors[star_index].posY.whole - 8) <= (gActors[guest_index].hitboxAY0 + gActors[guest_index].posY.whole)) && 
+             ((gActors[star_index].posY.whole + 8) >= (gActors[guest_index].hitboxAY1 + gActors[guest_index].posY.whole)))) {
 
             gActors[star_index].unk_174 = guest_index;
             gActors[guest_index].flags_098 |= ACTOR_FLAG3_UNK21;

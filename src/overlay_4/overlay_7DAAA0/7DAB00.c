@@ -3,7 +3,7 @@
 
 // "overlay 4" code for the festival games and "Cerberus Alpha"
 
-extern u16 D_800D28F8;
+extern u16* D_80178288;
 
 u16 D_801BB030_7DC230[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
@@ -157,23 +157,23 @@ u16 D_801BB2F4_7DC4F4[] = {
     0x0274, 0x0196, 0x0150, 0x1700, 0x0206, 0x0126, 0xFF4C, 0xFFD8,
 };
 
-u32 D_801BB304_7DC504[] = {
-    0x02300196, 0x00701090, 0x02060126, 0xFFD0FFD8,
+u16 D_801BB304_7DC504[] = {
+    0x0230, 0x0196, 0x0070, 0x1090, 0x0206, 0x0126, 0xFFD0, 0xFFD8,
 };
 
-u32 D_801BB314_7DC514[] = {
-    0x00110330, 0x016E0014, 0x03B0016E, 0x00110430,
-    0x016E0014, 0x04B0016E, 0x00130780, 0x016E0013,
-    0x0800016E, 0x00130700, 0x016E0013, 0x0990016E,
-    0x00130610, 0x016E0013, 0x0550016E, 0x001608B0,
-    0x016E0016, 0x08F0016E, 0x001309D0, 0x016E0016,
-    0x0600018E, 0x00160560, 0x018E0013, 0x08C0018E,
-    0x001308E0, 0x018E0016, 0x09A0018E, 0x001609C0,
-    0x018E0013, 0x05B001AE, 0x001608D0, 0x01AE0016,
-    0x05D001AE, 0x001305F0, 0x01AE0014, 0x07C001AE,
-    0x001309B0, 0x01AE0013, 0x057001AE, 0x00140740,
-    0x01AE0016, 0x059001AE, 0x00110780, 0x01BE0011,
-    0x070001BE, 0x00110800, 0x01BE0000,
+u16 D_801BB314_7DC514[] = {
+    0x0011, 0x0330, 0x016E, 0x0014, 0x03B0, 0x016E, 0x0011, 0x0430,
+    0x016E, 0x0014, 0x04B0, 0x016E, 0x0013, 0x0780, 0x016E, 0x0013,
+    0x0800, 0x016E, 0x0013, 0x0700, 0x016E, 0x0013, 0x0990, 0x016E,
+    0x0013, 0x0610, 0x016E, 0x0013, 0x0550, 0x016E, 0x0016, 0x08B0,
+    0x016E, 0x0016, 0x08F0, 0x016E, 0x0013, 0x09D0, 0x016E, 0x0016,
+    0x0600, 0x018E, 0x0016, 0x0560, 0x018E, 0x0013, 0x08C0, 0x018E,
+    0x0013, 0x08E0, 0x018E, 0x0016, 0x09A0, 0x018E, 0x0016, 0x09C0,
+    0x018E, 0x0013, 0x05B0, 0x01AE, 0x0016, 0x08D0, 0x01AE, 0x0016,
+    0x05D0, 0x01AE, 0x0013, 0x05F0, 0x01AE, 0x0014, 0x07C0, 0x01AE,
+    0x0013, 0x09B0, 0x01AE, 0x0013, 0x0570, 0x01AE, 0x0014, 0x0740,
+    0x01AE, 0x0016, 0x0590, 0x01AE, 0x0011, 0x0780, 0x01BE, 0x0011,
+    0x0700, 0x01BE, 0x0011, 0x0800, 0x01BE, 0x0000,
 };
 
 u16 D_801BB3D0_7DC5D0[] = {
@@ -187,8 +187,8 @@ u16 D_801BB3E0_7DC5E0[] = {
     SPAWNRECORD_END
 };
 
-u32 D_801BB3F0_7DC5F0[] = {
-    0x02380196, 0x00C003B0, 0x02060126, 0x0000FFD8,
+u16 D_801BB3F0_7DC5F0[] = {
+    0x0238, 0x0196, 0x00C0, 0x03B0, 0x0206, 0x0126, 0x0000, 0xFFD8,
 };
 
 u16 D_801BB400_7DC600[] = {
@@ -252,7 +252,7 @@ void func_801B9908_7DAB08(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            func_80045FA4(D_801BB158_7DC358, 0);
+            func_80045FA4(D_801BB158_7DC358, NULL);
             D_800D2928 = 1;
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
@@ -274,7 +274,7 @@ void func_801B9908_7DAB08(void) {
 }
 
 void func_801B99D4_7DABD4(void) {
-    func_80045FA4(D_801BB188_7DC388, 0);
+    func_80045FA4(D_801BB188_7DC388, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB1A8_7DC3A8);
     D_800BE544 = 0x8000;
@@ -282,7 +282,7 @@ void func_801B99D4_7DABD4(void) {
 }
 
 void func_801B9A28_7DAC28(void) {
-    func_80045FA4(D_801BB178_7DC378, 0);
+    func_80045FA4(D_801BB178_7DC378, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB198_7DC398);
     D_800BE544 = 0x8000;
@@ -351,7 +351,7 @@ void func_801B9A8C_7DAC8C(void) {
 }
 
 void func_801B9C58_7DAE58(void) {
-    func_80045FA4(D_801BB1C8_7DC3C8, 0);
+    func_80045FA4(D_801BB1C8_7DC3C8, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB1E8_7DC3E8);
     D_800BE544 = 0x8000;
@@ -359,7 +359,7 @@ void func_801B9C58_7DAE58(void) {
 }
 
 void func_801B9CAC_7DAEAC(void) {
-    func_80045FA4(D_801BB1B8_7DC3B8, 0);
+    func_80045FA4(D_801BB1B8_7DC3B8, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB1D8_7DC3D8);
     D_800BE544 = 0x8000;
@@ -424,7 +424,7 @@ void func_801B9D10_7DAF10(void) {
 }
 
 void func_801B9EDC_7DB0DC(void) {
-    func_80045FA4(D_801BB208_7DC408, 0);
+    func_80045FA4(D_801BB208_7DC408, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB228_7DC428);
     D_800BE544 = 0x8000;
@@ -432,7 +432,7 @@ void func_801B9EDC_7DB0DC(void) {
 }
 
 void func_801B9F30_7DB130(void) {
-    func_80045FA4(D_801BB1F8_7DC3F8, 0);
+    func_80045FA4(D_801BB1F8_7DC3F8, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB218_7DC418);
     D_800BE5F4.unk_00_u32 = 3;
@@ -495,7 +495,7 @@ void func_801B9F78_7DB178(void) {
 }
 
 void func_801BA144_7DB344(void) {
-    func_80045FA4(D_801BB248_7DC448, 0);
+    func_80045FA4(D_801BB248_7DC448, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB268_7DC468);
     D_800BE544 = 0x8000;
@@ -565,7 +565,7 @@ void func_801BA1D8_7DB3D8(void) {
 }
 
 void func_801BA3A4_7DB5A4(void) {
-    func_80045FA4(D_801BB288_7DC488, 0);
+    func_80045FA4(D_801BB288_7DC488, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB2A8_7DC4A8);
     D_800BE544 = 0x8000;
@@ -573,7 +573,7 @@ void func_801BA3A4_7DB5A4(void) {
 }
 
 void func_801BA3F8_7DB5F8(void) {
-    func_80045FA4(D_801BB278_7DC478, 0);
+    func_80045FA4(D_801BB278_7DC478, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB298_7DC498);
     D_800BE544 = 0x8000;
@@ -643,7 +643,7 @@ void func_801BA628_7DB828(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            func_80045FA4(D_801BB2B8_7DC4B8, 0);
+            func_80045FA4(D_801BB2B8_7DC4B8, NULL);
             D_800BE5F4.unk_00_u32 = 3;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             Actor_LoadSpawnTable(D_801BB2C8_7DC4C8);
@@ -666,7 +666,7 @@ void func_801BA628_7DB828(void) {
 }
 
 void func_801BA6EC_7DB8EC(void) {
-    func_80045FA4(D_801BB304_7DC504, 0);
+    func_80045FA4(D_801BB304_7DC504, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB3E0_7DC5E0);
     D_800BE544 = 0x8000;
@@ -674,7 +674,7 @@ void func_801BA6EC_7DB8EC(void) {
 }
 
 void func_801BA740_7DB940(void) {
-    func_80045FA4(D_801BB2F4_7DC4F4, (u16*)D_801BB314_7DC514);
+    func_80045FA4(D_801BB2F4_7DC4F4, D_801BB314_7DC514);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB3D0_7DC5D0);
     D_800BE544 = 0x8000;
@@ -746,7 +746,7 @@ void func_801BA990_7DBB90(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            func_80045FA4(D_801BB3F0_7DC5F0, 0);
+            func_80045FA4(D_801BB3F0_7DC5F0, NULL);
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB400_7DC600);
 
@@ -769,7 +769,7 @@ void func_801BA990_7DBB90(void) {
 }
 
 void func_801BAA50_7DBC50(void) {
-    func_80045FA4(D_801BB420_7DC620, 0);
+    func_80045FA4(D_801BB420_7DC620, NULL);
     Actor_LoadSpawnTable(D_801BB030_7DC230);
     Actor_LoadSpawnTable(D_801BB440_7DC640);
     D_800BE544 = 0x8000;
@@ -777,7 +777,7 @@ void func_801BAA50_7DBC50(void) {
 }
 
 void func_801BAAA4_7DBCA4(void) {
-    func_80045FA4(D_801BB410_7DC610, 0);
+    func_80045FA4(D_801BB410_7DC610, NULL);
     D_800BE5F4.unk_00_u32 = 3;
     D_800D28FC |= 0x80;
     Actor_LoadSpawnTable(D_801BB030_7DC230);
@@ -844,7 +844,7 @@ void func_801BACD0_7DBED0(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            func_80045FA4(D_801BB450_7DC650, 0);
+            func_80045FA4(D_801BB450_7DC650, NULL);
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB460_7DC660);
 
@@ -875,7 +875,7 @@ void func_801BAD9C_7DBF9C(void) {
             }
             else {
                 gStageState++;
-                func_80046148(D_801BB470_7DC670, (u16*)NULL);
+                func_80046148(D_801BB470_7DC670, NULL);
                 Actor_LoadSpawnTable(D_801BB480_7DC680);
                 Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
                 D_800BE544 = 0x8000;
@@ -920,7 +920,7 @@ void func_801BAD9C_7DBF9C(void) {
 
         case 0x1000:
             gStageState++;
-            func_80045FA4(D_801BB470_7DC670, 0);
+            func_80045FA4(D_801BB470_7DC670, NULL);
             Actor_LoadSpawnTable(D_801BB480_7DC680);
             Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
             gActors[0x8F].state = 0x10;

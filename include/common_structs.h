@@ -29,7 +29,7 @@ typedef struct {
     /* 0x90 */ f32 scaleY;
     /* 0x94 */ u8 alpha;
     /* 0x95 */ u8 align[3];
-    /* 0x98 */ u16* palette; // used if ACTOR_GFLAG_PALETTE is set
+    /* 0x98 */ uintptr_t palette; // used if ACTOR_GFLAG_PALETTE is set
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
@@ -62,9 +62,14 @@ typedef struct {
     /* 0x20 */ s32 unk_20; // stores a button input?
     /* 0x24 */ s32 unk_24; // stores a button input?
     /* 0x28 */ u8 unk_28[0x18]; // unused?
-    /* 0x40 */ s16 unk_40;
-    /* 0x42 */ s8 unk_42;
-    /* 0x43 */ s8 unk_43;
+    union {
+        /* 0x40 */ s32 unk_40;
+        struct {
+            /* 0x40 */ s16 unk_40_s16;
+            /* 0x42 */ s8 unk_42;
+            /* 0x43 */ u8 unk_43;
+        };
+    };
     /* 0x44 */ s32 fallWhistle; // boolean(?) used while playing the "fall Whistle" sound in "Freefall!"
     /* 0x48 */ u8 unk_48[8]; // unused?
 

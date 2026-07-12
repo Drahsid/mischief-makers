@@ -5,15 +5,14 @@ extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern u16 D_800D2914;
-extern u16 gGuestActorIndex;
 
 // "overlay 4" code for demo and intro scenes
 
 void func_801B9A78_7EA8A8(s16* arg0);
 void func_801B9B2C_7EA95C(void);
 
-u32 D_801B9FB0_7EADE0[] = {
-    0x02000100, 0x01700290, 0x01700090, 0x00000000,
+u16 D_801B9FB0_7EADE0[] = {
+    0x0200, 0x0100, 0x0170, 0x0290, 0x0170, 0x0090, 0x0000, 0x0000,
 };
 
 u16 D_801B9FC0_7EADF0[] = {
@@ -23,8 +22,8 @@ u16 D_801B9FC0_7EADF0[] = {
     SPAWNRECORD_END
 };
 
-u32 D_801B9FE0_7EAE10[] = {
-    0x000200F4, 0xFF700F90, 0x0F70FF90, 0x00000000,
+u16 D_801B9FE0_7EAE10[] = {
+    0x0002, 0x00F4, 0xFF70, 0x0F90, 0x0F70, 0xFF90, 0x0000, 0x0000,
 };
 
 u16 D_801B9FF0_7EAE20[] = {
@@ -81,7 +80,7 @@ u16 D_801BA160_7EAF90[] = {
 void func_801B9900_7EA730(void) {
     switch (gStageState) {
         case 0:
-            func_80045FA4(D_801B9FB0_7EADE0, 0);
+            func_80045FA4(D_801B9FB0_7EADE0, NULL);
             Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
@@ -221,7 +220,7 @@ void func_801B9BB4_7EA9E4(void) {
 
         case 7:
             gStageState++;
-            func_80042DBC((void*)0);
+            func_80042DBC(NULL);
             break;
 
         case 2:
@@ -235,7 +234,7 @@ void func_801B9BB4_7EA9E4(void) {
 void func_801B9EA4_7EACD4(void) {
     switch (gStageState) {
         case 0:
-            func_80045FA4(D_801B9FE0_7EAE10, 0);
+            func_80045FA4(D_801B9FE0_7EAE10, NULL);
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;

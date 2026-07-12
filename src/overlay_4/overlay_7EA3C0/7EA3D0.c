@@ -46,8 +46,8 @@ void func_801B9900_7EA3D0(void) {
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
             }
             else {
-                gStageState = gStageState + 1;
-                func_80046148(D_801B9BC0_7EA690, (u16*)NULL);
+                gStageState++;
+                func_80046148(D_801B9BC0_7EA690, NULL);
                 Actor_LoadSpawnTable(D_801B9C18_7EA6E8);
                 gLetterboxMode = LETTERBOX_DEFAULT;
             }
@@ -56,7 +56,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 1:
             if (func_80046D5C() != 0) {
-                gStageState = gStageState + 1;
+                gStageState++;
                 gCannotPause = TRUE;
             }
             break;
@@ -66,7 +66,7 @@ void func_801B9900_7EA3D0(void) {
             break;
 
         case 0x100:
-            gStageState = gStageState + 1;
+            gStageState++;
             D_800D28FC &= ~4;
             D_800D28FC |= 8;
             gLetterboxMode = LETTERBOX_HORIZONTAL;
@@ -77,7 +77,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x1000:
             Actor_ClearSceneActors();
-            gStageState = gStageState + 1;
+            gStageState++;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
@@ -105,7 +105,7 @@ void func_801B9900_7EA3D0(void) {
 
         case 0x8001:
             if (func_80046D5C() != 0) {
-                gStageState = gStageState + 1;
+                gStageState++;
             }
             break;
 

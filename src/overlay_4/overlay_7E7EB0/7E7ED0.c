@@ -26,15 +26,13 @@ u16 D_801BAFE4_7E95B4[] = {
     0x0000, 0x0000,
 };
 
-u8 D_801BAFF8_7E95C8[] = {
-    0x1A, 0xF8, 0x01, 0xD0, 0x1A, 0x68, 0x1D, 0xD8, 0x02, 0x40, 0x01, 0x60,
-    0xFF, 0x8A, 0xFF, 0xCE, 0x00, 0x81, 0x00, 0x83, 0x00, 0x85, 0x00, 0x87,
-    0x00, 0x00, 0x00, 0x00,
+u16 D_801BAFF8_7E95C8[] = {
+    0x1AF8, 0x01D0, 0x1A68, 0x1DD8, 0x0240, 0x0160, 0xFF8A, 0xFFCE,
+    0x0081, 0x0083, 0x0085, 0x0087, 0x0000, 0x0000,
 };
 
-u8 D_801BB014_7E95E4[] = {
-    0x0E, 0x00, 0x01, 0xA0, 0x0D, 0x70, 0x12, 0xA0, 0x02, 0x10, 0x00, 0x90,
-    0xFF, 0x7A, 0x00, 0x2E,
+u16 D_801BB014_7E95E4[] = {
+    0x0E00, 0x01A0, 0x0D70, 0x12A0, 0x0210, 0x0090, 0xFF7A, 0x002E,
 };
 
 u16 D_801BB024_7E95F4[] = {
@@ -301,9 +299,8 @@ u16 D_801BB9F4_7E9FC4[] = {
     SPAWNRECORD_END
 };
 
-u8 D_801BBA20_7E9FF0[] = {
-    0x30, 0x00, 0x01, 0x9C, 0x2F, 0x00, 0x31, 0x0A, 0x02, 0xCE, 0x00, 0xEE,
-    0xFF, 0xA0, 0xFF, 0xEB,
+u16 D_801BBA20_7E9FF0[] = {
+    0x3000, 0x019C, 0x2F00, 0x310A, 0x02CE, 0x00EE, 0xFFA0, 0xFFEB,
 };
 
 u16 D_801BBA30_7EA000[] = {
@@ -349,9 +346,8 @@ u16 D_801BBA34_7EA004[] = {
     SPAWNRECORD_END
 };
 
-u8 D_801BBC08_7EA1D8[] = {
-    0x02, 0x00, 0x01, 0xE0, 0x00, 0xF0, 0x03, 0x10, 0x02, 0xF0, 0x01, 0x70,
-    0x00, 0x00, 0xFF, 0xBE,
+u16 D_801BBC08_7EA1D8[] = {
+    0x0200, 0x01E0, 0x00F0, 0x0310, 0x02F0, 0x0170, 0x0000, 0xFFBE,
 };
 
 u16 D_801BBC18_7EA1E8[] = {
@@ -368,9 +364,8 @@ u16 D_801BBC28_7EA1F8[] = {
     SPAWNRECORD_END
 };
 
-u8 D_801BBC54_7EA224[] = {
-    0x04, 0x00, 0x01, 0x98, 0xFF, 0x70, 0x17, 0x00, 0x02, 0x08, 0x01, 0x28,
-    0xFF, 0xE0, 0xFF, 0xEB,
+u16 D_801BBC54_7EA224[] = {
+    0x0400, 0x0198, 0xFF70, 0x1700, 0x0208, 0x0128, 0xFFE0, 0xFFEB,
 };
 
 u16 D_801BBC64_7EA234[] = {
@@ -526,7 +521,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x100:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -2, -4, -1);
-            func_80045FA4(D_801BAFD4_7E95A4, 0);
+            func_80045FA4(D_801BAFD4_7E95A4, NULL);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB088_7E9658);
@@ -564,7 +559,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x200:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -8, -4, 0);
-            func_80045FA4(D_801BAFF8_7E95C8, (u16*)D_801BB3C8_7E9998);
+            func_80045FA4(D_801BAFF8_7E95C8, D_801BB3C8_7E9998);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB264_7E9834);
@@ -603,7 +598,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x600:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -8, -4, 0);
-            func_80045FA4(D_801BB06C_7E963C, 0);
+            func_80045FA4(D_801BB06C_7E963C, NULL);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB904_7E9ED4);
@@ -643,7 +638,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x300:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -2, -3, -4);
-            func_80045FA4(D_801BB014_7E95E4, 0);
+            func_80045FA4(D_801BB014_7E95E4, NULL);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB588_7E9B58);
@@ -669,7 +664,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x400:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -8, -8, 0);
-            func_80045FA4(D_801BB034_7E9604, 0);
+            func_80045FA4(D_801BB034_7E9604, NULL);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB6DC_7E9CAC);
@@ -697,7 +692,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x500:
             gStageState++;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -8, -8, 0);
-            func_80045FA4(D_801BB050_7E9620, 0);
+            func_80045FA4(D_801BB050_7E9620, NULL);
             D_800D28FC |= 0x2000;
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BB8D8_7E9EA8);
@@ -728,7 +723,7 @@ void func_801BA634_7E8C04(void) {
         case 0:
             gCannotPause = TRUE;
             Palette_AdjustRgb5551Array((u16*)0x802F8068, (u16*)0x802F7E68, 0xFF, -2, -3, -4);
-            func_80045FA4(D_801BBA20_7E9FF0, (u16*)D_801BBA30_7EA000);
+            func_80045FA4(D_801BBA20_7E9FF0, D_801BBA30_7EA000);
             Actor_LoadSpawnTable(D_801BAFD0_7E95A0);
             Actor_LoadSpawnTable(D_801BBA34_7EA004);
             D_800BE5F4.unk_00_s32 = 7;
@@ -845,7 +840,7 @@ void func_801BA984_7E8F54(void) {
             }
 
             gStageState++;
-            func_80046148(D_801BBC08_7EA1D8, (u16*)NULL);
+            func_80046148(D_801BBC08_7EA1D8, NULL);
             gDrawMidground = FALSE;
             gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
@@ -902,7 +897,7 @@ void func_801BA984_7E8F54(void) {
             break;
 
         case 0x1000:
-            func_80045FA4(D_801BBC08_7EA1D8, 0);
+            func_80045FA4(D_801BBC08_7EA1D8, NULL);
             gDrawMidground = 0;
             gDrawEnvLayer = 0;
             gDrawBackground = FALSE;
@@ -913,7 +908,7 @@ void func_801BA984_7E8F54(void) {
             break;
 
         case 0x1001:
-            func_80045FA4(D_801BBC08_7EA1D8, 0);
+            func_80045FA4(D_801BBC08_7EA1D8, NULL);
             gDrawMidground = 0;
             gDrawEnvLayer = 0;
             gDrawBackground = FALSE;
@@ -940,7 +935,7 @@ void func_801BACBC_7E928C(void) {
             }
 
             gStageState++;
-            func_80046148(D_801BBC54_7EA224, (u16*)NULL);
+            func_80046148(D_801BBC54_7EA224, NULL);
             Actor_LoadSpawnTable(D_801BBC64_7EA234);
             Actor_LoadSpawnTable(D_801BBCA0_7EA270);
             D_800BE544 = 0x8000;
@@ -1002,7 +997,7 @@ void func_801BACBC_7E928C(void) {
 
         case 0x1000:
             gStageState++;
-            func_80045FA4(D_801BBC54_7EA224, 0);
+            func_80045FA4(D_801BBC54_7EA224, NULL);
             Actor_LoadSpawnTable(D_801BBC64_7EA234);
             Actor_LoadSpawnTable(D_801BBCA0_7EA270);
             gActors[0x88].state = 0x10;
