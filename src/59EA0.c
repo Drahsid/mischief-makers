@@ -955,7 +955,7 @@ u16 func_8005C250(u16 actor_index) {
     if (actor_1 == 0) {
         return actor_1;
     }
-    gActors[actor_1].actorType = 0x2E;
+    gActors[actor_1].actorType = ACTORTYPE_MARINAAFTERIMAGE;
     Actor_Initialize(actor_1);
     gActors[actor_1].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
     gActors[actor_1].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19 | ACTOR_FLAG_UNK27;

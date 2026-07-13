@@ -120,7 +120,7 @@ void func_8019BC64_73DBF4(u16 actor_index) {
 
     index2 = actor_index + 1;
     for (index = actor_index + 1, var_s2 = 0; var_s2 < 11; index++, var_s2++) {
-        gActors[index].actorType = 0x21;
+        gActors[index].actorType = ACTORTYPE_33;
         Actor_Initialize(index);
         gActors[index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[index].flags = sWormSegFlags[var_s2];

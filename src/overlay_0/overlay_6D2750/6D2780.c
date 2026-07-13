@@ -1742,7 +1742,7 @@ void func_80198B18_6D9198(u16 actor_index) {
         gActors[actor_index].posZ.raw = gActors[actor_index].var_154;
     }
 
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:

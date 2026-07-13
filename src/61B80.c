@@ -1489,7 +1489,7 @@ void func_80064F4C(u16 actor_index) {
 }
 
 void func_80065178(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
     switch (gActors[actor_index].state) {
     case 0x0:
         gActors[actor_index].state = 0x60;

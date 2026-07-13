@@ -842,7 +842,8 @@ void func_80072DD4(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072FE4.s")
 
-void func_8007325C(u16 actor_index) {
+// update behavior for almost every Clancer
+void Clancer_Update(u16 actor_index) {
     func_8006C1AC(actor_index);
     if (gActors[actor_index].state < 0x4000) {
         D_800D7F00[gActors[actor_index].state / 16](actor_index);
@@ -1226,7 +1227,7 @@ void func_80079B28(u16 actor_index) {
         var_s0 -= 8; var_s2--;
     }
     // Can't use ACTOR_INIT here
-    gActors[actor_index + 1].actorType = 0x1D;
+    gActors[actor_index + 1].actorType = ACTORTYPE_GRAPHICONLY;
     Actor_Initialize((actor_index + 1));
     gActors[actor_index + 1].flags = (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ACTIVE);
     gActors[actor_index + 1].posX.whole = gActors[actor_index].posX.whole;

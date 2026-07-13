@@ -986,7 +986,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             if ((gActors[actor_index].unk_16C & 2) && (D_801B4B60_7C0AB0 == 2) && (gNoHit >= 0)) {
                 if (YellowGem_GetFlag(gCurrentStage) == 0) {
                     gNoHit = -1;
-                    index = SpawnGemActor(actor_index, 0x32, 0);
+                    index = SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_YELLOW), 0);
                     if (index != 0) {
                         gActors[index].posX.whole = gActors[actor_index + 5].posX.whole;
                         gActors[index].posY.whole = gActors[actor_index + 5].posY.whole + 8;

@@ -22,11 +22,10 @@ enum ActorFlags {
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
-    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera?
+    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera
     ACTOR_FLAG_FREEZE_POS = (1U << 3U), // keep screenspace position regardless of camera movement. Used for screen effect actors.
     ACTOR_FLAG_UNK4 = (1U << 4U), 
-    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
-                                   // scale, in this context?)
+    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left
     ACTOR_FLAG_UNK6 = (1U << 6U),  // seems related to actor linking?
 
     // bits 7-12 seem to deal with collision checks.

@@ -50,6 +50,7 @@
 #define GINDEX_GEM             0x00B8 // 6 animation frames
 
 #define GINDEX_MINEROUND       0x00C6
+#define GINDEX_00C8            0x00C8
 
 #define GINDEX_CIRCLEEFFECT    0x00CA
 #define GINDEX_CLANBLOB        0x00CC

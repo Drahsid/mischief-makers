@@ -278,6 +278,8 @@ ActorUpdate_Marina = 0x8004ed10; // type:func
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
 
+Clancer_Update = 0x8007325C; // type:func
+
 ActorUpdate_CatTank = 0x80075dc4; // type:func
 
 Clanblob_Update = 0x80076d40; // type:func
@@ -329,6 +331,7 @@ ActorsUpdate_Velocity = 0x80014af0; // type:func
 ActorsUpdate_Position = 0x80014C44; // type:func
 ActorUpdate_Physics = 0x800160ec; // type:func
 ActorsUpdate_Physics = 0x80016cb4; // type:func
+ActorsUpdate_Screenspace = 0x80016D94; // type:func
 ActorsUpdate_Overlay = 0x80016E70; // type:func
 ActorsUpdate = 0x8001751C; // type:func
 

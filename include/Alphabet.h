@@ -78,7 +78,7 @@
 #define ALPHA_EN_QUOTE 0x003F // "
 #define ALPHA_EN_COMMA 0x0040 // ,
 #define ALPHA_EN_APOSTROPHE 0x0041 // '
-#define ALPHA_EN_EXCLAMAION 0x0042 // !
+#define ALPHA_EN_EXCLAMATION 0x0042 // !
 #define ALPHA_EN_QUESTION 0x0043 // ?
 #define ALPHA_EN_COPYRIGHT 0x0044 // ©
 #define ALPHA_EN_COLON 0x0045 // :
@@ -89,8 +89,8 @@
 #define ALPHA_EN_DIVIDE 0x004A // ÷
 #define ALPHA_EN_PERCENT 0x004B // %
 #define ALPHA_EN_SLASH 0x004C // /
-#define ALPHA_EN_PARENTESISLEFT 0x004D // (
-#define ALPHA_EN_PARENTESISRIGHT 0x004E // )
+#define ALPHA_EN_PARENTESIS_LEFT 0x004D // (
+#define ALPHA_EN_PARENTESIS_RIGHT 0x004E // )
 #define ALPHA_EN_BRACKETLEFT 0x004F // [
 #define ALPHA_EN_BRACKETRIGHT 0x0050 // ]
 
@@ -197,32 +197,36 @@
 
 #define ALPHA_THIN_COMMA 0x00AB // ,
 #define ALPHA_THIN_PERIOD 0x00AC // .
-#define ALPHA_JP_QUOTEL 0x00AD // 「
-#define ALPHA_JP_QUOTER 0x00AE // 」
-#define ALPHA_JP_QUOTERP 0x00AC // .」
+#define ALPHA_JP_QUOTE_LEFT  0x00AD // 「
+#define ALPHA_JP_QUOTE_RIGHT 0x00AE // 」
+#define ALPHA_JP_PERIOD_QUOTE_RIGHT 0x00AF // .」
 
-
-
-#define ALPHA_ELLIPSIS     0x00B0 // ...
-#define ALPHA_EXCLAMATION  0x00B1 // !
-#define ALPHA_EXCLAMATION2 0x00B2 // !!
-#define ALPHA_QUESTION     0x00B3 // ?
-#define ALPHA_QUESTION2    0x00B4 // ??
-#define ALPHA_QEXCLAIM     0x00B5 // !?
-#define ALPHA_PARENTHLEFT  0x00B6 // (
-#define ALPHA_PARENTHRIGHT 0x00B7 // )
-#define ALPHA_BRACKETLEFT  0x00B8 // <
-#define ALPHA_BRACKETRIGHT 0x00B9 // >
-#define ALPHA_TILDE        0x00BA // ~
-#define ALPHA_COLON        0x00BB // :
-#define ALPHA_COMMA        0x00BC // ,
-#define ALPHA_APOSTROPHE   0x00BD // '
-#define ALPHA_PERIOD       0x00BE // .
-#define ALPHA_PLUS         0x00BF // +
-#define ALPHA_MINUS        0x00C0 // -
-#define ALPHA_EQUALS       0x00C3 // =
-#define ALPHA_HEART        0x00C5 // ♥
-#define ALPHA_NOTE         0x00C6 // ♪
+#define ALPHA_ELLIPSIS          0x00B0 // ...
+#define ALPHA_EXCLAMATION       0x00B1 // !
+#define ALPHA_2EXCLAMATION      0x00B2 // !!
+#define ALPHA_QUESTION          0x00B3 // ?
+#define ALPHA_2QUESTION         0x00B4 // ??
+#define ALPHA_EXCLAIM_QUESTION  0x00B5 // !?
+#define ALPHA_PARENTHESIS_LEFT  0x00B6 // (
+#define ALPHA_PARENTHESIS_RIGHT 0x00B7 // )
+#define ALPHA_LESS_THAN         0x00B8 // <
+#define ALPHA_GREATER_THAN      0x00B9 // >
+#define ALPHA_TILDE             0x00BA // ~
+#define ALPHA_COLON             0x00BB // :
+#define ALPHA_COMMA             0x00BC // ,
+#define ALPHA_APOSTROPHE        0x00BD // '
+#define ALPHA_PERIOD            0x00BE // .
+#define ALPHA_PLUS              0x00BF // +
+#define ALPHA_DASH              0x00C0 // "-" (EN) "ー" (JP)
+#define ALPHA_EQUALS            0x00C3 // =
+#define ALPHA_HEART             0x00C5 // ♥
+#define ALPHA_NOTE              0x00C6 // ♪
+#define ALPHA_COPYRIGHT         0x00C7 // ©
+#define ALPHA_X_SYMBOL          0x00C8 // X
+#define ALPHA_ARROW_UP          0x00C9 // ↑
+#define ALPHA_ARROW_DOWN        0x00CA // ↓
+#define ALPHA_ARROW_LEFT        0x00CB // ←
+#define ALPHA_ARROW_RIGHT       0x00CC // →
 
 #define ALPHA_JP_KATA_A          0x00CD // ア
 #define ALPHA_JP_KATA_I          0x00CE // イ
@@ -365,21 +369,37 @@
 #define ALPHA_EN2_LOWER_Y 0x008D
 #define ALPHA_EN2_LOWER_Z 0x008E
 
+// more characters exclusive to English version
 
-#define ALPHA_EN2_APOSTROPHE 0x0092 // '
-#define ALPHA_EN2_EXLAMATION 0x0093 // !
+#define ALPHA_EN2_PERIOD            0x008F // .
+#define ALPHA_EN2_QUOTE_RIGHT       0x0090 // ”
+#define ALPHA_EN2_COMMA             0x0091 // ,
+#define ALPHA_EN2_APOSTROPHE        0x0092 // '
+#define ALPHA_EN2_EXCLAMATION       0x0093 // !
+#define ALPHA_EN2_QUESTION          0x0094 // ?
+#define ALPHA_EN2_MINUS             0x0095 // -
+#define ALPHA_EN2_GREEK_GAMMA       0x0096 // γ
+#define ALPHA_EN2_QUOTE_LEFT        0x0097 // “
+#define ALPHA_EN2_PARENTHESIS_RIGHT 0x0098 // )
+#define ALPHA_EN2_HEART             0x0099 // ♥
+#define ALPHA_EN2_NOTE              0x009A // ♪
+#define ALPHA_EN2_ARROW_RIGHT       0x009B // →
+#define ALPHA_EN2_COLON             0x009C // :
+#define ALPHA_EN2_SEMICOLON         0x009D // ;
+#define ALPHA_EN2_REFERENCE_MARK    0x009E // ※
+#define ALPHA_EN2_GREEK_ALPHA       0x009F // α
+#define ALPHA_EN2_GREEK_BETA        0x00A0 // β
 
+#define ALPHA_ROMAN_2               0x00CD // II
+#define ALPHA_EN_GREEK_ALPHA        0x00CE // α
+#define ALPHA_EN_GREEK_BETA         0x00CF // β
+#define ALPHA_EN_GREEK_GAMMA        0x00D0 // γ
+#define ALPHA_APOSTROPHE_S          0x00D1 // 's
+#define ALPHA_EN_E_ACUTE            0x00D2 // é
+#define ALPHA_EN_10                 0X00D3 // 10
+#define ALPHA_EN_11                 0X00D4 // 11
+#define ALPHA_EN_12                 0X00D5 // 12
 
-
-#define ALPHA_II           0x00CD // II
-#define ALPHA_APLHA        0x00CE // α
-#define ALPHA_BETA         0x00CF // β
-#define ALPHA_GAMMA        0x00D0 // γ
-#define ALPHA_APOSTROPHE_S 0x00D1 // 's
-#define ALPHA_E_ACCENT     0x00D2 // é
-#define ALPHA_THIN_10      0X00D3 // 10
-#define ALPHA_THIN_11      0X00D4 // 11
-#define ALPHA_THIN_12      0X00D5 // 12
 
 // a third English Alphabet, used for titles and names
 // implements kerning in english version.
@@ -438,7 +458,36 @@
 #define ALPHA_EN3_UPPER_Y 0x0150
 #define ALPHA_EN3_UPPER_Z 0x0151
 
-// TODO: kanji charset.
+// TODO: complete kanji charset.
+
+#define ALPHA_JP_KANJI_U4EBA 0x0152 // 人
+#define ALPHA_JP_KANJI_U9593 0x0153 // 間
+#define ALPHA_JP_KANJI_U7121 0x0154 // 無
+#define ALPHA_JP_KANJI_U6575 0x0155 // 敵
+#define ALPHA_JP_KANJI_U9244 0x0156 // 鉄
+#define ALPHA_JP_KANJI_U7532 0x0157 // 甲
+#define ALPHA_JP_KANJI_U535A 0x0158 // 博
+#define ALPHA_JP_KANJI_U58EB 0x0159 // 士
+#define ALPHA_JP_KANJI_U6642 0x015A // 時
+#define ALPHA_JP_KANJI_U7A7A 0x015B // 空
+#define ALPHA_JP_KANJI_U5B99 0x015C // 宙
+#define ALPHA_JP_KANJI_U904B 0x015D // 運
+#define ALPHA_JP_KANJI_U52D5 0x015E // 動
+#define ALPHA_JP_KANJI_U4F1A 0x015F // 会
+#define ALPHA_JP_KANJI_U5927 0x0160 // 大
+#define ALPHA_JP_KANJI_U5C0F 0x0161 // 小
+#define ALPHA_JP_KANJI_U4E2D 0x0162 // 中
+#define ALPHA_JP_KANJI_U5E1D 0x0163 // 帝
+#define ALPHA_JP_KANJI_U56FD 0x0164 // 国
+#define ALPHA_JP_KANJI_U95D8 0x0165 // 闘
+#define ALPHA_JP_KANJI_U7363 0x0166 // 獣
+#define ALPHA_JP_KANJI_U52C7 0x0167 // 勇
+#define ALPHA_JP_KANJI_U8005 0x0168 // 者
+#define ALPHA_JP_KANJI_U4E0A 0x0183 // 上
+#define ALPHA_JP_KANJI_U9802 0x0251 // 頂
+#define ALPHA_JP_KANJI_U56DE 0x0269 // 回
+#define ALPHA_JP_KANJI_U9023 0x026E // 連
+#define ALPHA_JP_KANJI_U5E30 0x028A // 帰
 
 #define ALPHA_BOLD_SPACE 0xC000
 

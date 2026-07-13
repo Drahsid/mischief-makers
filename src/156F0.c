@@ -563,7 +563,7 @@ void ActorsUpdate_Physics(void) {
     }
 }
 
-void func_80016D94(void) {
+void ActorsUpdate_Screenspace(void) {
     u16 index;
     s32 delta_x;
     s32 delta_y;

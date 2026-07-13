@@ -188,7 +188,7 @@ void func_8008CA90(void) {
     }
 
     actor_index = 0x10;
-    gActors[actor_index].actorType = 0x72;
+    gActors[actor_index].actorType = ACTORTYPE_114;
     Actor_Initialize(actor_index);
     temp_val = 0x8030;
     gActors[actor_index].var_110 = (f32) temp_val;
@@ -655,7 +655,7 @@ void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused) {
     if (actor_index == 0) {
         actor_index = 0x10;
     }
-    gActors[actor_index].actorType = 0x70;
+    gActors[actor_index].actorType = ACTORTYPE_MARINAOHNO;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = gPlayerActor.posX.whole;

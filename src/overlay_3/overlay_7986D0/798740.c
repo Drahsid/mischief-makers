@@ -4,6 +4,8 @@
 
 #include "common.h"
 
+// "Overlay 3" code for World 2
+
 #define D_801B5E4A_79DC8A (D_801B5E08_79DC48 + 33)
 
 extern s16 D_800E20C4[];
@@ -1206,11 +1208,14 @@ u16 D_801B9144_7A0F84[8] = {
     4408, 4504, 4408, 4504,
     4600, 4504, 4600, 4504,
 };
+// や-い / ya-i (Woah!)
+u16 D_801B9154_7A0F94[4] = { 
+    ALPHA_JP_HIRA_YA, ALPHA_DASH, ALPHA_JP_HIRA_I, ALPHA_NULL 
+};
 
-u16 D_801B9154_7A0F94[4] = { 0x74, 0xC0, 0x52, 0x8FFF };
-
-u16 D_801B915C_7A0F9C[10] = {
-    0x5C, 0x86, 0x72, 0x8FFF, 0, 0, 0, 0, 0, 0,
+// しずめ / shizume (calm down)
+u16 D_801B915C_7A0F9C[] = {
+    ALPHA_JP_HIRA_SHI, ALPHA_JP_HIRA_ZU, ALPHA_JP_HIRA_ME, ALPHA_NULL
 };
 
 extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
@@ -1897,7 +1902,7 @@ void func_801B24F0_79A330(u16 actor_index) {
 }
 
 void func_801B2638_79A478(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].state = 0x60;
@@ -2995,7 +3000,7 @@ void func_801B4D60_79CBA0(u16 actor_index) {
 }
 
 void func_801B4EC0_79CD00(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -3038,7 +3043,7 @@ void func_801B4F48_79CD88(u16 actor_index) {
 }
 
 void func_801B5078_79CEB8(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -3096,7 +3101,7 @@ void func_801B5100_79CF40(u16 actor_index) {
 }
 
 void func_801B5320_79D160(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:

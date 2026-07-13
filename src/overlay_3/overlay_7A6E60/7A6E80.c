@@ -562,7 +562,7 @@ void func_801B0CBC_7A723C(u16 arg0) {
 void func_801B0CEC_7A726C(u16 actor_index) {
     ACTOR_FIXEDADDRESS_SET(0x31, actorType, ACTORTYPE_ZERO);
     Actor_Initialize(0x31);
-    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, GINDEX_SOLIDSQARE);
+    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, GINDEX_SOLIDSQUARE);
     ACTOR_FIXEDADDRESS_OR(0x31, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK11);
     ACTOR_FIXEDADDRESS_OR(0x31, flags, ACTOR_FLAG_FREEZE_POS);
     ACTOR_FIXEDADDRESS_SET(0x31, posX.whole, 0);
@@ -712,7 +712,7 @@ void func_801B13F8_7A7978(u16 actor_index) {
     Actor_Initialize(0x69);
     ACTOR_FIXEDADDRESS_SET(0x69, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK11);
     ACTOR_FIXEDADDRESS_SET(0x69, flags, ACTOR_FLAG_ENABLED | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x69, graphicIndex, GINDEX_SOLIDSQARE);
+    ACTOR_FIXEDADDRESS_SET(0x69, graphicIndex, GINDEX_SOLIDSQUARE);
     ACTOR_FIXEDADDRESS_SET(0x69, colorB, 0xBA);
     ACTOR_FIXEDADDRESS_SET(0x69, colorA, 0xB2);
     ACTOR_FIXEDADDRESS_SET(0x69, posX.whole, 55);
@@ -1750,7 +1750,7 @@ void func_801B3E9C_7AA41C(u16 actor_index) {
         gActors[actor_index].posZ.raw = gActors[actor_index].var_154;
     }
 
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -1853,7 +1853,7 @@ void func_801B4298_7AA818(u16 actor_index) {
         gActors[actor_index].posZ.raw = FIXED_UNIT(-96.0);
     }
 
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:

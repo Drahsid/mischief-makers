@@ -2397,7 +2397,7 @@ void func_80020024(void) {
     ActorsUpdate_Velocity();
     ActorsUpdate_Physics();
     func_80012830();
-    func_80016D94();
+    ActorsUpdate_Screenspace();
     func_8001EC1C();
     func_8001107C();
     if (D_800CA230 == 0) {

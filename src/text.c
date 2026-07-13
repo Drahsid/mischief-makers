@@ -4,11 +4,11 @@
 // adapts ASCII characters between ' ' and 'z' for game's charset
 u16 gASCIIAlphaIndecies[]={
 //   space       !                    "               #
-    ALPHA_SPACE, ALPHA_EN_EXCLAMAION, ALPHA_EN_QUOTE, ALPHA_SPACE,
+    ALPHA_SPACE, ALPHA_EN_EXCLAMATION, ALPHA_EN_QUOTE, ALPHA_SPACE,
 //  $          %                 &           '
     ALPHA_SPACE,ALPHA_EN_PERCENT,ALPHA_SPACE,ALPHA_EN_APOSTROPHE,
 //  (                      )                        *              +
-    ALPHA_EN_PARENTESISLEFT,ALPHA_EN_PARENTESISRIGHT,ALPHA_EN_TIMES,ALPHA_EN_PLUS,
+    ALPHA_EN_PARENTESIS_LEFT,ALPHA_EN_PARENTESIS_RIGHT,ALPHA_EN_TIMES,ALPHA_EN_PLUS,
 //  ,              -             .                /
     ALPHA_EN_COMMA,ALPHA_EN_MINUS,ALPHA_EN_PERIOD,ALPHA_EN_SLASH,
 //  0      1       2        3

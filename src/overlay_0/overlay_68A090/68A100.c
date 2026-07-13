@@ -209,7 +209,7 @@ void func_80195D28_68DD28(void) {
     gActors[0x36].hitboxBY0 = 0x18;
     gActors[0x36].hitboxBY1 = -0x18;
     gActors[0x36].hitboxBX0 = -0x18;
-    gActors[0x39].actorType = 0xF11;
+    gActors[0x39].actorType = ACTORTYPE_OVL0_CALPHA_17;
     gActors[0x39].flags |= 0x8400;
     gActors[0x39].hitboxBX0 = -0xE;\
     gActors[0x39].hitboxBX1 = 0x20;

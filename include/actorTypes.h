@@ -18,7 +18,7 @@ typedef enum {
     ACTOR_OVL3_1,
     ACTOR_OVL1_WORM,
     ACTOR_OVL1_DOG,
-    ACTOR_OVL3_4,
+    ACTOR_OVL3_WORLD1,
     ACTOR_OVL3_WORLD2,
     ACTOR_OVL0_MIGEN,
     ACTOR_OVL3_7,
@@ -208,6 +208,16 @@ typedef enum {
     ACTORTYPE_OVL1_DOG_2,  // stubbed
     ACTORTYPE_OVL1_DOG_3,  // stubbed
     ACTORTYPE_OVL1_DOG_4,  // stubbed
+
+    // actors in dispatch table D_801B0800_7969B0
+
+    ACTORTYPE_OVL3_W1_VOLCANO = (ACTOR_OVL3_WORLD1 << 8), // volcano in background of desert stages.
+    ACTORTYPE_OVL3_W1_VOLROCK, // rock projected by volcano
+    ACTORTYPE_OVL3_W1_LIGHTNING, // lightning bolts in "Volcano"
+    ACTORTYPE_OVL3_W1_ROCKFLAME, // flame behind volcanic rock
+    ACTORTYPE_OVL3_W1_VOLROCKSPAWN, // spawns volcanic rocks
+    ACTORTYPE_OVL3_W1_BIRD, // birds in background of "Western World"
+    ACTORTYPE_OVL3_W1_6, // clanblock that shrinks when hit?
 
     // actors in dispatch table D_801B0800_7986D0
 
@@ -414,13 +424,30 @@ typedef enum {
     ACTORTYPE_OVL2_W1_25,
     ACTORTYPE_OVL2_W1_26,
     ACTORTYPE_OVL2_W1_27,
-    ACTORTYPE_OVL2_W1_28, // static props / the background birds in "Western World"
+    ACTORTYPE_OVL2_W1_28, // static props
     ACTORTYPE_OVL2_W1_29,
     ACTORTYPE_OVL2_W1_30,
     ACTORTYPE_OVL2_W1_31,
     ACTORTYPE_OVL2_W1_CLANCER_32, // Clanball Land patron
     ACTORTYPE_OVL2_W1_33,
     ACTORTYPE_OVL2_W1_34,
+
+    // actors in dispatch table D_801B0800_7A13D0
+
+    ACTORTYPE_OVL3_W3_0 = (ACTOR_OVL3_WORLD3 << 8),
+    ACTORTYPE_OVL3_W3_1,
+    ACTORTYPE_OVL3_W3_2, // enemy platforms in "Missle Surf"?
+    ACTORTYPE_OVL3_W3_3,
+    ACTORTYPE_OVL3_W3_4,
+    ACTORTYPE_OVL3_W3_CLANCER_5,
+    ACTORTYPE_OVL3_W3_6,
+    ACTORTYPE_OVL3_W3_7,
+    ACTORTYPE_OVL3_W3_JUMPROPE,
+    ACTORTYPE_OVL3_W3_CLANCER_9,
+    ACTORTYPE_OVL3_W3_10,
+    ACTORTYPE_OVL3_W3_11,
+    ACTORTYPE_OVL3_W3_12,
+
 
     // actors in dispatch table D_801A6800_76FD60
 

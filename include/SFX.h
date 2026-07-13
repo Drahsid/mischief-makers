@@ -144,7 +144,7 @@
 #define SFX_00BD 0x00BD
 #define SFX_00BF 0x00BF
 #define SFX_00BA 0x00BA
-#define SFX_00BE 0x00BE
+#define SFX_THUNDER_00BE 0x00BE
 #define SFX_013C 0x013C
 #define SFX_013D 0x013D
 #define SFX_BOOM_0026 0x0026

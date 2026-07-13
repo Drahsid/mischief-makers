@@ -1866,7 +1866,7 @@
           }
         },
         {
-          "name": "func_80016D94",
+          "name": "ActorsUpdate_Screenspace",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -12225,7 +12225,7 @@
           }
         },
         {
-          "name": "func_8007325C",
+          "name": "Clancer_Update",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
