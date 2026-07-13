@@ -1,7 +1,7 @@
 #include "common.h"
 #include "1F1E0.h"
 
-extern u16 D_800CA238;
+extern u16 gAttractModeIndex;
 extern s16 D_800CBF44;
 
 // .bss
@@ -48,7 +48,7 @@ void func_80022D10(void) {
     gButton_B = B_BUTTON;
     gButton_A = A_BUTTON;
     gCurrentFramebufferIndex = 0;
-    D_800CA238 = 0;
+    gAttractModeIndex = 0;
     gGameState = GAMESTATE_SOFTRESET;
     gGameStateSubState = 0;
 }
@@ -60,7 +60,7 @@ void func_80022D88(void) {
     gGamePaused = 0;
     gAudioFadeMode = 0;
     D_800CBF40 = 0;
-    D_800CA230 = 0;
+    gIsPlayerInactive = FALSE;
     gCannotPause = 0;
     gActorStall = 0;
     D_800BE66C = 0;
@@ -242,7 +242,7 @@ void GameState_Loading(void) {
     gPlayerActor.state =
     D_800BE6FC =
     gAudioFadeMode =
-    D_800CA230 =
+    gIsPlayerInactive =
     D_800BE5F4.unk_00_u32 =
     D_800D5820 =
     D_801373E0.unk_78 = 0;

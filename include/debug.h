@@ -4,8 +4,8 @@
 #include <PR/ultratypes.h>
 
 // guessed signature
-void func_80083A74(s32, s32, s32);
+void OSD_PrintInt(s32, s32, s32);
 // guessed signature
-void func_80083C54(s16, s32, s32);
+void OSD_PrintShortHexBlack(s16, s32, s32);
 
 #endif

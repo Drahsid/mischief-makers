@@ -591,23 +591,23 @@ void func_801B0DC8_7A7348(u16 actor_index) {
     u16 current_index;
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             init_records = D_801B4E90_7AB410;
             break;
 
-        case 1:
+        case FESTGAME_200M:
             init_records = D_801B4EB4_7AB434;
             break;
 
-        case 2:
+        case FESTGAME_100M:
             init_records = D_801B4ED8_7AB458;
             break;
 
-        case 7:
+        case FESTGAME_RACE7:
             init_records = D_801B4EFC_7AB47C;
             break;
 
-        case 5:
+        case FESTGAME_HURDLE:
             init_records = D_801B4F20_7AB4A0;
             break;
     }
@@ -755,23 +755,23 @@ void func_801B159C_7A7B1C(u16 actor_index) {
     s32 value;
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             divisor = 100;
             break;
 
-        case 1:
+        case FESTGAME_200M:
             divisor = 200;
             break;
 
-        case 2:
+        case FESTGAME_400M:
             divisor = 400;
             break;
 
-        case 7:
+        case FESTGAME_RACE7:
             divisor = 100;
             break;
 
-        case 5:
+        case FESTGAME_HURDLE:
             divisor = 100;
             break;
     }
@@ -868,27 +868,27 @@ void func_801B1B48_7A80C8(u16 actor_index) {
     u16 index;
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             gActors[actor_index].unk_174 = 0xE20;
             gFestivalCompetitorCount = 4;
             break;
 
-        case 1:
+        case FESTGAME_200M:
             gActors[actor_index].unk_174 = 0x1A20;
             gFestivalCompetitorCount = 4;
             break;
 
-        case 2:
+        case FESTGAME_400M:
             gActors[actor_index].unk_174 = 0x3220;
             gFestivalCompetitorCount = 4;
             break;
 
-        case 7:
+        case FESTGAME_RACE7:
             gActors[actor_index].unk_174 = 0x6420;
             gFestivalCompetitorCount = 4;
             break;
 
-        case 5:
+        case FESTGAME_HURDLE:
             gActors[actor_index].unk_174 = 0xE20;
             gFestivalCompetitorCount = 2;
             break;
@@ -909,23 +909,23 @@ void func_801B1D60_7A82E0(u16 actor_index, u16 arg1) {
     f32 value;
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             table = D_801B4F68_7AB4E8;
             break;
 
-        case 1:
+        case FESTGAME_200M:
             table = D_801B4F8C_7AB50C;
             break;
 
-        case 2:
+        case FESTGAME_400M:
             table = D_801B4FB0_7AB530;
             break;
 
-        case 7:
+        case FESTGAME_RACE7:
             table = D_801B4FD4_7AB554;
             break;
 
-        case 5:
+        case FESTGAME_HURDLE:
             table = D_801B4FF8_7AB578;
             break;
     }
@@ -1566,7 +1566,8 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             break;
 
         case 0x50:
-            if (gFestivalCurrentEvent != 5) {
+            if (gFestivalCurrentEvent != FESTGAME_HURDLE) {
+                // no jumping in sprints
                 D_800BE5F4.unk_00_u32 = 2;
                 D_801373E0.unk_20 = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
                 D_801373E0.unk_24 = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
@@ -1677,7 +1678,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             break;
     }
 
-    if (gFestivalCurrentEvent == 5) {
+    if (gFestivalCurrentEvent == FESTGAME_HURDLE) {
         func_801B0A58_7A6FD8(actor_index, -96);
     }
 }
@@ -1689,23 +1690,23 @@ void func_801B3BCC_7AA14C(u16 actor_index) {
     s32 step;
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             step = 0xC00;
             break;
 
-        case 1:
+        case FESTGAME_200M:
             step = 0x1800;
             break;
 
-        case 2:
+        case FESTGAME_400M:
             step = 0x3000;
             break;
 
-        case 7:
+        case FESTGAME_RACE7:
             step = 0x6200;
             break;
 
-        case 5:
+        case FESTGAME_HURDLE:
             step = 0xC00;
             break;
     }
@@ -1713,15 +1714,15 @@ void func_801B3BCC_7AA14C(u16 actor_index) {
     gActors[actor_index].unk_170 = (gActors[actor_index].unk_17C - 0x220) / (u16)(step / 8);
 
     switch (gFestivalCurrentEvent) {
-        case 0:
+        case FESTGAME_100M:
             gActors[actor_index].unk_118 = D_801B55D4_7ABB54[(gFestivalCompetitors[gActors[actor_index].unk_16C].rand * 8) + gActors[actor_index].unk_170] + D_801B5760_7ABCE0[D_80178292];
             break;
 
-        case 1:
+        case FESTGAME_200M:
             gActors[actor_index].unk_118 = D_801B5658_7ABBD8[(gFestivalCompetitors[gActors[actor_index].unk_16C].rand * 8) + gActors[actor_index].unk_170] + D_801B5760_7ABCE0[D_80178292];
             break;
 
-        case 2:
+        case FESTGAME_400M:
             gActors[actor_index].unk_118 = D_801B56DC_7ABC5C[(gFestivalCompetitors[gActors[actor_index].unk_16C].rand * 8) + gActors[actor_index].unk_170] + D_801B5760_7ABCE0[D_80178292];
             break;
     }

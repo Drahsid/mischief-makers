@@ -34,7 +34,7 @@ enum DebugFlags {
     DEBUGFLAG_STUB1 = (1U << 0), //runs a stubbed function on game tick.
     
     // control gDebugThrottle value with L and R buttons
-    // input between slowed ticks stored in D_801781DC
+    // input between slowed ticks stored in gThrottleButtons
     DEBUGFLAG_THROTTLE = (1U << 1U), 
     
     // game runs with perspective view when set, orthographic when unset

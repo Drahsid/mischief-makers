@@ -1,7 +1,7 @@
 #include "common.h"
 #include "gameText.h"
 
-// adapts ASCII characters between ' ' and 'z' for game's charset
+// adapts ASCII characters from ' ' to 'z' for game's charset
 u16 gASCIIAlphaIndecies[]={
 //   space       !                    "               #
     ALPHA_SPACE, ALPHA_EN_EXCLAMATION, ALPHA_EN_QUOTE, ALPHA_SPACE,
@@ -75,7 +75,7 @@ u16 gTextPaletteBase[]={0,0x001,0x39cf,0x7bdf};
 // @param y y-position of actor.
 // @param z z-position of actor.
 void Text_InitActor(u16 actor_index, u16 x, u16 y, u16 z) {
-    gActors[actor_index].actorType = 0;
+    gActors[actor_index].actorType = ACTORTYPE_ZERO;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK11;
     gActors[actor_index].unk_188 = 0;
@@ -346,7 +346,7 @@ u16 Text_PrintStringRGB(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, 
 // @returns last applicable actor index + 1
 u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 red, u8 green, u8 blue, f32 scale_x, f32 scale_y) {
     while (*str != ALPHA_NULL) {
-        if (*str != 0) {
+        if (*str != ALPHA_SPACE) {
             Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             if ((scale_x != 1.0) || (scale_y != 1.0)) {
@@ -378,7 +378,7 @@ u16 Text_PrintStringRGBScale(u16 actor_index, u16* str, u16 x, u16 y, u16 z, u8 
 // @returns last applicable actor index + 1
 u16 Text_PrintStringGray(u16 actor_index, u16* str, u16 x, u16 y, u16 z) {
     while (*str != ALPHA_NULL) {
-        if (*str != 0) {
+        if (*str != ALPHA_SPACE) {
             Text_InitActor(actor_index, x, y, z);
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
             gActors[actor_index].unk_18C = (s32)gTextPaletteBase;

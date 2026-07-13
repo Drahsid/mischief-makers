@@ -8,8 +8,8 @@
 #include "1F1E0.h"
 #include "28EF0.h"
 
-extern u16* D_800D1810[]; // palettes of particles.
-extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
+extern u16* gParticlePalettes[]; // palettes of particles.
+extern u16 gStrPotEmpty[]; // "からっぽ..."/"Empty.."
 extern u16* gGemPalettes[]; // palettes of gems
 extern u16* D_800D19F4[]; // palettes of "wave rings",
 extern u16 D_800D2294[];
@@ -29,8 +29,10 @@ extern u16 D_800D25BC[]; // grouped by step count 5 (0xA bytes)
 extern s32 D_800D26E0[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];
-extern u16 D_800D2750[]; // "escaped from trouble!" "Marina has succeeded!!"
-extern u16 D_800D27B0[];  // "go to next area!!" "good luck!!"
+extern u16 gStrAreaClear0[]; // "escaped from trouble!" 
+extern u16 gStrAreaClear1[]; // "Marina has succeeded!!" (unused)
+extern u16 gStrAreaClear2[]; // "go to next area!!"
+extern u16 gStrAreaClear3[]; // "good luck!!" (unused)
 extern u16 gCrosshairPalette[];
 extern u16 D_800D2814[];
 extern f32 D_800D281C[];
@@ -118,7 +120,7 @@ void func_800282F0(s16 x, s16 y) {
     gActors->posY.whole = y;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + x;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + y;
-    D_800CA230 = 0;
+    gIsPlayerInactive = FALSE;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;
     }
@@ -127,7 +129,7 @@ void func_800282F0(s16 x, s16 y) {
 // dectivate player actor
 void func_80028380(void) {
     gPlayerActor.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
     D_80137458 = 0;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;
@@ -2590,7 +2592,7 @@ u16 SpawnGemActor(u16 actor_index, u16 flags, u16 unused_arg2) {
 // @param flags flags about spawned gem (use GemFlags)
 // @param unused_arg2 unused.
 // @returns index of gem actor or 0 if failed.
-s32 func_8002F154(u16 actor_index, u16 flags, u16 unused_arg2) {
+s32 SpawnGemActor61(u16 actor_index, u16 flags, u16 unused_arg2) {
     u16 index;
 
     index = SpawnGemActor(actor_index, flags, unused_arg2);
@@ -2601,7 +2603,7 @@ s32 func_8002F154(u16 actor_index, u16 flags, u16 unused_arg2) {
 }
 
 // spawns yellow gem if boss defeated without getting hit.
-u16 func_8002F1C8(u16 actor_index) {
+u16 NoHitGem(u16 actor_index) {
     u16 index;
 
     index = 0;
@@ -2971,7 +2973,7 @@ void ActorUpdate_Gem(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
-// behavoir of special gem actor. spawned in func_8002F154
+// behavoir of special gem actor. spawned in SpawnGemActor61
 void ActorUpdate_Gem61(u16 actor_index) {
     ActorUpdate_Gem(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8;
@@ -3320,7 +3322,7 @@ void ActorUpdate_Particle(u16 actor_index) {
                     vals += temp;
                     temp = *vals;
                 }
-                gActors[actor_index].palette_18C = D_800D1810[temp];
+                gActors[actor_index].palette_18C = gParticlePalettes[temp];
                 vals += 2;
                 gActors[actor_index].unk_128 = vals[-1];
                 gActors[actor_index].unk_178 = (s32) vals;
@@ -4878,7 +4880,7 @@ void Clanpot_Tilt(u16 actor_index) {
                 }
             }
             else if (temp_a0 == 0) {
-                SpawnTextBubble(0, D_800D1898, 0, 0x20, 0x1E);
+                SpawnTextBubble(0, gStrPotEmpty, 0, 0x20, 0x1E);
             }
         }
     }
@@ -7203,7 +7205,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(32.0), FIXED_UNIT(0.5));
-            func_8007EA14(&D_800D2750, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), &D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(&gStrAreaClear0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), &D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 84, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
@@ -7226,7 +7228,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(32.0), FIXED_UNIT(0.5));
-            func_8007EA14(&D_800D27B0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(&gStrAreaClear2, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0x5C, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);

@@ -408,7 +408,7 @@ void func_80196BE8_6C18B8(s32 arg0) {
 void func_80196BF0_6C18C0(u16 index, u16 flags, s32 velocity_x) {
     s32 actor_index;
 
-    actor_index = func_8002F154(index, flags, 0);
+    actor_index = SpawnGemActor61(index, flags, 0);
     if (actor_index != 0) {
         gActors[actor_index].velocityX.raw = velocity_x;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(3.5);

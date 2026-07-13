@@ -85,7 +85,7 @@ void func_801B9900_7EA730(void) {
             Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
 
         case 1:
@@ -152,7 +152,7 @@ void func_801B9BB4_7EA9E4(void) {
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
             D_800BE578 = temp;
             D_800BE580 = -12;
@@ -239,7 +239,7 @@ void func_801B9EA4_7EACD4(void) {
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
             D_800BE578 = 2;
             D_800BE580 = -12;

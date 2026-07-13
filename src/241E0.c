@@ -162,7 +162,7 @@ void func_80023A34(void) {
 void func_80023AA4(void) {
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
 void func_80023AC4(void) {
@@ -173,7 +173,7 @@ void func_80023ACC(void) {
     D_800BE584 = 0;
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
 void func_80023AFC(void) {
@@ -196,7 +196,7 @@ void func_80023BC0(void) {
     D_800BE584 = -12;
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
 void func_80023BF8(void) {
@@ -860,7 +860,7 @@ void func_800255B4(u16 scene) {
     gLifebarHead.graphicIndex = GINDEX_LIFEHEADBLINK;
     gLifebarHead.posX.whole = -0x7C;
     gLifebarHead.posY.whole = 0x80;
-    D_800CA230 = 0;
+    gIsPlayerInactive = FALSE;
     gLetterboxMode = LETTERBOX_DEFAULT;
     D_800BE70C = 0;
 

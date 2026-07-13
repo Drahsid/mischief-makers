@@ -3,8 +3,8 @@
 
 #include <PR/ultratypes.h>
 
-extern u16 D_800CA230;
-extern u16 D_800CA26C[];
+extern u16 gIsPlayerInactive;
+extern u16 gPauseContinue[];
 
 void func_80020844(void);
 void func_800208D4(void);

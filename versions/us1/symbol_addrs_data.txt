@@ -64,12 +64,18 @@ gASCIIAlphaIndecies = 0x800D16D0; // size:0xB8
 gTextPalettes = 0x800D1788; // size:0x40
 gEngTextKerning = 0x800D17c8; // size:0x34
 gTextPaletteBase = 0x800D17fc; // size:0x8
+gParticlePalettes = 0x800D1810;
+gStrPotEmpty = 0x800D1898;
 D_800D18F8 = 0x800D18F8;
 D_800D1918 = 0x800D1918;
 gGemPalettes = 0x800d1958; // size:0x10
 gClanpotItems = 0x800D22BC; // size:0x140
 gClanpotItemCount = 0x800D24D8; //size:0x1A
 gStageState = 0x800D28E8; // type:u16 size:0x2
+gStrAreaClear0 = 0x800D2750;
+gStrAreaClear1 = 0x800D2780;
+gStrAreaClear2 = 0x800D27B0;
+gStrAreaClear3 = 0x800D27DC;
 gCrosshairPalette = 0x800D27F8; // size:0x1A
 gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
 D_800D292C = 0x800D292C;
@@ -162,6 +168,9 @@ gDialogTextboxIndex = 0x80178438; // type:u16 size:0x2
 gDialogTextBGIndex = 0x8017843A; // type:u16 size:0x2
 gDialogPortraitIndex = 0x8017843C; // type:u16 size:0x2
 gDialogLRIndex = 0x8017843E; // type:u16 size:0x2
+
+gPauseSFXVols = 0x801781C0;
+gThrottleButtons = 0x801781DC; // type:u16
 
 D_80178450 = 0x80178450; // size:0x2
 D_80178452 = 0x80178452; // size:0x2
@@ -595,9 +604,41 @@ gFestivalTimeToBeat = 0x80178298;
 gFestivalEventsPlayed = 0x801782A0;
 gGuestActorHP = 0x801782AA;
 
+
 gActorInitStats = 0x800C9700; // size:0x6d8
 gActorInitFlags = 0x800C9DD8; // size:0x1F4
 gActorInitGraphics = 0x800C9FCC; // size:0x1F4
+
+
+
+gPauseDHMS = 0x800CA254;
+gPauseContinue = 0x800CA26C;
+gPauseExit = 0x800CA280;
+gStrYellowGemNo = 0x800CA28C;
+gStrYellowGemYes = 0x800CA2A0;
+gAttractModeStages = 0x800CA2B0; // size:0x10
+
+gAttractModeHolds0 = 0x800CA2B8;
+gAttractModePresses0 = 0x800CA5C0;
+gAttractModeHolds1 = 0x800CA8BC;
+gAttractModePresses1 = 0x800CABB4;
+gAttractModeHolds2 = 0x800CAEA8;
+gAttractModePresses2 = 0x800CB2AC;
+gAttractModeHolds3 = 0x800CB6C8;
+gAttractModePresses3 = 0x800CBA60;
+
+gIsPlayerInactive = 0x800CA230
+gAttractModeTime = 0x800CA234;
+gAttractModeIndex = 0x800CA238;
+gAttractModeHoldIndex = 0x800CA23C;
+gAttractModeHeld = 0x800CA240;
+gAttractModeHoldTime = 0x800CA244;
+gAttractModePressIndex = 0x800CA248;
+gAttractModePressed = 0x800CA24C;
+gAttractModePressTime = 0x800CA250;
+
+gAttractModeHolds = 0x800CBDFC;
+gAttactModePresses = 0x800CBE0C;
 
 gFileNames = 0x80171aa0; // size:0x2c
 gFileAges = 0x80171acc; // size:0x2
@@ -614,6 +655,9 @@ gActorsMiddle = 0x80171C30; //size:0x100
 gActorsFront = 0x80171D30; // size:0x1e0
 gActorsTop = 0x80171F10; // size:0x1e0
 
+gOSDDataCount = 0x80180fd0; // size:0x4
+gOSDData = 0x80180fd8; // size:0x1040
+gOSDTime = 0x80182018; // size:0x4
 
 // TODO:
 rle_0024_317270_010CE330 = 0x010CE330;

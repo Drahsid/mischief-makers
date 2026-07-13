@@ -5369,7 +5369,7 @@
           }
         },
         {
-          "name": "func_8002F154",
+          "name": "SpawnGemActor61",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5377,7 +5377,7 @@
           }
         },
         {
-          "name": "func_8002F1C8",
+          "name": "NoHitGem",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13722,84 +13722,84 @@
       ],
       "functions": [
         {
-          "name": "func_800838E0",
+          "name": "OSD_Reset",
           "size": "60",
           "metadata": {
             "virtual_address": "2148022496"
           }
         },
         {
-          "name": "func_8008391C",
+          "name": "OSD_SetData",
           "size": "232",
           "metadata": {
             "virtual_address": "2148022556"
           }
         },
         {
-          "name": "func_80083A04",
+          "name": "OSD_PrintIntHex",
           "size": "112",
           "metadata": {
             "virtual_address": "2148022788"
           }
         },
         {
-          "name": "func_80083A74",
+          "name": "OSD_PrintInt",
           "size": "112",
           "metadata": {
             "virtual_address": "2148022900"
           }
         },
         {
-          "name": "func_80083AE4",
+          "name": "OSD_PrintFloat",
           "size": "120",
           "metadata": {
             "virtual_address": "2148023012"
           }
         },
         {
-          "name": "func_80083B5C",
+          "name": "OSD_PrintByteHex",
           "size": "124",
           "metadata": {
             "virtual_address": "2148023132"
           }
         },
         {
-          "name": "func_80083BD8",
+          "name": "OSD_PrintShortHexWhite",
           "size": "124",
           "metadata": {
             "virtual_address": "2148023256"
           }
         },
         {
-          "name": "func_80083C54",
+          "name": "OSD_PrintShortHexBlack",
           "size": "120",
           "metadata": {
             "virtual_address": "2148023380"
           }
         },
         {
-          "name": "func_80083CCC",
+          "name": "OSD_GetTime",
           "size": "36",
           "metadata": {
             "virtual_address": "2148023500"
           }
         },
         {
-          "name": "func_80083CF0",
+          "name": "OSD_PrintDeltaTime",
           "size": "200",
           "metadata": {
             "virtual_address": "2148023536"
           }
         },
         {
-          "name": "func_80083DB8",
+          "name": "OSD_PrintfTime",
           "size": "188",
           "metadata": {
             "virtual_address": "2148023736"
           }
         },
         {
-          "name": "func_80083E74",
+          "name": "OSD_Tick",
           "size": "316",
           "metadata": {
             "virtual_address": "2148023924"

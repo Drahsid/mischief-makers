@@ -146,9 +146,18 @@ u16 D_801AF798_795A88[]={
 };
 
 u16 D_801AF7C4_795AB4[]={
-    0x0009, 0x0021, 0x000C, 0x0020, 0x000D, 0x0024, 0x000A, 0x0022, 
-    0x000B, 0x0023, 0x000F, 0x0026, 0x001E, 0x0028, 0x0010, 0x001F, 
-    0x0010, 0x001F, 0x0010, 0x001F, 0x0010, 0x001F, 0x0010, 0x0032
+    0x0009, 0x0021,
+    0x000C, 0x0020,
+    0x000D, 0x0024,
+    0x000A, 0x0022, 
+    0x000B, 0x0023,
+    0x000F, 0x0026,
+    0x001E, 0x0028,
+    0x0010, 0x001F, 
+    0x0010, 0x001F,
+    0x0010, 0x001F,
+    0x0010, 0x001F,
+    0x0010, 0x0032
 };
 
 // struct read in func_801ABBAC_791E9C.
@@ -993,7 +1002,6 @@ void func_801AB610_791900(u16 actor_index){
     if (!D_80171B19) {
         start = gActors[actor_index].unk_17C * 7;
         for (index = start; index < start + 7; index++) {
-            // if local pointer, operand order incorrect
             if (gFestivalEventsPlayed[index]) {
                 actor_index2 = index + 0x40;
                 gActors[actor_index2].flags |= 1;

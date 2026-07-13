@@ -202,7 +202,7 @@ void func_8019B468_753BE8(u16 actor_index) {
 }
 
 void func_8019B60C_753D8C(u16 actor_index) {
-    func_80083BD8(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
+    OSD_PrintShortHexWhite(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
     if (D_800E3584 & 0xC0000) {
         gActors[actor_index].flags ^= ACTOR_FLAG_FLIPPED;
     }
@@ -212,7 +212,7 @@ void func_8019B60C_753D8C(u16 actor_index) {
 }
 
 void func_8019B6A8_753E28(u16 actor_index) {
-    func_80083BD8(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
+    OSD_PrintShortHexWhite(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
     if (D_800E3584 & 0xC0000) {
         gActors[actor_index].state = 0x10;
     }

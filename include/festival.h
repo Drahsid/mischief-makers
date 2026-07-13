@@ -11,7 +11,8 @@ typedef enum {
     FESTGAME_BALL,
     FESTGAME_HURDLE,
     FESTGAME_MATH,
-    FESTGAME_DODGEBALL, // dodgeball with Cat Clancer
+    FESTGAME_DODGEBALL,// dodgeball with Cat Clancer.
+    FESTGAME_RACE7 = 7, //index for a planned race?
     FESTGAME_INTRO, // introduction in "The Day Before"
     FESTGAME_SELECT, // select screen
     FESTGAME_TOTAL

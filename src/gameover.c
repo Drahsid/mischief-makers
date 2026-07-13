@@ -140,7 +140,7 @@ u16 gStrContinuePrice0[]={
     ALPHA_DASH, ALPHA_DASH, ALPHA_NULL
 };
 
-// "I'm Done"
+// "I'm Done" (Japanese version uses gStrResultQuit instead)
 u16 gStrContinueDesc0[]={
     ALPHA_SPACE, ALPHA_SPACE, ALPHA_EN2_UPPER_I, ALPHA_EN2_APOSTROPHE, ALPHA_EN2_LOWER_M, ALPHA_SPACE,
     ALPHA_EN2_UPPER_D, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_E, ALPHA_NULL
@@ -290,8 +290,9 @@ void GameState_ContinueScreen(void) {
         break;
     case 2:
         gContinueTimer--;
-        if (gContinueTimer < 0x9C4) {
-            if ((gContinueTimer % 100) >= 0x5D) {
+        if (gContinueTimer < 2500) {
+            // blink timer
+            if ((gContinueTimer % 100) >= 93) {
                 var_v1 = ((-(gContinueTimer % 100) * 8) + 0x318);
             }
             else {
@@ -556,7 +557,7 @@ void GameState_ContinueScreen(void) {
             gActors[actor_index].posY.whole = gPlayerActor.posY.whole + (COS(gActors[actor_index].var_158) * gActors[actor_index].var_154);
             for (actor_0 = actor_index + 0x1F; actor_0 < actor_index + 0x47; actor_0 += 10) {
                 if (gActors[actor_0].flags == 0) {
-                    Text_InitActorGraphic(actor_0, 0x1D6,
+                    Text_InitActorGraphic(actor_0, GINDEX_STAREFFECT,
                                           (gActors[actor_index].posX.whole + (Rand() & 0xF)) - 8, 
                                           (gActors[actor_index].posY.whole + (Rand() & 0xF)) - 8, 0x404);
                     gActors[actor_0].rotateZ = Rand() & 0xFF;
@@ -681,6 +682,7 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.graphicFlags &= ~ACTOR_GFLAG_UNK11;
             gPlayerActor.colorA = 0xFF;
             gAudioFadeMode = 0;
+            // reset Festival games, if lost
             if ((gCurrentScene >= 15) && (gCurrentScene < 19)) {
                 D_800D28F0 = 0x1F;
                 gCurrentScene = SCENE_DAYOF0;

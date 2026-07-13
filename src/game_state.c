@@ -42,11 +42,11 @@ void func_800012F0(void) {
             }
         }
         if (gGamePaused == FALSE) {
-            func_800838E0(); // DebugText_Reset ?
+            OSD_Reset();
         }
     }
     else {
-        func_800838E0(); // DebugText_Reset ?
+        OSD_Reset();
     }
 }
 
@@ -109,8 +109,8 @@ void func_8000147C(void) {
         func_80021660();
     }
 
-    func_80021620(); // DebugText_BorW
-    func_80083E74(); // DebugText_Tick
+    func_80021620();
+    OSD_Tick();
 }
 
 extern void GameState_State8Overlay(void);

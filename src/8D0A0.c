@@ -71,8 +71,8 @@ void func_8008C528(u16 arg0) {
     s16 green;
     u16 actor_index;
 
-    actor_index = 0;
-    if (D_801373E0.marina_Flags_098 & 2) {
+    actor_index = PLAYER_INDEX;
+    if (D_801373E0.marina_Flags_098 & ACTOR_FLAG3_UNK2) {
         if ((gActors[actor_index].stateLower >= 0x30) && (gActors[actor_index].stateLower < 0x37)) {
             D_801373E0.unk_43 = 1;
         }
@@ -88,7 +88,7 @@ void func_8008C528(u16 arg0) {
     red = gActors[actor_index].colorR;
     green = gActors[actor_index].colorG;
     blue = gActors[actor_index].colorB;
-    if (gActors[actor_index].graphicFlags & 0x10) {
+    if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_UNK4) {
         red = -red;
         green = -green;
         blue = -blue;

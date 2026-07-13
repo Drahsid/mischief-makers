@@ -124,6 +124,8 @@ Landmine_TriggerEffect = 0x8002D5E4; // type:func
 ActorUpdate_Landmine = 0x8002D670; // type:func
 
 SpawnGemActor = 0x8002EFE4; // type:func
+SpawnGemActor61 = 0x8002F154; // type:func
+NoHitGem = 0x8002F1C8; // type:func
 SpawnGemRing = 0x8002F2A8; // type:func
 GemRing_MakeGems = 0x8002F420; // type:func
 RedGems_Clamp = 0x8002F6AC; // type:func
@@ -196,6 +198,20 @@ Spikeball_State0 = 0x80038E1C; // type:func
 ActorUpdate_Spikeball_Static = 0x80039134; // type:func
 ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
 ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
+
+
+OSD_Reset = 0x800838e0; // type:func rom:0x844e0
+OSD_SetData = 0x8008391c; // type:func rom:0x8451c
+OSD_PrintIntHex = 0x80083a04; // type:func rom:0x84604
+OSD_PrintInt = 0x80083a74; // type:func rom:0x84674
+OSD_PrintShortHexWhite = 0x80083bd8; // type:func rom:0x847d8
+OSD_PrintShortHexBlack = 0x80083c54; // type:func rom:0x84854
+OSD_Tick = 0x80083e74; // type:func rom:0x84a74
+OSD_PrintFloat = 0x80083ae4; // type:func rom:0x846e4
+OSD_PrintByteHex = 0x80083b5c; // type:func rom:0x8475c
+OSD_GetTime = 0x80083ccc; // type:func rom:0x848cc
+OSD_PrintDeltaTime = 0x80083cf0; // type:func rom:0x848f0
+OSD_PrintfTime = 0x80083db8; // type:func rom:0x849b8
 
 Flower_Falling = 0x800844b8; // type:func
 Flower_IsGrabbed = 0x800848a0; // type:func

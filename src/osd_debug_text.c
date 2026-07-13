@@ -1,25 +1,25 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_800838E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_Reset.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_8008391C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_SetData.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083A04.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintIntHex.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083A74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintInt.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083AE4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintFloat.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083B5C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintByteHex.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083BD8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintShortHexWhite.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083C54.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintShortHexBlack.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083CCC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_GetTime.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083CF0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintDeltaTime.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083DB8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintfTime.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/func_80083E74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_Tick.s")

@@ -126,7 +126,7 @@ extern void Actor_SetHitboxA(u16 actor_index, s16 val);
 extern void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
 extern void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
-extern s32 func_8002F154(u16 arg0, u16 arg1, u16 arg2);
+extern s32 SpawnGemActor61(u16 arg0, u16 arg1, u16 arg2);
 extern s32 GemCollect_Static(u16 actor_index);
 extern void SpawnGemRing(u16 arg0);
 extern void func_80030A24(u16 actor_index);
@@ -206,7 +206,7 @@ extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);
 extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
-extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
+extern void OSD_PrintShortHexWhite(s32 arg0, s16 arg1, s32 arg2);
 extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
 extern void func_8002092C(void);
@@ -247,7 +247,7 @@ extern s32 func_8005DFC8(s32 arg0);
 extern void LookAt_Update(void);
 
 // func_800012F0
-extern void func_800838E0(void);
+extern void OSD_Reset(void);
 
 // func_8000147C
 extern void func_80009940(void);
@@ -267,7 +267,7 @@ extern void func_800822B8(void);
 extern void func_80082CFC(void);
 extern void func_80082E04(void);
 extern void func_80082F10(void);
-extern void func_80083E74(void);
+extern void OSD_Tick(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);

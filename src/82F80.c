@@ -349,7 +349,7 @@ void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3) {
     if (*arg2 < 0xA1) {
         arg0 = arg0 * 2;
     }
-    while (*arg2 != 0x8FFF) {
+    while (*arg2 != ALPHA_NULL) {
         if (*arg2 == 0) {
             arg2++;
             arg0++;

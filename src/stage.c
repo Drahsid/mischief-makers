@@ -54,7 +54,7 @@ void func_80005770(void);
 void func_80043918(void);
 void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3);
 void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
-void func_8008391C(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
+void OSD_SetData(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
 void WorldMap_PrintStageLabels(void);
 
 // Stage transition focus actor indices?
@@ -980,7 +980,7 @@ s16 gGraphicIndexWMic[] = {
     -0xC, 0
 };
 
-u16 gWorldMapNamePalette[] = { // palette
+u16 gWorldMapNamePalette[] = { // Excluded in Japanese version
     0x0000, 0xFFC1, 0xC601, 0x8401
 };
 
@@ -1599,12 +1599,12 @@ void DebugStageSelect_DrawMenu() {
     scale = 1.0f;
     for (index = 0; index < DEBUG_STAGE_SELECT_ROW_COUNT; index++) {
         if (index != CURSOR_INDEX_A) {
-            func_8008391C(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
+            OSD_SetData(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
                           0x58 - ((index % DEBUG_STAGE_SELECT_COLUMN_ROWS) << 4), 0x60, 0x40,
                           0x20, 0xFF, scale, scale);
         }
         else {
-            func_8008391C(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
+            OSD_SetData(stage_text[index], ((index / DEBUG_STAGE_SELECT_COLUMN_ROWS) << 7) - 0x70,
                           0x58 - ((index % DEBUG_STAGE_SELECT_COLUMN_ROWS) << 4),
                           ((gDebugMenuCursorFlash[CURSOR_INDEX_A] * 2) + 0x80) & 0xFF,
                           ((gDebugMenuCursorFlash[CURSOR_INDEX_A] * 2) + 0x80) & 0xFF,
@@ -1613,7 +1613,7 @@ void DebugStageSelect_DrawMenu() {
     }
 
     sprintf((char*)stage_text - 4, "%02x", gCurrentScene + 0x11);
-    func_8008391C((char*)stage_text - 4, -0x8C, 0x10, 0x60, 0x40, 0x20, 0xFF, scale, scale);
+    OSD_SetData((char*)stage_text - 4, -0x8C, 0x10, 0x60, 0x40, 0x20, 0xFF, scale, scale);
 
     if (D_800D28E4 < 0x15) {
         sprintf((char*)stage_text - 4, "1-%02d", D_800D28E4);
@@ -1637,7 +1637,7 @@ void DebugStageSelect_DrawMenu() {
         sprintf((char*)stage_text - 4, "DEMO");
     }
 
-    func_8008391C((char*)stage_text - 4, -0x94, 0, 0x60, 0x40, 0x20, 0xFF, scale, scale);
+    OSD_SetData((char*)stage_text - 4, -0x94, 0, 0x60, 0x40, 0x20, 0xFF, scale, scale);
 }
 
 void GameState_DebugStageSelect(void) {
@@ -1822,6 +1822,7 @@ void WorldMap_PrintWorldName(void) {
     gActors[index].colorG = 0x40;
     gActors[index].colorB = 0x40;
     Text_InitActorGList(0x79, gGraphicIndexWMic, 0xFF88, 0xFFB4, 0);
+    // japanese version instead uses func_80083810()
     end = Text_PrintStringGray(0x7C, gWorldNames[gCurrentWorld], gWorldNameXOffsets[gCurrentWorld], 0x4E, 0);
     for (index = 0x7C; index < end; index++) {
         gActors[index].unk_18C = (intptr_t)gWorldMapNamePalette; // palette_18C doesn't match instruction ordering
@@ -2409,7 +2410,7 @@ void GameState_Transition(void) {
         WorldMap_PrintRankLetterReview();
         WorldMap_PrintCurrStageTime();
         WorldMap_PrintPrevStageTime();
-        func_80083810(5, 0, D_800CA26C, 0);
+        func_80083810(5, 0, gPauseContinue, 0);
         func_80083810(5, 1, gStrResultQuit, 0);
         Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicIndexWMMarina, 0xFFC8, 0xFFEF, 1);
         if (YellowGem_GetFlag(gCurrentStage)) {
