@@ -319,6 +319,10 @@ GameState_State9Overlay = 0x80388008; // type:func
 GameState_Attract = 0x80021270; // type:func
 GameState_FileSelect = 0x80007C8C; // type:func
 
+NameEntry_PrintKeyboardHIRA = 0x800073cc; // type:func rom:0x7fcc
+NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
+NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
+
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 Trouble_RLE_Type2 = 0x80098B50; // type:func

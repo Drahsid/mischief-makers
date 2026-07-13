@@ -48,13 +48,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_800072A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_800073CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5A70/NameEntry_PrintKeyboardHIRA.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_80007578.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_800075A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5A70/NameEntry_PrintKeyboardKATA.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_800076F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5A70/NameEntry_PrintKeyboardENG.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5A70/func_800078A4.s")
 

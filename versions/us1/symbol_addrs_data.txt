@@ -54,6 +54,22 @@ gSelectedSex = 0x800c5000; // type:u8 size:0x1
 gSelectedAge = 0x800c5004; // type:u8 size:0x1
 gCurrentSaveSlot = 0x800c5008; // type:u8 size:0x1
 
+gNameEntryRow0HIRA = 0x800c5084; // size:0x24 rom:0xc5c84
+gNameEntryRow1HIRA = 0x800c50a8; // size:0x24 rom:0xc5ca8
+gNameEntryRow2HIRA = 0x800c50cc; // size:0x24 rom:0xc5ccc
+gNameEntryRow3HIRA = 0x800c50f0; // size:0x24 rom:0xc5cf0
+gNameEntryRow4HIRA = 0x800c5114; // size:0x24 rom:0xc5d14
+gNameEntryRow0KATA = 0x800c515c; // size:0x24 rom:0xc5d5c
+gNameEntryRow1KATA = 0x800c5180; // size:0x24 rom:0xc5d80
+gNameEntryRow2KATA = 0x800c51a4; // size:0x24 rom:0xc5da4
+gNameEntryRow3KATA = 0x800c51c8; // size:0x24 rom:0xc5dc8
+gNameEntryRow4KATA = 0x800c51ec; // size:0x24 rom:0xc5dec
+gNameEntryRow0ENG = 0x800c5304; // size:0x24 rom:0xc5f04
+gNameEntryRow1ENG = 0x800c5328; // size:0x24 rom:0xc5f28
+gNameEntryRow2ENG = 0x800c534c; // size:0x24 rom:0xc5f4c
+gNameEntryRow3ENG = 0x800c5370; // size:0x24 rom:0xc5f70
+gNameEntryRow4ENG = 0x800c5394; // size:0x24 rom:0xc5f94
+
 gLetterboxMode = 0x800CBF58; //size:0x2
 gCameraInits = 0x800cc42c; // size:0x160 rom:0xcd02c
 gCameraupdates = 0x800cc58c; // size:0x160 rom:0xcd18c
