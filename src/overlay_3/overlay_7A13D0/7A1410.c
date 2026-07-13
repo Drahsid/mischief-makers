@@ -1,4 +1,5 @@
 #include "common.h"
+#include "7D8E0.h"
 
 // Actor 0x150->0x18F; possibly implies large union for this range with subtypes for specific actors
 typedef struct {
@@ -63,7 +64,6 @@ extern s32 func_800407D4(u16 actor_index);
 extern void func_80067E50(u16 actor_index, void* arg1);
 extern s32 func_800734C4(u16 arg0, s32 arg1);
 extern s32 func_80073558(u16 actor_index, s32 arg1);
-extern void func_8007D0F4(u16 actor_index, u16* text, s16 off_x, s16 off_y, s32 arg4);
 
 void func_801A85E0_771AB0(u16 actor_index, f32 arg1);
 void func_801B0900_7A1410(u16 actor_index, Overlay_7A13D0_Actor_State* state);

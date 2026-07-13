@@ -43,7 +43,7 @@ u16 func_8007F9E0(u16 actor_index) {
         if (temp_a0 != 0) {
             gActors[temp_a0].actorType = 0x34;
             Actor_Initialize(temp_a0);
-            gActors[temp_a0].graphicFlags = temp_a2->graphicFlags & ( ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE);
+            gActors[temp_a0].graphicFlags = temp_a2->graphicFlags & (ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE);
             gActors[temp_a0].flags = (temp_a2->flags & ACTOR_FLAG_FLIPPED) + 3;
             gActors[temp_a0].graphicIndex = temp_a3[1];
             if (temp_a2->flags & ACTOR_FLAG_FLIPPED) {
