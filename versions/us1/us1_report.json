@@ -3126,7 +3126,7 @@
       ],
       "functions": [
         {
-          "name": "func_800235E0",
+          "name": "Camera_ResetRotate",
           "size": "20",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3134,7 +3134,7 @@
           }
         },
         {
-          "name": "func_800235F4",
+          "name": "Camera_ApplyRotate",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3142,7 +3142,7 @@
           }
         },
         {
-          "name": "func_80023668",
+          "name": "CameraInit_Scene63",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3158,7 +3158,7 @@
           }
         },
         {
-          "name": "func_80023678",
+          "name": "CameraInit_World1",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3166,7 +3166,7 @@
           }
         },
         {
-          "name": "func_800236A0",
+          "name": "CameraUpdate_World1",
           "size": "248",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3174,7 +3174,7 @@
           }
         },
         {
-          "name": "func_80023798",
+          "name": "CameraInit_World2",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3182,7 +3182,7 @@
           }
         },
         {
-          "name": "func_800237F0",
+          "name": "CameraUpdate_World2",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3190,7 +3190,7 @@
           }
         },
         {
-          "name": "func_80023894",
+          "name": "CameraUpdate_WesternWorld",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3214,7 +3214,7 @@
           }
         },
         {
-          "name": "func_80023A08",
+          "name": "CameraInit_MagmaRafts",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3222,7 +3222,7 @@
           }
         },
         {
-          "name": "func_80023A34",
+          "name": "CameraUpdate_MagmaRafts",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3230,7 +3230,7 @@
           }
         },
         {
-          "name": "func_80023AA4",
+          "name": "CameraInit_Scene02",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3238,7 +3238,7 @@
           }
         },
         {
-          "name": "func_80023AC4",
+          "name": "CameraUpdate_Scene02",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3246,7 +3246,7 @@
           }
         },
         {
-          "name": "func_80023ACC",
+          "name": "CameraInit_Scene03",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3254,7 +3254,7 @@
           }
         },
         {
-          "name": "func_80023AFC",
+          "name": "CameraUpdate_Scene03",
           "size": "196",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3262,7 +3262,7 @@
           }
         },
         {
-          "name": "func_80023BC0",
+          "name": "CameraInit_Scene04",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3270,7 +3270,7 @@
           }
         },
         {
-          "name": "func_80023BF8",
+          "name": "CameraUpdate_Scene04",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3278,7 +3278,7 @@
           }
         },
         {
-          "name": "func_80023C00",
+          "name": "CameraInit_MigenBrawl",
           "size": "24",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3286,7 +3286,7 @@
           }
         },
         {
-          "name": "func_80023C18",
+          "name": "CameraUpdate_MigenBrawl",
           "size": "304",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3294,7 +3294,7 @@
           }
         },
         {
-          "name": "func_80023D48",
+          "name": "CameraInit_Scene07",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3302,7 +3302,7 @@
           }
         },
         {
-          "name": "func_80023D70",
+          "name": "CameraUpdate_Scene07",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3310,7 +3310,7 @@
           }
         },
         {
-          "name": "func_80023D98",
+          "name": "CameraInit_Title",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3318,7 +3318,7 @@
           }
         },
         {
-          "name": "func_80023DB4",
+          "name": "CameraUpdate_Title",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3326,7 +3326,7 @@
           }
         },
         {
-          "name": "func_80023DBC",
+          "name": "CameraInit_Lunar",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3334,7 +3334,7 @@
           }
         },
         {
-          "name": "func_80023DF0",
+          "name": "CameraUpdate_Lunar",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3342,7 +3342,7 @@
           }
         },
         {
-          "name": "func_80023DF8",
+          "name": "CameraInit_Intro",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3350,7 +3350,7 @@
           }
         },
         {
-          "name": "func_80023E14",
+          "name": "CameraUpdate_Intro",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3358,7 +3358,7 @@
           }
         },
         {
-          "name": "func_80023E1C",
+          "name": "CameraInit_World3B",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3366,7 +3366,7 @@
           }
         },
         {
-          "name": "func_80023E38",
+          "name": "CameraUpdate_World3B",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3374,7 +3374,7 @@
           }
         },
         {
-          "name": "func_80023E40",
+          "name": "CameraInit_TheDayBefore",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3382,7 +3382,7 @@
           }
         },
         {
-          "name": "func_80023E48",
+          "name": "CameraUpdate_TheDayBefore",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3390,7 +3390,7 @@
           }
         },
         {
-          "name": "func_80023E6C",
+          "name": "CameraInit_Scene34",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3398,7 +3398,7 @@
           }
         },
         {
-          "name": "func_80023E74",
+          "name": "CameraUpdate_Scene34",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3406,7 +3406,7 @@
           }
         },
         {
-          "name": "func_80023E98",
+          "name": "CameraInit_World3",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3414,7 +3414,7 @@
           }
         },
         {
-          "name": "func_80023EB4",
+          "name": "CameraInit_SnowstormMaze",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3430,7 +3430,7 @@
           }
         },
         {
-          "name": "func_80023F5C",
+          "name": "CameraUpdate_SnowstormMaze",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3438,7 +3438,7 @@
           }
         },
         {
-          "name": "func_80024004",
+          "name": "CameraUpdate_ClanballLift",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3446,7 +3446,7 @@
           }
         },
         {
-          "name": "func_80024074",
+          "name": "CameraInit_SeasickClimb",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3454,7 +3454,7 @@
           }
         },
         {
-          "name": "func_800240E8",
+          "name": "CameraUpdate_SeasickClimb_Rocking",
           "size": "832",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3462,7 +3462,7 @@
           }
         },
         {
-          "name": "func_80024428",
+          "name": "CameraUpdate_SeasickClimb",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3470,7 +3470,7 @@
           }
         },
         {
-          "name": "func_800244F8",
+          "name": "CameraInit_Vertigo",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3478,7 +3478,7 @@
           }
         },
         {
-          "name": "func_80024528",
+          "name": "CameraUpdate_Vertigo",
           "size": "92",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3486,7 +3486,7 @@
           }
         },
         {
-          "name": "func_80024584",
+          "name": "CameraInit_Freefall",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3494,7 +3494,7 @@
           }
         },
         {
-          "name": "func_800245AC",
+          "name": "CameraUpdate_Freefall",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3518,7 +3518,7 @@
           }
         },
         {
-          "name": "func_800245F8",
+          "name": "CameraInit_AthleticGames",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3526,7 +3526,7 @@
           }
         },
         {
-          "name": "func_80024600",
+          "name": "CameraUpdate_AthleticGames",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3534,7 +3534,7 @@
           }
         },
         {
-          "name": "func_80024624",
+          "name": "CameraInit_Beastector",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3542,7 +3542,7 @@
           }
         },
         {
-          "name": "func_80024668",
+          "name": "CameraUpdate_Beastector",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3550,7 +3550,7 @@
           }
         },
         {
-          "name": "func_80024854",
+          "name": "CameraInit_CounterAttack",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3574,7 +3574,7 @@
           }
         },
         {
-          "name": "func_80024D5C",
+          "name": "CameraInit_ClanceWar2",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3582,7 +3582,7 @@
           }
         },
         {
-          "name": "func_80024D6C",
+          "name": "CameraUpdate_ClanceWar2",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3590,7 +3590,7 @@
           }
         },
         {
-          "name": "func_80024DA8",
+          "name": "CameraInit_BeesTheOne",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3614,7 +3614,7 @@
           }
         },
         {
-          "name": "func_80024EA0",
+          "name": "CameraUpdate_BeesTheOne",
           "size": "484",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3622,7 +3622,7 @@
           }
         },
         {
-          "name": "func_80025084",
+          "name": "CameraInit_Splashscreen",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3630,7 +3630,7 @@
           }
         },
         {
-          "name": "func_8002508C",
+          "name": "CameraUpdate_Splashscreen",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3638,7 +3638,7 @@
           }
         },
         {
-          "name": "func_80025094",
+          "name": "CameraInit_Merco_Trapped",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3646,7 +3646,7 @@
           }
         },
         {
-          "name": "func_80025114",
+          "name": "CameraUpdate_Merco_Trapped",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3654,7 +3654,7 @@
           }
         },
         {
-          "name": "func_8002515C",
+          "name": "CameraInit_World4A",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3662,7 +3662,7 @@
           }
         },
         {
-          "name": "func_80025184",
+          "name": "CameraUpdate_World4A",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3670,7 +3670,7 @@
           }
         },
         {
-          "name": "func_800251CC",
+          "name": "CameraInit_World4B",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3678,7 +3678,7 @@
           }
         },
         {
-          "name": "func_800251E8",
+          "name": "CameraUpdate_World4B",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3686,7 +3686,7 @@
           }
         },
         {
-          "name": "func_80025254",
+          "name": "CameraUpdate_AstersTryke",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3694,7 +3694,7 @@
           }
         },
         {
-          "name": "func_800252BC",
+          "name": "CameraInit_PhoenixGamma",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3702,7 +3702,7 @@
           }
         },
         {
-          "name": "func_800252F8",
+          "name": "CameraUpdate_PhoenixGamma",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3710,7 +3710,7 @@
           }
         },
         {
-          "name": "func_80025380",
+          "name": "CameraInit_Leo",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {

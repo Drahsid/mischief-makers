@@ -55,6 +55,8 @@ gSelectedAge = 0x800c5004; // type:u8 size:0x1
 gCurrentSaveSlot = 0x800c5008; // type:u8 size:0x1
 
 gLetterboxMode = 0x800CBF58; //size:0x2
+gCameraInits = 0x800cc42c; // size:0x160 rom:0xcd02c
+gCameraupdates = 0x800cc58c; // size:0x160 rom:0xcd18c
 gSceneBgm = 0x800CCFDC; // size:0x58
 D_800CEC0C = 0x800CEC0C; // size:0x4
 D_800CEC10 = 0x800CEC10; // size:0x2C0
