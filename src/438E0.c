@@ -68,19 +68,19 @@ extern FuncVoidVoid D_800D3B78[];
 
 extern u16 D_800D82DC[];
 extern u16 D_800D84E8[];
-extern u16 D_800D86D8[];
+extern u16 gPaletteGemBlue[];
 extern u16 D_800D8750[];
 extern u16 D_800D87C8[];
 extern u16 D_800D8840[];
-extern u16 D_800D88B8[];
+extern u16 gPaletteGemRed[];
 extern u16 D_800D8930[];
 extern u16 D_800D89A8[];
 extern u16 D_800D8A20[];
-extern u16 D_800D8A98[];
+extern u16 gPaletteGemGreen[];
 extern u16 D_800D8B10[];
 extern u16 D_800D8B88[];
 extern u16 D_800D8C00[];
-extern u16 D_800D8C78[];
+extern u16 gPaletteGemYellow[];
 extern u16 D_800D8CF0[];
 extern u16 D_800D8D68[];
 extern u16 D_800D8DE0[];
@@ -553,73 +553,73 @@ void func_80044360(void) {
 }
 
 void func_80044390(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3740[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3740[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x46, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x46, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044468(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3748[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3748[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x52, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x52, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044540(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3750[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3750[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x4C, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x4C, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044618(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3758[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3758[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x58, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x58, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_800446F0(void) {
     s32 temp_t9;
 
-    D_801069E0[D_801782C0].graphicIndex = D_800D37A0;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D37A0;
     temp_t9 = D_801782C2 & 3;
-    D_801069E0[D_801782C0].palette = D_800D1958[temp_t9];
+    gStaticObjects[D_801782C0].palette = gGemPalettes[temp_t9];
     if (((temp_t9 == 2) && (YellowGem_GetFlag(gCurrentStage) != 0)) || (GemCollect_Static(D_801782C0) != 0)) {
         D_801782BC[0] |= 0x4000;
     }
 }
 
 void func_800447AC(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3760[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3760[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x5E, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x5E, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044884(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3768[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3768[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x64, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x64, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_8004495C(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3770[D_800D37A4];
-    D_801069E0[D_801782C0].palette = (u16* )0x80203440;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3770[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = (u16* )0x80203440;
 }
 
 void func_800449A8(void) {
@@ -632,8 +632,8 @@ void func_800449A8(void) {
 }
 
 void func_80044A38(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3778[D_800D37A4];
-    D_801069E0[D_801782C0].palette = (u16* )0x80203240;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3778[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = (u16* )0x80203240;
 }
 
 void func_80044A84(void) {
@@ -793,8 +793,8 @@ void func_800451E4(u16* arg0) {
         if ((x_min < D_801782BC[1]) && (D_801782BC[1] < x_max) &&
             (y_min < D_801782BC[2]) && (D_801782BC[2] < y_max)) {
             if ((D_801782BC[0] & 0xC000) == 0) {
-                D_801069E0[D_801782C0].posX.whole = D_801782BC[1] - gScreenPosCurrentX.whole;
-                D_801069E0[D_801782C0].posY.whole = D_801782BC[2] - gScreenPosCurrentY.whole;
+                gStaticObjects[D_801782C0].posX.whole = D_801782BC[1] - gScreenPosCurrentX.whole;
+                gStaticObjects[D_801782C0].posY.whole = D_801782BC[2] - gScreenPosCurrentY.whole;
                 D_801782C2 = D_801782BC[0] & 0xF;
                 D_800D37BC[(D_801782BC[0] & 0xFFF0) / 16]();
                 D_801782C0++;
@@ -803,7 +803,7 @@ void func_800451E4(u16* arg0) {
     }
 
     for (; D_801782C0 < 0x40; D_801782C0++) {
-        D_801069E0[D_801782C0].graphicIndex = 0;
+        gStaticObjects[D_801782C0].graphicIndex = 0;
     }
 }
 
@@ -884,7 +884,7 @@ void func_800457C8(void) {
     color *= 2.0;
     switch (D_801782B8 & 7) {
     case 0:
-        Palette_AdjustRgb5551Array(D_800D8D68, D_800D8C78, 0x3C, color, color, color);
+        Palette_AdjustRgb5551Array(D_800D8D68, gPaletteGemYellow, 0x3C, color, color, color);
         Palette_AdjustRgb5551Array(D_800DE508, D_800DE188, 0x1C, 0, 0, color);
         break;
     case 1:
@@ -892,7 +892,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE540, D_800DE1C0, 0x1C, 0, 0, color);
         break;
     case 2:
-        Palette_AdjustRgb5551Array(D_800D89A8, D_800D88B8, 0x3C, 0, 0, color);
+        Palette_AdjustRgb5551Array(D_800D89A8, gPaletteGemRed, 0x3C, 0, 0, color);
         Palette_AdjustRgb5551Array(D_800DE578, D_800DE1F8, 0x1C, 0, 0, color);
         break;
     case 3:
@@ -900,7 +900,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE5B0, D_800DE230, 0x1C, 0, 0, color);
         break;
     case 4:
-        Palette_AdjustRgb5551Array(D_800D8B88, D_800D8A98, 0x3C, 0, color, 0);
+        Palette_AdjustRgb5551Array(D_800D8B88, gPaletteGemGreen, 0x3C, 0, color, 0);
         Palette_AdjustRgb5551Array(D_800DE5E8, D_800DE268, 0x1C, 0, 0, color);
         break;
     case 5:
@@ -908,7 +908,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE620, D_800DE2A0, 0x1C, 0, 0, color);
         break;
     case 6:
-        Palette_AdjustRgb5551Array(D_800D87C8, D_800D86D8, 0x3C, color, 0, 0);
+        Palette_AdjustRgb5551Array(D_800D87C8, gPaletteGemBlue, 0x3C, color, 0, 0);
         Palette_AdjustRgb5551Array(D_800DE658, D_800DE2D8, 0x1C, 0, 0, color);
         break;
     case 7:
@@ -1709,7 +1709,7 @@ void func_80047AC4(void) {
             D_800D28E4 = D_800D28F0;
             func_80042D84(0);
             D_800D28FC &= ~1;
-            func_80019688();
+            GetFestivalTimeRecords();
         }
     }
 }

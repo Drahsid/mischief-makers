@@ -265,7 +265,7 @@ u16 D_801B615C_7A6C6C[] = {
 
 // "まけた..." / "I lost..."
 u16 D_801B6168_7A6C78[] = { 
-    ALPHA_JP_HIRA_BI, ALPHA_JP_HIRA_KE, ALPHA_JP_HIRA_TA, ALPHA_ELLIPSIS, ALPHA_NULL
+    ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_KE, ALPHA_JP_HIRA_TA, ALPHA_ELLIPSIS, ALPHA_NULL
 };
 
 u16* D_801B6174_7A6C84[5] = {
@@ -1225,7 +1225,7 @@ void func_801B2B10_7A3620(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                     gActors[actor_index].graphicList = D_801B5FE4_7A6AF4; \
                     gActors[actor_index].graphicTimer = 1;
                     Sound_PlaySfxAtActor2(SFX_00AC, actor_index);
-                    Sound_PlaySfxAtActor2(SFX_003C, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_CLANCERDEATH, actor_index);
                     if (state->unk_04 != 0) {
                         if ((Rand() & 7) == 4) {
                             SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
@@ -1997,7 +1997,7 @@ void func_801B4998_7A54A8(u16 actor_index) {
         if (gActors[actor_index].unk_118 < 0.0f) {
             gActors[actor_index].flags = 0;
             func_8003F05C(0.5f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 8);
-            Sound_PlaySfxAtActor2(SFX_0043, actor_index);
+            Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
         }
     }
 }

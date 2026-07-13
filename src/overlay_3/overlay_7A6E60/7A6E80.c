@@ -599,7 +599,7 @@ void func_801B0DC8_7A7348(u16 actor_index) {
             init_records = D_801B4EB4_7AB434;
             break;
 
-        case FESTGAME_100M:
+        case FESTGAME_400M:
             init_records = D_801B4ED8_7AB458;
             break;
 

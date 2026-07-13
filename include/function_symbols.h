@@ -21,7 +21,7 @@ extern void func_800050B4(void);
 extern void LookAt_Reset(void);
 extern void func_80010A10(void);
 extern void func_80010C20(u16 arg0);
-extern void func_80019688(void);
+extern void GetFestivalTimeRecords(void);
 extern void func_8001A584(void);
 extern void func_8001DC60(void);
 extern void func_800230B8(void);

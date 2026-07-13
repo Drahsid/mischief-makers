@@ -1088,7 +1088,7 @@ void func_801B31B8_7BF108(u16 actor_index) {
     if (D_801B4B60_7C0AB0 & 1) {
         gActors[saved_actor_index].flags = 0;
         func_8003F138(0.5f, gActors[saved_actor_index].posX.whole, gActors[saved_actor_index].posY.whole, gActors[saved_actor_index].posZ.whole);
-        Sound_PlaySfxAtActor2(SFX_0043, saved_actor_index);
+        Sound_PlaySfxAtActor2(SFX_BOOM_0043, saved_actor_index);
         return;
     }
 

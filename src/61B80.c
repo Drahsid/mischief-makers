@@ -1351,8 +1351,8 @@ void SpawnStageClear(u16 flags, u16* spawn_table) {
         gActors[actor_index].var_154 = 1;
     }
     else if (flags & 0x8000) {
-        gActors[actor_index].var_154 = (flags & ~0x8000) + 2;
-        Sound_StartFade(0x81, flags & ~0x8000);
+        gActors[actor_index].var_154 = (flags & 0x7FFF) + 2;
+        Sound_StartFade(0x81, flags & 0x7FFF);
         gActors[actor_index].var_15C = gMusicSequenceId;
     }
     else {

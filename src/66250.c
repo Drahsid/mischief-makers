@@ -2031,7 +2031,7 @@ void func_8007B73C(u16 actor_index) {
             actor->var_15C = actor->flags & (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
             actor->unk_114 = 30.0f;
             actor->unk_118 = -1.0f;
-            Sound_PlaySfx(SFX_0045);
+            Sound_PlaySfx(SFX_BOOM_0045);
             actor->unk_168 = Math_Atan2(actor->velocityX.raw, actor->velocityY.raw) << 0x10;
         }
         break;

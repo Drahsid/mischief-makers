@@ -629,7 +629,7 @@ gAttractModePresses2 = 0x800CB2AC;
 gAttractModeHolds3 = 0x800CB6C8;
 gAttractModePresses3 = 0x800CBA60;
 
-gIsPlayerInactive = 0x800CA230
+gIsPlayerInactive = 0x800CA230;
 gAttractModeTime = 0x800CA234;
 gAttractModeIndex = 0x800CA238;
 gAttractModeHoldIndex = 0x800CA23C;

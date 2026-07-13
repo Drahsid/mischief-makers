@@ -72,7 +72,7 @@ void func_8008C528(u16 arg0) {
     u16 actor_index;
 
     actor_index = PLAYER_INDEX;
-    if (D_801373E0.marina_Flags_098 & ACTOR_FLAG3_UNK2) {
+    if (D_801373E0.marina_Flags_098 & ACTOR_FLAG3_UNK1) {
         if ((gActors[actor_index].stateLower >= 0x30) && (gActors[actor_index].stateLower < 0x37)) {
             D_801373E0.unk_43 = 1;
         }

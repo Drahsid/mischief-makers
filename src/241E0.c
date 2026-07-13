@@ -65,7 +65,7 @@ void Camera_ApplyRotate(void) {
 void CameraInit_Scene63(void) {
 }
 
-void func_80023670(void) {
+void CameraUpdate_Scene63(void) {
 }
 
 void CameraInit_World1(void) {
@@ -127,12 +127,12 @@ void CameraUpdate_WesternWorld(void) {
     }
 }
 
-void func_80023948(void) {
+void CameraInit_TightropeRide(void) {
     D_800BE580 = -12;
     gLookatEyeY = 32.0f;
 }
 
-void func_80023968(void) {
+void CameraUpdate_TightropeRide(void) {
     gActors[0x31].posY.whole = 320 - gScreenPosCurrentY.whole;
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
@@ -316,7 +316,8 @@ void CameraUpdate_SnowstormMaze(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw;
-        if ((gPlayerActor.parentIndex == ACTORTYPE_49) && (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
+        if ((gPlayerActor.parentIndex == ACTORTYPE_SPIRALCLOUDS) &&
+           (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
             gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + FIXED_UNIT(24.0);
         }
         else {
@@ -730,7 +731,7 @@ void CameraInit_Leo(void) {
     D_800BE70C = 4;
 }
 
-void func_800253A8(void) {
+void CameraUpdate_Leo(void) {
 }
 
 void func_800253B0(void) {

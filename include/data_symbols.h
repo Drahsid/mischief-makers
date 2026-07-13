@@ -53,7 +53,7 @@ extern u16 D_800CBF40;
 extern u16 D_800CBF50;
 extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
-extern u16* D_800D1958[]; // palettes of gems
+extern u16* gGemPalettes[]; // palettes of gems
 extern u16 D_800D1A04[];
 extern u16 D_800D2690[]; // LUT of digging spot items.
 extern s16 D_800D26F4[];

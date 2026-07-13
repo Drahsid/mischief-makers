@@ -432,6 +432,7 @@ CameraInit_Beastector = 0x80024624; // type:func rom:0x25224
 CameraUpdate_ClanceWar2 = 0x80024d6c; // type:func rom:0x2596c
 CameraUpdate_Leo = 0x800253a8; // type:func rom:0x25fa8
 CameraInit_TightropeRide = 0x80023948; // type:func rom:0x24548
+CameraUpdate_TightropeRide = 0x80023968; // type:func
 CameraUpdate_Splashscreen = 0x8002508c; // type:func rom:0x25c8c
 CameraInit_Splashscreen = 0x80025084; // type:func rom:0x25c84
 CameraInit_Scene34 = 0x80023e6c; // type:func rom:0x24a6c

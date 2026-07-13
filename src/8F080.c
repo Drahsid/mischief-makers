@@ -3002,7 +3002,7 @@ void func_80093704(u16 actor_index) {
         gActors[free_actor].posY.whole = 0;
         if (gActors[actor_index].state >= 0xF6) {
             gActors[free_actor].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
-            gActors[free_actor].graphicIndex = GRAPHIC_FRAME(BOOM1, 0);
+            gActors[free_actor].graphicIndex = GRAPHIC_FRAME(BOOM1, 1);
             gActors[free_actor].palette_18C = D_800D9284;
             gActors[free_actor].posZ.whole = -0x20;
             gActors[free_actor].scaleX = 13.0f;

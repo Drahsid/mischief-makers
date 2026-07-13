@@ -3150,7 +3150,7 @@
           }
         },
         {
-          "name": "func_80023670",
+          "name": "CameraUpdate_Scene63",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3198,7 +3198,7 @@
           }
         },
         {
-          "name": "func_80023948",
+          "name": "CameraInit_TightropeRide",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3206,7 +3206,7 @@
           }
         },
         {
-          "name": "func_80023968",
+          "name": "CameraUpdate_TightropeRide",
           "size": "160",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3718,7 +3718,7 @@
           }
         },
         {
-          "name": "func_800253A8",
+          "name": "CameraUpdate_Leo",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
