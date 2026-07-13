@@ -54,7 +54,7 @@ extern u32 D_8013770C;
 extern u32 D_80137710;
 extern u32 D_8013771C;
 extern u32 D_80137720;
-extern u32 D_80137724;
+extern u8* D_80137724;
 extern u32 D_80137728;
 extern u32 D_8013776C;
 extern u32 D_80137770;
@@ -66,13 +66,6 @@ extern u32 D_80137784;
 extern u32 D_80137788;
 extern u32 D_8013778C;
 extern u32 D_80137790;
-
-extern u32 D_800CEC10[];
-extern u32 D_800D0E88[];
-extern u32 D_800D0E8C[];
-extern u32 D_800D0E90[];
-extern u32 D_800D0E94[];
-extern u32 D_800D0E98[];
 
 // used by code outside this file
 u32 D_800CD080[] = {
@@ -1361,17 +1354,28 @@ u16 D_800D16C4[] = {
     0x0000, 0x0000,
 };
 
+#define D_800CFE04_ENTRY(I) D_800CFE04[index * 12 + (I)]
+
 void func_80025E00(void) {
-    D_801376DC = (u32)SEGMENT_06_DEST;
-    DMA_ReadSync(Segment_06_ROM_START, SEGMENT_06_SCRATCH, Segment_06_ROM_SIZE);
-    D_801376E0 = (u32)SEGMENT_06_DEST + Trouble_RLE_Type1(SEGMENT_06_SCRATCH, SEGMENT_06_DEST);
+    D_801376DC = (uintptr_t)SEGMENT_06_DEST;
+    DMA_ReadSync(
+        Segment_06_ROM_START,
+        SEGMENT_06_SCRATCH,
+        Segment_06_ROM_SIZE
+    );
+
+    D_801376E0 = (uintptr_t)SEGMENT_06_DEST + Trouble_RLE_Type1(SEGMENT_06_SCRATCH, SEGMENT_06_DEST);
 }
 
 void func_80025E6C(void) {
     u32 size = Segment_07_ROM_SIZE;
-    D_801376E4 = (u32)SEGMENT_07_DEST;
-    D_801376E8 = size + (u32)SEGMENT_07_DEST;
-    DMA_ReadSync(Segment_07_ROM_START, (u8*)D_801376E4, Segment_07_ROM_SIZE);
+    D_801376E4 = (uintptr_t)SEGMENT_07_DEST;
+    D_801376E8 = size + (uintptr_t)SEGMENT_07_DEST;
+    DMA_ReadSync(
+        Segment_07_ROM_START,
+        (u8*)D_801376E4,
+        Segment_07_ROM_SIZE
+    );
 }
 
 void func_80025EC4(u16 index) {
@@ -1384,12 +1388,19 @@ void func_80025EC4(u16 index) {
         length0 = D_800CD08C[index].dispatch_table_rom_end - D_800CD08C[index].dispatch_table_rom_start;
         D_8013772C = OVERLAY0_DISPATCH_TABLE_VRAM;
         D_80137730 = OVERLAY0_DISPATCH_TABLE_VRAM + length0;
-        DMA_ReadSync(D_800CD08C[index].dispatch_table_rom_start, (u8*)D_8013772C, length0);
+        DMA_ReadSync(
+            D_800CD08C[index].dispatch_table_rom_start,
+            (u8*)D_8013772C,
+            length0
+        );
 
         length1 = D_800CD08C[index].object_rom_end - D_800CD08C[index].object_rom_start;
         D_8013772C = OVERLAY0_OBJECT_VRAM;
         D_80137730 = OVERLAY0_OBJECT_VRAM + length1;
-        DMA_ReadSync(D_800CD08C[index].object_rom_start, (u8*)D_8013772C, length1);
+        DMA_ReadSync(D_800CD08C[index].object_rom_start,
+            (u8*)D_8013772C,
+            length1
+        );
     }
 }
 
@@ -1403,12 +1414,20 @@ void func_80025F70(u16 index) {
         length0 = D_800CD60C[index].dispatch_table_rom_end - D_800CD60C[index].dispatch_table_rom_start;
         D_80137734 = OVERLAY1_DISPATCH_TABLE_VRAM;
         D_80137738 = OVERLAY1_DISPATCH_TABLE_VRAM + length0;
-        DMA_ReadSync(D_800CD60C[index].dispatch_table_rom_start, (u8*)D_80137734, length0);
+        DMA_ReadSync(
+            D_800CD60C[index].dispatch_table_rom_start,
+            (u8*)D_80137734,
+            length0
+        );
 
         length1 = D_800CD60C[index].object_rom_end - D_800CD60C[index].object_rom_start;
         D_80137734 = OVERLAY1_OBJECT_VRAM;
         D_80137738 = OVERLAY1_OBJECT_VRAM + length1;
-        DMA_ReadSync(D_800CD60C[index].object_rom_start, (u8*)D_80137734, length1);
+        DMA_ReadSync(
+            D_800CD60C[index].object_rom_start,
+            (u8*)D_80137734,
+            length1
+        );
     }
 }
 
@@ -1422,12 +1441,20 @@ void func_8002601C(u16 index) {
         length0 = D_800CDB8C[index].dispatch_table_rom_end - D_800CDB8C[index].dispatch_table_rom_start;
         D_8013773C = OVERLAY2_DISPATCH_TABLE_VRAM;
         D_80137740 = OVERLAY2_DISPATCH_TABLE_VRAM + length0;
-        DMA_ReadSync(D_800CDB8C[index].dispatch_table_rom_start, (u8*)D_8013773C, length0);
+        DMA_ReadSync(
+            D_800CDB8C[index].dispatch_table_rom_start,
+            (u8*)D_8013773C,
+            length0
+        );
 
         length1 = D_800CDB8C[index].object_rom_end - D_800CDB8C[index].object_rom_start;
         D_8013773C = OVERLAY2_OBJECT_VRAM;
         D_80137740 = OVERLAY2_OBJECT_VRAM + length1;
-        DMA_ReadSync(D_800CDB8C[index].object_rom_start, (u8*)D_8013773C, length1);
+        DMA_ReadSync(
+            D_800CDB8C[index].object_rom_start,
+            (u8*)D_8013773C,
+            length1
+        );
     }
 }
 
@@ -1441,12 +1468,18 @@ void func_800260C8(u16 index) {
         length0 = D_800CE10C[index].dispatch_table_rom_end - D_800CE10C[index].dispatch_table_rom_start;
         D_80137744 = OVERLAY3_DISPATCH_TABLE_VRAM;
         D_80137748 = OVERLAY3_DISPATCH_TABLE_VRAM + length0;
-        DMA_ReadSync(D_800CE10C[index].dispatch_table_rom_start, (u8*)D_80137744, length0);
+        DMA_ReadSync(D_800CE10C[index].dispatch_table_rom_start,
+            (u8*)D_80137744,
+            length0
+        );
 
         length1 = D_800CE10C[index].object_rom_end - D_800CE10C[index].object_rom_start;
         D_80137744 = OVERLAY3_OBJECT_VRAM;
         D_80137748 = OVERLAY3_OBJECT_VRAM + length1;
-        DMA_ReadSync(D_800CE10C[index].object_rom_start, (u8*)D_80137744, length1);
+        DMA_ReadSync(D_800CE10C[index].object_rom_start,
+            (u8*)D_80137744,
+            length1
+        );
     }
 }
 
@@ -1460,267 +1493,362 @@ void func_80026174(u16 index) {
         length0 = D_800CE68C[index].dispatch_table_rom_end - D_800CE68C[index].dispatch_table_rom_start;
         D_8013774C = OVERLAY4_DISPATCH_TABLE_VRAM;
         D_80137750 = OVERLAY4_DISPATCH_TABLE_VRAM + length0;
-        DMA_ReadSync(D_800CE68C[index].dispatch_table_rom_start, (u8*)D_8013774C, length0);
+        DMA_ReadSync(D_800CE68C[index].dispatch_table_rom_start,
+            (u8*)D_8013774C,
+            length0
+        );
 
         length1 = D_800CE68C[index].object_rom_end - D_800CE68C[index].object_rom_start;
         D_8013774C = OVERLAY4_OBJECT_VRAM;
         D_80137750 = OVERLAY4_OBJECT_VRAM + length1;
-        DMA_ReadSync(D_800CE68C[index].object_rom_start, (u8*)D_8013774C, length1);
+        DMA_ReadSync(D_800CE68C[index].object_rom_start,
+            (u8*)D_8013774C,
+            length1
+        );
     }
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/3R7AG
 void func_80026220(u16 index) {
-    if ((index == 2) || (D_800D28E4 == 0x66) || (gGameState == GAMESTATE_UNKNOWN0) || (gGameState == GAMESTATE_UNKNOWN1)) {
-        DMA_ReadSync(((D_800CEC0C[5] - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_LOW, D_800CEC0C[6] - D_800CEC0C[5]);
-        D_80137724 = (u32)MAP_BANK_DEST;
-        D_80137728 = (u32)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, MAP_BANK_DEST);
-        DMA_ReadSync(overlay_F00D0_ROM_START, MAP_BANK_DATA_DEST, overlay_F00D0_ROM_END - overlay_F00D0_ROM_START);
+    s32 unused[1];
+
+    if ((index == 2) || (D_800D28E4 == 0x66) || (gGameState == GAMESTATE_UNKNOWN0) ||
+        (gGameState == GAMESTATE_UNKNOWN1)) {
+        DMA_ReadSync(
+            (void*)((D_800CEC0C[5] - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+            RLE_SCRATCH_LOW,
+            D_800CEC0C[6] - D_800CEC0C[5]
+        );
+
+        D_80137724 = MAP_BANK_DEST;
+        D_80137728 = (uintptr_t)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, MAP_BANK_DEST);
+        DMA_ReadSync(overlay_F00D0_ROM_START,
+            MAP_BANK_DATA_DEST,
+            overlay_F00D0_ROM_END - overlay_F00D0_ROM_START
+        );
         return;
     }
 
-    if (D_800CEC0C[index * 2 + 1] == (u32)&rle_0007_16C960_0407C860) {
-        DMA_ReadSync(((D_800CEC0C[index * 2 + 1] - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_HIGH, (u32)rle_0008_171720_04081620 - D_800CEC0C[index * 2 + 1]);
-        D_80137724 = (u32)MAP_BANK_DEST;
-        D_80137728 = (u32)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST);
+    do {} while (0);
 
-        DMA_ReadSync(((rle_0008_171720_04081620 - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_HIGH, rle_0009_181E20_04091D20 - (u32)rle_0008_171720_04081620);
-        D_80137724 = (u32)MAP_BANK_DEST_ALT;
-        D_80137728 = (u32)MAP_BANK_DEST_ALT + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST_ALT);
+    if (D_800CEC0C[index * 2 + 1] == (uintptr_t)rle_0007_16C960_0407C860) {
+        if ((index != 0) && (index != 0)) {}
+        if ((((uintptr_t)rle_0007_16C960_0407C860 - D_800CEC0C[0]) + (uintptr_t)overlay_F00D0_ROM_END) != index) {}
+
+        DMA_ReadSync(
+            (void*)(((uintptr_t)rle_0007_16C960_0407C860 - D_800CEC0C[0]) + (uintptr_t)overlay_F00D0_ROM_END),
+            RLE_SCRATCH_HIGH,
+            (uintptr_t)rle_0008_171720_04081620 - (uintptr_t)rle_0007_16C960_0407C860
+        );
+
+        D_80137724 = MAP_BANK_DEST;
+        D_80137728 = (uintptr_t)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST);
+
+        if (((uintptr_t)rle_0008_171720_04081620 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START) {}
+        DMA_ReadSync(
+            (void*)(((uintptr_t)rle_0008_171720_04081620 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+            RLE_SCRATCH_HIGH,
+            (uintptr_t)rle_0009_181E20_04091D20 - (uintptr_t)rle_0008_171720_04081620
+        );
+
+        D_80137724 = MAP_BANK_DEST_ALT;
+        D_80137728 = (uintptr_t)MAP_BANK_DEST_ALT + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST_ALT);
     }
     else {
-        DMA_ReadSync(((rle_0008_171720_04081620 - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_HIGH, D_800CEC0C[index * 2 + 2] - (u32)rle_0008_171720_04081620);
-        D_80137724 = (u32)MAP_BANK_DEST;
-        D_80137728 = (u32)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST);
+        uintptr_t start;
+
+        start = D_800CEC0C[index * 2 + 1];
+        DMA_ReadSync(
+            (void*)((start - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+            RLE_SCRATCH_HIGH,
+            D_800CEC0C[index * 2 + 2] - start
+        );
+        if (D_800CEC0C || !D_800CEC0C) {}
+        D_80137724 = MAP_BANK_DEST;
+        D_80137728 = (uintptr_t)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_80026220.s")
-#endif
 
 void func_80026428(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32* entry;
 
     entry = &D_800CEC0C[index * 2];
     start = entry[1];
-    DMA_ReadSync((void*)((start - D_800CEC0C[0]) + (u32)Segment_04_ROM_START), RLE_SCRATCH_LOW, entry[2] - start);
+    DMA_ReadSync(
+        (void*)((start - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+        RLE_SCRATCH_LOW,
+        entry[2] - start
+    );
+
     Trouble_RLE_Type1(RLE_SCRATCH_LOW, MAP_BANK_DEST);
 }
 
 void func_80026494(u16 index, u16 offset) {
     u32* entry = &D_800CEC0C[index * 2];
-    DMA_ReadSync(((entry[1] - D_800CEC0C[0]) + Segment_04_ROM_START), RLE_SCRATCH_LOW, entry[2] - entry[1]);
+    DMA_ReadSync(
+        (entry[1] - D_800CEC0C[0]) + Segment_04_ROM_START,
+        RLE_SCRATCH_LOW,
+        entry[2] - entry[1]
+    );
+
     Trouble_RLE_Type1(RLE_SCRATCH_LOW, MAP_COLLISION_DEST);
-    DMA_ReadSync((void*)(((u32)palette_1E51F0_040F50F0 - D_800CEC0C[0]) + (u32)Segment_04_ROM_START),
-                 MAP_BANK_DEST + offset, 0x200);
+    DMA_ReadSync(
+        (void*)(((uintptr_t)palette_1E51F0_040F50F0 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+        MAP_BANK_DEST + offset,
+        0x200
+    );
 }
 
 void func_8002653C(void) {
-    u32 source;
+    uintptr_t source;
 
-    source = (u32)Segment_04_ROM_START;
-    source += (u32)palettes_1E53F8_040F52F8;
-    DMA_ReadSync((u8*)(source - (u32)Segment_04_DATA_START), D_800DE348, 0x1500);
+    source = (uintptr_t)Segment_04_ROM_START;
+    source += (uintptr_t)palettes_1E53F8_040F52F8;
+    DMA_ReadSync(
+        (u8*)(source - (uintptr_t)Segment_04_DATA_START),
+        D_800DE348,
+        0x1500
+    );
 }
 
 void func_80026584(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32 length;
-    u32 source;
+    uintptr_t source;
     s32 new_var;
-    u32* dest_ptr;
+    uintptr_t* dest_ptr;
     u32* entry;
 
     entry = &D_800CFB40[index * 2];
     start = entry[1];
-    source = (start - D_800CFB40[0]) + (u32)Segment_02_ROM_START;
+    source = (start - D_800CFB40[0]) + (uintptr_t)Segment_02_ROM_START;
     new_var = entry[2] - start;
     length = new_var;
     dest_ptr = &D_8013776C;
-    *dest_ptr = (u32)ACTOR_LIST_DEST;
-    D_80137770 = (u32)ACTOR_LIST_DEST + length;
-    DMA_ReadSync((u8*)source, (u8*)*dest_ptr, length);
+    *dest_ptr = (uintptr_t)ACTOR_LIST_DEST;
+    D_80137770 = (uintptr_t)ACTOR_LIST_DEST + length;
+    DMA_ReadSync(
+        (u8*)source,
+        (u8*)*dest_ptr,
+        length
+    );
 }
 
 void func_800265FC(u16 index) {
-    u32 start;
-    u32 source;
+    uintptr_t start;
+    uintptr_t source;
     s32 new_var;
     u32* entry;
 
     entry = &D_800CEED0[index * 3];
     start = entry[1];
-    source = (start - D_800CEED0[0]) + (u32)Segment_03_ROM_START;
+    source = (start - D_800CEED0[0]) + (uintptr_t)Segment_03_ROM_START;
     new_var = entry[2] - start;
-    D_80137774 = (u32)COLLISION_DEST;
-    DMA_ReadSync((u8*)source, RLE_SCRATCH_LOW, new_var);
-    D_80137778 = (u32)COLLISION_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, COLLISION_DEST);
+    D_80137774 = (uintptr_t)COLLISION_DEST;
+    DMA_ReadSync(
+        (u8*)source,
+        RLE_SCRATCH_LOW,
+        new_var
+    );
+
+    D_80137778 = (uintptr_t)COLLISION_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, COLLISION_DEST);
 }
 
 void func_80026694(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32* entry;
 
     entry = &D_800CEED0[index * 3];
     start = entry[2];
-    DMA_ReadSync((u8*)((start - D_800CEED0[0]) + (u32)Segment_03_ROM_START), COLLISION_SCRATCH_ALT, entry[3] - start);
+    DMA_ReadSync(
+        (u8*)((start - D_800CEED0[0]) + (uintptr_t)Segment_03_ROM_START),
+        COLLISION_SCRATCH_ALT,
+        entry[3] - start
+    );
+
     Trouble_RLE_Type1(COLLISION_SCRATCH_ALT, RLE_SCRATCH_LOW);
 }
 
 void func_8002670C(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32 length;
-    u32 source;
+    uintptr_t source;
     s32 new_var;
-    u32* dest_ptr;
+    uintptr_t* dest_ptr;
     u32* entry;
 
     entry = &D_800CF2F4[index * 2];
     start = entry[1];
-    source = (start - D_800CF2F4[0]) + (u32)Segment_03_ROM_START;
+    source = (start - D_800CF2F4[0]) + (uintptr_t)Segment_03_ROM_START;
     new_var = entry[2] - start;
     length = new_var;
     dest_ptr = &D_8013777C;
-    *dest_ptr = (u32)STAGE_TABLE0_DEST;
-    D_80137780 = (u32)STAGE_TABLE0_DEST + length;
-    DMA_ReadSync((u8*)source, (u8*)*dest_ptr, length);
+    *dest_ptr = (uintptr_t)STAGE_TABLE0_DEST;
+    D_80137780 = (uintptr_t)STAGE_TABLE0_DEST + length;
+    DMA_ReadSync(
+        (u8*)source,
+        (u8*)*dest_ptr,
+        length
+    );
 }
 
 void func_80026784(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32 length;
-    u32 source;
+    uintptr_t source;
     s32 new_var;
-    u32* dest_ptr;
+    uintptr_t* dest_ptr;
     u32* entry;
 
     entry = &D_800CF5B8[index * 2];
     start = entry[1];
-    source = (start - D_800CF5B8[0]) + (u32)Segment_03_ROM_START;
+    source = (start - D_800CF5B8[0]) + (uintptr_t)Segment_03_ROM_START;
     new_var = entry[2] - start;
     length = new_var;
     dest_ptr = &D_80137784;
-    *dest_ptr = (u32)STAGE_TABLE1_DEST;
-    D_80137788 = (u32)STAGE_TABLE1_DEST + length;
-    DMA_ReadSync((u8*)source, (u8*)*dest_ptr, length);
+    *dest_ptr = (uintptr_t)STAGE_TABLE1_DEST;
+    D_80137788 = (uintptr_t)STAGE_TABLE1_DEST + length;
+    DMA_ReadSync(
+        (u8*)source,
+        (u8*)*dest_ptr,
+        length
+    );
 }
 
 void func_800267FC(u16 index) {
-    u32 start;
+    uintptr_t start;
     u32 length;
-    u32 source;
+    uintptr_t source;
     s32 new_var;
-    u32* dest_ptr;
+    uintptr_t* dest_ptr;
     u32* entry;
 
     entry = &D_800CF87C[index * 2];
     start = entry[1];
-    source = (start - D_800CF87C[0]) + (u32)Segment_03_ROM_START;
+    source = (start - D_800CF87C[0]) + (uintptr_t)Segment_03_ROM_START;
     new_var = entry[2] - start;
     length = new_var;
     dest_ptr = &D_8013778C;
-    *dest_ptr = (u32)STAGE_TABLE2_DEST;
-    D_80137790 = (u32)STAGE_TABLE2_DEST + length;
-    DMA_ReadSync((u8*)source, (u8*)*dest_ptr, length);
+    *dest_ptr = (uintptr_t)STAGE_TABLE2_DEST;
+    D_80137790 = (uintptr_t)STAGE_TABLE2_DEST + length;
+    DMA_ReadSync(
+        (u8*)source,
+        (u8*)*dest_ptr,
+        length
+    );
 }
 
 void func_80026874(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_8013770C = D_80137710 = (u32)ASSET_DEST0;
+    D_8013770C = D_80137710 = (uintptr_t)ASSET_DEST0;
 
     new_var = D_800CFE04[index * 12 + 0];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 1] - D_800CFE04[index * 12 + 0]);
-        D_80137710 = (u32)ASSET_DEST0 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST0);
-        D_801376D0 = D_800D0E84_PU32[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_HIGH,
+            D_800CFE04[index * 12 + 1] - D_800CFE04[index * 12 + 0]
+        );
+
+        D_80137710 = (uintptr_t)ASSET_DEST0 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST0);
+        D_801376D0 = (&D_800D0E84[0].unk_00)[index * 6];
     }
 }
 
 void func_8002694C(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_801376EC = (D_801376F0 = (u32)ASSET_DEST1);
+    D_801376EC = (D_801376F0 = (uintptr_t)ASSET_DEST1);
     new_var = D_800CFE04[index * 12 + 2];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 3] - D_800CFE04[index * 12 + 2]);
-        D_801376F0 = (u32)ASSET_DEST1 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST1);
-        D_801376C0 = D_800D0E88[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_HIGH,
+            D_800CFE04[index * 12 + 3] - D_800CFE04[index * 12 + 2]
+        );
+
+        D_801376F0 = (uintptr_t)ASSET_DEST1 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST1);
+        D_801376C0 = (&D_800D0E84[0].unk_04)[index * 6];
     }
 }
 
-#ifdef NON_MATCHING
 void func_80026A18(u16 index) {
-    u32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
     D_800CBF54 = 0;
-    D_801376F4 = D_801376F8 = (u32)ASSET_DEST2;
-    new_var = D_800CFE04[index * 12 + 4];
-    start = new_var;
-    if (new_var != 0) {
-        if (start == (u32)rle_0024_317270_010CE330) {
-            D_800CBF54 = 1;
-        }
-        start = (start - (u32)Segment_01_DATA_START) + (u32)Segment_01_ROM_START;
-        DMA_ReadSync(start, RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 5] - D_800CFE04[index * 12 + 4]);
-        D_801376F8 = (u32)ASSET_DEST2 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST2);
-        D_801376C4 = D_800D0E8C[index * 6];
+    D_801376F4 = D_801376F8 = (uintptr_t)ASSET_DEST2;
+    if (D_800CFE04_ENTRY(4) == 0) {
+        return;
     }
+
+    if (((!index && !index) && !index)) {}
+
+    if ((uintptr_t)rle_0024_317270_010CE330 == D_800CFE04_ENTRY(4)) {
+        D_800CBF54 = 1;
+    }
+
+    start = D_800CFE04_ENTRY(4);
+    new_var = start;
+    start = (D_800CFE04_ENTRY(4) - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+    DMA_ReadSync(
+        (u8*)start,
+        RLE_SCRATCH_HIGH,
+        D_800CFE04_ENTRY(5) - new_var
+    );
+
+    D_801376F8 = (uintptr_t)ASSET_DEST2 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST2);
+    D_801376C4 = (&D_800D0E84[0].unk_08)[index * 6];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_80026A18.s")
-#endif
 
 void func_80026B04(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_801376FC = D_80137700 = (u32)ASSET_DEST3;
+    D_801376FC = D_80137700 = (uintptr_t)ASSET_DEST3;
     new_var = D_800CFE04[index * 12 + 6];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 7] - D_800CFE04[index * 12 + 6]);
-        D_80137700 = (u32)ASSET_DEST3 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST3);
-        D_801376C8 = D_800D0E90[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_HIGH,
+            D_800CFE04[index * 12 + 7] - D_800CFE04[index * 12 + 6]
+        );
+        D_80137700 = (uintptr_t)ASSET_DEST3 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST3);
+        D_801376C8 = (&D_800D0E84[0].unk_0C)[index * 6];
     }
 }
 
 void func_80026BD0(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_80137704 = D_80137708 = (u32)ASSET_DEST4;
+    D_80137704 = D_80137708 = (uintptr_t)ASSET_DEST4;
     new_var = D_800CFE04[index * 12 + 8];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_HIGH, D_800CFE04[index * 12 + 9] - D_800CFE04[index * 12 + 8]);
-        D_80137708 = (u32)ASSET_DEST4 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST4);
-        D_801376CC = D_800D0E94[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_HIGH,
+            D_800CFE04[index * 12 + 9] - D_800CFE04[index * 12 + 8]
+        );
+        D_80137708 = (uintptr_t)ASSET_DEST4 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST4);
+        D_801376CC = (&D_800D0E84[0].unk_10)[index * 6];
     }
 }
 
-#ifdef MATCHING_NON_MATCHING
-// This matches, but using __inline or -O3 changes codegen elsewhere in this file. Need to reconstruct all of the small functions that got inlined to fix.
-
-#define D_800CFE04_ENTRY(I) D_800CFE04[index * 12 + I]
-
-static __inline u32 Start_Seg01(u32 start) {
-    return (start - ((u32)Segment_01_DATA_START)) + ((u32)Segment_01_ROM_START);
-}
-
 void func_80026C9C(u16 index) {
-    u32 start;
+    intptr_t start;
+    uintptr_t new_var;
 
     D_800CBF50 = 0;
     D_80137714 = D_80137718 = 0x80360000U;
@@ -1728,137 +1856,180 @@ void func_80026C9C(u16 index) {
         return;
     }
 
-    if ((u32)rle_0045_3E7AB0_0119EB70 == D_800CFE04_ENTRY(10)) {
+    if (((!index && !index) && !index)) {}
+
+    if ((uintptr_t)rle_0045_3E7AB0_0119EB70 == D_800CFE04_ENTRY(10)) {
         D_800CBF50 = 1;
     }
 
-    start = Start_Seg01(D_800CFE04_ENTRY(10));
-    DMA_ReadSync((u8*)start, (u8*)0x80259000U, D_800CFE04_ENTRY(11) - D_800CFE04_ENTRY(10));
+    start = D_800CFE04_ENTRY(10);
+    new_var = start;
+    start = (D_800CFE04_ENTRY(10) - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+    DMA_ReadSync(
+        (u8*)start,
+        (u8*)0x80259000U,
+        D_800CFE04_ENTRY(11) - new_var
+    );
+
     D_80137718 = 0x80360000U + Trouble_RLE_Type1((u8*)0x80259000U, (u8*)0x80360000U);
-    D_801376D4 = D_800D0E98[index * 6];
+    D_801376D4 = (&D_800D0E84[0].unk_14)[index * 6];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_80026C9C.s")
-#endif
 
 void func_80026D88(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_8013770C = D_80137710 = (u32)ASSET_DEST0;
+    D_8013770C = D_80137710 = (uintptr_t)ASSET_DEST0;
     new_var = D_800CFE04[index * 12 + 0];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_LOW, D_800CFE04[index * 12 + 1] - D_800CFE04[index * 12 + 0]);
-        D_80137710 = (u32)ASSET_DEST0 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST0);
-        D_801376D0 = D_800D0E84_PU32[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_LOW,
+            D_800CFE04[index * 12 + 1] - D_800CFE04[index * 12 + 0]
+        );
+
+        D_80137710 = (uintptr_t)ASSET_DEST0 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST0);
+        D_801376D0 = (&D_800D0E84[0].unk_00)[index * 6];
     }
 }
 
 void func_80026E60(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_801376EC = D_801376F0 = (u32)ASSET_DEST1;
+    D_801376EC = D_801376F0 = (uintptr_t)ASSET_DEST1;
     new_var = D_800CFE04[index * 12 + 2];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_LOW, D_800CFE04[index * 12 + 3] - D_800CFE04[index * 12 + 2]);
-        D_801376F0 = (u32)ASSET_DEST1 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST1);
-        D_801376C0 = D_800D0E88[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_LOW,
+            D_800CFE04[index * 12 + 3] - D_800CFE04[index * 12 + 2]
+        );
+
+        D_801376F0 = (uintptr_t)ASSET_DEST1 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST1);
+        D_801376C0 = (&D_800D0E84[0].unk_04)[index * 6];
     }
 }
 
-#ifdef NON_MATCHING
 void func_80026F2C(u16 index) {
-    u32 start;
-    s32 unused[2];
+    intptr_t start;
+    uintptr_t new_var;
 
     D_800CBF54 = 0;
-    D_801376F4 = D_801376F8 = (u32)ASSET_DEST2;
-    start = D_800CFE04[index * 12 + 4];
-    if (start != 0) {
-        if ((u32)&rle_0024_317270_010CE330 == start) {
-            D_800CBF54 = 1;
-        }
-        DMA_ReadSync((void*)((start - (u32)Segment_01_DATA_START) + (u32)Segment_01_ROM_START), RLE_SCRATCH_LOW,
-                     D_800CFE04[index * 12 + 5] - start);
-        D_801376F8 = (u32)ASSET_DEST2 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST2);
-        D_801376C4 = D_800D0E8C[index * 6];
+    D_801376F4 = D_801376F8 = (uintptr_t)ASSET_DEST2;
+    if (D_800CFE04_ENTRY(4) == 0) {
+        return;
     }
+
+    if (((!index && !index) && !index)) {}
+
+    if ((uintptr_t)rle_0024_317270_010CE330 == D_800CFE04_ENTRY(4)) {
+        D_800CBF54 = 1;
+    }
+
+    start = D_800CFE04_ENTRY(4);
+    new_var = start;
+    start = (D_800CFE04_ENTRY(4) - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+    DMA_ReadSync(
+        (u8*)start,
+        RLE_SCRATCH_LOW,
+        D_800CFE04_ENTRY(5) - new_var
+    );
+
+    D_801376F8 = (uintptr_t)ASSET_DEST2 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST2);
+    D_801376C4 = (&D_800D0E84[0].unk_08)[index * 6];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_80026F2C.s")
-#endif
 
 void func_80027018(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_801376FC = D_80137700 = (u32)ASSET_DEST3;
+    D_801376FC = D_80137700 = (uintptr_t)ASSET_DEST3;
     new_var = D_800CFE04[index * 12 + 6];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_LOW, D_800CFE04[index * 12 + 7] - D_800CFE04[index * 12 + 6]);
-        D_80137700 = (u32)ASSET_DEST3 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST3);
-        D_801376C8 = D_800D0E90[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_LOW,
+            D_800CFE04[index * 12 + 7] - D_800CFE04[index * 12 + 6]
+        );
+
+        D_80137700 = (uintptr_t)ASSET_DEST3 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST3);
+        D_801376C8 = (&D_800D0E84[0].unk_0C)[index * 6];
     }
 }
 
 void func_800270E4(u16 index) {
-    s32 start;
-    u32 new_var;
+    intptr_t start;
+    uintptr_t new_var;
 
-    D_80137704 = D_80137708 = (u32)ASSET_DEST4;
+    D_80137704 = D_80137708 = (uintptr_t)ASSET_DEST4;
     new_var = D_800CFE04[index * 12 + 8];
     start = new_var;
     if (start != 0) {
-        start = (start - (s32)Segment_01_DATA_START) + (s32)Segment_01_ROM_START;
-        DMA_ReadSync((u8*)start, RLE_SCRATCH_LOW, D_800CFE04[index * 12 + 9] - D_800CFE04[index * 12 + 8]);
-        D_80137708 = (u32)ASSET_DEST4 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST4);
-        D_801376CC = D_800D0E94[index * 6];
+        start = (start - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+        DMA_ReadSync(
+            (u8*)start,
+            RLE_SCRATCH_LOW,
+            D_800CFE04[index * 12 + 9] - D_800CFE04[index * 12 + 8]
+        );
+
+        D_80137708 = (uintptr_t)ASSET_DEST4 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST4);
+        D_801376CC = (&D_800D0E84[0].unk_10)[index * 6];
     }
 }
 
-#ifdef NON_MATCHING
 void func_800271B0(u16 index) {
-    u32 start;
-    s32 unused[2];
+    intptr_t start;
+    uintptr_t new_var;
 
     D_800CBF50 = 0;
-    D_80137714 = D_80137718 = (u32)ASSET_DEST5;
-    start = D_800CFE04[index * 12 + 10];
-    if (start != 0) {
-        if ((u32)&rle_0045_3E7AB0_0119EB70 == start) {
-            D_800CBF50 = 1;
-        }
-        DMA_ReadSync((void*)((start - (u32)Segment_01_DATA_START) + (u32)Segment_01_ROM_START), RLE_SCRATCH_LOW,
-                     D_800CFE04[index * 12 + 11] - start);
-        D_80137718 = (u32)ASSET_DEST5 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST5);
-        D_801376D4 = D_800D0E98[index * 6];
+    D_80137714 = D_80137718 = (uintptr_t)ASSET_DEST5;
+    if (D_800CFE04_ENTRY(10) == 0) {
+        return;
     }
+
+    if (((!index && !index) && !index)) {}
+
+    if ((uintptr_t)rle_0045_3E7AB0_0119EB70 == D_800CFE04_ENTRY(10)) {
+        D_800CBF50 = 1;
+    }
+
+    start = D_800CFE04_ENTRY(10);
+    new_var = start;
+    start = (D_800CFE04_ENTRY(10) - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
+    DMA_ReadSync(
+        (u8*)start,
+        RLE_SCRATCH_LOW,
+        D_800CFE04_ENTRY(11) - new_var
+    );
+
+    D_80137718 = (uintptr_t)ASSET_DEST5 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST5);
+    D_801376D4 = (&D_800D0E84[0].unk_14)[index * 6];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/26A00/func_800271B0.s")
-#endif
 
 void func_8002729C(u16 index) {
-    u32 start;
+    uintptr_t start;
 
-    D_8013771C = D_80137720 = (u32)ASSET_DEST6;
-    ;
-    if ((u32)&rle_0012_1D18F0_040E17F0 == D_800CEC10[index * 2]) {
+    D_8013771C = D_80137720 = (uintptr_t)ASSET_DEST6;
+    if ((uintptr_t)&rle_0012_1D18F0_040E17F0 == D_800CEC0C[index * 2 + 1]) {
     }
-    else if ((u32)&rle_0000_F0100_04000000 == D_800CEC10[index * 2]) {
+    else if ((uintptr_t)&rle_0000_F0100_04000000 == D_800CEC0C[index * 2 + 1]) {
     }
     else {
-        start = (u32)rle_0049_406880_011BD940;
-        DMA_ReadSync((u8*)((start + (u32)Segment_01_ROM_START) - (u32)Segment_01_DATA_START), RLE_SCRATCH_LOW,
-                     (u32)rle_0049_406880_011BD940_end - start);
-        D_80137720 = (u32)ASSET_DEST6 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST6);
-        D_801376D8 = (u32)ASSET_DEST6_TABLE;
+        start = (uintptr_t)rle_0049_406880_011BD940;
+        DMA_ReadSync(
+            (u8*)((start + (uintptr_t)Segment_01_ROM_START) - (uintptr_t)Segment_01_DATA_START),
+            RLE_SCRATCH_LOW,
+            (uintptr_t)rle_0049_406880_011BD940_end - start
+        );
+
+        D_80137720 = (uintptr_t)ASSET_DEST6 + Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST6);
+        D_801376D8 = (uintptr_t)ASSET_DEST6_TABLE;
     }
 }

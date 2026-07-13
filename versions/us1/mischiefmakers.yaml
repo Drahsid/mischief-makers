@@ -479,7 +479,7 @@ segments:
     subsegments:
       - [0xF00D0, c, overlay_F00D0/F00D0]
 
-  - name: Segment_04 # common resources? see: D_800CEC0C, D_800CEC10; func_80026494, func_8002653C
+  - name: Segment_04 # common resources? see: D_800CEC0C; func_80026494, func_8002653C
     type: code
     vram: 0x04000000
     start: 0xF0100

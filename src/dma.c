@@ -13,7 +13,7 @@ void DMA_ReadSync(void* rom_addr, void* vram_addr, s32 length) {
     OSMesg dummy;
 
     osInvalDCache(vram_addr, length);
-    osPiStartDma(&iomesg, OS_MESG_PRI_NORMAL, OS_READ, (u32)rom_addr, vram_addr, length, &gDmaMessageQueue);
+    osPiStartDma(&iomesg, OS_MESG_PRI_NORMAL, OS_READ, (uintptr_t)rom_addr, vram_addr, length, &gDmaMessageQueue);
     osRecvMesg(&gDmaMessageQueue, &dummy, OS_MESG_BLOCK);
 }
 
