@@ -1244,14 +1244,14 @@ void func_80079CE8(u16 arg0) {
     sp1E = Actor_RangeFindInactive_90ToC0();
     if (sp1E != 0) {
         func_800333A0(gActors[arg0].posX.whole, gActors[arg0].posY.whole, gActors[arg0].posZ.whole, 1.5f);
-        Sound_PlaySfx(SFX_0093);
+        Sound_PlaySfx(SFX_BOOM_0093);
         func_80073FD8(sp1E, gActors[arg0].var_110, gActors[arg0].var_0D8);
     }
 }
 
 void func_80079DF8(u16 actor_index) {
     func_80034644(actor_index);
-    Sound_PlaySfx(SFX_002D);
+    Sound_PlaySfx(SFX_HIT_002D);
     gActors[actor_index].unk_118 = 4.0f;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
     gActors[actor_index].unk_114 += 5.0f;
@@ -1456,7 +1456,7 @@ void func_8007A8B0(u16 actor_index) {
     case 6:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(SFX_009D);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 11:
         func_80028B90(actor_index);
@@ -1467,7 +1467,7 @@ void func_8007A8B0(u16 actor_index) {
     case 9:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(SFX_009D);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 14:
         func_80028B90(actor_index);
@@ -1478,10 +1478,10 @@ void func_8007A8B0(u16 actor_index) {
     case 12:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(SFX_009D);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 19:
-        Sound_PlaySfx(SFX_009D);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         gActors[actor_index].flags = 0;
         gActors[actor_index].health = 0;
         break;
@@ -1530,12 +1530,12 @@ s32 func_8007AB44(u16 actor_index) {
         if ((gActors[actor_index].velocityY.raw > FIXED_UNIT(3)) || (gActors[actor_index].velocityY.raw < FIXED_UNIT(-3))) {
             if ((u16)gActors[actor_index].unk_134) {
                 gActors[actor_index].unk_134 = 0.0f;
-                Sound_PlaySfxAtActor3(SFX_00FD, actor_index);
+                Sound_PlaySfxAtActor3(SFX_RUMBLE_00FD, actor_index);
             }
         }
         else if (!(gActiveFrames & 0xF)) {
             gActors[actor_index].unk_134 = 93.0f;
-            Sound_PlaySfxAtActor3(SFX_00FD, actor_index);
+            Sound_PlaySfxAtActor3(SFX_RUMBLE_00FD, actor_index);
         }
     }
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -1735,7 +1735,7 @@ void func_8007B73C(u16 actor_index) {
             if ((actor->flags_098 & ACTOR_FLAG3_UNK9) && !(actor->var_150 & 0x100000)) {
                 if (actor->unk_0DE == 1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
-                    Sound_PlaySfx(SFX_0067);
+                    Sound_PlaySfx(SFX_CLANCER_OW_0067);
                     func_80079AB4(actor_index);
                 }
                 else {
@@ -1999,7 +1999,7 @@ void func_8007B73C(u16 actor_index) {
                 }
                 func_80033E7C(actor_index, actor->posX.whole + var_v0, actor->posY.whole + 8, actor->posZ.whole - 1, FIXED_UNIT(1), FIXED_UNIT(8), 3);
                 if (actor->flags_098 & ACTOR_FLAG3_UNK1) {
-                    Sound_PlaySfx(SFX_009D);
+                    Sound_PlaySfx(SFX_CLANCER_OW_009D);
                     ACTOR_GFX_INIT(actor_index, D_800D821C);
                 }
                 else if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
@@ -2044,7 +2044,7 @@ void func_8007B73C(u16 actor_index) {
         actor->damage = 10;
         if ((actor->velocityY.raw < 0 && (actor->flags_098 & ACTOR_FLAG3_UNK5)) || (actor->velocityY.raw > 0 && actor->flags_098 & ACTOR_FLAG3_UNK4)) {
             Actor_ReduceHealth(actor_index, 50);
-            Sound_PlaySfx(SFX_00AC);
+            Sound_PlaySfx(SFX_LAND_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw /= 4;
             break;
@@ -2062,7 +2062,7 @@ void func_8007B73C(u16 actor_index) {
         if ((actor->velocityX.raw > 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK3) || (actor->var_150 & 8)))
            || (actor->velocityX.raw < 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK2) || (actor->var_150 & 4)))) {
             Actor_ReduceHealth(actor_index, 50);
-            Sound_PlaySfx(SFX_00AC);
+            Sound_PlaySfx(SFX_LAND_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw = (s32) -actor->velocityX.raw / 2;
             break;

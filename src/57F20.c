@@ -486,7 +486,7 @@ void func_800584D4(u16 actor_index) {
         func_8005739C(actor_index, gActors[actor_index].pendingDamage / 5);
         gActors[actor_index].var_15C = ((gActors[actor_index].pendingDamage - gActors[actor_index].pendingDamage / 5) / 180) + 1;
         gActors[actor_index].pendingDamage = 0;
-        Sound_PlaySfxAtActorTimed(SFX_0065, actor_index, gActors[actor_index].var_150);
+        Sound_PlaySfxAtActorTimed(SFX_SHOCK_0065, actor_index, gActors[actor_index].var_150);
         gActors[actor_index].stateUpper = 1;
         /* fallthrough */
     case 1:
@@ -506,7 +506,7 @@ void func_800584D4(u16 actor_index) {
         gActors[actor_index].var_150--;
         if ((gActors[actor_index].var_150 <= 0) || (gActors[actor_index].health < 0)) {
             func_8005C550(actor_index, 0x3C);
-            Sound_StopSfx(SFX_0065);
+            Sound_StopSfx(SFX_SHOCK_0065);
             if (gActors[actor_index].health < 0) {
                 func_800575C0(actor_index);
                 Sound_PlaySfx(SFX_CLANCERDEATH);
@@ -744,7 +744,7 @@ s32 func_80058F9C(u16 actor_index) {
             gActors[actor_index].iFrames = 0;
             func_8005C550(actor_index, 0x12C);
             func_800575C0(actor_index);
-            Sound_PlaySfx(SFX_0063);
+            Sound_PlaySfx(SFX_GRABDEFLECT);
         }
     }
     if ((gActors[actor_index].unk_0DD < 12) || (gActors[actor_index].unk_0DD > 14)) {

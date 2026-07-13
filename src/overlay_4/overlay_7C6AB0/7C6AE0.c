@@ -2019,7 +2019,7 @@ void func_801BAB34_7C7D14(void) {
                 CameraShake(-7, 7);
 
                 if ((gActiveFrames % 10) == 0) {
-                    Sound_PlaySfx(SFX_011C);
+                    Sound_PlaySfx(SFX_IMPACT_011C);
                 }
             }
 
@@ -2389,7 +2389,7 @@ void func_801BB6D0_7C88B0(void) {
 
                 if (D_800D28F8 == 0x78) {
                     func_801BB6AC_7C888C(1);
-                    Sound_PlaySfx(SFX_011A);
+                    Sound_PlaySfx(SFX_CLANCER_YELL_011A);
                 }
             }
 
@@ -2418,7 +2418,7 @@ void func_801BB6D0_7C88B0(void) {
 
                     case 8:
                         func_801BB6AC_7C888C(1);
-                        Sound_PlaySfx(SFX_011A);
+                        Sound_PlaySfx(SFX_CLANCER_YELL_011A);
                         break;
 
                     case 0xC:
@@ -2544,7 +2544,7 @@ void func_801BB6D0_7C88B0(void) {
                 D_800BE5F4.unk_00_s32 = 5;
                 func_80043D04(D_801BF910_7CCAF0);
                 D_800D28F8 = 5;
-                Sound_PlaySfx(SFX_011A);
+                Sound_PlaySfx(SFX_CLANCER_YELL_011A);
             }
             break;
 
@@ -2558,7 +2558,7 @@ void func_801BB6D0_7C88B0(void) {
                     D_800D28F8 = 0xB4;
                 }
                 else {
-                    Sound_PlaySfx(SFX_011A);
+                    Sound_PlaySfx(SFX_CLANCER_YELL_011A);
                     func_80045500();
                     func_80043D04(D_801BF910_7CCAF0);
                 }

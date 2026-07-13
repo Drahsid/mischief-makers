@@ -100,7 +100,7 @@ s32 func_801B0944_7BC894(u16 actor_index) {
         D_801B4B64_7C0AB4 = 0;
         func_80081790(actor_index, D_800E3488);
         Sound_PlaySfxAtActor2(SFX_GRAB_002F, actor_index);
-        Sound_PlaySfxAtActor2(SFX_00A4, actor_index);
+        Sound_PlaySfxAtActor2(SFX_CLANCER_OW_00A4, actor_index);
         return TRUE;
     }
 
@@ -124,7 +124,7 @@ s32 func_801B0A7C_7BC9CC(u16 actor_index) {
             func_801B0900_7BC850(actor_index);
             if (gActors[actor_index].unk_0DD < 0x15) {
                 gActors[actor_index].colorR = 0x7F;
-                Sound_PlaySfxAtActor2(SFX_009D, actor_index);
+                Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
                 func_801B0A10_7BC960(actor_index);
             }
 
@@ -321,7 +321,7 @@ void func_801B14AC_7BD3FC(u16 arg0) {
 
 void func_801B1510_7BD460(u16 actor_index) {
     if (gActors[actor_index].unk_16C & 1) {
-        Sound_PlaySfxAtActor2(SFX_0053, actor_index);
+        Sound_PlaySfxAtActor2(SFX_STEP_0053, actor_index);
     }
 }
 
@@ -533,7 +533,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             func_8005DF40(0, 0x3C);
             gLookatEyeZ = 352.0f;
             gActors[0x50].unk_174 = 3;
-            Sound_PlaySfx(SFX_012D);
+            Sound_PlaySfx(SFX_CROUD_CHATTER);
             Sound_PlayMusic(BGM_WOODS);
 
         case 2:
@@ -559,8 +559,8 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
         case 4:
             if (D_800D5828 >= 0xB) {
                 gActors[actor_index].state++;
-                Sound_PlaySfx(SFX_012E);
-                Sound_StopSfx(SFX_012D);
+                Sound_PlaySfx(SFX_CROUD_CHEER);
+                Sound_StopSfx(SFX_CROUD_CHATTER);
                 func_801B1B34_7BDA84(0x30, 1);
                 func_801B1B6C_7BDABC(0x30, 3);
                 D_801B4B64_7C0AB4 = 0xF0;
@@ -678,8 +678,8 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
         case 0x1E:
             gActors[actor_index].state++;
             func_80081790(actor_index, D_800E32C8);
-            Sound_PlaySfx(SFX_012E);
-            Sound_StopSfx(SFX_012D);
+            Sound_PlaySfx(SFX_CROUD_CHEER);
+            Sound_StopSfx(SFX_CROUD_CHATTER);
             Sound_PlaySfx(SFX_TURMPETFANFARE);
             Sound_PlayMusic(BGM_BONO);
             gActors[0x50].state = 8;
@@ -734,7 +734,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             gActors[actor_index + 3].flags ^= ACTOR_FLAG_FLIPPED;
             func_801B0BA0_7BCAF0(actor_index);
             if (gActors[actor_index].unk_16C & 1) {
-                Sound_PlaySfxAtActor3(SFX_00C5, actor_index);
+                Sound_PlaySfxAtActor3(SFX_POP_00C5, actor_index);
             }
             if (gActors[actor_index].unk_11C < 0.0f) {
                 gActors[actor_index].state++;
@@ -866,7 +866,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
                 gActors[actor_index].colorR = 0x7F;
                 gActors[actor_index].health -= 0x32;
                 func_801B0A10_7BC960(actor_index);
-                Sound_PlaySfxAtActor2(SFX_002D, actor_index);
+                Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
                 gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw / 2;
                 gActors[actor_index].velocityY.raw /= 2;
                 D_801B4B60_7C0AB0 |= 4;
@@ -1014,7 +1014,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
                     gActors[actor_index].state++;
                     func_801B3068_7BEFB8(actor_index, 1);
                     gActors[actor_index].velocityX.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(1.5);
-                    Sound_PlaySfxAtActor2(SFX_002A, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
                 }
             }
             break;
@@ -1103,7 +1103,7 @@ void func_801B31B8_7BF108(u16 actor_index) {
 
     if (gActors[saved_actor_index].var_150 & 0x50000) {
         gActors[saved_actor_index].scaleX = 1.8f;
-        Sound_PlaySfxAtActor2(SFX_0090, saved_actor_index);
+        Sound_PlaySfxAtActor2(SFX_JIGGLE_0090, saved_actor_index);
     }
 
     if (gActors[saved_actor_index].var_150 & 0x02040000) {
@@ -1113,7 +1113,7 @@ void func_801B31B8_7BF108(u16 actor_index) {
     if (gActors[saved_actor_index].var_150 & 0x06000000) {
         gActors[saved_actor_index].scaleX = 1.7f;
         if ((gActors[saved_actor_index].parentIndex == 0) || (gActors[saved_actor_index].parentIndex == 0x30)) {
-            Sound_PlaySfxAtActor2(SFX_002D, saved_actor_index);
+            Sound_PlaySfxAtActor2(SFX_HIT_002D, saved_actor_index);
             func_801B0A10_7BC960(saved_actor_index);
         }
         else {
@@ -1310,7 +1310,7 @@ void func_801B3648_7BF598(u16 actor_index) {
             if (D_801B4B70_7C0AC0 & 1) {
                 gActors[actor_index].state++;
                 gActors[actor_index].var_150 = 0xB4;
-                Sound_PlaySfx(SFX_012F);
+                Sound_PlaySfx(SFX_BUZZ_BOO);
                 func_801B1B34_7BDA84(0x30, 4);
             }
             break;
@@ -1511,7 +1511,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             gActors[0x50].unk_174_array[0] = 3;
             func_8005DF40(0, 0x3C);
             gLookatEyeZ = 352.0f;
-            Sound_PlaySfx(SFX_012D);
+            Sound_PlaySfx(SFX_CROUD_CHATTER);
 
         case 1:
             gLookatEyeZ = Math_ApproachF32(gLookatEyeZ, 448.0f, 1.0f);
@@ -1533,8 +1533,8 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0x12C;
                 gActors[0x50].unk_174_array[0] = 0;
-                Sound_PlaySfx(SFX_012E);
-                Sound_StopSfx(SFX_012D);
+                Sound_PlaySfx(SFX_CROUD_CHEER);
+                Sound_StopSfx(SFX_CROUD_CHATTER);
                 func_801B3F84_7BFED4(1);
             }
             break;
@@ -1559,8 +1559,8 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             if (D_800D582C >= 2) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0xB4;
-                Sound_PlaySfx(SFX_012E);
-                Sound_PlaySfx(SFX_011A);
+                Sound_PlaySfx(SFX_CROUD_CHEER);
+                Sound_PlaySfx(SFX_CLANCER_YELL_011A);
                 func_801B3F84_7BFED4(1);
             }
             break;

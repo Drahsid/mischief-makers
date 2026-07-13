@@ -12,7 +12,6 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 
 
-extern u32 D_80137458;
 
 FixedCoord D_801BC140_7D6930 = { 0 };
 FixedCoord D_801BC144_7D6934 = { 0 };
@@ -2124,7 +2123,7 @@ void func_801BB444_7D5C34(u16* arg0, u16* arg1, void* arg2) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg2);
     D_800BE5F4.unk_00_u32 = 10;
-    Sound_PlaySfx(SFX_00BA);
+    Sound_PlaySfx(SFX_WIND_00BA);
     D_801C02B6_7DAAA6 = gStageState;
     gStageState = 1;
 }
@@ -2223,7 +2222,7 @@ void func_801BB768_7D5F58(void) {
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
             D_800BE5F4.unk_00_u32 = 7;
             if (!gSkipStageIntro) {
-                Sound_PlaySfx(SFX_00BA);
+                Sound_PlaySfx(SFX_WIND_00BA);
                 gStageState = 1;
             }
             else {
@@ -2306,7 +2305,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 0x1000:
-            Sound_PlaySfx(SFX_00BA);
+            Sound_PlaySfx(SFX_WIND_00BA);
             if (gMusicSequenceId != BGM_YUJYA) {
                 Sound_PlayMusic(BGM_YUJYA);
             }

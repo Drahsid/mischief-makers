@@ -1998,7 +1998,7 @@ void func_8001EC1C(void) {
     s16 sp198[0x90];
     s16 sp78[0x90];
 
-    if ((D_80137458 & 0x10) || (gGameState != 6)) {
+    if ((D_80137458 & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
         return;
     }
 

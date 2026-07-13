@@ -807,7 +807,7 @@ void func_801B1750_7A7CD0(u16 actor_index) {
         gActors[new_actor_index].posZ.whole = 168;
         gActors[new_actor_index].unk_164 |= 0x1020;
         gFestivalEventsPlayed[gFestivalCurrentEvent] = TRUE;
-        Sound_PlaySfx(SFX_0131);
+        Sound_PlaySfx(SFX_DROP_0131);
         return;
     }
 
@@ -825,7 +825,7 @@ void func_801B1750_7A7CD0(u16 actor_index) {
     gActors[new_actor_index].posY.whole = -72;
     gActors[new_actor_index].posZ.whole = 168;
     gActors[new_actor_index].scaleX = 1.0f;
-    Sound_PlaySfx(SFX_012F);
+    Sound_PlaySfx(SFX_BUZZ_BOO);
 }
 
 void func_801B18E8_7A7E68(u16 actor_index) {
@@ -1509,7 +1509,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             gActors[actor_index].var_150 = 0xB4;
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_BROKEN);
-            Sound_PlaySfx(SFX_012D);
+            Sound_PlaySfx(SFX_CROUD_CHATTER);
             gActors[actor_index].state++;
 
         case 1:
@@ -1556,7 +1556,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                     gFestivalEventState = 0x40;
                     D_800BE5F4.unk_00_u32 = 5;
                     OverlayABI_Slot2_fn29_u16(actor_index);
-                    Sound_PlaySfx(SFX_0046);
+                    Sound_PlaySfx(SFX_SHOT_0046);
                     gActors[0x6D].unk_134 = 1.6f;
                     func_801B1D60_7A82E0(actor_index, 0xFF);
                     gActors[actor_index].state = 0x50;

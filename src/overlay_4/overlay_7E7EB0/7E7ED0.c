@@ -6,7 +6,6 @@
 
 extern s16 D_800D2920;
 extern s32 D_800D2928;
-extern u32 D_80137458;
 
 extern void func_80011F44(s16 arg0, s16 arg1, s32 arg2, s32 arg3);
 void func_801B9A3C_7E800C(u16 actor_index);
@@ -466,7 +465,7 @@ void func_801B9A3C_7E800C(u16 actor_index) {
 
 void func_801B9B64_7E8134(u16 actor_index, s16 arg1, s16 arg2) {
     gStageState++;
-    Sound_PlaySfx(SFX_0093);
+    Sound_PlaySfx(SFX_BOOM_0093);
     gActors[actor_index].flags = 0;
     func_80011F44(arg1, arg2, 2, 8);
 }

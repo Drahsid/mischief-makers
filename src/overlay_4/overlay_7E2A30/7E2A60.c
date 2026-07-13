@@ -11,7 +11,6 @@ extern s16 D_800D291C;
 extern u16 D_800BE5D4;
 extern u32 D_800D28FC;
 extern s16 D_801BD8C2_7E6A22;
-extern u32 D_80137458;
 
 extern void Clanpot_InitItems(u16 actor_index, u16* vals); // BUG: incorrect prototype!
 extern s16 func_8005DEFC(void);
@@ -677,7 +676,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posX.whole = gPlayerActor.posX.whole;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
-            Sound_PlaySfxAtActor2(SFX_00AA, 0);
+            Sound_PlaySfxAtActor2(SFX_LAVA_00AA, 0);
             func_8005739C(0, 100);
 
             if (gPlayerActor.health >= 0) {

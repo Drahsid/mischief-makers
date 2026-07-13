@@ -591,7 +591,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_80192438_6D2AB8(0x50, 0x52, 0x1810, 0xF, 0x14, -2);
                     func_80192438_6D2AB8(0x50, 0x53, 0x1812, -0x1D, 7, -2);
                     func_80192438_6D2AB8(0x50, 0x54, 0x1814, -1, -0x17, -2);
-                    Sound_PlaySfx(SFX_009D); // clancer throw?
+                    Sound_PlaySfx(SFX_CLANCER_OW_009D); // clancer throw?
                     gActors[actor_index].var_150 = 0x1E;
                     // fallthrough
 

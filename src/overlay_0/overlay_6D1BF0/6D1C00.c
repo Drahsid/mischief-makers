@@ -138,7 +138,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                 if (func_8005DEFC() == 0) {
                     switch (gActors[actor_index + 3].unk_180) {
                         case 0:
-                            Sound_PlaySfxAtActor2(SFX_0044, actor_index);
+                            Sound_PlaySfxAtActor2(SFX_CLANCER_YELL_0044, actor_index);
                             gActors[temp_index_21].graphicList = D_800E59E0;
                             gActors[temp_index_21].graphicTimer = 1;
                             func_8005DF5C(1);

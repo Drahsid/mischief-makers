@@ -35,7 +35,7 @@ void func_800601FC(u16 actor_index) {
     }
     if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK5 | ACTOR_FLAG3_UNK0)) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
-        Sound_PlaySfx(SFX_002D);
+        Sound_PlaySfx(SFX_HIT_002D);
         gActors[actor_index].state = 0x66;
     }
     gActors[actor_index].damage = ((gActors[actor_index].var_110 - 0.5) / 0.05) + 10.0;
@@ -224,7 +224,7 @@ void func_80060DB8(u16 actor_index) {
     s32 sp24[3];
 
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
-        Sound_PlaySfxAtActor2(SFX_00AA, actor_index);
+        Sound_PlaySfxAtActor2(SFX_LAVA_00AA, actor_index);
         sp24[0] = gActors[gActors[actor_index].parentIndex].posX.whole;
         sp24[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY0;
         sp24[2] = gActors[gActors[actor_index].parentIndex].posZ.whole + 1;

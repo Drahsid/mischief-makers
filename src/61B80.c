@@ -455,7 +455,7 @@ void ActorUpdate_SpiralClouds(u16 actor_index) {
         gActors[actor_index].scaleX = 9.0f;
         gActors[actor_index].unk_12C = 9.0f;
         gActors[actor_index].rotateX = -8.0f;
-        Sound_PlaySfx(SFX_00BF);
+        Sound_PlaySfx(SFX_WIND_00BF);
         gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
         gActors[actor_index].colorA = 3;
         gActors[actor_index].state += 1;

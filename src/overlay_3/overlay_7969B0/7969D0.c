@@ -203,7 +203,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             gActors[actor_index - 1].posZ.whole = -527;
             gActors[actor_index - 1].colorA = 0;
             gActors[actor_index - 1].state = 0x50;
-            Sound_PlaySfxAtActor2(SFX_0047, actor_index);
+            Sound_PlaySfxAtActor2(SFX_ROAR_0047, actor_index);
             gActors[actor_index].state++;
             break;
 

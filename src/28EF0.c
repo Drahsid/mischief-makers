@@ -427,7 +427,7 @@ s32 func_80028E1C(u16 actor_index) {
                         gPlayerActor.flags_098 = ACTOR_FLAG3_UNK16;
                         gPlayerActor.unk_0F8.raw = 0;
                         gPlayerActor.unk_0FC.raw = FIXED_UNIT(-3.0);
-                        Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+                        Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
                         return TRUE;
                     }
                     actor0_pos += 16;
@@ -441,7 +441,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gPlayerActor.flags_098 = ACTOR_FLAG3_UNK16;
                             gPlayerActor.unk_0F8.raw = FIXED_UNIT(3.0);
                             gPlayerActor.unk_0FC.raw = 0;
-                            Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+                            Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
                             return TRUE;
                         }
                         actor0_pos -= 16;
@@ -454,7 +454,7 @@ s32 func_80028E1C(u16 actor_index) {
                             gPlayerActor.flags_098 = ACTOR_FLAG3_UNK16;
                             gPlayerActor.unk_0F8.raw = FIXED_UNIT(-3.0);
                             gPlayerActor.unk_0FC.raw = 0;
-                            Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+                            Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
                             return TRUE;
                         }
                         actor0_pos += 16;
@@ -476,7 +476,7 @@ s32 func_80029044(u16 actor_index) {
             gActors->flags_098 = ACTOR_FLAG3_UNK16;
             gActors->unk_0F8.raw = 0;
             gActors->unk_0FC.raw = FIXED_UNIT(3.0);
-            Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+            Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
             return TRUE;
         }
     }
@@ -2104,7 +2104,7 @@ void ActorUpdate_WhiteFade(u16 actor_index) {
 
 // landmine is tripped, play sound and particle effects
 void Landmine_TriggerEffect(u16 actor_index) {
-    Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+    Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
     gActors[actor_index].unk_188 = TRUE;
     gActors[actor_index].scaleY = 0.1f;
     SpawnParticle_RingSparkle(actor_index, 0, 0.5f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole + 1);
@@ -2232,7 +2232,7 @@ void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s3
     else {
         gActors[actor_index].var_15C = 0x200;
     }
-    Sound_PlaySfxAtActor2(SFX_0046, actor_index);
+    Sound_PlaySfxAtActor2(SFX_SHOT_0046, actor_index);
 }
 
 void func_8002DC74(u16 actor_index) {
@@ -2323,7 +2323,7 @@ void func_8002DFC0(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
     else {
         gActors[actor_index].var_15C = 0x200;
     }
-    Sound_PlaySfxAtActor2(SFX_002E, actor_index);
+    Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
 }
 
 void func_8002E288(u16 actor_index) {
@@ -2429,7 +2429,7 @@ void func_8002E500(u16 actor_index, u16 arg1, s32 angle, s32 pos_x, s32 pos_y, s
         gActors[index].unk_118 = -0.0077f;
         gActors[index].unk_11C = 0.0065f;
     }
-    Sound_PlaySfxAtActor2(SFX_002E, actor_index);
+    Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
 }
 
 void func_8002E89C(u16 actor_index) {
@@ -4442,7 +4442,7 @@ u16 Clanpot_TakeItem(u16 pot_index, u16 actor_index0) {
     if (actor_index1 & CLANPOT_NEWITEM) {
         // don't spawn these 2 items.
         if ((gClanpotItems[gActors[pot_index].unk_170 + 3] == 0x2705) || (gClanpotItems[gActors[pot_index].unk_170 + 3] == 0x2706)) {
-            Sound_PlaySfxAtActor2(SFX_0064, pot_index);
+            Sound_PlaySfxAtActor2(SFX_TINK_0064, pot_index);
             return 0;
         }
         actor_index1 = Actor_RangeFindInactive(0x10, 0x2D);
@@ -4691,7 +4691,7 @@ void ActorUpdate_ClanpotMenu(u16 actor_index) {
             gActors[actor_index].hitboxBY0 += 6;
             gActors[actor_index].hitboxBX0 -= 6;
             gActors[actor_index].unk_120 = 0.0f;
-            Sound_PlaySfxAtActor2(SFX_0064, actor_index);
+            Sound_PlaySfxAtActor2(SFX_TINK_0064, actor_index);
         }
         else {
             gActors[actor_index].unk_120 -= 1.0f;
@@ -5541,7 +5541,7 @@ void Spikeball_State1End(u16 actor_index, u16 arg1) {
 
     if (gActors[actor_index].var_158 == 0) {
         if ((gActors[actor_index].health <= 0) || (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0)) {
-            Sound_PlaySfxAtActor2(SFX_006E, actor_index);
+            Sound_PlaySfxAtActor2(SFX_STAB_006E, actor_index);
             gActors[actor_index].unk_190 |= 1;
             gActors[actor_index].var_154 = arg1;
             gActors[actor_index].var_158 = 1;
@@ -5639,7 +5639,7 @@ void Spikeball_Update(u16 actor_index) {
     gActors[actor_index].unk_180 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
     gActors[actor_index].unk_184 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK16) {
-        Sound_PlaySfxAtActor2(SFX_006E, actor_index);
+        Sound_PlaySfxAtActor2(SFX_STAB_006E, actor_index);
     }
 }
 
@@ -5691,7 +5691,7 @@ void Spikeball_State0(u16 actor_index) {
 
 // unused actor "spawn" code. add a sound and partiicle effect as they appear.
 void func_80038FF4(u16 actor_index, u16 actor_type, u16 arg2, u16 arg3) {
-    Sound_PlaySfxAtActor2(SFX_006E, actor_index);
+    Sound_PlaySfxAtActor2(SFX_STAB_006E, actor_index);
     SpawnParticle_RingSparkle(actor_index, 0, 1.2f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 4);
     gActors[actor_index].actorType = actor_type;
     Actor_Initialize(actor_index);
@@ -5787,7 +5787,7 @@ u16 func_80039644(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         if (!(gActors[actor_index].var_150 & 0x40000000)) {
             gActors[actor_index].var_150 |= 0x40000000;
-            Sound_PlaySfxAtActor2(SFX_0090, actor_index);
+            Sound_PlaySfxAtActor2(SFX_JIGGLE_0090, actor_index);
             if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
                 gActors[actor_index].var_150 |= 0x20000000;
             }
@@ -6451,7 +6451,7 @@ void func_8003B630(u16 actor_index) {
         }
         if (gActors[actor_index].graphicTimer == 0) {
             ACTOR_GFX_INIT(actor_index, D_800E1D0C);
-            Sound_PlaySfxAtActor2(SFX_002A, actor_index);
+            Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
         }
         break;
     }
@@ -6502,7 +6502,7 @@ void func_8003B8CC(u16 actor_index) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
             gActors[actor_index].unk_114 = 2.0f;
-            Sound_PlaySfxAtActor2(SFX_0082, actor_index);
+            Sound_PlaySfxAtActor2(SFX_BOING_0082, actor_index);
             gActors[actor_index].scaleY = 0.6f;
             gActors[actor_index].unk_178 = (f32) gActors[actor_index].unk_170 * 0.9;
             gActors[actor_index].unk_17C = (f32) -gActors[actor_index].unk_174 * 0.7;
@@ -6615,7 +6615,7 @@ void func_8003BE3C(u16 actor_index) {
                 break;
             }
 
-            Sound_PlaySfxAtActor2(SFX_0082, actor_index);
+            Sound_PlaySfxAtActor2(SFX_BOING_0082, actor_index);
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
             gActors[actor_index].velocityX.raw = (f32) gActors[actor_index].velocityX.raw * 0.8;
             gActors[actor_index].velocityY.raw = (f32) -gActors[actor_index].velocityY.raw * 0.8;
@@ -6703,7 +6703,7 @@ void ActorUpdate_ClanballSpring(u16 actor_index) {
         gActors[actor_index].var_160 = FIXED_UNIT(16.0);
         gActors[actor_index].unk_164 = FIXED_UNIT(2.0);
         gActors[prev].unk_0DE = 6;
-        Sound_PlaySfxAtActor2(SFX_0082, actor_index);
+        Sound_PlaySfxAtActor2(SFX_BOING_0082, actor_index);
         /* fallthrough */
     case 1:
         if (gActors[actor_index].var_150 & 0x800) {
@@ -6741,7 +6741,7 @@ void ActorUpdate_ClanballSpring(u16 actor_index) {
                 if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].unk_164 > FIXED_UNIT(4.0))) {
                     gPlayerActor.flags_098 |= ACTOR_FLAG3_UNK16;
                     gActors[actor_index].var_150 |= 0x80000000;
-                    Sound_PlaySfxAtActor2(SFX_0082, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_BOING_0082, actor_index);
                     switch (angle) {
                     default:
                         break;
@@ -7194,7 +7194,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
                 gActors[actor_index].var_154 = 0;
                 gActors[actor_index].unk_16C = 0x80;
                 gActors[actor_index].unk_170 = 0xB0;
-                Sound_PlaySfx(SFX_0137);
+                Sound_PlaySfx(SFX_AREACLEAR_0137);
             }
         }
         break;
@@ -7218,7 +7218,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
             gActors[actor_index].var_154 = 0;
             gActors[actor_index].unk_16C = 0x80;
             gActors[actor_index].unk_170 = 0xB0;
-            Sound_PlaySfx(SFX_0137);
+            Sound_PlaySfx(SFX_AREACLEAR_0137);
         }
         break;
     case 3:
@@ -7667,7 +7667,7 @@ void func_8003F248(u16 actor_index, s16 x, s16 y, s16 z) {
 
     index = Actor_RangeFindInactiveMove(ACTORTYPE_PARTICLE56, x, y, z);
     if (index != 0) {
-        Sound_PlaySfxAtActor2(SFX_0093, actor_index);
+        Sound_PlaySfxAtActor2(SFX_BOOM_0093, actor_index);
         gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[index].flags = ACTOR_FLAG_ENABLED;
         gActors[index].graphicIndex = GINDEX_BOOM1;
