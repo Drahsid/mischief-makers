@@ -1377,8 +1377,10 @@ void ActorUpdate_StageClear(u16 actor_index) {
     case 1:
         if (gActors[actor_index].var_154-- == 0) {
             if (gActors[actor_index].var_15C != 0) {
-                if ((gCurrentScene == SCENE_3CLANCERKIDS) && (D_800D28E4 == 1)) {
-                    Sound_PlayMusic(gActors[actor_index].var_15C);
+                if (gCurrentScene == SCENE_3CLANCERKIDS) {
+                    if (D_800D28E4 == 1) {
+                        Sound_PlayMusic(gActors[actor_index].var_15C);
+                    }
                 }
                 else {
                     Sound_PlayMusic(gActors[actor_index].var_15C);
