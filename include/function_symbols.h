@@ -207,7 +207,7 @@ extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);
 extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
-extern void OSD_PrintShortHexWhite(s32 arg0, s16 arg1, s32 arg2);
+extern void OSD_PrintShortHexWhite(u16 arg0, s32 arg1, s32 arg2);
 extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
 extern void func_8002092C(void);

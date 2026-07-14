@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 37.940254,
+    "fuzzy_match_percent": 37.96232,
     "total_code": "1994304",
-    "matched_code": "756644",
-    "matched_code_percent": 37.940254,
+    "matched_code": "757084",
+    "matched_code_percent": 37.96232,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2425,
-    "matched_functions_percent": 51.519012,
+    "matched_functions": 2430,
+    "matched_functions_percent": 51.62524,
     "complete_data_percent": 100.0,
-    "total_units": 402
+    "total_units": 400
   },
   "units": [
     {
@@ -1617,10 +1617,24 @@
           }
         },
         {
+          "name": ".data",
+          "size": "528",
+          "metadata": {
+            "virtual_address": "2148302096"
+          }
+        },
+        {
           "name": ".rodata",
           "size": "80",
           "metadata": {
             "virtual_address": "2148446208"
+          }
+        },
+        {
+          "name": ".bss",
+          "size": "32",
+          "metadata": {
+            "virtual_address": "2149024048"
           }
         }
       ],
@@ -1979,6 +1993,13 @@
           "size": "1168",
           "metadata": {
             "virtual_address": "2148446464"
+          }
+        },
+        {
+          "name": ".bss",
+          "size": "112",
+          "metadata": {
+            "virtual_address": "2149024080"
           }
         }
       ],
@@ -2598,7 +2619,7 @@
         },
         {
           "name": ".bss",
-          "size": "32",
+          "size": "48",
           "metadata": {
             "virtual_address": "2149024192"
           }
@@ -9951,6 +9972,13 @@
           "metadata": {
             "virtual_address": "2148450192"
           }
+        },
+        {
+          "name": ".bss",
+          "size": "384",
+          "metadata": {
+            "virtual_address": "2149024464"
+          }
         }
       ],
       "functions": [
@@ -13706,17 +13734,37 @@
     {
       "name": "osd_debug_text",
       "measures": {
+        "fuzzy_match_percent": 25.229359,
         "total_code": "1744",
+        "matched_code": "440",
+        "matched_code_percent": 25.229359,
         "matched_data_percent": 100.0,
         "total_functions": 12,
+        "matched_functions": 5,
+        "matched_functions_percent": 41.666664,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "1744",
+          "fuzzy_match_percent": 25.229359,
           "metadata": {
             "virtual_address": "2148022496"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "112",
+          "metadata": {
+            "virtual_address": "2148454512"
+          }
+        },
+        {
+          "name": ".bss",
+          "size": "4176",
+          "metadata": {
+            "virtual_address": "2149060560"
           }
         }
       ],
@@ -13724,6 +13772,7 @@
         {
           "name": "OSD_Reset",
           "size": "60",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022496"
           }
@@ -13738,6 +13787,7 @@
         {
           "name": "OSD_PrintIntHex",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022788"
           }
@@ -13745,6 +13795,7 @@
         {
           "name": "OSD_PrintInt",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022900"
           }
@@ -13752,6 +13803,7 @@
         {
           "name": "OSD_PrintFloat",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023012"
           }
@@ -13780,6 +13832,7 @@
         {
           "name": "OSD_GetTime",
           "size": "36",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023500"
           }
@@ -14008,7 +14061,7 @@
           }
         },
         {
-          "name": "func_80085AE4",
+          "name": "Clanbomb_FallCheck",
           "size": "200",
           "metadata": {
             "virtual_address": "2148031204"
@@ -25156,32 +25209,6 @@
       }
     },
     {
-      "name": "C8910.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "528",
-          "metadata": {
-            "virtual_address": "2148302096"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
       "name": "C8B20.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -25702,32 +25729,6 @@
       }
     },
     {
-      "name": "osd_debug_text.rodata",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".rodata",
-          "size": "112",
-          "metadata": {
-            "virtual_address": "2148454512"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
       "name": "EDCE0.rodata",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -25921,35 +25922,9 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "26400",
+          "size": "26256",
           "metadata": {
             "virtual_address": "2148997792"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main_bss",
-        "module_id": 3,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "bss_801781E0.bss",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "size": "16",
-          "metadata": {
-            "virtual_address": "2149024224"
           }
         }
       ],
@@ -25973,7 +25948,7 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "448",
+          "size": "32",
           "metadata": {
             "virtual_address": "2149024432"
           }
@@ -25988,7 +25963,7 @@
       }
     },
     {
-      "name": "bss_80180FD0.bss",
+      "name": "bss_80178450.bss",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -25999,9 +25974,35 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "5856",
+          "size": "32",
           "metadata": {
-            "virtual_address": "2149060560"
+            "virtual_address": "2149024848"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main_bss",
+        "module_id": 3,
+        "progress_categories": [
+          "segment_main"
+        ]
+      }
+    },
+    {
+      "name": "bss_80182020.bss",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "size": "1680",
+          "metadata": {
+            "virtual_address": "2149064736"
           }
         }
       ],
@@ -49297,16 +49298,16 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 70.22771,
+        "fuzzy_match_percent": 70.28469,
         "total_code": "772208",
-        "matched_code": "542304",
-        "matched_code_percent": 70.227715,
+        "matched_code": "542744",
+        "matched_code_percent": 70.28469,
         "matched_data_percent": 100.0,
         "total_functions": 2162,
-        "matched_functions": 1684,
-        "matched_functions_percent": 77.89085,
+        "matched_functions": 1689,
+        "matched_functions_percent": 78.12211,
         "complete_data_percent": 100.0,
-        "total_units": 266
+        "total_units": 264
       }
     },
     {
