@@ -15,16 +15,16 @@ extern u8 D_800D28D0[];
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
 extern u16 D_800D2900;
-extern s32 D_800D2944;
+extern s32 D_800D2944; // offset for exit transition random portrais. always 0.
 extern u16 D_800D2910;
 extern s16 D_800D2914;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s32 D_800D2928;
-extern s32 D_800D2938;
+extern s32 gTransitionState; // state of transition effect
 extern s32 D_800D293C;
-extern s32 D_800D2940;
+extern s32 gTransitionTimer;
 extern u16 D_800D2950;
 extern u16 D_800D2964;
 extern u16 D_800D2968;
@@ -62,8 +62,8 @@ extern u16 D_800D37A8;
 extern s32 D_800D37AC[];
 extern void (*D_800D37BC[])(void);
 extern u16 D_800D3888[];
-extern s16 D_800D38B8[];
-extern s16 D_800D3AE8[];
+extern s16 gExitPortraitPositions[];
+extern s16 gExitPortraitGraphics[]; // collection of random portraits for exit transition.
 extern FuncVoidVoid D_800D3B78[];
 
 extern u16 D_800D82DC[];
@@ -322,7 +322,7 @@ void func_80043918(void) {
     D_800D28FC = 0;
     D_800D28F4 = 1;
     gStageState = 0;
-    D_800D2938 = 0;
+    gTransitionState = 0;
     D_800BE668 = 0x32;
     func_8002653C();
     func_80043234();
@@ -1328,29 +1328,32 @@ void func_80046A30(void) {
     }
 }
 
+// smash to black
 void func_80046A9C(void) {
     u16 index;
 
-    D_800D2938 = 0;
+    gTransitionState = 0;
     func_80046A30();
     for (index = 0; index != 0x23; index++) {
         gPortraits[index].flags = ACTOR_GFLAG_PALETTE | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
         gPortraits[index].palette = (uintptr_t)D_800D82DC;
-        gPortraits[index].graphicIndex = 0x2D0;
+        gPortraits[index].graphicIndex = GINDEX_SOLIDSQUARE;
         gPortraits[index].alpha = 0xFF;
-        gPortraits[index].posX.whole = D_800D38B8[index * 2];
-        gPortraits[index].posY.whole = D_800D38B8[index * 2 + 1] + 2;
+        gPortraits[index].posX.whole = gExitPortraitPositions[index * 2];
+        gPortraits[index].posY.whole = gExitPortraitPositions[index * 2 + 1] + 2;
         gPortraits[index].scaleX = 3.0f;
         gPortraits[index].scaleY = 3.0f;
     }
 }
 
+
+// transition of expanding black squares
 s32 func_80046B4C(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938 += 1;
+        gTransitionState += 1;
         D_800D293C = 0x14;
         func_80046A30();
         D_800D28FC |= 4;
@@ -1358,14 +1361,14 @@ s32 func_80046B4C(void) {
         /* fallthrough */
     case 1:
         if (!(D_800D28FC & 4)) {
-            D_800D2938++;
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = ACTOR_GFLAG_PALETTE | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
                 gPortraits[index].palette = (uintptr_t)D_800D82DC;
-                gPortraits[index].graphicIndex = 0x2D0;
+                gPortraits[index].graphicIndex = GINDEX_SOLIDSQUARE;
                 gPortraits[index].alpha = 0xFF;
-                gPortraits[index].posX.whole = D_800D38B8[index * 2];
-                gPortraits[index].posY.whole = D_800D38B8[index * 2 + 1] + 2;
+                gPortraits[index].posX.whole = gExitPortraitPositions[index * 2];
+                gPortraits[index].posY.whole = gExitPortraitPositions[index * 2 + 1] + 2;
                 gPortraits[index].scaleX = 0.0f;
                 gPortraits[index].scaleY = 0.0f;
             }
@@ -1379,7 +1382,7 @@ s32 func_80046B4C(void) {
             gPortraits[index].scaleY = gPortraits[0].scaleX;
         }
         if (gPortraits[0].scaleX >= 3.0) {
-            D_800D2938++;
+            gTransitionState++;
         }
         break;
     case 3:
@@ -1392,15 +1395,16 @@ s32 func_80046B4C(void) {
     return FALSE;
 }
 
+// fade out portraits/sqaures
 s32 func_80046D5C(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
         gCannotPause = TRUE;
         gPortraits[0].alpha = Math_ApproachS32(gPortraits[0].alpha, 0, 0x10);
         if (gPortraits[0].alpha == 0) {
-            D_800D2938++;
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = 0;
             }
@@ -1414,7 +1418,7 @@ s32 func_80046D5C(void) {
         break;
     case 1:
         gCannotPause = FALSE;
-        D_800BE5D4 = 0;
+        gStartButtonOnly = FALSE;
         return TRUE;
     }
     return FALSE;
@@ -1424,32 +1428,33 @@ s32 Cutscene_CheckSkipInput(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 99;
-        D_800D2938 = 0;
+        gTransitionState = 0;
         return TRUE;
     }
 
     return FALSE;
 }
 
+// exit transition with random portraits
 s32 func_80046EBC(void) {
     u16 var_a1;
     u16 var_s1;
 
     D_800D2944 = 0;
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938++;
+        gTransitionState++;
         D_800D293C = 0;
-        D_800D2940 = 0x12;
+        gTransitionTimer = 0x12;
         func_80046A30();
         var_a1 = ((Rand() & 3) * 0x23);
         for (var_s1 = 0; var_s1 != 0x23; var_s1++) {
             gPortraits[var_s1].flags = ACTOR_GFLAG_UNK14 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
             gPortraits[var_s1].palette = NULL;
-            gPortraits[var_s1].graphicIndex = D_800D3AE8[(Rand() & 0x3F) + D_800D2944];
+            gPortraits[var_s1].graphicIndex = gExitPortraitGraphics[(Rand() & 0x3F) + D_800D2944];
             gPortraits[var_s1].alpha = 0;
-            gPortraits[var_s1].posX.whole = D_800D38B8[(var_a1 + var_s1) * 2];
-            gPortraits[var_s1].posY.whole = D_800D38B8[(var_a1 + var_s1) * 2 + 1] + 2;
+            gPortraits[var_s1].posX.whole = gExitPortraitPositions[(var_a1 + var_s1) * 2];
+            gPortraits[var_s1].posY.whole = gExitPortraitPositions[(var_a1 + var_s1) * 2 + 1] + 2;
             gPortraits[var_s1].scaleX = 0.0f;
             gPortraits[var_s1].scaleY = 1.0f;
         }
@@ -1460,21 +1465,21 @@ s32 func_80046EBC(void) {
             if (D_800CBF40 == 0) {
                 Sound_PlayMusic(BGM_INT);
             }
-            D_800D2938++;
+            gTransitionState++;
         }
         break;
     case 2:
         gAudioFadeMode = 4;
-        if ((D_800D293C == 0x23) && (--D_800D2940 < 0)) {
+        if ((D_800D293C == 0x23) && (--gTransitionTimer < 0)) {
             Sound_StopAllSfx();
             if (D_800CBF40 != 0) {
-                D_800D2940 = 0x14;
+                gTransitionTimer = 20;
                 Sound_StartFade(0x41, 0x14);
-                D_800D2938 += 2;
+                gTransitionState += 2;
             }
             else {
-                D_800D2940 = 0x78;
-                D_800D2938++;
+                gTransitionTimer = 120;
+                gTransitionState++;
             }
         }
         else {
@@ -1494,7 +1499,7 @@ s32 func_80046EBC(void) {
         gAudioFadeMode = 4;
         if (((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) && (gAudioUpdateCounter < 248)) {
             Sound_StartFade(1, 0x28);
-            D_800D2938++;
+            gTransitionState++;
         }
         else if (gAudioUpdateCounter >= 0x121) {
             Sound_StopAllSfx();
@@ -1504,12 +1509,12 @@ s32 func_80046EBC(void) {
     case 4:
         if (gAudioFadeMode == 3) {
             Sound_StopAllSfx();
-            D_800D2940 = 0x14;
-            D_800D2938++;
+            gTransitionTimer = 20;
+            gTransitionState++;
         }
         break;
     case 5:
-        if (D_800D2940-- < 0) {
+        if (gTransitionTimer-- < 0) {
             return TRUE;
         }
         break;
@@ -1545,19 +1550,21 @@ s32 func_8004735C(u16 stage_stage, u32 actor_flags) {
     }
 }
 
+// unused transition: squish and fade portraits
+// @returns true when complete
 s32 func_80047410(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938++;
+        gTransitionState++;
         D_800D293C = 0;
-        D_800D2940 = 0x19;
+        gTransitionTimer = 25;
         Sound_PlaySfx(SFX_00BC);
         /* fallthrough */
     case 1:
-        if ((D_800D293C == 0x23) && (--D_800D2940 < 0)) {
-            D_800D2938++;
+        if ((D_800D293C == 0x23) && (--gTransitionTimer < 0)) {
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = 0;
             }
@@ -1663,7 +1670,7 @@ void func_80047958(void) {
 void func_80047994(void) {
     gCannotPause = TRUE;
     if (func_80046B4C() != 0) {
-        D_800D2938 = 0;
+        gTransitionState = 0;
         func_80020A54();
         Actor_ClearSceneActors();
         func_8005DFC8(0);
@@ -1690,7 +1697,7 @@ void func_80047A54(void) {
     D_800D28FC |= 4;
     D_800D28FC &= ~8;
     D_800BE544 = 0x8000;
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gSkipStageIntro = 0;
     D_800D2900 = 0;
 }
@@ -1703,7 +1710,7 @@ void func_80047AC4(void) {
         }
         else {
             Actor_ClearSceneActors();
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0;
             D_800D28F4 = 1;
             D_800D28E4 = D_800D28F0;

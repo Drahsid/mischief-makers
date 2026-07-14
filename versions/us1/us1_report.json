@@ -1394,7 +1394,7 @@
       ],
       "functions": [
         {
-          "name": "func_800121D0",
+          "name": "Marina_Reset",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1402,7 +1402,7 @@
           }
         },
         {
-          "name": "func_80012288",
+          "name": "Marina_Init",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1410,7 +1410,7 @@
           }
         },
         {
-          "name": "func_800122B0",
+          "name": "Marina_UpdateInput",
           "size": "252",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1418,7 +1418,7 @@
           }
         },
         {
-          "name": "func_800123AC",
+          "name": "Marina_ScreenXLock",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1426,7 +1426,7 @@
           }
         },
         {
-          "name": "func_80012418",
+          "name": "Marina_ScreenYLock",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1434,7 +1434,7 @@
           }
         },
         {
-          "name": "func_80012438",
+          "name": "Marina_ScreenXScroll",
           "size": "508",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1442,7 +1442,7 @@
           }
         },
         {
-          "name": "func_80012634",
+          "name": "Marina_ScreenYScroll",
           "size": "508",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1450,7 +1450,7 @@
           }
         },
         {
-          "name": "func_80012830",
+          "name": "Marina_ScreenScroll",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8256,7 +8256,7 @@
           }
         },
         {
-          "name": "func_8004A960",
+          "name": "Marina_State0",
           "size": "260",
           "metadata": {
             "virtual_address": "2147789152"

@@ -62,6 +62,19 @@ Trouble_RLE_Type1 = 0x80004910; // type:func
 LookAt_Update = 0x80010898; // type:func
 LookAt_Reset = 0x800109B0; // type:func
 
+Marina_Reset = 0x800121D0; // type:func
+Marina_Init = 0x80012288; // type:func
+Marina_UpdateInput = 0x800122B0; // type:func
+Marina_ScreenXLock = 0x800123ac; // type:func rom:0x12fac
+Marina_ScreenYLock = 0x80012418; // type:func rom:0x13018
+Marina_ScreenXScroll = 0x80012438; // type:func rom:0x13038
+Marina_ScreenYScroll = 0x80012634; // type:func rom:0x13234
+Marina_ScreenScroll = 0x80012830; // type:func rom:0x13430
+Continue_DrawGem = 0x80012C50; // type:func
+Continue_GameOver = 0x80012CD4; // type:func
+Continue_PayGems = 0x80012DF0; // type:func
+GameState_ContinueScreen = 0x80012F98; // type:func
+
 YellowGem_SetFlag = 0x8001C7A4; // type:func
 YellowGem_GetFlag = 0x8001C7F0; // type:func
 
@@ -289,6 +302,8 @@ Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
 Cutscene_CheckSkipInput = 0x80046E6C; // type:func
 
+Marina_State0 = 0x8004A960; // type:func
+
 ActorUpdate_Marina = 0x8004ed10; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
@@ -310,10 +325,7 @@ GameState_SoftReset = 0x80022F48; // type:func
 
 GameState_Loading = 0x800232A4; // type:func
 GameState_Gameplay = 0x80021034; // type:func
-Continue_DrawGem = 0x80012C50; // type:func
-Continue_GameOver = 0x80012CD4; // type:func
-Continue_PayGems = 0x80012DF0; // type:func
-GameState_ContinueScreen = 0x80012F98; // type:func
+
 GameState_State8Overlay = 0x80388000; // type:func
 GameState_State9Overlay = 0x80388008; // type:func
 GameState_Attract = 0x80021270; // type:func

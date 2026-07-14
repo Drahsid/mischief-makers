@@ -1766,7 +1766,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
     if (actor->unk_174 < 2) {
         if (((actor_index == 0x52) && ((gActiveFrames & 0x7F) == 0)) || ((actor_index == 0x57) && ((gActiveFrames & 0x7F) == 0x40))) {
-            if (SpawnTextBubble(actor_index, D_801B60B4_7A6BC4, 0, 0x20, 0x1E) != 0) {
+            if (SpawnTextBubble(actor_index, D_801B60B4_7A6BC4, 0, 0x20, 30) != 0) {
                 Sound_PlaySfxAtActor2(SFX_CLANCER_TALK_00A2, actor_index);
                 actor->graphicList = D_800E2274;
                 actor->graphicTimer = 1;
@@ -2383,14 +2383,14 @@ void func_801B57C8_7A62D8(u16 actor_index) {
                     if (gActors[actor_index].unk_16C == 4) {
                         if ((gActors[actor_index].unk_12C == 60.0f) || (gActors[actor_index].unk_12C == 120.0f)) {
                             if (gActors[actor_index].unk_170 & 0x10000) {
-                                SpawnTextBubble(actor_index, D_801B6168_7A6C78, 0, -0x30, 0x19);
+                                SpawnTextBubble(actor_index, D_801B6168_7A6C78, 0, -0x30, 25);
                                 gActors[actor_index].state = 0x190;
                                 action_index = SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
                                 gActors[action_index].posX.whole = 3424 - gScreenPosCurrentX.whole;
                                 gActors[action_index].posY.whole = 356 - gScreenPosCurrentY.whole;
                             }
                             else {
-                                SpawnTextBubble(actor_index, D_801B615C_7A6C6C, 0, -0x30, 0x19);
+                                SpawnTextBubble(actor_index, D_801B615C_7A6C6C, 0, -0x30, 25);
                                 gActors[actor_index].state = 0x120;
                                 gActors[actor_index].unk_120 = 0.0f;
                                 gActors[actor_index].unk_11C = (f32)FIXED_UNIT(3.5);

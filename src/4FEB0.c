@@ -10,7 +10,7 @@ typedef struct {
     s8 unkE;
 } Unk800D4000;
 
-extern Actor2Func D_800D3EB0[];
+extern Actor2Func gMarinaGrabTable[];
 extern Actor2Func D_800D3F10[];
 extern Actor2Func D_800D3F70[];
 extern Unk800D4000 D_800D4000;
@@ -285,6 +285,7 @@ s32 func_8004FC68(u16 actor_0, u16 actor_1) {
     return 0;
 }
 
+// Marina's Shake-Shake state
 void func_8004FDF8(u16 actor_index) {
     u16 index;
 
@@ -2193,7 +2194,7 @@ void func_80054FD0(u16 actor_0, u16 actor_1) {
 
 void func_80055188(u16 actor_0) {
     u16 actor_1 = gActors[actor_0].parentIndex;
-    D_800D3EB0[gActors[actor_1].unk_0DE](actor_0, actor_1);
+    gMarinaGrabTable[gActors[actor_1].unk_0DE](actor_0, actor_1);
 }
 
 void func_800551F8(u16 actor_index) {

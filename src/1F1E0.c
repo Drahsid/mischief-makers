@@ -2380,7 +2380,7 @@ void func_80020024(void) {
     if ((gStageTime < 36000) && (gStageState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         gStageTime++;
     }
-    func_800122B0();
+    Marina_UpdateInput();
     if (gDebugBitfield & DEBUGFLAG_THROTTLE) {
         if ((gButtonPress & gButton_LTrig) && (gDebugThrottle != 1)) {
             gDebugThrottle--;
@@ -2404,7 +2404,7 @@ void func_80020024(void) {
     Actors_SetPlatforms();
     ActorsUpdate_Velocity();
     ActorsUpdate_Physics();
-    func_80012830();
+    Marina_ScreenScroll();
     ActorsUpdate_Screenspace();
     func_8001EC1C();
     func_8001107C();

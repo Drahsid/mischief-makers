@@ -8,7 +8,7 @@
 extern s16 D_800D2920;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
-extern u16 D_800BE5D4;
+extern u16 gStartButtonOnly;
 extern u32 D_800D28FC;
 extern s16 D_801BD8C2_7E6A22;
 
@@ -726,7 +726,7 @@ void func_801B9E74_7E2FD4(void) {
         case 2:
             func_80047714(1, 1, 1, 3);
             if (gStageState == 3) {
-                D_800D2938 = 0;
+                gTransitionState = 0;
                 gStageState = 3;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
@@ -838,7 +838,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 8:
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0xC;
             D_800D28F0 = 0;
             D_800D28E4 = 0x64;
@@ -854,7 +854,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xB:
-            D_800D2938 = 0;
+            gTransitionState = 0;
             D_800D2928 = 0;
             D_800D292C = 0;
             gStageState = 0x1000;
@@ -1151,7 +1151,7 @@ void func_801BA950_7E3AB0(void) {
         case 46:
             if (gPlayerPosY.whole < 0x7E0) {
                 gCannotPause = TRUE;
-                D_800BE5D4 = 1;
+                gStartButtonOnly = TRUE;
                 Sound_PlaySfx(SFX_FALLWHISTLE);
                 D_801BD8C2_7E6A22 = 0;
                 gStageState++;
@@ -1391,7 +1391,7 @@ void func_801BB28C_7E43EC(void) {
                 if (D_800D28E4 < 0x61) {
                     if (gGameState != GAMESTATE_CONTINUE) {
                         if (gPlayerActor.health >= 0) {
-                            D_800D2938 = 0;
+                            gTransitionState = 0;
                             D_800D28F0 = D_800D28E4;
                             D_800D28E4 = 0x61;
                             gStageState++;

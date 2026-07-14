@@ -113,7 +113,7 @@ void WarpGate_Sparkle(u16 actor_index, u16 arg1);
 // @param x local x-position of player
 // @param y local y-position of player
 void func_800282F0(s16 x, s16 y) {
-    func_80012288();
+    Marina_Init();
     D_801373E0.unk_20 = 0;
     D_801373E0.unk_24 = 0;
     gActors->posX.whole = x;
@@ -4507,7 +4507,7 @@ void Clanpot_SetHitboxB(u16 actor_index) {
     gActors[actor_index].hitboxBX1 = 8;
 }
 
-// unknown. used by actortype 0x0804
+// unknown. used by ACTORTYPE_MAIN8_4
 s32 func_800358CC(u16 arg0, u16 arg1) {
     return 0;
 }
@@ -4880,7 +4880,7 @@ void Clanpot_Tilt(u16 actor_index) {
                 }
             }
             else if (temp_a0 == 0) {
-                SpawnTextBubble(0, gStrPotEmpty, 0, 0x20, 0x1E);
+                SpawnTextBubble(PLAYER_INDEX, gStrPotEmpty, 0, 0x20, 30);
             }
         }
     }

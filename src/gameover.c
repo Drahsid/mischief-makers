@@ -660,7 +660,7 @@ void GameState_ContinueScreen(void) {
             Text_SetColor(1, color_temp_0 / 8, color_temp_0 / 8, color_temp_0 / 32);
         }
         if (gContinueTimer == 0) {
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0;
             D_800D28F0 = gStageIds[gCurrentStage];
             D_800D28E4 = 0x61;

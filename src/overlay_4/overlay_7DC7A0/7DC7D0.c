@@ -1165,7 +1165,7 @@ s32 func_801B9DB0_7DCC80(void) {
                 func_801B9D84_7DCC54();
                 return TRUE;
             }
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState -= 2;
             D_800D28E4 = 0x61;
         }
@@ -1181,14 +1181,14 @@ s32 func_801B9DB0_7DCC80(void) {
 
 // skip intro for "Rescue Act 1"
 void func_801B9E6C_7DCD3C(void) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gStageState = 0xC;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;
 }
 
 void func_801B9EA0_7DCD70(void) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gStageState = 0x1030;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;
@@ -2102,7 +2102,7 @@ s32 func_801BBDB0_7DEC80(void) {
 }
 
 void func_801BBE80_7DED50(void) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     D_800D2928 = 0;
     gStageState = 0x1030;
     D_800D28F0 = D_800D28E4;
@@ -2281,7 +2281,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x1039:
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0x40;
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
@@ -2307,7 +2307,7 @@ void func_801BBEBC_7DED8C(void) {
         case 0x42:
             D_800D2928--;
             if ((gButtonPress & gButton_ZTrig) || (D_800D2928 < 0)) {
-                D_800D2938 = 0;
+                gTransitionState = 0;
                 gStageState = 0x50;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;

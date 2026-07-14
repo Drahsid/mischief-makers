@@ -103,7 +103,7 @@ s32 func_80048CE4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A960.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/marina/Marina_State0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004AA64.s")
 

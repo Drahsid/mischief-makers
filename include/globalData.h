@@ -134,16 +134,16 @@ extern f32 gLookatUpX; // LookAt Up X
 extern f32 gLookatUpY; // LookAt Up Y
 extern f32 gLookatUpZ; // LookAt Up Z
 extern u16 gCurrentScene; // current "scene" of game. uses SCENE_* #define
-extern u16 D_800BE5D4; 
+extern u16 gStartButtonOnly; // Start button is AND'd from input
 extern FixedCoord gPlayerPosX; // player's global x-position
 extern FixedCoord gPlayerPosY; // player's global y-position
 extern s16 D_800BE5E0; 
 extern s16 D_800BE5E4; 
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
-extern s16 D_800BE5F0; 
+extern s16 D_800BE5F0; // unknown. always 0.
 extern UnkStruct_D_800BE5F4 D_800BE5F4; // sometimes treated as a u32, s32, or u8[4]
-extern u16 D_800BE5F8; // zero'd in func_800121D0, otherwise unused.
+extern u16 D_800BE5F8; // zero'd in Marina_Reset, otherwise unused.
 extern u16 D_800BE5FC; 
 extern u32 D_800BE600; // unused
 extern u32 D_800BE604; // unused

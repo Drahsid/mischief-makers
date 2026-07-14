@@ -6,7 +6,7 @@
 extern int sprintf(char* str, const char* fmt, ...);
 
 extern u16 Rand(void);
-extern void func_80012288(void);
+extern void Marina_Init(void);
 
 // hacky workaround as we need the default proto of a func for func_80012AB4 in 66250.c
 #ifndef func_80012AB4_ARGS
@@ -185,7 +185,7 @@ extern s32 func_80048C94(s32);
 extern s32 func_80048F70(u16, u16);
 extern s32 func_800490BC(u16, s32, s32);
 extern s32 func_800491B8(u16, s32, s32);
-extern void func_8004A960(u16 actor_index);
+extern void Marina_State0(u16 actor_index);
 extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);
 extern u8 func_8005D1B0(u16 actor_index);
 extern void func_8005DF40(s16 arg0, s16 arg1);
@@ -199,7 +199,7 @@ extern void func_8007D384(u16, u16);
 
 // warning: has 7th arg - is used in func, but isn't loaded in many calls.
 extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-extern u16 SpawnTextBubble(u16, u16*, s16, s16, s32);
+extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
 extern void func_8007EA14(void*, u16, s16, s32, s32, void*, s32, s32, s32, s32, s32, f32);
 extern void func_8007EF58(void*, u16, s16, s32, s32, s32, f32, f32);
 extern void func_8008310C(void);

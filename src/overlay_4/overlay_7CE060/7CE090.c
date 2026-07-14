@@ -1267,7 +1267,7 @@ void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
 }
 
 void func_801B9A0C_7CE19C(u16 arg0) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gStageState = arg0;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;

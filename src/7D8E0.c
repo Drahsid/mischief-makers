@@ -16,9 +16,9 @@
 // @param text "string" to display
 // @param off_x x-position offset of text.
 // @param off_y y-position offset of text.
-// @param arg4 unused(?)
+// @param time ticks to display(?) bit 15 is also used.
 // @returns index of actor, 0 if failed or English version.
-u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 arg4) {
+u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time) {
     return 0;
 }
 

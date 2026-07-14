@@ -2512,7 +2512,7 @@ void func_801BB6D0_7C88B0(void) {
         case 0x100:
             D_800D28F8--;
             if (D_800D28F8 < 0) {
-                D_800D2938 = 0;
+                gTransitionState = 0;
                 gStageState = 0x1000;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;

@@ -390,7 +390,7 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x202:
             if (((gButtonPress & gButton_ZTrig) != 0) || (gActors[0x30].flags == 0)) {
-                D_800D2938 = 0;
+                gTransitionState = 0;
                 gStageState = 0x300;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;

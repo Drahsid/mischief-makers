@@ -124,7 +124,7 @@ u32 D_800BE5CC = 0; // unused. file break?
 
 u16 gCurrentScene = 0;
 
-u16 D_800BE5D4 = 0; 
+u16 gStartButtonOnly = FALSE; 
 
 FixedCoord gPlayerPosX = {0};
 FixedCoord gPlayerPosY = {0};

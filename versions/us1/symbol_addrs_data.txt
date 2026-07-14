@@ -34,6 +34,8 @@ gCurrentScene = 0x800be5d0; // type:u16 size:0x2 rom:0xbf1d0
 
 D_800BE544 = 0x800BE544; // size:0x2
 
+gStartButtonOnly = 0x800BE5D4; // type:u16 size:0x2
+
 gOSDSprite = 0x800c4e5c; // size:0x44
 gOSDSpriteColR = 0x800c4eac; // type:u8 size:0x1
 gOSDSpriteColG = 0x800c4eb0; // type:u8 size:0x1
@@ -98,8 +100,14 @@ gCrosshairPalette = 0x800D27F8; // size:0x1A
 gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
 D_800D292C = 0x800D292C;
 D_800D2930 = 0x800D2930;
+gTransitionState = 0x800D2938; // type:s32
+gTransitionTimer = 0x800D2940; // type:s32
 gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
+
+gExitPortraitGraphics = 0x800d3ae8; // size:0x8c rom:0xd46e8
+gExitPortraitPositions = 0x800d38b8; // size:0x230 rom:0xd44b8
+
 D_800D74E0 = 0x800D74E0;
 D_800D8468 = 0x800D8468;
 D_800D8488 = 0x800D8488;

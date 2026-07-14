@@ -2933,7 +2933,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
             if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
                 if (D_801373E0.unk_10 == 8) {
                     Sound_PlaySfx(SFX_00A6);
-                    D_800BE5D4 = 1;
+                    gStartButtonOnly = TRUE;
                     gActors[actor_index].state++;
                 }
             }
@@ -2947,7 +2947,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
 
             if (gCameraRot == FIXED_UNIT(1024.0)) {
                 gCameraRot = 0;
-                D_800BE5D4 = 0;
+                gStartButtonOnly = FALSE;
                 gActors[actor_index].state--;
             }
             break;
