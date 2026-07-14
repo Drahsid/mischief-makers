@@ -123,7 +123,7 @@ segments:
       - [0x082920, asm]
       - [0x082DB0, asm] # has to do with loading marina's graphics
       - [0x082F80, c]
-      - [0x0844E0, asm, osd_debug_text]
+      - [0x0844E0, c, osd_debug_text]
       - [0x084BB0, asm]
       - [0x08D0A0, c]
       - [0x08F080, c]
@@ -385,7 +385,7 @@ segments:
       - [0x0EDC10, .rodata, 805E0]
       - [0x0EDC20, rodata] # 80D90?
       - [0x0EDC50, rodata] # 82920?
-      - [0x0EDC70, rodata, osd_debug_text]
+      - [0x0EDC70, .rodata, osd_debug_text]
       - [0x0EDCE0, rodata] # 84BB0?
       - [0x0EDEF0, .rodata, 8F080]
       - [0x0EE100, rodata, stage_end_screen]

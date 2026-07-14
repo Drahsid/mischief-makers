@@ -484,13 +484,13 @@ void func_801B9F50_7E70A0(void) {
     temp_s1 = D_800BE56C.whole ;
     func_801B9E7C_7E6FCC();
     Actor_LoadSpawnTable(D_801BA540_7E7690);
-    D_800D292C = D_800BE56C.whole ;
+    gTransitionPortaitIndex = D_800BE56C.whole ;
     D_800BE568.whole  = temp_s0;
     D_800BE56C.whole  = temp_s1;
 }
 
 void func_801B9FB4_7E7104(void) {
-    D_800BE56C.whole  = D_800D292C;
+    D_800BE56C.whole  = gTransitionPortaitIndex;
 }
 
 void func_801B9FC8_7E7118(void) {

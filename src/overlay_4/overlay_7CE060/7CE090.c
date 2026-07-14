@@ -1480,7 +1480,7 @@ void func_801BA0C8_7CE858(void) {
             if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gStageTimer = 0;
-                D_800D292C = 0;
+                gTransitionPortaitIndex = 0;
                 gCannotPause = TRUE;
             }
             break;
@@ -1539,21 +1539,21 @@ void func_801BA0C8_7CE858(void) {
                 s32 position_x;
 
                 if ((position_x = gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0xB60) {
-                    if (D_800D292C < 2) {
-                        D_800D292C = 2;
+                    if (gTransitionPortaitIndex < 2) {
+                        gTransitionPortaitIndex = 2;
 
                         // FAKEMATCH ???
                         goto handle_cutscene_index;
                     }
                 }
 
-                if ((position_x >= 0x760) && (D_800D292C == 0)) {
-                    D_800D292C = 1;
+                if ((position_x >= 0x760) && (gTransitionPortaitIndex == 0)) {
+                    gTransitionPortaitIndex = 1;
                 }
 
 // FAKEMATCH ???
 handle_cutscene_index:
-                switch (D_800D292C) {
+                switch (gTransitionPortaitIndex) {
                     case 0:
                         func_801B9A0C_7CE19C(6);
                         break;
@@ -1648,7 +1648,7 @@ handle_cutscene_index:
                 gStageState = 5;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
-                D_800D292C = 0;
+                gTransitionPortaitIndex = 0;
                 gCannotPause = FALSE;
             }
             break;
@@ -2064,35 +2064,35 @@ void func_801BB360_7CFAF0(void) {
                         func_8005DF40(0, -0x30);
                         D_800D5830 = -0x40;
                         D_800D5834 = 0x40;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 1:
                         func_8005DF5C(2);
                         D_800D5830 = 0x40;
                         D_800D5834 = 0x20;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 2:
                         func_8005DF5C(3);
                         D_800D5830 = -0x40;
                         D_800D5834 = 0x40;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 3:
                         func_8005DF5C(4);
                         D_800D5830 = 0x40;
                         D_800D5834 = 0x20;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 4:
                         func_8005DF5C(5);
                         D_800D5830 = -0x40;
                         D_800D5834 = 0x48;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 5:
@@ -2100,7 +2100,7 @@ void func_801BB360_7CFAF0(void) {
                         func_8005DF5C(6);
                         D_800D5830 = 0x100;
                         D_800D5834 = 0x100;
-                        D_800D292C = 0x78;
+                        gTransitionPortaitIndex = 0x78;
                         break;
 
                     case 6:
@@ -2108,7 +2108,7 @@ void func_801BB360_7CFAF0(void) {
                         func_8005DF40(0, 0x10);
                         D_800D5830 = 0x5C;
                         D_800D5834 = -0x2C;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 7:
@@ -2116,7 +2116,7 @@ void func_801BB360_7CFAF0(void) {
                         func_8005DF40(0, -0x30);
                         D_800D5830 = -0x40;
                         D_800D5834 = 0x40;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
 
                     case 8:
@@ -2124,7 +2124,7 @@ void func_801BB360_7CFAF0(void) {
                         func_8005DF40(0, -0x30);
                         D_800D5830 = -0x40;
                         D_800D5834 = 0x40;
-                        D_800D292C = 0x1E;
+                        gTransitionPortaitIndex = 0x1E;
                         break;
                 }
             }
@@ -2134,7 +2134,7 @@ void func_801BB360_7CFAF0(void) {
         case 5:
             if (func_8005DEFC() == 0) {
                 gStageState--;
-                D_800D28F8 = D_800D292C;
+                D_800D28F8 = gTransitionPortaitIndex;
                 switch (gStageTimer) {
                     case 5:
                         *(u8*)&D_800BE5F4.unk_00_s32 = 1;

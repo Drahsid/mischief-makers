@@ -175,7 +175,7 @@ void ClancerCommanderMech_Update(u16 actor_index) {
                             func_80081790(actor_index, D_800E5938);
                             temp = Actor_RangeFindInactive_90ToC0();
                             if (temp != 0) {
-                                ACTOR_INIT(temp,0x34);
+                                ACTOR_INIT(temp,ACTORTYPE_GRAPHIC_52);
                                 gActors[temp].posX.whole = 0;
                                 gActors[temp].velocityX.raw = FIXED_UNIT(1.0);
                                 gActors[temp].unk_148 = 300.0f;
