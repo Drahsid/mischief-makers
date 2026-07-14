@@ -253,7 +253,7 @@ void func_801B9908_7DAB08(void) {
         case 0:
             gStageState++;
             func_80045FA4(D_801BB158_7DC358, NULL);
-            D_800D2928 = 1;
+            gStageTimer = 1;
             D_800BE5F4.unk_00_u32 = 4;
             Actor_LoadSpawnTable(D_801BB030_7DC230);
             func_80043D30(D_801BB168_7DC368);
@@ -261,7 +261,7 @@ void func_801B9908_7DAB08(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;
@@ -299,7 +299,7 @@ void func_801B9A8C_7DAC8C(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -317,7 +317,7 @@ void func_801B9A8C_7DAC8C(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -325,12 +325,12 @@ void func_801B9A8C_7DAC8C(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801B9A28_7DAC28();
@@ -376,7 +376,7 @@ void func_801B9D10_7DAF10(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -394,7 +394,7 @@ void func_801B9D10_7DAF10(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -402,12 +402,12 @@ void func_801B9D10_7DAF10(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if ((D_800D2928 <= 0) && (gAudioFadeMode != 1)) {
+            gStageTimer--;
+            if ((gStageTimer <= 0) && (gAudioFadeMode != 1)) {
                 s32 temp;
 
                 Actor_ClearRange(0x30, 0xC0);
@@ -447,7 +447,7 @@ void func_801B9F78_7DB178(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -465,7 +465,7 @@ void func_801B9F78_7DB178(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -473,12 +473,12 @@ void func_801B9F78_7DB178(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801B9F30_7DB130();
@@ -517,7 +517,7 @@ void func_801BA1D8_7DB3D8(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -535,7 +535,7 @@ void func_801BA1D8_7DB3D8(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -543,12 +543,12 @@ void func_801BA1D8_7DB3D8(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BA198_7DB398();
@@ -590,7 +590,7 @@ void func_801BA45C_7DB65C(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -608,7 +608,7 @@ void func_801BA45C_7DB65C(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -616,12 +616,12 @@ void func_801BA45C_7DB65C(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     s32 temp;
 
@@ -649,7 +649,7 @@ void func_801BA628_7DB828(void) {
             Actor_LoadSpawnTable(D_801BB2C8_7DC4C8);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;
@@ -693,7 +693,7 @@ void func_801BA7C4_7DB9C4(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
                 gCannotPause = TRUE;
@@ -711,7 +711,7 @@ void func_801BA7C4_7DB9C4(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -719,12 +719,12 @@ void func_801BA7C4_7DB9C4(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     s32 temp;
 
@@ -751,7 +751,7 @@ void func_801BA990_7DBB90(void) {
             func_80043D30(D_801BB400_7DC600);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;
@@ -793,7 +793,7 @@ void func_801BAB04_7DBD04(void) {
             Sound_PlayMusic(BGM_WOODS);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 4;
             }
@@ -811,7 +811,7 @@ void func_801BAB04_7DBD04(void) {
             break;
 
         case 3:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 4;
                 gCannotPause = FALSE;
             }
@@ -819,12 +819,12 @@ void func_801BAB04_7DBD04(void) {
 
         case 0x1000:
             gStageState++;
-            D_800D2928 = 0xA;
+            gStageTimer = 0xA;
             Sound_StartFade(1, 0xA);
 
         case 0x1001:
-            D_800D2928--;
-            if (D_800D2928 <= 0) {
+            gStageTimer--;
+            if (gStageTimer <= 0) {
                 if (gAudioFadeMode != 1) {
                     Actor_ClearRange(0x30, 0xC0);
                     func_801BAAA4_7DBCA4();
@@ -849,7 +849,7 @@ void func_801BACD0_7DBED0(void) {
             func_80043D30(D_801BB460_7DC660);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -883,7 +883,7 @@ void func_801BAD9C_7DBF9C(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -927,7 +927,7 @@ void func_801BAD9C_7DBF9C(void) {
             D_800BE5F4.unk_00_u32 = 5;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 3;
             }
             break;
@@ -936,7 +936,7 @@ void func_801BAD9C_7DBF9C(void) {
             func_80046188(D_801BB470_7DC670, D_801BB4CC_7DC6CC);
 
         case 0xC001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;

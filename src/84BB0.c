@@ -44,19 +44,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085844.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008594C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_TickFuse.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800859C4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_Detonate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085A4C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_CheckAbsVelocity.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085AE4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085BAC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085D00.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_SetHitboxB.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085E60.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_SetScale.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80085EB0.s")
 
@@ -76,7 +76,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086790.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086824.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Clanbomb_StartFuse.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086900.s")
 
@@ -90,7 +90,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087698.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087820.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorUpdate_ClanbombTimer.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087B4C.s")
 

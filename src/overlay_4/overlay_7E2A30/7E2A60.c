@@ -706,7 +706,7 @@ void func_801B9E74_7E2FD4(void) {
             func_801B9D38_7E2E98(D_801BBEC0_7E5020, (u16*)D_801BBF10_7E5070, D_801BC7FC_7E595C);
             D_800BE5F4.unk_00_s32 = 4;
             D_800BE544 = 0x8000;
-            D_800D2928 = 0;
+            gStageTimer = 0; // used to track progress instead
             D_800D292C = 0;
             D_800D2930 = 0;
             do { } while (0);
@@ -716,7 +716,7 @@ void func_801B9E74_7E2FD4(void) {
             if (!(gActors[0x50].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[0x50].flags |= ACTOR_FLAG_FLIPPED;
             }
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 D_800D28F8 = 4;
                 gStageState++;
                 gCannotPause = TRUE;
@@ -741,7 +741,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 4:
             gStageState++;
-            switch (D_800D2928) {
+            switch (gStageTimer) {
                 // (re)start the actors based on progress.
                 case 0:
                     func_801B9D38_7E2E98(D_801BBEE0_7E5040, (u16*)-7, D_801BC83C_7E599C);
@@ -760,12 +760,12 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x40].posY.whole = gPlayerActor.posY.whole - 0x10;
             gActors[0x30].posX.whole = gPlayerActor.posX.whole - 0xF0;
 
-            if (D_800D292C != 0) {
+            if (D_800D292C) {
                 D_800BE5F4.unk_00_s32 = 0xA;
             }
 
         case 5:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800D292C = 1;
@@ -774,18 +774,18 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 6:
-            switch (D_800D2928) {
+            switch (gStageTimer) {
                 case 0:
                     if (((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x940) &&
                         ((gScreenPosCurrentX.whole + (gActors + 0x40)->posX.whole) >= 0x940)) {
-                        D_800D2928++;
+                        gStageTimer++;
                     }
                     break;
 
                 case 1:
                     if (((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x1430) &&
                         ((gScreenPosCurrentX.whole + (gActors + 0x40)->posX.whole) >= 0x1430)) {
-                        D_800D2928++;
+                        gStageTimer++;
                     }
                     break;
 
@@ -855,7 +855,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 0xB:
             gTransitionState = 0;
-            D_800D2928 = 0;
+            gStageTimer = 0;
             D_800D292C = 0;
             gStageState = 0x1000;
             D_800D28F0 = D_800D28E4;
@@ -868,7 +868,7 @@ void func_801B9E74_7E2FD4(void) {
 
         case 0x1000:
             gStageState = 3;
-            D_800D2928 = 0;
+            gStageTimer = 0;
             D_800D292C = 0;
             D_800D2930 = 0;
             break;
@@ -894,7 +894,7 @@ void func_801BA534_7E3694(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -1012,7 +1012,7 @@ void func_801BA950_7E3AB0(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 D_800D28F8 = 4;
                 gStageState++;
@@ -1034,7 +1034,7 @@ void func_801BA950_7E3AB0(void) {
             break;
 
         case 8:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 D_800D28FC |= 8;
                 gStageState = D_801BD8C0_7E6A20;
             }
@@ -1251,7 +1251,7 @@ void func_801BA950_7E3AB0(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 D_800D28FC |= 8;
                 gStageState = 3;
             }
@@ -1307,7 +1307,7 @@ void func_801BB28C_7E43EC(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 D_800D28F8 = 4;
                 gStageState++;
@@ -1415,7 +1415,7 @@ void func_801BB28C_7E43EC(void) {
             break;
 
         case 0x803:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 D_800D28F8 = 4;
                 func_8005DF40(0, 0xC);
                 gStageState++;
@@ -1427,12 +1427,12 @@ void func_801BB28C_7E43EC(void) {
             if (gStageState == 0x805) {
                 SpawnGemRing(10);
                 D_800D28FC |= 8;
-                D_800D2928 = 0x40;
+                gStageTimer = 0x40;
             }
             break;
 
         case 0x805:
-            if ((u32)D_800D2928-- < 1U) {
+            if ((u32)gStageTimer-- < 1U) {
                 D_800BE5F4.unk_00_u32 = 5;
                 SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BD558_7E66B8);
             }
@@ -1448,7 +1448,7 @@ void func_801BB28C_7E43EC(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 D_800D28FC |= 8;
                 gStageState = 3;
             }
@@ -1478,7 +1478,7 @@ void func_801BB85C_7E49BC(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 func_8005DF5C(1);
                 gStageState = 2;
@@ -1565,14 +1565,14 @@ void func_801BB85C_7E49BC(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
-                func_800472D4();
+                SpawnText_READY();
             }
             break;
 
         case 0x1002:
-            func_8004735C(0x14, 0);
+            SpawnText_FIGHT(0x14, 0);
             break;
 
         case 6:
@@ -1611,7 +1611,7 @@ void func_801BBC00_7E4D60(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1656,7 +1656,7 @@ void func_801BBC00_7E4D60(void) {
             D_801373E0.unk_78 |= 1;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 3;
             }
             break;
@@ -1665,7 +1665,7 @@ void func_801BBC00_7E4D60(void) {
             func_80046188(D_801BD598_7E66F8, D_801BD630_7E6790);
 
         case 0xC001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;

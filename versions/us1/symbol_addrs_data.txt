@@ -72,6 +72,7 @@ gNameEntryRow2ENG = 0x800c534c; // size:0x24 rom:0xc5f4c
 gNameEntryRow3ENG = 0x800c5370; // size:0x24 rom:0xc5f70
 gNameEntryRow4ENG = 0x800c5394; // size:0x24 rom:0xc5f94
 
+gIsPauseExit = 0x800CBF40;
 gLetterboxMode = 0x800CBF58; //size:0x2
 gCameraInits = 0x800cc42c; // size:0x160 rom:0xcd02c
 gCameraupdates = 0x800cc58c; // size:0x160 rom:0xcd18c
@@ -98,12 +99,16 @@ gStrAreaClear2 = 0x800D27B0;
 gStrAreaClear3 = 0x800D27DC;
 gCrosshairPalette = 0x800D27F8; // size:0x1A
 gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
-D_800D292C = 0x800D292C;
+gStageTimer = 0x800D2928; // type:s32 size:0x4
+gTransitionPortaitIndex = 0x800D292C; // type:s32 size:0x4
 D_800D2930 = 0x800D2930;
 gTransitionState = 0x800D2938; // type:s32
 gTransitionTimer = 0x800D2940; // type:s32
 gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
+
+gMarinaStateTable = 0x800d3db0; // size:0xF4
+gMarinaGrabTable = 0x800d3eb0; // size:0xD0
 
 gExitPortraitGraphics = 0x800d3ae8; // size:0x8c rom:0xd46e8
 gExitPortraitPositions = 0x800d38b8; // size:0x230 rom:0xd44b8

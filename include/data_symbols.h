@@ -12,7 +12,7 @@ extern u16 D_800D28F0;
 extern s16 D_800D28F8;
 extern u32 D_800D28FC;
 extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
-extern s32 D_800D2928;
+extern s32 gStageTimer;
 extern s32 gTransitionState;
 extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
@@ -49,13 +49,13 @@ extern u64 D_801781F0;
 extern u16 D_801782B8;
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
-extern u16 D_800CBF40;
+extern u16 gIsPauseExit; // exit game from pause menu
 extern u16 D_800CBF50;
 extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
 extern u16* gGemPalettes[]; // palettes of gems
 extern u16 D_800D1A04[];
-extern u16 D_800D2690[]; // LUT of digging spot items.
+extern u16 D_800D2690[]; // LUT of Clanball items.
 extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];

@@ -7775,7 +7775,7 @@
           }
         },
         {
-          "name": "func_80046A9C",
+          "name": "Transition_SmashBlack",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7783,7 +7783,7 @@
           }
         },
         {
-          "name": "func_80046B4C",
+          "name": "Transition_ExpandBlack",
           "size": "528",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7791,7 +7791,7 @@
           }
         },
         {
-          "name": "func_80046D5C",
+          "name": "Transition_FadeOut",
           "size": "272",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7807,7 +7807,7 @@
           }
         },
         {
-          "name": "func_80046EBC",
+          "name": "Transition_StageExit",
           "size": "1048",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7815,7 +7815,7 @@
           }
         },
         {
-          "name": "func_800472D4",
+          "name": "SpawnText_READY",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7823,7 +7823,7 @@
           }
         },
         {
-          "name": "func_8004732C",
+          "name": "SpawnText_READY_2",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7831,7 +7831,7 @@
           }
         },
         {
-          "name": "func_8004735C",
+          "name": "SpawnText_FIGHT",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13111,7 +13111,7 @@
           }
         },
         {
-          "name": "func_8007F37C",
+          "name": "ActorUpdate_Type38",
           "size": "484",
           "metadata": {
             "virtual_address": "2148004732"
@@ -13987,21 +13987,21 @@
           }
         },
         {
-          "name": "func_8008594C",
+          "name": "Clanbomb_TickFuse",
           "size": "120",
           "metadata": {
             "virtual_address": "2148030796"
           }
         },
         {
-          "name": "func_800859C4",
+          "name": "Clanbomb_Detonate",
           "size": "136",
           "metadata": {
             "virtual_address": "2148030916"
           }
         },
         {
-          "name": "func_80085A4C",
+          "name": "Clanbomb_CheckAbsVelocity",
           "size": "152",
           "metadata": {
             "virtual_address": "2148031052"
@@ -14022,14 +14022,14 @@
           }
         },
         {
-          "name": "func_80085D00",
+          "name": "Clanbomb_SetHitboxB",
           "size": "352",
           "metadata": {
             "virtual_address": "2148031744"
           }
         },
         {
-          "name": "func_80085E60",
+          "name": "Clanbomb_SetScale",
           "size": "80",
           "metadata": {
             "virtual_address": "2148032096"
@@ -14099,7 +14099,7 @@
           }
         },
         {
-          "name": "func_80086824",
+          "name": "Clanbomb_StartFuse",
           "size": "220",
           "metadata": {
             "virtual_address": "2148034596"
@@ -14148,7 +14148,7 @@
           }
         },
         {
-          "name": "func_80087820",
+          "name": "ActorUpdate_ClanbombTimer",
           "size": "812",
           "metadata": {
             "virtual_address": "2148038688"

@@ -231,7 +231,16 @@ Flower_IsGrabbed = 0x800848a0; // type:func
 ActorUpdate_Hat = 0x800853c8; // type:func
 ActorUpdate_Flower = 0x80084974; // type:func
 
+Clanbomb_TickFuse = 0x8008594c; // type:func
+Clanbomb_Detonate = 0x800859c4; // type:func
+Clanbomb_CheckAbsVelocity = 0x80085a4c; // type:func
+Clanbomb_FallCheck = 0x80085ae4; // type:func
+Clanbomb_SetHitboxB = 0x80085d00; // type:func
+Clanbomb_SetScale = 0x80085e60; // type:func
+Clanbomb_StartFuse = 0x80086824; // type:func
 ActorUpdate_Clanbomb = 0x80086c7c; // type:func
+
+ActorUpdate_ClanbombTimer = 0x80087820; // type:func
 
 ActorUpdate_Spikeball_77 = 0x80088164; // type:func
 ActorUpdate_Spikeball_78 = 0x8008855C; // type:func
@@ -300,7 +309,16 @@ ActorUpdate_WarpGate = 0x800418A8; // type:func
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
+
+Transition_SmashBlack = 0x80046A9C; // type:func
+Transition_ExpandBlack = 0x80046B4C; // type:func
+Transition_FadeOut = 0x80046D5C; // type:func
 Cutscene_CheckSkipInput = 0x80046E6C; // type:func
+Transition_StageExit = 0x80046EBC; // type:func
+
+SpawnText_READY = 0x800472D4; // type:func
+SpawnText_READY_2 = 0x8004732C; // type:func
+SpawnText_FIGHT = 0x8004735C; // type:func
 
 Marina_State0 = 0x8004A960; // type:func
 
@@ -319,6 +337,7 @@ ActorUpdate_Clanblob = 0x80077c18; // type:func
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
 
+ActorUpdate_Type38 = 0x8007f37c; // type:func
 
 GameState_SoftReset = 0x80022F48; // type:func
 

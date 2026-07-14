@@ -173,10 +173,10 @@ extern s32 func_80045F08(u32 arg0);
 extern u16* func_80045F14(u16* arg0);
 extern void func_80046498(void);
 extern void func_8004667C(void);
-extern void func_80046A9C(void);
-extern s32 func_80046EBC(void);
-extern void func_800472D4(void);
-extern s32 func_8004735C(u16 stage_state, u32 actor_flags);
+extern void Transition_SmashBlack(void);
+extern s32 Transition_StageExit(void);
+extern void SpawnText_READY(void);
+extern s32 SpawnText_FIGHT(u16 stage_state, u32 actor_flags);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern s32 func_800486F4(void);
@@ -197,6 +197,7 @@ extern Actor* func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 extern void func_8007D384(u16, u16);
 
+// spawns the "READY!"/"FIGHT!" text
 // warning: has 7th arg - is used in func, but isn't loaded in many calls.
 extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
@@ -239,7 +240,7 @@ extern void func_80046148(u16* arg0, u16* arg1);
 extern void func_80046188(u16* arg0, void* arg1);
 extern void func_80046218(u16 arg0, u16 arg1);
 extern void Camera_UpdateViewBounds(void);
-extern s32 func_80046D5C(void); // fade portraits out after stage loads. return true when complete.
+extern s32 Transition_FadeOut(void); // fade portraits out after stage loads. return true when complete.
 extern s32 Cutscene_CheckSkipInput(void);
 extern void func_80047714(u16 arg0, u16 arg1, u16 arg2, u16 stage_state);
 extern s32 func_8005DFC8(s32 arg0);

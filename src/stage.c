@@ -2360,7 +2360,7 @@ void GameState_Transition(void) {
     Text_SetColor(1, 0x10, 0x1F, 0x1F);
     switch (gGameStateSubState) {
     case 0x0:
-        if (func_80046EBC()) {
+        if (Transition_StageExit()) {
             gCurrentStage = gWorldProgress;
             gGameStateSubState = 7;
         }
@@ -2394,13 +2394,13 @@ void GameState_Transition(void) {
                 gGameStateSubState = 0x1E;
             }
         }
-        else if (D_800CBF40 != 0) {
+        else if (gIsPauseExit) {
             gGameStateSubState = 0x1E;
         }
         else {
             gGameStateSubState = 9;
         }
-        D_800CBF40 = 0;
+        gIsPauseExit = 0;
         break;
     case 0x9:
         /* fallthrough */
@@ -2728,7 +2728,7 @@ void GameState_Transition(void) {
         }
         gGameState = GAMESTATE_LOADING;
         gGameStateSubState = 0;
-        D_800CBF40 = 0;
+        gIsPauseExit = 0;
         break;
     case 0x42:
         if (gAudioFadeMode == 3) {

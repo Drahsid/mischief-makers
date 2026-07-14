@@ -54,6 +54,6 @@ u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F078.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F37C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/ActorUpdate_Type38.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F560.s")

@@ -103,7 +103,7 @@ typedef enum {
     ACTORTYPE_LANDMINE,
     ACTORTYPE_36,
     ACTORTYPE_37,
-    ACTORTYPE_38,
+    ACTORTYPE_38, // displays the "READY!"/"FIGHT!" text
     ACTORTYPE_PORTRAIT,
     ACTORTYPE_40,
     ACTORTYPE_41,
@@ -135,7 +135,7 @@ typedef enum {
     ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
     ACTORTYPE_HAT, // unused?
     ACTORTYPE_CLANBOMB,
-    ACTORTYPE_70,
+    ACTORTYPE_CLANBOMBTIMER,
     ACTORTYPE_71,
     ACTORTYPE_CATTANK,
     ACTORTYPE_SPIKEBALL_S, // stationary spikeball

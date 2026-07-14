@@ -2598,7 +2598,8 @@ void func_80020A90(void) {
                 gActors[actor_index].flags = 0;
             }
             gCamShakeTime = 0;
-            D_800CBF40 = 1;
+            gIsPauseExit = TRUE;
+            // don't save gem progress until you finissh the stage
             gYellowGemBitfield = D_801781F0;
             func_80046218(D_800D28E4 - 1, 0);
             gGameStateSubState = 0x23;

@@ -89,7 +89,7 @@ void func_801B9900_7EA730(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -108,7 +108,7 @@ void func_801B99D0_7EA800(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -162,7 +162,7 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -249,7 +249,7 @@ void func_801B9EA4_7EACD4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gCannotPause = TRUE;
                 gStageState++;
             }

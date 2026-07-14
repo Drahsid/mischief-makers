@@ -21,7 +21,7 @@ extern s16 D_800D2914;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s32 D_800D2928;
+extern s32 gStageTimer;
 extern s32 gTransitionState; // state of transition effect
 extern s32 D_800D293C;
 extern s32 gTransitionTimer;
@@ -1114,7 +1114,7 @@ void func_80046188(u16* arg0, void* arg1) {
     gDrawEnvLayer = 0;
     gDrawBackground = 0;
     Actor_LoadSpawnTable(arg1);
-    func_80046A9C();
+    Transition_SmashBlack();
     Sound_StopAllSfx();
     Sound_StopMusic();
 }
@@ -1329,7 +1329,7 @@ void func_80046A30(void) {
 }
 
 // smash to black
-void func_80046A9C(void) {
+void Transition_SmashBlack(void) {
     u16 index;
 
     gTransitionState = 0;
@@ -1348,13 +1348,13 @@ void func_80046A9C(void) {
 
 
 // transition of expanding black squares
-s32 func_80046B4C(void) {
+s32 Transition_ExpandBlack(void) {
     u16 index;
 
     switch (gTransitionState) {
     case 0:
         gTransitionState += 1;
-        D_800D293C = 0x14;
+        D_800D293C = 20;
         func_80046A30();
         D_800D28FC |= 4;
         D_800D28FC &= ~8;
@@ -1396,7 +1396,7 @@ s32 func_80046B4C(void) {
 }
 
 // fade out portraits/sqaures
-s32 func_80046D5C(void) {
+s32 Transition_FadeOut(void) {
     u16 index;
 
     switch (gTransitionState) {
@@ -1436,7 +1436,7 @@ s32 Cutscene_CheckSkipInput(void) {
 }
 
 // exit transition with random portraits
-s32 func_80046EBC(void) {
+s32 Transition_StageExit(void) {
     u16 var_a1;
     u16 var_s1;
 
@@ -1445,7 +1445,7 @@ s32 func_80046EBC(void) {
     case 0:
         gTransitionState++;
         D_800D293C = 0;
-        gTransitionTimer = 0x12;
+        gTransitionTimer = 18;
         func_80046A30();
         var_a1 = ((Rand() & 3) * 0x23);
         for (var_s1 = 0; var_s1 != 0x23; var_s1++) {
@@ -1462,7 +1462,7 @@ s32 func_80046EBC(void) {
     case 1:
         if (!(D_800D28FC & 4)) {
             Sound_PlaySfx(SFX_STAGE_TILES);
-            if (D_800CBF40 == 0) {
+            if (!gIsPauseExit) {
                 Sound_PlayMusic(BGM_INT);
             }
             gTransitionState++;
@@ -1472,7 +1472,7 @@ s32 func_80046EBC(void) {
         gAudioFadeMode = 4;
         if ((D_800D293C == 0x23) && (--gTransitionTimer < 0)) {
             Sound_StopAllSfx();
-            if (D_800CBF40 != 0) {
+            if (gIsPauseExit) {
                 gTransitionTimer = 20;
                 Sound_StartFade(0x41, 0x14);
                 gTransitionState += 2;
@@ -1522,27 +1522,30 @@ s32 func_80046EBC(void) {
     return FALSE;
 }
 
-void func_800472D4(void) {
+// spawn "READY!" Text
+void SpawnText_READY(void) {
     gStageState++;
-    D_800D2928 = 0xA0;
-    func_8007CFE0(0xC7, 5, -0x28, 0, 0, 0x78);
+    gStageTimer = 160;
+    func_8007CFE0(0xC7, 5, -40, 0, 0, 120);
 }
 
-void func_8004732C(void) {
-    if (func_80046D5C()) {
-        func_800472D4();
+// Spawn "READY!" text if transion completes
+void SpawnText_READY_2(void) {
+    if (Transition_FadeOut()) {
+        SpawnText_READY();
     }
 }
 
-s32 func_8004735C(u16 stage_stage, u32 actor_flags) {
+// Spawn "FIGHT!" text
+s32 SpawnText_FIGHT(u16 state, u32 actor_flags) {
     D_800D28FC |= 8;
-    D_800D2928--;
-    if (D_800D2928 < 0) {
+    gStageTimer--;
+    if (gStageTimer < 0) {
         D_800D28FC &= ~6;
-        func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
+        func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
         gPlayerActor.flags |= actor_flags;
         D_800BE5F4.unk_00_u32 = 5;
-        gStageState = stage_stage;
+        gStageState = state;
         return TRUE;
     }
     else {
@@ -1669,7 +1672,7 @@ void func_80047958(void) {
 
 void func_80047994(void) {
     gCannotPause = TRUE;
-    if (func_80046B4C() != 0) {
+    if (Transition_ExpandBlack() != 0) {
         gTransitionState = 0;
         func_80020A54();
         Actor_ClearSceneActors();
@@ -1693,7 +1696,7 @@ void func_80047A14(void) {
 void func_80047A54(void) {
     gCannotPause = TRUE;
     D_800D28E4++;
-    D_800D2928 = 0;
+    gStageTimer = 0;
     D_800D28FC |= 4;
     D_800D28FC &= ~8;
     D_800BE544 = 0x8000;
@@ -1703,7 +1706,7 @@ void func_80047A54(void) {
 }
 
 void func_80047AC4(void) {
-    if (func_80046EBC()) {
+    if (Transition_StageExit()) {
         if (D_800D2900 == 0) {
             D_800D2900++;
             D_800BE5F4.unk_00_u32 = 4;
@@ -1728,7 +1731,7 @@ void func_80047B68(void) {
         D_800BE5F4.unk_00_u32 = 4;
         /* fallthrough */
     case 1:
-        if (func_80046D5C()) {
+        if (Transition_FadeOut()) {
             gStageState++;
             Sound_PlayMusic(BGM_STCLR);
         }
@@ -1747,7 +1750,7 @@ void func_80047C28(void) {
     case 1:
         break;
     case 0:
-        if (func_80046D5C()) {
+        if (Transition_FadeOut()) {
             gStageState++;
             D_800D28FC |= 4;
         }

@@ -11,7 +11,7 @@ extern s16 func_8005DEFC(void);
 extern s32 D_800D2934;
 
 extern void func_80046274(u32 arg0, u32 arg1);
-extern void func_8004732C(void);
+extern void SpawnText_READY_2(void);
 
 s32 func_801B9900_7CE090(void);
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1);
@@ -1293,7 +1293,7 @@ void func_801B9A98_7CE228(u16 actor_index) {
 }
 
 void func_801B9B08_7CE298(void) {
-    if (func_80046D5C() != 0) {
+    if (Transition_FadeOut() != 0) {
         gStageState++;
         D_800D28FC |= 8;
         gLifebar.posY.whole = -0x58;
@@ -1331,7 +1331,7 @@ void func_801B9BF4_7CE384(void* spawn_table) {
 }
 
 void func_801B9C88_7CE418(void) {
-    if (func_80046D5C() != 0) {
+    if (Transition_FadeOut() != 0) {
         gStageState -= 2;
         D_800BE544 = 0;
         D_800D28FC |= 8;
@@ -1477,9 +1477,9 @@ void func_801BA0C8_7CE858(void) {
             }
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
-                D_800D2928 = 0;
+                gStageTimer = 0;
                 D_800D292C = 0;
                 gCannotPause = TRUE;
             }
@@ -1487,7 +1487,7 @@ void func_801BA0C8_7CE858(void) {
 
         case 2:
             gStageState++;
-            switch (D_800D2928) {
+            switch (gStageTimer) {
                 case 0:
                     func_8005DF5C(1);
                     break;
@@ -1508,11 +1508,11 @@ void func_801BA0C8_7CE858(void) {
                     func_8005DF5C(5);
                     break;
             }
-            D_800D2928++;
+            gStageTimer++;
 
         case 3:
             if (func_8005DEFC() == 0) {
-                if (D_800D2928 >= 5) {
+                if (gStageTimer >= 5) {
                     gStageState++;
                 }
                 else {
@@ -1577,7 +1577,7 @@ handle_cutscene_index:
             func_801B99AC_7CE13C(0, -0x18);
 
         case 7:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1597,7 +1597,7 @@ handle_cutscene_index:
             gLookatEyeZ = 448.0f;
 
         case 9:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1617,7 +1617,7 @@ handle_cutscene_index:
             gLookatEyeZ = 448.0f;
 
         case 11:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1644,7 +1644,7 @@ handle_cutscene_index:
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 5;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1947,7 +1947,7 @@ void func_801BB0F0_7CF880(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800BE5F4.unk_00_u32 = 0xA;
                 D_800D28FC |= 8;
@@ -1981,7 +1981,7 @@ void func_801BB2AC_7CFA3C(void) {
     Camera_UpdateViewBounds();
 }
 
-// stage stae machine for "Migen Brawl"
+// stage state machine for "Migen Brawl"
 void func_801BB360_7CFAF0(void) {
     D_800BE708 = 1;
 
@@ -2027,17 +2027,17 @@ void func_801BB360_7CFAF0(void) {
         case 1:
             D_800D28FC |= 4;
             D_800D28FC &= ~8;
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
-                D_800D2928 = 0xB4;
+                gStageTimer = 180;
                 D_800BE5F4.unk_00_s32 = 0xF;
                 gCannotPause = TRUE;
             }
             break;
 
         case 2:
-            D_800D2928--;
-            if (D_800D2928 < 0) {
+            gStageTimer--;
+            if (gStageTimer < 0) {
                 gStageState++;
                 gScreenPosTargetY.whole = 0x19C;
                 D_800BE54C.raw = FIXED_UNIT(2.0);
@@ -2048,7 +2048,7 @@ void func_801BB360_7CFAF0(void) {
         case 3:
             if (gScreenPosCurrentY.whole < 0x1C0) {
                 gStageState++;
-                D_800D2928 = 0;
+                gStageTimer = 0;
                 D_800D28F8 = 0;
             }
             Cutscene_CheckSkipInput();
@@ -2058,7 +2058,7 @@ void func_801BB360_7CFAF0(void) {
             D_800D28F8--;
             if (D_800D28F8 < 0) {
                 gStageState++;
-                switch (D_800D2928) {
+                switch (gStageTimer) {
                     case 0:
                         func_8005DF5C(1);
                         func_8005DF40(0, -0x30);
@@ -2135,7 +2135,7 @@ void func_801BB360_7CFAF0(void) {
             if (func_8005DEFC() == 0) {
                 gStageState--;
                 D_800D28F8 = D_800D292C;
-                switch (D_800D2928) {
+                switch (gStageTimer) {
                     case 5:
                         *(u8*)&D_800BE5F4.unk_00_s32 = 1;
                         Sound_PlaySfxAtActor2(SFX_0116, PLAYER_INDEX);
@@ -2147,7 +2147,7 @@ void func_801BB360_7CFAF0(void) {
                         Sound_PlayMusic(BGM_BOSS);
                         break;
                 }
-                D_800D2928++;
+                gStageTimer++;
             }
             Cutscene_CheckSkipInput();
             break;
@@ -2174,7 +2174,7 @@ void func_801BB360_7CFAF0(void) {
             func_80046188(D_801BF728_7D3EB8, D_801BF7BC_7D3F4C);
 
         case 0xC001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
             }
             break;
@@ -2211,19 +2211,19 @@ void func_801BB360_7CFAF0(void) {
             break;
 
         case 0x1001:
-            func_8004732C();
+            SpawnText_READY_2();
             break;
 
         case 0x1002:
-            func_8004735C(0xB, 0x20);
+            SpawnText_FIGHT(0xB, 0x20);
             break;
 
         case 0x2000:
-            func_8004732C();
+            SpawnText_READY_2();
             break;
 
         case 0x2001:
-            func_8004735C(8, 0);
+            SpawnText_FIGHT(8, 0);
             break;
     }
 

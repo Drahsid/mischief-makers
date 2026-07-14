@@ -19,7 +19,7 @@ extern void func_80047648(s16 arg0);
 extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
 extern void func_80045544(s32 arg0, s32 arg1);
 extern void func_80045610(s32 arg0, s32 arg1);
-extern void func_800472D4(void);
+extern void SpawnText_READY(void);
 extern void func_80025EC4(u16 index);
 extern void func_801BB6AC_7C888C(u16 arg0);
 
@@ -1509,7 +1509,7 @@ void func_801B9AC0_7C6CA0(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1612,7 +1612,7 @@ void func_801B9AC0_7C6CA0(void) {
 
         case 0x1000:
             gStageState++;
-            func_80046148(D_801BC7CC_7C99AC, (u16*)D_801BC7DC_7C99BC);
+            func_80046148(D_801BC7CC_7C99AC, D_801BC7DC_7C99BC);
             Actor_LoadSpawnTable(D_801BC684_7C9864);
             Actor_LoadSpawnTable(D_801BCBE0_7C9DC0);
             Sound_StopSfx(SFX_00BD);
@@ -1620,7 +1620,7 @@ void func_801B9AC0_7C6CA0(void) {
             func_80025EC4(1);
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 0x100;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1657,7 +1657,7 @@ void func_801BA008_7C71E8(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState += 1;
                 D_800D28F8 = 6;
             }
@@ -1727,7 +1727,7 @@ void func_801BA008_7C71E8(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 3;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1757,7 +1757,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1788,7 +1788,7 @@ void func_801BA38C_7C756C(void) {
             Actor_LoadSpawnTable(D_801BE190_7CB370);
 
         case 0x101:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_s32 = 0xA;
@@ -1813,7 +1813,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1843,7 +1843,7 @@ void func_801BA6C4_7C78A4(void) {
             func_801BA694_7C7874();
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1909,7 +1909,7 @@ void func_801BA89C_7C7A7C(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1958,7 +1958,7 @@ void func_801BA89C_7C7A7C(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1989,7 +1989,7 @@ void func_801BAB34_7C7D14(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2224,14 +2224,14 @@ void func_801BAB34_7C7D14(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
-                func_800472D4();
+            if (Transition_FadeOut() != 0) {
+                SpawnText_READY();
                 gActors[0x31].state++;
             }
             break;
 
         case 0x1002:
-            if (func_8004735C(0x100, 0) != 0) {
+            if (SpawnText_FIGHT(0x100, 0) != 0) {
                 D_800BE544 = 0x31;
                 gActors[0x31].state = 0x10;
                 SpawnCrosshair(CROSSHAIR_ALL, 0x32);
@@ -2268,7 +2268,7 @@ void func_801BB310_7C84F0(void) {
             break;
 
         case 1:
-            if (func_80046D5C()) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2325,7 +2325,7 @@ void func_801BB310_7C84F0(void) {
             gStageState++;
 
         case 0x1002:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 3;
                 gCannotPause = TRUE;
             }
@@ -2372,7 +2372,7 @@ void func_801BB6D0_7C88B0(void) {
             break;
 
         case 2:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -2537,7 +2537,7 @@ void func_801BB6D0_7C88B0(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -2601,7 +2601,7 @@ void func_801BBEF0_7C90D0(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28F8 = 0x50;
                 D_800D2934 = 0;
@@ -2679,7 +2679,7 @@ void func_801BBEF0_7C90D0(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 8;
             }
             break;
@@ -2708,7 +2708,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800D28F8 = 0xE;
@@ -2758,7 +2758,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 0x11:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -2778,7 +2778,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut() != 0) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;

@@ -59,7 +59,7 @@ void func_80022D88(void) {
 
     gGamePaused = 0;
     gAudioFadeMode = 0;
-    D_800CBF40 = 0;
+    gIsPauseExit = 0;
     gIsPlayerInactive = FALSE;
     gCannotPause = 0;
     gActorStall = 0;
