@@ -80,7 +80,6 @@ extern void func_80067EF0(u16);
 extern void func_8006CB88(u16);
 extern void func_8006CC70(u16);
 extern void func_8006CD5C(u16);
-extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
 extern void func_80025578(void);

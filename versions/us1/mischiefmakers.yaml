@@ -124,10 +124,10 @@ segments:
       - [0x082DB0, asm] # has to do with loading marina's graphics
       - [0x082F80, c]
       - [0x0844E0, asm, osd_debug_text]
-      - [0x084BB0, asm]
+      - [0x084BB0, c]
       - [0x08D0A0, c]
       - [0x08F080, c]
-      - [0x097770, asm, stage_end_screen]
+      - [0x097770, c, stage_end_screen]
       - [0x099750, hasm, asm/rle_type2]
       # libultra text
       - [0x0999F0, c, ultralib/io/viblack]
@@ -327,7 +327,7 @@ segments:
       - [0x0E5160, data] # 8D0A0?
       - [0x0E66C0, .data, 17A70]
       - [0x0E6700, .data, 8F080]
-      - [0x0EA340, data, stage_end_screen]
+      - [0x0EA340, data] # stage_end_screen
       # libultra data
       - [0x0EA370, .data, ultralib/os/initialize]
       - [0x0EA390, .data, ultralib/io/vimgr]
@@ -386,9 +386,9 @@ segments:
       - [0x0EDC20, .rodata, 80D90]
       - [0x0EDC50, .rodata, 82920]
       - [0x0EDC70, rodata, osd_debug_text]
-      - [0x0EDCE0, rodata] # 84BB0?
+      - [0x0EDCE0, .rodata, 84BB0]
       - [0x0EDEF0, .rodata, 8F080]
-      - [0x0EE100, rodata, stage_end_screen]
+      - [0x0EE100, rodata] # stage_end_screen
       # libultra
       - [0x0EE200, .rodata, ultralib/io/viswapbuf]
       - [0x0EE230, .rodata, ultralib/io/visetmode]
@@ -444,6 +444,7 @@ segments:
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
+      - { name: 84BB0, type: .bss, vram: 0x80182020}
       - { name: 8F080, type: .bss, vram: 0x801826B0}
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }
       - { name: ultralib/io/vimgr, type: .bss, vram: 0x801826D0 }
