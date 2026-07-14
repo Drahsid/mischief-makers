@@ -76,29 +76,37 @@ void OSD_PrintFloat(f32 val, s32 x, s32 y){
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
 
-#ifdef NON_MATCHING
-void OSD_PrintByteHex(u16 val, s32 x, s32 y){
-    char buff[84];
+void OSD_PrintByteHex(s32 val, s32 x, s32 y) {
+    u16 temp;
+    char buff[0x50];
 
-    sprintf(buff,"%02X",val);
+    temp = val & 0xFFFF;
+    sprintf(buff, "%02X", temp);
+
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintByteHex.s")
-#endif
 
-#ifdef NON_MATCHING
-void OSD_PrintShortHexWhite(u32 val, s32 x, s32 y){
-    char buff[84];
 
-    sprintf(buff,"%04X",(u16)val);
+void OSD_PrintShortHexWhite(s32 val, s32 x, s32 y) {
+    u16 temp;
+    char buff[0x50];
+
+    temp = val & 0xFFFF;
+    sprintf(buff, "%04X", temp);
+
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintShortHexWhite.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintShortHexBlack.s")
+
+void OSD_PrintShortHex(s32 val, s32 x, s32 y) {
+    u16 temp;
+    char buff[0x50];
+
+    temp = val & 0xFFFF;
+    sprintf(buff, "%04X", temp);
+
+    OSD_SetData(buff, x, y, TXTTINT, TXTTINT, TXTTINT, 0xFF, 1.0f, 1.0f);
+}
 
 OSTime OSD_GetTime(void){
     OSTime t = osGetTime();

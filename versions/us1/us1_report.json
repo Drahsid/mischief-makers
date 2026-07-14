@@ -13823,7 +13823,7 @@
           }
         },
         {
-          "name": "OSD_PrintShortHexBlack",
+          "name": "OSD_PrintShortHex",
           "size": "120",
           "metadata": {
             "virtual_address": "2148023380"

@@ -6,6 +6,6 @@
 // guessed signature
 void OSD_PrintInt(s32, s32, s32);
 // guessed signature
-void OSD_PrintShortHexBlack(s16, s32, s32);
+void OSD_PrintShortHex(s16, s32, s32);
 
 #endif

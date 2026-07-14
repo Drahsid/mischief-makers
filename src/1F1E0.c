@@ -2427,9 +2427,9 @@ void func_80020024(void) {
     func_80047C98();
     if (gDebugBitfield & DEBUGFLAG_SFXDATA) {
         for (index = 0; index < 4; index++) {
-            OSD_PrintShortHexBlack(gSfxPlayerFlags[index], -144, 60 - 32 * index);
+            OSD_PrintShortHex(gSfxPlayerFlags[index], -144, 60 - 32 * index);
             OSD_PrintInt(gSfxSequenceIds[index] - 33, -144, 48 - 32 * index);
-            OSD_PrintShortHexBlack(gSfxPlayerVolumes[index], -104, 60 - 32 * index);
+            OSD_PrintShortHex(gSfxPlayerVolumes[index], -104, 60 - 32 * index);
         }
     }
 }
