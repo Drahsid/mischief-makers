@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 37.96232,
+    "fuzzy_match_percent": 37.980766,
     "total_code": "1994304",
-    "matched_code": "757084",
-    "matched_code_percent": 37.96232,
+    "matched_code": "757452",
+    "matched_code_percent": 37.980766,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2430,
-    "matched_functions_percent": 51.62524,
+    "matched_functions": 2433,
+    "matched_functions_percent": 51.688976,
     "complete_data_percent": 100.0,
     "total_units": 400
   },
@@ -13734,21 +13734,21 @@
     {
       "name": "osd_debug_text",
       "measures": {
-        "fuzzy_match_percent": 25.229359,
+        "fuzzy_match_percent": 46.330276,
         "total_code": "1744",
-        "matched_code": "440",
-        "matched_code_percent": 25.229359,
+        "matched_code": "808",
+        "matched_code_percent": 46.330276,
         "matched_data_percent": 100.0,
         "total_functions": 12,
-        "matched_functions": 5,
-        "matched_functions_percent": 41.666664,
+        "matched_functions": 8,
+        "matched_functions_percent": 66.66667,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "1744",
-          "fuzzy_match_percent": 25.229359,
+          "fuzzy_match_percent": 46.330276,
           "metadata": {
             "virtual_address": "2148022496"
           }
@@ -13811,6 +13811,7 @@
         {
           "name": "OSD_PrintByteHex",
           "size": "124",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023132"
           }
@@ -13818,6 +13819,7 @@
         {
           "name": "OSD_PrintShortHexWhite",
           "size": "124",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023256"
           }
@@ -13825,6 +13827,7 @@
         {
           "name": "OSD_PrintShortHex",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023380"
           }
@@ -49298,14 +49301,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 70.28469,
+        "fuzzy_match_percent": 70.332344,
         "total_code": "772208",
-        "matched_code": "542744",
-        "matched_code_percent": 70.28469,
+        "matched_code": "543112",
+        "matched_code_percent": 70.33235,
         "matched_data_percent": 100.0,
         "total_functions": 2162,
-        "matched_functions": 1689,
-        "matched_functions_percent": 78.12211,
+        "matched_functions": 1692,
+        "matched_functions_percent": 78.26087,
         "complete_data_percent": 100.0,
         "total_units": 264
       }
