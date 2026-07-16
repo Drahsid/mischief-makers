@@ -291,7 +291,7 @@ void func_8004FDF8(u16 actor_index) {
 
     func_8004F7D8(actor_index);
     index = gActors[actor_index].parentIndex;
-    if (!(D_80137458 & 0x10000) && (func_80049040(actor_index) != 0)) {
+    if (!(D_D_801373E0.unk_74 & 0x10000) && (func_80049040(actor_index) != 0)) {
         func_8005D370(actor_index, 0x28);
         gActors[actor_index].state = 0x1A;
     }
@@ -319,7 +319,7 @@ void func_8004FDF8(u16 actor_index) {
                 gActors[actor_index].var_154 -= 1;
             }
             func_8005D3D8(actor_index);
-            if ((D_801373F0 < 5) || (D_801373F0 >= 0xC) || (D_801373F2 >= 0xE)) {
+            if ((D_801373E0.unk_10 < 5) || (D_801373E0.unk_10 >= 0xC) || (D_801373F2 >= 0xE)) {
                 gActors[actor_index].unk_170_s8[1] = 0x7F;
                 gActors[actor_index].state = 4;
             }
@@ -575,7 +575,7 @@ void func_800509C0(u16 actor_index) {
     if (gActors[actor_index].stateUpper == 0) {
         Sound_PlaySfx(SFX_DASH_0027);
         gActors[actor_index].var_150 = 0x10;
-        if (D_801373F0 == 4) {
+        if (D_801373E0.unk_10 == 4) {
             if (!(sp28 & 8)) {
                 temp = func_80048C94(5);
                 temp2 = func_80048C94(9);
@@ -589,7 +589,7 @@ void func_800509C0(u16 actor_index) {
                 gActors[actor_index].stateUpper |= 0x80;
             }
         }
-        if (D_801373F0 == 0xC) {
+        if (D_801373E0.unk_10 == 0xC) {
             if (!(sp28 & 4)) {
                 temp = func_80048C94(5);
                 temp2 = func_80048C94(9);
@@ -649,7 +649,7 @@ void func_800509C0(u16 actor_index) {
         func_8005C098(actor_index, 1);
         gActors[actor_index].unk_17C = 0;
         gActors[actor_index].unk_17C_s8[1] = 2;
-        gActors[actor_index].unk_180_u8[2] = (s8) D_801373F0;
+        gActors[actor_index].unk_180_u8[2] = (s8) D_801373E0.unk_10;
         D_801373F2 = 0x64;
         D_801373F3 = 1;
     }
@@ -824,7 +824,7 @@ void func_80051324(u16 actor_index) {
             }
             gActors[actor_index].var_158 = 0;
             gActors[actor_index].stateUpper = 1;
-            switch (D_801373F0) {
+            switch (D_801373E0.unk_10) {
             case 0:
                 if ((-func_80048C94(0x1C) * 0.25) <= gActors[actor_index].velocityY.raw) {
                     gActors[actor_index].velocityY.raw = func_80048C94(0x1C) * 1.5;
@@ -851,7 +851,7 @@ void func_80051324(u16 actor_index) {
                 gActors[actor_index].unk_0DB = 0x15;
                 gActors[actor_index].hitboxAY0 = gActors[actor_index].hitboxBY0 - 4;
                 gActors[actor_index].hitboxAY1 = gActors[actor_index].hitboxBY1 + 8;
-                if (!(D_801373F0 & 8)) {
+                if (!(D_801373E0.unk_10 & 8)) {
                     gActors[actor_index].hitboxAX0 = 0;
                     gActors[actor_index].hitboxAX1 = gActors[actor_index].hitboxBX1;
                     if (gActors[actor_index].velocityX.raw < func_80048C94(0x1C)) {
@@ -896,8 +896,8 @@ void func_80051324(u16 actor_index) {
                 gActors[actor_index].unk_170 += 1;
             }
             func_8005C098(actor_index, 1);
-            gActors[actor_index].unk_180_u8[2] = D_801373F0;
-            gActors[actor_index].var_15C = D_801373F0;
+            gActors[actor_index].unk_180_u8[2] = D_801373E0.unk_10;
+            gActors[actor_index].var_15C = D_801373E0.unk_10;
             gActors[actor_index].unk_17C = 0;
             gActors[actor_index].unk_17C_s8[1] = 2;
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -1327,8 +1327,8 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
     }
 
     func_8005C098(actor_0, 1);
-    gActors[actor_0].unk_180_u8[2] = D_801373F0;
-    switch (D_801373F0) {
+    gActors[actor_0].unk_180_u8[2] = D_801373E0.unk_10;
+    switch (D_801373E0.unk_10) {
         case 0:
             var_v1 = 0x55;
         break;
@@ -1336,7 +1336,7 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
             var_v1 = 0x58;
         break;
         default:
-            if (!(D_801373F0 & 8)) {
+            if (!(D_801373E0.unk_10 & 8)) {
                 if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                     var_v1 = 0x4F;
                 }

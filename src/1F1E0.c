@@ -1998,7 +1998,7 @@ void func_8001EC1C(void) {
     s16 sp198[0x90];
     s16 sp78[0x90];
 
-    if ((D_80137458 & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
+    if ((D_D_801373E0.unk_74 & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
         return;
     }
 
@@ -2238,7 +2238,7 @@ void func_8001EC1C(void) {
 void Actors_SetPlatforms(void) {
     u16 index;
 
-    if ((D_80137458 & 0x10)) {
+    if ((D_D_801373E0.unk_74 & 0x10)) {
         return;
     }
 
@@ -2599,7 +2599,7 @@ void func_80020A90(void) {
             }
             gCamShakeTime = 0;
             gIsPauseExit = TRUE;
-            // don't save gem progress until you finissh the stage
+            // don't save gem progress until you finish the stage
             gYellowGemBitfield = D_801781F0;
             func_80046218(D_800D28E4 - 1, 0);
             gGameStateSubState = 0x23;

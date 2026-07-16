@@ -531,7 +531,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x101:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -541,7 +541,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x102:
             func_801B99A4_7E7F74(D_801BAFE4_7E95B4, 0xE0);
             if (gActors[0x30].flags == 0) {
-                SpawnAreaClear(0x8000);
+                SpawnAreaClear(AREACLEAR_NOTEXT);
                 func_801B9B64_7E8134(0xA1, 0x718, 0x238);
                 Actor_LoadSpawnTable(D_801BB1E8_7E97B8);
                 func_801B9A3C_7E800C(0xA7);
@@ -573,7 +573,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x201:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -610,7 +610,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x601:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -619,7 +619,7 @@ void func_801B9D00_7E82D0(void) {
         case 0x602:
             func_801B99A4_7E7F74(D_801BB07C_7E964C, 0);
             if (gActors[0x30].flags == 0) {
-                SpawnAreaClear(0x8000);
+                SpawnAreaClear(AREACLEAR_NOTEXT);
                 func_801B9B64_7E8134(0x94, 0xCF8, 0x208);
                 Actor_LoadSpawnTable(D_801BB9F4_7E9FC4);
                 func_801B9A3C_7E800C(0x97);
@@ -650,7 +650,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x301:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -677,7 +677,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x401:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -704,7 +704,7 @@ void func_801B9D00_7E82D0(void) {
             break;
 
         case 0x501:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -735,7 +735,7 @@ void func_801BA634_7E8C04(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState = 2;
             }
@@ -801,7 +801,7 @@ void func_801BA634_7E8C04(void) {
             break;
 
         case 0x19:
-            if (!(D_80137458 & 2)) {
+            if (!(D_D_801373E0.unk_74 & 2)) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0x5B);
             }
@@ -816,7 +816,7 @@ void func_801BA634_7E8C04(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 SpawnText_READY();
             }
@@ -854,7 +854,7 @@ void func_801BA984_7E8F54(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             gCannotPause = TRUE;
@@ -870,7 +870,7 @@ void func_801BA984_7E8F54(void) {
             break;
 
         case 0x10:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -941,7 +941,7 @@ void func_801BACBC_7E928C(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1004,7 +1004,7 @@ void func_801BACBC_7E928C(void) {
             D_800BE544 = 0x8000;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 3;
             }
             break;
@@ -1013,7 +1013,7 @@ void func_801BACBC_7E928C(void) {
             func_80046188(D_801BBC54_7EA224, D_801BBCC0_7EA290);
 
         case 0xC001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;

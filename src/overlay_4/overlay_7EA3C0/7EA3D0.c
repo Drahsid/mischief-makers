@@ -55,7 +55,7 @@ void func_801B9900_7EA3D0(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -86,7 +86,7 @@ void func_801B9900_7EA3D0(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 0x100;
                 gCannotPause = TRUE;
             }
@@ -104,7 +104,7 @@ void func_801B9900_7EA3D0(void) {
             func_80046188(D_801B9BC0_7EA690, D_801B9C28_7EA6F8);
 
         case 0x8001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;

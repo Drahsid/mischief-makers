@@ -2,7 +2,20 @@
 #include "common.h"
 #include "actor.h"
 
-extern ActorFunc D_800D28B0[];
+void Actor11_State0(u16);
+void Actor11_State1(u16);
+void Actor11_State2(u16);
+void Actor11_State3(u16);
+void Actor11_State4(u16);
+
+// states for ACTORTYPE_11
+ActorFunc gActor11States[]={
+     Actor11_State0;
+     Actor11_State1;
+     Actor11_State2;
+     Actor11_State3;
+     Actor11_State4;
+};
 
 s32 func_80042290(u16 actor_index) {
     if ((gActors[actor_index].actorType == ACTORTYPE_OVL1_GEN_GUN) &&
@@ -45,7 +58,7 @@ void ActorUpdate_Type26(u16 arg0) {
 void ActorUpdate_Type71(u16 arg0) {
 }
 
-void Actor_AdvanceState(u16 actor_index) {
+void Actor11_State1(u16 actor_index) {
     gActors[actor_index].state++;
 }
 
@@ -171,7 +184,7 @@ void func_80042864(u16 actor_index) {
     }
 }
 
-void func_800429A4(u16 actor_index) {
+void Actor11_State0(u16 actor_index) {
     gActors[actor_index].state++;
     gActors[actor_index].graphicFlags = 0;
     gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
@@ -180,7 +193,7 @@ void func_800429A4(u16 actor_index) {
     gActors[actor_index].var_110 = 30.0f;
 }
 
-void func_80042A0C(u16 actor_index) {
+void Actor11_State2(u16 actor_index) {
     u16 index;
 
     func_80042864(actor_index);
@@ -200,13 +213,13 @@ void func_80042A0C(u16 actor_index) {
     }
 }
 
-void func_80042AEC(u16 arg0) {
+void Actor11_State3(u16 arg0) {
     func_80042864(arg0);
     func_800423A0(arg0);
     func_800427E0(arg0);
 }
 
-void func_80042B2C(u16 actor_index) {
+void Actor11_State4(u16 actor_index) {
     if (gActors[actor_index].var_110 < 0.0f) {
         gActors[actor_index].flags = 0;
     }
@@ -215,12 +228,12 @@ void func_80042B2C(u16 actor_index) {
     }
 }
 
-void func_80042B94(u16 actor_index) {
-    D_800D28B0[gActors[actor_index].state](actor_index);
+void ActorUpdate_Type11(u16 actor_index) {
+    gActor11States[gActors[actor_index].state](actor_index);
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
-void func_80042C10(u16 actor_index) {
+void ActorUpdate_Type12(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         if (gActors[actor_index].parentIndex != 0) {
             gActors[actor_index].flags = 0;

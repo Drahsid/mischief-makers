@@ -1217,7 +1217,7 @@ void func_801B9ED4_7DCDA4(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1330,7 +1330,7 @@ void func_801B9ED4_7DCDA4(void) {
             D_800BE544 = 0;
 
         case 0xD:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -1369,7 +1369,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_801B9D38_7DCC08();
 
         case 0x11:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
 
@@ -1438,7 +1438,7 @@ void func_801B9ED4_7DCDA4(void) {
             break;
 
         case 0x13:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -1453,7 +1453,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_801B9D38_7DCC08();
 
         case 0x21:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
 
@@ -1488,7 +1488,7 @@ void func_801BA774_7DD644(void) {
             gStageState++;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 gLifebar.posY.whole = -0x58;
@@ -1497,7 +1497,7 @@ void func_801BA774_7DD644(void) {
             break;
 
         case 3:
-            SpawnAreaClear(0);
+            SpawnAreaClear(AREACLEAR_FULL);
             Sound_StartFade(0x81, 0x168);
             gStageState++;
             break;
@@ -1665,7 +1665,7 @@ void func_801BACDC_7DDBAC(void) {
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
 
         case 0x800:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1736,7 +1736,7 @@ void func_801BACDC_7DDBAC(void) {
             gStageState++;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 0xA;
                 D_800BE544 = 0;
@@ -1817,7 +1817,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x1F:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 0x12;
             }
@@ -1829,7 +1829,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x29:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 2;
             }
@@ -1917,7 +1917,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x901:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1991,7 +1991,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0xA01:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2011,7 +2011,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0xA04:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2119,7 +2119,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2146,7 +2146,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x31:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -2215,7 +2215,7 @@ void func_801BBEBC_7DED8C(void) {
             Sound_PlayMusic(BGM_OUT);
 
         case 0x39:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2245,7 +2245,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x1031:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 SpawnText_READY();
             }
             break;
@@ -2269,7 +2269,7 @@ void func_801BBEBC_7DED8C(void) {
             if (gActors[0x40].flags == 0) {
                 gStageState = 0x1038;
                 Actor_ClearSceneActors();
-                SpawnAreaClear(0);
+                SpawnAreaClear(AREACLEAR_FULL);
                 // function can use second arg as "flags" int instead
                 func_80045FA4(D_801BE204_7E10D4, (u16*)0xFFFFFFF8);
                 D_800BE5F4.unk_00_s32 = 4;
@@ -2297,7 +2297,7 @@ void func_801BBEBC_7DED8C(void) {
             Sound_PlayMusic(BGM_GET);
 
         case 0x41:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gStageTimer = 0x78;
                 gCannotPause = TRUE;
@@ -2323,7 +2323,7 @@ void func_801BBEBC_7DED8C(void) {
             gStageTimer = 180;
 
         case 0x51:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2383,7 +2383,7 @@ void func_801BC828_7DF6F8(void) {
             func_801BC75C_7DF62C(D_801BEC24_7E1AF4, (u16*)0xFFFFFFF9);
 
         case 2:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }

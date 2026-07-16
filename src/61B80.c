@@ -12,7 +12,7 @@ typedef struct {
 #define D_80340DE0 ((Unk_Struct_u8_20*)0x80340DE0)
 #define D_803409E0 ((Unk_Struct_u8_20*)0x803409E0)
 
-extern s32 D_800D2504[];
+extern s32 gSpikeballParams_S[];
 
 extern s32 D_800D74A0[];
 extern u16 D_800D7508[];
@@ -1265,8 +1265,8 @@ void ActorUpdate_Spikeball_81(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         Spikeball_State0(actor_index);
-        gActors[actor_index].unk_114 = D_800D2504[gActors[actor_index].var_0D8 * 2];
-        gActors[actor_index].unk_140_f32 = D_800D2504[gActors[actor_index].var_0D8 * 2 + 1];
+        gActors[actor_index].unk_114 = gSpikeballParams_S[gActors[actor_index].var_0D8 * 2];
+        gActors[actor_index].unk_140_f32 = gSpikeballParams_S[gActors[actor_index].var_0D8 * 2 + 1];
         /* fallthrough */
     case 1:
         Spikeball_Jitter(actor_index);
@@ -1285,8 +1285,8 @@ void ActorUpdate_Spikeball_82(u16 actor_index) {
     case 0:
         Spikeball_State0(actor_index);
         index = gActors[actor_index].var_0D8 * 2;
-        gActors[actor_index].unk_114 = D_800D2504[index + 0];
-        gActors[actor_index].unk_140_f32 = D_800D2504[index + 1];
+        gActors[actor_index].unk_114 = gSpikeballParams_S[index + 0];
+        gActors[actor_index].unk_140_f32 = gSpikeballParams_S[index + 1];
         // fallthrough
     case 1:
         Spikeball_Jitter(actor_index);
@@ -1410,7 +1410,7 @@ void func_80064CB4(u16 actor_index) {
     case 1:
         if (((gActors[actor_index + 1].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index + 1].flags_098 & ACTOR_FLAG3_UNK17) && (gActors[actor_index].var_0D8 & 0x100)) ||
             ((gActors[actor_index + 1].flags == 0) && !(gActors[actor_index].var_0D8 & 0x100))) {
-            vals = &D_800D2690[(gActors[actor_index].var_0D8 & 0xFF) * 3];
+            vals = &gClanballDrops[(gActors[actor_index].var_0D8 & 0xFF) * 3];
             if ((vals[2] == ACTORTYPE_GEM) && (vals[0] == (GEMFLAG_COMMON | GEMFLAG_YELLOW)) &&
              YellowGem_GetFlag(gCurrentStage)) { // don't spawn yellow gem if you already got it.
                 gActors[actor_index].flags = 0;
@@ -1479,7 +1479,7 @@ void func_80064F4C(u16 actor_index) {
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_GET);
             gActors[actor_index].var_150 |= 0x1000;
-            D_800D2924 = D_800BE56C.whole = 0xE12;
+            D_800D2924 = gScreenBoundX1.whole = 0xE12;
             D_800BE5F4.unk_00_u32 = 0xE;
             gActors[actor_index].unk_174 += 1;
         }

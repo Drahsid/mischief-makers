@@ -16,6 +16,112 @@ typedef enum {
     GEMFLAG_COMMON = GEMFLAG_BOUNCE|GEMFLAG_FINITE 
 } GemFlags;
 
+
+// flags set in 0x110, folowed by those also used in 0x150
+typedef enum {
+
+    CLANBALLFLAG_MASK_FF = 0xFF, // masks index of associated actor
+
+    CLANBALLFLAG_COLOR0 = ((1 << 8) * 0),
+    CLANBALLFLAG_COLOR1 = ((1 << 8) * 1),
+    CLANBALLFLAG_COLOR2 = ((1 << 8) * 2),
+    CLANBALLFLAG_COLOR3 = ((1 << 8) * 3),
+    CLANBALLFLAG_COLOR4 = ((1 << 8) * 4),
+
+    CLANBALLFLAG_COLORMASK = (CLANBALLFLAG_COLOR1 | CLANBALLFLAG_COLOR2 | 
+        CLANBALLFLAG_COLOR3 | CLANBALLFLAG_COLOR4),
+
+    CLANBALLFLAG_UNK10 = (1 << 10),
+    CLANBALLFLAG_UNK11 = (1 << 11),
+    // show arrows when held in "Clanball Land"
+    // masked out for all other stages
+    CLANBALLFLAG_ARROWS = (1 << 12), 
+    CLANBALLFLAG_UNK13 = (1 << 13),
+    CLANBALLFLAG_UNK14 = (1 << 14),
+    CLANBALLFLAG_UNK15 = (1 << 15),
+    
+    CLANBALLFLAG_UNK16 = (1 << 16),
+    CLANBALLFLAG_UNK17 = (1 << 17),
+    CLANBALLFLAG_UNK18 = (1 << 18),
+    CLANBALLFLAG_UNK19 = (1 << 19),
+    
+    CLANBALLFLAG_UNKMASK_A = (CLANBALLFLAG_UNK16 | CLANBALLFLAG_UNK17 | CLANBALLFLAG_UNK18| CLANBALLFLAG_UNK19),
+
+    CLANBALLFLAG_UNK20 = (1 << 20),
+    CLANBALLFLAG_UNK21 = (1 << 21),
+    CLANBALLFLAG_UNK22 = (1 << 22),
+    CLANBALLFLAG_UNK23 = (1 << 23),
+    CLANBALLFLAG_UNK24 = (1 << 24),
+    CLANBALLFLAG_UNK25 = (1 << 25),
+    CLANBALLFLAG_UNK26 = (1 << 26),
+    CLANBALLFLAG_UNK27 = (1 << 27),
+    CLANBALLFLAG_UNK28 = (1 << 28),
+    CLANBALLFLAG_UNK29 = (1 << 29),
+    CLANBALLFLAG_UNK30 = (1 << 30),
+    CLANBALLFLAG_UNK31 = (1U << 31U),
+} ClanballFlags;
+
+// flags set in 0x110, folowed by those also used in 0x150
+typedef enum {
+    SPIKEBALLFLAG_UNK0 = (1 << 0),
+    SPIKEBALLFLAG_UNK1 = (1 << 1),
+    SPIKEBALLFLAG_UNK2 = (1 << 2),
+    SPIKEBALLFLAG_UNK3 = (1 << 3),
+    SPIKEBALLFLAG_UNK4 = (1 << 4),
+    SPIKEBALLFLAG_UNK5 = (1 << 5),
+    SPIKEBALLFLAG_UNK6 = (1 << 6),
+    SPIKEBALLFLAG_UNK7 = (1 << 7),
+
+    SPIKEBALLFLAG_COLOR0 = ((1 << 8) * 0),
+    SPIKEBALLFLAG_COLOR1 = ((1 << 8) * 1),
+    SPIKEBALLFLAG_COLOR2 = ((1 << 8) * 2),
+    SPIKEBALLFLAG_COLOR3 = ((1 << 8) * 3),
+    SPIKEBALLFLAG_COLORMASK = (SPIKEBALLFLAG_COLOR1 | SPIKEBALLFLAG_COLOR2 ),
+
+    SPIKEBALLFLAG_DROPRED = ((1 << 10) * 1), // drop red gem when hit
+    SPIKEBALLFLAG_DROPBLUE = ((1 << 10) * 2), // drop blue gem when hit
+    SPIKEBALLFLAG_DROPYELLOW = ((1 << 10) * 3), // drop yellow gem when hit
+    SPIKEBALLFLAG_DROPMASK = SPIKEBALLFLAG_DROPYELLOW,
+
+    SPIKEBALLFLAG_MORTAL = (1 << 12), // do not respawn when hit
+    SPIKEBALLFLAG_UNK13 = (1 << 13),
+    SPIKEBALLFLAG_UNK14 = (1 << 14),
+    SPIKEBALLFLAG_ONSCREEN = (1U << 15U), // sets ACTOR_FLAG_ONSCREEN_ONLY
+    SPIKEBALLFLAG_UNK16 = (1 << 16),
+    SPIKEBALLFLAG_UNK17 = (1 << 17),
+    SPIKEBALLFLAG_UNK18 = (1 << 18),
+    SPIKEBALLFLAG_UNK19 = (1 << 19),
+    SPIKEBALLFLAG_UNK20 = (1 << 20),
+    SPIKEBALLFLAG_UNK21 = (1 << 21),
+    SPIKEBALLFLAG_UNK22 = (1 << 22),
+    SPIKEBALLFLAG_UNK23 = (1 << 23),
+    SPIKEBALLFLAG_UNK24 = (1 << 24),
+    SPIKEBALLFLAG_UNK25 = (1 << 25),
+    SPIKEBALLFLAG_UNK26 = (1 << 26),
+    SPIKEBALLFLAG_UNK27 = (1 << 27),
+    SPIKEBALLFLAG_MOVEX = (1 << 28), // determines movement on x-axis
+    SPIKEBALLFLAG_MOVEY = (1 << 29), // determines movement on x-axis
+    SPIKEBALLFLAG_UNK30 = (1 << 30),
+    SPIKEBALLFLAG_UNK31 = (1U << 31U),
+} SpikeballFlags;
+
+#define AREACLEAR_FULL 0 // full "Area Clear" animation
+#define AREACLEAR_NOTEXT 0x8000 // skip text in "Area Clear" animation
+
+typedef enum {
+    ENSHOT_UNKFF = 0xFF,
+    ENSHOT_ANGLE0 = ((1 << 8) * 0),
+    ENSHOT_ANGLE1 = ((1 << 8) * 1),
+    ENSHOT_ANGLE2 = ((1 << 8) * 2),
+    ENSHOT_ANGLE3 = ((1 << 8) * 3),
+    ENSHOT_ANGLEMASK = ENSHOT_ANGLE3,
+    ENSHOT_TARGETPLAYER = (1 << 12),
+    ENSHOT_UNK14 = (1 << 14),
+    ENSHOT_UNK15 = (1 << 15),
+    ENSHOT_SCALEMOVE = (1U << 16U),
+
+} EnegryShotFlags; // used in func_8002EDC8
+
 typedef enum {
     CROSSHAIR_FRONT = (1 << 0), // show arrow at front
     CROSSHAIR_UP = (1 << 1), // show arrow at top

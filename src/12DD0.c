@@ -94,11 +94,11 @@ void Marina_ScreenXScroll(void) {
         step_x.raw = D_800BE548.raw;
     }
     gScreenPosCurrentX.whole = Math_ApproachS32(gScreenPosCurrentX.whole, gScreenPosTargetX.whole, step_x.whole);
-    if (gScreenPosCurrentX.whole < D_800BE568.whole + 0x90) {
-        gScreenPosCurrentX.whole = D_800BE568.whole + 0x90;
+    if (gScreenPosCurrentX.whole < gScreenBoundX0.whole + 0x90) {
+        gScreenPosCurrentX.whole = gScreenBoundX0.whole + 0x90;
     }
-    if (gScreenPosCurrentX.whole > D_800BE56C.whole - 0x90) {
-        gScreenPosCurrentX.whole = D_800BE56C.whole - 0x90;
+    if (gScreenPosCurrentX.whole > gScreenBoundX1.whole - 0x90) {
+        gScreenPosCurrentX.whole = gScreenBoundX1.whole - 0x90;
     }
     gPlayerActor.posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
 }
@@ -131,11 +131,11 @@ void Marina_ScreenYScroll(void) {
         step_y.raw = D_800BE54C.raw;
     }
     gScreenPosCurrentY.whole = Math_ApproachS32(gScreenPosCurrentY.whole, gScreenPosTargetY.whole, step_y.whole);
-    if (gScreenPosCurrentY.whole < D_800BE574.whole + 0x70) {
-        gScreenPosCurrentY.whole = D_800BE574.whole + 0x70;
+    if (gScreenPosCurrentY.whole < gScreenBoundY1.whole + 0x70) {
+        gScreenPosCurrentY.whole = gScreenBoundY1.whole + 0x70;
     }
-    if (gScreenPosCurrentY.whole > D_800BE570.whole - 0x70) {
-        gScreenPosCurrentY.whole = D_800BE570.whole - 0x70;
+    if (gScreenPosCurrentY.whole > gScreenBoundY0.whole - 0x70) {
+        gScreenPosCurrentY.whole = gScreenBoundY0.whole - 0x70;
     }
     gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }

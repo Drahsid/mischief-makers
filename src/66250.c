@@ -1301,7 +1301,7 @@ void func_8007A090(u16 actor_index, u16 other_actor_index) {
         var_a3 = FIXED_UNIT(1.75);
     }
 
-    func_8002ECAC(other_actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, var_a3, -FIXED_UNIT(2.5));
+    SpawnRoundBomb(other_actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, var_a3, -FIXED_UNIT(2.5));
 }
 
 void func_8007A118(u16 actor_index, u16 other_actor_index) {

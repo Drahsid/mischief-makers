@@ -89,7 +89,7 @@ void func_801B9900_7EA730(void) {
             gStageState++;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -108,7 +108,7 @@ void func_801B99D0_7EA800(void) {
             gStageState++;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -135,10 +135,10 @@ void func_801B9B2C_7EA95C(void) {
     D_800D2924 = 0x7FFF;
     D_800D2918 = 0x7FFF;
     D_800D291C = 0;
-    D_800BE568.whole = D_800D2920;
-    D_800BE56C.whole = D_800D2924;
-    D_800BE570.whole = D_800D2918;
-    D_800BE574.whole = D_800D291C;
+    gScreenBoundX0.whole = D_800D2920;
+    gScreenBoundX1.whole = D_800D2924;
+    gScreenBoundY0.whole = D_800D2918;
+    gScreenBoundY1.whole = D_800D291C;
     D_800BE544 = 0x8000;
     D_800BE704 = 2;
     D_800BE708 = 2;
@@ -162,7 +162,7 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -249,7 +249,7 @@ void func_801B9EA4_7EACD4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }

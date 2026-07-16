@@ -136,6 +136,13 @@ ActorUpdate_Type1 = 0x8002D260; // type:func
 Landmine_TriggerEffect = 0x8002D5E4; // type:func
 ActorUpdate_Landmine = 0x8002D670; // type:func
 
+SpawnEnergyShot = 0x8002DFC0; // type:func
+ActorUpdate_EnergyShot = 0x8002E288; // type:func
+SpawnHovercraftShot = 0x8002E500; // type:func
+ActorUpdate_HovercraftShot = 0x8002E89C; // type:func
+
+SpawnRoundBomb = 0x8002ECAC; // type:func
+SpawnBoomerang = 0x8002ED48; // type:func
 SpawnGemActor = 0x8002EFE4; // type:func
 SpawnGemActor61 = 0x8002F154; // type:func
 NoHitGem = 0x8002F1C8; // type:func
@@ -200,6 +207,7 @@ ActorUpdate_ClanpotMixSequence = 0x8003766C; // type:func
 Clanpot_SpawnMixSequence = 0x80037B18; // type:func
 ActorUpdate_Clanpot = 0x80037B90; // type:func
 
+Spikeball_Shoot = 0x80038398; // type:func
 Spikeball_MoveX = 0x800384FC; // type:func
 Spikeball_MoveY = 0x80038600; // type:func
 Spikeball_Jitter = 0x80038704; // type:func
@@ -275,6 +283,17 @@ ActorUpdate_Spikeball_OrbitXY = 0x80087D2C; // type:func
 SpawnMarinaOhNo = 0x8008e310; // type:func
 ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
 
+Clanball_GrabCheck = 0x80039644; // type:func
+Clanball_State0 = 0x8003be3c; // type:func
+Clanbal_ShakeFlash = 0x80039894; // type:func
+Clanball_RevealSound = 0x800398F8; // type:func
+Clanball_DropSound = 0x80039970; // type:func
+Clanbal_InitReveal = 0x80039A1C; // type:func
+Clanball_SpawnReveal = 0x80039ADC; // type:func
+Clanball_SpawnDrop = 0x80039C1C; // type:func
+Clanball_GetRevealIndex = 0x80039DA0; // type:func
+Clanball_ShakeDown = 0x80039E7C; // type:func
+
 ActorUpdate_Clanball_28 = 0x8003A120; // type:func
 ActorUpdate_ClanballSpring = 0x8003C328; // type:func
 
@@ -306,6 +325,9 @@ WarpGate_Sparkle = 0x80040E08; // type:func
 WarpGate_IsGrabbed = 0x8004185C; // type:func
 ActorUpdate_WarpGate = 0x800418A8; // type:func
 
+
+ActorUpdate_Type11 = 0x80042B94; // type:func
+ActorUpdate_Type12 = 0x80042c10; // type:func
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
 Actor_LoadSpawnTable = 0x80043A68; // type:func
 Camera_UpdateViewBounds = 0x800462F0; // type:func
@@ -376,7 +398,12 @@ ActorUpdate_Type23 = 0x80042340; // type:func
 ActorUpdate_Type25 = 0x80042348; // type:func
 ActorUpdate_Type26 = 0x80042350; // type:func
 ActorUpdate_Type71 = 0x80042358; // type:func
-Actor_AdvanceState = 0x80042360; // type:func
+
+Actor11_State1 = 0x80042360; // type:func
+Actor11_State0 = 0x800429A4; // type:func
+Actor11_State2 = 0x80042360; // type:func
+Actor11_State3 = 0x80042360; // type:func
+Actor11_State4 = 0x80042B2C; // type:func
 
 ActorsUpdate_Velocity = 0x80014af0; // type:func
 ActorsUpdate_Position = 0x80014C44; // type:func

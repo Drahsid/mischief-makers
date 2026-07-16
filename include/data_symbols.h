@@ -55,7 +55,7 @@ extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
 extern u16* gGemPalettes[]; // palettes of gems
 extern u16 D_800D1A04[];
-extern u16 D_800D2690[]; // LUT of Clanball items.
+extern u16 gClanballDrops[]; // LUT of Clanball items. {0x110, 0xD8, type}
 extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];
@@ -120,7 +120,6 @@ extern u16 gLetterboxMode;
 extern u16 gRedGems;
 
 // func_8000147C
-extern s8 D_801373F0;
 extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
 extern u16 gActorsBack[128]; // indecies of actors to draw in the "back" 
 extern u16 gActorsMiddle[128]; // indecies of actors to draw in middle (not drawn if D_800be674 is set)
@@ -129,7 +128,6 @@ extern u16 gActorsTop[240]; // indecies of actors to draw at the "top" (either b
 
 extern UnkStruct_D_801373E0 D_801373E0;
 extern s8 D_801373F2;
-extern u32 D_80137458;
 
 // soft_reset.c bss
 extern u16 D_801781F8; // some control lock? read in func_80048740. always 0.

@@ -40,8 +40,9 @@ u8 func_80048600(u16 actor_index) {
     return ret;
 }
 
+// get direction from which Marina is pulling?
 s32 func_800486F4(void) {
-    s32 v0 = D_801373F0;
+    s32 v0 = D_801373E0.unk_10;
     s32 v1 = (v0 << 0x18) >> 0x18;
 
     if ((v0 == 2) || (v0 == 6)) {

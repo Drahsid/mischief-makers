@@ -5310,7 +5310,7 @@
           }
         },
         {
-          "name": "func_8002DFC0",
+          "name": "SpawnEnergyShot",
           "size": "712",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5318,7 +5318,7 @@
           }
         },
         {
-          "name": "func_8002E288",
+          "name": "ActorUpdate_EnergyShot",
           "size": "632",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5326,7 +5326,7 @@
           }
         },
         {
-          "name": "func_8002E500",
+          "name": "SpawnHovercraftShot",
           "size": "924",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5334,7 +5334,7 @@
           }
         },
         {
-          "name": "func_8002E89C",
+          "name": "ActorUpdate_HovercraftShot",
           "size": "796",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5342,7 +5342,7 @@
           }
         },
         {
-          "name": "func_8002EBB8",
+          "name": "SpawnShuriken",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5350,7 +5350,7 @@
           }
         },
         {
-          "name": "func_8002ECAC",
+          "name": "SpawnRoundBomb",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5366,7 +5366,7 @@
           }
         },
         {
-          "name": "func_8002ED48",
+          "name": "SpawnBoomerang",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6158,7 +6158,7 @@
           }
         },
         {
-          "name": "func_80038398",
+          "name": "Spikeball_Shoot",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6270,7 +6270,7 @@
           }
         },
         {
-          "name": "func_80039644",
+          "name": "Clanball_GrabCheck",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6278,7 +6278,7 @@
           }
         },
         {
-          "name": "func_80039724",
+          "name": "Clanball_State0",
           "size": "276",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6294,7 +6294,7 @@
           }
         },
         {
-          "name": "func_80039894",
+          "name": "Clanbal_ShakeFlash",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6302,7 +6302,7 @@
           }
         },
         {
-          "name": "func_800398F8",
+          "name": "Clanball_RevealSound",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6310,7 +6310,7 @@
           }
         },
         {
-          "name": "func_80039970",
+          "name": "Clanball_DropSound",
           "size": "172",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6318,7 +6318,7 @@
           }
         },
         {
-          "name": "func_80039A1C",
+          "name": "Clanbal_InitReveal",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6326,7 +6326,7 @@
           }
         },
         {
-          "name": "func_80039ADC",
+          "name": "Clanball_SpawnReveal",
           "size": "320",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6334,7 +6334,7 @@
           }
         },
         {
-          "name": "func_80039C1C",
+          "name": "Clanball_SpawnDrop",
           "size": "388",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6342,7 +6342,7 @@
           }
         },
         {
-          "name": "func_80039DA0",
+          "name": "Clanball_GetRevealIndex",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6350,7 +6350,7 @@
           }
         },
         {
-          "name": "func_80039E7C",
+          "name": "Clanball_ShakeDown",
           "size": "676",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6990,7 +6990,7 @@
           }
         },
         {
-          "name": "Actor_AdvanceState",
+          "name": "Actor11_State1",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7021,7 +7021,7 @@
           }
         },
         {
-          "name": "func_800429A4",
+          "name": "Actor11_State0",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7029,7 +7029,7 @@
           }
         },
         {
-          "name": "func_80042A0C",
+          "name": "Actor11_State2",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7037,7 +7037,7 @@
           }
         },
         {
-          "name": "func_80042AEC",
+          "name": "Actor11_State3",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7045,7 +7045,7 @@
           }
         },
         {
-          "name": "func_80042B2C",
+          "name": "Actor11_State4",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7053,7 +7053,7 @@
           }
         },
         {
-          "name": "func_80042B94",
+          "name": "ActorUpdate_Type11",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7061,7 +7061,7 @@
           }
         },
         {
-          "name": "func_80042C10",
+          "name": "ActorUpdate_Type12",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {

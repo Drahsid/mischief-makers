@@ -92,12 +92,27 @@ D_800D1918 = 0x800D1918;
 gGemPalettes = 0x800d1958; // size:0x10
 gClanpotItems = 0x800D22BC; // size:0x140
 gClanpotItemCount = 0x800D24D8; //size:0x1A
+gClanpotMixClanbomb = 0x800d24a8;
+gClanpotMixBoomerang = 0x800d24b4;
+gClanpotMixShuriken = 0x800d24C0;
+gClanpotMixGreenGem = 0x800D24CC;
+gSpikeballPalettes = 0x800D24F4;
+gSpikeballParams_S = 0x800D2504;
+gSpikeballParams_H = 0x800D2514;
+gSpikeballParams_V = 0x800D258C;
+gClanballReveals = 0x800D25BC;
+gClanballDrops = 0x800D2690
+gClanballPalettes = 0x800D26E0;
+
 gStageState = 0x800D28E8; // type:u16 size:0x2
+
 gStrAreaClear0 = 0x800D2750;
 gStrAreaClear1 = 0x800D2780;
 gStrAreaClear2 = 0x800D27B0;
 gStrAreaClear3 = 0x800D27DC;
 gCrosshairPalette = 0x800D27F8; // size:0x1A
+
+gActor11States = 0x800D28B0; // size:0x14
 gSkipStageIntro = 0x800D2908; // type:u16 size:0x2
 gStageTimer = 0x800D2928; // type:s32 size:0x4
 gTransitionPortaitIndex = 0x800D292C; // type:s32 size:0x4
@@ -413,6 +428,10 @@ gScreenPosCurrentX = 0x800be558; // size:0x4 rom:0xbf158
 gScreenPosCurrentY = 0x800be55c; // size:0x4 rom:0xbf15c
 gScreenPosNextX = 0x800be560; // size:0x4 rom:0xbf160
 gScreenPosNextY = 0x800be564; // size:0x4 rom:0xbf164
+gScreenBoundX0 = 0x800be568; // size:0x4 rom:0xbf168
+gScreenBoundX1 = 0x800be56C; // size:0x4 rom:0xbf16C
+gScreenBoundY0 = 0x800be570; // size:0x4 rom:0xbf170
+gScreenBoundY1 = 0x800be574; // size:0x4 rom:0xbf174
 
 gPlayerPosX = 0x800be5d8; // type:s32 size:0x4 rom:0xbf1d8
 gPlayerPosY = 0x800be5dc; // type:s32 size:0x4 rom:0xbf1dc

@@ -36,6 +36,7 @@ u16 D_801BC620_7C9800[] = {
     SPAWNRECORD_END
 };
 
+// background actors of plains stages
 u16 D_801BC684_7C9864[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0080, 0x0100, 0x014A, 0x0008, 0x0000, ACTORTYPE_13,
@@ -332,7 +333,7 @@ u16 D_801BD288_7CA468[] = {
 u16 D_801BD474_7CA654[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0570, 0x0158, 0x0001, 0x0008, ACTORTYPE_WARPGATE,
-    0x0020, 0x0043, 0x0D30, 0x020E, 0x0190, 0x2230, ACTORTYPE_OVL2_W1_13,
+    0x0020, 0x0043, 0x0D30, 0x020E, 0x0190, 0x2230, ACTORTYPE_OVL2_W1_CLANCER_13,
     0x0000, 0x0058, 0x0C60, 0x0278, 0x0000, 0x0002, ACTORTYPE_DIGGINGSPOT,
     SPAWNRECORD_END
 };
@@ -925,7 +926,7 @@ u16 D_801BF274_7CC454[] = {
     0x10D0, 0x015C, 0x0F60, 0x1220, 0x01CC, 0x00EC, 0xFFC0, 0xFFD4,
 };
 
-// actor spawn table for "Wormin' Up"?
+// actor spawn table for "Wormin' Up"
 u16 D_801BF284_7CC464[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
     0x8000, 0x0031, 0x1140, 0x0100, 0x0000, 0x0000, ACTORTYPE_OVL1_WORM_BOSS,
@@ -1061,7 +1062,7 @@ u16 D_801BF80C_7CC9EC[] = {
     0x0020, 0x4E, 0x0580, 0x017E, 0x6088, 0x3BB0, ACTORTYPE_CLANCER_91,
     0x0020, 0x4D, 0x0680, 0x012A, 0x6080, 0x3BA0, ACTORTYPE_CLANCER_91,
     0x0020, 0x4C, 0x059C, 0x017E, 0x60C0, 0x3491, ACTORTYPE_CLANCER_91,
-    0x0000, 0x54, 0x05C8, 0x017E, 0x0000, 0x0040, 0x1806,
+    0x0000, 0x54, 0x05C8, 0x017E, 0x0000, 0x0040, ACTORTYPE_OVL2_W1_CLANCER_3,
     0x0020, 0x50, 0x0680, 0x012E, 0x4000, 0x2730, ACTORTYPE_CLANCER_91,
     0x0020, 0x51, 0x0690, 0x012E, 0x4000, 0x2700, ACTORTYPE_CLANCER_91,
     0x0020, 0x52, 0x06A0, 0x012C, 0x4000, 0x2710, ACTORTYPE_CLANCER_91, 
@@ -1075,8 +1076,8 @@ u16 D_801BF80C_7CC9EC[] = {
 
 u16 D_801BF8B8_7CCA98[] = {
 //  flags   index posX    posY    0x110   0xD8    type    
-    0x0020, 0x4E, 0x05A0, 0x017E, 0x60C1, 0x3BF0, 0x1816,
-    0x0020, 0x4C, 0x0600, 0x017E, 0x60A0, 0x34D1, 0x1816,
+    0x0020, 0x4E, 0x05A0, 0x017E, 0x60C1, 0x3BF0, ACTORTYPE_OVL2_W1_22,
+    0x0020, 0x4C, 0x0600, 0x017E, 0x60A0, 0x34D1, ACTORTYPE_OVL2_W1_22,
     0x0020, 0x74, 0x05A0, 0x0150, 0x0000, 0x0000, ACTORTYPE_GEM124, 
     0x0020, 0x75, 0x05C0, 0x0150, 0x0001, 0x0000, ACTORTYPE_GEM124,
     0x0020, 0x76, 0x05E0, 0x0150, 0x0003, 0x0000, ACTORTYPE_GEM124, 
@@ -1086,10 +1087,10 @@ u16 D_801BF8B8_7CCA98[] = {
 
 u16 D_801BF910_7CCAF0[] = {
 //  flags   index posX    posY    0x110   0xD8    type    
-    0x0020, 0x50, 0x0540, 0x0150, 0x4000, 0x2730, 0x1817,
-    0x0020, 0x51, 0x0640, 0x0150, 0x4100, 0x2741, 0x1817,
-    0x0020, 0x52, 0x0520, 0x0150, 0x4000, 0x2712, 0x1817,
-    0x0020, 0x53, 0x0660, 0x0150, 0x4100, 0x2763, 0x1817, 
+    0x0020, 0x50, 0x0540, 0x0150, 0x4000, 0x2730, ACTORTYPE_OVL2_W1_23,
+    0x0020, 0x51, 0x0640, 0x0150, 0x4100, 0x2741, ACTORTYPE_OVL2_W1_23,
+    0x0020, 0x52, 0x0520, 0x0150, 0x4000, 0x2712, ACTORTYPE_OVL2_W1_23,
+    0x0020, 0x53, 0x0660, 0x0150, 0x4100, 0x2763, ACTORTYPE_OVL2_W1_23, 
     SPAWNRECORD_END
 };
 
@@ -1174,7 +1175,7 @@ u16 D_801BF998_7CCB78[] = {
 u16 D_801BFD18_7CCEF8[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
     0x0000, 0x0030, 0x01D0, 0x012A, 0x0000, 0x3410, ACTORTYPE_63,
-    0x0000, 0x0031, 0x01D0, 0x015C, 0x0000, 0x0000, 0x181D,
+    0x0000, 0x0031, 0x01D0, 0x015C, 0x0000, 0x0000, ACTORTYPE_OVL2_W1_29,
     0x0000, 0x00C0, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_GRAPHICONLY,
     0x0000, 0x003F, 0x01D0, 0x0180, 0x0000, 0x0000, ACTORTYPE_GRAPHICONLY,
     0x0000, 0x008A, 0x0480, 0x0180, 0x000D, 0x0070, ACTORTYPE_OVL2_W1_28, 
@@ -1182,6 +1183,7 @@ u16 D_801BFD18_7CCEF8[] = {
     SPAWNRECORD_END
 };
 
+// actor spawn table for "Blockman Rises"
 u16 D_801BFD70_7CCF50[] = {
 //  flags   index   posX    posY    0x110   0xD8    type        
     0x0000, 0x0040, 0x0400, 0x012E, 0x0000, 0x0000, ACTORTYPE_CLANBLOB,
@@ -1202,33 +1204,33 @@ u16 D_801BFD70_7CCF50[] = {
     0x0020, 0x0063, 0x0AF0, 0x018E, 0x0100, 0x1010, ACTORTYPE_CLANCER_84,
     0x0020, 0x0064, 0x0E30, 0x018E, 0x0100, 0x4010, ACTORTYPE_OVL2_W1_CLANCER_0,
     0x0020, 0x0065, 0x0EF0, 0x018E, 0x0100, 0x4010, ACTORTYPE_OVL2_W1_CLANCER_0, 
-    0x0020, 0x0066, 0x0FB0, 0x018E, 0x0110, 0x7010, ACTORTYPE_OVL2_W1_CLANCER_0,
-    0x0000, 0x0067, 0x0550, 0x0130, 0x0000, 0x0000, 0x181E,
-    0x0000, 0x0068, 0x0800, 0x0130, 0x0000, 0x0001, 0x181E, 
-    0x0000, 0x0069, 0x08A0, 0x0130, 0x0000, 0x0001, 0x181E,
-    0x0000, 0x006A, 0x0940, 0x0130, 0x0000, 0x0001, 0x181E, 
-    0x0000, 0x006B, 0x09D0, 0x0130, 0x0000, 0x0000, 0x181E,
-    0x0000, 0x006D, 0x0AF0, 0x0130, 0x0000, 0x0001, 0x181E,
-    0x0000, 0x006E, 0x0BB0, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x006F, 0x0C10, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0070, 0x0C70, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0071, 0x0CD0, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0072, 0x0D30, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0073, 0x0E30, 0x0130, 0x0000, 0x0001, 0x181E,
-    0x0000, 0x0074, 0x0EF0, 0x0130, 0x0000, 0x0001, 0x181E,
-    0x0000, 0x0075, 0x0FB0, 0x0130, 0x0000, 0x0001, 0x181E,
-    0x0000, 0x0076, 0x10B0, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0077, 0x10D0, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0078, 0x10F0, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x0079, 0x1110, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x007A, 0x1130, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x007B, 0x1150, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x007C, 0x1170, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x007D, 0x1190, 0x0130, 0x0000, 0x0003, 0x181E,
-    0x0000, 0x007E, 0x11B0, 0x0130, 0x0000, 0x0003, 0x181E,
+    0x0020, 0x0066, 0x0FB0, 0x018E, 0x0110, 0x7010, ACTORTYPE_OVL2_W1_CLANCER_0, // flancer holding yellow gem
+    0x0000, 0x0067, 0x0550, 0x0130, 0x0000, 0x0000, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0068, 0x0800, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30, 
+    0x0000, 0x0069, 0x08A0, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x006A, 0x0940, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30, 
+    0x0000, 0x006B, 0x09D0, 0x0130, 0x0000, 0x0000, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x006D, 0x0AF0, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x006E, 0x0BB0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x006F, 0x0C10, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0070, 0x0C70, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0071, 0x0CD0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0072, 0x0D30, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0073, 0x0E30, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0074, 0x0EF0, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0075, 0x0FB0, 0x0130, 0x0000, 0x0001, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0076, 0x10B0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0077, 0x10D0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0078, 0x10F0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x0079, 0x1110, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x007A, 0x1130, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x007B, 0x1150, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x007C, 0x1170, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x007D, 0x1190, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
+    0x0000, 0x007E, 0x11B0, 0x0130, 0x0000, 0x0003, ACTORTYPE_OVL2_W1_30,
     0x0000, 0x008F, 0x13D0, 0x0150, 0x0001, 0x0005, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END, // one more actor, not added due to terminator
-    0x0000, 0x0070, 0x1540, 0x015E, 0x0000, 0x0000, 0x1822,
+    0x0000, 0x0070, 0x1540, 0x015E, 0x0000, 0x0000, ACTORTYPE_OVL2_W1_34,
     SPAWNRECORD_END
 };
 
@@ -1405,7 +1407,7 @@ u32 D_801C04F0_7CD6D0[] = {
 
 u16 D_801C09B4_7CDB94[] = {
 //  flags index posX    posY    0x110 0xD8   type
-    0,    0x50, 0x03BE, 0x0130, 0,    0,     0x1819,
+    0,    0x50, 0x03BE, 0x0130, 0,    0,     ACTORTYPE_OVL2_W1_25,
     SPAWNRECORD_END
 };
 
@@ -1509,7 +1511,7 @@ void func_801B9AC0_7C6CA0(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1620,7 +1622,7 @@ void func_801B9AC0_7C6CA0(void) {
             func_80025EC4(1);
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 0x100;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1657,7 +1659,7 @@ void func_801BA008_7C71E8(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState += 1;
                 D_800D28F8 = 6;
             }
@@ -1727,7 +1729,7 @@ void func_801BA008_7C71E8(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 3;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1757,7 +1759,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1788,7 +1790,7 @@ void func_801BA38C_7C756C(void) {
             Actor_LoadSpawnTable(D_801BE190_7CB370);
 
         case 0x101:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_s32 = 0xA;
@@ -1813,7 +1815,7 @@ void func_801BA38C_7C756C(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1843,7 +1845,7 @@ void func_801BA6C4_7C78A4(void) {
             func_801BA694_7C7874();
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1858,7 +1860,7 @@ void func_801BA6C4_7C78A4(void) {
             if (gScreenPosCurrentX.whole > 0x710) {
                 gStageState++;
                 D_800BE544 = 0x50;
-                D_800BE568.whole = 0x680;
+                gScreenBoundX0.whole = 0x680;
                 Actor_LoadSpawnTable(D_801BEB24_7CBD04);
             }
             break;
@@ -1909,7 +1911,7 @@ void func_801BA89C_7C7A7C(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -1958,7 +1960,7 @@ void func_801BA89C_7C7A7C(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1989,7 +1991,7 @@ void func_801BAB34_7C7D14(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2193,7 +2195,7 @@ void func_801BAB34_7C7D14(void) {
 
         case 0x100:
             if (gActors[0x31].flags == 0) {
-                SpawnAreaClear(0);
+                SpawnAreaClear(AREACLEAR_FULL);
                 Sound_StartFade(0x81, 360);
                 gStageState++;
                 D_800BE544 = 0;
@@ -2224,7 +2226,7 @@ void func_801BAB34_7C7D14(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 SpawnText_READY();
                 gActors[0x31].state++;
             }
@@ -2260,11 +2262,11 @@ void func_801BB310_7C84F0(void) {
             Actor_LoadSpawnTable(D_801BC620_7C9800);
             Actor_LoadSpawnTable(D_801BF5FC_7CC7DC);
             D_800BE544 = 0x8000;
-            D_800BE568.whole = D_800D2920;
-            D_800BE56C.whole = 0x1AE0;
-            D_800BE570.whole = D_800D2918;
-            D_800BE574.whole = D_800D291C;
-            D_800D2924 = D_800BE56C.whole + 0x100;
+            gScreenBoundX0.whole = D_800D2920;
+            gScreenBoundX1.whole = 0x1AE0;
+            gScreenBoundY0.whole = D_800D2918;
+            gScreenBoundY1.whole = D_800D291C;
+            D_800D2924 = gScreenBoundX1.whole + 0x100;
             break;
 
         case 1:
@@ -2287,11 +2289,11 @@ void func_801BB310_7C84F0(void) {
 
         case 4:
             if (gPlayerPosX.whole >= 0x1980) {
-                D_800BE570.whole = Math_ApproachS32(D_800BE570.whole, 0x1CC, 3);
+                gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x1CC, 3);
                 D_801373E0.unk_78 |= 4;
             }
             else {
-                D_800BE570.whole = Math_ApproachS32(D_800BE570.whole, 0x270, 3);
+                gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x270, 3);
                 D_801373E0.unk_78 &= ~4;
             }
 
@@ -2307,11 +2309,11 @@ void func_801BB310_7C84F0(void) {
             D_800BE5F4.unk_00_s32 = 3;
             Actor_LoadSpawnTable(D_801BC620_7C9800);
             Actor_LoadSpawnTable(D_801BF5FC_7CC7DC);
-            D_800BE568.whole = D_800D2920;
-            D_800BE56C.whole = 0x1AE0;
-            D_800BE570.whole = D_800D2918;
-            D_800BE574.whole = D_800D291C;
-            D_800D2924 = D_800BE56C.whole + 0x100;
+            gScreenBoundX0.whole = D_800D2920;
+            gScreenBoundX1.whole = 0x1AE0;
+            gScreenBoundY0.whole = D_800D2918;
+            gScreenBoundY1.whole = D_800D291C;
+            D_800D2924 = gScreenBoundX1.whole + 0x100;
             gStageState++;
             gCannotPause = TRUE;
             break;
@@ -2325,7 +2327,7 @@ void func_801BB310_7C84F0(void) {
             gStageState++;
 
         case 0x1002:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 3;
                 gCannotPause = TRUE;
             }
@@ -2372,7 +2374,7 @@ void func_801BB6D0_7C88B0(void) {
             break;
 
         case 2:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -2537,7 +2539,7 @@ void func_801BB6D0_7C88B0(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -2601,7 +2603,7 @@ void func_801BBEF0_7C90D0(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x50;
                 D_800D2934 = 0;
@@ -2679,7 +2681,7 @@ void func_801BBEF0_7C90D0(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 8;
             }
             break;
@@ -2708,7 +2710,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800D28F8 = 0xE;
@@ -2758,7 +2760,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 0x11:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -2778,7 +2780,7 @@ void func_801BC2B0_7C9490(void) {
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;

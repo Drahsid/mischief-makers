@@ -1864,7 +1864,7 @@ DEFAULT_INT func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
                            gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
-    func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+    SpawnShuriken(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
                   COS(angle) * FIXED_UNIT(2.875),
                   SIN(angle) * FIXED_UNIT(2.875));
 }
@@ -2401,7 +2401,7 @@ void func_801B3634_79B474(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
-            gActors[actor_index].unk_17C = 0x8034E2E0;
+            gActors[actor_index].dlist_17C = (Gfx*)0x8034E2E0;
             gActors[actor_index].var_150 = gActors[actor_index].var_110;
             gActors[actor_index].unk_188 = 0;
             gActors[actor_index].posZ.whole = -256;
@@ -2961,7 +2961,7 @@ DEFAULT_INT func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
                            gActors[D_800E3580].posY.whole - gActors[actor_index].posY.whole);
-    func_8002EBB8(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
+    SpawnShuriken(arg1, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole,
                   COS(angle) * FIXED_UNIT(2.875),
                   SIN(angle) * FIXED_UNIT(2.875));
 }

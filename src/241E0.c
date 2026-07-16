@@ -35,7 +35,9 @@ extern u8 D_800CBFFC[];
 extern u16 D_800CC228[];
 extern CameraFunc gCameraInits[];
 extern CameraFunc gCameraupdates[];
-extern s16 D_800CC6EC[];
+// postion and bounds for player per scene
+// {BoundX0, BoundX1, BoundY0, BoundY1, ScreenX, PlayerX, ScreenY, PlayerY}
+extern s16 D_800CC6EC[]; 
 extern s16 D_800CCC6C[];
 extern u8 gSceneBgm[]; // music for start of scene (0xff if none)
 extern u8 D_800CD034[]; // scene properties of BG layers?
@@ -214,8 +216,8 @@ void CameraUpdate_MigenBrawl(void) {
     D_800BE584 = gScreenPosCurrentY.whole - 104;
     gScreenPosCurrentX.whole = 402;
     gScreenPosTargetX.whole = 402;
-    D_800BE568.whole = 0x102;
-    D_800BE56C.whole = 0x222;
+    gScreenBoundX0.whole = 0x102;
+    gScreenBoundX1.whole = 0x222;
     if (gActiveFrames & 1) {
         for (index = 0; index < 0x2C; index++) {
             PALETTE_80380400[D_800CBFFC[index]] = D_800CBF5C[D_800CBFFC[index] - 0x90];
@@ -808,10 +810,10 @@ void func_800255B4(u16 scene) {
     D_800BE710 = 0;
     gScreenPosTargetX.raw = 0;
     gScreenPosCurrentX.raw = 0;
-    D_800BE568.whole = D_800CC6EC[scene * 8];
-    D_800BE56C.whole = D_800CC6EC[scene * 8 + 1];
-    D_800BE574.whole = D_800CC6EC[scene * 8 + 2];
-    D_800BE570.whole = D_800CC6EC[scene * 8 + 3];
+    gScreenBoundX0.whole = D_800CC6EC[scene * 8];
+    gScreenBoundX1.whole = D_800CC6EC[scene * 8 + 1];
+    gScreenBoundY1.whole = D_800CC6EC[scene * 8 + 2];
+    gScreenBoundY0.whole = D_800CC6EC[scene * 8 + 3];
     gScreenPosCurrentX.whole = D_800CC6EC[scene * 8 + 4];
     gActors->posX.whole = D_800CC6EC[scene * 8 + 5];
     gScreenPosNextX.whole = gScreenPosCurrentX.whole;

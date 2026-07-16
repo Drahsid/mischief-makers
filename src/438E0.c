@@ -11,7 +11,7 @@ typedef void (*FuncVoidVoid)(void);
 
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
-extern u8 D_800D28D0[];
+extern u8 D_800D28D0[]; // indeiies of Festival Games Scenes.
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
 extern u16 D_800D2900;
@@ -1135,46 +1135,46 @@ void func_80046274(u32 arg0, u32 arg1) {
 
 void func_80046280(void) {
     if (D_800D28E4 < 0x68) {
-        D_800BE568.whole = MIN(gScreenPosCurrentX.whole - 0x90, D_800D2920);
-        D_800BE56C.whole = MAX(gScreenPosCurrentX.whole + 0x90, D_800D2924);
+        gScreenBoundX0.whole = MIN(gScreenPosCurrentX.whole - 0x90, D_800D2920);
+        gScreenBoundX1.whole = MAX(gScreenPosCurrentX.whole + 0x90, D_800D2924);
     }
 }
 
 void Camera_UpdateViewBounds(void) {
     if (D_800D28E4 < 0x68) {
         if ((D_800D2918 - 0x70) < gScreenPosCurrentY.whole) {
-            D_800BE570.whole  = gScreenPosCurrentY.whole + 0x70;
+            gScreenBoundY0.whole  = gScreenPosCurrentY.whole + 0x70;
         }
         else {
-            D_800BE570.whole  = D_800D2918;
+            gScreenBoundY0.whole  = D_800D2918;
         }
 
         if (gScreenPosCurrentY.whole < (D_800D291C + 0x70)) {
-            D_800BE574.whole = gScreenPosCurrentY.whole - 0x70;
+            gScreenBoundY1.whole = gScreenPosCurrentY.whole - 0x70;
         }
         else {
-            D_800BE574.whole = D_800D291C;
+            gScreenBoundY1.whole = D_800D291C;
         }
 
         if ((gScreenPosCurrentX.whole - 0x90) < D_800D2920) {
-            D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
+            gScreenBoundX0.whole  = gScreenPosCurrentX.whole - 0x90;
         }
         else {
-            D_800BE568.whole  = D_800D2920;
+            gScreenBoundX0.whole  = D_800D2920;
         }
 
         if (D_800D2924 < (gScreenPosCurrentX.whole + 0x90)) {
-            D_800BE56C.whole  = gScreenPosCurrentX.whole + 0x90;
+            gScreenBoundX1.whole  = gScreenPosCurrentX.whole + 0x90;
         }
         else {
-            D_800BE56C.whole  = D_800D2924;
+            gScreenBoundX1.whole  = D_800D2924;
         }
     }
 }
 
 void func_800463C0(void) {
     Camera_UpdateViewBounds();
-    D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
+    gScreenBoundX0.whole  = gScreenPosCurrentX.whole - 0x90;
 }
 
 s32 func_800463F0(void) {

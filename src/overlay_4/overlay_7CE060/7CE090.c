@@ -1293,7 +1293,7 @@ void func_801B9A98_7CE228(u16 actor_index) {
 }
 
 void func_801B9B08_7CE298(void) {
-    if (Transition_FadeOut() != 0) {
+    if (Transition_FadeOut()) {
         gStageState++;
         D_800D28FC |= 8;
         gLifebar.posY.whole = -0x58;
@@ -1331,7 +1331,7 @@ void func_801B9BF4_7CE384(void* spawn_table) {
 }
 
 void func_801B9C88_7CE418(void) {
-    if (Transition_FadeOut() != 0) {
+    if (Transition_FadeOut()) {
         gStageState -= 2;
         D_800BE544 = 0;
         D_800D28FC |= 8;
@@ -1470,14 +1470,14 @@ void func_801BA0C8_7CE858(void) {
                 D_800BE6A8 = 0;
                 gLetterboxMode = LETTERBOX_HORIZONTAL;
                 D_800BE710 = TRUE;
-                D_800BE568.whole = 0x158;
-                D_800BE56C.whole = 0x1008;
-                D_800D2920 = D_800BE568.whole;
-                D_800D2924 = D_800BE56C.whole;
+                gScreenBoundX0.whole = 0x158;
+                gScreenBoundX1.whole = 0x1008;
+                D_800D2920 = gScreenBoundX0.whole;
+                D_800D2924 = gScreenBoundX1.whole;
             }
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gStageTimer = 0;
                 gTransitionPortaitIndex = 0;
@@ -1577,7 +1577,7 @@ handle_cutscene_index:
             func_801B99AC_7CE13C(0, -0x18);
 
         case 7:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1597,7 +1597,7 @@ handle_cutscene_index:
             gLookatEyeZ = 448.0f;
 
         case 9:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1617,7 +1617,7 @@ handle_cutscene_index:
             gLookatEyeZ = 448.0f;
 
         case 11:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 5;
                 D_800BE544 = 0;
                 D_800D28FC |= 8;
@@ -1637,14 +1637,14 @@ handle_cutscene_index:
             D_800BE6A8 = 0;
             gLetterboxMode = LETTERBOX_HORIZONTAL;
             D_800BE710 = TRUE;
-            D_800BE568.whole = 0x158;
-            D_800BE56C.whole = 0x1008;
-            D_800D2920 = D_800BE568.whole;
-            D_800D2924 = D_800BE56C.whole;
+            gScreenBoundX0.whole = 0x158;
+            gScreenBoundX1.whole = 0x1008;
+            D_800D2920 = gScreenBoundX0.whole;
+            D_800D2924 = gScreenBoundX1.whole;
             break;
 
         case 0x1001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState = 5;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
@@ -1685,7 +1685,7 @@ void func_801BA868_7CEFF8(void) {
 
         case 2:
             if (gActors[0x32].flags == 0) {
-                SpawnAreaClear(0);
+                SpawnAreaClear(AREACLEAR_FULL);
                 Sound_StartFade(0x81, 0x168);
                 gStageState++;
             }
@@ -1947,7 +1947,7 @@ void func_801BB0F0_7CF880(void) {
             break;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800BE5F4.unk_00_u32 = 0xA;
                 D_800D28FC |= 8;
@@ -2027,7 +2027,7 @@ void func_801BB360_7CFAF0(void) {
         case 1:
             D_800D28FC |= 4;
             D_800D28FC &= ~8;
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gStageTimer = 180;
                 D_800BE5F4.unk_00_s32 = 0xF;
@@ -2174,7 +2174,7 @@ void func_801BB360_7CFAF0(void) {
             func_80046188(D_801BF728_7D3EB8, D_801BF7BC_7D3F4C);
 
         case 0xC001:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;

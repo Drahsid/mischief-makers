@@ -352,7 +352,7 @@ void func_801B9A08_7E6B58(void) {
             break;
 
         case 0x101:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
@@ -383,7 +383,7 @@ void func_801B9A08_7E6B58(void) {
             Sound_PlayMusic(BGM_BONO);
 
         case 0x201:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -411,7 +411,7 @@ void func_801B9A08_7E6B58(void) {
             func_801B99F4_7E6B44(0x30);
 
         case 0x301:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
@@ -448,7 +448,7 @@ s32 func_801B9DAC_7E6EFC(void) {
 
     if (D_801BA6B0_7E7800[gStageTimer].unk_00 < gScreenPosCurrentX.whole) {
         Actor_LoadSpawnTable(D_801BA6B0_7E7800[gStageTimer].unk_08);
-        D_800BE568.whole  = D_801BA6B0_7E7800[gStageTimer].unk_00 - 0x90;
+        gScreenBoundX0.whole  = D_801BA6B0_7E7800[gStageTimer].unk_00 - 0x90;
         gActors[0x31].var_15C |= 1;
         return TRUE;
     }
@@ -465,10 +465,10 @@ void func_801B9E7C_7E6FCC(void) {
 
         entry = &D_801BA6B0_7E7800[gStageTimer];
         temp = entry->unk_10;
-        D_800BE568.whole  = temp - 0x90;
-        D_800BE56C.whole = entry->unk_12 + 0x90;
-        D_800BE570.whole  = 0x2EF;
-        D_800BE574.whole = 0x20F;
+        gScreenBoundX0.whole  = temp - 0x90;
+        gScreenBoundX1.whole = entry->unk_12 + 0x90;
+        gScreenBoundY0.whole  = 0x2EF;
+        gScreenBoundY1.whole = 0x20F;
         gScreenPosCurrentX.whole = temp + 0x90;
         gScreenPosCurrentY.whole = 0x27F;
         gPlayerActor.posX.whole = -0x90;
@@ -480,17 +480,17 @@ void func_801B9F50_7E70A0(void) {
     u16 temp_s0;
     u16 temp_s1;
 
-    temp_s0 = D_800BE568.whole ;
-    temp_s1 = D_800BE56C.whole ;
+    temp_s0 = gScreenBoundX0.whole ;
+    temp_s1 = gScreenBoundX1.whole ;
     func_801B9E7C_7E6FCC();
     Actor_LoadSpawnTable(D_801BA540_7E7690);
-    gTransitionPortaitIndex = D_800BE56C.whole ;
-    D_800BE568.whole  = temp_s0;
-    D_800BE56C.whole  = temp_s1;
+    gTransitionPortaitIndex = gScreenBoundX1.whole ;
+    gScreenBoundX0.whole  = temp_s0;
+    gScreenBoundX1.whole  = temp_s1;
 }
 
 void func_801B9FB4_7E7104(void) {
-    D_800BE56C.whole  = gTransitionPortaitIndex;
+    gScreenBoundX1.whole  = gTransitionPortaitIndex;
 }
 
 void func_801B9FC8_7E7118(void) {
@@ -505,7 +505,7 @@ void func_801B9FC8_7E7118(void) {
             D_800D2930 = 0;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -521,7 +521,7 @@ void func_801B9FC8_7E7118(void) {
             if (gActors[0x80].flags == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
-                SpawnAreaClear(0);
+                SpawnAreaClear(AREACLEAR_FULL);
                 gStageTimer++;
                 D_800D2930 = 0xA;
             }
@@ -589,7 +589,7 @@ void func_801BA1DC_7E732C(void) {
             gStageState++;
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
                 gStageState++;
@@ -617,7 +617,7 @@ void func_801BA3C4_7E7514(void) {
             Actor_LoadSpawnTable(D_801BACE0_7E7E30);
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
@@ -638,7 +638,7 @@ void func_801BA480_7E75D0(void) {
             Actor_LoadSpawnTable(D_801BAD04_7E7E54);
 
         case 1:
-            if (Transition_FadeOut() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;

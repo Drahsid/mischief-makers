@@ -108,10 +108,10 @@ extern FixedCoord gScreenPosCurrentX; // current x-position of camera in stage
 extern FixedCoord gScreenPosCurrentY; // current y-position of camera in stage
 extern FixedCoord gScreenPosNextX; // next x-position of camera
 extern FixedCoord gScreenPosNextY; // next y-position of camera
-extern FixedCoord D_800BE568; 
-extern FixedCoord D_800BE56C; 
-extern FixedCoord D_800BE570;
-extern FixedCoord D_800BE574;
+extern FixedCoord gScreenBoundX0; 
+extern FixedCoord gScreenBoundX1; 
+extern FixedCoord gScreenBoundY0;
+extern FixedCoord gScreenBoundY1;
 extern s16 D_800BE578;
 extern s16 D_800BE57C;
 extern s16 D_800BE580;
