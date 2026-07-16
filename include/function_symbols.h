@@ -246,8 +246,6 @@ extern s32 func_8005DFC8(s32 arg0);
 
 extern void LookAt_Update(void);
 
-// func_800012F0
-extern void OSD_Reset(void);
 
 // func_8000147C
 extern void func_80009940(void);

@@ -32,7 +32,7 @@ void OSD_Reset(void){
 void OSD_SetData(char* text, s32 x, s32 y, u8 red, u8 green, u8 blue, u8 alpha, f32 scale_x, f32 scale_y){
     u16 index;
 
-    if (gOSDDataCount<=ARRAYLENGTH(gOSDData)){
+    if (gOSDDataCount <= ARRAYLENGTH(gOSDData)){
         gOSDData[gOSDDataCount].isSet = TRUE;
         gOSDData[gOSDDataCount].posX = x;
         gOSDData[gOSDDataCount].posY = y;
