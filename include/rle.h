@@ -27,7 +27,6 @@
 #define ASSET_DEST5_TABLE     ((u8*)0x8036BAC0)
 #define ASSET_DEST6           ((u8*)0x803CE800)
 #define ASSET_DEST6_TABLE     ((u8*)0x803D7748)
-#define D_800D0E84_PU32       ((u32*)D_800D0E84) // TODO
 
 s32 Trouble_RLE_Type1(u8* src, u8* dst);
 void Trouble_RLE_Type2(u8* src, u8* dst, s32 length);

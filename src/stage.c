@@ -1801,12 +1801,16 @@ void GetFestivalTimeRecords(void) {
 }
 
 void WorldMap_LoadGraphics(void) {
-    D_80137714 = D_80137718 = (u32)ASSET_DEST5;
+    D_80137714 = D_80137718 = (uintptr_t)ASSET_DEST5;
     D_800CBF50 = 0;
-    DMA_ReadSync((void*)((u32)rle_0047_3FAB30_011B1BF0 + (u32)Segment_01_ROM_START - (u32)Segment_01_DATA_START),
-                 RLE_SCRATCH_LOW, (u32)rle_0049_406880_011BD940_end - (u32)rle_0047_3FAB30_011B1BF0);
-    D_80137718 = Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST5) + (u32)ASSET_DEST5;
-    D_801376D4 = (u32)ASSET_DEST5_TABLE;
+    DMA_ReadSync(
+        (void*)((uintptr_t)rle_0047_3FAB30_011B1BF0 + (uintptr_t)Segment_01_ROM_START - (uintptr_t)Segment_01_DATA_START),
+        RLE_SCRATCH_LOW,
+        (uintptr_t)rle_0049_406880_011BD940_end - (uintptr_t)rle_0047_3FAB30_011B1BF0
+    );
+    
+    D_80137718 = Trouble_RLE_Type1(RLE_SCRATCH_LOW, ASSET_DEST5) + (uintptr_t)ASSET_DEST5;
+    D_801376D4 = (uintptr_t)ASSET_DEST5_TABLE;
 }
 
 void WorldMap_Reset(void) {
