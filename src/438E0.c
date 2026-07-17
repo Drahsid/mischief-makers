@@ -1065,8 +1065,8 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     gPlayerActor.posY.whole = pos_vals[1];
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
-    D_801373E0.unk_78 &= ~0x10005;
-    D_801373E0.unk_78 |= 2;
+    gPlayerData.flags &= ~0x10005;
+    gPlayerData.flags |= 2;
     gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;
@@ -1076,8 +1076,8 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     D_800D28FC &= ~0x758A;
     D_800D28FC |= 4;
     D_800D2914 = 0;
-    gPortraits[0x40].posY.whole = 0x50;
-    gPortraits[0x41].posY.whole = 0x53;
+    gLifebar.posY.whole = 0x50;
+    gLifebarHead.posY.whole = 0x53;
     D_801376BC[0] = 1;
     D_801376BC[1] = 1;
     D_801376BC[2] = 1;
@@ -1781,13 +1781,13 @@ void func_80047CCC(void) {
     }
     if (D_800D28FC & 4) {
         D_800D28FC &= ~4;
-        gPortraits[0x40].flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
-        gPortraits[0x41].flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
+        gLifebar.flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
+        gLifebarHead.flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
     }
     else if (D_800D28FC & 8) {
         D_800D28FC &= ~8;
-        gPortraits[0x40].flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
-        gPortraits[0x41].flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+        gLifebar.flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+        gLifebarHead.flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
     }
     D_800D28FC &= ~0x300;
     D_800D2960 = 0;

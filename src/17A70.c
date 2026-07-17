@@ -169,7 +169,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_31:
+        case ACTOR_OVL2_WORLD5A:
             D_801A6800[index](actor_index);
             break;
 

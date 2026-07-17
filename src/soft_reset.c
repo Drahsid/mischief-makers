@@ -245,7 +245,7 @@ void GameState_Loading(void) {
     gIsPlayerInactive =
     D_800BE5F4.unk_00_u32 =
     D_800D5820 =
-    D_801373E0.unk_78 = 0;
+    gPlayerData.flags = 0;
 
     func_80042D84(0);
     func_80010A10();

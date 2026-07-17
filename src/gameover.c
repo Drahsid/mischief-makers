@@ -232,8 +232,8 @@ void GameState_ContinueScreen(void) {
     }
     switch (gGameStateSubState) {
     case 0:
-        gPortraits[0x40].flags = 0;
-        gPortraits[0x41].flags = 0;
+        gLifebar.flags = 0;
+        gLifebarHead.flags = 0;
         Sound_StartFade(1, 0x60);
         func_8002092C();
         gContinueTimer = 0x60;

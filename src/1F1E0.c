@@ -1998,7 +1998,7 @@ void func_8001EC1C(void) {
     s16 sp198[0x90];
     s16 sp78[0x90];
 
-    if ((D_D_801373E0.unk_74 & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
+    if ((gPlayerData.flags & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
         return;
     }
 
@@ -2238,7 +2238,7 @@ void func_8001EC1C(void) {
 void Actors_SetPlatforms(void) {
     u16 index;
 
-    if ((D_D_801373E0.unk_74 & 0x10)) {
+    if ((gPlayerData.flags & 0x10)) {
         return;
     }
 
@@ -2410,7 +2410,7 @@ void func_80020024(void) {
     func_8001107C();
     if (!gIsPlayerInactive) {
         ActorUpdate_Marina(PLAYER_INDEX);
-        func_8008C528(0x41);
+        func_8008C528(LIFEBAR_HEAD_INDEX);
     }
     func_8001FF30();
     func_8001DE30();

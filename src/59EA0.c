@@ -62,7 +62,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
     gActors[actor_1].graphicIndex = 0x128;
     gActors[actor_1].unk_148 = 0.0f;
-    if (!(D_801373E0.unk_7C & 0x2)) {
+    if (!(gPlayerData.unk_7C & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
         gActors[actor_1].var_160 = FIXED_UNIT(256.0);
     }
@@ -88,7 +88,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].unk_148 = 0.0f;
     sp4C[0] = 0;
     sp4C[1] = -0x28;
-    for (index = D_801373E0.unk_0A; index > 0; index--) {
+    for (index = gPlayerData.unk_0A; index > 0; index--) {
         actor_1 = func_800592A0(actor_index, sp4C);
         if (actor_1 == 0) {
             return;

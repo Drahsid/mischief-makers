@@ -1547,7 +1547,7 @@ void ActorUpdate_MsHint(u16 actor_index) {
             gActors[actor_index].state = 1;
         }
         if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
-            if ((gActors[actor_index].parentIndex == PLAYER_INDEX) && (D_801373E0.unk_12 == 0) && (D_801373E0.unk_10 == 8)) {
+            if ((gActors[actor_index].parentIndex == PLAYER_INDEX) && (gPlayerData.unk_12 == 0) && (gPlayerData.unk_10 == 8)) {
                 SpawnParticle_RingWaveRed(1.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
                 if (gRedGems < 0xA) { // not enough gems, tell her so.
                     Sound_PlaySfxAtActor2(SFX_WRONG_0134, actor_index);

@@ -1534,7 +1534,7 @@ void func_801BA0C8_7CE858(void) {
 
         case 5:
             gLookatEyeZ = Math_ApproachF32(gLookatEyeZ, 620.0f, 1.2f);
-            D_801373E0.unk_78 |= 4;
+            gPlayerData.flags |= 4;
             if (func_801B9900_7CE090() != 0) {
                 s32 position_x;
 
@@ -2155,7 +2155,7 @@ void func_801BB360_7CFAF0(void) {
         case 11:
             gStageState++;
             D_800D28FC |= 8;
-            D_801373E0.unk_78 |= 1;
+            gPlayerData.flags |= 1;
             gCannotPause = FALSE;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
@@ -2189,7 +2189,7 @@ void func_801BB360_7CFAF0(void) {
             Actor_LoadSpawnTable(D_801BF738_7D3EC8);
             Sound_PlayMusic(BGM_BOSS);
             D_800BE5F4.unk_00_s32 = 7;
-            D_801373E0.unk_78 |= 1;
+            gPlayerData.flags |= 1;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             D_800BE544 = 0x8000;
             gDrawEnvLayer = FALSE;

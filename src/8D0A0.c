@@ -72,12 +72,12 @@ void func_8008C528(u16 arg0) {
     u16 actor_index;
 
     actor_index = PLAYER_INDEX;
-    if (D_801373E0.marina_Flags_098 & ACTOR_FLAG3_UNK1) {
+    if (gPlayerData.marina_Flags_098 & ACTOR_FLAG3_UNK1) {
         if ((gActors[actor_index].stateLower >= 0x30) && (gActors[actor_index].stateLower < 0x37)) {
-            D_801373E0.unk_43 = 1;
+            gPlayerData.unk_43 = 1;
         }
     }
-    switch (D_801373E0.unk_43) {
+    switch (gPlayerData.unk_43) {
     case 0:
         graphic_index_list = D_800E4560;
         break;
@@ -94,19 +94,19 @@ void func_8008C528(u16 arg0) {
         blue = -blue;
     }
     Palette_AdjustRgb5551Array(D_800E4594, (u16* )0x80222220, 0x1A, blue / 8, green / 8, red / 8);
-    gPortraits[arg0].graphicIndex = graphic_index_list[D_801373E0.unk_42 * 2];
-    D_801373E0.unk_40_s16++;
-    if (D_801373E0.unk_40_s16 >= graphic_index_list[D_801373E0.unk_42 * 2 + 1]) {
-        if (graphic_index_list[D_801373E0.unk_42 * 2 + 2] == 0) {
-            D_801373E0.unk_40 = 0;
+    gPortraits[arg0].graphicIndex = graphic_index_list[gPlayerData.unk_42 * 2];
+    gPlayerData.unk_40_s16++;
+    if (gPlayerData.unk_40_s16 >= graphic_index_list[gPlayerData.unk_42 * 2 + 1]) {
+        if (graphic_index_list[gPlayerData.unk_42 * 2 + 2] == 0) {
+            gPlayerData.unk_40 = 0;
         }
         else {
-            D_801373E0.unk_42++;
-            D_801373E0.unk_40_s16 = 0;
+            gPlayerData.unk_42++;
+            gPlayerData.unk_40_s16 = 0;
         }
-        if (graphic_index_list[D_801373E0.unk_42 * 2] < 0) {
-            D_801373E0.unk_42 += graphic_index_list[D_801373E0.unk_42 * 2];
-            D_801373E0.unk_40_s16 = Rand() * 2;
+        if (graphic_index_list[gPlayerData.unk_42 * 2] < 0) {
+            gPlayerData.unk_42 += graphic_index_list[gPlayerData.unk_42 * 2];
+            gPlayerData.unk_40_s16 = Rand() * 2;
         }
     }
 }

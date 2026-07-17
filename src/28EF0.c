@@ -118,8 +118,8 @@ void WarpGate_Sparkle(u16 actor_index, u16 arg1);
 // @param y local y-position of player
 void func_800282F0(s16 x, s16 y) {
     Marina_Init();
-    D_801373E0.unk_20 = 0;
-    D_801373E0.unk_24 = 0;
+    gPlayerData.unk_20 = 0;
+    gPlayerData.unk_24 = 0;
     gActors->posX.whole = x;
     gActors->posY.whole = y;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + x;
@@ -134,7 +134,7 @@ void func_800282F0(s16 x, s16 y) {
 void func_80028380(void) {
     gPlayerActor.flags = 0;
     gIsPlayerInactive = TRUE;
-    D_D_801373E0.unk_74 = 0;
+    gPlayerData.flags = 0;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;
     }

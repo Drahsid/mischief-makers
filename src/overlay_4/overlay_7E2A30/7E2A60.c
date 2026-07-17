@@ -813,8 +813,8 @@ void func_801B9E74_7E2FD4(void) {
                 }
 
                 D_800BE5F4.unk_00_s32 = 2;
-                D_801373E0.unk_20 = gButton_DRight;
-                D_801373E0.unk_24 = gButton_DRight;
+                gPlayerData.unk_20 = gButton_DRight;
+                gPlayerData.unk_24 = gButton_DRight;
                 D_800D2920 = 0x1FF0;
                 gScreenBoundX0.whole = D_800D2920;
                 D_800D28F8 = 4;
@@ -837,8 +837,8 @@ void func_801B9E74_7E2FD4(void) {
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
-                D_801373E0.unk_20 = gButton_DRight;
-                D_801373E0.unk_24 = 0;
+                gPlayerData.unk_20 = gButton_DRight;
+                gPlayerData.unk_24 = 0;
             }
             func_80047714(2, 1, 1, 8);
             if (gStageState == 8) {
@@ -1559,7 +1559,7 @@ void func_801BB85C_7E49BC(void) {
             break;
 
         case 25:
-            if ((D_D_801373E0.unk_74 & 2) == 0) {
+            if ((gPlayerData.flags & 2) == 0) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0x5B);
             }
@@ -1633,7 +1633,7 @@ void func_801BBC00_7E4D60(void) {
         case 3:
             gStageState++;
             D_800D28FC |= 8;
-            D_801373E0.unk_78 |= 1;
+            gPlayerData.flags |= 1;
             gCannotPause = FALSE;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
@@ -1662,7 +1662,7 @@ void func_801BBC00_7E4D60(void) {
             Actor_LoadSpawnTable(D_801BD5E4_7E6744);
             gActors[0x8F].state = 0x10;
             D_800BE5F4.unk_00_s32 = 5;
-            D_801373E0.unk_78 |= 1;
+            gPlayerData.flags |= 1;
 
         case 0x1001:
             if (Transition_FadeOut()) {

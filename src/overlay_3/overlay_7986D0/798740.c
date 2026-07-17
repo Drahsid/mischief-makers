@@ -2166,12 +2166,12 @@ void func_801B2D40_79AB80(u16 actor_index, u32 flags) {
     s8 state;
 
     if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
-        state = D_801373E0.unk_10;
+        state = gPlayerData.unk_10;
         if ((state >= 2) && (state < 7)) {
-            gActors[actor_index].velocityX.raw = (-D_801373E0.unk_0E) * FIXED_UNIT(0.001953125) + FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0E) * FIXED_UNIT(0.001953125) + FIXED_UNIT(1.953125);
         }
         else if ((state >= 10) && (state < 15)) {
-            gActors[actor_index].velocityX.raw = -(-D_801373E0.unk_0E) * FIXED_UNIT(0.001953125) - FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = -(-gPlayerData.unk_0E) * FIXED_UNIT(0.001953125) - FIXED_UNIT(1.953125);
         }
 
         if ((state >= 6) && (state < 11)) {
@@ -2931,7 +2931,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
         case 0:
             flags = gActors[actor_index].flags_098;
             if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
-                if (D_801373E0.unk_10 == 8) {
+                if (gPlayerData.unk_10 == 8) {
                     Sound_PlaySfx(SFX_00A6);
                     gStartButtonOnly = TRUE;
                     gActors[actor_index].state++;

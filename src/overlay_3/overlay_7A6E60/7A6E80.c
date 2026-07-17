@@ -1569,8 +1569,8 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             if (gFestivalCurrentEvent != FESTGAME_HURDLE) {
                 // no jumping in sprints
                 D_800BE5F4.unk_00_u32 = 2;
-                D_801373E0.unk_20 = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
-                D_801373E0.unk_24 = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
+                gPlayerData.unk_20 = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
+                gPlayerData.unk_24 = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
             }
             D_800BE544 = gFestivalCompetitorIndices[0];
             func_801B159C_7A7B1C(actor_index);

@@ -67,9 +67,9 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].var_15C = gActors[actor_index].unk_0FC.raw;
             gActors[actor_index].velocityX.raw = -gActors[actor_index].unk_0F8.raw / 8;
             gActors[actor_index].velocityY.raw = -gActors[actor_index].unk_0FC.raw / 8;
-            if (D_801373E0.unk_78 & 0x10000) {
-                gActors[actor_index].var_158 += D_801373E0.unk_60;
-                gActors[actor_index].velocityX.raw += D_801373E0.unk_60;
+            if (gPlayerData.flags & 0x10000) {
+                gActors[actor_index].var_158 += gPlayerData.unk_60;
+                gActors[actor_index].velocityX.raw += gPlayerData.unk_60;
             }
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;

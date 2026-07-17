@@ -4,8 +4,8 @@ extern s16 D_800CCC78[];
 
 void func_8005C520(s8 arg0, s8 arg1) {
     gPlayerActor.unk_0DC |= 0x40;
-    D_801373E0.unk_0A = arg0;
-    D_801373E0.unk_0B = arg1;
+    gPlayerData.unk_0A = arg0;
+    gPlayerData.unk_0B = arg1;
 }
 
 s32 func_8005C550(u16 actor_index, s16 arg1) {

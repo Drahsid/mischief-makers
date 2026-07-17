@@ -33,8 +33,11 @@ typedef struct {
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
-#define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
-#define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
+#define LIFEBAR_INDEX 64
+#define LIFEBAR_HEAD_INDEX 65
+
+#define gLifebar gPortraits[LIFEBAR_INDEX] // lifebar uses PortraitStruct
+#define gLifebarHead gPortraits[LIFEBAR_HEAD_INDEX] // head at edge of lifebar uses PortraitStruct
 
 // data on "static" objects (clanblocks, gems)
 typedef struct {
@@ -85,9 +88,9 @@ typedef struct {
     /* 0x6C */ u32 marina_Unk_0FC; // stores Marina's "unk_0FC" value when ACTOR_FLAG3_UNK1 is set.
     /* 0x70 */ u16 unk_70; // index of "held" actor?
     /* 0x72 */ u8 unk_72[6]; // unused?
-    /* 0x78 */ u32 unk_78; // bitfield. 0x8 allows marina actor to update.
+    /* 0x78 */ u32 flags; // bitfield. 0x8 allows marina actor to update.
     /* 0x7C */ u32 unk_7C;
-} UnkStruct_D_801373E0;
+} PlayerData;
 
 // D_800BE5F4 is treated as both word and 4 bytes.
 typedef union {

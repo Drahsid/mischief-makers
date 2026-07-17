@@ -2298,7 +2298,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 25:
-            if ((D_D_801373E0.unk_74 & 2) == 0) {
+            if ((gPlayerData.flags & 2) == 0) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0x5B);
             }

@@ -45,7 +45,7 @@ typedef enum {
     ACTOR_OVL2_WORLD3,
     ACTOR_OVL2_WORLD4,
     ACTOR_OVL2_30,
-    ACTOR_OVL2_31,
+    ACTOR_OVL2_WORLD5A,
     ACTOR_OVL2_STAGE_5_5, // actors in Overlay 2 code of "Trapped!?"
     ACTOR_OVL0_33,
     ACTOR_OVL0_34,
@@ -516,6 +516,16 @@ typedef enum {
     ACTORTYPE_OVL2_W4_34,
     ACTORTYPE_OVL2_W4_35,
 
+    // actors in dispatch table D_801A6800_7854B0
+
+    ACTORTYPE_OVL2_W5A_0 = (ACTOR_OVL2_WORLD5A << 8), // stubbed
+    ACTORTYPE_OVL2_W5A_OSTRICH,
+    ACTORTYPE_OVL2_W5A_BEE,
+    ACTORTYPE_OVL2_W5A_CMDR,
+    ACTORTYPE_OVL2_W5A_CMDR_BEAM,
+    ACTORTYPE_OVL2_W5A_CMDR_BOMB,
+    ACTORTYPE_OVL2_W5A_6, // stubbed
+
     // actors in dispatch table D_801A6800_78B430
 
     ACTORTYPE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor
@@ -559,9 +569,9 @@ typedef enum {
     ACTORTYPE_OVL3_W5_12,
     ACTORTYPE_OVL3_W5_13,
     ACTORTYPE_OVL3_W5_14,
-    ACTORTYPE_OVL3_W5_15,
-    ACTORTYPE_OVL3_W5_16,
-    ACTORTYPE_OVL3_W5_17,
+    ACTORTYPE_OVL3_W5_15, // missle spawner in "Bee's the one"
+    ACTORTYPE_OVL3_W5_16, // missles in "Bee's the one"
+    ACTORTYPE_OVL3_W5_17, // Rocketeers in "Bee's the one"
     ACTORTYPE_OVL3_W5_18,
     ACTORTYPE_OVL3_W5_19,
     ACTORTYPE_OVL3_W5_20,

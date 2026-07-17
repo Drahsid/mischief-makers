@@ -72,10 +72,10 @@ u16 D_801BA63C_7E778C[] = {
     0x1000, 0x027F, 0x0000, 0x7FFF, 0x0574, 0x020F, 0xFFE0, 0xFFEB
 };
 
-// unused spawn table
+// unused spawn table, likely meant for "Counterattack"
 u16 D_801BA64C_7E779C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, 0x1F01,
+    0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     SPAWNRECORD_END,
 };
 
@@ -85,13 +85,14 @@ u16 D_801BA65C_7E77AC[] = {
     SPAWNRECORD_END,
 };
 
+// actor spawn Table for "Counter-Attack"
 u16 D_801BA66C_7E77BC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
-    0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, 0x1F03,
+    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
+    0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_CMDR,
     SPAWNRECORD_END,
     0, 0, 0, // might be a seperate unused table
-    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
+    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     SPAWNRECORD_END
 };
 
@@ -215,7 +216,7 @@ u16 D_801BA9A4_7E7AF4[] = {
 
 u16 D_801BAA08_7E7B58[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01A0, 0x0290, 0x0000, 0x0000, 0x1F02,
+    0x0000, 0x0030, 0x01A0, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_BEE,
     0x0000, 0x0070, 0x0200, 0x02A0, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_15,
     0x0000, 0x0092, 0x0200, 0x02A0, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_18,
     0x0000, 0x0093, 0x0200, 0x02A0, 0x0000, 0x0001, ACTORTYPE_OVL3_W5_18,
@@ -337,6 +338,7 @@ void func_801B99F4_7E6B44(u16 arg0) {
     D_800BE73C = FIXED_UNIT(6.0);
 }
 
+// stage state machine for "CounterAttack"
 void func_801B9A08_7E6B58(void) {
     if ((gButtonPress & gButton_LTrig) != 0) {
         D_800CC428 = TRUE;
@@ -344,6 +346,7 @@ void func_801B9A08_7E6B58(void) {
 
     switch (gStageState) {
         case 0:
+        // skip right to the fight.
             gStageState = 0x100;
             break;
 
@@ -553,6 +556,7 @@ void func_801B9FC8_7E7118(void) {
     }
 }
 
+// stage state machine for "Bee's The One"
 void func_801BA1DC_7E732C(void) {
     u16 index;
     u16* base;

@@ -328,6 +328,7 @@ gSfxActorIndices = 0x80108DE0; // size:0x8
 gSfxStopTimers = 0x8010CDE8; // size:0x8
 gSfxChannelVolumes = 0x8011CDF0; // size:0x4
 gSfxChannelPans = 0x8011CF18; // size:0x4
+gPlayerData = 0x801373E0;
 gAudioDmaMessageQueue = 0x801377B8; // size:0x18
 gAudioTaskMessageQueue = 0x801377D0; // size:0x18
 gAudioDmaMessageBuf = 0x80137800; // size:0xC0
@@ -346,6 +347,7 @@ gAudioCommandLists = 0x80137D68; // size:0x8
 gAudioBuffers = 0x80137D70; // size:0x10
 gAudioHeap = 0x80137D80; // size:0x10
 gAudioHeapBuffer = 0x80137DA8; // size:0x35C00
+
 gAudioGlobals = 0x8016DEC0; // size:0x50
 gAudioSynthConfig = 0x8016DF10; // size:0x24
 gAudioBankFile = 0x8016DF34; // size:0x4

@@ -2290,11 +2290,11 @@ void func_801BB310_7C84F0(void) {
         case 4:
             if (gPlayerPosX.whole >= 0x1980) {
                 gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x1CC, 3);
-                D_801373E0.unk_78 |= 4;
+                gPlayerData.flags |= 4;
             }
             else {
                 gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x270, 3);
-                D_801373E0.unk_78 &= ~4;
+                gPlayerData.flags &= ~4;
             }
 
             if (gPlayerPosX.whole >= 0x1AF9) {
