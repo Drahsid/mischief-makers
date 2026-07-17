@@ -321,46 +321,6 @@ typedef struct {
 
 extern Actor gActors[];
 
-// required to match instances where the codegen suggests unique and impossible linker entries for individual fields in actors
-#define ACTOR_FIXEDADDRESS_SET(actor_index_, field_, value_) \
-{ \
-    u16 fixed_index_ = (actor_index_); \
-    if (gActors && gActors) { \
-    } \
-    gActors[fixed_index_].field_ = value_; \
-}
-
-#define ACTOR_FIXEDADDRESS_OR(actor_index_, field_, value_) \
-{ \
-    u16 fixed_index_ = (actor_index_); \
-    if (gActors && gActors) { \
-    } \
-    gActors[fixed_index_].field_ |= (value_); \
-}
-
-#define ACTOR_FIXEDADDRESS_DIRECT_SET(actor_index_, field_, value_) \
-{ \
-    if (gActors && gActors) { \
-    } \
-    gActors[(actor_index_)].field_ = (value_); \
-}
-
-#define ACTOR_FIXEDADDRESS_INDEX_VAR_SET(index_var_, actor_index_, field_, value_) \
-{ \
-    index_var_ = (actor_index_); \
-    if (gActors && gActors) { \
-    } \
-    gActors[index_var_].field_ = (value_); \
-}
-
-#define ACTOR_FIXEDADDRESS_INDEX_VAR_OR(index_var_, actor_index_, field_, value_) \
-{ \
-    index_var_ = (actor_index_); \
-    if (gActors && gActors) { \
-    } \
-    gActors[index_var_].field_ |= (value_); \
-}
-
 extern ActorFunc D_80192000[]; // "overlay 0" dispatch table.
 extern ActorFunc D_8019B000[]; // "overlay 1" dispatch table.
 extern ActorFunc D_801A6800[]; // "overlay 2" dispatch table.

@@ -1049,7 +1049,7 @@ void func_80078FF0(u16 actor_index, s32 arg1, s32 arg2) {
     }
     if (temp_s0->graphicTimer == 0) {
         if (temp_s0->velocityY.raw > FIXED_UNIT(1.125)) {
-            temp_s0->graphicList = &D_800D8198;
+            temp_s0->graphicList = D_800D8198;
         }
         if (temp_s0->velocityY.raw < -FIXED_UNIT(1.125)) {
             temp_s0->graphicList = D_800D8190;

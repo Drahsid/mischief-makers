@@ -147,10 +147,6 @@ tools:
             - EBBC0
             - EBBE0
             - EC960
-            - EDBC0
-            - EDC20
-            - EDC50
-            - EDCE0
             - bss_
 
         - id: overlays

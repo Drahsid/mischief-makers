@@ -2,12 +2,12 @@
 #define func_8001FCA0_ARGS u16 actor_index, s32 x, s32 y
 #include "common.h"
 #include "actor.h"
-#include "Alphabet.h"
 #include "input.h"
 #include "music.h"
 #include "stage.h"
 #include "1F1E0.h"
 #include "28EF0.h"
+#include "7D8E0.h"
 
 extern u16* D_800D1810[]; // palettes of particles.
 extern u16 D_800D1898[]; // "からっぽ..."/"Empty.."
@@ -57,8 +57,7 @@ extern u16 D_800D8608[];
 extern u16 D_800D8628[];
 extern u16 D_800D86A0[];
 extern u16 D_800D86D8[]; // guess
-extern u16 D_800D9AE4[];
-extern u8 D_800D9AF4[];
+extern u16 D_800D9AF4[];
 extern u16 D_800D9B64[];
 extern s16 D_800E14C8[];
 extern s16 D_800E14E8[];
@@ -7197,7 +7196,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(32.0), FIXED_UNIT(0.5));
-            func_8007EA14(&D_800D2750, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), &D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(D_800D2750, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 84, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
@@ -7220,7 +7219,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(32.0), FIXED_UNIT(0.5));
-            func_8007EA14(&D_800D27B0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(D_800D27B0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0x5C, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);

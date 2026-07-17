@@ -5,4 +5,7 @@
 
 void func_8001107C(void);
 
+// guessed signature
+void func_80012044(s16, s16, s32);
+
 #endif
