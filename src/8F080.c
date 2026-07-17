@@ -19,9 +19,6 @@ extern u16 D_800DBC7C[];
 
 extern s16 D_800E2364[];
 
-// TODO: func_8001FCA0 only matches if arg1/arg2 are `s16`, but only matches below as `s32`
-// u8 func_8001FCA0(u16 arg0, s32 arg1, s32 arg2);
-
 // forward declarations
 void func_800907E4(u16 actor_index);
 void func_80090A88(u16 actor_index);
