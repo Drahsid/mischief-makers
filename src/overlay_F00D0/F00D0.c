@@ -2,10 +2,10 @@
 
 // stubbed game states
 
-void func_80388000_F00D0(void) {
+void GameState_State8Overlay(void) {
 }
 
-void func_80388008_F00D8(void) {
+void GameState_State9Overlay(void) {
 }
 
 // stubbed actor updates.

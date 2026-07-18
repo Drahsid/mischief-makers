@@ -321,8 +321,8 @@ segments:
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
       - [0x0D2410, data] # 62250
-      - [0x0D34B0, .data, 42E90] 
       - [0x0D24D0, data]
+      - [0x0D34B0, .data, 42E90] 
       - [0x0E44A0, .data, E44A0] # previously placed in boot.c
       - [0x0E4760, data]
       - [0x0E4920, data] # 84BB0?

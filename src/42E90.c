@@ -10,11 +10,11 @@ void Actor11_State4(u16);
 
 // states for ACTORTYPE_11
 ActorFunc gActor11States[]={
-     Actor11_State0;
-     Actor11_State1;
-     Actor11_State2;
-     Actor11_State3;
-     Actor11_State4;
+     Actor11_State0,
+     Actor11_State1,
+     Actor11_State2,
+     Actor11_State3,
+     Actor11_State4
 };
 
 s32 func_80042290(u16 actor_index) {

@@ -367,8 +367,8 @@ GameState_SoftReset = 0x80022F48; // type:func
 GameState_Loading = 0x800232A4; // type:func
 GameState_Gameplay = 0x80021034; // type:func
 
-GameState_State8Overlay = 0x80388000; // type:func
-GameState_State9Overlay = 0x80388008; // type:func
+GameState_State8Overlay = 0x80388000; // type:func rom:0xF00D0
+GameState_State9Overlay = 0x80388008; // type:func rom:0xF00D8
 GameState_Attract = 0x80021270; // type:func
 GameState_FileSelect = 0x80007C8C; // type:func
 
@@ -401,8 +401,8 @@ ActorUpdate_Type71 = 0x80042358; // type:func
 
 Actor11_State1 = 0x80042360; // type:func
 Actor11_State0 = 0x800429A4; // type:func
-Actor11_State2 = 0x80042360; // type:func
-Actor11_State3 = 0x80042360; // type:func
+Actor11_State2 = 0x80042A0C; // type:func
+Actor11_State3 = 0x80042AEC; // type:func
 Actor11_State4 = 0x80042B2C; // type:func
 
 ActorsUpdate_Velocity = 0x80014af0; // type:func

@@ -20,89 +20,89 @@ typedef enum {
 // flags set in 0x110, folowed by those also used in 0x150
 typedef enum {
 
-    CLANBALLFLAG_MASK_FF = 0xFF, // masks index of associated actor
+    CLANBALL_MASK_FF = 0xFF, // masks index of associated actor
 
-    CLANBALLFLAG_COLOR0 = ((1 << 8) * 0),
-    CLANBALLFLAG_COLOR1 = ((1 << 8) * 1),
-    CLANBALLFLAG_COLOR2 = ((1 << 8) * 2),
-    CLANBALLFLAG_COLOR3 = ((1 << 8) * 3),
-    CLANBALLFLAG_COLOR4 = ((1 << 8) * 4),
+    CLANBALL_COLOR0 = ((1 << 8) * 0),
+    CLANBALL_COLOR1 = ((1 << 8) * 1),
+    CLANBALL_COLOR2 = ((1 << 8) * 2),
+    CLANBALL_COLOR3 = ((1 << 8) * 3),
+    CLANBALL_COLOR4 = ((1 << 8) * 4),
 
-    CLANBALLFLAG_COLORMASK = (CLANBALLFLAG_COLOR1 | CLANBALLFLAG_COLOR2 | 
-        CLANBALLFLAG_COLOR3 | CLANBALLFLAG_COLOR4),
+    CLANBALL_COLORMASK = (CLANBALL_COLOR1 | CLANBALL_COLOR2 | 
+        CLANBALL_COLOR3 | CLANBALL_COLOR4),
 
-    CLANBALLFLAG_UNK10 = (1 << 10),
-    CLANBALLFLAG_UNK11 = (1 << 11),
+    CLANBALL_UNK10 = (1 << 10),
+    CLANBALL_UNK11 = (1 << 11),
     // show arrows when held in "Clanball Land"
     // masked out for all other stages
-    CLANBALLFLAG_ARROWS = (1 << 12), 
-    CLANBALLFLAG_UNK13 = (1 << 13),
-    CLANBALLFLAG_UNK14 = (1 << 14),
-    CLANBALLFLAG_UNK15 = (1 << 15),
+    CLANBALL_ARROWS = (1 << 12), 
+    CLANBALL_UNK13 = (1 << 13),
+    CLANBALL_UNK14 = (1 << 14),
+    CLANBALL_UNK15 = (1 << 15),
     
-    CLANBALLFLAG_UNK16 = (1 << 16),
-    CLANBALLFLAG_UNK17 = (1 << 17),
-    CLANBALLFLAG_UNK18 = (1 << 18),
-    CLANBALLFLAG_UNK19 = (1 << 19),
+    CLANBALL_UNK16 = (1 << 16),
+    CLANBALL_UNK17 = (1 << 17),
+    CLANBALL_UNK18 = (1 << 18),
+    CLANBALL_UNK19 = (1 << 19),
     
-    CLANBALLFLAG_UNKMASK_A = (CLANBALLFLAG_UNK16 | CLANBALLFLAG_UNK17 | CLANBALLFLAG_UNK18| CLANBALLFLAG_UNK19),
+    CLANBALL_UNKMASK_A = (CLANBALL_UNK16 | CLANBALL_UNK17 | CLANBALL_UNK18| CLANBALL_UNK19),
 
-    CLANBALLFLAG_UNK20 = (1 << 20),
-    CLANBALLFLAG_UNK21 = (1 << 21),
-    CLANBALLFLAG_UNK22 = (1 << 22),
-    CLANBALLFLAG_UNK23 = (1 << 23),
-    CLANBALLFLAG_UNK24 = (1 << 24),
-    CLANBALLFLAG_UNK25 = (1 << 25),
-    CLANBALLFLAG_UNK26 = (1 << 26),
-    CLANBALLFLAG_UNK27 = (1 << 27),
-    CLANBALLFLAG_UNK28 = (1 << 28),
-    CLANBALLFLAG_UNK29 = (1 << 29),
-    CLANBALLFLAG_UNK30 = (1 << 30),
-    CLANBALLFLAG_UNK31 = (1U << 31U),
+    CLANBALL_UNK20 = (1 << 20),
+    CLANBALL_UNK21 = (1 << 21),
+    CLANBALL_UNK22 = (1 << 22),
+    CLANBALL_UNK23 = (1 << 23),
+    CLANBALL_UNK24 = (1 << 24),
+    CLANBALL_UNK25 = (1 << 25),
+    CLANBALL_UNK26 = (1 << 26),
+    CLANBALL_UNK27 = (1 << 27),
+    CLANBALL_UNK28 = (1 << 28),
+    CLANBALL_UNK29 = (1 << 29),
+    CLANBALL_UNK30 = (1 << 30),
+    CLANBALL_UNK31 = (1U << 31U)
 } ClanballFlags;
 
 // flags set in 0x110, folowed by those also used in 0x150
 typedef enum {
-    SPIKEBALLFLAG_UNK0 = (1 << 0),
-    SPIKEBALLFLAG_UNK1 = (1 << 1),
-    SPIKEBALLFLAG_UNK2 = (1 << 2),
-    SPIKEBALLFLAG_UNK3 = (1 << 3),
-    SPIKEBALLFLAG_UNK4 = (1 << 4),
-    SPIKEBALLFLAG_UNK5 = (1 << 5),
-    SPIKEBALLFLAG_UNK6 = (1 << 6),
-    SPIKEBALLFLAG_UNK7 = (1 << 7),
+    SPIKEBALL_UNK0 = (1 << 0),
+    SPIKEBALL_UNK1 = (1 << 1),
+    SPIKEBALL_UNK2 = (1 << 2),
+    SPIKEBALL_UNK3 = (1 << 3),
+    SPIKEBALL_UNK4 = (1 << 4),
+    SPIKEBALL_UNK5 = (1 << 5),
+    SPIKEBALL_UNK6 = (1 << 6),
+    SPIKEBALL_UNK7 = (1 << 7),
 
-    SPIKEBALLFLAG_COLOR0 = ((1 << 8) * 0),
-    SPIKEBALLFLAG_COLOR1 = ((1 << 8) * 1),
-    SPIKEBALLFLAG_COLOR2 = ((1 << 8) * 2),
-    SPIKEBALLFLAG_COLOR3 = ((1 << 8) * 3),
-    SPIKEBALLFLAG_COLORMASK = (SPIKEBALLFLAG_COLOR1 | SPIKEBALLFLAG_COLOR2 ),
+    SPIKEBALL_COLOR0 = ((1 << 8) * 0),
+    SPIKEBALL_COLOR1 = ((1 << 8) * 1),
+    SPIKEBALL_COLOR2 = ((1 << 8) * 2),
+    SPIKEBALL_COLOR3 = ((1 << 8) * 3),
+    SPIKEBALL_COLORMASK = (SPIKEBALL_COLOR1 | SPIKEBALL_COLOR2 ),
 
-    SPIKEBALLFLAG_DROPRED = ((1 << 10) * 1), // drop red gem when hit
-    SPIKEBALLFLAG_DROPBLUE = ((1 << 10) * 2), // drop blue gem when hit
-    SPIKEBALLFLAG_DROPYELLOW = ((1 << 10) * 3), // drop yellow gem when hit
-    SPIKEBALLFLAG_DROPMASK = SPIKEBALLFLAG_DROPYELLOW,
+    SPIKEBALL_DROPRED = ((1 << 10) * 1), // drop red gem when hit
+    SPIKEBALL_DROPBLUE = ((1 << 10) * 2), // drop blue gem when hit
+    SPIKEBALL_DROPYELLOW = ((1 << 10) * 3), // drop yellow gem when hit
+    SPIKEBALL_DROPMASK = SPIKEBALL_DROPYELLOW,
 
-    SPIKEBALLFLAG_MORTAL = (1 << 12), // do not respawn when hit
-    SPIKEBALLFLAG_UNK13 = (1 << 13),
-    SPIKEBALLFLAG_UNK14 = (1 << 14),
-    SPIKEBALLFLAG_ONSCREEN = (1U << 15U), // sets ACTOR_FLAG_ONSCREEN_ONLY
-    SPIKEBALLFLAG_UNK16 = (1 << 16),
-    SPIKEBALLFLAG_UNK17 = (1 << 17),
-    SPIKEBALLFLAG_UNK18 = (1 << 18),
-    SPIKEBALLFLAG_UNK19 = (1 << 19),
-    SPIKEBALLFLAG_UNK20 = (1 << 20),
-    SPIKEBALLFLAG_UNK21 = (1 << 21),
-    SPIKEBALLFLAG_UNK22 = (1 << 22),
-    SPIKEBALLFLAG_UNK23 = (1 << 23),
-    SPIKEBALLFLAG_UNK24 = (1 << 24),
-    SPIKEBALLFLAG_UNK25 = (1 << 25),
-    SPIKEBALLFLAG_UNK26 = (1 << 26),
-    SPIKEBALLFLAG_UNK27 = (1 << 27),
-    SPIKEBALLFLAG_MOVEX = (1 << 28), // determines movement on x-axis
-    SPIKEBALLFLAG_MOVEY = (1 << 29), // determines movement on x-axis
-    SPIKEBALLFLAG_UNK30 = (1 << 30),
-    SPIKEBALLFLAG_UNK31 = (1U << 31U),
+    SPIKEBALL_MORTAL = (1 << 12), // do not respawn when hit
+    SPIKEBALL_UNK13 = (1 << 13),
+    SPIKEBALL_UNK14 = (1 << 14),
+    SPIKEBALL_ONSCREEN = (1U << 15U), // sets ACTOR_FLAG_ONSCREEN_ONLY
+    SPIKEBALL_UNK16 = (1 << 16),
+    SPIKEBALL_UNK17 = (1 << 17),
+    SPIKEBALL_UNK18 = (1 << 18),
+    SPIKEBALL_UNK19 = (1 << 19),
+    SPIKEBALL_UNK20 = (1 << 20),
+    SPIKEBALL_UNK21 = (1 << 21),
+    SPIKEBALL_UNK22 = (1 << 22),
+    SPIKEBALL_UNK23 = (1 << 23),
+    SPIKEBALL_UNK24 = (1 << 24),
+    SPIKEBALL_UNK25 = (1 << 25),
+    SPIKEBALL_UNK26 = (1 << 26),
+    SPIKEBALL_UNK27 = (1 << 27),
+    SPIKEBALL_MOVEX = (1 << 28), // determines movement on x-axis
+    SPIKEBALL_MOVEY = (1 << 29), // determines movement on x-axis
+    SPIKEBALL_UNK30 = (1 << 30),
+    SPIKEBALL_UNK31 = (1U << 31U)
 } SpikeballFlags;
 
 #define AREACLEAR_FULL 0 // full "Area Clear" animation
@@ -118,7 +118,7 @@ typedef enum {
     ENSHOT_TARGETPLAYER = (1 << 12),
     ENSHOT_UNK14 = (1 << 14),
     ENSHOT_UNK15 = (1 << 15),
-    ENSHOT_SCALEMOVE = (1U << 16U),
+    ENSHOT_SCALEMOVE = (1U << 16U)
 
 } EnegryShotFlags; // used in func_8002EDC8
 

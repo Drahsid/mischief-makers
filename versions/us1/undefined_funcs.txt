@@ -5,6 +5,3 @@
 .L84001064 = 0x84001064;
 func_84001064 = 0x84001064;
 func_84001008 = 0x84001008;
-
-GameState_State8Overlay = 0x80388000;
-GameState_State9Overlay = 0x80388008;

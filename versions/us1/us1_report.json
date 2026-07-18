@@ -26165,7 +26165,7 @@
       ],
       "functions": [
         {
-          "name": "func_80388000_F00D0",
+          "name": "GameState_State8Overlay",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {

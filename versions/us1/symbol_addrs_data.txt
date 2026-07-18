@@ -78,7 +78,6 @@ gCameraInits = 0x800cc42c; // size:0x160 rom:0xcd02c
 gCameraupdates = 0x800cc58c; // size:0x160 rom:0xcd18c
 gSceneBgm = 0x800CCFDC; // size:0x58
 D_800CEC0C = 0x800CEC0C; // size:0x2C4
-D_800C94D8 = 0x800C94D8; // type:s32 size:0x8
 D_800D0E84 = 0x800D0E84; // size:0x840
 D_800D16C4 = 0x800D16C4; // size:0xC
 gASCIIAlphaIndecies = 0x800D16D0; // size:0xB8
@@ -101,7 +100,7 @@ gSpikeballParams_S = 0x800D2504;
 gSpikeballParams_H = 0x800D2514;
 gSpikeballParams_V = 0x800D258C;
 gClanballReveals = 0x800D25BC;
-gClanballDrops = 0x800D2690
+gClanballDrops = 0x800D2690;
 gClanballPalettes = 0x800D26E0;
 
 gStageState = 0x800D28E8; // type:u16 size:0x2

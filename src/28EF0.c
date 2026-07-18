@@ -5526,34 +5526,34 @@ void Spikeball_Shoot(u16 actor_index) {
 }
 
 void Spikeball_MoveX(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
-    if (gActors[actor_index].var_150 & SPIKEBALLFLAG_MOVEX) {
+    if (gActors[actor_index].var_150 & SPIKEBALL_MOVEX) {
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, vel_target, vel_step);
         if (gActors[actor_index].unk_178 < gActors[actor_index].unk_180) {
-            gActors[actor_index].var_150 &= ~SPIKEBALLFLAG_MOVEX;
+            gActors[actor_index].var_150 &= ~SPIKEBALL_MOVEX;
             gActors[actor_index].unk_178 = gActors[actor_index].unk_170 + arg3;
         }
     }
     else {
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, -vel_target, vel_step);
         if (gActors[actor_index].unk_180 < gActors[actor_index].unk_178) {
-            gActors[actor_index].var_150 |= SPIKEBALLFLAG_MOVEX;
+            gActors[actor_index].var_150 |= SPIKEBALL_MOVEX;
             gActors[actor_index].unk_178 = gActors[actor_index].unk_170 + arg4;
         }
     }
 }
 
 void Spikeball_MoveY(u16 actor_index, s32 vel_target, s32 vel_step, s16 arg3, s16 arg4) {
-    if (gActors[actor_index].var_150 & SPIKEBALLFLAG_MOVEY) {
+    if (gActors[actor_index].var_150 & SPIKEBALL_MOVEY) {
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, vel_target, vel_step);
         if (gActors[actor_index].unk_17C < gActors[actor_index].unk_184) {
-            gActors[actor_index].var_150 &= ~SPIKEBALLFLAG_MOVEY;
+            gActors[actor_index].var_150 &= ~SPIKEBALL_MOVEY;
             gActors[actor_index].unk_17C = gActors[actor_index].unk_174 + arg3;
         }
     }
     else {
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -vel_target, vel_step);
         if (gActors[actor_index].unk_184 < gActors[actor_index].unk_17C) {
-            gActors[actor_index].var_150 |= SPIKEBALLFLAG_MOVEY;
+            gActors[actor_index].var_150 |= SPIKEBALL_MOVEY;
             gActors[actor_index].unk_17C = gActors[actor_index].unk_174 + arg4;
         }
     }
@@ -5629,22 +5629,22 @@ void Spikeball_State1End(u16 actor_index, u16 downtime) {
         gActors[actor_index].unk_190 |= 2;
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0x20, 0x10);
         if (gActors[actor_index].colorA == 0x7F) {
-            switch (gActors[actor_index].var_150 & SPIKEBALLFLAG_DROPMASK) {
-            case SPIKEBALLFLAG_DROPRED:
-                gActors[actor_index].var_150 &= ~SPIKEBALLFLAG_DROPMASK;
+            switch (gActors[actor_index].var_150 & SPIKEBALL_DROPMASK) {
+            case SPIKEBALL_DROPRED:
+                gActors[actor_index].var_150 &= ~SPIKEBALL_DROPMASK;
                 SpawnGemActor(actor_index, GEMFLAG_COMMON | GEMFLAG_RED, 0);
                 break;
-            case SPIKEBALLFLAG_DROPBLUE:
-                gActors[actor_index].var_150 &= ~SPIKEBALLFLAG_DROPMASK;
+            case SPIKEBALL_DROPBLUE:
+                gActors[actor_index].var_150 &= ~SPIKEBALL_DROPMASK;
                 SpawnGemActor(actor_index, GEMFLAG_COMMON | GEMFLAG_BLUE, 0);
                 break;
-            case SPIKEBALLFLAG_DROPYELLOW:
-                gActors[actor_index].var_150 &= ~SPIKEBALLFLAG_DROPMASK;
+            case SPIKEBALL_DROPYELLOW:
+                gActors[actor_index].var_150 &= ~SPIKEBALL_DROPMASK;
                 SpawnGemActor(actor_index, GEMFLAG_COMMON | GEMFLAG_YELLOW, 0);
                 break;
             }
         }
-        if ((gActors[actor_index].var_150 & SPIKEBALLFLAG_MORTAL) && (gActors[actor_index].colorA == 0x20)) {
+        if ((gActors[actor_index].var_150 & SPIKEBALL_MORTAL) && (gActors[actor_index].colorA == 0x20)) {
             gActors[actor_index].flags = 0;
             return;
         }
@@ -5696,7 +5696,7 @@ void Spikeball_Update(u16 actor_index) {
 
 // update spikeball's hitbox and scale
 void Spikeball_UpdateHitbox(u16 actor_index) {
-    if (gActors[actor_index].var_150 & SPIKEBALLFLAG_MORTAL) {
+    if (gActors[actor_index].var_150 & SPIKEBALL_MORTAL) {
         gActors[actor_index].scaleX = gActors[actor_index].unk_148 / 1.5;
     }
     else {
@@ -5714,7 +5714,7 @@ void Spikeball_State0(u16 actor_index) {
     gActors[actor_index].var_150 = gActors[actor_index].var_110;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ENABLED;
-    if ((u16)gActors[actor_index].var_110 & SPIKEBALLFLAG_ONSCREEN) {
+    if ((u16)gActors[actor_index].var_110 & SPIKEBALL_ONSCREEN) {
         gActors[actor_index].flags |= ACTOR_FLAG_ONSCREEN_ONLY;
     }
     ACTOR_GFX_INIT(actor_index, D_800E2528);
@@ -5737,7 +5737,7 @@ void Spikeball_State0(u16 actor_index) {
     gActors[actor_index].unk_0DB = 4;
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
-    gActors[actor_index].palette_18C = gSpikeballPalettes[(gActors[actor_index].var_150 & SPIKEBALLFLAG_COLORMASK) / 0x100];
+    gActors[actor_index].palette_18C = gSpikeballPalettes[(gActors[actor_index].var_150 & SPIKEBALL_COLORMASK) / 0x100];
 }
 
 // unused actor "spawn" code. add a sound and partiicle effect as they appear.
@@ -5836,19 +5836,19 @@ void ActorUpdate_Spikeball_Vert(u16 actor_index) {
 u16 Clanball_GrabCheck(u16 actor_index) {
     gActors[actor_index].posZ.raw = FIXED_UNIT(0.5);
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
-        if (!(gActors[actor_index].var_150 & CLANBALLFLAG_UNK30)) {
-            gActors[actor_index].var_150 |= CLANBALLFLAG_UNK30;
+        if (!(gActors[actor_index].var_150 & CLANBALL_UNK30)) {
+            gActors[actor_index].var_150 |= CLANBALL_UNK30;
             Sound_PlaySfxAtActor2(SFX_JIGGLE_0090, actor_index);
             if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
-                gActors[actor_index].var_150 |= CLANBALLFLAG_UNK29;
+                gActors[actor_index].var_150 |= CLANBALL_UNK29;
             }
             else {
-                gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNK29;
+                gActors[actor_index].var_150 &= ~CLANBALL_UNK29;
             }
         }
         return TRUE;
     }
-    gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNK30;
+    gActors[actor_index].var_150 &= ~CLANBALL_UNK30;
     return FALSE;
 }
 
@@ -5858,12 +5858,12 @@ void Clanball_State0(u16 actor_index) {
         gActors[actor_index].var_150 = gActors[actor_index].var_110;
     }
     else {
-        gActors[actor_index].var_150 = (s32) gActors[actor_index].var_110 & ~CLANBALLFLAG_ARROWS;
+        gActors[actor_index].var_150 = (s32) gActors[actor_index].var_110 & ~CLANBALL_ARROWS;
     }
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
-    if (gActors[actor_index].var_150 & CLANBALLFLAG_COLORMASK) {
+    if (gActors[actor_index].var_150 & CLANBALL_COLORMASK) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-        gActors[actor_index].unk_18C = gClanballPalettes[(gActors[actor_index].var_150 & CLANBALLFLAG_COLORMASK) / 256];
+        gActors[actor_index].unk_18C = gClanballPalettes[(gActors[actor_index].var_150 & CLANBALL_COLORMASK) / 256];
     }
     Actor_SetHitboxB(actor_index, 0xE);
 }
@@ -5871,7 +5871,7 @@ void Clanball_State0(u16 actor_index) {
 void func_80039838(u16 actor_index) {
     gActors[actor_index].state--;
     gActors[actor_index].unk_164 = 0xD;
-    gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNKMASK_A;
+    gActors[actor_index].var_150 &= ~CLANBALL_UNKMASK_A;
 }
 
 void Clanbal_ShakeFlash(u16 actor_index) {
@@ -5955,7 +5955,7 @@ u16 Clanball_GetRevealIndex(u16 actor_index) {
     if (gActors[actor_index].var_0D8 & 0x8000) {
         return Actor_RangeFindInactive(gActors[actor_index].unk_180 + 0x71, 0x90);
     }
-    else if ((gActors[actor_index].var_150 & CLANBALLFLAG_UNK15) && 
+    else if ((gActors[actor_index].var_150 & CLANBALL_UNK15) && 
       (gActors[(u16)gActors[actor_index].unk_188].actorType == ACTORTYPE_CLANBALL_RAIL)) {
         return (gActors[actor_index].unk_180 + actor_index + 2);
     }
@@ -6036,7 +6036,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
     case 0:
         Clanball_State0(actor_index);
         gActors[actor_index].state++;
-        gActors[actor_index].unk_188 = (gActors[actor_index].var_150 & CLANBALLFLAG_MASK_FF) & 0xFF; // fakematch
+        gActors[actor_index].unk_188 = (gActors[actor_index].var_150 & CLANBALL_MASK_FF) & 0xFF; // fakematch
         gActors[actor_index].unk_138 = 32.0f;
         gActors[actor_index].unk_13C_f32 = 32.0f;
         gActors[actor_index].unk_148 = 0.0f;
@@ -6076,18 +6076,18 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
     case 2:
         if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (gActors[actor_index].parentIndex == 0)) {
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
-            if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK29) {
+            if (gActors[actor_index].var_150 & CLANBALL_UNK29) {
                 if (!(gPlayerActor.flags & ACTOR_FLAG_FLIPPED)) {
                     Sound_PlaySfx(SFX_0117);
-                    gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNK29;
+                    gActors[actor_index].var_150 &= ~CLANBALL_UNK29;
                 }
             }
             else if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
                 Sound_PlaySfx(SFX_0117);
-                gActors[actor_index].var_150 |= CLANBALLFLAG_UNK29;
+                gActors[actor_index].var_150 |= CLANBALL_UNK29;
             }
             if ((gActors[actor_index].state == 2) && (D_801373F2 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
-                if (!(gActors[actor_index].var_150 & CLANBALLFLAG_UNK15)) {
+                if (!(gActors[actor_index].var_150 & CLANBALL_UNK15)) {
                     Sound_PlaySfxAtActor2(SFX_0115, actor_index);
                 }
                 if (func_800486F4() == 0xC) {
@@ -6096,8 +6096,8 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     gActors[actor_index].scaleX = 1.82f;
                     gActors[actor_index].scaleY = 0.42f;
                     func_80039838(actor_index);
-                    if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK13) {
-                        gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNK25;
+                    if (gActors[actor_index].var_150 & CLANBALL_UNK13) {
+                        gActors[actor_index].var_150 &= ~CLANBALL_UNK25;
                         Clanbal_ShakeFlash(actor_index);
                     }
                 }
@@ -6107,8 +6107,8 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     gActors[actor_index].scaleX = 1.82f;
                     gActors[actor_index].scaleY = 0.42f;
                     func_80039838(actor_index);
-                    if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK13) {
-                        gActors[actor_index].var_150 |= CLANBALLFLAG_UNK25;
+                    if (gActors[actor_index].var_150 & CLANBALL_UNK13) {
+                        gActors[actor_index].var_150 |= CLANBALL_UNK25;
                         Clanbal_ShakeFlash(actor_index);
                     }
                 }
@@ -6118,8 +6118,8 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     gActors[actor_index].scaleX = 0.42f;
                     gActors[actor_index].scaleY = 1.82f;
                     func_80039838(actor_index);
-                    if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK14) {
-                        gActors[actor_index].var_150 &= ~CLANBALLFLAG_UNK26;
+                    if (gActors[actor_index].var_150 & CLANBALL_UNK14) {
+                        gActors[actor_index].var_150 &= ~CLANBALL_UNK26;
                         Clanbal_ShakeFlash(actor_index);
                         Clanball_ShakeDown(actor_index);
                     }
@@ -6130,14 +6130,14 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     gActors[actor_index].scaleX = 0.42f;
                     gActors[actor_index].scaleY = 1.82f;
                     func_80039838(actor_index);
-                    if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK14) {
-                        gActors[actor_index].var_150 |= CLANBALLFLAG_UNK26;
+                    if (gActors[actor_index].var_150 & CLANBALL_UNK14) {
+                        gActors[actor_index].var_150 |= CLANBALL_UNK26;
                         Clanbal_ShakeFlash(actor_index);
                     }
                 }
             }
             // draw arrows in "Clanball Land"
-            if (gActors[actor_index].var_150 & CLANBALLFLAG_ARROWS) {
+            if (gActors[actor_index].var_150 & CLANBALL_ARROWS) {
                 switch (gButtonHold & (gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown)) {
                 case CONT_UP:
                     vel_y = 0x10;
@@ -6204,7 +6204,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
         }
         break;
     }
-    if (gActors[actor_index].var_150 & CLANBALLFLAG_UNK15) {
+    if (gActors[actor_index].var_150 & CLANBALL_UNK15) {
         gActors[(u16)gActors[actor_index].unk_188].flags_098 |= gActors[actor_index].flags_098;
         gActors[actor_index].unk_13C_f32 = Math_ApproachF32(gActors[actor_index].unk_13C_f32, gActors[actor_index].unk_138, 4.0f);
     }
