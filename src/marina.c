@@ -128,13 +128,14 @@ s32 func_80049A04(u16 actor_index) {
     s32 temp_v1;
     s8 *temp_a0;
 
-    temp_a0 = (s8*) D_800D4184[func_8005D338(actor_index)];
+    temp_a0 = D_800D4184[func_8005D338(actor_index)];
     if (temp_a0 == NULL) {
         return 0;
     }
 
-    temp_v1 = temp_a0[gActors[actor_index].unk_170_s8[1]];
-    return (temp_v1 << 0x10) * gActors->unk_120;
+    temp_v1 = temp_a0[gActors[actor_index].unk_170_s8[1]] << 0x10;
+    temp_v1 *= gPlayerActor.unk_120;
+    return temp_v1;
 }
 
 void func_80049AC0(u16 actor_index);
