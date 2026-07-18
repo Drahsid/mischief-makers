@@ -1182,7 +1182,7 @@ void func_80087568(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32
 
     free_actor = Actor_RangeFindInactive(0x90, 0xC0);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = ACTORTYPE_33;
+        gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_52;
         Actor_Initialize(free_actor);
         gActors[free_actor].graphicIndex = graphic_index;
         gActors[free_actor].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
