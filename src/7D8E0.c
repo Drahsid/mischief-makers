@@ -84,13 +84,13 @@ u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time) {
     return 0;
 }
 
-// used by sprint coach in "The Day Before"
+// Text Bubble used by sprint coach in "The Day Before"
 // @param index index of "speaking" actor
 // @param text "string" to display
 // @param off_x x-position offset of text.
 // @param off_y y-position offset of text.
 // @param time ticks to display(?) bit 15 is also used.
-// @returns index of actor, 0 if failed or English version.
+// @returns index of actor, 0 if failed
 u16 func_8007D0F4(u16 actor_index, u16* text, s16 pos_x, s16 pos_y, u16 time) {
     u16 free_actor;
 

@@ -365,7 +365,7 @@ void func_801B1414_7974E4(u16 actor_index) {
             // fallthrough
 
         case 1:
-            if (actor->posY.whole >= 201) {
+            if (actor->posY.whole > 200) {
                 actor->var_150 = 60;
                 actor->velocityY.raw = (actor->velocityX.raw = 0);
                 func_801B1000_7970D0(actor_index);

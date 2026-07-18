@@ -479,7 +479,7 @@ void CameraInit_Beastector(void) {
     D_800BE588 = 2;
     D_800BE704 = 1;
     D_800BE708 = 1;
-    gLetterboxMode = 1;
+    gLetterboxMode = LETTERBOX_HORIZONTAL;
     Camera_ResetRotate();
 }
 
@@ -710,13 +710,13 @@ void CameraUpdate_AstersTryke(void) {
 void CameraInit_PhoenixGamma(void) {
     D_800BE704 = 1;
     D_800BE708 = 1;
-    gLetterboxMode = 2;
+    gLetterboxMode = LETTERBOX_VERTICAL;
     Camera_ResetRotate();
 }
 
 void CameraUpdate_PhoenixGamma(void) {
     Camera_ApplyRotate();
-    if (gLetterboxMode == 2) {
+    if (gLetterboxMode == LETTERBOX_VERTICAL) {
         if (gScreenPosCurrentY.whole < 0x100) {
             gScreenPosCurrentY.whole += 0x400;
             gScreenPosTargetY.whole += 0x400;

@@ -198,7 +198,7 @@ void func_80082F10(void) {
     s32 index;
 
     D_80180FC0 = 0x80380600;
-    if (gDrawBackground != 0) {
+    if (gDrawBackground) {
         if (D_800BE6FC != 0) {
             for (index = 0; index < 70; index++) {
                 D_80180D90[index] = ((D_80137610[index] << 5) << 5) + D_80180FC0;

@@ -739,7 +739,7 @@ s32 func_80058F9C(u16 actor_index) {
     gPlayerData.unk_13 = 0;
     if (gActors[actor_index].unk_0DC & 8) {
         gPlayerData.unk_08 += 0x200;
-        if (gPlayerData.unk_08 >= 0x801) {
+        if (gPlayerData.unk_08 > 0x800) {
             gPlayerData.unk_08 = 0;
             gActors[actor_index].iFrames = 0;
             func_8005C550(actor_index, 0x12C);

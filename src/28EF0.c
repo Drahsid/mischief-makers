@@ -5739,7 +5739,7 @@ void Spikeball_State0(u16 actor_index) {
     gActors[actor_index].palette_18C = gSpikeballPalettes[(gActors[actor_index].var_150 & SPIKEBALL_COLORMASK) / 0x100];
 }
 
-// unused actor "spawn" code. add a sound and partiicle effect as they appear.
+// unused actor "spawn" code. add a sound and particle effect as they appear.
 void func_80038FF4(u16 actor_index, u16 actor_type, u16 arg2, u16 arg3) {
     Sound_PlaySfxAtActor2(SFX_STAB_006E, actor_index);
     SpawnParticle_RingSparkle(actor_index, 0, 1.2f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 4);
@@ -7258,7 +7258,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
         }
         else {
             gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(32.0), FIXED_UNIT(0.5));
-            func_8007EA14(gStrAreaClear0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), &D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
+            func_8007EA14(gStrAreaClear0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 84, 2);
             func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
@@ -7300,8 +7300,8 @@ void ActorUpdate_AreaClear(u16 actor_index) {
 // bouncing and explosions when a (mini)boss is defeated
 // @param arg0 unknown/unused
 // @param actor_index index of (mini)boss actor
-// @param scale_x x-axis offset mod of explosiion effects.
-// @param scale_y y-axis offset mod of explosiion effects.
+// @param scale_x x-axis offset mod of explosion effects.
+// @param scale_y y-axis offset mod of explosion effects.
 void BossDeathExplode(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y) {
     u16 pad;
 
