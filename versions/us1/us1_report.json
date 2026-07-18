@@ -9,7 +9,7 @@
     "matched_functions": 2577,
     "matched_functions_percent": 54.74825,
     "complete_data_percent": 100.0,
-    "total_units": 399
+    "total_units": 398
   },
   "units": [
     {
@@ -2978,6 +2978,13 @@
           "metadata": {
             "virtual_address": "2147624048"
           }
+        },
+        {
+          "name": ".data",
+          "size": "288",
+          "metadata": {
+            "virtual_address": "2148318752"
+          }
         }
       ],
       "functions": [
@@ -3018,6 +3025,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147626256"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "16",
+          "metadata": {
+            "virtual_address": "2148319040"
           }
         },
         {
@@ -3114,6 +3128,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147628512"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "4400",
+          "metadata": {
+            "virtual_address": "2148319056"
           }
         },
         {
@@ -25434,32 +25455,6 @@
           "size": "512",
           "metadata": {
             "virtual_address": "2148302816"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "lifebar.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "4704",
-          "metadata": {
-            "virtual_address": "2148318752"
           }
         }
       ],
@@ -49440,7 +49435,7 @@
         "matched_functions": 1836,
         "matched_functions_percent": 84.92137,
         "complete_data_percent": 100.0,
-        "total_units": 260
+        "total_units": 259
       }
     },
     {
