@@ -5,7 +5,7 @@ extern u16 gAttractModeIndex;
 extern s16 D_800CBF44;
 
 // .bss
-u64 D_801781F0; // must be declared in TU
+u64 gYellowGemTemp; // must be declared in TU
 u16 D_801781F8;
 u8 D_801781FA[2];
 u8 D_801781FC[4];
@@ -127,7 +127,7 @@ void GameState_SoftReset(void) {
         gButton_RTrig = R_TRIG;
         D_801781F8 = 0;
         D_800CBF44 = 0;
-        gPlayerActor.health = 0x3E8;
+        gPlayerActor.health = 1000;
         gRedGems = 0x1E;
         gGameState = GAMESTATE_INTRO;
         gGameStateSubState = 0;
@@ -266,7 +266,7 @@ void GameState_Loading(void) {
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
-    D_801781F0 = gYellowGemBitfield;
+    gYellowGemTemp = gYellowGemBitfield;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameStateSubState = 0;
 }

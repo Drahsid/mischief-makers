@@ -200,7 +200,7 @@ extern void func_80083454(void);
 extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
-extern void func_8002092C(void);
+extern void Pause_InitBars(void);
 extern void func_80020A54(void);
 extern void func_80022D10(void);
 #ifndef Actor_Initialize_RET

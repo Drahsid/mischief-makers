@@ -83,7 +83,16 @@ Actor_Initialize = 0x8001E2D0; // type:func
 Actors_SetPlatforms = 0x8001f88c; // type:func
 Actor_CheckPlatforms = 0x8001FA78; // type:func
 
+Gameplay_ActiveUpdate = 0x80020024; // type:func
+
 Pause_PrintPlayTime = 0x8002034C; // type:func
+Pause_PrintRedGems = 0x800205DC; // type:func
+Pause_YellowGemYet = 0x800207DC; // type:func
+
+Pause_RestoreBGMVol = 0x800208D4; // type:func
+Pause_InitBars = 0x8002092C; // type:func
+
+Pause_Update = 0x80020A90; // type:func
 
 Gfx_DrawBorderRect = 0x80021690; // type:func
 Gfx_DrawLetterboxStandard = 0x8002170C; // type:func

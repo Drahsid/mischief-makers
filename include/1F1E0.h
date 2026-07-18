@@ -8,7 +8,7 @@ extern u16 gPauseContinue[];
 
 void func_80020844(void);
 void func_800208D4(void);
-void func_8002092C(void);
+void Pause_InitBars(void);
 void func_80020A54(void);
 void func_80021620(void);
 void func_80021658(void);

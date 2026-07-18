@@ -2117,7 +2117,7 @@ s16 WorldMap_GetStageRank(u16 time, u16 stage) {
         return 2;
     }
 
-    if (time < gStageTimesToBeat[stage] + 18000 && time < 36000) {
+    if (time < gStageTimesToBeat[stage] + 18000 && time < STAGE_MAX_TIME) {
         return 3;
     }
 
@@ -2172,7 +2172,7 @@ void WorldMap_PrintCurrStageTime(void) {
         value = (((stage_time % 60) * 5) / 3) + 1;
     }
     // stage time over recordable
-    if (stage_time == 36000) {
+    if (stage_time == STAGE_MAX_TIME) {
         func_80083810(9, 5, gStrResultOT, 0);
     }
     else {
@@ -2206,7 +2206,7 @@ void WorldMap_PrintStageTime(u16 x, u16 y, u16 stage) {
         value = (((stage_time % 60) * 5) / 3) + 1;
     }
     // stage time over recordable
-    if (stage_time == 36000) {
+    if (stage_time == STAGE_MAX_TIME) {
         func_80083810(x, y, gStrResultOT, 0);
     }
     else {

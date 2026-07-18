@@ -235,7 +235,7 @@ void GameState_ContinueScreen(void) {
         gLifebar.flags = 0;
         gLifebarHead.flags = 0;
         Sound_StartFade(1, 0x60);
-        func_8002092C();
+        Pause_InitBars();
         gContinueTimer = 0x60;
         gGameStateSubState++;
         /* fallthrough */
@@ -683,7 +683,7 @@ void GameState_ContinueScreen(void) {
             gPlayerActor.colorA = 0xFF;
             gAudioFadeMode = 0;
             // reset Festival games, if lost
-            if ((gCurrentScene >= 15) && (gCurrentScene < 19)) {
+            if ((gCurrentScene >= SCENE_DAYOFHURDLE) && (gCurrentScene <= SCENE_DAYOF2)) {
                 D_800D28F0 = 0x1F;
                 gCurrentScene = SCENE_DAYOF0;
             }

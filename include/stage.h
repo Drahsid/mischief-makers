@@ -50,6 +50,9 @@ gActors[2].velocityX.raw
 #define SOUND_TEST_SFX_INDEX \
 gActors[3].velocityX.raw
 
+// max time for stages
+#define STAGE_MAX_TIME 36000
+
 
 // abreviation for overall Rank graphics
 

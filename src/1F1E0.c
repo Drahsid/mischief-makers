@@ -38,7 +38,7 @@ extern u16 D_800D2978[];
 extern s16 D_800E13FC[];
 
 // .bss bss_801370D0
-extern u32 D_801374DC; // time duration
+extern u32 gUpdateColorTime; // delta time for updating colors for gems and other actors
 
 // .bss
 
@@ -2372,12 +2372,12 @@ void func_8001FFA8(void) {
     D_800D291C = D_801781D4;
 }
 
-void func_80020024(void) {
+void Gameplay_ActiveUpdate(void) {
     s32 index;
 
     gActiveFrames++;
     D_801782B8++;
-    if ((gStageTime < 36000) && (gStageState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
+    if ((gStageTime < STAGE_MAX_TIME) && (gStageState >= 2) && (func_8005DEFC() == 0) && (D_800D28E4 < 97)) {
         gStageTime++;
     }
     Marina_UpdateInput();
@@ -2459,21 +2459,21 @@ void Pause_PrintPlayTime(void) {
     func_80083518(3, 0, (time_remain % 10) + ALPHA_OFFSET(THIN_0), 0);
 }
 
-void func_800205DC(void) {
+void Pause_PrintRedGems(void) {
     u16 val;
 
     val = gRedGems;
-    func_80083518(6, 1, (val % 10) + 0x51, 0);
+    func_80083518(6, 1, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     val /= 10;
-    func_80083518(5, 1, (val % 10) + 0x51, 0);
+    func_80083518(5, 1, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     val /= 10;
-    func_80083518(4, 1, (val % 10) + 0x51, 0);
+    func_80083518(4, 1, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
     val /= 10;
-    func_80083518(3, 1, (val % 10) + 0x51, 0);
+    func_80083518(3, 1, (val % 10) + ALPHA_OFFSET(THIN_0), 0);
 }
 
 // display "got it" or "not yet" for yellow gem state on pause?
-void func_800207DC(void) {
+void Pause_YellowGemYet(void) {
     u64 ret;
 
     ret = YellowGem_GetFlag(gCurrentStage);
@@ -2506,13 +2506,13 @@ void func_800208D4(void) {
     for (index = 200; index < 204; index++) {
         gActors[index].flags = 0;
     }
-    gMusicVolume = D_800EF4D4;
+    gMusicVolume = gPauseMusicVolume;
     gGameStateSubState = 0;
     gGamePaused = FALSE;
 }
 
 // inialize "bar" actors for pause transition.
-void func_8002092C(void) {
+void Pause_InitBars(void) {
     u16 index;
 
     for (index = 200; index < 204; index++) {
@@ -2543,21 +2543,21 @@ void func_80020A54(void) {
     }
 }
 
-void func_80020A90(void) {
+void Pause_Update(void) {
     u16 actor_index;
     u16 index;
     s16* graphic_list;
 
     switch (gGameStateSubState) {
     case 0:
-        D_800EF4D4 = gMusicVolume;
+        gPauseMusicVolume = gMusicVolume;
         gMusicVolume /= 2;
         for (index = 0; index < 4; index++) {
             gPauseSFXVols[index] = gSfxPlayerVolumes[index];
             gSfxPlayerVolumes[index] /= 2;
         }
         Sound_PlaySfx(SFX_MARINA_YELL3);
-        func_8002092C();
+        Pause_InitBars();
         gGameStateSubState++;
         /* fallthrough */
     case 1:
@@ -2570,8 +2570,8 @@ void func_80020A90(void) {
             func_800836A0(5, 2, gPauseContinue, 0);
             func_800836A0(5, 3, gPauseExit, 0);
             Pause_PrintPlayTime();
-            func_800205DC();
-            func_800207DC();
+            Pause_PrintRedGems();
+            Pause_YellowGemYet();
             Text_InitActorGList(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;
@@ -2600,7 +2600,7 @@ void func_80020A90(void) {
             gCamShakeTime = 0;
             gIsPauseExit = TRUE;
             // don't save gem progress until you finish the stage
-            gYellowGemBitfield = D_801781F0;
+            gYellowGemBitfield = gYellowGemTemp;
             func_80046218(D_800D28E4 - 1, 0);
             gGameStateSubState = 0x23;
         }
@@ -2666,12 +2666,12 @@ void GameState_Gameplay(void) {
 
     start_time = osGetTime();
     func_800457C8();
-    D_801374DC = osGetTime() - start_time;
+    gUpdateColorTime = osGetTime() - start_time;
     if (gGamePaused) {
-        func_80020A90();
+        Pause_Update();
     }
     else {
-        func_80020024();
+        Gameplay_ActiveUpdate();
     }
 }
 
@@ -2733,7 +2733,7 @@ void GameState_Attract(void) {
         gGameState = GAMESTATE_ATTRACT;
         gGameStateSubState = 1;
         gLifebar.flags = gLifebarHead.flags = 0;
-        func_8002092C();
+        Pause_InitBars();
         actors_200[0].hitboxBY1 = actors_200[1].hitboxBY0 = actors_200[2].hitboxBX0 = actors_200[3].hitboxBX1 = 0;
         gAttractModeHoldIndex = 0;
         gAttractModeHeld = 0;

@@ -4,7 +4,7 @@
 
 u8 gMusicPlayerFlags;
 s16 gMusicVolume;
-s16 D_800EF4D4;
+s16 gPauseMusicVolume;
 s32 gMusicSequenceId;
 s32 D_800EF4DC; // unused.
 u8 gMusicChannelFxMixes[16];

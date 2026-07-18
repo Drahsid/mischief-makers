@@ -67,7 +67,7 @@ extern s16 gSfxFadeVolumes[];
 
 extern u8 D_800C2927[];
 extern u8 D_800C2968[];
-extern s16 D_800EF4D4;
+extern s16 gPauseMusicVolume;
 extern s32 D_80137794;
 
 extern MusicSequenceParams gMusicSequenceParams[];
@@ -646,7 +646,7 @@ void Sound_PlayMusic(s32 sequence_id) {
 
     params = &gMusicSequenceParams[gMusicSequenceId];
     gMusicVolume = params->volume << 8;
-    D_800EF4D4 = gMusicVolume;
+    gPauseMusicVolume = gMusicVolume;
     D_80137794 = params->unk_01 << 12;
 
     for (index = 0; index < AUDIO_CHANNEL_COUNT; index++) {

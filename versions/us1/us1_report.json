@@ -2795,7 +2795,7 @@
           }
         },
         {
-          "name": "func_800205DC",
+          "name": "Pause_PrintRedGems",
           "size": "512",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2803,7 +2803,7 @@
           }
         },
         {
-          "name": "func_800207DC",
+          "name": "Pause_YellowGemYet",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2827,7 +2827,7 @@
           }
         },
         {
-          "name": "func_8002092C",
+          "name": "Pause_InitBars",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2843,7 +2843,7 @@
           }
         },
         {
-          "name": "func_80020A90",
+          "name": "Pause_Update",
           "size": "1444",
           "fuzzy_match_percent": 100.0,
           "metadata": {

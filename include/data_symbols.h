@@ -19,7 +19,7 @@ extern u16 gGuestActorIndex;
 extern s16 gNoHit;
 extern u16 D_800D8588[]; // all-white palette
 extern u16 D_800D9AE4[];
-extern s16 D_800E13FC[];
+extern s16 D_800E13FC[]; // icon for head in "pause" and "continue" menus
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern s32 D_800E3630[]; // could be array of structs of length 0x28
@@ -46,7 +46,7 @@ extern u32 D_801376D4;
 extern u32 D_80137714;
 extern u32 D_80137718;
 extern u64 gYellowGemBitfield;
-extern u64 D_801781F0;
+extern u64 gYellowGemTemp; // state for yellow gem bitfield on entering stage.
 extern u16 D_801782B8;
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;

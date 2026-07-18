@@ -310,7 +310,7 @@ void func_8004FDF8(u16 actor_index) {
             gActors[actor_index].var_154 += 1;
         }
         gActors[actor_index].var_150 += gActors[actor_index].var_154;
-        gActors[actor_index].unk_170_s8[0] += gPlayerData.unk_0E / (0x3E8 / ((gActiveFrames & 1) + 4));
+        gActors[actor_index].unk_170_s8[0] += gPlayerData.unk_0E / (1000 / ((gActiveFrames & 1) + 4));
         gActors[actor_index].var_150 = gActors[actor_index].var_150 % 4;
         if (func_8005D418(actor_index) != 0) {
             if (gActors[actor_index].var_154 != 0) {

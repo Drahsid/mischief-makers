@@ -305,6 +305,7 @@ gButtonHoldHistory = 0x801225F0; // size:0x80
 gAudioCustomFxParams = 0x800C3858; // size:0xA8
 gMusicPlayerFlags = 0x800EF4D0; // size:0x1
 gMusicVolume = 0x800EF4D2; // size:0x2
+gPauseMusicVolume = 0x800EF4D4; // size:0x4
 gMusicSequenceId = 0x800EF4D8; // size:0x4
 gMusicChannelFxMixes = 0x800EF4E0; // size:0x10
 gSfxPlayerFlags = 0x800EF4F0; // size:0x4
@@ -328,6 +329,7 @@ gSfxStopTimers = 0x8010CDE8; // size:0x8
 gSfxChannelVolumes = 0x8011CDF0; // size:0x4
 gSfxChannelPans = 0x8011CF18; // size:0x4
 gPlayerData = 0x801373E0; // size:0x80
+gUpdateColorTime = 0x801374DC;
 gAudioDmaMessageQueue = 0x801377B8; // size:0x18
 gAudioTaskMessageQueue = 0x801377D0; // size:0x18
 gAudioDmaMessageBuf = 0x80137800; // size:0xC0
@@ -640,6 +642,9 @@ gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;
 
 gStageTime = 0x801781E0;// type:u16 size:0x2
+
+gYellowGemTemp = 0x801781F0; //type:u64 size:0x8
+
 gFestivalEventState = 0x80178220;
 gFestivalCurrentEvent = 0x80178224;
 gFestivalCompetitorCount = 0x80178226;

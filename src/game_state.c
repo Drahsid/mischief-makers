@@ -4,6 +4,7 @@
 #include "input.h"
 #include "game_state.h"
 #include "1F1E0.h"
+#include "debug.h" 
 
 void func_800012F0(void);
 void func_8000147C(void);
