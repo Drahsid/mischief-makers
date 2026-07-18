@@ -4,6 +4,7 @@
 #include <PR/ultratypes.h>
 
 extern u16 D_800CA230;
+extern u16 D_800CA238;
 extern u16 D_800CA26C[];
 
 void func_80020844(void);

@@ -7,6 +7,8 @@
 //that may be lost on the overscan of a 4x3 CRT, but also, in select occasions,
 //dynamically frame the shot between Marina and a boss or other point of interest.
 
+extern u16 gLetterboxMode;
+
 //these should be used with the global value "gLetterboxMode"
 enum LetterboxTypes{
     LETTERBOX_DEFAULT, //standard letterbox for majority of game

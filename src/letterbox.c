@@ -1,5 +1,6 @@
 #include "common.h"
 #include "boot.h"
+#include "letterbox.h"
 
 //script seems to use -O1, color is determined by division in GPACK_RGBA5551()
 #define PACK_BLACK(max) (((((0 / (max)) >> 2) & 0x3e) | (((0 / (max)) << 8) & 0xf800) | (((0 / (max)) << 3) & 0x7c0) | 1))

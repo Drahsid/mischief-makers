@@ -3,11 +3,6 @@
 #include "game_state.h"
 #include "soft_reset.h"
 
-u16 D_800CBF40 = 0;
-s16 D_800CBF44 = 0;
-
-extern u16 D_800CA238;
-
 // .bss
 u64 D_801781F0; // must be declared in TU
 u16 D_801781F8;
@@ -38,6 +33,10 @@ s32 gFestivalTimeToBeat;
 u8 D_8017829C[4];
 u8 gFestivalEventsPlayed[FESTGAME_TOTAL];
 s16 gGuestActorHP;
+
+// .data
+u16 D_800CBF40 = 0;
+s16 D_800CBF44 = 0;
 
 // forward declarations
 void func_80023168(void);

@@ -51,7 +51,6 @@ extern u16 D_801782B8;
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
 extern u16 D_800CBF50;
-extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
 extern u16* D_800D1958[]; // palettes of gems
 extern u16 D_800D1A04[];
@@ -120,7 +119,6 @@ extern s16 D_800E5910[];
 extern s16 D_800E5938[];
 extern s16 D_800E5970[];
 extern s16 D_800E59E0[];
-extern u16 gLetterboxMode;
 extern u16 gRedGems;
 
 // func_8000147C

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "Alphabet.h"
+#include "letterbox.h"
 
 // "overlay 2" code for Festival Games.
 

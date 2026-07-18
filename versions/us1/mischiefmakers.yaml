@@ -319,7 +319,7 @@ segments:
       - [0x0CADC0, .data, 1F1E0]
       - [0x0CCA20, .data, lifebar]
       - [0x0CCB40, .data, soft_reset]
-      - [0x0CCB50, data]
+      - [0x0CCB50, .data, 241E0]
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
       - [0x0D2410, data] # 62250

@@ -1,6 +1,8 @@
 #ifndef OVERLAYS_H
 #define OVERLAYS_H
 
+#include <PR/ultratypes.h>
+
 #define OVERLAY0_DISPATCH_TABLE_VRAM (0x80192000)
 #define OVERLAY0_OBJECT_VRAM         (0x80192100)
 #define OVERLAY1_DISPATCH_TABLE_VRAM (0x8019B000)

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "letterbox.h"
 
 // "overlay 4" code for Title Screen and "Final Battle"
 
