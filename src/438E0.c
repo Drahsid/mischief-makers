@@ -1,6 +1,7 @@
 #define Actor_Initialize_RET void
 #define func_80012AB4_ARGS s32 arg0, s32 arg1
 #include "common.h"
+#include "7D8E0.h"
 #include "actor.h"
 #include "input.h"
 #include "globalData.h"

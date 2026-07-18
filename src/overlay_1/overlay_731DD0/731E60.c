@@ -9,9 +9,9 @@ void Actor_SetHitboxA(u16 actor_index, s16 val);
 void Actor_UpdateVelocityX(u16 actor_index, s32 dvx);
 void func_8007B73C(u16 actor_index);
 
-extern u32 D_801A5200_73BF60[];
-extern u32 D_801A5280_73BFE0[];
-extern u32 D_801A54B4_73C214[];
+extern s16 D_801A5200_73BF60[];
+extern s16 D_801A5280_73BFE0[];
+extern s16 D_801A54B4_73C214[];
 extern u32 D_801A54C4_73C224[];
 
 void func_801A1D4C_738AAC(u16);

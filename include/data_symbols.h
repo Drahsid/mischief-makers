@@ -18,6 +18,7 @@ extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
 extern s16 gNoHit;
 extern u16 D_800D8588[]; // all-white palette
+extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[];
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
@@ -103,6 +104,10 @@ extern s16 gGraphicListGem[]; // gem graphics list
 extern s16 D_800E1700[];
 extern u8 D_800E19FC[];
 extern u8 D_800E1A20[];
+extern s16 D_800E25B0[];
+extern s16 D_800E2600[];
+extern u16 D_800E31EC[];
+extern u16 D_800E334C[];
 extern s16 D_800E3488[];
 extern u16 D_800E3518[];
 extern u32 D_800E352C[];

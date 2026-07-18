@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "function_symbols.h"
+#include "7D8E0.h"
 
 // "overlay 4" code for "Rescue: Acts 1 and 2", "Toadaly Raw", "7 Clancer Kids",
 // "Rolling Rock", and several unused scenes.

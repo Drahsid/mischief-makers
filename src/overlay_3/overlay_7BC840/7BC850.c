@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "28EF0.h"
+#include "805E0.h"
 #include "80D90.h"
 
 extern s16 gNoHit;
@@ -17,12 +18,10 @@ extern s16 D_800E1D0C[];
 extern s16 D_800E2274[];
 extern s16 D_800E23F4[];
 extern s16 D_800E2418[];
-extern s32 D_800E2600[];
 extern s32 D_800E32C8[];
 extern s32 D_800E32E4[];
 extern s32 D_800E3304[];
 extern s32 D_800E3328[];
-extern s32 D_800E334C[];
 extern s32 D_800E33C4[];
 extern s32 D_800E33E4[];
 extern s32 D_800E3454[];

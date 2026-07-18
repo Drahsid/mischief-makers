@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "stage.h"
+#include "84BB0.h"
 
 // "overlay 4" code of most the World 3 stages, excluding "The Day Of" and "Cerberus Alpha"
 

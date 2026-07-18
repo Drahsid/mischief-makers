@@ -3,6 +3,7 @@
 #include "80D90.h"
 #include "SFX.h"
 #include "1F1E0.h"
+#include "84BB0.h"
 
 // "overlay 0" code for intro scene
 
@@ -53,7 +54,6 @@ extern IntroActorMotion D_801993C0_6D9A40[];
 extern s16 D_801993F0_6D9A70[];
 extern s16 D_80199438_6D9AB8[];
 extern void func_80027018(u16 arg0);
-extern s32 func_8008412C(u16 arg0, f32 arg1, f32 arg2, u16 arg3);
 extern void func_80096AC4(u16 actor_index);
 
 void func_80192100_6D2780(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s16 arg4, s16 arg5, s16 arg6);

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "7D8E0.h"
 
 typedef struct Overlay_7A6E60_Graphic_Index_Table {
     /* 0x00 */ u16 indices[4];
@@ -35,7 +36,6 @@ typedef struct Overlay_7A6E60_Init_Record {
 } Overlay_7A6E60_Init_Record; /* sizeof = 0x0C */
 
 extern void* D_800D1968[];
-extern u16 D_800D9AE4[];
 extern u8 D_800D9AF4[];
 extern u8 D_800D9B04[];
 extern u8 D_800D9B14[];
@@ -358,7 +358,6 @@ extern void OverlayABI_Slot2_fn31_u16(u16 actor_index);
 extern void func_80067E50(u16 actor_index, void* arg1);
 extern s32 func_800734C4(u16 actor_index, s32 arg1);
 extern void func_8007CD68(u16 actor_index, u16 graphic_flags, s16 position_x, s16 position_y, u16 var_150, u16 var_154, s32 var_15C);
-extern void func_8007DF44(void);
 
 void func_801B0900_7A6E80(u16 actor_index);
 s32 func_801B09B4_7A6F34(u16 arg0, s16 arg1);
@@ -366,14 +365,11 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z);
 void func_801B0BFC_7A717C(u16 arg0);
 void func_801B0C20_7A71A0(u16 actor_index);
 void func_801B0CBC_7A723C(u16 arg0);
-void func_801B0CEC_7A726C(u16 actor_index);
 void func_801B0DA0_7A7320(u16 arg0);
 void func_801B0DC8_7A7348(u16 actor_index);
 void func_801B10A8_7A7628(u16 actor_index);
-void func_801B11E0_7A7760(u16 actor_index);
 s32 func_801B12F0_7A7870(u16 actor_index);
 void func_801B13F8_7A7978(u16 actor_index);
-s32 func_801B14A4_7A7A24(u16 actor_index);
 void func_801B159C_7A7B1C(u16 actor_index);
 void func_801B16E0_7A7C60(u16 actor_index, u16 arg1);
 void func_801B1750_7A7CD0(u16 actor_index);
@@ -559,20 +555,23 @@ void func_801B0CBC_7A723C(u16 arg0) {
     gStageState = 4;
 }
 
-void func_801B0CEC_7A726C(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x31, actorType, ACTORTYPE_ZERO);
-    Actor_Initialize(0x31);
-    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, GINDEX_SOLIDSQUARE);
-    ACTOR_FIXEDADDRESS_OR(0x31, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK11);
-    ACTOR_FIXEDADDRESS_OR(0x31, flags, ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x31, posX.whole, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, posY.whole, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, posZ.whole, -1);
-    ACTOR_FIXEDADDRESS_SET(0x31, colorB, 0xBA);
-    ACTOR_FIXEDADDRESS_SET(0x31, colorA, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, scaleX, 20.0f);
-    ACTOR_FIXEDADDRESS_SET(0x31, scaleY, 16.0f);
-    ACTOR_FIXEDADDRESS_SET(0x31, unk_188, 0);
+void func_801B0CEC_7A726C(u16 unused_actor_index) {
+    u16 actor_index;
+
+    actor_index = 0x31;
+    gActors[actor_index].actorType = ACTORTYPE_ZERO;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK11;
+    gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
+    gActors[actor_index].posX.whole = 0;
+    gActors[actor_index].posY.whole = 0;
+    gActors[actor_index].posZ.whole = -1;
+    gActors[actor_index].colorB = 0xBA;
+    gActors[actor_index].colorA = 0;
+    gActors[actor_index].scaleX = 20.0f;
+    gActors[actor_index].scaleY = 16.0f;
+    gActors[actor_index].unk_188 = 0;
 }
 
 void func_801B0DA0_7A7320(u16 arg0) {
@@ -650,100 +649,97 @@ void func_801B10A8_7A7628(u16 actor_index) {
 }
 
 void func_801B11E0_7A7760(u16 actor_index) {
-    s32 saved_graphic[2];
-    s32 graphic;
+    u16 index;
 
-    if (func_8007CE24(0x6F, 0, 0x60, 0x54, 0)) {
-    }
+    index = 0x6F;
+    func_8007CE24(index, 0, 0x60, 0x54, 0);
+    gActors[index].actorType = 0x1A08;
+    gActors[index].unk_16C = (s32)D_801B501C_7AB59C;
+    gActors[index].unk_190 = (s32)func_8007DF44;
+    gActors[index].unk_18C = (s32)D_800D9AE4;
+    gActors[index].posZ.whole = 2;
 
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(graphic, 0x6F, actorType, 0x1A08);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(graphic, 0x6F, unk_16C, (s32)D_801B501C_7AB59C);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(graphic, 0x6F, unk_190, (s32)func_8007DF44);
-    graphic = (s32)D_800D9AE4;
-    ACTOR_FIXEDADDRESS_DIRECT_SET(0x6F, unk_18C, graphic);
-    ACTOR_FIXEDADDRESS_DIRECT_SET(0x6F, posZ.whole, 2);
-    saved_graphic[0] = graphic;
     func_801B10A8_7A7628(actor_index);
-    gActors[0x6E].actorType = 0x1A07;
-    Actor_Initialize(0x6E);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, graphicFlags, ACTOR_GFLAG_PALETTE);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, flags, ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, scaleX, 1.0f);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, posX.whole, -6);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, posY.whole, 84);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, posZ.whole, 2);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, unk_18C, saved_graphic[0]);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6E, var_150, 0x27);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_OR(actor_index, 0x6E, unk_164, 0x8001);
+
+    index = 0x6E;
+    gActors[index].actorType = 0x1A07;
+    Actor_Initialize(index);
+    gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE;
+    gActors[index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
+    gActors[index].scaleX = 1.0f;
+    gActors[index].posX.whole = -6;
+    gActors[index].posY.whole = 84;
+    gActors[index].posZ.whole = 2;
+    gActors[index].unk_18C = (s32)D_800D9AE4;
+    gActors[index].var_150 = 0x27;
+    gActors[index].unk_164 |= 0x8001;
 }
 
-s32 func_801B12F0_7A7870(u16 actor_index) {
-    s32 unused[1];
-    s32 saved_graphic[1];
-    s32 graphic;
+s32 func_801B12F0_7A7870(u16 unused_actor_index) {
+    u16 actor_index;
 
-    if (func_8007CE24(0x6D, 0, 0x60, 0x44, 0)) {
-    }
+    actor_index = 0x6D;
+    func_8007CE24(actor_index, 0, 0x60, 0x44, 0);
+    gActors[actor_index].actorType = 0x1A08;
+    gActors[actor_index].unk_16C = (s32)D_801B501C_7AB59C;
+    gActors[actor_index].unk_190 = (s32)func_8007DF44;
+    gActors[actor_index].unk_18C = (s32)D_800D9AE4;
+    gActors[actor_index].posZ.whole = 2;
 
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6D, actorType, 0x1A08);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6D, unk_16C, (s32)D_801B501C_7AB59C);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6D, unk_190, (s32)func_8007DF44);
-    graphic = (s32)D_800D9AE4;
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6D, unk_18C, graphic);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6D, posZ.whole, 2);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, actorType, 0x1A07);
-    saved_graphic[0] = graphic;
-    Actor_Initialize(0x6C);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, graphicFlags, ACTOR_GFLAG_PALETTE);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, flags, ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, scaleX, 0.9f);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, posX.whole, -13);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, posY.whole, 68);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, posZ.whole, 2);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, unk_18C, saved_graphic[0]);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_SET(actor_index, 0x6C, var_150, 0x28);
-    ACTOR_FIXEDADDRESS_INDEX_VAR_OR(actor_index, 0x6C, unk_164, 0x401);
-
-    return saved_graphic[0];
+    actor_index = 0x6C;
+    gActors[actor_index].actorType = 0x1A07;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
+    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
+    gActors[actor_index].scaleX = 0.9f;
+    gActors[actor_index].posX.whole = -13;
+    gActors[actor_index].posY.whole = 68;
+    gActors[actor_index].posZ.whole = 2;
+    gActors[actor_index].unk_18C = (s32)D_800D9AE4;
+    gActors[actor_index].var_150 = 0x28;
+    gActors[actor_index].unk_164 |= 0x401;
 }
 
-void func_801B13F8_7A7978(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x69, actorType, ACTORTYPE_GRAPHICONLY);
-    Actor_Initialize(0x69);
-    ACTOR_FIXEDADDRESS_SET(0x69, graphicFlags, ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK11);
-    ACTOR_FIXEDADDRESS_SET(0x69, flags, ACTOR_FLAG_ENABLED | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x69, graphicIndex, GINDEX_SOLIDSQUARE);
-    ACTOR_FIXEDADDRESS_SET(0x69, colorB, 0xBA);
-    ACTOR_FIXEDADDRESS_SET(0x69, colorA, 0xB2);
-    ACTOR_FIXEDADDRESS_SET(0x69, posX.whole, 55);
-    ACTOR_FIXEDADDRESS_SET(0x69, posY.whole, 77);
-    ACTOR_FIXEDADDRESS_SET(0x69, posZ.whole, 1);
-    ACTOR_FIXEDADDRESS_SET(0x69, scaleX, 9.7f);
-    ACTOR_FIXEDADDRESS_SET(0x69, scaleY, 2.2f);
+void func_801B13F8_7A7978(u16 unused_actor_index) {
+    u16 actor_index;
+
+    actor_index = 0x69;
+    gActors[actor_index].actorType = ACTORTYPE_GRAPHICONLY;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK11;
+    gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FREEZE_POS;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].colorB = 0xBA;
+    gActors[actor_index].colorA = 0xB2;
+    gActors[actor_index].posX.whole = 55;
+    gActors[actor_index].posY.whole = 77;
+    gActors[actor_index].posZ.whole = 1;
+    gActors[actor_index].scaleX = 9.7f;
+    gActors[actor_index].scaleY = 2.2f;
 }
 
-s32 func_801B14A4_7A7A24(u16 actor_index) {
-    s32 graphic[2];
+void func_801B14A4_7A7A24(u16 unused_actor_index) {
+    u16 actor_index;
 
-    ACTOR_FIXEDADDRESS_SET(0x6B, actorType, 0x1A07);
-    Actor_Initialize(0x6B);
-    ACTOR_FIXEDADDRESS_SET(0x6B, graphicFlags, ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK11);
-    ACTOR_FIXEDADDRESS_SET(0x6B, flags, ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x6B, posX.whole, 64);
-    ACTOR_FIXEDADDRESS_SET(0x6B, posY.whole, (graphic[0] = -72));
-    ACTOR_FIXEDADDRESS_SET(0x6B, posZ.whole, 512);
-    ACTOR_FIXEDADDRESS_SET(0x6B, unk_188, 0);
-    ACTOR_FIXEDADDRESS_SET(0x6B, unk_18C, (graphic[0] = (s32)D_800D9AE4));
-    ACTOR_FIXEDADDRESS_SET(0x6B, var_150, 0x18);
+    actor_index = 0x6B;
+    gActors[actor_index].actorType = 0x1A07;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK11;
+    gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
+    gActors[actor_index].posX.whole = 64;
+    gActors[actor_index].posY.whole = -72;
+    gActors[actor_index].posZ.whole = 512;
+    gActors[actor_index].unk_188 = 0;
+    gActors[actor_index].unk_18C = (s32)D_800D9AE4;
+    gActors[actor_index].var_150 = 0x18;
+    gActors[actor_index].unk_164 |= 0x8001;
 
-    ACTOR_FIXEDADDRESS_OR(0x6B, unk_164, 0x8001);
-    func_8007CD68(0x6A, 0, 104, -72, (*(s32*)&graphic[0] = graphic[0], 0), 3, 0x3E7);
-    ACTOR_FIXEDADDRESS_SET(0x6A, graphicFlags, ACTOR_GFLAG_UNK11);
-    ACTOR_FIXEDADDRESS_SET(0x6A, posZ.whole, 512);
-    ACTOR_FIXEDADDRESS_SET(0x6A, unk_188, 0);
-    ACTOR_FIXEDADDRESS_SET(0x6A, unk_18C, graphic[0]);
-
-    return graphic[0];
+    actor_index = 0x6A;
+    func_8007CD68(actor_index, 0, 104, -72, 0, 3, 0x3E7);
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
+    gActors[actor_index].posZ.whole = 512;
+    gActors[actor_index].unk_188 = 0;
+    gActors[actor_index].unk_18C = (s32)D_800D9AE4;
 }
 
 void func_801B159C_7A7B1C(u16 actor_index) {
@@ -1095,32 +1091,35 @@ void func_801B25C4_7A8B44(u16 actor_index) {
     } while (index < count);
 }
 
-void func_801B2658_7A8BD8(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x32, actorType, 0x1A08);
-    Actor_Initialize(0x32);
-    ACTOR_FIXEDADDRESS_OR(0x32, flags, ACTOR_FLAG_FREEZE_POS);
-    ACTOR_FIXEDADDRESS_SET(0x32, posX.whole, 0);
-    ACTOR_FIXEDADDRESS_SET(0x32, posY.whole, 0);
+void func_801B2658_7A8BD8(u16 unused_actor_index) {
+    u16 actor_index;
+
+    actor_index = 0x32;
+    gActors[actor_index].actorType = 0x1A08;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
+    gActors[actor_index].posX.whole = 0;
+    gActors[actor_index].posY.whole = 0;
 
     switch (gFestivalCurrentEvent) {
         case 0:
-            ACTOR_FIXEDADDRESS_SET(0x32, unk_178, (s32)D_801B502C_7AB5AC);
+            gActors[actor_index].unk_178 = (s32)D_801B502C_7AB5AC;
             break;
 
         case 1:
-            ACTOR_FIXEDADDRESS_SET(0x32, unk_178, (s32)D_801B50F8_7AB678);
+            gActors[actor_index].unk_178 = (s32)D_801B50F8_7AB678;
             break;
 
         case 2:
-            ACTOR_FIXEDADDRESS_SET(0x32, unk_178, (s32)D_801B51A4_7AB724);
+            gActors[actor_index].unk_178 = (s32)D_801B51A4_7AB724;
             break;
 
         case 7:
-            ACTOR_FIXEDADDRESS_SET(0x32, unk_178, (s32)D_801B5250_7AB7D0);
+            gActors[actor_index].unk_178 = (s32)D_801B5250_7AB7D0;
             break;
 
         case 5:
-            ACTOR_FIXEDADDRESS_SET(0x32, unk_178, (s32)D_801B52FC_7AB87C);
+            gActors[actor_index].unk_178 = (s32)D_801B52FC_7AB87C;
             break;
     }
 }

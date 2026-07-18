@@ -82,22 +82,24 @@ void func_801B0900_7969D0(u16 actor_index) {
     gActors[new_actor_index].colorA = 0xA0;
 }
 
-s32 func_801B0A10_796AE0(u16 actor_index) {
-    ACTOR_FIXEDADDRESS_SET(0x31, actorType, ACTORTYPE_GRAPHICONLY);
-    Actor_Initialize(0x31);
-    ACTOR_FIXEDADDRESS_SET(0x31, graphicFlags, ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    ACTOR_FIXEDADDRESS_SET(0x31, flags, ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
-    ACTOR_FIXEDADDRESS_SET(0x31, graphicIndex, GINDEX_SOLIDSQUARE);
-    ACTOR_FIXEDADDRESS_SET(0x31, scaleX, 19.0f);
-    ACTOR_FIXEDADDRESS_SET(0x31, scaleY, 13.0f);
-    ACTOR_FIXEDADDRESS_SET(0x31, posX.whole, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, posY.whole, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, posZ.whole, -16);
-    ACTOR_FIXEDADDRESS_SET(0x31, unk_188, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, colorA, 0);
-    ACTOR_FIXEDADDRESS_SET(0x31, colorB, 0xBA);
+u16 func_801B0A10_796AE0(u16 unused_actor_index) {
+    u16 actor_index = 0x31;
 
-    return 0x31;
+    gActors[actor_index].actorType = ACTORTYPE_GRAPHICONLY;
+    Actor_Initialize(actor_index);
+    gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
+    gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
+    gActors[actor_index].scaleX = 19.0f;
+    gActors[actor_index].scaleY = 13.0f;
+    gActors[actor_index].posX.whole = 0;
+    gActors[actor_index].posY.whole = 0;
+    gActors[actor_index].posZ.whole = -16;
+    gActors[actor_index].unk_188 = 0;
+    gActors[actor_index].colorA = 0;
+    gActors[actor_index].colorB = 0xBA;
+
+    return actor_index;
 }
 
 // the volcano in the desert areas of World 1

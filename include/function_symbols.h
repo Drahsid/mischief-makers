@@ -80,7 +80,6 @@ extern void func_80067EF0(u16);
 extern void func_8006CB88(u16);
 extern void func_8006CC70(u16);
 extern void func_8006CD5C(u16);
-extern void func_8008BFB0(void);
 
 extern void Actor_ClearRange_10To20(void);
 extern void PlaySceneBGM(void);
@@ -193,9 +192,6 @@ extern void func_8005E09C(s32 arg0, s32 arg1);
 extern void func_80067E9C(u16 actor_index);
 extern void Clancer_Update(u16 actor_index);
 extern s32 func_80073320(u16 actor_index); // return could be u16
-extern Actor* func_8007CE24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void func_8007CEB8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
-extern void func_8007D384(u16, u16);
 
 // spawns the "READY!"/"FIGHT!" text
 // warning: has 7th arg - is used in func, but isn't loaded in many calls.
