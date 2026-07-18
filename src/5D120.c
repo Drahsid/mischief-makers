@@ -1,5 +1,5 @@
 #include "common.h"
-#include "lifebar.h"
+#include "241E0.h"
 
 void func_8005C520(s8 arg0, s8 arg1) {
     gPlayerActor.unk_0DC |= 0x40;

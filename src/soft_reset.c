@@ -1,9 +1,12 @@
 #include "common.h"
 #include "1F1E0.h"
 #include "game_state.h"
+#include "soft_reset.h"
+
+u16 D_800CBF40 = 0;
+s16 D_800CBF44 = 0;
 
 extern u16 D_800CA238;
-extern s16 D_800CBF44;
 
 // .bss
 u64 D_801781F0; // must be declared in TU
