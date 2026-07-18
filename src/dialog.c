@@ -1,4 +1,5 @@
 #include "common.h"
+#include "5EA30.h"
 
 // script releated to dialouge code.
 

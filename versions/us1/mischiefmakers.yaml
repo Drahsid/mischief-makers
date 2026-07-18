@@ -379,7 +379,7 @@ segments:
       - [0x0EC9D0, .rodata, 4FEB0]
       - [0x0ECAA0, .rodata, 57F20]
       - [0x0ECAC0, .rodata, 59EA0]
-      - [0x0ECB90, .rodata, dialog]
+      - [0x0ECB90, .rodata, 5E230]
       - [0x0ECCF0, .rodata, 60CF0]
       - [0x0ECD80, .rodata, 61B80]
       - [0x0ED0E0, .rodata, 66250]
