@@ -1406,7 +1406,7 @@ void func_801B107C_798EBC(u16 actor_index, s32 arg1) {
 DEFAULT_INT func_801B1124_798F64(u16 arg0, u16 actor_index) {
     s16 angle;
 
-    gActors[0].parentIndex = actor_index;
+    gPlayerActor.parentIndex = actor_index;
     angle = (180.0 - gActors[actor_index].rotateZ) * 2.84;
     gActors[actor_index].hitboxBY0 = gActors[actor_index].hitboxBY1 = COS(angle) * gActors[actor_index].unk_170_s16[0];
     gActors[actor_index].hitboxBX0 = gActors[actor_index].hitboxBX1 = SIN(angle) * gActors[actor_index].unk_170_s16[0];
@@ -1844,10 +1844,10 @@ void func_801B2334_79A174(u16 actor_index) {
         case 1:
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = 122;
-            target_index = gActors[0].parentIndex;
-            if (gActors[0].posY.whole >= 75) {
+            target_index = gPlayerActor.parentIndex;
+            if (gPlayerActor.posY.whole >= 75) {
                 if (((gActors[target_index].flags & ACTOR_FLAG_ACTIVE) == 0) || ((gActors[target_index].flags_098 & ACTOR_FLAG3_UNK9) == 0)) {
-                    gActors[0].posY.whole = 75;
+                    gPlayerActor.posY.whole = 75;
                 }
             }
             break;
@@ -2815,7 +2815,7 @@ void func_801B4638_79C478(u16 actor_index) {
 
     actor->flags = ACTOR_FLAG_ACTIVE;
 
-    if (((gActors[0].posX.whole - 40) < actor->posX.whole) && (actor->posX.whole < (gActors[0].posX.whole + 40))) {
+    if (((gPlayerActor.posX.whole - 40) < actor->posX.whole) && (actor->posX.whole < (gPlayerActor.posX.whole + 40))) {
         y = gScreenPosCurrentY.whole + actor->posY.whole;
         actor->actorType = D_801B9140_7A0F80[y & 0xF];
         Actor_Initialize(actor_index);
@@ -2835,8 +2835,8 @@ void func_801B46D8_79C518(u16 actor_index) {
         case 1:
             if (gActors[actor_index].var_150-- == 0) {
                 gActors[actor_index].var_150 = 0x93;
-                if (((gActors[0].posX.whole - 128) < gActors[actor_index].posX.whole) &&
-                    (gActors[actor_index].posX.whole < (gActors[0].posX.whole + 192))) {
+                if (((gPlayerActor.posX.whole - 128) < gActors[actor_index].posX.whole) &&
+                    (gActors[actor_index].posX.whole < (gPlayerActor.posX.whole + 192))) {
                     u16 new_actor_index = gActors[actor_index].var_154;
                     if (gActors[new_actor_index].flags == 0) {
                         gActors[new_actor_index].actorType = ACTORTYPE_CLANBLOB;

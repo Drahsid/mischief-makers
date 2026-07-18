@@ -8,10 +8,10 @@ void func_800121D0(void) {
     index = gActors[actor_index].health;
     Actor_Initialize(actor_index);
     gActors[actor_index].health = index;
-    gActors[0].posZ.whole = 1;
+    gPlayerActor.posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;
     gPlayerVelYMirror.raw = 0;
-    gActors[0].unk_0CC = 0;
+    gPlayerActor.unk_0CC = 0;
     D_800BE5D4 = 0;
     D_800BE5F0 = 0;
     D_800BE5F8 = 0;
@@ -23,7 +23,7 @@ void func_800121D0(void) {
 }
 
 void func_80012288(void) {
-    gActors[0].actorType = 0x16;
+    gPlayerActor.actorType = 0x16;
     func_800121D0();
 }
 
@@ -50,19 +50,19 @@ void func_800123AC(void) {
     delta_x = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     if (delta_x < -0x90) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole - 0x90;
-        gActors[0].posX.whole = -0x90;
+        gPlayerActor.posX.whole = -0x90;
     }
     else if (delta_x >= 0x91) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole + 0x90;
-        gActors[0].posX.whole = 0x90;
+        gPlayerActor.posX.whole = 0x90;
     }
     else {
-        gActors[0].posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
+        gPlayerActor.posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     }
 }
 
 void func_80012418(void) {
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
 void func_80012438(void) {
@@ -100,7 +100,7 @@ void func_80012438(void) {
     if (gScreenPosCurrentX.whole > D_800BE56C.whole - 0x90) {
         gScreenPosCurrentX.whole = D_800BE56C.whole - 0x90;
     }
-    gActors[0].posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
+    gPlayerActor.posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
 }
 
 void func_80012634(void) {
@@ -137,7 +137,7 @@ void func_80012634(void) {
     if (gScreenPosCurrentY.whole > D_800BE570.whole - 0x70) {
         gScreenPosCurrentY.whole = D_800BE570.whole - 0x70;
     }
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
 void func_80012830(void) {

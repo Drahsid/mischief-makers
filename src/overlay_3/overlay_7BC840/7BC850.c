@@ -841,7 +841,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
 
                 default:
                     gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
-                    gActors[actor_index].flags |= gActors[0].flags & ACTOR_FLAG_FLIPPED;
+                    gActors[actor_index].flags |= gPlayerActor.flags & ACTOR_FLAG_FLIPPED;
                     if ((D_801B4B64_7C0AB4 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17) && (D_801373E0.unk_12 == 0)) {
                         D_801B4B64_7C0AB4++;
                         func_80081790(actor_index, D_800E34A4);

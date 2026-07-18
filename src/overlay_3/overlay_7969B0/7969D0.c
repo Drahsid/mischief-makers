@@ -394,7 +394,7 @@ void func_801B1414_7974E4(u16 actor_index) {
 
             if (on_ground && (actor->parentIndex == 0)) {
                 Sound_PlaySfxAtActor2(0x45, actor_index);
-                gActors[0].iFrames = 0x5A;
+                gPlayerActor.iFrames = 0x5A;
             }
             else {
                 Sound_PlaySfxAtActor2(0x45, actor_index);
@@ -515,7 +515,7 @@ void func_801B182C_7978FC(u16 actor_index) {
 s32 func_801B1A28_797AF8(u16 actor_index, s16 left_offset, s16 right_offset) {
     s16 player_screen_x;
 
-    player_screen_x = gScreenPosCurrentX.whole - ((left_offset * 0) - gActors[0].posX.whole);
+    player_screen_x = gScreenPosCurrentX.whole - ((left_offset * 0) - gPlayerActor.posX.whole);
     left_offset = (gScreenPosCurrentX.whole - ((gActors[actor_index].posX.whole * 0) - gActors[actor_index].posX.whole)) + left_offset;
     right_offset = (gScreenPosCurrentX.whole - ((right_offset * 0) - gActors[actor_index].posX.whole)) + right_offset;
     

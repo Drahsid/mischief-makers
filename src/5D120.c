@@ -1,6 +1,5 @@
 #include "common.h"
-
-extern s16 D_800CCC78[];
+#include "lifebar.h"
 
 void func_8005C520(s8 arg0, s8 arg1) {
     gPlayerActor.unk_0DC |= 0x40;
@@ -127,8 +126,8 @@ void UpdateCameraShake(void) {
             gCamShakeMag -= gCamShakeMagDelta;
             break;
         }
-        if (((D_800CCC78[8 * gCurrentScene] == 1) && (gCamShakeV < 0)) || 
-            ((D_800CCC78[8 * gCurrentScene] == 2) && (gCamShakeV > 0))) {
+        if (((D_800CCC6C[6 + 8 * gCurrentScene] == 1) && (gCamShakeV < 0)) || 
+            ((D_800CCC6C[6 + 8 * gCurrentScene] == 2) && (gCamShakeV > 0))) {
             gCamShakeV = 0;
         }
     }

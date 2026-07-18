@@ -1894,7 +1894,7 @@ void func_801B455C_7A506C(u16 actor_index) {
             break;
 
         case 2:
-            if (((gActors[actor_index].posX.whole - 224) < gActors[0].posX.whole) && (gActors[0].posX.whole < (gActors[actor_index].posX.whole - 192))) {
+            if (((gActors[actor_index].posX.whole - 224) < gPlayerActor.posX.whole) && (gPlayerActor.posX.whole < (gActors[actor_index].posX.whole - 192))) {
                 new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
                 if (new_actor_index != 0) {
                     ACTOR_INIT(new_actor_index, 0x1B07);
@@ -2377,7 +2377,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
 
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
-                            if ((gActors[actor_index].unk_16C == 3) && ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
+                            if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
                                 func_8007D0F4(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
@@ -2411,10 +2411,10 @@ void func_801B57C8_7A62D8(u16 actor_index) {
     }
 
     if (gActors[actor_index].unk_16C == 3) {
-        if ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
+        if ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
             if (!(gActors[actor_index].unk_170 & 0x30000)) {
                 if (gActors[actor_index].unk_170 & 0xFFFF) {
-                    if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
+                    if (gActors[actor_index].posX.whole < gPlayerActor.posX.whole) {
                         gActors[actor_index].unk_170--;
                         gActors[actor_index].unk_170 |= 0x10000;
                     }
