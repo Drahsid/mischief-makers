@@ -1066,8 +1066,8 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     gPlayerActor.posY.whole = pos_vals[1];
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
-    gPlayerData.flags &= ~0x10005;
-    gPlayerData.flags |= 2;
+    gPlayerData.flags &= ~(PLAYERDATA_UNK16 | PLAYERDATA_UNBOUND | PLAYERDATA_UNK0);
+    gPlayerData.flags |= PLAYERDATA_BOUND;
     gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;

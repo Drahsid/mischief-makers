@@ -81,7 +81,7 @@ void func_801B9900_7EA3D0(void) {
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
-            gPlayerData.flags |= 1;
+            gPlayerData.flags |= PLAYERDATA_UNK0;
             gCannotPause = TRUE;
             break;
 
@@ -97,7 +97,7 @@ void func_801B9900_7EA3D0(void) {
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(D_801B9BD0_7EA6A0);
             D_800BE5F4.unk_00_u32 = 7;
-            gPlayerData.flags |= 1;
+            gPlayerData.flags |= PLAYERDATA_UNK0;
             break;
 
         case 0x8000:

@@ -42,7 +42,7 @@ s16 gPlatforms0Y1[144];
 s16 gPlatforms1Y1[144];
 u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 u16 gButtonPressHistory[64];
-u64 gYieldData[0x900];
+u64 gYieldData[OS_YIELD_DATA_SIZE];
 u16 gButtonHoldHistory[64];
 
 // initial values of global data near start of .data

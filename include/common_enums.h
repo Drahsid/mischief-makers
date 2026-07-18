@@ -116,9 +116,9 @@ typedef enum {
     ENSHOT_ANGLE3 = ((1 << 8) * 3),
     ENSHOT_ANGLEMASK = ENSHOT_ANGLE3,
     ENSHOT_TARGETPLAYER = (1 << 12),
+    ENSHOT_UNK13 = (1 << 13),
     ENSHOT_UNK14 = (1 << 14),
-    ENSHOT_UNK15 = (1 << 15),
-    ENSHOT_SCALEMOVE = (1U << 16U)
+    ENSHOT_SCALEMOVE = (1U << 15U)
 
 } EnegryShotFlags; // used in func_8002EDC8
 

@@ -14157,7 +14157,7 @@
           }
         },
         {
-          "name": "func_80085844",
+          "name": "Clanbomb_SpawnTimer",
           "size": "264",
           "fuzzy_match_percent": 100.0,
           "metadata": {

@@ -132,7 +132,6 @@ extern u16 gActorsFront[240]; // indecies of actors to draw in "front"
 extern u16 gActorsTop[240]; // indecies of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
 
 extern PlayerData gPlayerData;
-extern s8 D_801373F2;
 
 // soft_reset.c bss
 extern u16 D_801781F8; // some control lock? read in func_80048740. always 0.

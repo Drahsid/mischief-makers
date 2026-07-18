@@ -102,7 +102,7 @@ void func_801A6E48_78B988(u16 arg0) {
         Actor_Initialize(actor_index);           // shuffle between pemiance and colors.
         gActors[actor_index].var_110 = (Rand() & ((SPIKEBALL_MORTAL | SPIKEBALL_COLORMASK) >> 8)) << 8;
         gActors[actor_index].var_0D8 = 0;
-        gActors[actor_index].posX.whole = gActors[arg0]s.posX.whole;
+        gActors[actor_index].posX.whole = gActors[arg0].posX.whole;
         gActors[actor_index].posY.whole = gActors[arg0].posY.whole + 0x10;
         switch (gActors[arg0].health & 0x300) {
             case 0x200:

@@ -141,6 +141,7 @@ ActorUpdate_EnergyShot = 0x8002E288; // type:func
 SpawnHovercraftShot = 0x8002E500; // type:func
 ActorUpdate_HovercraftShot = 0x8002E89C; // type:func
 
+SpawnShuriken = 0x8002ebb8; // type:func
 SpawnRoundBomb = 0x8002ECAC; // type:func
 SpawnBoomerang = 0x8002ED48; // type:func
 SpawnGemActor = 0x8002EFE4; // type:func
@@ -239,6 +240,7 @@ Flower_IsGrabbed = 0x800848a0; // type:func
 ActorUpdate_Hat = 0x800853c8; // type:func
 ActorUpdate_Flower = 0x80084974; // type:func
 
+Clanbomb_SpawnTimer = 0x80085844; // type:func
 Clanbomb_TickFuse = 0x8008594c; // type:func
 Clanbomb_Detonate = 0x800859c4; // type:func
 Clanbomb_CheckAbsVelocity = 0x80085a4c; // type:func
@@ -284,7 +286,7 @@ SpawnMarinaOhNo = 0x8008e310; // type:func
 ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
 
 Clanball_GrabCheck = 0x80039644; // type:func
-Clanball_State0 = 0x8003be3c; // type:func
+Clanball_State0 = 0x80039724; // type:func
 Clanbal_ShakeFlash = 0x80039894; // type:func
 Clanball_RevealSound = 0x800398F8; // type:func
 Clanball_DropSound = 0x80039970; // type:func

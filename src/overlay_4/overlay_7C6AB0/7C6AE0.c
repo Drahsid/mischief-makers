@@ -1062,7 +1062,7 @@ u16 D_801BF80C_7CC9EC[] = {
     0x0020, 0x4E, 0x0580, 0x017E, 0x6088, 0x3BB0, ACTORTYPE_CLANCER_91,
     0x0020, 0x4D, 0x0680, 0x012A, 0x6080, 0x3BA0, ACTORTYPE_CLANCER_91,
     0x0020, 0x4C, 0x059C, 0x017E, 0x60C0, 0x3491, ACTORTYPE_CLANCER_91,
-    0x0000, 0x54, 0x05C8, 0x017E, 0x0000, 0x0040, ACTORTYPE_OVL2_W1_CLANCER_3,
+    0x0000, 0x54, 0x05C8, 0x017E, 0x0000, 0x0040, ACTORTYPE_OVL2_W1_6,
     0x0020, 0x50, 0x0680, 0x012E, 0x4000, 0x2730, ACTORTYPE_CLANCER_91,
     0x0020, 0x51, 0x0690, 0x012E, 0x4000, 0x2700, ACTORTYPE_CLANCER_91,
     0x0020, 0x52, 0x06A0, 0x012C, 0x4000, 0x2710, ACTORTYPE_CLANCER_91, 
@@ -2290,11 +2290,11 @@ void func_801BB310_7C84F0(void) {
         case 4:
             if (gPlayerPosX.whole >= 0x1980) {
                 gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x1CC, 3);
-                gPlayerData.flags |= 4;
+                gPlayerData.flags |= PLAYERDATA_UNBOUND;
             }
             else {
                 gScreenBoundY0.whole = Math_ApproachS32(gScreenBoundY0.whole, 0x270, 3);
-                gPlayerData.flags &= ~4;
+                gPlayerData.flags &= ~PLAYERDATA_UNBOUND;
             }
 
             if (gPlayerPosX.whole >= 0x1AF9) {

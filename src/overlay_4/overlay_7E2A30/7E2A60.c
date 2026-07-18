@@ -1559,7 +1559,7 @@ void func_801BB85C_7E49BC(void) {
             break;
 
         case 25:
-            if ((gPlayerData.flags & 2) == 0) {
+            if (!(gPlayerData.flags & PLAYERDATA_BOUND)) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0x5B);
             }
@@ -1633,7 +1633,7 @@ void func_801BBC00_7E4D60(void) {
         case 3:
             gStageState++;
             D_800D28FC |= 8;
-            gPlayerData.flags |= 1;
+            gPlayerData.flags |= PLAYERDATA_UNK0;
             gCannotPause = FALSE;
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
@@ -1662,7 +1662,7 @@ void func_801BBC00_7E4D60(void) {
             Actor_LoadSpawnTable(D_801BD5E4_7E6744);
             gActors[0x8F].state = 0x10;
             D_800BE5F4.unk_00_s32 = 5;
-            gPlayerData.flags |= 1;
+            gPlayerData.flags |= PLAYERDATA_UNK0;
 
         case 0x1001:
             if (Transition_FadeOut()) {

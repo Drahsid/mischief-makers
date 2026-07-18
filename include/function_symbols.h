@@ -124,7 +124,7 @@ extern u16 func_80029FB8(u16 actor_index, s16 arg1, s16 arg2, s16 arg3, s16 arg4
 extern void Actor_SetHitboxA(u16 actor_index, s16 val);
 extern void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void SpawnShuriken(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
-extern void func_8002ED34(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x, s16 vel_y)
+extern void func_8002ED34(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x, s16 vel_y);
 extern s32 SpawnGemActor61(u16 arg0, u16 arg1, u16 arg2);
 extern s32 GemCollect_Static(u16 actor_index);
 extern void SpawnGemRing(u16 arg0);
@@ -193,12 +193,7 @@ extern void func_80067E9C(u16 actor_index);
 extern void Clancer_Update(u16 actor_index);
 extern s32 func_80073320(u16 actor_index); // return could be u16
 
-// spawns the "READY!"/"FIGHT!" text
-// warning: has 7th arg - is used in func, but isn't loaded in many calls.
-extern void func_8007CFE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
 extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
-extern void func_8007EA14(void*, u16, s16, s32, s32, void*, s32, s32, s32, s32, s32, f32);
-extern void func_8007EF58(void*, u16, s16, s32, s32, s32, f32, f32);
 extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);

@@ -189,8 +189,8 @@ void func_801B9BB4_7EA9E4(void) {
             func_80045F14(D_801B9FF0_7EAE20);
             D_800D294C = 0;
             gGuestActorIndex = 0;
-            gPlayerData.flags &= 0xFFFEFFFA;
-            gPlayerData.flags |= 2;
+            gPlayerData.flags &= ~(PLAYERDATA_UNK16 | PLAYERDATA_UNBOUND | PLAYERDATA_UNK0);
+            gPlayerData.flags |= PLAYERDATA_BOUND;
             func_80045500();
             D_800D28FC &= -0x58B;
             D_800D28FC |= 4;

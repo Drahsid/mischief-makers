@@ -3587,7 +3587,7 @@ void func_80094F24(u16 actor, s32 unused_arg1) {
     if ((gActiveFrames % 7) == 0) {
         actor_index = Actor_RangeFindInactive(0x50, 0xC0);
         if (actor_index != 0) {
-            gActors[actor_index].actorType = 0x6C;
+            gActors[actor_index].actorType = ACTORTYPE_108;
             Actor_Initialize(actor_index);
             gActors[actor_index].var_150 = actor;
             if ((gActiveFrames % 14) == 0) {

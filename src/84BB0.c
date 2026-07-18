@@ -21,16 +21,16 @@ extern u16 D_800D9B64[]; // palette
 extern u16 D_800DE188[]; // palette
 
 extern u8 D_800E0F00[];
-extern u16 D_800E3D20[]; // array of graphic indices, used in ActorUpdate_Flower
+extern u16 D_800E3D20[]; // indecies of flower sprites.
 extern u8 D_800E3D2C[];
-extern u16 D_800E3D4C[]; // array of graphic indices, used in ActorUpdate_Hat
+extern u16 D_800E3D4C[]; // indecies of hat sprites.
 extern s16 D_800E3D64[];
 extern s16 D_800E3D78[];
 extern s16 D_800E3D8C[];
 extern s16 D_800E3DA0[];
 extern u16 D_800E3DB8;
-extern f32 D_800E3DBC[];
-extern s16 D_800E3DDC[];
+extern f32 D_800E3DBC[]; //scales of clanbomb.
+extern s16 D_800E3DDC[]; // clanbomb hitbox LUT
 extern s32 D_800E3DE4[];
 extern s32 D_800E3E24[];
 extern s32 D_800E41A4[];
@@ -38,7 +38,7 @@ extern s32 D_800E41B4[];
 extern s32 D_800E41C4[];
 extern s32 D_800E42F0[];
 extern s16 D_800E42F4[];
-extern s32* D_800E4440[];
+extern s32* D_800E4440[]; // LUT of digging spot actors
 extern ActorUnk_800E44C0* D_800E44C0[];
 extern s16 D_800E44C8[]; // graphic list
 extern s16 D_800E44DC[]; // graphic list
@@ -532,12 +532,12 @@ void ActorUpdate_Hat(u16 actor_index) {
     func_800840A4(actor_index);
 }
 
-void func_80085844(u16 actor_index) {
+void Clanbomb_SpawnTimer(u16 actor_index) {
     u16 free_actor;
 
     free_actor = Actor_RangeFindInactive(0x90, 0xC0);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x46;
+        gActors[free_actor].actorType = ACTORTYPE_CLANBOMBTIMER;
         Actor_Initialize(free_actor);
         gActors[free_actor].var_160 = 0;
         gActors[free_actor].unk_164 = FIXED_UNIT(-12.0);
@@ -590,7 +590,7 @@ s32 Clanbomb_FallCheck(u16 actor_index) {
         gActors[actor_index].state = 1;
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
-        if (Clanbomb_CheckAbsVelocity(actor_index) != 0) {
+        if (Clanbomb_CheckAbsVelocity(actor_index)) {
             Clanbomb_Detonate(actor_index);
         }
         else {
@@ -959,7 +959,7 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
             gActors[actor_index].colorR = 0x80 - gActors[actor_index].unk_168;
         }
         if (!(gActors[actor_index].var_150 & 0x100) && ((gActors[actor_index].unk_168 % 60) == 0)) {
-            func_80085844(actor_index);
+            Clanbomb_SpawnTimer(actor_index);
         }
         gActors[actor_index].unk_184++;
     }
@@ -1182,7 +1182,7 @@ void func_80087568(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32
 
     free_actor = Actor_RangeFindInactive(0x90, 0xC0);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x34;
+        gActors[free_actor].actorType = ACTORTYPE_33;
         Actor_Initialize(free_actor);
         gActors[free_actor].graphicIndex = graphic_index;
         gActors[free_actor].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
@@ -1790,7 +1790,7 @@ u16 func_800896AC(u16 actor_index) {
     if (free_actor == 0) {
         return 0;
     }
-    gActors[free_actor].actorType = 0x1D;
+    gActors[free_actor].actorType = ACTORTYPE_GRAPHICONLY;
     Actor_Initialize(free_actor);
     gActors[free_actor].hitboxBY0 = 8; \
     gActors[free_actor].hitboxBY1 = -8;
@@ -1818,10 +1818,10 @@ void DiggingSpot_SpawnActor(u16 actor_0, u16 actor_1, s32* vals) {
     gActors[actor_1].var_110 = *vals_ptr++;
     gActors[actor_1].var_0D8 = *vals_ptr++;
     gActors[actor_0].unk_164 = *vals_ptr++;
-    if (gActors[actor_1].actorType == 8) {
+    if (gActors[actor_1].actorType == ACTORTYPE_GEM) {
         gActors[actor_1].health = 0;
         gActors[actor_1].posY.whole += 16;
-        if (Rand() & 1) {
+        if (Rand() & 1) { // alternate the side the gem drops.
             gActors[actor_1].velocityX.raw = FIXED_UNIT(3.0);
         }
         else {
@@ -1866,7 +1866,7 @@ void func_80089A10(u16 actor_index) {
             );
             if (particle_index != 0) {
                 gActors[particle_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-                gActors[particle_index].graphicIndex = 0x1AE;
+                gActors[particle_index].graphicIndex = GINDEX_SPARKLESMALL;
                 gActors[particle_index].scaleX = (Rand() * 0.0078125);
                 gActors[particle_index].scaleY = gActors[particle_index].scaleX;
                 gActors[particle_index].var_154 = -10;
@@ -1926,7 +1926,7 @@ void func_80089A10(u16 actor_index) {
             );
             if (particle_index != 0) {
                 gActors[particle_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-                gActors[particle_index].graphicIndex = 0x1D6;
+                gActors[particle_index].graphicIndex = GINDEX_STAREFFECT;
                 gActors[particle_index].scaleX = 1.0f;
                 gActors[particle_index].scaleY = 1.0f;
                 gActors[particle_index].var_154 = -10;
@@ -2003,7 +2003,7 @@ void func_8008A0F4(u16 actor_index) {
             free_actor = Actor_RangeFindInactive(0x30, 0x90);
             if (free_actor != 0) {
                 angle = (gActors[actor_index].var_150 & 0xFF00) >> 4;
-                gActors[free_actor].actorType = 0x59;
+                gActors[free_actor].actorType = ACTORTYPE_89;
                 Actor_Initialize(free_actor);
                 gActors[free_actor].velocityX.raw = COS(angle) * FIXED_UNIT(2.0);
                 gActors[free_actor].velocityY.raw = SIN(angle) * FIXED_UNIT(4.0);
@@ -2381,7 +2381,7 @@ void func_8008B438(u16 actor_index) {
 
     free_actor = Actor_RangeFindInactive(0x70, 0x7A);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x45;
+        gActors[free_actor].actorType = ACTORTYPE_CLANBOMB;
         Actor_Initialize(free_actor);
         pos_x = (gActors[actor_index].var_150 & 0x100) ? -8 : 8;
         pos_x += gActors[actor_index].posX.whole;
@@ -2404,7 +2404,7 @@ void func_8008B548(u16 actor_index) {
 
     free_actor = Actor_RangeFindInactive(0x70, 0x7A);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x59;
+        gActors[free_actor].actorType = ACTORTYPE_89;
         Actor_Initialize(free_actor);
         pos_x = ((gActors[actor_index].var_150) & 0x100) ? -8 : 8;
         pos_x += gActors[actor_index].posX.whole;
@@ -2473,7 +2473,7 @@ void func_8008B830(u16 actor_index) {
 
     free_actor = Actor_RangeFindInactive(0x70, 0x7A);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x59;
+        gActors[free_actor].actorType = ACTORTYPE_89;
         Actor_Initialize(free_actor);
         angle = FROM_FIXED(gActors[actor_index].var_154) + COS_DEG_90;
         x = COS(angle);
@@ -2519,7 +2519,7 @@ void func_8008BB64(u16 actor_index) {
 
     free_actor = Actor_RangeFindInactive(0x90, 0xC0);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x5C;
+        gActors[free_actor].actorType = ACTORTYPE_92;
         Actor_Initialize(free_actor);
         gActors[free_actor].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[free_actor].flags = ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;

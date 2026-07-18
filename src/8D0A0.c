@@ -4,7 +4,7 @@
 #include "music.h"
 
 
-extern s32 D_80137420;
+
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
 
@@ -61,7 +61,7 @@ void func_8008C4E0(u16 actor_index) {
     gActors[actor_index].colorB = 0;
     gActors[actor_index].colorG = 0;
     gActors[actor_index].colorR = 0;
-    D_80137420 = 0;
+    gPlayerData.unk_40 = 0;
 }
 
 void func_8008C528(u16 arg0) {

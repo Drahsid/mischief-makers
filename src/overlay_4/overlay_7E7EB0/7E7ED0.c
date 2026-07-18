@@ -801,7 +801,7 @@ void func_801BA634_7E8C04(void) {
             break;
 
         case 0x19:
-            if (!(gPlayerData.flags & 2)) {
+            if (!(gPlayerData.flags & PLAYERDATA_BOUND)) {
                 D_800D28FC |= 1;
                 func_80045D84(1, 0x5B);
             }

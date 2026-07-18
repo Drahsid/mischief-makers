@@ -1998,7 +1998,7 @@ void func_8001EC1C(void) {
     s16 sp198[0x90];
     s16 sp78[0x90];
 
-    if ((gPlayerData.flags & 0x10) || (gGameState != GAMESTATE_GAMEPLAY)) {
+    if ((gPlayerData.flags & PLAYERDATA_NOCOLLIDE) || (gGameState != GAMESTATE_GAMEPLAY)) {
         return;
     }
 
@@ -2165,7 +2165,7 @@ void func_8001EC1C(void) {
 
     if (spCDE) {} // fakematch to get lh/sh spCDE around for loop above
 
-    if (gGameState != 6) {
+    if (gGameState != GAMESTATE_GAMEPLAY) {
         return;
     }
 
@@ -2238,7 +2238,7 @@ void func_8001EC1C(void) {
 void Actors_SetPlatforms(void) {
     u16 index;
 
-    if ((gPlayerData.flags & 0x10)) {
+    if ((gPlayerData.flags & PLAYERDATA_NOCOLLIDE)) {
         return;
     }
 

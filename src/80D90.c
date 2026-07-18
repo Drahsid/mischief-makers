@@ -270,7 +270,7 @@ void func_8008105C(u16 base_actor_index, s16* vals_1, s16* vals_2) {
 
     for (; vals_1[0] != 0x7FFF; vals_1 += 5, vals_2 += 3) {
         actor_index = vals_1[0] + base_actor_index;
-        gActors[actor_index].actorType = 0x21;
+        gActors[actor_index].actorType = ACTORTYPE_33;
         Actor_Initialize(actor_index);
         gActors[actor_index].var_0D8 = 0;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
