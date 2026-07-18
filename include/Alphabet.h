@@ -493,7 +493,7 @@
 
 #define ALPHA_NULL 0x8FFF
 
-#define ALPHA_GLYPH_INDEX(c) ( (c * 2) + GINDEX_ALPHASTART) // get graphic index of ALPHA_* index
+#define ALPHA_GLYPH_INDEX(c)  (c * 2) + GINDEX_ALPHASTART // get graphic index of ALPHA_* index
 #define ALPHA_GLYPH(c) ( (ALPHA_## c * 2) + GINDEX_ALPHASTART) // shorter vesion of graphic index getter for hard-coded values
 #define ALPHA_OFFSET(c) (ALPHA_## c - 0x50) // some print functions use a 0x50 offet to print the char.
 

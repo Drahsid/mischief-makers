@@ -1210,19 +1210,19 @@ void func_80087698(u16 actor_index) {
     s32 pad;
     func_8007CCE0(gActors[actor_index].unk_170);
     if (D_800E0F00[6] == 0) {
-        func_80087568(actor_index, (D_800E0F00[7] * 2) + 0x2D2,
+        func_80087568(actor_index, ALPHA_GLYPH_INDEX(D_800E0F00[7]),
             gActors[actor_index].posX.raw,
             gActors[actor_index].posY.raw,
             gActors[actor_index].posZ.raw + FIXED_UNIT(1.0)
         );
     }
     else {
-        func_80087568(actor_index, (D_800E0F00[6] * 2) + 0x2D2,
+        func_80087568(actor_index, ALPHA_GLYPH_INDEX(D_800E0F00[6]),
             gActors[actor_index].posX.raw - (gActors[actor_index].scaleX * FIXED_UNIT(4.0)),
             gActors[actor_index].posY.raw,
             gActors[actor_index].posZ.raw + FIXED_UNIT(1.0)
         );
-        func_80087568(actor_index, (D_800E0F00[7] * 2) + 0x2D2,
+        func_80087568(actor_index, ALPHA_GLYPH_INDEX(D_800E0F00[7]),
             gActors[actor_index].posX.raw + (gActors[actor_index].scaleX * FIXED_UNIT(4.0)),
             gActors[actor_index].posY.raw,
             gActors[actor_index].posZ.raw + FIXED_UNIT(1.0)
