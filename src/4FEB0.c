@@ -2117,39 +2117,39 @@ u16 *D_800D54EC[] = {
     D_800D431C
 };
 
-s32 D_800D5794[] = {
-    0x00004000,
-    0x00020000,
-    0x00020000,
-    0x00010000,
-    0x00008000,
-    0x00038000,
-    0x00038000,
-    0x00038000,
-    0x00028000,
-    0x00002666,
-    0x00050000,
-    0x00050000,
-    0x00050000,
-    0x00050000,
-    0x00050000,
-    0x00030000,
-    0x00030000,
-    0x00030000,
-    0x00028000,
-    0x00006000,
-    0x00028000,
-    0x00028000,
-    0x00028000,
-    0x00020000,
-    0x00038000,
-    0x00038000,
-    0x00038000,
-    0x00028000,
-    0x00030000,
-    0x00030000,
-    0x00030000,
-    0x00020000
+s32 gMarinaActionVelocities[] = {
+    FIXED_UNIT(0.25),
+    FIXED_UNIT(2.0),
+    FIXED_UNIT(2.0),
+    FIXED_UNIT(1.0),
+    FIXED_UNIT(0.5),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(0.15),
+    FIXED_UNIT(5.0),
+    FIXED_UNIT(5.0),
+    FIXED_UNIT(5.0),
+    FIXED_UNIT(5.0),
+    FIXED_UNIT(5.0),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(0.375),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(2.0),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(3.5),
+    FIXED_UNIT(2.5),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(3.0),
+    FIXED_UNIT(2.0)
 };
 
 s32 func_8004F2B0(u16 actor_index) {
@@ -2354,7 +2354,7 @@ void func_8004FB30(u16 actor_index, s32 index) {
     u16 actor_1;
     s8 temp;
 
-    temp_v0 = (s8*) D_800D410C[index];
+    temp_v0 = D_800D410C[index];
     if (temp_v0 != NULL) {
         actor_1 = gActors[actor_index].parentIndex;
         gActors[actor_1].unk_104 = gActors[actor_index].posX.raw;
@@ -4429,7 +4429,7 @@ void func_80055538(u16 actor_0, u16 actor_1) {
             func_800554AC(actor_0, actor_1);
             func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 0x1E);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
-            D_800D5794[19] = 0;
+            gMarinaActionVelocities[19] = 0;
             if ((s32) gActors[actor_0].unk_140_u8[0] >= 5) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -4518,7 +4518,7 @@ void func_800558F8(u16 actor_0, u16 actor_1) {
             Sound_StopSfx(SFX_MARINA_YELL1);
             Sound_StopSfx(SFX_MARINA_YELL3);
             Sound_PlaySfx(SFX_MARINA_YELL4);
-            D_800D5794[19] = 0;
+            gMarinaActionVelocities[19] = 0;
             if (gActors[actor_0].unk_140_u8[0] >= 5) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -4934,7 +4934,7 @@ void func_80056CCC(u16 actor_0, u16 actor_1) {
             func_800554AC(actor_0, actor_1);
             func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 0x1E);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
-            D_800D5794[19] = 0;
+            gMarinaActionVelocities[19] = 0;
             if (gActors[actor_0].unk_140_u8[0] > 4) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;

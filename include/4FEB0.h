@@ -11,6 +11,6 @@ extern s8 *D_800D4094[];
 extern s8 *D_800D4184[];
 extern u16 D_800D431C[];
 extern u16 *D_800D54EC[];
-extern s32 D_800D5794[];
+extern s32 gMarinaActionVelocities[];
 
 #endif

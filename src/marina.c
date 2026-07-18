@@ -11,7 +11,6 @@
 #include "5D120.h"
 
 extern u16 D_801373D8;
-extern s32 D_800D5794[19];
 extern ActorFunc D_800D3DB0[];
 
 u8 func_80048600(u16 actor_index) {
@@ -49,18 +48,16 @@ u8 func_80048600(u16 actor_index) {
 }
 
 s32 func_800486F4(void) {
-    s32 v0 = D_801373F0;
-    s32 v1 = (v0 << 0x18) >> 0x18;
-
-    if ((v0 == 2) || (v0 == 6)) {
-        v1 = 4;
+    s8 v0 = D_801373F0;
+    if ((D_801373F0 == 2) || (D_801373F0 == 6)) {
+        v0 = 4;
     }
 
-    if ((v0 == 0xE) || (v0 == 0xA)) {
-        v1 = 0xC;
+    if ((D_801373F0 == 0xE) || (D_801373F0 == 0xA)) {
+        v0 = 0xC;
     }
 
-    return v1;
+    return v0;
 }
 
 void func_80048740(u16 actor_index); 
@@ -71,9 +68,9 @@ void func_80048BB0(u16 actor_index);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048C28.s")
 
-// get velocity for Marina's actions and multiply it by field 0x12C
+// get velocity for Marina's actions and multiply it by field 0x120
 s32 func_80048C94(s32 arg0) {
-    return D_800D5794[arg0] * gPlayerActor.unk_120;
+    return gMarinaActionVelocities[arg0] * gPlayerActor.unk_120;
 }
 
 s32 func_80048CE4(void) {
@@ -91,7 +88,7 @@ s32 func_80048CE4(void) {
 
 void func_80048D30(u16 actor_index, s32 arg1) {
     s8* var_a0;
-    s8* temp_v0 = (s8*) D_800D4094[arg1];
+    s8* temp_v0 = D_800D4094[arg1];
 
     if (!(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) {
         var_a0 = &temp_v0[(gActors[actor_index].unk_170_s8[1] * 4)];
@@ -105,10 +102,10 @@ void func_80048D30(u16 actor_index, s32 arg1) {
 
     gActors[actor_index].hitboxAY0 = var_a0[2];
     gActors[actor_index].hitboxAY1 = var_a0[3];
-    gActors[actor_index].hitboxAX0 = gActors[actor_index].hitboxAX0 * gActors->unk_120;
-    gActors[actor_index].hitboxAX1 = gActors[actor_index].hitboxAX1 * gActors->unk_120;
-    gActors[actor_index].hitboxAY0 = gActors[actor_index].hitboxAY0 * gActors->unk_120;
-    gActors[actor_index].hitboxAY1 = gActors[actor_index].hitboxAY1 * gActors->unk_120;
+    gActors[actor_index].hitboxAX0 *= gPlayerActor.unk_120;
+    gActors[actor_index].hitboxAX1 *= gPlayerActor.unk_120;
+    gActors[actor_index].hitboxAY0 *= gPlayerActor.unk_120;
+    gActors[actor_index].hitboxAY1 *= gPlayerActor.unk_120;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_80048EDC.s")
@@ -216,7 +213,7 @@ void func_8004ED10(u16 actor_index) {
     D_800BE5E0 = D_800BE5E4 = 0;
     D_801373E0.unk_70 = 0;
     gActors[actor_index].posZ.raw = 0;
-    D_800D5794[19] = Math_ApproachS32(D_800D5794[19], FIXED_UNIT(0.375), FIXED_UNIT(0.015625));
+    gMarinaActionVelocities[19] = Math_ApproachS32(gMarinaActionVelocities[19], FIXED_UNIT(0.375), FIXED_UNIT(0.015625));
     if (gActors[actor_index].unk_12F_u8 < 4) {
         gActors[actor_index].unk_12F_u8++;
     }

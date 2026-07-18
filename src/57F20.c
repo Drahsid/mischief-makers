@@ -3,7 +3,7 @@
 #include "4FEB0.h"
 
 extern Actor2Func D_800D3F70[];
-extern s32 D_800D5794[19];
+extern s32 gMarinaActionVelocities[19];
 
 extern void func_8004F514(u16 actor0, u16 actor1);
 extern s32 func_800574B4(u16 actor_index);
@@ -237,7 +237,7 @@ void func_80057848(u16 actor_index) {
                 else {
                     gActors[actor_index].unk_170 = 0x8F;
                 }
-                D_800D5794[19] = 0;
+                gMarinaActionVelocities[19] = 0;
                 gActors[actor_index].state = 0x19;
             }
         }
