@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 40.71636,
+    "fuzzy_match_percent": 41.150795,
     "total_code": "1994304",
-    "matched_code": "812008",
-    "matched_code_percent": 40.71636,
+    "matched_code": "820672",
+    "matched_code_percent": 41.150795,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2583,
-    "matched_functions_percent": 54.87572,
+    "matched_functions": 2598,
+    "matched_functions_percent": 55.19439,
     "complete_data_percent": 100.0,
-    "total_units": 397
+    "total_units": 395
   },
   "units": [
     {
@@ -2109,7 +2109,7 @@
           }
         },
         {
-          "name": "GetFestivalTimeRecords",
+          "name": "WorldMap_SetTransitionState",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2779,7 +2779,7 @@
           }
         },
         {
-          "name": "func_80020024",
+          "name": "Gameplay_ActiveUpdate",
           "size": "808",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13821,21 +13821,21 @@
     {
       "name": "osd_debug_text",
       "measures": {
-        "fuzzy_match_percent": 71.100914,
+        "fuzzy_match_percent": 100.0,
         "total_code": "1744",
-        "matched_code": "1240",
-        "matched_code_percent": 71.100914,
+        "matched_code": "1744",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 12,
-        "matched_functions": 10,
-        "matched_functions_percent": 83.33333,
+        "matched_functions": 12,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "1744",
-          "fuzzy_match_percent": 71.100914,
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022496"
           }
@@ -13939,6 +13939,7 @@
         {
           "name": "OSD_PrintfTime",
           "size": "188",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023736"
           }
@@ -13946,6 +13947,7 @@
         {
           "name": "OSD_Tick",
           "size": "316",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023924"
           }
@@ -25919,32 +25921,6 @@
         "module_id": 2,
         "progress_categories": [
           "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "EE100.rodata",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".rodata",
-          "size": "256",
-          "metadata": {
-            "virtual_address": "2148455680"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "EE100.rodata"
         ]
       }
     },
@@ -49440,14 +49416,14 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 77.39728,
+        "fuzzy_match_percent": 78.51926,
         "total_code": "772208",
-        "matched_code": "597668",
-        "matched_code_percent": 77.39728,
+        "matched_code": "606332",
+        "matched_code_percent": 78.519264,
         "matched_data_percent": 100.0,
         "total_functions": 2162,
-        "matched_functions": 1842,
-        "matched_functions_percent": 85.19889,
+        "matched_functions": 1857,
+        "matched_functions_percent": 85.89269,
         "complete_data_percent": 100.0,
         "total_units": 257
       }
@@ -49564,32 +49540,6 @@
     {
       "id": "D34D0.data",
       "name": "D34D0.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "EA340.data",
-      "name": "EA340.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "EE100.rodata",
-      "name": "EE100.rodata",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,

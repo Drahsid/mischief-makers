@@ -251,8 +251,8 @@ Flower_SetHitboxB = 0x80084924; // type:func
 Flower_TryGrab = 0x800848a0; // type:func
 ActorUpdate_Flower = 0x80084974; // type:func
 Hat_TryGrounded = 0x80085108; // type:func
-Hat_SetField138 = 080084D18; // type:func
-Hat_SetHitboxB = 080085300; // type:func
+Hat_SetField138 = 0x80084D18; // type:func
+Hat_SetHitboxB = 0x80085300; // type:func
 
 Hat_TryGrab = 0x80085350; // type:func
 ActorUpdate_Hat = 0x800853c8; // type:func
