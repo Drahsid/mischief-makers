@@ -1,7 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "stage.h"
-#include "function_symbols.h"
+#include "28EF0.h"
 
 // "overlay 4" code for the World 1 scenes.
 

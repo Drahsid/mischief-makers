@@ -330,7 +330,7 @@ segments:
       - [0x0E5160, data] # 8D0A0?
       - [0x0E66C0, .data, 17A70]
       - [0x0E6700, .data, 8F080]
-      - [0x0EA340, data] # stage_end_screen
+      - [0x0EA340, .data, stage_end_screen]
       # libultra data
       - [0x0EA370, .data, ultralib/os/initialize]
       - [0x0EA390, .data, ultralib/io/vimgr]
@@ -391,7 +391,7 @@ segments:
       - [0x0EDC70, .rodata, osd_debug_text]
       - [0x0EDCE0, .rodata, 84BB0]
       - [0x0EDEF0, .rodata, 8F080]
-      - [0x0EE100, rodata] # stage_end_screen
+      - [0x0EE100, .rodata, stage_end_screen]
       # libultra
       - [0x0EE200, .rodata, ultralib/io/viswapbuf]
       - [0x0EE230, .rodata, ultralib/io/visetmode]

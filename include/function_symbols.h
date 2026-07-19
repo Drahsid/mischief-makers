@@ -39,7 +39,6 @@ extern u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s
 extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 extern u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 extern void SpawnParticle_SineUpHeart(s16 arg0, s16 arg1, s16 arg2);
-extern void Actor_ClearRange_30To90(void);
 extern u16 SpawnAreaClear(u16);
 extern void func_80042D84(u16 arg0);
 extern void func_80042DBC(u16* vals);
@@ -210,7 +209,6 @@ extern Actor_Initialize_RET Actor_Initialize(u16 actor_index);
 extern void func_80026E60(u16 arg0);
 extern u16 Actor_RangeFindInactive(u16 actor_index, u16 end);
 extern u16 Actor_RangeFindInactive_90ToC0(void);
-extern void Actor_ClearRange(u16 start, u16 end);
 extern void Actor_ClearSceneActors(void);
 extern s32 Math_ApproachS32(s32 current, s32 target, s32 step);
 extern f32 Math_ApproachF32(f32 current, f32 target, f32 step);

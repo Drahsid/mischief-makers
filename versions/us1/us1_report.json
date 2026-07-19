@@ -16032,17 +16032,37 @@
     {
       "name": "stage_end_screen",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "8160",
+        "matched_code": "8160",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 13,
+        "matched_functions": 13,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "8160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148100976"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "48",
+          "metadata": {
+            "virtual_address": "2148439872"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "256",
+          "metadata": {
+            "virtual_address": "2148455680"
           }
         }
       ],
@@ -16050,6 +16070,7 @@
         {
           "name": "func_80096B70",
           "size": "676",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148100976"
           }
@@ -16057,6 +16078,7 @@
         {
           "name": "func_80096E14",
           "size": "584",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148101652"
           }
@@ -16064,6 +16086,7 @@
         {
           "name": "func_8009705C",
           "size": "172",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102236"
           }
@@ -16071,6 +16094,7 @@
         {
           "name": "func_80097108",
           "size": "152",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102408"
           }
@@ -16078,6 +16102,7 @@
         {
           "name": "func_800971A0",
           "size": "156",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102560"
           }
@@ -16085,6 +16110,7 @@
         {
           "name": "func_8009723C",
           "size": "160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102716"
           }
@@ -16092,6 +16118,7 @@
         {
           "name": "func_800972DC",
           "size": "168",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102876"
           }
@@ -16099,6 +16126,7 @@
         {
           "name": "func_80097384",
           "size": "164",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103044"
           }
@@ -16106,6 +16134,7 @@
         {
           "name": "func_80097428",
           "size": "332",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103208"
           }
@@ -16113,6 +16142,7 @@
         {
           "name": "func_80097574",
           "size": "580",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103540"
           }
@@ -16120,6 +16150,7 @@
         {
           "name": "func_800977B8",
           "size": "432",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104120"
           }
@@ -16127,6 +16158,7 @@
         {
           "name": "func_80097968",
           "size": "268",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104552"
           }
@@ -16134,6 +16166,7 @@
         {
           "name": "func_80097A74",
           "size": "4316",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104820"
           }
@@ -25678,32 +25711,6 @@
         "module_id": 2,
         "progress_categories": [
           "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "EA340.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "48",
-          "metadata": {
-            "virtual_address": "2148439872"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "EA340.data"
         ]
       }
     },

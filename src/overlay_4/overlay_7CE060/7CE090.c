@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "function_symbols.h"
 #include "music.h"
+#include "28EF0.h"
 #include "84BB0.h"
 
 // "overlay 4" data for World 2 stages

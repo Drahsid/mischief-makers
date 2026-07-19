@@ -1,7 +1,8 @@
 #ifndef DATA_SYMBOLS_H
 #define DATA_SYMBOLS_H
 
-#include "common.h"
+#include <PR/ultratypes.h>
+#include "common_structs.h"
 #include "inttypes.h"
 
 extern u16 D_800D28E4;
@@ -18,6 +19,8 @@ extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
 extern s16 gNoHit;
 extern u16 D_800D8588[]; // all-white palette
+extern u16 D_800D9284[]; // palette
+extern u16 D_800D9474[]; // palette
 extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[]; // icon for head in "pause" and "continue" menus
 extern u16 D_800E3580;

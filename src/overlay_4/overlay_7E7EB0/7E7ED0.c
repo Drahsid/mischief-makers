@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "function_symbols.h"
+#include "28EF0.h"
 
 // "overlay 4" code for "Trapped", "Phoenix Gamma", "Inner Struggle", "Merco", and several unused scenes.
 
