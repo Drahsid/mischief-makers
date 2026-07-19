@@ -855,9 +855,9 @@ u16 gSoundTestIndices[] = {
 /* 050 */ SFX_TUARUS_INTRO2, SFX_TUARUS_HENSHIN1, SFX_TUARUS_HENSHIN2, SFX_TUARUS_LAUGH1, SFX_TUARUS_YELL1,
 /* 055 */ SFX_TUARUS_YELL2, SFX_TUARUS_OW, SFX_TUARUS_DEFEAT, SFX_TUARUS_YELL3, SFX_TUARUS_TAUNT1,
 /* 060 */ SFX_TUARUS_TAUNT2, SFX_BEASTECTOR_GRUNT1, SFX_BEASTECTOR_GRUNT2, SFX_MENU_BLIP, SFX_MENU_DING,
-/* 065 */ SFX_STAGE_OPEN, SFX_JUMP_0024, SFX_LAND_0025, SFX_00AE, SFX_0116,
+/* 065 */ SFX_STAGE_OPEN, SFX_JUMP_0024, SFX_LAND_0025, SFX_00AE, SFX_DASH_0116,
 /* 070 */ SFX_0034, SFX_008A, SFX_005F, SFX_0060, SFX_00AB,
-/* 075 */ SFX_00A6, SFX_00B6, SFX_MECHSTEP_0056, SFX_MECHSTEP_0059, SFX_0076,
+/* 075 */ SFX_CHARGE_00A6, SFX_00B6, SFX_MECHSTEP_0056, SFX_MECHSTEP_0059, SFX_0076,
 /* 080 */ SFX_0074, SFX_00FE, SFX_0037, SFX_006F, SFX_BOOM_0041,
 /* 085 */ SFX_GEM_APPEAR, SFX_GEM_RED, SFX_GEM_BLUE, SFX_GEM_GREEN, SFX_GEM_YELLOW,
 /* 090 */ SFX_CLANBOMB_LIGHT, SFX_0078, SFX_005B, SFX_007A, SFX_003F,
@@ -871,7 +871,7 @@ u16 gSoundTestIndices[] = {
 /* 130 */ SFX_BLING, SFX_FALLWHISTLE, SFX_RING_0040, SFX_MEOW, SFX_BOOM_0043,
 /* 135 */ SFX_BOOM_0045, SFX_SHOT_0046, SFX_WOOSH_0048, SFX_004A, SFX_004B,
 /* 140 */ SFX_004C, SFX_004D, SFX_004E, SFX_FIRE_004F, SFX_PLINK_0050,
-/* 140 */ SFX_LASER_0052, SFX_STEP_0053, SFX_SHOT_0054, SFX_BOOM_0055, SFX_0058,
+/* 145 */ SFX_LASER_0052, SFX_STEP_0053, SFX_SHOT_0054, SFX_BOOM_0055, SFX_0058,
 /* 150 */ SFX_POP, SFX_SQEAK_005C, SFX_005D, SFX_005E, SFX_0061,
 /* 155 */ SFX_MECHSTEP_0062, SFX_GRABDEFLECT, SFX_TINK_0064, SFX_SHOCK_0065, SFX_0068,
 /* 160 */ SFX_0069, SFX_006A, SFX_006B, SFX_006C, SFX_006D,
@@ -881,7 +881,7 @@ u16 gSoundTestIndices[] = {
 /* 180 */ SFX_0086, SFX_0087, SFX_0088, SFX_0089, SFX_008B,
 /* 185 */ SFX_008C, SFX_008D, SFX_008E, SFX_JIGGLE_008F, SFX_JIGGLE_0090,
 /* 190 */ SFX_0091, SFX_0092, SFX_BOOM_0093, SFX_0094, SFX_SWISH_0096,
-/* 195 */ SFX_SWISH_0097, SFX_SWISH_0098, SFX_0099, SFX_009A, SFX_009B,
+/* 195 */ SFX_SWISH_0097, SFX_SWISH_0098, SFX_WOOSH_0099, SFX_009A, SFX_009B,
 /* 200 */ SFX_00A3, SFX_00A5, SFX_00A9, SFX_LAVA_00AA, SFX_LAND_00AC,
 /* 205 */ SFX_JUMP_00AD, SFX_00AF, SFX_TP_DEPART, SFX_STAGE_TILES, SFX_00BC,
 /* 210 */ SFX_00C0, SFX_00C1, SFX_SHAKE_00C2, SFX_00C3, SFX_POP_00C5,
@@ -975,7 +975,7 @@ s16 gStageIconPosY[] = { // y-coord
     26, -22, 26, -22, 26, -22, 26, -22, 26, -22, 26, -22, -18, 0
 };
 
-s16 gGraphicIndexWMMarina[] = {
+s16 gGraphicListWMMarina[] = {
     GINDEX_WM_MARINAICON, 6, 
     GRAPHIC_FRAME(WM_MARINAICON, 1), 6, 
     GRAPHIC_FRAME(WM_MARINAICON, 2), 6, 
@@ -985,7 +985,7 @@ s16 gGraphicIndexWMMarina[] = {
     -0xC, 0
 };
 
-s16 gGraphicIndexWMic[] = {
+s16 gGraphicListWMic[] = {
     GINDEX_WM_CLANCERMIC, 5,
     GRAPHIC_FRAME(WM_CLANCERMIC, 1), 5,
     GRAPHIC_FRAME(WM_CLANCERMIC, 2), 5,
@@ -1840,7 +1840,7 @@ void WorldMap_PrintWorldName(void) {
     gActors[index].colorR = 0x40;
     gActors[index].colorG = 0x40;
     gActors[index].colorB = 0x40;
-    Text_InitActorGList(0x79, gGraphicIndexWMic, 0xFF88, 0xFFB4, 0);
+    Text_InitActorGList(0x79, gGraphicListWMic, 0xFF88, 0xFFB4, 0);
     // japanese version instead uses func_80083810()
     end = Text_PrintStringGray(0x7C, gWorldNames[gCurrentWorld], gWorldNameXOffsets[gCurrentWorld], 0x4E, 0);
     for (index = 0x7C; index < end; index++) {
@@ -1904,7 +1904,7 @@ void WorldMap_DrawSprites(void) {
             gActors[actor_index - 2].posY.whole = gActors[actor_index - 1].posY.whole;
         }
     }
-    Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicIndexWMMarina, 0xFF78, 2, 1);
+    Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicListWMMarina, 0xFF78, 2, 1);
     func_8001A584();
     if (gStageUnlocked) {
         if (gSelectedStage == 0) {
@@ -2226,7 +2226,7 @@ void WorldMap_PrintPrevStageTime(void) {
     WorldMap_PrintStageTime(9, 6, 0xFFFF);
 }
 
-void WorldMap_StageProgress(void) {
+void WorldMap_AdvanceProgress(void) {
     if ((gCurrentStage >= gWorldProgress) && (gWorldProgress < STAGE_MAX)) {
         gCurrentStage = gCurrentStage + 1;
         gWorldProgress = gCurrentStage;
@@ -2296,7 +2296,7 @@ void func_8001B1A0(void) {
 }
 
 void func_8001B1F8(void) {
-    WorldMap_StageProgress();
+    WorldMap_AdvanceProgress();
     func_8001B1A0();
     D_80178160 = gCurrentWorld;
     D_8017815A = gSelectedStage;
@@ -2431,7 +2431,7 @@ void GameState_Transition(void) {
         WorldMap_PrintPrevStageTime();
         func_80083810(5, 0, gPauseContinue, 0);
         func_80083810(5, 1, gStrResultQuit, 0);
-        Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicIndexWMMarina, 0xFFC8, 0xFFEF, 1);
+        Text_InitActorGList(PLAYER_CURSOR_INDEX, gGraphicListWMMarina, 0xFFC8, 0xFFEF, 1);
         if (YellowGem_GetFlag(gCurrentStage)) {
             Text_InitActorGList(0x51, gGraphicListGemIcon, 0xFFA8, 0x3A, 0xFFFF);
             gActors[0x51].graphicFlags |= (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6);

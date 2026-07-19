@@ -347,7 +347,7 @@
           }
         },
         {
-          "name": "func_80001670",
+          "name": "GameState_Update",
           "size": "284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2269,7 +2269,7 @@
           }
         },
         {
-          "name": "WorldMap_StageProgress",
+          "name": "WorldMap_AdvanceProgress",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4347,7 +4347,7 @@
           }
         },
         {
-          "name": "Actor_RangeFindInactiveMove",
+          "name": "Actor_SpawnInRange_90ToC0",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5403,7 +5403,7 @@
           }
         },
         {
-          "name": "NoHitGem",
+          "name": "SpawnNoHitGem",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6299,7 +6299,7 @@
           }
         },
         {
-          "name": "Clanbal_ShakeFlash",
+          "name": "Clanball_ShakeFlash",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6323,7 +6323,7 @@
           }
         },
         {
-          "name": "Clanbal_InitReveal",
+          "name": "Clanball_InitReveal",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {

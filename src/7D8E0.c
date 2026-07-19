@@ -61,14 +61,14 @@ void func_8007CEB8(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u1
 }
 
 // spawns an actor used for the "READY" and "FIGHT" text.
-// WARNING: most calls ommit arg6.
+// WARNING: most calls omit arg6.
 // @param actor_index index of text actor.
 // @param arg1 index of type of text (3 = "READY", 5 = "FIGHT")
 // @param pos_x x-position of text.
 // @param pos_y y-position of text.
 // @param arg4 sets actor field 0x118
 // @param arg5 sets actor field 0x114 as timer.
-// @param arg6 bit 0 determines if can be controled. many calls ommit this.
+// @param arg6 bit 0 determines if can be controlled. many calls omit this.
 void func_8007CFE0(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, u16 arg6) {
     gActors[actor_index].actorType = ACTORTYPE_38;
     Actor_Initialize(actor_index);

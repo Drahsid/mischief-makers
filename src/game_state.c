@@ -8,7 +8,7 @@
 
 void func_800012F0(void);
 void func_8000147C(void);
-void func_80001670(void);
+void GameState_Update(void);
 u16 Rand(void);
 
 void func_800012F0(void) {
@@ -58,7 +58,7 @@ void func_8000147C(void) {
     }
 
     func_800012F0(); // PauseGame_Check
-    func_80001670(); // GameState_Tick
+    GameState_Update();
     func_800821B0(); // MarinaGraphics_Load
     func_80009940();
     func_80082F10();
@@ -117,7 +117,7 @@ void func_8000147C(void) {
 extern void GameState_State8Overlay(void);
 extern void GameState_State9Overlay(void);
 
-void func_80001670(void) {
+void GameState_Update(void) {
     switch (gGameState) {
         case GAMESTATE_SOFTRESET: {
             GameState_SoftReset(); // soft reset

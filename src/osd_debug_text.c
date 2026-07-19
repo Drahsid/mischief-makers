@@ -1,4 +1,5 @@
 #include "common.h"
+#include "boot.h"
 
 typedef struct {
     u16 isSet;

@@ -16,7 +16,7 @@ extern u8 D_800D28D0[]; // indexes of Festival Games Scenes.
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
 extern u16 D_800D2900;
-extern s32 D_800D2944; // offset for exit transition random portrais. always 0.
+extern s32 D_800D2944; // offset for exit transition random portraits. always 0.
 extern u16 D_800D2910;
 extern s16 D_800D2914;
 extern s16 D_800D2918;
@@ -516,7 +516,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
     s32 x_max;
     u16 actor_index;
 
-    if (D_800BE710 != 0) {
+    if (D_800BE710) {
         x_min = -238;
         x_max = 238;
         y_min = -190;
@@ -763,7 +763,7 @@ void func_800451E4(u16* arg0) {
     s16 x_min;
 
     D_801782BC = arg0;
-    if (D_800BE710 != 0) {
+    if (D_800BE710) {
         x_min = gScreenPosCurrentX.whole - 256;
         x_max = gScreenPosCurrentX.whole + 256;
         y_min = gScreenPosCurrentY.whole - 208;
@@ -1396,7 +1396,7 @@ s32 Transition_ExpandBlack(void) {
     return FALSE;
 }
 
-// fade out portraits/sqaures
+// fade out portraits/squares
 s32 Transition_FadeOut(void) {
     u16 index;
 
@@ -1530,7 +1530,7 @@ void SpawnText_READY(void) {
     func_8007CFE0(0xC7, 5, -40, 0, 0, 120);
 }
 
-// Spawn "READY!" text if transion completes
+// Spawn "READY!" text if transition completes
 void SpawnText_READY_2(void) {
     if (Transition_FadeOut()) {
         SpawnText_READY();

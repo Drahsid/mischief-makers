@@ -1427,7 +1427,7 @@ void func_80064CB4(u16 actor_index) {
                     Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);
                 }
                 else {
-                    Sound_PlaySfxAtActor2(SFX_0116, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_DASH_0116, actor_index);
                 }
             }
         }

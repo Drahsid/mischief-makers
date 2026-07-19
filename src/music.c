@@ -874,7 +874,7 @@ s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan) {
     return Sound_AddSfx(sfx_id, volume, pan, 0x93, 0xFF, 0);
 }
 
-// calculate x-postion pan and y-postion volume of sound.
+// calculate x-position pan and y-position volume of sound.
 void Sound_CalculatePanVol(s16 x_in, s16 y_in, s8* x_out, s16* y_out) {
     s32 temp_v0;
     s32 temp_v1;

@@ -114,13 +114,13 @@
 #define SFX_JUMP_0024 0x0024
 #define SFX_LAND_0025 0x0025
 #define SFX_00AE 0x00AE
-#define SFX_0116 0x0116
+#define SFX_DASH_0116 0x0116
 #define SFX_0034 0x0034
 #define SFX_008A 0x008A
 #define SFX_005F 0x005F
 #define SFX_0060 0x0060
 #define SFX_00AB 0x00AB
-#define SFX_00A6 0x00A6
+#define SFX_CHARGE_00A6 0x00A6
 #define SFX_00B6 0x00B6
 #define SFX_MECHSTEP_0056 0x0056
 #define SFX_MECHSTEP_0059 0x0059
@@ -185,7 +185,7 @@
 #define SFX_SHOT_0054 0x0054
 #define SFX_BOOM_0055 0x0055
 #define SFX_0058 0x0058
-#define SFX_SQEAK_005C 0x005C
+#define SFX_SQUEAK_005C 0x005C
 #define SFX_005D 0x005D
 #define SFX_005E 0x005E
 #define SFX_0061 0x0061
@@ -228,7 +228,7 @@
 #define SFX_SWISH_0096 0x0096
 #define SFX_SWISH_0097 0x0097
 #define SFX_SWISH_0098 0x0098
-#define SFX_0099 0x0099
+#define SFX_WOOSH_0099 0x0099 // "Final Battle" dash
 #define SFX_009A 0x009A
 #define SFX_009B 0x009B
 #define SFX_00A3 0x00A3
@@ -271,7 +271,7 @@
 #define SFX_011F 0x011F
 #define SFX_0120 0x0120
 #define SFX_0121 0x0121
-#define SFX_RUMBLE_0122 0x0122 //ambient sound in "Seasick Climb"
+#define SFX_RUMBLE_0122 0x0122 // ambient sound in "Seasick Climb"
 #define SFX_DRONE_0124 0x0124
 #define SFX_0126 0x0126
 #define SFX_0127 0x0127

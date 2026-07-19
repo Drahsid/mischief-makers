@@ -151,9 +151,9 @@ u16 gStrContinuePalette[] = {
 };
 
 u16 gContinueTimer;
-u8 gContinueMidground;// temporailly store layer toggle
-u8 gContinueEnvLayer;// temporailly store layer toggle
-u8 gContinueBackground;// temporailly store layer toggle
+u8 gContinueMidground;// temporarily store layer toggle
+u8 gContinueEnvLayer;// temporarily store layer toggle
+u8 gContinueBackground;// temporarily store layer toggle
 u16 gRedGems;
 u16 gContinueChoice;
 s32 gContinueBGM; // stored, but not restored

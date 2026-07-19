@@ -2932,7 +2932,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
             flags = gActors[actor_index].flags_098;
             if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
                 if (gPlayerData.unk_10 == 8) {
-                    Sound_PlaySfx(SFX_00A6);
+                    Sound_PlaySfx(SFX_CHARGE_00A6);
                     gStartButtonOnly = TRUE;
                     gActors[actor_index].state++;
                 }

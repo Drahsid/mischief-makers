@@ -261,7 +261,7 @@ void func_8008CC90(u16 actor_index) {
     }
     func_8008D510(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_DRAW;
-    D_800BE714 = 1;
+    D_800BE714 = TRUE;
     gActors->graphicIndex = gActors[actor_index].graphicIndex;
 }
 

@@ -35,8 +35,8 @@ extern u16 D_800CBF5C[];
 extern u8 D_800CBFFC[];
 extern u16 D_800CC228[];
 extern CameraFunc gCameraInits[];
-extern CameraFunc gCameraupdates[];
-// postion and bounds for player per scene
+extern CameraFunc gCameraUpdates[];
+// position and bounds for player per scene
 // {BoundX0, BoundX1, BoundY0, BoundY1, ScreenX, PlayerX, ScreenY, PlayerY}
 extern s16 D_800CC6EC[]; 
 extern s16 D_800CCC6C[];
@@ -319,7 +319,8 @@ void CameraUpdate_SnowstormMaze(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw;
-        if ((gPlayerActor.parentIndex == ACTORTYPE_SPIRALCLOUDS) &&
+    // change camera Y if using Jump Clancer
+        if ((gPlayerActor.parentIndex == 0x31) &&
            (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
             gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + FIXED_UNIT(24.0);
         }
@@ -346,7 +347,7 @@ void CameraInit_SeasickClimb(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
     D_800BE708 = 1;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
     D_800BE71C = FIXED_UNIT(256.0);
     D_800BE720 = 0;
     D_800BE724 = FIXED_UNIT(448.0);
@@ -435,7 +436,7 @@ void CameraUpdate_SeasickClimb(void) {
 void CameraInit_Vertigo(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
     gCameraRot = 0;
 }
 
@@ -450,7 +451,7 @@ void CameraUpdate_Vertigo(void) {
 void CameraInit_Freefall(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
 }
 
 void CameraUpdate_Freefall(void) {
@@ -796,7 +797,7 @@ void func_800253B0(void) {
             break;
         }
     }
-    gCameraupdates[gCurrentScene]();
+    gCameraUpdates[gCurrentScene]();
 }
 
 void PlaySceneBGM(void) {
@@ -808,7 +809,7 @@ void PlaySceneBGM(void) {
 void func_800255B4(u16 scene) {
     D_800D16C4[0] = 0;
     D_800BE6A8 = 0;
-    D_800BE710 = 0;
+    D_800BE710 = FALSE;
     gScreenPosTargetX.raw = 0;
     gScreenPosCurrentX.raw = 0;
     gScreenBoundX0.whole = D_800CC6EC[scene * 8];
@@ -948,7 +949,7 @@ void func_800255B4(u16 scene) {
     }
     D_800BE634 = 0;
     gCameraInits[scene]();
-    gCameraupdates[scene]();
+    gCameraUpdates[scene]();
 }
 
 void func_80025B7C(void) {
@@ -1006,6 +1007,6 @@ void func_80025C38(void) {
     func_80025BFC();
     func_80025B7C();
     gCameraInits[gCurrentScene]();
-    gCameraupdates[gCurrentScene]();
+    gCameraUpdates[gCurrentScene]();
     PlaySceneBGM();
 }

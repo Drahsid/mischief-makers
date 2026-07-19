@@ -17,7 +17,7 @@ typedef enum {
 } GemFlags;
 
 
-// flags set in 0x110, folowed by those also used in 0x150
+// flags set in 0x110, followed by those also used in 0x150
 typedef enum {
 
     CLANBALL_MASK_FF = 0xFF, // masks index of associated actor
@@ -61,7 +61,7 @@ typedef enum {
     CLANBALL_UNK31 = (1U << 31U)
 } ClanballFlags;
 
-// flags set in 0x110, folowed by those also used in 0x150
+// flags set in 0x110, followed by those also used in 0x150
 typedef enum {
     SPIKEBALL_UNK0 = (1 << 0),
     SPIKEBALL_UNK1 = (1 << 1),
@@ -120,7 +120,7 @@ typedef enum {
     ENSHOT_UNK14 = (1 << 14),
     ENSHOT_SCALEMOVE = (1U << 15U)
 
-} EnegryShotFlags; // used in func_8002EDC8
+} EnergyShotFlags; // used in func_8002EDC8
 
 typedef enum {
     CROSSHAIR_FRONT = (1 << 0), // show arrow at front

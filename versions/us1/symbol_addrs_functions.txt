@@ -8,6 +8,7 @@ DMA_ReadSync = 0x800011F0; // type:func
 DMA_AwaitMessage = 0x80001264; // type:func 
 DMA_Read = 0x80001290; // type:func
 
+GameState_Update = 0x80001670; // type:func
 Rand = 0x8000178c; // type:func rom:0x238c
 
 Sound_DmaCallback = 0x800017D0; // type:func
@@ -155,7 +156,7 @@ SpawnRoundBomb = 0x8002ECAC; // type:func
 SpawnBoomerang = 0x8002ED48; // type:func
 SpawnGemActor = 0x8002EFE4; // type:func
 SpawnGemActor61 = 0x8002F154; // type:func
-NoHitGem = 0x8002F1C8; // type:func
+SpawnNoHitGem = 0x8002F1C8; // type:func
 SpawnGemRing = 0x8002F2A8; // type:func
 GemRing_MakeGems = 0x8002F420; // type:func
 RedGems_Clamp = 0x8002F6AC; // type:func
@@ -296,10 +297,10 @@ ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
 
 Clanball_GrabCheck = 0x80039644; // type:func
 Clanball_State0 = 0x80039724; // type:func
-Clanbal_ShakeFlash = 0x80039894; // type:func
+Clanball_ShakeFlash= 0x80039894; // type:func
 Clanball_RevealSound = 0x800398F8; // type:func
 Clanball_DropSound = 0x80039970; // type:func
-Clanbal_InitReveal = 0x80039A1C; // type:func
+Clanball_InitReveal = 0x80039A1C; // type:func
 Clanball_SpawnReveal = 0x80039ADC; // type:func
 Clanball_SpawnDrop = 0x80039C1C; // type:func
 Clanball_GetRevealIndex = 0x80039DA0; // type:func
@@ -393,7 +394,7 @@ Trouble_RLE_Type2 = 0x80098B50; // type:func
 ActorUpdate_GraphicOnly = 0x800284b0; // type:func
 Actor_RangeFindInactive = 0x800284B8; // type:func
 Actor_RangeFindInactive_90ToC0 = 0x80028528; // type:func
-Actor_RangeFindInactiveMove = 0x8002854C; // type:func
+Actor_SpawnInRange_90ToC0 = 0x8002854C; // type:func
 Actor_ClearRange_10To20 = 0x80028638; // type:func
 Actor_ClearRange_30To90 = 0x8002865C; // type:func
 Actor_ClearRange_90ToC0 = 0x80028680; // type:func
@@ -456,7 +457,7 @@ WorldMap_PrintCurrStageTime = 0x8001A96C; // type:func
 WorldMap_PrintStageTime = 0x8001ACA8; // type:func
 WorldMap_PrintPrevStageTime = 0x8001B004; // type:func
 
-WorldMap_StageProgress = 0x8001B02C; // type:func
+WorldMap_AdvanceProgress = 0x8001B02C; // type:func
 CountYellowGems = 0x8001B244; // type:func
 WorldMap_UpdateSaveFile = 0x8001B2F4; // type:func
 WorldMap_UpdateSaveFile2 = 0x8001B3D0; // type:func

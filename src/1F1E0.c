@@ -1893,7 +1893,7 @@ u16 gAttractModePresses3[] = {
 };
 
 u16* gAttractModeHolds[] = { gAttractModeHolds0, gAttractModeHolds1, gAttractModeHolds2, gAttractModeHolds3 };
-u16* gAttactModePresses[] = { gAttractModePresses0, gAttractModePresses1, gAttractModePresses2, gAttractModePresses3 };
+u16* gAttractModePresses[] = { gAttractModePresses0, gAttractModePresses1, gAttractModePresses2, gAttractModePresses3 };
 
 // quantizes NEGSIN to `n` number of angles
 #define UPPER_N_BITS(n, s) (((1 << ((n) / 2)) - 1) << ((s) - ((n) / 2)))
@@ -2697,9 +2697,9 @@ void func_80021098(void) {
     gAttractModePressTime--;
     if (gAttractModePressTime == 0) {
         gAttractModePressIndex++;
-        gAttractModePressed = gButtonPress = gAttactModePresses[gAttractModeIndex][gAttractModePressIndex] | (gButtonPress & gButton_Start);
+        gAttractModePressed = gButtonPress = gAttractModePresses[gAttractModeIndex][gAttractModePressIndex] | (gButtonPress & gButton_Start);
         gAttractModePressIndex++;
-        gAttractModePressTime = gAttactModePresses[gAttractModeIndex][gAttractModePressIndex];
+        gAttractModePressTime = gAttractModePresses[gAttractModeIndex][gAttractModePressIndex];
     }
     else {
         gButtonPress = gAttractModePressed | (gButtonPress & gButton_Start);
@@ -2740,7 +2740,7 @@ void GameState_Attract(void) {
         gAttractModePressIndex = 0;
         gAttractModePressed = 0;
         gAttractModeHoldTime = gAttractModeHolds[gAttractModeIndex][0];
-        gAttractModePressTime = gAttactModePresses[gAttractModeIndex][0];
+        gAttractModePressTime = gAttractModePresses[gAttractModeIndex][0];
         break;
     case 1:
         if (actors_200[2].hitboxBX0 == 0x90) {

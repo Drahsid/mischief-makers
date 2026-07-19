@@ -112,8 +112,10 @@ void func_801932FC_68B2FC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193364_68B364.s")
 
+// "State 1" for Big Wave Beam
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193584_68B584.s")
 
+// Cerberus Alpha's Big Wave Cannon
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193DB4_68BDB4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193EA8_68BEA8.s")

@@ -89,8 +89,8 @@
 #define ALPHA_EN_DIVIDE 0x004A // ÷
 #define ALPHA_EN_PERCENT 0x004B // %
 #define ALPHA_EN_SLASH 0x004C // /
-#define ALPHA_EN_PARENTESIS_LEFT 0x004D // (
-#define ALPHA_EN_PARENTESIS_RIGHT 0x004E // )
+#define ALPHA_EN_PARENTHESIS_LEFT 0x004D // (
+#define ALPHA_EN_PARENTHESIS_RIGHT 0x004E // )
 #define ALPHA_EN_BRACKETLEFT 0x004F // [
 #define ALPHA_EN_BRACKETRIGHT 0x0050 // ]
 
@@ -494,8 +494,8 @@
 #define ALPHA_NULL 0x8FFF
 
 #define ALPHA_GLYPH_INDEX(c)  (c * 2) + GINDEX_ALPHASTART // get graphic index of ALPHA_* index
-#define ALPHA_GLYPH(c) ( (ALPHA_## c * 2) + GINDEX_ALPHASTART) // shorter vesion of graphic index getter for hard-coded values
-#define ALPHA_OFFSET(c) (ALPHA_## c - 0x50) // some print functions use a 0x50 offet to print the char.
+#define ALPHA_GLYPH(c) ( (ALPHA_## c * 2) + GINDEX_ALPHASTART) // shorter version of graphic index getter for hard-coded values
+#define ALPHA_OFFSET(c) (ALPHA_## c - 0x50) // some print functions use a 0x50 offset to print the char.
 
 
 #endif

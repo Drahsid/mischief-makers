@@ -602,7 +602,7 @@ void func_801B0DC8_7A7348(u16 actor_index) {
             init_records = D_801B4ED8_7AB458;
             break;
 
-        case FESTGAME_RACE7:
+        case FESTGAME_UNUSED_RACE:
             init_records = D_801B4EFC_7AB47C;
             break;
 
@@ -763,7 +763,7 @@ void func_801B159C_7A7B1C(u16 actor_index) {
             divisor = 400;
             break;
 
-        case FESTGAME_RACE7:
+        case FESTGAME_UNUSED_RACE:
             divisor = 100;
             break;
 
@@ -879,7 +879,7 @@ void func_801B1B48_7A80C8(u16 actor_index) {
             gFestivalCompetitorCount = 4;
             break;
 
-        case FESTGAME_RACE7:
+        case FESTGAME_UNUSED_RACE:
             gActors[actor_index].unk_174 = 0x6420;
             gFestivalCompetitorCount = 4;
             break;
@@ -917,7 +917,7 @@ void func_801B1D60_7A82E0(u16 actor_index, u16 arg1) {
             table = D_801B4FB0_7AB530;
             break;
 
-        case FESTGAME_RACE7:
+        case FESTGAME_UNUSED_RACE:
             table = D_801B4FD4_7AB554;
             break;
 
@@ -1701,7 +1701,7 @@ void func_801B3BCC_7AA14C(u16 actor_index) {
             step = 0x3000;
             break;
 
-        case FESTGAME_RACE7:
+        case FESTGAME_UNUSED_RACE:
             step = 0x6200;
             break;
 

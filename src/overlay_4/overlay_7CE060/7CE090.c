@@ -2139,7 +2139,7 @@ void func_801BB360_7CFAF0(void) {
                 switch (gStageTimer) {
                     case 5:
                         *(u8*)&D_800BE5F4.unk_00_s32 = 1;
-                        Sound_PlaySfxAtActor2(SFX_0116, PLAYER_INDEX);
+                        Sound_PlaySfxAtActor2(SFX_DASH_0116, PLAYER_INDEX);
                         break;
 
                     case 8:

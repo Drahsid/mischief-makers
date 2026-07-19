@@ -99,7 +99,7 @@ void func_801A6E48_78B988(u16 arg0) {
     actor_index = Actor_RangeFindInactive(0x49, 0x4C);
     if (actor_index != 0) {
         gActors[actor_index].actorType = ACTORTYPE_OVL2_W5B_SPIKEBALL;
-        Actor_Initialize(actor_index);           // shuffle between pemiance and colors.
+        Actor_Initialize(actor_index);           // shuffle between permanence and colors.
         gActors[actor_index].var_110 = (Rand() & ((SPIKEBALL_MORTAL | SPIKEBALL_COLORMASK) >> 8)) << 8;
         gActors[actor_index].var_0D8 = 0;
         gActors[actor_index].posX.whole = gActors[arg0].posX.whole;

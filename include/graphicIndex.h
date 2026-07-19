@@ -192,7 +192,7 @@
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
-#define GINDEX_SOLIDSQUARE     0x02D0 // used as a fill for transisions
+#define GINDEX_SOLIDSQUARE     0x02D0 // used as a fill for transitions
 #define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
 
@@ -201,7 +201,7 @@
 // see references to D_800CFE04 for more information.
 // future index additions should follow the namesceme of either
 // GINDEX_SEG[##]_[NAME] or GINDEX_[ARBEV]_[NAME]
-// where [ABREV] is an abreviation of the confirmed use case
+// where [ABREV] is an abbreviation of the confirmed use case
 // example: "world map" graphics have [ABREV] as "WM"
 
 #define GINDEX_SUNGLASSES       0X1004

@@ -7,7 +7,7 @@
 // indices of actor overlays.
 // save for the first entry, they should be marked as:
 // ACTOR_OVL#_[ABREV] where # is the overlay space used,
-// and [ABREV] is an abreviation of their context.
+// and [ABREV] is an abbreviation of their context.
 // or the number in place if context isn't certain.
 // example, for actors used in "Cerberus Alpha's" overlay 0 code
 // the entry here should be "ACTOR_OVL0_CALPHA"
@@ -133,7 +133,7 @@ typedef enum {
     ACTORTYPE_65,
     ACTORTYPE_CLANBALLSPRING,
     ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
-    ACTORTYPE_HAT, // unused?
+    ACTORTYPE_HAT, // hats with a slow, sine-wave fall.
     ACTORTYPE_CLANBOMB,
     ACTORTYPE_CLANBOMBTIMER,
     ACTORTYPE_71,

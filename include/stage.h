@@ -54,7 +54,7 @@ gActors[3].velocityX.raw
 #define STAGE_MAX_TIME 36000
 
 
-// abreviation for overall Rank graphics
+// abbreviation for overall Rank graphics
 
 #define GINDEX_RANK_S ALPHA_GLYPH(EN3_UPPER_S)
 #define GINDEX_RANK_A ALPHA_GLYPH(EN3_UPPER_A)

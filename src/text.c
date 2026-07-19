@@ -8,7 +8,7 @@ u16 gASCIIAlphaIndecies[]={
 //  $          %                 &           '
     ALPHA_SPACE,ALPHA_EN_PERCENT,ALPHA_SPACE,ALPHA_EN_APOSTROPHE,
 //  (                      )                        *              +
-    ALPHA_EN_PARENTESIS_LEFT,ALPHA_EN_PARENTESIS_RIGHT,ALPHA_EN_TIMES,ALPHA_EN_PLUS,
+    ALPHA_EN_PARENTHESIS_LEFT,ALPHA_EN_PARENTHESIS_RIGHT,ALPHA_EN_TIMES,ALPHA_EN_PLUS,
 //  ,              -             .                /
     ALPHA_EN_COMMA,ALPHA_EN_MINUS,ALPHA_EN_PERIOD,ALPHA_EN_SLASH,
 //  0      1       2        3

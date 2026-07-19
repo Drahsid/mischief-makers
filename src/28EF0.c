@@ -26,7 +26,7 @@ extern u16* gSpikeballPalettes[]; // spikeball colors
  // {Downtime, Can Shoot}
 extern s32 gSpikeballParams_S[];
 extern s32 gSpikeballParams_H[]; // additional params for Horizontal Spikeballs, determined by 0xD8
-extern s32 gSpikeballParams_V[]; // additional params for Vertcal Spikeballs, determined by 0xD8
+extern s32 gSpikeballParams_V[]; // additional params for Vertical Spikeballs, determined by 0xD8
 // actors revealed by clanball when pulled down
 // {posX, posY, 0x110, 0xD8, type}
 extern u16 gClanballReveals[]; 
@@ -181,8 +181,8 @@ u16 Actor_RangeFindInactive_90ToC0(void) {
 }
 
 // find actor in range 0x90-0xC0 without the ACTOR_FLAG_ACTIVE flag
-// and set to given type and postion.
-u16 Actor_RangeFindInactiveMove(u16 actor_type, s16 pos_x, s16 pos_y, s16 pos_z) {
+// and set to given type and position.
+u16 Actor_SpawnInRange_90ToC0(u16 actor_type, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x90, 0xC0);
@@ -2558,7 +2558,7 @@ void SpawnBoomerang(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x) {
 
 // spawn a energy shot with flags adjusting angle
 // @param actor_index index of shooter
-// @param flags flags for shot. uses EnegryShotFlags
+// @param flags flags for shot. uses EnergyShotFlags
 // @param angle initial angle of shot
 // @param pos_x x-position of projectile
 // @param pos_y y-position of projectile
@@ -2647,7 +2647,7 @@ s32 SpawnGemActor61(u16 actor_index, u16 flags, u16 unused_arg2) {
 }
 
 // spawns yellow gem if boss defeated without getting hit.
-u16 NoHitGem(u16 actor_index) {
+u16 SpawnNoHitGem(u16 actor_index) {
     u16 index;
 
     index = 0;
@@ -3017,7 +3017,7 @@ void ActorUpdate_Gem(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
 }
 
-// behavoir of special gem actor. spawned in SpawnGemActor61
+// behavior of special gem actor. spawned in SpawnGemActor61
 void ActorUpdate_Gem61(u16 actor_index) {
     ActorUpdate_Gem(actor_index);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8;
@@ -3127,14 +3127,14 @@ void func_80030E58(u16 actor_index) {
     }
 }
 
-// spawn a "particle" actor at a specified index and postion
-// using specifed graphic list
+// spawn a "particle" actor at a specified index and position
+// using specified graphic list
 // @param actor_index index of actor.
-// if bit 15 is set, postion fields are treated as whole word.
+// if bit 15 is set, position fields are treated as whole word.
 // @param graphic_list graphic list to be used by actor
-// @param pos_x x-postion of actor.
-// @param pos_y y-postion of actor.
-// @param pos_z z-postion of actor.
+// @param pos_x x-position of actor.
+// @param pos_y y-position of actor.
+// @param pos_z z-position of actor.
 // @returns actor_index & ~0x8000
 u16 SpawnParticle_List(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 index;
@@ -3168,14 +3168,14 @@ u16 SpawnParticle_List(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y,
     return index;
 }
 
-// spawn a "particle" actor at a specified index and postion
-// using specifed graphic list
+// spawn a "particle" actor at a specified index and position
+// using specified graphic list
 // @param actor_index index of actor.
-// if bit 15 is set, postion fields are treated as whole word.
+// if bit 15 is set, position fields are treated as whole word.
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
-// @param pos_x x-postion of actor.
-// @param pos_y y-postion of actor.
-// @param pos_z z-postion of actor.
+// @param pos_x x-position of actor.
+// @param pos_y y-position of actor.
+// @param pos_z z-position of actor.
 // @returns actor_index & ~0x8000
 u16 SpawnParticle_Image(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 index;
@@ -3204,96 +3204,96 @@ u16 SpawnParticle_Image(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y
     return index;
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x10 and 0x2D
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x10 and 0x2D
 // @param graphic_list graphic list to be used by actor
-// @param pos_x x-postion of actor. Treated as half word
-// @param pos_y y-postion of actor. Treated as half word
-// @param pos_z z-postion of actor. Treated as half word
+// @param pos_x x-position of actor. Treated as half word
+// @param pos_y y-position of actor. Treated as half word
+// @param pos_z z-position of actor. Treated as half word
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_List_102D_16(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive(0x10, 0x2D);
     return SpawnParticle_List(actor_index, graphic_list, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x10 and 0x2D
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x10 and 0x2D
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
-// @param pos_x x-postion of actor. Treated as half word
-// @param pos_y y-postion of actor. Treated as half word
-// @param pos_z z-postion of actor. Treated as half word
+// @param pos_x x-position of actor. Treated as half word
+// @param pos_y y-position of actor. Treated as half word
+// @param pos_z z-position of actor. Treated as half word
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_Image_102D_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive(0x10, 0x2D);
     return SpawnParticle_Image(actor_index, graphic_index, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x90 and 0xC0
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x90 and 0xC0
 // @param graphic_list graphic list to be used by actor
-// @param pos_x x-postion of actor. Treated as half word
-// @param pos_y y-postion of actor. Treated as half word
-// @param pos_z z-postion of actor. Treated as half word
+// @param pos_x x-position of actor. Treated as half word
+// @param pos_y y-position of actor. Treated as half word
+// @param pos_z z-position of actor. Treated as half word
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive_90ToC0();
     return SpawnParticle_List(actor_index, graphic_list, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x90 and 0xC0
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x90 and 0xC0
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
-// @param pos_x x-postion of actor. Treated as half word
-// @param pos_y y-postion of actor. Treated as half word
-// @param pos_z z-postion of actor. Treated as half word
+// @param pos_x x-position of actor. Treated as half word
+// @param pos_y y-position of actor. Treated as half word
+// @param pos_z z-position of actor. Treated as half word
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive_90ToC0();
     return SpawnParticle_Image(actor_index, graphic_index, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x10 and 0x2D
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x10 and 0x2D
 // @param graphic_list graphic list to be used by actor
-// @param pos_x x-postion of actor. treated as whole word.
-// @param pos_y y-postion of actor. treated as whole word.
-// @param pos_z z-postion of actor. treated as whole word.
+// @param pos_x x-position of actor. treated as whole word.
+// @param pos_y y-position of actor. treated as whole word.
+// @param pos_z z-position of actor. treated as whole word.
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_List_102D_32(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive(0x10, 0x2D);
     return SpawnParticle_List(actor_index | 0x8000, graphic_list, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x10 and 0x2D
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x10 and 0x2D
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
-// @param pos_x x-postion of actor. treated as whole word.
-// @param pos_y y-postion of actor. treated as whole word.
-// @param pos_z z-postion of actor. treated as whole word.
+// @param pos_x x-position of actor. treated as whole word.
+// @param pos_y y-position of actor. treated as whole word.
+// @param pos_z z-position of actor. treated as whole word.
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_Image_102D_32(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive(0x10, 0x2D);
     return SpawnParticle_Image(actor_index | 0x8000, graphic_index, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x90 and 0xC0
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x90 and 0xC0
 // @param graphic_list graphic list to be used by actor
-// @param pos_x x-postion of actor. treated as whole word.
-// @param pos_y y-postion of actor. treated as whole word.
-// @param pos_z z-postion of actor. treated as whole word.
+// @param pos_x x-position of actor. treated as whole word.
+// @param pos_y y-position of actor. treated as whole word.
+// @param pos_z z-position of actor. treated as whole word.
 // @returns actor index 0 if failed.
 u16 SpawnParticle_List_90C0_32(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive_90ToC0();
     return SpawnParticle_List(actor_index | 0x8000, graphic_list, pos_x, pos_y, pos_z);
 }
 
-// spawn a "particle" actor at a specified postion
-// using specifed graphic list between indices 0x90 and 0xC0
+// spawn a "particle" actor at a specified position
+// using specified graphic list between indices 0x90 and 0xC0
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
-// @param pos_x x-postion of actor. treated as whole word.
-// @param pos_y y-postion of actor. treated as whole word.
-// @param pos_z z-postion of actor. treated as whole word.
+// @param pos_x x-position of actor. treated as whole word.
+// @param pos_y y-position of actor. treated as whole word.
+// @param pos_z z-position of actor. treated as whole word.
 // @returns actor index. 0 if failed.
 u16 SpawnParticle_Image_90C0_32(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
     u16 actor_index = Actor_RangeFindInactive_90ToC0();
@@ -3817,7 +3817,7 @@ void ActorUpdate_AfterImage(u16 actor_index) {
 // @param parent actor will have star over head
 // @param scale_x x-scale of star's orbit
 // @param scale_y y-scale of star's orbit
-// @param pos_z s-postion of star
+// @param pos_z s-position of star
 // @param duration number of ticks the star lasts.
 void SpawnDizzyStar(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration) {
     u16 actor_index;
@@ -3859,9 +3859,9 @@ void ActorUpdate_DizzyStar(u16 actor_index) {
 
 // spawn a "particle" actor with a specified image
 // going up in a sine motion
-// @param x origin x-postion
-// @param y origin y-postion
-// @param z origin z-postion
+// @param x origin x-position
+// @param y origin y-position
+// @param z origin z-position
 // @param graphic grpahic index (use GINDEX_* where applicable.)
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
     u16 actor_index;
@@ -3886,9 +3886,9 @@ void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
 }
 
 // spawn hearts going up in a sine motion
-// @param pos_x origin x-postion
-// @param pos_y origin y-postion
-// @param pos_z origin z-postion
+// @param pos_x origin x-position
+// @param pos_y origin y-position
+// @param pos_z origin z-position
 void SpawnParticle_SineUpHeart(s16 arg0, s16 arg1, s16 arg2) {
     if ((gActiveFrames & 0xF) == 0) {
         SpawnParticle_SineUp(arg0, arg1, arg2, GINDEX_HEARTBUBBLE);
@@ -3896,9 +3896,9 @@ void SpawnParticle_SineUpHeart(s16 arg0, s16 arg1, s16 arg2) {
 }
 
 // spawn random notes going up in a sine motion
-// @param pos_x origin x-postion
-// @param pos_y origin y-postion
-// @param pos_z origin z-postion
+// @param pos_x origin x-position
+// @param pos_y origin y-position
+// @param pos_z origin z-position
 void SpawnParticle_SineUpNotes(s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 index;
     if ((gActiveFrames & 0xF) == 0) {
@@ -5873,14 +5873,14 @@ void func_80039838(u16 actor_index) {
     gActors[actor_index].var_150 &= ~CLANBALL_UNKMASK_A;
 }
 
-void Clanbal_ShakeFlash(u16 actor_index) {
+void Clanball_ShakeFlash(u16 actor_index) {
     gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK17;
     Actor_SetColorRgb(actor_index, 0x7F);
 }
 
 void Clanball_RevealSound(u16 actor0, u16 actor1) {
     if (gActors[actor1].actorType == ACTORTYPE_CLANBOMB) {
-        Sound_PlaySfxAtActor2(SFX_0116, actor0);
+        Sound_PlaySfxAtActor2(SFX_DASH_0116, actor0);
     }
     else {
         Sound_PlaySfxAtActor2(SFX_SHAKEREVEAL, actor0);
@@ -5900,12 +5900,12 @@ void Clanball_DropSound(u16 actor0, u16 actor1) {
         Sound_PlaySfxAtActor2(SFX_STAR_APPEAR, actor0);
         break;
     default:
-        Sound_PlaySfxAtActor2(SFX_0116, actor0);
+        Sound_PlaySfxAtActor2(SFX_DASH_0116, actor0);
         break;
     }
 }
 
-void Clanbal_InitReveal(u16 actor_index, u16* vals) {
+void Clanball_InitReveal(u16 actor_index, u16* vals) {
     gActors[actor_index].actorType = vals[4] & 0x7FFF;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = vals[0] - gScreenPosCurrentX.whole;
@@ -5918,13 +5918,13 @@ u16 Clanball_SpawnReveal(u16 actor0, u16 actor1) {
     u16* vals;
 
     vals = &gClanballReveals[(gActors[actor0].var_0D8 & 0xFF) * 5];
-    Clanbal_InitReveal(actor1, vals);
+    Clanball_InitReveal(actor1, vals);
     Clanball_RevealSound(actor0, actor1);
     SpawnParticle_RingWaveGreen(1.0f, gActors[actor1].posX.whole, gActors[actor1].posY.whole, gActors[actor1].posZ.whole);
     while (vals[4] & 0x8000) { // more than 1 thing to reveal.
         actor1++;
         vals += 5;
-        Clanbal_InitReveal(actor1, vals);
+        Clanball_InitReveal(actor1, vals);
         SpawnParticle_RingWaveYellow(1.0f, gActors[actor1].posX.whole, gActors[actor1].posY.whole, gActors[actor1].posZ.whole);
     }
     return actor1;
@@ -6097,7 +6097,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     func_80039838(actor_index);
                     if (gActors[actor_index].var_150 & CLANBALL_UNK13) {
                         gActors[actor_index].var_150 &= ~CLANBALL_UNK25;
-                        Clanbal_ShakeFlash(actor_index);
+                        Clanball_ShakeFlash(actor_index);
                     }
                 }
                 else if (func_800486F4() == 4) {
@@ -6108,7 +6108,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     func_80039838(actor_index);
                     if (gActors[actor_index].var_150 & CLANBALL_UNK13) {
                         gActors[actor_index].var_150 |= CLANBALL_UNK25;
-                        Clanbal_ShakeFlash(actor_index);
+                        Clanball_ShakeFlash(actor_index);
                     }
                 }
                 else if (func_800486F4() == 8) {
@@ -6119,7 +6119,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     func_80039838(actor_index);
                     if (gActors[actor_index].var_150 & CLANBALL_UNK14) {
                         gActors[actor_index].var_150 &= ~CLANBALL_UNK26;
-                        Clanbal_ShakeFlash(actor_index);
+                        Clanball_ShakeFlash(actor_index);
                         Clanball_ShakeDown(actor_index);
                     }
                 }
@@ -6131,7 +6131,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                     func_80039838(actor_index);
                     if (gActors[actor_index].var_150 & CLANBALL_UNK14) {
                         gActors[actor_index].var_150 |= CLANBALL_UNK26;
-                        Clanbal_ShakeFlash(actor_index);
+                        Clanball_ShakeFlash(actor_index);
                     }
                 }
             }
@@ -7718,7 +7718,7 @@ void func_8003F248(u16 actor_index, s16 x, s16 y, s16 z) {
     u16 index;
     f32 scale;
 
-    index = Actor_RangeFindInactiveMove(ACTORTYPE_PARTICLE56, x, y, z);
+    index = Actor_SpawnInRange_90ToC0(ACTORTYPE_PARTICLE56, x, y, z);
     if (index != 0) {
         Sound_PlaySfxAtActor2(SFX_BOOM_0093, actor_index);
         gActors[index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
@@ -7788,9 +7788,9 @@ void func_8003F360(u16 actor_index) {
 
 // spawns an "!" speech bubble particle.
 // @param scale initial scale of "!"
-// @param pos_x x-postion of actor.
-// @param pos_y y-postion of actor.
-// @param pos_z z-postion of actor.
+// @param pos_x x-position of actor.
+// @param pos_y y-position of actor.
+// @param pos_z z-position of actor.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_Exclamation(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
@@ -7816,9 +7816,9 @@ u16 SpawnParticle_Exclamation(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
 
 // spawns particle of 8 blue squres in a circle.
 // @param arg0 growth of circle?
-// @param pos_x x-postion of actor.
-// @param pos_y y-postion of actor.
-// @param pos_z z-postion of actor.
+// @param pos_x x-position of actor.
+// @param pos_y y-position of actor.
+// @param pos_z z-position of actor.
 // @returns index of actor, 0 if failed.
 u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
@@ -7843,9 +7843,9 @@ u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 
 // spawns a "heart bubble" particle that expands and fades
 // @param scale initial scale of heart
-// @param pos_x x-postion of actor.
-// @param pos_y y-postion of actor.
-// @param pos_z z-postion of actor.
+// @param pos_x x-position of actor.
+// @param pos_y y-position of actor.
+// @param pos_z z-position of actor.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_HeartBubble(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 actor_index;
@@ -7905,9 +7905,9 @@ u16 func_8003F9E0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 // @param parent index of parent actor. unused.
 // @param unused_arg1 unused.
 // @param scale initial scale of ring
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 void SpawnParticle_RingSparkle(u16 parent, s32 unused_arg1, f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
     u16 index;
     u16 actor_index;
@@ -7941,9 +7941,9 @@ void SpawnParticle_RingSparkle(u16 parent, s32 unused_arg1, f32 scale, s16 pos_x
 
 // Spawn a "ring" wave particle
 // @param scale determines how the ring(s) scale.
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 // @param type AND'd by 3 to get color [blue,green,yellow,red]
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWave(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z, u16 type) {
@@ -7973,9 +7973,9 @@ u16 SpawnParticle_RingWave(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z, u16 type)
 
 // Spawn a blue "ring" wave particle
 // @param scale determines how the ring(s) scale.
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     return SpawnParticle_RingWave(arg0, pos_x, pos_y, pos_z, 0);
@@ -7983,9 +7983,9 @@ u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 
 // Spawn a green "ring" wave particle
 // @param scale determines how the ring(s) scale.
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWaveGreen(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     return SpawnParticle_RingWave(arg0, pos_x, pos_y, pos_z, 1);
@@ -7993,9 +7993,9 @@ u16 SpawnParticle_RingWaveGreen(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 
 // Spawn a yellow "ring" wave particle
 // @param scale determines how the ring(s) scale.
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     return SpawnParticle_RingWave(arg0, pos_x, pos_y, pos_z, 2);
@@ -8003,9 +8003,9 @@ u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
 
 // Spawn a red "ring" wave particle
 // @param scale determines how the ring(s) scale.
-// @param pos_x x-postion of actors.
-// @param pos_y y-postion of actors.
-// @param pos_z z-postion of actors.
+// @param pos_x x-position of actors.
+// @param pos_y y-position of actors.
+// @param pos_z z-position of actors.
 // @returns index of actor, 0 if failed.
 u16 SpawnParticle_RingWaveRed(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z) {
     return SpawnParticle_RingWave(arg0, pos_x, pos_y, pos_z, 3);
