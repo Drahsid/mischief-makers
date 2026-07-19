@@ -1,6 +1,6 @@
 #include "common.h"
 #include "actor.h"
-#include "function_symbols.h"
+#include "28EF0.h"
 
 // "overlay 4" code for "Taurus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.

@@ -1,6 +1,10 @@
 #ifndef COMMON_STRUCTS_H
 #define COMMON_STRUCTS_H
 
+#include <PR/ultratypes.h>
+#include <PR/gbi.h>
+#include "inttypes.h"
+
 // game uses Q16.16 fixed-point numbers for position and velocity values.
 typedef union {
     /* 0x00 */ s32 raw;

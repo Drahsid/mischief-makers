@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "28EF0.h"
 
 // "overlay 4" code for the festival games and "Cerberus Alpha"
 
