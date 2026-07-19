@@ -432,7 +432,7 @@ void GameState_ContinueScreen(void) {
                     gActors[0x32].posY.whole -= 0x14;
                 }
             }
-            else if ((button_press & CONT_START) || (button_press & CONT_A)) {
+            else if ((button_press & START_BUTTON) || (button_press & A_BUTTON)) {
                 if (gActors[0x32].posY.whole == -0x13) {
                     Continue_PayGems(10);
                 }

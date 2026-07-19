@@ -424,7 +424,7 @@ void func_80085350(u16 actor_index) {
         gActors[actor_index].flags = ACTOR_FLAG_UNK17 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         gActors[actor_index].velocityX.raw = 0;
         gActors[actor_index].velocityY.raw = 0;
-        Sound_PlaySfxAtActor2(0x2F, actor_index);
+        Sound_PlaySfxAtActor2(SFX_GRAB_002F, actor_index);
     }
 }
 

@@ -1375,7 +1375,7 @@ s32 func_8007A4B0(u16 actor_index) {
         temp_v1->flags_098 |= ACTOR_FLAG3_UNK10;
         temp_v1->unk_0F8.raw = temp_v0->var_154;
         temp_v1->unk_0FC.raw = temp_v0->var_158;
-        Sound_PlaySfxAtActor2(0x2A, actor_index);
+        Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
         return 1;
     }
 
@@ -1685,6 +1685,7 @@ void func_8007B60C(u16 actor_index) {
     }
 }
 
+// update function for Rocketeer
 void func_8007B73C(u16 actor_index) {
     Actor* actor; // needs temp var to match
     s32 var_v1;
@@ -1693,7 +1694,8 @@ void func_8007B73C(u16 actor_index) {
     actor = &gActors[actor_index];
     actor->unk_178 = actor->posX.whole + gScreenPosCurrentX.whole;
     actor->unk_17C = actor->posY.whole + gScreenPosCurrentY.whole;
-    if ((actor->scaleX == 0.75) && (Clanpot_AddItemCheck3(actor_index, 0x400, 0, 0, 0x69) >= 0)) {
+    if ((actor->scaleX == 0.75) && 
+      (Clanpot_AddItemCheck3(actor_index, CLANPOT_ACTORICON, 0, 0, ACTORTYPE_CLANCERICON) >= 0)) {
         actor->flags = ACTOR_FLAG_ACTIVE;
         actor->state = 1;
     }
@@ -1901,7 +1903,7 @@ void func_8007B73C(u16 actor_index) {
             }
             if (actor->flags_098 & ACTOR_FLAG3_UNK0) {
                 if (actor->unk_114 > 2.5) {
-                    Sound_PlaySfxAtActor2(0x2D, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
                 }
                 actor->var_154 = 8;
                 actor->var_160 = -actor->var_160;
