@@ -1,15 +1,10 @@
 #include "common.h"
 #include "actor.h"
+#include "boot.h"
 #include "80D90.h"
 
 // "Overlay 0" code for "Migen Brawl"
 
-extern u8 D_801376B4[];
-extern u8 D_801376A8[];
-extern u8 D_801376AC[];
-extern u8 D_801376B0[];
-extern u16 D_801370CC;
-extern u16 D_801370CE;
 extern s16 D_8019B200_686D20[];
 extern s16 D_8019B18C_686CAC[];
 extern s16 D_8019B194_686CB4[];

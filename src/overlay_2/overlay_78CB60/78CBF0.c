@@ -2,11 +2,11 @@
 #include "actor.h"
 #include "Alphabet.h"
 #include "letterbox.h"
+#include "save_file.h"
 
 // "overlay 2" code for Festival Games.
 
 extern void func_80069E18(u16);
-extern u8 D_80171B19; // set when festival games are won.
 
 // may be a u32[] 
 u32 D_801AF5D0_7958C0[][2]={

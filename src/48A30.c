@@ -1,13 +1,12 @@
 #include "common.h"
 #include "actor.h"
+#include "boot.h"
 #include "SFX.h"
 
 
 extern ActorFunc D_800D3D20[];
 extern void func_8004F514(u16 actor_index, u16 arg1);
 
-extern u16 D_801370CC;
-extern u16 D_801370CE;
 
 void func_80047E30(u16 arg0) {
 }

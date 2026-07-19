@@ -10,6 +10,7 @@ extern f32 gCosineLookup[1024];
 extern f32 gUnusedFloatTable[512];
 
 #define COS_MASK (ARRAYLENGTH(gCosineLookup) - 1)
+#define COS_DEG_360 (ARRAYLENGTH(gCosineLookup))
 #define COS_DEG_180 (ARRAYLENGTH(gCosineLookup) / 2)
 #define COS_DEG_90 (ARRAYLENGTH(gCosineLookup) / 4)
 #define COS_DEG_45 (ARRAYLENGTH(gCosineLookup) / 8)

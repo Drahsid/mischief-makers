@@ -86,7 +86,7 @@ segments:
       - [0x0023D0, c, music] # music.c from rodata
       - [0x004F80, c, font] # SDK FONT.C-derived sprite text
       - [0x005510, c, rle_type1]
-      - [0x005A70, asm] # has to do with the save file
+      - [0x005A70, c, save_file]
       - [0x00A540, c] # has to do with drawing and the persp/ortho view
       - [0x011820, asm] # collision builder?
       - [0x012DD0, c] # has to do with spawning the player actor, and the camera
@@ -306,8 +306,8 @@ segments:
       - [0x0BF350, data, music_data] # music names start at BF354; music.s refs tables at C1654/C2280/C26DC
       - [0x0C4500, .data, font]
       - [0x0C5AE0, .data, rle_type1]
-      - [0x0C5B20, data] # 5A70?
-      - [0x0C6200, data] # A540?
+      - [0x0C5B20, .data, save_file]
+      - [0x0C5FC0, data] # A540?
       - [0x0C7DA0, data] # 241E0?
       - [0x0C84A0, data] # 11820?
       - [0x0C88D0, .data, 134E0]
@@ -369,7 +369,7 @@ segments:
       # rodata
       - [0x0EB7F0, .rodata, game_state]
       - [0x0EB830, .rodata, music]
-      - [0x0EBB10, rodata] # 5A70?
+      - [0x0EBB10, .rodata, save_file]
       - [0x0EBBC0, rodata] # A540?
       - [0x0EBBE0, rodata] # 11820?
       - [0x0EBC00, .rodata, gameover]
@@ -444,7 +444,8 @@ segments:
       - { name: boot, type: .bss, vram: 0x80123670 }
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
-      - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: save_file, type: .bss, vram: 0x80171AA0}
+      - { name: bss_80171B30, type: bss, vram: 0x80171B30 }
       - { name: gameover, type: .bss, vram: 0x80178130 }
       - { name: stage, type: .bss, vram: 0x80178150 }
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }

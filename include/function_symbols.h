@@ -16,8 +16,6 @@ extern u8 func_80012AB4(func_80012AB4_ARGS);
 extern u8 func_80012C04(s16, s16);
 extern u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y);
 
-extern void func_80004FFC(s32);
-extern void func_800050B4(void);
 extern void LookAt_Reset(void);
 extern void func_80010A10(void);
 extern void func_80010C20(u16 arg0);
@@ -40,7 +38,6 @@ extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, 
 extern u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 extern void SpawnParticle_SineUpHeart(s16 arg0, s16 arg1, s16 arg2);
 extern u16 SpawnAreaClear(u16);
-extern void func_80042D84(u16 arg0);
 extern void func_80042DBC(u16* vals);
 extern u8 func_80048C28(s32);
 extern u16 func_8004571C(void);
@@ -159,9 +156,6 @@ extern s32 func_80040A64(void);
 extern void func_80042E28(u16 arg0);
 extern void func_80042F2C(s16 arg0, s16 arg1, s16 arg2);
 extern void func_80043234(void);
-extern void func_80043478(void);
-extern void func_80043918(void);
-extern void func_80043D04(u16* spawn);
 extern s32 func_80043D6C(u16* spawn);
 extern void func_80045500(void);
 extern s16 func_800456DC(void);
