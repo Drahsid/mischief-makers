@@ -179,7 +179,7 @@ void Flower_Falling(u16 actor_index) {
     gActors[actor_index].rotateZ = INDEX_TO_DEG((Math_Atan2(gActors[actor_index].velocityX.raw, gActors[actor_index].velocityY.raw) + 0x100) & 0x3FF);
 }
 
-s32 func_800846A8(u16 actor_index) {
+s32 Flower_TryGrounded(u16 actor_index) {
     if (gActors[actor_index].velocityY.raw <= 0) {
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
             gActors[actor_index].state = 1;
@@ -216,11 +216,11 @@ void func_80084734(u16 actor_index) {
 }
 
 void func_8008486C(u16 actor_index) {
-    func_800846A8(actor_index);
+    Flower_TryGrounded(actor_index);
     func_80084734(actor_index);
 }
 
-s32 Flower_IsGrabbed(u16 actor_index) {
+s32 Flower_TryGrab(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         gActors[actor_index].state = 2;
         gActors[actor_index].flags = ACTOR_FLAG_UNK17 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
@@ -234,7 +234,7 @@ s32 Flower_IsGrabbed(u16 actor_index) {
     }
 }
 
-void func_80084924(u16 actor_index) {
+void Flower_SetHitboxB(u16 actor_index) {
     gActors[actor_index].hitboxBY0 = 12; \
     gActors[actor_index].hitboxBY1 = -4; \
     gActors[actor_index].hitboxBX0 = -4; \
@@ -263,14 +263,14 @@ void ActorUpdate_Flower(u16 actor_index) {
         }
         gActors[actor_index].unk_178 = gActors[actor_index].var_0D8 & 1;
         gActors[actor_index].unk_0DF = 0x40;
-        func_80084924(actor_index);
+        Flower_SetHitboxB(actor_index);
         /* fallthrough */
     case 1:
         gActors[actor_index].rotateZ = 0.0f;
-        if (!func_800846A8(actor_index)) {
+        if (!Flower_TryGrounded(actor_index)) {
             gActors[actor_index].state = 4;
         }
-        if (Flower_IsGrabbed(actor_index)) {
+        if (Flower_TryGrab(actor_index)) {
             gActors[actor_index].state = 2;
         }
         break;
@@ -285,10 +285,10 @@ void ActorUpdate_Flower(u16 actor_index) {
             gActors[actor_index].unk_0F8.raw = (s32) gActors[actor_index].unk_0F8.raw / 24;
             gActors[actor_index].unk_0FC.raw /= 24;
             gActors[actor_index].unk_0FC.raw -= 0x800;
-            func_80084924(actor_index);
+            Flower_SetHitboxB(actor_index);
             break;
         case 3:
-            func_80084924(actor_index);
+            Flower_SetHitboxB(actor_index);
             gActors[actor_index].var_150 = 0xA;
             break;
         }
@@ -301,8 +301,10 @@ void ActorUpdate_Flower(u16 actor_index) {
             gActors[actor_index].var_150 = 0xA;
             gActors[actor_index].state = 4;
         }
-        gActors[actor_index].rotateZ = INDEX_TO_DEG((Math_Atan2(gActors[actor_index].velocityX.raw, gActors[actor_index].velocityY.raw) + 0x100) & 0x3FF);
-        Flower_IsGrabbed(actor_index);
+        gActors[actor_index].rotateZ = INDEX_TO_DEG((Math_Atan2(
+                      gActors[actor_index].velocityX.raw, gActors[actor_index].velocityY.raw)
+                       + COS_DEG_90) & COS_MASK);
+        Flower_TryGrab(actor_index);
         func_8008486C(actor_index);
         break;
     case 4:
@@ -311,18 +313,18 @@ void ActorUpdate_Flower(u16 actor_index) {
         /* fallthrough */
     case 5:
         Flower_Falling(actor_index);
-        Flower_IsGrabbed(actor_index);
+        Flower_TryGrab(actor_index);
         func_8008486C(actor_index);
         break;
     case 10:
-        Flower_IsGrabbed(actor_index);
+        Flower_TryGrab(actor_index);
         break;
     }
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
     func_800840A4(actor_index);
 }
 
-void func_80084D18(u16 actor_index) {
+void Hat_SetField138(u16 actor_index) {
     u8 base_index;
 
     base_index = gActors[actor_index].var_110 * 4;
@@ -369,8 +371,8 @@ void func_80084F38(u16 actor_index) {
     gActors[actor_index].rotateZ = gActors[actor_index].unk_138_arr[5] - 270.0f;
 }
 
-// same implementation as func_800846A8
-s32 func_80085108(u16 actor_index) {
+// same implementation as Flower_TryGrounded
+s32 Hat_TryGrounded(u16 actor_index) {
     if (gActors[actor_index].velocityY.raw <= 0) {
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
             gActors[actor_index].state = 1;
@@ -407,18 +409,18 @@ void func_80085194(u16 actor_index) {
 }
 
 void func_800852CC(u16 actor_index) {
-    func_80085108(actor_index);
+    Hat_TryGrounded(actor_index);
     func_80085194(actor_index);
 }
 
-void func_80085300(u16 actor_index) {
+void Hat_SetHitboxB(u16 actor_index) {
     gActors[actor_index].hitboxBY0 = 8; \
     gActors[actor_index].hitboxBY1 = 0; \
     gActors[actor_index].hitboxBX0 = -6; \
     gActors[actor_index].hitboxBX1 = 6;
 }
 
-void func_80085350(u16 actor_index) {
+void Hat_TryGrab(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
         gActors[actor_index].state = 2;
         gActors[actor_index].flags = ACTOR_FLAG_UNK17 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
@@ -450,15 +452,15 @@ void ActorUpdate_Hat(u16 actor_index) {
         }
         gActors[actor_index].unk_178 = gActors[actor_index].var_0D8 & 1;
         gActors[actor_index].unk_0DF = 0x40;
-        func_80084D18(actor_index);
-        func_80085300(actor_index);
+        Hat_SetField138(actor_index);
+        Hat_SetHitboxB(actor_index);
         /* fallthrough */
     case 1:
         gActors[actor_index].rotateZ = 0.0f;
-        if (func_800846A8(actor_index) == 0) {
+        if (Flower_TryGrounded(actor_index) == 0) {
             gActors[actor_index].state = 6;
         }
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         break;
     case 2:
         temp_v1 = func_800291AC(actor_index, 3, flags, 6, flags);
@@ -470,10 +472,10 @@ void ActorUpdate_Hat(u16 actor_index) {
             if (gActors[actor_index].velocityX.raw < 0) {
                 gActors[actor_index].var_154 = 1;
             }
-            func_80085300(actor_index);
+            Hat_SetHitboxB(actor_index);
         }
         if (temp_v1 == 3) {
-            func_80085300(actor_index);
+            Hat_SetHitboxB(actor_index);
         }
         break;
     case 3:
@@ -484,7 +486,7 @@ void ActorUpdate_Hat(u16 actor_index) {
             gActors[actor_index].state += 3;
         }
         func_800852CC(actor_index);
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         break;
     case 4:
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.0390625);
@@ -498,7 +500,7 @@ void ActorUpdate_Hat(u16 actor_index) {
             gActors[actor_index].velocityX.raw += FIXED_UNIT(0.01953125);
         }
         func_800852CC(actor_index);
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         break;
     case 5:
         gActors[actor_index].velocityY.raw += FIXED_UNIT(0.0390625);
@@ -513,7 +515,7 @@ void ActorUpdate_Hat(u16 actor_index) {
             gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.01953125);
         }
         func_800852CC(actor_index);
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         break;
     case 6:
         func_80084E7C(actor_index);
@@ -521,11 +523,11 @@ void ActorUpdate_Hat(u16 actor_index) {
         /* fallthrough */
     case 7:
         func_80084F38(actor_index);
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         func_800852CC(actor_index);
         break;
     case 10:
-        func_80085350(actor_index);
+        Hat_TryGrab(actor_index);
         break;
     }
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);

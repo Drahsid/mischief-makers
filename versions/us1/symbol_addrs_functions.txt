@@ -246,9 +246,17 @@ OSD_PrintDeltaTime = 0x80083cf0; // type:func rom:0x848f0
 OSD_PrintfTime = 0x80083db8; // type:func rom:0x849b8
 
 Flower_Falling = 0x800844b8; // type:func
-Flower_IsGrabbed = 0x800848a0; // type:func
-ActorUpdate_Hat = 0x800853c8; // type:func
+Flower_TryGrounded = 0x800846A8; // type:func
+Flower_SetHitboxB = 0x80084924; // type:func
+Flower_TryGrab = 0x800848a0; // type:func
 ActorUpdate_Flower = 0x80084974; // type:func
+Hat_TryGrounded = 0x80085108; // type:func
+Hat_SetField138 = 080084D18; // type:func
+Hat_SetHitboxB = 080085300; // type:func
+
+Hat_TryGrab = 0x80085350; // type:func
+ActorUpdate_Hat = 0x800853c8; // type:func
+
 
 Clanbomb_SpawnTimer = 0x80085844; // type:func
 Clanbomb_TickFuse = 0x8008594c; // type:func

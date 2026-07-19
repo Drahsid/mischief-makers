@@ -14046,7 +14046,7 @@
           }
         },
         {
-          "name": "func_800846A8",
+          "name": "Flower_TryGrounded",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14070,7 +14070,7 @@
           }
         },
         {
-          "name": "Flower_IsGrabbed",
+          "name": "Flower_TryGrab",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14078,7 +14078,7 @@
           }
         },
         {
-          "name": "func_80084924",
+          "name": "Flower_SetHitboxB",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14094,7 +14094,7 @@
           }
         },
         {
-          "name": "func_80084D18",
+          "name": "Hat_SetField138",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14118,7 +14118,7 @@
           }
         },
         {
-          "name": "func_80085108",
+          "name": "Hat_TryGrounded",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14142,7 +14142,7 @@
           }
         },
         {
-          "name": "func_80085300",
+          "name": "Hat_SetHitboxB",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14150,7 +14150,7 @@
           }
         },
         {
-          "name": "func_80085350",
+          "name": "Hat_TryGrab",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
