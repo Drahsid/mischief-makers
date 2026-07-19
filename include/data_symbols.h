@@ -80,7 +80,7 @@ extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting 
 extern u8 gClanpotItemCount[26];
 extern f32 D_800D2904;
 extern s16 D_800D2924;
-extern s32 gTransitionPortaitIndex;
+extern s32 gTransitionPortraitIndex;
 extern s32 D_800D2930;
 extern s32 D_800D2934;
 extern u16 D_800D2954;

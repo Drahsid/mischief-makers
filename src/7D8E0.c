@@ -685,7 +685,7 @@ void func_8007F560(u16 actor_index) {
         gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 1.0f, 0.05f);
     }
     if (gActors[actor_index].var_154 != 0xFFFF) {
-        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * 65536.0f) ;
+        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * 65536.0f);
         y = gActors[(u16)gActors[actor_index].var_154].posY.raw + (gActors[actor_index].var_15C * gActors[actor_index].scaleY * 65536.0f);
         z = FIXED_UNIT(64.0);
     }

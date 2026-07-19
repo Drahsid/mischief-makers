@@ -716,7 +716,7 @@ void func_801B9E74_7E2FD4(void) {
             D_800BE5F4.unk_00_s32 = 4;
             D_800BE544 = 0x8000;
             gStageTimer = 0; // used to track progress instead
-            gTransitionPortaitIndex = 0;
+            gTransitionPortraitIndex = 0;
             D_800D2930 = 0;
             do { } while (0);
             break;
@@ -769,7 +769,7 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x40].posY.whole = gPlayerActor.posY.whole - 0x10;
             gActors[0x30].posX.whole = gPlayerActor.posX.whole - 0xF0;
 
-            if (gTransitionPortaitIndex) {
+            if (gTransitionPortraitIndex) {
                 D_800BE5F4.unk_00_s32 = 0xA;
             }
 
@@ -777,7 +777,7 @@ void func_801B9E74_7E2FD4(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                gTransitionPortaitIndex = 1;
+                gTransitionPortraitIndex = 1;
                 gCannotPause = FALSE;
             }
             break;
@@ -865,7 +865,7 @@ void func_801B9E74_7E2FD4(void) {
         case 0xB:
             gTransitionState = 0;
             gStageTimer = 0;
-            gTransitionPortaitIndex = 0;
+            gTransitionPortraitIndex = 0;
             gStageState = 0x1000;
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
@@ -878,7 +878,7 @@ void func_801B9E74_7E2FD4(void) {
         case 0x1000:
             gStageState = 3;
             gStageTimer = 0;
-            gTransitionPortaitIndex = 0;
+            gTransitionPortraitIndex = 0;
             D_800D2930 = 0;
             break;
     }

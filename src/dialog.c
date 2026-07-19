@@ -1,7 +1,7 @@
 #include "common.h"
 #include "5EA30.h"
 
-// script releated to dialog code.
+// script related to dialog code.
 
 extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"

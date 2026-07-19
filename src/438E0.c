@@ -1720,7 +1720,7 @@ void func_80047AC4(void) {
             D_800D28E4 = D_800D28F0;
             func_80042D84(0);
             D_800D28FC &= ~1;
-            GetFestivalTimeRecords();
+            WorldMap_SetTransitionState();
         }
     }
 }

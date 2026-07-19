@@ -483,17 +483,17 @@ void func_801B9F50_7E70A0(void) {
     u16 temp_s0;
     u16 temp_s1;
 
-    temp_s0 = gScreenBoundX0.whole ;
-    temp_s1 = gScreenBoundX1.whole ;
+    temp_s0 = gScreenBoundX0.whole;
+    temp_s1 = gScreenBoundX1.whole;
     func_801B9E7C_7E6FCC();
     Actor_LoadSpawnTable(D_801BA540_7E7690);
-    gTransitionPortaitIndex = gScreenBoundX1.whole ;
+    gTransitionPortraitIndex = gScreenBoundX1.whole;
     gScreenBoundX0.whole  = temp_s0;
     gScreenBoundX1.whole  = temp_s1;
 }
 
 void func_801B9FB4_7E7104(void) {
-    gScreenBoundX1.whole  = gTransitionPortaitIndex;
+    gScreenBoundX1.whole  = gTransitionPortraitIndex;
 }
 
 void func_801B9FC8_7E7118(void) {

@@ -12,12 +12,13 @@ typedef enum {
     FESTGAME_HURDLE,
     FESTGAME_MATH,
     FESTGAME_DODGEBALL, // dodgeball with Cat Clancer.
-    // Planned race, index instead used by "Dodgeball"
-    // checks still in 7A6E80.c may have been an 800 meter dash.
-    FESTGAME_UNUSED_RACE = 7, 
     FESTGAME_INTRO, // introduction in "The Day Before"
     FESTGAME_SELECT, // select screen
-    FESTGAME_TOTAL
+    FESTGAME_TOTAL,
+    // Planned race, index instead used by "Dodgeball", checks still in 7A6E80.c 
+    // when forced in game, named as "...", has a disrance of 100M, and
+    // crashes the game as the race begins,
+    FESTGAME_UNUSED_RACE = 7
 } FestivalEvents;
 
 

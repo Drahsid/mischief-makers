@@ -1,5 +1,6 @@
 #include "common.h"
 #include "boot.h"
+#include "font.h"
 
 typedef struct {
     u16 isSet;
@@ -19,8 +20,7 @@ s32 D_80180FD4; // unused.
 OSDStruct gOSDData[40];
 s32 gOSDTime;
 
-extern void OSD_SetData(char* text, s32 x, s32 y, u8 red, u8 green, u8 blue, u8 alpha, f32 scale_x, f32 scale_y);
-
+// reset OSD values.
 void OSD_Reset(void){
     s16 index;
 
@@ -29,7 +29,15 @@ void OSD_Reset(void){
     }
 }
 
-
+// set data for all OSDStruct fields
+// @param text string to print
+// @param x x-position of text
+// @param y y-position of text
+// @param red red channel of text
+// @param green green channel of text
+// @param blue blue channel of text
+// @param scale_x x-scale of text
+// @param scale_y y-scale of text
 void OSD_SetData(char* text, s32 x, s32 y, u8 red, u8 green, u8 blue, u8 alpha, f32 scale_x, f32 scale_y){
     u16 index;
 
@@ -53,6 +61,12 @@ void OSD_SetData(char* text, s32 x, s32 y, u8 red, u8 green, u8 blue, u8 alpha, 
     }
 }
 
+
+// print a 32-bit value in hex using OSD
+// use R to toggle between black and white text.
+// @param val value to print
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintIntHex(u32 val, s32 x, s32 y){
     char buff[80];
 
@@ -60,6 +74,11 @@ void OSD_PrintIntHex(u32 val, s32 x, s32 y){
     OSD_SetData(buff, x, y, gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF, 1.0f, 1.0f);
 }
 
+// print the 4 digits of a 32-bit value in base-10 using OSD
+// use R to toggle between black and white text.
+// @param val value to print
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintInt(u32 val, s32 x, s32 y){
     char buff[80];
 
@@ -67,6 +86,10 @@ void OSD_PrintInt(u32 val, s32 x, s32 y){
     OSD_SetData(buff, x, y, gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF, 1.0f, 1.0f);
 }
 
+// print a float value using OSD in white.
+// @param val value to print
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintFloat(f32 val, s32 x, s32 y){
     char buff[80];
 
@@ -74,6 +97,10 @@ void OSD_PrintFloat(f32 val, s32 x, s32 y){
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
 
+// print an 8-bit value in hex using OSD in white
+// @param val value to print. AND'd to 16-bit
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintByteHex(s32 val, s32 x, s32 y) {
     u16 temp;
     char buff[80];
@@ -84,7 +111,10 @@ void OSD_PrintByteHex(s32 val, s32 x, s32 y) {
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
 
-
+// print an 16-bit value in hex using OSD in white
+// @param val value to print. AND'd to 16-bit
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintShortHexWhite(s32 val, s32 x, s32 y) {
     u16 temp;
     char buff[80];
@@ -95,7 +125,11 @@ void OSD_PrintShortHexWhite(s32 val, s32 x, s32 y) {
     OSD_SetData(buff, x, y, 0xFF, 0xFF, 0xFF, 0xFF, 1.0f, 1.0f);
 }
 
-
+// print an 8-bit value in hex using OSD
+// use R to toggle between black and white text.
+// @param val value to print AND'd to 16-bit
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintShortHex(s32 val, s32 x, s32 y) {
     u16 temp;
     char buff[80];
@@ -106,12 +140,18 @@ void OSD_PrintShortHex(s32 val, s32 x, s32 y) {
     OSD_SetData(buff, x, y, gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF, 1.0f, 1.0f);
 }
 
+// save a timestamp
+// @returns 64-bit timestamp.
 OSTime OSD_GetTime(void){
     OSTime t = osGetTime();
     gOSDTime = t;
     return t;
 }
 
+// using OSD print delta time between this call and last call of OSD_GetTime()
+// use R to toggle between black and white text.
+// @param x x-position of text
+// @param y y-position of text
 void OSD_PrintDeltaTime(s32 x, s32 y){
     s32 delta_t;
     s32 time_val;
@@ -123,31 +163,23 @@ void OSD_PrintDeltaTime(s32 x, s32 y){
     OSD_SetData(buff, x, y, gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF, 1.0f, 1.0f);
 }
 
-
-void OSD_PrintfTime(s32 val){
+// use rmonPrintf to print delta time between this call and
+// last call of this or OSD_GetTime()
+// @param u16 val 2 digits are printed alongside delta.
+void OSD_PrintfTime(u16 val) {
     s32 delta_t;
     s32 time_val;
 
-    delta_t = (osGetTime() - gOSDTime);
-    if (val == 0){
+    delta_t = osGetTime() - gOSDTime;
+    if (!val) {
         rmonPrintf("\n");
     }
-
     time_val = ((delta_t * 1.32) / 10000.0);
-    rmonPrintf("%02d : %03d%\n",val,time_val);
+    rmonPrintf("%02d : %03d%\n", val, time_val);
     gOSDTime = osGetTime();
 }
 
-extern void Font_Init(Gfx** glistp);
-extern void Font_Finish(Gfx** glistp);
-extern void Font_SetWindow(s32 width, s32 height);
-extern void Font_SetPos(s32 xpos, s32 ypos);
-extern void Font_SetScale(f64 xscale, f64 yscale);
-extern void Font_SetColor(u8 red, u8 green, u8 blue, u8 alpha);
-extern void Font_SetTransparent(s32 flag);
-extern void Font_ShowString(Gfx** glistp, char* val_str);
-extern size_t strlen(const char* str);
-
+// update OSD text
 void OSD_Tick(void) {
     Gfx* display_list;
     s32 i;

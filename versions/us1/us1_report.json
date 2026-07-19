@@ -2803,7 +2803,7 @@
           }
         },
         {
-          "name": "Pause_YellowGemYet",
+          "name": "Pause_PrintYellowGemStatus",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {

@@ -128,7 +128,7 @@ u16 gAttractModeStages[] = {
     STAGE_CLANBALLLAND, STAGE_WESTERNWORLD, STAGE_SEASICKCLIMB, STAGE_MIGENBRAWL
 };
 
-// attract mode inputs, alternate beween ticks used and input itself
+// attract mode inputs, alternate between ticks used and input itself
 
 u16 gAttractModeHolds0[] = {
     0x004C, CONT_RIGHT,
@@ -2473,7 +2473,7 @@ void Pause_PrintRedGems(void) {
 }
 
 // display "got it" or "not yet" for yellow gem state on pause?
-void Pause_YellowGemYet(void) {
+void Pause_PrintYellowGemStatus(void) {
     u64 ret;
 
     ret = YellowGem_GetFlag(gCurrentStage);
@@ -2571,7 +2571,7 @@ void Pause_Update(void) {
             func_800836A0(5, 3, gPauseExit, 0);
             Pause_PrintPlayTime();
             Pause_PrintRedGems();
-            Pause_YellowGemYet();
+            Pause_PrintYellowGemStatus();
             Text_InitActorGList(actor_index + 5, gGraphicListGemIcon, 0xFFA8, 0xC, 0x401);
             gActors[actor_index + 5].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index + 5].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK6;

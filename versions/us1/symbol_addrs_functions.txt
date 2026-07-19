@@ -88,7 +88,7 @@ Gameplay_ActiveUpdate = 0x80020024; // type:func
 
 Pause_PrintPlayTime = 0x8002034C; // type:func
 Pause_PrintRedGems = 0x800205DC; // type:func
-Pause_YellowGemYet = 0x800207DC; // type:func
+Pause_PrintYellowGemStatus = 0x800207DC; // type:func
 
 Pause_RestoreBGMVol = 0x800208D4; // type:func
 Pause_InitBars = 0x8002092C; // type:func

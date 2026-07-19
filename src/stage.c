@@ -872,7 +872,7 @@ u16 gSoundTestIndices[] = {
 /* 135 */ SFX_BOOM_0045, SFX_SHOT_0046, SFX_WOOSH_0048, SFX_004A, SFX_004B,
 /* 140 */ SFX_004C, SFX_004D, SFX_004E, SFX_FIRE_004F, SFX_PLINK_0050,
 /* 145 */ SFX_LASER_0052, SFX_STEP_0053, SFX_SHOT_0054, SFX_BOOM_0055, SFX_0058,
-/* 150 */ SFX_POP, SFX_SQEAK_005C, SFX_005D, SFX_005E, SFX_0061,
+/* 150 */ SFX_POP, SFX_SQUEAK_005C, SFX_005D, SFX_005E, SFX_0061,
 /* 155 */ SFX_MECHSTEP_0062, SFX_GRABDEFLECT, SFX_TINK_0064, SFX_SHOCK_0065, SFX_0068,
 /* 160 */ SFX_0069, SFX_006A, SFX_006B, SFX_006C, SFX_006D,
 /* 165 */ SFX_STAB_006E, SFX_0070, SFX_0071, SFX_0072, SFX_0073,
@@ -1430,7 +1430,7 @@ void GameState_TitleScreen(void) {
                 gGameStateSubState = 0x20;
             }
         }
-        // timer to swich to attract mode
+        // timer to switch to attract mode
         if (((gAudioUpdateCounter > 0x1140) || (gButtonPress & gButton_B)) && !(gButtonPress & gButton_Start)) {
             Sound_StartFade(1, 0x20);
             actor_index = 0x33;
@@ -1775,11 +1775,12 @@ s32 GetRaceTimeRecord(s32 time) {
     return var_v1 + minutes + seconds_tens + seconds_ones;
 }
 
-void GetFestivalTimeRecords(void) {
+void WorldMap_SetTransitionState(void) {
     s32 time_0;
     s32 time_1;
     s32 time_2;
 
+    // add records of Festival Games if leaving from "The Day Of"
     if (gCurrentStage == STAGE_THEDAYOF) {
         time_2 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_400M]);
         time_1 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_200M]);
