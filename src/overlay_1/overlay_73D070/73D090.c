@@ -7,7 +7,7 @@ u32 D_801A08E0_742870=0;
 
 u32 D_801A08E4_742874[31]={0}; // unused?
 
-// graphic indecies of worm segments.
+// graphic indices of worm segments.
 u16 sWormSegGraphics[]={
     0x0804, 0x0814, 0x080A, 0x0814, 0x080C, 0x0816, 
     0x080E, 0x0818, 0x0810, 0x081A, 0x0812, 0x0000

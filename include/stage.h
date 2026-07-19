@@ -14,7 +14,7 @@
 
 // actor fields are used for variables in several menus
 
-// actor feild used for title/debug state controls
+// actor field used for title/debug state controls
 #define CURSOR_INDEX_A \
 gActors[DEBUG_STAGE_SELECT_CURSOR_ACTOR_INDEX].colorB
 

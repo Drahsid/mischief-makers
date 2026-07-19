@@ -668,7 +668,7 @@ u8* D_801B0074_796364[]={
     D_801B0070_796360
 };
 
-// array of graphic indecies.
+// array of graphic indices.
 u16 D_801B009C_79638C[]={
     0x1808, 0x180A, 0x180C, 0x180E, 0x1810, 0x1812, 
     0x1814, 0x1816, 0x1818, 0x181A, 0x181C, 0x181E
@@ -683,7 +683,7 @@ u16 D_801B00CC_7963BC[]={
     0xFFF4, 0x000C, 0x000C, 0x000E, 0x000E, 0xFFE2
 };
 
-// array of graphic indecies.
+// array of graphic indices.
 u16 D_801B00E4_7963D4[]={
     0x1806, 0x1804, 0x1800, 0x1802, 0, 0
 };

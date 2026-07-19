@@ -9,7 +9,7 @@ void Actor11_State3(u16);
 void Actor11_State4(u16);
 
 // states for ACTORTYPE_11
-ActorFunc gActor11States[]={
+ActorFunc gActor11States[] = {
      Actor11_State0,
      Actor11_State1,
      Actor11_State2,

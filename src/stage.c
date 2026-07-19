@@ -93,7 +93,7 @@ const char* gDebugStageSelectOptionSuffixes[] = {
     "0", "1", "0", "1", "0", "1", "2", "0",
 };
 
-// list of scene indecies in order of game progress.
+// list of scene indices in order of game progress.
 u16 gStageScenes[] = {
     SCENE_INTRO, SCENE_DEMOWORLD1, SCENE_MEETMARINA, SCENE_MEETCALINA, SCENE_CLANBALLLAND,
     SCENE_SPIKELAND, SCENE_3CLANCERKIDS, SCENE_BLOCKMANRISES,  SCENE_WORMINUP,
@@ -840,7 +840,7 @@ u16 gIntroPalette3[] = {
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001
 };
 
-// "Sound test" SFX indecies.
+// "Sound test" SFX indices.
 u16 gSoundTestIndices[] = {
 /* 000 */ SFX_MARINA_TITLE, SFX_MARINA_YELL1, SFX_MARINA_YELL2, SFX_MARINA_YELL3, SFX_MARINA_YELL4,
 /* 005 */ SFX_MARINA_OW1, SFX_MARINA_OW2, SFX_MARINA_OW3, SFX_MARINA_HEY, SFX_MARINA_SHAKE,

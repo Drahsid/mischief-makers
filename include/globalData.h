@@ -72,8 +72,8 @@ extern u32 D_801069DC; // unused
 extern StaticObject gStaticObjects[64]; // clanblocks/"static gems" on screen / loaded?
 extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u8 D_8010CDF0[0x10000];
-extern u16 gPlatform0Actors[144]; // indecies of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern u16 gPlatform1Actors[144]; // indecies of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern u16 gPlatform0Actors[144]; // indices of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 gPlatform1Actors[144]; // indices of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern u32 D_8011D040[2]; // blank space between
 extern s16 gPlatforms0X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern u32 D_8011D068[2]; // blank space between

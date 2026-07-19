@@ -21,9 +21,9 @@ extern u16 D_800D9B64[]; // palette
 extern u16 D_800DE188[]; // palette
 
 extern u8 D_800E0F00[];
-extern u16 D_800E3D20[]; // indecies of flower sprites.
+extern u16 D_800E3D20[]; // indices of flower sprites.
 extern u8 D_800E3D2C[];
-extern u16 D_800E3D4C[]; // indecies of hat sprites.
+extern u16 D_800E3D4C[]; // indices of hat sprites.
 extern s16 D_800E3D64[];
 extern s16 D_800E3D78[];
 extern s16 D_800E3D8C[];

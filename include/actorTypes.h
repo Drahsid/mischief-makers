@@ -4,7 +4,7 @@
 // an ongoing list of identified actor types.
 // those with a number >=0x100 are part of an overlay.
 
-// indecies of actor overlays.
+// indices of actor overlays.
 // save for the first entry, they should be marked as:
 // ACTOR_OVL#_[ABREV] where # is the overlay space used,
 // and [ABREV] is an abreviation of their context.

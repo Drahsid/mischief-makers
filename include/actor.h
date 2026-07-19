@@ -182,7 +182,7 @@ typedef struct {
     // graphic animations are determined by the following pointer.
     // it often references a s16[], where the entries alternate
     // between the index of the grapic and the time in ticks to display.
-    // negative "index" values mean a looping animation back that many indecies.
+    // negative "index" values mean a looping animation back that many indices.
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
 

@@ -96,7 +96,7 @@
 
 // the original Japanese version uses Japanese characters
 // at least Katakana and Hiragana are overwritten in english localizations,
-// which use the other english/Greek alphabet indecies.
+// which use the other english/Greek alphabet indices.
 // some "strings" using the original charset remain in NA/EU code,
 // but are not properly read. (see SpawnTextBubble calls.)
 

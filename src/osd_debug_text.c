@@ -122,24 +122,53 @@ void OSD_PrintDeltaTime(s32 x, s32 y){
     OSD_SetData(buff, x, y, gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF, 1.0f, 1.0f);
 }
 
-#ifdef NON_MATCHING
+
 void OSD_PrintfTime(s32 val){
     s32 delta_t;
     s32 time_val;
-    u16 temp;
 
     delta_t = (osGetTime() - gOSDTime);
-    temp = val & 0xFFFF;
-    if (temp == 0){
+    if (val == 0){
         rmonPrintf("\n");
     }
 
-    time_val = ((delta_t * 1.32) / 1000.0);
-    rmonPrintf("%02d : %03d%\n",temp,time_val);
+    time_val = ((delta_t * 1.32) / 10000.0);
+    rmonPrintf("%02d : %03d%\n",val,time_val);
     gOSDTime = osGetTime();
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_PrintfTime.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/osd_debug_text/OSD_Tick.s")
+extern void Font_Init(Gfx** glistp);
+extern void Font_Finish(Gfx** glistp);
+extern void Font_SetWindow(s32 width, s32 height);
+extern void Font_SetPos(s32 xpos, s32 ypos);
+extern void Font_SetScale(f64 xscale, f64 yscale);
+extern void Font_SetColor(u8 red, u8 green, u8 blue, u8 alpha);
+extern void Font_SetTransparent(s32 flag);
+extern void Font_ShowString(Gfx** glistp, char* val_str);
+extern size_t strlen(const char* str);
+
+void OSD_Tick(void) {
+    Gfx* display_list;
+    s32 i;
+    char buff[0x50]; // unused, likely allocated for local string
+
+    display_list = gDisplayListHead;
+    Font_Init(&display_list);
+    Font_SetTransparent(FALSE);
+    Font_SetColor(gDebugOSDTint, gDebugOSDTint, gDebugOSDTint, 0xFF);
+    Font_SetScale(1.0, 1.0);
+    Font_SetTransparent(TRUE);
+    
+    for (i = 0; i < ARRAYLENGTH(gOSDData); i++) {
+        if (gOSDData[i].isSet) {
+            Font_SetWindow(strlen(gOSDData[i].text) + 1, 1);
+            Font_SetPos(gOSDData[i].posX + 0xA0, -gOSDData[i].posY + 0x78);
+            Font_SetColor(gOSDData[i].colorR, gOSDData[i].colorG, gOSDData[i].colorB, gOSDData[i].colorA);
+            Font_SetScale(gOSDData[i].scaleX, gOSDData[i].scaleY);
+            Font_ShowString(&display_list, gOSDData[i].text);
+        }
+    }
+    gOSDDataCount = 0;
+    Font_Finish(&display_list);
+    gDisplayListHead = display_list;
+}

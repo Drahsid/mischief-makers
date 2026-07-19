@@ -63,7 +63,7 @@ extern s16 D_800D271C[];
 extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, var_110, var_0D8, type, icon}
 
 // counts for items in clanpot. checked for mixing.
-// indecies of items counted:
+// indices of items counted:
 // 0x00: rocketeers needed for rideable rocketeer.
 // 0x10: round bomb
 // 0x11: elliptical bomb
@@ -126,10 +126,10 @@ extern u16 gRedGems;
 
 // func_8000147C
 extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
-extern u16 gActorsBack[128]; // indecies of actors to draw in the "back" 
-extern u16 gActorsMiddle[128]; // indecies of actors to draw in middle (not drawn if D_800be674 is set)
-extern u16 gActorsFront[240]; // indecies of actors to draw in "front"
-extern u16 gActorsTop[240]; // indecies of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
+extern u16 gActorsBack[128]; // indices of actors to draw in the "back" 
+extern u16 gActorsMiddle[128]; // indices of actors to draw in middle (not drawn if D_800be674 is set)
+extern u16 gActorsFront[240]; // indices of actors to draw in "front"
+extern u16 gActorsTop[240]; // indices of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
 
 extern PlayerData gPlayerData;
 

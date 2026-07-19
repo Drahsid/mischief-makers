@@ -41,7 +41,7 @@ extern u16 gCrosshairPalette[];
 extern u16 D_800D2814[];
 extern f32 D_800D281C[];
 extern u16 D_800D282C[];
-extern u16 D_800D2854[]; // graphic indecies of shock effect?
+extern u16 D_800D2854[]; // graphic indices of shock effect?
 extern u16 D_800D2860[]; // warp gate coords in main segment.
 
 //.data file break?
@@ -3205,7 +3205,7 @@ u16 SpawnParticle_Image(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x10 and 0x2D
+// using specifed graphic list between indices 0x10 and 0x2D
 // @param graphic_list graphic list to be used by actor
 // @param pos_x x-postion of actor. Treated as half word
 // @param pos_y y-postion of actor. Treated as half word
@@ -3217,7 +3217,7 @@ u16 SpawnParticle_List_102D_16(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x10 and 0x2D
+// using specifed graphic list between indices 0x10 and 0x2D
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
 // @param pos_x x-postion of actor. Treated as half word
 // @param pos_y y-postion of actor. Treated as half word
@@ -3229,7 +3229,7 @@ u16 SpawnParticle_Image_102D_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x90 and 0xC0
+// using specifed graphic list between indices 0x90 and 0xC0
 // @param graphic_list graphic list to be used by actor
 // @param pos_x x-postion of actor. Treated as half word
 // @param pos_y y-postion of actor. Treated as half word
@@ -3241,7 +3241,7 @@ u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x90 and 0xC0
+// using specifed graphic list between indices 0x90 and 0xC0
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
 // @param pos_x x-postion of actor. Treated as half word
 // @param pos_y y-postion of actor. Treated as half word
@@ -3253,7 +3253,7 @@ u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x10 and 0x2D
+// using specifed graphic list between indices 0x10 and 0x2D
 // @param graphic_list graphic list to be used by actor
 // @param pos_x x-postion of actor. treated as whole word.
 // @param pos_y y-postion of actor. treated as whole word.
@@ -3265,7 +3265,7 @@ u16 SpawnParticle_List_102D_32(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x10 and 0x2D
+// using specifed graphic list between indices 0x10 and 0x2D
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
 // @param pos_x x-postion of actor. treated as whole word.
 // @param pos_y y-postion of actor. treated as whole word.
@@ -3277,7 +3277,7 @@ u16 SpawnParticle_Image_102D_32(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x90 and 0xC0
+// using specifed graphic list between indices 0x90 and 0xC0
 // @param graphic_list graphic list to be used by actor
 // @param pos_x x-postion of actor. treated as whole word.
 // @param pos_y y-postion of actor. treated as whole word.
@@ -3289,7 +3289,7 @@ u16 SpawnParticle_List_90C0_32(s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_
 }
 
 // spawn a "particle" actor at a specified postion
-// using specifed graphic list between indecies 0x90 and 0xC0
+// using specifed graphic list between indices 0x90 and 0xC0
 // @param graphic_index graphic to be used by actor (use GINDEX_* when applicable)
 // @param pos_x x-postion of actor. treated as whole word.
 // @param pos_y y-postion of actor. treated as whole word.
@@ -5511,7 +5511,7 @@ void ActorUpdate_Clanpot(u16 actor_index) {
     }
 }
 
-// wait to sshot and fir if applicable
+// wait to shoot and fire if applicable
 void Spikeball_Shoot(u16 actor_index) {
     if (gActors[actor_index].unk_144 > 0.0f) {
         gActors[actor_index].unk_144 -= 1.0f;
@@ -8396,7 +8396,7 @@ s32 WarpGate_IsGuestUsing(u16 star_index, u16 guest_index) {
     return FALSE;
 }
 
-// check if actors of indecies in 0x178 or 0x17C are using star.
+// check if actors of indices in 0x178 or 0x17C are using star.
 // @returns true if either is using, SHOULD return false otherwise.
 s32 WarpGate_IsGuestsUsing(u16 star_index) {
     if (gActors[star_index].unk_178 != 0) {

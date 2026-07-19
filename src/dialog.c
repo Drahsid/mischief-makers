@@ -1,7 +1,7 @@
 #include "common.h"
 #include "5EA30.h"
 
-// script releated to dialouge code.
+// script releated to dialog code.
 
 extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
@@ -24,12 +24,12 @@ s16 D_801783F4; // set, but not read
 s16 D_801783F6; // y-position for textbox
 s16 D_801783F8[0x10];
 s16 D_80178418[0x10];
-u16 gDialogTextboxIndex; // index for actor of text grapphic
+u16 gDialogTextboxIndex; // index for actor of text graphic
 u16 gDialogTextBGIndex; // index for actor of text background
 u16 gDialogPortraitIndex; // index for actor of speaker portrait.
 u16 gDialogLRIndex; // index for actor of "press L/R" prompt.
-s16 D_80178440; // x-position of player during dialouge start
-s16 D_80178442; // y-position of player during dialouge start
+s16 D_80178440; // x-position of player during dialog start
+s16 D_80178442; // y-position of player during dialog start
 
 extern s16 D_800D5838[];
 extern s8* D_800D73C0[];

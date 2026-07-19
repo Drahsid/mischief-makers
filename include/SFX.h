@@ -70,7 +70,7 @@
 #define SFX_TUARUS_TAUNT1   0x007D // "IIIII am a warrior!"
 #define SFX_TUARUS_TAUNT2   0x007E // "Charge!"
 
-// "grunts"/chirps for dialouge.
+// "grunts"/chirps for dialog.
 
 #define SFX_TXTGRUNT_DEFAULT 0x0077
 #define SFX_TXTGRUNT_CLANCER 0x0079
@@ -107,7 +107,7 @@
 #define SFX_CROSSHAIR      0x00C7
 #define SFX_TURMPETFANFARE 0x0130
 
-// sfx indecies in need of names/description/organization
+// sfx indices in need of names/description/organization
 
 #define SFX_BEASTECTOR_GRUNT1 0x0142
 #define SFX_BEASTECTOR_GRUNT2 0x0143
