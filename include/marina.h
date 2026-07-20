@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-void func_8004ED10(u16);
+void ActorUpdate_Marina(u16);
 
 #endif

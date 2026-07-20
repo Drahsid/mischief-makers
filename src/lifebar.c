@@ -1,8 +1,8 @@
 #include "common.h"
 
 extern u16 D_800CBE20[];
-extern u16 D_800CBEE0[];
-extern u16 D_800CBF0C[];
+extern u16 D_800CBEE0[]; // palette of first lifebar pip
+extern u16 D_800CBF0C[]; // palette of second lifebar pip
 
 void func_80022470(void) {
     s16 segment_1;
@@ -11,7 +11,7 @@ void func_80022470(void) {
     u16 prev_health_displayed;
 
     prev_health_displayed  = gHealthDisplayed;
-    if (gActors[0].health == 0) {
+    if (gPlayerActor.health == 0) { // flash lifebar if near death.
         for (index = 0; index < 0x60; index++) {
             if (gActiveFrames & 0x10) {
                 PALETTE_802209E0[index] = (((gActiveFrames & 0xF) << 12) + 0x801);
@@ -21,14 +21,16 @@ void func_80022470(void) {
             }
         }
     }
-    else if (gActors[0].health < 0) {
+    // make black if dead.
+    else if (gPlayerActor.health < 0) {
         for (index = 0; index < 0x60; index++) { PALETTE_802209E0[index] = 1; }
     }
     else {
-        if (gHealthDisplayed < gActors[0].health) {
-            gHealthDisplayed = MIN(gHealthDisplayed + 5, gActors[0].health);
-            segment_1 = ((((gHealthDisplayed + 0x3E7) % 1000) * 12) + 12) / 125;
-            segment_2 = ((((gActors[0].health + 0x3E7) % 1000) * 12) + 12) / 125;
+        // update HP displayed
+        if (gHealthDisplayed < gPlayerActor.health) {
+            gHealthDisplayed = MIN(gHealthDisplayed + 5, gPlayerActor.health);
+            segment_1 = ((((gHealthDisplayed + 999) % 1000) * 12) + 12) / 125;
+            segment_2 = ((((gPlayerActor.health + 999) % 1000) * 12) + 12) / 125;
             if (segment_2 >= 0x61) {
                 segment_2 = 0x60;
             }
@@ -39,10 +41,10 @@ void func_80022470(void) {
                 segment_2 = 0x60;
             }
         }
-        else if (gActors[0].health < gHealthDisplayed) {
-            gHealthDisplayed = MAX(gHealthDisplayed - 5, gActors[0].health);
-            segment_1 = ((((gActors[0].health + 0x3E7) % 1000) * 12) + 12) / 125;
-            segment_2 = ((((gHealthDisplayed + 0x3E7) % 1000) * 12) + 12) / 125;
+        else if (gPlayerActor.health < gHealthDisplayed) {
+            gHealthDisplayed = MAX(gHealthDisplayed - 5, gPlayerActor.health);
+            segment_1 = ((((gPlayerActor.health + 999) % 1000) * 12) + 12) / 125;
+            segment_2 = ((((gHealthDisplayed + 999) % 1000) * 12) + 12) / 125;
             if (segment_2 >= 0x61) {
                 segment_2 = 0x60;
             }
@@ -54,7 +56,7 @@ void func_80022470(void) {
             }
         }
         else {
-            segment_1 = ((((gActors[0].health + 0x3E7) % 1000) * 12) + 12) / 125;
+            segment_1 = ((((gPlayerActor.health + 999) % 1000) * 12) + 12) / 125;
             segment_2 = segment_1;
         }
         for (index = 0; index < segment_1; index++) {
@@ -65,11 +67,13 @@ void func_80022470(void) {
             PALETTE_802209E0[index++] = 1;
         }
     }
-    if (((prev_health_displayed + 0x3E7) / 0x3E8) < ((gHealthDisplayed + 0x3E7) / 0x3E8)) {
-        Sound_PlaySfx(0x141);
+    // play sound for lifebar pip
+    if (((prev_health_displayed + 999) / 1000) < ((gHealthDisplayed + 999) / 1000)) {
+        Sound_PlaySfx(SFX_LIFEBAR);
     }
-    switch ((gHealthDisplayed - 1) / 0x3E8) {
-    case 1:
+    // show/glow pips on lifebar
+    switch ((gHealthDisplayed - 1) / 1000) {
+    case 1: // 1000 < HP < 2000
         PALETTE_802209E0[0xB1] = 0xFFFF;
         for (index = 0; index < 0xE; index++) {
             if (gActiveFrames & 0x20) {
@@ -86,7 +90,7 @@ void func_80022470(void) {
             PALETTE_802209E0[index + 0x81] = 0;
         }
         break;
-    case 2:
+    case 2: // HP >= 2000
         PALETTE_802209E0[0xB1] = 0xFFFF;
         PALETTE_802209E0[0x81] = 0xFFFF;
         for (index = 0; index < 0xE; index++) {

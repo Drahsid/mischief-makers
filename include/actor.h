@@ -22,11 +22,10 @@ enum ActorFlags {
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
-    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera?
+    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera
     ACTOR_FLAG_FREEZE_POS = (1U << 3U), // keep screenspace position regardless of camera movement. Used for screen effect actors.
     ACTOR_FLAG_UNK4 = (1U << 4U), 
-    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
-                                   // scale, in this context?)
+    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left
     ACTOR_FLAG_UNK6 = (1U << 6U),  // seems related to actor linking?
 
     // bits 7-12 seem to deal with collision checks.
@@ -39,12 +38,12 @@ enum ActorFlags {
     ACTOR_FLAG_UNK10 = (1U << 10U), 
     ACTOR_FLAG_UNK11 = (1U << 11U),
     ACTOR_FLAG_UNK12 = (1U << 12U),
-    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // actor's hitboxes are considered a "platform"
+    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // actor's hitboxB is considered a "platform"
     ACTOR_FLAG_UNK14 = (1U << 14U),
     ACTOR_FLAG_UNK15 = (1U << 15U), // something with damage (instakill if set?)
     ACTOR_FLAG_UNK16 = (1U << 16U),
     ACTOR_FLAG_UNK17 = (1U << 17U),
-    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxes are considered a "platform"
+    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxB is considered a "platform"
     ACTOR_FLAG_UNK19 = (1U << 19U),
     ACTOR_FLAG_UNK20 = (1U << 20U),
     ACTOR_FLAG_UNK21 = (1U << 21U),
@@ -168,7 +167,9 @@ typedef struct {
             /* 0x0D1 */ u8 stateLower;
         };
     };
-    /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
+    // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes ActorsUpdate_Overlay table
+    // uses ActorTypes
+    /* 0x0D2 */ u16 actorType; 
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
@@ -186,7 +187,7 @@ typedef struct {
     // graphic animations are determined by the following pointer.
     // it often references a s16[], where the entries alternate
     // between the index of the grapic and the time in ticks to display.
-    // negative "index" values mean a looping animation back that many indecies.
+    // negative "index" values mean a looping animation back that many indices.
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
 
@@ -195,9 +196,9 @@ typedef struct {
         /* 0x0E8 */ s16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
-    /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
-    /* 0x0F0 */ FixedCoord velocityY; // applied to posY in func_80014af0 
-    /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in func_80014af0
+    /* 0x0EC */ FixedCoord velocityX; // applied to posX in ActorsUpdate_Velocity
+    /* 0x0F0 */ FixedCoord velocityY; // applied to posY in ActorsUpdate_Velocity 
+    /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in ActorsUpdate_Velocity
 
     // the following values are used by actors for purposes depending on their type
     // examples: Clanbombs will use offset 0x150 for the fuse timer,

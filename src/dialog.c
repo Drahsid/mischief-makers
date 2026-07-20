@@ -1,33 +1,35 @@
 #include "common.h"
+#include "5EA30.h"
 
-// script releated to dialouge code.
+// script related to dialog code.
 
-extern u16* D_800D1958[]; // gem palettes
+extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
 
-extern s8* D_801782D8; // dialog data stream?
-extern s8 D_801782DC;
-extern s16 D_801782DE; // index of portrait for current speaker.
-extern s16 D_801782E0;
-extern s16 D_801782E2;
-extern s16 D_801782E8[];
-
-extern s16 D_801783E8;
-extern s16 D_801783EA;
-extern s16 D_801783EC;
-extern s16 D_801783EE;
-extern s16 D_801783F0;
-extern s16 D_801783F2;
-extern s16 D_801783F4; // set, but not read
-extern s16 D_801783F6; // y-position for textbox
-extern s16 D_801783F8[];
-extern s16 D_80178418[16];
-extern u16 D_80178438; // index for actor of text grapphic
-extern u16 D_8017843A; // index for actor of text background
-extern u16 D_8017843C; // index for actor of speaker portrait.
-extern u16 D_8017843E; // index for actor of "press L/R" prompt.
-extern s16 D_80178440; // x-position of player during dialouge start
-extern s16 D_80178442; // y-position of player during dialouge start
+u8 D_801782D0[8]; // unused start of .bss
+s8* D_801782D8; // dialog data stream?
+s8 D_801782DC;
+s16 gDialogPortraitGraphic; // index of portrait for current speaker.
+s16 D_801782E0;
+s16 D_801782E2;
+u32 D_801782E4; // unused
+s16 D_801782E8[0x80];
+s16 D_801783E8;
+s16 D_801783EA;
+s16 D_801783EC;
+s16 D_801783EE;
+s16 D_801783F0;
+s16 D_801783F2;
+s16 D_801783F4; // set, but not read
+s16 D_801783F6; // y-position for textbox
+s16 D_801783F8[0x10];
+s16 D_80178418[0x10];
+u16 gDialogTextboxIndex; // index for actor of text graphic
+u16 gDialogTextBGIndex; // index for actor of text background
+u16 gDialogPortraitIndex; // index for actor of speaker portrait.
+u16 gDialogLRIndex; // index for actor of "press L/R" prompt.
+s16 D_80178440; // x-position of player during dialog start
+s16 D_80178442; // y-position of player during dialog start
 
 extern s16 D_800D5838[];
 extern s8* D_800D73C0[];
@@ -44,7 +46,7 @@ void func_8005DE30(void) {
     D_801783F0 = D_801783F2 = 0;
     D_801782DC = 0;
     D_801783EE = 2;
-    D_80178438 = D_8017843A = D_8017843C = D_8017843E = 0;
+    gDialogTextboxIndex = gDialogTextBGIndex = gDialogPortraitIndex = gDialogLRIndex = 0;
     D_801783F4 = -3;
     D_801783F6 = 0xC;
 }
@@ -143,7 +145,8 @@ void func_8005E0B0(s16 arg0, s16 arg1, s32 arg2) {
     }
 }
 
-void func_8005E1CC(u16 actor_index, f32 arg1) {
+// squish speech bubble icon.
+void AnimateSpeechBubble(u16 actor_index, f32 arg1) {
     f32 temp_f0;
 
     temp_f0 = arg1 / 5.0f;
@@ -198,7 +201,7 @@ void func_8005E260(u16 actor_index) {
             gActors[actor_index].var_110 = 1.0f;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
         }
-        func_8005E1CC(actor_index, gActors[actor_index].var_110);
+        AnimateSpeechBubble(actor_index, gActors[actor_index].var_110);
         if (!(gActors[actor_1].flags_098 & ACTOR_FLAG3_UNK18)) {
             gActors[actor_index].state = 3;
         }
@@ -214,7 +217,7 @@ void func_8005E260(u16 actor_index) {
         gActors[actor_index].state = 3;
         break;
     case 3:
-        func_8005E1CC(actor_index, gActors[actor_index].var_110);
+        AnimateSpeechBubble(actor_index, gActors[actor_index].var_110);
         if (gActors[actor_index].var_110 > 0.0f) {
             gActors[actor_index].var_110 -= 0.05;
         }
@@ -267,7 +270,7 @@ void func_8005E56C(u16 actor_index) {
             gActors[actor_index].var_110 = 1.0f;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK9;
         }
-        func_8005E1CC(actor_index, gActors[actor_index].var_110);
+        AnimateSpeechBubble(actor_index, gActors[actor_index].var_110);
         if (gActors[actor_1].flags_098 & ACTOR_FLAG3_UNK18) {
             gActors[actor_1].flags_098 |= ACTOR_FLAG3_UNK20;
             if ((gActors[actor_index].stateLower < 2) && (D_800D5820 == 0)) {
@@ -275,7 +278,7 @@ void func_8005E56C(u16 actor_index) {
                     if ((gButtonPress & gButton_LTrig) || (gButtonPress & gButton_RTrig)) {
                         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK9;
                         gActors[actor_index].state = 2;
-                        Sound_PlaySfx(0x10D);
+                        Sound_PlaySfx(SFX_SPEECHSTART);
                         D_80178440 = gPlayerPosX.whole;
                         D_80178442 = gPlayerPosY.whole;
                         gActors[actor_1].flags_098 &= ~ACTOR_FLAG3_UNK20;
@@ -300,7 +303,7 @@ void func_8005E56C(u16 actor_index) {
         gActors[actor_index].state = 3;
         break;
     case 3:
-        func_8005E1CC(actor_index, gActors[actor_index].var_110);
+        AnimateSpeechBubble(actor_index, gActors[actor_index].var_110);
         if (gActors[actor_index].var_110 > 0.0f) {
             gActors[actor_index].var_110 -= 0.1;
         }
@@ -402,7 +405,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
             // macro mismatches.
             gActors[actor_index].graphicList = gGraphicListGem;
             gActors[actor_index].graphicTimer = 1;
-            gActors[actor_index].palette_18C = D_800D1958[func_8005C6D0(arg0) - 1];
+            gActors[actor_index].palette_18C = gGemPalettes[func_8005C6D0(arg0) - 1];
         }
         else {
             gActors[actor_index].graphicIndex = arg0;
@@ -411,7 +414,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
         gActors[actor_index].state = 0xA;
     }
     else { // arg0 treated as (ALPHA_* - 0x50)
-        gActors[actor_index].graphicIndex = (arg0 * 2) + ALPHA_GLYPH_INDEX(ALPHA_EN_BRACKETRIGHT);
+        gActors[actor_index].graphicIndex = (arg0 * 2) + ALPHA_GLYPH(EN_BRACKETRIGHT);
     }
     gActors[actor_index].scaleY = 1.0f;
     gActors[actor_index].scaleX = 1.0f;
@@ -498,7 +501,7 @@ void func_8005EE24(u16 actor_index) {
 void func_8005F088(void) {
     u16 actor_index;
 
-    if (D_8017843A == 0) {
+    if (gDialogTextBGIndex == 0) {
         if ((D_801783F0 != 3) && (D_80178418[0] != 0)) {
             actor_index = Actor_RangeFindInactive(0xC0, 0xC7);
             if (actor_index != 0) {
@@ -508,7 +511,7 @@ void func_8005F088(void) {
                 gActors[actor_index].colorR = 0x7F;
                 gActors[actor_index].colorG = 0x7F;
                 gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
-                gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+                gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
                 gActors[actor_index].colorA = 0xA0;
                 gActors[actor_index].scaleX = 16.5f;
                 gActors[actor_index].scaleY = 0.0f;
@@ -519,21 +522,21 @@ void func_8005F088(void) {
                 gActors[actor_index].posZ.whole = 0x3FF;
                 gActors[actor_index].unk_188 = 0;
                 gActors[actor_index].state = 0;
-                D_8017843A = actor_index;
+                gDialogTextBGIndex = actor_index;
             }
         }
     }
     else {
-        actor_index = D_8017843A;
+        actor_index = gDialogTextBGIndex;
         if (gActors[actor_index].flags == 0) {
-            D_8017843A = 0;
+            gDialogTextBGIndex = 0;
         }
         else if ((D_80178418[0] == 0) && (gActors[actor_index].stateLower < 2)) {
             gActors[actor_index].state = 2;
         }
     }
 
-    if (D_80178438 == 0) {
+    if (gDialogTextboxIndex == 0) {
         if ((D_801783F0 != 3) && (D_80178418[0] != 0)) {
             actor_index = Actor_RangeFindInactive(0xC0, 0xC7);
             if (actor_index != 0) {
@@ -551,22 +554,22 @@ void func_8005F088(void) {
                 gActors[actor_index].posZ.whole = 0x400;
                 gActors[actor_index].unk_188 = 0;
                 gActors[actor_index].state = 0;
-                D_80178438 = actor_index;
+                gDialogTextboxIndex = actor_index;
             }
         }
     }
     else {
-        actor_index = D_80178438;
+        actor_index = gDialogTextboxIndex;
         if (gActors[actor_index].flags == 0) {
-            D_80178438 = 0;
+            gDialogTextboxIndex = 0;
         }
         else if ((D_80178418[0] == 0) && (gActors[actor_index].stateLower < 2)) {
             gActors[actor_index].state = 2;
         }
     }
 
-    if (D_8017843C == 0) {
-        if ((D_801783F0 != 3) && (D_80178418[0] != 0) && (D_801782DE != 0)) {
+    if (gDialogPortraitIndex == 0) {
+        if ((D_801783F0 != 3) && (D_80178418[0] != 0) && (gDialogPortraitGraphic != 0)) {
             actor_index = Actor_RangeFindInactive(0xC0, 0xC7);
             if (actor_index != 0) {
                 gActors[actor_index].actorType = ACTORTYPE_57;
@@ -581,7 +584,7 @@ void func_8005F088(void) {
                 gActors[actor_index].colorR = 0x7F;
                 gActors[actor_index].colorG = 0x7F;
                 gActors[actor_index].colorB = 0x7F;
-                gActors[actor_index].graphicIndex = D_801782DE;
+                gActors[actor_index].graphicIndex = gDialogPortraitGraphic;
                 gActors[actor_index].scaleX = 0.0f;
                 gActors[actor_index].scaleY = 1.5f;
                 gActors[actor_index].var_110 = 1.0f;
@@ -591,27 +594,27 @@ void func_8005F088(void) {
                 gActors[actor_index].posZ.whole = 0x400;
                 gActors[actor_index].unk_188 = 0;
                 gActors[actor_index].state = 3;
-                D_8017843C = actor_index;
+                gDialogPortraitIndex = actor_index;
             }
         }
     }
     else {
-        actor_index = D_8017843C;
+        actor_index = gDialogPortraitIndex;
         if (gActors[actor_index].flags == 0) {
-            D_8017843C = 0;
+            gDialogPortraitIndex = 0;
         }
-        else if ((D_80178418[0] == 0) || (D_801782DE == 0)) {
+        else if ((D_80178418[0] == 0) || (gDialogPortraitGraphic == 0)) {
             if (gActors[actor_index].stateLower < 5) {
                 gActors[actor_index].state = 5;
             }
         }
         else {
-            gActors[actor_index].unk_17C = (D_801782DE * 0x480) + 0x801A0BA8;
-            gActors[actor_index].graphicIndex = D_801782DE;
+            gActors[actor_index].unk_17C = (gDialogPortraitGraphic * 0x480) + 0x801A0BA8;
+            gActors[actor_index].graphicIndex = gDialogPortraitGraphic;
         }
     }
     
-    if (D_8017843E == 0) {
+    if (gDialogLRIndex == 0) {
         if (!(D_801782DC & 0xF)) {
             if (D_801783F0 == 2) {
                 actor_index = Actor_RangeFindInactive(0xC0, 0xC7);
@@ -626,19 +629,19 @@ void func_8005F088(void) {
                     gActors[actor_index].posZ.whole = 0x400;
                     gActors[actor_index].unk_188 = 0;
                     gActors[actor_index].state = 6;
-                    D_8017843E = actor_index;
+                    gDialogLRIndex = actor_index;
                 }
             }
         }
     }
     else if (D_801783F0 != 2) {
-        actor_index = D_8017843E;
+        actor_index = gDialogLRIndex;
         gActors[actor_index].flags = 0;
-        D_8017843E = 0;
+        gDialogLRIndex = 0;
     }
 }
 
-void func_8005F6D4(void) {
+void UpdateDialog(void) {
     s16 index;
     s16 var_s2;
     s32 var_s6;
@@ -682,7 +685,7 @@ void func_8005F6D4(void) {
         D_801783E8++;
         // fakematch: & 0xFFFF & 0xFFFF
         D_801782DC = var_s2 & 0xF & 0xFFFF & 0xFFFF;
-        D_801782DE = 0;
+        gDialogPortraitGraphic = 0;
         D_801782E0 = 1;
         D_801782E2 = 0;
         func_8008310C();
@@ -692,7 +695,7 @@ void func_8005F6D4(void) {
     case 1:
         D_800D5824 = 0x1000;
         if (!(D_801782DC & 0x40)) {
-            if ((D_80178438 == 0) || (gActors[D_80178438].stateLower != 1)) {
+            if ((gDialogTextboxIndex == 0) || (gActors[gDialogTextboxIndex].stateLower != 1)) {
                 break;
             }
         }
@@ -748,10 +751,10 @@ void func_8005F6D4(void) {
                         D_801783EC = D_801783EE = D_801782D8[D_801783E8++];
                         break;
                     case -4:
-                        D_801782DE = GINDEX_PORTRAIT_MARINAA;
-                        D_801782DE += D_801782D8[D_801783E8++];
-                        if (D_801782DE < GINDEX_PORTRAIT_MARINAA) {
-                            D_801782DE = 0;
+                        gDialogPortraitGraphic = GINDEX_PORTRAIT_MARINAA;
+                        gDialogPortraitGraphic += D_801782D8[D_801783E8++];
+                        if (gDialogPortraitGraphic < GINDEX_PORTRAIT_MARINAA) {
+                            gDialogPortraitGraphic = 0;
                         }
                         break;
                     case -5:
@@ -784,12 +787,12 @@ void func_8005F6D4(void) {
                 if (var_s2 == 0) {
                     if (var_s1 != 0) {
                         D_800D5828++;
-                        if (D_8017843C != 0) {
+                        if (gDialogPortraitIndex != 0) {
                             if ((D_801783F2 != 1) ||
                                 !((gButtonHold & gButton_LTrig) || (gButtonHold & gButton_RTrig)) ||
                                 !(D_800D5828 & 3)) {
                                 // change "voice grunt" based on portrait.
-                                switch (gActors[D_8017843C].graphicIndex) {
+                                switch (gActors[gDialogPortraitIndex].graphicIndex) {
                                 default:
                                     Sound_PlaySfx2(SFX_TXTGRUNT_DEFAULT);
                                     break;
@@ -861,15 +864,15 @@ void func_8005F6D4(void) {
         D_801783EC = 0;
         if ((var_s1 == -1) || (D_801783F2 == -1)) {
             D_800D5824 = 0x8000;
-            Sound_PlaySfx(0x10E);
-            if (D_80178438 != 0) {
-                gActors[D_80178438].state = 2;
+            Sound_PlaySfx(SFX_SPEECHEND);
+            if (gDialogTextboxIndex != 0) {
+                gActors[gDialogTextboxIndex].state = 2;
             }
-            if (D_8017843A != 0) {
-                gActors[D_8017843A].state = 2;
+            if (gDialogTextBGIndex != 0) {
+                gActors[gDialogTextBGIndex].state = 2;
             }
-            if (D_8017843C != 0) {
-                gActors[D_8017843C].state = 5;
+            if (gDialogPortraitIndex != 0) {
+                gActors[gDialogPortraitIndex].state = 5;
             }
             D_801783F0 = 3;
         }
@@ -884,7 +887,7 @@ void func_8005F6D4(void) {
         }
         break;
     case 3:
-        if ((D_80178438 == 0) && (D_8017843A == 0) && (D_8017843C == 0)) {
+        if ((gDialogTextboxIndex == 0) && (gDialogTextBGIndex == 0) && (gDialogPortraitIndex == 0)) {
             index = 0;
             if (D_80178418[1] != 0) {
                 for (; index < 0xF; index++) {

@@ -115,6 +115,7 @@ void boot(s32 unused) {
 
 void Thread_IdleProc(void* argument) {
     osCreateViManager(OS_PRIORITY_VIMGR);
+    // Japanese version does not check osTvType.
     if (osTvType == OS_TV_MPAL) {
         osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Video_Clear_Framebuffer();

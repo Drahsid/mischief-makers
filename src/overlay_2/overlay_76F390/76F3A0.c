@@ -149,7 +149,7 @@ void func_801A6E4C_76F8EC(u16 actor_index) {
     if ((temp_v1 >= 0x1E) && (temp_v1 < 0xD3)) {
         if (Actor_IsOutsideRegion(actor_index, 0x40) == 0) {
             if ((gActiveFrames & 7) == 0) {
-                Sound_PlaySfxAtActor3(0x4B, actor_index);
+                Sound_PlaySfxAtActor3(SFX_004B, actor_index);
             }
         }
     }

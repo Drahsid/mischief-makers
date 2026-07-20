@@ -40,8 +40,9 @@ u8 func_80048600(u16 actor_index) {
     return ret;
 }
 
+// get direction from which Marina is pulling?
 s32 func_800486F4(void) {
-    s32 v0 = D_801373F0;
+    s32 v0 = gPlayerData.unk_10;
     s32 v1 = (v0 << 0x18) >> 0x18;
 
     if ((v0 == 2) || (v0 == 6)) {
@@ -103,7 +104,7 @@ s32 func_80048CE4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A960.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/marina/Marina_State0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004AA64.s")
 
@@ -153,4 +154,4 @@ void func_8004E1DC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EC60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004ED10.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/marina/ActorUpdate_Marina.s")

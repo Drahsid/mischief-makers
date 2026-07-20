@@ -1378,6 +1378,7 @@ void func_80025E6C(void) {
     );
 }
 
+// DMA "Overlay 0" code
 void func_80025EC4(u16 index) {
     s32 length0;
     s32 length1;
@@ -1404,6 +1405,7 @@ void func_80025EC4(u16 index) {
     }
 }
 
+// DMA "Overlay 1" code
 void func_80025F70(u16 index) {
     s32 length0;
     s32 length1;
@@ -1431,6 +1433,7 @@ void func_80025F70(u16 index) {
     }
 }
 
+// DMA "Overlay 2" code
 void func_8002601C(u16 index) {
     s32 length0;
     s32 length1;
@@ -1458,6 +1461,7 @@ void func_8002601C(u16 index) {
     }
 }
 
+// DMA "Overlay 3" code
 void func_800260C8(u16 index) {
     s32 length0;
     s32 length1;
@@ -1483,6 +1487,7 @@ void func_800260C8(u16 index) {
     }
 }
 
+// DMA "Overlay 4" code
 void func_80026174(u16 index) {
     s32 length0;
     s32 length1;

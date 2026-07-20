@@ -1,37 +1,37 @@
 #include "common.h"
 
-void func_800121D0(void) {
+void Marina_Reset(void) {
     u16 index;
     u16 actor_index;
 
-    actor_index = 0;
+    actor_index = PLAYER_INDEX;
     index = gActors[actor_index].health;
     Actor_Initialize(actor_index);
     gActors[actor_index].health = index;
-    gActors[0].posZ.whole = 1;
+    gPlayerActor.posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;
     gPlayerVelYMirror.raw = 0;
-    gActors[0].unk_0CC = 0;
-    D_800BE5D4 = 0;
+    gPlayerActor.unk_0CC = 0;
+    gStartButtonOnly = FALSE;
     D_800BE5F0 = 0;
     D_800BE5F8 = 0;
     for (index = 0; index < 0x40; index++) {
         gButtonPressHistory[index] = 0;
         gButtonHoldHistory[index] = 0;
     }
-    func_8004A960(0);
+    Marina_State0(PLAYER_INDEX);
 }
 
-void func_80012288(void) {
-    gActors[0].actorType = 0x16;
-    func_800121D0();
+void Marina_Init(void) {
+    gPlayerActor.actorType = ACTORTYPE_MARINA;
+    Marina_Reset();
 }
 
-void func_800122B0(void) {
+void Marina_UpdateInput(void) {
     s32 button_mask;
     u16 index;
 
-    if (D_800BE5D4 != 0) {
+    if (gStartButtonOnly) {
         gButtonHold &= gButton_Start;
         gButtonPress &= gButton_Start;
     }
@@ -44,28 +44,28 @@ void func_800122B0(void) {
     gButtonPressHistory[0] = gButtonPress & button_mask;
 }
 
-void func_800123AC(void) {
+void Marina_ScreenXLock(void) {
     s32 delta_x;
 
     delta_x = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     if (delta_x < -0x90) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole - 0x90;
-        gActors[0].posX.whole = -0x90;
+        gPlayerActor.posX.whole = -0x90;
     }
     else if (delta_x >= 0x91) {
         gPlayerPosX.whole = gScreenPosCurrentX.whole + 0x90;
-        gActors[0].posX.whole = 0x90;
+        gPlayerActor.posX.whole = 0x90;
     }
     else {
-        gActors[0].posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
+        gPlayerActor.posX.whole = gPlayerPosX.whole - gScreenPosCurrentX.whole;
     }
 }
 
-void func_80012418(void) {
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+void Marina_ScreenYLock(void) {
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
-void func_80012438(void) {
+void Marina_ScreenXScroll(void) {
     s32 temp_x;
     FixedCoord step_x;
 
@@ -94,16 +94,16 @@ void func_80012438(void) {
         step_x.raw = D_800BE548.raw;
     }
     gScreenPosCurrentX.whole = Math_ApproachS32(gScreenPosCurrentX.whole, gScreenPosTargetX.whole, step_x.whole);
-    if (gScreenPosCurrentX.whole < D_800BE568.whole + 0x90) {
-        gScreenPosCurrentX.whole = D_800BE568.whole + 0x90;
+    if (gScreenPosCurrentX.whole < gScreenBoundX0.whole + 0x90) {
+        gScreenPosCurrentX.whole = gScreenBoundX0.whole + 0x90;
     }
-    if (gScreenPosCurrentX.whole > D_800BE56C.whole - 0x90) {
-        gScreenPosCurrentX.whole = D_800BE56C.whole - 0x90;
+    if (gScreenPosCurrentX.whole > gScreenBoundX1.whole - 0x90) {
+        gScreenPosCurrentX.whole = gScreenBoundX1.whole - 0x90;
     }
-    gActors[0].posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
+    gPlayerActor.posX.whole = (gPlayerPosX.whole) - gScreenPosCurrentX.whole;
 }
 
-void func_80012634(void) {
+void Marina_ScreenYScroll(void) {
     s32 temp_y;
     FixedCoord step_y;
 
@@ -131,30 +131,30 @@ void func_80012634(void) {
         step_y.raw = D_800BE54C.raw;
     }
     gScreenPosCurrentY.whole = Math_ApproachS32(gScreenPosCurrentY.whole, gScreenPosTargetY.whole, step_y.whole);
-    if (gScreenPosCurrentY.whole < D_800BE574.whole + 0x70) {
-        gScreenPosCurrentY.whole = D_800BE574.whole + 0x70;
+    if (gScreenPosCurrentY.whole < gScreenBoundY1.whole + 0x70) {
+        gScreenPosCurrentY.whole = gScreenBoundY1.whole + 0x70;
     }
-    if (gScreenPosCurrentY.whole > D_800BE570.whole - 0x70) {
-        gScreenPosCurrentY.whole = D_800BE570.whole - 0x70;
+    if (gScreenPosCurrentY.whole > gScreenBoundY0.whole - 0x70) {
+        gScreenPosCurrentY.whole = gScreenBoundY0.whole - 0x70;
     }
-    gActors[0].posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
+    gPlayerActor.posY.whole = gPlayerPosY.whole - gScreenPosCurrentY.whole;
 }
 
-void func_80012830(void) {
+void Marina_ScreenScroll(void) {
     gScreenPosNextX.whole = gScreenPosCurrentX.whole;
     gScreenPosNextX.raw = gScreenPosCurrentX.raw;
     if (gScreenXLock) {
-        func_800123AC();
+        Marina_ScreenXLock();
     }
     else {
-        func_80012438();
+        Marina_ScreenXScroll();
     }
     gScreenPosNextY.whole = gScreenPosCurrentY.whole;
     gScreenPosNextY.raw = gScreenPosCurrentY.raw;
     if (gScreenYLock) {
-        func_80012418();
+        Marina_ScreenYLock();
     }
     else {
-        func_80012634();
+        Marina_ScreenYScroll();
     }
 }

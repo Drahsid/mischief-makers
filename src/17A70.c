@@ -4,7 +4,7 @@
 #include "actor.h"
 
 
-extern ActorFunc D_800C7FE0[];
+extern ActorFunc gMainActorTable[];
 
 extern u8 D_800E9634[];
 extern u8 D_800E9654[];
@@ -45,7 +45,7 @@ ActorFunc D_800E5AF4[] = {
     NULL,
 };
 
-void func_80016E70(u16 actor_index) {
+void ActorsUpdate_Overlay(u16 actor_index) {
     u8 index = gActors[actor_index].actorType & 0xFFFF;
 
     switch (gActors[actor_index].actorType >> 8) {
@@ -61,7 +61,7 @@ void func_80016E70(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL3_4:
+        case ACTOR_OVL3_WORLD1:
             D_801B0800[index](actor_index);
             break;
 
@@ -169,7 +169,7 @@ void func_80016E70(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_31:
+        case ACTOR_OVL2_WORLD5A:
             D_801A6800[index](actor_index);
             break;
 
@@ -227,17 +227,17 @@ void func_80016E70(u16 actor_index) {
     }
 }
 
-void func_8001751C(void) {
+void ActorsUpdate(void) {
     u16 actor_index;
 
     if (gActorStall) {
         for (actor_index = 1; actor_index < 0xD0; actor_index++) {
             if ((gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) && (gActors[actor_index].flags & ACTOR_FLAG_ALWAYS_UPDATE)) {
                 if (gActors[actor_index].actorType < 0x100) {
-                    D_800C7FE0[gActors[actor_index].actorType](actor_index);
+                    gMainActorTable[gActors[actor_index].actorType](actor_index);
                 }
                 else {
-                    func_80016E70(actor_index);
+                    ActorsUpdate_Overlay(actor_index);
                 }
             }
         }
@@ -246,10 +246,10 @@ void func_8001751C(void) {
         for (actor_index = 1; actor_index < 0xD0; actor_index++) {
             if (gActors[actor_index].flags & ACTOR_FLAG_ACTIVE) {
                 if (gActors[actor_index].actorType < 0x100) {
-                    D_800C7FE0[gActors[actor_index].actorType](actor_index);
+                    gMainActorTable[gActors[actor_index].actorType](actor_index);
                 }
                 else {
-                    func_80016E70(actor_index);
+                    ActorsUpdate_Overlay(actor_index);
                 }
             }
         }

@@ -7,7 +7,7 @@ u32 D_801A08E0_742870=0;
 
 u32 D_801A08E4_742874[31]={0}; // unused?
 
-// graphic indecies of worm segments.
+// graphic indices of worm segments.
 u16 sWormSegGraphics[]={
     0x0804, 0x0814, 0x080A, 0x0814, 0x080C, 0x0816, 
     0x080E, 0x0818, 0x0810, 0x081A, 0x0812, 0x0000
@@ -120,7 +120,7 @@ void func_8019BC64_73DBF4(u16 actor_index) {
 
     index2 = actor_index + 1;
     for (index = actor_index + 1, var_s2 = 0; var_s2 < 11; index++, var_s2++) {
-        gActors[index].actorType = 0x21;
+        gActors[index].actorType = ACTORTYPE_33;
         Actor_Initialize(index);
         gActors[index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[index].flags = sWormSegFlags[var_s2];
@@ -262,7 +262,7 @@ void Worm_SetSegmentFlags(u16 actor_index){
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019EA6C_7409FC.s")
 
 void func_8019EB10_740AA0(s32 arg0) {
-    Sound_PlaySfx(0xC0);
+    Sound_PlaySfx(SFX_00C0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_73D070/73D090/func_8019EB34_740AC4.s")

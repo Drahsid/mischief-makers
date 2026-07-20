@@ -3,7 +3,7 @@
 
 #include <PR/ultratypes.h>
 
-void func_800122B0(void);
-void func_80012830(void);
+void Marina_UpdateInput(void);
+void Marina_ScreenScroll(void);
 
 #endif

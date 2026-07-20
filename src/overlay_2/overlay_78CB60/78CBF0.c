@@ -146,9 +146,18 @@ u16 D_801AF798_795A88[]={
 };
 
 u16 D_801AF7C4_795AB4[]={
-    0x0009, 0x0021, 0x000C, 0x0020, 0x000D, 0x0024, 0x000A, 0x0022, 
-    0x000B, 0x0023, 0x000F, 0x0026, 0x001E, 0x0028, 0x0010, 0x001F, 
-    0x0010, 0x001F, 0x0010, 0x001F, 0x0010, 0x001F, 0x0010, 0x0032
+    0x0009, 0x0021,
+    0x000C, 0x0020,
+    0x000D, 0x0024,
+    0x000A, 0x0022, 
+    0x000B, 0x0023,
+    0x000F, 0x0026,
+    0x001E, 0x0028,
+    0x0010, 0x001F, 
+    0x0010, 0x001F,
+    0x0010, 0x001F,
+    0x0010, 0x001F,
+    0x0010, 0x0032
 };
 
 // struct read in func_801ABBAC_791E9C.
@@ -659,7 +668,7 @@ u8* D_801B0074_796364[]={
     D_801B0070_796360
 };
 
-// array of graphic indecies.
+// array of graphic indices.
 u16 D_801B009C_79638C[]={
     0x1808, 0x180A, 0x180C, 0x180E, 0x1810, 0x1812, 
     0x1814, 0x1816, 0x1818, 0x181A, 0x181C, 0x181E
@@ -674,7 +683,7 @@ u16 D_801B00CC_7963BC[]={
     0xFFF4, 0x000C, 0x000C, 0x000E, 0x000E, 0xFFE2
 };
 
-// array of graphic indecies.
+// array of graphic indices.
 u16 D_801B00E4_7963D4[]={
     0x1806, 0x1804, 0x1800, 0x1802, 0, 0
 };
@@ -713,9 +722,9 @@ u16 func_801A7424_78D714(u16 arg0) {
 
     actor_index = Actor_RangeFindInactive(0x90, 0xb8);
     if (actor_index != 0) {
-        gActors[actor_index].actorType = 0x1a01;
+        gActors[actor_index].actorType = ACTORTYPE_OVL2_FESTIVAL_1;
         Actor_Initialize(actor_index);
-        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     }
     return actor_index;
 }
@@ -960,7 +969,7 @@ void func_801AB474_791764(u16 arg0){
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
         gActors[actor_index].posZ.whole = 0x81;
         gActors[actor_index].scaleX = 7.0f;
         gActors[actor_index].scaleY = 0.2f;
@@ -993,7 +1002,6 @@ void func_801AB610_791900(u16 actor_index){
     if (!D_80171B19) {
         start = gActors[actor_index].unk_17C * 7;
         for (index = start; index < start + 7; index++) {
-            // if local pointer, operand order incorrect
             if (gFestivalEventsPlayed[index]) {
                 actor_index2 = index + 0x40;
                 gActors[actor_index2].flags |= 1;
@@ -1046,7 +1054,7 @@ void func_801AC360_792650(u16 actor_index) {
     Actor* actorP;
 
     actorP=&gActors[0x3a];
-    actorP->actorType = 0x1A08;
+    actorP->actorType = ACTORTYPE_OVL2_FESTIVAL_8;
     Actor_Initialize(0x3A);
     actorP->flags |= ACTOR_FLAG_FREEZE_POS;
     actorP->posX.whole = 0;
@@ -1055,7 +1063,7 @@ void func_801AC360_792650(u16 actor_index) {
 }
 
 void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
-    gActors[actor_index].actorType = 0x1A07;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FESTIVAL_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -1109,7 +1117,7 @@ void func_801AC448_792738(u16 actor_index) {
     actorP->hitboxBX1 = 0x14;
 
     actorP =&gActors[0x33];
-    actorP->actorType = 0x1A00;
+    actorP->actorType = ACTORTYPE_OVL2_FESTIVAL_0;
     Actor_Initialize(0x33);
     actorP->posX.whole = 0;
     actorP->posY.whole = 0x48;

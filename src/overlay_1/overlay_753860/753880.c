@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "80D90.h"
+#include "debug.h"
 
 
 void func_8019B100_753880(u16 actor_index);
@@ -167,12 +168,12 @@ void func_8019B314_753A94(u16 actor_index) {
         gActors[actor_index + 6].unk_180 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
         gActors[actor_index + 7].unk_180 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
 
-        if (gActors[actor_index + 6].unk_180 < D_800BE568.whole ) {
+        if (gActors[actor_index + 6].unk_180 < gScreenBoundX0.whole ) {
             gActors[actor_index + 1].unk_180 |= 0x100;
             gActors[actor_index].posX.whole = -0x8F;
         }
 
-        if (D_800BE56C.whole  < gActors[actor_index + 6].unk_180) {
+        if (gScreenBoundX1.whole  < gActors[actor_index + 6].unk_180) {
             gActors[actor_index + 1].unk_180 |= 0x200;
             gActors[actor_index].posX.whole = 0x8F;
         }
@@ -202,7 +203,7 @@ void func_8019B468_753BE8(u16 actor_index) {
 }
 
 void func_8019B60C_753D8C(u16 actor_index) {
-    func_80083BD8(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
+    OSD_PrintShortHexWhite(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
     if (D_800E3584 & 0xC0000) {
         gActors[actor_index].flags ^= ACTOR_FLAG_FLIPPED;
     }
@@ -212,7 +213,7 @@ void func_8019B60C_753D8C(u16 actor_index) {
 }
 
 void func_8019B6A8_753E28(u16 actor_index) {
-    func_80083BD8(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
+    OSD_PrintShortHexWhite(D_800E3584 >> 16, gActors[actor_index].posX.whole, 0);
     if (D_800E3584 & 0xC0000) {
         gActors[actor_index].state = 0x10;
     }

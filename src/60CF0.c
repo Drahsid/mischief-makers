@@ -7,10 +7,10 @@ u16 func_800600F0(u16 actor_index) {
     if (actor_1 == 0) {
         return actor_1;
     }
-    gActors[actor_1].actorType = 0x3C;
+    gActors[actor_1].actorType = ACTORTYPE_60;
     Actor_Initialize(actor_1);
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = 0x168;
+    gActors[actor_1].graphicIndex = GINDEX_BLASTB;
     gActors[actor_1].palette_18C = PALETTE_8022D568;
     gActors[actor_1].posX.raw = gActors[actor_index].posX.raw;
     gActors[actor_1].posY.raw = gActors[actor_index].posY.raw;
@@ -35,7 +35,7 @@ void func_800601FC(u16 actor_index) {
     }
     if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK5 | ACTOR_FLAG3_UNK0)) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
-        Sound_PlaySfx(0x2D);
+        Sound_PlaySfx(SFX_HIT_002D);
         gActors[actor_index].state = 0x66;
     }
     gActors[actor_index].damage = ((gActors[actor_index].var_110 - 0.5) / 0.05) + 10.0;
@@ -67,9 +67,9 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].var_15C = gActors[actor_index].unk_0FC.raw;
             gActors[actor_index].velocityX.raw = -gActors[actor_index].unk_0F8.raw / 8;
             gActors[actor_index].velocityY.raw = -gActors[actor_index].unk_0FC.raw / 8;
-            if (D_801373E0.unk_78 & 0x10000) {
-                gActors[actor_index].var_158 += D_801373E0.unk_60;
-                gActors[actor_index].velocityX.raw += D_801373E0.unk_60;
+            if (gPlayerData.flags & PLAYERDATA_UNK16) {
+                gActors[actor_index].var_158 += gPlayerData.unk_60;
+                gActors[actor_index].velocityX.raw += gPlayerData.unk_60;
             }
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
@@ -142,7 +142,7 @@ void func_8006098C(u16 actor_index) {
         gActors[actor_index].var_15C = 0xD2;
         gActors[actor_index].scaleY = 0.2f;
         gActors[actor_index].scaleX = 0.2f;
-        Sound_PlaySfxAtActor2(0xC3, actor_index);
+        Sound_PlaySfxAtActor2(SFX_00C3, actor_index);
         gActors[actor_index].state = 1;
     }
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
@@ -224,7 +224,7 @@ void func_80060DB8(u16 actor_index) {
     s32 sp24[3];
 
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
-        Sound_PlaySfxAtActor2(0xAA, actor_index);
+        Sound_PlaySfxAtActor2(SFX_LAVA_00AA, actor_index);
         sp24[0] = gActors[gActors[actor_index].parentIndex].posX.whole;
         sp24[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY0;
         sp24[2] = gActors[gActors[actor_index].parentIndex].posZ.whole + 1;

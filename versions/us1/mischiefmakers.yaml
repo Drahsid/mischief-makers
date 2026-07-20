@@ -113,7 +113,7 @@ segments:
       - [0x059EA0, c]
       - [0x05D120, c]
       - [0x05E230, c]
-      - [0x05EA30, c]
+      - [0x05EA30, c, dialog]
       - [0x060CF0, c]
       - [0x061B80, c]
       - [0x066250, c]
@@ -123,7 +123,7 @@ segments:
       - [0x082920, c]
       - [0x082DB0, asm] # has to do with loading marina's graphics
       - [0x082F80, c]
-      - [0x0844E0, asm, osd_debug_text]
+      - [0x0844E0, c, osd_debug_text]
       - [0x084BB0, c]
       - [0x08D0A0, c]
       - [0x08F080, c]
@@ -311,7 +311,7 @@ segments:
       - [0x0C7DA0, data] # 241E0?
       - [0x0C84A0, data] # 11820?
       - [0x0C88D0, .data, 134E0]
-      - [0x0C8910, data] # gameover
+      - [0x0C8910, .data, gameover] # gameover
       - [0x0C8B20, data] # 156F0
       - [0x0C8BE0, data] # main actor/update dispatch table
       - [0x0C8DE0, .data, stage]
@@ -321,6 +321,9 @@ segments:
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
       - [0x0D2410, data] # 62250
+      - [0x0D24D0, data]
+      - [0x0D34B0, .data, 42E90] 
+      - [0x0D34D0, data] 
       - [0x0E44A0, .data, E44A0] # previously placed in boot.c
       - [0x0E4760, data]
       - [0x0E4920, data] # 84BB0?
@@ -385,7 +388,7 @@ segments:
       - [0x0EDC10, .rodata, 805E0]
       - [0x0EDC20, .rodata, 80D90]
       - [0x0EDC50, .rodata, 82920]
-      - [0x0EDC70, rodata, osd_debug_text]
+      - [0x0EDC70, .rodata, osd_debug_text]
       - [0x0EDCE0, .rodata, 84BB0]
       - [0x0EDEF0, .rodata, 8F080]
       - [0x0EE100, .rodata, stage_end_screen]
@@ -438,12 +441,15 @@ segments:
       - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: bss_80171AA0, type: bss, vram: 0x80171AA0 }
+      - { name: gameover, type: .bss, vram: 0x80178130 }
+      - { name: stage, type: .bss, vram: 0x80178150 }
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
-      - { name: bss_801781E0, type: bss, vram: 0x801781E0 }
       - { name: soft_reset, type: .bss, vram: 0x801781F0 }
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
+      - { name: dialog, type: .bss, vram: 0x801782D0 }
+      - { name: bss_80178450, type: bss, vram: 0x80178450 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
-      - { name: bss_80180FD0, type: bss, vram: 0x80180FD0 } # osd_debug_text
+      - { name: osd_debug_text, type: .bss, vram: 0x80180FD0 }
       - { name: 84BB0, type: .bss, vram: 0x80182020}
       - { name: 8F080, type: .bss, vram: 0x801826B0}
       - { name: ultralib/os/initialize, type: .bss, vram: 0x801826C0 }
@@ -562,7 +568,7 @@ segments:
     exclusive_ram_id: audio_seq_bank
 
   # Actor overlay loader tables D_800CD08C/D_800CD60C/D_800CDB8C/D_800CE10C/D_800CE68C store two ROM ranges per stage and overlay slot.
-  # The first range is a loaded actor dispatch table. func_80016E70 indexes it as ActorFunc callbacks.
+  # The first range is a loaded actor dispatch table. ActorsUpdate_Overlay indexes it as ActorFunc callbacks.
   # The second range is the overlay object segment.
 
   # Overlay slot 0: dispatch table -> 0x80192000, object -> 0x80192100

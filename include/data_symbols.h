@@ -13,8 +13,8 @@ extern u16 D_800D28F0;
 extern s16 D_800D28F8;
 extern u32 D_800D28FC;
 extern u16 gSkipStageIntro; // skip stage intros. set during "continue" and "attract" states.
-extern s32 D_800D2928;
-extern s32 D_800D2938;
+extern s32 gStageTimer;
+extern s32 gTransitionState;
 extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
 extern s16 gNoHit;
@@ -22,7 +22,7 @@ extern u16 D_800D8588[]; // all-white palette
 extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette
 extern u16 D_800D9AE4[];
-extern s16 D_800E13FC[];
+extern s16 D_800E13FC[]; // icon for head in "pause" and "continue" menus
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern s32 D_800E3630[]; // could be array of structs of length 0x28
@@ -48,25 +48,25 @@ extern u8 D_801376BC[];
 extern u32 D_801376D4;
 extern u32 D_80137714;
 extern u32 D_80137718;
-extern u64 D_80171B10;
-extern u64 D_801781F0;
+extern u64 gYellowGemBitfield;
+extern u64 gYellowGemTemp; // state for yellow gem bitfield on entering stage.
 extern u16 D_801782B8;
 extern u16 gAudioFadeMode;
 extern s32 D_800BE73C;
-extern u16 D_800CBF40;
+extern u16 gIsPauseExit; // exit game from pause menu
 extern u16 D_800CBF50;
 extern u8 D_800CC428; // boolean used in camera function for "Counterattack"
 extern u16 D_800D16C4[];
-extern u16* D_800D1958[]; // palettes of gems
+extern u16* gGemPalettes[]; // palettes of gems
 extern u16 D_800D1A04[];
-extern u16 D_800D2690[]; // LUT of digging spot items.
+extern u16 gClanballDrops[]; // LUT of Clanball items. {0x110, 0xD8, type}
 extern s16 D_800D26F4[];
 extern u16 D_800D2714[];
 extern s16 D_800D271C[];
 extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting from last 5 spaces. {index+flags, var_110, var_0D8, type, icon}
 
 // counts for items in clanpot. checked for mixing.
-// indecies of items counted:
+// indices of items counted:
 // 0x00: rocketeers needed for rideable rocketeer.
 // 0x10: round bomb
 // 0x11: elliptical bomb
@@ -80,7 +80,7 @@ extern u16 gClanpotItems[0xa0]; // clanpot storage. written backwards, starting 
 extern u8 gClanpotItemCount[26];
 extern f32 D_800D2904;
 extern s16 D_800D2924;
-extern s32 D_800D292C;
+extern s32 gTransitionPortraitIndex;
 extern s32 D_800D2930;
 extern s32 D_800D2934;
 extern u16 D_800D2954;
@@ -92,9 +92,9 @@ extern u16 D_800D5828;
 extern u16 D_800D582C;
 extern s16 D_800D5830;
 extern s16 D_800D5834;
-extern u16 D_800D88B8[]; // guess
-extern u16 D_800D8A98[];
-extern u16 D_800D8C78[]; // guess
+extern u16 gPaletteGemRed[];
+extern u16 gPaletteGemGreen[];
+extern u16 gPaletteGemYellow[];
 extern u32 D_800E0648[];
 extern u8 D_800E1180[];
 extern s16 gGraphicListBlank[]; // default graphics list. contains {0,0}
@@ -128,16 +128,13 @@ extern u16 gLetterboxMode;
 extern u16 gRedGems;
 
 // func_8000147C
-extern s8 D_801373F0;
 extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
-extern u16 gActorsBack[128]; // indecies of actors to draw in the "back" 
-extern u16 gActorsMiddle[128]; // indecies of actors to draw in middle (not drawn if D_800be674 is set)
-extern u16 gActorsFront[240]; // indecies of actors to draw in "front"
-extern u16 gActorsTop[240]; // indecies of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
+extern u16 gActorsBack[128]; // indices of actors to draw in the "back" 
+extern u16 gActorsMiddle[128]; // indices of actors to draw in middle (not drawn if D_800be674 is set)
+extern u16 gActorsFront[240]; // indices of actors to draw in "front"
+extern u16 gActorsTop[240]; // indices of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
 
-extern UnkStruct_D_801373E0 D_801373E0;
-extern s8 D_801373F2;
-extern u32 D_80137458;
+extern PlayerData gPlayerData;
 
 // soft_reset.c bss
 extern u16 D_801781F8; // some control lock? read in func_80048740. always 0.

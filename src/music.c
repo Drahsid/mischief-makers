@@ -67,7 +67,7 @@ extern s16 gSfxFadeVolumes[];
 
 extern u8 D_800C2927[];
 extern u8 D_800C2968[];
-extern s16 D_800EF4D4;
+extern s16 gPauseMusicVolume;
 extern s32 D_80137794;
 
 extern MusicSequenceParams gMusicSequenceParams[];
@@ -646,7 +646,7 @@ void Sound_PlayMusic(s32 sequence_id) {
 
     params = &gMusicSequenceParams[gMusicSequenceId];
     gMusicVolume = params->volume << 8;
-    D_800EF4D4 = gMusicVolume;
+    gPauseMusicVolume = gMusicVolume;
     D_80137794 = params->unk_01 << 12;
 
     for (index = 0; index < AUDIO_CHANNEL_COUNT; index++) {
@@ -874,7 +874,7 @@ s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan) {
     return Sound_AddSfx(sfx_id, volume, pan, 0x93, 0xFF, 0);
 }
 
-// calculate x-postion pan and y-postion volume of sound.
+// calculate x-position pan and y-position volume of sound.
 void Sound_CalculatePanVol(s16 x_in, s16 y_in, s8* x_out, s16* y_out) {
     s32 temp_v0;
     s32 temp_v1;
@@ -994,11 +994,11 @@ s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index) {
     s8 temp_a;
     s16 temp_b;
 
-    if ((D_801069E0[index].posX.whole < -0x17F) || (D_801069E0[index].posX.whole >= 0x180)) {
+    if ((gStaticObjects[index].posX.whole < -0x17F) || (gStaticObjects[index].posX.whole >= 0x180)) {
         return -1;
     }
 
-    Sound_CalculatePanVol(D_801069E0[index].posX.whole, D_801069E0[index].posY.whole, &temp_a, &temp_b);
+    Sound_CalculatePanVol(gStaticObjects[index].posX.whole, gStaticObjects[index].posY.whole, &temp_a, &temp_b);
 
     if (temp_b < 0x80) {
         return -1;

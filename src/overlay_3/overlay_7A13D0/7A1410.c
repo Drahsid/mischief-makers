@@ -61,7 +61,7 @@ extern void func_80067E50(u16 actor_index, void* arg1);
 extern s32 func_800734C4(u16 arg0, s32 arg1);
 extern s32 func_80073558(u16 actor_index, s32 arg1);
 
-void func_801A85E0_771AB0(u16 actor_index, f32 arg1);
+void func_801A85E0_771AB0(u16 actor_index, f32 arg1); // explosion effect in 76FDD0.c
 void func_801B0900_7A1410(u16 actor_index, Overlay_7A13D0_Actor_State* state);
 void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* state);
 void func_801B0D98_7A18A8(u16 actor_index, Overlay_7A13D0_Actor_State* state);
@@ -199,9 +199,12 @@ u16 D_801B60A0_7A6BB0[10] = {
     0x0500, 0x0520, 0x0540, 0x0540, 0x0540,
 };
 
+// "頂上へ回れてってよ" / "Make your way to the Summit"
 u16 D_801B60B4_7A6BC4[10] = {
-    0x0251, 0x0183, 0x006D, 0x026E, 0x007A,
-    0x0063, 0x009D, 0x0063, 0x0076, 0x8FFF,
+    ALPHA_JP_KANJI_U9802, ALPHA_JP_KANJI_U4E0A,
+    ALPHA_JP_HIRA_HE, ALPHA_JP_KANJI_U9023, ALPHA_JP_HIRA_RE,
+    ALPHA_JP_HIRA_TE, ALPHA_JP_HIRA_SMALL_TSU, ALPHA_JP_HIRA_TE,
+    ALPHA_JP_HIRA_YO, ALPHA_NULL,
 };
 
 s16 D_801B60C8_7A6BD8[10] = {
@@ -232,17 +235,34 @@ Overlay_7A13D0_Spawn_Record D_801B60F8_7A6C08[11] = {
     { 0x32, 2 },
 };
 
-u16 D_801B6124_7A6C34[8] = { 0x0149, 0x0122, 0x011E, 0x0121, 0x0136, 0x00B0, 0x8FFF, 0 };
+// "Ready..."
+u16 D_801B6124_7A6C34[] = { 
+    ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_D, ALPHA_EN3_LOWER_Y, ALPHA_ELLIPSIS, ALPHA_NULL,
+};
 
-u16 D_801B6134_7A6C44[6] = { 0x014A, 0x0122, 0x0131, 0x00B0, 0x8FFF, 0 };
+// "Set..."
+u16 D_801B6134_7A6C44[] = {
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_T, ALPHA_ELLIPSIS, ALPHA_NULL, 0
+};
 
-u16 D_801B6140_7A6C50[6] = { 0x013E, 0x012C, 0x00B2, 0x00B2, 0x8FFF, 0 };
+// "Go!!"
+u16 D_801B6140_7A6C50[] = {
+    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_O, ALPHA_2EXCLAMATION, ALPHA_2EXCLAMATION, ALPHA_NULL, 0 };
 
-u16 D_801B614C_7A6C5C[8] = { 0x013D, 0x012C, 0x0132, 0x0129, 0x00B2, 0x00B2, 0x8FFF, 0 };
+// "Foul!!"
+u16 D_801B614C_7A6C5C[] = {
+    ALPHA_EN3_UPPER_F, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_L, ALPHA_2EXCLAMATION, ALPHA_2EXCLAMATION, ALPHA_NULL
+};
 
-u16 D_801B615C_7A6C6C[6] = { 0x0056, 0x009D, 0x0060, 0x00B2, 0x8FFF, 0 };
+//  "かった!!" / "I won!!"
+u16 D_801B615C_7A6C6C[] = {
+    ALPHA_JP_HIRA_KA, ALPHA_JP_HIRA_SMALL_TSU, ALPHA_JP_HIRA_TA, ALPHA_2EXCLAMATION, ALPHA_NULL
+};
 
-u16 D_801B6168_7A6C78[6] = { 0x006F, 0x0059, 0x0060, 0x00B0, 0x8FFF, 0 };
+// "まけた..." / "I lost..."
+u16 D_801B6168_7A6C78[] = { 
+    ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_KE, ALPHA_JP_HIRA_TA, ALPHA_ELLIPSIS, ALPHA_NULL
+};
 
 u16* D_801B6174_7A6C84[5] = {
     NULL,
@@ -340,7 +360,7 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
                 gActors[actor_index].graphicTimer = 1;
             }
 
-            Sound_StopSfx(0x12B);
+            Sound_StopSfx(SFX_012B);
         }
     }
     if ((arg1->unk_08 == 1) || (arg1->unk_08 == 2)) {
@@ -521,7 +541,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 gActors[actor_index].graphicList = D_801B5FC0_7A6AD0;
                 gActors[actor_index].graphicTimer = 1;
                 func_801B3218_7A3D28(actor_index, (s32)state);
-                Sound_PlaySfxAtActor2(0x12B, actor_index);
+                Sound_PlaySfxAtActor2(SFX_012B, actor_index);
             }
             return;
 
@@ -573,7 +593,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
                 gActors[actor_index].velocityY.raw = 0;
-                Sound_PlaySfxAtActor2(0xAC, actor_index);
+                Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
                 (gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17, gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6);
                 state->unk_06 = 0;
@@ -755,7 +775,7 @@ void func_801B1A10_7A2520(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                     func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
                     if (state->unk_38 >= 3) {
                         state->unk_0A++;
-                        Sound_PlaySfxAtActor2(0xAC, actor_index);
+                        Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                         actor->flags |= ACTOR_FLAG_UNK16;
                         actor->flags &= ~ACTOR_FLAG_UNK17;\
                         actor->flags_098 &= ~ACTOR_FLAG3_UNK6;
@@ -831,7 +851,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
                     state->unk_08 = 4;
                     state->unk_0A = 0;
-                    Sound_PlaySfxAtActor2(0xAC, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK17);
                     gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
                     state->unk_02 = 0;
@@ -906,7 +926,7 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
                 func_801B36C0_7A41D0(actor_index, 12, -18, FIXED_UNIT(0.75), FIXED_UNIT(0.0625));
                 func_801B36C0_7A41D0(actor_index, -12, -18, FIXED_UNIT(-0.75), FIXED_UNIT(0.0625));
-                Sound_PlaySfxAtActor2(0xAC, actor_index);
+                Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                 if (state->unk_04 == 0) {
                     state->unk_08 = 1;
                 }
@@ -1000,7 +1020,7 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
 
             if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
-                Sound_PlaySfxAtActor2(0xAC, actor_index);
+                Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                 state->unk_3A++;
 
                 gActors[actor_index].velocityX.raw >>= 1;
@@ -1087,7 +1107,7 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (gActors[actor_index].velocityY.raw < 0) {
                 if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5) {
                     state->unk_0A++;
-                    Sound_PlaySfxAtActor2(0xAC, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
                     gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
                     gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17; \
                     gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6;
@@ -1148,7 +1168,7 @@ void func_801B2954_7A3464(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         state->unk_2D = value;
         state->unk_28--;
         if (state->unk_28 <= 0) {
-            Sound_PlaySfxAtActor2(0x135, actor_index);
+            Sound_PlaySfxAtActor2(SFX_RUMBLE_0135, actor_index);
             value = 0x54 - (count * 4);
             if (value <= 0) {
                 value = 1;
@@ -1180,7 +1200,7 @@ void func_801B2B10_7A3620(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             func_801B3314_7A3E24(actor_index, 0, 0, 2, 2.599999905f);
             gActors[actor_index].velocityY.raw = FIXED_UNIT(4.0);
             gActors[actor_index].rotateZ = 0.0f;
-            Sound_PlaySfxAtActor2(0x9D, actor_index);
+            Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
             break;
 
         case 1:
@@ -1200,14 +1220,14 @@ void func_801B2B10_7A3620(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                     gActors[actor_index].velocityY.raw = 0;
                     gActors[actor_index].graphicList = D_801B5FE4_7A6AF4; \
                     gActors[actor_index].graphicTimer = 1;
-                    Sound_PlaySfxAtActor2(0xAC, actor_index);
-                    Sound_PlaySfxAtActor2(0x3C, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_CLANCERDEATH, actor_index);
                     if (state->unk_04 != 0) {
                         if ((Rand() & 7) == 4) {
-                            SpawnGemActor(actor_index, 0x30, 0);
+                            SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
                         }
                         else if ((Rand() & 3) == 2) {
-                            SpawnGemActor(actor_index, 0x30, 0);
+                            SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
                         }
                     }
                 }
@@ -1239,7 +1259,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
     state->unk_30 = 1;
     if (state->unk_04 == 0) {
-        Sound_StopSfx(0x12B);
+        Sound_StopSfx(SFX_012B);
     }
 
     switch (gActors[actor_index].unk_0DD) {
@@ -1266,7 +1286,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(0.5);
             }
             gActors[actor_index].velocityY.raw = FIXED_UNIT(1.0);
-            Sound_PlaySfxAtActor2(0x2D, actor_index);
+            Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
         case 6:
@@ -1287,7 +1307,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             gActors[actor_index].velocityX.raw = (gActors[gActors[actor_index].parentIndex].flags & ACTOR_FLAG_FLIPPED) ? FIXED_UNIT(-0.5) : FIXED_UNIT(0.5);
             gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
             gActors[actor_index].unk_0F8.raw >>= 2;
-            Sound_PlaySfxAtActor2(0x2D, actor_index);
+            Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
         case 2:
@@ -1306,7 +1326,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
                 func_800340CC(actor_index, 0xE, 0);
             }
-            Sound_PlaySfxAtActor2(0x2D, actor_index);
+            Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
         case 23:
@@ -1543,6 +1563,7 @@ void func_801B3804_7A4314(u16 actor_index, s32 offset_x, s32 offset_y, s32 veloc
     gActors[new_actor_index].var_154 = -2;
 }
 
+// blizzard effect in "Snowstorm Maze"?
 // Cleaner syntax does not match: https://decomp.me/scratch/CLwNh
 void func_801B3948_7A4458(u16 actor_index) {
     u16 state;
@@ -1584,6 +1605,7 @@ void func_801B3948_7A4458(u16 actor_index) {
     }
 }
 
+// enemy missle platform blows up
 void func_801B3AE0_7A45F0(u16 actor_index) {
     gActors[actor_index].velocityY.raw = 0;
     gActors[actor_index].velocityX.raw = 0;
@@ -1591,7 +1613,7 @@ void func_801B3AE0_7A45F0(u16 actor_index) {
     gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_SCALE;
     gActors[actor_index].colorA = 0x80;
-    Sound_PlaySfxAtActor2(0x43, actor_index);
+    Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
     gActors[actor_index].var_154 = 0x18;
     gActors[actor_index].state++;
 }
@@ -1663,6 +1685,7 @@ void func_801B3CE8_7A47F8(u16 actor_index) {
                 return;
             }
 
+            // check for clanbomb position
             if (((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) >= -3) && ((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) < 4)) {
                 if (((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) >= -19) && ((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) < 20)) {
                     func_801B3AE0_7A45F0(actor_index);
@@ -1700,7 +1723,7 @@ void func_801B3EC8_7A49D8(u16 actor_index) {
 }
 
 void func_801B3FC0_7A4AD0(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -1739,8 +1762,8 @@ void func_801B4110_7A4C20(u16 arg0) {
 
     if (actor->unk_174 < 2) {
         if (((actor_index == 0x52) && ((gActiveFrames & 0x7F) == 0)) || ((actor_index == 0x57) && ((gActiveFrames & 0x7F) == 0x40))) {
-            if (SpawnTextBubble(actor_index, D_801B60B4_7A6BC4, 0, 0x20, 0x1E) != 0) {
-                Sound_PlaySfxAtActor2(0xA2, actor_index);
+            if (SpawnTextBubble(actor_index, D_801B60B4_7A6BC4, 0, 0x20, 30) != 0) {
+                Sound_PlaySfxAtActor2(SFX_CLANCER_TALK_00A2, actor_index);
                 actor->graphicList = D_800E2274;
                 actor->graphicTimer = 1;
             }
@@ -1839,7 +1862,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 }
 
 void func_801B449C_7A4FAC(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -1894,10 +1917,10 @@ void func_801B455C_7A506C(u16 actor_index) {
             break;
 
         case 2:
-            if (((gActors[actor_index].posX.whole - 224) < gActors[0].posX.whole) && (gActors[0].posX.whole < (gActors[actor_index].posX.whole - 192))) {
+            if (((gActors[actor_index].posX.whole - 224) < gPlayerActor.posX.whole) && (gPlayerActor.posX.whole < (gActors[actor_index].posX.whole - 192))) {
                 new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
                 if (new_actor_index != 0) {
-                    ACTOR_INIT(new_actor_index, 0x1B07);
+                    ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W3_7);
                     gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole - 56;
                     gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole - 4;
                     gActors[new_actor_index].graphicList = D_801B60C8_7A6BD8;
@@ -1916,10 +1939,10 @@ void func_801B455C_7A506C(u16 actor_index) {
                     gActors[new_actor_index].velocityX.raw = FIXED_UNIT(-1.5);
                     gActors[new_actor_index].health = 0;
                     gActors[new_actor_index].unk_0DF = 0x20;
-                    gActors[new_actor_index].damage = 0x1E;
+                    gActors[new_actor_index].damage = 30;
                     gActors[new_actor_index].unk_0DA = 4;
                     gActors[new_actor_index].unk_0DB = 9;
-                    Sound_PlaySfxAtActor2(0x2E, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
                     gActors[actor_index].state++;
                 }
             }
@@ -1941,7 +1964,7 @@ void func_801B455C_7A506C(u16 actor_index) {
                 gActors[actor_index].graphicTimer = 1;
                 gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_SCALE;
                 gActors[actor_index].colorA = 0x80;
-                Sound_PlaySfxAtActor2(0x43, actor_index);
+                Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
                 gActors[actor_index].var_154 = 0x18;
                 gActors[actor_index].state++;
             }
@@ -1959,7 +1982,7 @@ void func_801B4914_7A5424(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
         gActors[actor_index].flags = 0;
         func_8003F9E0(1.0f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, gActors[actor_index].posZ.whole);
-        SpawnGemActor(actor_index, 0x30, 0);
+        SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
     }
 }
 
@@ -1970,7 +1993,7 @@ void func_801B4998_7A54A8(u16 actor_index) {
         if (gActors[actor_index].unk_118 < 0.0f) {
             gActors[actor_index].flags = 0;
             func_8003F05C(0.5f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 8);
-            Sound_PlaySfxAtActor2(0x43, actor_index);
+            Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
         }
     }
 }
@@ -1982,7 +2005,7 @@ void func_801B4A40_7A5550(u16 actor_index) {
     if ((D_801B6350_7A6E60 >= FIXED_UNIT(576.0)) && (D_801B6350_7A6E60 <= FIXED_UNIT(704.0))) {
         if (gActors[actor_index].unk_118 == 0.0f) {
             gActors[actor_index].unk_118 = 1.0f;
-            Sound_PlaySfxAtActor2(0x96, actor_index);
+            Sound_PlaySfxAtActor2(SFX_SWISH_0096, actor_index);
         }
     }
 
@@ -1995,6 +2018,8 @@ void func_801B4B3C_7A564C(u16 arg0) {
     func_801B4998_7A54A8(arg0);
 }
 
+
+// build jump rope in "The Day Before"
 void func_801B4B64_7A5674(u16 actor_index) {
     Overlay_7A13D0_Spawn_Record* spawn_records;
     u16 index;
@@ -2031,6 +2056,7 @@ void func_801B4B64_7A5674(u16 actor_index) {
 void func_801B4CD0_7A57E0(u16 arg0) {
 }
 
+// behavior of jump rope in "The Day Before"
 void func_801B4CD8_7A57E8(u16 actor_index) {
     u16 new_actor_index;
 
@@ -2046,7 +2072,7 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
                 && D_801B6350_7A6E60 >= FIXED_UNIT(512.0) && gActors[actor_index].var_154 == 0) {
                 if (gActors[actor_index].var_158 != 0) {
                     if (gActors->iFrames == 0) {
-                        new_actor_index = SpawnGemActor(actor_index, 0x30, 0);
+                        new_actor_index = SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
                         gActors[new_actor_index].posX.whole = 3808 - gScreenPosCurrentX.whole;
                         gActors[new_actor_index].posY.whole = 440 - gScreenPosCurrentY.whole;
                         gActors[actor_index].var_154 = 1;
@@ -2068,10 +2094,10 @@ void func_801B4CD8_7A57E8(u16 actor_index) {
                 gActors[actor_index].var_154 = 0;
             }
 
-            if (gActors[actor_index].var_15C >= 0x14) {
+            if (gActors[actor_index].var_15C >= 20) {
                 gFestivalEventState++;
                 func_801B4CD0_7A57E0(actor_index);
-                new_actor_index = SpawnGemActor(actor_index, 0x12, 0);
+                new_actor_index = SpawnGemActor(actor_index, (GEMFLAG_BOUNCE | GEMFLAG_YELLOW), 0);
                 gActors[new_actor_index].posX.whole = 3808 - gScreenPosCurrentX.whole;
                 gActors[new_actor_index].posY.whole = 440 - gScreenPosCurrentY.whole;
                 gActors[actor_index].state++;
@@ -2199,7 +2225,7 @@ void func_801B5378_7A5E88(u16 actor_index) {
 }
 
 void func_801B53E4_7A5EF4(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -2288,7 +2314,7 @@ void func_801B5628_7A6138(u16 actor_index) {
 }
 
 void func_801B56E0_7A61F0(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -2313,10 +2339,11 @@ void func_801B56E0_7A61F0(u16 actor_index) {
     }
 }
 
+// sprint coach and trainee in "The Day Before"
 void func_801B57C8_7A62D8(u16 actor_index) {
     s32 action_index;
 
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -2352,14 +2379,14 @@ void func_801B57C8_7A62D8(u16 actor_index) {
                     if (gActors[actor_index].unk_16C == 4) {
                         if ((gActors[actor_index].unk_12C == 60.0f) || (gActors[actor_index].unk_12C == 120.0f)) {
                             if (gActors[actor_index].unk_170 & 0x10000) {
-                                SpawnTextBubble(actor_index, D_801B6168_7A6C78, 0, -0x30, 0x19);
+                                SpawnTextBubble(actor_index, D_801B6168_7A6C78, 0, -0x30, 25);
                                 gActors[actor_index].state = 0x190;
-                                action_index = SpawnGemActor(actor_index, 0x30, 0);
+                                action_index = SpawnGemActor(actor_index, (GEMFLAG_COMMON | GEMFLAG_RED), 0);
                                 gActors[action_index].posX.whole = 3424 - gScreenPosCurrentX.whole;
                                 gActors[action_index].posY.whole = 356 - gScreenPosCurrentY.whole;
                             }
                             else {
-                                SpawnTextBubble(actor_index, D_801B615C_7A6C6C, 0, -0x30, 0x19);
+                                SpawnTextBubble(actor_index, D_801B615C_7A6C6C, 0, -0x30, 25);
                                 gActors[actor_index].state = 0x120;
                                 gActors[actor_index].unk_120 = 0.0f;
                                 gActors[actor_index].unk_11C = (f32)FIXED_UNIT(3.5);
@@ -2377,7 +2404,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
 
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
-                            if ((gActors[actor_index].unk_16C == 3) && ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
+                            if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
                                 func_8007D0F4(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
@@ -2402,19 +2429,19 @@ void func_801B57C8_7A62D8(u16 actor_index) {
             break;
 
         case 0x130:
-            Sound_PlaySfxAtActor2(0x49, actor_index);
+            Sound_PlaySfxAtActor2(SFX_CLANCER_LAUGH_0049, actor_index);
             break;
 
         case 0x150:
-            Sound_PlaySfxAtActor2(0xAC, actor_index);
+            Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
             break;
     }
 
     if (gActors[actor_index].unk_16C == 3) {
-        if ((gActors[0].posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
+        if ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
             if (!(gActors[actor_index].unk_170 & 0x30000)) {
                 if (gActors[actor_index].unk_170 & 0xFFFF) {
-                    if (gActors[actor_index].posX.whole < gActors[0].posX.whole) {
+                    if (gActors[actor_index].posX.whole < gPlayerActor.posX.whole) {
                         gActors[actor_index].unk_170--;
                         gActors[actor_index].unk_170 |= 0x10000;
                     }
@@ -2430,7 +2457,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
 }
 
 void func_801B5D04_7A6814(u16 actor_index) {
-    func_8007325C(actor_index);
+    Clancer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -2453,11 +2480,11 @@ void func_801B5D04_7A6814(u16 actor_index) {
             break;
 
         case 0x130:
-            Sound_PlaySfxAtActor2(0x121, actor_index);
+            Sound_PlaySfxAtActor2(SFX_0121, actor_index);
             break;
 
         case 0x150:
-            Sound_PlaySfxAtActor2(0xAC, actor_index);
+            Sound_PlaySfxAtActor2(SFX_LAND_00AC, actor_index);
             break;
     }
 

@@ -17,6 +17,6 @@ void func_80009BE0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/LookAt_Update.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/A540/func_800109B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/A540/LookAt_Reset.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/A540/func_80010A10.s")

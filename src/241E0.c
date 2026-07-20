@@ -28,17 +28,19 @@ typedef struct {
     s16 unk8;
 } Unk800CCC6C; // size = 0xA
 
-typedef void (*Unk800CC58CFunc)(void);
+typedef void (*CameraFunc)(void);
 
 extern s32 D_800C71A0; // guess
 extern u16 D_800CBF5C[];
 extern u8 D_800CBFFC[];
 extern u16 D_800CC228[];
-extern Unk800CC58CFunc D_800CC42C[];
-extern Unk800CC58CFunc D_800CC58C[];
-extern s16 D_800CC6EC[];
+extern CameraFunc gCameraInits[];
+extern CameraFunc gCameraUpdates[];
+// position and bounds for player per scene
+// {BoundX0, BoundX1, BoundY0, BoundY1, ScreenX, PlayerX, ScreenY, PlayerY}
+extern s16 D_800CC6EC[]; 
 extern s16 D_800CCC6C[];
-extern u8 gSceneBgm[]; // music for start os scene (0xff if none)
+extern u8 gSceneBgm[]; // music for start of scene (0xff if none)
 extern u8 D_800CD034[]; // scene properties of BG layers?
 extern u8 D_800E3BC8[];
 extern s8 D_800E3C48[];
@@ -49,12 +51,12 @@ extern s32* D_8013746C; // guess, related to type of D_800C71A0
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
 
-void func_800235E0(void) {
+void Camera_ResetRotate(void) {
     gCameraRot = 0;
     gCameraRotDelta = 0;
 }
 
-void func_800235F4(void) {
+void Camera_ApplyRotate(void) {
     s32 angle;
 
     gCameraRot += gCameraRotDelta;
@@ -63,19 +65,19 @@ void func_800235F4(void) {
     gLookatUpY = COS(angle);
 }
 
-void func_80023668(void) {
+void CameraInit_Scene63(void) {
 }
 
-void func_80023670(void) {
+void CameraUpdate_Scene63(void) {
 }
 
-void func_80023678(void) {
+void CameraInit_World1(void) {
     D_800BE578 = 2;
     D_800BE6FC = 1;
     D_800BE584 = -12;
 }
 
-void func_800236A0(void) {
+void CameraUpdate_World1(void) {
     D_800BE580 = (gScreenPosCurrentY.whole / 6) + 0x1AE;
     D_800BE578 = gScreenPosCurrentX.whole / 4;
     D_8011D3B0[0][0] = (gActiveFrames / 6) & 0x7FFF;
@@ -86,7 +88,7 @@ void func_800236A0(void) {
     D_8011D3B0[5][0] = D_8011D3B0[6][0] = -1;
 }
 
-void func_80023798(void) {
+void CameraInit_World2(void) {
     D_800BE578 = gScreenPosCurrentX.whole / 2;
     D_800BE580 = -12;
     gLookatEyeY = 32.0f;
@@ -94,7 +96,7 @@ void func_80023798(void) {
     D_800BE70C = 2;
 }
 
-void func_800237F0(void) {
+void CameraUpdate_World2(void) {
     u16 var_a0;
 
     gActors[0x31].posY.whole = 320 - gScreenPosCurrentY.whole;
@@ -110,8 +112,8 @@ void func_800237F0(void) {
 }
 
 
-void func_80023894(void) {
-    func_800237F0();
+void CameraUpdate_WesternWorld(void) {
+    CameraUpdate_World2();
     D_800BE544 = 0x8000;
     D_800BE548.raw = FIXED_UNIT(8.0);
     if (D_800BE634 != 0) {
@@ -128,12 +130,12 @@ void func_80023894(void) {
     }
 }
 
-void func_80023948(void) {
+void CameraInit_TightropeRide(void) {
     D_800BE580 = -12;
     gLookatEyeY = 32.0f;
 }
 
-void func_80023968(void) {
+void CameraUpdate_TightropeRide(void) {
     gActors[0x31].posY.whole = 320 - gScreenPosCurrentY.whole;
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
@@ -144,14 +146,14 @@ void func_80023968(void) {
     }
 }
 
-void func_80023A08(void) {
+void CameraInit_MagmaRafts(void) {
     D_800BE580 = -12;
     gLookatEyeY = 32.0f;
     D_800BE70C = 2;
 }
 
-void func_80023A34(void) {
-    func_800237F0();
+void CameraUpdate_MagmaRafts(void) {
+    CameraUpdate_World2();
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw + FIXED_UNIT(32.0);
@@ -160,24 +162,24 @@ void func_80023A34(void) {
     }
 }
 
-void func_80023AA4(void) {
+void CameraInit_Scene02(void) {
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
-void func_80023AC4(void) {
+void CameraUpdate_Scene02(void) {
 }
 
-void func_80023ACC(void) {
+void CameraInit_Scene03(void) {
     D_800BE57C = 0;
     D_800BE584 = 0;
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
-void func_80023AFC(void) {
+void CameraUpdate_Scene03(void) {
     if (gButtonHold & gButton_DLeft) {
         D_80201B48->unk0--;
     }
@@ -192,31 +194,31 @@ void func_80023AFC(void) {
     }
 }
 
-void func_80023BC0(void) {
+void CameraInit_Scene04(void) {
     D_800BE57C = 2;
     D_800BE584 = -12;
     gLifebar.flags = 0;
     gLifebarHead.flags = 0;
-    D_800CA230 = 1;
+    gIsPlayerInactive = TRUE;
 }
 
-void func_80023BF8(void) {
+void CameraUpdate_Scene04(void) {
 }
 
-void func_80023C00(void) {
+void CameraInit_MigenBrawl(void) {
     D_800BE578 = 2;
     D_800BE57C = 2;
 }
 
-void func_80023C18(void) {
+void CameraUpdate_MigenBrawl(void) {
     u16 index;
 
     D_800BE580 = ((gScreenPosCurrentY.whole * 5) / 4) + D_800D2934;
     D_800BE584 = gScreenPosCurrentY.whole - 104;
     gScreenPosCurrentX.whole = 402;
     gScreenPosTargetX.whole = 402;
-    D_800BE568.whole = 0x102;
-    D_800BE56C.whole = 0x222;
+    gScreenBoundX0.whole = 0x102;
+    gScreenBoundX1.whole = 0x222;
     if (gActiveFrames & 1) {
         for (index = 0; index < 0x2C; index++) {
             PALETTE_80380400[D_800CBFFC[index]] = D_800CBF5C[D_800CBFFC[index] - 0x90];
@@ -230,75 +232,76 @@ void func_80023C18(void) {
 }
 
 
-void func_80023D48(void) {
+void CameraInit_Scene07(void) {
     D_800BE544 = 48;
     D_800BE57C = 2;
     D_800BE584 = -12;
 }
 
-void func_80023D70(void) {
+void CameraUpdate_Scene07(void) {
     D_800BE578 = gScreenPosCurrentX.whole;
     D_800BE580 = gScreenPosCurrentY.whole + 96;
 }
 
-void func_80023D98(void) {
+void CameraInit_Title(void) {
     D_800BE578 = 2;
     D_800BE580 = -12;
 }
 
-void func_80023DB4(void) {
+void CameraUpdate_Title(void) {
 }
 
-void func_80023DBC(void) {
+void CameraInit_Lunar(void) {
     D_800BE544 = 48;
     D_800BE57C = 2;
     D_800BE584 = -12;
     D_800BE674 = 1;
 }
 
-void func_80023DF0(void) {
+void CameraUpdate_Lunar(void) {
 }
 
-void func_80023DF8(void) {
+void CameraInit_Intro(void) {
     D_800BE578 = 2;
     D_800BE580 = -12;
 }
 
-void func_80023E14(void) {
+void CameraUpdate_Intro(void) {
 }
 
-void func_80023E1C(void) {
+void CameraInit_World3B(void) {
     D_800BE57C = 2;
     D_800BE584 = -12;
 }
 
-void func_80023E38(void) {
+void CameraUpdate_World3B(void) {
 }
 
-void func_80023E40(void) {
+void CameraInit_TheDayBefore(void) {
 }
 
-void func_80023E48(void) {
+void CameraUpdate_TheDayBefore(void) {
     D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
-void func_80023E6C(void) {
+void CameraInit_Scene34(void) {
 }
 
-void func_80023E74(void) {
+void CameraUpdate_Scene34(void) {
     D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
-void func_80023E98(void) {
+void CameraInit_World3(void) {
     D_800BE57C = 2;
     D_800BE584 = -12;
 }
 
-void func_80023EB4(void) {
-    func_80023E98();
+void CameraInit_SnowstormMaze(void) {
+    CameraInit_World3();
     D_800BE674 = 1;
 }
 
+// not in either camera func table
 void func_80023EDC(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
@@ -312,11 +315,13 @@ void func_80023EDC(void) {
     }
 }
 
-void func_80023F5C(void) {
+void CameraUpdate_SnowstormMaze(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         gScreenPosTargetX.raw = gPlayerPosX.raw;
-        if ((gPlayerActor.parentIndex == ACTORTYPE_49) && (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
+    // change camera Y if using Jump Clancer
+        if ((gPlayerActor.parentIndex == 0x31) &&
+           (gActors[0x30].actorType == ACTORTYPE_OVL1_GEN_POGO) && (gActors[0x32].unk_180 & 0x8000)) {
             gScreenPosTargetY.raw = gActors[0x30].posY.raw + gScreenPosCurrentY.raw + FIXED_UNIT(24.0);
         }
         else {
@@ -325,7 +330,7 @@ void func_80023F5C(void) {
     }
 }
 
-void func_80024004(void) {
+void CameraUpdate_ClanballLift(void) {
     if (!(gDebugBitfield & DEBUGFLAG_CAMERALOCK)) {
         D_800BE544 = 0x8000;
         if (gStageState < 3) {
@@ -338,11 +343,11 @@ void func_80024004(void) {
     }
 }
 
-void func_80024074(void) {
+void CameraInit_SeasickClimb(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
     D_800BE708 = 1;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
     D_800BE71C = FIXED_UNIT(256.0);
     D_800BE720 = 0;
     D_800BE724 = FIXED_UNIT(448.0);
@@ -352,7 +357,7 @@ void func_80024074(void) {
     D_800BE638 = 0;
 }
 
-void func_800240E8(void) {
+void CameraUpdate_SeasickClimb_Rocking(void) {
     switch (D_800BE638) {
     case 0:
         D_800BE728 += FIXED_UNIT(0.015625);
@@ -375,7 +380,7 @@ void func_800240E8(void) {
             D_800BE720 = FIXED_UNIT(2.0);
         }
         if (D_800BE71C < FIXED_UNIT(96.0)) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
             D_800BE634 += 1;
         }
         break;
@@ -394,7 +399,7 @@ void func_800240E8(void) {
     case 2:
         gCameraRotDelta -= FIXED_UNIT(0.0078125);
         if (gCameraRotDelta == 0) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
         }
         else if (gCameraRotDelta == FIXED_UNIT(-0.75)) {
             D_800BE634 += 1;
@@ -403,7 +408,7 @@ void func_800240E8(void) {
     case 3:
         gCameraRotDelta += FIXED_UNIT(0.0078125);
         if (gCameraRotDelta == 0) {
-            Sound_PlaySfx(0x122);
+            Sound_PlaySfx(SFX_RUMBLE_0122);
         }
         else if (gCameraRotDelta == FIXED_UNIT(0.75)) {
             D_800BE634 -= 1;
@@ -418,24 +423,24 @@ void func_800240E8(void) {
     gLookatEyeZ = (f32) FROM_FIXED(D_800BE724);
 }
 
-void func_80024428(void) {
+void CameraUpdate_SeasickClimb(void) {
     s32 angle;
 
-    func_800240E8();
-    func_800235F4();
+    CameraUpdate_SeasickClimb_Rocking();
+    Camera_ApplyRotate();
     angle = FROM_FIXED(gCameraRot);
     D_800E3C48[0x10] = SIN(angle + COS_DEG_45) * 128.0f;
     D_800E3C48[0x11] = COS(angle + COS_DEG_45) * 128.0f;
 }
 
-void func_800244F8(void) {
+void CameraInit_Vertigo(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
     gCameraRot = 0;
 }
 
-void func_80024528(void) {
+void CameraUpdate_Vertigo(void) {
     s32 angle;
 
     angle = FROM_FIXED(gCameraRot);
@@ -443,13 +448,13 @@ void func_80024528(void) {
     gLookatUpY = COS(angle);
 }
 
-void func_80024584(void) {
+void CameraInit_Freefall(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
-    D_800BE710 = 1;
+    D_800BE710 = TRUE;
 }
 
-void func_800245AC(void) {
+void CameraUpdate_Freefall(void) {
 }
 
 void func_800245B4(void) {
@@ -464,26 +469,26 @@ void func_800245B4(void) {
 void func_800245F0(void) {
 }
 
-void func_800245F8(void) {
+void CameraInit_AthleticGames(void) {
 }
 
-void func_80024600(void) {
+void CameraUpdate_AthleticGames(void) {
     D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
 }
 
-void func_80024624(void) {
+void CameraInit_Beastector(void) {
     D_800BE588 = 2;
     D_800BE704 = 1;
     D_800BE708 = 1;
-    gLetterboxMode = 1;
-    func_800235E0();
+    gLetterboxMode = LETTERBOX_HORIZONTAL;
+    Camera_ResetRotate();
 }
 
-void func_80024668(void) {
+void CameraUpdate_Beastector(void) {
     s16 var_v0;
     s16 var_v1;
 
-    func_800235F4();
+    Camera_ApplyRotate();
     D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
     var_v0 = gScreenPosCurrentX.whole / 1.55;
     var_v1 = gScreenPosTargetX.whole / 1.55;
@@ -501,7 +506,7 @@ void func_80024668(void) {
     }
 }
 
-void func_80024854(void) {
+void CameraInit_CounterAttack(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
     D_800BE708 = 1;
@@ -569,16 +574,16 @@ void func_800249B8(void) {
     func_8002488C();
 }
 
-void func_80024D5C(void) {
+void CameraInit_ClanceWar2(void) {
     D_800BE588 = 3;
 }
 
-void func_80024D6C(void) {
+void CameraUpdate_ClanceWar2(void) {
     D_800BE73C = TO_FIXED(gScreenPosCurrentX.whole - gScreenPosNextX.whole);
     func_8002488C();
 }
 
-void func_80024DA8(void) {
+void CameraInit_BeesTheOne(void) {
     D_800BE544 = 0x8000;
     D_800BE704 = 1;
     D_800BE708 = 1;
@@ -608,7 +613,7 @@ void func_80024E18(void) {
     Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
 }
 
-void func_80024EA0(void) {
+void CameraUpdate_BeesTheOne(void) {
     switch (D_800BE634) {
     case 0:
         gScreenPosTargetY.raw += 0x319A;
@@ -650,13 +655,13 @@ void func_80024EA0(void) {
     func_8002488C();
 }
 
-void func_80025084(void) {
+void CameraInit_Splashscreen(void) {
 }
 
-void func_8002508C(void) {
+void CameraUpdate_Splashscreen(void) {
 }
 
-void func_80025094(void) {
+void CameraInit_Merco_Trapped(void) {
     D_800BE588 = 0;
     D_800BE58C = 1;
     D_800BE584 = -76;
@@ -665,54 +670,54 @@ void func_80025094(void) {
         gLookatEyeX = -128.0f;
         gLookatEyeY = 128.0f;
     }
-    func_800235E0();
+    Camera_ResetRotate();
 }
 
-void func_80025114(void) {
-    func_800235F4();
+void CameraUpdate_Merco_Trapped(void) {
+    Camera_ApplyRotate();
     if (gActiveFrames & 1) {
         D_800BE57C += 1;
     }
 }
 
-void func_8002515C(void) {
+void CameraInit_World4A(void) {
     D_800BE580 = -24;
     D_800BE57C = 2;
     D_800BE584 = -12;
 }
 
-void func_80025184(void) {
+void CameraUpdate_World4A(void) {
     D_800BE578 = (gScreenPosCurrentX.whole / 4) & 0x1FF;
     D_800BE57C = (gScreenPosCurrentX.whole / 8) & 0x1FF;
 }
 
-void func_800251CC(void) {
+void CameraInit_World4B(void) {
     D_800BE57C = 2;
     D_800BE584 = -12;
 }
 
-void func_800251E8(void) {
+void CameraUpdate_World4B(void) {
     D_800BE578 = ((gScreenPosCurrentX.whole / 4) & 0x1FF) + 0x80;
     D_800BE580 = (gScreenPosCurrentY.whole / 4) & 0x1FF;
     D_800BE57C = (gScreenPosCurrentX.whole / 8) & 0x1FF;
 }
 
-void func_80025254(void) {
+void CameraUpdate_AstersTryke(void) {
     D_800BE578 = (gScreenPosCurrentX.whole / 2) & 0x1FF;
     D_800BE580 = (gScreenPosCurrentY.whole / 2) & 0x1FF;
     D_800BE57C = (gScreenPosCurrentX.whole / 8) & 0x1FF;
 }
 
-void func_800252BC(void) {
+void CameraInit_PhoenixGamma(void) {
     D_800BE704 = 1;
     D_800BE708 = 1;
-    gLetterboxMode = 2;
-    func_800235E0();
+    gLetterboxMode = LETTERBOX_VERTICAL;
+    Camera_ResetRotate();
 }
 
-void func_800252F8(void) {
-    func_800235F4();
-    if (gLetterboxMode == 2) {
+void CameraUpdate_PhoenixGamma(void) {
+    Camera_ApplyRotate();
+    if (gLetterboxMode == LETTERBOX_VERTICAL) {
         if (gScreenPosCurrentY.whole < 0x100) {
             gScreenPosCurrentY.whole += 0x400;
             gScreenPosTargetY.whole += 0x400;
@@ -724,13 +729,13 @@ void func_800252F8(void) {
     }
 }
 
-void func_80025380(void) {
+void CameraInit_Leo(void) {
     D_800BE578 = 2;
     D_800BE580 = -12;
     D_800BE70C = 4;
 }
 
-void func_800253A8(void) {
+void CameraUpdate_Leo(void) {
 }
 
 void func_800253B0(void) {
@@ -792,10 +797,10 @@ void func_800253B0(void) {
             break;
         }
     }
-    D_800CC58C[gCurrentScene]();
+    gCameraUpdates[gCurrentScene]();
 }
 
-void func_80025578(void) {
+void PlaySceneBGM(void) {
     if (gSceneBgm[gCurrentScene] != 0xff) {
         Sound_PlayMusic(gSceneBgm[gCurrentScene]);
     }
@@ -804,13 +809,13 @@ void func_80025578(void) {
 void func_800255B4(u16 scene) {
     D_800D16C4[0] = 0;
     D_800BE6A8 = 0;
-    D_800BE710 = 0;
+    D_800BE710 = FALSE;
     gScreenPosTargetX.raw = 0;
     gScreenPosCurrentX.raw = 0;
-    D_800BE568.whole = D_800CC6EC[scene * 8];
-    D_800BE56C.whole = D_800CC6EC[scene * 8 + 1];
-    D_800BE574.whole = D_800CC6EC[scene * 8 + 2];
-    D_800BE570.whole = D_800CC6EC[scene * 8 + 3];
+    gScreenBoundX0.whole = D_800CC6EC[scene * 8];
+    gScreenBoundX1.whole = D_800CC6EC[scene * 8 + 1];
+    gScreenBoundY1.whole = D_800CC6EC[scene * 8 + 2];
+    gScreenBoundY0.whole = D_800CC6EC[scene * 8 + 3];
     gScreenPosCurrentX.whole = D_800CC6EC[scene * 8 + 4];
     gActors->posX.whole = D_800CC6EC[scene * 8 + 5];
     gScreenPosNextX.whole = gScreenPosCurrentX.whole;
@@ -861,7 +866,7 @@ void func_800255B4(u16 scene) {
     gLifebarHead.graphicIndex = GINDEX_LIFEHEADBLINK;
     gLifebarHead.posX.whole = -0x7C;
     gLifebarHead.posY.whole = 0x80;
-    D_800CA230 = 0;
+    gIsPlayerInactive = FALSE;
     gLetterboxMode = LETTERBOX_DEFAULT;
     D_800BE70C = 0;
 
@@ -943,8 +948,8 @@ void func_800255B4(u16 scene) {
         break;
     }
     D_800BE634 = 0;
-    D_800CC42C[scene]();
-    D_800CC58C[scene]();
+    gCameraInits[scene]();
+    gCameraUpdates[scene]();
 }
 
 void func_80025B7C(void) {
@@ -1001,7 +1006,7 @@ void func_80025C38(void) {
     }
     func_80025BFC();
     func_80025B7C();
-    D_800CC42C[gCurrentScene]();
-    D_800CC58C[gCurrentScene]();
-    func_80025578();
+    gCameraInits[gCurrentScene]();
+    gCameraUpdates[gCurrentScene]();
+    PlaySceneBGM();
 }
