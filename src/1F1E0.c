@@ -2440,8 +2440,8 @@ void Pause_PrintPlayTime(void) {
     u32 time_remain;
 
     // 100 days * 24 hr/day * 60 min/hr * 60 sec/min * 60Hz = 518,400,000
-    if (gFramesInPlayTime >= 518400000) {
-        gFramesInPlayTime = 518399999;
+    if (gFramesInPlayTime >= FILE_PLAY_TIME_MAX) {
+        gFramesInPlayTime = FILE_PLAY_TIME_MAX - 1;
     }
     time_remain = gFramesInPlayTime / 60;
     val = time_remain % 60;

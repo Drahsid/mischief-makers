@@ -421,10 +421,10 @@ void func_80005828(void) {
     func_80005770();
 }
 
-void func_80005860(u16 actor_index, u16 x, u16 y, uintptr_t arg3) {
+void func_80005860(u16 actor_index, u16 x, u16 y, uintptr_t palette) {
     Text_InitActorGList(actor_index, gGraphicListGemIcon, x, y, 0);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-    gActors[actor_index].palette_18C = (u16*)arg3;
+    gActors[actor_index].palette_18C = (u16*)palette;
 }
 
 void func_800058E0(u16 actor_index, u16 x, u16 y, u16 save_slot, u16* arg4) {
