@@ -1120,7 +1120,7 @@
           }
         },
         {
-          "name": "func_800073CC",
+          "name": "NameEntry_PrintKeyboardHIRA",
           "size": "428",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1136,7 +1136,7 @@
           }
         },
         {
-          "name": "func_800075A8",
+          "name": "NameEntry_PrintKeyboardKATA",
           "size": "328",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1144,7 +1144,7 @@
           }
         },
         {
-          "name": "func_800076F0",
+          "name": "NameEntry_PrintKeyboardENG",
           "size": "436",
           "fuzzy_match_percent": 100.0,
           "metadata": {
