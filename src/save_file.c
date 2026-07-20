@@ -1,4 +1,5 @@
 #include "common.h"
+#include "save_file.h"
 #include "soft_reset.h"
 #include "stage.h"
 #include "438E0.h"
@@ -9,6 +10,9 @@
 #define SEC_PER_DAY  (24 * SEC_PER_HOUR)
 #define MSEC_PER_DAY (100 * SEC_PER_DAY)
 
+#define DEFAULT_RECORD_TIME (10 * SEC_PER_HOUR)
+#define FILE_PLAY_TIME_MAX (6000 * SEC_PER_DAY)
+
 enum {
     SAVE_SLOT_0,
     SAVE_SLOT_1,
@@ -18,19 +22,28 @@ enum {
 #define SAVE_SLOT_NAME_LENGTH 11
 
 // .data
-u8 D_800C4F20[] = {
-    0x54, 0x52, 0x45, 0x41, 0x30, 0x37, 0x32, 0x32,
+u8 gEEPROMID[] = {
+    'T', 'R', 'E', 'A', '0', '7', '2', '2'
 };
 
-u16 gTimeRecords[] = { // list of stage times
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
-    0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0, 0x8CA0,
+// list of stage times, backed by EEPROM
+u16 gTimeRecords[] = {
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
+    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME
 };
 
 u16 D_800C4FA8[] = { // save file name: "Start"
@@ -162,8 +175,8 @@ u16 D_800C5394[] = {
     0x00AA, 0x00BE, 0x00BC, 0x00BD, 0x0000, 0x00B1, 0x00B3, 0x00C6, 0x8FFF
 };
 
-// backed by EEPROM - put in common struct?
-//-----------------------------------
+//------------------------------------------------------------------------------
+// gFileNames through gFilePlayTimes are backed by EEPROM common 0x48 byte transfers
 u16 gFileNames[SAVE_SLOT_COUNT][SAVE_SLOT_NAME_LENGTH];
 u8 gFileAges[SAVE_SLOT_COUNT];
 u8 gFileSexes[SAVE_SLOT_COUNT];
@@ -171,11 +184,21 @@ u16 gFileRedGems[SAVE_SLOT_COUNT];
 u16 gFileYellowGems[SAVE_SLOT_COUNT];
 u64 gFilePlayTimes[SAVE_SLOT_COUNT];
 
+// code does not match if encapsulated in a struct
+#define SAVE_FILE_DATA ((u8*)gFileNames)
+#define SAVE_FILE_SIZE (sizeof(gFileNames) + sizeof(gFileAges) + sizeof(gFileSexes) + \
+                        sizeof(gFileRedGems) + sizeof(gFileYellowGems) + sizeof(gFilePlayTimes))
+//------------------------------------------------------------------------------
+// gFestivalRecords through D_80171B19 are backed by EEPROM common 0x32 byte transfers
 u32 gFestivalRecords[FESTGAME_TOTAL];
-//-----------------------------------
 u64 gYellowGemBitfield;
 u8 gWorldProgress;
 u8 D_80171B19; // set when festival games are won.
+#define FESTIVAL_SAVE_DATA ((u8*)gFestivalRecords)
+#define FESTIVAL_SAVE_SIZE (sizeof(gFestivalRecords) + sizeof(gYellowGemBitfield) + \
+                            sizeof(gWorldProgress) + sizeof(D_80171B19))
+//------------------------------------------------------------------------------
+
 u16 D_80171B1A;
 u16 D_80171B1C;
 u16 D_80171B1E; // actor index
@@ -248,7 +271,7 @@ void func_80004FFC(u8 save_slot) {
 void func_800050B4(void) {
     u16 index;
 
-    for (index = 0; index < 10; index++) { gFestivalRecords[index] = D_800C4FC0[index]; }
+    for (index = 0; index < ARRAYLENGTH(gFestivalRecords); index++) { gFestivalRecords[index] = D_800C4FC0[index]; }
 
     // unsure the purpose of this zero, shift, and zero
     gYellowGemBitfield = 0;
@@ -258,38 +281,37 @@ void func_800050B4(void) {
     gWorldProgress = 0;
     D_80171B19 = 0;
 
-    for (index = 0; index < 0x40; index++) {  gTimeRecords[index] = 0x8CA0; }
+    for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {  gTimeRecords[index] = DEFAULT_RECORD_TIME; }
 }
 
 void func_80005188(void) {
     u16 index;
-    u8 buffer[8];
+    u8 eeprom_id[8];
     u8 count;
     u8 has_8FFF;
 
     osEepromProbe(&gControllerReadMessageQueue);
-    osEepromLongRead(&gControllerReadMessageQueue, 0, buffer, 8);
-    for (index = 0, count = 0; index < 8; index++) {
-        if (buffer[index] != D_800C4F20[index]) {
+    osEepromLongRead(&gControllerReadMessageQueue, 0, eeprom_id, sizeof(eeprom_id));
+    for (index = 0, count = 0; index < ARRAYLENGTH(gEEPROMID); index++) {
+        if (eeprom_id[index] != gEEPROMID[index]) {
             count++;
         }
     }
     if (count != 0) {
         func_80004FFC(0);
         func_80004FFC(1);
-        // TODO: check these write lengths against variable lengths
-        osEepromLongWrite(&gControllerReadMessageQueue, 2, (u8* ) gFileNames, 0x48);
+        osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
         func_800050B4();
-        osEepromLongWrite(&gControllerReadMessageQueue, 0xC, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, 0x80);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x24, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, 0x80);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0, D_800C4F20, 8);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, sizeof(gTimeRecords));
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, sizeof(gTimeRecords));
+        osEepromLongWrite(&gControllerReadMessageQueue, 0, gEEPROMID, sizeof(gEEPROMID));
     }
     else {
         // 1st ---------------------------------------------------------------------------------
-        osEepromLongRead(&gControllerReadMessageQueue, 2, (u8* ) gFileNames, 0x48);
-        osEepromLongRead(&gControllerReadMessageQueue, 0xC, (u8* ) gFestivalRecords, 0x32);
+        osEepromLongRead(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
+        osEepromLongRead(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         count = 0;
         for (index = 0; index < SAVE_SLOT_NAME_LENGTH; index++) {
             if (((gFileNames[SAVE_SLOT_0][index] != 0) && (gFileNames[SAVE_SLOT_0][index] <= 80)) || 
@@ -303,25 +325,25 @@ void func_80005188(void) {
                 has_8FFF = TRUE;
             }
         }
-        
+
         if ((count == 1) || (!has_8FFF) ||
             (gFileAges[SAVE_SLOT_0] >= 100) ||
             (gFileSexes[SAVE_SLOT_0] >= 2) ||
             (gFileRedGems[SAVE_SLOT_0] >= 10000) ||
             (gFileYellowGems[SAVE_SLOT_0] >= 54) ||
             (CountYellowGems() != gFileYellowGems[SAVE_SLOT_0]) ||
-            (gFilePlayTimes[SAVE_SLOT_0] >= 518400000) || // (60 * MSEC_PER_DAY) or (6000 * SEC_PER_DAY) ?
+            (gFilePlayTimes[SAVE_SLOT_0] >= FILE_PLAY_TIME_MAX) ||
             (gWorldProgress >= 60))
         {
             func_80004FFC(0);
-            osEepromLongWrite(&gControllerReadMessageQueue, 2, (u8* ) gFileNames, 0x48);
+            osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
             func_800050B4();
-            osEepromLongWrite(&gControllerReadMessageQueue, 0xC, (u8* ) gFestivalRecords, 0x32);
+            osEepromLongWrite(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         }
 
         // 2nd ---------------------------------------------------------------------------------
-        osEepromLongRead(&gControllerReadMessageQueue, 2, (u8* ) gFileNames, 0x48);
-        osEepromLongRead(&gControllerReadMessageQueue, 0x24, (u8* ) gFestivalRecords, 0x32);
+        osEepromLongRead(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
+        osEepromLongRead(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         count = 0;
         for (index = 0; index < SAVE_SLOT_NAME_LENGTH; index++) {
             if (((gFileNames[SAVE_SLOT_1][index] != 0) && (gFileNames[SAVE_SLOT_1][index] <= 80)) || 
@@ -342,13 +364,13 @@ void func_80005188(void) {
             (gFileRedGems[SAVE_SLOT_1] >= 10000) ||
             (gFileYellowGems[SAVE_SLOT_1] >= 54) ||
             (CountYellowGems() != gFileYellowGems[SAVE_SLOT_1]) ||
-            (gFilePlayTimes[SAVE_SLOT_1] >= 518400000) || // (60 * MSEC_PER_DAY) or (6000 * SEC_PER_DAY) ?
+            (gFilePlayTimes[SAVE_SLOT_1] >= FILE_PLAY_TIME_MAX) ||
             (gWorldProgress >= 60))
         {
             func_80004FFC(1);
-            osEepromLongWrite(&gControllerReadMessageQueue, 2, (u8* ) gFileNames, 0x48);
+            osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
             func_800050B4();
-            osEepromLongWrite(&gControllerReadMessageQueue, 0x24, (u8* ) gFestivalRecords, 0x32);
+            osEepromLongWrite(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         }
     }
 }
@@ -358,20 +380,20 @@ void func_8000565C(void) {
 
     osEepromProbe(&gControllerReadMessageQueue);
     if (gCurrentSaveSlot != 0) {
-        osEepromLongRead(&gControllerReadMessageQueue, 0x24, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongRead(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, 0x80);
+        osEepromLongRead(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongRead(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, sizeof(gTimeRecords));
     }
     else {
-        osEepromLongRead(&gControllerReadMessageQueue, 0xC, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongRead(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, 0x80);
+        osEepromLongRead(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongRead(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, sizeof(gTimeRecords));
     }
     if (D_80171B19 >= 2) {
         D_80171B19 = 0;
     }
     func_80004F24();
-    for (index = 0; index < 0x40; index++) {
-        if (gTimeRecords[index] >= 0x8CA1) {
-            gTimeRecords[index] = 0x8CA0;
+    for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {
+        if (gTimeRecords[index] > DEFAULT_RECORD_TIME) {
+            gTimeRecords[index] = DEFAULT_RECORD_TIME;
         }
     }
 }
@@ -380,12 +402,12 @@ void func_80005770(void) {
     osEepromProbe(&gControllerReadMessageQueue);
     osEepromLongWrite(&gControllerReadMessageQueue, 0x2, (u8* ) gFileNames, 0x48);
     if (gCurrentSaveSlot != 0) {
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x24, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, 0x80);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, sizeof(gTimeRecords));
     }
     else {
-        osEepromLongWrite(&gControllerReadMessageQueue, 0xC, (u8* ) gFestivalRecords, 0x32);
-        osEepromLongWrite(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, 0x80);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
+        osEepromLongWrite(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, sizeof(gTimeRecords));
     }
 }
 
@@ -592,8 +614,8 @@ void func_80006360(u16 actor_index) {
         func_80083358(3, 1, gFileNames[SAVE_SLOT_0], 3);
     }
     count = 0;
-    Text_InitActorGList((actor_index + 9), D_800E13FC, 0xFF80, 0xFFE0, 0);
-    Text_PrintStringRGB((actor_index + 0x12), D_800C5028, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
+    Text_InitActorGList(actor_index + 0x09, D_800E13FC, 0xFF80, 0xFFE0, 0);
+    Text_PrintStringRGB(actor_index + 0x12, D_800C5028, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
     for (index = 0; index < SAVE_SLOT_NAME_LENGTH; index++) {
         if (D_800C4FA8[index] != gFileNames[SAVE_SLOT_1][index]) {
             count++;
