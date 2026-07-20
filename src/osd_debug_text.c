@@ -2,6 +2,8 @@
 #include "boot.h"
 #include "font.h"
 
+extern size_t strlen(const char* str);
+
 typedef struct {
     u16 isSet;
     char text[80];
