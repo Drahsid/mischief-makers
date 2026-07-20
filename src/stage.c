@@ -2090,36 +2090,36 @@ void func_8001A584(void) {
 
 // returns the time rank of (stage) compared to (time)
 // 0=S Rank, 1=A, 2=B, 3=C, 4=D
-s16 WorldMap_GetStageRank(u16 time, u16 stage) {
-    if (time < gStageTimesToBeat[stage]) {
-        return 0;
+s16 WorldMap_GetStageRank(u16 time_ticks, u16 stage) {
+    if (time_ticks < gStageTimesToBeat[stage]) {
+        return RANK_S;
     }
 
-    if (time < gStageTimesToBeat[stage] + 1800) {
-        return 1;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(30)) {
+        return RANK_A;
     }
 
-    if (time < gStageTimesToBeat[stage] + 7200) {
-        return 2;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(120)) {
+        return RANK_B;
     }
 
-    if (time < gStageTimesToBeat[stage] + 18000 && time < STAGE_MAX_TIME) {
-        return 3;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(300) && time_ticks < STAGE_MAX_TIME) {
+        return RANK_C;
     }
 
-    return 4;
+    return RANK_D;
 }
 
 // print the Rank letter for (stage) based on (time)
 void WorldMap_PrintRankLetter(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = WorldMap_GetStageRank(time, stage);
-    func_8008379C(arg0, arg1, gRankLetters2[index], arg4);
+    s16 rank = WorldMap_GetStageRank(time, stage);
+    func_8008379C(arg0, arg1, gRankLetters2[rank], arg4);
 }
 
 // print the Rank review for (stage) based on (time)
 void WorldMap_PrintRankReview(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = WorldMap_GetStageRank(time, stage);
-    func_80083810(arg0, arg1, gRankResults[index], arg4);
+    s16 rank = WorldMap_GetStageRank(time, stage);
+    func_80083810(arg0, arg1, gRankResults[rank], arg4);
 }
 
 void WorldMap_PrintRankLetterReview(void) {

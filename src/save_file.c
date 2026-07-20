@@ -5,14 +5,6 @@
 #include "438E0.h"
 #include "82F80.h"
 
-#define MIN_PER_HOUR (60)
-#define SEC_PER_HOUR (60 * MIN_PER_HOUR)
-#define SEC_PER_DAY  (24 * SEC_PER_HOUR)
-#define MSEC_PER_DAY (100 * SEC_PER_DAY)
-
-#define DEFAULT_RECORD_TIME (10 * SEC_PER_HOUR)
-#define FILE_PLAY_TIME_MAX (6000 * SEC_PER_DAY)
-
 #define NAME_ENTRY_CHARSET  gActors[0xB9].unk_0A0
 #define NAME_ENTRY_POSITION gActors[0xB8].unk_0A0
 #define CHAR_SELECT_ROW     gActors[0xB2].unk_0A0
@@ -39,22 +31,22 @@ u8 gEEPROMID[] = {
 
 // list of stage times, backed by EEPROM
 u16 gTimeRecords[] = {
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME,
-    DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME, DEFAULT_RECORD_TIME
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME,
+    STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME
 };
 
 // default save file name: "Start     "
@@ -293,7 +285,7 @@ void func_800050B4(void) {
     gWorldProgress = 0;
     D_80171B19 = 0;
 
-    for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {  gTimeRecords[index] = DEFAULT_RECORD_TIME; }
+    for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {  gTimeRecords[index] = STAGE_MAX_TIME; }
 }
 
 void func_80005188(void) {
@@ -404,8 +396,8 @@ void func_8000565C(void) {
     }
     func_80004F24();
     for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {
-        if (gTimeRecords[index] > DEFAULT_RECORD_TIME) {
-            gTimeRecords[index] = DEFAULT_RECORD_TIME;
+        if (gTimeRecords[index] > STAGE_MAX_TIME) {
+            gTimeRecords[index] = STAGE_MAX_TIME;
         }
     }
 }
@@ -442,16 +434,16 @@ void func_800058E0(u16 actor_index, u16 x, u16 y, u16 save_slot, u16* arg4) {
 }
 
 u16 func_800059A4(u16 actor_index, u16 x, u16 y, u16 index) {
-    u32 time;
+    u32 time_sec;
 
-    time = gFilePlayTimes[index] / 60;
-    if (time >= MSEC_PER_DAY - 1) {
-        time = MSEC_PER_DAY - 1;
+    time_sec = gFilePlayTimes[index] / 60;
+    if (time_sec >= (100 * SEC_PER_DAY - 1)) {
+        time_sec = (100 * SEC_PER_DAY - 1);
     }
-    Text_Print2Digits(actor_index + 0x0, (time / SEC_PER_DAY),                 x + 0x00, y, 0, gTextPalettes[2]);
-    Text_Print2Digits(actor_index + 0x4, (time % SEC_PER_DAY) / SEC_PER_HOUR,  x + 0x30, y, 0, gTextPalettes[2]);
-    Text_Print2Digits(actor_index + 0x8, (time % SEC_PER_HOUR) / MIN_PER_HOUR, x + 0x60, y, 0, gTextPalettes[2]);
-    Text_Print2Digits(actor_index + 0xB, (time % MIN_PER_HOUR),                x + 0x90, y, 0, gTextPalettes[2]);
+    Text_Print2Digits(actor_index + 0x0, (time_sec / SEC_PER_DAY),                 x +   0, y, 0, gTextPalettes[2]);
+    Text_Print2Digits(actor_index + 0x4, (time_sec % SEC_PER_DAY) / SEC_PER_HOUR,  x +  48, y, 0, gTextPalettes[2]);
+    Text_Print2Digits(actor_index + 0x8, (time_sec % SEC_PER_HOUR) / MIN_PER_HOUR, x +  96, y, 0, gTextPalettes[2]);
+    Text_Print2Digits(actor_index + 0xB, (time_sec % SEC_PER_MIN),                 x + 144, y, 0, gTextPalettes[2]);
     return actor_index + 0xE;
 }
 
@@ -605,7 +597,8 @@ void func_80006360(u16 actor_index) {
         func_80083358(3, 0, gFileNames[SAVE_SLOT_0], 0);
         if (gFileSexes[SAVE_SLOT_0] != 0) {
             var_v0 = 0xED;
-        } else {
+        }
+        else {
             var_v0 = 0xF4;
         }
         func_800831D0(3, 1, var_v0, 1);
@@ -638,7 +631,8 @@ void func_80006360(u16 actor_index) {
         func_800836A0(3, 0, gFileNames[SAVE_SLOT_1], 0);
         if (gFileSexes[SAVE_SLOT_1] != 0) {
             var_v0 = 0xED;
-        } else {
+        }
+        else {
             var_v0 = 0xF4;
         }
         func_80083518(3, 1, var_v0, 1);
@@ -730,7 +724,8 @@ void func_80006EDC(u16 actor_index) {
         if (gActors[2].var_158 == 0xFF) {
             gActors[2].var_158 = 0;
         }
-    } else {
+    }
+    else {
         gActors[2].var_158 += 0x10;
         if (gActors[2].var_158 == 0x80) {
             gActors[2].var_158 = 0x7F;
@@ -1016,7 +1011,8 @@ void GameState_FileSelect(void) {
                 else {
                     func_80006B1C(1);
                 }
-            } else {
+            }
+            else {
                 if (gCurrentSaveSlot == 2) {
                     Text_PrintStringRGBScale(0x9A, D_800C505C, 0xFF96, 0xFFAE, 0, 0, 0, 0, 0.5f, 1.0f);
                     Text_PrintStringRGB(0x43, D_800C5068, 0xFFD0, 0x58, 0, 0, 0xFF, 0xFF);
@@ -1125,7 +1121,8 @@ void GameState_FileSelect(void) {
                 if (CHAR_SELECT_COLUMN == 0xFF) {
                     CHAR_SELECT_COLUMN = 0x10;
                 }
-            } else {
+            }
+            else {
                 if (CHAR_SELECT_COLUMN == 0xFF) {
                     CHAR_SELECT_COLUMN = 2;
                 }
@@ -1167,7 +1164,8 @@ void GameState_FileSelect(void) {
                     CHAR_SELECT_COLUMN = 0x10;
                 break;
                 }
-            } else if (CHAR_SELECT_ROW == 0xFF) {
+            }
+            else if (CHAR_SELECT_ROW == 0xFF) {
                 if (CHAR_SELECT_COLUMN < 0xA) {
                     CHAR_SELECT_ROW = 4;
                 }
@@ -1210,7 +1208,8 @@ void GameState_FileSelect(void) {
             else if (CHAR_SELECT_ROW == 5) {
                 if (CHAR_SELECT_COLUMN < 0xA) {
                     CHAR_SELECT_ROW = 0;
-                } else {
+                }
+                else {
                     CHAR_SELECT_ROW = 5;
                     if (CHAR_SELECT_COLUMN < 0xD) {
                         CHAR_SELECT_COLUMN = 0;
@@ -1392,7 +1391,8 @@ void GameState_FileSelect(void) {
                 else {
                     gSelectedAge += 1;
                 }
-            } else if ((gSelectedAge / 10) == 9) {
+            }
+            else if ((gSelectedAge / 10) == 9) {
                 gSelectedAge -= 90;
             }
             else {

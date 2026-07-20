@@ -51,9 +51,27 @@ gActors[2].velocityX.raw
 #define SOUND_TEST_SFX_INDEX \
 gActors[3].velocityX.raw
 
-// max time for stages
-#define STAGE_MAX_TIME 36000
+#define TICKS_PER_SEC (60)
+#define SEC_PER_MIN   (60)
+#define MIN_PER_HOUR  (60)
+#define HOUR_PER_DAY  (24)
+#define SEC_PER_HOUR  (SEC_PER_MIN * MIN_PER_HOUR)
+#define SEC_PER_DAY   (HOUR_PER_DAY * SEC_PER_HOUR)
+#define TICKS_PER_MIN (TICKS_PER_SEC * SEC_PER_MIN)
+#define TICKS_PER_DAY (TICKS_PER_SEC * SEC_PER_DAY)
+#define SEC_TO_TICK(val) ((val) * TICKS_PER_SEC)
 
+// max time for stages
+#define STAGE_MAX_TIME (10 * TICKS_PER_MIN)
+#define FILE_PLAY_TIME_MAX (100 * TICKS_PER_DAY)
+
+enum StageRank {
+    RANK_S,
+    RANK_A,
+    RANK_B,
+    RANK_C,
+    RANK_D
+};
 
 // abbreviation for overall Rank graphics
 
