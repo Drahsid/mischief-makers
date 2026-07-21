@@ -174,7 +174,7 @@ void func_801B0CBC_7BCC0C(u16 actor_index) {
 u16 func_801B0D80_7BCCD0(u16 actor_index) {
     u8 result;
 
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0234375));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(3.0/128));
     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.5), FIXED_UNIT(0.21875));
 
     result = FALSE;

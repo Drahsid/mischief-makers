@@ -3640,7 +3640,7 @@ void func_80094FE4(u16 actor_index) {
         /* fallthrough */
     case 2:
         gActors[actor_index].var_158 -= FIXED_UNIT(0.5);
-        gActors[actor_index].unk_17C += FIXED_UNIT(0.00390625);
+        gActors[actor_index].unk_17C += FIXED_UNIT(1.0/256);
         gActors[actor_index].unk_178 = Math_ApproachS32(gActors[actor_index].unk_178, FIXED_UNIT(-32.0), gActors[actor_index].unk_17C);
         gActors[actor_index].unk_174 += FIXED_UNIT(2.0);
         if (gActors[actor_index].unk_178 <= FIXED_UNIT(-24.0)) {

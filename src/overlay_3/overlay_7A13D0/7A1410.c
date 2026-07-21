@@ -1819,7 +1819,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
         case 0x12:
             func_801B4048_7A4B58(actor_index);
-            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(0.00390625)) + FIXED_UNIT(2.5));
+            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(1.0/256)) + FIXED_UNIT(2.5));
             actor->unk_184_s16[0] = 0xCF0;
             actor->unk_184_s16[1] = 0x670;
             if (Rand() & 1) {
@@ -1846,7 +1846,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
         case 0x22:
             func_801B4048_7A4B58(actor_index);
-            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(0.00390625)) - FIXED_UNIT(3.5));
+            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(1.0/256)) - FIXED_UNIT(3.5));
             actor->state = 0x130;
         case 2:
             actor->unk_184_s16[0] = 0xC00;

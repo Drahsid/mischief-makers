@@ -639,7 +639,7 @@ void func_80197FA0_683AC0(u16 actor_index) {
         }
     }
     else {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-0.1875), FIXED_UNIT(0.046875));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-0.1875), FIXED_UNIT(3.0/64));
 
         if (gActors[actor_index].unk_184 < gActors[actor_index].unk_17C) {
             gActors[actor_index].unk_188 |= 0x20000000;
@@ -775,7 +775,7 @@ void func_8019911C_684C3C(u16 actor_index) {
         }
     }
     else {
-        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(-3.0/16), FIXED_UNIT(0.046875));
+        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(-3.0/16), FIXED_UNIT(3.0/64));
 
         if (actor->unk_184 < actor->unk_17C) {
             actor->var_150 |= 0x20000000;

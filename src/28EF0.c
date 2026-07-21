@@ -6195,8 +6195,8 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
                         gActors[index].var_110 = -0.05f;
                         gActors[index].unk_114 = -0.05f;
                         gActors[index].unk_148 = 15.0f;
-                        gActors[index].velocityX.raw = vel_x * FIXED_UNIT(0.0234375);
-                        gActors[index].velocityY.raw = vel_y * FIXED_UNIT(0.0234375);
+                        gActors[index].velocityX.raw = vel_x * FIXED_UNIT(3.0/128);
+                        gActors[index].velocityY.raw = vel_y * FIXED_UNIT(3.0/128);
                     }
                 }
             }
@@ -6546,7 +6546,7 @@ void func_8003B8CC(u16 actor_index) {
         gActors[actor_index].unk_14C = 0.0f;
         /* fallthrough */
     case 1:
-        gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0, FIXED_UNIT(0.00390625));
+        gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0, FIXED_UNIT(1.0/256));
         gActors[actor_index].unk_174 -= FIXED_UNIT(3.0/16);
         if ((gActors[actor_index].unk_174 < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
             gActors[actor_index].state++;
