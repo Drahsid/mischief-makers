@@ -2258,7 +2258,7 @@ void func_801BBEBC_7DED8C(void) {
                 gStageState++;
                 func_80045F14(D_801BE204_7E10D4);
                 D_800D28FC &= ~2;
-                func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
+                func_8007CFE0(0xC7, ACTOR38_FIGHT, -40, 0, 0, 120);
                 gTeranPlayerActor.var_0D8 &= ~1;
                 gActors[0x40].var_0D8 &= ~1;
                 D_800BE544 = 0x8000;

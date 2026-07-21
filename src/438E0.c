@@ -1527,7 +1527,7 @@ s32 Transition_StageExit(void) {
 void SpawnText_READY(void) {
     gStageState++;
     gStageTimer = 160;
-    func_8007CFE0(0xC7, 5, -40, 0, 0, 120);
+    func_8007CFE0(0xC7, ACTOR38_READY, -40, 0, 0, 120);
 }
 
 // Spawn "READY!" text if transition completes
@@ -1543,7 +1543,7 @@ s32 SpawnText_FIGHT(u16 state, u32 actor_flags) {
     gStageTimer--;
     if (gStageTimer < 0) {
         D_800D28FC &= ~6;
-        func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
+        func_8007CFE0(0xC7, ACTOR38_FIGHT, -40, 0, 0, 120);
         gPlayerActor.flags |= actor_flags;
         D_800BE5F4.unk_00_u32 = 5;
         gStageState = state;

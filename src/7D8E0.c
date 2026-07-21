@@ -5,9 +5,142 @@
 
 extern u16 D_800D9A54[];
 
-extern u8 D_800E0F00[]; // an array that stores a BCD-ish number.
-extern s16 D_800E0F08[]; // x,y pairs used in func_8007D384
-extern u16* D_800E0F88[];
+// an array that stores a BCD-ish number.
+u8 D_800E0F00[8] = {0};
+
+ // x,y pairs used in func_8007D384
+s16 D_800E0F08[] = {
+    0x10,   0xFFB4, 0xDC, 0x1C,   0xFFC0, 0xFFB5, 0x10,
+    0xFFBA, 0xDC,   0x28, 0xFFB0, 0xFFC4, 0x448,  0x44A
+};
+
+// ""
+u16 sStrBlank[] = {ALPHA_NULL};
+
+// "まりな"/ "Marina"
+u16 sStrMarina[] = {
+    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 0x30),
+    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_RI, ALPHA_JP_HIRA_NA,
+    ALPHA_NULL
+};
+
+// "すてぃんが" / "Stinga"
+u16 sStrStinga[] = {
+    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 0x30),
+    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    ALPHA_JP_HIRA_SU,ALPHA_JP_HIRA_TE,ALPHA_JP_HIRA_SMALL_I,ALPHA_JP_HIRA_N,ALPHA_JP_HIRA_GA,
+    ALPHA_NULL
+};
+
+// "STAGE CLEAR"
+u16 sStrStageClear[] = {
+    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 4),
+    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 9),
+    ALPHA_EN_UPPER_S, ALPHA_EN_UPPER_T, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_G, ALPHA_EN_UPPER_E,
+    (APLHA_CMD_UNK15 | APLHA_CMD_XOFF | 6), // used as space char
+    ALPHA_EN_UPPER_C, ALPHA_EN_UPPER_L, ALPHA_EN_UPPER_E, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_R,
+    ALPHA_NULL
+};
+
+// "R E A D Y !"
+u16 sStrREADY[] = {
+    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 16),
+    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    ALPHA_EN_UPPER_R, ALPHA_EN_UPPER_E, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_D, ALPHA_EN_UPPER_Y, ALPHA_EN_EXCLAMATION,
+    ALPHA_NULL
+};
+
+// "F I G H T !"
+u16 sStrFIGHT[] = {
+    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 20),
+    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    ALPHA_EN_UPPER_F, ALPHA_EN_UPPER_I, ALPHA_EN_UPPER_G, ALPHA_EN_UPPER_H, ALPHA_EN_UPPER_T, ALPHA_EN_EXCLAMATION, 
+    ALPHA_NULL
+};
+
+u16* sActor38Strings[] = {
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrREADY,
+    sStrStageClear,
+    sStrFIGHT,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrStinga,
+    sStrMarina,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank,
+    sStrBlank
+};
 
 void func_8007CCE0(u32 val) {
     u16 count;
@@ -208,24 +341,24 @@ void func_8007D554(u16 actor_index) {
         gActors[actor_index].scaleY = 0.0f;
     }
     graphic_flags = 0;
-    vals = D_800E0F88[(u16)gActors[actor_index].var_110];
+    vals = sActor38Strings[(u16)gActors[actor_index].var_110];
     y = 0;
     x = 0;
     while (vals[0] != ALPHA_NULL) {
-        for (; vals[0] >= 0x8001; vals++) {
+        for (; vals[0] >= (APLHA_CMD_UNK15 + 1); vals++) {
             command = vals[0];
-            switch (command & 0x7F00) {
-            case 0x100:
+            switch (command & ALPHA_CMD_MASK) {
+            case APLHA_CMD_PALETTE:
                 var_s5 = command & 0xFF;
                 graphic_flags = ACTOR_GFLAG_PALETTE;
                 break;
-            case 0x200:
+            case APLHA_CMD_KERN:
                 gActors[actor_index].var_158 = command & 0xFF;
                 break;
-            case 0x4000:
+            case APLHA_CMD_XOFF:
                 x += command & 0xFF;
                 break;
-            case 0x400:
+            case APLHA_CMD_NEWLINE:
                 x = 0;
                 y -= 0x13;
                 break;
@@ -256,8 +389,8 @@ void func_8007D880(u16 actor_index, f32 arg1) {
     u16* vals;
 
     var_f20 = 0.0f;
-    for (vals = D_800E0F88[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
-        if (command & 0x8000) {
+    for (vals = sActor38Strings[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
+        if (command & APLHA_CMD_UNK15) {
             var_f20 += arg1 / 2.5;
         }
         else {
@@ -268,8 +401,8 @@ void func_8007D880(u16 actor_index, f32 arg1) {
     gActors[actor_index].scaleX = gActors[actor_index].scaleY * (var_f20 / (arg1 * 0.9));
     var_f20 = gActors[actor_index].scaleY * (-(var_f20 - arg1) / 2);
     var_f26 = gActors[actor_index].scaleY * arg1;
-    for (vals = D_800E0F88[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
-        if (command & 0x8000) {
+    for (vals = sActor38Strings[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
+        if (command & APLHA_CMD_UNK15) {
             var_f20 += (arg1 / 2.5) * gActors[actor_index].scaleY;
         }
         else {
@@ -479,7 +612,7 @@ void func_8007EA14(u16* str, s32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z,
     }
 
     for (str_it = str, var_s4 = 0; *str_it != ALPHA_NULL; str_it++, var_s4++) {
-        if ((*str_it & 0x4000) == 0) {
+        if ((*str_it & APLHA_CMD_XOFF) == 0) {
             free_actor = Actor_RangeFindInactive_90ToC0();
             if (free_actor != 0) {
                 gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_52;
@@ -523,7 +656,7 @@ void func_8007EA14(u16* str, s32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z,
         }
         else {
             if (sp86 == 0x10) {
-                x_off += 917504.0f;
+                x_off += FIXED_UNIT(14);
             }
         }
     }
@@ -573,7 +706,7 @@ void func_8007EF58(u16* vals, u32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z
 
     scale_numerator = 0.0f;
     for (; vals[0] != ALPHA_NULL; vals++) {
-        if (vals[0] & 0x8000) {
+        if (vals[0] & ALPHA_CMD_UNK15) {
             scale_numerator += scale_denominator / 2.5;
         }
         else {
