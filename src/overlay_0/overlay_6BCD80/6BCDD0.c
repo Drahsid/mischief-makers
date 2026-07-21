@@ -424,7 +424,7 @@ void func_80196C78_6C1948(u16 actor_index) {
 
     gActors[actor_index].posX.raw = Math_ApproachS32(gActors[actor_index].posX.raw, gPlayerActor.posX.raw, gActors[actor_index].var_154);
     gActors[actor_index].posY.raw = Math_ApproachS32(gActors[actor_index].posY.raw, gPlayerActor.posY.raw + FIXED_UNIT(6.0), gActors[actor_index].var_150);
-    gActors[actor_index].var_150 = Math_ApproachS32(gActors[actor_index].var_150, FIXED_UNIT(1.625), FIXED_UNIT(0.125));
+    gActors[actor_index].var_150 = Math_ApproachS32(gActors[actor_index].var_150, FIXED_UNIT(1.625), FIXED_UNIT(1.0/8));
     gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(3.75), FIXED_UNIT(0.02734375));
 }
 
@@ -1064,8 +1064,8 @@ void func_8019E564_6C9234(u16 actor_index) {
 
         case 0x202:
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, FIXED_UNIT(256.0), FIXED_UNIT(4.0));
-            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-0.625), FIXED_UNIT(0.05859375));
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/16));
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-5.0/8), FIXED_UNIT(0.05859375));
             break;
 
         case 0x3000:
@@ -1077,7 +1077,7 @@ void func_8019E564_6C9234(u16 actor_index) {
             gActors[actor_index].posZ.whole = 2;
 
         case 0x3001:
-            gActors[actor_index].posY.raw += FIXED_UNIT(0.1875);
+            gActors[actor_index].posY.raw += FIXED_UNIT(3.0/16);
             break;
 
         case 0x3002:
@@ -1144,7 +1144,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
         case 0x202:
             func_8019E7E8_6C94B8(actor_index);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, FIXED_UNIT(768.0), FIXED_UNIT(4.0));
-            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/16));
             gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-0.5625), FIXED_UNIT(0.05859375));
             break;
 
@@ -1157,7 +1157,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
             gActors[actor_index].unk_174 = 6;
 
         case 0x3001:
-            gActors[actor_index].posY.raw += FIXED_UNIT(0.1875);
+            gActors[actor_index].posY.raw += FIXED_UNIT(3.0/16);
             func_8019E7E8_6C94B8(actor_index);
             break;
 

@@ -4,7 +4,8 @@
 #include <PR/ultratypes.h>
 
 // decomposes each decimal digit of u32 into u8 array
-void func_8007CCE0(u32 val);
+void ToBCD(u32 val);
+extern u8 gBCDArray[8];
 
 void func_8007CD68(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, s32 arg6);
 
@@ -43,11 +44,11 @@ typedef enum{
 
 // the strings used in the ACTORTYPE_38-associated script start with special "command Codes"
 
-#define APLHA_CMD_PALETTE (1U << 8U) // string uses palette, lower byte determines index on D_800D9A54
-#define APLHA_CMD_KERN (1U << 9U) // lower byte used for determining space between characters
-#define APLHA_CMD_NEWLINE (1U << 10U) // string is moved 19 screen-pixels down, x is reset
-#define APLHA_CMD_XOFF (1U << 14U) // shift x by lower-byte screen-pixels.
+#define ALPHA_CMD_PALETTE (1U << 8U) // string uses palette, lower byte determines index on D_800D9A54
+#define ALPHA_CMD_KERN (1U << 9U) // lower byte used for determining space between characters
+#define ALPHA_CMD_NEWLINE (1U << 10U) // string is moved 19 screen-pixels down, x is reset
+#define ALPHA_CMD_XOFF (1U << 14U) // shift x by lower-byte screen-pixels.
 #define ALPHA_CMD_MASK 0x7F00
-#define APLHA_CMD_UNK15 (1U << 15U) // bit 15 determine presence of command bits
+#define ALPHA_CMD_UNK15 (1U << 15U) // bit 15 determine presence of command bits
 
 #endif

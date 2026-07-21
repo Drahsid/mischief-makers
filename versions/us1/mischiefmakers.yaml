@@ -323,8 +323,8 @@ segments:
       - [0x0D2410, data] # 62250
       - [0x0D24D0, data]
       - [0x0D34B0, .data, 42E90] 
-      - [0x0D34D0, data] 
-      - [0x0E1B00, .data, 7DBE0] 
+      - [0x0D34D0, data] # palette DB script?
+      - [0x0E1B00, .data, 7D8E0] 
       - [0x0E1CD0, data] 
       - [0x0E44A0, .data, E44A0] # previously placed in boot.c
       - [0x0E4760, data]

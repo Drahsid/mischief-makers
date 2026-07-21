@@ -60,7 +60,7 @@ void func_801A6C80_775130(u16 actor_index) {
                 }
 
                 if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-4.0)) {
-                    gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.1875);
+                    gActors[actor_index].velocityY.raw -= FIXED_UNIT(3.0/16);
                 }
 
                 if (gActors[actor_index].velocityX.raw != 0) {

@@ -246,6 +246,8 @@ OSD_PrintDeltaTime = 0x80083cf0; // type:func rom:0x848f0
 OSD_PrintfTime = 0x80083db8; // type:func rom:0x849b8
 
 Flower_Falling = 0x800844b8; // type:func
+Flower_TryCollide = 0x80084734; // type:func
+Flower_CheckCollide = 0x8008486C; // type:func
 Flower_TryGrounded = 0x800846A8; // type:func
 Flower_SetHitboxB = 0x80084924; // type:func
 Flower_TryGrab = 0x800848a0; // type:func
@@ -268,6 +270,8 @@ Clanbomb_SetScale = 0x80085e60; // type:func
 Clanbomb_StartFuse = 0x80086824; // type:func
 ActorUpdate_Clanbomb = 0x80086c7c; // type:func
 
+ClanbombTimer_PrintDigit = 0x80087568; // type:func
+ClanbombTimer_PrintTime = 0x80087698; // typeLfunc
 ActorUpdate_ClanbombTimer = 0x80087820; // type:func
 
 ActorUpdate_Spikeball_77 = 0x80088164; // type:func
@@ -377,6 +381,7 @@ Clanblob_Update = 0x80076d40; // type:func
 ActorUpdate_Clanblob = 0x80077c18; // type:func
 
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
+ToBCD = 0x8007CCE0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
 
 ActorUpdate_Type38 = 0x8007f37c; // type:func
@@ -398,6 +403,11 @@ NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
 
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
+
+LevelClear_HeartEyes = 0x800977B8; // type:func
+LevelClear_ZToSkip = 0x80097968; // type:func
+ActorUpdate_LevelClear = 0x80097A74; // type:func
+
 Trouble_RLE_Type2 = 0x80098B50; // type:func
 ActorUpdate_GraphicOnly = 0x800284b0; // type:func
 Actor_RangeFindInactive = 0x800284B8; // type:func

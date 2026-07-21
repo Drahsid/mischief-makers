@@ -159,7 +159,7 @@ void func_80065650(u16 actor_index) {
         rand_x[0] = Rand();
         rand_y = Rand();
         func_800339BC(
-            (gActors[actor_index].posX.raw - ((rand_x[0] & 0x1F) * FIXED_UNIT(0.625))) + FIXED_UNIT(10.0),
+            (gActors[actor_index].posX.raw - ((rand_x[0] & 0x1F) * FIXED_UNIT(5.0/8))) + FIXED_UNIT(10.0),
             (gActors[actor_index].posY.raw - ((rand_y & 0x1F) * FIXED_UNIT(0.75))) + FIXED_UNIT(18.0),
             gActors[actor_index].posZ.raw, 0
         );
@@ -481,7 +481,7 @@ void func_80069B94(u16 actor_index) {
 }
 
 void func_80069BF4(u16 actor_index) {
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.015625));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/64));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069C54.s")
@@ -1118,13 +1118,13 @@ void func_8007951C(u16 actor_index) {
     }
 
     if (gActors[actor_index].var_150 & 2) {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(1), FIXED_UNIT(0.0625));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(1), FIXED_UNIT(1.0/16));
         if (gActors[actor_index].unk_184 < gActors[actor_index].unk_17C) {
             gActors[actor_index].var_150 &= ~2;
         }
     }
     else {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -FIXED_UNIT(1), FIXED_UNIT(0.0625));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, -FIXED_UNIT(1), FIXED_UNIT(1.0/16));
         if (gActors[actor_index].unk_17C < (gActors[actor_index].unk_184 - 1)) {
             gActors[actor_index].var_150 |= 2;
         }
@@ -1559,7 +1559,7 @@ s32 func_8007AB44(u16 actor_index) {
     gPlayerActor.posY.raw = gActors[actor_index].posY.raw + (s32) var_f0;
     gPlayerPosX.raw = gPlayerActor.posX.raw + gScreenPosCurrentX.raw;
     gPlayerPosY.raw = gPlayerActor.posY.raw + gScreenPosCurrentY.raw;
-    gPlayerActor.posZ.raw = gActors[actor_index].posZ.raw - FIXED_UNIT(0.0625);
+    gPlayerActor.posZ.raw = gActors[actor_index].posZ.raw - FIXED_UNIT(1.0/16);
     var_a3 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole + 0x10;
     if (D_800D2918 < var_a3) {
         gActors[actor_index].posY.whole += D_800D2918 - var_a3;
@@ -1600,10 +1600,10 @@ s32 func_8007AB44(u16 actor_index) {
             gActors[actor_index].var_15C += FIXED_UNIT(0.25);
         }
         else if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-            gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, FIXED_UNIT(-0.5), FIXED_UNIT(0.0625));
+            gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, FIXED_UNIT(-0.5), FIXED_UNIT(1.0/16));
         }
         else {
-            gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, FIXED_UNIT(0.5), FIXED_UNIT(0.0625));
+            gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, FIXED_UNIT(0.5), FIXED_UNIT(1.0/16));
         }
     }
     var_a3 = gButtonHold & gButton_LTrig;
@@ -1619,7 +1619,7 @@ s32 func_8007AB44(u16 actor_index) {
     }
 
     if (gActors[actor_index].unk_118 >= 0.0f) {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, FIXED_UNIT(0.0625));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, FIXED_UNIT(1.0/16));
     }
     else if (gButtonHold & gButton_DUp) {
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, var_a3, FIXED_UNIT(0.25));
@@ -1874,7 +1874,7 @@ void func_8007B73C(u16 actor_index) {
             func_800798EC(actor_index);
         }
         else {
-            actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, 0, FIXED_UNIT(0.0625));
+            actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, 0, FIXED_UNIT(1.0/16));
             actor->velocityY.raw -= FIXED_UNIT(0.21875);
             if (actor->velocityY.raw < -FIXED_UNIT(2)) {
                 actor->state++;
@@ -2097,7 +2097,7 @@ void func_8007B73C(u16 actor_index) {
             Actor_UpdateVelocityY(actor_index, FIXED_UNIT(0.25));
         }
         else {
-            Actor_UpdateVelocityX(actor_index, FIXED_UNIT(0.03125));
+            Actor_UpdateVelocityX(actor_index, FIXED_UNIT(1.0/32));
             if (actor->velocityY.raw > 0) {
                 actor->velocityY.raw -= FIXED_UNIT(0.21875);
             }

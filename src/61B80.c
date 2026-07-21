@@ -1216,8 +1216,8 @@ s32 func_80064328(u16 actor_index) {
 }
 
 void func_800643CC(u16 actor_index) {
-    Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.03125), -(Rand() & 3), (Rand() & 3));
-    Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.015625), -(Rand() & 1), (Rand() & 1));
+    Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(1.0/32), -(Rand() & 3), (Rand() & 3));
+    Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(1.0/64), -(Rand() & 1), (Rand() & 1));
     switch (gActors[actor_index].var_15C) {
     case 0:
         if (func_80064328(actor_index) != 0) {

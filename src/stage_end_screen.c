@@ -6,7 +6,7 @@ u16 D_800E9740[] = {0x000C, 0x0001, 0x0001, 0x0004, 0x0001, 0x0000};
 u16 D_800E974C[] = {0x000D, 0x0002, 0x0002, 0x0005, 0x0002, 0x0000};
 u16 D_800E9758[] = {0x000E, 0x0003, 0x0003, 0x0006, 0x0003, 0x0000};
 s16 D_800E9764[4] = {0x0082, 0x008B, 0x0082, 0x007B};
-s16 D_800E976C[2] = {0x0012, 0x0024};
+s16 D_800E976C[2] = {0x0012, 0x0024}; // x-offset for heart eyes.
 
 void func_80096B70(void) {
     gActors[0x40].actorType = 0x1D;
@@ -130,7 +130,7 @@ void func_80096E14(s32 unused_arg0) {
 }
 
 void func_8009705C(u16 actor_index) {
-    gActors[actor_index].actorType = 0x75;
+    gActors[actor_index].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].state = 0x1000;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
@@ -145,7 +145,7 @@ void func_8009705C(u16 actor_index) {
 }
 
 void func_80097108(u16 actor_index) {
-    gActors[actor_index].actorType = 0x75;
+    gActors[actor_index].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].state = 0x2000;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4;
@@ -158,7 +158,7 @@ void func_80097108(u16 actor_index) {
 }
 
 void func_800971A0(u16 actor_index) {
-    gActors[actor_index].actorType = 0x75;
+    gActors[actor_index].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].state = 0x100;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
@@ -172,7 +172,7 @@ void func_800971A0(u16 actor_index) {
 }
 
 void func_8009723C(u16 actor_index) {
-    gActors[actor_index].actorType = 0x75;
+    gActors[actor_index].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].state = 0x110;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
@@ -188,11 +188,11 @@ void func_8009723C(u16 actor_index) {
 
 void func_800972DC(void) {
     u16 index;
-    gActors[0x50].actorType = 0x75;
+    gActors[0x50].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(0x50);
     gActors[0x50].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
     gActors[0x50].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    gActors[0x50].graphicIndex = 0x2D0;
+    gActors[0x50].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[0x50].scaleX = 20.0f;
     gActors[0x50].scaleY = 20.0f;
     gActors[0x50].base_0F8_s32[0x25] = (s32)D_800D8588;
@@ -203,12 +203,12 @@ void func_800972DC(void) {
 }
 
 void func_80097384(u16 actor_index) {
-    gActors[actor_index].actorType = 0x75;
+    gActors[actor_index].actorType = ACTORTYPE_LEVELCLEAR;
     Actor_Initialize(actor_index);
     gActors[actor_index].state = 0xC000;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    gActors[actor_index].graphicIndex = 0xCE;
+    gActors[actor_index].graphicIndex = GINDEX_PARTICLERING;
     gActors[actor_index].colorA = 0;
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = 0;
@@ -245,9 +245,9 @@ void func_80097428(void) {
 void func_80097574(void) {
     u16 actor_index;
 
-    if (gTeranPlayerActor.state < 3) {
+    if (gActors[0x30].state < 3) {
         if ((gActiveFrames % 3) == 0) {
-            actor_index = SpawnParticle_RingWaveBlue(0.3f, 0, 0, gTeranPlayerActor.posZ.whole);
+            actor_index = SpawnParticle_RingWaveBlue(0.3f, 0, 0, gActors[0x30].posZ.whole);
             if (actor_index != 0) {
                 gActors[actor_index].colorA = 0x40;
                 gActors[actor_index].colorB = 0x7F;
@@ -265,11 +265,11 @@ void func_80097574(void) {
         gActors[actor_index].flags |= (Rand() & ACTOR_FLAG_FLIPPED) + ACTOR_FLAG_UNK15;
         gActors[actor_index].scaleX = 2.0f;
         gActors[actor_index].scaleY = 0.0f;
-        gActors[actor_index].colorA = gTeranPlayerActor.var_15C * 4;
+        gActors[actor_index].colorA = gActors[0x30].var_15C * 4;
         gActors[actor_index].var_160 = (((Rand() * 4) & 0x3C0) << 12) << 4; // two operations needed to match
         gActors[actor_index].var_150 = (-(Rand() & 0x70) << 12) + 0x38000;
         gActors[actor_index].unk_130 = 48.0f;
-        gActors[actor_index].unk_138_arr[5] = gTeranPlayerActor.actorType;
+        gActors[actor_index].unk_138_arr[5] = gActors[0x30].actorType;
         gActors[actor_index].unk_134 = 0.0f;
         gActors[actor_index].unk_138_arr[0] = 0.0f;
         gActors[actor_index].palette_18C = PALETTE_8022D568;
@@ -287,12 +287,13 @@ void func_80097574(void) {
     }
 }
 
-void func_800977B8(void) {
+// Theo's heart eyes.
+void LevelClear_HeartEyes(void) {
     u16 index;
     u16 actor_index;
 
     for (index = 0; index < 2; index++) {
-        actor_index = SpawnParticle_Image_90C0_16(0x132, 0, 0, 0);
+        actor_index = SpawnParticle_Image_90C0_16(GINDEX_HEARTBUBBLE, 0, 0, 0);
         if (actor_index != 0) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
             gActors[actor_index].colorG = 0x20;
@@ -312,7 +313,7 @@ void func_800977B8(void) {
     }
 }
 
-void func_80097968(void) {
+void LevelClear_ZToSkip(void) {
     u16 actor_index;
     if (gButtonPress & gButton_ZTrig) {
         D_800D28E4 = 100;
@@ -341,7 +342,7 @@ void func_80097968(void) {
         Sound_StopAllSfx();
     }
 }
-void func_80097A74(u16 actor_index) {
+void ActorUpdate_LevelClear(u16 actor_index) {
     u16 index;
     // use arrays to workaround IDO address alignment for actor index 0x50
     #define VAR_150       base_0F8_s32[(0x150 - 0xF8)/4]
@@ -378,7 +379,7 @@ void func_80097A74(u16 actor_index) {
         func_80027018(0x50);
         func_80026E60(0x50);
         func_80026F2C(0x50);
-        Sound_PlayMusic(0x18);
+        Sound_PlayMusic(BGM_STCLR);
         gActors[actor_index].posZ.whole = 0x40;
         gActors[actor_index].var_150 = 0xA;
     case 0x1:
@@ -404,7 +405,7 @@ void func_80097A74(u16 actor_index) {
         }
         gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, 0x20, 1);
         func_80097574();
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x3:
         gActors[actor_index].var_15C = Math_ApproachS32(gActors[actor_index].var_15C, 0, 1);
@@ -419,9 +420,9 @@ void func_80097A74(u16 actor_index) {
             gActors[0x41].posY.raw = FIXED_UNIT(-48.0);
             func_800971A0(0x42);
             gActors[0x42].posY.raw = FIXED_UNIT(-144.0);
-            Sound_PlaySfx(0xE0);
+            Sound_PlaySfx(SFX_THEO_YAY2);
         }
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x4:
         gActors[actor_index].var_150--;
@@ -439,7 +440,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].var_150 = 0xF;
             gActors[0x31].state++;
         }
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x5:
         gActors[actor_index].var_150--;
@@ -452,12 +453,12 @@ void func_80097A74(u16 actor_index) {
             gActors[0x41].flags = 0;
             gActors[0x42].flags = 0;
         }
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x6:
         gActors[actor_index].state++;
         func_80026F2C(0x52);
-        Sound_StopSfx(0xD3);
+        Sound_StopSfx(SFX_MARINA_GROWL);
         break;
     case 0x7:
     case 0x9:
@@ -470,7 +471,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = 0;
             gActors[actor_index].posZ.whole = 192;
-            Sound_PlaySfx(0xB4);
+            Sound_PlaySfx(SFX_MARINA_YELL1);
             func_8009723C(0x40);
             break;
         case 9:
@@ -478,7 +479,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = -4;
             gActors[actor_index].posZ.whole = 192;
-            Sound_PlaySfx(0xCA);
+            Sound_PlaySfx(SFX_MARINA_YELL3);
             func_8009723C(0x40);
             break;
         case 11:
@@ -486,7 +487,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = 0;
             gActors[actor_index].posZ.whole = 192;
-            Sound_PlaySfx(0xB9);
+            Sound_PlaySfx(SFX_MARINA_YELL4);
             func_8009723C(0x40);
             break;
         }
@@ -506,7 +507,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].state++;
         }
         gActors[actor_index].posZ.whole -= 8;
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0xD:
         gActors[0x50].VAR_154 = 4;
@@ -517,7 +518,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].flags = 2;
             gActors[0x40].flags = 0;
         }
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0xE:
         gActors[actor_index].var_150--;
@@ -526,7 +527,7 @@ void func_80097A74(u16 actor_index) {
             gActors[0x32].graphicFlags = 0;
             gActors[0x32].flags = 0;
         }
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0xF:
         gActors[actor_index].state++;
@@ -539,7 +540,7 @@ void func_80097A74(u16 actor_index) {
         func_80096B70();
         gActors[0x50].state = 0x200;
         gActors[0x50].VAR_154 = 2;
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x11:
         gActors[actor_index].var_150--;
@@ -554,11 +555,11 @@ void func_80097A74(u16 actor_index) {
             D_800D5830 = 0;
             D_800D5834 = -0x100;
             if (gActors[actor_index].var_0D8 == 4) {
-                Sound_PlayMusic(0x1E);
+                Sound_PlayMusic(BGM_GET);
             }
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x12:
         if (func_8005DEFC() == 0) {
@@ -571,7 +572,7 @@ void func_80097A74(u16 actor_index) {
             }
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x13:
         gActors[actor_index].var_150--;
@@ -581,7 +582,7 @@ void func_80097A74(u16 actor_index) {
             D_800D5834 = -0x100;
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x14:
         if (func_8005DEFC() == 0) {
@@ -589,7 +590,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].var_150 = 0x1E;
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x15:
         gActors[actor_index].var_150--;
@@ -599,7 +600,7 @@ void func_80097A74(u16 actor_index) {
             D_800D5834 = -0x100;
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x16:
         if (D_800D5824 & 0x4000) {
@@ -609,14 +610,14 @@ void func_80097A74(u16 actor_index) {
         /* fallthrough */
     case 0x17:
         if ((gActors[actor_index].state == 0x17) && (D_800D5824 & 0x4000)) {
-            Sound_PlayMusic(0x1F);
+            Sound_PlayMusic(BGM_CLEAR);
         }
         if (func_8005DEFC() == 0) {
             gActors[actor_index].state++;
             gActors[actor_index].var_150 = 0x78;
         }
         func_80096E14(0);
-        func_80097968();
+        LevelClear_ZToSkip();
         break;
     case 0x18:
         gActors[actor_index].var_150--;
@@ -629,7 +630,7 @@ void func_80097A74(u16 actor_index) {
         func_80096E14(0);
         break;
     case 0x100:
-        gActors[actor_index].posY.raw += gTeranPlayerActor.var_160;
+        gActors[actor_index].posY.raw += gActors[0x30].var_160;
         if (gActors[actor_index].posY.raw > FIXED_UNIT(144.0)) {
             gActors[actor_index].posY.raw -= FIXED_UNIT(288.0);
         }
@@ -657,7 +658,7 @@ void func_80097A74(u16 actor_index) {
     case 0x1000:
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 7);
         gActors[actor_index].var_154 -= 0x500;
-        gActors[actor_index].posY.raw -= FIXED_UNIT(0.0625);
+        gActors[actor_index].posY.raw -= FIXED_UNIT(1.0/16);
         gActors[actor_index].unk_114 = Math_ApproachF32(gActors[actor_index].unk_114, 0.5f, 0.01f);
         if (!(gActiveFrames & 1)) {
             index = func_8003EEC0(gActors[actor_index].unk_114, gActors[actor_index].posX.whole + 0x20, gActors[actor_index].posY.whole + 5, gActors[actor_index].posZ.whole);
@@ -685,13 +686,13 @@ void func_80097A74(u16 actor_index) {
         gActors[actor_index].posX.whole = -16;
         gActors[actor_index].posY.whole = 0;
         gActors[actor_index].posZ.whole = 128;
-        Sound_PlaySfx(0xD3);
+        Sound_PlaySfx(SFX_MARINA_GROWL);
         /* fallthrough */
     case 0x1004:
         gActors[actor_index].posX.whole = Math_ApproachS32(gActors[actor_index].posX.whole, 0, 2);
         break;
     case 0x2000:
-        gActors[actor_index].posY.raw += FIXED_UNIT(0.1875);
+        gActors[actor_index].posY.raw += FIXED_UNIT(3.0/16);
         gActors[actor_index].posZ.raw += FIXED_UNIT(2.0);
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 3);
         break;
@@ -703,11 +704,11 @@ void func_80097A74(u16 actor_index) {
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.375);
         gActors[actor_index].velocityZ.raw = 0;
         gActors[actor_index].colorR = 0x7F;
-        func_800977B8();
+        LevelClear_HeartEyes();
         /* fallthrough */
     case 0x2002:
         gActors[actor_index].posZ.raw += FIXED_UNIT(1.0);
-        gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.0625);
+        gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/16);
         gActors[actor_index].posX.raw -= FIXED_UNIT(0.25);
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 8);
         gActors[actor_index].colorR = Math_ApproachS32(gActors[actor_index].colorR, 0, 2);
@@ -724,8 +725,8 @@ void func_80097A74(u16 actor_index) {
         gActors[actor_index].scaleY = 2.5f;
         switch (gActors[actor_index].state) {
         case 0x2004:
-            Sound_StopSfx(0xE0);
-            Sound_PlaySfx(0xDE);
+            Sound_StopSfx(SFX_THEO_YAY2);
+            Sound_PlaySfx(SFX_THEO_GRUNT2);
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = 16;
             gActors[actor_index].posZ.whole = 176;
@@ -743,7 +744,7 @@ void func_80097A74(u16 actor_index) {
             gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
             gActors[actor_index].posZ.whole = 176;
             gActors[actor_index].velocityZ.raw = 0;
-            Sound_PlaySfx(0xDC);
+            Sound_PlaySfx(SFX_THEO_HELP1);
             break;
         }
         gActors[actor_index].state++;
@@ -752,13 +753,13 @@ void func_80097A74(u16 actor_index) {
     case 0x2005:
     case 0x2007:
     case 0x2009:
-        gActors[actor_index].colorA = gTeranPlayerActor.colorA;
+        gActors[actor_index].colorA = gActors[0x30].colorA;
         break;
-    case 0x3000:
+    case 0x3000: // Theo flying through atmosphere.
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[actor_index].graphicIndex = 0x1AE;
+        gActors[actor_index].graphicIndex = GINDEX_SPARKLESMALL;
         gActors[actor_index].posX.whole = -80;
         gActors[actor_index].posY.whole = -16;
         gActors[actor_index].posZ.whole = -64;
@@ -768,22 +769,23 @@ void func_80097A74(u16 actor_index) {
         gActors[actor_index].var_150 = 0x64;
         gActors[actor_index].scaleX = 0.3f;
         gActors[actor_index].scaleY = 0.3f;
-        Sound_PlaySfxAtActorPanning(0x3E, actor_index);
+        Sound_PlaySfxAtActorPanning(SFX_FALLWHISTLE, actor_index);
         /* fallthrough */
     case 0x3001:
         gActors[actor_index].var_150--;
         if (gActors[actor_index].var_150 == 0) {
-            Sound_PlaySfxAtVol(0xDD, 0x50);
+            Sound_PlaySfxAtVol(SFX_THEO_HELP2, 0x50);
         }
         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.00341796875);
+        // Theo hits ground
         if (gActors[actor_index].posY.whole < -256) {
             gActors[actor_index].flags = 0;
-            Sound_StopSfx(0x3E);
-            Sound_PlaySfxAtVol(0xDE, 0x50);
+            Sound_StopSfx(SFX_FALLWHISTLE);
+            Sound_PlaySfxAtVol(SFX_THEO_GRUNT2, 0x50);
         }
         break;
     case 0xC000:
-        gActors[actor_index].colorA = gTeranPlayerActor.var_15C;
+        gActors[actor_index].colorA = gActors[0x30].var_15C;
         if (gActors[actor_index].colorA == 0x00) {
             gActors[actor_index].flags = 0;
         }

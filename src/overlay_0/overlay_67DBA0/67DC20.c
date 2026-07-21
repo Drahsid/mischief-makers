@@ -464,10 +464,10 @@ void func_80194818_680338(void) {
 
     step = FIXED_UNIT(0.75);
     if (gActiveFrames & 0x20) {
-        step = FIXED_UNIT(0.125);
+        step = FIXED_UNIT(1.0/8);
     }
 
-    gActors[0x45].unk_180 = Math_ApproachS32(gActors[0x45].unk_180, step, FIXED_UNIT(0.03125));
+    gActors[0x45].unk_180 = Math_ApproachS32(gActors[0x45].unk_180, step, FIXED_UNIT(1.0/32));
     gActors[0x40].unk_180 = Math_ApproachS32(gActors[0x40].unk_180, 0, gActors[0x45].unk_180);
 }
 
@@ -483,7 +483,7 @@ void func_8019487C_68039C(s32 arg0) {
         target = FIXED_UNIT(0.25);
     }
 
-    gActors[0x45].unk_180 = Math_ApproachS32(gActors[0x45].unk_180, target, FIXED_UNIT(0.0625));
+    gActors[0x45].unk_180 = Math_ApproachS32(gActors[0x45].unk_180, target, FIXED_UNIT(1.0/16));
     gActors[0x40].unk_180 = Math_ApproachS32(gActors[0x40].unk_180, gPlayerActor.posX.raw + arg0, gActors[0x45].unk_180);
 
     if (gActors[0x40].unk_180 > FIXED_UNIT(112.0)) {
@@ -596,10 +596,10 @@ void func_80194E64_680984(u16 actor_index, u16 arg1) {
 
 void func_80194EE4_680A04(void) {
     if (gActiveFrames & 0x80) {
-        gScreenPosTargetY.raw = Math_ApproachS32(gScreenPosTargetY.raw, FIXED_UNIT(412.0), FIXED_UNIT(0.0625));
+        gScreenPosTargetY.raw = Math_ApproachS32(gScreenPosTargetY.raw, FIXED_UNIT(412.0), FIXED_UNIT(1.0/16));
     }
     else {
-        gScreenPosTargetY.raw = Math_ApproachS32(gScreenPosTargetY.raw, FIXED_UNIT(418.0), FIXED_UNIT(0.0625));
+        gScreenPosTargetY.raw = Math_ApproachS32(gScreenPosTargetY.raw, FIXED_UNIT(418.0), FIXED_UNIT(1.0/16));
     }
 }
 
@@ -631,7 +631,7 @@ void func_80197F98_683AB8(s32 arg0) {
 
 void func_80197FA0_683AC0(u16 actor_index) {
     if (gActors[actor_index].unk_188 & 0x20000000) {
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(0.125), FIXED_UNIT(0.03125));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(1.0/8), FIXED_UNIT(1.0/32));
 
         if (gActors[actor_index].unk_17C < gActors[actor_index].unk_184) {
             gActors[actor_index].unk_188 &= ~0x20000000;
@@ -750,7 +750,7 @@ void func_8019911C_684C3C(u16 actor_index) {
     Actor* actor = &gActors[actor_index];
 
     if ((actor->var_150 << 3) < 0) {
-        actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, FIXED_UNIT(0.25), FIXED_UNIT(0.015625));
+        actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, FIXED_UNIT(0.25), FIXED_UNIT(1.0/64));
 
         if (actor->unk_178 < actor->unk_180) {
             actor->var_150 &= ~0x10000000;
@@ -758,7 +758,7 @@ void func_8019911C_684C3C(u16 actor_index) {
         }
     }
     else {
-        actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, FIXED_UNIT(-0.25), FIXED_UNIT(0.015625));
+        actor->velocityX.raw = Math_ApproachS32(actor->velocityX.raw, FIXED_UNIT(-0.25), FIXED_UNIT(1.0/64));
 
         if (actor->unk_180 < actor->unk_178) {
             actor->var_150 |= 0x10000000;
@@ -767,7 +767,7 @@ void func_8019911C_684C3C(u16 actor_index) {
     }
 
     if ((actor->var_150 << 2) < 0) {
-        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(0.125), FIXED_UNIT(0.03125));
+        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(1.0/8), FIXED_UNIT(1.0/32));
 
         if (actor->unk_17C < actor->unk_184) {
             actor->var_150 &= ~0x20000000;
@@ -775,7 +775,7 @@ void func_8019911C_684C3C(u16 actor_index) {
         }
     }
     else {
-        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(-0.1875), FIXED_UNIT(0.046875));
+        actor->velocityY.raw = Math_ApproachS32(actor->velocityY.raw, FIXED_UNIT(-3.0/16), FIXED_UNIT(0.046875));
 
         if (actor->unk_184 < actor->unk_17C) {
             actor->var_150 |= 0x20000000;
@@ -812,7 +812,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
 
         case 2:
             gActors[actor_index].velocityZ.raw = FIXED_UNIT(8.0);
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.1875);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(3.0/16);
             if (gActors[actor_index].posY.whole < gActors[0x4F].posY.whole - 0x14) {
                 gActors[actor_index].flags = 0;
                 gActors[0x30].state = 0xB0;

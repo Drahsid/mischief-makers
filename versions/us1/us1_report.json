@@ -13010,7 +13010,7 @@
       ],
       "functions": [
         {
-          "name": "func_8007CCE0",
+          "name": "ToBCD",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14056,7 +14056,7 @@
           }
         },
         {
-          "name": "func_80084734",
+          "name": "Flower_TryCollide",
           "size": "312",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14064,7 +14064,7 @@
           }
         },
         {
-          "name": "func_8008486C",
+          "name": "Flower_CheckCollide",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14344,7 +14344,7 @@
           }
         },
         {
-          "name": "func_80087568",
+          "name": "ClanbombTimer_PrintDigit",
           "size": "304",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14352,7 +14352,7 @@
           }
         },
         {
-          "name": "func_80087698",
+          "name": "ClanbombTimer_PrintTime",
           "size": "392",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16150,7 +16150,7 @@
           }
         },
         {
-          "name": "func_800977B8",
+          "name": "LevelClear_HeartEyes",
           "size": "432",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16158,7 +16158,7 @@
           }
         },
         {
-          "name": "func_80097968",
+          "name": "LevelClear_ZToSkip",
           "size": "268",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16166,7 +16166,7 @@
           }
         },
         {
-          "name": "func_80097A74",
+          "name": "ActorUpdate_LevelClear",
           "size": "4316",
           "fuzzy_match_percent": 100.0,
           "metadata": {

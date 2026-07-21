@@ -2978,7 +2978,7 @@ void ActorUpdate_Gem(u16 actor_index) {
                 else {
                     gActors[actor_index].posZ.raw = FIXED_UNIT(1.5);
                     gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
+                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/16));
                     if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-4.5)) {
                         gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.171875);
                     }
@@ -3066,7 +3066,7 @@ void func_80030B84(u16 arg0) {
 }
 
 void func_80030BB8(u16 actor_index) {
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.03125));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/32));
     gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.203125);
 
     if (((gActors[actor_index].velocityX.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2)) || 
@@ -3118,7 +3118,7 @@ void func_80030E58(u16 actor_index) {
             gActors[index].unk_114 = -0.06f;
             gActors[index].velocityX.raw = -gActors[actor_index].velocityX.raw / 2;
             gActors[index].velocityY.raw = -gActors[actor_index].velocityY.raw / 2;
-            gActors[index].var_15C = FIXED_UNIT(0.0625);
+            gActors[index].var_15C = FIXED_UNIT(1.0/16);
             gActors[index].var_154 = -0x12;
             Actor_SetColorRgb(index, 0x7F);
             gActors[index].unk_104 = -0x20;
@@ -3881,7 +3881,7 @@ void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic) {
         temp = Rand();
         gActors[actor_index].velocityX.raw = FIXED_UNIT(1.875) - ((temp & 0xF) * FIXED_UNIT(0.25));
         gActors[actor_index].var_158 = -gActors[actor_index].velocityX.raw / 16;
-        gActors[actor_index].var_15C = FIXED_UNIT(-0.03125);
+        gActors[actor_index].var_15C = FIXED_UNIT(-1.0/32);
     }
 }
 
@@ -5405,7 +5405,7 @@ void ActorUpdate_Clanpot(u16 actor_index) {
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
                 gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
             }
-            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0625));
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/16));
             if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-7.5)) {
                 gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
             }
@@ -5565,10 +5565,10 @@ void Spikeball_Jitter(u16 actor_index) {
 
     sp24 = Rand();
     temp_t9 = Rand();
-    Spikeball_MoveX(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(0.015625), -(sp24 & 3), temp_t9 & 3);
+    Spikeball_MoveX(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(1.0/64), -(sp24 & 3), temp_t9 & 3);
     sp24 = Rand();
     temp_t9 = Rand();
-    Spikeball_MoveY(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(0.015625), -(sp24 & 1), temp_t9 & 1);
+    Spikeball_MoveY(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(1.0/64), -(sp24 & 1), temp_t9 & 1);
 }
 
 // add pulsation to spikeball scale
@@ -5795,7 +5795,7 @@ void ActorUpdate_Spikeball_Hori(u16 actor_index) {
     case 1:
         Spikeball_MoveX(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
         temp_v0 = Rand();
-        Spikeball_MoveY(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(0.015625), -(temp_v0 & 1), 0);
+        Spikeball_MoveY(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(1.0/64), -(temp_v0 & 1), 0);
         Spikeball_State1End(actor_index, gActors[actor_index].unk_114);
         break;
     }
@@ -5824,7 +5824,7 @@ void ActorUpdate_Spikeball_Vert(u16 actor_index) {
     case 1:
         sp2C = Rand();
         temp_v0 = Rand();
-        Spikeball_MoveX(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(0.015625), -(sp2C & 1), temp_v0 & 1);
+        Spikeball_MoveX(actor_index, FIXED_UNIT(0.25), FIXED_UNIT(1.0/64), -(sp2C & 1), temp_v0 & 1);
         Spikeball_MoveY(actor_index, gActors[actor_index].unk_164, gActors[actor_index].unk_168, gActors[actor_index].var_15C, gActors[actor_index].var_160);
         Spikeball_State1End(actor_index, (u16)gActors[actor_index].unk_114);
         break;
@@ -6460,7 +6460,7 @@ void func_8003B630(u16 actor_index) {
         Actor_SetHitboxB(actor_index, 0xA);
         /* fallthrough */
     case 1:
-        gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
+        gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/8));
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK6) {
             gActors[actor_index].state = 2;
             ACTOR_GFX_INIT(actor_index, D_800E1C1C);
@@ -6487,7 +6487,7 @@ void func_8003B630(u16 actor_index) {
         ACTOR_GFX_INIT(actor_index, D_800E1D0C);
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
         gActors[actor_index].velocityX.raw = 0;
-        gActors[actor_index].velocityY.raw = FIXED_UNIT(0.125);
+        gActors[actor_index].velocityY.raw = FIXED_UNIT(1.0/8);
         gActors[actor_index].var_150 = 0x78;
         /* fallthrough */
     case 4:
@@ -6547,7 +6547,7 @@ void func_8003B8CC(u16 actor_index) {
         /* fallthrough */
     case 1:
         gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0, FIXED_UNIT(0.00390625));
-        gActors[actor_index].unk_174 -= FIXED_UNIT(0.1875);
+        gActors[actor_index].unk_174 -= FIXED_UNIT(3.0/16);
         if ((gActors[actor_index].unk_174 < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
             gActors[actor_index].state++;
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK17;
@@ -6686,7 +6686,7 @@ void func_8003BE3C(u16 actor_index) {
                     vel_x_target = 0x1FF00;
                 }
                 else {
-                    vel_x_step = FIXED_UNIT(0.1875);
+                    vel_x_step = FIXED_UNIT(3.0/16);
                     vel_x_target = FIXED_UNIT(0.25);
                 }
                 if (gActors[actor_index].posX.whole < gPlayerActor.posX.whole) {
@@ -7860,7 +7860,7 @@ u16 SpawnParticle_HeartBubble(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z) {
         gActors[actor_index].unk_118 = scale * -0.013499999999999998;
         gActors[actor_index].unk_11C = scale * -0.013499999999999998;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);
-        gActors[actor_index].var_15C = FIXED_UNIT(-0.125);
+        gActors[actor_index].var_15C = FIXED_UNIT(-1.0/8);
         gActors[actor_index].pfn_17C = func_80030A24;
         gActors[actor_index].unk_148 = 24.0f;
         Actor_SetColorRgb(actor_index, 0x40);

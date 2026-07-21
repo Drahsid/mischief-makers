@@ -360,13 +360,13 @@ void CameraInit_SeasickClimb(void) {
 void CameraUpdate_SeasickClimb_Rocking(void) {
     switch (D_800BE638) {
     case 0:
-        D_800BE728 += FIXED_UNIT(0.015625);
+        D_800BE728 += FIXED_UNIT(1.0/64);
         if (D_800BE728 == FIXED_UNIT(1.5)) {
             D_800BE638++;
         }
         break;
     case 1:
-        D_800BE728 -= FIXED_UNIT(0.015625);
+        D_800BE728 -= FIXED_UNIT(1.0/64);
         if (D_800BE728 == FIXED_UNIT(-1.5)) {
             D_800BE638--;
         }
@@ -397,7 +397,7 @@ void CameraUpdate_SeasickClimb_Rocking(void) {
         }
         break;
     case 2:
-        gCameraRotDelta -= FIXED_UNIT(0.0078125);
+        gCameraRotDelta -= FIXED_UNIT(1.0/128);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }
@@ -406,7 +406,7 @@ void CameraUpdate_SeasickClimb_Rocking(void) {
         }
         break;
     case 3:
-        gCameraRotDelta += FIXED_UNIT(0.0078125);
+        gCameraRotDelta += FIXED_UNIT(1.0/128);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }

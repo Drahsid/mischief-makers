@@ -5,8 +5,8 @@
 
 extern u16 D_800D9A54[];
 
-// an array that stores a BCD-ish number.
-u8 D_800E0F00[8] = {0};
+// an array that stores an unpacked BCD number of up to 8 digits.
+u8 gBCDArray[8] = {0};
 
  // x,y pairs used in func_8007D384
 s16 D_800E0F08[] = {
@@ -19,42 +19,42 @@ u16 sStrBlank[] = {ALPHA_NULL};
 
 // "まりな"/ "Marina"
 u16 sStrMarina[] = {
-    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 0x30),
-    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_PALETTE | 0x30),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_KERN | 16),
     ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_RI, ALPHA_JP_HIRA_NA,
     ALPHA_NULL
 };
 
 // "すてぃんが" / "Stinga"
 u16 sStrStinga[] = {
-    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 0x30),
-    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_PALETTE | 0x30),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_KERN | 16),
     ALPHA_JP_HIRA_SU,ALPHA_JP_HIRA_TE,ALPHA_JP_HIRA_SMALL_I,ALPHA_JP_HIRA_N,ALPHA_JP_HIRA_GA,
     ALPHA_NULL
 };
 
 // "STAGE CLEAR"
 u16 sStrStageClear[] = {
-    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 4),
-    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 9),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_PALETTE | 4),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_KERN | 9),
     ALPHA_EN_UPPER_S, ALPHA_EN_UPPER_T, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_G, ALPHA_EN_UPPER_E,
-    (APLHA_CMD_UNK15 | APLHA_CMD_XOFF | 6), // used as space char
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_XOFF | 6), // used as space char
     ALPHA_EN_UPPER_C, ALPHA_EN_UPPER_L, ALPHA_EN_UPPER_E, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_R,
     ALPHA_NULL
 };
 
 // "R E A D Y !"
 u16 sStrREADY[] = {
-    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 16),
-    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_PALETTE | 16),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_KERN | 16),
     ALPHA_EN_UPPER_R, ALPHA_EN_UPPER_E, ALPHA_EN_UPPER_A, ALPHA_EN_UPPER_D, ALPHA_EN_UPPER_Y, ALPHA_EN_EXCLAMATION,
     ALPHA_NULL
 };
 
 // "F I G H T !"
 u16 sStrFIGHT[] = {
-    (APLHA_CMD_UNK15 | APLHA_CMD_PALETTE | 20),
-    (APLHA_CMD_UNK15 | APLHA_CMD_KERN | 16),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_PALETTE | 20),
+    (ALPHA_CMD_UNK15 | ALPHA_CMD_KERN | 16),
     ALPHA_EN_UPPER_F, ALPHA_EN_UPPER_I, ALPHA_EN_UPPER_G, ALPHA_EN_UPPER_H, ALPHA_EN_UPPER_T, ALPHA_EN_EXCLAMATION, 
     ALPHA_NULL
 };
@@ -63,9 +63,9 @@ u16* sActor38Strings[] = {
     sStrBlank,
     sStrBlank,
     sStrBlank,
-    sStrREADY,
-    sStrStageClear,
     sStrFIGHT,
+    sStrStageClear,
+    sStrREADY,
     sStrBlank,
     sStrBlank,
     sStrBlank,
@@ -142,7 +142,8 @@ u16* sActor38Strings[] = {
     sStrBlank
 };
 
-void func_8007CCE0(u32 val) {
+// parse a number into a unpacked BCD.
+void ToBCD(u32 val) {
     u16 count;
     u32 tens_place;
 
@@ -151,7 +152,7 @@ void func_8007CCE0(u32 val) {
     }
     tens_place = 10000000;
     for (count = 0; count < 8; ) {
-        D_800E0F00[count++] = val / tens_place;
+        gBCDArray[count++] = val / tens_place;
         val %= tens_place;
         tens_place /= 10;
     }
@@ -345,20 +346,20 @@ void func_8007D554(u16 actor_index) {
     y = 0;
     x = 0;
     while (vals[0] != ALPHA_NULL) {
-        for (; vals[0] >= (APLHA_CMD_UNK15 + 1); vals++) {
+        for (; vals[0] >= 0x8001; vals++) {
             command = vals[0];
             switch (command & ALPHA_CMD_MASK) {
-            case APLHA_CMD_PALETTE:
+            case ALPHA_CMD_PALETTE:
                 var_s5 = command & 0xFF;
                 graphic_flags = ACTOR_GFLAG_PALETTE;
                 break;
-            case APLHA_CMD_KERN:
+            case ALPHA_CMD_KERN:
                 gActors[actor_index].var_158 = command & 0xFF;
                 break;
-            case APLHA_CMD_XOFF:
+            case ALPHA_CMD_XOFF:
                 x += command & 0xFF;
                 break;
-            case APLHA_CMD_NEWLINE:
+            case ALPHA_CMD_NEWLINE:
                 x = 0;
                 y -= 0x13;
                 break;
@@ -390,7 +391,7 @@ void func_8007D880(u16 actor_index, f32 arg1) {
 
     var_f20 = 0.0f;
     for (vals = sActor38Strings[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
-        if (command & APLHA_CMD_UNK15) {
+        if (command & ALPHA_CMD_UNK15) {
             var_f20 += arg1 / 2.5;
         }
         else {
@@ -402,7 +403,7 @@ void func_8007D880(u16 actor_index, f32 arg1) {
     var_f20 = gActors[actor_index].scaleY * (-(var_f20 - arg1) / 2);
     var_f26 = gActors[actor_index].scaleY * arg1;
     for (vals = sActor38Strings[gActors[actor_index].var_150]; (command = vals[0]) != ALPHA_NULL; vals++) {
-        if (command & APLHA_CMD_UNK15) {
+        if (command & ALPHA_CMD_UNK15) {
             var_f20 += (arg1 / 2.5) * gActors[actor_index].scaleY;
         }
         else {
@@ -438,7 +439,7 @@ void func_8007DB84(u16 actor_index) {
     if (gActors[actor_index].var_15C < gActors[actor_index].var_158) {
         gActors[actor_index].var_158 = gActors[actor_index].var_15C;
     }
-    func_8007CCE0(gActors[actor_index].var_158);
+    ToBCD(gActors[actor_index].var_158);
     var_s3 = FALSE;
     index = 8 - gActors[actor_index].unk_14C;
     angle = FROM_FIXED(gActors[actor_index].unk_188);
@@ -448,8 +449,8 @@ void func_8007DB84(u16 actor_index) {
             temp_f0 = ((((gActors[actor_index].unk_14C / 2) - (gActors[actor_index].unk_14C - count)) * 9.0f) * gActors[actor_index].scaleX) + (gActors[actor_index].scaleX * 4.5);
             gActors[free_actor].posX.raw = (temp_f0 * (65536.0f * COS(angle))) + gActors[actor_index].posX.raw;
             gActors[free_actor].posY.raw = (temp_f0 * (65536.0f * SIN(angle))) + gActors[actor_index].posY.raw;
-            gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(D_800E0F00[index]);
-            if ((index >= 7) || (D_800E0F00[index] != 0) || var_s3) {
+            gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(gBCDArray[index]);
+            if ((index >= 7) || (gBCDArray[index] != 0) || var_s3) {
                 var_s3 = TRUE;
             }
             else {
@@ -612,7 +613,7 @@ void func_8007EA14(u16* str, s32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z,
     }
 
     for (str_it = str, var_s4 = 0; *str_it != ALPHA_NULL; str_it++, var_s4++) {
-        if ((*str_it & APLHA_CMD_XOFF) == 0) {
+        if ((*str_it & ALPHA_CMD_XOFF) == 0) {
             free_actor = Actor_RangeFindInactive_90ToC0();
             if (free_actor != 0) {
                 gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_52;
@@ -706,7 +707,7 @@ void func_8007EF58(u16* vals, u32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z
 
     scale_numerator = 0.0f;
     for (; vals[0] != ALPHA_NULL; vals++) {
-        if (vals[0] & ALPHA_CMD_UNK15) {
+        if (vals[0] & 0x8000) {
             scale_numerator += scale_denominator / 2.5;
         }
         else {

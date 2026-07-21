@@ -797,7 +797,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;\
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK11);
-            gActors[actor_index].velocityX.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(0.625); \
+            gActors[actor_index].velocityX.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(5.0/8); \
             gActors[actor_index].velocityY.raw = FIXED_UNIT(4.5);
             func_80081790(actor_index, D_800E33C4);
             Sound_PlaySfxAtActor2(SFX_0121, actor_index);

@@ -911,7 +911,7 @@ void func_80051324(u16 actor_index) {
             if (gActors[actor_index].stateLower == 0x12) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), gActors[actor_index].var_158);
                 if (func_8005C6D0(gActors[actor_index].velocityX.raw) > func_80048C94(0x1C)) {
-                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
+                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(1.0/8));
                 }
                 gActors[actor_index].var_158 = Math_ApproachS32(gActors[actor_index].var_158, func_80048C94(0x13), func_80048C94(0x13) / 16);
                 if ((func_8005D338(actor_index) != 0x28) && (func_8005D338(actor_index) != 0x29) && func_8005D418(actor_index)) {
