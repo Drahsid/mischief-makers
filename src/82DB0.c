@@ -8,7 +8,7 @@
 #define RLE_DEST_8027BEE8 ((u8*)0x8027BEE8)
 #define Segment_05_VRAM 0x05000000
 
-extern u8 *sprite_table_4A0918_05095C98[];
+extern u8* sprite_table_4A0918_05095C98[];
 
 // .bss
 u16 gCopiedSegment5;
@@ -27,13 +27,16 @@ void MarinaGraphics_Copy(void) {
         ((gPlayerActor.graphicIndex & graphicsMask) == graphicsFlags)) {
         D_800BE714 = 0;
         temp_t1 = ((gPlayerActor.graphicIndex & 0x7FF) % 802);
+        // compute the base ROM device address: ROM_BASE + (SEG_5_ADDR - SEG_5_BASE)
         if (temp_t1) {
             device_addr = &Segment_05_ROM_START[(uintptr_t) sprite_table_4A0918_05095C98 + (temp_t1 << 2) - (Segment_05_VRAM + 4)];
         }
         else {
             device_addr = &Segment_05_ROM_START[(uintptr_t) sprite_table_4A0918_05095C98 - Segment_05_VRAM];
         }
+        // copy start+end offsets from ROM
         DMA_ReadSync(device_addr, &offsets, 8);
+        // copy ROM data from (ROM_BASE + (SEG_5_OFFSET - SEG_5_BASE)) to  RLE_SCRATCH LOW
         DMA_Read(&Segment_05_ROM_START[offsets[0]] - Segment_05_VRAM, RLE_SCRATCH_LOW, offsets[1] - offsets[0]);
         gCopiedSegment5 = TRUE;
     }
