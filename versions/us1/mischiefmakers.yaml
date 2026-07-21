@@ -121,7 +121,7 @@ segments:
       - [0x0805E0, c]
       - [0x080D90, c]
       - [0x082920, c]
-      - [0x082DB0, asm] # has to do with loading marina's graphics
+      - [0x082DB0, c] # has to do with loading marina's graphics
       - [0x082F80, c]
       - [0x0844E0, c, osd_debug_text]
       - [0x084BB0, c]
@@ -448,6 +448,7 @@ segments:
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
       - { name: dialog, type: .bss, vram: 0x801782D0 }
       - { name: bss_80178450, type: bss, vram: 0x80178450 }
+      - { name: 82DB0, type: .bss, vram: 0x80178460 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: osd_debug_text, type: .bss, vram: 0x80180FD0 }
       - { name: 84BB0, type: .bss, vram: 0x80182020}

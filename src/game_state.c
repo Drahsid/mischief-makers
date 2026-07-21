@@ -5,6 +5,7 @@
 #include "game_state.h"
 #include "1F1E0.h"
 #include "debug.h" 
+#include "82DB0.h"
 
 void func_800012F0(void);
 void func_8000147C(void);
@@ -59,7 +60,7 @@ void func_8000147C(void) {
 
     func_800012F0(); // PauseGame_Check
     GameState_Update();
-    func_800821B0(); // MarinaGraphics_Load
+    MarinaGraphics_Copy();
     func_80009940();
     func_80082F10();
     func_80009BE8(gActorsBack); // DrawActors
@@ -89,7 +90,7 @@ void func_8000147C(void) {
     }
 
     Rand(); // update rng
-    func_800822B8(); // MarinaGraphics_Decrypt
+    MarinaGraphics_Decompress();
     Gfx_DrawLetterbox();
     func_8000F290(); // DrawLifeBar
     func_80009BE0();
