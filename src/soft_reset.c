@@ -35,7 +35,7 @@ u8 gFestivalEventsPlayed[FESTGAME_TOTAL];
 s16 gGuestActorHP;
 
 // .data
-u16 D_800CBF40 = 0;
+u16 gIsPauseExit = 0;
 s16 D_800CBF44 = 0;
 
 // forward declarations

@@ -11,7 +11,7 @@
 #include "5D120.h"
 
 extern u16 D_801373D8;
-extern ActorFunc D_800D3DB0[];
+extern ActorFunc gMarinaStateTable[];
 
 u8 func_80048600(u16 actor_index) {
     u8 ret;
@@ -207,7 +207,7 @@ void ActorUpdate_Marina(u16 actor_index) {
     }
 
     if (gActors[actor_index].state == 0) {
-        func_8004A960(actor_index);
+        Marina_State0(actor_index);
     }
 
     gActors[actor_index].graphicFlags &= ~(ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTZ);
@@ -237,25 +237,25 @@ void ActorUpdate_Marina(u16 actor_index) {
     }
     D_801373D8 = func_80048600(actor_index);
     if (gPlayerData.debugPosX != 0) {
-        func_80083A04(gPlayerData.debugPosX, -0x20, 0x40);
+        OSD_PrintIntHex(gPlayerData.debugPosX, -0x20, 0x40);
         if (!(gActiveFrames & 0x7F)) {
             gPlayerData.debugPosX = 0;
         }
     }
     if (gPlayerData.debugPosY != 0) {
-        func_80083A04(gPlayerData.debugPosY, -0x20, 0x30);
+        OSD_PrintIntHex(gPlayerData.debugPosY, -0x20, 0x30);
         if (!(gActiveFrames & 0x7F)) {
             gPlayerData.debugPosY = 0;
         }
     }
     if (gPlayerData.debugVal2 != 0) {
-        func_80083A04(gPlayerData.debugVal2, -0x20, 0x20);
+        OSD_PrintIntHex(gPlayerData.debugVal2, -0x20, 0x20);
         if (!(gActiveFrames & 0x7F)) {
             gPlayerData.debugVal2 = 0;
         }
     }
     if (gPlayerData.debugVal3 != 0) {
-        func_80083A04(gPlayerData.debugVal3, -0x20, 0x10);
+        OSD_PrintIntHex(gPlayerData.debugVal3, -0x20, 0x10);
         if (!(gActiveFrames & 0x7F)) {
             gPlayerData.debugVal3 = 0;
         }
@@ -274,7 +274,7 @@ void ActorUpdate_Marina(u16 actor_index) {
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
     gActors[actor_index].unk_12C_u16[0] = 0;
     gActors[actor_index].unk_12E_u8 = 0;
-    D_800D3DB0[gActors[actor_index].state & 0xFF](actor_index);
+    gMarinaStateTable[gActors[actor_index].state & 0xFF](actor_index);
     func_80048BB0(actor_index);
     if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
         temp_a1 = gActors[actor_index].parentIndex;

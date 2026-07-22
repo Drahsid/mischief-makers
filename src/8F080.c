@@ -3,6 +3,8 @@
 #include "28EF0.h"
 #include "7D8E0.h"
 #include "80D90.h"
+#include "actor.h"
+#include "common.h"
 
 extern u16 D_800D1C04[];
 extern u16 D_800D98F4[];

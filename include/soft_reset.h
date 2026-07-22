@@ -3,6 +3,6 @@
 
 #include <PR/ultratypes.h>
 
-extern u16 gIsPauseExit
+extern u16 gIsPauseExit;
 
 #endif
