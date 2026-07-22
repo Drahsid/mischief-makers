@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 40.761288,
+    "fuzzy_match_percent": 41.28117,
     "total_code": "1994304",
-    "matched_code": "812904",
-    "matched_code_percent": 40.761288,
+    "matched_code": "823272",
+    "matched_code_percent": 41.28117,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2577,
-    "matched_functions_percent": 54.74825,
+    "matched_functions": 2604,
+    "matched_functions_percent": 55.32186,
     "complete_data_percent": 100.0,
     "total_units": 395
   },
@@ -25567,7 +25567,7 @@
       "sections": [
         {
           "name": ".data",
-          "size": "9888",
+          "size": "192",
           "metadata": {
             "virtual_address": "2148341776"
           }
@@ -25578,32 +25578,6 @@
         "module_id": 2,
         "progress_categories": [
           "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "D6420.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "57472",
-          "metadata": {
-            "virtual_address": "2148358176"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "D6420.data"
         ]
       }
     },
@@ -25645,7 +25619,7 @@
       "sections": [
         {
           "name": ".data",
-          "size": "69584",
+          "size": "5600",
           "metadata": {
             "virtual_address": "2148346064"
           }
@@ -25656,6 +25630,32 @@
         "module_id": 2,
         "progress_categories": [
           "D34D0.data"
+        ]
+      }
+    },
+    {
+      "name": "D6420.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "57472",
+          "metadata": {
+            "virtual_address": "2148358176"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "D6420.data"
         ]
       }
     },
@@ -49463,16 +49463,16 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 77.51331,
+        "fuzzy_match_percent": 78.85596,
         "total_code": "772208",
-        "matched_code": "598564",
-        "matched_code_percent": 77.51331,
+        "matched_code": "608932",
+        "matched_code_percent": 78.85596,
         "matched_data_percent": 100.0,
         "total_functions": 2162,
-        "matched_functions": 1836,
-        "matched_functions_percent": 84.92137,
+        "matched_functions": 1863,
+        "matched_functions_percent": 86.17021,
         "complete_data_percent": 100.0,
-        "total_units": 259
+        "total_units": 256
       }
     },
     {
@@ -49572,21 +49572,8 @@
       }
     },
     {
-      "id": "D6420.data",
-      "name": "D6420.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "EA340.data",
-      "name": "EA340.data",
+      "id": "D24D0.data",
+      "name": "D24D0.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -49600,6 +49587,19 @@
     {
       "id": "D34D0.data",
       "name": "D34D0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      }
+    },
+    {
+      "id": "D6420.data",
+      "name": "D6420.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
