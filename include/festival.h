@@ -22,6 +22,23 @@ typedef enum {
     FESTGAME_UNUSED_RACE = 7
 } FestivalEvents;
 
+typedef struct {
+    /* 0x00 */ u16 unk_00;
+    /* 0x02 */ u16 unk_02;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ u16 unk_08;
+    /* 0x0A */ u16 actorType;
+} Festival_UnkInit; /* sizeof = 0x0C */
+
+typedef struct {
+    /* 0x00 */ s8 duration;
+    /* 0x01 */ u8 unk_01;
+    /* 0x02 */ u16 motionState;
+    /* 0x04 */ s32 velocityX;
+    /* 0x08 */ s32 velocityY;
+} Festival_UnkMotion; /* sizeof = 0x0C */
+
 
 extern u32 gFestivalRecords[FESTGAME_TOTAL]; // festival games records.
 
