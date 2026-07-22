@@ -6,7 +6,7 @@
 extern int sprintf(char* str, const char* fmt, ...);
 
 extern u16 Rand(void);
-extern void func_80012288(void);
+extern void Marina_Init(void);
 
 // hacky workaround as we need the default proto of a func for func_80012AB4 in 66250.c
 #ifndef func_80012AB4_ARGS
@@ -14,14 +14,14 @@ extern void func_80012288(void);
 #endif
 extern u8 func_80012AB4(func_80012AB4_ARGS);
 extern u8 func_80012C04(s16, s16);
-extern u8 func_8001FA78(u16 actor_index, s16 x, s16 y);
+extern u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y);
 
 extern void func_80004FFC(s32);
 extern void func_800050B4(void);
-extern void func_800109B0(void);
+extern void LookAt_Reset(void);
 extern void func_80010A10(void);
 extern void func_80010C20(u16 arg0);
-extern void func_80019688(void);
+extern void WorldMap_SetTransitionState(void);
 extern void func_8001A584(void);
 extern void func_8001DC60(void);
 extern void func_800230B8(void);
@@ -39,7 +39,6 @@ extern u16 SpawnParticle_List_90C0_16(s16* graphic_list, s32 pos_x, s32 pos_y, s
 extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 extern u16 SpawnParticle_RingWaveRed(f32 arg0, s16 x, s16 y, s16 z);
 extern void SpawnParticle_SineUpHeart(s16 arg0, s16 arg1, s16 arg2);
-extern void Actor_ClearRange_30To90(void);
 extern u16 SpawnAreaClear(u16);
 extern void func_80042D84(u16 arg0);
 extern void func_80042DBC(u16* vals);
@@ -73,7 +72,7 @@ extern u16 func_8005D418(u16 actor_index);
 extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
-extern void func_80060F88(u16 actor_index);
+extern void ActorUpdate_3DIcon(u16 actor_index);
 extern void func_80066BCC(u16 actor_index);
 extern void func_80067EF0(u16);
 extern void func_8006CB88(u16);
@@ -81,7 +80,7 @@ extern void func_8006CC70(u16);
 extern void func_8006CD5C(u16);
 
 extern void Actor_ClearRange_10To20(void);
-extern void func_80025578(void);
+extern void PlaySceneBGM(void);
 extern void func_800255B4(u16 arg0);
 extern void func_80025BFC(void);
 extern void func_80025C38(void);
@@ -122,9 +121,9 @@ extern s32 func_800298D0(s32 arg0, s32 arg1, s32 arg2);
 extern u16 func_80029FB8(u16 actor_index, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
 extern void Actor_SetHitboxA(u16 actor_index, s16 val);
 extern void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s32 pos_z);
-extern void func_8002EBB8(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
-extern void func_8002ED34(u16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
-extern s32 func_8002F154(u16 arg0, u16 arg1, u16 arg2);
+extern void SpawnShuriken(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
+extern void func_8002ED34(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x, s16 vel_y);
+extern s32 SpawnGemActor61(u16 arg0, u16 arg1, u16 arg2);
 extern s32 GemCollect_Static(u16 actor_index);
 extern void SpawnGemRing(u16 arg0);
 extern void func_80030A24(u16 actor_index);
@@ -171,10 +170,10 @@ extern s32 func_80045F08(u32 arg0);
 extern u16* func_80045F14(u16* arg0);
 extern void func_80046498(void);
 extern void func_8004667C(void);
-extern void func_80046A9C(void);
-extern s32 func_80046EBC(void);
-extern void func_800472D4(void);
-extern s32 func_8004735C(u16 stage_state, u32 actor_flags);
+extern void Transition_SmashBlack(void);
+extern s32 Transition_StageExit(void);
+extern void SpawnText_READY(void);
+extern s32 SpawnText_FIGHT(u16 stage_state, u32 actor_flags);
 extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern s32 func_800486F4(void);
@@ -183,24 +182,23 @@ extern s32 func_80048C94(s32);
 extern s32 func_80048F70(u16, u16);
 extern s32 func_800490BC(u16, s32, s32);
 extern s32 func_800491B8(u16, s32, s32);
-extern void func_8004A960(u16 actor_index);
+extern void Marina_State0(u16 actor_index);
 extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);
 extern u8 func_8005D1B0(u16 actor_index);
 extern void func_8005DF40(s16 arg0, s16 arg1);
 extern void func_8005E09C(s32 arg0, s32 arg1);
 extern void func_80067E9C(u16 actor_index);
-extern void func_8007325C(u16 actor_index);
+extern void Clancer_Update(u16 actor_index);
 extern s32 func_80073320(u16 actor_index); // return could be u16
 
-extern u16 SpawnTextBubble(u16, u16*, s16, s16, s32);
+extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
 extern void func_8008310C(void);
 extern void func_800831D0(s16, s16, s16, s16);
 extern void func_80083454(void);
 extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
-extern void func_80083BD8(s32 arg0, s16 arg1, s32 arg2);
 extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
-extern void func_8002092C(void);
+extern void Pause_InitBars(void);
 extern void func_80020A54(void);
 extern void func_80022D10(void);
 #ifndef Actor_Initialize_RET
@@ -210,7 +208,6 @@ extern Actor_Initialize_RET Actor_Initialize(u16 actor_index);
 extern void func_80026E60(u16 arg0);
 extern u16 Actor_RangeFindInactive(u16 actor_index, u16 end);
 extern u16 Actor_RangeFindInactive_90ToC0(void);
-extern void Actor_ClearRange(u16 start, u16 end);
 extern void Actor_ClearSceneActors(void);
 extern s32 Math_ApproachS32(s32 current, s32 target, s32 step);
 extern f32 Math_ApproachF32(f32 current, f32 target, f32 step);
@@ -230,15 +227,13 @@ extern void func_80046148(u16* arg0, u16* arg1);
 extern void func_80046188(u16* arg0, void* arg1);
 extern void func_80046218(u16 arg0, u16 arg1);
 extern void Camera_UpdateViewBounds(void);
-extern s32 func_80046D5C(void); // fade portraits out after stage loads. return true when complete.
+extern s32 Transition_FadeOut(void); // fade portraits out after stage loads. return true when complete.
 extern s32 Cutscene_CheckSkipInput(void);
 extern void func_80047714(u16 arg0, u16 arg1, u16 arg2, u16 stage_state);
 extern s32 func_8005DFC8(s32 arg0);
 
 extern void LookAt_Update(void);
 
-// func_800012F0
-extern void func_800838E0(void);
 
 // func_8000147C
 extern void func_80009940(void);
@@ -253,17 +248,22 @@ extern void func_80021660(void);
 extern void func_8002167C(void);
 extern void func_800218FC(void);
 u16 SpawnGemActor(u16 actor_index, u16 flags, u16 unused_arg2);
-extern void func_800821B0(void);
-extern void func_800822B8(void);
 extern void func_80082CFC(void);
 extern void func_80082E04(void);
 extern void func_80082F10(void);
-extern void func_80083E74(void);
+extern void OSD_Tick(void);
 
 void YellowGem_SetFlag(void);
 u64 YellowGem_GetFlag(u16 stage);
 
+extern void WorldMap_UpdateSaveFile2(void); // used in "Ending" code
+
+extern void GameState_Gameplay(void);
+
 void OverlayABI_Slot2_fn32_void(void);
 
+extern void BossDeathExplode(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y);
+
+extern void SpawnStageClear(u16 flags, u16* spawn_table);
 
 #endif

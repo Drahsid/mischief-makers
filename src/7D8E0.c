@@ -5,7 +5,7 @@
 
 extern u16 D_800D9A54[];
 
-extern u8 D_800E0F00[];
+extern u8 D_800E0F00[]; // an array that stores a BCD-ish number.
 extern s16 D_800E0F08[]; // x,y pairs used in func_8007D384
 extern u16* D_800E0F88[];
 
@@ -25,7 +25,7 @@ void func_8007CCE0(u32 val) {
 }
 
 void func_8007CD68(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, s32 arg6) {
-    gActors[actor_index].actorType = 0x29;
+    gActors[actor_index].actorType = ACTORTYPE_41;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = pos_x;
@@ -37,7 +37,7 @@ void func_8007CD68(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u1
 }
 
 s32 func_8007CE24(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4) {
-    gActors[actor_index].actorType = 0x28;
+    gActors[actor_index].actorType = ACTORTYPE_40;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = pos_x;
@@ -47,7 +47,7 @@ s32 func_8007CE24(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4) {
 }
 
 void func_8007CEB8(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, u16 arg6, u16 arg7, u16 arg8) {
-    gActors[actor_index].actorType = 0x27;
+    gActors[actor_index].actorType = ACTORTYPE_PORTRAIT;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = pos_x;
@@ -60,8 +60,17 @@ void func_8007CEB8(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u1
     gActors[actor_index].unk_16C = arg8 & 1;
 }
 
+// spawns an actor used for the "READY" and "FIGHT" text.
+// WARNING: most calls omit arg6.
+// @param actor_index index of text actor.
+// @param arg1 index of type of text (3 = "READY", 5 = "FIGHT")
+// @param pos_x x-position of text.
+// @param pos_y y-position of text.
+// @param arg4 sets actor field 0x118
+// @param arg5 sets actor field 0x114 as timer.
+// @param arg6 bit 0 determines if can be controlled. many calls omit this.
 void func_8007CFE0(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, u16 arg6) {
-    gActors[actor_index].actorType = 0x26;
+    gActors[actor_index].actorType = ACTORTYPE_38;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = pos_x;
@@ -78,31 +87,38 @@ void func_8007CFE0(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u1
 // @param text "string" to display
 // @param off_x x-position offset of text.
 // @param off_y y-position offset of text.
-// @param arg4 unused(?)
+// @param time ticks to display(?) bit 15 is also used.
 // @returns index of actor, 0 if failed or English version.
-u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 arg4) {
+u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time) {
     return 0;
 }
 
-u16 func_8007D0F4(u16 actor_index, u16* text, s16 pos_x, s16 pos_y, u16 arg4) {
+// Text Bubble used by sprint coach in "The Day Before"
+// @param index index of "speaking" actor
+// @param text "string" to display
+// @param off_x x-position offset of text.
+// @param off_y y-position offset of text.
+// @param time ticks to display(?) bit 15 is also used.
+// @returns index of actor, 0 if failed
+u16 func_8007D0F4(u16 actor_index, u16* text, s16 pos_x, s16 pos_y, u16 time) {
     u16 free_actor;
 
     free_actor = Actor_RangeFindInactive(0x8C, 0x90);
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x35;
+        gActors[free_actor].actorType = ACTORTYPE_TEXTBUBBLE;
         Actor_Initialize(free_actor);
         gActors[free_actor].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
         gActors[free_actor].flags = ACTOR_FLAG_ACTIVE;
         gActors[free_actor].colorA = 0;
         gActors[free_actor].var_150 = (s32)text;
         gActors[free_actor].var_154 = actor_index;
-        gActors[free_actor].unk_114 = (f32) (arg4 & 0x7FFF);
-        gActors[free_actor].unk_118 = (f32) (arg4 & 0x8000);
+        gActors[free_actor].unk_114 = (f32) (time & 0x7FFF);
+        gActors[free_actor].unk_118 = (f32) (time & 0x8000);
         gActors[free_actor].var_158 = pos_x;
         gActors[free_actor].var_15C = pos_y;
         gActors[free_actor].posX.whole = pos_x;
         gActors[free_actor].posY.whole = pos_y;
-        gActors[free_actor].posZ.raw = 0x800000;
+        gActors[free_actor].posZ.raw = FIXED_UNIT(0x80);
         gActors[free_actor].scaleX = 0.0f;
         gActors[free_actor].scaleY = 0.0f;
     }
@@ -131,7 +147,7 @@ u16 func_8007D290(u16 actor_index) {
 
     free_actor = Actor_RangeFindInactive_90ToC0();
     if (free_actor != 0) {
-        gActors[free_actor].actorType = 0x34;
+        gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_52;
         Actor_Initialize(free_actor);
         if (gActors[actor_index].unk_18C != 0) {
             gActors[free_actor].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE;
@@ -220,7 +236,7 @@ void func_8007D554(u16 actor_index) {
         if (free_actor != 0) {
             gActors[free_actor].graphicFlags |= graphic_flags;
             gActors[free_actor].palette_18C = &D_800D9A54[var_s5];
-            gActors[free_actor].graphicIndex = (vals[0] * 2) + 0x2D2;
+            gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(vals[0]);
             gActors[free_actor].posX.whole = gActors[actor_index].posX.whole + (gActors[actor_index].scaleX * x);
             gActors[free_actor].posY.whole = gActors[actor_index].posY.whole + (gActors[actor_index].scaleY * y);
             x += gActors[actor_index].var_158;
@@ -260,7 +276,7 @@ void func_8007D880(u16 actor_index, f32 arg1) {
             free_actor = func_8007D290(actor_index);
             if (free_actor != 0) {
                 gActors[free_actor].graphicFlags |= ACTOR_GFLAG_SCALE;
-                gActors[free_actor].graphicIndex = (command * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(command);
                 gActors[free_actor].posX.whole = gActors[actor_index].posX.whole + var_f20;
                 gActors[free_actor].posY.whole = gActors[actor_index].posY.whole;
                 gActors[free_actor].colorA = (f32)gActors[actor_index].colorA * 2.0;
@@ -299,7 +315,7 @@ void func_8007DB84(u16 actor_index) {
             temp_f0 = ((((gActors[actor_index].unk_14C / 2) - (gActors[actor_index].unk_14C - count)) * 9.0f) * gActors[actor_index].scaleX) + (gActors[actor_index].scaleX * 4.5);
             gActors[free_actor].posX.raw = (temp_f0 * (65536.0f * COS(angle))) + gActors[actor_index].posX.raw;
             gActors[free_actor].posY.raw = (temp_f0 * (65536.0f * SIN(angle))) + gActors[actor_index].posY.raw;
-            gActors[free_actor].graphicIndex = (D_800E0F00[index] * 2) + 0x2D2;
+            gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(D_800E0F00[index]);
             if ((index >= 7) || (D_800E0F00[index] != 0) || var_s3) {
                 var_s3 = TRUE;
             }
@@ -400,42 +416,42 @@ void func_8007DF44(u16 actor_index) {
             gActors[free_actor].scaleY = gActors[actor_index].scaleY;
             switch (index) {
             case 0:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_138 * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_138);
                 if (gActors[actor_index].unk_138 == 0.0f) {
                     gActors[free_actor].unk_18C += 8;
                 }
                 break;
             case 1:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_13C_f32 * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_13C_f32);
                 if ((gActors[actor_index].unk_138 == 0.0f) && (gActors[actor_index].unk_13C_f32 == 0.0f)) {
                     gActors[free_actor].unk_18C += 8;
                 }
                 break;
             case 2:
-                gActors[free_actor].graphicIndex = 0x35C;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH(EN_COLON);
                 gActors[free_actor].posY.whole -= 2;
                 break;
             case 3:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_140_f32 * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_140_f32);
                 if ((gActors[actor_index].unk_138 == 0.0f) && (gActors[actor_index].unk_13C_f32 == 0.0f) && (gActors[actor_index].unk_140_f32 == 0.0f)) {
                     gActors[free_actor].unk_18C += 8;
                 }
                 break;
             case 4:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_144 * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_144);
                 if ((gActors[actor_index].unk_138 == 0.0f) && (gActors[actor_index].unk_13C_f32 == 0.0f) && (gActors[actor_index].unk_140_f32 == 0.0f) && (gActors[actor_index].unk_144 == 0.0f)) {
                     gActors[free_actor].unk_18C += 8;
                 }
                 break;
             case 5:
-                gActors[free_actor].graphicIndex = 0x35C;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH(EN_COLON);
                 gActors[free_actor].posY.whole -= 2;
                 break;
             case 6:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_148 * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_148 );
                 break;
             case 7:
-                gActors[free_actor].graphicIndex = ((u16)gActors[actor_index].unk_14C * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX((u16)gActors[actor_index].unk_14C);
                 break;
             }
         }
@@ -466,11 +482,11 @@ void func_8007EA14(u16* str, s32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z,
         if ((*str_it & 0x4000) == 0) {
             free_actor = Actor_RangeFindInactive_90ToC0();
             if (free_actor != 0) {
-                gActors[free_actor].actorType = 0x34;
+                gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_52;
                 Actor_Initialize(free_actor);
                 gActors[free_actor].graphicFlags = graphic_flags & ~(ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_UNK8);
                 gActors[free_actor].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-                gActors[free_actor].graphicIndex = (*str_it * 2) + 0x2D2;
+                gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(*str_it);
                 if (sp86 == 0x10) {
                     gActors[free_actor].posX.raw = x_off;
                     x_off += Text_GetWidth2(str_it) << 0x10;
@@ -522,11 +538,11 @@ u16 func_8007EE70(u32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z, f32 scale_
 
     actor_index = Actor_RangeFindInactive_90ToC0();
     if (actor_index != 0) {
-        gActors[actor_index].actorType = 0x34;
+        gActors[actor_index].actorType = ACTORTYPE_GRAPHIC_52;
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = graphic_flags & ~ACTOR_GFLAG_3DOBJ;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[actor_index].graphicIndex = 0x2D0;
+        gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
         gActors[actor_index].posX.raw = pos_x;
         gActors[actor_index].posY.raw = pos_y;
         gActors[actor_index].posZ.raw = pos_z;
@@ -611,7 +627,7 @@ void func_8007F078(u16 actor_index) {
     gActors[portrait_index].colorA = (u8) ((128.0f / (gActors[actor_index].unk_128 / 16)) * gActors[portrait_index].scaleY);
 }
 
-void func_8007F37C(u16 actor_index) {
+void ActorUpdate_Type38(u16 actor_index) {
     s32 pad;
     switch (gActors[actor_index].state) {
     case 0:
@@ -669,7 +685,7 @@ void func_8007F560(u16 actor_index) {
         gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 1.0f, 0.05f);
     }
     if (gActors[actor_index].var_154 != 0xFFFF) {
-        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * 65536.0f) ;
+        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * 65536.0f);
         y = gActors[(u16)gActors[actor_index].var_154].posY.raw + (gActors[actor_index].var_15C * gActors[actor_index].scaleY * 65536.0f);
         z = FIXED_UNIT(64.0);
     }

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "music.h"
+#include "28EF0.h"
 #include "80D90.h"
 
 // "Overlay 0" code for "Final Battle"
@@ -408,7 +409,7 @@ void func_80196BE8_6C18B8(s32 arg0) {
 void func_80196BF0_6C18C0(u16 index, u16 flags, s32 velocity_x) {
     s32 actor_index;
 
-    actor_index = func_8002F154(index, flags, 0);
+    actor_index = SpawnGemActor61(index, flags, 0);
     if (actor_index != 0) {
         gActors[actor_index].velocityX.raw = velocity_x;
         gActors[actor_index].velocityY.raw = FIXED_UNIT(3.5);
@@ -542,21 +543,21 @@ void func_80197E08_6C2AD8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80197F00_6C2BD0.s")
 
-void func_80198330_6C3000(u16 arg0, s32 arg1) {
+void func_80198330_6C3000(u16 arg0, u16 arg1) {
     Sound_StopSfx(D_801A6F60);
     Sound_PlaySfx(arg0);
     D_801A6F60 = arg0;
 }
 
 
-void func_80198370_6C3040(u16 arg0, s32 arg1) {
+void func_80198370_6C3040(u16 arg0, u16 arg1) {
     Sound_StopSfx(D_801A6F62);
     Sound_PlaySfx(arg0);
     D_801A6F62 = arg0;
 }
 
 
-void func_801983B0_6C3080(u16 arg0, s32 arg1) {
+void func_801983B0_6C3080(u16 arg0, u16 arg1) {
     Sound_StopSfx(D_801A6F64);
     Sound_PlaySfx(arg0);
     D_801A6F64 = arg0;
@@ -583,10 +584,11 @@ void func_80198470_6C3140(u16 arg0, u16 arg1) {
     D_801A6F64 = arg0;
 }
 
-void func_801984B0_6C3180(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
-    func_801983F0_6C30C0(arg0, arg3);
-    func_80198430_6C3100(arg1, arg3);
-    func_80198470_6C3140(arg2, arg3);
+// play 3 sounds at once,
+void func_801984B0_6C3180(u16 sfx_0, u16 sfx_1, u16 sfx_2, u16 actor_index) {
+    func_801983F0_6C30C0(sfx_0, actor_index);
+    func_80198430_6C3100(sfx_1, actor_index);
+    func_80198470_6C3140(sfx_2, actor_index);
 }
 
 void func_80198508_6C31D8(u16 arg0, s32 arg1) {
@@ -663,7 +665,7 @@ void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {
     func_80197A04_6C26D4(actor_index);
     D_801A5204_6CFED4 = 1;
     D_801A5F9C_6D0C6C = 0;
-    Sound_PlaySfx(0x2F);
+    Sound_PlaySfx(SFX_GRAB_002F);
 }
 
 void func_80198858_6C3528(s32 arg0, u16 actor_index) {
@@ -872,7 +874,7 @@ void func_8019D908_6C85D8(void) {
     ACTOR_INIT(0xC1,0x160D);
     gActors[0xC1].graphicFlags = 0;
     gActors[0xC1].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[0xC1].posZ.whole = 0xE0;
     gActors[0xC1].var_154 = 4;
     gActors[0xC1].scaleX = 20.0f;
@@ -1089,7 +1091,7 @@ void func_8019E564_6C9234(u16 actor_index) {
                 gActors[0x75].colorR = 0x7F;
                 gActors[0x76].colorR = 0x7F;
                 CameraShake(8, 5);
-                Sound_PlaySfx(0x59);
+                Sound_PlaySfx(SFX_MECHSTEP_0059);
             }
             break;
 
@@ -1169,7 +1171,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
                 CameraShake(8, 5);
-                Sound_PlaySfx(0x59);
+                Sound_PlaySfx(SFX_MECHSTEP_0059);
             }
             func_8019E7E8_6C94B8(actor_index);
             break;

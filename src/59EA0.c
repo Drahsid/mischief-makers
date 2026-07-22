@@ -19,8 +19,6 @@ extern ActorFunc D_800D3FD0[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
-extern s32 D_8013745C;
-
 u16 func_800592A0(u16 actor_index, s32* arg1) {
     u16 free_actor;
 
@@ -63,7 +61,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
     gActors[actor_1].graphicIndex = 0x128;
     gActors[actor_1].unk_148 = 0.0f;
-    if (!(D_801373E0.unk_7C & 0x2)) {
+    if (!(gPlayerData.unk_7C & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
         gActors[actor_1].var_160 = FIXED_UNIT(256.0);
     }
@@ -89,7 +87,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].unk_148 = 0.0f;
     sp4C[0] = 0;
     sp4C[1] = -0x28;
-    for (index = D_801373E0.unk_0A; index > 0; index--) {
+    for (index = gPlayerData.unk_0A; index > 0; index--) {
         actor_1 = func_800592A0(actor_index, sp4C);
         if (actor_1 == 0) {
             return;
@@ -636,7 +634,7 @@ void func_8005B1E8(u16 actor_index) {
     u16 actor_1;
     u8 temp_v0;
 
-    if ((((s32)D_8013745C + actor_index) % 5) == 0) {
+    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
         if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
             sp2C[0] = gActors[actor_index].posX.whole;
             sp2C[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
@@ -686,7 +684,7 @@ void func_8005B3F4(u16 actor_index) {
     u16 actor_1;
     u8 temp_v0_2;
 
-    if (((s32)D_8013745C + actor_index) % 4) {
+    if (((s32)gPlayerData.unk_7C + actor_index) % 4) {
         return;
     }
     if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
@@ -817,10 +815,10 @@ void func_8005BA38(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
 
-    gActors[actor_index].colorR = ((D_8013745C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorG = ((D_8013745C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorB = ((D_8013745C & 0xC) * 7) + 0x1C;
-    if ((((s32)D_8013745C + actor_index) % 5) == 0) {
+    gActors[actor_index].colorR = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorG = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorB = ((gPlayerData.unk_7C & 0xC) * 7) + 0x1C;
+    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
         sp2C[0] = gActors[actor_index].posX.whole + func_8005C708(0xA);
         sp2C[1] = gActors[actor_index].posY.whole + func_8005C708(0x12);
         sp2C[2] = gActors[actor_index].posZ.whole + 1;
@@ -956,7 +954,7 @@ u16 func_8005C250(u16 actor_index) {
     if (actor_1 == 0) {
         return actor_1;
     }
-    gActors[actor_1].actorType = 0x2E;
+    gActors[actor_1].actorType = ACTORTYPE_MARINAAFTERIMAGE;
     Actor_Initialize(actor_1);
     gActors[actor_1].graphicFlags |= (gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5)) | ACTOR_GFLAG_UNK11;
     gActors[actor_1].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19 | ACTOR_FLAG_UNK27;

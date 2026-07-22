@@ -99,8 +99,8 @@ void func_801A6E48_78B988(u16 arg0) {
     actor_index = Actor_RangeFindInactive(0x49, 0x4C);
     if (actor_index != 0) {
         gActors[actor_index].actorType = ACTORTYPE_OVL2_W5B_SPIKEBALL;
-        Actor_Initialize(actor_index);
-        gActors[actor_index].var_110 = (Rand() & 19) << 8;
+        Actor_Initialize(actor_index);           // shuffle between permanence and colors.
+        gActors[actor_index].var_110 = (Rand() & ((SPIKEBALL_MORTAL | SPIKEBALL_COLORMASK) >> 8)) << 8;
         gActors[actor_index].var_0D8 = 0;
         gActors[actor_index].posX.whole = gActors[arg0].posX.whole;
         gActors[actor_index].posY.whole = gActors[arg0].posY.whole + 0x10;
@@ -154,7 +154,7 @@ void func_801A7C78_78C7B8(u16 actor_index) {
       if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         // bounce ball if it hits the floor and has more "bounces" left.
         if (gActors[actor_index].unk_12C >= 0.0f) {
-            Sound_PlaySfxAtActor2(0x9B, actor_index);
+            Sound_PlaySfxAtActor2(SFX_009B, actor_index);
         }
         // 25% less bounce.
         gActors[actor_index].velocityY.raw = (s32) ((f64) -(f32) gActors[actor_index].velocityY.raw * 0.75);

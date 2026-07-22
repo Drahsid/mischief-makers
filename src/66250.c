@@ -842,7 +842,8 @@ void func_80072DD4(u16 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80072FE4.s")
 
-void func_8007325C(u16 actor_index) {
+// update behavior for almost every Clancer
+void Clancer_Update(u16 actor_index) {
     func_8006C1AC(actor_index);
     if (gActors[actor_index].state < 0x4000) {
         D_800D7F00[gActors[actor_index].state / 16](actor_index);
@@ -1226,7 +1227,7 @@ void func_80079B28(u16 actor_index) {
         var_s0 -= 8; var_s2--;
     }
     // Can't use ACTOR_INIT here
-    gActors[actor_index + 1].actorType = 0x1D;
+    gActors[actor_index + 1].actorType = ACTORTYPE_GRAPHICONLY;
     Actor_Initialize((actor_index + 1));
     gActors[actor_index + 1].flags = (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ACTIVE);
     gActors[actor_index + 1].posX.whole = gActors[actor_index].posX.whole;
@@ -1243,14 +1244,14 @@ void func_80079CE8(u16 arg0) {
     sp1E = Actor_RangeFindInactive_90ToC0();
     if (sp1E != 0) {
         func_800333A0(gActors[arg0].posX.whole, gActors[arg0].posY.whole, gActors[arg0].posZ.whole, 1.5f);
-        Sound_PlaySfx(0x93);
+        Sound_PlaySfx(SFX_BOOM_0093);
         func_80073FD8(sp1E, gActors[arg0].var_110, gActors[arg0].var_0D8);
     }
 }
 
 void func_80079DF8(u16 actor_index) {
     func_80034644(actor_index);
-    Sound_PlaySfx(0x2D);
+    Sound_PlaySfx(SFX_HIT_002D);
     gActors[actor_index].unk_118 = 4.0f;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
     gActors[actor_index].unk_114 += 5.0f;
@@ -1300,7 +1301,7 @@ void func_8007A090(u16 actor_index, u16 other_actor_index) {
         var_a3 = FIXED_UNIT(1.75);
     }
 
-    func_8002ECAC(other_actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, var_a3, -FIXED_UNIT(2.5));
+    SpawnRoundBomb(other_actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, var_a3, -FIXED_UNIT(2.5));
 }
 
 void func_8007A118(u16 actor_index, u16 other_actor_index) {
@@ -1374,7 +1375,7 @@ s32 func_8007A4B0(u16 actor_index) {
         temp_v1->flags_098 |= ACTOR_FLAG3_UNK10;
         temp_v1->unk_0F8.raw = temp_v0->var_154;
         temp_v1->unk_0FC.raw = temp_v0->var_158;
-        Sound_PlaySfxAtActor2(0x2A, actor_index);
+        Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
         return 1;
     }
 
@@ -1455,7 +1456,7 @@ void func_8007A8B0(u16 actor_index) {
     case 6:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 11:
         func_80028B90(actor_index);
@@ -1466,7 +1467,7 @@ void func_8007A8B0(u16 actor_index) {
     case 9:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 14:
         func_80028B90(actor_index);
@@ -1477,10 +1478,10 @@ void func_8007A8B0(u16 actor_index) {
     case 12:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
     case 19:
-        Sound_PlaySfx(0x9DU);
+        Sound_PlaySfx(SFX_CLANCER_OW_009D);
         gActors[actor_index].flags = 0;
         gActors[actor_index].health = 0;
         break;
@@ -1529,12 +1530,12 @@ s32 func_8007AB44(u16 actor_index) {
         if ((gActors[actor_index].velocityY.raw > FIXED_UNIT(3)) || (gActors[actor_index].velocityY.raw < FIXED_UNIT(-3))) {
             if ((u16)gActors[actor_index].unk_134) {
                 gActors[actor_index].unk_134 = 0.0f;
-                Sound_PlaySfxAtActor3(0xFD, actor_index);
+                Sound_PlaySfxAtActor3(SFX_RUMBLE_00FD, actor_index);
             }
         }
         else if (!(gActiveFrames & 0xF)) {
             gActors[actor_index].unk_134 = 93.0f;
-            Sound_PlaySfxAtActor3(0xFD, actor_index);
+            Sound_PlaySfxAtActor3(SFX_RUMBLE_00FD, actor_index);
         }
     }
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -1586,7 +1587,7 @@ s32 func_8007AB44(u16 actor_index) {
     }
     if (((gButtonPress & gButton_LTrig) || (gButtonPress & gButton_RTrig)) && (gActors[actor_index].unk_118 < 0.0f)) {
         gActors[actor_index].unk_118 = 16.0f;
-        Sound_PlaySfxAtActor2(0x43, actor_index);
+        Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
         gActors[actor_index].velocityX.raw -= ((f32) gActors[actor_index].velocityX.raw * 0.8);
         gActors[actor_index].var_15C -= ((f32) gActors[actor_index].var_15C * 1.5);
         gActors[actor_index].velocityY.raw -= ((f32) gActors[actor_index].velocityY.raw * 1.4);
@@ -1684,6 +1685,7 @@ void func_8007B60C(u16 actor_index) {
     }
 }
 
+// update function for Rocketeer
 void func_8007B73C(u16 actor_index) {
     Actor* actor; // needs temp var to match
     s32 var_v1;
@@ -1692,7 +1694,8 @@ void func_8007B73C(u16 actor_index) {
     actor = &gActors[actor_index];
     actor->unk_178 = actor->posX.whole + gScreenPosCurrentX.whole;
     actor->unk_17C = actor->posY.whole + gScreenPosCurrentY.whole;
-    if ((actor->scaleX == 0.75) && (Clanpot_AddItemCheck3(actor_index, 0x400, 0, 0, 0x69) >= 0)) {
+    if ((actor->scaleX == 0.75) && 
+      (Clanpot_AddItemCheck3(actor_index, CLANPOT_ACTORICON, 0, 0, ACTORTYPE_CLANCERICON) >= 0)) {
         actor->flags = ACTOR_FLAG_ACTIVE;
         actor->state = 1;
     }
@@ -1734,11 +1737,11 @@ void func_8007B73C(u16 actor_index) {
             if ((actor->flags_098 & ACTOR_FLAG3_UNK9) && !(actor->var_150 & 0x100000)) {
                 if (actor->unk_0DE == 1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
-                    Sound_PlaySfx(0x67);
+                    Sound_PlaySfx(SFX_CLANCER_OW_0067);
                     func_80079AB4(actor_index);
                 }
                 else {
-                    Sound_PlaySfx(0x2F);
+                    Sound_PlaySfx(SFX_GRAB_002F);
                     func_80079B28(actor_index);
                 }
             }
@@ -1900,7 +1903,7 @@ void func_8007B73C(u16 actor_index) {
             }
             if (actor->flags_098 & ACTOR_FLAG3_UNK0) {
                 if (actor->unk_114 > 2.5) {
-                    Sound_PlaySfxAtActor2(0x2D, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
                 }
                 actor->var_154 = 8;
                 actor->var_160 = -actor->var_160;
@@ -1998,7 +2001,7 @@ void func_8007B73C(u16 actor_index) {
                 }
                 func_80033E7C(actor_index, actor->posX.whole + var_v0, actor->posY.whole + 8, actor->posZ.whole - 1, FIXED_UNIT(1), FIXED_UNIT(8), 3);
                 if (actor->flags_098 & ACTOR_FLAG3_UNK1) {
-                    Sound_PlaySfx(0x9D);
+                    Sound_PlaySfx(SFX_CLANCER_OW_009D);
                     ACTOR_GFX_INIT(actor_index, D_800D821C);
                 }
                 else if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
@@ -2030,7 +2033,7 @@ void func_8007B73C(u16 actor_index) {
             actor->var_15C = actor->flags & (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
             actor->unk_114 = 30.0f;
             actor->unk_118 = -1.0f;
-            Sound_PlaySfx(0x45);
+            Sound_PlaySfx(SFX_BOOM_0045);
             actor->unk_168 = Math_Atan2(actor->velocityX.raw, actor->velocityY.raw) << 0x10;
         }
         break;
@@ -2042,8 +2045,8 @@ void func_8007B73C(u16 actor_index) {
         actor->unk_0FC.raw = FIXED_UNIT(5.25);
         actor->damage = 10;
         if ((actor->velocityY.raw < 0 && (actor->flags_098 & ACTOR_FLAG3_UNK5)) || (actor->velocityY.raw > 0 && actor->flags_098 & ACTOR_FLAG3_UNK4)) {
-            Actor_ReduceHealth(actor_index, 0x32);
-            Sound_PlaySfx(0xAC);
+            Actor_ReduceHealth(actor_index, 50);
+            Sound_PlaySfx(SFX_LAND_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw /= 4;
             break;
@@ -2060,8 +2063,8 @@ void func_8007B73C(u16 actor_index) {
 
         if ((actor->velocityX.raw > 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK3) || (actor->var_150 & 8)))
            || (actor->velocityX.raw < 0 && ((actor->flags_098 & ACTOR_FLAG3_UNK2) || (actor->var_150 & 4)))) {
-            Actor_ReduceHealth(actor_index, 0x32);
-            Sound_PlaySfx(0xAC);
+            Actor_ReduceHealth(actor_index, 50);
+            Sound_PlaySfx(SFX_LAND_00AC);
             func_80079810(actor_index);
             actor->velocityX.raw = (s32) -actor->velocityX.raw / 2;
             break;
@@ -2103,12 +2106,12 @@ void func_8007B73C(u16 actor_index) {
             func_80079810(actor_index);
         }
         if ((actor->velocityY.raw < 0) && (actor->flags_098 & ACTOR_FLAG3_UNK5)) {
-            Sound_PlaySfx(0x36);
+            Sound_PlaySfx(SFX_0036);
             ACTOR_GFX_INIT(actor_index, D_800D81F8);
             actor->velocityY.raw = -actor->velocityY.raw;
         }
         if (((actor->velocityX.raw < 0) && (actor->flags_098 & ACTOR_FLAG3_UNK2)) || ((actor->velocityX.raw > 0) && (actor->flags_098 & ACTOR_FLAG3_UNK3))) {
-            Sound_PlaySfx(0x36);
+            Sound_PlaySfx(SFX_0036);
             ACTOR_GFX_INIT(actor_index, D_800D81F8);
             actor->velocityX.raw = -actor->velocityX.raw;
         }

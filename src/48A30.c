@@ -15,13 +15,13 @@ void func_80047E30(u16 arg0) {
 void func_80047E38(s32 arg0) {
     s32 temp_v0;
 
-    D_801370CC = (u16)D_801373E0.unk_20;
-    D_801370CE = (u16)D_801373E0.unk_24;
+    D_801370CC = (u16)gPlayerData.unk_20;
+    D_801370CE = (u16)gPlayerData.unk_24;
     temp_v0 = gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A;
     gButtonHoldHistory[0] = D_801370CC & temp_v0;
     gButtonPressHistory[0] = D_801370CE & temp_v0;
-    D_801373E0.unk_20 = 0;
-    D_801373E0.unk_24 = 0;
+    gPlayerData.unk_20 = 0;
+    gPlayerData.unk_24 = 0;
 }
 
 void func_80047ED4(u16 _actor_index) {

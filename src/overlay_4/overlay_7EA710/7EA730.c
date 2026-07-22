@@ -85,11 +85,11 @@ void func_801B9900_7EA730(void) {
             Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -108,7 +108,7 @@ void func_801B99D0_7EA800(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -135,10 +135,10 @@ void func_801B9B2C_7EA95C(void) {
     D_800D2924 = 0x7FFF;
     D_800D2918 = 0x7FFF;
     D_800D291C = 0;
-    D_800BE568.whole = D_800D2920;
-    D_800BE56C.whole = D_800D2924;
-    D_800BE570.whole = D_800D2918;
-    D_800BE574.whole = D_800D291C;
+    gScreenBoundX0.whole = D_800D2920;
+    gScreenBoundX1.whole = D_800D2924;
+    gScreenBoundY0.whole = D_800D2918;
+    gScreenBoundY1.whole = D_800D291C;
     D_800BE544 = 0x8000;
     D_800BE704 = 2;
     D_800BE708 = 2;
@@ -152,7 +152,7 @@ void func_801B9BB4_7EA9E4(void) {
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
             D_800BE578 = temp;
             D_800BE580 = -12;
@@ -162,7 +162,7 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }
@@ -189,8 +189,8 @@ void func_801B9BB4_7EA9E4(void) {
             func_80045F14(D_801B9FF0_7EAE20);
             D_800D294C = 0;
             gGuestActorIndex = 0;
-            D_801373E0.unk_78 &= 0xFFFEFFFA;
-            D_801373E0.unk_78 |= 2;
+            gPlayerData.flags &= ~(PLAYERDATA_UNK16 | PLAYERDATA_UNBOUND | PLAYERDATA_UNK0);
+            gPlayerData.flags |= PLAYERDATA_BOUND;
             func_80045500();
             D_800D28FC &= -0x58B;
             D_800D28FC |= 4;
@@ -239,7 +239,7 @@ void func_801B9EA4_7EACD4(void) {
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
-            D_800CA230 = 1;
+            gIsPlayerInactive = TRUE;
             gStageState++;
             D_800BE578 = 2;
             D_800BE580 = -12;
@@ -249,7 +249,7 @@ void func_801B9EA4_7EACD4(void) {
             D_800D291C = -0xF00;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gCannotPause = TRUE;
                 gStageState++;
             }

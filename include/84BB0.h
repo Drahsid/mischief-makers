@@ -15,9 +15,9 @@ void ActorUpdate_Spikeball_OrbitYZ(u16 actor_index);
 void ActorUpdate_Spikeball_80(u16 actor_index);
 void ActorUpdate_DiggingSpot(u16 actor_index);
 
-void func_80084974(u16 actor_index);
-void func_800853C8(u16 actor_index);
-void func_80087820(u16 actor_index);
+void ActorUpdate_Flower(u16 actor_index);
+void ActorUpdate_Hat(u16 actor_index);
+void ActorUpdate_ClanbombTimer(u16 actor_index);
 void func_80089418(u16 actor_index);
 void func_8008AD3C(u16 actor_index);
 void func_8008BC5C(u16 actor_index);

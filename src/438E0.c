@@ -12,22 +12,21 @@
 typedef void (*FuncVoidVoid)(void);
 
 extern u16 D_800D28E4;
-extern u16 D_800D28F0;
 extern u32 D_800D28FC;
-extern u8 D_800D28D0[];
+extern u8 D_800D28D0[]; // indexes of Festival Games Scenes.
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
 extern u16 D_800D2900;
-extern s32 D_800D2944;
+extern s32 D_800D2944; // offset for exit transition random portraits. always 0.
 extern u16 D_800D2910;
 extern s16 D_800D2914;
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern s32 D_800D2928;
-extern s32 D_800D2938;
+extern s32 gStageTimer;
+extern s32 gTransitionState; // state of transition effect
 extern s32 D_800D293C;
-extern s32 D_800D2940;
+extern s32 gTransitionTimer;
 extern u16 D_800D2950;
 extern u16 D_800D2964;
 extern u16 D_800D2968;
@@ -65,25 +64,25 @@ extern u16 D_800D37A8;
 extern s32 D_800D37AC[];
 extern void (*D_800D37BC[])(void);
 extern u16 D_800D3888[];
-extern s16 D_800D38B8[];
-extern s16 D_800D3AE8[];
+extern s16 gExitPortraitPositions[];
+extern s16 gExitPortraitGraphics[]; // collection of random portraits for exit transition.
 extern FuncVoidVoid D_800D3B78[];
 
 extern u16 D_800D82DC[];
 extern u16 D_800D84E8[];
-extern u16 D_800D86D8[];
+extern u16 gPaletteGemBlue[];
 extern u16 D_800D8750[];
 extern u16 D_800D87C8[];
 extern u16 D_800D8840[];
-extern u16 D_800D88B8[];
+extern u16 gPaletteGemRed[];
 extern u16 D_800D8930[];
 extern u16 D_800D89A8[];
 extern u16 D_800D8A20[];
-extern u16 D_800D8A98[];
+extern u16 gPaletteGemGreen[];
 extern u16 D_800D8B10[];
 extern u16 D_800D8B88[];
 extern u16 D_800D8C00[];
-extern u16 D_800D8C78[];
+extern u16 gPaletteGemYellow[];
 extern u16 D_800D8CF0[];
 extern u16 D_800D8D68[];
 extern u16 D_800D8DE0[];
@@ -325,7 +324,7 @@ void func_80043918(void) {
     D_800D28FC = 0;
     D_800D28F4 = 1;
     gStageState = 0;
-    D_800D2938 = 0;
+    gTransitionState = 0;
     D_800BE668 = 0x32;
     func_8002653C();
     func_80043234();
@@ -518,7 +517,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
     s32 x_max;
     u16 actor_index;
 
-    if (D_800BE710 != 0) {
+    if (D_800BE710) {
         x_min = -238;
         x_max = 238;
         y_min = -190;
@@ -551,210 +550,210 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
 }
 
 void func_80044360(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0xA;
-    D_801069E0[D_801782C0].palette = 0;
+    gStaticObjects[D_801782C0].graphicIndex = 0xA;
+    gStaticObjects[D_801782C0].palette = 0;
 }
 
 void func_80044390(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3740[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3740[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x46, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x46, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044468(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3748[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3748[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x52, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x52, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044540(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3750[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3750[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x4C, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x4C, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044618(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3758[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3758[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x58, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x58, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_800446F0(void) {
     s32 temp_t9;
 
-    D_801069E0[D_801782C0].graphicIndex = D_800D37A0;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D37A0;
     temp_t9 = D_801782C2 & 3;
-    D_801069E0[D_801782C0].palette = D_800D1958[temp_t9];
+    gStaticObjects[D_801782C0].palette = gGemPalettes[temp_t9];
     if (((temp_t9 == 2) && (YellowGem_GetFlag(gCurrentStage) != 0)) || (GemCollect_Static(D_801782C0) != 0)) {
         D_801782BC[0] |= 0x4000;
     }
 }
 
 void func_800447AC(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3760[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3760[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x5E, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x5E, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_80044884(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3768[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
-    if ((D_801782C2 == 1) && !(func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0)) {
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3768[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
+    if ((D_801782C2 == 1) && !(func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0)) {
         D_801782BC[0] |= 0x8000;
-        func_800441F4(0x64, D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole, D_801069E0[D_801782C0].palette);
+        func_800441F4(0x64, gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole, gStaticObjects[D_801782C0].palette);
     }
 }
 
 void func_8004495C(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3770[D_800D37A4];
-    D_801069E0[D_801782C0].palette = (u16* )0x80203440;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3770[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = (u16* )0x80203440;
 }
 
 void func_800449A8(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x20;
-    D_801069E0[D_801782C0].palette = D_800D19A8[D_801782C2 & 3];
+    gStaticObjects[D_801782C0].graphicIndex = 0x20;
+    gStaticObjects[D_801782C0].palette = D_800D19A8[D_801782C2 & 3];
 
-    if ((func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0) == 0) {
+    if ((func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0) == 0) {
         *D_801782BC |= 0x8000;
     }
 }
 
 void func_80044A38(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3778[D_800D37A4];
-    D_801069E0[D_801782C0].palette = (u16* )0x80203240;
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3778[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = (u16* )0x80203240;
 }
 
 void func_80044A84(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x24;
-    D_801069E0[D_801782C0].palette = (void*)0x80203050;
+    gStaticObjects[D_801782C0].graphicIndex = 0x24;
+    gStaticObjects[D_801782C0].palette = (void*)0x80203050;
 
-    if ((func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0) == 0) {
+    if ((func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0) == 0) {
         *D_801782BC |= 0x8000;
     }
 }
 
 void func_80044B00(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x25;
-    D_801069E0[D_801782C0].palette = (void*)0x80203050;
+    gStaticObjects[D_801782C0].graphicIndex = 0x25;
+    gStaticObjects[D_801782C0].palette = (void*)0x80203050;
 
-    if ((func_80012AB4(D_801069E0[D_801782C0].posX.whole, D_801069E0[D_801782C0].posY.whole) & 0xC0) == 0) {
+    if ((func_80012AB4(gStaticObjects[D_801782C0].posX.whole, gStaticObjects[D_801782C0].posY.whole) & 0xC0) == 0) {
         *D_801782BC |= 0x8000;
     }
 }
 
 void func_80044B7C(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3740[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3740[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044BD8(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3748[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3748[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044C34(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3750[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3750[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044C90(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3758[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3758[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044CEC(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3760[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3760[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044D48(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3768[D_800D37A8];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3768[D_800D37A8];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80044DA4(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x2F;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x2F;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044DEC(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x30;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x30;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044E34(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x31;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x31;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044E7C(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x32;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x32;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044EC4(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x33;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x33;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044F0C(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x34;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x34;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044F54(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x35;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x35;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044F9C(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x36;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x36;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80044FE4(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x37;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x37;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_8004502C(void) {
-    D_801069E0[D_801782C0].graphicIndex = 0x38;
-    D_801069E0[D_801782C0].palette = D_800D19B8[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = 0x38;
+    gStaticObjects[D_801782C0].palette = D_800D19B8[D_801782C2];
 }
 
 void func_80045074(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3780[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3780[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_800450D0(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3788[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3788[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_8004512C(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3790[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3790[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_80045188(void) {
-    D_801069E0[D_801782C0].graphicIndex = D_800D3798[D_800D37A4];
-    D_801069E0[D_801782C0].palette = D_800D1968[D_801782C2];
+    gStaticObjects[D_801782C0].graphicIndex = D_800D3798[D_800D37A4];
+    gStaticObjects[D_801782C0].palette = D_800D1968[D_801782C2];
 }
 
 void func_800451E4(u16* arg0) {
@@ -765,7 +764,7 @@ void func_800451E4(u16* arg0) {
     s16 x_min;
 
     D_801782BC = arg0;
-    if (D_800BE710 != 0) {
+    if (D_800BE710) {
         x_min = gScreenPosCurrentX.whole - 256;
         x_max = gScreenPosCurrentX.whole + 256;
         y_min = gScreenPosCurrentY.whole - 208;
@@ -796,8 +795,8 @@ void func_800451E4(u16* arg0) {
         if ((x_min < D_801782BC[1]) && (D_801782BC[1] < x_max) &&
             (y_min < D_801782BC[2]) && (D_801782BC[2] < y_max)) {
             if ((D_801782BC[0] & 0xC000) == 0) {
-                D_801069E0[D_801782C0].posX.whole = D_801782BC[1] - gScreenPosCurrentX.whole;
-                D_801069E0[D_801782C0].posY.whole = D_801782BC[2] - gScreenPosCurrentY.whole;
+                gStaticObjects[D_801782C0].posX.whole = D_801782BC[1] - gScreenPosCurrentX.whole;
+                gStaticObjects[D_801782C0].posY.whole = D_801782BC[2] - gScreenPosCurrentY.whole;
                 D_801782C2 = D_801782BC[0] & 0xF;
                 D_800D37BC[(D_801782BC[0] & 0xFFF0) / 16]();
                 D_801782C0++;
@@ -806,9 +805,10 @@ void func_800451E4(u16* arg0) {
     }
 
     for (; D_801782C0 < 0x40; D_801782C0++) {
-        D_801069E0[D_801782C0].graphicIndex = 0;
+        gStaticObjects[D_801782C0].graphicIndex = 0;
     }
 }
+
 
 void func_80045500(void) {
     u16 index;
@@ -886,7 +886,7 @@ void func_800457C8(void) {
     color *= 2.0;
     switch (D_801782B8 & 7) {
     case 0:
-        Palette_AdjustRgb5551Array(D_800D8D68, D_800D8C78, 0x3C, color, color, color);
+        Palette_AdjustRgb5551Array(D_800D8D68, gPaletteGemYellow, 0x3C, color, color, color);
         Palette_AdjustRgb5551Array(D_800DE508, D_800DE188, 0x1C, 0, 0, color);
         break;
     case 1:
@@ -894,7 +894,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE540, D_800DE1C0, 0x1C, 0, 0, color);
         break;
     case 2:
-        Palette_AdjustRgb5551Array(D_800D89A8, D_800D88B8, 0x3C, 0, 0, color);
+        Palette_AdjustRgb5551Array(D_800D89A8, gPaletteGemRed, 0x3C, 0, 0, color);
         Palette_AdjustRgb5551Array(D_800DE578, D_800DE1F8, 0x1C, 0, 0, color);
         break;
     case 3:
@@ -902,7 +902,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE5B0, D_800DE230, 0x1C, 0, 0, color);
         break;
     case 4:
-        Palette_AdjustRgb5551Array(D_800D8B88, D_800D8A98, 0x3C, 0, color, 0);
+        Palette_AdjustRgb5551Array(D_800D8B88, gPaletteGemGreen, 0x3C, 0, color, 0);
         Palette_AdjustRgb5551Array(D_800DE5E8, D_800DE268, 0x1C, 0, 0, color);
         break;
     case 5:
@@ -910,7 +910,7 @@ void func_800457C8(void) {
         Palette_AdjustRgb5551Array(D_800DE620, D_800DE2A0, 0x1C, 0, 0, color);
         break;
     case 6:
-        Palette_AdjustRgb5551Array(D_800D87C8, D_800D86D8, 0x3C, color, 0, 0);
+        Palette_AdjustRgb5551Array(D_800D87C8, gPaletteGemBlue, 0x3C, color, 0, 0);
         Palette_AdjustRgb5551Array(D_800DE658, D_800DE2D8, 0x1C, 0, 0, color);
         break;
     case 7:
@@ -1067,8 +1067,8 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     gPlayerActor.posY.whole = pos_vals[1];
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
     gPlayerPosY.whole = gScreenPosCurrentY.whole + gActors->posY.whole;
-    D_801373E0.unk_78 &= ~0x10005;
-    D_801373E0.unk_78 |= 2;
+    gPlayerData.flags &= ~(PLAYERDATA_UNK16 | PLAYERDATA_UNBOUND | PLAYERDATA_UNK0);
+    gPlayerData.flags |= PLAYERDATA_BOUND;
     gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
     if (gPlayerActor.health < 0) {
         gPlayerActor.health = 0;
@@ -1078,8 +1078,8 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     D_800D28FC &= ~0x758A;
     D_800D28FC |= 4;
     D_800D2914 = 0;
-    gPortraits[0x40].posY.whole = 0x50;
-    gPortraits[0x41].posY.whole = 0x53;
+    gLifebar.posY.whole = 0x50;
+    gLifebarHead.posY.whole = 0x53;
     D_801376BC[0] = 1;
     D_801376BC[1] = 1;
     D_801376BC[2] = 1;
@@ -1116,7 +1116,7 @@ void func_80046188(u16* arg0, void* arg1) {
     gDrawEnvLayer = 0;
     gDrawBackground = 0;
     Actor_LoadSpawnTable(arg1);
-    func_80046A9C();
+    Transition_SmashBlack();
     Sound_StopAllSfx();
     Sound_StopMusic();
 }
@@ -1137,46 +1137,46 @@ void func_80046274(u32 arg0, u32 arg1) {
 
 void func_80046280(void) {
     if (D_800D28E4 < 0x68) {
-        D_800BE568.whole = MIN(gScreenPosCurrentX.whole - 0x90, D_800D2920);
-        D_800BE56C.whole = MAX(gScreenPosCurrentX.whole + 0x90, D_800D2924);
+        gScreenBoundX0.whole = MIN(gScreenPosCurrentX.whole - 0x90, D_800D2920);
+        gScreenBoundX1.whole = MAX(gScreenPosCurrentX.whole + 0x90, D_800D2924);
     }
 }
 
 void Camera_UpdateViewBounds(void) {
     if (D_800D28E4 < 0x68) {
         if ((D_800D2918 - 0x70) < gScreenPosCurrentY.whole) {
-            D_800BE570.whole  = gScreenPosCurrentY.whole + 0x70;
+            gScreenBoundY0.whole  = gScreenPosCurrentY.whole + 0x70;
         }
         else {
-            D_800BE570.whole  = D_800D2918;
+            gScreenBoundY0.whole  = D_800D2918;
         }
 
         if (gScreenPosCurrentY.whole < (D_800D291C + 0x70)) {
-            D_800BE574.whole = gScreenPosCurrentY.whole - 0x70;
+            gScreenBoundY1.whole = gScreenPosCurrentY.whole - 0x70;
         }
         else {
-            D_800BE574.whole = D_800D291C;
+            gScreenBoundY1.whole = D_800D291C;
         }
 
         if ((gScreenPosCurrentX.whole - 0x90) < D_800D2920) {
-            D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
+            gScreenBoundX0.whole  = gScreenPosCurrentX.whole - 0x90;
         }
         else {
-            D_800BE568.whole  = D_800D2920;
+            gScreenBoundX0.whole  = D_800D2920;
         }
 
         if (D_800D2924 < (gScreenPosCurrentX.whole + 0x90)) {
-            D_800BE56C.whole  = gScreenPosCurrentX.whole + 0x90;
+            gScreenBoundX1.whole  = gScreenPosCurrentX.whole + 0x90;
         }
         else {
-            D_800BE56C.whole  = D_800D2924;
+            gScreenBoundX1.whole  = D_800D2924;
         }
     }
 }
 
 void func_800463C0(void) {
     Camera_UpdateViewBounds();
-    D_800BE568.whole  = gScreenPosCurrentX.whole - 0x90;
+    gScreenBoundX0.whole  = gScreenPosCurrentX.whole - 0x90;
 }
 
 s32 func_800463F0(void) {
@@ -1330,44 +1330,47 @@ void func_80046A30(void) {
     }
 }
 
-void func_80046A9C(void) {
+// smash to black
+void Transition_SmashBlack(void) {
     u16 index;
 
-    D_800D2938 = 0;
+    gTransitionState = 0;
     func_80046A30();
     for (index = 0; index != 0x23; index++) {
         gPortraits[index].flags = ACTOR_GFLAG_PALETTE | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
         gPortraits[index].palette = (uintptr_t)D_800D82DC;
-        gPortraits[index].graphicIndex = 0x2D0;
+        gPortraits[index].graphicIndex = GINDEX_SOLIDSQUARE;
         gPortraits[index].alpha = 0xFF;
-        gPortraits[index].posX.whole = D_800D38B8[index * 2];
-        gPortraits[index].posY.whole = D_800D38B8[index * 2 + 1] + 2;
+        gPortraits[index].posX.whole = gExitPortraitPositions[index * 2];
+        gPortraits[index].posY.whole = gExitPortraitPositions[index * 2 + 1] + 2;
         gPortraits[index].scaleX = 3.0f;
         gPortraits[index].scaleY = 3.0f;
     }
 }
 
-s32 func_80046B4C(void) {
+
+// transition of expanding black squares
+s32 Transition_ExpandBlack(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938 += 1;
-        D_800D293C = 0x14;
+        gTransitionState += 1;
+        D_800D293C = 20;
         func_80046A30();
         D_800D28FC |= 4;
         D_800D28FC &= ~8;
         /* fallthrough */
     case 1:
         if (!(D_800D28FC & 4)) {
-            D_800D2938++;
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = ACTOR_GFLAG_PALETTE | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
                 gPortraits[index].palette = (uintptr_t)D_800D82DC;
-                gPortraits[index].graphicIndex = 0x2D0;
+                gPortraits[index].graphicIndex = GINDEX_SOLIDSQUARE;
                 gPortraits[index].alpha = 0xFF;
-                gPortraits[index].posX.whole = D_800D38B8[index * 2];
-                gPortraits[index].posY.whole = D_800D38B8[index * 2 + 1] + 2;
+                gPortraits[index].posX.whole = gExitPortraitPositions[index * 2];
+                gPortraits[index].posY.whole = gExitPortraitPositions[index * 2 + 1] + 2;
                 gPortraits[index].scaleX = 0.0f;
                 gPortraits[index].scaleY = 0.0f;
             }
@@ -1381,7 +1384,7 @@ s32 func_80046B4C(void) {
             gPortraits[index].scaleY = gPortraits[0].scaleX;
         }
         if (gPortraits[0].scaleX >= 3.0) {
-            D_800D2938++;
+            gTransitionState++;
         }
         break;
     case 3:
@@ -1394,15 +1397,16 @@ s32 func_80046B4C(void) {
     return FALSE;
 }
 
-s32 func_80046D5C(void) {
+// fade out portraits/squares
+s32 Transition_FadeOut(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
         gCannotPause = TRUE;
         gPortraits[0].alpha = Math_ApproachS32(gPortraits[0].alpha, 0, 0x10);
         if (gPortraits[0].alpha == 0) {
-            D_800D2938++;
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = 0;
             }
@@ -1416,7 +1420,7 @@ s32 func_80046D5C(void) {
         break;
     case 1:
         gCannotPause = FALSE;
-        D_800BE5D4 = 0;
+        gStartButtonOnly = FALSE;
         return TRUE;
     }
     return FALSE;
@@ -1426,57 +1430,58 @@ s32 Cutscene_CheckSkipInput(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 99;
-        D_800D2938 = 0;
+        gTransitionState = 0;
         return TRUE;
     }
 
     return FALSE;
 }
 
-s32 func_80046EBC(void) {
+// exit transition with random portraits
+s32 Transition_StageExit(void) {
     u16 var_a1;
     u16 var_s1;
 
     D_800D2944 = 0;
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938++;
+        gTransitionState++;
         D_800D293C = 0;
-        D_800D2940 = 0x12;
+        gTransitionTimer = 18;
         func_80046A30();
         var_a1 = ((Rand() & 3) * 0x23);
         for (var_s1 = 0; var_s1 != 0x23; var_s1++) {
             gPortraits[var_s1].flags = ACTOR_GFLAG_UNK14 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
             gPortraits[var_s1].palette = NULL;
-            gPortraits[var_s1].graphicIndex = D_800D3AE8[(Rand() & 0x3F) + D_800D2944];
+            gPortraits[var_s1].graphicIndex = gExitPortraitGraphics[(Rand() & 0x3F) + D_800D2944];
             gPortraits[var_s1].alpha = 0;
-            gPortraits[var_s1].posX.whole = D_800D38B8[(var_a1 + var_s1) * 2];
-            gPortraits[var_s1].posY.whole = D_800D38B8[(var_a1 + var_s1) * 2 + 1] + 2;
+            gPortraits[var_s1].posX.whole = gExitPortraitPositions[(var_a1 + var_s1) * 2];
+            gPortraits[var_s1].posY.whole = gExitPortraitPositions[(var_a1 + var_s1) * 2 + 1] + 2;
             gPortraits[var_s1].scaleX = 0.0f;
             gPortraits[var_s1].scaleY = 1.0f;
         }
         /* fallthrough */
     case 1:
         if (!(D_800D28FC & 4)) {
-            Sound_PlaySfx(0xBB);
-            if (D_800CBF40 == 0) {
-                Sound_PlayMusic(0x19);
+            Sound_PlaySfx(SFX_STAGE_TILES);
+            if (!gIsPauseExit) {
+                Sound_PlayMusic(BGM_INT);
             }
-            D_800D2938++;
+            gTransitionState++;
         }
         break;
     case 2:
         gAudioFadeMode = 4;
-        if ((D_800D293C == 0x23) && (--D_800D2940 < 0)) {
+        if ((D_800D293C == 0x23) && (--gTransitionTimer < 0)) {
             Sound_StopAllSfx();
-            if (D_800CBF40 != 0) {
-                D_800D2940 = 0x14;
+            if (gIsPauseExit) {
+                gTransitionTimer = 20;
                 Sound_StartFade(0x41, 0x14);
-                D_800D2938 += 2;
+                gTransitionState += 2;
             }
             else {
-                D_800D2940 = 0x78;
-                D_800D2938++;
+                gTransitionTimer = 120;
+                gTransitionState++;
             }
         }
         else {
@@ -1496,7 +1501,7 @@ s32 func_80046EBC(void) {
         gAudioFadeMode = 4;
         if (((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) && (gAudioUpdateCounter < 248)) {
             Sound_StartFade(1, 0x28);
-            D_800D2938++;
+            gTransitionState++;
         }
         else if (gAudioUpdateCounter >= 0x121) {
             Sound_StopAllSfx();
@@ -1506,12 +1511,12 @@ s32 func_80046EBC(void) {
     case 4:
         if (gAudioFadeMode == 3) {
             Sound_StopAllSfx();
-            D_800D2940 = 0x14;
-            D_800D2938++;
+            gTransitionTimer = 20;
+            gTransitionState++;
         }
         break;
     case 5:
-        if (D_800D2940-- < 0) {
+        if (gTransitionTimer-- < 0) {
             return TRUE;
         }
         break;
@@ -1519,27 +1524,30 @@ s32 func_80046EBC(void) {
     return FALSE;
 }
 
-void func_800472D4(void) {
+// spawn "READY!" Text
+void SpawnText_READY(void) {
     gStageState++;
-    D_800D2928 = 0xA0;
-    func_8007CFE0(0xC7, 5, -0x28, 0, 0, 0x78);
+    gStageTimer = 160;
+    func_8007CFE0(0xC7, 5, -40, 0, 0, 120);
 }
 
-void func_8004732C(void) {
-    if (func_80046D5C()) {
-        func_800472D4();
+// Spawn "READY!" text if transition completes
+void SpawnText_READY_2(void) {
+    if (Transition_FadeOut()) {
+        SpawnText_READY();
     }
 }
 
-s32 func_8004735C(u16 stage_stage, u32 actor_flags) {
+// Spawn "FIGHT!" text
+s32 SpawnText_FIGHT(u16 state, u32 actor_flags) {
     D_800D28FC |= 8;
-    D_800D2928--;
-    if (D_800D2928 < 0) {
+    gStageTimer--;
+    if (gStageTimer < 0) {
         D_800D28FC &= ~6;
-        func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
+        func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
         gPlayerActor.flags |= actor_flags;
         D_800BE5F4.unk_00_u32 = 5;
-        gStageState = stage_stage;
+        gStageState = state;
         return TRUE;
     }
     else {
@@ -1547,19 +1555,21 @@ s32 func_8004735C(u16 stage_stage, u32 actor_flags) {
     }
 }
 
+// unused transition: squish and fade portraits
+// @returns true when complete
 s32 func_80047410(void) {
     u16 index;
 
-    switch (D_800D2938) {
+    switch (gTransitionState) {
     case 0:
-        D_800D2938++;
+        gTransitionState++;
         D_800D293C = 0;
-        D_800D2940 = 0x19;
-        Sound_PlaySfx(0xBC);
+        gTransitionTimer = 25;
+        Sound_PlaySfx(SFX_00BC);
         /* fallthrough */
     case 1:
-        if ((D_800D293C == 0x23) && (--D_800D2940 < 0)) {
-            D_800D2938++;
+        if ((D_800D293C == 0x23) && (--gTransitionTimer < 0)) {
+            gTransitionState++;
             for (index = 0; index != 0x23; index++) {
                 gPortraits[index].flags = 0;
             }
@@ -1653,6 +1663,7 @@ void func_80047714(u16 arg0, u16 arg1, u16 arg2, u16 stage_state) {
     }
 }
 
+// load indexed festival scene
 void func_80047958(void) {
     u16 index = D_800D28F0 - 0x1F;
 
@@ -1663,8 +1674,8 @@ void func_80047958(void) {
 
 void func_80047994(void) {
     gCannotPause = TRUE;
-    if (func_80046B4C() != 0) {
-        D_800D2938 = 0;
+    if (Transition_ExpandBlack() != 0) {
+        gTransitionState = 0;
         func_80020A54();
         Actor_ClearSceneActors();
         func_8005DFC8(0);
@@ -1687,30 +1698,30 @@ void func_80047A14(void) {
 void func_80047A54(void) {
     gCannotPause = TRUE;
     D_800D28E4++;
-    D_800D2928 = 0;
+    gStageTimer = 0;
     D_800D28FC |= 4;
     D_800D28FC &= ~8;
     D_800BE544 = 0x8000;
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gSkipStageIntro = 0;
     D_800D2900 = 0;
 }
 
 void func_80047AC4(void) {
-    if (func_80046EBC()) {
+    if (Transition_StageExit()) {
         if (D_800D2900 == 0) {
             D_800D2900++;
             D_800BE5F4.unk_00_u32 = 4;
         }
         else {
             Actor_ClearSceneActors();
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0;
             D_800D28F4 = 1;
             D_800D28E4 = D_800D28F0;
             func_80042D84(0);
             D_800D28FC &= ~1;
-            func_80019688();
+            WorldMap_SetTransitionState();
         }
     }
 }
@@ -1722,15 +1733,15 @@ void func_80047B68(void) {
         D_800BE5F4.unk_00_u32 = 4;
         /* fallthrough */
     case 1:
-        if (func_80046D5C()) {
+        if (Transition_FadeOut()) {
             gStageState++;
-            Sound_PlayMusic(0x18);
+            Sound_PlayMusic(BGM_STCLR);
         }
         /* fallthrough */
     case 2:
         D_800D28FC |= 0x80;
         if (gButtonPress & gButton_B) {
-            Sound_PlayMusic(0x18);
+            Sound_PlayMusic(BGM_STCLR);
         }
         break;
     }
@@ -1741,7 +1752,7 @@ void func_80047C28(void) {
     case 1:
         break;
     case 0:
-        if (func_80046D5C()) {
+        if (Transition_FadeOut()) {
             gStageState++;
             D_800D28FC |= 4;
         }
@@ -1772,13 +1783,13 @@ void func_80047CCC(void) {
     }
     if (D_800D28FC & 4) {
         D_800D28FC &= ~4;
-        gPortraits[0x40].flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
-        gPortraits[0x41].flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
+        gLifebar.flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
+        gLifebarHead.flags &= ~(PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE);
     }
     else if (D_800D28FC & 8) {
         D_800D28FC &= ~8;
-        gPortraits[0x40].flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
-        gPortraits[0x41].flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+        gLifebar.flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+        gLifebarHead.flags |= PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
     }
     D_800D28FC &= ~0x300;
     D_800D2960 = 0;

@@ -3,6 +3,6 @@
 
 #include <PR/ultratypes.h>
 
-void func_8005F6D4(void);
+void UpdateDialog(void);
 
 #endif

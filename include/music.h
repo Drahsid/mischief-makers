@@ -33,7 +33,7 @@ typedef struct {
 
 extern u8 gMusicPlayerFlags;
 extern s16 gMusicVolume;
-extern s16 D_800EF4D4;
+extern s16 gPauseMusicVolume;
 extern s32 gMusicSequenceId;
 extern s32 D_800EF4DC; // unused.
 extern u8 gMusicChannelFxMixes[16];

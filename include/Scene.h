@@ -36,6 +36,7 @@
 #define SCENE_CHILLYDOG	        0x1F
 #define SCENE_GOMARZEN64    	0x20
 #define SCENE_DAYBEFORE	        0x21
+#define SCENE_UNK34             0x22
 #define SCENE_MISSLESURF    	0x23
 #define SCENE_SNOWSTORMMAZE 	0x24
 #define SCENE_SINKORFLOAT   	0x25

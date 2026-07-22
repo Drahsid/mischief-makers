@@ -9,7 +9,7 @@
     "matched_functions": 2577,
     "matched_functions_percent": 54.74825,
     "complete_data_percent": 100.0,
-    "total_units": 398
+    "total_units": 395
   },
   "units": [
     {
@@ -347,7 +347,7 @@
           }
         },
         {
-          "name": "func_80001670",
+          "name": "GameState_Update",
           "size": "284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1069,7 +1069,7 @@
           }
         },
         {
-          "name": "func_800073CC",
+          "name": "NameEntry_PrintKeyboardHIRA",
           "size": "428",
           "metadata": {
             "virtual_address": "2147513292"
@@ -1083,14 +1083,14 @@
           }
         },
         {
-          "name": "func_800075A8",
+          "name": "NameEntry_PrintKeyboardKATA",
           "size": "328",
           "metadata": {
             "virtual_address": "2147513768"
           }
         },
         {
-          "name": "func_800076F0",
+          "name": "NameEntry_PrintKeyboardENG",
           "size": "436",
           "metadata": {
             "virtual_address": "2147514096"
@@ -1222,7 +1222,7 @@
           }
         },
         {
-          "name": "func_800109B0",
+          "name": "LookAt_Reset",
           "size": "96",
           "metadata": {
             "virtual_address": "2147551664"
@@ -1394,7 +1394,7 @@
       ],
       "functions": [
         {
-          "name": "func_800121D0",
+          "name": "Marina_Reset",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1402,7 +1402,7 @@
           }
         },
         {
-          "name": "func_80012288",
+          "name": "Marina_Init",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1410,7 +1410,7 @@
           }
         },
         {
-          "name": "func_800122B0",
+          "name": "Marina_UpdateInput",
           "size": "252",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1418,7 +1418,7 @@
           }
         },
         {
-          "name": "func_800123AC",
+          "name": "Marina_ScreenXLock",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1426,7 +1426,7 @@
           }
         },
         {
-          "name": "func_80012418",
+          "name": "Marina_ScreenYLock",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1434,7 +1434,7 @@
           }
         },
         {
-          "name": "func_80012438",
+          "name": "Marina_ScreenXScroll",
           "size": "508",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1442,7 +1442,7 @@
           }
         },
         {
-          "name": "func_80012634",
+          "name": "Marina_ScreenYScroll",
           "size": "508",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1450,7 +1450,7 @@
           }
         },
         {
-          "name": "func_80012830",
+          "name": "Marina_ScreenScroll",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1617,16 +1617,30 @@
           }
         },
         {
+          "name": ".data",
+          "size": "528",
+          "metadata": {
+            "virtual_address": "2148302096"
+          }
+        },
+        {
           "name": ".rodata",
           "size": "80",
           "metadata": {
             "virtual_address": "2148446208"
           }
+        },
+        {
+          "name": ".bss",
+          "size": "32",
+          "metadata": {
+            "virtual_address": "2149024048"
+          }
         }
       ],
       "functions": [
         {
-          "name": "func_80012C50",
+          "name": "Continue_DrawGem",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1634,7 +1648,7 @@
           }
         },
         {
-          "name": "func_80012CD4",
+          "name": "Continue_GameOver",
           "size": "284",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1642,7 +1656,7 @@
           }
         },
         {
-          "name": "func_80012DF0",
+          "name": "Continue_PayGems",
           "size": "424",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1691,7 +1705,7 @@
       ],
       "functions": [
         {
-          "name": "func_80014AF0",
+          "name": "ActorsUpdate_Velocity",
           "size": "340",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1699,7 +1713,7 @@
           }
         },
         {
-          "name": "func_80014C44",
+          "name": "ActorsUpdate_Position",
           "size": "720",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1851,14 +1865,14 @@
           }
         },
         {
-          "name": "func_800160EC",
+          "name": "ActorUpdate_Physics",
           "size": "3016",
           "metadata": {
             "virtual_address": "2147573996"
           }
         },
         {
-          "name": "func_80016CB4",
+          "name": "ActorsUpdate_Physics",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1866,7 +1880,7 @@
           }
         },
         {
-          "name": "func_80016D94",
+          "name": "ActorsUpdate_Screenspace",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1921,7 +1935,7 @@
       ],
       "functions": [
         {
-          "name": "func_80016E70",
+          "name": "ActorsUpdate_Overlay",
           "size": "1708",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1929,7 +1943,7 @@
           }
         },
         {
-          "name": "func_8001751C",
+          "name": "ActorsUpdate",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1980,6 +1994,13 @@
           "metadata": {
             "virtual_address": "2148446464"
           }
+        },
+        {
+          "name": ".bss",
+          "size": "112",
+          "metadata": {
+            "virtual_address": "2149024080"
+          }
         }
       ],
       "functions": [
@@ -1992,7 +2013,7 @@
           }
         },
         {
-          "name": "func_800176F8",
+          "name": "Input_CheckButtonRepeat2",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2016,7 +2037,7 @@
           }
         },
         {
-          "name": "func_80017F08",
+          "name": "Title_LegalText",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2024,7 +2045,7 @@
           }
         },
         {
-          "name": "func_80017FE8",
+          "name": "Title_WhiteScreen",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2032,7 +2053,7 @@
           }
         },
         {
-          "name": "func_8001809C",
+          "name": "Title_MoveSubtitle",
           "size": "96",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2040,7 +2061,7 @@
           }
         },
         {
-          "name": "func_800180FC",
+          "name": "Title_UpdateText",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2080,7 +2101,7 @@
           }
         },
         {
-          "name": "func_80019520",
+          "name": "GetRaceTimeRecord",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2088,7 +2109,7 @@
           }
         },
         {
-          "name": "func_80019688",
+          "name": "WorldMap_SetTransitionState",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2096,7 +2117,7 @@
           }
         },
         {
-          "name": "func_800197A0",
+          "name": "WorldMap_LoadGraphics",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2104,7 +2125,7 @@
           }
         },
         {
-          "name": "func_8001983C",
+          "name": "WorldMap_Reset",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2112,7 +2133,7 @@
           }
         },
         {
-          "name": "func_800198B4",
+          "name": "WorldMap_PrintWorldName",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2120,7 +2141,7 @@
           }
         },
         {
-          "name": "func_800199DC",
+          "name": "WorldMap_PrintStageName",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2128,7 +2149,7 @@
           }
         },
         {
-          "name": "func_80019A80",
+          "name": "WorldMap_DrawSprites",
           "size": "968",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2160,7 +2181,7 @@
           }
         },
         {
-          "name": "func_80019FB4",
+          "name": "WorldMap_PrintStageLabel",
           "size": "424",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2168,7 +2189,7 @@
           }
         },
         {
-          "name": "func_8001A15C",
+          "name": "WorldMap_PrintWarpedStageIcon",
           "size": "248",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2176,7 +2197,7 @@
           }
         },
         {
-          "name": "func_8001A254",
+          "name": "WorldMap_PrintStageLabels",
           "size": "816",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2192,7 +2213,7 @@
           }
         },
         {
-          "name": "func_8001A758",
+          "name": "WorldMap_GetStageRank",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2200,7 +2221,7 @@
           }
         },
         {
-          "name": "func_8001A7E0",
+          "name": "WorldMap_PrintRankLetter",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2208,7 +2229,7 @@
           }
         },
         {
-          "name": "func_8001A838",
+          "name": "WorldMap_PrintRankReview",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2216,7 +2237,7 @@
           }
         },
         {
-          "name": "func_8001A890",
+          "name": "WorldMap_PrintRankLetterReview",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2224,7 +2245,7 @@
           }
         },
         {
-          "name": "func_8001A96C",
+          "name": "WorldMap_PrintCurrStageTime",
           "size": "828",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2232,7 +2253,7 @@
           }
         },
         {
-          "name": "func_8001ACA8",
+          "name": "WorldMap_PrintStageTime",
           "size": "860",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2240,7 +2261,7 @@
           }
         },
         {
-          "name": "func_8001B004",
+          "name": "WorldMap_PrintPrevStageTime",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2248,7 +2269,7 @@
           }
         },
         {
-          "name": "func_8001B02C",
+          "name": "WorldMap_AdvanceProgress",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2288,7 +2309,7 @@
           }
         },
         {
-          "name": "func_8001B244",
+          "name": "CountYellowGems",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2296,7 +2317,7 @@
           }
         },
         {
-          "name": "func_8001B2F4",
+          "name": "WorldMap_UpdateSaveFile",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2304,7 +2325,7 @@
           }
         },
         {
-          "name": "func_8001B3D0",
+          "name": "WorldMap_UpdateSaveFile2",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2598,7 +2619,7 @@
         },
         {
           "name": ".bss",
-          "size": "32",
+          "size": "48",
           "metadata": {
             "virtual_address": "2149024192"
           }
@@ -2686,7 +2707,7 @@
           }
         },
         {
-          "name": "func_8001F88C",
+          "name": "Actors_SetPlatforms",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2694,7 +2715,7 @@
           }
         },
         {
-          "name": "func_8001FA78",
+          "name": "Actor_CheckPlatforms",
           "size": "552",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2758,7 +2779,7 @@
           }
         },
         {
-          "name": "func_80020024",
+          "name": "Gameplay_ActiveUpdate",
           "size": "808",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2766,7 +2787,7 @@
           }
         },
         {
-          "name": "func_8002034C",
+          "name": "Pause_PrintPlayTime",
           "size": "656",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2774,7 +2795,7 @@
           }
         },
         {
-          "name": "func_800205DC",
+          "name": "Pause_PrintRedGems",
           "size": "512",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2782,7 +2803,7 @@
           }
         },
         {
-          "name": "func_800207DC",
+          "name": "Pause_PrintYellowGemStatus",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2806,7 +2827,7 @@
           }
         },
         {
-          "name": "func_8002092C",
+          "name": "Pause_InitBars",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2822,7 +2843,7 @@
           }
         },
         {
-          "name": "func_80020A90",
+          "name": "Pause_Update",
           "size": "1444",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3147,7 +3168,7 @@
       ],
       "functions": [
         {
-          "name": "func_800235E0",
+          "name": "Camera_ResetRotate",
           "size": "20",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3155,7 +3176,7 @@
           }
         },
         {
-          "name": "func_800235F4",
+          "name": "Camera_ApplyRotate",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3163,7 +3184,7 @@
           }
         },
         {
-          "name": "func_80023668",
+          "name": "CameraInit_Scene63",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3171,7 +3192,7 @@
           }
         },
         {
-          "name": "func_80023670",
+          "name": "CameraUpdate_Scene63",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3179,7 +3200,7 @@
           }
         },
         {
-          "name": "func_80023678",
+          "name": "CameraInit_World1",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3187,7 +3208,7 @@
           }
         },
         {
-          "name": "func_800236A0",
+          "name": "CameraUpdate_World1",
           "size": "248",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3195,7 +3216,7 @@
           }
         },
         {
-          "name": "func_80023798",
+          "name": "CameraInit_World2",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3203,7 +3224,7 @@
           }
         },
         {
-          "name": "func_800237F0",
+          "name": "CameraUpdate_World2",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3211,7 +3232,7 @@
           }
         },
         {
-          "name": "func_80023894",
+          "name": "CameraUpdate_WesternWorld",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3219,7 +3240,7 @@
           }
         },
         {
-          "name": "func_80023948",
+          "name": "CameraInit_TightropeRide",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3227,7 +3248,7 @@
           }
         },
         {
-          "name": "func_80023968",
+          "name": "CameraUpdate_TightropeRide",
           "size": "160",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3235,7 +3256,7 @@
           }
         },
         {
-          "name": "func_80023A08",
+          "name": "CameraInit_MagmaRafts",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3243,7 +3264,7 @@
           }
         },
         {
-          "name": "func_80023A34",
+          "name": "CameraUpdate_MagmaRafts",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3251,7 +3272,7 @@
           }
         },
         {
-          "name": "func_80023AA4",
+          "name": "CameraInit_Scene02",
           "size": "32",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3259,7 +3280,7 @@
           }
         },
         {
-          "name": "func_80023AC4",
+          "name": "CameraUpdate_Scene02",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3267,7 +3288,7 @@
           }
         },
         {
-          "name": "func_80023ACC",
+          "name": "CameraInit_Scene03",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3275,7 +3296,7 @@
           }
         },
         {
-          "name": "func_80023AFC",
+          "name": "CameraUpdate_Scene03",
           "size": "196",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3283,7 +3304,7 @@
           }
         },
         {
-          "name": "func_80023BC0",
+          "name": "CameraInit_Scene04",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3291,7 +3312,7 @@
           }
         },
         {
-          "name": "func_80023BF8",
+          "name": "CameraUpdate_Scene04",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3299,7 +3320,7 @@
           }
         },
         {
-          "name": "func_80023C00",
+          "name": "CameraInit_MigenBrawl",
           "size": "24",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3307,7 +3328,7 @@
           }
         },
         {
-          "name": "func_80023C18",
+          "name": "CameraUpdate_MigenBrawl",
           "size": "304",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3315,7 +3336,7 @@
           }
         },
         {
-          "name": "func_80023D48",
+          "name": "CameraInit_Scene07",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3323,7 +3344,7 @@
           }
         },
         {
-          "name": "func_80023D70",
+          "name": "CameraUpdate_Scene07",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3331,7 +3352,7 @@
           }
         },
         {
-          "name": "func_80023D98",
+          "name": "CameraInit_Title",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3339,7 +3360,7 @@
           }
         },
         {
-          "name": "func_80023DB4",
+          "name": "CameraUpdate_Title",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3347,7 +3368,7 @@
           }
         },
         {
-          "name": "func_80023DBC",
+          "name": "CameraInit_Lunar",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3355,7 +3376,7 @@
           }
         },
         {
-          "name": "func_80023DF0",
+          "name": "CameraUpdate_Lunar",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3363,7 +3384,7 @@
           }
         },
         {
-          "name": "func_80023DF8",
+          "name": "CameraInit_Intro",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3371,7 +3392,7 @@
           }
         },
         {
-          "name": "func_80023E14",
+          "name": "CameraUpdate_Intro",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3379,7 +3400,7 @@
           }
         },
         {
-          "name": "func_80023E1C",
+          "name": "CameraInit_World3B",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3387,7 +3408,7 @@
           }
         },
         {
-          "name": "func_80023E38",
+          "name": "CameraUpdate_World3B",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3395,7 +3416,7 @@
           }
         },
         {
-          "name": "func_80023E40",
+          "name": "CameraInit_TheDayBefore",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3403,7 +3424,7 @@
           }
         },
         {
-          "name": "func_80023E48",
+          "name": "CameraUpdate_TheDayBefore",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3411,7 +3432,7 @@
           }
         },
         {
-          "name": "func_80023E6C",
+          "name": "CameraInit_Scene34",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3419,7 +3440,7 @@
           }
         },
         {
-          "name": "func_80023E74",
+          "name": "CameraUpdate_Scene34",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3427,7 +3448,7 @@
           }
         },
         {
-          "name": "func_80023E98",
+          "name": "CameraInit_World3",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3435,7 +3456,7 @@
           }
         },
         {
-          "name": "func_80023EB4",
+          "name": "CameraInit_SnowstormMaze",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3451,7 +3472,7 @@
           }
         },
         {
-          "name": "func_80023F5C",
+          "name": "CameraUpdate_SnowstormMaze",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3459,7 +3480,7 @@
           }
         },
         {
-          "name": "func_80024004",
+          "name": "CameraUpdate_ClanballLift",
           "size": "112",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3467,7 +3488,7 @@
           }
         },
         {
-          "name": "func_80024074",
+          "name": "CameraInit_SeasickClimb",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3475,7 +3496,7 @@
           }
         },
         {
-          "name": "func_800240E8",
+          "name": "CameraUpdate_SeasickClimb_Rocking",
           "size": "832",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3483,7 +3504,7 @@
           }
         },
         {
-          "name": "func_80024428",
+          "name": "CameraUpdate_SeasickClimb",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3491,7 +3512,7 @@
           }
         },
         {
-          "name": "func_800244F8",
+          "name": "CameraInit_Vertigo",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3499,7 +3520,7 @@
           }
         },
         {
-          "name": "func_80024528",
+          "name": "CameraUpdate_Vertigo",
           "size": "92",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3507,7 +3528,7 @@
           }
         },
         {
-          "name": "func_80024584",
+          "name": "CameraInit_Freefall",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3515,7 +3536,7 @@
           }
         },
         {
-          "name": "func_800245AC",
+          "name": "CameraUpdate_Freefall",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3539,7 +3560,7 @@
           }
         },
         {
-          "name": "func_800245F8",
+          "name": "CameraInit_AthleticGames",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3547,7 +3568,7 @@
           }
         },
         {
-          "name": "func_80024600",
+          "name": "CameraUpdate_AthleticGames",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3555,7 +3576,7 @@
           }
         },
         {
-          "name": "func_80024624",
+          "name": "CameraInit_Beastector",
           "size": "68",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3563,7 +3584,7 @@
           }
         },
         {
-          "name": "func_80024668",
+          "name": "CameraUpdate_Beastector",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3571,7 +3592,7 @@
           }
         },
         {
-          "name": "func_80024854",
+          "name": "CameraInit_CounterAttack",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3595,7 +3616,7 @@
           }
         },
         {
-          "name": "func_80024D5C",
+          "name": "CameraInit_ClanceWar2",
           "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3603,7 +3624,7 @@
           }
         },
         {
-          "name": "func_80024D6C",
+          "name": "CameraUpdate_ClanceWar2",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3611,7 +3632,7 @@
           }
         },
         {
-          "name": "func_80024DA8",
+          "name": "CameraInit_BeesTheOne",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3635,7 +3656,7 @@
           }
         },
         {
-          "name": "func_80024EA0",
+          "name": "CameraUpdate_BeesTheOne",
           "size": "484",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3643,7 +3664,7 @@
           }
         },
         {
-          "name": "func_80025084",
+          "name": "CameraInit_Splashscreen",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3651,7 +3672,7 @@
           }
         },
         {
-          "name": "func_8002508C",
+          "name": "CameraUpdate_Splashscreen",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3659,7 +3680,7 @@
           }
         },
         {
-          "name": "func_80025094",
+          "name": "CameraInit_Merco_Trapped",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3667,7 +3688,7 @@
           }
         },
         {
-          "name": "func_80025114",
+          "name": "CameraUpdate_Merco_Trapped",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3675,7 +3696,7 @@
           }
         },
         {
-          "name": "func_8002515C",
+          "name": "CameraInit_World4A",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3683,7 +3704,7 @@
           }
         },
         {
-          "name": "func_80025184",
+          "name": "CameraUpdate_World4A",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3691,7 +3712,7 @@
           }
         },
         {
-          "name": "func_800251CC",
+          "name": "CameraInit_World4B",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3699,7 +3720,7 @@
           }
         },
         {
-          "name": "func_800251E8",
+          "name": "CameraUpdate_World4B",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3707,7 +3728,7 @@
           }
         },
         {
-          "name": "func_80025254",
+          "name": "CameraUpdate_AstersTryke",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3715,7 +3736,7 @@
           }
         },
         {
-          "name": "func_800252BC",
+          "name": "CameraInit_PhoenixGamma",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3723,7 +3744,7 @@
           }
         },
         {
-          "name": "func_800252F8",
+          "name": "CameraUpdate_PhoenixGamma",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3731,7 +3752,7 @@
           }
         },
         {
-          "name": "func_80025380",
+          "name": "CameraInit_Leo",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3739,7 +3760,7 @@
           }
         },
         {
-          "name": "func_800253A8",
+          "name": "CameraUpdate_Leo",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3755,7 +3776,7 @@
           }
         },
         {
-          "name": "func_80025578",
+          "name": "PlaySceneBGM",
           "size": "60",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4323,7 +4344,7 @@
           }
         },
         {
-          "name": "func_800284B0",
+          "name": "ActorUpdate_GraphicOnly",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -4347,7 +4368,7 @@
           }
         },
         {
-          "name": "func_8002854C",
+          "name": "Actor_SpawnInRange_90ToC0",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5251,7 +5272,7 @@
           }
         },
         {
-          "name": "func_8002D2F4",
+          "name": "SpawnWhiteFade1",
           "size": "204",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5259,7 +5280,7 @@
           }
         },
         {
-          "name": "func_8002D3C0",
+          "name": "SpawnWhiteFade2",
           "size": "200",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5267,7 +5288,7 @@
           }
         },
         {
-          "name": "func_8002D488",
+          "name": "ActorUpdate_WhiteFade",
           "size": "348",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5315,7 +5336,7 @@
           }
         },
         {
-          "name": "func_8002DFC0",
+          "name": "SpawnEnergyShot",
           "size": "712",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5323,7 +5344,7 @@
           }
         },
         {
-          "name": "func_8002E288",
+          "name": "ActorUpdate_EnergyShot",
           "size": "632",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5331,7 +5352,7 @@
           }
         },
         {
-          "name": "func_8002E500",
+          "name": "SpawnHovercraftShot",
           "size": "924",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5339,7 +5360,7 @@
           }
         },
         {
-          "name": "func_8002E89C",
+          "name": "ActorUpdate_HovercraftShot",
           "size": "796",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5347,7 +5368,7 @@
           }
         },
         {
-          "name": "func_8002EBB8",
+          "name": "SpawnShuriken",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5355,7 +5376,7 @@
           }
         },
         {
-          "name": "func_8002ECAC",
+          "name": "SpawnRoundBomb",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5371,7 +5392,7 @@
           }
         },
         {
-          "name": "func_8002ED48",
+          "name": "SpawnBoomerang",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5395,7 +5416,7 @@
           }
         },
         {
-          "name": "func_8002F154",
+          "name": "SpawnGemActor61",
           "size": "116",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5403,7 +5424,7 @@
           }
         },
         {
-          "name": "func_8002F1C8",
+          "name": "SpawnNoHitGem",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6163,7 +6184,7 @@
           }
         },
         {
-          "name": "func_80038398",
+          "name": "Spikeball_Shoot",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6275,7 +6296,7 @@
           }
         },
         {
-          "name": "func_80039644",
+          "name": "Clanball_GrabCheck",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6283,7 +6304,7 @@
           }
         },
         {
-          "name": "func_80039724",
+          "name": "Clanball_State0",
           "size": "276",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6299,7 +6320,7 @@
           }
         },
         {
-          "name": "func_80039894",
+          "name": "Clanball_ShakeFlash",
           "size": "100",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6307,7 +6328,7 @@
           }
         },
         {
-          "name": "func_800398F8",
+          "name": "Clanball_RevealSound",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6315,7 +6336,7 @@
           }
         },
         {
-          "name": "func_80039970",
+          "name": "Clanball_DropSound",
           "size": "172",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6323,7 +6344,7 @@
           }
         },
         {
-          "name": "func_80039A1C",
+          "name": "Clanball_InitReveal",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6331,7 +6352,7 @@
           }
         },
         {
-          "name": "func_80039ADC",
+          "name": "Clanball_SpawnReveal",
           "size": "320",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6339,7 +6360,7 @@
           }
         },
         {
-          "name": "func_80039C1C",
+          "name": "Clanball_SpawnDrop",
           "size": "388",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6347,7 +6368,7 @@
           }
         },
         {
-          "name": "func_80039DA0",
+          "name": "Clanball_GetRevealIndex",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6355,7 +6376,7 @@
           }
         },
         {
-          "name": "func_80039E7C",
+          "name": "Clanball_ShakeDown",
           "size": "676",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -6914,6 +6935,13 @@
           }
         },
         {
+          "name": ".data",
+          "size": "32",
+          "metadata": {
+            "virtual_address": "2148346032"
+          }
+        },
+        {
           "name": ".rodata",
           "size": "16",
           "metadata": {
@@ -6995,7 +7023,7 @@
           }
         },
         {
-          "name": "Actor_AdvanceState",
+          "name": "Actor11_State1",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7026,7 +7054,7 @@
           }
         },
         {
-          "name": "func_800429A4",
+          "name": "Actor11_State0",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7034,7 +7062,7 @@
           }
         },
         {
-          "name": "func_80042A0C",
+          "name": "Actor11_State2",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7042,7 +7070,7 @@
           }
         },
         {
-          "name": "func_80042AEC",
+          "name": "Actor11_State3",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7050,7 +7078,7 @@
           }
         },
         {
-          "name": "func_80042B2C",
+          "name": "Actor11_State4",
           "size": "104",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7058,7 +7086,7 @@
           }
         },
         {
-          "name": "func_80042B94",
+          "name": "ActorUpdate_Type11",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7066,7 +7094,7 @@
           }
         },
         {
-          "name": "func_80042C10",
+          "name": "ActorUpdate_Type12",
           "size": "208",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7801,7 +7829,7 @@
           }
         },
         {
-          "name": "func_80046A9C",
+          "name": "Transition_SmashBlack",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7809,7 +7837,7 @@
           }
         },
         {
-          "name": "func_80046B4C",
+          "name": "Transition_ExpandBlack",
           "size": "528",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7817,7 +7845,7 @@
           }
         },
         {
-          "name": "func_80046D5C",
+          "name": "Transition_FadeOut",
           "size": "272",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7833,7 +7861,7 @@
           }
         },
         {
-          "name": "func_80046EBC",
+          "name": "Transition_StageExit",
           "size": "1048",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7841,7 +7869,7 @@
           }
         },
         {
-          "name": "func_800472D4",
+          "name": "SpawnText_READY",
           "size": "88",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7849,7 +7877,7 @@
           }
         },
         {
-          "name": "func_8004732C",
+          "name": "SpawnText_READY_2",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -7857,7 +7885,7 @@
           }
         },
         {
-          "name": "func_8004735C",
+          "name": "SpawnText_FIGHT",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8285,7 +8313,7 @@
           }
         },
         {
-          "name": "func_8004A960",
+          "name": "Marina_State0",
           "size": "260",
           "metadata": {
             "virtual_address": "2147789152"
@@ -8455,7 +8483,7 @@
           }
         },
         {
-          "name": "func_8004ED10",
+          "name": "ActorUpdate_Marina",
           "size": "1440",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9961,7 +9989,7 @@
       }
     },
     {
-      "name": "5EA30",
+      "name": "dialog",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "8896",
@@ -9987,6 +10015,13 @@
           "size": "352",
           "metadata": {
             "virtual_address": "2148450192"
+          }
+        },
+        {
+          "name": ".bss",
+          "size": "384",
+          "metadata": {
+            "virtual_address": "2149024464"
           }
         }
       ],
@@ -10056,7 +10091,7 @@
           }
         },
         {
-          "name": "func_8005E1CC",
+          "name": "AnimateSpeechBubble",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10112,7 +10147,7 @@
           }
         },
         {
-          "name": "func_8005F6D4",
+          "name": "UpdateDialog",
           "size": "2588",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10240,7 +10275,7 @@
           }
         },
         {
-          "name": "func_80060F88",
+          "name": "ActorUpdate_3DIcon",
           "size": "848",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10312,7 +10347,7 @@
           }
         },
         {
-          "name": "func_80062174",
+          "name": "ActorUpdate_SpiralClouds",
           "size": "396",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10496,7 +10531,7 @@
           }
         },
         {
-          "name": "func_8006346C",
+          "name": "ActorUpdate_ClanballRail",
           "size": "2952",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10576,7 +10611,7 @@
           }
         },
         {
-          "name": "func_80064AA0",
+          "name": "SpawnStageClear",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10584,7 +10619,7 @@
           }
         },
         {
-          "name": "func_80064B60",
+          "name": "ActorUpdate_StageClear",
           "size": "340",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -12262,7 +12297,7 @@
           }
         },
         {
-          "name": "func_8007325C",
+          "name": "Clancer_Update",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13183,7 +13218,7 @@
           }
         },
         {
-          "name": "func_8007F37C",
+          "name": "ActorUpdate_Type38",
           "size": "484",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13609,31 +13644,46 @@
     {
       "name": "82DB0",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "464",
+        "matched_code": "464",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 2,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "464",
-          "metadata": {
-            "virtual_address": "2148016560"
-          }
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_800821B0",
-          "size": "264",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148016560"
           }
         },
         {
-          "name": "func_800822B8",
+          "name": ".bss",
+          "size": "16",
+          "metadata": {
+            "virtual_address": "2149024864"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "MarinaGraphics_Copy",
+          "size": "264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148016560"
+          }
+        },
+        {
+          "name": "MarinaGraphics_Decompress",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148016824"
           }
@@ -13818,101 +13868,133 @@
     {
       "name": "osd_debug_text",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "1744",
+        "matched_code": "1744",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 12,
+        "matched_functions": 12,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "1744",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022496"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "112",
+          "metadata": {
+            "virtual_address": "2148454512"
+          }
+        },
+        {
+          "name": ".bss",
+          "size": "4176",
+          "metadata": {
+            "virtual_address": "2149060560"
           }
         }
       ],
       "functions": [
         {
-          "name": "func_800838E0",
+          "name": "OSD_Reset",
           "size": "60",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022496"
           }
         },
         {
-          "name": "func_8008391C",
+          "name": "OSD_SetData",
           "size": "232",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022556"
           }
         },
         {
-          "name": "func_80083A04",
+          "name": "OSD_PrintIntHex",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022788"
           }
         },
         {
-          "name": "func_80083A74",
+          "name": "OSD_PrintInt",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148022900"
           }
         },
         {
-          "name": "func_80083AE4",
+          "name": "OSD_PrintFloat",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023012"
           }
         },
         {
-          "name": "func_80083B5C",
+          "name": "OSD_PrintByteHex",
           "size": "124",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023132"
           }
         },
         {
-          "name": "func_80083BD8",
+          "name": "OSD_PrintShortHexWhite",
           "size": "124",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023256"
           }
         },
         {
-          "name": "func_80083C54",
+          "name": "OSD_PrintShortHex",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023380"
           }
         },
         {
-          "name": "func_80083CCC",
+          "name": "OSD_GetTime",
           "size": "36",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023500"
           }
         },
         {
-          "name": "func_80083CF0",
+          "name": "OSD_PrintDeltaTime",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023536"
           }
         },
         {
-          "name": "func_80083DB8",
+          "name": "OSD_PrintfTime",
           "size": "188",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023736"
           }
         },
         {
-          "name": "func_80083E74",
+          "name": "OSD_Tick",
           "size": "316",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148023924"
           }
@@ -14005,7 +14087,7 @@
           }
         },
         {
-          "name": "func_800844B8",
+          "name": "Flower_Falling",
           "size": "496",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14013,7 +14095,7 @@
           }
         },
         {
-          "name": "func_800846A8",
+          "name": "Flower_TryGrounded",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14037,7 +14119,7 @@
           }
         },
         {
-          "name": "func_800848A0",
+          "name": "Flower_TryGrab",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14045,7 +14127,7 @@
           }
         },
         {
-          "name": "func_80084924",
+          "name": "Flower_SetHitboxB",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14053,7 +14135,7 @@
           }
         },
         {
-          "name": "func_80084974",
+          "name": "ActorUpdate_Flower",
           "size": "932",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14061,7 +14143,7 @@
           }
         },
         {
-          "name": "func_80084D18",
+          "name": "Hat_SetField138",
           "size": "356",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14085,7 +14167,7 @@
           }
         },
         {
-          "name": "func_80085108",
+          "name": "Hat_TryGrounded",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14109,7 +14191,7 @@
           }
         },
         {
-          "name": "func_80085300",
+          "name": "Hat_SetHitboxB",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14117,7 +14199,7 @@
           }
         },
         {
-          "name": "func_80085350",
+          "name": "Hat_TryGrab",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14125,7 +14207,7 @@
           }
         },
         {
-          "name": "func_800853C8",
+          "name": "ActorUpdate_Hat",
           "size": "1148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14133,7 +14215,7 @@
           }
         },
         {
-          "name": "func_80085844",
+          "name": "Clanbomb_SpawnTimer",
           "size": "264",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14141,7 +14223,7 @@
           }
         },
         {
-          "name": "func_8008594C",
+          "name": "Clanbomb_TickFuse",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14149,7 +14231,7 @@
           }
         },
         {
-          "name": "func_800859C4",
+          "name": "Clanbomb_Detonate",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14157,7 +14239,7 @@
           }
         },
         {
-          "name": "func_80085A4C",
+          "name": "Clanbomb_CheckAbsVelocity",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14165,7 +14247,7 @@
           }
         },
         {
-          "name": "func_80085AE4",
+          "name": "Clanbomb_FallCheck",
           "size": "200",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14181,7 +14263,7 @@
           }
         },
         {
-          "name": "func_80085D00",
+          "name": "Clanbomb_SetHitboxB",
           "size": "352",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14189,7 +14271,7 @@
           }
         },
         {
-          "name": "func_80085E60",
+          "name": "Clanbomb_SetScale",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14269,7 +14351,7 @@
           }
         },
         {
-          "name": "func_80086824",
+          "name": "Clanbomb_StartFuse",
           "size": "220",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14325,7 +14407,7 @@
           }
         },
         {
-          "name": "func_80087820",
+          "name": "ActorUpdate_ClanbombTimer",
           "size": "812",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -15999,17 +16081,37 @@
     {
       "name": "stage_end_screen",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "8160",
+        "matched_code": "8160",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 13,
+        "matched_functions": 13,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "8160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148100976"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "48",
+          "metadata": {
+            "virtual_address": "2148439872"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "256",
+          "metadata": {
+            "virtual_address": "2148455680"
           }
         }
       ],
@@ -16017,6 +16119,7 @@
         {
           "name": "func_80096B70",
           "size": "676",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148100976"
           }
@@ -16024,6 +16127,7 @@
         {
           "name": "func_80096E14",
           "size": "584",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148101652"
           }
@@ -16031,6 +16135,7 @@
         {
           "name": "func_8009705C",
           "size": "172",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102236"
           }
@@ -16038,6 +16143,7 @@
         {
           "name": "func_80097108",
           "size": "152",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102408"
           }
@@ -16045,6 +16151,7 @@
         {
           "name": "func_800971A0",
           "size": "156",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102560"
           }
@@ -16052,6 +16159,7 @@
         {
           "name": "func_8009723C",
           "size": "160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102716"
           }
@@ -16059,6 +16167,7 @@
         {
           "name": "func_800972DC",
           "size": "168",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148102876"
           }
@@ -16066,6 +16175,7 @@
         {
           "name": "func_80097384",
           "size": "164",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103044"
           }
@@ -16073,6 +16183,7 @@
         {
           "name": "func_80097428",
           "size": "332",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103208"
           }
@@ -16080,6 +16191,7 @@
         {
           "name": "func_80097574",
           "size": "580",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148103540"
           }
@@ -16087,6 +16199,7 @@
         {
           "name": "func_800977B8",
           "size": "432",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104120"
           }
@@ -16094,6 +16207,7 @@
         {
           "name": "func_80097968",
           "size": "268",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104552"
           }
@@ -16101,6 +16215,7 @@
         {
           "name": "func_80097A74",
           "size": "4316",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148104820"
           }
@@ -25389,32 +25504,6 @@
       }
     },
     {
-      "name": "C8910.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "528",
-          "metadata": {
-            "virtual_address": "2148302096"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
       "name": "C8B20.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -25519,6 +25608,58 @@
       }
     },
     {
+      "name": "D24D0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "4064",
+          "metadata": {
+            "virtual_address": "2148341968"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "D24D0.data"
+        ]
+      }
+    },
+    {
+      "name": "D34D0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "69584",
+          "metadata": {
+            "virtual_address": "2148346064"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "D34D0.data"
+        ]
+      }
+    },
+    {
       "name": "E44A0",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -25619,32 +25760,6 @@
         "module_id": 2,
         "progress_categories": [
           "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "EA340.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "48",
-          "metadata": {
-            "virtual_address": "2148439872"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "EA340.data"
         ]
       }
     },
@@ -25857,58 +25972,6 @@
       }
     },
     {
-      "name": "osd_debug_text.rodata",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".rodata",
-          "size": "112",
-          "metadata": {
-            "virtual_address": "2148454512"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "EE100.rodata",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".rodata",
-          "size": "256",
-          "metadata": {
-            "virtual_address": "2148455680"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "EE100.rodata"
-        ]
-      }
-    },
-    {
       "name": "ultralib/gu/libm_vals",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -26050,35 +26113,9 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "26400",
+          "size": "26256",
           "metadata": {
             "virtual_address": "2148997792"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main_bss",
-        "module_id": 3,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
-      "name": "bss_801781E0.bss",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "size": "16",
-          "metadata": {
-            "virtual_address": "2149024224"
           }
         }
       ],
@@ -26102,7 +26139,7 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "448",
+          "size": "32",
           "metadata": {
             "virtual_address": "2149024432"
           }
@@ -26117,7 +26154,7 @@
       }
     },
     {
-      "name": "bss_80180FD0.bss",
+      "name": "bss_80178450.bss",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -26128,9 +26165,9 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "4176",
+          "size": "16",
           "metadata": {
-            "virtual_address": "2149060560"
+            "virtual_address": "2149024848"
           }
         }
       ],
@@ -26167,7 +26204,7 @@
       ],
       "functions": [
         {
-          "name": "func_80388000_F00D0",
+          "name": "GameState_State8Overlay",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -26175,7 +26212,7 @@
           }
         },
         {
-          "name": "func_80388008_F00D8",
+          "name": "GameState_State9Overlay",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -49561,8 +49598,8 @@
       }
     },
     {
-      "id": "EE100.rodata",
-      "name": "EE100.rodata",
+      "id": "D34D0.data",
+      "name": "D34D0.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,

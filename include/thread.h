@@ -18,7 +18,7 @@ extern OSThread gRmonThread;
 // OS_YIELD_DATA_SIZE (0x900) should be divided by sizeof(u64),
 // but instead it's made 8 times larger than it should be,
 // taking up a significant ammount of the .bss
-extern u64 gYieldData[0x900];
+extern u64 gYieldData[OS_YIELD_DATA_SIZE];
 
 extern u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 extern u64 gBootStack[STACK_SIZE / sizeof(u64)]; // 80123670->80124670

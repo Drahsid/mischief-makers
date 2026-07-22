@@ -2,8 +2,8 @@
 #define GRAPHIC_INDEX_H
 
 
-// indecies used by "graphicIndex" field of Actor and Portrait structs
-// many graphic indecies use even entries for graphics facing one side,
+// indices used by "graphicIndex" field of Actor and Portrait structs
+// many graphic indices use even entries for graphics facing one side,
 // and odd facing the other. for more complex aninmations,
 // Like those of Marina, Clancers, and Beastector, they instead increment normally.
 
@@ -11,7 +11,7 @@
 #define GRAPHIC_FRAME(g,n) (GINDEX_##g +(2*n)) // when we need to declare with animation graphic.
 
 
-// each clanblock has 3-4 animation indecies following.
+// each clanblock has 3-4 animation indices following.
 
 #define GINDEX_CLANBLOCKSQAURE 0x0046
 #define GINDEX_CLANBLOCKSKINNY 0x004C
@@ -50,6 +50,7 @@
 #define GINDEX_GEM             0x00B8 // 6 animation frames
 
 #define GINDEX_MINEROUND       0x00C6
+#define GINDEX_00C8            0x00C8
 
 #define GINDEX_CIRCLEEFFECT    0x00CA
 #define GINDEX_CLANBLOB        0x00CC
@@ -178,6 +179,8 @@
 
 #define GINDEX_SAGECLOUD       0x0260
 
+#define GINDEX_SPIRAL          0x0262
+
 #define GINDEX_CLANPOT         0x0264 // 3 animation frames
 #define GINDEX_CLANBALL        0x026A // 3 animation frames
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
@@ -189,16 +192,16 @@
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
-#define GINDEX_SOLIDSQARE      0x02D0 // used as a fill for transisions
+#define GINDEX_SOLIDSQUARE     0x02D0 // used as a fill for transitions
 #define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
 
-// indecies of 0x800 and beyond are based on RLE segments loaded per scene.
-// These will have overlapping indecies due to graphics loaded on a per-case basis.
+// indices of 0x800 and beyond are based on RLE segments loaded per scene.
+// These will have overlapping indices due to graphics loaded on a per-case basis.
 // see references to D_800CFE04 for more information.
 // future index additions should follow the namesceme of either
 // GINDEX_SEG[##]_[NAME] or GINDEX_[ARBEV]_[NAME]
-// where [ABREV] is an abreviation of the confirmed use case
+// where [ABREV] is an abbreviation of the confirmed use case
 // example: "world map" graphics have [ABREV] as "WM"
 
 #define GINDEX_SUNGLASSES       0X1004
@@ -231,7 +234,7 @@
 #define GINDEX_3048                 0x3048
 #define GINDEX_304A                 0x304A
 
-// indecies used by the world map graphics
+// indices used by the world map graphics
 
 #define GINDEX_WM_SPEECHBUBBLE      0X3000
 #define GINDEX_WM_WORLDTITLEBG      0X3002

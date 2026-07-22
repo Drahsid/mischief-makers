@@ -4,10 +4,10 @@
 // an ongoing list of identified actor types.
 // those with a number >=0x100 are part of an overlay.
 
-// indecies of actor overlays.
+// indices of actor overlays.
 // save for the first entry, they should be marked as:
 // ACTOR_OVL#_[ABREV] where # is the overlay space used,
-// and [ABREV] is an abreviation of their context.
+// and [ABREV] is an abbreviation of their context.
 // or the number in place if context isn't certain.
 // example, for actors used in "Cerberus Alpha's" overlay 0 code
 // the entry here should be "ACTOR_OVL0_CALPHA"
@@ -18,7 +18,7 @@ typedef enum {
     ACTOR_OVL3_1,
     ACTOR_OVL1_WORM,
     ACTOR_OVL1_DOG,
-    ACTOR_OVL3_4,
+    ACTOR_OVL3_WORLD1,
     ACTOR_OVL3_WORLD2,
     ACTOR_OVL0_MIGEN,
     ACTOR_OVL3_7,
@@ -45,7 +45,7 @@ typedef enum {
     ACTOR_OVL2_WORLD3,
     ACTOR_OVL2_WORLD4,
     ACTOR_OVL2_30,
-    ACTOR_OVL2_31,
+    ACTOR_OVL2_WORLD5A,
     ACTOR_OVL2_STAGE_5_5, // actors in Overlay 2 code of "Trapped!?"
     ACTOR_OVL0_33,
     ACTOR_OVL0_34,
@@ -101,9 +101,9 @@ typedef enum {
     ACTORTYPE_33,
     ACTORTYPE_34,
     ACTORTYPE_LANDMINE,
-    ACTORTYPE_36,
+    ACTORTYPE_ENERGYSHOT,
     ACTORTYPE_37,
-    ACTORTYPE_38,
+    ACTORTYPE_38, // displays the "READY!"/"FIGHT!" text
     ACTORTYPE_PORTRAIT,
     ACTORTYPE_40,
     ACTORTYPE_41,
@@ -114,10 +114,10 @@ typedef enum {
     ACTORTYPE_MARINAAFTERIMAGE, // when marina dashes. Has unused alternate version.
     ACTORTYPE_47,
     ACTORTYPE_48,
-    ACTORTYPE_49,
+    ACTORTYPE_SPIRALCLOUDS,
     ACTORTYPE_WARPGATE, // aka Warp Star
     ACTORTYPE_51,
-    ACTORTYPE_52,
+    ACTORTYPE_GRAPHIC_52, // another type of "graphic only" actor. seems to only last 1-2 ticks before needing respawned.
     ACTORTYPE_TEXTBUBBLE, // used many times in Japan version. in English versions, only used by the coach in "the day before".
     ACTORTYPE_54,
     ACTORTYPE_55,
@@ -133,11 +133,11 @@ typedef enum {
     ACTORTYPE_65,
     ACTORTYPE_CLANBALLSPRING,
     ACTORTYPE_FLOWER, // flowers with a slow, sine-wave fall.
-    ACTORTYPE_HAT, // hats worn by clancers
+    ACTORTYPE_HAT, // hats with a slow, sine-wave fall.
     ACTORTYPE_CLANBOMB,
-    ACTORTYPE_70,
+    ACTORTYPE_CLANBOMBTIMER,
     ACTORTYPE_71,
-    ACTORTYPE_TANKCAT,
+    ACTORTYPE_CATTANK,
     ACTORTYPE_SPIKEBALL_S, // stationary spikeball
     ACTORTYPE_SPIKEBALL_H, // Left/Right spikeball
     ACTORTYPE_SPIKEBALL_V, // up/down spikeball
@@ -159,11 +159,11 @@ typedef enum {
     ACTORTYPE_CLANCER_91,
     ACTORTYPE_92,
     ACTORTYPE_93,
-    ACTORTYPE_94,
+    ACTORTYPE_WHITEFADE,
     ACTORTYPE_CLANBLOB,
     ACTORTYPE_96,
     ACTORTYPE_CLANBALL_RAIL, // clanball on rail track.
-    ACTORTYPE_98,
+    ACTORTYPE_HCRAFTSHOT,
     ACTORTYPE_CLANCERGHOST,
     ACTORTYPE_100,
     ACTORTYPE_101,
@@ -175,7 +175,7 @@ typedef enum {
     ACTORTYPE_AREACLEAR, // "Get out of trouble!" "Go to the next area!"
     ACTORTYPE_108,
     ACTORTYPE_109, // Calina's staff during transformation?
-    ACTORTYPE_110,
+    ACTORTYPE_110, // Calina transformation?
     ACTORTYPE_111,
     ACTORTYPE_MARINAOHNO, // spawns when hit by boulder in "Rolling Rock". says "Oh, no!" and falls.
     ACTORTYPE_CROSSHAIR, // Crosshair appearing over actors for a second. Arrows can be toggled.
@@ -208,6 +208,16 @@ typedef enum {
     ACTORTYPE_OVL1_DOG_2,  // stubbed
     ACTORTYPE_OVL1_DOG_3,  // stubbed
     ACTORTYPE_OVL1_DOG_4,  // stubbed
+
+    // actors in dispatch table D_801B0800_7969B0
+
+    ACTORTYPE_OVL3_W1_VOLCANO = (ACTOR_OVL3_WORLD1 << 8), // volcano in background of desert stages.
+    ACTORTYPE_OVL3_W1_VOLROCK, // rock projected by volcano
+    ACTORTYPE_OVL3_W1_LIGHTNING, // lightning bolts in "Volcano"
+    ACTORTYPE_OVL3_W1_ROCKFLAME, // flame behind volcanic rock
+    ACTORTYPE_OVL3_W1_VOLROCKSPAWN, // spawns volcanic rocks
+    ACTORTYPE_OVL3_W1_BIRD, // birds in background of "Western World"
+    ACTORTYPE_OVL3_W1_6, // clanblock that shrinks when hit?
 
     // actors in dispatch table D_801B0800_7986D0
 
@@ -399,7 +409,7 @@ typedef enum {
     ACTORTYPE_OVL2_W1_10,
     ACTORTYPE_OVL2_W1_11,
     ACTORTYPE_OVL2_W1_12,
-    ACTORTYPE_OVL2_W1_13,
+    ACTORTYPE_OVL2_W1_CLANCER_13, // the father in "3 Clancer Kids"
     ACTORTYPE_OVL2_W1_14,
     ACTORTYPE_OVL2_W1_15,
     ACTORTYPE_OVL2_W1_16,
@@ -408,19 +418,72 @@ typedef enum {
     ACTORTYPE_OVL2_W1_19,
     ACTORTYPE_OVL2_W1_20,
     ACTORTYPE_OVL2_W1_CELES_WORM, // Celes in "Wormin' Up!"
-    ACTORTYPE_OVL2_W1_22,
+    ACTORTYPE_OVL2_W1_22, // Teran and Clancer ally in "Crisis: Nepton"
     ACTORTYPE_OVL2_W1_23,
     ACTORTYPE_OVL2_W1_24,
     ACTORTYPE_OVL2_W1_25,
     ACTORTYPE_OVL2_W1_26,
     ACTORTYPE_OVL2_W1_27,
-    ACTORTYPE_OVL2_W1_28,
+    ACTORTYPE_OVL2_W1_28, // static props
     ACTORTYPE_OVL2_W1_29,
     ACTORTYPE_OVL2_W1_30,
     ACTORTYPE_OVL2_W1_31,
     ACTORTYPE_OVL2_W1_CLANCER_32, // Clanball Land patron
     ACTORTYPE_OVL2_W1_33,
     ACTORTYPE_OVL2_W1_34,
+
+    // actors in dispatch table D_801A6800_78CB60
+
+    ACTORTYPE_OVL2_FESTIVAL_0 = (ACTOR_OVL2_FESTIVAL << 8),
+    ACTORTYPE_OVL2_FESTIVAL_1,
+    ACTORTYPE_OVL2_FESTIVAL_2,
+    ACTORTYPE_OVL2_FESTIVAL_3,
+    ACTORTYPE_OVL2_FESTIVAL_4,
+    ACTORTYPE_OVL2_FESTIVAL_5,
+    ACTORTYPE_OVL2_FESTIVAL_6,
+    ACTORTYPE_OVL2_FESTIVAL_7,
+    ACTORTYPE_OVL2_FESTIVAL_8,
+    ACTORTYPE_OVL2_FESTIVAL_9,
+    ACTORTYPE_OVL2_FESTIVAL_10,
+    ACTORTYPE_OVL2_FESTIVAL_11,
+    ACTORTYPE_OVL2_FESTIVAL_12,
+    ACTORTYPE_OVL2_FESTIVAL_13,
+    ACTORTYPE_OVL2_FESTIVAL_14,
+    ACTORTYPE_OVL2_FESTIVAL_15,
+    ACTORTYPE_OVL2_FESTIVAL_16,
+    ACTORTYPE_OVL2_FESTIVAL_17,
+    ACTORTYPE_OVL2_FESTIVAL_18,
+    ACTORTYPE_OVL2_FESTIVAL_19,
+    ACTORTYPE_OVL2_FESTIVAL_20,
+    ACTORTYPE_OVL2_FESTIVAL_21,
+    ACTORTYPE_OVL2_FESTIVAL_22,
+    ACTORTYPE_OVL2_FESTIVAL_23,
+    ACTORTYPE_OVL2_FESTIVAL_24,
+    ACTORTYPE_OVL2_FESTIVAL_25,
+    ACTORTYPE_OVL2_FESTIVAL_26,
+    ACTORTYPE_OVL2_FESTIVAL_27,
+    ACTORTYPE_OVL2_FESTIVAL_28,
+    ACTORTYPE_OVL2_FESTIVAL_29,
+    ACTORTYPE_OVL2_FESTIVAL_30,
+    ACTORTYPE_OVL2_FESTIVAL_31,
+    ACTORTYPE_OVL2_FESTIVAL_32,
+
+    // actors in dispatch table D_801B0800_7A13D0
+
+    ACTORTYPE_OVL3_W3_0 = (ACTOR_OVL3_WORLD3 << 8),
+    ACTORTYPE_OVL3_W3_1,
+    ACTORTYPE_OVL3_W3_2, // enemy platforms in "Missle Surf"?
+    ACTORTYPE_OVL3_W3_3,
+    ACTORTYPE_OVL3_W3_4,
+    ACTORTYPE_OVL3_W3_CLANCER_5,
+    ACTORTYPE_OVL3_W3_6,
+    ACTORTYPE_OVL3_W3_7,
+    ACTORTYPE_OVL3_W3_JUMPROPE,
+    ACTORTYPE_OVL3_W3_CLANCER_9,
+    ACTORTYPE_OVL3_W3_10,
+    ACTORTYPE_OVL3_W3_11,
+    ACTORTYPE_OVL3_W3_12,
+
 
     // actors in dispatch table D_801A6800_76FD60
 
@@ -489,6 +552,16 @@ typedef enum {
     ACTORTYPE_OVL2_W4_34,
     ACTORTYPE_OVL2_W4_35,
 
+    // actors in dispatch table D_801A6800_7854B0
+
+    ACTORTYPE_OVL2_W5A_0 = (ACTOR_OVL2_WORLD5A << 8), // stubbed
+    ACTORTYPE_OVL2_W5A_OSTRICH,
+    ACTORTYPE_OVL2_W5A_BEE,
+    ACTORTYPE_OVL2_W5A_CMDR,
+    ACTORTYPE_OVL2_W5A_CMDR_BEAM,
+    ACTORTYPE_OVL2_W5A_CMDR_BOMB,
+    ACTORTYPE_OVL2_W5A_6, // stubbed
+
     // actors in dispatch table D_801A6800_78B430
 
     ACTORTYPE_OVL2_W5B_0 = (ACTOR_OVL2_STAGE_5_5 << 8), // stubbed actor
@@ -532,9 +605,9 @@ typedef enum {
     ACTORTYPE_OVL3_W5_12,
     ACTORTYPE_OVL3_W5_13,
     ACTORTYPE_OVL3_W5_14,
-    ACTORTYPE_OVL3_W5_15,
-    ACTORTYPE_OVL3_W5_16,
-    ACTORTYPE_OVL3_W5_17,
+    ACTORTYPE_OVL3_W5_15, // missle spawner in "Bee's the one"
+    ACTORTYPE_OVL3_W5_16, // missles in "Bee's the one"
+    ACTORTYPE_OVL3_W5_17, // Rocketeers in "Bee's the one"
     ACTORTYPE_OVL3_W5_18,
     ACTORTYPE_OVL3_W5_19,
     ACTORTYPE_OVL3_W5_20,

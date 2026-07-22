@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "function_symbols.h"
+#include "28EF0.h"
 #include "7D8E0.h"
 
 // "overlay 4" code for "Rescue: Acts 1 and 2", "Toadaly Raw", "7 Clancer Kids",
@@ -9,7 +10,7 @@
 extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
-extern void func_80064AA0(u16 arg0, void* arg1);
+
 extern s32 WarpGate_IsGrabbed(u16 arg0);
 extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
@@ -1166,7 +1167,7 @@ s32 func_801B9DB0_7DCC80(void) {
                 func_801B9D84_7DCC54();
                 return TRUE;
             }
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState -= 2;
             D_800D28E4 = 0x61;
         }
@@ -1182,14 +1183,14 @@ s32 func_801B9DB0_7DCC80(void) {
 
 // skip intro for "Rescue Act 1"
 void func_801B9E6C_7DCD3C(void) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gStageState = 0xC;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;
 }
 
 void func_801B9EA0_7DCD70(void) {
-    D_800D2938 = 0;
+    gTransitionState = 0;
     gStageState = 0x1030;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;
@@ -1218,7 +1219,7 @@ void func_801B9ED4_7DCDA4(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1331,7 +1332,7 @@ void func_801B9ED4_7DCDA4(void) {
             D_800BE544 = 0;
 
         case 0xD:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -1370,7 +1371,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_801B9D38_7DCC08();
 
         case 0x11:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
 
@@ -1439,7 +1440,7 @@ void func_801B9ED4_7DCDA4(void) {
             break;
 
         case 0x13:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -1454,7 +1455,7 @@ void func_801B9ED4_7DCDA4(void) {
             func_801B9D38_7DCC08();
 
         case 0x21:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
 
@@ -1489,7 +1490,7 @@ void func_801BA774_7DD644(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 gLifebar.posY.whole = -0x58;
@@ -1498,13 +1499,13 @@ void func_801BA774_7DD644(void) {
             break;
 
         case 3:
-            SpawnAreaClear(0);
+            SpawnAreaClear(AREACLEAR_FULL);
             Sound_StartFade(0x81, 0x168);
             gStageState++;
             break;
 
         case 5:
-            func_80064AA0(1, D_801BD9A4_7E0874);
+            SpawnStageClear(1, D_801BD9A4_7E0874);
             gStageState++;
             break;
 
@@ -1666,7 +1667,7 @@ void func_801BACDC_7DDBAC(void) {
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
 
         case 0x800:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1737,7 +1738,7 @@ void func_801BACDC_7DDBAC(void) {
             gStageState++;
 
         case 0x1001:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 0xA;
                 D_800BE544 = 0;
@@ -1818,7 +1819,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x1F:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 0x12;
             }
@@ -1830,7 +1831,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x29:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 gStageState = 2;
             }
@@ -1918,7 +1919,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0x901:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -1992,7 +1993,7 @@ void func_801BACDC_7DDBAC(void) {
             break;
 
         case 0xA01:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2006,13 +2007,13 @@ void func_801BACDC_7DDBAC(void) {
             gDrawEnvLayer = 0;
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BE1D4_7E10A4);
-            func_80046A9C();
+            Transition_SmashBlack();
             gLookatEyeZ = 448.0f;
             gLookatAtY = 0.0f;
             break;
 
         case 0xA04:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2047,6 +2048,7 @@ void func_801BBCBC_7DEB8C(void) {
     gTeranPlayerActor.posY.whole = gPlayerActor.posY.whole;
 }
 
+// Teran has died in "Rescue: Act 2"
 void func_801BBD08_7DEBD8(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
         gGameState = GAMESTATE_CONTINUE;
@@ -2102,14 +2104,14 @@ s32 func_801BBDB0_7DEC80(void) {
 }
 
 void func_801BBE80_7DED50(void) {
-    D_800D2938 = 0;
-    D_800D2928 = 0;
+    gTransitionState = 0;
+    gStageTimer = 0;
     gStageState = 0x1030;
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x61;
 }
 
-// cinematic "state machine" for "Rescue: Act 2"
+// stage state machine for "Rescue: Act 2"
 void func_801BBEBC_7DED8C(void) {
     switch (gStageState) {
         case 0:
@@ -2119,7 +2121,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
@@ -2146,7 +2148,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x31:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
                 D_800D2934 = 0;
@@ -2211,11 +2213,11 @@ void func_801BBEBC_7DED8C(void) {
             gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BEBB8_7E1A88);
-            func_80046A9C();
+            Transition_SmashBlack();
             Sound_PlayMusic(BGM_OUT);
 
         case 0x39:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
@@ -2223,7 +2225,7 @@ void func_801BBEBC_7DED8C(void) {
         case 0x3A:
             if ((gButtonPress & gButton_ZTrig) || (gTeranPlayerActor.flags == 0)) {
                 func_801BBE80_7DED50();
-                D_800D2928 = 1;
+                gStageTimer = 1;
             }
             break;
 
@@ -2239,24 +2241,24 @@ void func_801BBEBC_7DED8C(void) {
             Actor_LoadSpawnTable(D_801BEAAC_7E197C);
             func_801BBCBC_7DEB8C();
             gActors[0x40].var_0D8 |= 8;
-            if (D_800D2928 == 0) {
+            if (gStageTimer == 0) {
                 Sound_PlayMusic(BGM_OUT);
             }
             break;
 
         case 0x1031:
-            if (func_80046D5C() != 0) {
-                func_800472D4();
+            if (Transition_FadeOut()) {
+                SpawnText_READY();
             }
             break;
 
         case 0x1032:
-            D_800D2928--;
-            if (D_800D2928 < 0) {
+            gStageTimer--;
+            if (gStageTimer < 0) {
                 gStageState++;
                 func_80045F14(D_801BE204_7E10D4);
                 D_800D28FC &= ~2;
-                func_8007CFE0(0xC7, 3, -0x28, 0, 0, 0x78);
+                func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
                 gTeranPlayerActor.var_0D8 &= ~1;
                 gActors[0x40].var_0D8 &= ~1;
                 D_800BE544 = 0x8000;
@@ -2269,7 +2271,7 @@ void func_801BBEBC_7DED8C(void) {
             if (gActors[0x40].flags == 0) {
                 gStageState = 0x1038;
                 Actor_ClearSceneActors();
-                SpawnAreaClear(0);
+                SpawnAreaClear(AREACLEAR_FULL);
                 // function can use second arg as "flags" int instead
                 func_80045FA4(D_801BE204_7E10D4, (u16*)0xFFFFFFF8);
                 D_800BE5F4.unk_00_s32 = 4;
@@ -2281,7 +2283,7 @@ void func_801BBEBC_7DED8C(void) {
             break;
 
         case 0x1039:
-            D_800D2938 = 0;
+            gTransitionState = 0;
             gStageState = 0x40;
             D_800D28F0 = D_800D28E4;
             D_800D28E4 = 0x61;
@@ -2297,17 +2299,17 @@ void func_801BBEBC_7DED8C(void) {
             Sound_PlayMusic(BGM_GET);
 
         case 0x41:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
-                D_800D2928 = 0x78;
+                gStageTimer = 0x78;
                 gCannotPause = TRUE;
             }
             break;
 
         case 0x42:
-            D_800D2928--;
-            if ((gButtonPress & gButton_ZTrig) || (D_800D2928 < 0)) {
-                D_800D2938 = 0;
+            gStageTimer--;
+            if ((gButtonPress & gButton_ZTrig) || (gStageTimer < 0)) {
+                gTransitionState = 0;
                 gStageState = 0x50;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
@@ -2320,17 +2322,17 @@ void func_801BBEBC_7DED8C(void) {
             Actor_LoadSpawnTable(D_801BC990_7DF860);
             Actor_LoadSpawnTable(D_801BEBE8_7E1AB8);
             D_800BE5F4.unk_00_s32 = 4;
-            D_800D2928 = 0xB4;
+            gStageTimer = 180;
 
         case 0x51:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 gCannotPause = TRUE;
             }
 
         case 0x52:
-            D_800D2928--;
-            if ((gButtonPress & gButton_ZTrig) || (D_800D2928 < 0)) {
+            gStageTimer--;
+            if ((gButtonPress & gButton_ZTrig) || (gStageTimer < 0)) {
                 D_800D28E4 = 100;
             }
             break;
@@ -2383,7 +2385,7 @@ void func_801BC828_7DF6F8(void) {
             func_801BC75C_7DF62C(D_801BEC24_7E1AF4, (u16*)0xFFFFFFF9);
 
         case 2:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }

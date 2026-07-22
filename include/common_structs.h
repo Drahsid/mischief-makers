@@ -1,6 +1,10 @@
 #ifndef COMMON_STRUCTS_H
 #define COMMON_STRUCTS_H
 
+#include <PR/ultratypes.h>
+#include <PR/gbi.h>
+#include "inttypes.h"
+
 // game uses Q16.16 fixed-point numbers for position and velocity values.
 typedef union {
     /* 0x00 */ s32 raw;
@@ -33,8 +37,11 @@ typedef struct {
     /* 0x9C */ u32 unk_9C; // unused
 } PortraitStruct; /* sizeof = 0xA0 */
 
-#define gLifebar gPortraits[0x40] // lifebar uses PortraitStruct
-#define gLifebarHead gPortraits[0x41] // head at edge of lifebar uses PortraitStruct
+#define LIFEBAR_INDEX 64
+#define LIFEBAR_HEAD_INDEX 65
+
+#define gLifebar gPortraits[LIFEBAR_INDEX] // lifebar uses PortraitStruct
+#define gLifebarHead gPortraits[LIFEBAR_HEAD_INDEX] // head at edge of lifebar uses PortraitStruct
 
 // data on "static" objects (clanblocks, gems)
 typedef struct {
@@ -44,7 +51,22 @@ typedef struct {
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
     /* 0x8C */ u16* palette;
-} UnkStruct_801069E0; /* sizeof = 0x90 */
+} StaticObject; /* sizeof = 0x90 */
+
+typedef enum {
+    PLAYERDATA_UNK0 = (1 << 0),
+    PLAYERDATA_BOUND = (1 << 1), // Marina is bound to screen edges.
+    PLAYERDATA_UNBOUND = (1 << 2), // Marina is set to be unbound to screen edges.
+    PLAYERDATA_PAUSEACTOR = (1 << 3), // ActorUpdate_Marina skips all code.
+    PLAYERDATA_NOCOLLIDE = (1 << 4), // physics code is skipped.
+    PLAYERDATA_UNK5 = (1 << 5),
+    PLAYERDATA_UNK6 = (1 << 6),
+    PLAYERDATA_UNK7 = (1 << 7),
+    PLAYERDATA_UNK8 = (1 << 8),
+    PLAYERDATA_UNK16 = (1 << 16)
+
+} PlayerDataFlags;
+
 
 // struct storing data about Marina player actor
 typedef struct {
@@ -85,9 +107,9 @@ typedef struct {
     /* 0x6C */ u32 marina_Unk_0FC; // stores Marina's "unk_0FC" value when ACTOR_FLAG3_UNK1 is set.
     /* 0x70 */ u16 unk_70; // index of "held" actor?
     /* 0x72 */ u8 unk_72[6]; // unused?
-    /* 0x78 */ u32 unk_78; // bitfield. 0x8 allows marina actor to update.
+    /* 0x78 */ u32 flags; // bitfield. uses PlayerDataFlags
     /* 0x7C */ u32 unk_7C;
-} UnkStruct_D_801373E0;
+} PlayerData;
 
 // D_800BE5F4 is treated as both word and 4 bytes.
 typedef union {
@@ -106,5 +128,9 @@ typedef union {
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000)) // use for literals
 #define TO_FIXED(value) ((value) * FIXED_UNIT(1.0)) // use for conversions
 #define FROM_FIXED(value) ((value) / FIXED_UNIT(1.0)) // use for conversions
+
+#define STAGE_CLEAR_FLAGS(instant, time, keepBGM) (instant | time | keepBGM << 15U)
+#define STAGE_CLEAR_INSTANT STAGE_CLEAR_FLAGS(TRUE, 0, FALSE)
+#define STAGE_CLEAR_TIMED(time) STAGE_CLEAR_FLAGS(FALSE, time, FALSE)
 
 #endif

@@ -22,11 +22,10 @@ enum ActorFlags {
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
-    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera?
+    ACTOR_FLAG_ONSCREEN_ONLY = (1U << 2U), // deactivate if off-camera
     ACTOR_FLAG_FREEZE_POS = (1U << 3U), // keep screenspace position regardless of camera movement. Used for screen effect actors.
     ACTOR_FLAG_UNK4 = (1U << 4U), 
-    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
-                                   // scale, in this context?)
+    ACTOR_FLAG_FLIPPED = (1U << 5U), // if this bit is set, the actor will face left
     ACTOR_FLAG_UNK6 = (1U << 6U),  // seems related to actor linking?
 
     // bits 7-12 seem to deal with collision checks.
@@ -39,12 +38,12 @@ enum ActorFlags {
     ACTOR_FLAG_UNK10 = (1U << 10U), 
     ACTOR_FLAG_UNK11 = (1U << 11U),
     ACTOR_FLAG_UNK12 = (1U << 12U),
-    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // actor's hitboxes are considered a "platform"
+    ACTOR_FLAG_PLATFORM0 = (1U << 13U), // actor's hitboxB is considered a "platform"
     ACTOR_FLAG_UNK14 = (1U << 14U),
     ACTOR_FLAG_UNK15 = (1U << 15U), // something with damage (instakill if set?)
     ACTOR_FLAG_UNK16 = (1U << 16U),
     ACTOR_FLAG_UNK17 = (1U << 17U),
-    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxes are considered a "platform"
+    ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxB is considered a "platform"
     ACTOR_FLAG_UNK19 = (1U << 19U),
     ACTOR_FLAG_UNK20 = (1U << 20U),
     ACTOR_FLAG_UNK21 = (1U << 21U),
@@ -121,9 +120,14 @@ typedef struct {
     /* 0x080 */ u32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
     /* 0x084 */ u16 graphicIndex; // index of graphic currently used.
     /* 0x086 */ u8 unk_086[0x2]; // align bytes?
-    /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
-    /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
-    /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
+    union {
+        struct {
+            /* 0x088 */ FixedCoord posX; // Q16.16-style fixed x-coordinate relative to center of screen
+            /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
+            /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
+        };
+        /* 0x088 */ FixedCoord pos[3];
+    };
     /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
     /* 0x098 */ u32 flags_098; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
@@ -163,7 +167,9 @@ typedef struct {
             /* 0x0D1 */ u8 stateLower;
         };
     };
-    /* 0x0D2 */ u16 actorType; // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes func_80016E70 table
+    // < 0x100: static actor type; >= 0x100: high byte selects bank, low byte indexes ActorsUpdate_Overlay table
+    // uses ActorTypes
+    /* 0x0D2 */ u16 actorType; 
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
@@ -181,7 +187,7 @@ typedef struct {
     // graphic animations are determined by the following pointer.
     // it often references a s16[], where the entries alternate
     // between the index of the grapic and the time in ticks to display.
-    // negative "index" values mean a looping animation back that many indecies.
+    // negative "index" values mean a looping animation back that many indices.
     // some actors, like Marina, instead treat the field as a u16**,
     // storing the animations for each state.
 
@@ -190,9 +196,9 @@ typedef struct {
         /* 0x0E8 */ s16** graphicLists; // used by Marina and other actors to hold several animation references.
     };
     
-    /* 0x0EC */ FixedCoord velocityX; // applied to posX in func_80014af0
-    /* 0x0F0 */ FixedCoord velocityY; // applied to posY in func_80014af0 
-    /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in func_80014af0
+    /* 0x0EC */ FixedCoord velocityX; // applied to posX in ActorsUpdate_Velocity
+    /* 0x0F0 */ FixedCoord velocityY; // applied to posY in ActorsUpdate_Velocity 
+    /* 0x0F4 */ FixedCoord velocityZ; // applied to posZ in ActorsUpdate_Velocity
 
     // the following values are used by actors for purposes depending on their type
     // examples: Clanbombs will use offset 0x150 for the fuse timer,
@@ -203,118 +209,123 @@ typedef struct {
     // may cause mismatch due to "narrowing":
     // when a wider data type is truncated to fit a smaller data type, ex: s32 -> s16
 
-    /* 0x0F8 */ FixedCoord unk_0F8; // related to x-axis velocity. Usage varies.
-    /* 0x0FC */ FixedCoord unk_0FC; // related to y-axis velocity. Usage varies.
-    /* 0x100 */ s32 unk_100; // cleared in Actor_Initialize, but otherwise (seemingly) unused. z-axis value?
-    /* 0x104 */ s32 unk_104;
-    /* 0x108 */ s32 unk_108;
-    /* 0x10C */ s32 unk_10C;
-    /* 0x110 */ f32 var_110; // often used as first set of initial actor paramaters.
-    /* 0x114 */ f32 unk_114;
-    /* 0x118 */ f32 unk_118;
-    /* 0x11C */ f32 unk_11C;
-    /* 0x120 */ f32 unk_120; // some actors, like Marina, use this as an XY scale.
-    /* 0x124 */ f32 unk_124;
-    /* 0x128 */ f32 unk_128;
     union {
-        /* 0x12C */ f32 unk_12C;
-        /* 0x12C */ u16 unk_12C_u16[2];
+        s32 base_0F8_s32[0x27]; // useful for when array type is needed to match address generation
         struct {
-            /* 0x12C */ u8 unk_12C_u8;
-            /* 0x12D */ u8 unk_12D_u8;
-            /* 0x12E */ u8 unk_12E_u8;
-            /* 0x12F */ u8 unk_12F_u8;
-        };
-    };
-    /* 0x130 */ f32 unk_130;
-    /* 0x134 */ f32 unk_134;
-    union {
-        struct {
-            /* 0x138 */ f32 unk_138;
+            /* 0x0F8 */ FixedCoord unk_0F8; // related to x-axis velocity. Usage varies.
+            /* 0x0FC */ FixedCoord unk_0FC; // related to y-axis velocity. Usage varies.
+            /* 0x100 */ s32 unk_100; // cleared in Actor_Initialize, but otherwise (seemingly) unused. z-axis value?
+            /* 0x104 */ s32 unk_104;
+            /* 0x108 */ s32 unk_108;
+            /* 0x10C */ s32 unk_10C;
+            /* 0x110 */ f32 var_110; // often used as first set of initial actor paramaters.
+            /* 0x114 */ f32 unk_114;
+            /* 0x118 */ f32 unk_118;
+            /* 0x11C */ f32 unk_11C;
+            /* 0x120 */ f32 unk_120; // some actors, like Marina, use this as an XY scale.
+            /* 0x124 */ f32 unk_124;
+            /* 0x128 */ f32 unk_128;
             union {
-                /* 0x13C */ f32 unk_13C_f32;
-                /* 0x13C */ s16 unk_13C_s16[2];
+                /* 0x12C */ f32 unk_12C;
+                /* 0x12C */ u16 unk_12C_u16[2];
+                struct {
+                    /* 0x12C */ u8 unk_12C_u8;
+                    /* 0x12D */ u8 unk_12D_u8;
+                    /* 0x12E */ u8 unk_12E_u8;
+                    /* 0x12F */ u8 unk_12F_u8;
+                };
             };
+            /* 0x130 */ f32 unk_130;
+            /* 0x134 */ f32 unk_134;
             union {
-                /* 0x140 */ f32 unk_140_f32;
-                /* 0x140 */ u16 unk_140_u16[2];
-                /* 0x140 */ u8 unk_140_u8[4];
+                struct {
+                    /* 0x138 */ f32 unk_138;
+                    union {
+                        /* 0x13C */ f32 unk_13C_f32;
+                        /* 0x13C */ s16 unk_13C_s16[2];
+                    };
+                    union {
+                        /* 0x140 */ f32 unk_140_f32;
+                        /* 0x140 */ u16 unk_140_u16[2];
+                        /* 0x140 */ u8 unk_140_u8[4];
+                    };
+                    /* 0x144 */ f32 unk_144;
+                    /* 0x148 */ f32 unk_148;
+                    /* 0x14C */ f32 unk_14C;
+                };
+                /* 0x138 */ f32 unk_138_arr[6];
             };
-            /* 0x144 */ f32 unk_144;
-            /* 0x148 */ f32 unk_148;
-            /* 0x14C */ f32 unk_14C;
-        };
-        /* 0x138 */ f32 unk_138_arr[6];
-    };
 
-    union {
-        /* 0x150 */ s32 var_150;
-        /* 0x150 */ s16 var_150_s16[2];
-    };
-    /* 0x154 */ s32 var_154;
-    union {
-        /* 0x158 */ s32 var_158;
-        /* 0x158 */ ActorVarFunc pfn_158;
-    };
-    /* 0x15C */ s32 var_15C;
-    union {
-        /* 0x160 */ s32 var_160;
-        /* 0x160 */ u8 var_160_u8;
-    };
-    /* 0x164 */ s32 unk_164;
-    union {
-        /* 0x168 */ s32 unk_168;
-        /* 0x168 */ ClanpotTally clanpotTally; // used by clanpots when mixing to tally items
-    };
-    union {
-        /* 0x16C */ s32 unk_16C;
-        /* 0x16C */ u32 unk_16C_u32;
-        /* 0x16C */ u16 unk_16C_u16[2];
-        /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
-    };
-    union {
-        /* 0x170 */ s32 unk_170;
-        /* 0x170 */ s16 unk_170_s16[2];
-        /* 0x170 */ u16 unk_170_u16[2];
-        /* 0x170 */ s8 unk_170_s8[4];
-    };
-    union {
-        /* 0x174 */ s32 unk_174;
-        /* 0x174 */ s16 unk_174_s16[2];
-        /* 0x174 */ u16 unk_174_u16[2];
-        /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
-    };
-    /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
-    union {
-        /* 0x17C */ s32 unk_17C;
-        /* 0x17C */ s16 unk_17C_s16[2];
-        /* 0x17C */ s8 unk_17C_s8[4];
-        /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
-        /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
-    };
-    union {
-        /* 0x180 */ s32 unk_180;
-        /* 0x180 */ s16 unk_180_s16[2];
-        /* 0x180 */ u8 unk_180_u8[4];
-        /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
-    };
-    union {
-        /* 0x184 */ s32 unk_184;
-        /* 0x184 */ s16 unk_184_s16[2];
-    };
-    union {
-        /* 0x188 */ s32 unk_188;
-        /* 0x188 */ s16 unk_188_s16;
-    };
-    union {
-        /* 0x18C */ s32 unk_18C; // field sometimes treated as int
-        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
-    };
-    union {
-        /* 0x190 */ s32 unk_190;
-        /* 0x190 */ void* unk_190_p;
-        /* 0x190 */ u16* warpgateCoords; // coordinates for a warp gate. {x,y,x-facing}
-        /* 0x190 */ ActorFunc pfn_190;
+            union {
+                /* 0x150 */ s32 var_150;
+                /* 0x150 */ s16 var_150_s16[2];
+            };
+            /* 0x154 */ s32 var_154;
+            union {
+                /* 0x158 */ s32 var_158;
+                /* 0x158 */ ActorVarFunc pfn_158;
+            };
+            /* 0x15C */ s32 var_15C;
+            union {
+                /* 0x160 */ s32 var_160;
+                /* 0x160 */ u8 var_160_u8;
+            };
+            /* 0x164 */ s32 unk_164;
+            union {
+                /* 0x168 */ s32 unk_168;
+                /* 0x168 */ ClanpotTally clanpotTally; // used by clanpots when mixing to tally items
+            };
+            union {
+                /* 0x16C */ s32 unk_16C;
+                /* 0x16C */ u32 unk_16C_u32;
+                /* 0x16C */ u16 unk_16C_u16[2];
+                /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
+            };
+            union {
+                /* 0x170 */ s32 unk_170;
+                /* 0x170 */ s16 unk_170_s16[2];
+                /* 0x170 */ u16 unk_170_u16[2];
+                /* 0x170 */ s8 unk_170_s8[4];
+            };
+            union {
+                /* 0x174 */ s32 unk_174;
+                /* 0x174 */ s16 unk_174_s16[2];
+                /* 0x174 */ u16 unk_174_u16[2];
+                /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
+            };
+            /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+            union {
+                /* 0x17C */ s32 unk_17C;
+                /* 0x17C */ s16 unk_17C_s16[2];
+                /* 0x17C */ s8 unk_17C_s8[4];
+                /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
+                /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
+            };
+            union {
+                /* 0x180 */ s32 unk_180;
+                /* 0x180 */ s16 unk_180_s16[2];
+                /* 0x180 */ u8 unk_180_u8[4];
+                /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
+            };
+            union {
+                /* 0x184 */ s32 unk_184;
+                /* 0x184 */ s16 unk_184_s16[2];
+            };
+            union {
+                /* 0x188 */ s32 unk_188;
+                /* 0x188 */ s16 unk_188_s16;
+            };
+            union {
+                /* 0x18C */ s32 unk_18C; // field sometimes treated as int
+                /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
+            };
+            union {
+                /* 0x190 */ s32 unk_190;
+                /* 0x190 */ void* unk_190_p;
+                /* 0x190 */ u16* warpgateCoords; // coordinates for a warp gate. {x,y,x-facing}
+                /* 0x190 */ ActorFunc pfn_190;
+        };
+        };
     };
     /* 0x194 */ u8 unk_194[0x4]; // unknown/unused
 } Actor; /* size = 0x198 */

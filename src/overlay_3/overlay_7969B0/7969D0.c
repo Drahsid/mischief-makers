@@ -28,18 +28,22 @@ s16 D_801B2414_7984E4[] = {
     -8, 0,
 };
 
+// scales for rocks in "Volcano".
+// always picks [3] (1.5x)
 f32 D_801B2428_7984F8[] = { 0.5f, 0.75f, 1.0f, 1.5f };
 
+// targets and timers for rock spawners in "Volcano!"
 s16 D_801B2438_798508[] = {
-    -208, 208, 3, 0x64,
-    -96, 160, 3, 0x50,
-    -224, 128, 3, 0x50,
-    -176, 128, 3, 0x64,
-    -272, 144, 3, 0x64,
-    -176, 176, 3, 0x64,
-    -176, 176, 3, 0x64,
-    -176, 176, 3, 0x64,
-    0, 0, 0, 0,
+//   posX posY scale  timer
+    -208, 208, 3,     0x64,
+    -96,  160, 3,     0x50,
+    -224, 128, 3,     0x50,
+    -176, 128, 3,     0x64,
+    -272, 144, 3,     0x64,
+    -176, 176, 3,     0x64,
+    -176, 176, 3,     0x64,
+    -176, 176, 3,     0x64,
+       0,   0, 0,        0,
 };
 
 // BUG: incorrect prototype!
@@ -50,6 +54,7 @@ s32 func_801B1A28_797AF8(u16 actor_index, s16 left_offset, s16 right_offset);
 void func_801B1DD4_797EA4(u16 actor_index);
 void func_801B2018_7980E8(u16 actor_index);
 
+// spawn lightning bolt
 void func_801B0900_7969D0(u16 actor_index) {
     u16 new_actor_index;
 
@@ -58,7 +63,7 @@ void func_801B0900_7969D0(u16 actor_index) {
         return;
     }
 
-    gActors[new_actor_index].actorType = 0x402;
+    gActors[new_actor_index].actorType = ACTORTYPE_OVL3_W1_LIGHTNING;
     Actor_Initialize(new_actor_index);
     gActors[new_actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
     gActors[new_actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
@@ -84,7 +89,7 @@ u16 func_801B0A10_796AE0(u16 unused_actor_index) {
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;
-    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[actor_index].scaleX = 19.0f;
     gActors[actor_index].scaleY = 13.0f;
     gActors[actor_index].posX.whole = 0;
@@ -97,7 +102,7 @@ u16 func_801B0A10_796AE0(u16 unused_actor_index) {
     return actor_index;
 }
 
-
+// the volcano in the desert areas of World 1
 void func_801B0ABC_796B8C(u16 actor_index) {
     Actor* other_actor;
     u32 done;
@@ -112,13 +117,15 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             gActors[actor_index].unk_188 = -0x20;
             gActors[actor_index].posZ.whole = -528;
             gActors[actor_index].state = 0x10;
+            // Spawn birds at beginning of Western World
             if (gCurrentScene == SCENE_WESTERNWORLD) {
                 func_801B2018_7980E8(actor_index);
             }
             break;
 
         case 0x10:
-            if ((gActors[0x88].actorType == ACTORTYPE_49) && (gActors[0x88].flags & ACTOR_FLAG_ACTIVE)) {
+        // become active volcano.
+            if ((gActors[0x88].actorType == ACTORTYPE_SPIRALCLOUDS) && (gActors[0x88].flags & ACTOR_FLAG_ACTIVE)) {
                 func_801B0A10_796AE0(actor_index);
                 gActors[actor_index].state++;
             }
@@ -127,7 +134,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
         case 0x11:
             if (gActors[actor_index].unk_18C != 0) {
                 gActors[actor_index].var_154 = 4;
-                Sound_PlaySfxAtActor2(0xBE, actor_index);
+                Sound_PlaySfxAtActor2(SFX_THUNDER_00BE, actor_index);
                 func_801B0900_7969D0(actor_index);
                 gActors[actor_index].state = 0x20;
                 gActors[actor_index].var_15C++;
@@ -136,7 +143,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             else if (gActors[0x88].flags & ACTOR_FLAG_DRAW) {
                 gActors[0x31].colorA = gActors[0x88].colorA * 0.5;
                 if (Rand() < (gActors[0x88].colorA >> 5)) {
-                    Sound_PlaySfxAtVol(0xBE, 0x93);
+                    Sound_PlaySfxAtVol(SFX_THUNDER_00BE, 0x93);
                     gActors[0x31].colorA = 0;
                 }
             }
@@ -181,14 +188,14 @@ void func_801B0ABC_796B8C(u16 actor_index) {
                 }
                 else {
                     gActors[actor_index].var_15C++;
-                    Sound_PlaySfxAtActor2(0xBE, actor_index);
+                    Sound_PlaySfxAtActor2(SFX_THUNDER_00BE, actor_index);
                     gActors[actor_index].state--;
                 }
             }
             break;
 
         case 0x30:
-            gActors[actor_index - 1].actorType = 0x400;
+            gActors[actor_index - 1].actorType = ACTORTYPE_OVL3_W1_VOLCANO;
             Actor_Initialize(actor_index - 1);
             gActors[actor_index - 1].graphicFlags |= ACTOR_GFLAG_UNK11;
             gActors[actor_index - 1].flags |= ACTOR_FLAG_FREEZE_POS;
@@ -198,7 +205,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             gActors[actor_index - 1].posZ.whole = -527;
             gActors[actor_index - 1].colorA = 0;
             gActors[actor_index - 1].state = 0x50;
-            Sound_PlaySfxAtActor2(0x47, actor_index);
+            Sound_PlaySfxAtActor2(SFX_ROAR_0047, actor_index);
             gActors[actor_index].state++;
             break;
 
@@ -228,7 +235,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
                     other_actor->flags = 0;
                     gActors[actor_index].state = 0x50;
                     gActors[actor_index - 2].state = 0x40;
-                    Sound_PlayMusic(0xF);
+                    Sound_PlayMusic(BGM_POSITION);
                     if (gStageState == 2) {
                         gStageState = 3;
                     }
@@ -288,7 +295,7 @@ void func_801B112C_7971FC(u16 actor_index, u16 arg1) {
         gActors[new_actor_index].flags = ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].velocityY.raw = FIXED_UNIT(2.0);
         gActors[new_actor_index].scaleX = gActors[new_actor_index].scaleY = gActors[actor_index].scaleX * 2.2;
-        gActors[new_actor_index].colorA = 0xC8;
+        gActors[new_actor_index].colorA = 200;
         gActors[new_actor_index].var_154 = -0x10 - (Rand() & 0xF);
         gActors[new_actor_index].unk_164 = 0;
         gActors[new_actor_index].var_110 = -0.08f;
@@ -342,6 +349,7 @@ void func_801B131C_7973EC(u16 actor_index) {
     gCamShakeType = 2;
 }
 
+// behavior of Volcanic Rock
 void func_801B1414_7974E4(u16 actor_index) {
     Actor* actor;
     u8 first_check;
@@ -357,8 +365,8 @@ void func_801B1414_7974E4(u16 actor_index) {
             // fallthrough
 
         case 1:
-            if (actor->posY.whole >= 201) {
-                actor->var_150 = 0x3C;
+            if (actor->posY.whole > 200) {
+                actor->var_150 = 60;
                 actor->velocityY.raw = (actor->velocityX.raw = 0);
                 func_801B1000_7970D0(actor_index);
                 func_801B1768_797838(actor_index);
@@ -393,11 +401,11 @@ void func_801B1414_7974E4(u16 actor_index) {
             }
 
             if (on_ground && (actor->parentIndex == 0)) {
-                Sound_PlaySfxAtActor2(0x45, actor_index);
-                gPlayerActor.iFrames = 0x5A;
+                Sound_PlaySfxAtActor2(SFX_BOOM_0045, actor_index);
+                gPlayerActor.iFrames = 90;
             }
             else {
-                Sound_PlaySfxAtActor2(0x45, actor_index);
+                Sound_PlaySfxAtActor2(SFX_BOOM_0045, actor_index);
             }
             actor->flags = 0;
             func_801B131C_7973EC(actor_index);
@@ -451,7 +459,7 @@ void func_801B1768_797838(u16 actor_index) {
 
     new_actor_index = Actor_RangeFindInactive(0x70, 0x80);
     if (new_actor_index != 0) {
-        ACTOR_INIT(new_actor_index, 0x403);
+        ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W1_ROCKFLAME);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
         gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole;
@@ -487,7 +495,7 @@ void func_801B182C_7978FC(u16 actor_index) {
                 parent = &gActors[actor->var_15C];
                 actor->posX.whole = parent->posX.whole;
                 actor->posY.whole -= 11;
-                actor->colorR = 0x3A;
+                actor->colorR = 58;
                 actor->colorG = 0x2B;
                 actor->colorB = 0x81;
                 actor->colorA = 0;
@@ -530,6 +538,7 @@ s32 func_801B1A28_797AF8(u16 actor_index, s16 left_offset, s16 right_offset) {
     return 1;
 }
 
+// spawn Rock projectile in "Volcano!"
 u16 func_801B1AD4_797BA4(u16 actor_index) {
     u16 new_actor_index;
     u16 particle_index;
@@ -538,7 +547,7 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
     if (new_actor_index != 0) {
         Actor* parent;
 
-        gActors[new_actor_index].actorType = 0x401;
+        gActors[new_actor_index].actorType = ACTORTYPE_OVL3_W1_VOLROCK;
         Actor_Initialize(new_actor_index);
 
         gActors[new_actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
@@ -551,8 +560,8 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
         gActors[new_actor_index].scaleY = 0.3f;
         gActors[new_actor_index].scaleX = 0.3f;
         gActors[new_actor_index].posY.whole = gActors[0x8A].posY.whole + 44;
-        gActors[new_actor_index].health = 0x64;
-        gActors[new_actor_index].damage = 0x64;
+        gActors[new_actor_index].health = 100;
+        gActors[new_actor_index].damage = 100;
         gActors[new_actor_index].unk_188 = -0x21;
         gActors[new_actor_index].posZ.whole = -529;
         gActors[new_actor_index].unk_0DA |= 0x81;
@@ -572,12 +581,13 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
             gActors[particle_index].scaleX = 1.0f;
         }
 
-        Sound_PlaySfx(0x43);
+        Sound_PlaySfx(SFX_BOOM_0043);
     }
 
     return new_actor_index;
 }
 
+// volcanic rock spawner in "Volcano!"
 void func_801B1CA4_797D74(u16 actor_index) {
     u16 table_base;
     s16 table_index;
@@ -631,6 +641,7 @@ void func_801B1DD4_797EA4(u16 actor_index) {
     gActors[actor_index].posY.whole = FROM_FIXED(gActors[actor_index].var_158) + (gActors[actor_index].var_15C * 2) + 32;
 }
 
+// bird behavior in "Western World"
 void func_801B1F24_797FF4(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
@@ -658,6 +669,7 @@ void func_801B1F24_797FF4(u16 actor_index) {
     }
 }
 
+// spawn birds in background of "Western world"
 void func_801B2018_7980E8(u16 actor_index) {
     u16 index;
 
@@ -671,7 +683,7 @@ void func_801B2018_7980E8(u16 actor_index) {
 
             angle = Rand();
             actor = &gActors[new_actor_index];
-            ACTOR_INIT(new_actor_index, 0x405);
+            ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W1_BIRD);
             actor->var_154 = TO_FIXED(Rand() & 0x1F) + FIXED_UNIT(192.0);
             actor->var_158 = TO_FIXED((Rand() - 0x80) * 0.125) + FIXED_UNIT(64.0);
             actor->posZ.whole = -255;
@@ -683,6 +695,7 @@ void func_801B2018_7980E8(u16 actor_index) {
     }
 }
 
+// behavior for ACTORTYPE_OVL3_W1_6
 void func_801B21C8_798298(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:

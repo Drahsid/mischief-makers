@@ -4,10 +4,12 @@
 #include "input.h"
 #include "game_state.h"
 #include "1F1E0.h"
+#include "debug.h" 
+#include "82DB0.h"
 
 void func_800012F0(void);
 void func_8000147C(void);
-void func_80001670(void);
+void GameState_Update(void);
 u16 Rand(void);
 
 void func_800012F0(void) {
@@ -42,11 +44,11 @@ void func_800012F0(void) {
             }
         }
         if (gGamePaused == FALSE) {
-            func_800838E0(); // DebugText_Reset ?
+            OSD_Reset();
         }
     }
     else {
-        func_800838E0(); // DebugText_Reset ?
+        OSD_Reset();
     }
 }
 
@@ -57,8 +59,8 @@ void func_8000147C(void) {
     }
 
     func_800012F0(); // PauseGame_Check
-    func_80001670(); // GameState_Tick
-    func_800821B0(); // MarinaGraphics_Load
+    GameState_Update();
+    MarinaGraphics_Copy();
     func_80009940();
     func_80082F10();
     func_80009BE8(gActorsBack); // DrawActors
@@ -88,7 +90,7 @@ void func_8000147C(void) {
     }
 
     Rand(); // update rng
-    func_800822B8(); // MarinaGraphics_Decrypt
+    MarinaGraphics_Decompress();
     Gfx_DrawLetterbox();
     func_8000F290(); // DrawLifeBar
     func_80009BE0();
@@ -109,14 +111,14 @@ void func_8000147C(void) {
         func_80021660();
     }
 
-    func_80021620(); // DebugText_BorW
-    func_80083E74(); // DebugText_Tick
+    func_80021620();
+    OSD_Tick();
 }
 
 extern void GameState_State8Overlay(void);
 extern void GameState_State9Overlay(void);
 
-void func_80001670(void) {
+void GameState_Update(void) {
     switch (gGameState) {
         case GAMESTATE_SOFTRESET: {
             GameState_SoftReset(); // soft reset

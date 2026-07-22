@@ -4,8 +4,6 @@
 
 // "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
 
-extern void func_80064AA0(s32 arg0, void* arg1);
-
 extern u16 D_801BA540_7E7690[];
 extern u16 D_801BA63C_7E778C[];
 extern u16 D_801BA65C_7E77AC[];
@@ -49,7 +47,7 @@ u16 D_801BA540_7E7690[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0990, 0x0253, 0x0000, 0x0000, ACTORTYPE_13,
     0x0000, 0x0091, 0x0990, 0x0253, 0x0200, 0x0000, ACTORTYPE_13,
-    0x0000, 0x0092, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_94,
+    0x0000, 0x0092, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_WHITEFADE,
     SPAWNRECORD_END
 };
 
@@ -75,10 +73,10 @@ u16 D_801BA63C_7E778C[] = {
     0x1000, 0x027F, 0x0000, 0x7FFF, 0x0574, 0x020F, 0xFFE0, 0xFFEB
 };
 
-// unused spawn table
+// unused spawn table, likely meant for "Counterattack"
 u16 D_801BA64C_7E779C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, 0x1F01,
+    0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     SPAWNRECORD_END,
 };
 
@@ -88,13 +86,14 @@ u16 D_801BA65C_7E77AC[] = {
     SPAWNRECORD_END,
 };
 
+// actor spawn Table for "Counter-Attack"
 u16 D_801BA66C_7E77BC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
-    0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, 0x1F03,
+    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
+    0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_CMDR,
     SPAWNRECORD_END,
     0, 0, 0, // might be a seperate unused table
-    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, 0x1F01,
+    0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     SPAWNRECORD_END
 };
 
@@ -218,7 +217,7 @@ u16 D_801BA9A4_7E7AF4[] = {
 
 u16 D_801BAA08_7E7B58[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01A0, 0x0290, 0x0000, 0x0000, 0x1F02,
+    0x0000, 0x0030, 0x01A0, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_BEE,
     0x0000, 0x0070, 0x0200, 0x02A0, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_15,
     0x0000, 0x0092, 0x0200, 0x02A0, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_18,
     0x0000, 0x0093, 0x0200, 0x02A0, 0x0000, 0x0001, ACTORTYPE_OVL3_W5_18,
@@ -340,6 +339,7 @@ void func_801B99F4_7E6B44(u16 arg0) {
     D_800BE73C = FIXED_UNIT(6.0);
 }
 
+// stage state machine for "CounterAttack"
 void func_801B9A08_7E6B58(void) {
     if ((gButtonPress & gButton_LTrig) != 0) {
         D_800CC428 = TRUE;
@@ -347,6 +347,7 @@ void func_801B9A08_7E6B58(void) {
 
     switch (gStageState) {
         case 0:
+        // skip right to the fight.
             gStageState = 0x100;
             break;
 
@@ -355,19 +356,19 @@ void func_801B9A08_7E6B58(void) {
             break;
 
         case 0x101:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
-                D_800D2928 = 60;
+                gStageTimer = 60;
                 Sound_StartFade(0x81, 0x37);
             }
             break;
 
         case 0x102:
             func_801B99F4_7E6B44(0x30);
-            D_800D2928--;
-            if (D_800D2928 < 0) {
+            gStageTimer--;
+            if (gStageTimer < 0) {
                 gStageState = 0x200;
             }
             break;
@@ -382,22 +383,22 @@ void func_801B9A08_7E6B58(void) {
             gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
             Actor_LoadSpawnTable(D_801BA65C_7E77AC);
-            func_80046A9C();
+            Transition_SmashBlack();
             Sound_PlayMusic(BGM_BONO);
 
         case 0x201:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
             }
             break;
 
         case 0x202:
             if (((gButtonPress & gButton_ZTrig) != 0) || (gActors[0x30].flags == 0)) {
-                D_800D2938 = 0;
+                gTransitionState = 0;
                 gStageState = 0x300;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
-                D_800D2928 = 1;
+                gStageTimer = 1;
             }
             D_800BE73C = 0;
             break;
@@ -414,7 +415,7 @@ void func_801B9A08_7E6B58(void) {
             func_801B99F4_7E6B44(0x30);
 
         case 0x301:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
@@ -430,11 +431,11 @@ void func_801B9A08_7E6B58(void) {
 
         case 0x303:
             gStageState++;
-            D_800D2928 = 0x78;
+            gStageTimer = 0x78;
 
         case 0x304:
-            D_800D2928--;
-            if (D_800D2928 < 0) {
+            gStageTimer--;
+            if (gStageTimer < 0) {
                 D_800D28E4 = 0x64;
             }
             func_801B99F4_7E6B44(0x30);
@@ -445,13 +446,13 @@ void func_801B9A08_7E6B58(void) {
 }
 
 s32 func_801B9DAC_7E6EFC(void) {
-    if (D_801BA6B0_7E7800[D_800D2928].unk_10 < gScreenPosCurrentX.whole) {
+    if (D_801BA6B0_7E7800[gStageTimer].unk_10 < gScreenPosCurrentX.whole) {
         gActors[0x31].var_15C |= 2;
     }
 
-    if (D_801BA6B0_7E7800[D_800D2928].unk_00 < gScreenPosCurrentX.whole) {
-        Actor_LoadSpawnTable(D_801BA6B0_7E7800[D_800D2928].unk_08);
-        D_800BE568.whole  = D_801BA6B0_7E7800[D_800D2928].unk_00 - 0x90;
+    if (D_801BA6B0_7E7800[gStageTimer].unk_00 < gScreenPosCurrentX.whole) {
+        Actor_LoadSpawnTable(D_801BA6B0_7E7800[gStageTimer].unk_08);
+        gScreenBoundX0.whole  = D_801BA6B0_7E7800[gStageTimer].unk_00 - 0x90;
         gActors[0x31].var_15C |= 1;
         return TRUE;
     }
@@ -463,15 +464,15 @@ void func_801B9E7C_7E6FCC(void) {
     UnkStruct_801BA6B0* entry;
     s32 temp;
 
-    if (D_800D2928 < 4) {
-        func_80045FA4(D_801BA6A0_7E77F0, D_801BA6B0_7E7800[D_800D2928].unk_0C);
+    if (gStageTimer < 4) {
+        func_80045FA4(D_801BA6A0_7E77F0, D_801BA6B0_7E7800[gStageTimer].unk_0C);
 
-        entry = &D_801BA6B0_7E7800[D_800D2928];
+        entry = &D_801BA6B0_7E7800[gStageTimer];
         temp = entry->unk_10;
-        D_800BE568.whole  = temp - 0x90;
-        D_800BE56C.whole = entry->unk_12 + 0x90;
-        D_800BE570.whole  = 0x2EF;
-        D_800BE574.whole = 0x20F;
+        gScreenBoundX0.whole  = temp - 0x90;
+        gScreenBoundX1.whole = entry->unk_12 + 0x90;
+        gScreenBoundY0.whole  = 0x2EF;
+        gScreenBoundY1.whole = 0x20F;
         gScreenPosCurrentX.whole = temp + 0x90;
         gScreenPosCurrentY.whole = 0x27F;
         gPlayerActor.posX.whole = -0x90;
@@ -483,23 +484,23 @@ void func_801B9F50_7E70A0(void) {
     u16 temp_s0;
     u16 temp_s1;
 
-    temp_s0 = D_800BE568.whole ;
-    temp_s1 = D_800BE56C.whole ;
+    temp_s0 = gScreenBoundX0.whole;
+    temp_s1 = gScreenBoundX1.whole;
     func_801B9E7C_7E6FCC();
     Actor_LoadSpawnTable(D_801BA540_7E7690);
-    D_800D292C = D_800BE56C.whole ;
-    D_800BE568.whole  = temp_s0;
-    D_800BE56C.whole  = temp_s1;
+    gTransitionPortraitIndex = gScreenBoundX1.whole;
+    gScreenBoundX0.whole  = temp_s0;
+    gScreenBoundX1.whole  = temp_s1;
 }
 
 void func_801B9FB4_7E7104(void) {
-    D_800BE56C.whole  = D_800D292C;
+    gScreenBoundX1.whole  = gTransitionPortraitIndex;
 }
 
 void func_801B9FC8_7E7118(void) {
     switch (gStageState) {
         case 0:
-            D_800D2928 = 0;
+            gStageTimer = 0;
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
             func_801B9E7C_7E6FCC();
             Actor_LoadSpawnTable(D_801BA540_7E7690);
@@ -508,7 +509,7 @@ void func_801B9FC8_7E7118(void) {
             D_800D2930 = 0;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
             }
@@ -524,8 +525,8 @@ void func_801B9FC8_7E7118(void) {
             if (gActors[0x80].flags == 0) {
                 gStageState++;
                 Actor_ClearSceneActors();
-                SpawnAreaClear(0);
-                D_800D2928++;
+                SpawnAreaClear(AREACLEAR_FULL);
+                gStageTimer++;
                 D_800D2930 = 0xA;
             }
             break;
@@ -541,13 +542,13 @@ void func_801B9FC8_7E7118(void) {
 
         case 6:
             func_801B9FB4_7E7104();
-            if (D_800D2928 >= 4) {
+            if (gStageTimer >= 4) {
                 gStageState++;
-                func_80064AA0(1, D_801BA784_7E78D4);
+                SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BA784_7E78D4);
                 return;
             }
             gStageState = 1;
-            Actor_LoadSpawnTable(D_801BA6B0_7E7800[D_800D2928].unk_04);
+            Actor_LoadSpawnTable(D_801BA6B0_7E7800[gStageTimer].unk_04);
             break;
 
         case 5:
@@ -556,6 +557,7 @@ void func_801B9FC8_7E7118(void) {
     }
 }
 
+// stage state machine for "Bee's The One"
 void func_801BA1DC_7E732C(void) {
     u16 index;
     u16* base;
@@ -592,7 +594,7 @@ void func_801BA1DC_7E732C(void) {
             gStageState++;
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
                 gStageState++;
@@ -620,7 +622,7 @@ void func_801BA3C4_7E7514(void) {
             Actor_LoadSpawnTable(D_801BACE0_7E7E30);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;
@@ -641,7 +643,7 @@ void func_801BA480_7E75D0(void) {
             Actor_LoadSpawnTable(D_801BAD04_7E7E54);
 
         case 1:
-            if (func_80046D5C() != 0) {
+            if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE5F4.unk_00_u32 = 5;

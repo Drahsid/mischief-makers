@@ -4,7 +4,7 @@
 
 u8 gMusicPlayerFlags;
 s16 gMusicVolume;
-s16 D_800EF4D4;
+s16 gPauseMusicVolume;
 s32 gMusicSequenceId;
 s32 D_800EF4DC; // unused.
 u8 gMusicChannelFxMixes[16];
@@ -20,7 +20,7 @@ u32 D_80104094;
 PortraitStruct gPortraits[66]; 
 s8 gSfxPanOverrides[4];
 u32 D_801069DC;
-UnkStruct_801069E0 D_801069E0[64];
+StaticObject gStaticObjects[64];
 u16 gSfxActorIndices[4];
 u8 D_80108DE8[512][32];
 u16 gSfxStopTimers[4];
@@ -42,7 +42,7 @@ s16 gPlatforms0Y1[144];
 s16 gPlatforms1Y1[144];
 u64 gDramStack[DRAM_STACK_SIZE / sizeof(u64)];
 u16 gButtonPressHistory[64];
-u64 gYieldData[0x900];
+u64 gYieldData[OS_YIELD_DATA_SIZE];
 u16 gButtonHoldHistory[64];
 
 // initial values of global data near start of .data
@@ -91,10 +91,10 @@ FixedCoord gScreenPosCurrentX = {0};
 FixedCoord gScreenPosCurrentY = {0};
 FixedCoord gScreenPosNextX = {0};
 FixedCoord gScreenPosNextY = {0};
-FixedCoord D_800BE568 = {0}; 
-FixedCoord D_800BE56C = {0}; 
-FixedCoord D_800BE570 = {0};
-FixedCoord D_800BE574 = {0};
+FixedCoord gScreenBoundX0 = {0}; 
+FixedCoord gScreenBoundX1 = {0}; 
+FixedCoord gScreenBoundY0 = {0};
+FixedCoord gScreenBoundY1 = {0};
 s16 D_800BE578 = 0;
 s16 D_800BE57C = 0;
 s16 D_800BE580 = 0;
@@ -124,7 +124,7 @@ u32 D_800BE5CC = 0; // unused. file break?
 
 u16 gCurrentScene = 0;
 
-u16 D_800BE5D4 = 0; 
+u16 gStartButtonOnly = FALSE; 
 
 FixedCoord gPlayerPosX = {0};
 FixedCoord gPlayerPosY = {0};

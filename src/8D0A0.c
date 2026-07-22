@@ -4,7 +4,7 @@
 #include "music.h"
 #include "4FEB0.h"
 
-extern s32 D_80137420;
+
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
 
@@ -60,7 +60,7 @@ void func_8008C4E0(u16 actor_index) {
     gActors[actor_index].colorB = 0;
     gActors[actor_index].colorG = 0;
     gActors[actor_index].colorR = 0;
-    D_80137420 = 0;
+    gPlayerData.unk_40 = 0;
 }
 
 void func_8008C528(u16 arg0) {
@@ -70,13 +70,13 @@ void func_8008C528(u16 arg0) {
     s16 green;
     u16 actor_index;
 
-    actor_index = 0;
-    if (D_801373E0.marina_Flags_098 & 2) {
+    actor_index = PLAYER_INDEX;
+    if (gPlayerData.marina_Flags_098 & ACTOR_FLAG3_UNK1) {
         if ((gActors[actor_index].stateLower >= 0x30) && (gActors[actor_index].stateLower < 0x37)) {
-            D_801373E0.unk_43 = 1;
+            gPlayerData.unk_43 = 1;
         }
     }
-    switch (D_801373E0.unk_43) {
+    switch (gPlayerData.unk_43) {
     case 0:
         graphic_index_list = D_800E4560;
         break;
@@ -87,25 +87,25 @@ void func_8008C528(u16 arg0) {
     red = gActors[actor_index].colorR;
     green = gActors[actor_index].colorG;
     blue = gActors[actor_index].colorB;
-    if (gActors[actor_index].graphicFlags & 0x10) {
+    if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_UNK4) {
         red = -red;
         green = -green;
         blue = -blue;
     }
     Palette_AdjustRgb5551Array(D_800E4594, (u16* )0x80222220, 0x1A, blue / 8, green / 8, red / 8);
-    gPortraits[arg0].graphicIndex = graphic_index_list[D_801373E0.unk_42 * 2];
-    D_801373E0.unk_40_s16++;
-    if (D_801373E0.unk_40_s16 >= graphic_index_list[D_801373E0.unk_42 * 2 + 1]) {
-        if (graphic_index_list[D_801373E0.unk_42 * 2 + 2] == 0) {
-            D_801373E0.unk_40 = 0;
+    gPortraits[arg0].graphicIndex = graphic_index_list[gPlayerData.unk_42 * 2];
+    gPlayerData.unk_40_s16++;
+    if (gPlayerData.unk_40_s16 >= graphic_index_list[gPlayerData.unk_42 * 2 + 1]) {
+        if (graphic_index_list[gPlayerData.unk_42 * 2 + 2] == 0) {
+            gPlayerData.unk_40 = 0;
         }
         else {
-            D_801373E0.unk_42++;
-            D_801373E0.unk_40_s16 = 0;
+            gPlayerData.unk_42++;
+            gPlayerData.unk_40_s16 = 0;
         }
-        if (graphic_index_list[D_801373E0.unk_42 * 2] < 0) {
-            D_801373E0.unk_42 += graphic_index_list[D_801373E0.unk_42 * 2];
-            D_801373E0.unk_40_s16 = Rand() * 2;
+        if (graphic_index_list[gPlayerData.unk_42 * 2] < 0) {
+            gPlayerData.unk_42 += graphic_index_list[gPlayerData.unk_42 * 2];
+            gPlayerData.unk_40_s16 = Rand() * 2;
         }
     }
 }
@@ -187,7 +187,7 @@ void func_8008CA90(void) {
     }
 
     actor_index = 0x10;
-    gActors[actor_index].actorType = 0x72;
+    gActors[actor_index].actorType = ACTORTYPE_114;
     Actor_Initialize(actor_index);
     temp_val = 0x8030;
     gActors[actor_index].var_110 = (f32) temp_val;
@@ -260,7 +260,7 @@ void func_8008CC90(u16 actor_index) {
     }
     func_8008D510(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_DRAW;
-    D_800BE714 = 1;
+    D_800BE714 = TRUE;
     gActors->graphicIndex = gActors[actor_index].graphicIndex;
 }
 
@@ -365,7 +365,7 @@ void func_8008D1E8(u16 actor_index) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
     }
 
-    Sound_PlaySfx(0x63);
+    Sound_PlaySfx(SFX_GRABDEFLECT);
 }
 
 void func_8008D2B0(u16 actor_index) {
@@ -578,19 +578,19 @@ void func_8008DF20(u16 actor_index) {
     D_800E5A80[gActors[actor_index].state / 16](actor_index);
     if (gActors[actor_index].state >= 0x61) {
         if (gActors[actor_index].unk_184 >= FIXED_UNIT(8.0)) {
-            gActors[actor_index].velocityX.raw = FIXED_UNIT(7.9999847412109375);
+            gActors[actor_index].velocityX.raw = (FIXED_UNIT(8.0) - 1);
         }
         else if (gActors[actor_index].unk_184 <= FIXED_UNIT(-8.0)) {
-            gActors[actor_index].velocityX.raw = FIXED_UNIT(-7.9999847412109375);
+            gActors[actor_index].velocityX.raw = (FIXED_UNIT(-8.0) + 1);
         }
         else {
             gActors[actor_index].velocityX.raw = gActors[actor_index].unk_184;
         }
         if (gActors[actor_index].unk_188 >= FIXED_UNIT(8.0)) {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(7.9999847412109375);
+            gActors[actor_index].velocityY.raw = (FIXED_UNIT(8.0) - 1);
         }
         else if (gActors[actor_index].unk_188 <= FIXED_UNIT(-8.0)) {
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.9999847412109375);
+            gActors[actor_index].velocityY.raw = (FIXED_UNIT(-8.0) + 1);
         }
         else {
             gActors[actor_index].velocityY.raw = gActors[actor_index].unk_188;
@@ -654,7 +654,7 @@ void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused) {
     if (actor_index == 0) {
         actor_index = 0x10;
     }
-    gActors[actor_index].actorType = 0x70;
+    gActors[actor_index].actorType = ACTORTYPE_MARINAOHNO;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = gPlayerActor.posX.whole;

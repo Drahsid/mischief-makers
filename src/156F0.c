@@ -4,7 +4,7 @@ extern ActorFunc D_800C7F20[];
 extern ActorFunc D_800C7F60[];
 extern ActorFunc D_800C7FA0[];
 
-void func_80014AF0(void) {
+void ActorsUpdate_Velocity(void) {
     u16 index;
 
     if (D_800BE6F8 != 0) {
@@ -32,7 +32,7 @@ void func_80014AF0(void) {
     gPlayerPosY.raw = gPlayerActor.posY.raw + gScreenPosCurrentY.raw;
 }
 
-void func_80014C44(void) {
+void ActorsUpdate_Position(void) {
     u16 index;
     u16 actor_1;
     s32 delta_x;
@@ -54,12 +54,12 @@ void func_80014C44(void) {
     }
     gPlayerPosX.raw = gPlayerActor.posX.raw + gScreenPosCurrentX.raw;
     gPlayerPosY.raw = gPlayerActor.posY.raw + gScreenPosCurrentY.raw;
-    if ((TO_FIXED(gPlayerActor.hitboxBX0) + gPlayerPosX.raw) < D_800BE568.raw) {
-        if (D_801373E0.unk_78 & 4) {
-            D_801373E0.unk_78 &= ~6;
+    if ((TO_FIXED(gPlayerActor.hitboxBX0) + gPlayerPosX.raw) < gScreenBoundX0.raw) {
+        if (gPlayerData.flags & PLAYERDATA_UNBOUND) {
+            gPlayerData.flags &= ~(PLAYERDATA_UNBOUND | PLAYERDATA_BOUND);
         }
-        if (D_801373E0.unk_78 & 2) {
-            gPlayerPosX.raw = D_800BE568.raw - TO_FIXED(gPlayerActor.hitboxBX0);
+        if (gPlayerData.flags & PLAYERDATA_BOUND) {
+            gPlayerPosX.raw = gScreenBoundX0.raw - TO_FIXED(gPlayerActor.hitboxBX0);
             gPlayerActor.posX.raw = gPlayerPosX.raw - gScreenPosCurrentX.raw;
             if (gPlayerActor.velocityX.raw < 0) {
                 gPlayerVelXMirror.raw = gPlayerActor.velocityX.raw = 0;
@@ -68,12 +68,12 @@ void func_80014C44(void) {
         }
     }
     else {
-        if (D_800BE56C.raw < (TO_FIXED(gPlayerActor.hitboxBX1) + gPlayerPosX.raw)) {
-            if (D_801373E0.unk_78 & 4) {
-                D_801373E0.unk_78 &= ~6;
+        if (gScreenBoundX1.raw < (TO_FIXED(gPlayerActor.hitboxBX1) + gPlayerPosX.raw)) {
+            if (gPlayerData.flags & PLAYERDATA_UNBOUND) {
+                gPlayerData.flags &= ~(PLAYERDATA_UNBOUND | PLAYERDATA_BOUND);
             }
-            if (D_801373E0.unk_78 & 2) {
-                gPlayerPosX.raw = D_800BE56C.raw - TO_FIXED(gPlayerActor.hitboxBX1);
+            if (gPlayerData.flags & PLAYERDATA_BOUND) {
+                gPlayerPosX.raw = gScreenBoundX1.raw - TO_FIXED(gPlayerActor.hitboxBX1);
                 gPlayerActor.posX.raw = gPlayerPosX.raw - gScreenPosCurrentX.raw;
                 if (gPlayerActor.velocityX.raw > 0) {
                     gPlayerVelXMirror.raw = gPlayerActor.velocityX.raw = 0;
@@ -82,7 +82,7 @@ void func_80014C44(void) {
             }
         }
         else {
-            D_801373E0.unk_78 |= 2;
+            gPlayerData.flags |= PLAYERDATA_BOUND;
         }
     }
     if (D_801370D2 <= 0) {
@@ -253,51 +253,51 @@ u8* func_80015B28(u8* arg0, u16 actor) {
     arg0[0x28] = arg0[0x29] = arg0[0x2A] = arg0[0x2B] = 0;
     arg0[0x18] = arg0[0x19] = arg0[0x1A] = arg0[0x1B] = arg0[0x1C] = arg0[0x1D] = arg0[0x1E] = arg0[0x1F] = arg0[0x20] = arg0[0x21] = arg0[0x22] = arg0[0x23] = 0xFF;
 
-    if ((arg0[0xC] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 3, gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
+    if ((arg0[0xC] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 3, gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
         arg0[0x28]++;
         arg0[0x18] = gPlatformHitActor;
     }
-    if ((arg0[0xD] = func_8001FA78(actor, gActors[actor].posX.whole + ((gActors[actor].hitboxBX0 + gActors[actor].hitboxBX1) / 2), gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
+    if ((arg0[0xD] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + ((gActors[actor].hitboxBX0 + gActors[actor].hitboxBX1) / 2), gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
         arg0[0x28]++;
         arg0[0x19] = gPlatformHitActor;
     }
-    if ((arg0[0xE] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 3, gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
+    if ((arg0[0xE] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 3, gActors[actor].posY.whole + gActors[actor].hitboxBY0)) == 0xC0) {
         arg0[0x28]++;
         arg0[0x1A] = gPlatformHitActor;
     }
-    if ((arg0[0xF] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + gActors[actor].hitboxBY0 - 1)) == 0xC0) {
+    if ((arg0[0xF] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + gActors[actor].hitboxBY0 - 1)) == 0xC0) {
         arg0[0x2A]++;
         arg0[0x1B] = gPlatformHitActor;
     }
-    if ((arg0[0x10] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + ((gActors[actor].hitboxBY0 + gActors[actor].hitboxBY1) / 2))) == 0xC0) {
+    if ((arg0[0x10] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + ((gActors[actor].hitboxBY0 + gActors[actor].hitboxBY1) / 2))) == 0xC0) {
         arg0[0x2A]++;
         arg0[0x1C] = gPlatformHitActor;
     }
-    if ((arg0[0x11] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + gActors[actor].hitboxBY1 + 4)) == 0xC0) {
+    if ((arg0[0x11] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 1, gActors[actor].posY.whole + gActors[actor].hitboxBY1 + 4)) == 0xC0) {
         arg0[0x2A]++;
         arg0[0x1D] = gPlatformHitActor;
     }
-    if ((arg0[0x12] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + gActors[actor].hitboxBY0 - 1)) == 0xC0) {
+    if ((arg0[0x12] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + gActors[actor].hitboxBY0 - 1)) == 0xC0) {
         arg0[0x2B]++;
         arg0[0x1E] = gPlatformHitActor;
     }
-    if ((arg0[0x13] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + ((gActors[actor].hitboxBY0 + gActors[actor].hitboxBY1) / 2))) == 0xC0) {
+    if ((arg0[0x13] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + ((gActors[actor].hitboxBY0 + gActors[actor].hitboxBY1) / 2))) == 0xC0) {
         arg0[0x2B]++;
         arg0[0x1F] = gPlatformHitActor;
     }
-    if ((arg0[0x14] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + gActors[actor].hitboxBY1 + 4)) == 0xC0) {
+    if ((arg0[0x14] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 1, gActors[actor].posY.whole + gActors[actor].hitboxBY1 + 4)) == 0xC0) {
         arg0[0x2B]++;
         arg0[0x20] = gPlatformHitActor;
     }
-    if ((arg0[0x15] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 3, gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 1)) & mask) {
+    if ((arg0[0x15] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX0 + 3, gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 1)) & mask) {
         arg0[0x29]++;
         arg0[0x21] = gPlatformHitActor;
     }
-    if ((arg0[0x16] = func_8001FA78(actor, gActors[actor].posX.whole + ((gActors[actor].hitboxBX0 + gActors[actor].hitboxBX1) / 2), gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 4)) & mask) {
+    if ((arg0[0x16] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + ((gActors[actor].hitboxBX0 + gActors[actor].hitboxBX1) / 2), gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 4)) & mask) {
         arg0[0x29]++;
         arg0[0x22] = gPlatformHitActor;
     }
-    if ((arg0[0x17] = func_8001FA78(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 3, gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 1)) & mask) {
+    if ((arg0[0x17] = Actor_CheckPlatforms(actor, gActors[actor].posX.whole + gActors[actor].hitboxBX1 - 3, gActors[actor].posY.whole + gActors[actor].hitboxBY1 - 1)) & mask) {
         arg0[0x29]++;
         arg0[0x23] = gPlatformHitActor;
     }
@@ -306,7 +306,7 @@ u8* func_80015B28(u8* arg0, u16 actor) {
 
 #ifdef NON_MATCHING
 // https://decomp.me/scratch/s22AN
-void func_800160EC(u16 arg0) {
+void ActorUpdate_Physics(u16 arg0) {
     u8 sp3C[0x2C];
     u16 sp3A;
     u16 var_a1;
@@ -543,19 +543,19 @@ void func_800160EC(u16 arg0) {
     }
 }
 #else
-void func_800160EC(u16);
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800160EC.s")
+void ActorUpdate_Physics(u16);
+#pragma GLOBAL_ASM("asm/nonmatchings/156F0/ActorUpdate_Physics.s")
 #endif
 
-void func_80016CB4(void) {
+void ActorsUpdate_Physics(void) {
     u16 index;
 
-    if ((D_80137458 & 0x10) == 0) {
+    if (!(gPlayerData.flags & PLAYERDATA_NOCOLLIDE)) {
         for (index = 0; index < 0xC0; index++) {
             if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) == 0) {
                 continue;
             }
-            func_800160EC(index);
+            ActorUpdate_Physics(index);
             gActors[index].flags_098 &= ~ACTOR_FLAG3_UNK19;
         }
         gPlayerPosX.raw = gPlayerActor.posX.raw + gScreenPosCurrentX.raw;
@@ -563,7 +563,7 @@ void func_80016CB4(void) {
     }
 }
 
-void func_80016D94(void) {
+void ActorsUpdate_Screenspace(void) {
     u16 index;
     s32 delta_x;
     s32 delta_y;

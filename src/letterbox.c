@@ -27,11 +27,6 @@ void Gfx_DrawLetterboxStandard(void) {
 
 #ifdef NONMATCHING //division, break checks, and unused u8*'s get optimized out in "-O2".
 
-extern u8 D_801376A8[]; //array of env colors
-extern u8 D_801376AC[]; //array of env colors
-extern u8 D_801376B0[]; //array of env colors
-
-
 void Gfx_DrawLetterbox(void) {
     register u8 max;
     u16 sp34;

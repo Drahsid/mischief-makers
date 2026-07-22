@@ -34,7 +34,7 @@ enum DebugFlags {
     DEBUGFLAG_STUB1 = (1U << 0), //runs a stubbed function on game tick.
     
     // control gDebugThrottle value with L and R buttons
-    // input between slowed ticks stored in D_801781DC
+    // input between slowed ticks stored in gThrottleButtons
     DEBUGFLAG_THROTTLE = (1U << 1U), 
     
     // game runs with perspective view when set, orthographic when unset
@@ -69,11 +69,11 @@ extern u32 D_80104094;
 // and bust on the edge respectively.
 extern PortraitStruct gPortraits[66]; 
 extern u32 D_801069DC; // unused
-extern UnkStruct_801069E0 D_801069E0[64]; // clanblocks/"static gems" on screen / loaded?
+extern StaticObject gStaticObjects[64]; // clanblocks/"static gems" on screen / loaded?
 extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u8 D_8010CDF0[0x10000];
-extern u16 gPlatform0Actors[144]; // indecies of ACTOR_FLAG_PLATFORM0-flagged Actors
-extern u16 gPlatform1Actors[144]; // indecies of ACTOR_FLAG_PLATFORM1-flagged Actors
+extern u16 gPlatform0Actors[144]; // indices of ACTOR_FLAG_PLATFORM0-flagged Actors
+extern u16 gPlatform1Actors[144]; // indices of ACTOR_FLAG_PLATFORM1-flagged Actors
 extern u32 D_8011D040[2]; // blank space between
 extern s16 gPlatforms0X1[144]; // posX + hitboxBX1 of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern u32 D_8011D068[2]; // blank space between
@@ -108,10 +108,10 @@ extern FixedCoord gScreenPosCurrentX; // current x-position of camera in stage
 extern FixedCoord gScreenPosCurrentY; // current y-position of camera in stage
 extern FixedCoord gScreenPosNextX; // next x-position of camera
 extern FixedCoord gScreenPosNextY; // next y-position of camera
-extern FixedCoord D_800BE568; 
-extern FixedCoord D_800BE56C; 
-extern FixedCoord D_800BE570;
-extern FixedCoord D_800BE574;
+extern FixedCoord gScreenBoundX0; 
+extern FixedCoord gScreenBoundX1; 
+extern FixedCoord gScreenBoundY0;
+extern FixedCoord gScreenBoundY1;
 extern s16 D_800BE578;
 extern s16 D_800BE57C;
 extern s16 D_800BE580;
@@ -134,16 +134,16 @@ extern f32 gLookatUpX; // LookAt Up X
 extern f32 gLookatUpY; // LookAt Up Y
 extern f32 gLookatUpZ; // LookAt Up Z
 extern u16 gCurrentScene; // current "scene" of game. uses SCENE_* #define
-extern u16 D_800BE5D4; 
+extern u16 gStartButtonOnly; // Start button is AND'd from input
 extern FixedCoord gPlayerPosX; // player's global x-position
 extern FixedCoord gPlayerPosY; // player's global y-position
 extern s16 D_800BE5E0; 
 extern s16 D_800BE5E4; 
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
-extern s16 D_800BE5F0; 
+extern s16 D_800BE5F0; // unknown. always 0.
 extern UnkStruct_D_800BE5F4 D_800BE5F4; // sometimes treated as a u32, s32, or u8[4]
-extern u16 D_800BE5F8; // zero'd in func_800121D0, otherwise unused.
+extern u16 D_800BE5F8; // zero'd in Marina_Reset, otherwise unused.
 extern u16 D_800BE5FC; 
 extern u32 D_800BE600; // unused
 extern u32 D_800BE604; // unused
@@ -207,7 +207,7 @@ extern u8 gDrawEnvLayer; // draws "EnvLayer" if set.
 extern u8 gDrawBackground; // draws "Background" if set.
 extern u8 gPortraitTint; // determines brightness of portrait transition.
 extern u32 D_800BE6F4; // unused.
-extern u16 D_800BE6F8; // "timer" in func_80014AF0. decremented, but never set or triggering anything.
+extern u16 D_800BE6F8; // "timer" in ActorsUpdate_Velocity. decremented, but never set or triggering anything.
 extern u16 D_800BE6FC;
 extern u16 gCurrentFramebufferIndex; // index of current frame buffer.
 extern u16 D_800BE704; // seems to detrmine camera x-speed.

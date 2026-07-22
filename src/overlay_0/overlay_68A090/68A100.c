@@ -43,7 +43,7 @@ void func_801922A0_68A2A0(s32 arg0) {
     Actor_Initialize(0xC1);
     gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQARE;
+    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[0xC1].posX.whole = 0;
     gActors[0xC1].posY.whole = 0;
     gActors[0xC1].posZ.whole = 0x80;
@@ -112,8 +112,10 @@ void func_801932FC_68B2FC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193364_68B364.s")
 
+// "State 1" for Big Wave Beam
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193584_68B584.s")
 
+// Cerberus Alpha's Big Wave Cannon
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193DB4_68BDB4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80193EA8_68BEA8.s")
@@ -209,7 +211,7 @@ void func_80195D28_68DD28(void) {
     gActors[0x36].hitboxBY0 = 0x18;
     gActors[0x36].hitboxBY1 = -0x18;
     gActors[0x36].hitboxBX0 = -0x18;
-    gActors[0x39].actorType = 0xF11;
+    gActors[0x39].actorType = ACTORTYPE_OVL0_CALPHA_17;
     gActors[0x39].flags |= 0x8400;
     gActors[0x39].hitboxBX0 = -0xE;\
     gActors[0x39].hitboxBX1 = 0x20;

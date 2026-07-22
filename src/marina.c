@@ -47,13 +47,14 @@ u8 func_80048600(u16 actor_index) {
     return ret;
 }
 
+// get direction from which Marina is pulling?
 s32 func_800486F4(void) {
-    s8 v0 = D_801373F0;
-    if ((D_801373F0 == 2) || (D_801373F0 == 6)) {
+    s8 v0 = gPlayerData.unk_10;
+    if ((gPlayerData.unk_10 == 2) || (gPlayerData.unk_10 == 6)) {
         v0 = 4;
     }
 
-    if ((D_801373F0 == 0xE) || (D_801373F0 == 0xA)) {
+    if ((gPlayerData.unk_10 == 0xE) || (gPlayerData.unk_10 == 0xA)) {
         v0 = 0xC;
     }
 
@@ -145,7 +146,7 @@ void func_80049AC0(u16 actor_index);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004A960.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/marina/Marina_State0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004AA64.s")
 
@@ -195,13 +196,13 @@ void func_8004E1DC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EC60.s")
 
-void func_8004ED10(u16 actor_index) {
+void ActorUpdate_Marina(u16 actor_index) {
     s32 i;
     s32 pad;
     u16 pad2;
     u16 temp_a1;
 
-    if ((D_801373E0.unk_78 & 8)) {
+    if ((gPlayerData.flags & 8)) {
         return;
     }
 
@@ -212,7 +213,7 @@ void func_8004ED10(u16 actor_index) {
     gActors[actor_index].graphicFlags &= ~(ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTZ);
     gActors[actor_index].colorR = gActors[actor_index].colorG = gActors[actor_index].colorB = 0;
     D_800BE5E0 = D_800BE5E4 = 0;
-    D_801373E0.unk_70 = 0;
+    gPlayerData.unk_70 = 0;
     gActors[actor_index].posZ.raw = 0;
     gMarinaActionVelocities[19] = Math_ApproachS32(gMarinaActionVelocities[19], FIXED_UNIT(0.375), FIXED_UNIT(0.015625));
     if (gActors[actor_index].unk_12F_u8 < 4) {
@@ -229,42 +230,42 @@ void func_8004ED10(u16 actor_index) {
             }
             D_801370CC = D_801370CE = 0;
             gActors[actor_index].unk_12F_u8 = 0;
-            D_801373E0.unk_12 = 0x64;
-            D_801373E0.unk_13 = 0;
+            gPlayerData.unk_12 = 0x64;
+            gPlayerData.unk_13 = 0;
             func_800485AC(actor_index);
         }
     }
     D_801373D8 = func_80048600(actor_index);
-    if (D_801373E0.debugPosX != 0) {
-        func_80083A04(D_801373E0.debugPosX, -0x20, 0x40);
+    if (gPlayerData.debugPosX != 0) {
+        func_80083A04(gPlayerData.debugPosX, -0x20, 0x40);
         if (!(gActiveFrames & 0x7F)) {
-            D_801373E0.debugPosX = 0;
+            gPlayerData.debugPosX = 0;
         }
     }
-    if (D_801373E0.debugPosY != 0) {
-        func_80083A04(D_801373E0.debugPosY, -0x20, 0x30);
+    if (gPlayerData.debugPosY != 0) {
+        func_80083A04(gPlayerData.debugPosY, -0x20, 0x30);
         if (!(gActiveFrames & 0x7F)) {
-            D_801373E0.debugPosY = 0;
+            gPlayerData.debugPosY = 0;
         }
     }
-    if (D_801373E0.debugVal2 != 0) {
-        func_80083A04(D_801373E0.debugVal2, -0x20, 0x20);
+    if (gPlayerData.debugVal2 != 0) {
+        func_80083A04(gPlayerData.debugVal2, -0x20, 0x20);
         if (!(gActiveFrames & 0x7F)) {
-            D_801373E0.debugVal2 = 0;
+            gPlayerData.debugVal2 = 0;
         }
     }
-    if (D_801373E0.debugVal3 != 0) {
-        func_80083A04(D_801373E0.debugVal3, -0x20, 0x10);
+    if (gPlayerData.debugVal3 != 0) {
+        func_80083A04(gPlayerData.debugVal3, -0x20, 0x10);
         if (!(gActiveFrames & 0x7F)) {
-            D_801373E0.debugVal3 = 0;
+            gPlayerData.debugVal3 = 0;
         }
     }
     gActors[actor_index].flags &= ~ACTOR_FLAG_FREEZE_POS;
-    if (D_801373E0.unk_78 & 0x10000) {
+    if (gPlayerData.flags & 0x10000) {
         gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
         gActors[actor_index].unk_12C_u16[0] &= ~7;
         gActors[actor_index].unk_0DC &= ~1;
-        gActors[actor_index].posX.raw += D_801373E0.unk_60;
+        gActors[actor_index].posX.raw += gPlayerData.unk_60;
     }
     func_80048740(actor_index);
     if (func_80058F9C(actor_index) == 0) {
@@ -277,7 +278,7 @@ void func_8004ED10(u16 actor_index) {
     func_80048BB0(actor_index);
     if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
         temp_a1 = gActors[actor_index].parentIndex;
-        D_801373E0.unk_70 = temp_a1;
+        gPlayerData.unk_70 = temp_a1;
         if (func_8005D338(actor_index) < 0x66) {
             gActors[temp_a1].unk_108 += func_80049A04(actor_index);
         }
@@ -291,12 +292,12 @@ void func_8004ED10(u16 actor_index) {
         gActors[actor_index].unk_180_u8[3] = 6;
     }
     if (gActors[actor_index].flags_098 & 2) {
-        D_801373E0.marina_Unk_0F8 = gActors[actor_index].unk_0F8.raw;
-        D_801373E0.marina_Unk_0FC = gActors[actor_index].unk_0FC.raw;
+        gPlayerData.marina_Unk_0F8 = gActors[actor_index].unk_0F8.raw;
+        gPlayerData.marina_Unk_0FC = gActors[actor_index].unk_0FC.raw;
     }
-    D_801373E0.marina_Flags_098 = gActors[actor_index].flags_098;
+    gPlayerData.marina_Flags_098 = gActors[actor_index].flags_098;
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
-    D_801373E0.unk_7C++;
+    gPlayerData.unk_7C++;
     gActors[actor_index].scaleX = gActors[actor_index].unk_124 * gPlayerActor.unk_120;
     gActors[actor_index].scaleY = gActors[actor_index].unk_128 * gPlayerActor.unk_120;
     gPlayerPosX.raw = gActors[actor_index].posX.raw + gScreenPosCurrentX.raw;
@@ -305,14 +306,14 @@ void func_8004ED10(u16 actor_index) {
     gPlayerVelYMirror.raw = gActors[actor_index].velocityY.raw;
     if (gCurrentScene == SCENE_FREEFALL) {
         if (gActors[actor_index].velocityY.raw <= -294912.0) {
-            if (D_801373E0.fallWhistle == 0) {
+            if (gPlayerData.fallWhistle == 0) {
                 if (Sound_PlaySfx(0x3EU) >= 0) {
-                    D_801373E0.fallWhistle = 1;
+                    gPlayerData.fallWhistle = 1;
                 }
             }
-        } else if (D_801373E0.fallWhistle != 0) {
+        } else if (gPlayerData.fallWhistle != 0) {
             Sound_StopSfx(0x3EU);
-            D_801373E0.fallWhistle = 0;
+            gPlayerData.fallWhistle = 0;
         }
     }
 }

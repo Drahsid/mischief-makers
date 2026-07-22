@@ -3,9 +3,9 @@
 
 #include <PR/ultratypes.h>
 
-void func_80014AF0(void);
-void func_80014C44(void);
-void func_80016CB4(void);
-void func_80016D94(void);
+void ActorsUpdate_Velocity(void);
+void ActorsUpdate_Position(void);
+void ActorsUpdate_Physics(void);
+void ActorsUpdate_Screenspace(void);
 
 #endif

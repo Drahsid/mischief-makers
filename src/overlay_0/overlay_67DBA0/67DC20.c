@@ -523,7 +523,7 @@ void func_80194A38_680558(void) {
     gActors[0x60].colorB = 0x7F;
     gActors[0x60].graphicFlags = (ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 |
         ACTOR_GFLAG_ROTX | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE);
-    gActors[0x60].graphicIndex = 0x262;
+    gActors[0x60].graphicIndex = GINDEX_SPIRAL;
     gActors[0x60].colorA = 0;
     gActors[0x60].posX.whole = 0;
     gActors[0x60].posY.whole = 0;
@@ -794,7 +794,7 @@ void func_80199DA8_6858C8(u16 actor_index) {
             gActors[actor_index].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE);
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
             ACTOR_GFX_INIT(actor_index, gGraphicListGem);
-            gActors[actor_index].palette_18C = D_800D8A98;
+            gActors[actor_index].palette_18C = gPaletteGemGreen;
             gActors[actor_index].scaleX = 4.0f;
             Actor_SetColorRgb(actor_index, 0x7F);
             Sound_PlaySfxAtActor2(SFX_GEM_APPEAR, actor_index);

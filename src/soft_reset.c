@@ -4,7 +4,7 @@
 #include "soft_reset.h"
 
 // .bss
-u64 D_801781F0; // must be declared in TU
+u64 gYellowGemTemp; // must be declared in TU
 u16 D_801781F8;
 u8 D_801781FA[2];
 u8 D_801781FC[4];
@@ -51,7 +51,7 @@ void func_80022D10(void) {
     gButton_B = B_BUTTON;
     gButton_A = A_BUTTON;
     gCurrentFramebufferIndex = 0;
-    D_800CA238 = 0;
+    gAttractModeIndex = 0;
     gGameState = GAMESTATE_SOFTRESET;
     gGameStateSubState = 0;
 }
@@ -62,8 +62,8 @@ void func_80022D88(void) {
 
     gGamePaused = 0;
     gAudioFadeMode = 0;
-    D_800CBF40 = 0;
-    D_800CA230 = 0;
+    gIsPauseExit = 0;
+    gIsPlayerInactive = FALSE;
     gCannotPause = 0;
     gActorStall = 0;
     D_800BE66C = 0;
@@ -130,7 +130,7 @@ void GameState_SoftReset(void) {
         gButton_RTrig = R_TRIG;
         D_801781F8 = 0;
         D_800CBF44 = 0;
-        gPlayerActor.health = 0x3E8;
+        gPlayerActor.health = 1000;
         gRedGems = 0x1E;
         gGameState = GAMESTATE_INTRO;
         gGameStateSubState = 0;
@@ -146,7 +146,7 @@ void func_800230B8(void) {
         gActors[index].graphicList = NULL;
     }
         for(index = 0; index < 0x40; index++){
-        D_801069E0[index].graphicIndex = 0;
+        gStaticObjects[index].graphicIndex = 0;
     }
 }
 
@@ -245,17 +245,17 @@ void GameState_Loading(void) {
     gPlayerActor.state =
     D_800BE6FC =
     gAudioFadeMode =
-    D_800CA230 =
+    gIsPlayerInactive =
     D_800BE5F4.unk_00_u32 =
     D_800D5820 =
-    D_801373E0.unk_78 = 0;
+    gPlayerData.flags = 0;
 
     func_80042D84(0);
     func_80010A10();
     func_800230B8();
     func_80023168();
-    func_80012288();
-    D_800BE5D4 = 1;
+    Marina_Init();
+    gStartButtonOnly = TRUE;
     func_8008C4E0(0x41);
     func_80043918();
     if (gGameState == GAMESTATE_LOADING) {
@@ -269,7 +269,7 @@ void GameState_Loading(void) {
     func_80047CCC();
     func_80047C98();
     func_8001DC60();
-    D_801781F0 = D_80171B10;
+    gYellowGemTemp = gYellowGemBitfield;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameStateSubState = 0;
 }
