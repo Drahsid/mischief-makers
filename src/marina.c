@@ -124,7 +124,7 @@ void func_80048D30(u16 actor_index, s32 arg1) {
 
 s32 func_80049A04(u16 actor_index) {
     s32 temp_v1;
-    s8 *temp_a0;
+    s8* temp_a0;
 
     temp_a0 = D_800D4184[func_8005D338(actor_index)];
     if (temp_a0 == NULL) {
@@ -194,7 +194,7 @@ void func_8004E1DC(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EC60.s")
 
 void ActorUpdate_Marina(u16 actor_index) {
-    s32 i;
+    s32 index;
     s32 pad;
     u16 pad2;
     u16 temp_a1;
@@ -223,8 +223,8 @@ void ActorUpdate_Marina(u16 actor_index) {
             func_800485AC(actor_index);
         }
         else {
-            for (i = 0; i < ARRAYLENGTH(gButtonPressHistory); i++) {
-                gButtonPressHistory[i] = gButtonHoldHistory[i] = 0;
+            for (index = 0; index < ARRAYLENGTH(gButtonPressHistory); index++) {
+                gButtonPressHistory[index] = gButtonHoldHistory[index] = 0;
             }
             D_801370CC = D_801370CE = 0;
             gActors[actor_index].unk_12F_u8 = 0;
