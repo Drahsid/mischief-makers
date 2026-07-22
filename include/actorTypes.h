@@ -104,9 +104,9 @@ typedef enum {
     ACTORTYPE_ENERGYSHOT,
     ACTORTYPE_37,
     ACTORTYPE_38, // displays the "READY!"/"FIGHT!" text
-    ACTORTYPE_PORTRAIT,
+    ACTORTYPE_39,
     ACTORTYPE_40,
-    ACTORTYPE_41,
+    ACTORTYPE_41, // displays an animated number 
     ACTORTYPE_42,
     ACTORTYPE_43,
     ACTORTYPE_44,

@@ -2405,12 +2405,12 @@ void func_801B57C8_7A62D8(u16 actor_index) {
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
                             if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
-                                func_8007D0F4(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
+                                SpawnTextBubble2(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
                             }
                             else {
-                                func_8007D0F4(0x47, D_801B6174_7A6C84[gActors[actor_index].unk_16C], 0x40, 0x28, 0x19);
+                                SpawnTextBubble2(0x47, D_801B6174_7A6C84[gActors[actor_index].unk_16C], 0x40, 0x28, 0x19);
                             }
                         }
                     }

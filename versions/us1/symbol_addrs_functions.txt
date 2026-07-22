@@ -381,9 +381,25 @@ Clanblob_Update = 0x80076d40; // type:func
 ActorUpdate_Clanblob = 0x80077c18; // type:func
 
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
-ToBCD = 0x8007CCE0; // type:func
-SpawnTextBubble = 0x8007D0DC; // type:func
 
+ToBCD = 0x8007CCE0; // type:func
+
+SpawnActor41 = 0x8007CD68; // type:func
+SpawnActor40 = 0x8007CE24; // type:func
+SpawnActor39 = 0x8007CEB8; // type:func
+
+SpawnActor38 = 0x8007CFE0; // type:func
+SpawnTextBubble = 0x8007D0DC; // type:func
+SpawnTextBubble2 = 0x8007D0F4; // type:func
+SpawnTextBubble3 = 0x8007D0F4; // type:func
+
+Actor38_CapAlpha = 0x8007D3EC; // type:func
+Actor38_ScaleAlpha = 0x8007D438; // type:func
+Actor38_End = 0x8007D520; // type:func
+Actor38_ParseString = 0x8007d554; // type:func
+ActorUpdate_Type41 = 0x8007DB84; // type:func
+ActorUpdate_Type40 = 0x8007DF44; // type:func
+ActorUpdate_Type39 = 0x8007F078; // type:func
 ActorUpdate_Type38 = 0x8007f37c; // type:func
 
 GameState_SoftReset = 0x80022F48; // type:func

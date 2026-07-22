@@ -357,7 +357,7 @@ extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn31_u16(u16 actor_index);
 extern void func_80067E50(u16 actor_index, void* arg1);
 extern s32 func_800734C4(u16 actor_index, s32 arg1);
-extern void func_8007CD68(u16 actor_index, u16 graphic_flags, s16 position_x, s16 position_y, u16 var_150, u16 var_154, s32 var_15C);
+extern void SpawnActor41(u16 actor_index, u16 graphic_flags, s16 position_x, s16 position_y, u16 var_150, u16 var_154, s32 var_15C);
 
 void func_801B0900_7A6E80(u16 actor_index);
 s32 func_801B09B4_7A6F34(u16 arg0, s16 arg1);
@@ -652,10 +652,10 @@ void func_801B11E0_7A7760(u16 actor_index) {
     u16 index;
 
     index = 0x6F;
-    func_8007CE24(index, 0, 0x60, 0x54, 0);
+    SpawnActor40(index, 0, 0x60, 0x54, 0);
     gActors[index].actorType = ACTORTYPE_OVL2_FESTIVAL_8;
     gActors[index].unk_16C = (s32)D_801B501C_7AB59C;
-    gActors[index].pfn_190 = func_8007DF44;
+    gActors[index].pfn_190 = ActorUpdate_Type40;
     gActors[index].unk_18C = (s32)D_800D9AE4;
     gActors[index].posZ.whole = 2;
 
@@ -679,10 +679,10 @@ s32 func_801B12F0_7A7870(u16 unused_actor_index) {
     u16 actor_index;
 
     actor_index = 0x6D;
-    func_8007CE24(actor_index, 0, 0x60, 0x44, 0);
+    SpawnActor40(actor_index, 0, 0x60, 0x44, 0);
     gActors[actor_index].actorType = ACTORTYPE_OVL2_FESTIVAL_8;
     gActors[actor_index].unk_16C = (s32)D_801B501C_7AB59C;
-    gActors[actor_index].pfn_190 = func_8007DF44;
+    gActors[actor_index].pfn_190 = ActorUpdate_Type40;
     gActors[actor_index].unk_18C = (intptr_t)D_800D9AE4;
     gActors[actor_index].posZ.whole = 2;
 
@@ -735,7 +735,7 @@ void func_801B14A4_7A7A24(u16 unused_actor_index) {
     gActors[actor_index].unk_164 |= 0x8001;
 
     actor_index = 0x6A;
-    func_8007CD68(actor_index, 0, 104, -72, 0, 3, 0x3E7);
+    SpawnActor41(actor_index, 0, 104, -72, 0, 3, 999);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
     gActors[actor_index].posZ.whole = 512;
     gActors[actor_index].unk_188 = 0;

@@ -13018,7 +13018,7 @@
           }
         },
         {
-          "name": "func_8007CD68",
+          "name": "SpawnActor41",
           "size": "188",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13026,7 +13026,7 @@
           }
         },
         {
-          "name": "func_8007CE24",
+          "name": "SpawnActor40",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13034,7 +13034,7 @@
           }
         },
         {
-          "name": "func_8007CEB8",
+          "name": "SpawnActor39",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13042,7 +13042,7 @@
           }
         },
         {
-          "name": "func_8007CFE0",
+          "name": "SpawnActor38",
           "size": "252",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13058,7 +13058,7 @@
           }
         },
         {
-          "name": "func_8007D0F4",
+          "name": "SpawnTextBubble2",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13066,7 +13066,7 @@
           }
         },
         {
-          "name": "func_8007D1E8",
+          "name": "SpawnTextBubble3",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13090,7 +13090,7 @@
           }
         },
         {
-          "name": "func_8007D3EC",
+          "name": "Actor38_CapAlpha",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13098,7 +13098,7 @@
           }
         },
         {
-          "name": "func_8007D438",
+          "name": "Actor38_ScaleAlpha",
           "size": "232",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13106,7 +13106,7 @@
           }
         },
         {
-          "name": "func_8007D520",
+          "name": "Actor38_End",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13114,7 +13114,7 @@
           }
         },
         {
-          "name": "func_8007D554",
+          "name": "Actor38_ParseString",
           "size": "812",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13130,7 +13130,7 @@
           }
         },
         {
-          "name": "func_8007DB84",
+          "name": "ActorUpdate_Type41",
           "size": "960",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13138,7 +13138,7 @@
           }
         },
         {
-          "name": "func_8007DF44",
+          "name": "ActorUpdate_Type40",
           "size": "2768",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13178,7 +13178,7 @@
           }
         },
         {
-          "name": "func_8007F078",
+          "name": "ActorUpdate_Type39",
           "size": "772",
           "fuzzy_match_percent": 100.0,
           "metadata": {
