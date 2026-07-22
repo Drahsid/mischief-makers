@@ -97,10 +97,10 @@ typedef struct {
 
     // the following 4 values are displayed through the debug OSD when non-zero.
 
-    /* 0x50 */ u32 debugPosX; // set during Marina's "flymode" state with her global X position.
-    /* 0x54 */ u32 debugPosY; // set during Marina's "flymode" state with her global Y position.
-    /* 0x58 */ u32 debugVal2; // another dislayed Debug value? unused.
-    /* 0x5C */ u32 debugVal3; // another dislayed Debug value? unused.
+    /* 0x50 */ s32 debugPosX; // set during Marina's "flymode" state with her global X position.
+    /* 0x54 */ s32 debugPosY; // set during Marina's "flymode" state with her global Y position.
+    /* 0x58 */ s32 debugVal2; // another dislayed Debug value? unused.
+    /* 0x5C */ s32 debugVal3; // another dislayed Debug value? unused.
     /* 0x60 */ u32 unk_60; 
     /* 0x64 */ u32 marina_Flags_098; // stores Marina's "flags_098" value
     /* 0x68 */ s32 marina_Unk_0F8; // stores Marina's "unk_0F8" value when ACTOR_FLAG3_UNK1 is set.

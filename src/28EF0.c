@@ -1,4 +1,5 @@
 #define Actor_Initialize_RET void
+#define func_8001FCA0_ARGS u16 actor_index, s32 x, s32 y
 #include "common.h"
 #include "actor.h"
 #include "input.h"
@@ -401,13 +402,6 @@ void func_80028CE8(u16 actor_index) {
     }
 }
 
-// TODO: func_8001FCA0 only matches if arg1/arg2 are `s16`, but only matches below as `s32`
-// see https://decomp.me/scratch/ZJ7E3
-#if 0
-u8 func_8001FCA0(u16 arg0, s16 arg1, s16 arg2);
-#else
-u8 func_8001FCA0(u16 arg0, s32 arg1, s32 arg2);
-#endif
 s32 func_80028DAC(u16 arg0, s16 arg1) {
     if ((func_8001FCA0(arg0, arg1, gPlayerActor.posY.whole + 2) & 0x80) &&
         (func_8001FCA0(arg0, arg1, gPlayerActor.posY.whole + 2) & 0x80)) {

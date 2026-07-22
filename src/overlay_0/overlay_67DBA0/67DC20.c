@@ -875,7 +875,7 @@ void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
                     return;
                 }
 
-                gActors[actor_index].velocityY.raw = func_80048C94(0xF);
+                gActors[actor_index].velocityY.raw = func_80048C94(15);
                 gActors[actor_index].state = 0x16;
             }
 

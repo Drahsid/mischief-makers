@@ -2,13 +2,12 @@
 #include "actor.h"
 #include "common_structs.h"
 #include "music.h"
-
+#include "4FEB0.h"
 
 
 extern u16 D_800D28E4;
 extern u32 D_800D28FC;
 
-extern u16 D_800D431C[];
 extern u16 D_800D44A8[];
 extern u16 D_800D44F4[];
 extern u16 D_800D4518[];

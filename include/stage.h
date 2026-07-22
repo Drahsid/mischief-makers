@@ -2,6 +2,7 @@
 #define STAGE_H
 
 #include <PR/ultratypes.h>
+#include "actor.h"
 
 #define DEBUG_STAGE_SELECT_ROW_COUNT 22
 #define DEBUG_STAGE_SELECT_COLUMN_ROWS 11

@@ -6,6 +6,7 @@
 #include "input.h"
 #include "globalData.h"
 #include "music.h"
+#include "soft_reset.h"
 #include "stage.h"
 
 typedef void (*FuncVoidVoid)(void);

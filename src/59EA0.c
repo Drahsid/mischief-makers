@@ -1,4 +1,5 @@
 #include "common.h"
+#include "59EA0.h"
 
 typedef struct {
     u8 unk0;
@@ -523,7 +524,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
     return 1;
 }
 
-void func_8005ACA8(s32 arg0) {
+void func_8005ACA8(u16 actor_index) {
 }
 
 void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {

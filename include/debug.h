@@ -13,6 +13,4 @@ OSTime OSD_GetTime(void);
 void OSD_PrintDeltaTime(s32 x, s32 y);
 void OSD_PrintfTime(u16 val);
 
-
-
 #endif
