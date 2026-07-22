@@ -249,8 +249,6 @@ extern void func_80021660(void);
 extern void func_8002167C(void);
 extern void func_800218FC(void);
 u16 SpawnGemActor(u16 actor_index, u16 flags, u16 unused_arg2);
-extern void func_800821B0(void);
-extern void func_800822B8(void);
 extern void func_80082CFC(void);
 extern void func_80082E04(void);
 extern void func_80082F10(void);
