@@ -1,8 +1,7 @@
 #include "common.h"
 #include "1F1E0.h"
-
-extern u16 gAttractModeIndex;
-extern s16 D_800CBF44;
+#include "game_state.h"
+#include "soft_reset.h"
 
 // .bss
 u64 gYellowGemTemp; // must be declared in TU
@@ -34,6 +33,10 @@ s32 gFestivalTimeToBeat;
 u8 D_8017829C[4];
 u8 gFestivalEventsPlayed[FESTGAME_TOTAL];
 s16 gGuestActorHP;
+
+// .data
+u16 gIsPauseExit = 0;
+s16 D_800CBF44 = 0;
 
 // forward declarations
 void func_80023168(void);

@@ -1,4 +1,5 @@
-#include "common.h"
+#include "overlays.h"
+#include "actor.h"
 
 #define OVERLAY0_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY0_DISPATCH_TABLE_VRAM)
 #define OVERLAY1_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY1_DISPATCH_TABLE_VRAM)

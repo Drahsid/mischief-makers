@@ -121,7 +121,7 @@ segments:
       - [0x0805E0, c]
       - [0x080D90, c]
       - [0x082920, c]
-      - [0x082DB0, asm] # has to do with loading marina's graphics
+      - [0x082DB0, c] # has to do with loading marina's graphics
       - [0x082F80, c]
       - [0x0844E0, c, osd_debug_text]
       - [0x084BB0, c]
@@ -317,13 +317,17 @@ segments:
       - [0x0C8DE0, .data, stage]
       - [0x0CA300, .data, actor_init]
       - [0x0CADC0, .data, 1F1E0]
-      - [0x0CCA20, data, lifebar]
+      - [0x0CCA20, .data, lifebar]
+      - [0x0CCB40, .data, soft_reset]
+      - [0x0CCB50, .data, 241E0]
       - [0x0CDC80, .data, 26A00]
       - [0x0D22D0, .data, text]
       - [0x0D2410, data] # 62250
       - [0x0D24D0, data]
       - [0x0D34B0, .data, 42E90] 
-      - [0x0D34D0, data]
+      - [0x0D34D0, data] 
+      - [0x0D4AB0, .data, 4FEB0]
+      - [0x0D6420, data] # 5EA30+
       - [0x0D8ED0, data] # palette DB script?
       - [0x0E1B00, .data, 7D8E0] 
       - [0x0E1CD0, data] 
@@ -451,6 +455,7 @@ segments:
       - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
       - { name: dialog, type: .bss, vram: 0x801782D0 }
       - { name: bss_80178450, type: bss, vram: 0x80178450 }
+      - { name: 82DB0, type: .bss, vram: 0x80178460 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: osd_debug_text, type: .bss, vram: 0x80180FD0 }
       - { name: 84BB0, type: .bss, vram: 0x80182020}

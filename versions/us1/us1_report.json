@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 41.150795,
+    "fuzzy_match_percent": 41.28117,
     "total_code": "1994304",
-    "matched_code": "820672",
-    "matched_code_percent": 41.150795,
+    "matched_code": "823272",
+    "matched_code_percent": 41.28117,
     "matched_data_percent": 100.0,
     "total_functions": 4707,
-    "matched_functions": 2598,
-    "matched_functions_percent": 55.19439,
+    "matched_functions": 2604,
+    "matched_functions_percent": 55.32186,
     "complete_data_percent": 100.0,
     "total_units": 395
   },
@@ -2999,6 +2999,13 @@
           "metadata": {
             "virtual_address": "2147624048"
           }
+        },
+        {
+          "name": ".data",
+          "size": "288",
+          "metadata": {
+            "virtual_address": "2148318752"
+          }
         }
       ],
       "functions": [
@@ -3039,6 +3046,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147626256"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "16",
+          "metadata": {
+            "virtual_address": "2148319040"
           }
         },
         {
@@ -3135,6 +3149,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147628512"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "4400",
+          "metadata": {
+            "virtual_address": "2148319056"
           }
         },
         {
@@ -8124,21 +8145,21 @@
     {
       "name": "marina",
       "measures": {
-        "fuzzy_match_percent": 1.480736,
+        "fuzzy_match_percent": 9.157561,
         "total_code": "27824",
-        "matched_code": "412",
-        "matched_code_percent": 1.480736,
+        "matched_code": "2548",
+        "matched_code_percent": 9.157561,
         "matched_data_percent": 100.0,
         "total_functions": 45,
-        "matched_functions": 5,
-        "matched_functions_percent": 11.111112,
+        "matched_functions": 9,
+        "matched_functions_percent": 20.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "27824",
-          "fuzzy_match_percent": 1.480736,
+          "fuzzy_match_percent": 9.157561,
           "metadata": {
             "virtual_address": "2147780096"
           }
@@ -8185,6 +8206,7 @@
         {
           "name": "func_80048C94",
           "size": "80",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147781780"
           }
@@ -8200,6 +8222,7 @@
         {
           "name": "func_80048D30",
           "size": "428",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147781936"
           }
@@ -8263,6 +8286,7 @@
         {
           "name": "func_80049A04",
           "size": "188",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147785220"
           }
@@ -8461,6 +8485,7 @@
         {
           "name": "ActorUpdate_Marina",
           "size": "1440",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147806480"
           }
@@ -8494,6 +8519,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147807920"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "6512",
+          "metadata": {
+            "virtual_address": "2148351664"
           }
         },
         {
@@ -13612,31 +13644,46 @@
     {
       "name": "82DB0",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "464",
+        "matched_code": "464",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 2,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
           "size": "464",
-          "metadata": {
-            "virtual_address": "2148016560"
-          }
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_800821B0",
-          "size": "264",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148016560"
           }
         },
         {
-          "name": "func_800822B8",
+          "name": ".bss",
+          "size": "16",
+          "metadata": {
+            "virtual_address": "2149024864"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "MarinaGraphics_Copy",
+          "size": "264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148016560"
+          }
+        },
+        {
+          "name": "MarinaGraphics_Decompress",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148016824"
           }
@@ -25509,32 +25556,6 @@
       }
     },
     {
-      "name": "lifebar.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".data",
-          "size": "4704",
-          "metadata": {
-            "virtual_address": "2148318752"
-          }
-        }
-      ],
-      "metadata": {
-        "module_name": ".main",
-        "module_id": 2,
-        "progress_categories": [
-          "segment_main"
-        ]
-      }
-    },
-    {
       "name": "D2410.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -25598,7 +25619,7 @@
       "sections": [
         {
           "name": ".data",
-          "size": "69584",
+          "size": "5600",
           "metadata": {
             "virtual_address": "2148346064"
           }
@@ -25609,6 +25630,32 @@
         "module_id": 2,
         "progress_categories": [
           "D34D0.data"
+        ]
+      }
+    },
+    {
+      "name": "D6420.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "57472",
+          "metadata": {
+            "virtual_address": "2148358176"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "D6420.data"
         ]
       }
     },
@@ -26118,7 +26165,7 @@
       "sections": [
         {
           "name": ".bss",
-          "size": "32",
+          "size": "16",
           "metadata": {
             "virtual_address": "2149024848"
           }
@@ -49416,16 +49463,16 @@
       "id": "segment_main",
       "name": "Main segment",
       "measures": {
-        "fuzzy_match_percent": 78.51926,
+        "fuzzy_match_percent": 78.85596,
         "total_code": "772208",
-        "matched_code": "606332",
-        "matched_code_percent": 78.519264,
+        "matched_code": "608932",
+        "matched_code_percent": 78.85596,
         "matched_data_percent": 100.0,
         "total_functions": 2162,
-        "matched_functions": 1857,
-        "matched_functions_percent": 85.89269,
+        "matched_functions": 1863,
+        "matched_functions_percent": 86.17021,
         "complete_data_percent": 100.0,
-        "total_units": 257
+        "total_units": 256
       }
     },
     {
@@ -49540,6 +49587,19 @@
     {
       "id": "D34D0.data",
       "name": "D34D0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      }
+    },
+    {
+      "id": "D6420.data",
+      "name": "D6420.data",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,

@@ -10,6 +10,7 @@
 #include "lifebar.h"
 #include "marina.h"
 #include "music.h"
+#include "soft_reset.h"
 #include "stage.h"
 #include "11820.h"
 #include "12DD0.h"

@@ -1,8 +1,10 @@
-#include "common.h"
-#include "actor.h"
+#define func_8001FCA0_ARGS u16 actor_index, s32 x, s32 y
+#include "1F1E0.h"
 #include "28EF0.h"
 #include "7D8E0.h"
 #include "80D90.h"
+#include "actor.h"
+#include "common.h"
 
 extern u16 D_800D1C04[];
 extern u16 D_800D98F4[];
@@ -17,9 +19,6 @@ extern u16 D_800DBA7C[];
 extern u16 D_800DBC7C[];
 
 extern s16 D_800E2364[];
-
-// TODO: func_8001FCA0 only matches if arg1/arg2 are `s16`, but only matches below as `s32`
-u8 func_8001FCA0(u16 arg0, s32 arg1, s32 arg2);
 
 // forward declarations
 void func_800907E4(u16 actor_index);

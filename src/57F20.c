@@ -1,8 +1,9 @@
 #include "common.h"
 #include "boot.h"
+#include "4FEB0.h"
 
 extern Actor2Func D_800D3F70[];
-extern s32 D_800D57E0;
+extern s32 gMarinaActionVelocities[19];
 
 extern void func_8004F514(u16 actor0, u16 actor1);
 extern s32 func_800574B4(u16 actor_index);
@@ -207,7 +208,7 @@ void func_80057848(u16 actor_index) {
             return;
         }
         else {
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), func_80048C94(0x13) / 2);
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), func_80048C94(19) / 2);
             if (gActors[actor_index].velocityY.raw > FIXED_UNIT(1.0)) {
                 return;
             }
@@ -236,7 +237,7 @@ void func_80057848(u16 actor_index) {
                 else {
                     gActors[actor_index].unk_170 = 0x8F;
                 }
-                D_800D57E0 = 0;
+                gMarinaActionVelocities[19] = 0;
                 gActors[actor_index].state = 0x19;
             }
         }
@@ -338,7 +339,7 @@ void func_80057C98(u16 actor_index) {
             gActors[actor_index].unk_170_s8[0] = 0;
         }
         if ((gActors[actor_index].stateLower == 0x31) || (gActors[actor_index].stateLower == 0x34)) {
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), func_80048C94(0x13));
+            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), func_80048C94(19));
         }
         if (gActors[actor_index].stateLower == 0x32) {
             gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), gActors[actor_index].var_158);
@@ -567,10 +568,10 @@ void func_80058924(u16 actor_index) {
     gActors[actor_index].flags &= ~(ACTOR_FLAG_ATTACHED | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK6);
 }
 
-void func_8005896C(s32 arg0, s32 arg1) {
+void func_8005896C(u16 actor_0, u16 actor_1) {
 }
 
-void func_80058978(u16 actor_0, u16 unused_arg1) {
+void func_80058978(u16 actor_0, u16 actor_1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
         func_8004F514(actor_0, gActors[actor_0].parentIndex);
     }

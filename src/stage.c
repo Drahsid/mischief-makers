@@ -7,9 +7,9 @@
 #include "dma.h"
 #include "linker.h"
 #include "rle.h"
+#include "soft_reset.h"
 #include "stage.h"
 #include "1F1E0.h"
-
 
 // .data
 extern u16 gTimeRecords[]; // list of stage times

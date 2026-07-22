@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "function_symbols.h"
 #include "music.h"
+#include "letterbox.h"
 #include "28EF0.h"
 #include "84BB0.h"
 

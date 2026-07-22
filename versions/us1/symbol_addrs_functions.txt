@@ -231,6 +231,8 @@ ActorUpdate_Spikeball_Static = 0x80039134; // type:func
 ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
 ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
 
+MarinaGraphics_Copy = 0x800821B0; // type:func
+MarinaGraphics_Decompress = 0x800822B8; // type:func
 
 OSD_Reset = 0x800838e0; // type:func rom:0x844e0
 OSD_SetData = 0x8008391c; // type:func rom:0x8451c

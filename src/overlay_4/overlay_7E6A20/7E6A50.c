@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "241E0.h"
 
 // "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
 
