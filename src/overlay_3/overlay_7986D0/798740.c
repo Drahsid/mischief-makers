@@ -2168,10 +2168,10 @@ void func_801B2D40_79AB80(u16 actor_index, u32 flags) {
     if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
         state = gPlayerData.unk_10;
         if ((state >= 2) && (state < 7)) {
-            gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) + FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) + FIXED_UNIT(125.0/64);
         }
         else if ((state >= 10) && (state < 15)) {
-            gActors[actor_index].velocityX.raw = -(-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) - FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = -(-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) - FIXED_UNIT(125.0/64);
         }
 
         if ((state >= 6) && (state < 11)) {
