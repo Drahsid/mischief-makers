@@ -85,7 +85,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL1_10:
+        case ACTOR_OVL1_MERCO:
             D_8019B000[index](actor_index);
             break;
 
@@ -129,7 +129,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_80192000[index](actor_index);
             break;
 
-        case ACTOR_OVL0_21:
+        case ACTOR_OVL0_PGAMMA:
             D_80192000[index](actor_index);
             break;
 
@@ -165,7 +165,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_801A6800[index](actor_index);
             break;
 
-        case ACTOR_OVL2_30:
+        case ACTOR_OVL2_LITH:
             D_801A6800[index](actor_index);
             break;
 

@@ -24,7 +24,7 @@ typedef enum {
     ACTOR_OVL3_7,
     ACTOR_MAIN_8, // a secondary dispatch table in the main segment.
     ACTOR_OVL1_GEN, // actors in Overlay 0 code for many stages.
-    ACTOR_OVL1_10,
+    ACTOR_OVL1_MERCO,
     ACTOR_OVL1_11,
     ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
     ACTOR_OVL1_13,
@@ -35,7 +35,7 @@ typedef enum {
     ACTOR_OVL1_18,
     ACTOR_OVL1_19,
     ACTOR_OVL0_SBETA, // actors in Overlay 0 code of "Sasquatch Beta" 
-    ACTOR_OVL0_21,
+    ACTOR_OVL0_PGAMMA, // actors in Overlay 0 code of "Phoenix Gamma" 
     ACTOR_OVL0_FINALBAT, // actors in Overlay 0 Code for "Final Battle"
     ACTOR_OVL2_23,
     ACTOR_OVL2_WORLD1, // "Overlay 2" actors for many of World 1's stages
@@ -44,7 +44,7 @@ typedef enum {
     ACTOR_OVL3_WORLD3,
     ACTOR_OVL2_WORLD3,
     ACTOR_OVL2_WORLD4,
-    ACTOR_OVL2_30,
+    ACTOR_OVL2_LITH,
     ACTOR_OVL2_WORLD5A,
     ACTOR_OVL2_STAGE_5_5, // actors in Overlay 2 code of "Trapped!?"
     ACTOR_OVL0_33,
@@ -104,7 +104,7 @@ typedef enum {
     ACTORTYPE_ENERGYSHOT,
     ACTORTYPE_37,
     ACTORTYPE_38, // displays the "READY!"/"FIGHT!" text
-    ACTORTYPE_39,
+    ACTORTYPE_39, // uses a selected "portrait" for a black background
     ACTORTYPE_40,
     ACTORTYPE_41, // displays an animated number 
     ACTORTYPE_42,
@@ -322,6 +322,18 @@ typedef enum {
     ACTORTYPE_OVL1_GEN_33,
     ACTORTYPE_OVL1_GEN_34,
 
+    // actors in dispatch table D_8019B000_719700
+
+    ACTORTYPE_OVL1_MERCO_MAIN = (ACTOR_OVL1_MERCO << 8),
+    ACTORTYPE_OVL1_MERCO_LANCE,
+    ACTORTYPE_OVL1_MERCO_SHEILD,
+    ACTORTYPE_OVL1_MERCO_3,
+    ACTORTYPE_OVL1_MERCO_4,
+    ACTORTYPE_OVL1_MERCO_5,
+    ACTORTYPE_OVL1_MERCO_6,
+    ACTORTYPE_OVL1_MERCO_7, // marina exiting?
+
+
     // actors in dispatch table D_8019B000_742CA0
     
     ACTORTYPE_OVL1_BEE_BOSS = (ACTOR_OVL1_BEE << 8), // bee boss
@@ -393,6 +405,36 @@ typedef enum {
     ACTORTYPE_OVL0_SBETA_13,
     ACTORTYPE_OVL0_SBETA_14,
     ACTORTYPE_OVL0_SBETA_15,
+
+    // actors in dispatch table D_80192000_6AAA80
+
+    ACTORTYPE_OVL0_PGAMMA_0 = (ACTOR_OVL0_PGAMMA << 8),
+    ACTORTYPE_OVL0_PGAMMA_1,
+    ACTORTYPE_OVL0_PGAMMA_2,
+    ACTORTYPE_OVL0_PGAMMA_3,
+    ACTORTYPE_OVL0_PGAMMA_4,
+    ACTORTYPE_OVL0_PGAMMA_5,
+    ACTORTYPE_OVL0_PGAMMA_6,
+    ACTORTYPE_OVL0_PGAMMA_7,
+    ACTORTYPE_OVL0_PGAMMA_8,
+    ACTORTYPE_OVL0_PGAMMA_9,
+    ACTORTYPE_OVL0_PGAMMA_10,
+    ACTORTYPE_OVL0_PGAMMA_11,
+    ACTORTYPE_OVL0_PGAMMA_12,
+    ACTORTYPE_OVL0_PGAMMA_13,
+    ACTORTYPE_OVL0_PGAMMA_14,
+    ACTORTYPE_OVL0_PGAMMA_15,
+    ACTORTYPE_OVL0_PGAMMA_16,
+    ACTORTYPE_OVL0_PGAMMA_17,
+    ACTORTYPE_OVL0_PGAMMA_18,
+
+    //entries 19, 20, and 21 invalid(?)
+
+    ACTORTYPE_OVL0_PGAMMA_22 = (ACTOR_OVL0_PGAMMA << 8) + 22,
+    ACTORTYPE_OVL0_PGAMMA_23,
+    ACTORTYPE_OVL0_PGAMMA_24,
+    ACTORTYPE_OVL0_PGAMMA_25,
+
 
     // actors in dispatch table D_801A6800_766080
 
@@ -551,6 +593,17 @@ typedef enum {
     ACTORTYPE_OVL2_W4_CLANCERKID,
     ACTORTYPE_OVL2_W4_34,
     ACTORTYPE_OVL2_W4_35,
+
+    // actors in dispatch table D_801A6800_77F240
+
+    ACTORTYPE_OVL2_LITH_0 = (ACTOR_OVL2_LITH << 8), // stubbed
+    ACTORTYPE_OVL2_LITH_MAIN,
+    ACTORTYPE_OVL2_LITH_2,
+    ACTORTYPE_OVL2_LITH_CLOUD, // word cloud, shake to weaponize
+    ACTORTYPE_OVL2_LITH_4,
+    ACTORTYPE_OVL2_LITH_5,
+    ACTORTYPE_OVL2_LITH_THEO, // ending animation for "Inner Struggle"
+    ACTORTYPE_OVL2_LITH_MARINA, // ending animation for "Inner Struggle"
 
     // actors in dispatch table D_801A6800_7854B0
 

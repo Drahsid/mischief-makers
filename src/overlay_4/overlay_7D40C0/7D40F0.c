@@ -107,7 +107,7 @@ u16 D_801BC178_7D6968[] = {
 };
 
 // spawn actors in first part of "Clance War"
-u16 D_801BC5FC_7D6DEC[] = {
+u16 sActorSpawn_3_2A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0CD0, 0x01E8, 0x0003, 0x0100, ACTORTYPE_WARPGATE,
     0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL2_W3_0,
@@ -137,7 +137,7 @@ u16 D_801BC5FC_7D6DEC[] = {
 };
 
 // spawn walker boss and rocket launcher at end of "Clance War"
-u16 D_801BC750_7D6F40[] = {
+u16 sActorSpawn_3_2B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type    
     0x0000, 0x0050, 0x0E00, 0x016E, 0x3200, 0x006F, ACTORTYPE_OVL1_GEN_WALKER,
     0x0000, 0x005F, 0x0620, 0x014E, 0x0051, 0x0000, ACTORTYPE_OVL1_GEN_GUN,
@@ -145,7 +145,7 @@ u16 D_801BC750_7D6F40[] = {
 };
 
 // the 4 Claners helping boss at end of "Clance War"
-u16 D_801BC770_7D6F60[] = {
+u16 sActorSpawn_3_2C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0020, 0x0070, 0x0DE0, 0x0150, 0x4000, 0x2000, ACTORTYPE_OVL2_W3_CLANCER_10,
     0x0020, 0x0071, 0x0FC0, 0x0150, 0x4100, 0x2040, ACTORTYPE_OVL2_W3_CLANCER_10,
@@ -155,14 +155,14 @@ u16 D_801BC770_7D6F60[] = {
 };
 
 // exit of "Clance War"
-u16 D_801BC7AC_7D6F9C[] = {
+u16 sActorSpawn_3_2Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0EB8, 0x0170, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
 };
 
 // contents of second Clanpot in "Go Marzen 64"
-u16 D_801BC7BC_7D6FAC[] = {
+u16 sClanpot_3_5B[] = {
 //  flags                                  0x110   0xD8  type                         Icon    
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,    ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0x1111, 0,    ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 
@@ -171,7 +171,7 @@ u16 D_801BC7BC_7D6FAC[] = {
 };
 
 // contents of first Clanpot in "Go Marzen 64"
-u16 D_801BC7DC_7D6FCC[] = {
+u16 sClanpot_3_5A[] = {
 //  flags            0x110 0xD8 type                      Icon
     CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB0, GINDEX_MINEROUND,
     CLANPOT_NEWITEM, 0,    1,   ACTORTYPE_OVL0_GEN_BOMB1, GINDEX_BOMB_ELLIPSE,
@@ -187,7 +187,7 @@ u16 D_801BC7DC_7D6FCC[] = {
 };
 
 // properties of mixed Rocketeer in "Go Marzen 64"
-u16 D_801BC844_7D7034[] = {
+u16 sClanpotItemRocketeer[] = {
     (CLANPOT_SPAWNNOW | CLANPOT_ACTORICON | CLANPOT_FLAG14 | 0x70),
     0x2170, 1, ACTORTYPE_OVL2_W3_ROCKETEER, ACTORTYPE_CLANCERICON, 0,
 };
@@ -392,7 +392,7 @@ u16 D_801BCBDC_7D73CC[] = {
 };
 
 // actors spawned in first part of "Go Marzen 64"
-u16 D_801BD3C0_7D7BB0[] = {
+u16 sActorSpawn_3_5A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL2_W3_0,
     0x0000, 0x0030, 0x0750, 0x014E, 0x0510, 0x0431, ACTORTYPE_OVL1_GEN_TREADS,
@@ -433,7 +433,7 @@ u16 D_801BD3C0_7D7BB0[] = {
 };
 
 // actors spawned in second part of "Go Marzen 64"
-u16 D_801BD5AC_7D7D9C[] = {
+u16 sActorSpawn_3_5B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x1518, 0x02C8, 0x0000, 0x0000, ACTORTYPE_CLANBALL_28,
     0x0000, 0x0031, 0x1598, 0x02C8, 0x0000, 0x0000, ACTORTYPE_CLANBALL_28,
@@ -453,14 +453,14 @@ u16 D_801BD5AC_7D7D9C[] = {
 };
 
 // spawn boss of "Go Marzen 64"
-u16 D_801BD674_7D7E64[] = {
+u16 sActorSpawn_3_5C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0050, 0x1C40, 0x0180, 0x0000, 0x0000, ACTORTYPE_OVL2_W3_21,
     SPAWNRECORD_END,
 };
 
 // exit of "Go Marzen 64"
-u16 D_801BD684_7D7E74[] = {
+u16 sActorSpawn_3_5Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x1C00, 0x0170, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END,
@@ -552,7 +552,7 @@ u16 D_801BD6B4_7D7EA4[] = {
 };
 
 // spawn actors for "The Day Before"
-u16 D_801BDB48_7D8338[] = {
+u16 sActorSpawn_3_9A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0DB0, 0x01A0, 0x0003, 0x0100, ACTORTYPE_WARPGATE,
     0x0000, 0x0090, 0x0000, 0x01E0, 0x0100, 0x0006, ACTORTYPE_OVL2_W3_13,
@@ -586,7 +586,7 @@ u16 D_801BDCA8_7D8498[] = {
     0, 0
 };
 
-u16 D_801BDCAC_7D849C[] = {
+u16 sActorSpawn_3_9B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x000F, 0x2803,
     0x0000, 0x0031, 0x1400, 0x0176, 0x0000, 0x0008, 0x2803,
@@ -601,27 +601,27 @@ u16 D_801BDCAC_7D849C[] = {
     0x0000, 0x005C, 0x1440, 0x016E, 0x0006, 0x7600, 0x2803,
     0x0000, 0x005D, 0x1460, 0x016E, 0x0004, 0x4C00, 0x2803,
     0x0000, 0x005E, 0x1470, 0x016E, 0x0006, 0x0000, 0x2803,
-    0x0000, 0x0090, 0x12D0, 0x015E, 0x0000, 0x0002, 0x1A10,
-    0x0000, 0x0091, 0x12D0, 0x015E, 0x0200, 0x0002, 0x1A10,
-    0x0000, 0x0092, 0x12D0, 0x015E, 0x0400, 0x0002, 0x1A10,
-    0x0000, 0x007E, 0x1300, 0x015E, 0x0000, 0x0000, 0x1A0F,
-    0x0000, 0x007F, 0x1300, 0x015E, 0x0200, 0x0001, 0x1A0F,
-    0x0000, 0x0080, 0x1300, 0x015E, 0x0400, 0x0000, 0x1A0F,
-    0x0000, 0x0081, 0x1300, 0x015E, 0x0000, 0x0002, 0x1A0F,
-    0x0000, 0x0082, 0x1300, 0x015E, 0x0200, 0x0003, 0x1A0F,
-    0x0000, 0x0083, 0x1300, 0x015E, 0x0400, 0x0002, 0x1A0F,
-    0x0000, 0x0084, 0x1300, 0x015E, 0x0000, 0x0004, 0x1A0F,
-    0x0000, 0x0085, 0x1300, 0x015E, 0x0200, 0x0005, 0x1A0F,
-    0x0000, 0x0086, 0x1300, 0x015E, 0x0400, 0x0004, 0x1A0F,
-    0x0000, 0x0087, 0x1300, 0x015E, 0x0000, 0x000B, 0x1A0F,
-    0x0000, 0x0088, 0x1300, 0x015E, 0x0200, 0x000B, 0x1A0F,
-    0x0000, 0x0089, 0x1300, 0x015E, 0x0400, 0x000B, 0x1A0F,
-    0x0000, 0x008A, 0x1300, 0x015E, 0x0000, 0x0007, 0x1A0F,
-    0x0000, 0x008B, 0x1300, 0x015E, 0x0100, 0x0008, 0x1A0F,
-    0x0000, 0x008C, 0x1300, 0x015E, 0x0200, 0x0009, 0x1A0F,
-    0x0000, 0x008D, 0x1300, 0x015E, 0x0300, 0x000A, 0x1A0F,
-    0x0000, 0x008E, 0x1300, 0x015E, 0x0400, 0x0007, 0x1A0F,
-    0x0000, 0x008F, 0x1300, 0x015E, 0x0500, 0x0008, 0x1A0F,
+    0x0000, 0x0090, 0x12D0, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x0091, 0x12D0, 0x015E, 0x0200, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x0092, 0x12D0, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x007E, 0x1300, 0x015E, 0x0000, 0x0000, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x007F, 0x1300, 0x015E, 0x0200, 0x0001, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0080, 0x1300, 0x015E, 0x0400, 0x0000, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0081, 0x1300, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0082, 0x1300, 0x015E, 0x0200, 0x0003, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0083, 0x1300, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0084, 0x1300, 0x015E, 0x0000, 0x0004, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0085, 0x1300, 0x015E, 0x0200, 0x0005, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0086, 0x1300, 0x015E, 0x0400, 0x0004, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0087, 0x1300, 0x015E, 0x0000, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0088, 0x1300, 0x015E, 0x0200, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0089, 0x1300, 0x015E, 0x0400, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008A, 0x1300, 0x015E, 0x0000, 0x0007, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008B, 0x1300, 0x015E, 0x0100, 0x0008, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008C, 0x1300, 0x015E, 0x0200, 0x0009, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008D, 0x1300, 0x015E, 0x0300, 0x000A, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008E, 0x1300, 0x015E, 0x0400, 0x0007, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008F, 0x1300, 0x015E, 0x0500, 0x0008, ACTORTYPE_OVL2_FESTIVAL_15,
     SPAWNRECORD_END
 };
 
@@ -629,7 +629,7 @@ u16 D_801BDE8C_7D867C[] = {
     0x0200, 0x0196, 0x0170, 0x0290, 0x0206, 0x0126, 0xFFD0, 0xFFD8
 };
 
-u16 D_801BDE9C_7D868C[] = {
+u16 sActorSpawn_3_11A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x02C0, 0x0164, 0x0000, 0x0000, 0x2801,
     0x0000, 0x0050, 0x0200, 0x016E, 0x0000, 0x2100, 0x2803,
@@ -643,32 +643,32 @@ u16 D_801BDE9C_7D868C[] = {
     0x0000, 0x005C, 0x0240, 0x016E, 0x0006, 0x7600, 0x2803,
     0x0000, 0x005D, 0x0260, 0x016E, 0x0004, 0x4C00, 0x2803,
     0x0000, 0x005E, 0x0270, 0x016E, 0x0006, 0x0000, 0x2803,
-    0x0000, 0x0090, 0x00D0, 0x015E, 0x0000, 0x0002, 0x1A10,
-    0x0000, 0x0091, 0x00D0, 0x015E, 0x0200, 0x0002, 0x1A10,
-    0x0000, 0x0092, 0x00D0, 0x015E, 0x0400, 0x0002, 0x1A10,
-    0x0000, 0x007E, 0x0100, 0x015E, 0x0000, 0x0000, 0x1A0F,
-    0x0000, 0x007F, 0x0100, 0x015E, 0x0200, 0x0001, 0x1A0F,
-    0x0000, 0x0080, 0x0100, 0x015E, 0x0400, 0x0000, 0x1A0F,
-    0x0000, 0x0081, 0x0100, 0x015E, 0x0000, 0x0002, 0x1A0F,
-    0x0000, 0x0082, 0x0100, 0x015E, 0x0200, 0x0003, 0x1A0F,
-    0x0000, 0x0083, 0x0100, 0x015E, 0x0400, 0x0002, 0x1A0F,
-    0x0000, 0x0084, 0x0100, 0x015E, 0x0000, 0x0004, 0x1A0F,
-    0x0000, 0x0085, 0x0100, 0x015E, 0x0200, 0x0005, 0x1A0F,
-    0x0000, 0x0086, 0x0100, 0x015E, 0x0400, 0x0004, 0x1A0F,
-    0x0000, 0x0087, 0x0100, 0x015E, 0x0000, 0x000B, 0x1A0F,
-    0x0000, 0x0088, 0x0100, 0x015E, 0x0200, 0x000B, 0x1A0F,
-    0x0000, 0x0089, 0x0100, 0x015E, 0x0400, 0x000B, 0x1A0F,
-    0x0000, 0x008A, 0x0100, 0x015E, 0x0000, 0x0007, 0x1A0F,
-    0x0000, 0x008B, 0x0100, 0x015E, 0x0100, 0x0008, 0x1A0F,
-    0x0000, 0x008C, 0x0100, 0x015E, 0x0200, 0x0009, 0x1A0F,
-    0x0000, 0x008D, 0x0100, 0x015E, 0x0300, 0x000A, 0x1A0F,
-    0x0000, 0x008E, 0x0100, 0x015E, 0x0400, 0x0007, 0x1A0F,
-    0x0000, 0x007C, 0x0100, 0x015E, 0x0500, 0x0008, 0x1A0F,
+    0x0000, 0x0090, 0x00D0, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x0091, 0x00D0, 0x015E, 0x0200, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x0092, 0x00D0, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FESTIVAL_16,
+    0x0000, 0x007E, 0x0100, 0x015E, 0x0000, 0x0000, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x007F, 0x0100, 0x015E, 0x0200, 0x0001, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0080, 0x0100, 0x015E, 0x0400, 0x0000, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0081, 0x0100, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0082, 0x0100, 0x015E, 0x0200, 0x0003, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0083, 0x0100, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0084, 0x0100, 0x015E, 0x0000, 0x0004, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0085, 0x0100, 0x015E, 0x0200, 0x0005, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0086, 0x0100, 0x015E, 0x0400, 0x0004, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0087, 0x0100, 0x015E, 0x0000, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0088, 0x0100, 0x015E, 0x0200, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x0089, 0x0100, 0x015E, 0x0400, 0x000B, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008A, 0x0100, 0x015E, 0x0000, 0x0007, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008B, 0x0100, 0x015E, 0x0100, 0x0008, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008C, 0x0100, 0x015E, 0x0200, 0x0009, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008D, 0x0100, 0x015E, 0x0300, 0x000A, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x008E, 0x0100, 0x015E, 0x0400, 0x0007, ACTORTYPE_OVL2_FESTIVAL_15,
+    0x0000, 0x007C, 0x0100, 0x015E, 0x0500, 0x0008, ACTORTYPE_OVL2_FESTIVAL_15,
     SPAWNRECORD_END
 };
 
 // spawn Dodgeball actors
-u16 D_801BE06C_7D885C[] = {
+u16 sActorSpawn_3_11B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0040, 0x01B8, 0x0220, 0x0000, 0x0000, 0x2802,
     0x0000, 0x0042, 0x0248, 0x0220, 0x0000, 0x0001, 0x2802,
@@ -677,7 +677,7 @@ u16 D_801BE06C_7D885C[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BE0A8_7D8898[] = {
+u16 sActorSpawn_3_11Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x007D, 0x0200, 0x01B0, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -873,7 +873,7 @@ u32 D_801BE318_7D8B08[] = {
 };
 
 // spawn actors for "Missle Surf"
-u16 D_801BEB2C_7D931C[] = {
+u16 sActorSpawn_3_3[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x01E0, 0x0100, 0x0007, ACTORTYPE_OVL2_W3_13,
     0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0002, ACTORTYPE_OVL2_W3_13,
@@ -914,13 +914,13 @@ u16 D_801BECE0_7D94D0[] = {
 };
 
 // spawn Dog Boss
-u16 D_801BECF0_7D94E0[] = {
+u16 sActorSpawn_3_6[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0032, 0x0160, 0x014E, 0x0000, 0x0000, ACTORTYPE_OVL1_DOG_BOSS,
     SPAWNRECORD_END
 };
 
-u16 D_801BED00_7D94F0[] = {
+u16 sActorSpawn_3_6Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0130, 0x0190, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -970,7 +970,7 @@ u16 D_801BED20_7D9510[] = {
 };
 
 // actor spawn table for first area of "Snowstorm Maze"
-u16 D_801BEF5C_7D974C[] = {
+u16 sActorSpawn_3_7A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x0000, 0x0010, 0x0011, ACTORTYPE_OVL3_W3_1,
     0x0000, 0x0030, 0x0360, 0x02C0, 0x7010, 0x0000, ACTORTYPE_OVL1_GEN_POGO,
@@ -986,7 +986,7 @@ u16 D_801BEF5C_7D974C[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BEFF8_7D97E8[] = {
+u16 sActorSpawn_3_7B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0440, 0x0400, 0x0003, 0x0006, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -1004,7 +1004,7 @@ u16 D_801BF008_7D97F8[] = {
 };
 
 // actor spawn table for second area of "Snowstorm Maze"
-u16 D_801BF088_7D9878[] = {
+u16 sActorSpawn_3_7C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x0000, 0x0010, 0x0011, ACTORTYPE_OVL3_W3_1,
     0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0003, ACTORTYPE_OVL2_W3_0,
@@ -1028,7 +1028,7 @@ u16 D_801BF108_7D98F8[] = {
 };
 
 // actor spawn table for third area of "Snowstorm Maze"
-u16 D_801BF168_7D9958[] = {
+u16 sActorSpawn_3_7D[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x0000, 0x0010, 0x0011, ACTORTYPE_OVL3_W3_1,
     0x0000, 0x0030, 0x08E0, 0x04A0, 0x6400, 0x1104, ACTORTYPE_CLANBALL_28,
@@ -1048,7 +1048,7 @@ u16 D_801BF168_7D9958[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BF23C_7D9A2C[] = {
+u16 sActorSpawn_3_7Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0C40, 0x06E0, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -1179,7 +1179,8 @@ u16 D_801BF28C_7D9A7C[] = {
     0x0590, 0x0000,
 };
 
-u16 D_801BF930_7DA120[] = {
+// actor spawn table for "Clanball Lift"
+u16 sActorSpawn_3_4[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x0002, 0x1C00,
     0x0000, 0x0032, 0x0098, 0x0188, 0x8333, 0x0000, ACTORTYPE_CLANBALL_28,
@@ -1275,34 +1276,40 @@ u16 D_801BFB4C_7DA33C[] = {
     0x0640, 0x0051, 0x0AB0, 0x0668, 0x0053, 0x0AB0, 0x0690, 0x0000,
 };
 
-u32 D_801BFE0C_7DA5FC[] = {
-    0x00000038, 0x00000000, 0x00000003, 0x1C000000,
-    0x003900F0, 0x024E0000, 0x00000018, 0x0000003A,
-    0x00D0024E, 0x01A03201, 0x00770000, 0x003B0140,
-    0x02907000, 0x6101001C, 0x00000042, 0x01800290,
-    0x72002109, 0x001C0000, 0x004501C0, 0x02907300,
-    0x210A001C, 0x00000048, 0x0220024E, 0x01A03202,
-    0x00770000, 0x00490260, 0x02901000, 0x0000001C,
-    0x0000004B, 0x02C002D0, 0x71000007, 0x007A0000,
-    0x004C0780, 0x04C07000, 0x6101001C, 0x00000053,
-    0x07500460, 0x00000000, 0x00430000, 0x00540770,
-    0x04600001, 0x00000043, 0x00000055, 0x07900460,
-    0x00020000, 0x00430000, 0x005607B0, 0x04600003,
-    0x00000043, 0x00800057, 0x09200480, 0x00000000,
-    0x00490080, 0x00580920, 0x04A80100, 0x00000049,
-    0x00800059, 0x092004D0, 0x02000000, 0x00490080,
-    0x005A0960, 0x04C00100, 0x00000049, 0x0080005B,
-    0x096004E8, 0x02000000, 0x00490080, 0x005C0960,
-    0x05100000, 0x00000049, 0x0080005D, 0x09A00500,
-    0x02000000, 0x00490080, 0x005E09A0, 0x05280000,
-    0x00000049, 0x0080005F, 0x09A00550, 0x01000000,
-    0x00490080, 0x006009E0, 0x05400000, 0x00000049,
-    0x00800061, 0x09E00568, 0x01000000, 0x00490080,
-    0x006209E0, 0x05900200, 0x00000049,
+// spawn actors towrds start (and, due to a bug(?), end) of "Clanpot Shake"
+u16 sActor_Spawn_3_1A[] = {
+//  flags   index   posX    posY    0x110   0xD8    type
+    0x0000, 0x0038, 0x0000, 0x0000, 0x0000, 0x0003, ACTORTYPE_OVL2_W3_0,
+    0x0000, 0x0039, 0x00F0, 0x024E, 0x0000, 0x0000, ACTORTYPE_CLANPOT,
+    0x0000, 0x003A, 0x00D0, 0x024E, 0x01A0, 0x3201, ACTORTYPE_CLANCER_119,
+    0x0000, 0x003B, 0x0140, 0x0290, 0x7000, 0x6101, ACTORTYPE_CLANBALL_28,
+    0x0000, 0x0042, 0x0180, 0x0290, 0x7200, 0x2109, ACTORTYPE_CLANBALL_28,
+    0x0000, 0x0045, 0x01C0, 0x0290, 0x7300, 0x210A, ACTORTYPE_CLANBALL_28,
+    0x0000, 0x0048, 0x0220, 0x024E, 0x01A0, 0x3202, ACTORTYPE_CLANCER_119,
+    0x0000, 0x0049, 0x0260, 0x0290, 0x1000, 0x0000, ACTORTYPE_CLANBALL_28,
+    0x0000, 0x004B, 0x02C0, 0x02D0, 0x7100, 0x0007, ACTORTYPE_MSHINT,
+    0x0000, 0x004C, 0x0780, 0x04C0, 0x7000, 0x6101, ACTORTYPE_CLANBALL_28,
+    0x0000, 0x0053, 0x0750, 0x0460, 0x0000, 0x0000, ACTORTYPE_FLOWER,
+    0x0000, 0x0054, 0x0770, 0x0460, 0x0001, 0x0000, ACTORTYPE_FLOWER,
+    0x0000, 0x0055, 0x0790, 0x0460, 0x0002, 0x0000, ACTORTYPE_FLOWER,
+    0x0000, 0x0056, 0x07B0, 0x0460, 0x0003, 0x0000, ACTORTYPE_FLOWER,
+    0x0080, 0x0057, 0x0920, 0x0480, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x0058, 0x0920, 0x04A8, 0x0100, 0x0000, ACTORTYPE_SPIKEBALL_S, 
+    0x0080, 0x0059, 0x0920, 0x04D0, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005A, 0x0960, 0x04C0, 0x0100, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005B, 0x0960, 0x04E8, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005C, 0x0960, 0x0510, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005D, 0x09A0, 0x0500, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005E, 0x09A0, 0x0528, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x005F, 0x09A0, 0x0550, 0x0100, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x0060, 0x09E0, 0x0540, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x0061, 0x09E0, 0x0568, 0x0100, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    0x0080, 0x0062, 0x09E0, 0x0590, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
+    // No SPAWNRECORD_END, bleeds into next table
 };
 
 // spawn actors towrds end of "Clanpot Shake"
-u16 D_801BFF78_7DA768[] = {
+u16 sActor_Spawn_3_1B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0A70, 0x05DE, 0x7010, 0x0000, ACTORTYPE_OVL1_GEN_POGO, 
     0x0000, 0x0063, 0x0AE0, 0x05DE, 0x00A0, 0x3203, ACTORTYPE_CLANCER_119,
@@ -1333,7 +1340,7 @@ u16 D_801BFF78_7DA768[] = {
 };
 
 // properties of mixed yellow gem in "Clanpot Shake"
-u16 D_801C00D8_7DA8C8[] = {
+u16 sClanpotYellowGem[] = {
     (CLANPOT_SPAWNNOW | CLANPOT_NEWITEM | CLANPOT_ACTORICON | CLANPOT_FLAG14), 
     GEMFLAG_COMMON | GEMFLAG_YELLOW, 0, ACTORTYPE_GEM, ACTORTYPE_GEMICON, 0
 };
@@ -1435,7 +1442,7 @@ void func_801B9CA0_7D4490(void) {
             func_80045FA4(D_801BC158_7D6948, D_801BC178_7D6968);
             Palette_AdjustScenePalettes(-0x15, -0x1A, -0x20, 0, 0, 0, -0x13, -0x1F, -0x20);
             func_80042F2C(-4, -8, -0xC);
-            Actor_LoadSpawnTable(D_801BC5FC_7D6DEC);
+            Actor_LoadSpawnTable(sActorSpawn_3_2A);
             gActorDepthBack = -0x30;
             D_800BE544 = 0;
             D_800BE548.raw = FIXED_UNIT(64.0);
@@ -1457,20 +1464,20 @@ void func_801B9CA0_7D4490(void) {
             func_801B9900_7D40F0();
             gStageState++;
             func_80045FA4(D_801BC168_7D6958, NULL);
-            Actor_LoadSpawnTable(D_801BC750_7D6F40);
+            Actor_LoadSpawnTable(sActorSpawn_3_2B);
             break;
 
         case 0x101:
             if (Transition_FadeOut()) {
                 gStageState++;
-                func_80043D04(D_801BC770_7D6F60);
+                func_80043D04(sActorSpawn_3_2C);
                 D_800D28FC |= 8;
             }
             break;
 
         case 0x102:
-            func_80043D6C(D_801BC770_7D6F60);
-            func_80043D04(D_801BC770_7D6F60);
+            func_80043D6C(sActorSpawn_3_2C);
+            func_80043D04(sActorSpawn_3_2C);
             // required to produce fixed address within gActors
             if ((gActors + 0x50)->flags == 0) {
                 gStageState++;
@@ -1486,7 +1493,7 @@ void func_801B9CA0_7D4490(void) {
 
         case 0x104:
             gStageState++;
-            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BC7AC_7D6F9C);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), sActorSpawn_3_2Exit);
 
         case 0x105:
         case 0x106:
@@ -1519,7 +1526,7 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
             index += 5;
         }
 
-        Clanpot_SetMixedItem(actor_index, 3, D_801BC844_7D7034);
+        Clanpot_SetMixedItem(actor_index, 3, sClanpotItemRocketeer);
         return TRUE;
     }
 
@@ -1528,7 +1535,7 @@ s32 func_801B9F70_7D4760(u16 actor_index) {
 
 // init clanpot containg 3 Rocketeers
 void func_801BA040_7D4830(void) {
-    Clanpot_InitItems(0x5F, D_801BC7BC_7D6FAC);
+    Clanpot_InitItems(0x5F, sClanpot_3_5B);
     gActors[0x5F].clanpotTally = func_801B9F3C_7D472C;
     gActors[0x5F].clanpotCheck = func_801B9F70_7D4760;
 }
@@ -1587,9 +1594,9 @@ void func_801BA290_7D4A80(void) {
             func_801B9900_7D40F0();
             gStageState = 1;
             func_80045FA4(D_801BC850_7D7040, D_801BC880_7D7070);
-            Actor_LoadSpawnTable(D_801BD3C0_7D7BB0);
+            Actor_LoadSpawnTable(sActorSpawn_3_5A);
             func_801BA084_7D4874();
-            Clanpot_InitItems(0x5F, D_801BC7DC_7D6FCC);
+            Clanpot_InitItems(0x5F, sClanpot_3_5A);
             break;
 
         case 1:
@@ -1610,7 +1617,7 @@ void func_801BA290_7D4A80(void) {
             func_80045FA4(D_801BC870_7D7060, D_801BCBDC_7D73CC);
             func_801BA084_7D4874();
             gDrawMidground = FALSE;
-            Actor_LoadSpawnTable(D_801BD5AC_7D7D9C);
+            Actor_LoadSpawnTable(sActorSpawn_3_5B);
             func_801BA040_7D4830();
             Camera_UpdateViewBounds();
             break;
@@ -1629,7 +1636,7 @@ void func_801BA290_7D4A80(void) {
             break;
 
         case 0x2003:
-            func_801BA1A4_7D4994(0x1020, 0x14E, 0xFFC8, 0, D_801BD5AC_7D7D9C);
+            func_801BA1A4_7D4994(0x1020, 0x14E, 0xFFC8, 0, sActorSpawn_3_5B);
             Camera_UpdateViewBounds();
             break;
 
@@ -1642,7 +1649,7 @@ void func_801BA290_7D4A80(void) {
             func_801B9900_7D40F0();
             gStageState++;
             func_80045FA4(D_801BC860_7D7050, NULL);
-            Actor_LoadSpawnTable(D_801BD674_7D7E64);
+            Actor_LoadSpawnTable(sActorSpawn_3_5C);
             func_801BA084_7D4874();
             break;
 
@@ -1657,7 +1664,7 @@ void func_801BA290_7D4A80(void) {
         case 0x100:
             gStageState++;
             func_80045FA4(D_801BC860_7D7050, NULL);
-            Actor_LoadSpawnTable(D_801BD674_7D7E64);
+            Actor_LoadSpawnTable(sActorSpawn_3_5C);
             gDrawMidground = TRUE;
 
         case 0x101:
@@ -1685,7 +1692,7 @@ void func_801BA290_7D4A80(void) {
 
         case 0x104:
             gStageState++;
-            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BD684_7D7E74);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), sActorSpawn_3_5Exit);
 
         case 0x105:
         case 0x106:
@@ -1701,7 +1708,7 @@ void func_801BA690_7D4E80(void) {
             gStageState++;
             func_80045FA4(D_801BD694_7D7E84, D_801BD6B4_7D7EA4);
             Palette_AdjustScenePalettes(8, 2, -6, 0, 0, 0, 0, 0, 0);
-            Actor_LoadSpawnTable(D_801BDB48_7D8338);
+            Actor_LoadSpawnTable(sActorSpawn_3_9A);
             gActorDepthBack = -0x30;
             gDrawBackground = FALSE;
             D_800BE544 = 0;
@@ -1742,7 +1749,7 @@ void func_801BA690_7D4E80(void) {
         case 0x102:
             func_80045FA4(D_801BD6A4_7D7E94, D_801BDCA8_7D8498);
             gFestivalCurrentEvent = FESTGAME_INTRO;
-            Actor_LoadSpawnTable(D_801BDCAC_7D849C);
+            Actor_LoadSpawnTable(sActorSpawn_3_9B);
             gStageState++;
             D_800BE544 = 0x8000;
             D_800BE5F4.unk_00_u32 = 7;
@@ -1802,7 +1809,7 @@ void func_801BAA0C_7D51FC(void) {
                 gStageState++;
                 func_80045FA4(D_801BDE8C_7D867C, NULL);
                 gFestivalCurrentEvent = FESTGAME_DODGEBALL;
-                Actor_LoadSpawnTable(D_801BDE9C_7D868C);
+                Actor_LoadSpawnTable(sActorSpawn_3_11A);
                 D_800BE5F4.unk_00_u32 = 7;
             }
             break;
@@ -1821,7 +1828,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x10:
             D_800D28FC |= 8;
             SpawnText_READY();
-            Actor_LoadSpawnTable(D_801BE06C_7D885C);
+            Actor_LoadSpawnTable(sActorSpawn_3_11B);
             gCannotPause = FALSE;
 
         case 0x11:
@@ -1835,7 +1842,7 @@ void func_801BAA0C_7D51FC(void) {
         case 0x13:
             gStageState++;
             D_800D28F8 = 0xB4;
-            SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BE0A8_7D8898);
+            SpawnStageClear(STAGE_CLEAR_TIMED(60), sActorSpawn_3_11Exit);
 
         case 0x14:
             D_800D28F8--;
@@ -1848,7 +1855,7 @@ void func_801BAA0C_7D51FC(void) {
             gStageState++;
             func_80045FA4(D_801BDE8C_7D867C, NULL);
             gFestivalCurrentEvent = FESTGAME_DODGEBALL;
-            Actor_LoadSpawnTable(D_801BDE9C_7D868C);
+            Actor_LoadSpawnTable(sActorSpawn_3_11A);
             (gActors + 0x30)->var_0D8 = 1; // required to produce fixed address within gActors
             D_800BE5F4.unk_00_u32 = 7;
             (gActors + 0x5B)->flags = 0; // required to produce fixed address within gActors
@@ -1964,7 +1971,7 @@ void func_801BAE84_7D5674(void* arg0, u16* arg1) {
     func_80045FA4(arg0, arg1);
     func_80042F2C(-4, -8, -0xC);
     Actor_ClearRange(0x10, 0xC7);
-    Actor_LoadSpawnTable(D_801BEB2C_7D931C);
+    Actor_LoadSpawnTable(sActorSpawn_3_3);
     D_800BE544 = 0x8000;
     D_800BE548.raw = FIXED_UNIT(64.0);
     gActorDepthBack = -0x30;
@@ -2087,7 +2094,7 @@ void func_801BB314_7D5B04(void) {
         case 0:
             Palette_AdjustScenePalettes(3, -4, -8, 0, 0, 0, 3, 0xD, -6);
             func_80045FA4(D_801BECE0_7D94D0, NULL);
-            Actor_LoadSpawnTable(D_801BECF0_7D94E0);
+            Actor_LoadSpawnTable(sActorSpawn_3_6);
             gStageState++;
             break;
 
@@ -2105,7 +2112,7 @@ void func_801BB314_7D5B04(void) {
             break;
 
         case 5:
-            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BED00_7D94F0);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, sActorSpawn_3_6Exit);
             gStageState++;
             break;
 
@@ -2140,7 +2147,7 @@ void func_801BB4A4_7D5C94(void) {
     switch (gStageState) {
         case 0:
             Palette_AdjustScenePalettes(3, -4, -8, 0, 0, 0, 3, 0xD, -6);
-            func_801BB444_7D5C34(D_801BED10_7D9500, D_801BED20_7D9510, D_801BEF5C_7D974C);
+            func_801BB444_7D5C34(D_801BED10_7D9500, D_801BED20_7D9510, sActorSpawn_3_7A);
             D_801C02B6_7DAAA6 = 5;
             break;
 
@@ -2168,7 +2175,7 @@ void func_801BB4A4_7D5C94(void) {
                                 position_y += gActors[0x30].posY.whole;
                                 if ((position_y > 0x340) && (position_y < 0x3A0)) {
                                     Sound_PlaySfx(SFX_STAR_APPEAR);
-                                    Actor_LoadSpawnTable(D_801BEFF8_7D97E8);
+                                    Actor_LoadSpawnTable(sActorSpawn_3_7B);
                                     gStageState++;
                                 }
                             }
@@ -2188,7 +2195,7 @@ void func_801BB4A4_7D5C94(void) {
                 }
 
                 if (actor_count == 0) {
-                    SpawnStageClear(STAGE_CLEAR_TIMED(120), D_801BF23C_7D9A2C);
+                    SpawnStageClear(STAGE_CLEAR_TIMED(120), sActorSpawn_3_7Exit);
                     gActors[0x8E].flags = 0;
                     gStageState++;
                 }
@@ -2196,15 +2203,15 @@ void func_801BB4A4_7D5C94(void) {
             break;
 
         case 5:
-            func_801BB444_7D5C34(D_801BED10_7D9500, (u16*)0xFFFFFFF9, D_801BEF5C_7D974C);
+            func_801BB444_7D5C34(D_801BED10_7D9500, (u16*)0xFFFFFFF9, sActorSpawn_3_7A);
             break;
 
         case 6:
-            func_801BB444_7D5C34(D_801BF008_7D97F8, (u16*)0xFFFFFFF9, D_801BF088_7D9878);
+            func_801BB444_7D5C34(D_801BF008_7D97F8, (u16*)0xFFFFFFF9, sActorSpawn_3_7C);
             break;
 
         case 7:
-            func_801BB444_7D5C34(D_801BF108_7D98F8, (u16*)0xFFFFFFF9, D_801BF168_7D9958);
+            func_801BB444_7D5C34(D_801BF108_7D98F8, (u16*)0xFFFFFFF9, sActorSpawn_3_7D);
             break;
 
         case 3:
@@ -2350,9 +2357,10 @@ void func_801BB768_7D5F58(void) {
     Camera_UpdateViewBounds();
 }
 
+// Check if Marina fell offscreen
 void func_801BBAA8_7D6298(void) {
     if (gPlayerActor.posY.whole < -0xA0) {
-        func_8005739C(0, 100);
+        func_8005739C(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
             D_800D28F0 = D_800D28E4;
@@ -2392,7 +2400,7 @@ void func_801BBBF0_7D63E0(void) {
             func_80045FA4(D_801BF27C_7D9A6C, D_801BF28C_7D9A7C);
             D_800D28FC |= 0x400;
             Palette_AdjustScenePalettes(0, 0, 0, 0, 0, 0, 0, 0, 0);
-            Actor_LoadSpawnTable(D_801BF930_7DA120);
+            Actor_LoadSpawnTable(sActorSpawn_3_4);
             D_800BE544 = 0;
             D_800BE548.raw = FIXED_UNIT(64.0);
             gStageState++;
@@ -2419,7 +2427,7 @@ void func_801BBBF0_7D63E0(void) {
             break;
 
         case 4:
-            func_801BBB30_7D6320(0x954, 0x460, 0xFFD0, 0xFFEE, D_801BF930_7DA120);
+            func_801BBB30_7D6320(0x954, 0x460, 0xFFD0, 0xFFEE, sActorSpawn_3_4);
             break;
 
         case 5:
@@ -2448,11 +2456,12 @@ void func_801BBDF8_7D65E8(void* arg0) {
     D_800BE548.raw = FIXED_UNIT(64.0);
 }
 
+// stage state machine for "Clanpot Shake"
 void func_801BBE90_7D6680(void) {
     switch (gStageState) {
         case 0:
             func_80045FA4(D_801BFB2C_7DA31C, D_801BFB4C_7DA33C);
-            func_801BBDF8_7D65E8(D_801BFE0C_7DA5FC);
+            func_801BBDF8_7D65E8(sActor_Spawn_3_1A);
             func_801BC11C_7D690C();
             gStageState++;
             break;
@@ -2479,7 +2488,7 @@ void func_801BBE90_7D6680(void) {
         case 4:
             Actor_ClearRange_30To90();
             func_80045FA4(D_801BFB3C_7DA32C, (u16*)0xFFFFFFF9);
-            func_801BBDF8_7D65E8(D_801BFF78_7DA768);
+            func_801BBDF8_7D65E8(sActor_Spawn_3_1B);
             D_800BE5F4.unk_00_u32 = 10;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageState++;
@@ -2496,7 +2505,7 @@ void func_801BBE90_7D6680(void) {
     Camera_UpdateViewBounds();
 }
 
-// would add yellow gem, but case is already done in Clanpot_TryMix
+// would add green gems, but case is already done in Clanpot_TryMix
 void func_801BC010_7D6800(u16 arg0, u16 arg1) {
 }
 
@@ -2518,7 +2527,7 @@ s32 func_801BC01C_7D680C(u16 actor_index) {
                 index += 5;
             }
 
-            Clanpot_SetMixedItem(actor_index, 2, D_801C00D8_7DA8C8);
+            Clanpot_SetMixedItem(actor_index, 2, sClanpotYellowGem);
             return TRUE;
         }
     }

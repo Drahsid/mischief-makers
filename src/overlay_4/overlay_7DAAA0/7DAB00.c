@@ -236,12 +236,12 @@ u16 D_801BB480_7DC680[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BB4BC_7DC6BC[] = {
+u16 sActorSpawn_3_12[] = {
     0x0000, 0x008F, 0x0440, 0x0184, 0x0001, 0x0000, ACTORTYPE_OVL0_CALPHA_3,
     SPAWNRECORD_END
 };
 
-u16 D_801BB4CC_7DC6CC[] = {
+u16 sActorSpawn_3_12Exit[] = {
     0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_LEVELCLEAR,
     SPAWNRECORD_END,
 };
@@ -878,7 +878,7 @@ void func_801BAD9C_7DBF9C(void) {
                 gStageState++;
                 func_80046148(D_801BB470_7DC670, NULL);
                 Actor_LoadSpawnTable(D_801BB480_7DC680);
-                Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
+                Actor_LoadSpawnTable(sActorSpawn_3_12);
                 D_800BE544 = 0x8000;
             }
             break;
@@ -923,7 +923,7 @@ void func_801BAD9C_7DBF9C(void) {
             gStageState++;
             func_80045FA4(D_801BB470_7DC670, NULL);
             Actor_LoadSpawnTable(D_801BB480_7DC680);
-            Actor_LoadSpawnTable(D_801BB4BC_7DC6BC);
+            Actor_LoadSpawnTable(sActorSpawn_3_12);
             gActors[0x8F].state = 0x10;
             D_800BE5F4.unk_00_u32 = 5;
 
@@ -934,7 +934,7 @@ void func_801BAD9C_7DBF9C(void) {
             break;
 
         case 0xC000:
-            func_80046188(D_801BB470_7DC670, D_801BB4CC_7DC6CC);
+            func_80046188(D_801BB470_7DC670, sActorSpawn_3_12Exit);
 
         case 0xC001:
             if (Transition_FadeOut()) {
