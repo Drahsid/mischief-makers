@@ -3461,7 +3461,7 @@ void func_80093D38(u16 actor_index) {
         }
         gActors[actor_index].unk_120 = Math_ApproachF32(gActors[actor_index].unk_120, 1.0f, 0.015f);
         func_80093C10(actor_index);
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(1.0/8), FIXED_UNIT(0.001953125));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(1.0/8), FIXED_UNIT(1.0/512));
         gActors[actor_index].unk_168 -= 0xA;
         if ((gActors[actor_index + 9].unk_180 >= 0xD3) && (D_801826B4 < 0xFF)) {
             D_801826B4++;

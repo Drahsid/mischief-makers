@@ -1924,7 +1924,7 @@ void func_801B455C_7A506C(u16 actor_index) {
             if (((gActors[actor_index].posX.whole - 224) < gPlayerActor.posX.whole) && (gPlayerActor.posX.whole < (gActors[actor_index].posX.whole - 192))) {
                 new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
                 if (new_actor_index != 0) {
-                    ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W3_7);
+                    ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W3_SHOT_7);
                     gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole - 56;
                     gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole - 4;
                     gActors[new_actor_index].graphicList = D_801B60C8_7A6BD8;

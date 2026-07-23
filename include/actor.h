@@ -173,10 +173,10 @@ typedef struct {
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
-    /* 0x0DA */ u8 unk_0DA;
-    /* 0x0DB */ u8 unk_0DB;
-    /* 0x0DC */ u8 unk_0DC;
-    /* 0x0DD */ u8 unk_0DD;
+    /* 0x0DA */ u8 unk_0DA; // hit flags?
+    /* 0x0DB */ u8 unk_0DB; // hit type?
+    /* 0x0DC */ u8 unk_0DC; // "hit by" flags?
+    /* 0x0DD */ u8 unk_0DD; // "hit by" type?
     /* 0x0DE */ u8 unk_0DE; // behavior when grabbed?
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
