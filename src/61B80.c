@@ -1454,7 +1454,7 @@ void func_80064F4C(u16 actor_index) {
             index = gActors[actor_index].var_0D8 & 0xF;
             if (index == 9) {
                 if (func_8004089C((actor_index + 0x8000), D_800D7560[index]) == 0x800) {
-                    Sound_StartFade(0x81, 0x3C);
+                    Sound_StartFade(SFX_DASH_0081, 0x3C);
                     gActors[actor_index].unk_174 += 1;
                     return;
                 }

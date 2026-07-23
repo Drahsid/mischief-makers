@@ -512,7 +512,7 @@ typedef enum {
 
     // actors in dispatch table D_801B0800_7A13D0
 
-    ACTORTYPE_OVL3_W3_0 = (ACTOR_OVL3_WORLD3 << 8),
+    ACTORTYPE_OVL3_W3_SKI = (ACTOR_OVL3_WORLD3 << 8), // skiing Clancer
     ACTORTYPE_OVL3_W3_1,
     ACTORTYPE_OVL3_W3_2, // enemy platforms in "Missle Surf"?
     ACTORTYPE_OVL3_W3_3,

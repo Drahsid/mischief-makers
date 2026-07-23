@@ -2,6 +2,7 @@
 #include "28EF0.h"
 #include "7D8E0.h"
 
+// struct used for skiing Clancers
 // Actor 0x150->0x18F; possibly implies large union for this range with subtypes for specific actors
 typedef struct {
     /* 0x00 */ s8 unk_00;
@@ -287,6 +288,7 @@ s32 D_801B6350_7A6E60;
 void func_801B0900_7A1410(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
+// Skiing Clancer behavior
 void func_801B090C_7A141C(u16 actor_index) {
     Overlay_7A13D0_Actor_State* var_150 = (Overlay_7A13D0_Actor_State*)&gActors[actor_index].var_150;
 
@@ -421,6 +423,7 @@ void func_801B0D98_7A18A8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
     }
 }
 
+// ski Claner throws bomb 
 void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     u16 new_actor_index;
 
@@ -1132,6 +1135,7 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     }
 }
 
+// skiing clancer as a snowball
 void func_801B2954_7A3464(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     Actor* actor;
     s32 velocity;
@@ -1685,7 +1689,7 @@ void func_801B3CE8_7A47F8(u16 actor_index) {
                 return;
             }
 
-            // check for clanbomb position
+            // check for "Missle Surf"'s clanbomb's position
             if (((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) >= -3) && ((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) < 4)) {
                 if (((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) >= -19) && ((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) < 20)) {
                     func_801B3AE0_7A45F0(actor_index);
