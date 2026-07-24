@@ -742,11 +742,11 @@ Gfx D_801B7C58_79FA98[] = {
     gsSPEndDisplayList(),
 };
 
-s32 D_801B7DA0_79FBE0[] = {
-    (s32)D_801B6F28_79ED68, (s32)D_801B7020_79EE60, (s32)D_801B7118_79EF58, (s32)D_801B7210_79F050,
-    (s32)D_801B7308_79F148, (s32)D_801B7400_79F240, (s32)D_801B74F8_79F338, (s32)D_801B75F0_79F430,
-    (s32)D_801B7738_79F578, (s32)D_801B7880_79F6C0, (s32)D_801B79C8_79F808, (s32)D_801B7B10_79F950,
-    (s32)D_801B7C58_79FA98,
+Gfx* D_801B7DA0_79FBE0[] = {
+    D_801B6F28_79ED68, D_801B7020_79EE60, D_801B7118_79EF58, D_801B7210_79F050,
+    D_801B7308_79F148, D_801B7400_79F240, D_801B74F8_79F338, D_801B75F0_79F430,
+    D_801B7738_79F578, D_801B7880_79F6C0, D_801B79C8_79F808, D_801B7B10_79F950,
+    D_801B7C58_79FA98,
 };
 
 u16 D_801B7DD4_79FC14[] = {
@@ -2440,19 +2440,19 @@ void func_801B37B0_79B5F0(u16 actor_index) {
                     default:
                         gActors[child_index].var_0D8 = D_801B7E4C_79FC8C[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
-                    case 0x45:
+                    case SCENE_VERTIGO:
                         gActors[child_index].var_0D8 = D_801B7DD4_79FC14[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
-                    case 0xD:
+                    case SCENE_SEASICKCLIMB:
                         gActors[child_index].var_0D8 = D_801B7EDC_79FD1C[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
                 }
-                gActors[child_index].unk_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
+                gActors[child_index].dlist_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
                 child_index++;
                 if (gActors[child_index - 1].var_0D8 != 0) {
                     func_801B36FC_79B53C(index, child_index);
                     gActors[child_index].var_0D8 = gActors[child_index - 1].var_0D8 + 6;
-                    gActors[child_index].unk_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
+                    gActors[child_index].dlist_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
                     child_index++;
                 }
 

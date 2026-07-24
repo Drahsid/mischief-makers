@@ -389,7 +389,7 @@ u16 sActorSpawn_5_6A[] = {
 
 u16 sActorSpawn_5_6B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0400, 0x0198, 0x0000, 0x0000, ACTORTYPE_GRAPHICONLY,
+    0x0000, 0x0030, 0x0400, 0x0198, 0x0000, 0x0000, ACTORTYPE_GRAPHIC_29,
     SPAWNRECORD_END
 };
 

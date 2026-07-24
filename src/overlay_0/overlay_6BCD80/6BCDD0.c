@@ -936,7 +936,7 @@ void func_8019DAF0_6C87C0(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {
 }
 
 void func_8019DBEC_6C88BC(u16 actor_index) {
-    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHIC_29);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = 0;
@@ -967,7 +967,7 @@ void func_8019DCB8_6C8988(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_8019DCE8_6C89B8.s")
 
 void func_8019DF44_6C8C14(u16 actor_index) {
-    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHIC_29);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ);
     gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
 }
@@ -1189,7 +1189,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
 }
 
 void func_8019EB80_6C9850(u16 actor_index) {
-    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHIC_29);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK8);
     gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index].posZ.whole = 0xA0;

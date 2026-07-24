@@ -1792,7 +1792,7 @@ u16 func_800896AC(u16 actor_index) {
     if (free_actor == 0) {
         return 0;
     }
-    gActors[free_actor].actorType = ACTORTYPE_GRAPHICONLY;
+    gActors[free_actor].actorType = ACTORTYPE_GRAPHIC_29;
     Actor_Initialize(free_actor);
     gActors[free_actor].hitboxBY0 = 8; \
     gActors[free_actor].hitboxBY1 = -8;

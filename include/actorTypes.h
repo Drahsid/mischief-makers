@@ -78,7 +78,7 @@ typedef enum {
     ACTORTYPE_10, // Stubbed
     ACTORTYPE_11,
     ACTORTYPE_12,
-    ACTORTYPE_13,
+    ACTORTYPE_13, // actors for backgrounds?
     ACTORTYPE_14,
     ACTORTYPE_15,
     ACTORTYPE_16,
@@ -94,7 +94,7 @@ typedef enum {
     ACTORTYPE_26, // Stubbed
     ACTORTYPE_27, // Stubbed
     ACTORTYPE_CLANBALL_28, // default clanball
-    ACTORTYPE_GRAPHICONLY, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
+    ACTORTYPE_GRAPHIC_29, // like with ACTORTYPE_ZERO, a stubbed actor used for graphics.
     ACTORTYPE_30, // Stubbed
     ACTORTYPE_31,
     ACTORTYPE_32,
@@ -103,7 +103,7 @@ typedef enum {
     ACTORTYPE_LANDMINE,
     ACTORTYPE_ENERGYSHOT,
     ACTORTYPE_37,
-    ACTORTYPE_38, // displays the "READY!"/"FIGHT!" text
+    ACTORTYPE_TEXT_38, // displays the "READY!"/"FIGHT!" text
     ACTORTYPE_39, // uses a selected "portrait" for a black background
     ACTORTYPE_40,
     ACTORTYPE_41, // displays an animated number 
@@ -264,7 +264,7 @@ typedef enum {
     ACTORTYPE_OVL0_MIGEN_GEM, // gem Migen Sr uses to heal son.
     ACTORTYPE_OVL0_MIGEN_12, // stubbed
 
-    // 13-21 like invalid entries.
+    // 13-21 likely invalid entries.
 
     ACTORTYPE_OVL0_MIGEN_22 = (ACTOR_OVL0_MIGEN << 8) + 22,
     ACTORTYPE_OVL0_MIGEN_23,

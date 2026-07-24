@@ -210,7 +210,7 @@ void SpawnActor39(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16
 // @param arg5 sets actor field 0x114 as timer.
 // @param arg6 bit 0 determines if can be controlled. many calls omit this.
 void SpawnActor38(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16 arg5, u16 arg6) {
-    gActors[actor_index].actorType = ACTORTYPE_38;
+    gActors[actor_index].actorType = ACTORTYPE_TEXT_38;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
     gActors[actor_index].posX.whole = pos_x;

@@ -85,7 +85,7 @@ void func_801B0900_7969D0(u16 actor_index) {
 u16 func_801B0A10_796AE0(u16 unused_actor_index) {
     u16 actor_index = 0x31;
 
-    gActors[actor_index].actorType = ACTORTYPE_GRAPHICONLY;
+    gActors[actor_index].actorType = ACTORTYPE_GRAPHIC_29;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED;

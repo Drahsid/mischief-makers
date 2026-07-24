@@ -254,7 +254,7 @@ void func_80193694_67F1B4(u16 actor_index) {
 }
 
 void func_80193728_67F248(u16 actor_index) {
-    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(actor_index, ACTORTYPE_GRAPHIC_29);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
 }
 
@@ -516,7 +516,7 @@ void func_801949B8_6804D8(s32 arg0) {
 }
 
 void func_80194A38_680558(void) {
-    ACTOR_INIT(0x60, ACTORTYPE_GRAPHICONLY);
+    ACTOR_INIT(0x60, ACTORTYPE_GRAPHIC_29);
     gActors[0x60].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
     gActors[0x60].colorR = 0x4F;
     gActors[0x60].colorG = 0x7F;
@@ -726,7 +726,7 @@ void func_80198F70_684A90(u16 actor_index) {
 
     next_actor_index = actor_index + 1;
     //ACTOR_INIT macro causes mismatch here.
-    gActors[next_actor_index].actorType = ACTORTYPE_GRAPHICONLY;
+    gActors[next_actor_index].actorType = ACTORTYPE_GRAPHIC_29;
     Actor_Initialize(next_actor_index);
     gActors[next_actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
     gActors[next_actor_index].flags = ACTOR_FLAG_ENABLED;

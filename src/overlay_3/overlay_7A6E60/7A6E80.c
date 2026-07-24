@@ -704,7 +704,7 @@ void func_801B13F8_7A7978(u16 unused_actor_index) {
     u16 actor_index;
 
     actor_index = 0x69;
-    gActors[actor_index].actorType = ACTORTYPE_GRAPHICONLY;
+    gActors[actor_index].actorType = ACTORTYPE_GRAPHIC_29;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_FREEZE_POS;

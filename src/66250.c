@@ -1227,7 +1227,7 @@ void func_80079B28(u16 actor_index) {
         var_s0 -= 8; var_s2--;
     }
     // Can't use ACTOR_INIT here
-    gActors[actor_index + 1].actorType = ACTORTYPE_GRAPHICONLY;
+    gActors[actor_index + 1].actorType = ACTORTYPE_GRAPHIC_29;
     Actor_Initialize((actor_index + 1));
     gActors[actor_index + 1].flags = (ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_ACTIVE);
     gActors[actor_index + 1].posX.whole = gActors[actor_index].posX.whole;

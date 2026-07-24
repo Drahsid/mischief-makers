@@ -162,7 +162,7 @@ void func_800283BC(u32 sfx_id, u16 arg1) {
     }
 }
 
-// update function of ACTORTYPE_GRAPHICONLY
+// update function of ACTORTYPE_GRAPHIC_29
 void ActorUpdate_GraphicOnly(s32 arg0) {
 }
 

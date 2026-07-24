@@ -33,7 +33,7 @@ void ActorUpdate_Type38(u16 actor_index);
 void ActorUpdate_Type39(u16 actor_index);
 
 
-// ACTORTYPE_38 will load from a LUT of strings. most of the 80 entries are blank, save for these indexed.
+// ACTORTYPE_TEXT_38 will load from a LUT of strings. most of the 80 entries are blank, save for these indexed.
 typedef enum{
     ACTOR38_FIGHT = 3, // "F I G H T !"
     ACTOR38_STAGE_CLEAR, // "STAGE CLEAR"
@@ -42,7 +42,7 @@ typedef enum{
     ACTOR38_MARINA // "まりな"
 } Actor38Strings;
 
-// the strings used in the ACTORTYPE_38-associated script start with special "command Codes"
+// the strings used in the ACTORTYPE_TEXT_38-associated script start with special "command Codes"
 
 #define ALPHA_CMD_PALETTE (1U << 8U) // string uses palette, lower byte determines index on D_800D9A54
 #define ALPHA_CMD_KERN (1U << 9U) // lower byte used for determining space between characters
