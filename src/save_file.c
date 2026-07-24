@@ -98,8 +98,8 @@ u8 D_800C5018[] = {
 };
 
 // strings
-u16 D_800C5024[] = { ALPHA_THIN_1, ALPHA_NULL }; // _THIN("1")
-u16 D_800C5028[] = { ALPHA_THIN_2, ALPHA_NULL }; // _THIN("2")
+u16 gSlot1[] = { ALPHA_THIN_1, ALPHA_NULL }; // _THIN("1")
+u16 gSlot2[] = { ALPHA_THIN_2, ALPHA_NULL }; // _THIN("2")
 u16 gDayEN2[] = { // _EN2(" day")
     ALPHA_SPACE,
     ALPHA_EN2_LOWER_D,
@@ -192,7 +192,6 @@ u16 gNameEntryRow1HIRA[] = {// _JP("いきしちにひみ りをぎじぢびぴ�
     ALPHA_JP_HIRA_SMALL_I,
     ALPHA_JP_HIRA_SMALL_YU,
     ALPHA_NULL
-
 };
 u16 gNameEntryRow2HIRA[] = { // _JP("うくすつぬふむゆるんぐずづぶぷぅょ")
     ALPHA_JP_HIRA_U,
@@ -233,7 +232,6 @@ u16 gNameEntryRow3HIRA[] = { // _JP("えけせてねへめ れ げぜでべぺ�
     ALPHA_JP_HIRA_SMALL_E,
     ALPHA_SPACE,
     ALPHA_NULL
-
 };
 u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼぽぉっ")
     ALPHA_JP_HIRA_O,
@@ -254,7 +252,6 @@ u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼ�
     ALPHA_JP_HIRA_SMALL_O,
     ALPHA_JP_HIRA_SMALL_TSU,
     ALPHA_NULL
-
 };
 u16 gArrowRight[] = { ALPHA_ARROW_RIGHT, ALPHA_NULL }; // _("→")
 u16 gArrowLeft[] = { ALPHA_ARROW_LEFT, ALPHA_NULL }; // _("←")
@@ -323,7 +320,6 @@ u16 gNameEntryRow2KATA[] = { // _JP("ウクスツヌフムユルングズヅブ�
     ALPHA_JP_KATA_SMALL_U,
     ALPHA_JP_KATA_SMALL_YO,
     ALPHA_NULL
-
 };
 u16 gNameEntryRow3KATA[] = { // _JP("エケセテネヘメ レ ゲゼデベペェッ")
     ALPHA_JP_KATA_E,
@@ -1012,7 +1008,7 @@ void func_80006360(u16 actor_index) {
     gActors[actor_index + 0x2A].scaleY = 4.0f;
     Text_PrintString(actor_index + 0x42, gWhichQuestion2, 0xFFD0, 0x58, 0);
     Text_InitActorGList(actor_index + 0x8, D_800E13FC, 0xFF80, 0x2B, 0);
-    Text_PrintStringRGB(actor_index + 0xC, D_800C5024, 0xFF9C, 0x2B, 0, 0, 0, 0);
+    Text_PrintStringRGB(actor_index + 0xC, gSlot1, 0xFF9C, 0x2B, 0, 0, 0, 0);
     for (index = 0, count = 0; index < ARRAYLENGTH(gDefaultFileName); index++) {
         if (gDefaultFileName[index] != gFileNames[SAVE_SLOT_0][index]) {
             count++;
@@ -1046,7 +1042,7 @@ void func_80006360(u16 actor_index) {
     }
     count = 0;
     Text_InitActorGList(actor_index + 0x09, D_800E13FC, 0xFF80, 0xFFE0, 0);
-    Text_PrintStringRGB(actor_index + 0x12, D_800C5028, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
+    Text_PrintStringRGB(actor_index + 0x12, gSlot2, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
     for (index = 0; index < ARRAYLENGTH(gDefaultFileName); index++) {
         if (gDefaultFileName[index] != gFileNames[SAVE_SLOT_1][index]) {
             count++;
@@ -1161,11 +1157,11 @@ void func_80006EDC(u16 actor_index) {
     if (gCurrentSaveSlot != gPreviousSaveSlot) {
         switch (gPreviousSaveSlot) {
         case 0:
-            Text_PrintStringRGB(actor_index + 0xC, D_800C5024, 0xFF9C, 0x2B, 0, 0, 0, 0);
+            Text_PrintStringRGB(actor_index + 0xC, gSlot1, 0xFF9C, 0x2B, 0, 0, 0, 0);
             Text_InitActorGraphic(actor_index + 0x8, 0xF4, 0xFF80, 0x2B, 0);
             break;
         case 1:
-            Text_PrintStringRGB(actor_index + 0x12, D_800C5028, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
+            Text_PrintStringRGB(actor_index + 0x12, gSlot2, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
             Text_InitActorGraphic(actor_index + 0x9, 0xF4, 0xFF80, 0xFFE0, 0);
             break;
         case 2:
@@ -1193,10 +1189,10 @@ void func_80006EDC(u16 actor_index) {
 
     switch (gCurrentSaveSlot) {
     case 0:
-        Text_PrintStringRGB(actor_index + 0xC, D_800C5024, 0xFF9C, 0x2B, 0, gActors[2].var_158, gActors[2].var_158, 0);
+        Text_PrintStringRGB(actor_index + 0xC, gSlot1, 0xFF9C, 0x2B, 0, gActors[2].var_158, gActors[2].var_158, 0);
         break;
     case 1:
-        Text_PrintStringRGB(actor_index + 0x12, D_800C5028, 0xFF9C, 0xFFE0, 0, gActors[2].var_158, gActors[2].var_158, 0);
+        Text_PrintStringRGB(actor_index + 0x12, gSlot2, 0xFF9C, 0xFFE0, 0, gActors[2].var_158, gActors[2].var_158, 0);
         break;
     case 2:
         Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, gActors[2].var_158, gActors[2].var_158, 0);
@@ -1423,10 +1419,10 @@ void GameState_FileSelect(void) {
                     gActors[actor_index - 1].posY.whole = gActors[actor_index - 2].posY.whole;
                     switch (gCurrentSaveSlot) {
                     case 0:
-                        actor_index = Text_PrintStringRGB(actor_index, D_800C5024, 0xFFE0, 0x58, 0, 0, 0xFF, 0xFF);
+                        actor_index = Text_PrintStringRGB(actor_index, gSlot1, 0xFFE0, 0x58, 0, 0, 0xFF, 0xFF);
                         break;
                     case 1:
-                        actor_index = Text_PrintStringRGB(actor_index, D_800C5028, 0xFFE0, 0x58, 0, 0, 0xFF, 0xFF);
+                        actor_index = Text_PrintStringRGB(actor_index, gSlot2, 0xFFE0, 0x58, 0, 0, 0xFF, 0xFF);
                         break;
                     }
                     actor_index = Text_PrintStringRGB(actor_index, gEraseQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
