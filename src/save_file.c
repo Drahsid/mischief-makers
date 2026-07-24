@@ -1,3 +1,4 @@
+#include "Alphabet.h"
 #include "common.h"
 #include "save_file.h"
 #include "soft_reset.h"
@@ -49,10 +50,18 @@ u16 gTimeRecords[] = {
     STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME, STAGE_MAX_TIME
 };
 
-// default save file name: "Start     "
-u16 gDefaultFileName[] = {
-    0x014A, 0x0131, 0x011E, 0x012F, 0x0131, 0x0000, 0x0000, 0x0000,
-    0x0000, 0x0000, 0x8FFF
+u16 gDefaultFileName[] = { //_EN3("Start     ")
+    ALPHA_EN3_UPPER_S,
+    ALPHA_EN3_LOWER_T,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_EN3_LOWER_T,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_NULL
 };
 
 u32 D_800C4FC0[] = {
@@ -61,9 +70,18 @@ u32 D_800C4FC0[] = {
     0x00000000, 0x00040000,
 };
 
-u16 gNameEntrySpace[SAVE_SLOT_NAME_LENGTH + 1] = {
-    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
-    0x0000, 0x0000, 0x8FFF,
+u16 gNameEntrySpace[SAVE_SLOT_NAME_LENGTH + 1] = { // _EN("          ")
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_SPACE,
+    ALPHA_NULL
 };
 
 u8 gSelectedSex = 0x00;
@@ -80,103 +98,511 @@ u8 D_800C5018[] = {
 };
 
 // strings
-u16 D_800C5024[] = { 0x00A2, 0x8FFF };
-u16 D_800C5028[] = { 0x00A3, 0x8FFF };
-u16 D_800C502C[] = { 0x0000, 0x0078, 0x0075, 0x008D, 0x8FFF };
-u16 D_800C5038[] = { 0x0000, 0x007C, 0x0086, 0x0087, 0x8FFF };
-u16 D_800C5044[] = { 0x0000, 0x0081, 0x007D, 0x0082, 0x8FFF };
-u16 D_800C5050[] = { 0x0000, 0x0087, 0x0079, 0x0077, 0x8FFF };
-u16 D_800C505C[] = { 0x013C, 0x012F, 0x011E, 0x0130, 0x0122, 0x8FFF };
-u16 D_800C5068[] = { 0x014E, 0x0125, 0x0126, 0x0120, 0x0125, 0x00B3, 0x8FFF };
-u16 D_800C5078[] = { 0x0145, 0x011E, 0x012A, 0x0122, 0x00B3, 0x8FFF };
-u16 gNameEntryRow0HIRA[] = {
-    0x0051, 0x0056, 0x005B, 0x0060, 0x0065, 0x006A, 0x006F, 0x0074, 0x0077,
-    0x007C, 0x007F, 0x0084, 0x0089, 0x008E, 0x0093, 0x0098, 0x009E, 0x8FFF
+u16 D_800C5024[] = { ALPHA_THIN_1, ALPHA_NULL }; // _THIN("1")
+u16 D_800C5028[] = { ALPHA_THIN_2, ALPHA_NULL }; // _THIN("2")
+u16 gDayEN2[] = { // _EN2(" day")
+    ALPHA_SPACE,
+    ALPHA_EN2_LOWER_D,
+    ALPHA_EN2_LOWER_A,
+    ALPHA_EN2_LOWER_Y,
+    ALPHA_NULL
 };
-u16 gNameEntryRow1HIRA[] = {
-    0x0052, 0x0057, 0x005C, 0x0061, 0x0066, 0x006B, 0x0070, 0x0000, 0x0078,
-    0x007D, 0x0080, 0x0085, 0x008A, 0x008F, 0x0094, 0x0099, 0x009F, 0x8FFF
+u16 gHrsEN2[] = { // _EN2(" hrs")
+    ALPHA_SPACE,
+    ALPHA_EN2_LOWER_H,
+    ALPHA_EN2_LOWER_R,
+    ALPHA_EN2_LOWER_S,
+    ALPHA_NULL
 };
-u16 gNameEntryRow2HIRA[] = {
-    0x0053, 0x0058, 0x005D, 0x0062, 0x0067, 0x006C, 0x0071, 0x0075, 0x0079,
-    0x007E, 0x0081, 0x0086, 0x008B, 0x0090, 0x0095, 0x009A, 0x00A0, 0x8FFF
+u16 gMinEN2[] = { // _EN2(" min")
+    ALPHA_SPACE,
+    ALPHA_EN2_LOWER_M,
+    ALPHA_EN2_LOWER_I,
+    ALPHA_EN2_LOWER_N,
+    ALPHA_NULL
 };
-u16 gNameEntryRow3HIRA[] = {
-    0x0054, 0x0059, 0x005E, 0x0063, 0x0068, 0x006D, 0x0072, 0x0000, 0x007A,
-    0x0000, 0x0082, 0x0087, 0x008C, 0x0091, 0x0096, 0x009B, 0x0000, 0x8FFF
+u16 gSecEN2[] = { // _EN2(" sec")
+    ALPHA_SPACE,
+    ALPHA_EN2_LOWER_S,
+    ALPHA_EN2_LOWER_E,
+    ALPHA_EN2_LOWER_C,
+    ALPHA_NULL
 };
-u16 gNameEntryRow4HIRA[] = {
-    0x0055, 0x005A, 0x005F, 0x0064, 0x0069, 0x006E, 0x0073, 0x0076, 0x007B,
-    0x00C0, 0x0083, 0x0088, 0x008D, 0x0092, 0x0097, 0x009C, 0x009D, 0x8FFF
+u16 gErase[] = { // _EN3("Erase")
+    ALPHA_EN3_UPPER_E,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_NULL
 };
-u16 D_800C5138[] = { 0x00CC, 0x8FFF };
-u16 D_800C513C[] = { 0x00CB, 0x8FFF };
-u16 D_800C5140[] = { 0x00CA, 0x8FFF };
-u16 D_800C5144[] = {
-    0x00C0, 0x00C0, 0x00C0, 0x00C0, 0x00C0, 0x00C0, 0x00C0, 0x00C0, 0x00C0,
-    0x00C0, 0x8FFF
+u16 gWhichQuestion[] = { // _EN3("Which?")
+    ALPHA_EN3_UPPER_W,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_LOWER_I,
+    ALPHA_EN3_LOWER_C,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_QUESTION,
+    ALPHA_NULL
 };
-u16 gNameEntryRow0KATA[] = {
-    0x00CD, 0x00D2, 0x00D7, 0x00DC, 0x00E1, 0x00E6, 0x00EB, 0x00F0, 0x00F3,
-    0x00F8, 0x00FB, 0x0100, 0x0105, 0x010A, 0x010F, 0x0114, 0x011A, 0x8FFF
+u16 gNameQuestion[] = { // _EN3("Name?")
+    ALPHA_EN3_UPPER_N,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_M,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_QUESTION,
+    ALPHA_NULL
 };
-u16 gNameEntryRow1KATA[] = {
-    0x00CE, 0x00D3, 0x00D8, 0x00DD, 0x00E2, 0x00E7, 0x00EC, 0x0000, 0x00F4,
-    0x00F9, 0x00FC, 0x0101, 0x0106, 0x010B, 0x0110, 0x0115, 0x011B, 0x8FFF
+u16 gNameEntryRow0HIRA[] = { // _JP("あかさたなはまやらわがざだばぱぁゃ")
+    ALPHA_JP_HIRA_A,
+    ALPHA_JP_HIRA_KA,
+    ALPHA_JP_HIRA_SA,
+    ALPHA_JP_HIRA_TA,
+    ALPHA_JP_HIRA_NA,
+    ALPHA_JP_HIRA_HA,
+    ALPHA_JP_HIRA_MA,
+    ALPHA_JP_HIRA_YA,
+    ALPHA_JP_HIRA_RA,
+    ALPHA_JP_HIRA_WA,
+    ALPHA_JP_HIRA_GA,
+    ALPHA_JP_HIRA_ZA,
+    ALPHA_JP_HIRA_DA,
+    ALPHA_JP_HIRA_BA,
+    ALPHA_JP_HIRA_PA,
+    ALPHA_JP_HIRA_SMALL_A,
+    ALPHA_JP_HIRA_SMALL_YA,
+    ALPHA_NULL
 };
-u16 gNameEntryRow2KATA[] = {
-    0x00CF, 0x00D4, 0x00D9, 0x00DE, 0x00E3, 0x00E8, 0x00ED, 0x00F1, 0x00F5,
-    0x00FA, 0x00FD, 0x0102, 0x0107, 0x010C, 0x0111, 0x0116, 0x011C, 0x8FFF
+u16 gNameEntryRow1HIRA[] = {// _JP("いきしちにひみ りをぎじぢびぴぃゅ")
+    ALPHA_JP_HIRA_I,
+    ALPHA_JP_HIRA_KI,
+    ALPHA_JP_HIRA_SHI,
+    ALPHA_JP_HIRA_CHI,
+    ALPHA_JP_HIRA_NI,
+    ALPHA_JP_HIRA_HI,
+    ALPHA_JP_HIRA_MI,
+    ALPHA_SPACE,
+    ALPHA_JP_HIRA_RI,
+    ALPHA_JP_HIRA_WO,
+    ALPHA_JP_HIRA_GI,
+    ALPHA_JP_HIRA_JI,
+    ALPHA_JP_HIRA_DI,
+    ALPHA_JP_HIRA_BI,
+    ALPHA_JP_HIRA_PI,
+    ALPHA_JP_HIRA_SMALL_I,
+    ALPHA_JP_HIRA_SMALL_YU,
+    ALPHA_NULL
+
 };
-u16 gNameEntryRow3KATA[] = {
-    0x00D0, 0x00D5, 0x00DA, 0x00DF, 0x00E4, 0x00E9, 0x00EE, 0x0000, 0x00F6,
-    0x0000, 0x00FE, 0x0103, 0x0108, 0x010D, 0x0112, 0x0117, 0x0119, 0x8FFF
+u16 gNameEntryRow2HIRA[] = { // _JP("うくすつぬふむゆるんぐずづぶぷぅょ")
+    ALPHA_JP_HIRA_U,
+    ALPHA_JP_HIRA_KU,
+    ALPHA_JP_HIRA_SU,
+    ALPHA_JP_HIRA_TSU,
+    ALPHA_JP_HIRA_NU,
+    ALPHA_JP_HIRA_FU,
+    ALPHA_JP_HIRA_MU,
+    ALPHA_JP_HIRA_YU,
+    ALPHA_JP_HIRA_RU,
+    ALPHA_JP_HIRA_N,
+    ALPHA_JP_HIRA_GU,
+    ALPHA_JP_HIRA_ZU,
+    ALPHA_JP_HIRA_DU,
+    ALPHA_JP_HIRA_BU,
+    ALPHA_JP_HIRA_PU,
+    ALPHA_JP_HIRA_SMALL_U,
+    ALPHA_JP_HIRA_SMALL_YO,
+    ALPHA_NULL
 };
-u16 gNameEntryRow4KATA[] = {
-    0x00D1, 0x00D6, 0x00DB, 0x00E0, 0x00E5, 0x00EA, 0x00EF, 0x00F2, 0x00F7,
-    0x00C0, 0x00FF, 0x0104, 0x0109, 0x010E, 0x0113, 0x0118, 0x011D, 0x8FFF
+u16 gNameEntryRow3HIRA[] = { // _JP("えけせてねへめ れ げぜでべぺぇ ")
+    ALPHA_JP_HIRA_E,
+    ALPHA_JP_HIRA_KE,
+    ALPHA_JP_HIRA_SE,
+    ALPHA_JP_HIRA_TE,
+    ALPHA_JP_HIRA_NE,
+    ALPHA_JP_HIRA_HE,
+    ALPHA_JP_HIRA_ME,
+    ALPHA_SPACE,
+    ALPHA_JP_HIRA_RE,
+    ALPHA_SPACE,
+    ALPHA_JP_HIRA_GE,
+    ALPHA_JP_HIRA_ZE,
+    ALPHA_JP_HIRA_DE,
+    ALPHA_JP_HIRA_BE,
+    ALPHA_JP_HIRA_PE,
+    ALPHA_JP_HIRA_SMALL_E,
+    ALPHA_SPACE,
+    ALPHA_NULL
+
 };
-u16 D_800C5210[] = { 0x0144, 0x0000, 0x012C, 0x012F, 0x0000, 0x013D, 0x00B3, 0x8FFF };
-u16 D_800C5220[] = { 0x0000, 0x0138, 0x0124, 0x0122, 0x00B3, 0x00B3, 0x8FFF };
-u16 D_800C5230[] = { 0x014E, 0x0125, 0x0126, 0x0120, 0x0125, 0x00B3, 0x8FFF };
-u16 D_800C5240[] = { 0x013C, 0x012F, 0x011E, 0x0130, 0x0122, 0x0000, 0x00B3, 0x8FFF };
-u16 D_800C5250[] = { 0x0149, 0x0122, 0x011E, 0x0129, 0x0129, 0x0136, 0x00B3, 0x8FFF };
-u16 D_800C5260[] = { 0x0148, 0x0132, 0x0126, 0x0131, 0x00B3, 0x8FFF };
-u16 D_800C526C[] = {
-    0x0140, 0x0130, 0x0000, 0x0131, 0x0125, 0x0126, 0x0130, 0x0000,
-    0x0146, 0x0142, 0x00B3, 0x0000, 0x0150, 0x0122, 0x0130, 0x0000,
-    0x0145, 0x012C, 0x8FFF
+u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼぽぉっ")
+    ALPHA_JP_HIRA_O,
+    ALPHA_JP_HIRA_KO,
+    ALPHA_JP_HIRA_SO,
+    ALPHA_JP_HIRA_TO,
+    ALPHA_JP_HIRA_NO,
+    ALPHA_JP_HIRA_HO,
+    ALPHA_JP_HIRA_MO,
+    ALPHA_JP_HIRA_YO,
+    ALPHA_JP_HIRA_RO,
+    ALPHA_DASH,
+    ALPHA_JP_HIRA_GO,
+    ALPHA_JP_HIRA_ZO,
+    ALPHA_JP_HIRA_DO,
+    ALPHA_JP_HIRA_BO,
+    ALPHA_JP_HIRA_PO,
+    ALPHA_JP_HIRA_SMALL_O,
+    ALPHA_JP_HIRA_SMALL_TSU,
+    ALPHA_NULL
+
 };
-u16 D_800C5294[] = { 0x0150, 0x0122, 0x0130, 0x0000, 0x0145, 0x012C, 0x8FFF };
-u16 D_800C52A4[] = { 0x006B, 0x0077, 0x007F, 0x0065, 0x8FFF };
-u16 D_800C52B0[] = { 0x00D2, 0x00DC, 0x00D2, 0x00E1, 0x8FFF };
-u16 D_800C52BC[] = { 0x005F, 0x0069, 0x006E, 0x0056, 0x8FFF };
-u16 D_800C52C8[] = { 0x0145, 0x011E, 0x012A, 0x0122, 0x8FFF };
-u16 D_800C52D4[] = { 0x0144, 0x0000, 0x012C, 0x012F, 0x0000, 0x013D, 0x8FFF };
-u16 D_800C52E4[] = { 0x0144, 0x8FFF };
-u16 D_800C52E8[] = { 0x013D, 0x8FFF };
-u16 D_800C52EC[] = { 0x0138, 0x0124, 0x0122, 0x8FFF };
-u16 D_800C52F4[] = { 0x0000, 0x8FFF };
-u16 D_800C52F8[] = { 0x0000, 0x005B, 0x007B, 0x0079, 0x8FFF };
-u16 gNameEntryRow0ENG[] = {
-    0x011E, 0x011F, 0x0120, 0x0121, 0x0122, 0x0123, 0x0124, 0x0125, 0x0126,
-    0x0127, 0x0128, 0x0129, 0x012A, 0x0000, 0x00CE, 0x00CF, 0x00D0, 0x8FFF
+u16 gArrowRight[] = { ALPHA_ARROW_RIGHT, ALPHA_NULL }; // _("→")
+u16 gArrowLeft[] = { ALPHA_ARROW_LEFT, ALPHA_NULL }; // _("←")
+u16 gArrowDown[] = { ALPHA_ARROW_DOWN, ALPHA_NULL }; // _("↓")
+u16 gDash10x[] = { // _("----------")
+    ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH,
+    ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH,
+    ALPHA_NULL
 };
-u16 gNameEntryRow1ENG[] = {
-    0x012B, 0x012C, 0x012D, 0x012E, 0x012F, 0x0130, 0x0131, 0x0132, 0x0133,
-    0x0134, 0x0135, 0x0136, 0x0137, 0x0000, 0x00D1, 0x00CD, 0x00BB, 0x8FFF
+u16 gNameEntryRow0KATA[] = { // _JP("アカサタナハマヤラワガザダバパァャ")
+    ALPHA_JP_KATA_A,
+    ALPHA_JP_KATA_KA,
+    ALPHA_JP_KATA_SA,
+    ALPHA_JP_KATA_TA,
+    ALPHA_JP_KATA_NA,
+    ALPHA_JP_KATA_HA,
+    ALPHA_JP_KATA_MA,
+    ALPHA_JP_KATA_YA,
+    ALPHA_JP_KATA_RA,
+    ALPHA_JP_KATA_WA,
+    ALPHA_JP_KATA_GA,
+    ALPHA_JP_KATA_ZA,
+    ALPHA_JP_KATA_DA,
+    ALPHA_JP_KATA_BA,
+    ALPHA_JP_KATA_PA,
+    ALPHA_JP_KATA_SMALL_A,
+    ALPHA_JP_KATA_SMALL_YA,
+    ALPHA_NULL
 };
-u16 gNameEntryRow2ENG[] = {
-    0x0138, 0x0139, 0x013A, 0x013B, 0x013C, 0x013D, 0x013E, 0x013F, 0x0140,
-    0x0141, 0x0142, 0x0143, 0x0144, 0x0000, 0x00BF, 0x00C0, 0x00C3, 0x8FFF,
+u16 gNameEntryRow1KATA[] = { // _JP("イキシチニヒミ リヲギジヂビピィュ")
+    ALPHA_JP_KATA_I,
+    ALPHA_JP_KATA_KI,
+    ALPHA_JP_KATA_SHI,
+    ALPHA_JP_KATA_CHI,
+    ALPHA_JP_KATA_NI,
+    ALPHA_JP_KATA_HI,
+    ALPHA_JP_KATA_MI,
+    ALPHA_SPACE,
+    ALPHA_JP_KATA_RI,
+    ALPHA_JP_KATA_WO,
+    ALPHA_JP_KATA_GI,
+    ALPHA_JP_KATA_JI,
+    ALPHA_JP_KATA_DI,
+    ALPHA_JP_KATA_BI,
+    ALPHA_JP_KATA_PI,
+    ALPHA_JP_KATA_SMALL_I,
+    ALPHA_JP_KATA_SMALL_YU,
+    ALPHA_NULL
 };
-u16 gNameEntryRow3ENG[] = {
-    0x0145, 0x0146, 0x0147, 0x0148, 0x0149, 0x014A, 0x014B, 0x014C, 0x014D,
-    0x014E, 0x014F, 0x0150, 0x0151, 0x0000, 0x00B8, 0x00B9, 0x00C5, 0x8FFF,
+u16 gNameEntryRow2KATA[] = { // _JP("ウクスツヌフムユルングズヅブプゥョ")
+    ALPHA_JP_KATA_U,
+    ALPHA_JP_KATA_KU,
+    ALPHA_JP_KATA_SU,
+    ALPHA_JP_KATA_TSU,
+    ALPHA_JP_KATA_NU,
+    ALPHA_JP_KATA_FU,
+    ALPHA_JP_KATA_MU,
+    ALPHA_JP_KATA_YU,
+    ALPHA_JP_KATA_RU,
+    ALPHA_JP_KATA_N,
+    ALPHA_JP_KATA_GU,
+    ALPHA_JP_KATA_ZU,
+    ALPHA_JP_KATA_DU,
+    ALPHA_JP_KATA_BU,
+    ALPHA_JP_KATA_PU,
+    ALPHA_JP_KATA_SMALL_U,
+    ALPHA_JP_KATA_SMALL_YO,
+    ALPHA_NULL
+
 };
-u16 gNameEntryRow4ENG[] = {
-    0x00A1, 0x00A2, 0x00A3, 0x00A4, 0x00A5, 0x00A6, 0x00A7, 0x00A8, 0x00A9,
-    0x00AA, 0x00BE, 0x00BC, 0x00BD, 0x0000, 0x00B1, 0x00B3, 0x00C6, 0x8FFF
+u16 gNameEntryRow3KATA[] = { // _JP("エケセテネヘメ レ ゲゼデベペェッ")
+    ALPHA_JP_KATA_E,
+    ALPHA_JP_KATA_KE,
+    ALPHA_JP_KATA_SE,
+    ALPHA_JP_KATA_TE,
+    ALPHA_JP_KATA_NE,
+    ALPHA_JP_KATA_HE,
+    ALPHA_JP_KATA_ME,
+    ALPHA_SPACE,
+    ALPHA_JP_KATA_RE,
+    ALPHA_SPACE,
+    ALPHA_JP_KATA_GE,
+    ALPHA_JP_KATA_ZE,
+    ALPHA_JP_KATA_DE,
+    ALPHA_JP_KATA_BE,
+    ALPHA_JP_KATA_PE,
+    ALPHA_JP_KATA_SMALL_E,
+    ALPHA_JP_KATA_SMALL_TSU,
+    ALPHA_NULL
+};
+u16 gNameEntryRow4KATA[] = { // _JP("オコソトノホモヨローゴゾドボポォヴ")
+    ALPHA_JP_KATA_O,
+    ALPHA_JP_KATA_KO,
+    ALPHA_JP_KATA_SO,
+    ALPHA_JP_KATA_TO,
+    ALPHA_JP_KATA_NO,
+    ALPHA_JP_KATA_HO,
+    ALPHA_JP_KATA_MO,
+    ALPHA_JP_KATA_YO,
+    ALPHA_JP_KATA_RO,
+    ALPHA_DASH,
+    ALPHA_JP_KATA_GO,
+    ALPHA_JP_KATA_ZO,
+    ALPHA_JP_KATA_DO,
+    ALPHA_JP_KATA_BO,
+    ALPHA_JP_KATA_PO,
+    ALPHA_JP_KATA_SMALL_O,
+    ALPHA_JP_KATA_VU,
+    ALPHA_NULL
+};
+u16 gMorFEN3[] = { // _EN3("M or F?")
+    ALPHA_EN3_UPPER_M,
+    ALPHA_SPACE,
+    ALPHA_EN3_LOWER_O,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_F,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gAgeQuestion[] = { // _EN3(" Age??")
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_A,
+    ALPHA_EN3_LOWER_G,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_QUESTION,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gWhichQuestion2[] = { // _EN3("Which?")
+    ALPHA_EN3_UPPER_W,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_LOWER_I,
+    ALPHA_EN3_LOWER_C,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gEraseQuestion[] = { // _EN3("Erase ?")
+    ALPHA_EN3_UPPER_E,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_SPACE,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gReallyQuestion[] = { // _EN3("Really?")
+    ALPHA_EN3_UPPER_R,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_L,
+    ALPHA_EN3_LOWER_L,
+    ALPHA_EN3_LOWER_Y,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gQuitQuestion[] = { // _EN3("Quit?")
+    ALPHA_EN3_UPPER_Q,
+    ALPHA_EN3_LOWER_U,
+    ALPHA_EN3_LOWER_I,
+    ALPHA_EN3_LOWER_T,
+    ALPHA_QUESTION,
+    ALPHA_NULL
+};
+u16 gIsThisOkQuestion[] = { // _EN3("Is this OK? Yes No")
+    ALPHA_EN3_UPPER_I,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_SPACE,
+    ALPHA_EN3_LOWER_T,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_LOWER_I,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_O,
+    ALPHA_EN3_UPPER_K,
+    ALPHA_QUESTION,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_Y,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_N,
+    ALPHA_EN3_LOWER_O,
+    ALPHA_NULL
+};
+u16 gYesNo[] = { // _EN3("Yes No")
+    ALPHA_EN3_UPPER_Y,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_N,
+    ALPHA_EN3_LOWER_O,
+    ALPHA_NULL
+};
+u16 gHiragana[] = { // _JP("ひらがな")
+    ALPHA_JP_HIRA_HI,
+    ALPHA_JP_HIRA_RA,
+    ALPHA_JP_HIRA_GA,
+    ALPHA_JP_HIRA_NA,
+    ALPHA_NULL
+};
+u16 gKatakana[] = { // _JP("カタカナ")
+    ALPHA_JP_KATA_KA,
+    ALPHA_JP_KATA_TA,
+    ALPHA_JP_KATA_KA,
+    ALPHA_JP_KATA_NA,
+    ALPHA_NULL
+};
+u16 gOther[] = { // _JP("そのほか")
+    ALPHA_JP_HIRA_SO,
+    ALPHA_JP_HIRA_NO,
+    ALPHA_JP_HIRA_HO,
+    ALPHA_JP_HIRA_KA,
+    ALPHA_NULL
+};
+u16 gName[] = { // _EN3("Name")
+    ALPHA_EN3_UPPER_N,
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_M,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_NULL
+};
+u16 gMorF2[] = { // _EN3("M or F")
+    ALPHA_EN3_UPPER_M,
+    ALPHA_SPACE,
+    ALPHA_EN3_LOWER_O,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_F,
+    ALPHA_NULL
+};
+u16 gGenderM[] = { ALPHA_EN3_UPPER_M, ALPHA_NULL }; // _EN3("M")
+u16 gGenderF[] = { ALPHA_EN3_UPPER_F, ALPHA_NULL }; // _EN3("F")
+u16 gAgeEN3[] = { // _EN3("Age")
+    ALPHA_EN3_UPPER_A,
+    ALPHA_EN3_LOWER_G,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_NULL
+};
+u16 gSpace1[] = { ALPHA_SPACE, ALPHA_NULL }; // _(" ")
+u16 gAgeEN2[] = { // _EN2(" Age")
+    ALPHA_SPACE,
+    ALPHA_EN2_UPPER_A,
+    ALPHA_EN2_LOWER_G,
+    ALPHA_EN2_LOWER_E,
+    ALPHA_NULL
+};
+u16 gNameEntryRow0ENG[] = { // _EN3("abcdefghijklm αβγ")
+    ALPHA_EN3_LOWER_A,
+    ALPHA_EN3_LOWER_B,
+    ALPHA_EN3_LOWER_C,
+    ALPHA_EN3_LOWER_D,
+    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_LOWER_F,
+    ALPHA_EN3_LOWER_G,
+    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_LOWER_I,
+    ALPHA_EN3_LOWER_J,
+    ALPHA_EN3_LOWER_K,
+    ALPHA_EN3_LOWER_L,
+    ALPHA_EN3_LOWER_M,
+    ALPHA_SPACE,
+    ALPHA_EN_GREEK_ALPHA,
+    ALPHA_EN_GREEK_BETA,
+    ALPHA_EN_GREEK_GAMMA,
+    ALPHA_NULL
+};
+u16 gNameEntryRow1ENG[] = { // _EN3("nopqrstuvwxyz 'sII:")
+    ALPHA_EN3_LOWER_N,
+    ALPHA_EN3_LOWER_O,
+    ALPHA_EN3_LOWER_P,
+    ALPHA_EN3_LOWER_Q,
+    ALPHA_EN3_LOWER_R,
+    ALPHA_EN3_LOWER_S,
+    ALPHA_EN3_LOWER_T,
+    ALPHA_EN3_LOWER_U,
+    ALPHA_EN3_LOWER_V,
+    ALPHA_EN3_LOWER_W,
+    ALPHA_EN3_LOWER_X,
+    ALPHA_EN3_LOWER_Y,
+    ALPHA_EN3_LOWER_Z,
+    ALPHA_SPACE,
+    ALPHA_APOSTROPHE_S,
+    ALPHA_ROMAN_2,
+    ALPHA_COLON,
+    ALPHA_NULL
+};
+u16 gNameEntryRow2ENG[] = { // _EN3("ABCDEFGHIJKLM +-=")
+    ALPHA_EN3_UPPER_A,
+    ALPHA_EN3_UPPER_B,
+    ALPHA_EN3_UPPER_C,
+    ALPHA_EN3_UPPER_D,
+    ALPHA_EN3_UPPER_E,
+    ALPHA_EN3_UPPER_F,
+    ALPHA_EN3_UPPER_G,
+    ALPHA_EN3_UPPER_H,
+    ALPHA_EN3_UPPER_I,
+    ALPHA_EN3_UPPER_J,
+    ALPHA_EN3_UPPER_K,
+    ALPHA_EN3_UPPER_L,
+    ALPHA_EN3_UPPER_M,
+    ALPHA_SPACE,
+    ALPHA_PLUS,
+    ALPHA_DASH,
+    ALPHA_EQUALS,
+    ALPHA_NULL
+};
+u16 gNameEntryRow3ENG[] = { // _EN3("NOPQRSTUVWXYZ <><3")
+    ALPHA_EN3_UPPER_N,
+    ALPHA_EN3_UPPER_O,
+    ALPHA_EN3_UPPER_P,
+    ALPHA_EN3_UPPER_Q,
+    ALPHA_EN3_UPPER_R,
+    ALPHA_EN3_UPPER_S,
+    ALPHA_EN3_UPPER_T,
+    ALPHA_EN3_UPPER_U,
+    ALPHA_EN3_UPPER_V,
+    ALPHA_EN3_UPPER_W,
+    ALPHA_EN3_UPPER_X,
+    ALPHA_EN3_UPPER_Y,
+    ALPHA_EN3_UPPER_Z,
+    ALPHA_SPACE,
+    ALPHA_LESS_THAN,
+    ALPHA_GREATER_THAN,
+    ALPHA_HEART,
+    ALPHA_NULL
+};
+u16 gNameEntryRow4ENG[] = { // _EN3("0123456789.,' !?♪")
+    ALPHA_THIN_0,
+    ALPHA_THIN_1,
+    ALPHA_THIN_2,
+    ALPHA_THIN_3,
+    ALPHA_THIN_4,
+    ALPHA_THIN_5,
+    ALPHA_THIN_6,
+    ALPHA_THIN_7,
+    ALPHA_THIN_8,
+    ALPHA_THIN_9,
+    ALPHA_PERIOD,
+    ALPHA_COMMA,
+    ALPHA_APOSTROPHE,
+    ALPHA_SPACE,
+    ALPHA_EXCLAMATION,
+    ALPHA_QUESTION,
+    ALPHA_NOTE,
+    ALPHA_NULL
 };
 
 //------------------------------------------------------------------------------
@@ -530,26 +956,26 @@ void func_8000607C(u16 actor_index) {
     gActors[actor_index + 0].posY.whole = 16;
     gActors[actor_index + 1].posX.whole = -32;
     gActors[actor_index + 1].posY.whole = 16;
-    actor_1 = Text_PrintStringRGB(actor_index + 3, D_800C5210, 0xFFE0, 0x58, 0x0, 0x80, 0x0, 0x80);
+    actor_1 = Text_PrintStringRGB(actor_index + 3, gMorFEN3, 0xFFE0, 0x58, 0x0, 0x80, 0x0, 0x80);
 
     gActors[actor_1 - 4].posX.whole -= 8;
     gActors[actor_1 - 3].posX.whole -= 8;
     gActors[actor_1 - 2].posX.whole -= 16;
     gActors[actor_1 - 1].posX.whole -= 16;
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52C8, 0xFF90, 0x30, 0x0, 0x80,  0x0, 0x80);
+    actor_1 = Text_PrintStringRGB(actor_1, gName, 0xFF90, 0x30, 0x0, 0x80,  0x0, 0x80);
     D_80171B1A = actor_1;
     actor_1 = Text_PrintStringRGB(actor_1, gNameEntrySpace, 0xFFE0, 0x30, 0x0, 0x40, 0x20, 0xFF);
     D_80171B1C = actor_1;
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52D4, 0xFF8A, 0x10, 0x0, 0x80,  0x0, 0x80);
+    actor_1 = Text_PrintStringRGB(actor_1, gMorF2, 0xFF8A, 0x10, 0x0, 0x80,  0x0, 0x80);
 
     gActors[actor_1 - 3].posX.whole -= 8;
     gActors[actor_1 - 2].posX.whole -= 8;
     gActors[actor_1 - 1].posX.whole -= 16;
     D_80171B1E = actor_1;
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52E4, 0xFFE0,   0x10, 0x0, 0x40, 0x20, 0xFF);
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52E8,    0x0,   0x10, 0x0, 0x40, 0x20, 0xFF);
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52EC, 0xFF98, 0xFFF0, 0x0, 0x80,  0x0, 0x80);
-    actor_1 = Text_PrintStringRGB(actor_1, D_800C52F4, 0xFFF6, 0xFFEF, 0x0, 0x80,  0x0,  0x0);
+    actor_1 = Text_PrintStringRGB(actor_1, gGenderM, 0xFFE0,   0x10, 0x0, 0x40, 0x20, 0xFF);
+    actor_1 = Text_PrintStringRGB(actor_1, gGenderF,    0x0,   0x10, 0x0, 0x40, 0x20, 0xFF);
+    actor_1 = Text_PrintStringRGB(actor_1, gAgeEN3, 0xFF98, 0xFFF0, 0x0, 0x80,  0x0, 0x80);
+    actor_1 = Text_PrintStringRGB(actor_1, gSpace1, 0xFFF6, 0xFFEF, 0x0, 0x80,  0x0,  0x0);
     gActors[0xB7].unk_0A0 = actor_1;
     D_80171B20 = actor_1;
     Text_Print2Digits(actor_1, gSelectedAge, 0xFFE0, 0xFFF0, 0, gTextPalettes[3]);
@@ -584,7 +1010,7 @@ void func_80006360(u16 actor_index) {
     gActors[actor_index + 0x2A].colorA = 0x80;
     gActors[actor_index + 0x2A].scaleX = 18.0f;
     gActors[actor_index + 0x2A].scaleY = 4.0f;
-    Text_PrintString(actor_index + 0x42, D_800C5230, 0xFFD0, 0x58, 0);
+    Text_PrintString(actor_index + 0x42, gWhichQuestion2, 0xFFD0, 0x58, 0);
     Text_InitActorGList(actor_index + 0x8, D_800E13FC, 0xFF80, 0x2B, 0);
     Text_PrintStringRGB(actor_index + 0xC, D_800C5024, 0xFF9C, 0x2B, 0, 0, 0, 0);
     for (index = 0, count = 0; index < ARRAYLENGTH(gDefaultFileName); index++) {
@@ -602,11 +1028,11 @@ void func_80006360(u16 actor_index) {
             var_v0 = 0xF4;
         }
         func_800831D0(3, 1, var_v0, 1);
-        func_80083358(4, 1, D_800C52F8, 1);
-        func_80083358(4, 2, D_800C502C, 2);
-        func_80083358(7, 2, D_800C5038, 2);
-        func_80083358(10, 2, D_800C5044, 2);
-        func_80083358(13, 2, D_800C5050, 2);
+        func_80083358(4, 1, gAgeEN2, 1);
+        func_80083358(4, 2, gDayEN2, 2);
+        func_80083358(7, 2, gHrsEN2, 2);
+        func_80083358(10, 2, gMinEN2, 2);
+        func_80083358(13, 2, gSecEN2, 2);
         Text_Print2Digits(actor_index + 0xA2, gFileAges[SAVE_SLOT_0], 0xFFE6, 0x29, 0, gTextPalettes[6]);
         func_80005860(actor_index + 0x4C, 8, 0x29, (uintptr_t)gPaletteGemRed);
         func_800058E0(actor_index + 0x50, 0x18, 0x29, 0, gTextPalettes[4]);
@@ -636,11 +1062,11 @@ void func_80006360(u16 actor_index) {
             var_v0 = 0xF4;
         }
         func_80083518(3, 1, var_v0, 1);
-        func_800836A0(4, 1, D_800C52F8, 1);
-        func_800836A0(4, 2, D_800C502C, 2);
-        func_800836A0(7, 2, D_800C5038, 2);
-        func_800836A0(10, 2, D_800C5044, 2);
-        func_800836A0(13, 2, D_800C5050, 2);
+        func_800836A0(4, 1, gAgeEN2, 1);
+        func_800836A0(4, 2, gDayEN2, 2);
+        func_800836A0(7, 2, gHrsEN2, 2);
+        func_800836A0(10, 2, gMinEN2, 2);
+        func_800836A0(13, 2, gSecEN2, 2);
         Text_Print2Digits(actor_index + 0xA4, gFileAges[SAVE_SLOT_1], 0xFFE6, 0xFFE2, 0, gTextPalettes[6]);
         func_80005860(actor_index + 0x4D, 8, 0xFFE2, (uintptr_t)gPaletteGemRed);
         func_800058E0(actor_index + 0x54, 0x18, 0xFFE2, 1, gTextPalettes[4]);
@@ -656,7 +1082,7 @@ void func_80006360(u16 actor_index) {
     gActors[actor_index + 0xAA].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
     gActors[actor_index + 0xAA].palette_18C = D_800D8548;
     gActors[actor_index + 0xAA].scaleX = gActors[actor_index + 0xAA].scaleY = 0.6f;
-    Text_PrintStringRGB(actor_index + 0x99, D_800C505C, 0xFF96, 0xFFAE, 0, 0, 0, 0);
+    Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, 0, 0, 0);
 }
 
 void func_80006B1C(u16 actor_index) {
@@ -743,7 +1169,7 @@ void func_80006EDC(u16 actor_index) {
             Text_InitActorGraphic(actor_index + 0x9, 0xF4, 0xFF80, 0xFFE0, 0);
             break;
         case 2:
-            Text_PrintStringRGB(actor_index + 0x99, D_800C505C, 0xFF96, 0xFFAE, 0, 0, 0, 0);
+            Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, 0, 0, 0);
             break;
         }
 
@@ -773,7 +1199,7 @@ void func_80006EDC(u16 actor_index) {
         Text_PrintStringRGB(actor_index + 0x12, D_800C5028, 0xFF9C, 0xFFE0, 0, gActors[2].var_158, gActors[2].var_158, 0);
         break;
     case 2:
-        Text_PrintStringRGB(actor_index + 0x99, D_800C505C, 0xFF96, 0xFFAE, 0, gActors[2].var_158, gActors[2].var_158, 0);
+        Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, gActors[2].var_158, gActors[2].var_158, 0);
         break;
     }
 }
@@ -789,7 +1215,7 @@ void func_800072A4(void) {
     }
     if (count != 0) {
         gActors[gActors[0xB7].unk_0A0 - 1].flags &= ~ACTOR_FLAG_DRAW;
-        Text_PrintString(gActors[0xB7].unk_0A0 + 0xA, D_800C526C, 0xFFA0, 0xFFB0, 0);
+        Text_PrintString(gActors[0xB7].unk_0A0 + 0xA, gIsThisOkQuestion, 0xFFA0, 0xFFB0, 0);
         gActors[1].posX.whole = gActors[2].posX.whole = 46;
         gActors[1].posY.whole = gActors[2].posY.whole = -80;
         gActors[0xBA].unk_0A0 = 1;
@@ -806,7 +1232,7 @@ u16 NameEntry_PrintKeyboardHIRA(u16 actor_index) {
 
     Text_InitActorGraphic(actor_index++, 0x11E, 0x80, 0x44, 0);
     gActors[actor_index++].flags = 0;
-    index = Text_PrintStringRGB(actor_index, D_800C52B0, 0x40, 0x44, 0, 0x80, 0, 0);
+    index = Text_PrintStringRGB(actor_index, gKatakana, 0x40, 0x44, 0, 0x80, 0, 0);
     gActors[index++].flags = 0;
     gActors[index++].flags = 0;
     gActors[index++].flags = 0;
@@ -834,8 +1260,8 @@ void NameEntry_PrintKeyboardKATA(void) {
     actor_index = 0xC;
     Text_InitActorGraphic(actor_index++, 0x11A, 0xFF80, 0x44, 0);
     Text_InitActorGraphic(actor_index++, 0x11E, 0x80, 0x44, 0);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C52A4, 0xFF90, 0x44, 0, 0x80, 0, 0);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C52BC, 0x40, 0x44, 0, 0x80, 0, 0);
+    actor_index = Text_PrintStringRGB(actor_index, gHiragana, 0xFF90, 0x44, 0, 0x80, 0, 0);
+    actor_index = Text_PrintStringRGB(actor_index, gOther, 0x40, 0x44, 0, 0x80, 0, 0);
     actor_index = Text_PrintString(actor_index, gNameEntryRow0KATA, 0xFF80, 0x30, 0);
     actor_index = Text_PrintString(actor_index, gNameEntryRow1KATA, 0xFF80, 0x20, 0);
     actor_index = Text_PrintString(actor_index, gNameEntryRow2KATA, 0xFF80, 0x10, 0);
@@ -876,13 +1302,13 @@ void func_800078A4(u16 arg0) {
     func_800230B8();
     actor_index = func_80006B9C(arg0);
     Text_InitActorGList(actor_index++, D_800E13FC, 0xFFC4, 0x58, 0);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C5078, 0xFFDC, 0x58, 0, 0x80, 0, 0x80);
+    actor_index = Text_PrintStringRGB(actor_index, gNameQuestion, 0xFFDC, 0x58, 0, 0x80, 0, 0x80);
     actor_index += 3;
     actor_index = NameEntry_PrintKeyboardHIRA(actor_index);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C5138, 0x38, 0xFFE0, 0, 0x80, 0, 0);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C513C, 0x58, 0xFFE0, 0, 0x80, 0, 0);
-    actor_index = Text_PrintStringRGB(actor_index, D_800C5140, 0x78, 0xFFE0, 0, 0x80, 0, 0);
-    actor_index = Text_PrintStringRGBScale(actor_index, D_800C5144, 0xFFB8, 0xFFC4, 0, 0, 0x60, 0, 1.0f, 1.0f);
+    actor_index = Text_PrintStringRGB(actor_index, gArrowRight, 0x38, 0xFFE0, 0, 0x80, 0, 0);
+    actor_index = Text_PrintStringRGB(actor_index, gArrowLeft, 0x58, 0xFFE0, 0, 0x80, 0, 0);
+    actor_index = Text_PrintStringRGB(actor_index, gArrowDown, 0x78, 0xFFE0, 0, 0x80, 0, 0);
+    actor_index = Text_PrintStringRGBScale(actor_index, gDash10x, 0xFFB8, 0xFFC4, 0, 0, 0x60, 0, 1.0f, 1.0f);
     Text_InitActorGraphicRGB(actor_index++, 0x464, 0xFFB8, 0xFFBC, 0, 0x60, 0xC0, 0);
     gActors[0xB7].unk_0A0 = actor_index;
     NAME_ENTRY_CHARSET = CHAR_SELECT_ROW = CHAR_SELECT_COLUMN = 0;
@@ -977,7 +1403,7 @@ void GameState_FileSelect(void) {
         }
         func_80006EDC(1);
         if ((gButtonPress & gButton_B) && (gGameStateSubState == 7)) {
-            Text_PrintStringRGB(0x43, D_800C5230, 0xFFD0, 0x58, 0, 0x80, 0, 0x80);
+            Text_PrintStringRGB(0x43, gWhichQuestion2, 0xFFD0, 0x58, 0, 0x80, 0, 0x80);
             gGameStateSubState = 1;
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
@@ -989,7 +1415,7 @@ void GameState_FileSelect(void) {
                     }
                 }
                 if (count != 0) {
-                    Text_FreeString(0x43, D_800C5230);
+                    Text_FreeString(0x43, gWhichQuestion2);
                     actor_index = func_80006B9C(0xAC);
                     gActors[actor_index - 2].posX.whole = 0x28;
                     gActors[actor_index - 1].posX.whole = gActors[actor_index - 2].posX.whole;
@@ -1003,8 +1429,8 @@ void GameState_FileSelect(void) {
                         actor_index = Text_PrintStringRGB(actor_index, D_800C5028, 0xFFE0, 0x58, 0, 0, 0xFF, 0xFF);
                         break;
                     }
-                    actor_index = Text_PrintStringRGB(actor_index, D_800C5240, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
-                    Text_PrintStringRGB(actor_index, D_800C5294, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
+                    actor_index = Text_PrintStringRGB(actor_index, gEraseQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
+                    Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
                     gActors[0xBA].unk_0A0 = 1;
                     gGameStateSubState++;
                 }
@@ -1014,8 +1440,8 @@ void GameState_FileSelect(void) {
             }
             else {
                 if (gCurrentSaveSlot == 2) {
-                    Text_PrintStringRGBScale(0x9A, D_800C505C, 0xFF96, 0xFFAE, 0, 0, 0, 0, 0.5f, 1.0f);
-                    Text_PrintStringRGB(0x43, D_800C5068, 0xFFD0, 0x58, 0, 0, 0xFF, 0xFF);
+                    Text_PrintStringRGBScale(0x9A, gErase, 0xFF96, 0xFFAE, 0, 0, 0, 0, 0.5f, 1.0f);
+                    Text_PrintStringRGB(0x43, gWhichQuestion, 0xFFD0, 0x58, 0, 0, 0xFF, 0xFF);
                     gCurrentSaveSlot = 0;
                     func_80006EDC(1);
                     gGameStateSubState = 7;
@@ -1045,8 +1471,8 @@ void GameState_FileSelect(void) {
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
             if (gActors[0xBA].unk_0A0 != 0) {
-                actor_index = Text_PrintStringRGB(0xAE, D_800C5250, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
-                Text_PrintStringRGB(actor_index, D_800C5294, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
+                actor_index = Text_PrintStringRGB(0xAE, gReallyQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
+                Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
                 gActors[0xBA].unk_0A0 = 1;
                 gGameStateSubState++;
             }
@@ -1062,8 +1488,8 @@ void GameState_FileSelect(void) {
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
             if (gActors[0xBA].unk_0A0 != 0) {
-                actor_index = Text_PrintStringRGB(0xAE, D_800C5260, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
-                Text_PrintStringRGB(actor_index, D_800C5294, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
+                actor_index = Text_PrintStringRGB(0xAE, gQuitQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
+                Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
                 gActors[0xBA].unk_0A0 = 1;
                 gGameStateSubState++;
             }
@@ -1355,7 +1781,7 @@ void GameState_FileSelect(void) {
             gActors[0xBB].unk_0A0 = 0; // 0x10000 + unk2AA8
             gActors[actor_index + 1].posX.whole = gActors[actor_index + 0].posX.whole = -44;
             gActors[actor_index + 1].posY.whole = gActors[actor_index + 0].posY.whole = -16;
-            Text_PrintStringRGB(4, D_800C5220, 0xFFD0, 0x58, 0, 0x80, 0, 0x80);
+            Text_PrintStringRGB(4, gAgeQuestion, 0xFFD0, 0x58, 0, 0x80, 0, 0x80);
             gGameStateSubState++;
         }
         break;
@@ -1420,7 +1846,7 @@ void GameState_FileSelect(void) {
             gActors[0xBA].unk_0A0 = 1;
             actor_index = gActors[0xB7].unk_0A0 + gActors[0xBA].unk_0A0 * 0;
             gActors[1].posX.whole = gActors[2].posX.whole = 46;
-            Text_PrintString(actor_index + 4, D_800C526C, 0xFFA0, 0xFFB0, 0);
+            Text_PrintString(actor_index + 4, gIsThisOkQuestion, 0xFFA0, 0xFFB0, 0);
             gGameStateSubState++;
         }
         break;
