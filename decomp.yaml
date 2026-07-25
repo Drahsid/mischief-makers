@@ -79,7 +79,7 @@ tools:
             - music
             - font
             - rle_type1
-            - "5A70"
+            - save_file
             - A540
             - "11820"
             - "12DD0"
@@ -131,8 +131,7 @@ tools:
             - floatTable
             - globals
             - music_data
-            - C5B20
-            - C6200
+            - C5FC0
             - C7DA0
             - C84A0
             - C8B20
@@ -142,7 +141,6 @@ tools:
             - E4760
             - E4920
             - E5160
-            - EBB10
             - EBBC0
             - EBBE0
             - EC960

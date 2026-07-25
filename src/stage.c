@@ -7,19 +7,12 @@
 #include "dma.h"
 #include "linker.h"
 #include "rle.h"
+#include "save_file.h"
 #include "soft_reset.h"
 #include "stage.h"
 #include "1F1E0.h"
+#include "438E0.h"
 
-// .data
-extern u16 gTimeRecords[]; // list of stage times
-extern u8 gCurrentSaveSlot;
-
-extern u16 gFileRedGems[];
-extern u16 gFileYellowGems[];
-extern u64 gFilePlayTimes[];
-
-extern u8 gWorldProgress; // max available stages
 
 // .bss
 
@@ -41,17 +34,9 @@ u8 gDebugStageSelectSelectedOptions[DEBUG_STAGE_SELECT_ROW_COUNT];
 u8 gDebugStageSelectOptionBaseOffsets[24];
 u8 gDebugMenuCursorFlash[DEBUG_STAGE_SELECT_ROW_COUNT];
 
-extern u8 D_801376A9;
-extern u8 D_801376AD;
-extern u8 D_801376B1;
-extern u8 D_801376B5;
-extern u8 D_801376B9;
-extern u8 D_801376BD;
 
 s16 WorldMap_GetStageRank(u16 time, u16 stage);
 
-void func_80005770(void);
-void func_80043918(void);
 void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3);
 void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 void OSD_SetData(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
@@ -1682,12 +1667,12 @@ void GameState_DebugStageSelect(void) {
             CURSOR_INDEX_A = 0;
             gCurrentScene = 0;
             DebugStageSelect_DrawMenu();
-            D_801376BD = 0;
-            D_801376B9 = 1;
-            D_801376A9 = 0xC0;
-            D_801376AD = 0xC0;
-            D_801376B1 = 0xC0;
-            D_801376B5 = 0xFF;
+            D_801376BC[1] = 0;
+            D_801376B8[1] = 1;
+            D_801376A8[1] = 0xC0;
+            D_801376AC[1] = 0xC0;
+            D_801376B0[1] = 0xC0;
+            D_801376B4[1] = 0xFF;
             gGameStateSubState++;
             break;
 
@@ -2105,36 +2090,36 @@ void func_8001A584(void) {
 
 // returns the time rank of (stage) compared to (time)
 // 0=S Rank, 1=A, 2=B, 3=C, 4=D
-s16 WorldMap_GetStageRank(u16 time, u16 stage) {
-    if (time < gStageTimesToBeat[stage]) {
-        return 0;
+s16 WorldMap_GetStageRank(u16 time_ticks, u16 stage) {
+    if (time_ticks < gStageTimesToBeat[stage]) {
+        return RANK_S;
     }
 
-    if (time < gStageTimesToBeat[stage] + 1800) {
-        return 1;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(30)) {
+        return RANK_A;
     }
 
-    if (time < gStageTimesToBeat[stage] + 7200) {
-        return 2;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(120)) {
+        return RANK_B;
     }
 
-    if (time < gStageTimesToBeat[stage] + 18000 && time < STAGE_MAX_TIME) {
-        return 3;
+    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(300) && time_ticks < STAGE_MAX_TIME) {
+        return RANK_C;
     }
 
-    return 4;
+    return RANK_D;
 }
 
 // print the Rank letter for (stage) based on (time)
 void WorldMap_PrintRankLetter(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = WorldMap_GetStageRank(time, stage);
-    func_8008379C(arg0, arg1, gRankLetters2[index], arg4);
+    s16 rank = WorldMap_GetStageRank(time, stage);
+    func_8008379C(arg0, arg1, gRankLetters2[rank], arg4);
 }
 
 // print the Rank review for (stage) based on (time)
 void WorldMap_PrintRankReview(s16 arg0, u16 arg1, u16 time, u16 stage, u16 arg4) {
-    s16 index = WorldMap_GetStageRank(time, stage);
-    func_80083810(arg0, arg1, gRankResults[index], arg4);
+    s16 rank = WorldMap_GetStageRank(time, stage);
+    func_80083810(arg0, arg1, gRankResults[rank], arg4);
 }
 
 void WorldMap_PrintRankLetterReview(void) {

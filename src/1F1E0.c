@@ -54,7 +54,7 @@ u16 D_801781D4;
 u32 pad_D_801781D8; // unused
 u16 gThrottleButtons; // when DEBUGFLAG_THROTTLE is set, this is used to store button input between ticks
 u16 D_801781DE; // unused
-u16 gStageTime;
+u16 gStageTime; // in units of ticks
 
 // forward declarations
 void func_8001E9DC(u16 arg0, u16 arg1);
@@ -2440,8 +2440,8 @@ void Pause_PrintPlayTime(void) {
     u32 time_remain;
 
     // 100 days * 24 hr/day * 60 min/hr * 60 sec/min * 60Hz = 518,400,000
-    if (gFramesInPlayTime >= 518400000) {
-        gFramesInPlayTime = 518399999;
+    if (gFramesInPlayTime >= FILE_PLAY_TIME_MAX) {
+        gFramesInPlayTime = FILE_PLAY_TIME_MAX - 1;
     }
     time_remain = gFramesInPlayTime / 60;
     val = time_remain % 60;
