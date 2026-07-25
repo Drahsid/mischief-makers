@@ -89,7 +89,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_8019B000[index](actor_index);
             break;
 
-        case ACTOR_OVL1_11:
+        case ACTOR_OVL1_LUNAR:
             D_8019B000[index](actor_index);
             break;
 

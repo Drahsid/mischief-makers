@@ -1060,8 +1060,8 @@ u16 D_801BF24C_7D9A3C[] = {
 
 u16 D_801BF25C_7D9A4C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01C0, 0x0164, 0x0010, 0x0011, 0x0B00,
-    0x0000, 0x0090, 0x01C0, 0x0164, 0x0010, 0x0011, 0x0B04,
+    0x0000, 0x0030, 0x01C0, 0x0164, 0x0010, 0x0011, ACTORTYPE_OVL1_LUNAR_MAIN,
+    0x0000, 0x0090, 0x01C0, 0x0164, 0x0010, 0x0011, ACTORTYPE_OVL1_LUNAR_SNOW,
     SPAWNRECORD_END
 };
 
@@ -1400,9 +1400,11 @@ void func_801B9900_7D40F0(void) {
     }
 }
 
+// check if fallen into bottom in "Missle surf"
+// if so, apply 100 damage and retrun true if survived.
 s32 func_801B9B90_7D4380(void) {
     if (gPlayerPosY.whole < 0x100) {
-        func_8005739C(0, 100);
+        func_8005739C(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
             D_800BE5F4.unk_00_u32 = 4;
@@ -1550,7 +1552,7 @@ void func_801BA084_7D4874(void) {
 
 void func_801BA0FC_7D48EC(s16 arg0) {
     if ((gPlayerActor.posY.whole + gScreenPosCurrentY.whole) < arg0) {
-        func_8005739C(0, 100);
+        func_8005739C(PLAYER_INDEX, 100);
         func_80028380();
 
         if (gPlayerActor.health >= 0) {
@@ -2001,7 +2003,7 @@ void func_801BAF14_7D5704(void) {
 
         case 2:
             // required to produce fixed address within gActors
-            if ((func_801B9B90_7D4380() != 0) || ((gActors + 0x31)->flags == 0)) {
+            if ((func_801B9B90_7D4380()) || ((gActors + 0x31)->flags == 0)) {
                 func_801B9C6C_7D445C(0x1001);
             }
 
@@ -2020,7 +2022,7 @@ void func_801BAF14_7D5704(void) {
 
         case 4:
             // required to produce fixed address within gActors
-            if ((func_801B9B90_7D4380() != 0) || ((gActors + 0x31)->flags == 0)) {
+            if ((func_801B9B90_7D4380()) || ((gActors + 0x31)->flags == 0)) {
                 func_801B9C6C_7D445C(0x1003);
             }
 
@@ -2039,7 +2041,7 @@ void func_801BAF14_7D5704(void) {
 
         case 6:
             // required to produce fixed address within gActors
-            if ((func_801B9B90_7D4380() != 0) || (gActors + 0x31)->flags == 0) {
+            if ((func_801B9B90_7D4380()) || (gActors + 0x31)->flags == 0) {
                 func_801B9C6C_7D445C(0x1005);
             }
 
@@ -2056,7 +2058,7 @@ void func_801BAF14_7D5704(void) {
             }
 
         case 8:
-            if (func_801B9B90_7D4380() != 0) {
+            if (func_801B9B90_7D4380()) {
                 func_801B9C6C_7D445C(0x1005);
             }
 

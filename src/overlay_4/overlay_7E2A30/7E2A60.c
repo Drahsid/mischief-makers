@@ -686,7 +686,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
             Sound_PlaySfxAtActor2(SFX_LAVA_00AA, 0);
-            func_8005739C(0, 100);
+            func_8005739C(PLAYER_INDEX, 100);
 
             if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;

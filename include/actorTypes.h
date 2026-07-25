@@ -25,7 +25,7 @@ typedef enum {
     ACTOR_MAIN_8, // a secondary dispatch table in the main segment.
     ACTOR_OVL1_GEN, // actors in Overlay 0 code for many stages.
     ACTOR_OVL1_MERCO,
-    ACTOR_OVL1_11,
+    ACTOR_OVL1_LUNAR, // "Overlay 1" actors for "Lunar"
     ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
     ACTOR_OVL1_13,
     ACTOR_OVL3_14,
@@ -332,7 +332,17 @@ typedef enum {
     ACTORTYPE_OVL1_MERCO_5,
     ACTORTYPE_OVL1_MERCO_6,
     ACTORTYPE_OVL1_MERCO_7, // marina exiting?
+    
+    // actors in dispatch table D_8019B000_722A30
 
+    ACTORTYPE_OVL1_LUNAR_MAIN = (ACTOR_OVL1_LUNAR << 8),
+    ACTORTYPE_OVL1_LUNAR_1,
+    ACTORTYPE_OVL1_LUNAR_SHOT, // shot from gun. grab for yellow gem.
+    ACTORTYPE_OVL1_LUNAR_3,
+    ACTORTYPE_OVL1_LUNAR_SNOW,
+    ACTORTYPE_OVL1_LUNAR_5,
+    ACTORTYPE_OVL1_LUNAR_6,
+    ACTORTYPE_OVL1_LUNAR_EXIT, // Marina flies away.
 
     // actors in dispatch table D_8019B000_742CA0
     
@@ -670,6 +680,20 @@ typedef enum {
     ACTORTYPE_OVL3_W5_24,
     ACTORTYPE_OVL3_W5_25,
     ACTORTYPE_OVL3_W5_26, // graphic-only actors?
+
+    // actors in dispatch table D_80192000_6D2750
+
+    ACTORTYPE_OVL0_INTRO_0 = (ACTOR_OVL0_INTRO << 8),
+    ACTORTYPE_OVL0_INTRO_1,
+    ACTORTYPE_OVL0_INTRO_2,
+    ACTORTYPE_OVL0_INTRO_3,
+    ACTORTYPE_OVL0_INTRO_4,
+    ACTORTYPE_OVL0_INTRO_5,
+    ACTORTYPE_OVL0_INTRO_6,
+    ACTORTYPE_OVL0_INTRO_7,
+    ACTORTYPE_OVL0_INTRO_8,
+    ACTORTYPE_OVL0_INTRO_9,
+
 
     // actors in dispatch table D_80192000_6F9330
     

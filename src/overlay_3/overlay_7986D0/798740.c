@@ -1032,7 +1032,7 @@ Gfx D_801B8950_7A0790[] = {
 
 Gfx D_801B8A98_7A08D8[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B81C8_7A0008, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -1065,7 +1065,7 @@ Gfx D_801B8A98_7A08D8[] = {
 
 Gfx D_801B8BE0_7A0A20[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8308_7A0148, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -1098,7 +1098,7 @@ Gfx D_801B8BE0_7A0A20[] = {
 
 Gfx D_801B8D28_7A0B68[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8448_7A0288, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -1131,7 +1131,7 @@ Gfx D_801B8D28_7A0B68[] = {
 
 Gfx D_801B8E70_7A0CB0[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8588_7A03C8, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -1164,7 +1164,7 @@ Gfx D_801B8E70_7A0CB0[] = {
 
 Gfx D_801B8FB8_7A0DF8[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B86C8_7A0508, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -1208,6 +1208,7 @@ u16 D_801B9144_7A0F84[8] = {
     4408, 4504, 4408, 4504,
     4600, 4504, 4600, 4504,
 };
+
 // や-い / ya-i (Woah!)
 u16 D_801B9154_7A0F94[4] = { 
     ALPHA_JP_HIRA_YA, ALPHA_DASH, ALPHA_JP_HIRA_I, ALPHA_NULL 

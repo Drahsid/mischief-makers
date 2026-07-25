@@ -12,7 +12,7 @@
 typedef void (*FuncVoidVoid)(void);
 
 extern u16 D_800D28E4;
-extern u32 D_800D28FC;
+
 extern u8 D_800D28D0[]; // indexes of Festival Games Scenes.
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
@@ -410,6 +410,7 @@ void func_80043D30(u16* spawn) {
     Actor_LoadSpawnTable(spawn);
 }
 
+// check if any actors in spawn table are active
 s32 func_80043D6C(u16* spawn) {
     s32 var_s3;
 

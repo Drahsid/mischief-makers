@@ -6,7 +6,6 @@
 
 
 extern u16 D_800D28E4;
-extern u32 D_800D28FC;
 
 extern u16 D_800D44A8[];
 extern u16 D_800D44F4[];

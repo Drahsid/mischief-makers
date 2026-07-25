@@ -47,13 +47,11 @@ extern u16 D_800D2860[]; // warp gate coords in main segment.
 
 //.data file break?
 
-
-extern u32 D_800D28FC;
 extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern s16 D_800D2924;
 extern u16 D_800D2954;
-extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
+extern s16 gNoHit;
 extern u16 D_800D295C;
 extern u16 D_800D84E8[];
 extern u16 D_800D8508[];
@@ -2891,7 +2889,7 @@ void ActorUpdate_Gem124(u16 actor_index) {
         Actor_SetHitboxA(actor_index, 6);
         Actor_SetHitboxB(actor_index, 8);
         /* fallthrough */
-    case 1:
+    case 1: // stage flag set by allies in "Crisis: Nepton" surviving
         if (D_800D28FC & 0x4000) {
             gActors[actor_index].state++;
             gActors[actor_index].var_150 = FIXED_UNIT(64.0);

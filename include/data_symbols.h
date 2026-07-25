@@ -17,7 +17,7 @@ extern s32 gStageTimer;
 extern s32 gTransitionState;
 extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
-extern s16 gNoHit;
+extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
 extern u16 D_800D8588[]; // all-white palette
 extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette

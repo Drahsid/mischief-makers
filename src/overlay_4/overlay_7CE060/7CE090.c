@@ -1242,7 +1242,7 @@ u16 sActorSpawn_2_11Exit[] = {
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
         if (gPlayerActor.stateUpper == 4) {
-            func_8005739C(0, 100);
+            func_8005739C(PLAYER_INDEX, 100);
             if (gPlayerActor.health >= 0) {
                 return TRUE;
             }
@@ -1261,12 +1261,13 @@ s32 func_801B9900_7CE090(void) {
     return FALSE;
 }
 
-void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
+// set player position and Teleport animation
+void func_801B99AC_7CE13C(s16 pos_x, s16 pos_y) {
     gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
-    gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
-    gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
-    gPlayerActor.posX.whole = arg0;
-    gPlayerActor.posY.whole = arg1;
+    gPlayerPosX.whole = gScreenPosCurrentX.whole + pos_x;
+    gPlayerPosY.whole = gScreenPosCurrentY.whole + pos_y;
+    gPlayerActor.posX.whole = pos_x;
+    gPlayerActor.posY.whole = pos_y;
     D_800BE5F4.unk_00_u32 = 0xA;
 }
 
@@ -1309,6 +1310,7 @@ void func_801B9B08_7CE298(void) {
     }
 }
 
+// check if player fell in lava, zero postiob vars if so.
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
@@ -1344,6 +1346,7 @@ void func_801B9C88_7CE418(void) {
     }
 }
 
+// Stage state machine for "Sea of Lava"
 void func_801B9CF4_7CE484(void) {
     switch (gStageState) {
         case 0:
@@ -1376,7 +1379,7 @@ void func_801B9CF4_7CE484(void) {
             }
             break;
 
-        case 3:
+        case 3: // respawn player
             gScreenPosTargetX.whole = 620;
             gScreenPosTargetY.whole = 400;
             func_801B9BF4_7CE384(sActorSpawn_2_1A);
@@ -1394,7 +1397,7 @@ void func_801B9CF4_7CE484(void) {
             func_801B9B94_7CE324();
             break;
 
-        case 7:
+        case 7: // respawn player
             gScreenPosTargetX.whole = 2405;
             gScreenPosTargetY.whole = 400;
             func_801B9BF4_7CE384(sActorSpawn_2_1B);
@@ -1416,7 +1419,7 @@ void func_801B9F18_7CE6A8(void) {
             gStageState++;
             Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 2, 3);
             Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 5, 5, 7);
-            Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 1, 1, 6);
+            Palette_AdjustRgb5551Array(PALETTE_803D3250, PALETTE_803D3050, 0xFF, 1, 1, 6);
             func_80046148(D_801BC434_7D0BC4, D_801BC444_7D0BD4);
             Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
             func_80043D30(sActorSpawn_2_3);
@@ -1464,7 +1467,7 @@ void func_801BA0C8_7CE858(void) {
                 gStageState++;
                 Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 4, 1);
                 Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 3, 5, 3);
-                Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 0, 6, 0);
+                Palette_AdjustRgb5551Array(PALETTE_803D3250, PALETTE_803D3050, 0xFF, 0, 6, 0);
                 func_80045FA4(D_801BC80C_7D0F9C, D_801BC81C_7D0FAC);
                 D_800BE5F4.unk_00_s32 = 3;
                 Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);

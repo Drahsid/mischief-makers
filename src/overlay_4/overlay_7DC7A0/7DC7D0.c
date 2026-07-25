@@ -16,7 +16,6 @@ extern void func_8004667C(void);
 extern void func_800467EC(s32 arg0);
 
 
-
 u16 D_801BC990_7DF860[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0000, 0x0000, 0x0000, 0x0000, 0x2700,
@@ -280,7 +279,7 @@ u16 D_801BD638_7E0508[] = {
 };
 
 // actor spawns for "Rescue Act 1" intro
-u16 D_801BD63C_7E050C[] = {
+u16 sActorSpawn_4_4A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0148, 0x013C, 0x6000, 0x3411, ACTORTYPE_OVL2_W4_TERAN,
     0x0000, 0x0035, 0x0160, 0x013C, 0x0080, 0x632F, ACTORTYPE_OVL2_W4_CLANCER_32,
@@ -291,7 +290,7 @@ u16 D_801BD63C_7E050C[] = {
 };
 
 // actor spawns for first section of "Rescue Act 1"
-u16 D_801BD684_7E0554[] = {
+u16 sActorSpawn_4_4B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x017C, 0x013E, 0x6000, 0x3410, ACTORTYPE_OVL2_W4_TERAN,
     0x0000, 0x0010, 0x0190, 0x014C, 0x0000, 0x0000, ACTORTYPE_OVL2_W4_CELES,
@@ -309,7 +308,7 @@ u16 D_801BD684_7E0554[] = {
 };
 
 // actor spawns for second section of "Rescue Act 1"
-u16 D_801BD730_7E0600[] = {
+u16 sActorSpawn_4_4C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x007C, 0x013E, 0x6000, 0x3410, ACTORTYPE_OVL2_W4_TERAN,
     0x0000, 0x0031, 0x0B67, 0x019C, 0x0100, 0x5040, ACTORTYPE_OVL2_W4_CLANCER_6,
@@ -555,12 +554,15 @@ u16 D_801BDFFC_7E0ECC[] = {
     0x0000, 0x0037, 0x0688, 0x0200, 0x4004, 0x007F, ACTORTYPE_CLANBALL_RAIL,
     0x0000, 0x0038, 0x0888, 0x0500, 0x8039, 0x0000, ACTORTYPE_CLANBALL_28,
     0x0000, 0x0039, 0x0888, 0x0500, 0x4004, 0x007F, ACTORTYPE_CLANBALL_RAIL,
-    0x0000, 0x003A, 0x0408, 0x0424, 0x2710, 0x0000, 0x0806,
-    0x0000, 0x0042, 0x0788, 0x0128, 0x0000, 0x0000, 0x0804,
+    0x0000, 0x003A, 0x0408, 0x0424, 0x2710, 0x0000, ACTORTYPE_MAIN8_6,
+    0x0000, 0x0042, 0x0788, 0x0128, 0x0000, 0x0000, ACTORTYPE_MAIN8_4,
     0x0000, 0x008B, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_GRAPHIC_29,
     0x0000, 0x008D, 0x03C8, 0x01B8, 0x0003, 0x001E, ACTORTYPE_WARPGATE,
     0x0000, 0x008E, 0x0958, 0x0558, 0x0003, 0x0028, ACTORTYPE_WARPGATE,
-    SPAWNRECORD_END,
+    SPAWNRECORD_END
+};
+
+u16 D_801BE0B4_7E0F84[] ={
     0x0000, 0x008F, 0x0460, 0x0298, 0x0001, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END,
 };
@@ -1210,7 +1212,7 @@ void func_801B9ED4_7DCDA4(void) {
             gStageState++;
             func_80045FA4(D_801BC9A0_7DF870, D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
-            Actor_LoadSpawnTable(D_801BD63C_7E050C);
+            Actor_LoadSpawnTable(sActorSpawn_4_4A);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
             gGuestActorHP = 1000;
@@ -1324,7 +1326,7 @@ void func_801B9ED4_7DCDA4(void) {
             gStageState++;
             func_80045FA4(D_801BC9A0_7DF870, D_801BCA5C_7DF92C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
-            Actor_LoadSpawnTable(D_801BD684_7E0554);
+            Actor_LoadSpawnTable(sActorSpawn_4_4B);
             gActors[0x8D].var_158 = 1;
             gActors[0x8D].unk_178 = TERAN_PLAYER_INDEX;
             gGuestActorHP = 1000;
@@ -1345,7 +1347,7 @@ void func_801B9ED4_7DCDA4(void) {
             gStageState++;
             func_80045FA4(D_801BC9B0_7DF880, D_801BCA6C_7DF93C);
             Actor_LoadSpawnTable(D_801BC990_7DF860);
-            Actor_LoadSpawnTable(D_801BD730_7E0600);
+            Actor_LoadSpawnTable(sActorSpawn_4_4C);
             // set warp gates to wait for Teran to "use" them.
             gActors[0x88].var_158 = 1;
             gActors[0x88].unk_178 = TERAN_PLAYER_INDEX;
@@ -2393,7 +2395,7 @@ void func_801BC828_7DF6F8(void) {
 
         case 3:
             if ((gScreenPosCurrentY.whole + gActors->posY.whole) < 0xA0) {
-                func_8005739C(0, 100);
+                func_8005739C(PLAYER_INDEX, 100);
                 func_801BC7C4_7DF694();
             }
             break;

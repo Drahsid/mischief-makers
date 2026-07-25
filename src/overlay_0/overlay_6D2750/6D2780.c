@@ -79,11 +79,11 @@ void func_80192100_6D2780(u16 parent_actor, u16 actor_index, u16 actor_type, u16
 }
 
 void func_801921C8_6D2848(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B02, graphic_index, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(arg0, actor_index, ACTORTYPE_OVL0_INTRO_2, graphic_index, pos_x, pos_y, pos_z);
 }
 
 void func_80192224_6D28A4(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(parent_index, actor_index, 0x2B03, graphic_index, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(parent_index, actor_index, ACTORTYPE_OVL0_INTRO_3, graphic_index, pos_x, pos_y, pos_z);
     gActors[actor_index].posX.whole = gActors[parent_index].posX.whole + pos_x;
     gActors[actor_index].posY.whole = gActors[parent_index].posY.whole + pos_y;
     gActors[actor_index].posZ.whole = gActors[parent_index].posZ.whole + pos_z;
@@ -94,26 +94,26 @@ void func_80192224_6D28A4(u16 parent_index, u16 actor_index, u16 graphic_index, 
 }
 
 void func_801922F4_6D2974(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(arg0, arg1, 0x2B04, graphic_index, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(arg0, arg1, ACTORTYPE_OVL0_INTRO_4, graphic_index, pos_x, pos_y, pos_z);
 }
 
 void func_80192350_6D29D0(u16 arg0, u16 arg1, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(arg0, arg1, 0x2B01, graphic_index, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(arg0, arg1, ACTORTYPE_OVL0_INTRO_1, graphic_index, pos_x, pos_y, pos_z);
 }
 
 void func_801923AC_6D2A2C(u16 arg0, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B06, graphic_index, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(arg0, actor_index, ACTORTYPE_OVL0_INTRO_6, graphic_index, pos_x, pos_y, pos_z);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
 void func_80192438_6D2AB8(u16 parent_index, u16 actor_index, u16 graphic_index, s16 pos_x, s16 pos_y, s16 pos_z) {
     func_80192224_6D28A4(parent_index, actor_index, graphic_index, pos_x, pos_y, pos_z);
-    gActors[actor_index].actorType = 0x2B07;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_INTRO_7;
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
 }
 
 void func_801924CC_6D2B4C(u16 arg0, u16 actor_index, s16 pos_x, s16 pos_y, s16 pos_z) {
-    func_80192100_6D2780(arg0, actor_index, 0x2B08, 0, pos_x, pos_y, pos_z);
+    func_80192100_6D2780(arg0, actor_index, ACTORTYPE_OVL0_INTRO_8, 0, pos_x, pos_y, pos_z);
 }
 
 // Particles used during the orange-gradient clancer-rise scene?
@@ -121,7 +121,7 @@ void func_80192528_6D2BA8(u16 actor_index) {
     u16 new_actor_index = Actor_RangeFindInactive(0x51, 0x59);
 
     if (new_actor_index != 0) {
-        gActors[new_actor_index].actorType = 0x2B09;
+        gActors[new_actor_index].actorType = ACTORTYPE_OVL0_INTRO_9;
         Actor_Initialize(new_actor_index);
         gActors[new_actor_index].posX.whole = Rand() - 0x80;
         gActors[new_actor_index].posY.whole = (s32)((Rand() * 0.125) + 16.0);
@@ -851,7 +851,7 @@ void func_8019429C_6D491C(u16 actor_index) {
 void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
     u16 temp_actor_index;
 
-    gActors[actor_index].actorType = 0x2B06;
+    gActors[actor_index].actorType = ACTORTYPE_OVL0_INTRO_6;
     temp_actor_index = actor_index;
     Actor_Initialize(actor_index);
     if (temp_actor_index) {} // FAKEMATCH
@@ -1732,7 +1732,7 @@ void func_8019897C_6D8FFC(u16 actor_index) {
 
 // each clancer picks a short animation, then walks or jumps offscreen
 void func_80198B18_6D9198(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~0x40;
+    gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6;
     if (gActors[actor_index].state == 0x101) {
         if (gActors[actor_index].unk_170 >= gActors[actor_index].posY.whole) {
             gActors[actor_index].flags_098 |= 0x20;
