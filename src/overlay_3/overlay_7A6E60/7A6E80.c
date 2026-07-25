@@ -26,15 +26,6 @@ typedef struct Overlay_7A6E60_Spawn_Config {
     /* 0x08 */ s16 behavior;
 } Overlay_7A6E60_Spawn_Config; /* sizeof = 0x0A */
 
-typedef struct Overlay_7A6E60_Init_Record {
-    /* 0x00 */ u16 unk_00;
-    /* 0x02 */ u16 unk_02;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 timer;
-    /* 0x08 */ u16 unk_08;
-    /* 0x0A */ u16 actorType;
-} Overlay_7A6E60_Init_Record; /* sizeof = 0x0C */
-
 extern void* D_800D1968[];
 extern u8 D_800D9AF4[];
 extern u8 D_800D9B04[];
@@ -59,31 +50,31 @@ extern s16 D_800E2274[];
 extern s16 D_800E22A8[];
 extern s16 D_800E22B4[];
 
-Overlay_7A6E60_Init_Record D_801B4E90_7AB410[3] = {
+Festival_UnkInit D_801B4E90_7AB410[3] = {
     { 1, 0, 0, 0x1000, 0x1110, 0x0103 },
     { 2, 0, 0, 0x1000, 0x2220, 0x0103 },
     { 0, 0, 0, 0x1000, 0, 0x0103 },
 };
 
-Overlay_7A6E60_Init_Record D_801B4EB4_7AB434[3] = {
+Festival_UnkInit D_801B4EB4_7AB434[3] = {
     { 3, 0x0100, 0, 0x1000, 0x3330, 0x0103 },
     { 4, 0x0200, 0, 0x1000, 0x4400, 0x0103 },
     { 5, 0x0301, 0, 0x1000, 0x5000, 0x0103 },
 };
 
-Overlay_7A6E60_Init_Record D_801B4ED8_7AB458[3] = {
+Festival_UnkInit D_801B4ED8_7AB458[3] = {
     { 6, 0x0402, 0, 0x1000, 0x6600, 0x0103 },
     { 7, 0x0503, 0x0100, 0x1000, 0x7700, 0x0103 },
     { 8, 0x0604, 0x0200, 0x1000, 0, 0x0103 },
 };
 
-Overlay_7A6E60_Init_Record D_801B4EFC_7AB47C[3] = {
+Festival_UnkInit D_801B4EFC_7AB47C[3] = {
     { 9, 0x0705, 0x0300, 0x1000, 0x0900, 0x0103 },
     { 0, 0x0806, 0x0400, 0x1000, 0x0A00, 0x0103 },
     { 0, 0x0907, 0x0500, 0x1000, 0x0B00, 0x0103 },
 };
 
-Overlay_7A6E60_Init_Record D_801B4F20_7AB4A0[4] = {
+Festival_UnkInit D_801B4F20_7AB4A0[4] = {
     { 0, 8, 0x0600, 0x1000, 0x0600, 0x0104 },
     { 0, 9, 0x0700, 0x1000, 0x0F00, 0x0104 },
     { 0, 0, 0x0800, 0x1000, 0x0D00, 0x0104 },
@@ -582,9 +573,9 @@ void func_801B0DA0_7A7320(u16 arg0) {
 
 void func_801B0DC8_7A7348(u16 actor_index) {
     s32 unused[1];
-    Overlay_7A6E60_Init_Record* init_records;
+    Festival_UnkInit* init_records;
     FestivalPlayer* records;
-    Overlay_7A6E60_Init_Record* init_record;
+    Festival_UnkInit* init_record;
     u16 new_actor_index;
     u16 index;
     u16 current_index;
@@ -625,7 +616,7 @@ void func_801B0DC8_7A7348(u16 actor_index) {
                 current_index = index;
                 gActors[new_actor_index].actorType = init_record[-1].actorType;
                 Actor_Initialize(new_actor_index);
-                gActors[new_actor_index].var_110 = (f32)init_record[-1].timer;
+                gActors[new_actor_index].var_110 = (f32)init_record[-1].unk_06;
                 gActors[new_actor_index].var_0D8 = init_record[-1].unk_08;
                 gActors[new_actor_index].unk_16C = current_index;
                 gActors[new_actor_index].posX.whole = D_801B4F50_7AB4D0[current_index * 3] - gScreenPosCurrentX.whole;

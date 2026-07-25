@@ -52,11 +52,6 @@ typedef void (*Overlay_7A13D0_State_Func)(u16 actor_index, Overlay_7A13D0_Actor_
 
 extern s16 D_800E1384[];
 extern s16 D_800E2274[];
-extern u8 D_801376A8[];
-extern u8 D_801376AC[];
-extern u8 D_801376B0[];
-extern u8 D_801376B4[];
-extern u8 D_801376B8[];
 
 extern void func_80067E50(u16 actor_index, void* arg1);
 extern s32 func_800734C4(u16 arg0, s32 arg1);

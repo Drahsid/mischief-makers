@@ -1,5 +1,7 @@
 #include "common.h"
+#include "save_file.h"
 #include "1F1E0.h"
+#include "438E0.h"
 #include "game_state.h"
 #include "soft_reset.h"
 

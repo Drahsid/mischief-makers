@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "stage.h"
 #include "28EF0.h"
+#include "438E0.h"
 
 // "overlay 4" code for the World 1 scenes.
 

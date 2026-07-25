@@ -18,7 +18,14 @@ extern s32 gTransitionState;
 extern u16 D_800D294C;
 extern u16 gGuestActorIndex;
 extern s16 gNoHit; // set to current HP at start of stage. set to -1 when hit
+extern u16 D_800D84E8[]; // palette
+extern u16 D_800D8508[]; // palette
+extern u16 D_800D8528[]; // palette
+extern u16 D_800D8548[]; // palette
 extern u16 D_800D8588[]; // all-white palette
+extern u16 D_800D8608[]; // palette
+extern u16 D_800D8628[]; // palette
+extern u16 D_800D86A0[]; // palette
 extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette
 extern u16 D_800D9AE4[];
@@ -39,12 +46,12 @@ extern u16 D_80137610[]; // source of texture images
 extern u16* D_8013769C; // palette
 extern u16* D_801376A0; // palette
 extern u16* D_801376A4; // palette
-extern u8 D_801376A8[];
-extern u8 D_801376AC[];
-extern u8 D_801376B0[];
-extern u8 D_801376B4[];
-extern u8 D_801376B8[];
-extern u8 D_801376BC[];
+extern u8 D_801376A8[4];
+extern u8 D_801376AC[4];
+extern u8 D_801376B0[4];
+extern u8 D_801376B4[4];
+extern u8 D_801376B8[4];
+extern u8 D_801376BC[4];
 extern u32 D_801376D4;
 extern u32 D_80137714;
 extern u32 D_80137718;

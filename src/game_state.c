@@ -3,6 +3,7 @@
 #include "boot.h"
 #include "input.h"
 #include "game_state.h"
+#include "stage.h"
 #include "1F1E0.h"
 #include "debug.h" 
 #include "82DB0.h"
@@ -54,7 +55,7 @@ void func_800012F0(void) {
 
 void func_8000147C(void) {
     gFramesInScene++;
-    if (gFramesInPlayTime < 518399999) {
+    if (gFramesInPlayTime < FILE_PLAY_TIME_MAX - 1) {
         gFramesInPlayTime++;
     }
 

@@ -167,8 +167,6 @@ extern u16 D_801782C2;
 #define D_80372500 ((u16*)0x80372500)
 #define D_803023B4 ((u16*)0x803023B4)
 
-void func_80043D04(u16* spawn);
-void func_80042D84(u16 arg0);
 
 void func_80042CE0(void) {
 }
