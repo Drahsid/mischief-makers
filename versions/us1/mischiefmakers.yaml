@@ -1280,7 +1280,7 @@ segments:
     vram: 0x801B0900
     start: 0x7B3FE0
     subsegments:
-      - [0x7B3FE0, asmtu, overlay_3/overlay_7B3FC0/7B3FE0] # object segment 7B3FE0->7B8760 (0x4780)
+      - [0x7B3FE0, c, overlay_3/overlay_7B3FC0/7B3FE0] # object segment 7B3FE0->7B8760 (0x4780)
       - [0x7B79F0, .data, overlay_3/overlay_7B3FC0/7B3FE0]
       - [0x7B8150, .rodata, overlay_3/overlay_7B3FC0/7B3FE0]
 
