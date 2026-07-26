@@ -25637,7 +25637,7 @@
         "module_name": ".main",
         "module_id": 2,
         "progress_categories": [
-          "D24D0.data"
+          "segment_main"
         ]
       }
     },
@@ -25663,7 +25663,7 @@
         "module_name": ".main",
         "module_id": 2,
         "progress_categories": [
-          "D34D0.data"
+          "segment_main"
         ]
       }
     },
@@ -25689,7 +25689,7 @@
         "module_name": ".main",
         "module_id": 2,
         "progress_categories": [
-          "D6420.data"
+          "segment_main"
         ]
       }
     },
@@ -26290,7 +26290,7 @@
         "module_name": ".Segment_04",
         "module_id": 5,
         "progress_categories": [
-          "Segment_04"
+          "segments"
         ]
       }
     },
@@ -26316,7 +26316,7 @@
         "module_name": ".Segment_06",
         "module_id": 6,
         "progress_categories": [
-          "Segment_06"
+          "segments"
         ]
       }
     },
@@ -26342,7 +26342,7 @@
         "module_name": ".Segment_07",
         "module_id": 7,
         "progress_categories": [
-          "Segment_07"
+          "segments"
         ]
       }
     },
@@ -26368,7 +26368,7 @@
         "module_name": ".Segment_01",
         "module_id": 8,
         "progress_categories": [
-          "Segment_01"
+          "segments"
         ]
       }
     },
@@ -26394,7 +26394,7 @@
         "module_name": ".Segment_05",
         "module_id": 9,
         "progress_categories": [
-          "Segment_05"
+          "segments"
         ]
       }
     },
@@ -26420,7 +26420,7 @@
         "module_name": ".Segment_02",
         "module_id": 10,
         "progress_categories": [
-          "Segment_02"
+          "segments"
         ]
       }
     },
@@ -26446,7 +26446,7 @@
         "module_name": ".Segment_03",
         "module_id": 11,
         "progress_categories": [
-          "Segment_03"
+          "segments"
         ]
       }
     },
@@ -49540,7 +49540,7 @@
         "matched_functions": 1896,
         "matched_functions_percent": 87.69658,
         "complete_data_percent": 100.0,
-        "total_units": 254
+        "total_units": 257
       }
     },
     {
@@ -49640,8 +49640,8 @@
       }
     },
     {
-      "id": "D24D0.data",
-      "name": "D24D0.data",
+      "id": "segments",
+      "name": "Segments",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -49649,124 +49649,7 @@
         "matched_functions_percent": 100.0,
         "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "D34D0.data",
-      "name": "D34D0.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "D6420.data",
-      "name": "D6420.data",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_04",
-      "name": "Segment_04",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_06",
-      "name": "Segment_06",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_07",
-      "name": "Segment_07",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_01",
-      "name": "Segment_01",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_05",
-      "name": "Segment_05",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_02",
-      "name": "Segment_02",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      }
-    },
-    {
-      "id": "Segment_03",
-      "name": "Segment_03",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 7
       }
     }
   ]
