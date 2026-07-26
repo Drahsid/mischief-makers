@@ -393,7 +393,7 @@ SpawnActor39 = 0x8007CEB8; // type:func
 SpawnActor38 = 0x8007CFE0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
 SpawnTextBubble2 = 0x8007D0F4; // type:func
-SpawnTextBubble3 = 0x8007D0F4; // type:func
+SpawnTextBubble3 = 0x8007D1E8; // type:func
 
 Actor38_CapAlpha = 0x8007D3EC; // type:func
 Actor38_ScaleAlpha = 0x8007D438; // type:func

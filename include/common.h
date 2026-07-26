@@ -66,6 +66,7 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 
 #define TEXTURE_80265218 ((u8*)0x80265218)
 #define TEXTURE_80265618 ((u8*)0x80265618)
+#define TEXTURE_80265A18 ((u8*)0x80265A18)
 
 #define TEXTURE_802678F8 ((u8*)0x802678F8)
 #define TEXTURE_80267CF8 ((u8*)0x80267CF8)

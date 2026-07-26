@@ -319,7 +319,7 @@ void func_801B1180_7B4860(u16 actor_index) {
 void func_801B11A8_7B4888(u16 arg0) {
     Actor* actor = &gActors[0x6A];
 
-    func_8007CD68(0x6A, 0, 0, 0x48, 0, 2, 0x63);
+    SpawnActor41(0x6A, 0, 0, 0x48, 0, 2, 0x63);
     actor->posZ.whole = 8;
     actor->var_158 = 0x3B;
 }
@@ -366,19 +366,19 @@ void func_801B1200_7B48E0(u16 arg0) {
     gActors[actor_index].unk_164 = 0x40;
 
     actor_index = 0x6E;
-    func_8007CD68(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
+    SpawnActor41(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
     gActors[actor_index].posZ.whole = 8;
     gActors[actor_index].actorType = 0x1A08;
     gActors[actor_index].unk_16C = (s32)D_801B4458_7B7B38;
-    gActors[actor_index].pfn_190 = func_8007DB84;
+    gActors[actor_index].pfn_190 = ActorUpdate_Type41;
     gActors[actor_index].unk_18C = (s32)D_800D9AE4;
 
     actor_index = 0x6F;
-    func_8007CD68(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
+    SpawnActor41(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
     gActors[actor_index].posZ.whole = 8;
     gActors[actor_index].actorType = 0x1A08;
     gActors[actor_index].unk_16C = (s32)D_801B4464_7B7B44;
-    gActors[actor_index].pfn_190 = func_8007DB84;
+    gActors[actor_index].pfn_190 = ActorUpdate_Type41;
     gActors[actor_index].unk_18C = (s32)D_800D9AE4;
 }
 
