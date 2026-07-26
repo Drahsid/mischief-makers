@@ -187,10 +187,13 @@ void func_8004E1DC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004E4E0.s")
 
+// state 58 - debug graphic select
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004E6FC.s")
 
+// state 59 - debug graphic select
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EAE4.s")
 
+// state 60 - debug "flymode"
 #pragma GLOBAL_ASM("asm/nonmatchings/marina/func_8004EC60.s")
 
 void ActorUpdate_Marina(u16 actor_index) {

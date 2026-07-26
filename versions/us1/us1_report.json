@@ -16185,7 +16185,7 @@
           }
         },
         {
-          "name": "func_80096E14",
+          "name": "LevelClear_Starscape",
           "size": "584",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16201,7 +16201,7 @@
           }
         },
         {
-          "name": "func_80097108",
+          "name": "LevelClear_SpawnTheo",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16225,7 +16225,7 @@
           }
         },
         {
-          "name": "func_800972DC",
+          "name": "LevelClear_SpawnBackground",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16233,7 +16233,7 @@
           }
         },
         {
-          "name": "func_80097384",
+          "name": "LevelClear_SphereRing",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16241,7 +16241,7 @@
           }
         },
         {
-          "name": "func_80097428",
+          "name": "LevelClear_SpawnSphere",
           "size": "332",
           "fuzzy_match_percent": 100.0,
           "metadata": {

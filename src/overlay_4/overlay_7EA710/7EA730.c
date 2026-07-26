@@ -127,8 +127,8 @@ void func_801B99D0_7EA800(void) {
 
 void func_801B9A78_7EA8A8(s16* arg0) {
     Palette_AdjustScenePalettes(0, 0, 0, arg0[0], arg0[1], arg0[2], arg0[3], arg0[4], arg0[5]);
-    Palette_AdjustRgb5551Array((void*)0x80352B90, (void*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
-    Palette_AdjustRgb5551Array((void*)0x80355F90, (void*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
+    Palette_AdjustRgb5551Array(PALETTE_80352B90, (void*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
+    Palette_AdjustRgb5551Array(PALETTE_80355F90, (void*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
 }
 
 void func_801B9B2C_7EA95C(void) {

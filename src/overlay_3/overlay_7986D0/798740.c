@@ -26,15 +26,15 @@ s16 D_801B5E08_79DC48[] = {
     0x30, 0x30, 0x30, 0x30, 0x30, 0,
 };
 
-s32 D_801B5E64_79DCA4[] = {
-    0x80343DA0, 0x80343EC8, 0x80343FF0, 0x80344118,
-    0x80344240, 0x80344368, 0x80344490, 0x803445B8,
-    0x803446E0, 0x80344808, 0x80344930, 0x80344A58,
-    0x80344B80, 0x80344CA8, 0x80344DD0, 0x80344EF8,
-    0x80345020, 0x80345148, 0x80345270, 0x80345398,
-    0x803454C0, 0x803455E8, 0x80345710, 0x80345838,
-    0x80345960, 0x80345A88, 0x80345BB0, 0x80345CD8,
-    0x80345E00, 0x80345F28, 0x80346050, 0x80346178,
+Gfx* D_801B5E64_79DCA4[] = {
+    (Gfx*)0x80343DA0, (Gfx*)0x80343EC8, (Gfx*)0x80343FF0, (Gfx*)0x80344118,
+    (Gfx*)0x80344240, (Gfx*)0x80344368, (Gfx*)0x80344490, (Gfx*)0x803445B8,
+    (Gfx*)0x803446E0, (Gfx*)0x80344808, (Gfx*)0x80344930, (Gfx*)0x80344A58,
+    (Gfx*)0x80344B80, (Gfx*)0x80344CA8, (Gfx*)0x80344DD0, (Gfx*)0x80344EF8,
+    (Gfx*)0x80345020, (Gfx*)0x80345148, (Gfx*)0x80345270, (Gfx*)0x80345398,
+    (Gfx*)0x803454C0, (Gfx*)0x803455E8, (Gfx*)0x80345710, (Gfx*)0x80345838,
+    (Gfx*)0x80345960, (Gfx*)0x80345A88, (Gfx*)0x80345BB0, (Gfx*)0x80345CD8,
+    (Gfx*)0x80345E00, (Gfx*)0x80345F28, (Gfx*)0x80346050, (Gfx*)0x80346178,
 };
 
 s16 D_801B5EE4_79DD24[] = {
@@ -374,7 +374,7 @@ Gfx D_801B6F28_79ED68[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B60A8_79DEE8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -383,7 +383,7 @@ Gfx D_801B6F28_79ED68[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -399,7 +399,7 @@ Gfx D_801B7020_79EE60[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B61A8_79DFE8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -408,7 +408,7 @@ Gfx D_801B7020_79EE60[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -424,7 +424,7 @@ Gfx D_801B7118_79EF58[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B62A8_79E0E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -433,7 +433,7 @@ Gfx D_801B7118_79EF58[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -449,7 +449,7 @@ Gfx D_801B7210_79F050[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B63A8_79E1E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -458,7 +458,7 @@ Gfx D_801B7210_79F050[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -474,7 +474,7 @@ Gfx D_801B7308_79F148[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B64A8_79E2E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -483,7 +483,7 @@ Gfx D_801B7308_79F148[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -499,7 +499,7 @@ Gfx D_801B7400_79F240[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B65A8_79E3E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -508,7 +508,7 @@ Gfx D_801B7400_79F240[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -524,7 +524,7 @@ Gfx D_801B74F8_79F338[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B66A8_79E4E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -533,7 +533,7 @@ Gfx D_801B74F8_79F338[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -549,14 +549,14 @@ Gfx D_801B75F0_79F430[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B67A8_79E5E8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -566,7 +566,7 @@ Gfx D_801B75F0_79F430[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6868_79E6A8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -582,14 +582,14 @@ Gfx D_801B7738_79F578[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B68E8_79E728, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -599,7 +599,7 @@ Gfx D_801B7738_79F578[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B69A8_79E7E8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -615,14 +615,14 @@ Gfx D_801B7880_79F6C0[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6A28_79E868, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -632,7 +632,7 @@ Gfx D_801B7880_79F6C0[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6AE8_79E928, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -648,14 +648,14 @@ Gfx D_801B79C8_79F808[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6B68_79E9A8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -665,7 +665,7 @@ Gfx D_801B79C8_79F808[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6C28_79EA68, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -681,14 +681,14 @@ Gfx D_801B7B10_79F950[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6CA8_79EAE8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -698,7 +698,7 @@ Gfx D_801B7B10_79F950[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6D68_79EBA8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -714,14 +714,14 @@ Gfx D_801B7C58_79FA98[] = {
     gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6DE8_79EC28, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -731,7 +731,7 @@ Gfx D_801B7C58_79FA98[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6EA8_79ECE8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -976,7 +976,7 @@ Gfx D_801B8808_7A0648[] = {
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -986,7 +986,7 @@ Gfx D_801B8808_7A0648[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8008_79FE48, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -999,17 +999,17 @@ Gfx D_801B8808_7A0648[] = {
 
 Gfx D_801B8950_7A0790[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x802684F8),
+    gsDPLoadTLUT_pal256(PALETTE_802684F8),
     gsSPVertex(D_801B8088_79FEC8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80267CF8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80267CF8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x802678F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_802678F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1019,7 +1019,7 @@ Gfx D_801B8950_7A0790[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8148_79FF88, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x802680F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_802680F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1035,14 +1035,14 @@ Gfx D_801B8A98_7A08D8[] = {
     gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B81C8_7A0008, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1052,7 +1052,7 @@ Gfx D_801B8A98_7A08D8[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8288_7A00C8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1068,14 +1068,14 @@ Gfx D_801B8BE0_7A0A20[] = {
     gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8308_7A0148, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1085,7 +1085,7 @@ Gfx D_801B8BE0_7A0A20[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B83C8_7A0208, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1101,14 +1101,14 @@ Gfx D_801B8D28_7A0B68[] = {
     gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8448_7A0288, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1118,7 +1118,7 @@ Gfx D_801B8D28_7A0B68[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8508_7A0348, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1134,14 +1134,14 @@ Gfx D_801B8E70_7A0CB0[] = {
     gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8588_7A03C8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1151,7 +1151,7 @@ Gfx D_801B8E70_7A0CB0[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8648_7A0488, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1167,14 +1167,14 @@ Gfx D_801B8FB8_7A0DF8[] = {
     gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B86C8_7A0508, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1184,7 +1184,7 @@ Gfx D_801B8FB8_7A0DF8[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8788_7A05C8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1995,7 +1995,7 @@ void func_801B2830_79A670(u16 actor_index) {
             gActors[actor_index].graphicIndex = 0;
             gActors[actor_index].unk_0DE = 4;
             gActors[actor_index].unk_0DF = 0x40;
-            gActors[actor_index].unk_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
+            gActors[actor_index].dlist_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
             gActors[actor_index].hitboxBX0 = -0x30;
             gActors[actor_index].hitboxBX1 = 0x30;
             if (gActors[actor_index].var_110 != 0.0f) {

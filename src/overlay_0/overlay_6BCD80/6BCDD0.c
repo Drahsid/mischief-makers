@@ -6,6 +6,23 @@
 
 // "Overlay 0" code for "Final Battle"
 
+#define CROSSHAIR_INDEX 0x10
+#define MARINA_AIM_INDEX 0x11 
+#define RIFLE_INDEX 0x30
+#define MAIN_BOSS_INDEX 0x31
+#define ROCKET_FIST_INDEX 0x56
+
+#define CHEST_BEAM_INDEX 0x5A
+#define SCREEN_FADE_INDEX 0xC1
+
+#define sCrosshairActor gActors[CROSSHAIR_INDEX] // crosshair aiming rocket fist
+#define sPlayerAimActor gActors[MARINA_AIM_INDEX] // Marina holding Rocket fist
+#define sRifleActor gActors[RIFLE_INDEX] // rifle / Sasquath Beta's barrel. use to calulate shot trajectory
+#define sMainBossActor gActors[MAIN_BOSS_INDEX]
+#define sRocketFistActor gActors[ROCKET_FIST_INDEX]
+#define sChestBeamActor gActors[CHEST_BEAM_INDEX]
+#define sScreenFadeActor gActors[SCREEN_FADE_INDEX]
+
 extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
 extern s16 D_801A2110_6CCDE0;
@@ -14,7 +31,7 @@ extern s16 D_801A2924_6CD5F4;
 extern s16 D_801A29A4_6CD674;
 extern u8 D_801A5204_6CFED4;
 extern u16 D_801A5208_6CFED8;
-extern u8 D_801A5218_6CFEE8;
+extern u8 D_801A5218_6CFEE8; // state of rocket fist
 extern u16 D_801A522C_6CFEFC[];
 extern s16 D_801A5F98_6D0C68;
 extern s16 D_801A5F9C_6D0C6C;
@@ -75,7 +92,7 @@ void func_8019902C_6C3CFC(u16 actor_index);
 
 
 void func_80192100_6BCDD0(u16 actor_index) {
-    ACTOR_INIT(actor_index,0x21);
+    ACTOR_INIT(actor_index,ACTORTYPE_33);
     gActors[actor_index].graphicFlags = (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ);
     gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
 }
@@ -168,8 +185,8 @@ void func_801924B4_6BD184(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801929DC_6BD6AC.s")
 
 void func_80192C8C_6BD95C(s32 arg0) {
-    func_80192100_6BCDD0(0x56);
-    gActors[0x56].graphicIndex = 0x200C;
+    func_80192100_6BCDD0(ROCKET_FIST_INDEX);
+    sRocketFistActor.graphicIndex = 0x200C;
     func_80192100_6BCDD0(0x57);
     gActors[0x57].graphicIndex = 0x2014;
 }
@@ -235,6 +252,7 @@ void func_80192E74_6BDB44(u16 actor_index) {
     gActors[index].graphicIndex = 0x1030;
 }
 
+// darken the mecha part with distance
 void func_80192F30_6BDC00(u16 actor_index) {
     s16 color;
 
@@ -344,20 +362,23 @@ void func_80195D44_6C0A14(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80195DA0_6C0A70.s")
 
+// spawn rocket fist
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80195F14_6C0BE4.s")
 
+// spawn rifle shot
 s32 func_80196030_6C0D00(s32 arg0) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x5E, 0x62);
     if (actor_index != 0) {
-        ACTOR_INIT(actor_index, 0x1604);
+        ACTOR_INIT(actor_index, ACTORTYPE_OVL0_FINAL_SHOT);
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
         return TRUE;
     }
     return FALSE;
 }
 
+// rifle shot behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801960B0_6C0D80.s")
 
 void func_80196530_6C1200(s32 arg0) {
@@ -417,8 +438,9 @@ void func_80196BF0_6C18C0(u16 index, u16 flags, s32 velocity_x) {
     }
 }
 
+// behavior of chest beam.
 void func_80196C78_6C1948(u16 actor_index) {
-    if (gActors[0x31].state != 0x41A) {
+    if (sMainBossActor.state != 0x41A) { // disable when no longer firing
         gActors[actor_index].flags = 0;
     }
 
@@ -428,11 +450,12 @@ void func_80196C78_6C1948(u16 actor_index) {
     gActors[actor_index].var_154 = Math_ApproachS32(gActors[actor_index].var_154, FIXED_UNIT(3.75), FIXED_UNIT(0.02734375));
 }
 
+// spawn chest beam
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80196D60_6C1A30.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80196E88_6C1B58.s")
 
-void func_801970F8_6C1DC8(s32 arg0) {
+void func_801970F8_6C1DC8(u16 arg0) {
 }
 
 
@@ -789,6 +812,7 @@ void func_80199278_6C3F48(s32 arg0, s32 arg1) {
 void func_801992A4_6C3F74(void) {
 }
 
+// spawn Marina w/ rocket fist and associated crosshair
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801992AC_6C3F7C.s")
 
 void func_8019946C_6C413C(void) {
@@ -796,11 +820,11 @@ void func_8019946C_6C413C(void) {
     Actor_ClearRange_10To20();
     gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
     gPlayerActor.flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED);
-    func_800282F0(gActors[0x31].posX.whole, -0x18);
+    func_800282F0(sMainBossActor.posX.whole, -0x18);
     D_800BE5F4.unk_00_u32 = 5;
     gPlayerActor.iFrames = 0;
-    gActors[0x31].state = 0x410;
-    gActors[0x31].posZ.whole = -0xE0;
+    sMainBossActor.state = 0x410;
+    sMainBossActor.posZ.whole = -0xE0;
     func_80081478(0x31, D_801A1038_6CBD08, 1);
     func_80197968_6C2638(0x31);
 }
@@ -839,6 +863,7 @@ void func_80199BA8_6C4878(u16 actor_index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_8019D4D8_6C81A8.s")
 
+// screen fade actor behavior
 void func_8019D7A0_6C8470(u16 actor_index) {
     gActors[actor_index].posX.whole = gLookatAtX;
     gActors[actor_index].posY.whole = gLookatAtY;
@@ -871,56 +896,63 @@ void func_8019D7A0_6C8470(u16 actor_index) {
 }
 
 void func_8019D908_6C85D8(void) {
-    ACTOR_INIT(0xC1,0x160D);
-    gActors[0xC1].graphicFlags = 0;
-    gActors[0xC1].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0xC1].graphicIndex = GINDEX_SOLIDSQUARE;
-    gActors[0xC1].posZ.whole = 0xE0;
-    gActors[0xC1].var_154 = 4;
-    gActors[0xC1].scaleX = 20.0f;
-    gActors[0xC1].scaleY = 20.0f;
+    ACTOR_INIT(SCREEN_FADE_INDEX,ACTORTYPE_OVL0_FINAL_SCREENFADE);
+    sScreenFadeActor.graphicFlags = 0;
+    sScreenFadeActor.flags = ACTOR_FLAG_ACTIVE;
+    sScreenFadeActor.graphicIndex = GINDEX_SOLIDSQUARE;
+    sScreenFadeActor.posZ.whole = 0xE0;
+    sScreenFadeActor.var_154 = 4;
+    sScreenFadeActor.scaleX = 20.0f;
+    sScreenFadeActor.scaleY = 20.0f;
 }
 
-void func_8019D970_6C8640(u16 arg0) {
-    gActors[0xC1].state = 1;
-    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+// screen fade to black
+// @param rate rate per tick to fade to black
+void func_8019D970_6C8640(u16 rate) {
+    sScreenFadeActor.state = 1;
+    sScreenFadeActor.graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
-    gActors[0xC1].palette_18C = D_800D8588;
-    gActors[0xC1].colorA = 0xFF;
-    gActors[0xC1].var_150 = 0;
-    gActors[0xC1].var_154 = arg0;
-    Actor_SetColorRgb(0xC1, 0);
+    sScreenFadeActor.flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
+    sScreenFadeActor.palette_18C = D_800D8588;
+    sScreenFadeActor.colorA = 0xFF;
+    sScreenFadeActor.var_150 = 0;
+    sScreenFadeActor.var_154 = rate;
+    Actor_SetColorRgb(SCREEN_FADE_INDEX, 0);
 }
 
-void func_8019D9D8_6C86A8(u16 arg0) {
-    gActors[0xC1].state = 2;
-    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+// screen fade to white
+// @param rate rate per tick to fade to white
+void func_8019D9D8_6C86A8(u16 rate) {
+    sScreenFadeActor.state = 2;
+    sScreenFadeActor.graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
-    gActors[0xC1].palette_18C = D_800D8588;
-    gActors[0xC1].colorA = 0;
-    gActors[0xC1].var_150 = 0;
-    gActors[0xC1].var_154 = arg0;
-    Actor_SetColorRgb(0xC1, 0);
+    sScreenFadeActor.flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
+    sScreenFadeActor.palette_18C = D_800D8588;
+    sScreenFadeActor.colorA = 0;
+    sScreenFadeActor.var_150 = 0;
+    sScreenFadeActor.var_154 = rate;
+    Actor_SetColorRgb(SCREEN_FADE_INDEX, 0);
 }
 
-void func_8019DA3C_6C870C(u16 arg0, u16 arg1) {
-    gActors[0xC1].state = 3;
-    gActors[0xC1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
+// screen fade to a grayscale
+// @param target target grayscale to fade
+// @param rate rate per tick to fade
+void func_8019DA3C_6C870C(u16 target, u16 rate) {
+    sScreenFadeActor.state = 3;
+    sScreenFadeActor.graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 |
          ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE);
-    gActors[0xC1].flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
-    gActors[0xC1].palette_18C = D_800D8588;
-    gActors[0xC1].colorA = 0;
-    gActors[0xC1].var_150 = 0;
-    gActors[0xC1].var_154 = arg1;
-    gActors[0xC1].var_158 = arg0;
-    Actor_SetColorRgb(0xC1, 0);
+    sScreenFadeActor.flags = (ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ENABLED);
+    sScreenFadeActor.palette_18C = D_800D8588;
+    sScreenFadeActor.colorA = 0;
+    sScreenFadeActor.var_150 = 0;
+    sScreenFadeActor.var_154 = rate;
+    sScreenFadeActor.var_158 = target;
+    Actor_SetColorRgb(SCREEN_FADE_INDEX, 0);
 }
 
 s32 func_8019DAAC_6C877C(u16 arg0) {
-    if (gActors[0xC1].colorA == 0xFF) {
-        if (arg0 < gActors[0xC1].var_150) {
+    if (sScreenFadeActor.colorA == 0xFF) {
+        if (arg0 < sScreenFadeActor.var_150) {
             return TRUE;
         }
     }
@@ -942,7 +974,7 @@ void func_8019DBEC_6C88BC(u16 actor_index) {
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = 0;
     gActors[actor_index].posZ.whole = 0x80;
-    gActors[actor_index].graphicIndex = 0xE6;
+    gActors[actor_index].graphicIndex = GINDEX_BOOM2;
     gActors[actor_index].colorA = 0x40;
     gActors[actor_index].scaleX = 12.0f;
     gActors[actor_index].scaleY = 12.0f;
@@ -1019,8 +1051,8 @@ void func_8019E424_6C90F4(u16 actor_index) {
             gActors[actor_index].colorR += 3;
             gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
             gActors[actor_index].posX.raw = 0;
-            gActors[actor_index].posY.raw = gActors[0x30].posY.raw - FIXED_UNIT(4);
-            gActors[actor_index].posZ.raw = gActors[0x30].posZ.raw - FIXED_UNIT(32);
+            gActors[actor_index].posY.raw = sRifleActor.posY.raw - FIXED_UNIT(4);
+            gActors[actor_index].posZ.raw = sRifleActor.posZ.raw - FIXED_UNIT(32);
             break;
 
         case 0x3000:
@@ -1030,7 +1062,7 @@ void func_8019E424_6C90F4(u16 actor_index) {
         case 0x3001:
             gActors[actor_index].flags |= ACTOR_FLAG_DRAW;
             gActors[actor_index].posX.raw = 0;
-            gActors[actor_index].posY.raw = gActors[0x30].posY.raw - FIXED_UNIT(4);
+            gActors[actor_index].posY.raw = sRifleActor.posY.raw - FIXED_UNIT(4);
             gActors[actor_index].posZ.raw = gActors[0x43].posZ.raw + FIXED_UNIT(32);
             break;
     }
@@ -1085,7 +1117,7 @@ void func_8019E564_6C9234(u16 actor_index) {
             if (gActors[actor_index].posY.whole == 6) {
                 gActors[actor_index].state++;
                 gActors[actor_index].colorR = 0x7F;
-                gActors[0x30].colorR = 0x7F;
+                sRifleActor.colorR = 0x7F;
                 gActors[0x43].colorR = 0x7F;
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
@@ -1166,7 +1198,7 @@ void func_8019E8B0_6C9580(u16 actor_index) {
             if (gActors[actor_index].posY.whole == 6) {
                 gActors[actor_index].state++;
                 gActors[actor_index].colorR = 0x7F;
-                gActors[0x30].colorR = 0x7F;
+                sRifleActor.colorR = 0x7F;
                 gActors[0x43].colorR = 0x7F;
                 gActors[0x54].colorR = 0x7F;
                 gActors[0x75].colorR = 0x7F;
@@ -1227,14 +1259,14 @@ void func_8019ECEC_6C99BC(u16 actor_index) {
 void func_8019ED74_6C9A44(u16 arg0) {
     if (arg0 == 0) {
         gActors[0x43].velocityX.raw = Math_ApproachS32(gActors[0x43].velocityX.raw, 0, FIXED_UNIT(0.25));
-        gActors[0x30].colorA = Math_ApproachS32(gActors[0x30].colorA, 0xC0, 8);
-        gActors[0x43].colorA = gActors[0x30].colorA;
-        gActors[0x30].velocityY.raw = Math_ApproachS32(gActors[0x30].velocityY.raw, 0, FIXED_UNIT(0.25));
+        sRifleActor.colorA = Math_ApproachS32(sRifleActor.colorA, 0xC0, 8);
+        gActors[0x43].colorA = sRifleActor.colorA;
+        sRifleActor.velocityY.raw = Math_ApproachS32(sRifleActor.velocityY.raw, 0, FIXED_UNIT(0.25));
         gActors[0x43].velocityY.raw = Math_ApproachS32(gActors[0x43].velocityY.raw, 0, FIXED_UNIT(0.25));
     }
     else {
-        gActors[0x30].velocityY.raw -= FIXED_UNIT(0.21875);
-        gActors[0x30].posZ.whole += 5;
+        sRifleActor.velocityY.raw -= FIXED_UNIT(7.0/32);
+        sRifleActor.posZ.whole += 5;
         gActors[0x43].velocityY.raw -= FIXED_UNIT(0.375);
         gActors[0x43].velocityX.raw -= FIXED_UNIT(0.5);
         gActors[0x43].colorA = Math_ApproachS32(gActors[0x43].colorA, 0, 8);
@@ -1246,7 +1278,7 @@ void func_8019ED74_6C9A44(u16 arg0) {
 }
 
 void func_8019EE70_6C9B40(void) {
-    gActors[0x30].flags = 0;
+    sRifleActor.flags = 0;
     gActors[0x43].flags = 0;
     gActors[0x54].flags = 0;
 }

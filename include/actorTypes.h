@@ -189,7 +189,7 @@ typedef enum {
     ACTORTYPE_CLANPOTMENU, // mwnu when looking into clanpot.
     ACTORTYPE_MSHINT, // Ms. Hint
     ACTORTYPE_GEMRING, // Ring of gems when buying hint or recieving reward.
-    ACTORTYPE_GEM124, // gem in "Enter Marina" and "Crisis: Nepton" ?
+    ACTORTYPE_GEM124, // gem under case in "Enter Marina" and "Crisis: Nepton"
     
     // actors in dispatch table D_8019B000_73D070
 
@@ -221,7 +221,7 @@ typedef enum {
 
     // actors in dispatch table D_801B0800_7986D0
 
-    ACTORTYPE_OVL3_W2_CLANCERSWING = (ACTOR_OVL3_WORLD2 << 8),
+    ACTORTYPE_OVL3_W2_CLANCERSWING = (ACTOR_OVL3_WORLD2 << 8), // chain of trapeze clancers
     ACTORTYPE_OVL3_W2_1,
     ACTORTYPE_OVL3_W2_CLANCER_2, // shuriken-throwing clancers in "Sink or Float"
     ACTORTYPE_OVL3_W2_3, // stubbed
@@ -232,7 +232,7 @@ typedef enum {
     ACTORTYPE_OVL3_W2_3DPLATFROM_8, // platforms in vertical stages
     ACTORTYPE_OVL3_W2_3DPLATFORM_9,
     ACTORTYPE_OVL3_W2_SPIKEBALLGEN, // generates ACTORTYPE_OVL3_W2_SPIKEBALL_11 in "Seasick Climb"
-    ACTORTYPE_OVL3_W2_SPIKEBALL_11,
+    ACTORTYPE_OVL3_W2_SPIKEBALL_11, // spikeball falling with rotation of camera in "Seasick Climb!"
     ACTORTYPE_OVL3_W2_12,
     ACTORTYPE_OVL3_W2_13,
     ACTORTYPE_OVL3_W2_14,
@@ -331,7 +331,7 @@ typedef enum {
     ACTORTYPE_OVL1_MERCO_4,
     ACTORTYPE_OVL1_MERCO_5,
     ACTORTYPE_OVL1_MERCO_6,
-    ACTORTYPE_OVL1_MERCO_7, // marina exiting?
+    ACTORTYPE_OVL1_MERCO_7, // Marina flies away.
     
     // actors in dispatch table D_8019B000_722A30
 
@@ -339,7 +339,7 @@ typedef enum {
     ACTORTYPE_OVL1_LUNAR_1,
     ACTORTYPE_OVL1_LUNAR_SHOT, // shot from gun. grab for yellow gem.
     ACTORTYPE_OVL1_LUNAR_3,
-    ACTORTYPE_OVL1_LUNAR_SNOW,
+    ACTORTYPE_OVL1_LUNAR_SNOW, // stage's blizzard effect
     ACTORTYPE_OVL1_LUNAR_5,
     ACTORTYPE_OVL1_LUNAR_6,
     ACTORTYPE_OVL1_LUNAR_EXIT, // Marina flies away.
@@ -446,6 +446,25 @@ typedef enum {
     ACTORTYPE_OVL0_PGAMMA_25,
 
 
+    // actor in dispatch table D_80192000_6BCD80
+
+    ACTORTYPE_OVL0_FINAL_MAIN = (ACTOR_OVL0_FINALBAT << 8), // main behavoir of boss
+    ACTORTYPE_OVL0_FINAL_1, // stubbed
+    ACTORTYPE_OVL0_FINAL_BEAM, // chest beam
+    ACTORTYPE_OVL0_FINAL_FIST, // rocket fist
+    ACTORTYPE_OVL0_FINAL_SHOT, // shots from rifle. catch for blue gems
+    ACTORTYPE_OVL0_FINAL_5, // stubbed
+    ACTORTYPE_OVL0_FINAL_6,
+    ACTORTYPE_OVL0_FINAL_CROSSHAIR, // rocket fist crosshair
+    ACTORTYPE_OVL0_FINAL_MARINA_8, // Marina with rocket fist
+    ACTORTYPE_OVL0_FINAL_INTRO_9, // intro cinematic
+    ACTORTYPE_OVL0_FINAL_HENSHIN_10,
+    ACTORTYPE_OVL0_FINAL_HENSHIN_11,
+    ACTORTYPE_OVL0_FINAL_HENSHIN_12,
+    ACTORTYPE_OVL0_FINAL_SCREENFADE, // fade to white / black / gray
+
+    ACTORTYPE_OVL0_FINAL_17 = (ACTOR_OVL0_FINALBAT << 8) + 17,
+
     // actors in dispatch table D_801A6800_766080
 
     ACTORTYPE_OVL2_W1_CLANCER_0 = (ACTOR_OVL2_WORLD1 << 8),
@@ -470,7 +489,7 @@ typedef enum {
     ACTORTYPE_OVL2_W1_19,
     ACTORTYPE_OVL2_W1_20,
     ACTORTYPE_OVL2_W1_CELES_WORM, // Celes in "Wormin' Up!"
-    ACTORTYPE_OVL2_W1_22, // Teran and Clancer ally in "Crisis: Nepton"
+    ACTORTYPE_OVL2_W1_CLANCER_22, // Teran and Clancer ally in "Crisis: Nepton"
     ACTORTYPE_OVL2_W1_23,
     ACTORTYPE_OVL2_W1_24,
     ACTORTYPE_OVL2_W1_25,

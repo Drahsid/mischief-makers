@@ -2291,7 +2291,7 @@ void func_800907E4(u16 actor_index) {
     switch (gActors[actor_index + 1].var_0D8) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
-        gActors[actor_index].palette_18C = (u16*)0x80202C90;
+        gActors[actor_index].palette_18C = PALETTE_80202C90;
         func_8008105C(actor_index, D_800E5E48, D_800E5B00);
         break;
     case 1:

@@ -1077,8 +1077,8 @@ u16 sActorSpawn_1_8B[] = {
 
 u16 sActorSpawn_1_8C[] = {
 //  flags   index posX    posY    0x110   0xD8    type    
-    0x0020, 0x4E, 0x05A0, 0x017E, 0x60C1, 0x3BF0, ACTORTYPE_OVL2_W1_22,
-    0x0020, 0x4C, 0x0600, 0x017E, 0x60A0, 0x34D1, ACTORTYPE_OVL2_W1_22,
+    0x0020, 0x4E, 0x05A0, 0x017E, 0x60C1, 0x3BF0, ACTORTYPE_OVL2_W1_CLANCER_22,
+    0x0020, 0x4C, 0x0600, 0x017E, 0x60A0, 0x34D1, ACTORTYPE_OVL2_W1_CLANCER_22,
     0x0020, 0x74, 0x05A0, 0x0150, 0x0000, 0x0000, ACTORTYPE_GEM124, 
     0x0020, 0x75, 0x05C0, 0x0150, 0x0001, 0x0000, ACTORTYPE_GEM124,
     0x0020, 0x76, 0x05E0, 0x0150, 0x0003, 0x0000, ACTORTYPE_GEM124, 
@@ -1470,8 +1470,8 @@ u16 sActorSpawn_1_2D[] = {
 
 void func_801B9900_7C6AE0(s16* arg0) {
     Palette_AdjustScenePalettes(0, 0, 0, arg0[0], arg0[1], arg0[2], arg0[3], arg0[4], arg0[5]);
-    Palette_AdjustRgb5551Array((u16*)0x80352B90, (u16*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
-    Palette_AdjustRgb5551Array((u16*)0x80355F90, (u16*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
+    Palette_AdjustRgb5551Array(PALETTE_80352B90, (u16*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
+    Palette_AdjustRgb5551Array(PALETTE_80355F90, (u16*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
 }
 
 void func_801B99B4_7C6B94(s16* arg0) {

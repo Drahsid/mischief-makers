@@ -422,6 +422,11 @@ NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
 
+LevelClear_Starscape = 0x80096E14; // type:func
+LevelClear_SpawnTheo = 0x80097108; // type:func
+LevelClear_SpawnBackground = 0x800972DC; // type:func
+LevelClear_SphereRing = 0x80097384; // type:func
+LevelClear_SpawnSphere = 0x80097428; // type:func
 LevelClear_HeartEyes = 0x800977B8; // type:func
 LevelClear_ZToSkip = 0x80097968; // type:func
 ActorUpdate_LevelClear = 0x80097A74; // type:func
