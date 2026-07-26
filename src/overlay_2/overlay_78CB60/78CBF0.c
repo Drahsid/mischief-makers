@@ -791,7 +791,7 @@ u16 func_801A7424_78D714(u16 arg0) {
 
     actor_index = Actor_RangeFindInactive(0x90, 0xb8);
     if (actor_index != 0) {
-        gActors[actor_index].actorType = ACTORTYPE_OVL2_FESTIVAL_1;
+        gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_1;
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     }
@@ -1123,7 +1123,7 @@ void func_801AC360_792650(u16 actor_index) {
     Actor* actorP;
 
     actorP=&gActors[0x3a];
-    actorP->actorType = ACTORTYPE_OVL2_FESTIVAL_8;
+    actorP->actorType = ACTORTYPE_OVL2_FEST_8;
     Actor_Initialize(0x3A);
     actorP->flags |= ACTOR_FLAG_FREEZE_POS;
     actorP->posX.whole = 0;
@@ -1132,7 +1132,7 @@ void func_801AC360_792650(u16 actor_index) {
 }
 
 void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FESTIVAL_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -1186,7 +1186,7 @@ void func_801AC448_792738(u16 actor_index) {
     actorP->hitboxBX1 = 0x14;
 
     actorP =&gActors[0x33];
-    actorP->actorType = ACTORTYPE_OVL2_FESTIVAL_0;
+    actorP->actorType = ACTORTYPE_OVL2_FEST_0;
     Actor_Initialize(0x33);
     actorP->posX.whole = 0;
     actorP->posY.whole = 0x48;
