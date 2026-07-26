@@ -27,7 +27,7 @@ typedef enum {
     ACTOR_OVL1_MERCO,
     ACTOR_OVL1_LUNAR, // "Overlay 1" actors for "Lunar"
     ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
-    ACTOR_OVL1_13,
+    ACTOR_OVL1_TAURUS,
     ACTOR_OVL3_14,
     ACTOR_OVL0_CALPHA, // actors in Overlay 0 code of "Cerberus Alpha" 
     ACTOR_OVL0_WORLD1, // Commander and stubbed actor in "Meet Marina"
@@ -351,6 +351,15 @@ typedef enum {
     ACTORTYPE_OVL1_BEE_DRONESHAKE, // bee drone spawned when shaking head
     ACTORTYPE_OVL1_BEE_DRONERING, // bee drone spawned in ring formation.
 
+    // actors in dispatch table D_8019B000_72B120
+
+    ACTORTYPE_OVL1_TAURUS_0 = (ACTOR_OVL1_TAURUS << 8),
+    ACTORTYPE_OVL1_TAURUS_1,
+    ACTORTYPE_OVL1_TAURUS_2,
+    ACTORTYPE_OVL1_TAURUS_3,
+    ACTORTYPE_OVL1_TAURUS_4,
+    ACTORTYPE_OVL1_TAURUS_5,
+
     // actors in dispatch table D_80192000_68A090
 
     ACTORTYPE_OVL0_CALPHA_0 = (ACTOR_OVL0_CALPHA << 8),
@@ -448,7 +457,7 @@ typedef enum {
 
     // actor in dispatch table D_80192000_6BCD80
 
-    ACTORTYPE_OVL0_FINAL_MAIN = (ACTOR_OVL0_FINALBAT << 8), // main behavoir of boss
+    ACTORTYPE_OVL0_FINAL_MAIN = (ACTOR_OVL0_FINALBAT << 8), // main behavior of boss
     ACTORTYPE_OVL0_FINAL_1, // stubbed
     ACTORTYPE_OVL0_FINAL_BEAM, // chest beam
     ACTORTYPE_OVL0_FINAL_FIST, // rocket fist

@@ -524,7 +524,7 @@ u16 D_801BD568_7E66C8[] = {
 
 u16 D_801BD578_7E66D8[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, 0x0D00,
+    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, ACTORTYPE_OVL1_TAURUS_0,
     SPAWNRECORD_END
 };
 
@@ -805,7 +805,7 @@ void func_801B9E74_7E2FD4(void) {
             func_801B9D78_7E2ED8();
 
             if ((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x2070) {
-                gPlayerActor.flags_098 |= 0x10000;
+                gPlayerActor.flags_098 |= ACTOR_FLAG3_UNK16;
 
                 if ((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) < 0x1FD8) {
                     gActors[0x40].flags = 0;
@@ -1467,7 +1467,7 @@ void func_801BB28C_7E43EC(void) {
     Camera_UpdateViewBounds();
 }
 
-// state machine for intro/end of "Taurus!!"
+// state machine for "Taurus!!"
 void func_801BB85C_7E49BC(void) {
     switch (gStageState) {
         case 0:
