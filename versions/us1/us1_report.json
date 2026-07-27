@@ -25722,7 +25722,7 @@
         "module_name": ".main",
         "module_id": 2,
         "progress_categories": [
-          "D8ED0.data"
+          "segment_main"
         ]
       }
     },
@@ -25748,7 +25748,7 @@
         "module_name": ".main",
         "module_id": 2,
         "progress_categories": [
-          "E1CD0.data"
+          "segment_main"
         ]
       }
     },
@@ -49599,7 +49599,7 @@
         "matched_functions": 1896,
         "matched_functions_percent": 87.69658,
         "complete_data_percent": 100.0,
-        "total_units": 257
+        "total_units": 259
       }
     },
     {

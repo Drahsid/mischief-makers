@@ -437,7 +437,7 @@ FileSelect_SetProgress = 0x80006E60; // type:func
 
 NameEntry_ConfirmName = 0x800072A4; // type:func
 NameEntry_PrintKeyboardHIRA = 0x800073cc; // type:func rom:0x7fcc
-NameEntry_SetToHiragana = 080007578; // type:func
+NameEntry_SetToHiragana = 0x80007578; // type:func
 NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
 NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
 NameEntry_Init = 0x800078A4; // type:func

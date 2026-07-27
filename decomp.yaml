@@ -148,6 +148,8 @@ tools:
             - D24D0.data
             - D34D0.data
             - D6420.data
+            - D8ED0.data
+            - E1CD0.data
 
         - id: overlays
           name: Overlays
