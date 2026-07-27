@@ -58,9 +58,9 @@ extern u8* D_80137724;
 extern u32 D_80137728;
 extern u32 D_8013776C;
 extern u32 D_80137770;
-extern u32 D_80137774;
-extern u32 D_80137778;
-extern u32 D_8013777C;
+extern u8* D_80137774;
+extern u8* D_80137778;
+extern u8* D_8013777C;
 extern u32 D_80137780;
 extern u32 D_80137784;
 extern u32 D_80137788;
@@ -1649,14 +1649,14 @@ void func_800265FC(u16 index) {
     start = entry[1];
     source = (start - D_800CEED0[0]) + (uintptr_t)Segment_03_ROM_START;
     new_var = entry[2] - start;
-    D_80137774 = (uintptr_t)COLLISION_DEST;
+    D_80137774 = COLLISION_DEST;
     DMA_ReadSync(
         (u8*)source,
         RLE_SCRATCH_LOW,
         new_var
     );
 
-    D_80137778 = (uintptr_t)COLLISION_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, COLLISION_DEST);
+    D_80137778 = COLLISION_DEST + Trouble_RLE_Type1(RLE_SCRATCH_LOW, COLLISION_DEST);
 }
 
 void func_80026694(u16 index) {
@@ -1677,22 +1677,22 @@ void func_80026694(u16 index) {
 void func_8002670C(u16 index) {
     uintptr_t start;
     u32 length;
-    uintptr_t source;
+    u8* source;
     s32 new_var;
-    uintptr_t* dest_ptr;
+    u8** dest_ptr;
     u32* entry;
 
     entry = &D_800CF2F4[index * 2];
     start = entry[1];
-    source = (start - D_800CF2F4[0]) + (uintptr_t)Segment_03_ROM_START;
+    source = (start - D_800CF2F4[0]) + Segment_03_ROM_START;
     new_var = entry[2] - start;
     length = new_var;
     dest_ptr = &D_8013777C;
-    *dest_ptr = (uintptr_t)STAGE_TABLE0_DEST;
+    *dest_ptr = STAGE_TABLE0_DEST;
     D_80137780 = (uintptr_t)STAGE_TABLE0_DEST + length;
     DMA_ReadSync(
-        (u8*)source,
-        (u8*)*dest_ptr,
+        source,
+        *dest_ptr,
         length
     );
 }

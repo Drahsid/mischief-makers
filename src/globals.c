@@ -22,7 +22,7 @@ s8 gSfxPanOverrides[4];
 u32 D_801069DC;
 StaticObject gStaticObjects[64];
 u16 gSfxActorIndices[4];
-u8 D_80108DE8[512][32];
+u8 D_80108DE8[512 * 32];
 u16 gSfxStopTimers[4];
 u8 D_8010CDF0[0x10000];
 u8 gSfxChannelVolumes[8];

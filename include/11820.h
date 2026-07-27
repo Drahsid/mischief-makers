@@ -3,9 +3,9 @@
 
 #include <PR/ultratypes.h>
 
-void func_8001107C(void);
+extern u8* D_8013746C;
 
-// guessed signature
-void func_80012044(s16, s16, s32);
+void func_8001107C(void);
+void func_80012044(s16, s16, s16);
 
 #endif
