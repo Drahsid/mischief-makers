@@ -88,7 +88,7 @@ segments:
       - [0x005510, c, rle_type1]
       - [0x005A70, c, save_file]
       - [0x00A540, c] # has to do with drawing and the persp/ortho view
-      - [0x011820, asm] # collision builder?
+      - [0x011820, c] # collision builder?
       - [0x012DD0, c] # has to do with spawning the player actor, and the camera
       - [0x0134E0, c]
       - [0x013850, c, gameover] # gameover game_state
@@ -309,7 +309,7 @@ segments:
       - [0x0C5B20, .data, save_file]
       - [0x0C5FC0, data] # A540?
       - [0x0C7DA0, data] # 241E0?
-      - [0x0C84A0, data] # 11820?
+      - [0x0C84A0, .data, 11820]
       - [0x0C88D0, .data, 134E0]
       - [0x0C8910, .data, gameover] # gameover
       - [0x0C8B20, data] # 156F0
@@ -374,7 +374,7 @@ segments:
       - [0x0EB830, .rodata, music]
       - [0x0EBB10, .rodata, save_file]
       - [0x0EBBC0, rodata] # A540?
-      - [0x0EBBE0, rodata] # 11820?
+      - [0x0EBBE0, .rodata, 11820]
       - [0x0EBC00, .rodata, gameover]
       - [0x0EBC50, .rodata, 17A70]
       - [0x0EBD00, .rodata, stage]

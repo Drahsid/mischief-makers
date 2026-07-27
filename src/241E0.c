@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "input.h"
 #include "letterbox.h"
+#include "11820.h"
 #include "1F1E0.h"
 #include "241E0.h"
 #include "84BB0.h"
@@ -582,11 +583,10 @@ u8 D_800CD034[] = {
 
 extern u8 D_800E3BC8[];
 extern s8 D_800E3C48[];
-extern s32 D_800C71A0; // guess
+extern u8 D_800C71A0[];
 
 extern s16 D_801373DC;
 extern s16 D_801373DE;
-extern s32* D_8013746C; // guess, related to type of D_800C71A0
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
 
@@ -1204,7 +1204,7 @@ void CameraInit_Merco_Trapped(void) {
     D_800BE588 = 0;
     D_800BE58C = 1;
     D_800BE584 = -76;
-    D_8013746C = &D_800C71A0;
+    D_8013746C = D_800C71A0;
     if (gCurrentScene != SCENE_TRAPPED) {
         gLookatEyeX = -128.0f;
         gLookatEyeY = 128.0f;
