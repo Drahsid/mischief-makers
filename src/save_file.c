@@ -6,10 +6,22 @@
 #include "438E0.h"
 #include "82F80.h"
 
-#define NAME_ENTRY_CHARSET  gActors[0xB9].unk_0A0
-#define NAME_ENTRY_POSITION gActors[0xB8].unk_0A0
-#define CHAR_SELECT_ROW     gActors[0xB2].unk_0A0
+
+// offset 0xA0 in several actors is used for menu variables
+
 #define CHAR_SELECT_COLUMN  gActors[0xB1].unk_0A0
+#define CHAR_SELECT_ROW     gActors[0xB2].unk_0A0
+#define BUTTON_TIMER_UP     gActors[0xB3].unk_0A0
+#define BUTTON_TIMER_DOWN   gActors[0xB4].unk_0A0
+#define BUTTON_TIMER_LEFT   gActors[0xB5].unk_0A0
+#define BUTTON_TIMER_RIGHT  gActors[0xB6].unk_0A0
+#define PRINT_INDEX         gActors[0xB7].unk_0A0
+#define NAME_ENTRY_POSITION gActors[0xB8].unk_0A0
+#define NAME_ENTRY_CHARSET  gActors[0xB9].unk_0A0
+#define CONFIRM_SELECTION   gActors[0xBA].unk_0A0
+#define AGE_SELECT_DIGIT    gActors[0xBB].unk_0A0
+#define FILE0_SET           gActors[0xBC].unk_0A0
+#define FILE1_SET           gActors[0xBD].unk_0A0
 
 enum {
     CHARSET_HIRAGANA = 0,
@@ -64,9 +76,13 @@ u16 gDefaultFileName[] = { //_EN3("Start     ")
     ALPHA_NULL
 };
 
-u32 D_800C4FC0[] = {
-    0x00010000, 0x00020000, 0x00040000, 0x00000064,
-    0x00000003, 0x00020000, 0x00000003, 0x00040000,
+// default festival records.
+u32 gDefaultFestivalScores[] = {
+//  100M        200M        400M        Jump
+    0x00010000, 0x00020000, 0x00040000, 100,
+//  Ball Hurdle      Mathfun Unused race
+    3,   0x00020000, 3,      0x00040000,
+//  Intro       select screen
     0x00000000, 0x00040000,
 };
 
@@ -93,8 +109,14 @@ u8 D_800C5010[] = {
     0x09, 0x09, 0x09, 0x05, 0x09, 0x05, 0x00, 0x00,
 };
 
-u8 D_800C5018[] = {
-    0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00,
+// if festival event isn't race
+u8 gEventNotRace[] = {
+//  100M   200M   400M   Jump
+    FALSE, FALSE, FALSE, TRUE,
+//  Ball  Hurdle Mathfun Unused race
+    TRUE, FALSE, TRUE,   FALSE, 
+//  Intro select
+    TRUE, FALSE, FALSE, FALSE,
 };
 
 // strings
@@ -256,7 +278,7 @@ u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼ�
 u16 gArrowRight[] = { ALPHA_ARROW_RIGHT, ALPHA_NULL }; // _("→")
 u16 gArrowLeft[] = { ALPHA_ARROW_LEFT, ALPHA_NULL }; // _("←")
 u16 gArrowDown[] = { ALPHA_ARROW_DOWN, ALPHA_NULL }; // _("↓")
-u16 gDash10x[] = { // _("----------")
+u16 gDash10x[] = { // _("----------") used as underscore in name entry
     ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH,
     ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH,
     ALPHA_NULL
@@ -651,8 +673,8 @@ s32 func_80004E90(u32 arg0) {
     return FALSE;
 }
 
-s32 func_80004F08(u32 arg0) {
-    if (arg0 >= 0x3E8) {
+s32 EventScoreOver999(u32 arg0) {
+    if (arg0 >= 1000) {
         return TRUE;
     }
     else {
@@ -660,28 +682,31 @@ s32 func_80004F08(u32 arg0) {
     }
 }
 
-s32 func_80004F24(void) {
+// if festival event score seems too high,
+// replace it with default
+// @returns true if score defaulted
+s32 CheckFestivalScroes(void) {
     u16 index;
     s32 result;
     u16 var_v0;
 
     result = FALSE;
     for (index = 0; index < 7; index++) {
-        if (D_800C5018[index] != 0) {
-            var_v0 = func_80004F08(gFestivalRecords[index]);
+        if (gEventNotRace[index]) {
+            var_v0 = EventScoreOver999(gFestivalRecords[index]);
         }
         else {
             var_v0 = func_80004E90(gFestivalRecords[index]);
         }
         if (var_v0) {
             result = TRUE;
-            gFestivalRecords[index] = D_800C4FC0[index];
+            gFestivalRecords[index] = gDefaultFestivalScores[index];
         }
     }
     return result;
 }
 
-void func_80004FFC(u8 save_slot) {
+void SaveFile_DefaultSlot(u8 save_slot) {
     u16 index;
 
     for (index = 0; index < ARRAYLENGTH(gDefaultFileName); index++) {
@@ -689,15 +714,15 @@ void func_80004FFC(u8 save_slot) {
     }
     gFileAges[save_slot] = 0;
     gFileSexes[save_slot] = 0;
-    gFileRedGems[save_slot] = 0x1E;
+    gFileRedGems[save_slot] = 30;
     gFileYellowGems[save_slot] = 0;
     gFilePlayTimes[save_slot] = 0;
 }
 
-void func_800050B4(void) {
+void SaveFile_DefaultRecords(void) {
     u16 index;
 
-    for (index = 0; index < ARRAYLENGTH(gFestivalRecords); index++) { gFestivalRecords[index] = D_800C4FC0[index]; }
+    for (index = 0; index < ARRAYLENGTH(gFestivalRecords); index++) { gFestivalRecords[index] = gDefaultFestivalScores[index]; }
 
     // unsure the purpose of this zero, shift, and zero
     gYellowGemBitfield = 0;
@@ -710,7 +735,7 @@ void func_800050B4(void) {
     for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {  gTimeRecords[index] = STAGE_MAX_TIME; }
 }
 
-void func_80005188(void) {
+void SaveFile_CheckValid(void) {
     u16 index;
     u8 eeprom_id[8];
     u8 count;
@@ -723,28 +748,33 @@ void func_80005188(void) {
             count++;
         }
     }
+    // new save data, or data without valid ID.
     if (count != 0) {
-        func_80004FFC(0);
-        func_80004FFC(1);
+        SaveFile_DefaultSlot(0);
+        SaveFile_DefaultSlot(1);
         osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
-        func_800050B4();
+        SaveFile_DefaultRecords();
         osEepromLongWrite(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         osEepromLongWrite(&gControllerReadMessageQueue, 0x14, (u8* ) gTimeRecords, sizeof(gTimeRecords));
         osEepromLongWrite(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         osEepromLongWrite(&gControllerReadMessageQueue, 0x2C, (u8* ) gTimeRecords, sizeof(gTimeRecords));
         osEepromLongWrite(&gControllerReadMessageQueue, 0, gEEPROMID, sizeof(gEEPROMID));
     }
-    else {
+    else { // check validity of save slots
         // 1st ---------------------------------------------------------------------------------
         osEepromLongRead(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
         osEepromLongRead(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         count = 0;
+        // check if save file name has illegal characters
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_0]); index++) {
-            if (((gFileNames[SAVE_SLOT_0][index] != 0) && (gFileNames[SAVE_SLOT_0][index] <= 80)) || 
-                ((gFileNames[SAVE_SLOT_0][index] >= 338) && (gFileNames[SAVE_SLOT_0][index] != ALPHA_NULL))) {
+            if (((gFileNames[SAVE_SLOT_0][index] != 0) && 
+                (gFileNames[SAVE_SLOT_0][index] <= ALPHA_EN_BRACKETRIGHT)) || 
+                ((gFileNames[SAVE_SLOT_0][index] >= 338) // last legal Kanji char?
+                && (gFileNames[SAVE_SLOT_0][index] != ALPHA_NULL))) {
                 count = 1;
             }
         }
+        // check if save file name has terminator character
         has_terminator = FALSE;
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_0]); index++) {
             if (gFileNames[SAVE_SLOT_0][index] == ALPHA_NULL) {
@@ -753,31 +783,35 @@ void func_80005188(void) {
         }
 
         if ((count == 1) || (!has_terminator) ||
-            (gFileAges[SAVE_SLOT_0] >= 100) ||
-            (gFileSexes[SAVE_SLOT_0] >= 2) ||
-            (gFileRedGems[SAVE_SLOT_0] >= 10000) ||
-            (gFileYellowGems[SAVE_SLOT_0] >= 54) ||
-            (CountYellowGems() != gFileYellowGems[SAVE_SLOT_0]) ||
-            (gFilePlayTimes[SAVE_SLOT_0] >= FILE_PLAY_TIME_MAX) ||
-            (gWorldProgress >= 60))
-        {
-            func_80004FFC(0);
+            (gFileAges[SAVE_SLOT_0] >= 100) || // invalid age
+            (gFileSexes[SAVE_SLOT_0] >= 2) || // not male or female
+            (gFileRedGems[SAVE_SLOT_0] >= 10000) || // red gems beyond cap
+            (gFileYellowGems[SAVE_SLOT_0] >= 54) || // more yellow gems than collectible
+            (CountYellowGems() != gFileYellowGems[SAVE_SLOT_0]) || // mismatch yellow gem count
+            (gFilePlayTimes[SAVE_SLOT_0] >= FILE_PLAY_TIME_MAX) || // playing longer then possible
+            (gWorldProgress > STAGE_MAX)) // progress too high
+        { // illegal save file, erase
+            SaveFile_DefaultSlot(0);
             osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
-            func_800050B4();
+            SaveFile_DefaultRecords();
             osEepromLongWrite(&gControllerReadMessageQueue, 0xC, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         }
-
+        
+        // check duplicated for second slot
         // 2nd ---------------------------------------------------------------------------------
         osEepromLongRead(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
         osEepromLongRead(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         count = 0;
+        // check if save file name has illegal characters
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_1]); index++) {
-            if (((gFileNames[SAVE_SLOT_1][index] != 0) && (gFileNames[SAVE_SLOT_1][index] <= 80)) || 
-                ((gFileNames[SAVE_SLOT_1][index] >= 338) && (gFileNames[SAVE_SLOT_1][index] != ALPHA_NULL))) {
+            if (((gFileNames[SAVE_SLOT_1][index] != 0) && 
+                (gFileNames[SAVE_SLOT_1][index] <= ALPHA_EN_BRACKETRIGHT)) || 
+                ((gFileNames[SAVE_SLOT_1][index] >= 338) // last legal Kanji char?
+                && (gFileNames[SAVE_SLOT_1][index] != ALPHA_NULL))) {
                 count = 1;
             }
         }
-
+        // check if save file name has terminator character
         has_terminator = FALSE;
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_1]); index++) {
             if (gFileNames[SAVE_SLOT_1][index] == ALPHA_NULL) {
@@ -785,23 +819,23 @@ void func_80005188(void) {
             }
         }
         if ((count == 1) || (!has_terminator) ||
-            (gFileAges[SAVE_SLOT_1] >= 100) ||
-            (gFileSexes[SAVE_SLOT_1] >= 2) ||
-            (gFileRedGems[SAVE_SLOT_1] >= 10000) ||
-            (gFileYellowGems[SAVE_SLOT_1] >= 54) ||
-            (CountYellowGems() != gFileYellowGems[SAVE_SLOT_1]) ||
-            (gFilePlayTimes[SAVE_SLOT_1] >= FILE_PLAY_TIME_MAX) ||
-            (gWorldProgress >= 60))
-        {
-            func_80004FFC(1);
+            (gFileAges[SAVE_SLOT_1] >= 100) || // invalid age
+            (gFileSexes[SAVE_SLOT_1] >= 2) || // not male or female
+            (gFileRedGems[SAVE_SLOT_1] >= 10000) || // red gems beyond cap
+            (gFileYellowGems[SAVE_SLOT_1] >= 54) || // more yellow gems than collectible
+            (CountYellowGems() != gFileYellowGems[SAVE_SLOT_1]) || // mismatch yellow gem count
+            (gFilePlayTimes[SAVE_SLOT_1] >= FILE_PLAY_TIME_MAX) || // playing longer then possible
+            (gWorldProgress > STAGE_MAX)) // progress too high
+        { // illegal save file, erase
+            SaveFile_DefaultSlot(1);
             osEepromLongWrite(&gControllerReadMessageQueue, 2, SAVE_FILE_DATA, SAVE_FILE_SIZE);
-            func_800050B4();
+            SaveFile_DefaultRecords();
             osEepromLongWrite(&gControllerReadMessageQueue, 0x24, FESTIVAL_SAVE_DATA, FESTIVAL_SAVE_SIZE);
         }
     }
 }
 
-void func_8000565C(void) {
+void SaveFile_LoadSlot(void) {
     u16 index;
 
     osEepromProbe(&gControllerReadMessageQueue);
@@ -816,7 +850,7 @@ void func_8000565C(void) {
     if (D_80171B19 >= 2) {
         D_80171B19 = 0;
     }
-    func_80004F24();
+    CheckFestivalScroes();
     for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {
         if (gTimeRecords[index] > STAGE_MAX_TIME) {
             gTimeRecords[index] = STAGE_MAX_TIME;
@@ -824,7 +858,7 @@ void func_8000565C(void) {
     }
 }
 
-void func_80005770(void) {
+void SaveFile_SaveSlot(void) {
     osEepromProbe(&gControllerReadMessageQueue);
     osEepromLongWrite(&gControllerReadMessageQueue, 0x2, (u8* ) gFileNames, 0x48);
     if (gCurrentSaveSlot != 0) {
@@ -837,25 +871,25 @@ void func_80005770(void) {
     }
 }
 
-void func_80005828(void) {
-    func_80004FFC(gCurrentSaveSlot);
-    func_800050B4();
-    func_80005770();
+void SaveFile_EraseSlot(void) {
+    SaveFile_DefaultSlot(gCurrentSaveSlot);
+    SaveFile_DefaultRecords();
+    SaveFile_SaveSlot();
 }
 
-void func_80005860(u16 actor_index, u16 x, u16 y, uintptr_t palette) {
+void SaveFile_GemIcon(u16 actor_index, u16 x, u16 y, uintptr_t palette) {
     Text_InitActorGList(actor_index, gGraphicListGemIcon, x, y, 0);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
     gActors[actor_index].palette_18C = (u16*)palette;
 }
 
-void func_800058E0(u16 actor_index, u16 x, u16 y, u16 save_slot, u16* arg4) {
+void SaveFile_PrintRedGems(u16 actor_index, u16 x, u16 y, u16 save_slot, u16* arg4) {
     s32 pad;
     Text_Print2Digits(actor_index, gFileRedGems[save_slot] / 100, x, y, 0, arg4);
     Text_Print2Digits(actor_index + 2, gFileRedGems[save_slot] % 100, x + 18, y, 0, arg4);
 }
 
-u16 func_800059A4(u16 actor_index, u16 x, u16 y, u16 index) {
+u16 SaveFile_PrintPlayTime(u16 actor_index, u16 x, u16 y, u16 index) {
     u32 time_sec;
 
     time_sec = gFilePlayTimes[index] / 60;
@@ -869,7 +903,8 @@ u16 func_800059A4(u16 actor_index, u16 x, u16 y, u16 index) {
     return actor_index + 0xE;
 }
 
-u8 func_80005B68(u8 arg0, u8 arg1) {
+// check if cursor is on blank space
+u8 NameEntry_CursorOnBlank(u8 arg0, u8 arg1) {
     switch (NAME_ENTRY_CHARSET) {
     case CHARSET_HIRAGANA:
         if ((arg0 == 0x10) && (arg1 == 3)) {
@@ -896,19 +931,19 @@ u8 func_80005B68(u8 arg0, u8 arg1) {
     // BUG: missing default return
 }
 
-void func_80005C3C(u16 actor_index) {
+void NameEntry_AnimateChar(u16 actor_index) {
     s32 angle;
 
     switch (gActors[actor_index].state) {
     case 0:
         gActors[actor_index].var_154 = 0x10;
-        gActors[actor_index].velocityX.raw = ((((actor_index - gActors[0xB7].unk_0A0) * 16) - gActors[actor_index].posX.whole) * 0x1000) - FIXED_UNIT(4.5);
+        gActors[actor_index].velocityX.raw = ((((actor_index - PRINT_INDEX) * 16) - gActors[actor_index].posX.whole) * 0x1000) - FIXED_UNIT(4.5);
         gActors[actor_index].velocityY.raw = (-gActors[actor_index].posY.whole * 0x1000) - FIXED_UNIT(3.25);
         gActors[actor_index].state++;
         break;
     case 1:
         if (gActors[actor_index].var_154-- == 0) {
-            gActors[actor_index].posX.whole = ((actor_index - gActors[0xB7].unk_0A0) * 16) - 72;
+            gActors[actor_index].posX.whole = ((actor_index - PRINT_INDEX) * 16) - 72;
             gActors[actor_index].posY.whole = -52;
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
@@ -945,7 +980,7 @@ void func_80005C3C(u16 actor_index) {
     }
 }
 
-void func_8000607C(u16 actor_index) {
+void NameEntry_SexAndAge(u16 actor_index) {
     u16 actor_1;
 
     gActors[actor_index + 0].posX.whole = -32;
@@ -972,12 +1007,12 @@ void func_8000607C(u16 actor_index) {
     actor_1 = Text_PrintStringRGB(actor_1, gGenderF,    0x0,   0x10, 0x0, 0x40, 0x20, 0xFF);
     actor_1 = Text_PrintStringRGB(actor_1, gAgeEN3, 0xFF98, 0xFFF0, 0x0, 0x80,  0x0, 0x80);
     actor_1 = Text_PrintStringRGB(actor_1, gSpace1, 0xFFF6, 0xFFEF, 0x0, 0x80,  0x0,  0x0);
-    gActors[0xB7].unk_0A0 = actor_1;
+    PRINT_INDEX = actor_1;
     D_80171B20 = actor_1;
     Text_Print2Digits(actor_1, gSelectedAge, 0xFFE0, 0xFFF0, 0, gTextPalettes[3]);
 }
 
-void func_80006360(u16 actor_index) {
+void FileSelect_Init(u16 actor_index) {
     u16 index;
     u16 count;
     s32 var_v0;
@@ -998,7 +1033,7 @@ void func_80006360(u16 actor_index) {
     gActors[actor_index + 0x25].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK28;
     Text_InitActorGraphic(actor_index + 0x24, 0, 0, 0xFFE1, 1);
     gActors[actor_index + 0x24].flags |= ACTOR_FLAG_UNK30 | ACTOR_FLAG_UNK29 | ACTOR_FLAG_UNK28;
-    Text_InitActorGraphic(actor_index + 0x2A, 0x2D0, 0, 0x28, 0xFFFF);
+    Text_InitActorGraphic(actor_index + 0x2A, GINDEX_SOLIDSQUARE, 0, 0x28, 0xFFFF);
     gActors[actor_index + 0x2A].graphicFlags |= ACTOR_GFLAG_SCALE;
     gActors[actor_index + 0x2A].colorR = 0x40;
     gActors[actor_index + 0x2A].colorG = 0x40;
@@ -1014,14 +1049,14 @@ void func_80006360(u16 actor_index) {
             count++;
         }
     }
-    if (count != 0) {
-        gActors[0xBC].unk_0A0 = 1;
+    if (count != 0) { // name is not gDefaultFileName, assumed used
+        FILE0_SET = TRUE;
         func_80083358(3, 0, gFileNames[SAVE_SLOT_0], 0);
         if (gFileSexes[SAVE_SLOT_0] != 0) {
-            var_v0 = 0xED;
+            var_v0 = ALPHA_OFFSET(EN3_UPPER_F);
         }
         else {
-            var_v0 = 0xF4;
+            var_v0 = ALPHA_OFFSET(EN3_UPPER_M);
         }
         func_800831D0(3, 1, var_v0, 1);
         func_80083358(4, 1, gAgeEN2, 1);
@@ -1030,16 +1065,17 @@ void func_80006360(u16 actor_index) {
         func_80083358(10, 2, gMinEN2, 2);
         func_80083358(13, 2, gSecEN2, 2);
         Text_Print2Digits(actor_index + 0xA2, gFileAges[SAVE_SLOT_0], 0xFFE6, 0x29, 0, gTextPalettes[6]);
-        func_80005860(actor_index + 0x4C, 8, 0x29, (uintptr_t)gPaletteGemRed);
-        func_800058E0(actor_index + 0x50, 0x18, 0x29, 0, gTextPalettes[4]);
-        func_80005860(actor_index + 0x4E, 0x50, 0x29, (uintptr_t)gPaletteGemYellow);
+        SaveFile_GemIcon(actor_index + 0x4C, 8, 0x29, (uintptr_t)gPaletteGemRed);
+        SaveFile_PrintRedGems(actor_index + 0x50, 0x18, 0x29, 0, gTextPalettes[4]);
+        SaveFile_GemIcon(actor_index + 0x4E, 0x50, 0x29, (uintptr_t)gPaletteGemYellow);
         Text_Print2Digits(actor_index + 0x26, gFileYellowGems[SAVE_SLOT_0], 0x60, 0x29, 0, gTextPalettes[6]);
-        func_800059A4(actor_index + 0x60, 0xFFB7, 0x15, 0);
+        SaveFile_PrintPlayTime(actor_index + 0x60, 0xFFB7, 0x15, 0);
     }
     else {
-        gActors[0xBC].unk_0A0 = 0;
+        FILE0_SET = FALSE;
         func_80083358(3, 1, gFileNames[SAVE_SLOT_0], 3);
     }
+    // duplicated code for seconnd slot
     count = 0;
     Text_InitActorGList(actor_index + 0x09, D_800E13FC, 0xFF80, 0xFFE0, 0);
     Text_PrintStringRGB(actor_index + 0x12, gSlot2, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
@@ -1048,14 +1084,14 @@ void func_80006360(u16 actor_index) {
             count++;
         }
     }
-    if (count != 0) {
-        gActors[0xBD].unk_0A0 = 1;
+    if (count != 0) { // name is not gDefaultFileName, assumed used
+        FILE1_SET = TRUE;
         func_800836A0(3, 0, gFileNames[SAVE_SLOT_1], 0);
         if (gFileSexes[SAVE_SLOT_1] != 0) {
-            var_v0 = 0xED;
+            var_v0 = ALPHA_OFFSET(EN3_UPPER_F);
         }
         else {
-            var_v0 = 0xF4;
+            var_v0 = ALPHA_OFFSET(EN3_UPPER_M);
         }
         func_80083518(3, 1, var_v0, 1);
         func_800836A0(4, 1, gAgeEN2, 1);
@@ -1064,14 +1100,14 @@ void func_80006360(u16 actor_index) {
         func_800836A0(10, 2, gMinEN2, 2);
         func_800836A0(13, 2, gSecEN2, 2);
         Text_Print2Digits(actor_index + 0xA4, gFileAges[SAVE_SLOT_1], 0xFFE6, 0xFFE2, 0, gTextPalettes[6]);
-        func_80005860(actor_index + 0x4D, 8, 0xFFE2, (uintptr_t)gPaletteGemRed);
-        func_800058E0(actor_index + 0x54, 0x18, 0xFFE2, 1, gTextPalettes[4]);
-        func_80005860(actor_index + 0x4F, 0x50, 0xFFE2, (uintptr_t)gPaletteGemYellow);
+        SaveFile_GemIcon(actor_index + 0x4D, 8, 0xFFE2, (uintptr_t)gPaletteGemRed);
+        SaveFile_PrintRedGems(actor_index + 0x54, 0x18, 0xFFE2, 1, gTextPalettes[4]);
+        SaveFile_GemIcon(actor_index + 0x4F, 0x50, 0xFFE2, (uintptr_t)gPaletteGemYellow);
         Text_Print2Digits(actor_index + 0x28, gFileYellowGems[SAVE_SLOT_1], 0x60, 0xFFE2, 0, gTextPalettes[6]);
-        func_800059A4(actor_index + 0x70, 0xFFB7, 0xFFCE, 1);
+        SaveFile_PrintPlayTime(actor_index + 0x70, 0xFFB7, 0xFFCE, 1);
     }
     else {
-        gActors[0xBD].unk_0A0 = 0;
+        FILE1_SET = FALSE;
         func_800836A0(3, 1, gFileNames[SAVE_SLOT_1], 3);
     }
     Text_InitActorGraphic(actor_index + 0xAA, 0x1A8, 0xFF80, 0xFFAE, 0);
@@ -1081,26 +1117,26 @@ void func_80006360(u16 actor_index) {
     Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, 0, 0, 0);
 }
 
-void func_80006B1C(u16 actor_index) {
+void FileSelect_Reset(u16 actor_index) {
     u16 index;
 
     for (index = actor_index + 0xAB; index < actor_index + 0xBD; index++) {
         gActors[index].flags = 0;
     }
-    func_80006360(actor_index);
+    FileSelect_Init(actor_index);
     gCurrentSaveSlot = 0;
     gGameStateSubState = 1;
 }
 
-u16 func_80006B9C(u16 actor_index) {
-    Text_InitActorGraphic(actor_index, 0xCA, 0xFF80, 0x30, 0);
+u16 FileSelect_InitCursor(u16 actor_index) {
+    Text_InitActorGraphic(actor_index, GINDEX_CIRCLEEFFECT, 0xFF80, 0x30, 0);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
     gActors[actor_index].colorA = 0x80;
     gActors[actor_index].scaleX = 0.4f;
     gActors[actor_index].scaleY = 0.8f;
     gActors[actor_index].rotateZ = 315.0f;
     actor_index++;
-    Text_InitActorGraphic(actor_index, 0xCA, 0xFF80, 0x30, 0);
+    Text_InitActorGraphic(actor_index, GINDEX_CIRCLEEFFECT, 0xFF80, 0x30, 0);
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
     gActors[actor_index].colorA = 0x80;
     gActors[actor_index].scaleX = 0.4f;
@@ -1111,32 +1147,32 @@ u16 func_80006B9C(u16 actor_index) {
 }
 
 void func_80006CC8(u16 actor_index, u16 pos_x) {
-    if ((gButtonPress & gButton_DLeft) && (gActors[0xBA].unk_0A0 == 0)) {
+    if ((gButtonPress & gButton_DLeft) && (CONFIRM_SELECTION == 0)) {
         Sound_PlaySfx2(SFX_MENU_BLIP);
-        gActors[0xBA].unk_0A0 = 1;
+        CONFIRM_SELECTION = 1;
         gActors[actor_index + 0].posX.whole = gActors[actor_index + 1].posX.whole = pos_x;
     }
-    if ((gButtonPress & gButton_DRight) && (gActors[0xBA].unk_0A0 == 1)) {
+    if ((gButtonPress & gButton_DRight) && (CONFIRM_SELECTION == 1)) {
         Sound_PlaySfx2(SFX_MENU_BLIP);
-        gActors[0xBA].unk_0A0 = 0;
+        CONFIRM_SELECTION = 0;
         gActors[actor_index + 0].posX.whole = gActors[actor_index + 1].posX.whole = pos_x + 0x2A;
     }
 }
 
-void func_80006DF4(u16 actor_index) {
+void FileSelect_AnimateCursor(u16 actor_index) {
     gActors[actor_index + 0].rotateX += 8.0f;
     gActors[actor_index + 0].rotateY += 8.0f;
     gActors[actor_index + 1].rotateX -= 8.0f;
     gActors[actor_index + 1].rotateY -= 8.0f;
 }
 
-void func_80006E60(void) {
+void FileSelect_SetProgress(void) {
     gCurrentStage = gWorldProgress;
     gCurrentScene = gStageScenes[gCurrentStage];
     D_800D28E4 = gStageIds[gCurrentStage];
     func_80043918();
-    gIsPauseExit = 1;
-    gGameState = 0xC;
+    gIsPauseExit = TRUE;
+    gGameState = GAMESTATE_TRANSITION;
     gGameStateSubState = 0;
 }
 
@@ -1158,11 +1194,11 @@ void func_80006EDC(u16 actor_index) {
         switch (gPreviousSaveSlot) {
         case 0:
             Text_PrintStringRGB(actor_index + 0xC, gSlot1, 0xFF9C, 0x2B, 0, 0, 0, 0);
-            Text_InitActorGraphic(actor_index + 0x8, 0xF4, 0xFF80, 0x2B, 0);
+            Text_InitActorGraphic(actor_index + 0x8, GINDEX_LIFEHEADBLINK, 0xFF80, 0x2B, 0);
             break;
         case 1:
             Text_PrintStringRGB(actor_index + 0x12, gSlot2, 0xFF9C, 0xFFE0, 0, 0, 0, 0);
-            Text_InitActorGraphic(actor_index + 0x9, 0xF4, 0xFF80, 0xFFE0, 0);
+            Text_InitActorGraphic(actor_index + 0x9, GINDEX_LIFEHEADBLINK, 0xFF80, 0xFFE0, 0);
             break;
         case 2:
             Text_PrintStringRGB(actor_index + 0x99, gErase, 0xFF96, 0xFFAE, 0, 0, 0, 0);
@@ -1200,7 +1236,7 @@ void func_80006EDC(u16 actor_index) {
     }
 }
 
-void func_800072A4(void) {
+void NameEntry_ConfirmName(void) {
     u16 index;
     u16 count;
 
@@ -1210,11 +1246,11 @@ void func_800072A4(void) {
         }
     }
     if (count != 0) {
-        gActors[gActors[0xB7].unk_0A0 - 1].flags &= ~ACTOR_FLAG_DRAW;
-        Text_PrintString(gActors[0xB7].unk_0A0 + 0xA, gIsThisOkQuestion, 0xFFA0, 0xFFB0, 0);
+        gActors[PRINT_INDEX - 1].flags &= ~ACTOR_FLAG_DRAW;
+        Text_PrintString(PRINT_INDEX + 0xA, gIsThisOkQuestion, 0xFFA0, 0xFFB0, 0);
         gActors[1].posX.whole = gActors[2].posX.whole = 46;
         gActors[1].posY.whole = gActors[2].posY.whole = -80;
-        gActors[0xBA].unk_0A0 = 1;
+        CONFIRM_SELECTION = 1;
         Sound_PlaySfx(SFX_MENU_DING);
         gGameStateSubState++;
     }
@@ -1226,7 +1262,7 @@ void func_800072A4(void) {
 u16 NameEntry_PrintKeyboardHIRA(u16 actor_index) {
     u16 index;
 
-    Text_InitActorGraphic(actor_index++, 0x11E, 0x80, 0x44, 0);
+    Text_InitActorGraphic(actor_index++, GINDEX_BUTTONR, 0x80, 0x44, 0);
     gActors[actor_index++].flags = 0;
     index = Text_PrintStringRGB(actor_index, gKatakana, 0x40, 0x44, 0, 0x80, 0, 0);
     gActors[index++].flags = 0;
@@ -1242,7 +1278,9 @@ u16 NameEntry_PrintKeyboardHIRA(u16 actor_index) {
     return (index + 1);
 }
 
-void func_80007578(void) {
+// press R on Katakana screen to change to Hiragana.
+// in the Japanese version
+void NameEntry_SetToHiragana(void) {
     Sound_PlaySfx2(SFX_MENU_BLIP);
     NAME_ENTRY_CHARSET = CHARSET_HIRAGANA;
     NameEntry_PrintKeyboardHIRA(0xC);
@@ -1254,8 +1292,8 @@ void NameEntry_PrintKeyboardKATA(void) {
     Sound_PlaySfx2(SFX_MENU_BLIP);
     NAME_ENTRY_CHARSET = CHARSET_KATAKANA;
     actor_index = 0xC;
-    Text_InitActorGraphic(actor_index++, 0x11A, 0xFF80, 0x44, 0);
-    Text_InitActorGraphic(actor_index++, 0x11E, 0x80, 0x44, 0);
+    Text_InitActorGraphic(actor_index++, GINDEX_BUTTONL, 0xFF80, 0x44, 0);
+    Text_InitActorGraphic(actor_index++, GINDEX_BUTTONR, 0x80, 0x44, 0);
     actor_index = Text_PrintStringRGB(actor_index, gHiragana, 0xFF90, 0x44, 0, 0x80, 0, 0);
     actor_index = Text_PrintStringRGB(actor_index, gOther, 0x40, 0x44, 0, 0x80, 0, 0);
     actor_index = Text_PrintString(actor_index, gNameEntryRow0KATA, 0xFF80, 0x30, 0);
@@ -1291,12 +1329,12 @@ void NameEntry_PrintKeyboardENG(void) {
 }
 
 
-void func_800078A4(u16 arg0) {
+void NameEntry_Init(u16 arg0) {
     u16 actor_index;
     u16 index;
 
     func_800230B8();
-    actor_index = func_80006B9C(arg0);
+    actor_index = FileSelect_InitCursor(arg0);
     Text_InitActorGList(actor_index++, D_800E13FC, 0xFFC4, 0x58, 0);
     actor_index = Text_PrintStringRGB(actor_index, gNameQuestion, 0xFFDC, 0x58, 0, 0x80, 0, 0x80);
     actor_index += 3;
@@ -1305,9 +1343,11 @@ void func_800078A4(u16 arg0) {
     actor_index = Text_PrintStringRGB(actor_index, gArrowLeft, 0x58, 0xFFE0, 0, 0x80, 0, 0);
     actor_index = Text_PrintStringRGB(actor_index, gArrowDown, 0x78, 0xFFE0, 0, 0x80, 0, 0);
     actor_index = Text_PrintStringRGBScale(actor_index, gDash10x, 0xFFB8, 0xFFC4, 0, 0, 0x60, 0, 1.0f, 1.0f);
-    Text_InitActorGraphicRGB(actor_index++, 0x464, 0xFFB8, 0xFFBC, 0, 0x60, 0xC0, 0);
-    gActors[0xB7].unk_0A0 = actor_index;
+    Text_InitActorGraphicRGB(actor_index++, ALPHA_GLYPH(ARROW_UP), 0xFFB8, 0xFFBC, 0, 0x60, 0xC0, 0); // current char arrow
+    PRINT_INDEX = actor_index;
     NAME_ENTRY_CHARSET = CHAR_SELECT_ROW = CHAR_SELECT_COLUMN = 0;
+
+    // english localization
     NameEntry_PrintKeyboardENG();
     NAME_ENTRY_CHARSET = CHARSET_LATIN;
 
@@ -1317,25 +1357,26 @@ void func_800078A4(u16 arg0) {
     NAME_ENTRY_POSITION = 0;
 }
 
-void func_80007A90(void) {
+// if name entry is max length, set cursor to "OK" button
+void NameEntry_IsMaxed(void) {
     if (NAME_ENTRY_POSITION == SAVE_SLOT_NAME_LENGTH) {
         CHAR_SELECT_COLUMN = 2;
         CHAR_SELECT_ROW = 5;
     }
 }
 
-void func_80007ABC(void) {
+void NameEntry_PrintChar(void) {
     Text_InitActorGraphicRGB(
-        gActors[0xB7].unk_0A0 + NAME_ENTRY_POSITION,
-        (gNameEntrySpace[NAME_ENTRY_POSITION++] * 2) + 0x2D2,
+        PRINT_INDEX + NAME_ENTRY_POSITION,
+        ALPHA_GLYPH_INDEX(gNameEntrySpace[NAME_ENTRY_POSITION++]),
         (CHAR_SELECT_COLUMN * 16) - 128,
         (-CHAR_SELECT_ROW * 16) + 48,
         0x00, 0x40, 0x20, 0xFF);
-    gActors[gActors[0xB7].unk_0A0 + NAME_ENTRY_POSITION].state = 0;
-    func_80007A90();
+    gActors[PRINT_INDEX + NAME_ENTRY_POSITION].state = 0;
+    NameEntry_IsMaxed();
 }
 
-void func_80007BC0(u16* hira, u16* kata, u16* eng) {
+void NameEntry_SelectChar(u16* hira, u16* kata, u16* eng) {
     if (NAME_ENTRY_POSITION < SAVE_SLOT_NAME_LENGTH) {
         switch (NAME_ENTRY_CHARSET) {
         case CHARSET_HIRAGANA:
@@ -1350,7 +1391,7 @@ void func_80007BC0(u16* hira, u16* kata, u16* eng) {
         }
         Sound_PlaySfx(SFX_MENU_DING);
         Sound_PlaySfx(SFX_SPEECHSTART);
-        func_80007ABC();
+        NameEntry_PrintChar();
     }
 }
 
@@ -1362,8 +1403,8 @@ void GameState_FileSelect(void) {
 
     switch (gGameStateSubState) {
     case 0:
-        func_80005188();
-        func_80006360(1);
+        SaveFile_CheckValid();
+        FileSelect_Init(1);
         D_801376BC[1] = 0;
         D_801376B8[1] = 1;
         D_801376A8[1] = 0x60;
@@ -1412,7 +1453,7 @@ void GameState_FileSelect(void) {
                 }
                 if (count != 0) {
                     Text_FreeString(0x43, gWhichQuestion2);
-                    actor_index = func_80006B9C(0xAC);
+                    actor_index = FileSelect_InitCursor(0xAC);
                     gActors[actor_index - 2].posX.whole = 0x28;
                     gActors[actor_index - 1].posX.whole = gActors[actor_index - 2].posX.whole;
                     gActors[actor_index - 2].posY.whole = 0x58;
@@ -1427,11 +1468,11 @@ void GameState_FileSelect(void) {
                     }
                     actor_index = Text_PrintStringRGB(actor_index, gEraseQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
                     Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
-                    gActors[0xBA].unk_0A0 = 1;
+                    CONFIRM_SELECTION = 1;
                     gGameStateSubState++;
                 }
                 else {
-                    func_80006B1C(1);
+                    FileSelect_Reset(1);
                 }
             }
             else {
@@ -1453,7 +1494,7 @@ void GameState_FileSelect(void) {
                         gGameStateSubState = 0x1E;
                     }
                     else {
-                        func_800078A4(1);
+                        NameEntry_Init(1);
                         gGameStateSubState += 1;
                     }
                 }
@@ -1461,65 +1502,65 @@ void GameState_FileSelect(void) {
         }
         break;
     case 8:
-        func_80006DF4(0xAC);
+        FileSelect_AnimateCursor(0xAC);
         func_80006CC8(0xAC, 0x28);
         func_80006EDC(1);
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
-            if (gActors[0xBA].unk_0A0 != 0) {
+            if (CONFIRM_SELECTION != 0) {
                 actor_index = Text_PrintStringRGB(0xAE, gReallyQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
                 Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
-                gActors[0xBA].unk_0A0 = 1;
+                CONFIRM_SELECTION = 1;
                 gGameStateSubState++;
             }
             else {
-                func_80006B1C(1);
+                FileSelect_Reset(1);
             }
         }
         break;
     case 9:
-        func_80006DF4(0xAC);
+        FileSelect_AnimateCursor(0xAC);
         func_80006CC8(0xAC, 0x28);
         func_80006EDC(1);
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
-            if (gActors[0xBA].unk_0A0 != 0) {
+            if (CONFIRM_SELECTION != 0) {
                 actor_index = Text_PrintStringRGB(0xAE, gQuitQuestion, 0xFFAC, 0x58, 0, 0, 0xFF, 0xFF);
                 Text_PrintStringRGB(actor_index, gYesNo, 0x1E, 0x58, 0, 0, 0xFF, 0xFF);
-                gActors[0xBA].unk_0A0 = 1;
+                CONFIRM_SELECTION = 1;
                 gGameStateSubState++;
             }
             else {
-                func_80006B1C(1);
+                FileSelect_Reset(1);
             }
         }
         break;
     case 10:
-        func_80006DF4(0xAC);
+        FileSelect_AnimateCursor(0xAC);
         func_80006CC8(0xAC, 0x28);
         func_80006EDC(1);
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
-            if (gActors[0xBA].unk_0A0 == 0) {
+            if (CONFIRM_SELECTION == 0) {
                 Sound_PlaySfx(SFX_MENU_DING);
                 D_80171B22 = 0x3A;
                 gGameStateSubState += 1;
             }
             else {
                 Sound_PlaySfx(SFX_MENU_DING);
-                func_80006B1C(1);
+                FileSelect_Reset(1);
             }
         }
         break;
     case 11:
-        func_80006DF4(0xAC);
+        FileSelect_AnimateCursor(0xAC);
         func_80006CC8(0xAC, 0x28);
         func_80006EDC(1);
         if ((D_80171B22 & 3) == 2) {
             gActors[0x2B].flags ^= ACTOR_FLAG_DRAW;
         }
         if (D_80171B22-- == 0) {
-            func_80005828();
-            func_80006B1C(1);
+            SaveFile_EraseSlot();
+            FileSelect_Reset(1);
         }
         break;
     case 2:
@@ -1533,10 +1574,12 @@ void GameState_FileSelect(void) {
                 CHAR_SELECT_COLUMN = 1;
             }
         }
-        else if (Input_CheckButtonRepeat2(gButton_DLeft, &gActors[0xB5].unk_0A0) != 0) {
+        // japanese version deviates greatly here,
+        // having for controls to change charsets
+        else if (Input_CheckButtonRepeat2(gButton_DLeft, &BUTTON_TIMER_LEFT) != 0) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
             CHAR_SELECT_COLUMN--;
-            if (func_80005B68(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW) != 0) {
+            if (NameEntry_CursorOnBlank(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW)) {
                 CHAR_SELECT_COLUMN--;
             }
             if (CHAR_SELECT_ROW != 5) {
@@ -1549,14 +1592,14 @@ void GameState_FileSelect(void) {
                     CHAR_SELECT_COLUMN = 2;
                 }
             }
-            if (func_80005B68(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW) != 0) {
+            if (NameEntry_CursorOnBlank(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW)) {
                 CHAR_SELECT_COLUMN = CHAR_SELECT_COLUMN - 1;
             }
         }
-        else if (Input_CheckButtonRepeat2(gButton_DRight, &gActors[0xB6].unk_0A0) != 0) {
+        else if (Input_CheckButtonRepeat2(gButton_DRight, &BUTTON_TIMER_RIGHT) != 0) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
             CHAR_SELECT_COLUMN++;
-            if (func_80005B68(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW) != 0) {
+            if (NameEntry_CursorOnBlank(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW)) {
                 CHAR_SELECT_COLUMN++;
             }
             if (CHAR_SELECT_ROW != 5) {
@@ -1568,10 +1611,10 @@ void GameState_FileSelect(void) {
                 CHAR_SELECT_COLUMN = 0;
             }
         }
-        else if (Input_CheckButtonRepeat2(gButton_DUp, &gActors[0xB3].unk_0A0) != 0) {
+        else if (Input_CheckButtonRepeat2(gButton_DUp, &BUTTON_TIMER_UP) != 0) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
             CHAR_SELECT_ROW--;
-            if (func_80005B68(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW) != 0) {
+            if (NameEntry_CursorOnBlank(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW)) {
                 CHAR_SELECT_ROW--;
             }
             if (CHAR_SELECT_ROW == 4) {
@@ -1605,10 +1648,10 @@ void GameState_FileSelect(void) {
                 }
             }
         }
-        else if (Input_CheckButtonRepeat2(gButton_DDown, &gActors[0xB4].unk_0A0)) {
+        else if (Input_CheckButtonRepeat2(gButton_DDown, &BUTTON_TIMER_DOWN)) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
             CHAR_SELECT_ROW++;
-            if (func_80005B68(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW) != 0) {
+            if (NameEntry_CursorOnBlank(CHAR_SELECT_COLUMN, CHAR_SELECT_ROW)) {
                 CHAR_SELECT_ROW++;
             }
             if (CHAR_SELECT_ROW == 6) {
@@ -1645,8 +1688,8 @@ void GameState_FileSelect(void) {
                 }
             }
         }
-        func_80006DF4(1);
-        gActors[gActors[0xB7].unk_0A0 - 1].flags ^= ACTOR_FLAG_DRAW;
+        FileSelect_AnimateCursor(1);
+        gActors[PRINT_INDEX - 1].flags ^= ACTOR_FLAG_DRAW;
         actor_index = 1;
         if (CHAR_SELECT_ROW != 5) {
             gActors[actor_index].posX.whole = (CHAR_SELECT_COLUMN * 0x10) - 128;
@@ -1668,18 +1711,18 @@ void GameState_FileSelect(void) {
         if (gButtonPress & gButton_A) {
             switch (CHAR_SELECT_ROW) {
             // sameline needed to match
-            case 0: func_80007BC0(gNameEntryRow0HIRA, gNameEntryRow0KATA, gNameEntryRow0ENG); break;
-            case 1: func_80007BC0(gNameEntryRow1HIRA, gNameEntryRow1KATA, gNameEntryRow1ENG); break;
-            case 2: func_80007BC0(gNameEntryRow2HIRA, gNameEntryRow2KATA, gNameEntryRow2ENG); break;
-            case 3: func_80007BC0(gNameEntryRow3HIRA, gNameEntryRow3KATA, gNameEntryRow3ENG); break;
-            case 4: func_80007BC0(gNameEntryRow4HIRA, gNameEntryRow4KATA, gNameEntryRow4ENG); break;
+            case 0: NameEntry_SelectChar(gNameEntryRow0HIRA, gNameEntryRow0KATA, gNameEntryRow0ENG); break;
+            case 1: NameEntry_SelectChar(gNameEntryRow1HIRA, gNameEntryRow1KATA, gNameEntryRow1ENG); break;
+            case 2: NameEntry_SelectChar(gNameEntryRow2HIRA, gNameEntryRow2KATA, gNameEntryRow2ENG); break;
+            case 3: NameEntry_SelectChar(gNameEntryRow3HIRA, gNameEntryRow3KATA, gNameEntryRow3ENG); break;
+            case 4: NameEntry_SelectChar(gNameEntryRow4HIRA, gNameEntryRow4KATA, gNameEntryRow4ENG); break;
             case 5:
                 switch (CHAR_SELECT_COLUMN) {
                 case 0:
                     if (NAME_ENTRY_POSITION < SAVE_SLOT_NAME_LENGTH) {
                         gNameEntrySpace[NAME_ENTRY_POSITION] = 0;
                         NAME_ENTRY_POSITION++;
-                        func_80007A90();
+                        NameEntry_IsMaxed();
                         Sound_PlaySfx(SFX_TXTGRUNT_MARINA);
                     }
                     else {
@@ -1689,7 +1732,7 @@ void GameState_FileSelect(void) {
                 case 1:
                     if (NAME_ENTRY_POSITION > 0) {
                         gNameEntrySpace[--NAME_ENTRY_POSITION] = 0;
-                        gActors[gActors[0xB7].unk_0A0 + NAME_ENTRY_POSITION].flags = 0;
+                        gActors[PRINT_INDEX + NAME_ENTRY_POSITION].flags = 0;
                         Sound_PlaySfx(SFX_TXTGRUNT_MARINA);
                     }
                     else {
@@ -1697,7 +1740,7 @@ void GameState_FileSelect(void) {
                     }
                     break;
                 case 2:
-                    func_800072A4();
+                    NameEntry_ConfirmName();
                     break;
                 }
                 break;
@@ -1706,7 +1749,7 @@ void GameState_FileSelect(void) {
         if (gButtonPress & gButton_B) {
             if (NAME_ENTRY_POSITION > 0) {
                 gNameEntrySpace[--NAME_ENTRY_POSITION] = 0;
-                gActors[gActors[0xB7].unk_0A0 + NAME_ENTRY_POSITION].flags = 0;
+                gActors[PRINT_INDEX + NAME_ENTRY_POSITION].flags = 0;
                 Sound_PlaySfx(SFX_TXTGRUNT_MARINA);
             }
             else {
@@ -1714,33 +1757,33 @@ void GameState_FileSelect(void) {
             }
         }
         if (gButtonPress & gButton_Start) {
-            func_800072A4();
+            NameEntry_ConfirmName();
         }
-        gActors[gActors[0xB7].unk_0A0 - 1].posX.whole = (NAME_ENTRY_POSITION * 0x10) - 0x48;
-        for (index_1 = gActors[0xB7].unk_0A0; index_1 < gActors[0xB7].unk_0A0 + 0xA; index_1++) {
-            func_80005C3C(index_1);
+        gActors[PRINT_INDEX - 1].posX.whole = (NAME_ENTRY_POSITION * 0x10) - 0x48;
+        for (index_1 = PRINT_INDEX; index_1 < PRINT_INDEX + 0xA; index_1++) {
+            NameEntry_AnimateChar(index_1);
         }
         break;
     case 3:
-        func_80006DF4(1);
+        FileSelect_AnimateCursor(1);
         func_80006CC8(1, 0x2E);
-        for (index_1 = gActors[0xB7].unk_0A0; index_1 < gActors[0xB7].unk_0A0 + 0xA; index_1++) {
-            func_80005C3C(index_1);
+        for (index_1 = PRINT_INDEX; index_1 < PRINT_INDEX + 0xA; index_1++) {
+            NameEntry_AnimateChar(index_1);
         }
         if ((gButtonPress & gButton_A) || (gButtonPress & gButton_Start)) {
             Sound_PlaySfx(SFX_MENU_DING);
-            if (gActors[0xBA].unk_0A0 != 0) {
-                for (index_1 = 4; index_1 < gActors[0xB7].unk_0A0 + 0x1A; index_1++) {
+            if (CONFIRM_SELECTION != 0) {
+                for (index_1 = 4; index_1 < PRINT_INDEX + 0x1A; index_1++) {
                     gActors[index_1].flags = 0;
                 }
                 gSelectedSex = 0;
                 gNameEntrySpace[NAME_ENTRY_POSITION] = ALPHA_NULL;
                 gSelectedAge = 0;
-                func_8000607C(1);
+                NameEntry_SexAndAge(1);
                 gGameStateSubState++;
             }
             else {
-                for (index_1 = gActors[0xB7].unk_0A0 + 0xA; index_1 < gActors[0xB7].unk_0A0 + 0x1A; index_1++) {
+                for (index_1 = PRINT_INDEX + 0xA; index_1 < PRINT_INDEX + 0x1A; index_1++) {
                     gActors[index_1].flags = 0;
                 }
                 gGameStateSubState--;
@@ -1748,7 +1791,7 @@ void GameState_FileSelect(void) {
         }
         break;
     case 4:
-        func_80006DF4(1);
+        FileSelect_AnimateCursor(1);
         if ((gButtonPress & gButton_DLeft) && (gSelectedSex == 1)) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
             gSelectedSex = 0;
@@ -1767,14 +1810,14 @@ void GameState_FileSelect(void) {
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
             if (gSelectedSex != 0) {
-                gActors[gActors[0xB7].unk_0A0 - 4].posX.whole = -32;
-                gActors[gActors[0xB7].unk_0A0 - 5].flags = 0;
+                gActors[PRINT_INDEX - 4].posX.whole = -32;
+                gActors[PRINT_INDEX - 5].flags = 0;
             }
             else {
-                gActors[gActors[0xB7].unk_0A0 - 5].posX.whole = -32;
-                gActors[gActors[0xB7].unk_0A0 - 4].flags = 0;
+                gActors[PRINT_INDEX - 5].posX.whole = -32;
+                gActors[PRINT_INDEX - 4].flags = 0;
             }
-            gActors[0xBB].unk_0A0 = 0; // 0x10000 + unk2AA8
+            AGE_SELECT_DIGIT = 0; // 0x10000 + unk2AA8
             gActors[actor_index + 1].posX.whole = gActors[actor_index + 0].posX.whole = -44;
             gActors[actor_index + 1].posY.whole = gActors[actor_index + 0].posY.whole = -16;
             Text_PrintStringRGB(4, gAgeQuestion, 0xFFD0, 0x58, 0, 0x80, 0, 0x80);
@@ -1782,14 +1825,14 @@ void GameState_FileSelect(void) {
         }
         break;
     case 5:
-        func_80006DF4(1);
+        FileSelect_AnimateCursor(1);
         if ((gButtonPress & gButton_DLeft) || (gButtonPress & gButton_DRight)) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
-            gActors[0xBB].unk_0A0 ^= 1;
+            AGE_SELECT_DIGIT ^= 1;
         }
-        if (Input_CheckButtonRepeat2(gButton_DDown, &gActors[0xB4].unk_0A0) != 0) {
+        if (Input_CheckButtonRepeat2(gButton_DDown, &BUTTON_TIMER_DOWN) != 0) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
-            if (gActors[0xBB].unk_0A0 != 0) {
+            if (AGE_SELECT_DIGIT != 0) {
                 if ((gSelectedAge % 10) == 0) {
                     gSelectedAge += 9;
                 }
@@ -1804,9 +1847,9 @@ void GameState_FileSelect(void) {
                 gSelectedAge -= 10;
             }
         }
-        if (Input_CheckButtonRepeat2(gButton_DUp, &gActors[0xB3].unk_0A0) != 0) {
+        if (Input_CheckButtonRepeat2(gButton_DUp, &BUTTON_TIMER_UP) != 0) {
             Sound_PlaySfx2(SFX_MENU_BLIP);
-            if (gActors[0xBB].unk_0A0 != 0) {
+            if (AGE_SELECT_DIGIT != 0) {
                 if ((gSelectedAge % 10) == 9) {
                     gSelectedAge -= 9;
                 }
@@ -1821,43 +1864,43 @@ void GameState_FileSelect(void) {
                 gSelectedAge += 10;
             }
         }
-        Text_Print2Digits(gActors[0xB7].unk_0A0, gSelectedAge, 0xFFE0, 0xFFF0, 0, gTextPalettes[3]);
-        if (gActors[0xBB].unk_0A0 != 0) {
-            gActors[gActors[0xB7].unk_0A0 + 0].flags |= ACTOR_FLAG_DRAW;
+        Text_Print2Digits(PRINT_INDEX, gSelectedAge, 0xFFE0, 0xFFF0, 0, gTextPalettes[3]);
+        if (AGE_SELECT_DIGIT != 0) {
+            gActors[PRINT_INDEX + 0].flags |= ACTOR_FLAG_DRAW;
             if (gFramesInScene % 2) {
-                gActors[gActors[0xB7].unk_0A0 + 1].flags &= ~ACTOR_FLAG_DRAW;
+                gActors[PRINT_INDEX + 1].flags &= ~ACTOR_FLAG_DRAW;
             }
         }
         else {
-            if (gFramesInScene % 2) { gActors[gActors[0xB7].unk_0A0 + 0].flags &= ~ACTOR_FLAG_DRAW; }
-            gActors[gActors[0xB7].unk_0A0 + 1].flags |= ACTOR_FLAG_DRAW;
+            if (gFramesInScene % 2) { gActors[PRINT_INDEX + 0].flags &= ~ACTOR_FLAG_DRAW; }
+            gActors[PRINT_INDEX + 1].flags |= ACTOR_FLAG_DRAW;
         }
         if ((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) {
             Sound_PlaySfx(SFX_MENU_DING);
-            gActors[gActors[0xB7].unk_0A0 + 0].flags |= ACTOR_FLAG_DRAW;
-            gActors[gActors[0xB7].unk_0A0 + 1].flags |= ACTOR_FLAG_DRAW;
+            gActors[PRINT_INDEX + 0].flags |= ACTOR_FLAG_DRAW;
+            gActors[PRINT_INDEX + 1].flags |= ACTOR_FLAG_DRAW;
             gActors[1].flags |= ACTOR_FLAG_DRAW;
             gActors[2].flags |= ACTOR_FLAG_DRAW;
             gActors[1].posY.whole = gActors[2].posY.whole = -80;
-            gActors[0xBA].unk_0A0 = 1;
-            actor_index = gActors[0xB7].unk_0A0 + gActors[0xBA].unk_0A0 * 0;
+            CONFIRM_SELECTION = 1;
+            actor_index = PRINT_INDEX + CONFIRM_SELECTION * 0;
             gActors[1].posX.whole = gActors[2].posX.whole = 46;
             Text_PrintString(actor_index + 4, gIsThisOkQuestion, 0xFFA0, 0xFFB0, 0);
             gGameStateSubState++;
         }
         break;
     case 6:
-        func_80006DF4(1);
+        FileSelect_AnimateCursor(1);
         func_80006CC8(1, 0x2E);
         if ((gButtonPress & gButton_A) || (gButtonPress & gButton_Start)) {
-            if (gActors[0xBA].unk_0A0 != 0) {
+            if (CONFIRM_SELECTION != 0) {
                 Sound_PlaySfx(SFX_MENU_DING);
                 gActors[1].flags = gActors[2].flags = 0;
                 D_80171B22 = 0x3A;
                 gGameStateSubState = 0x14;
             }
             else {
-                func_8000607C(1);
+                NameEntry_SexAndAge(1);
                 gGameStateSubState -= 2;
             }
         }
@@ -1887,11 +1930,11 @@ void GameState_FileSelect(void) {
         gFileRedGems[gCurrentSaveSlot] = 0x1E;
         gFileYellowGems[gCurrentSaveSlot] = 0;
         gFilePlayTimes[gCurrentSaveSlot] = 0;
-        func_800050B4();
+        SaveFile_DefaultRecords();
         gRedGems = 0x1E;
         gFramesInPlayTime = 0;
-        func_80005770();
-        func_80006E60();
+        SaveFile_SaveSlot();
+        FileSelect_SetProgress();
         break;
     case 30:
         if (!(D_80171B22 & 3)) {
@@ -1900,10 +1943,10 @@ void GameState_FileSelect(void) {
         if (D_80171B22-- != 2) {
             break;
         }
-        func_8000565C();
+        SaveFile_LoadSlot();
         gRedGems = gFileRedGems[gCurrentSaveSlot];
         gFramesInPlayTime = gFilePlayTimes[gCurrentSaveSlot];
-        func_80006E60();
+        FileSelect_SetProgress();
         break;
     default:
         break;

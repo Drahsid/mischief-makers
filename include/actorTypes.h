@@ -408,14 +408,14 @@ typedef enum {
 
     // actors in dispatch table D_8019B000_754570
 
-    ACTORTYPE_OVL1_TOAD_0 = (ACTOR_OVL1_TOAD << 8),
+    ACTORTYPE_OVL1_TOAD_BOSS = (ACTOR_OVL1_TOAD << 8),
     ACTORTYPE_OVL1_TOAD_1,
-    ACTORTYPE_OVL1_TOAD_2, // stubbed
+    ACTORTYPE_OVL1_TOAD_SHADE, // stubbed. used for screen shade when summoning Raiden
     ACTORTYPE_OVL1_TOAD_3, // thunder?
     ACTORTYPE_OVL1_TOAD_5,
     ACTORTYPE_OVL1_TOAD_6,
-    ACTORTYPE_OVL1_TOAD_7,
-    ACTORTYPE_OVL1_TOAD_8,
+    ACTORTYPE_OVL1_TOAD_RAIDEN, // lightning Clancer on cloud.
+    ACTORTYPE_OVL1_TOAD_RAIDENBALL,
 
 
     // actors in disptch table D_80192000_6A00C0

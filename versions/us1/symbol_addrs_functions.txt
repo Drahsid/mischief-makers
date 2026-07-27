@@ -60,6 +60,7 @@ Font_ShowString = 0x80004804; // type:func
 
 Trouble_RLE_Type1 = 0x80004910; // type:func
 
+
 LookAt_Update = 0x80010898; // type:func
 LookAt_Reset = 0x800109B0; // type:func
 
@@ -413,11 +414,38 @@ GameState_Gameplay = 0x80021034; // type:func
 GameState_State8Overlay = 0x80388000; // type:func rom:0xF00D0
 GameState_State9Overlay = 0x80388008; // type:func rom:0xF00D8
 GameState_Attract = 0x80021270; // type:func
-GameState_FileSelect = 0x80007C8C; // type:func
 
+EventScoreOver999 = 0x80004F08; // type:func
+CheckFestivalScroes = 0x80004F24; // type:func
+SaveFile_DefaultSlot = 0x80004FFC; // type:func
+SaveFile_DefaultRecords = 0x800050B4; // type:func
+SaveFile_CheckValid = 0x80005188; // type:func
+SaveFile_LoadSlot = 0x8000565C; // type:func
+SaveFile_SaveSlot = 0x80005770; // type:func
+SaveFile_EraseSlot = 0x80005828; // type:func
+SaveFile_GemIcon = 0x80005860; // type:func
+SaveFile_PrintRedGems = 0x800058E0; // type:func
+SaveFile_PrintPlayTime = 0x800059A4; // type:func
+NameEntry_CursorOnBlank = 0x80005B68; // type:func
+NameEntry_AnimateChar = 0x80005C3C; // type:func
+FileSelect_Init = 0x80006360; // type:func
+FileSelect_Reset = 0x80006B1C; // type:func
+FileSelect_InitCursor = 0x80006B9C; // type:func
+FileSelect_AnimateCursor = 0x80006DF4; // type:func
+NameEntry_SexAndAge = 0x8000607C; // type:func
+FileSelect_SetProgress = 0x80006E60; // type:func
+
+NameEntry_ConfirmName = 0x800072A4; // type:func
 NameEntry_PrintKeyboardHIRA = 0x800073cc; // type:func rom:0x7fcc
+NameEntry_SetToHiragana = 080007578; // type:func
 NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
 NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
+NameEntry_Init = 0x800078A4; // type:func
+NameEntry_IsMaxed = 0x80007A90; // type:func
+NameEntry_PrintChar = 0x80007ABC; // type:func
+NameEntry_SelectChar = 0x80007BC0; // type:func
+
+GameState_FileSelect = 0x80007C8C; // type:func
 
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func

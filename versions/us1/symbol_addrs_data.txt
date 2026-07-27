@@ -39,10 +39,13 @@ gStartButtonOnly = 0x800BE5D4; // type:u16 size:0x2
 gEEPROMID = 0x800c4f20; // size:0x8
 gTimeRecords = 0x800c4f28; // size:0x80
 gDefaultFileName = 0x800c4fa8; // size:0x16
+gDefaultFestivalScores = 0x800C4FC0; // size:0x28
 gNameEntrySpace = 0x800c4fe8; // size:0x16
 gSelectedSex = 0x800c5000; // type:u8 size:0x1
 gSelectedAge = 0x800c5004; // type:u8 size:0x1
 gCurrentSaveSlot = 0x800c5008; // type:u8 size:0x1
+
+gEventNotRace = 0x800C5018; // type:u8 size:0xC
 
 gNameEntryRow0HIRA = 0x800c5084; // size:0x24 rom:0xc5c84
 gNameEntryRow1HIRA = 0x800c50a8; // size:0x24 rom:0xc5ca8

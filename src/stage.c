@@ -2323,7 +2323,7 @@ void WorldMap_UpdateSaveFile(void) {
     gFileRedGems[gCurrentSaveSlot] = gRedGems;
     gFileYellowGems[gCurrentSaveSlot] = CountYellowGems();
     gFilePlayTimes[gCurrentSaveSlot] = gFramesInPlayTime;
-    func_80005770();
+    SaveFile_SaveSlot();
     gWorldProgress = sp1E;
 }
 
@@ -2338,7 +2338,7 @@ void WorldMap_UpdateSaveFile2(void) {
     save_slot_index = gCurrentSaveSlot;
     gFileYellowGems[save_slot_index] = yellow_gem_count;
     gFilePlayTimes[save_slot_index] = (u64)gFramesInPlayTime;
-    func_80005770();
+    SaveFile_SaveSlot();
 }
 
 void GameState_Transition(void) {

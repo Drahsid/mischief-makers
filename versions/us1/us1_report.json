@@ -944,7 +944,7 @@
           }
         },
         {
-          "name": "func_80004F08",
+          "name": "EventScoreOver999",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -952,7 +952,7 @@
           }
         },
         {
-          "name": "func_80004F24",
+          "name": "CheckFestivalScroes",
           "size": "216",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -960,7 +960,7 @@
           }
         },
         {
-          "name": "func_80004FFC",
+          "name": "SaveFile_DefaultSlot",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -968,7 +968,7 @@
           }
         },
         {
-          "name": "func_800050B4",
+          "name": "SaveFile_DefaultRecords",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -976,7 +976,7 @@
           }
         },
         {
-          "name": "func_80005188",
+          "name": "SaveFile_CheckValid",
           "size": "1236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -984,7 +984,7 @@
           }
         },
         {
-          "name": "func_8000565C",
+          "name": "SaveFile_LoadSlot",
           "size": "276",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -992,7 +992,7 @@
           }
         },
         {
-          "name": "func_80005770",
+          "name": "SaveFile_SaveSlot",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1000,7 +1000,7 @@
           }
         },
         {
-          "name": "func_80005828",
+          "name": "SaveFile_EraseSlot",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1008,7 +1008,7 @@
           }
         },
         {
-          "name": "func_80005860",
+          "name": "SaveFile_GemIcon",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1016,7 +1016,7 @@
           }
         },
         {
-          "name": "func_800058E0",
+          "name": "SaveFile_PrintRedGems",
           "size": "196",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1024,7 +1024,7 @@
           }
         },
         {
-          "name": "func_800059A4",
+          "name": "SaveFile_PrintPlayTime",
           "size": "452",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1032,7 +1032,7 @@
           }
         },
         {
-          "name": "func_80005B68",
+          "name": "NameEntry_CursorOnBlank",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1040,7 +1040,7 @@
           }
         },
         {
-          "name": "func_80005C3C",
+          "name": "NameEntry_AnimateChar",
           "size": "1088",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1048,7 +1048,7 @@
           }
         },
         {
-          "name": "func_8000607C",
+          "name": "NameEntry_SexAndAge",
           "size": "740",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1056,7 +1056,7 @@
           }
         },
         {
-          "name": "func_80006360",
+          "name": "FileSelect_Init",
           "size": "1980",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1064,7 +1064,7 @@
           }
         },
         {
-          "name": "func_80006B1C",
+          "name": "FileSelect_Reset",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1072,7 +1072,7 @@
           }
         },
         {
-          "name": "func_80006B9C",
+          "name": "FileSelect_InitCursor",
           "size": "300",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1088,7 +1088,7 @@
           }
         },
         {
-          "name": "func_80006DF4",
+          "name": "FileSelect_AnimateCursor",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1096,7 +1096,7 @@
           }
         },
         {
-          "name": "func_80006E60",
+          "name": "FileSelect_SetProgress",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1112,7 +1112,7 @@
           }
         },
         {
-          "name": "func_800072A4",
+          "name": "NameEntry_ConfirmName",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1128,7 +1128,7 @@
           }
         },
         {
-          "name": "func_80007578",
+          "name": "NameEntry_SetToHiragana",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1152,7 +1152,7 @@
           }
         },
         {
-          "name": "func_800078A4",
+          "name": "NameEntry_Init",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1160,7 +1160,7 @@
           }
         },
         {
-          "name": "func_80007A90",
+          "name": "NameEntry_IsMaxed",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1168,7 +1168,7 @@
           }
         },
         {
-          "name": "func_80007ABC",
+          "name": "NameEntry_PrintChar",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1176,7 +1176,7 @@
           }
         },
         {
-          "name": "func_80007BC0",
+          "name": "NameEntry_SelectChar",
           "size": "204",
           "fuzzy_match_percent": 100.0,
           "metadata": {

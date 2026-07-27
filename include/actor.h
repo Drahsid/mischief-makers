@@ -131,12 +131,12 @@ typedef struct {
     /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
     /* 0x098 */ u32 flags_098; // third "flag" bitfield. Uses "ActorFlags3" enum. Needs more study.
-    /* 0x09C */ u8 colorR; // see A540: 0x9C..0x9F packed into FA000000 display-list color
-    /* 0x09D */ u8 colorG;
-    /* 0x09E */ u8 colorB;
-    /* 0x09F */ u8 colorA;
+    /* 0x09C */ u8 colorR; // red actor tint
+    /* 0x09D */ u8 colorG; // green actor tint
+    /* 0x09E */ u8 colorB; // blue actor tint
+    /* 0x09F */ u8 colorA; // actor opacity
     /* 0x0A0 */ u8 unk_0A0;
-    /* 0x0A1 */ u8 unk_0A1;
+    /* 0x0A1 */ u8 unk_0A1; // align byte?
 
     // the next 8 fields are used in determining the offset for 2 different "hitbox" coordinates.
 
@@ -177,7 +177,7 @@ typedef struct {
     /* 0x0DB */ u8 unk_0DB; // hit type?
     /* 0x0DC */ u8 unk_0DC; // "hit by" flags?
     /* 0x0DD */ u8 unk_0DD; // "hit by" type?
-    /* 0x0DE */ u8 unk_0DE; // behavior when grabbed?
+    /* 0x0DE */ u8 unk_0DE; // behavior when grabbed / thrown
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.

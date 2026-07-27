@@ -29,7 +29,7 @@ extern u16 D_800D86A0[]; // palette
 extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette
 extern u16 D_800D9AE4[];
-extern s16 D_800E13FC[]; // icon for head in "pause" and "continue" menus
+extern s16 D_800E13FC[]; // icon for head menus
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
 extern s32 D_800E3630[]; // could be array of structs of length 0x28
