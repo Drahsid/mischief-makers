@@ -70,7 +70,7 @@ extern u32 D_80104094;
 extern PortraitStruct gPortraits[66]; 
 extern u32 D_801069DC; // unused
 extern StaticObject gStaticObjects[64]; // clanblocks/"static gems" on screen / loaded?
-extern u8 D_80108DE8[512][32]; // see func_80011A18, func_80010C20, func__800119AC.
+extern u8 D_80108DE8[]; // see func_80011A18, func_80010C20, func__800119AC.
 extern u8 D_8010CDF0[0x10000];
 extern u16 gPlatform0Actors[144]; // indices of ACTOR_FLAG_PLATFORM0-flagged Actors
 extern u16 gPlatform1Actors[144]; // indices of ACTOR_FLAG_PLATFORM1-flagged Actors

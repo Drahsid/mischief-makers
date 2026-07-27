@@ -5,6 +5,7 @@
 #include "cosine.h"
 #include "debug.h"
 #include "game_state.h"
+#include "gameover.h"
 #include "globalData.h"
 #include "input.h"
 #include "lifebar.h"
@@ -23,12 +24,6 @@
 #include "5EA30.h"
 #include "82F80.h"
 #include "8D0A0.h"
-
-// C84A0 data
-extern s16 D_800C7CA4[];
-extern s16 D_800C7CAC[];
-extern s16 D_800C7CB4[];
-extern s16 D_800C7CBC[];
 
 // D2410 data
 extern u16 D_800D28E4;
@@ -2525,10 +2520,10 @@ void Pause_InitBars(void) {
         gActors[index].posX.whole = -2;
         gActors[index].posY.whole = 3;
         gActors[index].posZ.whole = 1025;
-        gActors[index].hitboxBX0 = D_800C7CA4[index + 0];
-        gActors[index].hitboxBX1 = D_800C7CAC[index + 0];
-        gActors[index].hitboxBY1 = D_800C7CB4[index + 0];
-        gActors[index].hitboxBY0 = D_800C7CBC[index + 0];
+        gActors[index].hitboxBX0 = D_800C7E34[index - 200];
+        gActors[index].hitboxBX1 = D_800C7E3C[index - 200];
+        gActors[index].hitboxBY1 = D_800C7E44[index - 200];
+        gActors[index].hitboxBY0 = D_800C7E4C[index - 200];
         gActors[index].colorR = 0;
         gActors[index].colorG = 0;
         gActors[index].colorB = 0;
