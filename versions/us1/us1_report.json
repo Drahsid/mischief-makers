@@ -952,7 +952,7 @@
           }
         },
         {
-          "name": "CheckFestivalScroes",
+          "name": "Festival_ValidateScores",
           "size": "216",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1096,7 +1096,7 @@
           }
         },
         {
-          "name": "FileSelect_SetProgress",
+          "name": "FileSelect_StartGame",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {

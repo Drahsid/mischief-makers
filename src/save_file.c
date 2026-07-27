@@ -685,7 +685,7 @@ s32 EventScoreOver999(u32 arg0) {
 // if festival event score seems too high,
 // replace it with default
 // @returns true if score defaulted
-s32 CheckFestivalScroes(void) {
+s32 Festival_ValidateScores(void) {
     u16 index;
     s32 result;
     u16 var_v0;
@@ -850,7 +850,7 @@ void SaveFile_LoadSlot(void) {
     if (D_80171B19 >= 2) {
         D_80171B19 = 0;
     }
-    CheckFestivalScroes();
+    Festival_ValidateScores();
     for (index = 0; index < ARRAYLENGTH(gTimeRecords); index++) {
         if (gTimeRecords[index] > STAGE_MAX_TIME) {
             gTimeRecords[index] = STAGE_MAX_TIME;
@@ -1166,7 +1166,7 @@ void FileSelect_AnimateCursor(u16 actor_index) {
     gActors[actor_index + 1].rotateY -= 8.0f;
 }
 
-void FileSelect_SetProgress(void) {
+void FileSelect_StartGame(void) {
     gCurrentStage = gWorldProgress;
     gCurrentScene = gStageScenes[gCurrentStage];
     D_800D28E4 = gStageIds[gCurrentStage];
@@ -1934,7 +1934,7 @@ void GameState_FileSelect(void) {
         gRedGems = 0x1E;
         gFramesInPlayTime = 0;
         SaveFile_SaveSlot();
-        FileSelect_SetProgress();
+        FileSelect_StartGame();
         break;
     case 30:
         if (!(D_80171B22 & 3)) {
@@ -1946,7 +1946,7 @@ void GameState_FileSelect(void) {
         SaveFile_LoadSlot();
         gRedGems = gFileRedGems[gCurrentSaveSlot];
         gFramesInPlayTime = gFilePlayTimes[gCurrentSaveSlot];
-        FileSelect_SetProgress();
+        FileSelect_StartGame();
         break;
     default:
         break;
