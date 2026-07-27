@@ -41,7 +41,7 @@ def markMatchedAsm(mapFile: mapfile_parser.MapFile):
                 symbol.nonmatchingSymExists = False
 
 
-def findCategoryWarnings(report, categories, reportData):
+def findCategoryWarnings(report, categories):
     unitNames = sorted({unit.name for unit in report.units})
 
     categoryPaths = [
@@ -63,19 +63,17 @@ def findCategoryWarnings(report, categories, reportData):
         {
             unit.name
             for unit in report.units
-            if (reportData or unit.measures.total_code > 0)
-            and not any(unit.name.startswith(path) for _, path in categoryPaths)
+            if not any(unit.name.startswith(path) for _, path in categoryPaths)
         }
     )
 
     return emptyCategories, bogusPaths, uncategorizedUnits
 
 
-def printCategoryWarnings(report, categories, reportData):
+def printCategoryWarnings(report, categories):
     emptyCategories, bogusPaths, uncategorizedUnits = findCategoryWarnings(
         report,
         categories,
-        reportData,
     )
     if not emptyCategories and not bogusPaths and not uncategorizedUnits:
         return
@@ -174,7 +172,6 @@ def doThing(
     printCategoryWarnings(
         report,
         specificSettings.categories,
-        specificSettings.reportData,
     )
 
     summaryPath = os.getenv("GITHUB_STEP_SUMMARY")
