@@ -146,7 +146,7 @@ u16* sActor38Strings[] = {
     sStrBlank
 };
 
-// parse a number into a unpacked BCD.
+// parse a number into an unpacked BCD.
 void ToBCD(u32 val) {
     u16 count;
     u32 tens_place;
@@ -174,7 +174,7 @@ void SpawnActor41(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4, u16
     gActors[actor_index].unk_14C = arg5;
 }
 
-s32 SpawnActor40(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4) {
+void SpawnActor40(u16 actor_index, u16 arg1, s16 pos_x, s16 pos_y, u16 arg4) {
     gActors[actor_index].actorType = ACTORTYPE_40;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;

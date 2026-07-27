@@ -124,7 +124,7 @@ void func_801A6CAC_76F74C(u16 actor_index) {
             gActors[temp_v0].colorR = 0x7F;
             temp_v1 = Rand();
             gActors[temp_v0].palette_18C = PALETTE_8022D4E8;
-            gActors[temp_v0].var_160 = ((((temp_v1 * 4) & 0x1F0) + 0x200) << 2) * FIXED_UNIT(0.25);
+            gActors[temp_v0].var_160 = ((((temp_v1 * 4) & 0x1F0) + 0x200) << 2) * FIXED_UNIT(1.0/4);
             gActors[temp_v0].unk_130 = actor_index;
             gActors[temp_v0].unk_14C = gActors[actor_index].actorType;
             gActors[temp_v0].unk_134 = 0.0f;

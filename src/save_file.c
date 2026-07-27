@@ -116,7 +116,7 @@ u8 gEventNotRace[] = {
 //  Ball  Hurdle Mathfun Unused race
     TRUE, FALSE, TRUE,   FALSE, 
 //  Intro select
-    TRUE, FALSE, FALSE, FALSE,
+    TRUE, FALSE
 };
 
 // strings
@@ -1358,7 +1358,7 @@ void NameEntry_Init(u16 arg0) {
 }
 
 // if name entry is max length, set cursor to "OK" button
-void NameEntry_IsMaxed(void) {
+void NameEntry_CheckIfFull(void) {
     if (NAME_ENTRY_POSITION == SAVE_SLOT_NAME_LENGTH) {
         CHAR_SELECT_COLUMN = 2;
         CHAR_SELECT_ROW = 5;
@@ -1373,7 +1373,7 @@ void NameEntry_PrintChar(void) {
         (-CHAR_SELECT_ROW * 16) + 48,
         0x00, 0x40, 0x20, 0xFF);
     gActors[PRINT_INDEX + NAME_ENTRY_POSITION].state = 0;
-    NameEntry_IsMaxed();
+    NameEntry_CheckIfFull();
 }
 
 void NameEntry_SelectChar(u16* hira, u16* kata, u16* eng) {
@@ -1722,7 +1722,7 @@ void GameState_FileSelect(void) {
                     if (NAME_ENTRY_POSITION < SAVE_SLOT_NAME_LENGTH) {
                         gNameEntrySpace[NAME_ENTRY_POSITION] = 0;
                         NAME_ENTRY_POSITION++;
-                        NameEntry_IsMaxed();
+                        NameEntry_CheckIfFull();
                         Sound_PlaySfx(SFX_TXTGRUNT_MARINA);
                     }
                     else {

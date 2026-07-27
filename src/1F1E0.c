@@ -1927,8 +1927,8 @@ void func_8001E814(u16 arg0, u16 arg1) {
         gActors[arg1].unk_0FC.raw = gActors[arg0].velocityY.raw;
     }
     else {
-        gActors[arg1].unk_0F8.raw = func_8001E5E0(arg0, arg1, FIXED_UNIT(1.0/8));
-        gActors[arg1].unk_0FC.raw = func_8001E6F4(arg0, arg1, FIXED_UNIT(1.0/8));
+        gActors[arg1].unk_0F8.raw = func_8001E5E0(arg0, arg1, FIXED_UNIT(32.0/256));
+        gActors[arg1].unk_0FC.raw = func_8001E6F4(arg0, arg1, FIXED_UNIT(32.0/256));
     }
 }
 

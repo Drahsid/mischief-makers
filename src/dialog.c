@@ -829,11 +829,11 @@ void UpdateDialog(void) {
                                 case GINDEX_PORTRAIT_MERCOC:
                                     Sound_PlaySfx2(SFX_TXTGRUNT_MERCO);
                                     break;
-                                case GINDEX_PORTRAIT_TAURUSA:
-                                case GINDEX_PORTRAIT_TAURUSB:
-                                case GINDEX_PORTRAIT_TAURUSC:
-                                case GINDEX_PORTRAIT_TAURUSD:
-                                    Sound_PlaySfx2(SFX_TXTGRUNT_TAURUS);
+                                case GINDEX_PORTRAIT_TARUSA:
+                                case GINDEX_PORTRAIT_TARUSB:
+                                case GINDEX_PORTRAIT_TARUSC:
+                                case GINDEX_PORTRAIT_TARUSD:
+                                    Sound_PlaySfx2(SFX_TXTGRUNT_TARUS);
                                     break;
                                 }
                             }

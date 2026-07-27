@@ -634,7 +634,7 @@ void func_801B1DD4_797EA4(u16 actor_index) {
         gActors[actor_index].rotateZ = 90.0f;
     }
     gActors[actor_index].unk_16C += Rand();
-    gActors[actor_index].unk_168 = COS(gActors[actor_index].unk_16C) * FIXED_UNIT(0.25);
+    gActors[actor_index].unk_168 = COS(gActors[actor_index].unk_16C) * FIXED_UNIT(1.0/4);
     gActors[actor_index].var_154 = gActors[actor_index].unk_164 + gActors[actor_index].var_154;
     gActors[actor_index].var_158 = gActors[actor_index].unk_168 + gActors[actor_index].unk_170 + gActors[actor_index].var_158 - D_800BE580;
     gActors[actor_index].posX.whole = FROM_FIXED(gActors[actor_index].var_154);

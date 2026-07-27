@@ -27,7 +27,7 @@ typedef enum {
     ACTOR_OVL1_MERCO,
     ACTOR_OVL1_LUNAR, // "Overlay 1" actors for "Lunar"
     ACTOR_OVL1_BEE, // "Overlay 1" actors for "flambee"
-    ACTOR_OVL1_TAURUS,
+    ACTOR_OVL1_TARUS,
     ACTOR_OVL3_14,
     ACTOR_OVL0_CALPHA, // actors in Overlay 0 code of "Cerberus Alpha" 
     ACTOR_OVL0_WORLD1, // Commander and stubbed actor in "Meet Marina"
@@ -326,12 +326,12 @@ typedef enum {
 
     ACTORTYPE_OVL1_MERCO_MAIN = (ACTOR_OVL1_MERCO << 8),
     ACTORTYPE_OVL1_MERCO_LANCE,
-    ACTORTYPE_OVL1_MERCO_SHEILD,
+    ACTORTYPE_OVL1_MERCO_SHIELD,
     ACTORTYPE_OVL1_MERCO_3,
     ACTORTYPE_OVL1_MERCO_4,
     ACTORTYPE_OVL1_MERCO_5,
     ACTORTYPE_OVL1_MERCO_6,
-    ACTORTYPE_OVL1_MERCO_7, // Marina flies away.
+    ACTORTYPE_OVL1_MERCO_EXIT, // Marina flies away.
     
     // actors in dispatch table D_8019B000_722A30
 
@@ -353,12 +353,12 @@ typedef enum {
 
     // actors in dispatch table D_8019B000_72B120
 
-    ACTORTYPE_OVL1_TAURUS_0 = (ACTOR_OVL1_TAURUS << 8),
-    ACTORTYPE_OVL1_TAURUS_1,
-    ACTORTYPE_OVL1_TAURUS_2,
-    ACTORTYPE_OVL1_TAURUS_3,
-    ACTORTYPE_OVL1_TAURUS_4,
-    ACTORTYPE_OVL1_TAURUS_5,
+    ACTORTYPE_OVL1_TARUS_0 = (ACTOR_OVL1_TARUS << 8),
+    ACTORTYPE_OVL1_TARUS_1,
+    ACTORTYPE_OVL1_TARUS_2,
+    ACTORTYPE_OVL1_TARUS_3,
+    ACTORTYPE_OVL1_TARUS_4,
+    ACTORTYPE_OVL1_TARUS_5,
 
     // actors in dispatch table D_80192000_68A090
 
@@ -412,6 +412,7 @@ typedef enum {
     ACTORTYPE_OVL1_TOAD_1,
     ACTORTYPE_OVL1_TOAD_SHADE, // stubbed. used for screen shade when summoning Raiden
     ACTORTYPE_OVL1_TOAD_3, // thunder?
+    ACTORTYPE_OVL1_TOAD_4,
     ACTORTYPE_OVL1_TOAD_5,
     ACTORTYPE_OVL1_TOAD_6,
     ACTORTYPE_OVL1_TOAD_RAIDEN, // lightning Clancer on cloud.
@@ -482,7 +483,7 @@ typedef enum {
     ACTORTYPE_OVL0_FINAL_HENSHIN_10,
     ACTORTYPE_OVL0_FINAL_HENSHIN_11,
     ACTORTYPE_OVL0_FINAL_HENSHIN_12,
-    ACTORTYPE_OVL0_FINAL_SCREENFADE, // fade to white / black / gray
+    ACTORTYPE_OVL0_FINAL_SCREENFADE, // fade to white / from white / to gray
 
     ACTORTYPE_OVL0_FINAL_17 = (ACTOR_OVL0_FINALBAT << 8) + 17,
 

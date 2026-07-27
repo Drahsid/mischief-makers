@@ -1,7 +1,7 @@
 #include "common.h"
 #include "actor.h"
 
-// "overlay 1" code for "Taurus!!"
+// "overlay 1" code for "Tarus!!"
 
 extern s16* D_801A1A90_731AD0[];
 

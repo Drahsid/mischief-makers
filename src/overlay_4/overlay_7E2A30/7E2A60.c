@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "28EF0.h"
 
-// "overlay 4" code for "Taurus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
+// "overlay 4" code for "Tarus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.
 
 extern s16 D_800D2920;
@@ -527,7 +527,7 @@ u16 D_801BD568_7E66C8[] = {
 
 u16 sActorSpawn_4_6[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, ACTORTYPE_OVL1_TAURUS_0,
+    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, ACTORTYPE_OVL1_TARUS_0,
     SPAWNRECORD_END
 };
 
@@ -838,7 +838,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 7:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(1.0/4));
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
@@ -859,7 +859,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xA:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(1.0/4));
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageState == 0xB) {
@@ -1475,7 +1475,7 @@ void func_801BB28C_7E43EC(void) {
     Camera_UpdateViewBounds();
 }
 
-// state machine for "Taurus!!"
+// state machine for "Tarus!!"
 void func_801BB85C_7E49BC(void) {
     switch (gStageState) {
         case 0:

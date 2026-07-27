@@ -1160,7 +1160,7 @@
           }
         },
         {
-          "name": "NameEntry_IsMaxed",
+          "name": "NameEntry_CheckIfFull",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {

@@ -899,13 +899,13 @@ void CameraInit_SeasickClimb(void) {
 void CameraUpdate_SeasickClimb_Rocking(void) {
     switch (D_800BE638) {
     case 0:
-        D_800BE728 += FIXED_UNIT(1.0/64);
+        D_800BE728 += FIXED_UNIT(4.0/256);
         if (D_800BE728 == FIXED_UNIT(1.5)) {
             D_800BE638++;
         }
         break;
     case 1:
-        D_800BE728 -= FIXED_UNIT(1.0/64);
+        D_800BE728 -= FIXED_UNIT(4.0/256);
         if (D_800BE728 == FIXED_UNIT(-1.5)) {
             D_800BE638--;
         }
@@ -936,7 +936,7 @@ void CameraUpdate_SeasickClimb_Rocking(void) {
         }
         break;
     case 2:
-        gCameraRotDelta -= FIXED_UNIT(1.0/128);
+        gCameraRotDelta -= FIXED_UNIT(2.0/256);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }
@@ -945,7 +945,7 @@ void CameraUpdate_SeasickClimb_Rocking(void) {
         }
         break;
     case 3:
-        gCameraRotDelta += FIXED_UNIT(1.0/128);
+        gCameraRotDelta += FIXED_UNIT(2.0/256);
         if (gCameraRotDelta == 0) {
             Sound_PlaySfx(SFX_RUMBLE_0122);
         }
@@ -1527,7 +1527,7 @@ void func_80025C38(void) {
     func_8005DE30();
     func_8002653C();
 
-    if (gCurrentScene == SCENE_ASTERSTRYKE || gCurrentScene == SCENE_TAURUS || ((gCurrentScene >= 0x2E) && (gCurrentScene < 0x34))) {
+    if (gCurrentScene == SCENE_ASTERSTRYKE || gCurrentScene == SCENE_TARUS || ((gCurrentScene >= 0x2E) && (gCurrentScene < 0x34))) {
         func_80026220(0x17);
         func_80026428(0x18);
     }

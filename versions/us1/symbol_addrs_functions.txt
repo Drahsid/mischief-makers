@@ -274,7 +274,7 @@ Clanbomb_StartFuse = 0x80086824; // type:func
 ActorUpdate_Clanbomb = 0x80086c7c; // type:func
 
 ClanbombTimer_PrintDigit = 0x80087568; // type:func
-ClanbombTimer_PrintTime = 0x80087698; // typeLfunc
+ClanbombTimer_PrintTime = 0x80087698; // type:func
 ActorUpdate_ClanbombTimer = 0x80087820; // type:func
 
 ActorUpdate_Spikeball_77 = 0x80088164; // type:func
@@ -441,7 +441,7 @@ NameEntry_SetToHiragana = 0x80007578; // type:func
 NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
 NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
 NameEntry_Init = 0x800078A4; // type:func
-NameEntry_IsMaxed = 0x80007A90; // type:func
+NameEntry_CheckIfFull = 0x80007A90; // type:func
 NameEntry_PrintChar = 0x80007ABC; // type:func
 NameEntry_SelectChar = 0x80007BC0; // type:func
 

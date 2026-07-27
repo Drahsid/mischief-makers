@@ -400,14 +400,14 @@ u16 func_8005A4B0(u16 actor_index, f32 scale) {
     // FIXED_UNIT-first multiplication is required for matching.
     gActors[actor_1].velocityX.raw = (f32)FIXED_UNIT(1.0) * scale;
     gActors[actor_1].var_158 = -gActors[actor_1].velocityX.raw / 20;
-    gActors[actor_1].var_15C = (f32)FIXED_UNIT(1.0/64) * scale;
+    gActors[actor_1].var_15C = (f32)FIXED_UNIT(4.0/256) * scale;
     actor_1 = func_80059F30(actor_index, sp2C, (f64)scale, 0x14);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].flags |= ACTOR_FLAG_FLIPPED;
     gActors[actor_1].velocityX.raw = (f32)FIXED_UNIT(-1.0) * scale;
-    gActors[actor_1].var_15C = (f32)FIXED_UNIT(1.0/64) * scale;
+    gActors[actor_1].var_15C = (f32)FIXED_UNIT(4.0/256) * scale;
     gActors[actor_1].var_158 = -gActors[actor_1].velocityX.raw / 20;
     return actor_1;
 }

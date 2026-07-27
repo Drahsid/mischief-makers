@@ -534,7 +534,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
             gActors[actor_index].velocityX.raw = FIXED_UNIT(3.0) + (-Rand() * FIXED_UNIT(0.0234375));
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(4.75) - (Rand() * FIXED_UNIT(1.0/64));
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(4.75) - (Rand() * FIXED_UNIT(4.0/256));
             gActors[actor_index].velocityZ.raw = FIXED_UNIT(8.0);
             gActors[actor_index].var_154 = 0x10;
             gActors[actor_index].unk_164 = -2;
@@ -543,7 +543,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
             if (gActors[actor_index].velocityX.raw > 0) {
                 gActors[actor_index].var_150 = -gActors[actor_index].var_150;
             }
-            gActors[actor_index].var_15C = -FIXED_UNIT(0.25);
+            gActors[actor_index].var_15C = -FIXED_UNIT(1.0/4);
         }
     }
 }

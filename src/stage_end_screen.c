@@ -8,12 +8,12 @@
 
 #define THEO_INDEX 0x32
 
-#define GRAPHIC_INDEX_40 0x40
-#define GRAPHIC_INDEX_41 0x41
-#define GRAPHIC_INDEX_42 0x42
-#define GRAPHIC_INDEX_43 0x43
-#define GRAPHIC_INDEX_44 0x44
-#define GRAPHIC_INDEX_45 0x45
+#define GRAPHIC_ACTOR_INDEX_40 0x40
+#define GRAPHIC_ACTOR_INDEX_41 0x41
+#define GRAPHIC_ACTOR_INDEX_42 0x42
+#define GRAPHIC_ACTOR_INDEX_43 0x43
+#define GRAPHIC_ACTOR_INDEX_44 0x44
+#define GRAPHIC_ACTOR_INDEX_45 0x45
 
 #define BACKGROUND_INDEX 0x50
 
@@ -22,12 +22,12 @@
 #define sMainActor gActors[MAIN_INDEX]
 #define sTheoActor gActors[THEO_INDEX]
 
-#define sGraphicActor40 gActors[GRAPHIC_INDEX_40]
-#define sGraphicActor41 gActors[GRAPHIC_INDEX_41]
-#define sGraphicActor42 gActors[GRAPHIC_INDEX_42]
-#define sGraphicActor43 gActors[GRAPHIC_INDEX_43]
-#define sGraphicActor44 gActors[GRAPHIC_INDEX_44]
-#define sGraphicActor45 gActors[GRAPHIC_INDEX_45]
+#define sGraphicActor40 gActors[GRAPHIC_ACTOR_INDEX_40]
+#define sGraphicActor41 gActors[GRAPHIC_ACTOR_INDEX_41]
+#define sGraphicActor42 gActors[GRAPHIC_ACTOR_INDEX_42]
+#define sGraphicActor43 gActors[GRAPHIC_ACTOR_INDEX_43]
+#define sGraphicActor44 gActors[GRAPHIC_ACTOR_INDEX_44]
+#define sGraphicActor45 gActors[GRAPHIC_ACTOR_INDEX_45]
 
 #define sBackgroundActor gActors[BACKGROUND_INDEX]
 
@@ -39,7 +39,7 @@ s16 D_800E976C[2] = {0x0012, 0x0024}; // x-offset for heart eyes.
 
 void func_80096B70(void) {
     sGraphicActor40.actorType = ACTORTYPE_GRAPHIC_29;
-    Actor_Initialize(GRAPHIC_INDEX_40);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_40);
     sGraphicActor40.graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     sGraphicActor40.flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor40.graphicIndex = 0x1820;
@@ -50,7 +50,7 @@ void func_80096B70(void) {
     sGraphicActor40.posZ.whole = 0;
     sGraphicActor41.actorType = ACTORTYPE_GRAPHIC_29;
     sGraphicActor40.scaleY = 0.75f;
-    Actor_Initialize(GRAPHIC_INDEX_41);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_41);
     sGraphicActor41.graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
     sGraphicActor41.flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor41.graphicIndex = 0xEA;
@@ -67,7 +67,7 @@ void func_80096B70(void) {
     sGraphicActor41.scaleX = 17.0f;
     sGraphicActor41.scaleY = 4.0f;
     sGraphicActor41.rotateX = 120.0f;
-    Actor_Initialize(GRAPHIC_INDEX_42);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_42);
     sGraphicActor42.graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
     sGraphicActor42.flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor42.graphicIndex = 0x168;
@@ -81,7 +81,7 @@ void func_80096B70(void) {
     sGraphicActor42.scaleX = 15.0f;
     sGraphicActor42.scaleY = 2.0f;
     sGraphicActor42.rotateX = 120.0f;
-    Actor_Initialize(GRAPHIC_INDEX_43);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_43);
     sGraphicActor43.graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     sGraphicActor43.flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor43.graphicIndex = 0xE6;
@@ -98,7 +98,7 @@ void func_80096B70(void) {
     sGraphicActor43.scaleX = 8.0f;
     sGraphicActor43.scaleY = 8.0f;
     sGraphicActor43.rotateX = 120.0f;
-    Actor_Initialize(GRAPHIC_INDEX_44);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_44);
     sGraphicActor44.graphicFlags = ACTOR_GFLAG_UNK11;
     sGraphicActor44.flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor44.graphicIndex = 0x2000;
@@ -108,12 +108,12 @@ void func_80096B70(void) {
     sGraphicActor44.posZ.whole = 48;
     sGraphicActor44.unk_188 = -160;
     sGraphicActor45.actorType = ACTORTYPE_GRAPHIC_29;
-    Actor_Initialize(GRAPHIC_INDEX_45);
+    Actor_Initialize(GRAPHIC_ACTOR_INDEX_45);
     sGraphicActor45.graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     sGraphicActor45.flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     sGraphicActor45.graphicIndex = 0x2004;
     sGraphicActor45.colorA = 0x70;
-    Actor_SetColorRgb(GRAPHIC_INDEX_45, 0xFF);
+    Actor_SetColorRgb(GRAPHIC_ACTOR_INDEX_45, 0xFF);
     sGraphicActor45.posX.whole = 0;
     sGraphicActor45.posY.whole = -24;
     sGraphicActor45.posZ.whole = 48;
@@ -450,11 +450,11 @@ void ActorUpdate_LevelClear(u16 actor_index) {
             gActors[actor_index].state++;
             LevelClear_SpawnTheo(THEO_INDEX);
             gActors[actor_index].var_150 = 0xC3;
-            func_800971A0(GRAPHIC_INDEX_40);
+            func_800971A0(GRAPHIC_ACTOR_INDEX_40);
             sGraphicActor40.posY.raw = FIXED_UNIT(48.0);
-            func_800971A0(GRAPHIC_INDEX_41);
+            func_800971A0(GRAPHIC_ACTOR_INDEX_41);
             sGraphicActor41.posY.raw = FIXED_UNIT(-48.0);
-            func_800971A0(GRAPHIC_INDEX_42);
+            func_800971A0(GRAPHIC_ACTOR_INDEX_42);
             sGraphicActor42.posY.raw = FIXED_UNIT(-144.0);
             Sound_PlaySfx(SFX_THEO_YAY2);
         }
@@ -508,7 +508,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
             gActors[actor_index].posY.whole = 0;
             gActors[actor_index].posZ.whole = 192;
             Sound_PlaySfx(SFX_MARINA_YELL1);
-            func_8009723C(GRAPHIC_INDEX_40);
+            func_8009723C(GRAPHIC_ACTOR_INDEX_40);
             break;
         case 9:
             gActors[actor_index].graphicIndex = 0x1004;
@@ -516,7 +516,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
             gActors[actor_index].posY.whole = -4;
             gActors[actor_index].posZ.whole = 192;
             Sound_PlaySfx(SFX_MARINA_YELL3);
-            func_8009723C(GRAPHIC_INDEX_40);
+            func_8009723C(GRAPHIC_ACTOR_INDEX_40);
             break;
         case 11:
             gActors[actor_index].graphicIndex = 0x1008;
@@ -524,7 +524,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
             gActors[actor_index].posY.whole = 0;
             gActors[actor_index].posZ.whole = 192;
             Sound_PlaySfx(SFX_MARINA_YELL4);
-            func_8009723C(GRAPHIC_INDEX_40);
+            func_8009723C(GRAPHIC_ACTOR_INDEX_40);
             break;
         }
         gActors[actor_index].state++;
@@ -694,7 +694,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
     case 0x1000:
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 7);
         gActors[actor_index].var_154 -= 0x500;
-        gActors[actor_index].posY.raw -= FIXED_UNIT(1.0/16);
+        gActors[actor_index].posY.raw -= FIXED_UNIT(16.0/256);
         gActors[actor_index].unk_114 = Math_ApproachF32(gActors[actor_index].unk_114, 0.5f, 0.01f);
         if (!(gActiveFrames & 1)) {
             index = func_8003EEC0(gActors[actor_index].unk_114, gActors[actor_index].posX.whole + 0x20, gActors[actor_index].posY.whole + 5, gActors[actor_index].posZ.whole);
@@ -713,7 +713,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
         gActors[actor_index].posZ.whole = -48;
         /* fallthrough */
     case 0x1002:
-        gActors[actor_index].posX.raw += FIXED_UNIT(0.25);
+        gActors[actor_index].posX.raw += FIXED_UNIT(1.0/4);
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 7);
         break;
     case 0x1003:
@@ -728,7 +728,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
         gActors[actor_index].posX.whole = Math_ApproachS32(gActors[actor_index].posX.whole, 0, 2);
         break;
     case 0x2000: // 0x20XX, 0x30XX - Theo's states
-        gActors[actor_index].posY.raw += FIXED_UNIT(3.0/16);
+        gActors[actor_index].posY.raw += FIXED_UNIT(48.0/256);
         gActors[actor_index].posZ.raw += FIXED_UNIT(2.0);
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 3);
         break;
@@ -744,8 +744,8 @@ void ActorUpdate_LevelClear(u16 actor_index) {
         /* fallthrough */
     case 0x2002:
         gActors[actor_index].posZ.raw += FIXED_UNIT(1.0);
-        gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/16);
-        gActors[actor_index].posX.raw -= FIXED_UNIT(0.25);
+        gActors[actor_index].velocityY.raw -= FIXED_UNIT(16.0/256);
+        gActors[actor_index].posX.raw -= FIXED_UNIT(1.0/4);
         gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0xFF, 8);
         gActors[actor_index].colorR = Math_ApproachS32(gActors[actor_index].colorR, 0, 2);
         gActors[actor_index].colorG = gActors[actor_index].colorR;
@@ -813,7 +813,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
             Sound_PlaySfxAtVol(SFX_THEO_HELP2, 0x50);
         }
         // gravity
-        gActors[actor_index].velocityY.raw -= 0xE0;
+        gActors[actor_index].velocityY.raw -= FIXED_UNIT(7.0 / 2048.0);
         // Theo hits ground
         if (gActors[actor_index].posY.whole < -256) {
             gActors[actor_index].flags = 0;
