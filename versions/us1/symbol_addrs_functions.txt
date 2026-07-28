@@ -60,6 +60,7 @@ Font_ShowString = 0x80004804; // type:func
 
 Trouble_RLE_Type1 = 0x80004910; // type:func
 
+
 LookAt_Update = 0x80010898; // type:func
 LookAt_Reset = 0x800109B0; // type:func
 
@@ -248,6 +249,8 @@ OSD_PrintDeltaTime = 0x80083cf0; // type:func rom:0x848f0
 OSD_PrintfTime = 0x80083db8; // type:func rom:0x849b8
 
 Flower_Falling = 0x800844b8; // type:func
+Flower_TryCollide = 0x80084734; // type:func
+Flower_CheckCollide = 0x8008486C; // type:func
 Flower_TryGrounded = 0x800846A8; // type:func
 Flower_SetHitboxB = 0x80084924; // type:func
 Flower_TryGrab = 0x800848a0; // type:func
@@ -270,6 +273,8 @@ Clanbomb_SetScale = 0x80085e60; // type:func
 Clanbomb_StartFuse = 0x80086824; // type:func
 ActorUpdate_Clanbomb = 0x80086c7c; // type:func
 
+ClanbombTimer_PrintDigit = 0x80087568; // type:func
+ClanbombTimer_PrintTime = 0x80087698; // type:func
 ActorUpdate_ClanbombTimer = 0x80087820; // type:func
 
 ActorUpdate_Spikeball_77 = 0x80088164; // type:func
@@ -379,8 +384,25 @@ Clanblob_Update = 0x80076d40; // type:func
 ActorUpdate_Clanblob = 0x80077c18; // type:func
 
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
-SpawnTextBubble = 0x8007D0DC; // type:func
 
+ToBCD = 0x8007CCE0; // type:func
+
+SpawnActor41 = 0x8007CD68; // type:func
+SpawnActor40 = 0x8007CE24; // type:func
+SpawnActor39 = 0x8007CEB8; // type:func
+
+SpawnActor38 = 0x8007CFE0; // type:func
+SpawnTextBubble = 0x8007D0DC; // type:func
+SpawnTextBubble2 = 0x8007D0F4; // type:func
+SpawnTextBubble3 = 0x8007D1E8; // type:func
+
+Actor38_CapAlpha = 0x8007D3EC; // type:func
+Actor38_ScaleAlpha = 0x8007D438; // type:func
+Actor38_End = 0x8007D520; // type:func
+Actor38_ParseString = 0x8007d554; // type:func
+ActorUpdate_Type41 = 0x8007DB84; // type:func
+ActorUpdate_Type40 = 0x8007DF44; // type:func
+ActorUpdate_Type39 = 0x8007F078; // type:func
 ActorUpdate_Type38 = 0x8007f37c; // type:func
 
 GameState_SoftReset = 0x80022F48; // type:func
@@ -392,14 +414,51 @@ GameState_Gameplay = 0x80021034; // type:func
 GameState_State8Overlay = 0x80388000; // type:func rom:0xF00D0
 GameState_State9Overlay = 0x80388008; // type:func rom:0xF00D8
 GameState_Attract = 0x80021270; // type:func
-GameState_FileSelect = 0x80007C8C; // type:func
 
+EventScoreOver999 = 0x80004F08; // type:func
+Festival_ValidateScores = 0x80004F24; // type:func
+SaveFile_DefaultSlot = 0x80004FFC; // type:func
+SaveFile_DefaultRecords = 0x800050B4; // type:func
+SaveFile_CheckValid = 0x80005188; // type:func
+SaveFile_LoadSlot = 0x8000565C; // type:func
+SaveFile_SaveSlot = 0x80005770; // type:func
+SaveFile_EraseSlot = 0x80005828; // type:func
+SaveFile_GemIcon = 0x80005860; // type:func
+SaveFile_PrintRedGems = 0x800058E0; // type:func
+SaveFile_PrintPlayTime = 0x800059A4; // type:func
+NameEntry_CursorOnBlank = 0x80005B68; // type:func
+NameEntry_AnimateChar = 0x80005C3C; // type:func
+FileSelect_Init = 0x80006360; // type:func
+FileSelect_Reset = 0x80006B1C; // type:func
+FileSelect_InitCursor = 0x80006B9C; // type:func
+FileSelect_AnimateCursor = 0x80006DF4; // type:func
+NameEntry_SexAndAge = 0x8000607C; // type:func
+FileSelect_StartGame = 0x80006E60; // type:func
+
+NameEntry_ConfirmName = 0x800072A4; // type:func
 NameEntry_PrintKeyboardHIRA = 0x800073cc; // type:func rom:0x7fcc
+NameEntry_SetToHiragana = 0x80007578; // type:func
 NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
 NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
+NameEntry_Init = 0x800078A4; // type:func
+NameEntry_CheckIfFull = 0x80007A90; // type:func
+NameEntry_PrintChar = 0x80007ABC; // type:func
+NameEntry_SelectChar = 0x80007BC0; // type:func
+
+GameState_FileSelect = 0x80007C8C; // type:func
 
 GameState_Transition = 0x8001B460; // type:func
 GameState_Records = 0x8001D654; // type:func
+
+LevelClear_Starscape = 0x80096E14; // type:func
+LevelClear_SpawnTheo = 0x80097108; // type:func
+LevelClear_SpawnBackground = 0x800972DC; // type:func
+LevelClear_SphereRing = 0x80097384; // type:func
+LevelClear_SpawnSphere = 0x80097428; // type:func
+LevelClear_HeartEyes = 0x800977B8; // type:func
+LevelClear_ZToSkip = 0x80097968; // type:func
+ActorUpdate_LevelClear = 0x80097A74; // type:func
+
 Trouble_RLE_Type2 = 0x80098B50; // type:func
 ActorUpdate_GraphicOnly = 0x800284b0; // type:func
 Actor_RangeFindInactive = 0x800284B8; // type:func

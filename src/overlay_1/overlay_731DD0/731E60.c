@@ -53,7 +53,7 @@ void func_8019B300_732060(u16 actor_index, u16 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019B68C_7323EC.s")
 
 void func_8019B738_732498(u16 actor_index) {
-    Actor_UpdateVelocityX(actor_index, FIXED_UNIT(0.125));
+    Actor_UpdateVelocityX(actor_index, FIXED_UNIT(32.0/256));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019B764_7324C4.s")

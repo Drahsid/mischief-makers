@@ -39,7 +39,7 @@ void func_801BB2AC_7CFA3C(void);
 void func_801BB360_7CFAF0(void);
 
 
-u16 D_801BBC00_7D0390[] = {
+u16 sActorSpawn_2_BackgroundA[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_47,
     0x0000, 0x0090, 0x0100, 0x014A, 0x0001, 0x0000, ACTORTYPE_13,
@@ -131,7 +131,7 @@ u16 D_801BBC3C_7D03CC[] = {
 };
 
 // spawn actors for first part of "Sea of Lava"
-u16 D_801BC0F4_7D0884[] = {
+u16 sActorSpawn_2_1A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0040, 0x0120, 0x014A, 0x0000, 0x001B, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
     0x0000, 0x0041, 0x0180, 0x014A, 0x0000, 0x001A, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
@@ -168,7 +168,7 @@ u16 D_801BC0F4_7D0884[] = {
 };
 
 // spawn actors for later part of "Sea of Lava"
-u16 D_801BC2A8_7D0A38[] = {
+u16 sActorSpawn_2_1B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0056, 0x07F0, 0x014A, 0x0000, 0x0019, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
     0x0000, 0x0057, 0x0850, 0x014A, 0x0000, 0x0018, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
@@ -227,7 +227,7 @@ u16 D_801BC444_7D0BD4[] = {
 };
 
 // actor spawn table for "Sink or Float"
-u16 D_801BC55C_7D0CEC[] = {
+u16 sActorSpawn_2_3[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0070, 0x09A0, 0x014A, 0x0000, 0x0011, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
     0x0000, 0x0071, 0x09A0, 0x014A, 0x0000, 0x0015, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
@@ -309,7 +309,7 @@ u16 D_801BC81C_7D0FAC[] = {
     0x0650, 0x01F0, 0x0000, 0x0000,
 };
 
-u16 D_801BC964_7D10F4[] = {
+u16 sActorSpawn_2_5[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0B60, 0x01E0, 0x0001, 0x000D, ACTORTYPE_WARPGATE,
     0x0000, 0x0060, 0x0200, 0x014A, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFORM_22,
@@ -346,14 +346,14 @@ u16 D_801BCAE0_7D1270[] = {
 };
 
 // actor spawn table of "flambee"
-u16 D_801BCAF0_7D1280[] = {
+u16 sActorSpawn_2_6[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x8000, 0x0032, 0x0200, 0x014A, 0x0000, 0x0000, ACTORTYPE_OVL1_BEE_BOSS,
     0x0000, 0x0060, 0x0200, 0x014A, 0x0002, 0x0011, ACTORTYPE_OVL3_W2_3DPLATFORM_21,
     SPAWNRECORD_END,
 };
 
-u16 D_801BCB10_7D12A0[] = {
+u16 sActorSpawn_2_6Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0061, 0x0200, 0x01C0, 0x0081, 0x0013, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END,
@@ -484,7 +484,7 @@ u16 D_801BCB30_7D12C0[] = {
 };
 
 // actor spawn table for "Hot Rush"
-u16 D_801BD27C_7D1A0C[] = {
+u16 sActorSpawn_2_4A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x1680, 0x01B8, 0x0001, 0x000C, ACTORTYPE_WARPGATE,
     0x0000, 0x0032, 0x0950, 0x01D0, 0x0012, 0x000C, ACTORTYPE_WARPGATE,
@@ -502,14 +502,14 @@ u16 D_801BD27C_7D1A0C[] = {
     SPAWNRECORD_END,
 };
 
-u16 D_801BD334_7D1AC4[] = {
+u16 sActorSpawn_2_4B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0058, 0x0178, 0x0188, 0x0007, 0x0000, ACTORTYPE_REDBLOCKBOOM,
     0x0000, 0x0059, 0x01F8, 0x01D8, 0x0007, 0x0000, ACTORTYPE_REDBLOCKBOOM,
     SPAWNRECORD_END
 };
 
-u16 D_801BD354_7D1AE4[] = {
+u16 sActorSpawn_2_4C[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x005A, 0x0B70, 0x0200, 0x0007, 0x0000, ACTORTYPE_REDBLOCKBOOM,
     SPAWNRECORD_END
@@ -657,7 +657,7 @@ u16 D_801BD8B4_7D2044[] = {
     0x0470, 0x01B0, 0x1138, 0x0470, 0x01B0, 0x11F8, 0x0470, 0x0000,
 };
 
-u16 D_801BDB74_7D2304[] = {
+u16 sActorSpawn_2_7A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0032, 0x00E8, 0x01B8, 0x8333, 0x0000, ACTORTYPE_CLANBALL_28,
     0x0000, 0x0033, 0x00E8, 0x01B8, 0x4002, 0x0020, ACTORTYPE_CLANBALL_RAIL,
@@ -711,7 +711,7 @@ u16 D_801BDB74_7D2304[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BDE24_7D25B4[] = {
+u16 sActorSpawn_2_7B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0080, 0x0032, 0x1138, 0x03D0, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
     0x0080, 0x0033, 0x11C8, 0x0330, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
@@ -819,7 +819,8 @@ u16 D_801BDF78_7D2708[] = {
     0x0063, 0x03D0, 0x01FD, 0x0000,
 };
 
-u16 D_801BE400_7D2B90[] = {
+//actor spawn table for "Magma Rafts"
+u16 sActorSpawn_2_9[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0032, 0x0128, 0x0178, 0x0060, 0x0000, ACTORTYPE_48,
     0x0000, 0x0033, 0x0128, 0x0178, 0x4001, 0x0040, ACTORTYPE_CLANBALL_RAIL,
@@ -939,7 +940,7 @@ u16 D_801BE740_7D2ED0[] = {
 };
 
 // actor spawn table for "Vertigo"
-u16 D_801BEA48_7D31D8[] = {
+u16 sActorSpawn_2_2[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0190, 0x0120, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFROM_8,
     0x0000, 0x0031, 0x0190, 0x012C, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFORM_9,
@@ -1073,7 +1074,7 @@ u32 D_801BEBD4_7D3364[] = {
 };
 
 // actor spawns for "Freefall"
-u16 D_801BF098_7D3828[] = {
+u16 sActorSpawn_2_8[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0120, 0x0FE0, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFROM_8,
     0x0000, 0x003C, 0x00E8, 0x0FD8, 0x0000, 0x0001, ACTORTYPE_OVL0_GEN_BLOCK,
@@ -1154,7 +1155,7 @@ u16 D_801BF250_7D39E0[] = {
 };
 
 // actor spawn table for "Seasick Climb!"
-u16 D_801BF4B0_7D3C40[] = {
+u16 sActorSpawn_2_10[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0190, 0x0120, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFROM_8,
     0x0000, 0x0051, 0x0190, 0x012C, 0x0000, 0x0000, ACTORTYPE_OVL3_W2_3DPLATFORM_9,
@@ -1208,7 +1209,7 @@ u16 D_801BF728_7D3EB8[] = {
     0x0190, 0x023C, 0x0102, 0x0222, 0x02AC, 0x012C, 0xFF70, 0xFFF2,
 };
 
-u16 D_801BF738_7D3EC8[] = {
+u16 sActorSpawn_2_11A[] = {
 //  flags index posX posY 0x110 0xD8 type
     0,    0x61, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_PLATFORM,
     0,    0x62, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_SRMAIN,
@@ -1216,7 +1217,7 @@ u16 D_801BF738_7D3EC8[] = {
     SPAWNRECORD_END
 };
 
-u16 D_801BF764_7D3EF4[] = {
+u16 sActorSpawn_2_11B[] = {
 //  flags index posX posY 0x110 0xD8 type
     0,    0x61, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_PLATFORM,
     0,    0x62, 0,   0,   0,    0,   ACTORTYPE_OVL0_MIGEN_10,
@@ -1231,7 +1232,7 @@ u16 D_801BF790_7D3f20[] = {
     0x0006, 0x0061, 0x0014, 0xFFFF, 0xFFFF, 0x0000,
 };
 
-u16 D_801BF7BC_7D3F4C[] = {
+u16 sActorSpawn_2_11Exit[] = {
 //  flags index posX posY 0x110 0xD8 type
     0,    0x30, 0,   0,   0,    0,   ACTORTYPE_LEVELCLEAR,
     SPAWNRECORD_END
@@ -1241,7 +1242,7 @@ u16 D_801BF7BC_7D3F4C[] = {
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
         if (gPlayerActor.stateUpper == 4) {
-            func_8005739C(0, 100);
+            func_8005739C(PLAYER_INDEX, 100);
             if (gPlayerActor.health >= 0) {
                 return TRUE;
             }
@@ -1260,12 +1261,13 @@ s32 func_801B9900_7CE090(void) {
     return FALSE;
 }
 
-void func_801B99AC_7CE13C(s16 arg0, s16 arg1) {
+// set player position and Teleport animation
+void func_801B99AC_7CE13C(s16 pos_x, s16 pos_y) {
     gPlayerActor.flags &= ~ACTOR_FLAG_FLIPPED;
-    gPlayerPosX.whole = gScreenPosCurrentX.whole + arg0;
-    gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
-    gPlayerActor.posX.whole = arg0;
-    gPlayerActor.posY.whole = arg1;
+    gPlayerPosX.whole = gScreenPosCurrentX.whole + pos_x;
+    gPlayerPosY.whole = gScreenPosCurrentY.whole + pos_y;
+    gPlayerActor.posX.whole = pos_x;
+    gPlayerActor.posY.whole = pos_y;
     D_800BE5F4.unk_00_u32 = 0xA;
 }
 
@@ -1308,6 +1310,7 @@ void func_801B9B08_7CE298(void) {
     }
 }
 
+// check if player fell in lava, zero postiob vars if so.
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         // FAKEMATCH
@@ -1323,7 +1326,7 @@ void func_801B9BF4_7CE384(void* spawn_table) {
     gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
     gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
     func_8008BFB0();
-    Actor_LoadSpawnTable(D_801BBC00_7D0390);
+    Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
 
     if (spawn_table != NULL) {
         Actor_LoadSpawnTable(spawn_table);
@@ -1343,16 +1346,17 @@ void func_801B9C88_7CE418(void) {
     }
 }
 
+// Stage state machine for "Sea of Lava"
 void func_801B9CF4_7CE484(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
             D_800BE6A8 = 1;
             Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 4, 4);
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 3, 6, 7);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 3, 6, 7);
             func_80046148(D_801BBC2C_7D03BC, D_801BBC3C_7D03CC);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            Actor_LoadSpawnTable(D_801BC0F4_7D0884);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            Actor_LoadSpawnTable(sActorSpawn_2_1A);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
             break;
@@ -1368,17 +1372,17 @@ void func_801B9CF4_7CE484(void) {
                     gStageState = 6;
                     D_800BE6A8 = 0;
                     Actor_ClearRange(0x32, 0x90);
-                    Actor_LoadSpawnTable(D_801BC2A8_7D0A38);
+                    Actor_LoadSpawnTable(sActorSpawn_2_1B);
                     Sound_StopSfx(SFX_005E);
                     Sound_PlaySfx(SFX_RUMBLE_011D);
                 }
             }
             break;
 
-        case 3:
+        case 3: // respawn player
             gScreenPosTargetX.whole = 620;
             gScreenPosTargetY.whole = 400;
-            func_801B9BF4_7CE384(D_801BC0F4_7D0884);
+            func_801B9BF4_7CE384(sActorSpawn_2_1A);
             func_801B99AC_7CE13C(-0x20, -0x25);
 
         case 4:
@@ -1393,10 +1397,10 @@ void func_801B9CF4_7CE484(void) {
             func_801B9B94_7CE324();
             break;
 
-        case 7:
+        case 7: // respawn player
             gScreenPosTargetX.whole = 2405;
             gScreenPosTargetY.whole = 400;
-            func_801B9BF4_7CE384(D_801BC2A8_7D0A38);
+            func_801B9BF4_7CE384(sActorSpawn_2_1B);
             func_801B99AC_7CE13C(-0x30, 0x1E);
             Sound_StopSfx(SFX_005E);
             Sound_PlaySfx(SFX_RUMBLE_011D);
@@ -1414,11 +1418,11 @@ void func_801B9F18_7CE6A8(void) {
         case 0:
             gStageState++;
             Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 2, 3);
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 5, 5, 7);
-            Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 1, 1, 6);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 5, 5, 7);
+            Palette_AdjustRgb5551Array(PALETTE_803D3250, PALETTE_803D3050, 0xFF, 1, 1, 6);
             func_80046148(D_801BC434_7D0BC4, D_801BC444_7D0BD4);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            func_80043D30(D_801BC55C_7D0CEC);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            func_80043D30(sActorSpawn_2_3);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
 
@@ -1440,7 +1444,7 @@ void func_801B9F18_7CE6A8(void) {
                 gScreenPosTargetX.whole = 0x1280;
                 gScreenPosTargetY.whole = 0x190;
             }
-            func_801B9BF4_7CE384(D_801BC55C_7D0CEC);
+            func_801B9BF4_7CE384(sActorSpawn_2_3);
             func_801B99AC_7CE13C(0, -8);
 
         case 4:
@@ -1448,7 +1452,7 @@ void func_801B9F18_7CE6A8(void) {
             break;
     }
 
-    func_80045E58(D_801BC55C_7D0CEC);
+    func_80045E58(sActorSpawn_2_3);
     Camera_UpdateViewBounds();
 }
 
@@ -1462,12 +1466,12 @@ void func_801BA0C8_7CE858(void) {
             else {
                 gStageState++;
                 Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 1, 4, 1);
-                Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 3, 5, 3);
-                Palette_AdjustRgb5551Array((u16*)0x803D3250, (u16*)0x803D3050, 0xFF, 0, 6, 0);
+                Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 3, 5, 3);
+                Palette_AdjustRgb5551Array(PALETTE_803D3250, PALETTE_803D3050, 0xFF, 0, 6, 0);
                 func_80045FA4(D_801BC80C_7D0F9C, D_801BC81C_7D0FAC);
                 D_800BE5F4.unk_00_s32 = 3;
-                Actor_LoadSpawnTable(D_801BBC00_7D0390);
-                func_80043D30(D_801BC964_7D10F4);
+                Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+                func_80043D30(sActorSpawn_2_5);
                 func_801B9A98_7CE228(0x31);
                 Sound_PlaySfx(SFX_005E);
                 D_800BE6A8 = 0;
@@ -1576,7 +1580,7 @@ handle_cutscene_index:
         case 6:
             gScreenPosTargetX.whole = 0x200;
             gScreenPosTargetY.whole = 0x190;
-            func_801B9BF4_7CE384(D_801BC964_7D10F4);
+            func_801B9BF4_7CE384(sActorSpawn_2_5);
             func_801B99AC_7CE13C(0, -0x18);
 
         case 7:
@@ -1595,7 +1599,7 @@ handle_cutscene_index:
             gScreenPosTargetY.whole = 0x190;
             gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
             gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
-            func_801B9BF4_7CE384(D_801BC964_7D10F4);
+            func_801B9BF4_7CE384(sActorSpawn_2_5);
             func_801B99AC_7CE13C(0, -0x18);
             gLookatEyeZ = 448.0f;
 
@@ -1615,7 +1619,7 @@ handle_cutscene_index:
             gScreenPosTargetY.whole = 0x190;
             gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
             gScreenPosCurrentY.whole = gScreenPosTargetY.whole;
-            func_801B9BF4_7CE384(D_801BC964_7D10F4);
+            func_801B9BF4_7CE384(sActorSpawn_2_5);
             func_801B99AC_7CE13C(0, -0x18);
             gLookatEyeZ = 448.0f;
 
@@ -1633,8 +1637,8 @@ handle_cutscene_index:
         case 0x1000:
             gStageState++;
             func_80045FA4(D_801BC80C_7D0F9C, D_801BC81C_7D0FAC);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            func_80043D30(D_801BC964_7D10F4);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            func_80043D30(sActorSpawn_2_5);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
             D_800BE6A8 = 0;
@@ -1672,10 +1676,10 @@ void func_801BA868_7CEFF8(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 6, 6, 0xA);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 6, 6, 0xA);
             func_80046148(D_801BCAE0_7D1270, 0);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            Actor_LoadSpawnTable(D_801BCAF0_7D1280);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            Actor_LoadSpawnTable(sActorSpawn_2_6);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
             D_800BE6A8 = 0;
@@ -1700,7 +1704,7 @@ void func_801BA868_7CEFF8(void) {
             break;
 
         case 4:
-            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BCB10_7D12A0);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, sActorSpawn_2_6Exit);
             gStageState++;
 
         case 5:
@@ -1718,8 +1722,8 @@ void func_801BA9E0_7CF170(void) {
             Palette_AdjustScenePalettes(1, -5, 1, 0, -7, 2, 0x1D, -9, -0x1B);
             gStageState++;
             func_80046148(D_801BCB20_7D12B0, D_801BCB30_7D12C0);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            Actor_LoadSpawnTable(D_801BD27C_7D1A0C);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            Actor_LoadSpawnTable(sActorSpawn_2_4A);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
             D_800BE6A8 = 0;
@@ -1732,12 +1736,12 @@ void func_801BA9E0_7CF170(void) {
         case 2:
             func_801B9B94_7CE324();
             if (D_800D28F8 == 0) {
-                Actor_LoadSpawnTable(D_801BD334_7D1AC4);
+                Actor_LoadSpawnTable(sActorSpawn_2_4B);
                 Sound_StopSfx(SFX_005E);
                 Sound_PlaySfx(SFX_RUMBLE_011D);
             }
             if (D_800D28F8 == 0x520) {
-                Actor_LoadSpawnTable(D_801BD354_7D1AE4);
+                Actor_LoadSpawnTable(sActorSpawn_2_4C);
             }
             break;
 
@@ -1745,7 +1749,7 @@ void func_801BA9E0_7CF170(void) {
             func_80010C20(gCurrentScene);
             gScreenPosTargetX.whole = 0x204;
             gScreenPosTargetY.whole = 0x190;
-            func_801B9BF4_7CE384(D_801BD27C_7D1A0C);
+            func_801B9BF4_7CE384(sActorSpawn_2_4A);
             func_801B99AC_7CE13C(-0x28, -0x12);
             func_80042DBC(D_801BCB30_7D12C0);
 
@@ -1765,6 +1769,7 @@ void func_801BA9E0_7CF170(void) {
     }
 }
 
+// stage state machine for "Tightrope Ride"
 void func_801BABE8_7CF378(void) {
     switch (gStageState) {
         case 0:
@@ -1772,8 +1777,8 @@ void func_801BABE8_7CF378(void) {
             Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 0, 3, -3);
             D_800BE6A8 = 0;
             func_80046148(D_801BD364_7D1AF4, D_801BD37C_7D1B0C);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            Actor_LoadSpawnTable(D_801BDB74_7D2304);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            Actor_LoadSpawnTable(sActorSpawn_2_7A);
             gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
@@ -1793,7 +1798,7 @@ void func_801BABE8_7CF378(void) {
         case 3:
             gScreenPosTargetX.whole = 0x130;
             gScreenPosTargetY.whole = 0x190;
-            func_801B9BF4_7CE384(D_801BDB74_7D2304);
+            func_801B9BF4_7CE384(sActorSpawn_2_7A);
             gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
@@ -1811,8 +1816,8 @@ void func_801BABE8_7CF378(void) {
                 gStageState = 8;
                 Actor_ClearRange_30To90();
                 func_80042DBC(D_801BD8B4_7D2044);
-                Actor_LoadSpawnTable(D_801BBC00_7D0390);
-                Actor_LoadSpawnTable(D_801BDE24_7D25B4);
+                Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+                Actor_LoadSpawnTable(sActorSpawn_2_7B);
                 func_801B9A98_7CE228(0x31);
                 D_800D2920 = 0x1000;
             }
@@ -1821,7 +1826,7 @@ void func_801BABE8_7CF378(void) {
         case 6:
             gScreenPosTargetX.whole = 0x6F0;
             gScreenPosTargetY.whole = 0x190;
-            func_801B9BF4_7CE384(D_801BDB74_7D2304);
+            func_801B9BF4_7CE384(sActorSpawn_2_7A);
             gActors[0x30].warpgateCoords = D_801BD374_7D1B04;
             func_801B99AC_7CE13C(-0x70, -0x22);
 
@@ -1836,7 +1841,7 @@ void func_801BABE8_7CF378(void) {
         case 9:
             gScreenPosTargetX.whole = 0x10D0;
             gScreenPosTargetY.whole = 0x1F0;
-            func_801B9BF4_7CE384(D_801BDE24_7D25B4);
+            func_801B9BF4_7CE384(sActorSpawn_2_7B);
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 10:
@@ -1847,16 +1852,17 @@ void func_801BABE8_7CF378(void) {
     Camera_UpdateViewBounds();
 }
 
+// stage state machine for "Magma Rafts"
 void func_801BAE74_7CF604(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
             Palette_AdjustRgb5551Array(PALETTE_803DA400, PALETTE_80380200, 0xFF, 5, 3, -2);
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 2, 2, 4);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 2, 2, 4);
             D_800BE6A8 = 0;
             func_80046148(D_801BDF68_7D26F8, D_801BDF78_7D2708);
-            Actor_LoadSpawnTable(D_801BBC00_7D0390);
-            Actor_LoadSpawnTable(D_801BE400_7D2B90);
+            Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
+            Actor_LoadSpawnTable(sActorSpawn_2_9);
             func_801B9A98_7CE228(0x31);
             Sound_PlaySfx(SFX_005E);
 
@@ -1877,7 +1883,7 @@ void func_801BAE74_7CF604(void) {
                 gScreenPosTargetX.whole = 0xA50;
                 gScreenPosTargetY.whole = 0x190;
             }
-            func_801B9BF4_7CE384(D_801BE400_7D2B90);
+            func_801B9BF4_7CE384(sActorSpawn_2_9);
             func_801B99AC_7CE13C(-0x70, -0x22);
 
         case 4:
@@ -1892,9 +1898,9 @@ void func_801BAFEC_7CF77C(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 2, 2, -2);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 2, 2, -2);
             func_80046148(D_801BE730_7D2EC0, D_801BE740_7D2ED0);
-            Actor_LoadSpawnTable(D_801BEA48_7D31D8);
+            Actor_LoadSpawnTable(sActorSpawn_2_2);
             break;
 
         case 1:
@@ -1908,7 +1914,7 @@ void func_801BAFEC_7CF77C(void) {
         case 3:
             gScreenPosTargetX.whole = 0x200;
             gScreenPosTargetY.whole = 0x190;
-            func_801B9BF4_7CE384(D_801BEA48_7D31D8);
+            func_801B9BF4_7CE384(sActorSpawn_2_2);
             func_801B99AC_7CE13C(0, 0);
 
         case 4:
@@ -1941,10 +1947,10 @@ void func_801BB0F0_7CF880(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, 1, -1, 1);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 1, -1, 1);
             func_80045FA4(D_801BEB9C_7D332C, (u16*)D_801BEBD4_7D3364);
             D_800BE5F4.unk_00_u32 = 4;
-            Actor_LoadSpawnTable(D_801BF098_7D3828);
+            Actor_LoadSpawnTable(sActorSpawn_2_8);
             D_800BE54C.raw = FIXED_UNIT(32.0);
             gLookatEyeY = 32.0f;
             break;
@@ -1968,9 +1974,9 @@ void func_801BB2AC_7CFA3C(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
-            Palette_AdjustRgb5551Array((u16*)0x80266818, (u16*)0x80266618, 0xFF, -2, 2, 2);
+            Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, -2, 2, 2);
             func_80046148(D_801BF240_7D39D0, D_801BF250_7D39E0);
-            Actor_LoadSpawnTable(D_801BF4B0_7D3C40);
+            Actor_LoadSpawnTable(sActorSpawn_2_10);
             break;
 
         case 1:
@@ -1996,7 +2002,7 @@ void func_801BB360_7CFAF0(void) {
                 gStageState = 0x2000;
                 D_800D2934 = -0x2C;
                 func_80045FA4(D_801BF728_7D3EB8, 0);
-                Actor_LoadSpawnTable(D_801BF764_7D3EF4);
+                Actor_LoadSpawnTable(sActorSpawn_2_11B);
                 Sound_PlayMusic(BGM_BOSS);
                 D_800BE5F4.unk_00_s32 = 3;
                 D_800BE544 = 0x8000;
@@ -2016,7 +2022,7 @@ void func_801BB360_7CFAF0(void) {
                     gStageState++;
                     D_800D2934 = -0x5C;
                     func_80045FA4(D_801BF728_7D3EB8, 0);
-                    func_80043D30(D_801BF738_7D3EC8);
+                    func_80043D30(sActorSpawn_2_11A);
                     gActorDepthMiddle = -0x20;
                     gActorDepthBack = 0x80;
                     D_800BE5F4.unk_00_s32 = 3;
@@ -2174,7 +2180,7 @@ void func_801BB360_7CFAF0(void) {
             break;
 
         case 0xC000:
-            func_80046188(D_801BF728_7D3EB8, D_801BF7BC_7D3F4C);
+            func_80046188(D_801BF728_7D3EB8, sActorSpawn_2_11Exit);
 
         case 0xC001:
             if (Transition_FadeOut()) {
@@ -2189,7 +2195,7 @@ void func_801BB360_7CFAF0(void) {
             func_80010C20(gCurrentScene);
             gStageState++;
             func_80045FA4(D_801BF728_7D3EB8, 0);
-            Actor_LoadSpawnTable(D_801BF738_7D3EC8);
+            Actor_LoadSpawnTable(sActorSpawn_2_11A);
             Sound_PlayMusic(BGM_BOSS);
             D_800BE5F4.unk_00_s32 = 7;
             gPlayerData.flags |= PLAYERDATA_UNK0;

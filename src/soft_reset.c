@@ -113,9 +113,9 @@ void GameState_SoftReset(void) {
     case 1:
         func_80022D88();
         func_80025E6C();
-        func_80004FFC(0);
-        func_80004FFC(1);
-        func_800050B4();
+        SaveFile_DefaultSlot(0);
+        SaveFile_DefaultSlot(1);
+        SaveFile_DefaultRecords();
         gButton_Start = START_BUTTON;
         gButton_DUp = U_JPAD;
         gButton_DDown = D_JPAD;

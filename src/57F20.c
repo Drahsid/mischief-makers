@@ -638,7 +638,7 @@ void func_80058CAC(u16 actor_0, u16 unused_arg1) {
     }
     func_80058924(actor_0);
     gActors[actor_0].state = 0x32;
-    gActors[actor_0].var_158 = FIXED_UNIT(0.125);
+    gActors[actor_0].var_158 = FIXED_UNIT(32.0/256);
 }
 
 void func_80058D3C(u16 actor_0, u16 actor_1) {

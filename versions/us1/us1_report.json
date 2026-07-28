@@ -944,7 +944,7 @@
           }
         },
         {
-          "name": "func_80004F08",
+          "name": "EventScoreOver999",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -952,7 +952,7 @@
           }
         },
         {
-          "name": "func_80004F24",
+          "name": "Festival_ValidateScores",
           "size": "216",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -960,7 +960,7 @@
           }
         },
         {
-          "name": "func_80004FFC",
+          "name": "SaveFile_DefaultSlot",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -968,7 +968,7 @@
           }
         },
         {
-          "name": "func_800050B4",
+          "name": "SaveFile_DefaultRecords",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -976,7 +976,7 @@
           }
         },
         {
-          "name": "func_80005188",
+          "name": "SaveFile_CheckValid",
           "size": "1236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -984,7 +984,7 @@
           }
         },
         {
-          "name": "func_8000565C",
+          "name": "SaveFile_LoadSlot",
           "size": "276",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -992,7 +992,7 @@
           }
         },
         {
-          "name": "func_80005770",
+          "name": "SaveFile_SaveSlot",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1000,7 +1000,7 @@
           }
         },
         {
-          "name": "func_80005828",
+          "name": "SaveFile_EraseSlot",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1008,7 +1008,7 @@
           }
         },
         {
-          "name": "func_80005860",
+          "name": "SaveFile_GemIcon",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1016,7 +1016,7 @@
           }
         },
         {
-          "name": "func_800058E0",
+          "name": "SaveFile_PrintRedGems",
           "size": "196",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1024,7 +1024,7 @@
           }
         },
         {
-          "name": "func_800059A4",
+          "name": "SaveFile_PrintPlayTime",
           "size": "452",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1032,7 +1032,7 @@
           }
         },
         {
-          "name": "func_80005B68",
+          "name": "NameEntry_CursorOnBlank",
           "size": "212",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1040,7 +1040,7 @@
           }
         },
         {
-          "name": "func_80005C3C",
+          "name": "NameEntry_AnimateChar",
           "size": "1088",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1048,7 +1048,7 @@
           }
         },
         {
-          "name": "func_8000607C",
+          "name": "NameEntry_SexAndAge",
           "size": "740",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1056,7 +1056,7 @@
           }
         },
         {
-          "name": "func_80006360",
+          "name": "FileSelect_Init",
           "size": "1980",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1064,7 +1064,7 @@
           }
         },
         {
-          "name": "func_80006B1C",
+          "name": "FileSelect_Reset",
           "size": "128",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1072,7 +1072,7 @@
           }
         },
         {
-          "name": "func_80006B9C",
+          "name": "FileSelect_InitCursor",
           "size": "300",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1088,7 +1088,7 @@
           }
         },
         {
-          "name": "func_80006DF4",
+          "name": "FileSelect_AnimateCursor",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1096,7 +1096,7 @@
           }
         },
         {
-          "name": "func_80006E60",
+          "name": "FileSelect_StartGame",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1112,7 +1112,7 @@
           }
         },
         {
-          "name": "func_800072A4",
+          "name": "NameEntry_ConfirmName",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1128,7 +1128,7 @@
           }
         },
         {
-          "name": "func_80007578",
+          "name": "NameEntry_SetToHiragana",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1152,7 +1152,7 @@
           }
         },
         {
-          "name": "func_800078A4",
+          "name": "NameEntry_Init",
           "size": "492",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1160,7 +1160,7 @@
           }
         },
         {
-          "name": "func_80007A90",
+          "name": "NameEntry_CheckIfFull",
           "size": "44",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1168,7 +1168,7 @@
           }
         },
         {
-          "name": "func_80007ABC",
+          "name": "NameEntry_PrintChar",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -1176,7 +1176,7 @@
           }
         },
         {
-          "name": "func_80007BC0",
+          "name": "NameEntry_SelectChar",
           "size": "204",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13127,6 +13127,13 @@
           }
         },
         {
+          "name": ".data",
+          "size": "464",
+          "metadata": {
+            "virtual_address": "2148404992"
+          }
+        },
+        {
           "name": ".rodata",
           "size": "80",
           "metadata": {
@@ -13136,7 +13143,7 @@
       ],
       "functions": [
         {
-          "name": "func_8007CCE0",
+          "name": "ToBCD",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13144,7 +13151,7 @@
           }
         },
         {
-          "name": "func_8007CD68",
+          "name": "SpawnActor41",
           "size": "188",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13152,7 +13159,7 @@
           }
         },
         {
-          "name": "func_8007CE24",
+          "name": "SpawnActor40",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13160,7 +13167,7 @@
           }
         },
         {
-          "name": "func_8007CEB8",
+          "name": "SpawnActor39",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13168,7 +13175,7 @@
           }
         },
         {
-          "name": "func_8007CFE0",
+          "name": "SpawnActor38",
           "size": "252",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13184,7 +13191,7 @@
           }
         },
         {
-          "name": "func_8007D0F4",
+          "name": "SpawnTextBubble2",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13192,7 +13199,7 @@
           }
         },
         {
-          "name": "func_8007D1E8",
+          "name": "SpawnTextBubble3",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13216,7 +13223,7 @@
           }
         },
         {
-          "name": "func_8007D3EC",
+          "name": "Actor38_CapAlpha",
           "size": "76",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13224,7 +13231,7 @@
           }
         },
         {
-          "name": "func_8007D438",
+          "name": "Actor38_ScaleAlpha",
           "size": "232",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13232,7 +13239,7 @@
           }
         },
         {
-          "name": "func_8007D520",
+          "name": "Actor38_End",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13240,7 +13247,7 @@
           }
         },
         {
-          "name": "func_8007D554",
+          "name": "Actor38_ParseString",
           "size": "812",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13256,7 +13263,7 @@
           }
         },
         {
-          "name": "func_8007DB84",
+          "name": "ActorUpdate_Type41",
           "size": "960",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13264,7 +13271,7 @@
           }
         },
         {
-          "name": "func_8007DF44",
+          "name": "ActorUpdate_Type40",
           "size": "2768",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13304,7 +13311,7 @@
           }
         },
         {
-          "name": "func_8007F078",
+          "name": "ActorUpdate_Type39",
           "size": "772",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14197,7 +14204,7 @@
           }
         },
         {
-          "name": "func_80084734",
+          "name": "Flower_TryCollide",
           "size": "312",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14205,7 +14212,7 @@
           }
         },
         {
-          "name": "func_8008486C",
+          "name": "Flower_CheckCollide",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14485,7 +14492,7 @@
           }
         },
         {
-          "name": "func_80087568",
+          "name": "ClanbombTimer_PrintDigit",
           "size": "304",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -14493,7 +14500,7 @@
           }
         },
         {
-          "name": "func_80087698",
+          "name": "ClanbombTimer_PrintTime",
           "size": "392",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16219,7 +16226,7 @@
           }
         },
         {
-          "name": "func_80096E14",
+          "name": "LevelClear_Starscape",
           "size": "584",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16235,7 +16242,7 @@
           }
         },
         {
-          "name": "func_80097108",
+          "name": "LevelClear_SpawnTheo",
           "size": "152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16259,7 +16266,7 @@
           }
         },
         {
-          "name": "func_800972DC",
+          "name": "LevelClear_SpawnBackground",
           "size": "168",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16267,7 +16274,7 @@
           }
         },
         {
-          "name": "func_80097384",
+          "name": "LevelClear_SphereRing",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16275,7 +16282,7 @@
           }
         },
         {
-          "name": "func_80097428",
+          "name": "LevelClear_SpawnSphere",
           "size": "332",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16291,7 +16298,7 @@
           }
         },
         {
-          "name": "func_800977B8",
+          "name": "LevelClear_HeartEyes",
           "size": "432",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16299,7 +16306,7 @@
           }
         },
         {
-          "name": "func_80097968",
+          "name": "LevelClear_ZToSkip",
           "size": "268",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -16307,7 +16314,7 @@
           }
         },
         {
-          "name": "func_80097A74",
+          "name": "ActorUpdate_LevelClear",
           "size": "4316",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -25687,9 +25694,61 @@
       "sections": [
         {
           "name": ".data",
-          "size": "57472",
+          "size": "10928",
           "metadata": {
             "virtual_address": "2148358176"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "segment_main"
+        ]
+      }
+    },
+    {
+      "name": "D8ED0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "35888",
+          "metadata": {
+            "virtual_address": "2148369104"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "segment_main"
+        ]
+      }
+    },
+    {
+      "name": "E1CD0.data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".data",
+          "size": "10192",
+          "metadata": {
+            "virtual_address": "2148405456"
           }
         }
       ],

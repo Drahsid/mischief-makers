@@ -2118,7 +2118,7 @@ u16* D_800D54EC[] = {
 };
 
 s32 gMarinaActionVelocities[] = {
-    FIXED_UNIT(0.25),
+    FIXED_UNIT(1.0/4),
     FIXED_UNIT(2.0),
     FIXED_UNIT(2.0),
     FIXED_UNIT(1.0),
@@ -2299,7 +2299,7 @@ s32 func_8004F7D8(u16 actor_index) {
     }
     gActors[index].unk_104 = gActors[actor_index].posX.raw;
     gActors[index].unk_108 = gActors[actor_index].posY.raw;
-    gActors[index].unk_10C = gActors[actor_index].posZ.raw - FIXED_UNIT(0.25);
+    gActors[index].unk_10C = gActors[actor_index].posZ.raw - FIXED_UNIT(1.0/4);
     temp_t5 = gActors[actor_index].unk_140_u16[1] * 2;
     var_a1 = D_800D4130[temp_t5];
     var_t0 = D_800D413C[temp_t5];
@@ -2318,7 +2318,7 @@ s32 func_8004F7D8(u16 actor_index) {
         var_t0 = D_800D413C[temp_t5 + 1] - gActors[index].hitboxBY1;
     }
 
-    temp_a3 = FIXED_UNIT(4.0) - (func_8005D1B0(index) * FIXED_UNIT(0.25));
+    temp_a3 = FIXED_UNIT(4.0) - (func_8005D1B0(index) * FIXED_UNIT(1.0/4));
     var_a1 = TO_FIXED(var_a1);
     var_t0 = TO_FIXED(var_t0);
     if (temp_a3 >= func_8005C6D0(var_a1 - gPlayerData.unk_00[0].raw)) {
@@ -3035,8 +3035,8 @@ void func_80051324(u16 actor_index) {
         else {
             if (gActors[actor_index].stateLower == 0x12) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), gActors[actor_index].var_158);
-                if (func_8005C6D0(gActors[actor_index].velocityX.raw) > func_80048C94(28)) {
-                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
+                if (func_8005C6D0(gActors[actor_index].velocityX.raw) > func_80048C94(0x1C)) {
+                    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(32.0/256));
                 }
                 gActors[actor_index].var_158 = Math_ApproachS32(gActors[actor_index].var_158, func_80048C94(19), func_80048C94(19) / 16);
                 if ((func_8005D338(actor_index) != 0x28) && (func_8005D338(actor_index) != 0x29) && func_8005D418(actor_index)) {

@@ -1216,8 +1216,8 @@ s32 func_80064328(u16 actor_index) {
 }
 
 void func_800643CC(u16 actor_index) {
-    Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.03125), -(Rand() & 3), (Rand() & 3));
-    Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(0.015625), -(Rand() & 1), (Rand() & 1));
+    Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(8.0/256), -(Rand() & 3), (Rand() & 3));
+    Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(4.0/256), -(Rand() & 1), (Rand() & 1));
     switch (gActors[actor_index].var_15C) {
     case 0:
         if (func_80064328(actor_index) != 0) {
@@ -1454,7 +1454,7 @@ void func_80064F4C(u16 actor_index) {
             index = gActors[actor_index].var_0D8 & 0xF;
             if (index == 9) {
                 if (func_8004089C((actor_index + 0x8000), D_800D7560[index]) == 0x800) {
-                    Sound_StartFade(0x81, 0x3C);
+                    Sound_StartFade(SFX_DASH_0081, 0x3C);
                     gActors[actor_index].unk_174 += 1;
                     return;
                 }

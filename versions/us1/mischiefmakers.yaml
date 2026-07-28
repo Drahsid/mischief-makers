@@ -328,6 +328,9 @@ segments:
       - [0x0D34D0, data] 
       - [0x0D4AB0, .data, 4FEB0]
       - [0x0D6420, data] # 5EA30+
+      - [0x0D8ED0, data] # palette DB script?
+      - [0x0E1B00, .data, 7D8E0] 
+      - [0x0E1CD0, data] 
       - [0x0E44A0, .data, E44A0] # previously placed in boot.c
       - [0x0E4760, data]
       - [0x0E4920, data] # 84BB0?
@@ -871,14 +874,14 @@ segments:
       - [0x72AA70, data, overlay_1/overlay_722A30/722A50]
       - [0x72AE00, rodata, overlay_1/overlay_722A30/722A50_rodata]
 
-  - name: overlay_72B120_dispatch_table # blackgamma7: Taurus
+  - name: overlay_72B120_dispatch_table # blackgamma7: Tarus
     exclusive_ram_id: overlay_72B120_dispatch_table
     type: code
     vram: 0x8019B000
     start: 0x72B120
     subsegments:
       - [0x72B120, .data, overlay_1/overlay_72B120/dispatch_table] # dispatch table 72B120->72B140 (0x20)
-  - name: overlay_72B120 # blackgamma7: Taurus
+  - name: overlay_72B120 # blackgamma7: Tarus
     exclusive_ram_id: overlay_72B120
     type: code
     vram: 0x8019B100

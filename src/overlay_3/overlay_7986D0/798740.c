@@ -26,15 +26,15 @@ s16 D_801B5E08_79DC48[] = {
     0x30, 0x30, 0x30, 0x30, 0x30, 0,
 };
 
-s32 D_801B5E64_79DCA4[] = {
-    0x80343DA0, 0x80343EC8, 0x80343FF0, 0x80344118,
-    0x80344240, 0x80344368, 0x80344490, 0x803445B8,
-    0x803446E0, 0x80344808, 0x80344930, 0x80344A58,
-    0x80344B80, 0x80344CA8, 0x80344DD0, 0x80344EF8,
-    0x80345020, 0x80345148, 0x80345270, 0x80345398,
-    0x803454C0, 0x803455E8, 0x80345710, 0x80345838,
-    0x80345960, 0x80345A88, 0x80345BB0, 0x80345CD8,
-    0x80345E00, 0x80345F28, 0x80346050, 0x80346178,
+Gfx* D_801B5E64_79DCA4[] = {
+    (Gfx*)0x80343DA0, (Gfx*)0x80343EC8, (Gfx*)0x80343FF0, (Gfx*)0x80344118,
+    (Gfx*)0x80344240, (Gfx*)0x80344368, (Gfx*)0x80344490, (Gfx*)0x803445B8,
+    (Gfx*)0x803446E0, (Gfx*)0x80344808, (Gfx*)0x80344930, (Gfx*)0x80344A58,
+    (Gfx*)0x80344B80, (Gfx*)0x80344CA8, (Gfx*)0x80344DD0, (Gfx*)0x80344EF8,
+    (Gfx*)0x80345020, (Gfx*)0x80345148, (Gfx*)0x80345270, (Gfx*)0x80345398,
+    (Gfx*)0x803454C0, (Gfx*)0x803455E8, (Gfx*)0x80345710, (Gfx*)0x80345838,
+    (Gfx*)0x80345960, (Gfx*)0x80345A88, (Gfx*)0x80345BB0, (Gfx*)0x80345CD8,
+    (Gfx*)0x80345E00, (Gfx*)0x80345F28, (Gfx*)0x80346050, (Gfx*)0x80346178,
 };
 
 s16 D_801B5EE4_79DD24[] = {
@@ -371,10 +371,10 @@ Vtx D_801B6EA8_79ECE8[] = {
 
 Gfx D_801B6F28_79ED68[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B60A8_79DEE8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -383,7 +383,7 @@ Gfx D_801B6F28_79ED68[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -396,10 +396,10 @@ Gfx D_801B6F28_79ED68[] = {
 
 Gfx D_801B7020_79EE60[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B61A8_79DFE8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -408,7 +408,7 @@ Gfx D_801B7020_79EE60[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -421,10 +421,10 @@ Gfx D_801B7020_79EE60[] = {
 
 Gfx D_801B7118_79EF58[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B62A8_79E0E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -433,7 +433,7 @@ Gfx D_801B7118_79EF58[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -446,10 +446,10 @@ Gfx D_801B7118_79EF58[] = {
 
 Gfx D_801B7210_79F050[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B63A8_79E1E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -458,7 +458,7 @@ Gfx D_801B7210_79F050[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -471,10 +471,10 @@ Gfx D_801B7210_79F050[] = {
 
 Gfx D_801B7308_79F148[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B64A8_79E2E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -483,7 +483,7 @@ Gfx D_801B7308_79F148[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -496,10 +496,10 @@ Gfx D_801B7308_79F148[] = {
 
 Gfx D_801B7400_79F240[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B65A8_79E3E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -508,7 +508,7 @@ Gfx D_801B7400_79F240[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -521,10 +521,10 @@ Gfx D_801B7400_79F240[] = {
 
 Gfx D_801B74F8_79F338[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B66A8_79E4E8, 16, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -533,7 +533,7 @@ Gfx D_801B74F8_79F338[] = {
     gsSP1Triangle(5, 6, 4, 0),
     gsSP1Triangle(7, 4, 6, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -546,17 +546,17 @@ Gfx D_801B74F8_79F338[] = {
 
 Gfx D_801B75F0_79F430[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B67A8_79E5E8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -566,7 +566,7 @@ Gfx D_801B75F0_79F430[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6868_79E6A8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -579,17 +579,17 @@ Gfx D_801B75F0_79F430[] = {
 
 Gfx D_801B7738_79F578[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B68E8_79E728, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -599,7 +599,7 @@ Gfx D_801B7738_79F578[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B69A8_79E7E8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -612,17 +612,17 @@ Gfx D_801B7738_79F578[] = {
 
 Gfx D_801B7880_79F6C0[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6A28_79E868, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -632,7 +632,7 @@ Gfx D_801B7880_79F6C0[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6AE8_79E928, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -645,17 +645,17 @@ Gfx D_801B7880_79F6C0[] = {
 
 Gfx D_801B79C8_79F808[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6B68_79E9A8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -665,7 +665,7 @@ Gfx D_801B79C8_79F808[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6C28_79EA68, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -678,17 +678,17 @@ Gfx D_801B79C8_79F808[] = {
 
 Gfx D_801B7B10_79F950[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6CA8_79EAE8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -698,7 +698,7 @@ Gfx D_801B7B10_79F950[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6D68_79EBA8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -711,17 +711,17 @@ Gfx D_801B7B10_79F950[] = {
 
 Gfx D_801B7C58_79FA98[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B6DE8_79EC28, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265A18, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -731,7 +731,7 @@ Gfx D_801B7C58_79FA98[] = {
     gsSP1Triangle(8, 4, 7, 0),
     gsSPVertex(D_801B6EA8_79ECE8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -742,11 +742,11 @@ Gfx D_801B7C58_79FA98[] = {
     gsSPEndDisplayList(),
 };
 
-s32 D_801B7DA0_79FBE0[] = {
-    (s32)D_801B6F28_79ED68, (s32)D_801B7020_79EE60, (s32)D_801B7118_79EF58, (s32)D_801B7210_79F050,
-    (s32)D_801B7308_79F148, (s32)D_801B7400_79F240, (s32)D_801B74F8_79F338, (s32)D_801B75F0_79F430,
-    (s32)D_801B7738_79F578, (s32)D_801B7880_79F6C0, (s32)D_801B79C8_79F808, (s32)D_801B7B10_79F950,
-    (s32)D_801B7C58_79FA98,
+Gfx* D_801B7DA0_79FBE0[] = {
+    D_801B6F28_79ED68, D_801B7020_79EE60, D_801B7118_79EF58, D_801B7210_79F050,
+    D_801B7308_79F148, D_801B7400_79F240, D_801B74F8_79F338, D_801B75F0_79F430,
+    D_801B7738_79F578, D_801B7880_79F6C0, D_801B79C8_79F808, D_801B7B10_79F950,
+    D_801B7C58_79FA98,
 };
 
 u16 D_801B7DD4_79FC14[] = {
@@ -966,7 +966,7 @@ Vtx D_801B8788_7A05C8[] = {
 
 Gfx D_801B8808_7A0648[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x80266618),
+    gsDPLoadTLUT_pal256(PALETTE_80266618),
     gsSPVertex(D_801B7F48_79FD88, 12, 0),
     gsDPLoadTextureBlock(
         (u8*)0x80266218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
@@ -976,7 +976,7 @@ Gfx D_801B8808_7A0648[] = {
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265618, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -986,7 +986,7 @@ Gfx D_801B8808_7A0648[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8008_79FE48, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80265218, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -999,17 +999,17 @@ Gfx D_801B8808_7A0648[] = {
 
 Gfx D_801B8950_7A0790[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x802684F8),
+    gsDPLoadTLUT_pal256(PALETTE_802684F8),
     gsSPVertex(D_801B8088_79FEC8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x80267CF8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_80267CF8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x802678F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_802678F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1019,7 +1019,7 @@ Gfx D_801B8950_7A0790[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8148_79FF88, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x802680F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_802680F8, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1032,17 +1032,17 @@ Gfx D_801B8950_7A0790[] = {
 
 Gfx D_801B8A98_7A08D8[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B81C8_7A0008, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1052,7 +1052,7 @@ Gfx D_801B8A98_7A08D8[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8288_7A00C8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1065,17 +1065,17 @@ Gfx D_801B8A98_7A08D8[] = {
 
 Gfx D_801B8BE0_7A0A20[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8308_7A0148, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1085,7 +1085,7 @@ Gfx D_801B8BE0_7A0A20[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B83C8_7A0208, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1098,17 +1098,17 @@ Gfx D_801B8BE0_7A0A20[] = {
 
 Gfx D_801B8D28_7A0B68[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8448_7A0288, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1118,7 +1118,7 @@ Gfx D_801B8D28_7A0B68[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8508_7A0348, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1131,17 +1131,17 @@ Gfx D_801B8D28_7A0B68[] = {
 
 Gfx D_801B8E70_7A0CB0[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B8588_7A03C8, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1151,7 +1151,7 @@ Gfx D_801B8E70_7A0CB0[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8648_7A0488, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1164,17 +1164,17 @@ Gfx D_801B8E70_7A0CB0[] = {
 
 Gfx D_801B8FB8_7A0DF8[] = {
     gsDPPipeSync(),
-    gsDPLoadTLUT_pal256((u16*)0x803D3050),
+    gsDPLoadTLUT_pal256(PALETTE_803D3050),
     gsSPVertex(D_801B86C8_7A0508, 12, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
     gsSP1Triangle(1, 2, 0, 0),
     gsSP1Triangle(3, 0, 2, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2050, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1184,7 +1184,7 @@ Gfx D_801B8FB8_7A0DF8[] = {
     gsSP1Triangle(7, 4, 8, 0),
     gsSPVertex(D_801B8788_7A05C8, 8, 0),
     gsDPLoadTextureBlock(
-        (u8*)0x803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
+        TEXTURE_803D2450, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0,
         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD
     ),
@@ -1208,6 +1208,7 @@ u16 D_801B9144_7A0F84[8] = {
     4408, 4504, 4408, 4504,
     4600, 4504, 4600, 4504,
 };
+
 // や-い / ya-i (Woah!)
 u16 D_801B9154_7A0F94[4] = { 
     ALPHA_JP_HIRA_YA, ALPHA_DASH, ALPHA_JP_HIRA_I, ALPHA_NULL 
@@ -1253,8 +1254,8 @@ void func_801B0900_798740(u16 actor_index, f32 delta) {
 
     gActors[actor_index].rotateZ = gActors[actor_index].unk_14C + 90.0;
 
-    gActors[actor_index].unk_184 = ((gActors[actor_index].posX.whole + gScreenPosCurrentX.whole) - (s32)gActors[actor_index].unk_114) * FIXED_UNIT(0.25);
-    gActors[actor_index].unk_188 = ((gActors[actor_index].posY.whole + gScreenPosCurrentY.whole) - (s32)gActors[actor_index].unk_118) * FIXED_UNIT(0.25);
+    gActors[actor_index].unk_184 = ((gActors[actor_index].posX.whole + gScreenPosCurrentX.whole) - (s32)gActors[actor_index].unk_114) * FIXED_UNIT(1.0/4);
+    gActors[actor_index].unk_188 = ((gActors[actor_index].posY.whole + gScreenPosCurrentY.whole) - (s32)gActors[actor_index].unk_118) * FIXED_UNIT(1.0/4);
 
     if (gActors[actor_index].unk_184 > FIXED_UNIT(4.0)) {
         gActors[actor_index].unk_184 = FIXED_UNIT(2.0);
@@ -1801,7 +1802,7 @@ void func_801B1B88_7999C8(u16 actor_index) {
                 gActors[actor_index].hitboxBY0 = 0x10;
             }
 
-            gActors[actor_index].unk_0F8.raw = FIXED_UNIT(0.125);
+            gActors[actor_index].unk_0F8.raw = FIXED_UNIT(32.0/256);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.5);
             if (gButtonHold & gButton_DLeft) {
                 gActors[actor_index].unk_0F8.raw = -gActors[actor_index].unk_0F8.raw;
@@ -1812,7 +1813,7 @@ void func_801B1B88_7999C8(u16 actor_index) {
         case 3:
             func_80033E7C(current_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + 16, gActors[actor_index].posZ.whole, 1, FIXED_UNIT(9.0), 8);
             if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-8.0)) {
-                gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.125);
+                gActors[actor_index].velocityY.raw -= FIXED_UNIT(32.0/256);
             }
 
             gActors[actor_index].rotateZ += gActors[actor_index].unk_134;
@@ -1994,7 +1995,7 @@ void func_801B2830_79A670(u16 actor_index) {
             gActors[actor_index].graphicIndex = 0;
             gActors[actor_index].unk_0DE = 4;
             gActors[actor_index].unk_0DF = 0x40;
-            gActors[actor_index].unk_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
+            gActors[actor_index].dlist_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
             gActors[actor_index].hitboxBX0 = -0x30;
             gActors[actor_index].hitboxBX1 = 0x30;
             if (gActors[actor_index].var_110 != 0.0f) {
@@ -2168,10 +2169,10 @@ void func_801B2D40_79AB80(u16 actor_index, u32 flags) {
     if ((flags & ACTOR_FLAG3_UNK9) && (flags & ACTOR_FLAG3_UNK17)) {
         state = gPlayerData.unk_10;
         if ((state >= 2) && (state < 7)) {
-            gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0E) * FIXED_UNIT(0.001953125) + FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) + FIXED_UNIT(125.0/64);
         }
         else if ((state >= 10) && (state < 15)) {
-            gActors[actor_index].velocityX.raw = -(-gPlayerData.unk_0E) * FIXED_UNIT(0.001953125) - FIXED_UNIT(1.953125);
+            gActors[actor_index].velocityX.raw = -(-gPlayerData.unk_0E) * FIXED_UNIT(1.0/512) - FIXED_UNIT(125.0/64);
         }
 
         if ((state >= 6) && (state < 11)) {
@@ -2187,14 +2188,14 @@ void func_801B2D40_79AB80(u16 actor_index, u32 flags) {
     if (gActors[actor_index].unk_164 != 0) {
         gActors[actor_index].unk_164--;
         if (gActors[actor_index].unk_168 != 0) {
-            gActors[actor_index].var_158 = (gActors[actor_index].var_158 - D_800BE668 * D_800BE668) + FIXED_UNIT(0.1875);
+            gActors[actor_index].var_158 = (gActors[actor_index].var_158 - D_800BE668 * D_800BE668) + FIXED_UNIT(48.0/256);
         }
         else {
             gActors[actor_index].var_158 = (gActors[actor_index].var_158 - D_800BE668 * D_800BE668) - FIXED_UNIT(0.3125);
         }
     }
     else {
-        gActors[actor_index].var_158 = (gActors[actor_index].var_158 - D_800BE668 * D_800BE668) - FIXED_UNIT(0.0625);
+        gActors[actor_index].var_158 = (gActors[actor_index].var_158 - D_800BE668 * D_800BE668) - FIXED_UNIT(16.0/256);
     }
 
     if (gActors[actor_index].var_160 < gActors[actor_index].var_158) {
@@ -2279,7 +2280,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
                 }
             }
             else {
-                gActors[actor_index].var_154 -= FIXED_UNIT(0.015625);
+                gActors[actor_index].var_154 -= FIXED_UNIT(4.0/256);
                 gActors[actor_index].var_158 = gActors[actor_index].var_158 - (0 - gActors[actor_index].var_154);
                 if (gActors[actor_index].var_154 == FIXED_UNIT(-0.5)) {
                     gActors[actor_index].state++;
@@ -2298,7 +2299,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
                 gActors[actor_index].state++;
             }
             else {
-                gActors[actor_index].var_154 += FIXED_UNIT(0.015625);
+                gActors[actor_index].var_154 += FIXED_UNIT(4.0/256);
                 gActors[actor_index].var_158 = gActors[actor_index].var_158 - (0 - gActors[actor_index].var_154);
                 if (gActors[actor_index].var_154 == FIXED_UNIT(0.5)) {
                     gActors[actor_index].state--;
@@ -2317,7 +2318,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
             break;
 
         case 0xD:
-            gActors[actor_index].var_158 = (gActors[actor_index].var_158 + FIXED_UNIT(0.25)) + ((D_800BE668 * D_800BE668) * 6);
+            gActors[actor_index].var_158 = (gActors[actor_index].var_158 + FIXED_UNIT(1.0/4)) + ((D_800BE668 * D_800BE668) * 6);
             func_801B2A54_79A894(actor_index);
             if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK7)) {
                 gActors[actor_index].state--;
@@ -2341,7 +2342,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
                 gActors[actor_index].state += 2;
             }
             else {
-                gActors[actor_index].var_154 -= FIXED_UNIT(0.015625);
+                gActors[actor_index].var_154 -= FIXED_UNIT(4.0/256);
                 gActors[actor_index].var_158 += gActors[actor_index].var_154;
                 if (gActors[actor_index].var_154 == FIXED_UNIT(-0.5)) {
                     gActors[actor_index].state++;
@@ -2357,7 +2358,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
                 gActors[actor_index].state++;
             }
             else {
-                gActors[actor_index].var_154 += FIXED_UNIT(0.015625);
+                gActors[actor_index].var_154 += FIXED_UNIT(4.0/256);
                 gActors[actor_index].var_158 += gActors[actor_index].var_154;
                 if (gActors[actor_index].var_154 == FIXED_UNIT(0.5)) {
                     gActors[actor_index].state--;
@@ -2380,7 +2381,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
 
         case 0x17:
             gActors[actor_index].posX.whole = gActors[actor_index - 0x20].posX.whole;
-            gActors[actor_index].var_158 = (gActors[actor_index].var_158 + FIXED_UNIT(0.25)) + ((D_800BE668 * D_800BE668) * 6);
+            gActors[actor_index].var_158 = (gActors[actor_index].var_158 + FIXED_UNIT(1.0/4)) + ((D_800BE668 * D_800BE668) * 6);
             func_801B2BA0_79A9E0(actor_index);
             if (gActors[actor_index - 0x20].unk_16C & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK7)) {
                 gActors[actor_index].state--;
@@ -2440,19 +2441,19 @@ void func_801B37B0_79B5F0(u16 actor_index) {
                     default:
                         gActors[child_index].var_0D8 = D_801B7E4C_79FC8C[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
-                    case 0x45:
+                    case SCENE_VERTIGO:
                         gActors[child_index].var_0D8 = D_801B7DD4_79FC14[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
-                    case 0xD:
+                    case SCENE_SEASICKCLIMB:
                         gActors[child_index].var_0D8 = D_801B7EDC_79FD1C[(((gScreenPosCurrentY.whole + (index << 6)) - 192) & 0xFFC0) / 64];
                         break;
                 }
-                gActors[child_index].unk_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
+                gActors[child_index].dlist_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
                 child_index++;
                 if (gActors[child_index - 1].var_0D8 != 0) {
                     func_801B36FC_79B53C(index, child_index);
                     gActors[child_index].var_0D8 = gActors[child_index - 1].var_0D8 + 6;
-                    gActors[child_index].unk_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
+                    gActors[child_index].dlist_17C = D_801B7DA0_79FBE0[gActors[child_index].var_0D8];
                     child_index++;
                 }
 
@@ -2570,14 +2571,14 @@ void func_801B3AF8_79B938(u16 actor_index) {
             break;
 
         case 0x21:
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.03125);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(8.0/256);
             if (gActors[actor_index].velocityY.raw == FIXED_UNIT(-3.0)) {
                 gActors[actor_index].state++;
             }
             break;
 
         case 0x22:
-            gActors[actor_index].velocityY.raw += FIXED_UNIT(0.03125);
+            gActors[actor_index].velocityY.raw += FIXED_UNIT(8.0/256);
             if (gActors[actor_index].velocityY.raw == FIXED_UNIT(3.0)) {
                 gActors[actor_index].state--;
             }
@@ -2591,14 +2592,14 @@ void func_801B3AF8_79B938(u16 actor_index) {
             break;
 
         case 0x31:
-            gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.03125);
+            gActors[actor_index].velocityX.raw -= FIXED_UNIT(8.0/256);
             if (gActors[actor_index].velocityX.raw == FIXED_UNIT(-2.0)) {
                 gActors[actor_index].state++;
             }
             break;
 
         case 0x32:
-            gActors[actor_index].velocityX.raw += FIXED_UNIT(0.03125);
+            gActors[actor_index].velocityX.raw += FIXED_UNIT(8.0/256);
             if (gActors[actor_index].velocityX.raw == FIXED_UNIT(2.0)) {
                 gActors[actor_index].state--;
             }
@@ -2613,7 +2614,7 @@ void func_801B3AF8_79B938(u16 actor_index) {
             break;
 
         case 0x41:
-            gActors[actor_index].var_158 -= FIXED_UNIT(0.0625);
+            gActors[actor_index].var_158 -= FIXED_UNIT(16.0/256);
             if (gActors[actor_index].var_158 == FIXED_UNIT(-4.0)) {
                 gActors[actor_index].flags &= ~ACTOR_FLAG_PLATFORM1;
                 gActors[actor_index].state++;
@@ -2622,7 +2623,7 @@ void func_801B3AF8_79B938(u16 actor_index) {
             break;
 
         case 0x42:
-            gActors[actor_index].var_158 += FIXED_UNIT(0.0625);
+            gActors[actor_index].var_158 += FIXED_UNIT(16.0/256);
             if (gActors[actor_index].var_158 == FIXED_UNIT(4.0)) {
                 gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM1;
                 gActors[actor_index].state--;
@@ -2685,7 +2686,7 @@ void func_801B3FE8_79BE28(u16 actor_index) {
             break;
 
         case 3:
-            gActors[actor_index].var_15C -= FIXED_UNIT(0.0625);
+            gActors[actor_index].var_15C -= FIXED_UNIT(16.0/256);
             gActors[actor_index].velocityX.raw = SIN(FROM_FIXED(gCameraRot)) * gActors[actor_index].var_15C;
             gActors[actor_index].velocityY.raw = COS(FROM_FIXED(gCameraRot)) * gActors[actor_index].var_15C;
             if (func_8001FCA0(actor_index, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole) != 0) {

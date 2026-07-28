@@ -12,7 +12,7 @@
 #define SCENE_UNK07             0x07
 #define SCENE_TITLE	            0x08
 #define SCENE_LUNAR	            0x09
-#define SCENE_TAURUS        	0x0A
+#define SCENE_TARUS        	0x0A
 #define SCENE_INTRO	            0x0B
 #define SCENE_CLANCEWAR	        0x0C
 #define SCENE_SEASICKCLIMB  	0x0D

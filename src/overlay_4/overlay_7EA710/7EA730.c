@@ -16,10 +16,10 @@ u16 D_801B9FB0_7EADE0[] = {
     0x0200, 0x0100, 0x0170, 0x0290, 0x0170, 0x0090, 0x0000, 0x0000,
 };
 
-u16 D_801B9FC0_7EADF0[] = {
+u16 sActorSpawn_Intro[] = {
 //  flags   index   posX    posY    0x110   0xD8   type
-    0x0000, 0x0030, 0x0200, 0x0100, 0x0000, 0x0000, 0x2B05,
-    0x0000, 0x0031, 0x01FE, 0x0104, 0x0000, 0x0000, 0x2B00,
+    0x0000, 0x0030, 0x0200, 0x0100, 0x0000, 0x0000, ACTORTYPE_OVL0_INTRO_5,
+    0x0000, 0x0031, 0x01FE, 0x0104, 0x0000, 0x0000, ACTORTYPE_OVL0_INTRO_0,
     SPAWNRECORD_END
 };
 
@@ -55,7 +55,7 @@ u16 D_801BA030_7EAE60[] = {
 
 u16 D_801BA0DC_7EAF0C[] = {
 //  flags   index   posX    posY    0x110   0xD8   type
-    0x0000, 0x0030, 0x01FE, 0x0104, 0x0000, 0x0000, 0x2C02,
+    0x0000, 0x0030, 0x01FE, 0x0104, 0x0000, 0x0000, ACTORTYPE_OVL0_END_2,
     SPAWNRECORD_END
 };
 
@@ -74,15 +74,16 @@ u16 D_801BA0EC_7EAF1C[] = {
 
 u16 D_801BA160_7EAF90[] = {
 //  flags   index   posX    posY    0x110   0xD8   type
-    0x0000, 0x0030, 0x01FE, 0x0104, 0x0000, 0x0001, 0x2C03,
+    0x0000, 0x0030, 0x01FE, 0x0104, 0x0000, 0x0001, ACTORTYPE_OVL0_END_3,
     SPAWNRECORD_END
 };
 
+// state machine for intro animation.
 void func_801B9900_7EA730(void) {
     switch (gStageState) {
         case 0:
             func_80045FA4(D_801B9FB0_7EADE0, NULL);
-            Actor_LoadSpawnTable(D_801B9FC0_7EADF0);
+            Actor_LoadSpawnTable(sActorSpawn_Intro);
             D_800BE5F4.unk_00_u32 = 4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
@@ -126,8 +127,8 @@ void func_801B99D0_7EA800(void) {
 
 void func_801B9A78_7EA8A8(s16* arg0) {
     Palette_AdjustScenePalettes(0, 0, 0, arg0[0], arg0[1], arg0[2], arg0[3], arg0[4], arg0[5]);
-    Palette_AdjustRgb5551Array((void*)0x80352B90, (void*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
-    Palette_AdjustRgb5551Array((void*)0x80355F90, (void*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
+    Palette_AdjustRgb5551Array(PALETTE_80352B90, (void*)0x80352990, 0xFF, arg0[6], arg0[7], arg0[8]);
+    Palette_AdjustRgb5551Array(PALETTE_80355F90, (void*)0x80355D90, 0xFF, arg0[9], arg0[10], arg0[11]);
 }
 
 void func_801B9B2C_7EA95C(void) {
@@ -232,6 +233,7 @@ void func_801B9BB4_7EA9E4(void) {
     }
 }
 
+// state machine for Credits?
 void func_801B9EA4_7EACD4(void) {
     switch (gStageState) {
         case 0:

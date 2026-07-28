@@ -6,7 +6,6 @@
 
 
 extern u16 D_800D28E4;
-extern u32 D_800D28FC;
 
 extern u16 D_800D44A8[];
 extern u16 D_800D44F4[];
@@ -384,7 +383,7 @@ void func_8008D320(u16 actor_index) {
 }
 
 void func_8008D39C(u16 actor_index) {
-    gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, FIXED_UNIT(0.0625));
+    gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, FIXED_UNIT(16.0/256));
     gActors[actor_index].unk_188 = Math_ApproachS32(gActors[actor_index].unk_188, FIXED_UNIT(-6.5), FIXED_UNIT(0.21875));
 }
 
@@ -465,10 +464,10 @@ s32 func_8008DA24(u16 actor_index) {
 void func_8008DA4C(u16 actor_index) {
     func_8008D39C(actor_index);
     if ((gButtonHold & gButton_DRight) && (gActors[actor_index].velocityX.raw < 0)) {
-        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, FIXED_UNIT(1.0), FIXED_UNIT(0.125));
+        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, FIXED_UNIT(1.0), FIXED_UNIT(32.0/256));
     }
     else if ((gButtonHold & gButton_DLeft) && (gActors[actor_index].velocityX.raw > 0)) {
-        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, FIXED_UNIT(-1.0), FIXED_UNIT(0.125));
+        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, FIXED_UNIT(-1.0), FIXED_UNIT(32.0/256));
     }
 
     if ((gActors[actor_index].unk_188 < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
@@ -634,7 +633,7 @@ void func_8008E1A0(u16 actor_index) {
         }
         break;
     case 0x70:
-        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, FIXED_UNIT(0.125));
+        gActors[actor_index].unk_184 = Math_ApproachS32(gActors[actor_index].unk_184, 0, FIXED_UNIT(32.0/256));
         if (gButtonHold & gButton_DLeft) {
             gActors[actor_index].unk_184 = FIXED_UNIT(-2.0);
         }

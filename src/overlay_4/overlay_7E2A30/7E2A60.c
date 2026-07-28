@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "28EF0.h"
 
-// "overlay 4" code for "Taurus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
+// "overlay 4" code for "Tarus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.
 
 extern s16 D_800D2920;
@@ -18,9 +18,10 @@ extern s16 func_8005DEFC(void);
 void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2);
 
 
-u16 D_801BBEB0_7E5010[] = {
+// shadow border effect on stages.
+u16 sActorSpawn_BGCaveB[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0090, 0x0000, 0x0000, 0x0000, 0x0000, 0x2700,
+    0x0000, 0x0090, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_BORDER,
     SPAWNRECORD_END
 };
 
@@ -187,12 +188,12 @@ u32 D_801BBF10_7E5070[] = {
     0x02FF0051, 0x1CA00310, 0x00000000,
 };
 
-u16 D_801BC7FC_7E595C[] = {
+u16 sActorSpawn_4_8A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0001, 0x2700,
+    0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL3_W4_BORDER,
     0x0000, 0x0092, 0x0100, 0x014A, 0x0006, 0x0000, ACTORTYPE_13,
     0x0000, 0x0093, 0x0100, 0x014A, 0x0206, 0x0000, ACTORTYPE_13,
-    0x0000, 0x0050, 0x1FE0, 0x015C, 0x0080, 0x0030, 0x2702, 
+    0x0000, 0x0050, 0x1FE0, 0x015C, 0x0080, 0x0030, ACTORTYPE_OVL3_W4_ASTER, 
     SPAWNRECORD_END, 0,
     
 };
@@ -203,17 +204,17 @@ u16 D_801BC838_7E5998[] = {
 };
 
 // actor spawn table for "Aster's Tryke"
-u16 D_801BC83C_7E599C[] = {
+u16 sActorSpawn_4_8B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0001, 0x2700,
+    0x0000, 0x0091, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL3_W4_BORDER,
     0x0000, 0x0092, 0x0100, 0x014A, 0x0006, 0x0000, ACTORTYPE_13,
     0x0000, 0x0093, 0x0100, 0x014A, 0x0206, 0x0000, ACTORTYPE_13,
-    0x0000, 0x0030, 0x0088, 0x014C, 0x0000, 0x0000, 0x270D,
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, 0x2711,
+    0x0000, 0x0030, 0x0088, 0x014C, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_SPAWNER_13,
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_17,
     0x0000, 0x0040, 0x0220, 0x0170, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_TRIKE,
-    0x0000, 0x0041, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_GRAPHICONLY,
-    0x0000, 0x0042, 0x1E28, 0x0170, 0x0000, 0x0000, 0x2712,
-    0x0000, 0x0050, 0x20D0, 0x015C, 0x0080, 0x0030, 0x2702,
+    0x0000, 0x0041, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_GRAPHIC_29,
+    0x0000, 0x0042, 0x1E28, 0x0170, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_18,
+    0x0000, 0x0050, 0x20D0, 0x015C, 0x0080, 0x0030, ACTORTYPE_OVL3_W4_ASTER,
     SPAWNRECORD_END
 };
 
@@ -221,13 +222,13 @@ u16 D_801BC8BC_7E5A1C[] = {
     0x01A0, 0x018C, 0x0100, 0x0320, 0x01FC, 0x011C, 0xFFD0, 0xFFC9,
 };
 
-u16 D_801BC8CC_7E5A2C[] = {
+u16 sActorSpawn_4_9[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0282, 0x016E, 0x0000, 0x0000, ACTORTYPE_OVL1_MOLE_BOSS,
     SPAWNRECORD_END
 };
 
-u16 D_801BC8DC_7E5A3C[] = {
+u16 sActorSpawn_4_9Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0208, 0x01B8, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -339,9 +340,10 @@ u16 D_801BC93C_7E5A9C[] = {
     0x0171, 0x02B0, 0x0EB8, 0x0174, 0x0240, 0x0EB8, 0x0000, 0x0000,
 };
 
-u16 D_801BCD6C_7E5ECC[] = {
+// actor spawn table for "Aster's Maze"
+u16 sActorSpawn_4_10[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0140, 0x0E3E, 0x1080, 0x0030, 0x2702,
+    0x0000, 0x0030, 0x0140, 0x0E3E, 0x1080, 0x0030, ACTORTYPE_OVL3_W4_ASTER,
     0x0000, 0x0048, 0x0320, 0x0E5E, 0x10A0, 0x3202, ACTORTYPE_CLANCER_119,
     0x0000, 0x0049, 0x0320, 0x0C5E, 0x1090, 0x3206, ACTORTYPE_CLANCER_119,
     0x0000, 0x004A, 0x03E0, 0x0A5E, 0x10A0, 0x3205, ACTORTYPE_CLANCER_119,
@@ -438,35 +440,35 @@ u16 D_801BCFB0_7E6110[] = {
     0x0390, 0x0051, 0x0870, 0x0390, 0x0000, 0x0000,
 };
 
-u16 D_801BD23C_7E639C[] = {
+u16 sActorSpawn_4_7A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0160, 0x014E, 0x1080, 0x0030, 0x2702,
-    0x0000, 0x0048, 0x0190, 0x013E, 0x0000, 0x0000, 0x2704,
-    0x0000, 0x0072, 0x02E0, 0x0188, 0x0000, 0x0100, 0x2705,
+    0x0000, 0x0030, 0x0160, 0x014E, 0x1080, 0x0030, ACTORTYPE_OVL3_W4_ASTER,
+    0x0000, 0x0048, 0x0190, 0x013E, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_CLANPOT,
+    0x0000, 0x0072, 0x02E0, 0x0188, 0x0000, 0x0100, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x0086, 0x0318, 0x0158, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
     0x0000, 0x0087, 0x0348, 0x0158, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
     0x0000, 0x0088, 0x0348, 0x0188, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
     0x0000, 0x0089, 0x0378, 0x0188, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
     0x0000, 0x008A, 0x0378, 0x01B8, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
     0x0000, 0x008B, 0x03A8, 0x01B8, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_BLOCK,
-    0x0000, 0x0049, 0x03A0, 0x0248, 0x0000, 0x0400, 0x2705,
+    0x0000, 0x0049, 0x03A0, 0x0248, 0x0000, 0x0400, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x004A, 0x015E, 0x0244, 0x0000, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x004B, 0x016E, 0x0244, 0x0001, 0x0000, ACTORTYPE_FLOWER,
-    0x0000, 0x004C, 0x016E, 0x0254, 0x0000, 0x0201, 0x2705,
+    0x0000, 0x004C, 0x016E, 0x0254, 0x0000, 0x0201, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x004D, 0x0192, 0x0234, 0x0002, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x004E, 0x01A2, 0x0234, 0x0003, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x004F, 0x01C2, 0x0234, 0x0001, 0x0000, ACTORTYPE_FLOWER,
-    0x0000, 0x0050, 0x0440, 0x015E, 0x1080, 0x3200, 0x2703,
-    0x0000, 0x0051, 0x0460, 0x015E, 0x0000, 0x0300, 0x2705,
+    0x0000, 0x0050, 0x0440, 0x015E, 0x1080, 0x3200, ACTORTYPE_OVL3_W4_CLANCER_3,
+    0x0000, 0x0051, 0x0460, 0x015E, 0x0000, 0x0300, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x0052, 0x0510, 0x0158, 0x0000, 0x0002, ACTORTYPE_DIGGINGSPOT,
     0x0000, 0x0053, 0x0670, 0x0134, 0x0000, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x0054, 0x0680, 0x0134, 0x0001, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x0055, 0x06A0, 0x013E, 0x0000, 0x0010, ACTORTYPE_OVL0_GEN_STATUE,
-    0x0000, 0x0056, 0x06A0, 0x0146, 0x0000, 0x0200, 0x2705,
-    0x0000, 0x005C, 0x0430, 0x0348, 0x0000, 0x0401, 0x2705,
+    0x0000, 0x0056, 0x06A0, 0x0146, 0x0000, 0x0200, ACTORTYPE_OVL3_W4_GHOST_5,
+    0x0000, 0x005C, 0x0430, 0x0348, 0x0000, 0x0401, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x0057, 0x0468, 0x0344, 0x0002, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x0058, 0x0498, 0x033E, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_STATUE,
-    0x0000, 0x0059, 0x0498, 0x0346, 0x0000, 0x0601, 0x2705,
+    0x0000, 0x0059, 0x0498, 0x0346, 0x0000, 0x0601, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x005A, 0x04B0, 0x0334, 0x0003, 0x0000, ACTORTYPE_FLOWER,
     0x0000, 0x005B, 0x04C8, 0x033E, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_STATUE,
     0x0000, 0x0082, 0x0670, 0x0390, 0x7300, 0x150C, ACTORTYPE_CLANBALL_28,
@@ -474,28 +476,29 @@ u16 D_801BD23C_7E639C[] = {
     0x0080, 0x005E, 0x06E0, 0x0380, 0x0100, 0x0000, ACTORTYPE_SPIKEBALL_S,
     0x0080, 0x005F, 0x0740, 0x0380, 0x0000, 0x0000, ACTORTYPE_SPIKEBALL_S,
     0x0080, 0x0060, 0x0760, 0x03A0, 0x0200, 0x0000, ACTORTYPE_SPIKEBALL_S,
-    0x0000, 0x0061, 0x0710, 0x0370, 0x0000, 0x0500, 0x2705,
+    0x0000, 0x0061, 0x0710, 0x0370, 0x0000, 0x0500, ACTORTYPE_OVL3_W4_GHOST_5,
     0x0000, 0x0071, 0x07D0, 0x034E, 0x1180, 0x3202, ACTORTYPE_CLANCER_119,
-    0x0000, 0x0062, 0x08C0, 0x0300, 0x0000, 0x0100, 0x2705,
-    0x0000, 0x0063, 0x09C0, 0x0390, 0x0000, 0x0000, 0x2706,
-    0x0000, 0x0067, 0x0990, 0x0290, 0x0000, 0x0000, 0x2706,
-    0x0000, 0x006B, 0x09C0, 0x0290, 0x0000, 0x0000, 0x2706,
+    0x0000, 0x0062, 0x08C0, 0x0300, 0x0000, 0x0100, ACTORTYPE_OVL3_W4_GHOST_5,
+    0x0000, 0x0063, 0x09C0, 0x0390, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_GHOST_6,
+    0x0000, 0x0067, 0x0990, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_GHOST_6,
+    0x0000, 0x006B, 0x09C0, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_GHOST_6,
     0x0000, 0x006F, 0x0730, 0x023E, 0x1080, 0x1203, ACTORTYPE_CLANCER_119,
-    0x0000, 0x0070, 0x0788, 0x0298, 0x0000, 0x0101, 0x2705,
-    0x0000, 0x008C, 0x0280, 0x0170, 0x0000, 0x0000, 0x2701,
-    0x0000, 0x008D, 0x0580, 0x0170, 0x0000, 0x0001, 0x2701,
-    0x0000, 0x008E, 0x0870, 0x0270, 0x0000, 0x0002, 0x2701,
+    0x0000, 0x0070, 0x0788, 0x0298, 0x0000, 0x0101, ACTORTYPE_OVL3_W4_GHOST_5,
+    0x0000, 0x008C, 0x0280, 0x0170, 0x0000, 0x0000, ACTORTYPE_OVL3_W4_CLOUD,
+    0x0000, 0x008D, 0x0580, 0x0170, 0x0000, 0x0001, ACTORTYPE_OVL3_W4_CLOUD,
+    0x0000, 0x008E, 0x0870, 0x0270, 0x0000, 0x0002, ACTORTYPE_OVL3_W4_CLOUD,
     SPAWNRECORD_END
 };
 
-u16 D_801BD4B4_7E6614[] = {
+u16 sActorSpawn_4_7B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0160, 0x014E, 0x0080, 0x0030, 0x2702,
-    0x0000, 0x0048, 0x0190, 0x013E, 0x0000, 0x8000, 0x2704,
+    0x0000, 0x0030, 0x0160, 0x014E, 0x0080, 0x0030, ACTORTYPE_OVL3_W4_ASTER,
+    0x0000, 0x0048, 0x0190, 0x013E, 0x0000, 0x8000, ACTORTYPE_OVL3_W4_CLANPOT,
     SPAWNRECORD_END
 };
 
-u16 D_801BD4D4_7E6634[] = {
+// fill clanpot with ghosts again.
+u16 sClanpotAllGhosts[] = {
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0, 0, ACTORTYPE_CLANCERGHOST, ACTORTYPE_GHOSTICON, 
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0, 0, ACTORTYPE_CLANCERGHOST, ACTORTYPE_GHOSTICON, 
     (CLANPOT_NEWITEM | CLANPOT_ACTORICON), 0, 0, ACTORTYPE_CLANCERGHOST, ACTORTYPE_GHOSTICON, 
@@ -512,7 +515,7 @@ u16 D_801BD4D4_7E6634[] = {
     0xFFFF
 };
 
-u16 D_801BD558_7E66B8[] = {
+u16 sActorSpawn_4_7Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x01F0, 0x01A0, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -522,13 +525,14 @@ u16 D_801BD568_7E66C8[] = {
     0x01A0, 0x017C, 0x0100, 0x0300, 0x01EC, 0x010C, 0xFFB0, 0xFFC0,
 };
 
-u16 D_801BD578_7E66D8[] = {
+u16 sActorSpawn_4_6[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, 0x0D00,
+    0x0000, 0x0030, 0x01E0, 0x0154, 0x0050, 0x0011, ACTORTYPE_OVL1_TARUS_0,
     SPAWNRECORD_END
 };
 
-u16 D_801BD590_7E66F0[] = {
+// unused, Marina flies away instead.
+u16 sActorSpawn_4_6Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x008F, 0x0200, 0x01A0, 0x0001, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -670,11 +674,12 @@ void func_801B9BF4_7E2D54(u16 arg0, u16 arg1, u16 arg2) {
     }
 }
 
-void func_801B9D38_7E2E98(void* arg0, u16* arg1, void* arg2) {
+// (re)load actors in "Aster's Tryke"
+void func_801B9D38_7E2E98(void* arg0, u16* arg1, u16* spawn_table) {
     func_80045FA4(arg0, arg1);
     Actor_ClearRange_30To90();
-    Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-    Actor_LoadSpawnTable(arg2);
+    Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+    Actor_LoadSpawnTable(spawn_table);
 }
 
 void func_801B9D78_7E2ED8(void) {
@@ -686,7 +691,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
             Sound_PlaySfxAtActor2(SFX_LAVA_00AA, 0);
-            func_8005739C(0, 100);
+            func_8005739C(PLAYER_INDEX, 100);
 
             if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;
@@ -712,7 +717,7 @@ void func_801B9E74_7E2FD4(void) {
 
             gStageState++;
             Palette_AdjustScenePalettes(8, 8, -2, 2, 2, -0x1F, 8, 0, -0x1F);
-            func_801B9D38_7E2E98(D_801BBEC0_7E5020, (u16*)D_801BBF10_7E5070, D_801BC7FC_7E595C);
+            func_801B9D38_7E2E98(D_801BBEC0_7E5020, (u16*)D_801BBF10_7E5070, sActorSpawn_4_8A);
             D_800BE5F4.unk_00_s32 = 4;
             D_800BE544 = 0x8000;
             gStageTimer = 0; // used to track progress instead
@@ -753,15 +758,15 @@ void func_801B9E74_7E2FD4(void) {
             switch (gStageTimer) {
                 // (re)start the actors based on progress.
                 case 0:
-                    func_801B9D38_7E2E98(D_801BBEE0_7E5040, (u16*)-7, D_801BC83C_7E599C);
+                    func_801B9D38_7E2E98(D_801BBEE0_7E5040, (u16*)-7, sActorSpawn_4_8B);
                     break;
 
                 case 1:
-                    func_801B9D38_7E2E98(D_801BBEF0_7E5050, (u16*)-7, D_801BC83C_7E599C);
+                    func_801B9D38_7E2E98(D_801BBEF0_7E5050, (u16*)-7, sActorSpawn_4_8B);
                     break;
 
                 case 2:
-                    func_801B9D38_7E2E98(D_801BBF00_7E5060, (u16*)-7, D_801BC83C_7E599C);
+                    func_801B9D38_7E2E98(D_801BBF00_7E5060, (u16*)-7, sActorSpawn_4_8B);
                     break;
             }
 
@@ -805,7 +810,7 @@ void func_801B9E74_7E2FD4(void) {
             func_801B9D78_7E2ED8();
 
             if ((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x2070) {
-                gPlayerActor.flags_098 |= 0x10000;
+                gPlayerActor.flags_098 |= ACTOR_FLAG3_UNK16;
 
                 if ((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) < 0x1FD8) {
                     gActors[0x40].flags = 0;
@@ -833,7 +838,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 7:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(1.0/4));
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
@@ -854,7 +859,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xA:
-            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(0.25));
+            gActors[0x40].velocityX.raw = Math_ApproachS32(gActors[0x40].velocityX.raw, 0, FIXED_UNIT(1.0/4));
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageState == 0xB) {
@@ -893,13 +898,14 @@ void func_801B9E74_7E2FD4(void) {
     }
 }
 
+// stage state machine for "Moley Cow"
 void func_801BA534_7E3694(void) {
     switch (gStageState) {
         case 0:
             Palette_AdjustScenePalettes(4, 4, 8, -10, -10, -4, -4, -4, 8);
             func_80045FA4(D_801BC8BC_7E5A1C, NULL);
-            Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-            Actor_LoadSpawnTable(D_801BC8CC_7E5A2C);
+            Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+            Actor_LoadSpawnTable(sActorSpawn_4_9);
             gStageState++;
 
         case 1:
@@ -922,7 +928,7 @@ void func_801BA534_7E3694(void) {
             break;
 
         case 5:
-            SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BC8DC_7E5A3C);
+            SpawnStageClear(STAGE_CLEAR_INSTANT, sActorSpawn_4_9Exit);
             gStageState++;
             break;
 
@@ -956,8 +962,8 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
         Actor_ClearRange_30To90();
     }
 
-    Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-    Actor_LoadSpawnTable(D_801BCD6C_7E5ECC);
+    Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+    Actor_LoadSpawnTable(sActorSpawn_4_10);
 
     if (arg2 == 0x2C) {
         gActors[0x4F].var_110 = gActors[0x4F].var_110 - 4096.0f;
@@ -1285,10 +1291,11 @@ s32 func_801BB184_7E42E4(void) {
     return TRUE;
 }
 
+// initaliize actors and player in "Ghost Catcher" 
 void func_801BB1F4_7E4354(void) {
     func_80045FA4(D_801BCF84_7E60E4, D_801BCFB0_7E6110);
-    Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-    Actor_LoadSpawnTable(D_801BD23C_7E639C);
+    Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+    Actor_LoadSpawnTable(sActorSpawn_4_7A);
     gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
     gScreenBoundX0.whole = 242;
     gScreenBoundX1.whole = 1810;
@@ -1297,6 +1304,7 @@ void func_801BB1F4_7E4354(void) {
     gStageState++;
 }
 
+// stage state machine for "Ghost Catcher"
 void func_801BB28C_7E43EC(void) {
     if ((func_801BB184_7E42E4() != 0) && (gStageState < 0x800) && (D_800D28E4 < 0x61) 
       && (gGameState != GAMESTATE_CONTINUE) && (gPlayerActor.health >= 0)) {
@@ -1412,10 +1420,10 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x802:
             func_80045FA4(D_801BCF84_7E60E4, NULL);
-            Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-            Actor_LoadSpawnTable(D_801BD4B4_7E6614);
-            Clanpot_InitItems(0x48, D_801BD4D4_7E6634);
-            gPlayerActor.flags |= 0x20;
+            Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+            Actor_LoadSpawnTable(sActorSpawn_4_7B);
+            Clanpot_InitItems(0x48, sClanpotAllGhosts);
+            gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             D_800BE5F4.unk_00_s32 = 5;
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_GLOOMY);
@@ -1443,7 +1451,7 @@ void func_801BB28C_7E43EC(void) {
         case 0x805:
             if ((u32)gStageTimer-- < 1U) {
                 D_800BE5F4.unk_00_u32 = 5;
-                SpawnStageClear(STAGE_CLEAR_TIMED(60), D_801BD558_7E66B8);
+                SpawnStageClear(STAGE_CLEAR_TIMED(60), sActorSpawn_4_7Exit);
             }
             break;
 
@@ -1467,7 +1475,7 @@ void func_801BB28C_7E43EC(void) {
     Camera_UpdateViewBounds();
 }
 
-// state machine for intro/end of "Taurus!!"
+// state machine for "Tarus!!"
 void func_801BB85C_7E49BC(void) {
     switch (gStageState) {
         case 0:
@@ -1475,8 +1483,8 @@ void func_801BB85C_7E49BC(void) {
             Palette_AdjustScenePalettes(2, 2, 6, 0, 0, -1, 0, 0, -6);
             Palette_AdjustRgb5551Array((u16*)0x80314548, (u16*)0x80314398, 0xD7, 0, 0, -5);
             func_80045FA4(D_801BD568_7E66C8, NULL);
-            Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-            Actor_LoadSpawnTable(D_801BD578_7E66D8);
+            Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+            Actor_LoadSpawnTable(sActorSpawn_4_6);
             D_800BE5F4.unk_00_s32 = 7;
             if (!gSkipStageIntro) {
                 gStageState = 1;
@@ -1567,8 +1575,8 @@ void func_801BB85C_7E49BC(void) {
 
         case 0x1000:
             func_80045FA4(D_801BD568_7E66C8, NULL);
-            Actor_LoadSpawnTable(D_801BBEB0_7E5010);
-            Actor_LoadSpawnTable(D_801BD578_7E66D8);
+            Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
+            Actor_LoadSpawnTable(sActorSpawn_4_6);
             D_800BE5F4.unk_00_s32 = 7;
             gStageState = 0x1001;
             break;

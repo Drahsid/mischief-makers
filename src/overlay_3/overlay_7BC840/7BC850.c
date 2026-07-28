@@ -174,7 +174,7 @@ void func_801B0CBC_7BCC0C(u16 actor_index) {
 u16 func_801B0D80_7BCCD0(u16 actor_index) {
     u8 result;
 
-    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.0234375));
+    gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(6.0/256));
     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.5), FIXED_UNIT(0.21875));
 
     result = FALSE;
@@ -797,7 +797,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             gActors[actor_index].state++;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;\
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK11);
-            gActors[actor_index].velocityX.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(0.625); \
+            gActors[actor_index].velocityX.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(160.0/256); \
             gActors[actor_index].velocityY.raw = FIXED_UNIT(4.5);
             func_80081790(actor_index, D_800E33C4);
             Sound_PlaySfxAtActor2(SFX_0121, actor_index);
@@ -1287,7 +1287,7 @@ void func_801B3648_7BF598(u16 actor_index) {
             if (gActors[actor_index].graphicTimer == 0) {
                 ACTOR_GFX_INIT(actor_index, D_800E1D0C);
             }
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
             gActors[actor_index].posZ.whole += 3;
             if (gActors[actor_index].velocityY.raw < 0) {
                 if (gActors[actor_index].posY.whole < func_801B3480_7BF3D0(actor_index)) {

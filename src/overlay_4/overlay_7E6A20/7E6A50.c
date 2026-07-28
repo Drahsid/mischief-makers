@@ -4,26 +4,21 @@
 
 // "overlay 4" code for "Counter-attack", "Clance War II", "Bee's the One", and several unused scenes
 
-extern u16 D_801BA540_7E7690[];
 extern u16 D_801BA63C_7E778C[];
-extern u16 D_801BA65C_7E77AC[];
-extern u16 D_801BA66C_7E77BC[];
 extern u16 D_801BA6A0_7E77F0[];
 extern u16 D_801BA700_7E7850[];
-extern u16 D_801BA704_7E7854[];
-extern u16 D_801BA714_7E7864[];
-extern u16 D_801BA724_7E7874[];
-extern u16 D_801BA734_7E7884[];
-extern u16 D_801BA744_7E7894[];
-extern u16 D_801BA754_7E78A4[];
-extern u16 D_801BA764_7E78B4[];
-extern u16 D_801BA774_7E78C4[];
+extern u16 sActorSpawn_5_2SA[];
+extern u16 sActorSpawn_5_2BossA[];
+extern u16 sActorSpawn_5_2SB[];
+extern u16 sActorSpawn_5_2BossB[];
+extern u16 sActorSpawn_5_2SC[];
+extern u16 sActorSpawn_5_2BossC[];
+extern u16 sActorSpawn_5_2SD[];
+extern u16 sActorSpawn_5_2BossD[];
 extern u16 D_801BA7A4_7E78F4[];
 extern u16 D_801BA794_7E78E4[];
 extern u16 D_801BA9A4_7E7AF4[];
-extern u16 D_801BAA08_7E7B58[];
-extern u16 D_801BAB78_7E7CC8[];
-extern u16 D_801BA784_7E78D4[];
+extern u16 sActorSpawn_5_2Exit[];
 extern u16 D_801BACCC_7E7E1C[];
 extern u16 D_801BACDC_7E7E2C[];
 extern u16 D_801BACE0_7E7E30[];
@@ -32,18 +27,18 @@ extern u16 D_801BAD00_7E7E50[];
 extern u16 D_801BAD04_7E7E54[];
 
 typedef struct {
-    /* 0x00 */ u16 unk_00;
-    /* 0x02 */ u8 unk_02[0x2];
-    /* 0x04 */ u16* unk_04;
-    /* 0x08 */ u16* unk_08;
-    /* 0x0C */ u16* unk_0C;
-    /* 0x10 */ u16 unk_10;
-    /* 0x12 */ u16 unk_12;
-} UnkStruct_801BA6B0; /* size = 0x14 */
+    /* 0x00 */ u16 midBossX; // when crossed, spawn MidBoss.
+    // 2 align bytes
+    /* 0x04 */ u16* spawners; // table of actor that manages spawning enemies
+    /* 0x08 */ u16* midBoss; // Walker Midboss's spawn table.
+    /* 0x0C */ u16* unk_0C; // bounds? each points to same blank array.
+    /* 0x10 */ u16 boundX0; // left boundary for section of stage
+    /* 0x12 */ u16 boundX1; // right boundary for section of stage
+} Stage5_2Struct; /* size = 0x14 */
 
-extern UnkStruct_801BA6B0 D_801BA6B0_7E7800[];
+extern Stage5_2Struct sStage5_2_Table[];
 
-u16 D_801BA540_7E7690[] = {
+u16 sActorSpawn_BG5A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0090, 0x0990, 0x0253, 0x0000, 0x0000, ACTORTYPE_13,
     0x0000, 0x0091, 0x0990, 0x0253, 0x0200, 0x0000, ACTORTYPE_13,
@@ -74,20 +69,20 @@ u16 D_801BA63C_7E778C[] = {
 };
 
 // unused spawn table, likely meant for "Counterattack"
-u16 D_801BA64C_7E779C[] = {
+u16 sActorSpawn_5_2UnusedA[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0048, 0x1000, 0x01B0, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     SPAWNRECORD_END,
 };
 
-u16 D_801BA65C_7E77AC[] = {
+u16 sActorSpawn_5_2UnusedB[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x0002, ACTORTYPE_110,
     SPAWNRECORD_END,
 };
 
 // actor spawn Table for "Counter-Attack"
-u16 D_801BA66C_7E77BC[] = {
+u16 sActorSpawn_5_2A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x1000, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_OSTRICH,
     0x0000, 0x0050, 0x1100, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_CMDR,
@@ -101,66 +96,67 @@ u16 D_801BA6A0_7E77F0[] = {
     0x0200, 0x027F, 0x0000, 0x3100, 0x02EF, 0x020F, 0xFFE0, 0xFFEB,
 };
 
-UnkStruct_801BA6B0 D_801BA6B0_7E7800[] = {
-    { 0x0600, { 0 }, D_801BA704_7E7854, D_801BA714_7E7864, D_801BA700_7E7850, 0x0200, 0x0800 },
-    { 0x1100, { 0 }, D_801BA724_7E7874, D_801BA734_7E7884, D_801BA700_7E7850, 0x0800, 0x1300 },
-    { 0x1E00, { 0 }, D_801BA744_7E7894, D_801BA754_7E78A4, D_801BA700_7E7850, 0x1300, 0x2000 },
-    { 0x2C00, { 0 }, D_801BA764_7E78B4, D_801BA774_7E78C4, D_801BA700_7E7850, 0x2000, 0x2E00 },
+// struct for enemy spawns in "Clance War II"
+Stage5_2Struct sStage5_2_Table[] = {
+    { 0x0600, sActorSpawn_5_2SA, sActorSpawn_5_2BossA, D_801BA700_7E7850, 0x0200, 0x0800 },
+    { 0x1100, sActorSpawn_5_2SB, sActorSpawn_5_2BossB, D_801BA700_7E7850, 0x0800, 0x1300 },
+    { 0x1E00, sActorSpawn_5_2SC, sActorSpawn_5_2BossC, D_801BA700_7E7850, 0x1300, 0x2000 },
+    { 0x2C00, sActorSpawn_5_2SD, sActorSpawn_5_2BossD, D_801BA700_7E7850, 0x2000, 0x2E00 },
 };
 
 u16 D_801BA700_7E7850[] = {
     0, 0
 };
 
-u16 D_801BA704_7E7854[] = {
+u16 sActorSpawn_5_2SA[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
-u16 D_801BA714_7E7864[] = {
+u16 sActorSpawn_5_2BossA[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0080, 0x07C0, 0x0260, 0x0001, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
-u16 D_801BA724_7E7874[] = {
+u16 sActorSpawn_5_2SB[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0001, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
-u16 D_801BA734_7E7884[] = {
+u16 sActorSpawn_5_2BossB[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0080, 0x12C0, 0x0260, 0x2101, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
-u16 D_801BA744_7E7894[] = {
+u16 sActorSpawn_5_2SC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0002, ACTORTYPE_OVL3_W5_SPAWNER_0, 
     SPAWNRECORD_END
 };
 
-u16 D_801BA754_7E78A4[] = {
+u16 sActorSpawn_5_2BossC[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0080, 0x1FC0, 0x0260, 0x2201, 0x0060, ACTORTYPE_OVL3_W5_WALKER,
     SPAWNRECORD_END
 };
 
-u16 D_801BA764_7E78B4[] = {
+u16 sActorSpawn_5_2SD[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0003, ACTORTYPE_OVL3_W5_SPAWNER_0,
     SPAWNRECORD_END
 };
 
-u16 D_801BA774_7E78C4[] = {
+u16 sActorSpawn_5_2BossD[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0080, 0x2DC0, 0x0260, 0x2301, 0x0060, ACTORTYPE_OVL3_W5_WALKER, 
     SPAWNRECORD_END
 };
 
-u16 D_801BA784_7E78D4[] = {
+u16 sActorSpawn_5_2Exit[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x2DC0, 0x02A0, 0x0081, 0x0000, ACTORTYPE_WARPGATE,
     SPAWNRECORD_END
@@ -215,7 +211,8 @@ u16 D_801BA9A4_7E7AF4[] = {
     0, 0
 };
 
-u16 D_801BAA08_7E7B58[] = {
+// actors spawned in the first part of "Bee's the One"
+u16 sActorSpawn_5_3A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0030, 0x01A0, 0x0290, 0x0000, 0x0000, ACTORTYPE_OVL2_W5A_BEE,
     0x0000, 0x0070, 0x0200, 0x02A0, 0x0000, 0x0000, ACTORTYPE_OVL3_W5_15,
@@ -247,7 +244,7 @@ u16 D_801BAA08_7E7B58[] = {
 };
 
 // actors spawned in the later part of "Bee's the One"
-u16 D_801BAB78_7E7CC8[] = {
+u16 sActorSpawn_5_3B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
     0x0000, 0x0060, 0x16F0, 0x04B0, 0x0100, 0x0004, ACTORTYPE_SPIKEBALL_O,
     0x0000, 0x0061, 0x16F0, 0x04B0, 0x0200, 0x0005, ACTORTYPE_SPIKEBALL_O, 
@@ -382,7 +379,7 @@ void func_801B9A08_7E6B58(void) {
             gDrawMidground = FALSE;
             gDrawEnvLayer = FALSE;
             gDrawBackground = FALSE;
-            Actor_LoadSpawnTable(D_801BA65C_7E77AC);
+            Actor_LoadSpawnTable(sActorSpawn_5_2UnusedB);
             Transition_SmashBlack();
             Sound_PlayMusic(BGM_BONO);
 
@@ -406,8 +403,8 @@ void func_801B9A08_7E6B58(void) {
         case 0x300:
             gStageState++;
             func_80045FA4(D_801BA63C_7E778C, NULL);
-            Actor_LoadSpawnTable(D_801BA540_7E7690);
-            Actor_LoadSpawnTable(D_801BA66C_7E77BC);
+            Actor_LoadSpawnTable(sActorSpawn_BG5A);
+            Actor_LoadSpawnTable(sActorSpawn_5_2A);
             gLifebar.posY.whole = -0x58;
             gLifebarHead.posY.whole = -0x55;
             gDrawMidground = TRUE;
@@ -446,13 +443,13 @@ void func_801B9A08_7E6B58(void) {
 }
 
 s32 func_801B9DAC_7E6EFC(void) {
-    if (D_801BA6B0_7E7800[gStageTimer].unk_10 < gScreenPosCurrentX.whole) {
+    if (sStage5_2_Table[gStageTimer].boundX0 < gScreenPosCurrentX.whole) {
         gActors[0x31].var_15C |= 2;
     }
 
-    if (D_801BA6B0_7E7800[gStageTimer].unk_00 < gScreenPosCurrentX.whole) {
-        Actor_LoadSpawnTable(D_801BA6B0_7E7800[gStageTimer].unk_08);
-        gScreenBoundX0.whole  = D_801BA6B0_7E7800[gStageTimer].unk_00 - 0x90;
+    if (sStage5_2_Table[gStageTimer].midBossX < gScreenPosCurrentX.whole) {
+        Actor_LoadSpawnTable(sStage5_2_Table[gStageTimer].midBoss);
+        gScreenBoundX0.whole  = sStage5_2_Table[gStageTimer].midBossX - 0x90;
         gActors[0x31].var_15C |= 1;
         return TRUE;
     }
@@ -460,17 +457,18 @@ s32 func_801B9DAC_7E6EFC(void) {
     return FALSE;
 }
 
+// set bounds for section in "Clance War 2"
 void func_801B9E7C_7E6FCC(void) {
-    UnkStruct_801BA6B0* entry;
+    Stage5_2Struct* entry;
     s32 temp;
 
     if (gStageTimer < 4) {
-        func_80045FA4(D_801BA6A0_7E77F0, D_801BA6B0_7E7800[gStageTimer].unk_0C);
+        func_80045FA4(D_801BA6A0_7E77F0, sStage5_2_Table[gStageTimer].unk_0C);
 
-        entry = &D_801BA6B0_7E7800[gStageTimer];
-        temp = entry->unk_10;
+        entry = &sStage5_2_Table[gStageTimer];
+        temp = entry->boundX0;
         gScreenBoundX0.whole  = temp - 0x90;
-        gScreenBoundX1.whole = entry->unk_12 + 0x90;
+        gScreenBoundX1.whole = entry->boundX1 + 0x90;
         gScreenBoundY0.whole  = 0x2EF;
         gScreenBoundY1.whole = 0x20F;
         gScreenPosCurrentX.whole = temp + 0x90;
@@ -487,7 +485,7 @@ void func_801B9F50_7E70A0(void) {
     temp_s0 = gScreenBoundX0.whole;
     temp_s1 = gScreenBoundX1.whole;
     func_801B9E7C_7E6FCC();
-    Actor_LoadSpawnTable(D_801BA540_7E7690);
+    Actor_LoadSpawnTable(sActorSpawn_BG5A);
     gTransitionPortraitIndex = gScreenBoundX1.whole;
     gScreenBoundX0.whole  = temp_s0;
     gScreenBoundX1.whole  = temp_s1;
@@ -497,14 +495,15 @@ void func_801B9FB4_7E7104(void) {
     gScreenBoundX1.whole  = gTransitionPortraitIndex;
 }
 
+// stage state machine for "Clance War II"
 void func_801B9FC8_7E7118(void) {
     switch (gStageState) {
         case 0:
             gStageTimer = 0;
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
             func_801B9E7C_7E6FCC();
-            Actor_LoadSpawnTable(D_801BA540_7E7690);
-            Actor_LoadSpawnTable(D_801BA704_7E7854);
+            Actor_LoadSpawnTable(sActorSpawn_BG5A);
+            Actor_LoadSpawnTable(sActorSpawn_5_2SA);
             gStageState++;
             D_800D2930 = 0;
 
@@ -544,11 +543,11 @@ void func_801B9FC8_7E7118(void) {
             func_801B9FB4_7E7104();
             if (gStageTimer >= 4) {
                 gStageState++;
-                SpawnStageClear(STAGE_CLEAR_INSTANT, D_801BA784_7E78D4);
+                SpawnStageClear(STAGE_CLEAR_INSTANT, sActorSpawn_5_2Exit);
                 return;
             }
             gStageState = 1;
-            Actor_LoadSpawnTable(D_801BA6B0_7E7800[gStageTimer].unk_04);
+            Actor_LoadSpawnTable(sStage5_2_Table[gStageTimer].spawners);
             break;
 
         case 5:
@@ -584,13 +583,13 @@ void func_801BA1DC_7E732C(void) {
             }
 
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
-            Palette_AdjustRgb5551Array((void*)0x802F8068, (void*)0x802F7E68, 0xFF, -2, -3, -4);
+            Palette_AdjustRgb5551Array(PALETTE_802F8068, (void*)0x802F7E68, 0xFF, -2, -3, -4);
             func_80045FA4(D_801BA794_7E78E4, D_801BA9A4_7E7AF4);
             if (!D_801BA7A4_7E78F4) {
             }
             D_800D2924 = 0x2000;
-            Actor_LoadSpawnTable(D_801BA540_7E7690);
-            Actor_LoadSpawnTable(D_801BAA08_7E7B58);
+            Actor_LoadSpawnTable(sActorSpawn_BG5A);
+            Actor_LoadSpawnTable(sActorSpawn_5_3A);
             gStageState++;
 
         case 1:
@@ -603,7 +602,7 @@ void func_801BA1DC_7E732C(void) {
 
         case 2:
             if (gScreenPosCurrentX.whole > 0x1600) {
-                Actor_LoadSpawnTable(D_801BAB78_7E7CC8);
+                Actor_LoadSpawnTable(sActorSpawn_5_3B);
                 gStageState++;
             }
             break;
@@ -613,12 +612,13 @@ void func_801BA1DC_7E732C(void) {
     }
 }
 
+// unused(?) stage state machine. loads a background and exit.
 void func_801BA3C4_7E7514(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
             func_80045FA4(D_801BACCC_7E7E1C, D_801BACDC_7E7E2C);
-            Actor_LoadSpawnTable(D_801BA540_7E7690);
+            Actor_LoadSpawnTable(sActorSpawn_BG5A);
             Actor_LoadSpawnTable(D_801BACE0_7E7E30);
 
         case 1:
@@ -634,12 +634,13 @@ void func_801BA3C4_7E7514(void) {
     }
 }
 
+// unused(?) stage state machine. loads a background and exit.
 void func_801BA480_7E75D0(void) {
     switch (gStageState) {
         case 0:
             gStageState++;
             func_80045FA4(D_801BACF0_7E7E40, D_801BAD00_7E7E50);
-            Actor_LoadSpawnTable(D_801BA540_7E7690);
+            Actor_LoadSpawnTable(sActorSpawn_BG5A);
             Actor_LoadSpawnTable(D_801BAD04_7E7E54);
 
         case 1:

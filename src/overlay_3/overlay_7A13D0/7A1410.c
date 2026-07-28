@@ -2,6 +2,7 @@
 #include "28EF0.h"
 #include "7D8E0.h"
 
+// struct used for skiing Clancers
 // Actor 0x150->0x18F; possibly implies large union for this range with subtypes for specific actors
 typedef struct {
     /* 0x00 */ s8 unk_00;
@@ -282,6 +283,7 @@ s32 D_801B6350_7A6E60;
 void func_801B0900_7A1410(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 }
 
+// Skiing Clancer behavior
 void func_801B090C_7A141C(u16 actor_index) {
     Overlay_7A13D0_Actor_State* var_150 = (Overlay_7A13D0_Actor_State*)&gActors[actor_index].var_150;
 
@@ -416,6 +418,7 @@ void func_801B0D98_7A18A8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
     }
 }
 
+// ski Claner throws bomb 
 void func_801B0DF0_7A1900(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     u16 new_actor_index;
 
@@ -532,7 +535,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             }
             else {
                 state->unk_0A++;
-                gActors[actor_index].velocityX.raw = FIXED_UNIT(-0.03125);
+                gActors[actor_index].velocityX.raw = FIXED_UNIT(-1.0/32);
                 gActors[actor_index].graphicList = D_801B5FC0_7A6AD0;
                 gActors[actor_index].graphicTimer = 1;
                 func_801B3218_7A3D28(actor_index, (s32)state);
@@ -546,7 +549,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 state->unk_0A++;
             }
             else {
-                gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.03125);
+                gActors[actor_index].velocityX.raw -= FIXED_UNIT(8.0/256);
                 if (gActors[actor_index].velocityX.raw < 0) {
                     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2) {
                         state->unk_08 = 5;
@@ -564,7 +567,7 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 gActors[actor_index].graphicTimer = 1;
             }
             else {
-                gActors[actor_index].velocityX.raw += FIXED_UNIT(0.0078125);
+                gActors[actor_index].velocityX.raw += FIXED_UNIT(2.0/256);
                 if (gActors[actor_index].velocityX.raw < 0) {
                     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2) {
                         state->unk_08 = 5;
@@ -576,12 +579,12 @@ void func_801B1184_7A1C94(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             return;
 
         case 3:
-            gActors[actor_index].velocityX.raw -= FIXED_UNIT(0.03125);
+            gActors[actor_index].velocityX.raw -= FIXED_UNIT(8.0/256);
             if (gActors[actor_index].velocityX.raw <= FIXED_UNIT(-4.5)) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-4.5);
             }
 
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
             if (gActors[actor_index].velocityY.raw <= FIXED_UNIT(-7.5)) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.5);
             }
@@ -613,7 +616,7 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         actor->flags |= ACTOR_FLAG_UNK17;
         actor->flags &= ~ACTOR_FLAG_UNK16;
         actor->flags_098 &= ~ACTOR_FLAG3_UNK5;
-        actor->velocityY.raw -= FIXED_UNIT(0.25);
+        actor->velocityY.raw -= FIXED_UNIT(1.0/4);
         if (actor->velocityY.raw <= FIXED_UNIT(-7.5)) {
             actor->velocityY.raw = FIXED_UNIT(-7.5);
         }
@@ -689,11 +692,11 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 func_801B2954_7A3464(actor_index, state);
                 tile = func_80012AB4(actor->posX.whole, actor->hitboxBY1 + actor->posY.whole);
                 if (tile == 0) {
-                    actor->velocityX.raw += FIXED_UNIT(0.0078125);
+                    actor->velocityX.raw += FIXED_UNIT(2.0/256);
                 }
                 
                 if (tile == 0x42) {
-                    actor->velocityX.raw -= FIXED_UNIT(0.03125);
+                    actor->velocityX.raw -= FIXED_UNIT(8.0/256);
                 }
 
                 if (abs_velocity_x >= FIXED_UNIT(1.0)) {
@@ -723,11 +726,11 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
                 tile = func_80012AB4(actor->posX.whole, actor->hitboxBY1 + actor->posY.whole);
                 if (tile == 0) {
-                    actor->velocityX.raw -= FIXED_UNIT(0.0078125);
+                    actor->velocityX.raw -= FIXED_UNIT(2.0/256);
                 }
 
                 if (tile == 0x42) {
-                    actor->velocityX.raw -= FIXED_UNIT(0.03125);
+                    actor->velocityX.raw -= FIXED_UNIT(8.0/256);
                 }
 
                 if (abs_velocity_x >= FIXED_UNIT(1.0)) {
@@ -758,7 +761,7 @@ void func_801B1A10_7A2520(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             break;
 
         case 1:
-            actor->velocityY.raw -= FIXED_UNIT(0.25);
+            actor->velocityY.raw -= FIXED_UNIT(1.0/4);
             if (actor->velocityY.raw <= FIXED_UNIT(-7.5)) {
                 actor->velocityY.raw = FIXED_UNIT(-7.5);
             }
@@ -816,7 +819,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             if (state->unk_04 == 0) {
                 state->unk_0A++;
                 gActors[actor_index].velocityX.raw >>= 1;
-                gActors[actor_index].velocityX.raw -= (Rand() & 3) * FIXED_UNIT(0.25);
+                gActors[actor_index].velocityX.raw -= (Rand() & 3) * FIXED_UNIT(1.0/4);
                 gActors[actor_index].graphicList = D_801B5FE0_7A6AF0; \
                 gActors[actor_index].graphicTimer = 1;
             }
@@ -832,7 +835,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
         case 1:
             func_801B2954_7A3464(actor_index, state);
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
 
             if (gActors[actor_index].graphicTimer == 0) {
                 if (state->unk_38 == 0) {
@@ -858,7 +861,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         case 2:
             state->unk_02--;
             if (state->unk_02 > 0) {
-                gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+                gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
 
                 if (gActors[actor_index].graphicTimer == 0) {
                     if (state->unk_38 == 0) {
@@ -913,7 +916,7 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             break;
 
         case 1:
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
             if (gActors[actor_index].velocityY.raw <= FIXED_UNIT(-7.5)) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.5);
             }
@@ -1044,10 +1047,10 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 }
             }
 
-            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.01171875));
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(3.0/256));
             if (state->unk_02 < 0) {
                 if (gActors[actor_index].velocityY.raw > FIXED_UNIT(-7.5)) {
-                    gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+                    gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
                 }
             }
             else {
@@ -1094,7 +1097,7 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 gActors[actor_index].iFrames--;
             }
 
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
             if (gActors[actor_index].velocityY.raw <= FIXED_UNIT(-7.5)) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.5);
             }
@@ -1127,6 +1130,7 @@ void func_801B2730_7A3240(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     }
 }
 
+// skiing clancer as a snowball
 void func_801B2954_7A3464(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     Actor* actor;
     s32 velocity;
@@ -1142,10 +1146,10 @@ void func_801B2954_7A3464(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         }
 
         if (state->unk_04 != 0) {
-            step = FIXED_UNIT(0.25);
+            step = FIXED_UNIT(1.0/4);
         }
         else {
-            step = FIXED_UNIT(0.125);
+            step = FIXED_UNIT(1.0/8);
         }
 
         count = 0;
@@ -1199,7 +1203,7 @@ void func_801B2B10_7A3620(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             break;
 
         case 1:
-            gActors[actor_index].velocityY.raw -= FIXED_UNIT(0.25);
+            gActors[actor_index].velocityY.raw -= FIXED_UNIT(1.0/4);
             if (gActors[actor_index].velocityY.raw <= FIXED_UNIT(-7.5)) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(-7.5);
             }
@@ -1591,7 +1595,7 @@ void func_801B3948_7A4458(u16 actor_index) {
             (gActors + actor_index)->var_150 = func_8005C6D0((gActors + actor_index)->velocityX.raw) / 0x1000;
             D_800BE578 = gScreenPosCurrentX.whole + (gActors + actor_index)->posX.whole;
             D_800BE580 = gScreenPosCurrentY.whole + (gActors + actor_index)->posY.whole;
-            (gActors + actor_index)->velocityX.raw = Math_ApproachS32((gActors + actor_index)->velocityX.raw, (gActors + actor_index)->unk_0F8.raw, FIXED_UNIT(0.0078125));
+            (gActors + actor_index)->velocityX.raw = Math_ApproachS32((gActors + actor_index)->velocityX.raw, (gActors + actor_index)->unk_0F8.raw, FIXED_UNIT(2.0/256));
             value = ((Overlay_7A13D0_Actor_State*)&((gActors + actor_index)->var_150))->unk_02_u8[1];
             D_801376B0[1] = value;
             D_801376AC[1] = value;
@@ -1680,7 +1684,7 @@ void func_801B3CE8_7A47F8(u16 actor_index) {
                 return;
             }
 
-            // check for clanbomb position
+            // check for "Missle Surf"'s clanbomb's position
             if (((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) >= -3) && ((gActors[actor_index].posX.whole - gActors[0x61].posX.whole) < 4)) {
                 if (((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) >= -19) && ((gActors[actor_index].posY.whole - gActors[0x61].posY.whole) < 20)) {
                     func_801B3AE0_7A45F0(actor_index);
@@ -1814,7 +1818,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
         case 0x12:
             func_801B4048_7A4B58(actor_index);
-            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(0.00390625)) + FIXED_UNIT(2.5));
+            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(1.0/256)) + FIXED_UNIT(2.5));
             actor->unk_184_s16[0] = 0xCF0;
             actor->unk_184_s16[1] = 0x670;
             if (Rand() & 1) {
@@ -1841,7 +1845,7 @@ void func_801B4110_7A4C20(u16 arg0) {
 
         case 0x22:
             func_801B4048_7A4B58(actor_index);
-            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(0.00390625)) - FIXED_UNIT(3.5));
+            actor->unk_120 = (f32)(((Rand() & 0xFF) * FIXED_UNIT(1.0/256)) - FIXED_UNIT(3.5));
             actor->state = 0x130;
         case 2:
             actor->unk_184_s16[0] = 0xC00;
@@ -1915,7 +1919,7 @@ void func_801B455C_7A506C(u16 actor_index) {
             if (((gActors[actor_index].posX.whole - 224) < gPlayerActor.posX.whole) && (gPlayerActor.posX.whole < (gActors[actor_index].posX.whole - 192))) {
                 new_actor_index = Actor_RangeFindInactive(0x68, 0x70);
                 if (new_actor_index != 0) {
-                    ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W3_7);
+                    ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_W3_SHOT_7);
                     gActors[new_actor_index].posX.whole = gActors[actor_index].posX.whole - 56;
                     gActors[new_actor_index].posY.whole = gActors[actor_index].posY.whole - 4;
                     gActors[new_actor_index].graphicList = D_801B60C8_7A6BD8;
@@ -2400,12 +2404,12 @@ void func_801B57C8_7A62D8(u16 actor_index) {
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
                             if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
-                                func_8007D0F4(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
+                                SpawnTextBubble2(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
                             }
                             else {
-                                func_8007D0F4(0x47, D_801B6174_7A6C84[gActors[actor_index].unk_16C], 0x40, 0x28, 0x19);
+                                SpawnTextBubble2(0x47, D_801B6174_7A6C84[gActors[actor_index].unk_16C], 0x40, 0x28, 0x19);
                             }
                         }
                     }

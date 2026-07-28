@@ -12,7 +12,7 @@
 typedef void (*FuncVoidVoid)(void);
 
 extern u16 D_800D28E4;
-extern u32 D_800D28FC;
+
 extern u8 D_800D28D0[]; // indexes of Festival Games Scenes.
 extern s32 D_800D28EC;
 extern s16 D_800D28F4;
@@ -408,6 +408,7 @@ void func_80043D30(u16* spawn) {
     Actor_LoadSpawnTable(spawn);
 }
 
+// check if any actors in spawn table are active
 s32 func_80043D6C(u16* spawn) {
     s32 var_s3;
 
@@ -533,7 +534,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
             gActors[actor_index].velocityX.raw = FIXED_UNIT(3.0) + (-Rand() * FIXED_UNIT(0.0234375));
-            gActors[actor_index].velocityY.raw = FIXED_UNIT(4.75) - (Rand() * FIXED_UNIT(0.015625));
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(4.75) - (Rand() * FIXED_UNIT(4.0/256));
             gActors[actor_index].velocityZ.raw = FIXED_UNIT(8.0);
             gActors[actor_index].var_154 = 0x10;
             gActors[actor_index].unk_164 = -2;
@@ -542,7 +543,7 @@ void func_800441F4(u16 graphic_index, s16 pos_x, s16 pos_y, void* palette) {
             if (gActors[actor_index].velocityX.raw > 0) {
                 gActors[actor_index].var_150 = -gActors[actor_index].var_150;
             }
-            gActors[actor_index].var_15C = -FIXED_UNIT(0.25);
+            gActors[actor_index].var_15C = -FIXED_UNIT(1.0/4);
         }
     }
 }
@@ -1526,7 +1527,7 @@ s32 Transition_StageExit(void) {
 void SpawnText_READY(void) {
     gStageState++;
     gStageTimer = 160;
-    func_8007CFE0(0xC7, 5, -40, 0, 0, 120);
+    SpawnActor38(0xC7, ACTOR38_READY, -40, 0, 0, 120);
 }
 
 // Spawn "READY!" text if transition completes
@@ -1542,7 +1543,7 @@ s32 SpawnText_FIGHT(u16 state, u32 actor_flags) {
     gStageTimer--;
     if (gStageTimer < 0) {
         D_800D28FC &= ~6;
-        func_8007CFE0(0xC7, 3, -40, 0, 0, 120);
+        SpawnActor38(0xC7, ACTOR38_FIGHT, -40, 0, 0, 120);
         gPlayerActor.flags |= actor_flags;
         D_800BE5F4.unk_00_u32 = 5;
         gStageState = state;
