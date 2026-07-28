@@ -74,8 +74,7 @@ typedef struct {
     /* 0x08 */ s16 unk_08;
     /* 0x0A */ s8 unk_0A;
     /* 0x0B */ s8 unk_0B;
-    /* 0x0C */ s16 unk_0C; //stores posZ.whole value of some actors.
-    /* 0x0E */ s16 unk_0E;
+    /* 0x0C */ s16 unk_0C[2]; //stores posZ.whole value of some actors.
     /* 0x10 */ s8 unk_10;
     /* 0x11 */ s8 unk_11;
     /* 0x12 */ s8 unk_12;
