@@ -1,5 +1,6 @@
 #include "common.h"
 #include "boot.h"
+#include "marina.h"
 #include "4FEB0.h"
 
 extern Actor2Func D_800D3F70[];

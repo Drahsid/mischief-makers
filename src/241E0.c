@@ -586,7 +586,7 @@ extern s8 D_800E3C48[];
 extern u8 D_800C71A0[];
 
 extern s16 D_801373DC;
-extern s16 D_801373DE;
+extern u16 D_801373DE;
 
 #define D_80201B48 ((Unk80201B48*)0x80201B48)
 
