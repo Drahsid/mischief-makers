@@ -91,7 +91,6 @@ tools:
             - actor_init
             - "1F1E0"
             - letterbox
-            - lifebar
             - soft_reset
             - "241E0"
             - "26A00"
