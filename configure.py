@@ -520,7 +520,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "cc",
         description="cc $in",
         command=(
-            f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -MD -MF $out.d -MT $out -o /dev/null $in"
+            f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -MM -MF $out.d -MT $out $in"
             f" && {PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
         ),
         depfile="$out.d"
