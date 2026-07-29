@@ -245,13 +245,7 @@ u16 func_801B0A2C_7B88DC(u16 actor_index) {
     if (((gActors[actor_index].velocityX.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2)) ||
         ((gActors[actor_index].velocityX.raw > 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK3))) {
         gActors[actor_index].var_154 = -gActors[actor_index].var_154;
-        if (gActors[actor_index].velocityX.raw > 0) {
-            magnitude = gActors[actor_index].velocityX.raw;
-        }
-        else {
-            magnitude = -gActors[actor_index].velocityX.raw;
-        }
-
+        magnitude = ABS(gActors[actor_index].velocityX.raw);
         collided = TRUE;
         if (magnitude < FIXED_UNIT(1.0)) {
             gActors[actor_index].velocityX.raw = 0;
@@ -270,13 +264,7 @@ u16 func_801B0A2C_7B88DC(u16 actor_index) {
     }
 
     if (collided != FALSE) {
-        if (gActors[actor_index].velocityX.raw > 0) {
-            magnitude = gActors[actor_index].velocityX.raw;
-        }
-        else {
-            magnitude = -gActors[actor_index].velocityX.raw;
-        }
-
+        magnitude = ABS(gActors[actor_index].velocityX.raw);
         // ((u32)gActors[actor_index].velocityY.raw / 65536) effectively checks if velocityY.whole is nonzero
         if ((magnitude >= (FIXED_UNIT(0.5) + 1)) || ((u32)gActors[actor_index].velocityY.raw / 65536)) {
             Sound_PlaySfxAtActor2(SFX_BOOM_0043, actor_index);
@@ -541,7 +529,7 @@ void func_801B1438_7B92E8(u16 actor_index) {
 void func_801B15CC_7B947C(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
-            if ((gScreenPosCurrentY.whole + gActors->posY.whole) < 0xA31) {
+            if ((gScreenPosCurrentY.whole + gPPlayerActor->posY.whole) < 0xA31) {
                 func_801B13C8_7B9278(actor_index);
                 gActors[actor_index].state++;
             }
@@ -558,7 +546,7 @@ void func_801B15CC_7B947C(u16 actor_index) {
 }
 
 void func_801B16A0_7B9550(u16 actor_index) {
-    s32 temp;
+    u16 temp;
 
     Clancer_Update(actor_index);
 
@@ -587,11 +575,11 @@ void func_801B16A0_7B9550(u16 actor_index) {
                 case 1:
                     switch (gActors[actor_index].unk_170) {
                         case 0:
-                            temp = func_800734C4(actor_index, 0x10) & 0xFFFF;
+                            temp = func_800734C4(actor_index, 0x10);
                             break;
 
                         case 1:
-                            temp = func_80073558(actor_index, 0x10) & 0xFFFF;
+                            temp = func_80073558(actor_index, 0x10);
                             break;
 
                         default:
