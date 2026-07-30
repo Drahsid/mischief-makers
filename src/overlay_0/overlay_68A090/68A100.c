@@ -25,10 +25,10 @@ void Actor_SetHitboxB(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 void func_80195F04_68DF04(u16,u16);
 
-extern u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6,
-     s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, s16 arg14, s16 arg15,
-      s16 arg16, s16 arg17, s16 arg18, s16 arg19, s16 arg20, s16 arg21, s16 arg22, u16 arg23,
-       u16 arg24, u16 arg25, u16 arg26, s16 arg27, s16 arg28,s32 arg29); // TODO: prototype
+extern u16 SpawnActor54(u16 range_lo, u16 range_hi, u16 parent, u16 arg3, s32 flags, u16 hit_flags, u16 hit_type,
+    s32 arg7, s32 arg8, s16 x_off, s16 y_off, s16 hit_x0, s16 hit_x1, s16 hit_y0, s16 hit_y1, s16 hit_x1_target,
+    s16 hit_x0_target, s16 hit_y0_target, s16 hit_y1_target, s16 hit_x0_step, s16 hit_x1_step, s16 hit_y0_step,
+    s16 hit_y1_step, u16 flag_timer, u16 lifespan, u16 arg25, u16 sfx, s16 damage, s16 damage_inc, s32 arg29); // TODO: prototype
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192100_68A100.s")
 
@@ -146,7 +146,7 @@ void func_80194754_68C754(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 0x14), 0xF, 0x200, 0x84, 8, FIXED_UNIT(5.0), FIXED_UNIT(2.0), 0xA, 0, -0x18, 0,
+    SpawnActor54(0x80, 0x90, (actor_index + 0x14), 0xF, ACTOR_FLAG_UNK9, (HITFLAG_7 | HITFLAG_2), HITTYPE_8, FIXED_UNIT(5.0), FIXED_UNIT(2.0), 0xA, 0, -0x18, 0,
         0x10, -8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x28, 0, 0x6E, 0x46, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 0x14].unk_18C = 2;
@@ -160,7 +160,7 @@ void func_801949B4_68C9B4(u16 actor_index) {
 
     saved_actor_index[0] = actor_index;
 
-    func_80031E38(0x80, 0x90, (actor_index + 6), 0xF, 0x200, 0x84, 8, FIXED_UNIT(8.0), FIXED_UNIT(4.0), 0xA, 0, -0x16, 0x10,
+    SpawnActor54(0x80, 0x90, (actor_index + 6), 0xF, ACTOR_FLAG_UNK9, (HITFLAG_7 | HITFLAG_2), HITTYPE_8, FIXED_UNIT(8.0), FIXED_UNIT(4.0), 0xA, 0, -0x16, 0x10,
         0x16, -0x16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x14, 0, 0x2D, 0x50, 0, 0);
     final_actor_index = saved_actor_index[0];
     gActors[final_actor_index + 6].unk_18C = 2;
@@ -198,8 +198,8 @@ void func_80195454_68D454(u16 actor_index) {
 void func_80195CA8_68DCA8(u16 actor_index) {
     gActors[actor_index].flags |= ACTOR_FLAG_UNK9;
     gActors[actor_index].damage = 100;
-    gActors[actor_index].unk_0DA = 4;\
-    gActors[actor_index].unk_0DB = 3;
+    gActors[actor_index].hitFlags = HITFLAG_2;\
+    gActors[actor_index].hitType = HITTYPE_3;
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
     Actor_SetHitboxA(actor_index, 0xC);
 }
@@ -234,10 +234,10 @@ void func_80195DCC_68DDCC(void) {
 
 void func_80195E0C_68DE0C(u16 actor_index) {
     ACTOR_GFX_INIT(actor_index, D_801A3D40_69BD40);
-    gActors[actor_index].flags |= 0x200;
+    gActors[actor_index].flags |= ACTOR_FLAG_UNK9;
     gActors[actor_index].damage = 0;
-    gActors[actor_index].unk_0DA = 0x80;\
-    gActors[actor_index].unk_0DB = 4;
+    gActors[actor_index].hitFlags = HITFLAG_7;\
+    gActors[actor_index].hitType = HITTYPE_4;
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);\
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(2.0);
     Actor_SetHitboxA(actor_index, 0xE);

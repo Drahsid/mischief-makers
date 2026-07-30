@@ -121,7 +121,7 @@ s32 func_801B0A7C_7BC9CC(u16 actor_index) {
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
             func_80040858(actor_index);
             func_801B0900_7BC850(actor_index);
-            if (gActors[actor_index].unk_0DD < 0x15) {
+            if (gActors[actor_index].hitByType < 0x15) {
                 gActors[actor_index].colorR = 0x7F;
                 Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
                 func_801B0A10_7BC960(actor_index);
@@ -1091,7 +1091,7 @@ void func_801B31B8_7BF108(u16 actor_index) {
         return;
     }
 
-    gActors[saved_actor_index].health = 0x2710;
+    gActors[saved_actor_index].health = 10000;
     if ((gActors[saved_actor_index].state != 0) && (gActors[saved_actor_index].state != 0x100)) {
         gActors[saved_actor_index].posZ.raw = FIXED_UNIT(-2.0);
         func_8002C6E4(saved_actor_index);
@@ -1135,9 +1135,9 @@ void func_801B31B8_7BF108(u16 actor_index) {
             gActors[saved_actor_index].graphicFlags |= ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_SCALE;
             gActors[saved_actor_index].flags |= ACTOR_FLAG_UNK15;
             gActors[saved_actor_index].health = 5;
-            gActors[saved_actor_index].damage = 0x32;
+            gActors[saved_actor_index].damage = 50;
             gActors[saved_actor_index].unk_164 |= 1;
-            gActors[saved_actor_index].unk_0DB = 2;
+            gActors[saved_actor_index].hitType = HITTYPE_2;
             break;
 
         case 0x30:
@@ -1530,7 +1530,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
 
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x12C;
+                D_801B4B64_7C0AB4 = 300;
                 gActors[0x50].unk_174_array[0] = 0;
                 Sound_PlaySfx(SFX_CROUD_CHEER);
                 Sound_StopSfx(SFX_CROUD_CHATTER);
@@ -1605,7 +1605,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
         case 9:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x1E;
+                D_801B4B64_7C0AB4 = 30;
                 gActors[0x52].unk_174_array[0] = 0;
             }
             break;
@@ -1623,7 +1623,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
         case 11:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x1E;
+                D_801B4B64_7C0AB4 = 30;
             }
             break;
 

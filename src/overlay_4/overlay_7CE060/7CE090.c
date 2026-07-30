@@ -41,7 +41,7 @@ void func_801BB360_7CFAF0(void);
 
 u16 sActorSpawn_2_BackgroundA[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_47,
+    0x0000, 0x0031, 0x0000, 0x0000, 0x0000, 0x0000, ACTORTYPE_LAVA,
     0x0000, 0x0090, 0x0100, 0x014A, 0x0001, 0x0000, ACTORTYPE_13,
     0x0000, 0x0091, 0x0100, 0x014A, 0x0201, 0x0000, ACTORTYPE_13,
     SPAWNRECORD_END
@@ -1292,7 +1292,7 @@ void func_801B9A98_7CE228(u16 actor_index) {
     gActors[actor_index].hitboxAY1 = -0x20;
     gActors[actor_index].hitboxAX0 = -0x100;
     gActors[actor_index].hitboxAX1 = 0x100;
-    gActors[actor_index].unk_0DB = 0x13;
+    gActors[actor_index].hitType = HITTYPE_19;
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].posY.whole = -0x50;
 }

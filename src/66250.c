@@ -1432,55 +1432,55 @@ void func_8007A8B0(u16 actor_index) {
 
     sp1E = gActors[actor_index].parentIndex;
     gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_ROTZ;
-    switch (gActors[actor_index].unk_0DD) {
-    case 23:
-    case 20:
+    switch (gActors[actor_index].hitByType) {
+    case HITTYPE_23:
+    case HITTYPE_20:
         break;
-    case 4:
+    case HITTYPE_4:
         func_80028B90(actor_index);
         /* fallthrough */
-    case 3:
+    case HITTYPE_3:
         gActors[actor_index].unk_0FC.raw = gActors[sp1E].unk_0FC.raw;
         /* fallthrough */
-    case 2:
+    case HITTYPE_2:
     default:
         gActors[actor_index].unk_114 = 0.0f;
         func_8007A84C(actor_index);
         break;
-    case 8:
+    case HITTYPE_8:
         func_80028B90(actor_index);
         /* fallthrough */
-    case 7:
+    case HITTYPE_7:
         gActors[actor_index].unk_0FC.raw = gActors[sp1E].unk_0FC.raw;
         /* fallthrough */
-    case 6:
+    case HITTYPE_6:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
-    case 11:
+    case HITTYPE_11:
         func_80028B90(actor_index);
         /* fallthrough */
-    case 10:
+    case HITTYPE_10:
         gActors[actor_index].unk_0FC.raw = gActors[sp1E].unk_0FC.raw;
         /* fallthrough */
-    case 9:
+    case HITTYPE_9:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
-    case 14:
+    case HITTYPE_14:
         func_80028B90(actor_index);
         /* fallthrough */
-    case 13:
+    case HITTYPE_13:
         gActors[actor_index].unk_0FC.raw = gActors[sp1E].unk_0FC.raw;
         /* fallthrough */
-    case 12:
+    case HITTYPE_12:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
-    case 19:
+    case HITTYPE_19:
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
         gActors[actor_index].flags = 0;
         gActors[actor_index].health = 0;
@@ -1735,7 +1735,7 @@ void func_8007B73C(u16 actor_index) {
         }
         else {
             if ((actor->flags_098 & ACTOR_FLAG3_UNK9) && !(actor->var_150 & 0x100000)) {
-                if (actor->unk_0DE == 1) {
+                if (actor->grabType == 1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
                     Sound_PlaySfx(SFX_CLANCER_OW_0067);
                     func_80079AB4(actor_index);
@@ -1770,7 +1770,7 @@ void func_8007B73C(u16 actor_index) {
         actor->flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
         ACTOR_GFX_INIT(actor_index, D_800D8190);
         actor->unk_0CE = 1;
-        actor->unk_0DE = 1;
+        actor->grabType = 1;
         actor->unk_0DF = 1;
         actor->var_150 = (u16)actor->var_110;
         if (actor->var_150 & 0x40) {
@@ -1790,7 +1790,7 @@ void func_8007B73C(u16 actor_index) {
                 actor->scaleX = 0.75f;
                 break;
             case 0x2000:
-                actor->unk_0DE = 6;
+                actor->grabType = 6;
                 actor->unk_0DF = 0x40;
                 actor->scaleX = 1.25f;
                 break;
@@ -1912,8 +1912,8 @@ void func_8007B73C(u16 actor_index) {
             if (actor->var_154 == 0x18) {
                 if (actor->unk_114 > 2.5) {
                     actor->flags |= D_800E3570;
-                    actor->unk_0DA = 0x84;
-                    actor->unk_0DB = 7;
+                    actor->hitFlags = HITFLAG_7|HITFLAG_2;
+                    actor->hitType = HITTYPE_7;
                     actor->damage = actor->unk_114 * 20.0f;
                     actor->unk_0F8.raw = actor->scaleX * 327680.0f;
                     actor->unk_0FC.raw = FIXED_UNIT(4);
@@ -2025,7 +2025,7 @@ void func_8007B73C(u16 actor_index) {
             actor->flags &= ~(ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8);
             actor->flags |= (D_800E3574 + ACTOR_FLAG_UNK12);
             actor->var_150 &= ~0x100000;
-            actor->unk_0DA = 0;
+            actor->hitFlags = 0;
             actor->hitboxAY0 = (actor->scaleX * 7.0f);
             actor->hitboxAY1 = (actor->scaleX * -7.0f);
             actor->hitboxAX1 = (actor->scaleX * 7.0f);
@@ -2040,7 +2040,7 @@ void func_8007B73C(u16 actor_index) {
     case 0x40:
         func_80078F54(actor_index);
         func_80078F14(actor_index, 0);
-        actor->unk_0DB = 10;
+        actor->hitType = 10;
         actor->unk_0F8.raw = -FIXED_UNIT(2.125);
         actor->unk_0FC.raw = FIXED_UNIT(5.25);
         actor->damage = 10;

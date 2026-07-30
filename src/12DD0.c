@@ -11,7 +11,7 @@ void Marina_Reset(void) {
     gPlayerActor.posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;
     gPlayerVelYMirror.raw = 0;
-    gPlayerActor.unk_0CC = 0;
+    gPlayerActor.actorHitIndex = 0;
     gStartButtonOnly = FALSE;
     D_800BE5F0 = 0;
     D_800BE5F8 = 0;

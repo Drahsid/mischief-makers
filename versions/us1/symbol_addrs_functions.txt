@@ -182,6 +182,8 @@ SpawnParticle_Image_102D_32 = 0x80031324; // type:func
 SpawnParticle_List_90C0_32 = 0x8003137C; // type:func
 SpawnParticle_Image_90C0_32 = 0x800313CC; // type:func
 ActorUpdate_Particle = 0x8003141C; // type:func
+SpawnActor54 = 0x80031E38; // type:func
+ActorUpdate_Type54 = 0x800320F8; // type:func
 SpawnAfterImage = 0x80033428; // type:func
 ActorUpdate_AfterImage = 0x8003358C; // type:func
 ActorUpdate_Type5 = 0x80033DE4; // type:func
@@ -284,6 +286,9 @@ ActorUpdate_Spikeball_80 = 0x80089084; // type:func
 ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
 ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
 
+SpawnBeamThrow = 0x800600F0; // type:func
+ActorUpdate_BeamThrow = 0x800601FC; // type:func
+ActorUpdate_Lava = 0x80060db8; // type:func
 ActorUpdate_3DIcon = 0x80060f88; // type:func
 
 ActorUpdate_SpiralClouds = 0x80062174; //type:func

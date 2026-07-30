@@ -5759,7 +5759,7 @@
           }
         },
         {
-          "name": "func_80031E38",
+          "name": "SpawnActor54",
           "size": "704",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5767,7 +5767,7 @@
           }
         },
         {
-          "name": "func_800320F8",
+          "name": "ActorUpdate_Type54",
           "size": "1724",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10301,7 +10301,7 @@
       ],
       "functions": [
         {
-          "name": "func_800600F0",
+          "name": "SpawnBeamThrow",
           "size": "268",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10309,7 +10309,7 @@
           }
         },
         {
-          "name": "func_800601FC",
+          "name": "ActorUpdate_BeamThrow",
           "size": "1936",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10325,7 +10325,7 @@
           }
         },
         {
-          "name": "func_80060DB8",
+          "name": "ActorUpdate_Lava",
           "size": "456",
           "fuzzy_match_percent": 100.0,
           "metadata": {

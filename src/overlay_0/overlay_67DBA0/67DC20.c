@@ -173,8 +173,8 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
         gActors[new_actor_index].health = 0;
         gActors[new_actor_index].damage = 0x50;
         gActors[new_actor_index].unk_0DF = 0x20;
-        gActors[new_actor_index].unk_0DA = 0x80;\
-        gActors[new_actor_index].unk_0DB = 8;
+        gActors[new_actor_index].hitFlags = HITFLAG_7;\
+        gActors[new_actor_index].hitType = HITTYPE_8;
         gActors[new_actor_index].scaleX = 1.0f;
         gActors[new_actor_index].scaleY = 1.0f;
 
@@ -196,8 +196,9 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
 // Migen Jr. fireball behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_80192FE4_67EB04.s")
 
+// spawn lava splash actor
 void func_801934F0_67F010(void) {
-    ACTOR_INIT(0x5E, ACTORTYPE_47);
+    ACTOR_INIT(0x5E, ACTORTYPE_LAVA);
     gActors[0x5E].flags = (ACTOR_FLAG_UNK15 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_ACTIVE);
     gActors[0x5E].health = 1;
     gActors[0x5E].hitboxBY0 = -0xC;
@@ -208,10 +209,10 @@ void func_801934F0_67F010(void) {
     gActors[0x5E].hitboxAY1 = -0x80;
     gActors[0x5E].hitboxAX0 = -0x100;
     gActors[0x5E].hitboxAX1 = 0x100;
-    gActors[0x5E].unk_0DB = 0x13;
-    gActors[0x5E].unk_0DA = 0;
+    gActors[0x5E].hitType = HITTYPE_19;
+    gActors[0x5E].hitFlags = 0;
     gActors[0x5E].posX.whole = 0;
-    gActors[0x5E].posY.whole = 0x16A - gScreenPosCurrentY.whole;
+    gActors[0x5E].posY.whole = 362 - gScreenPosCurrentY.whole;
 }
 
 void func_80193594_67F0B4(void) {
@@ -294,10 +295,10 @@ void func_80193790_67F2B0(u16 actor_index) {
     func_80193600_67F120(0x37);
     func_80193600_67F120(0x3E);
 
-    gActors[0x4E].unk_0DE = 9;
-    gActors[0x37].unk_0DE = 10;
+    gActors[0x4E].grabType = 9;
+    gActors[0x37].grabType = 10;
     gActors[0x37].unk_0CE = 2;
-    gActors[0x3E].unk_0DE = 10;
+    gActors[0x3E].grabType = 10;
     gActors[0x3E].unk_0CE = 2;
     gActors[actor_index].health = 1000;
     gActors[0x42].posY.raw = gActors[0x43].unk_180;

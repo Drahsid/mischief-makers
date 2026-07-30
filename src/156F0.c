@@ -40,11 +40,11 @@ void ActorsUpdate_Position(void) {
 
     for (index = 0; index < 0x90; index++) {
         if (gActors[index].flags != 0) {
-            actor_1 = gActors[index].unk_0CC;
+            actor_1 = gActors[index].actorHitIndex;
             if (actor_1) {
                 actor_1 &= 0x7FFF;
-                delta_x = TO_FIXED((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].unk_0C8);
-                delta_y = TO_FIXED((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].unk_0CA);
+                delta_x = TO_FIXED((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].actorHitX);
+                delta_y = TO_FIXED((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].actorHitY);
                 gActors[index].posX.raw += delta_x;
                 gActors[index].posY.raw += delta_y;
                 gActors[index].posX.raw += gActors[actor_1].velocityX.raw;
@@ -312,7 +312,7 @@ void ActorUpdate_Physics(u16 arg0) {
     u16 var_a1;
     s32 var_a2; // sp34?
 
-    gActors[arg0].unk_0CC = gActors[arg0].unk_0A0 = 0;
+    gActors[arg0].actorHitIndex = gActors[arg0].unk_0A0 = 0;
     if (!(gActors[arg0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16))) {
         return;
     }
@@ -496,9 +496,9 @@ void ActorUpdate_Physics(u16 arg0) {
                 gActors[arg0].flags_098 |= ACTOR_FLAG3_UNK15 | ACTOR_FLAG3_UNK5;
                 var_a2 = ~0x40;
                 gActors[arg0].flags_098 &= var_a2;
-                gActors[arg0].unk_0C8 = gActors[var_a1].posX.whole + gScreenPosCurrentX.whole;
-                gActors[arg0].unk_0CA = gScreenPosCurrentY.whole + gActors[var_a1].posY.whole + gActors[var_a1].hitboxBY0;
-                gActors[arg0].unk_0CC = var_a1 + 0x8000;
+                gActors[arg0].actorHitX = gActors[var_a1].posX.whole + gScreenPosCurrentX.whole;
+                gActors[arg0].actorHitY = gScreenPosCurrentY.whole + gActors[var_a1].posY.whole + gActors[var_a1].hitboxBY0;
+                gActors[arg0].actorHitIndex = var_a1 + 0x8000;
                 gActors[var_a1].flags_098 |= ACTOR_FLAG3_UNK14 | ACTOR_FLAG3_UNK7;
             }
         }

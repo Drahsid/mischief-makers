@@ -115,6 +115,51 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK31 = (1U << 31U)
 };
 
+typedef enum {
+    HITTYPE_0,
+    HITTYPE_1,
+    HITTYPE_2,
+    HITTYPE_3,
+    HITTYPE_4, // stab/cut
+    HITTYPE_5,
+    HITTYPE_6,
+    HITTYPE_7,
+    HITTYPE_8,
+    HITTYPE_9,
+    HITTYPE_10,
+    HITTYPE_11,
+    HITTYPE_12,
+    HITTYPE_13,
+    HITTYPE_14,
+    HITTYPE_15, // unused?
+    HITTYPE_16, // unused?
+    HITTYPE_17,
+    HITTYPE_18,
+    HITTYPE_19, // fire attack
+    HITTYPE_20,
+    HITTYPE_21,
+    HITTYPE_22,
+    HITTYPE_23,
+    HITTYPE_24,
+    HITTYPE_25,
+    HITTYPE_26,
+    HITTYPE_27,
+    HITTYPE_28,
+    HITTYPE_29,
+    HITTYPE_30
+} HitTypes;
+typedef enum {
+    HITFLAG_0 = (1 << 0),
+    HITFLAG_1 = (1 << 1),
+    HITFLAG_2 = (1 << 2), // 1 second of I-frames when hit?
+    HITFLAG_3 = (1 << 3),
+    HITFLAG_4 = (1 << 4), // unused?
+    HITFLAG_5 = (1 << 5),
+    HITFLAG_6 = (1 << 6),
+    HITFLAG_7 = (1U << 7U),
+} HitFlags;
+
+
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
     /* 0x080 */ u32 flags; // uses ActorFlags enum. 0 indicates inactive ("free") actor index
@@ -126,7 +171,7 @@ typedef struct {
             /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
             /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
         };
-        /* 0x088 */ FixedCoord pos[3];
+        /* 0x088 */ FixedCoord pos[3]; // position fields sometimes are treated as array entries
     };
     /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
@@ -135,7 +180,7 @@ typedef struct {
     /* 0x09D */ u8 colorG; // green actor tint
     /* 0x09E */ u8 colorB; // blue actor tint
     /* 0x09F */ u8 colorA; // actor opacity
-    /* 0x0A0 */ u8 unk_0A0;
+    /* 0x0A0 */ u8 unk_0A0; // flags/ index related to colision? file management uses for vars
     /* 0x0A1 */ u8 unk_0A1; // align byte?
 
     // the next 8 fields are used in determining the offset for 2 different "hitbox" coordinates.
@@ -155,9 +200,9 @@ typedef struct {
     /* 0x0BC */ f32 rotateX; // used in guRotate if ACTOR_GFLAG_ROTX in graphicFlags is set
     /* 0x0C0 */ f32 rotateY; // used in guRotate if ACTOR_GFLAG_ROTY in graphicFlags is set
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
-    /* 0x0C8 */ s16 unk_0C8; // global x-position of actor collided?
-    /* 0x0CA */ s16 unk_0CA; // global y-position + hitboxBY0 of actor collided?
-    /* 0x0CC */ u16 unk_0CC; // index of actor collided?. bit 15 is also set when updated
+    /* 0x0C8 */ s16 actorHitX; // global x-position of actor collided
+    /* 0x0CA */ s16 actorHitY; // global y-position + hitboxBY0 of actor collided
+    /* 0x0CC */ u16 actorHitIndex; // index of actor collided. bit 15 is also set when updated, in case index is 0.
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
@@ -173,11 +218,11 @@ typedef struct {
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
-    /* 0x0DA */ u8 unk_0DA; // hit flags?
-    /* 0x0DB */ u8 unk_0DB; // hit type?
-    /* 0x0DC */ u8 unk_0DC; // "hit by" flags?
-    /* 0x0DD */ u8 unk_0DD; // "hit by" type?
-    /* 0x0DE */ u8 unk_0DE; // behavior when grabbed / thrown
+    /* 0x0DA */ u8 hitFlags; // hit flags?
+    /* 0x0DB */ u8 hitType; // damage type when hit?
+    /* 0x0DC */ u8 hitByFlags; // "hit by" flags?
+    /* 0x0DD */ u8 hitByType; // damage type imfliced?
+    /* 0x0DE */ u8 grabType; // behavior when grabbed / thrown
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.

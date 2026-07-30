@@ -2,7 +2,7 @@
 #include "241E0.h"
 
 void func_8005C520(s8 arg0, s8 arg1) {
-    gPlayerActor.unk_0DC |= 0x40;
+    gPlayerActor.hitByFlags |= HITFLAG_6;
     gPlayerData.unk_0A = arg0;
     gPlayerData.unk_0B = arg1;
 }

@@ -235,7 +235,7 @@ void func_801B0DA0_7B4480(u16 actor_index) {
     if (Clanpot_AddItemCheck3(actor_index, CLANPOT_NOSTORE | CLANPOT_UNSETFLAGS, 0, 0, 0) == -1) {
         OVERLAY0_DISPATCH_ACTOR[1](actor_index);
         gActors[actor_index].damage = 0;
-        gActors[actor_index].unk_0DA = 0;
+        gActors[actor_index].hitFlags = 0;
     }
 }
 
@@ -1105,7 +1105,7 @@ void func_801B2AC0_7B61A0(u16 actor_index, u16 state) {
     u32 collision_flags;
 
     collision_flags = gActors[(s32)actor_index].flags_098;
-    collided_actor_index = gActors[(s32)actor_index].unk_0CC;
+    collided_actor_index = gActors[(s32)actor_index].actorHitIndex;
     masked_collided_actor_index = (collided_actor_index &= 0xFF);
     collision_flags_16 = collision_flags;
     if ((collision_flags_16 & ACTOR_FLAG3_UNK5) && (masked_collided_actor_index == 0x3F)) {

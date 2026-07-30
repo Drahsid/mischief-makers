@@ -974,9 +974,9 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         gActors[actor_index].health = 1;
-        gActors[actor_index].unk_0DA |= 0x81;
-        gActors[actor_index].unk_0DB = 0xB;
-        gActors[actor_index].var_160 = 0x1E;
+        gActors[actor_index].hitFlags |= HITFLAG_7|HITFLAG_0;
+        gActors[actor_index].hitType = HITTYPE_11;
+        gActors[actor_index].var_160 = 30;
         func_80085EB0(actor_index);
         Clanbomb_SetHitboxB(actor_index);
         Clanbomb_SetScale(actor_index);
@@ -1607,7 +1607,7 @@ void func_80088E38(u16 actor_index) {
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_ROTZ;
     if (gActors[actor_index].var_150 & 1) {
         gActors[actor_index].damage = 0;
-        gActors[actor_index].unk_0DA = 0;
+        gActors[actor_index].hitFlags = 0;
     }
 }
 
@@ -1724,10 +1724,10 @@ void func_80089418(u16 actor_index) {
         gActors[actor_index].graphicTimer = 1;
         Actor_SetHitboxA(actor_index, 8);
         Actor_SetHitboxB(actor_index, 8);
-        gActors[actor_index].unk_0DA = 5;
-        gActors[actor_index].unk_0DB = 0xB;
+        gActors[actor_index].hitFlags = HITFLAG_0 | HITFLAG_2;
+        gActors[actor_index].hitType = HITTYPE_11;
         gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
-        gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
+        gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0); 
         gActors[actor_index].health = 0;
         gActors[actor_index].unk_0DF = 0x20;
         gActors[actor_index].var_150 = gActors[actor_index].var_110;
@@ -1752,7 +1752,7 @@ void func_80089418(u16 actor_index) {
         }
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
             gActors[actor_index].flags = 0;
-            if (gActors[actor_index].unk_0DD == 0x13) {
+            if (gActors[actor_index].hitByType == HITTYPE_19) {
                 gActors[actor_index].health = 0;
             }
             else {

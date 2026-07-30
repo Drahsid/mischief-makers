@@ -37,7 +37,7 @@ s32 func_8005739C(u16 actor_index, s16 health_decrement) {
     s32 ret;
 
     if (actor_index == PLAYER_INDEX) {
-        if (gActors[actor_index].unk_0DC & 2) {
+        if (gActors[actor_index].hitByFlags & HITFLAG_1) {
             gActors[actor_index].unk_13C_s16[1] = 0;
         }
         else {
@@ -70,7 +70,7 @@ s32 func_800574B4(u16 actor_index) {
     if (gActors[actor_index].health < 0) {
         return -1;
     }
-    if (!(gActors[actor_index].unk_0DC & 0x40)) {
+    if (!(gActors[actor_index].hitByFlags & HITFLAG_6)) {
         return -1;
     }
     if (gPlayerData.unk_0B != 0) {
@@ -89,10 +89,10 @@ s32 func_800574B4(u16 actor_index) {
 }
 
 s32 func_800575C0(u16 actor_index) {
-    if (gActors[actor_index].unk_0DC & 0x1) {
+    if (gActors[actor_index].hitByFlags & HITFLAG_0) {
         return 0;
     }
-    gActors[actor_index].unk_0DC |= 0x1;
+    gActors[actor_index].hitByFlags |= HITFLAG_0;
     if (func_8005C6D0(gActors[actor_index].unk_0F8.raw) < FIXED_UNIT(2.0)) {
         gActors[actor_index].unk_0F8.raw = 2.0 * gActors[actor_index].unk_0F8.raw;
     }
@@ -119,7 +119,7 @@ void func_800576A0(u16 actor_index) {
     }
     else {
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
-            if (gActors[actor_index].unk_0DD == 0x1C) {
+            if (gActors[actor_index].hitByType == HITTYPE_28) {
                 gActors[actor_index].state = 0x32;
             }
             else {
@@ -312,10 +312,10 @@ void func_80057C98(u16 actor_index) {
         gActors[actor_index].var_110 = 0.0f;
         gActors[actor_index].unk_114 = 0.0f;
         gActors[actor_index].unk_11C = 0.0f;
-        if (!(gActors[actor_index].unk_0DC & 0x40)) {
+        if (!(gActors[actor_index].hitByFlags & HITFLAG_6)) {
             func_8005C520(func_8005C774(2) + 1, 4);
             gActors[actor_index].var_154 = gPlayerData.unk_0A;
-            gActors[actor_index].unk_0DC |= 0x40;
+            gActors[actor_index].hitByFlags |= HITFLAG_6;
         }
         func_8005D3D8(actor_index);
         gActors[actor_index].unk_17C = 5;
@@ -407,7 +407,7 @@ void func_80057C98(u16 actor_index) {
                     gActors[actor_index].stateUpper = 5;
                 }
                 else {
-                    gActors[actor_index].unk_0DC &= ~0x40;
+                    gActors[actor_index].hitByFlags &= ~HITFLAG_6;
                     gActors[actor_index].stateUpper = 6;
                 }
                 gActors[actor_index].stateLower = 0x31;
@@ -507,13 +507,13 @@ void func_800584D4(u16 actor_index) {
         }
         gActors[actor_index].var_150--;
         if ((gActors[actor_index].var_150 <= 0) || (gActors[actor_index].health < 0)) {
-            func_8005C550(actor_index, 0x3C);
+            func_8005C550(actor_index, 60);
             Sound_StopSfx(SFX_SHOCK_0065);
             if (gActors[actor_index].health < 0) {
                 func_800575C0(actor_index);
                 Sound_PlaySfx(SFX_CLANCERDEATH);
             }
-            if (!(gActors[actor_index].unk_0DC & 1)) {
+            if (!(gActors[actor_index].hitByFlags & HITFLAG_0)) {
                 gActors[actor_index].state = 0x30;
             }
             else {
@@ -593,7 +593,7 @@ void func_80058A38(u16 actor_0, u16 unused_arg1) {
         func_8004F514(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
-    if (!(gActors[actor_0].unk_0DC & 1)) {
+    if (!(gActors[actor_0].hitByFlags & HITFLAG_0)) {
         gActors[actor_0].state = 0x30;
     }
     else {
@@ -614,7 +614,7 @@ void func_80058B68(u16 actor_0, u16 unused_arg1) {
         func_8004F514(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
-    if (!(gActors[actor_0].unk_0DC & 1)) {
+    if (!(gActors[actor_0].hitByFlags & HITFLAG_0)) {
         gActors[actor_0].state = 0x33;
     }
     else {
@@ -725,7 +725,7 @@ s32 func_80058F9C(u16 actor_index) {
     if (!(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1)) {
         return 0;
     }
-    if (gActors[actor_index].unk_0DD == 0x13) {
+    if (gActors[actor_index].hitByType == HITTYPE_19) {
         func_80058EB0(actor_index, sp26);
         return 1;
     }
@@ -739,20 +739,20 @@ s32 func_80058F9C(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 = 0xFF;
     gActors[actor_index].unk_17C = 0;
     gPlayerData.unk_13 = 0;
-    if (gActors[actor_index].unk_0DC & 8) {
+    if (gActors[actor_index].hitByFlags & HITFLAG_3) {
         gPlayerData.unk_08 += 0x200;
         if (gPlayerData.unk_08 > 0x800) {
             gPlayerData.unk_08 = 0;
             gActors[actor_index].iFrames = 0;
-            func_8005C550(actor_index, 0x12C);
+            func_8005C550(actor_index, 300);
             func_800575C0(actor_index);
             Sound_PlaySfx(SFX_GRABDEFLECT);
         }
     }
-    if ((gActors[actor_index].unk_0DD < 12) || (gActors[actor_index].unk_0DD > 14)) {
+    if ((gActors[actor_index].hitByType < HITTYPE_12) || (gActors[actor_index].hitByType > HITTYPE_14)) {
         sp20 = func_8005739C(actor_index, gActors[actor_index].pendingDamage);
         gActors[actor_index].pendingDamage = 0;
-        gActors[actor_index].unk_0DC &= ~0x80;
+        gActors[actor_index].hitByFlags &= ~HITFLAG_7;
         if (sp20 >= 3) {
             func_800575C0(actor_index);
             if (sp20 == 3) {
@@ -763,8 +763,8 @@ s32 func_80058F9C(u16 actor_index) {
     if ((gActors[actor_index].stateLower == 0x31) || (gActors[actor_index].stateLower == 0x32)) {
         func_800575C0(actor_index);
     }
-    D_800D3F70[gActors[actor_index].unk_0DD](actor_index, sp26);
-    if (gActors[actor_index].unk_0DD == 0x11) {
+    D_800D3F70[gActors[actor_index].hitByType](actor_index, sp26);
+    if (gActors[actor_index].hitByType == HITTYPE_17) {
         return 0;
     }
     else {

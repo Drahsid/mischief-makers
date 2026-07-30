@@ -112,7 +112,7 @@ typedef enum {
     ACTORTYPE_44,
     ACTORTYPE_45,
     ACTORTYPE_MARINAAFTERIMAGE, // when marina dashes. Has unused alternate version.
-    ACTORTYPE_47,
+    ACTORTYPE_LAVA, // spawns splashes for actors in lava
     ACTORTYPE_48,
     ACTORTYPE_SPIRALCLOUDS,
     ACTORTYPE_WARPGATE, // aka Warp Star
@@ -125,7 +125,7 @@ typedef enum {
     ACTORTYPE_57,
     ACTORTYPE_58,
     ACTORTYPE_59,
-    ACTORTYPE_60,
+    ACTORTYPE_BEAMTHROW, // Maring grabs a big beam or thunder attack.
     ACTORTYPE_GEM61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
     ACTORTYPE_CLANBALLWHEEL,
     ACTORTYPE_63,

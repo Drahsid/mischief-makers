@@ -293,7 +293,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].posZ.whole = -1;
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16;
-            gActors[actor_index].unk_0DE = 1;
+            gActors[actor_index].grabType = 1;
             gActors[actor_index].unk_0DF = 0x41;
             gActors[actor_index].hitboxBY0 = 0xE;\
             gActors[actor_index].hitboxBY1 = -0xE;\
@@ -647,8 +647,8 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 actor->flags |= ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9;
                 actor->unk_0F8.raw = FIXED_UNIT(2.0);
                 actor->unk_0FC.raw = FIXED_UNIT(7.0);
-                actor->unk_0DA = 1;
-                actor->unk_0DB = 4;
+                actor->hitFlags = HITFLAG_0;
+                actor->hitType = HITTYPE_4;
                 actor->damage = 0x20;
             }
             else {
@@ -954,8 +954,8 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(2.0);
-            gActors[actor_index].unk_0DB = 4;
-            gActors[actor_index].unk_0DA = 1;
+            gActors[actor_index].hitType = HITTYPE_4;
+            gActors[actor_index].hitFlags = HITFLAG_0;
             gActors[actor_index].damage = 0x20;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             break;
@@ -1261,12 +1261,12 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         Sound_StopSfx(SFX_012B);
     }
 
-    switch (gActors[actor_index].unk_0DD) {
+    switch (gActors[actor_index].hitByType) {
         default:
             break;
 
-        case 21:
-        case 22:
+        case HITTYPE_21:
+        case HITTYPE_22:
             state->unk_08 = 8;
             state->unk_0A = 0;
             state->unk_38 = 0;
@@ -1288,10 +1288,10 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
-        case 6:
-        case 7:
-        case 8:
-        case 20:
+        case HITTYPE_6:
+        case HITTYPE_7:
+        case HITTYPE_8:
+        case HITTYPE_20:
             state->unk_08 = 8;
             state->unk_0A = 0;
             state->unk_38 = 0;
@@ -1309,9 +1309,9 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
-        case 2:
-        case 3:
-        case 4:
+        case HITTYPE_2:
+        case HITTYPE_3:
+        case HITTYPE_4:
             state->unk_08 = 8;
             state->unk_0A = 0;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17; \
@@ -1939,8 +1939,8 @@ void func_801B455C_7A506C(u16 actor_index) {
                     gActors[new_actor_index].health = 0;
                     gActors[new_actor_index].unk_0DF = 0x20;
                     gActors[new_actor_index].damage = 30;
-                    gActors[new_actor_index].unk_0DA = 4;
-                    gActors[new_actor_index].unk_0DB = 9;
+                    gActors[new_actor_index].hitFlags = HITFLAG_2;
+                    gActors[new_actor_index].hitType = HITTYPE_9;
                     Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
                     gActors[actor_index].state++;
                 }

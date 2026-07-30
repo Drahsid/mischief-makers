@@ -564,8 +564,8 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
         gActors[new_actor_index].damage = 100;
         gActors[new_actor_index].unk_188 = -0x21;
         gActors[new_actor_index].posZ.whole = -529;
-        gActors[new_actor_index].unk_0DA |= 0x81;
-        gActors[new_actor_index].unk_0DB = 0xB;
+        gActors[new_actor_index].hitFlags |= HITFLAG_7|HITFLAG_0;
+        gActors[new_actor_index].hitType = HITTYPE_11;
 
         parent = &gActors[actor_index];
         gActors[new_actor_index].var_158 = parent->var_160;

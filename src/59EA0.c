@@ -31,7 +31,7 @@ u16 func_800592A0(u16 actor_index, s32* arg1) {
     if (free_actor == 0) {
         return free_actor;
     }
-    gActors[free_actor].actorType = 9;
+    gActors[free_actor].actorType = ACTORTYPE_PARTICLE;
     Actor_Initialize(free_actor);
     gActors[free_actor].graphicFlags |= gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5);
     gActors[free_actor].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19;
@@ -59,7 +59,7 @@ void func_800593DC(u16 actor_index) {
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x128;
+    gActors[actor_1].graphicIndex = GINDEX_DPADRIGHT;
     gActors[actor_1].unk_148 = 0.0f;
     if (!(gPlayerData.unk_7C & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
@@ -73,7 +73,7 @@ void func_800593DC(u16 actor_index) {
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x110;
+    gActors[actor_1].graphicIndex = GINDEX_BUTTONB;
     gActors[actor_1].unk_148 = 0.0f;
     sp4C[0] += 0x10;
     actor_1 = func_800592A0(actor_index, sp4C);
@@ -83,7 +83,7 @@ void func_800593DC(u16 actor_index) {
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x10E;
+    gActors[actor_1].graphicIndex = GINDEX_BUTTONA;
     gActors[actor_1].unk_148 = 0.0f;
     sp4C[0] = 0;
     sp4C[1] = -0x28;
@@ -95,7 +95,7 @@ void func_800593DC(u16 actor_index) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
         gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-        gActors[actor_1].graphicIndex = 0x12E;
+        gActors[actor_1].graphicIndex = GINDEX_BIGARROW;
         gActors[actor_1].unk_148 = 0.0f;
         gActors[actor_1].scaleX = 0.75f;
         gActors[actor_1].scaleY = 0.75f;
@@ -136,7 +136,7 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
     }
 
     gActors[actor_2].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
-    gActors[actor_2].graphicIndex = 0x168;
+    gActors[actor_2].graphicIndex = GINDEX_BLASTB;
     gActors[actor_2].scaleX = 0.5 * scale;
     gActors[actor_2].scaleY = 0.5 * scale;
     gActors[actor_2].var_110 = -gActors[actor_2].scaleX / 30.0;

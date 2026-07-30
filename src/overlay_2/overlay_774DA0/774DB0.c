@@ -34,7 +34,7 @@ void func_801A6C80_775130(u16 actor_index) {
             Actor_SetHitboxB(actor_index, 8);
             gActors[actor_index].unk_0CE = 0;
             gActors[actor_index].unk_0DF = 1;\
-            gActors[actor_index].unk_0DB = 0x17;
+            gActors[actor_index].hitType = HITTYPE_23;
             gActors[actor_index].health = 100;
             gActors[actor_index].damage = 0;
             gActors[actor_index].var_150 = 0x10;

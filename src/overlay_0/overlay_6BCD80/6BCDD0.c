@@ -636,7 +636,7 @@ void func_801985D8_6C32A8(u16 actor_index) {
     u16 index1 = actor_index + 0x1B;
     u16 index2 = actor_index + 0x15;
 
-    gActors[index1].unk_0DE = 1;
+    gActors[index1].grabType = 1;
     gActors[index1].unk_0CE = 0xE;
     gActors[index1].unk_0DF = 2;
     gActors[index1].health = 0xA;
@@ -647,7 +647,7 @@ void func_80198638_6C3308(u16 actor_index) {
     u16 index = actor_index + 0x1B;
 
     gActors[index].flags |= 0x9200;
-    gActors[index].damage = 0x64;
+    gActors[index].damage = 100;
     gActors[index].hitboxAY0 = 0xB;\
     gActors[index].hitboxAY1 = -8;
     gActors[index].hitboxAX0 = -0xB;
@@ -656,14 +656,14 @@ void func_80198638_6C3308(u16 actor_index) {
     gActors[index].hitboxBY1 = -0x10;
     gActors[index].hitboxBX1 = 8;
     gActors[index].hitboxBX0 = -8;
-    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].unk_0DB = (gActors[index].unk_0DA = 0x81, 8), FIXED_UNIT(0.5)), FIXED_UNIT(1.0));
+    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7|HITFLAG_0, HITTYPE_8), FIXED_UNIT(0.5)), FIXED_UNIT(1.0));
 }
 
 void func_801986DC_6C33AC(u16 actor_index) {
     u16 index = actor_index + 0x15;
 
     gActors[index].flags |= 0x9200;
-    gActors[index].damage = 0x12C;
+    gActors[index].damage = 300;
     gActors[index].hitboxAY0 = 0xE;\
     gActors[index].hitboxAY1 = -0xE;
     gActors[index].hitboxAX0 = -0xA;\
@@ -672,7 +672,7 @@ void func_801986DC_6C33AC(u16 actor_index) {
     gActors[index].hitboxBY1 = -0xC;
     gActors[index].hitboxBX0 = -0x14;\
     gActors[index].hitboxBX1 = 0x14;
-    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].unk_0DB = (gActors[index].unk_0DA = 0x85, 7), FIXED_UNIT(-15.0)), FIXED_UNIT(5.3125));
+    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7|HITFLAG_2|HITFLAG_0, HITTYPE_7), FIXED_UNIT(-15.0)), FIXED_UNIT(5.3125));
 }
 
 void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {

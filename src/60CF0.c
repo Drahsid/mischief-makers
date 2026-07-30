@@ -1,42 +1,43 @@
 #include "common.h"
 
-u16 func_800600F0(u16 actor_index) {
+// Marina changing a powerful beam / thunder attack into a ball to counter.
+u16 SpawnBeamThrow(u16 marina_index) {
     u16 actor_1;
 
     actor_1 = Actor_RangeFindInactive(1, 0x10);
     if (actor_1 == 0) {
         return actor_1;
     }
-    gActors[actor_1].actorType = ACTORTYPE_60;
+    gActors[actor_1].actorType = ACTORTYPE_BEAMTHROW;
     Actor_Initialize(actor_1);
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
     gActors[actor_1].graphicIndex = GINDEX_BLASTB;
     gActors[actor_1].palette_18C = PALETTE_8022D568;
-    gActors[actor_1].posX.raw = gActors[actor_index].posX.raw;
-    gActors[actor_1].posY.raw = gActors[actor_index].posY.raw;
-    gActors[actor_1].posZ.raw = gActors[actor_index].posZ.raw;
+    gActors[actor_1].posX.raw = gActors[marina_index].posX.raw;
+    gActors[actor_1].posY.raw = gActors[marina_index].posY.raw;
+    gActors[actor_1].posZ.raw = gActors[marina_index].posZ.raw;
     gActors[actor_1].unk_0CE = 7;
-    gActors[actor_1].unk_0DE = 3;
+    gActors[actor_1].grabType = 3;
     gActors[actor_1].unk_0DF = 0;
-    gActors[actor_1].var_150 = gActors[actor_index].stateLower;
+    gActors[actor_1].var_150 = gActors[marina_index].stateLower;
     gActors[actor_1].var_110 = 0.5f;
     return actor_1;
 }
 
-void func_800601FC(u16 actor_index) {
+void ActorUpdate_BeamThrow(u16 actor_index) {
     s32 sp4C[5];
     u16 actor_1;
 
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
-        if (gActors[actor_index].stateLower < 0x64) {
+        if (gActors[actor_index].stateLower < 100) {
             func_80058924(actor_index);
-            gActors[actor_index].state = 0x64;
+            gActors[actor_index].state = 100;
         }
     }
     if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK5 | ACTOR_FLAG3_UNK0)) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
         Sound_PlaySfx(SFX_HIT_002D);
-        gActors[actor_index].state = 0x66;
+        gActors[actor_index].state = 102;
     }
     gActors[actor_index].damage = ((gActors[actor_index].var_110 - 0.5) / 0.05) + 10.0;
     gActors[actor_index].scaleX = Math_ApproachF32(gActors[actor_index].var_110 + (0.2 * (gActiveFrames & 2)), gActors[actor_index].scaleX, 0.2f);
@@ -44,7 +45,7 @@ void func_800601FC(u16 actor_index) {
     Actor_SetHitboxB(actor_index, (gActors[actor_index].var_110 * 8.0f));
     gActors[actor_index].palette_18C = &PALETTE_8022D4C8[(Rand() % 5) * 0x10 + 0x10];
     switch (gActors[actor_index].stateLower) {
-    case 0x0:
+    case 0:
         actor_1 = gActors[actor_index].unk_14C;
         gActors[actor_index].rotateZ = INDEX_TO_DEG(Math_Atan2(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw));
         gActors[actor_index].posX.raw = gActors[actor_1].posX.raw + gActors[actor_index].unk_0F8.raw;
@@ -54,7 +55,7 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].state = 0xC8;
         }
         break;
-    case 0x64:
+    case 100:
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
             gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
             gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
@@ -74,31 +75,31 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
-            gActors[actor_index].unk_0DA = 0x80;
-            gActors[actor_index].unk_0DB = 0xC;
+            gActors[actor_index].hitFlags = HITFLAG_7;
+            gActors[actor_index].hitType = HITTYPE_12;
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
             gActors[actor_index].var_150 = 0xC8;
-            gActors[actor_index].state = 0x65;
+            gActors[actor_index].state = 101;
         }
         else {
-            gActors[actor_index].state = 0xC8;
+            gActors[actor_index].state = 200;
         }
         break;
-    case 0x65:
+    case 101:
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, gActors[actor_index].var_158, FIXED_UNIT(1.0/4));
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, gActors[actor_index].var_15C, FIXED_UNIT(1.0/4));
         gActors[actor_index].scaleY *= 0.8;
         Actor_SetHitboxA(actor_index, gActors[actor_index].var_110 * 6.0f);
         gActors[actor_index].var_150--;
         if (gActors[actor_index].var_150 <= 0) {
-            gActors[actor_index].state = 0xC8;
+            gActors[actor_index].state = 200;
         }
         break;
-    case 0x66:
+    case 102:
         gActors[actor_index].flags = 0;
         break;
-    case 0xC8:
+    case 200:
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.375));
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, FIXED_UNIT(0.375));
         gActors[actor_index].var_110 -= 0.05;
@@ -106,7 +107,7 @@ void func_800601FC(u16 actor_index) {
             gActors[actor_index].colorA -= 8;
         }
         break;
-    case 0xC9:
+    case 201:
         gActors[actor_index].flags = 0;
         break;
     }
@@ -132,13 +133,13 @@ void func_8006098C(u16 actor_index) {
     if (gActors[actor_index].stateLower == 0) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = 0x15C;
-        gActors[actor_index].unk_0DE = 1;
+        gActors[actor_index].grabType = 1;
         gActors[actor_index].unk_0DF = 0;
-        gActors[actor_index].unk_0DA = 0;
-        gActors[actor_index].unk_0DB = 2;
+        gActors[actor_index].hitFlags = 0;
+        gActors[actor_index].hitType = 2;
         gActors[actor_index].damage = 0;
         gActors[actor_index].var_154 = 0;
-        gActors[actor_index].var_158 = 0x1E;
+        gActors[actor_index].var_158 = 30;
         gActors[actor_index].var_15C = 0xD2;
         gActors[actor_index].scaleY = 0.2f;
         gActors[actor_index].scaleX = 0.2f;
@@ -218,7 +219,7 @@ void func_8006098C(u16 actor_index) {
     }
 }
 
-void func_80060DB8(u16 actor_index) {
+void ActorUpdate_Lava(u16 actor_index) {
     u16 actor_1;
     f32 divisor;
     s32 sp24[3];

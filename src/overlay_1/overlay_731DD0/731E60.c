@@ -30,8 +30,8 @@ void func_8019B21C_731F7C(u16 actor_index) {
 
 void func_8019B270_731FD0(u16 actor_index) {
     gActors[actor_index].flags |= 0x2400;
-    gActors[actor_index].unk_0DA = 4;
-    gActors[actor_index].unk_0DB = 6;
+    gActors[actor_index].hitFlags = HITFLAG_2;
+    gActors[actor_index].hitType = HITTYPE_6;
     gActors[actor_index].hitboxBY0 = 0x10;
     gActors[actor_index].hitboxBY1 = -0x10;
     gActors[actor_index].hitboxBX0 = -0x14;
@@ -77,12 +77,12 @@ void func_8019C0A0_732E00(u16 actor_index) {
 
 void func_8019C1C4_732F24(u16 actor_index) {
     // FAKEMATCH ???
-    gActors[actor_index].unk_0DB = 8;\
+    gActors[actor_index].hitType = HITTYPE_8;\
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);\
     if (1) { }\
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);
-    gActors[actor_index].damage = 0x14;
+    gActors[actor_index].damage = 20;
     Actor_SetHitboxA(actor_index, 0xC);
 }
 

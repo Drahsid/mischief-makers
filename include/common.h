@@ -23,9 +23,9 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 
 // hard-coded palette addresses.
 
-#define PALETTE_80202C90 ((u16*)0x80202C90)
 #define PALETTE_802209E0 ((u16*)0x802209E0) // used by life bar
 #define PALETTE_80222220 ((u16*)0x80222220)
+#define PALETTE_80202C90 ((u16*)0x80202C90)
 #define PALETTE_8022D4C8 ((u16*)0x8022D4C8)
 #define PALETTE_8022D4E8 ((u16*)0x8022D4E8)
 #define PALETTE_8022D508 ((u16*)0x8022D508)
