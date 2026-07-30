@@ -31,7 +31,7 @@ void func_8019B1E4_749D94(u16 actor_index) {
 
 void func_8019BC9C_74A84C(u16 actor_index) {
     func_8019B100_749CB0(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void func_8019BD00_74A8B0(s32 arg0) {

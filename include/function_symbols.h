@@ -172,7 +172,7 @@ extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern s32 func_800486F4(void);
 extern s32 func_80048CE4(void);
-extern s32 func_80048C94(s32);
+extern s32 Marina_GetMoveVelocity(s32);
 extern s32 func_800490BC(u16, s32, s16);
 extern void Marina_State0(u16 actor_index);
 extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);

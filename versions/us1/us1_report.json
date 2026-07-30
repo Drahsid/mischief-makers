@@ -8277,7 +8277,7 @@
           }
         },
         {
-          "name": "func_80048C94",
+          "name": "Marina_GetMoveVelocity",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {

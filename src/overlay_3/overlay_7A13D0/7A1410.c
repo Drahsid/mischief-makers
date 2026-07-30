@@ -326,7 +326,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK21);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_GRAB | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK21);
 }
 
 void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
@@ -338,7 +338,7 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
 
     func_801B2D9C_7A38AC(actor_index, arg1);
     if (arg1->unk_05 == 0) {
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
             arg1->unk_08 = 6;
             arg1->unk_0A = 0;
             arg1->unk_05 = 1;
@@ -878,7 +878,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     switch (state->unk_0A) {
         case 0:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 if ((gActors[actor_index].graphicTimer == 0) && (state->unk_04 == 0)) {
                     gActors[actor_index].graphicList = D_801B5FE0_7A6AF0;
                     gActors[actor_index].graphicTimer = 1;
@@ -1322,7 +1322,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             state->unk_05 = 0;
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) == 0) {
                 func_800340CC(actor_index, 0xE, 0);
             }
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);

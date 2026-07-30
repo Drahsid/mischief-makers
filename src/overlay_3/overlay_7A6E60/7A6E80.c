@@ -1513,7 +1513,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
         case 0x10:
             if (--gActors[actor_index].var_150 <= 0) {
                 gFestivalEventState = 0x20;
-                D_800BE5F4.unk_00_u32 = 0x15;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_21;
                 OverlayABI_Slot2_fn27_u16(actor_index);
                 Sound_PlaySfx(SFX_TURMPETFANFARE);
                 func_801B1D60_7A82E0(actor_index, 1);
@@ -1529,7 +1529,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 func_801B12F0_7A7870(actor_index);
                 func_801B13F8_7A7978(actor_index);
                 gFestivalEventState = 0x30;
-                D_800BE5F4.unk_00_u32 = 0x15;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_21;
                 OverlayABI_Slot2_fn28_u16(actor_index);
                 gActors[actor_index].var_150 = (Rand() / 4) + 0x78;
                 gActors[actor_index].state = 0x30;
@@ -1544,7 +1544,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 if (--gActors[actor_index].var_150 <= 0) {
                     func_801B14A4_7A7A24(actor_index);
                     gFestivalEventState = 0x40;
-                    D_800BE5F4.unk_00_u32 = 5;
+                    D_800BE5F4.unk_00_u32 = MARINAANIM_5;
                     OverlayABI_Slot2_fn29_u16(actor_index);
                     Sound_PlaySfx(SFX_SHOT_0046);
                     gActors[0x6D].unk_134 = 1.6f;
@@ -1558,13 +1558,13 @@ void func_801B34D4_7A9A54(u16 actor_index) {
         case 0x50:
             if (gFestivalCurrentEvent != FESTGAME_HURDLE) {
                 // no jumping in sprints
-                D_800BE5F4.unk_00_u32 = 2;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_2;
                 gPlayerData.unk_20 = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
                 gPlayerData.unk_24 = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
             }
             D_800BE544 = gFestivalCompetitorIndices[0];
             func_801B159C_7A7B1C(actor_index);
-            if ((gActors[0x6A].var_158 < 0x1E) && (gActors[0x32].var_154 == 0)) {
+            if ((gActors[0x6A].var_158 < 30) && (gActors[0x32].var_154 == 0)) {
                 gActors[0x32].unk_17C++;
                 gActors[0x32].var_154 = 1;
             }
@@ -1579,7 +1579,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 gActors[0x6A].flags = 0;
                 gActors[0x6D].unk_134 = 0.0f;
                 OverlayABI_Slot2_fn31_u16(actor_index);
-                D_800BE5F4.unk_00_u32 = 0x15;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_21;
                 func_801B1D60_7A82E0(actor_index, 2);
                 gActors[0x32].unk_17C++;
                 gActors[actor_index].unk_17C = func_801B2040_7A85C0(0x6D);

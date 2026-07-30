@@ -5,7 +5,7 @@
 #include "80D90.h"
 
 void func_80080190(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void func_800801D8(u16 base_actor_index, s16* vals, u16* arg2) {

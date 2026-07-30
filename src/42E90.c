@@ -230,11 +230,11 @@ void Actor11_State4(u16 actor_index) {
 
 void ActorUpdate_Type11(u16 actor_index) {
     gActor11States[gActors[actor_index].state](actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void ActorUpdate_Type12(u16 actor_index) {
-    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
         if (gActors[actor_index].parentIndex != 0) {
             gActors[actor_index].flags = 0;
             gActors[actor_index].actorType = 0;
@@ -244,10 +244,10 @@ void ActorUpdate_Type12(u16 actor_index) {
                 func_8002ED34(actor_index, gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw, 0, 0);
             }
             gActors[actor_index].parentIndex = 0;
-            gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK9;
+            gActors[actor_index].flags_098 |= ACTOR_FLAG3_GRAB;
         }
     }
     else {
-        gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+        gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
     }
 }

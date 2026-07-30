@@ -12,6 +12,7 @@
 #include "gameText.h"
 #include "festival.h"
 #include "overlays.h"
+#include "marina.h"
 
 typedef s32 DEFAULT_INT; // use this to explicitly show when the original programmer likely forgot to write the return type
 

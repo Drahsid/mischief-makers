@@ -83,14 +83,14 @@ enum ActorGFlags {
 enum ActorFlags3 {
     ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
-    ACTOR_FLAG3_UNK2 = (1U << 2U),
-    ACTOR_FLAG3_UNK3 = (1U << 3U),
+    ACTOR_FLAG3_UNK2 = (1U << 2U), // left edge of screen hit?
+    ACTOR_FLAG3_UNK3 = (1U << 3U), // right edge of screen hit?
     ACTOR_FLAG3_UNK4 = (1U << 4U), // hit ceiling?
     ACTOR_FLAG3_UNK5 = (1U << 5U), // on the floor?
     ACTOR_FLAG3_UNK6 = (1U << 6U),
     ACTOR_FLAG3_UNK7 = (1U << 7U),
     ACTOR_FLAG3_UNK8 = (1U << 8U),
-    ACTOR_FLAG3_UNK9 = (1U << 9U),  // grabbed?
+    ACTOR_FLAG3_GRAB = (1U << 9U),  // grabbed by Marina
     ACTOR_FLAG3_UNK10 = (1U << 10U),
     ACTOR_FLAG3_UNK11 = (1U << 11U),
     ACTOR_FLAG3_UNK12 = (1U << 12U),
@@ -127,7 +127,7 @@ typedef enum {
     HITTYPE_8,
     HITTYPE_9,
     HITTYPE_10,
-    HITTYPE_11,
+    HITTYPE_11, // flame
     HITTYPE_12,
     HITTYPE_13,
     HITTYPE_14,

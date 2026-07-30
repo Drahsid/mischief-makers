@@ -592,13 +592,13 @@ void func_8006C5A4(u16 actor_index) {
             gActors[actor_index].unk_148 = gActors[actor_index].scaleX;
         }
 
-        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) && (gGuestActorIndex != actor_index)) {
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) == 0) && (gGuestActorIndex != actor_index)) {
             func_80028C00(actor_index);
         }
     }
 
     func_80066BCC(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C6F0.s")
@@ -1278,7 +1278,7 @@ void func_80079F50(u16 actor_index, u16 other_actor_index) {
     u16 var_v1;
 
     gActors[other_actor_index].parentIndex = actor_index;
-    gActors[other_actor_index].flags_098 |= ACTOR_FLAG3_UNK9;
+    gActors[other_actor_index].flags_098 |= ACTOR_FLAG3_GRAB;
     var_v1 = (gActors[actor_index].graphicIndex - 0x3036) / 2 * 2;
     // + 0 required to match
     temp_f10 = D_800D82BC[var_v1 + 0] * gActors[actor_index].scaleX;
@@ -1329,7 +1329,7 @@ u16 func_8007A190(u16 actor_index) {
         gActors[actor_index].unk_118 = temp_v0;
         gActors[actor_index].unk_11C = gActors[temp_v0].actorType;
         gActors[temp_v0].parentIndex = actor_index;
-        gActors[temp_v0].flags_098 = ACTOR_FLAG3_UNK9;
+        gActors[temp_v0].flags_098 = ACTOR_FLAG3_GRAB;
         gActors[actor_index].var_154 = gActors[temp_v0].velocityX.raw * gActors[actor_index].scaleX;
         gActors[actor_index].var_158 = gActors[temp_v0].velocityY.raw * gActors[actor_index].scaleX;
         gActors[actor_index].velocityX.raw /= 2;
@@ -1494,7 +1494,7 @@ s32 func_8007AB44(u16 actor_index) {
     s32 var_a3;
     u16 var_v0_2;
 
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && (func_80029044(actor_index) == 0)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (func_80029044(actor_index) == 0)) {
         var_a3 = FIXED_UNIT(16) - Math_AbsS32(gActors[actor_index].velocityX.raw * 2);
         var_a3 = FROM_FIXED(var_a3);
         if (var_a3 < 2) {
@@ -1734,7 +1734,7 @@ void func_8007B73C(u16 actor_index) {
                 }
         }
         else {
-            if ((actor->flags_098 & ACTOR_FLAG3_UNK9) && !(actor->var_150 & 0x100000)) {
+            if ((actor->flags_098 & ACTOR_FLAG3_GRAB) && !(actor->var_150 & 0x100000)) {
                 if (actor->grabType == 1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
                     Sound_PlaySfx(SFX_CLANCER_OW_0067);
@@ -1754,7 +1754,7 @@ void func_8007B73C(u16 actor_index) {
     func_8002AA20(actor_index, 0);
     switch (actor->state) {
     case 0x1:
-        if (actor->flags_098 & ACTOR_FLAG3_UNK9) {
+        if (actor->flags_098 & ACTOR_FLAG3_GRAB) {
             actor->state = 0x200;
             actor->flags = ACTOR_FLAG_ENABLED;
         }

@@ -44,7 +44,7 @@ void func_80193C14_67F734(u16 actor_index);
 void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxB(u16 actor_index, s16 val);
-s32 func_80048C94(s32 arg0);
+s32 MARINA_MOVE(s32 arg0);
 
 void func_80192100_67DC20(s32 arg0) {
 }
@@ -561,7 +561,7 @@ s32 func_80194D3C_68085C(u16 actor_index) {
 
     index = actor_index;
 
-    if (gActors[0x37].flags_098 & ACTOR_FLAG3_UNK9) {
+    if (gActors[0x37].flags_098 & ACTOR_FLAG3_GRAB) {
         gActors[0x37].flags &= ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK9);
         if (gPlayerActor.unk_140_u8[0] == 0) {
             gActors[index].state = 0x400;
@@ -840,7 +840,7 @@ void func_8019A604_686124(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019A6AC_6861CC.s")
@@ -871,7 +871,7 @@ void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
                     return;
                 }
 
-                gActors[actor_index].velocityY.raw = func_80048C94(15);
+                gActors[actor_index].velocityY.raw = MARINA_MOVE(15);
                 gActors[actor_index].state = 0x16;
             }
 

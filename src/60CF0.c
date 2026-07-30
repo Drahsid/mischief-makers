@@ -28,7 +28,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
     s32 sp4C[5];
     u16 actor_1;
 
-    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
         if (gActors[actor_index].stateLower < 100) {
             func_80058924(actor_index);
             gActors[actor_index].state = 100;
@@ -56,7 +56,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
         }
         break;
     case 100:
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
             gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
             gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
@@ -115,7 +115,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
     if ((gActors[actor_index].var_110 < 0.3) && (gActors[actor_index].stateLower != 0xC9)) {
         gActors[actor_index].state = 0xC9;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
     if (!(gActiveFrames & 3)) {
         sp4C[0] = gActors[actor_index].posX.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
         sp4C[1] = gActors[actor_index].posY.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
@@ -146,7 +146,7 @@ void func_8006098C(u16 actor_index) {
         Sound_PlaySfxAtActor2(SFX_00C3, actor_index);
         gActors[actor_index].state = 1;
     }
-    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+    if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
         if (gActors[actor_index].stateLower != 0x64) {
             func_80058924(actor_index);
             gActors[actor_index].state = 0x64;
@@ -154,7 +154,7 @@ void func_8006098C(u16 actor_index) {
     }
     switch (gActors[actor_index].stateLower) {
     case 0x64:
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
             gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
             gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
@@ -249,5 +249,5 @@ void ActorUpdate_Lava(u16 actor_index) {
             gActors[actor_1].palette_18C = PALETTE_8022D4E8;
         }
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }

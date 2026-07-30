@@ -1268,7 +1268,7 @@ void func_801B99AC_7CE13C(s16 pos_x, s16 pos_y) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + pos_y;
     gPlayerActor.posX.whole = pos_x;
     gPlayerActor.posY.whole = pos_y;
-    D_800BE5F4.unk_00_u32 = 0xA;
+    D_800BE5F4.unk_00_u32 = MARINAANIM_10;
 }
 
 void func_801B9A0C_7CE19C(u16 arg0) {
@@ -1306,7 +1306,7 @@ void func_801B9B08_7CE298(void) {
         gCannotPause = FALSE;
         D_800BE544 = 0;
         D_800BE548.raw = FIXED_UNIT(16.0);
-        D_800BE5F4.unk_00_u32 = 0xA;
+        D_800BE5F4.unk_00_u32 = MARINAANIM_10;
     }
 }
 
@@ -1469,7 +1469,7 @@ void func_801BA0C8_7CE858(void) {
                 Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 3, 5, 3);
                 Palette_AdjustRgb5551Array(PALETTE_803D3250, PALETTE_803D3050, 0xFF, 0, 6, 0);
                 func_80045FA4(D_801BC80C_7D0F9C, D_801BC81C_7D0FAC);
-                D_800BE5F4.unk_00_s32 = 3;
+                D_800BE5F4.unk_00_s32 = MARINAANIM_3;
                 Actor_LoadSpawnTable(sActorSpawn_2_BackgroundA);
                 func_80043D30(sActorSpawn_2_5);
                 func_801B9A98_7CE228(0x31);
@@ -1535,7 +1535,7 @@ void func_801BA0C8_7CE858(void) {
             gStageState++;
             D_800D28FC |= 8;
             D_800BE544 = 0;
-            D_800BE5F4.unk_00_s32 = 5;
+            D_800BE5F4.unk_00_s32 = MARINAANIM_5;
             gCannotPause = FALSE;
             break;
 
@@ -1949,7 +1949,7 @@ void func_801BB0F0_7CF880(void) {
             gStageState++;
             Palette_AdjustRgb5551Array(PALETTE_80266818, PALETTE_80266618, 0xFF, 1, -1, 1);
             func_80045FA4(D_801BEB9C_7D332C, (u16*)D_801BEBD4_7D3364);
-            D_800BE5F4.unk_00_u32 = 4;
+            D_800BE5F4.unk_00_u32 = MARINAANIM_4;
             Actor_LoadSpawnTable(sActorSpawn_2_8);
             D_800BE54C.raw = FIXED_UNIT(32.0);
             gLookatEyeY = 32.0f;
@@ -1958,7 +1958,7 @@ void func_801BB0F0_7CF880(void) {
         case 1:
             if (Transition_FadeOut()) {
                 gStageState++;
-                D_800BE5F4.unk_00_u32 = 0xA;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_10;
                 D_800D28FC |= 8;
             }
             break;
@@ -2004,7 +2004,7 @@ void func_801BB360_7CFAF0(void) {
                 func_80045FA4(D_801BF728_7D3EB8, 0);
                 Actor_LoadSpawnTable(sActorSpawn_2_11B);
                 Sound_PlayMusic(BGM_BOSS);
-                D_800BE5F4.unk_00_s32 = 3;
+                D_800BE5F4.unk_00_s32 = MARINAANIM_3;
                 D_800BE544 = 0x8000;
                 gDrawMidground = 0;
                 gDrawEnvLayer = 1;
@@ -2025,7 +2025,7 @@ void func_801BB360_7CFAF0(void) {
                     func_80043D30(sActorSpawn_2_11A);
                     gActorDepthMiddle = -0x20;
                     gActorDepthBack = 0x80;
-                    D_800BE5F4.unk_00_s32 = 3;
+                    D_800BE5F4.unk_00_s32 = MARINAANIM_3;
                     D_800BE544 = 0x8000;
                 }
             }
@@ -2039,7 +2039,7 @@ void func_801BB360_7CFAF0(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 gStageTimer = 180;
-                D_800BE5F4.unk_00_s32 = 0xF;
+                D_800BE5F4.unk_00_s32 = MARINAANIM_15;
                 gCannotPause = TRUE;
             }
             break;
@@ -2146,7 +2146,7 @@ void func_801BB360_7CFAF0(void) {
                 D_800D28F8 = gTransitionPortraitIndex;
                 switch (gStageTimer) {
                     case 5:
-                        *(u8*)&D_800BE5F4.unk_00_s32 = 1;
+                        *(u8*)&D_800BE5F4.unk_00_s32 = MARINAANIM_1;
                         Sound_PlaySfxAtActor2(SFX_DASH_0116, PLAYER_INDEX);
                         break;
 
@@ -2197,7 +2197,7 @@ void func_801BB360_7CFAF0(void) {
             func_80045FA4(D_801BF728_7D3EB8, 0);
             Actor_LoadSpawnTable(sActorSpawn_2_11A);
             Sound_PlayMusic(BGM_BOSS);
-            D_800BE5F4.unk_00_s32 = 7;
+            D_800BE5F4.unk_00_s32 = MARINAANIM_7;
             gPlayerData.flags |= PLAYERDATA_UNK0;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             D_800BE544 = 0x8000;

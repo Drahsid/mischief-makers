@@ -164,7 +164,7 @@ void func_8005E260(u16 actor_index) {
     u16 actor_1;
 
     actor_1 = gActors[actor_index].parentIndex;
-    if ((gActors[actor_index].stateLower < 2) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9)) {
+    if ((gActors[actor_index].stateLower < 2) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB)) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
         gActors[actor_index].state = 2;
     }

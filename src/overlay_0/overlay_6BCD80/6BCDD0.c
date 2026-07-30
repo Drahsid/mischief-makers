@@ -707,7 +707,7 @@ void func_80198858_6C3528(s32 arg0, u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_801988E8_6C35B8.s")
 
 s32 func_80198AE4_6C37B4(u16 actor_index, u16 other_actor_index) {
-    if (gActors[other_actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+    if (gActors[other_actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
         gActors[actor_index].unk_128 = (f32)other_actor_index;
         gActors[actor_index].unk_12C = (f32)other_actor_index;
         gActors[other_actor_index].posX.raw = gActors[other_actor_index].unk_104;
@@ -790,7 +790,7 @@ void func_80199190_6C3E60(u16 actor_index) {
     if (gActors[actor_index].health & 0x8000) {
         gActors[actor_index].health = 0;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 f32 func_80199208_6C3ED8(u16 actor_index) {
@@ -821,7 +821,7 @@ void func_8019946C_6C413C(void) {
     gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
     gPlayerActor.flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED);
     func_800282F0(sMainBossActor.posX.whole, -0x18);
-    D_800BE5F4.unk_00_u32 = 5;
+    D_800BE5F4.unk_00_u32 = MARINAANIM_5;
     gPlayerActor.iFrames = 0;
     sMainBossActor.state = 0x410;
     sMainBossActor.posZ.whole = -0xE0;

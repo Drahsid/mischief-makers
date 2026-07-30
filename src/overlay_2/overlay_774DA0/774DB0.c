@@ -40,7 +40,7 @@ void func_801A6C80_775130(u16 actor_index) {
             gActors[actor_index].var_150 = 0x10;
 
         case 1:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].state++;
                 gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK12 |ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7);
                 gActors[actor_index].iFrames = 10;
@@ -80,7 +80,7 @@ void func_801A6C80_775130(u16 actor_index) {
             break;
 
         case 2:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].iFrames = 10;
                 gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
                 gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
@@ -111,5 +111,5 @@ void func_801A6C80_775130(u16 actor_index) {
     }
 
     gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 
-         ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+         ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }

@@ -373,6 +373,7 @@ Transition_StageExit = 0x80046EBC; // type:func
 SpawnText_READY = 0x800472D4; // type:func
 SpawnText_READY_2 = 0x8004732C; // type:func
 SpawnText_FIGHT = 0x8004735C; // type:func
+Marina_GetMoveVelocity = 0x80048C94; // type:func
 
 Marina_State0 = 0x8004A960; // type:func
 

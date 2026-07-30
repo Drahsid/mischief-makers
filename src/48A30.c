@@ -34,7 +34,7 @@ void func_80047ED4(u16 _actor_index) {
     actor = &gActors[actor_index];
     actor->var_150 = actor->flags & ~0x1B80;
 
-    if ((D_800BE5F4.unk_00_u32 & 0xFF) == 4) {
+    if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_4) {
         actor->var_150 &= ~1;
     }
 
@@ -44,7 +44,7 @@ void func_80047ED4(u16 _actor_index) {
     actor->stateLower = 1;
     actor->unk_128 = 1.0f;
     actor->unk_124 = 1.0f;
-    D_800BE5F4.unk_00_u32 = 0;
+    D_800BE5F4.unk_00_u32 = MARINAANIM_0;
 }
 
 void func_80047F80(u16 actor_index) {
@@ -52,11 +52,11 @@ void func_80047F80(u16 actor_index) {
         gActors[actor_index].unk_12E_u8 |= 0x41;
         gActors[actor_index].state = 2;
 
-        if ((D_800BE5F4.unk_00_u32 & 0xFF) == 6) {
+        if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_6) {
             gActors[actor_index].stateUpper = 1;
         }
 
-        D_800BE5F4.unk_00_u32 = 0;
+        D_800BE5F4.unk_00_u32 = MARINAANIM_0;
     }
 }
 
@@ -80,7 +80,7 @@ void func_80047FF8(u16 actor_index) {
             break;
 
         case 11:
-            D_800BE5F4.unk_00_u32 = 1;
+            D_800BE5F4.unk_00_u32 = MARINAANIM_1;
             break;
     }
 }
@@ -107,11 +107,11 @@ void func_800480B8(u16 actor_index) {
         case 0xC:
             if (gActors[actor_index].stateLower == 3) {
                 if (func_8005D338(actor_index) == 1) {
-                    if ((D_800BE5F4.unk_00_u32 & 0xFF) == 8) {
-                        D_800BE5F4.unk_00_u32 = 0;
+                    if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_8) {
+                        D_800BE5F4.unk_00_u32 = MARINAANIM_0;
                     }
-                    else if ((D_800BE5F4.unk_00_u32 & 0xFF) == 9) {
-                        D_800BE5F4.unk_00_u32 = 3;
+                    else if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_9) {
+                        D_800BE5F4.unk_00_u32 = MARINAANIM_3;
                         D_800BE5F4.unk_01 = 1;
                     }
                 }
@@ -134,11 +134,11 @@ void func_80048238(u16 actor_index) {
 
         case 1:
             if (gActors[actor_index].stateLower == 3) {
-                if ((D_800BE5F4.unk_00_u32 & 0xFF) == 0xA) {
-                    D_800BE5F4.unk_00_u32 = 0;
+                if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_10) {
+                    D_800BE5F4.unk_00_u32 = MARINAANIM_0;
                 }
-                else if ((D_800BE5F4.unk_00_u32 & 0xFF) == 0xB) {
-                    D_800BE5F4.unk_00_u32 = 3;
+                else if ((D_800BE5F4.unk_00_u32 & 0xFF) == MARINAANIM_11) {
+                    D_800BE5F4.unk_00_u32 = MARINAANIM_3;
                     D_800BE5F4.unk_01 = 2;
                 }
             }
@@ -148,14 +148,14 @@ void func_80048238(u16 actor_index) {
 
 void func_80048320(u16 actor_index) {
     if (D_800BE5F4.unk_02 == 0) {
-        func_8005C550(actor_index, 0x1E);
+        func_8005C550(actor_index, 30);
         gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_index].state = 0x38;
         gActors[actor_index].unk_12E_u8 |= 0x41;
         D_800BE5F4.unk_02 = 1;
     }
 
-    D_800BE5F4.unk_00_u32 = 0;
+    D_800BE5F4.unk_00_u32 = MARINAANIM_0;
 }
 
 void func_800483B4(u16 actor_index) {
@@ -163,7 +163,7 @@ void func_800483B4(u16 actor_index) {
         gActors[actor_index].var_150 = 0x258;
     }
 
-    D_800BE5F4.unk_00_u32 = 1;
+    D_800BE5F4.unk_00_u32 = MARINAANIM_1;
 }
 
 void func_80048408(u16 actor_index) {
@@ -202,7 +202,7 @@ void func_80048408(u16 actor_index) {
                 gActors[actor_index].unk_170 = 0xA3;
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK6;
                 gActors[actor_index].state = 3;
-                D_800BE5F4.unk_00_u32 = 0;
+                D_800BE5F4.unk_00_u32 = MARINAANIM_0;
             }
             break;
     }

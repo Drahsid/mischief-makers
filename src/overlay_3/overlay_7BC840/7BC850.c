@@ -91,7 +91,7 @@ void func_801B0900_7BC850(u16 actor_index) {
 }
 
 s32 func_801B0944_7BC894(u16 actor_index) {
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && !(gActors[actor_index].state & 0x1000)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && !(gActors[actor_index].state & 0x1000)) {
         func_80040858(actor_index);
         gActors[actor_index].state = 0x1000;
         func_80029134(actor_index);
@@ -254,7 +254,7 @@ u16 func_801B11F0_7BD140(u16 actor_index) {
     u16 distance;
 
     if (D_801B4B60_7C0AB0 & 2) {
-        if (gActors[0x43].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[0x43].flags_098 & ACTOR_FLAG3_GRAB) {
             return 0x43;
         }
         return 0;
@@ -266,7 +266,7 @@ u16 func_801B11F0_7BD140(u16 actor_index) {
     while (current_actor_index != 0) {
         current_actor_index = D_801B46F8_7C0648[index];
         distance = Math_AbsS32(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
-        if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) && !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_UNK9) &&
+        if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) && !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_GRAB) &&
             !(gActors[current_actor_index].flags & ACTOR_FLAG_UNK9) && (gActors[current_actor_index].posX.whole > 0) && (distance < best_distance) && (gActors[current_actor_index].posY.whole < 0)) {
             best_actor_index = current_actor_index;
             best_distance = distance;
@@ -1045,7 +1045,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
         D_801B4B61_7C0AB1 = 1;
     }
     func_80081E38(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
@@ -1060,12 +1060,12 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
             gActors[target_index].unk_104 = gActors[source_index].posX.raw;
             gActors[target_index].unk_108 = gActors[source_index].posY.raw + FIXED_UNIT(8.0);
             gActors[target_index].unk_10C = gActors[source_index].posZ.raw - 4;
-            gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK9;
+            gActors[target_index].flags_098 |= ACTOR_FLAG3_GRAB;
             gActors[target_index].parentIndex = source_index;
             return FALSE;
         }
 
-        gActors[target_index].flags_098 &= ~ACTOR_FLAG3_UNK9;
+        gActors[target_index].flags_098 &= ~ACTOR_FLAG3_GRAB;
         gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK10;
         gActors[target_index].unk_0F8.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(3.0);
         gActors[target_index].unk_0FC.raw = FIXED_UNIT(4.0);

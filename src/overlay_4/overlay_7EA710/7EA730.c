@@ -84,7 +84,7 @@ void func_801B9900_7EA730(void) {
         case 0:
             func_80045FA4(D_801B9FB0_7EADE0, NULL);
             Actor_LoadSpawnTable(sActorSpawn_Intro);
-            D_800BE5F4.unk_00_u32 = 4;
+            D_800BE5F4.unk_00_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;
@@ -151,7 +151,7 @@ void func_801B9BB4_7EA9E4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
-            D_800BE5F4.unk_00_u32 = 4;
+            D_800BE5F4.unk_00_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;
@@ -239,7 +239,7 @@ void func_801B9EA4_7EACD4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, NULL);
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
-            D_800BE5F4.unk_00_u32 = 4;
+            D_800BE5F4.unk_00_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;
