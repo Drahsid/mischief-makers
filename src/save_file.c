@@ -769,7 +769,7 @@ void SaveFile_CheckValid(void) {
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_0]); index++) {
             if (((gFileNames[SAVE_SLOT_0][index] != 0) && 
                 (gFileNames[SAVE_SLOT_0][index] <= ALPHA_EN_BRACKETRIGHT)) || 
-                ((gFileNames[SAVE_SLOT_0][index] >= 338) // last legal Kanji char?
+                ((gFileNames[SAVE_SLOT_0][index] > ALPHA_EN3_UPPER_Z) // last legal char
                 && (gFileNames[SAVE_SLOT_0][index] != ALPHA_NULL))) {
                 count = 1;
             }
@@ -806,7 +806,7 @@ void SaveFile_CheckValid(void) {
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_1]); index++) {
             if (((gFileNames[SAVE_SLOT_1][index] != 0) && 
                 (gFileNames[SAVE_SLOT_1][index] <= ALPHA_EN_BRACKETRIGHT)) || 
-                ((gFileNames[SAVE_SLOT_1][index] >= 338) // last legal Kanji char?
+                ((gFileNames[SAVE_SLOT_1][index] > ALPHA_EN3_UPPER_Z) // last legal char
                 && (gFileNames[SAVE_SLOT_1][index] != ALPHA_NULL))) {
                 count = 1;
             }
