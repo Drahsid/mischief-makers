@@ -53,6 +53,12 @@ typedef struct {
     /* 0x8C */ u16* palette;
 } StaticObject; /* sizeof = 0x90 */
 
+typedef struct {
+    /* 0x00 */ u16 unk_00;
+    /* 0x02 */ u16 positionX;
+    /* 0x04 */ u16 positionY;
+} Graphic_Spawn_Record; /* sizeof = 0x06 */
+
 typedef enum {
     PLAYERDATA_UNK0 = (1 << 0),
     PLAYERDATA_BOUND = (1 << 1), // Marina is bound to screen edges.

@@ -341,7 +341,8 @@ extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 #define PLAYER_INDEX 0
 
 // actor 0 is always the main character, Marina
-#define gPlayerActor gActors[PLAYER_INDEX]
+#define gPPlayerActor (gActors)
+#define gPlayerActor gPPlayerActor[PLAYER_INDEX]
 
 #define TERAN_PLAYER_INDEX 0x30
 
