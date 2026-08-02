@@ -5,21 +5,6 @@ typedef struct Overlay_7A6E60_Graphic_Index_Table {
     /* 0x00 */ u16 indices[4];
 } Overlay_7A6E60_Graphic_Index_Table; /* sizeof = 0x08 */
 
-typedef struct Overlay_7A6E60_Actor_Spawn_Record {
-    /* 0x00 */ s16 positionX;
-    /* 0x02 */ u16 positionY;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-} Overlay_7A6E60_Actor_Spawn_Record; /* sizeof = 0x08 */
-
-typedef struct Overlay_7A6E60_Spawn_Config {
-    /* 0x00 */ s16 positionX;
-    /* 0x02 */ s16 positionZ;
-    /* 0x04 */ s16 unused_04;
-    /* 0x06 */ s16 unused_06;
-    /* 0x08 */ s16 behavior;
-} Overlay_7A6E60_Spawn_Config; /* sizeof = 0x0A */
-
 extern void* D_800D1968[];
 extern u8 D_800D9AF4[];
 extern u8 D_800D9B04[];
@@ -162,7 +147,7 @@ Overlay_7A6E60_Graphic_Index_Table D_801B5414_7AB994 = {
     { 0x013E, 0x0146, 0x0138, 0x0143 },
 };
 
-Overlay_7A6E60_Actor_Spawn_Record D_801B541C_7AB99C[14] = {
+Festival_Actor_Spawn D_801B541C_7AB99C[14] = {
     { 0x0130, 0x0183, 0xFF01, 0x1C00 },
     { 0x01C8, 0x0180, 0xFF02, 0x1D03 },
     { 0x0428, 0x018D, 0xFF01, 0x1202 },
@@ -184,40 +169,40 @@ u16 D_801B548C_7ABA0C[16] = {
     0x0700, 0x0800, 0x0900, 0x0A00, 0x0B00, 0x0C00, 0x0F00, 0x0D00,
 };
 
-Overlay_7A6E60_Spawn_Config D_801B54AC_7ABA2C[6] = {
-    { 0x0128, -0xFC, 0, 0x0800, 0 },
-    { 0x0140, -0xFC, 0, 0x0100, 1 },
-    { 0x0300, -0xFC, 0, 0x0800, 2 },
-    { 0x0318, -0xFC, 0, 0x0B00, 3 },
-    { 0x0290, 0xA0, 0, 0x0200, 4 },
-    { 0x02C8, 0xA0, 0, 0x0300, 4 },
+Festival_Actor_SpawnWithBehavior D_801B54AC_7ABA2C[6] = {
+    { { 0x0128, 0xFF04, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0140, 0xFF04, 0x0000, 0x0100 }, 0x0001 },
+    { { 0x0300, 0xFF04, 0x0000, 0x0800 }, 0x0002 },
+    { { 0x0318, 0xFF04, 0x0000, 0x0B00 }, 0x0003 },
+    { { 0x0290, 0x00A0, 0x0000, 0x0200 }, 0x0004 },
+    { { 0x02C8, 0x00A0, 0x0000, 0x0300 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B54E8_7ABA68[6] = {
-    { 0x0118, -0xFC, 0, 0x0800, 0 },
-    { 0x0140, -0xFC, 0, 0x0300, 1 },
-    { 0x0300, -0xFC, 0, 0x0800, 2 },
-    { 0x0318, -0xFC, 0, 0x0200, 3 },
-    { 0x02D0, -0xFC, 0, 0x0800, 4 },
-    { 0x02E8, 0xA0, 0, 0x0300, 4 },
+Festival_Actor_SpawnWithBehavior D_801B54E8_7ABA68[6] = {
+    { { 0x0118, 0xFF04, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0140, 0xFF04, 0x0000, 0x0300 }, 0x0001 },
+    { { 0x0300, 0xFF04, 0x0000, 0x0800 }, 0x0002 },
+    { { 0x0318, 0xFF04, 0x0000, 0x0200 }, 0x0003 },
+    { { 0x02D0, 0xFF04, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x02E8, 0x00A0, 0x0000, 0x0300 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B5524_7ABAA4[6] = {
-    { 0x0110, -0xFC, 0, 0x0800, 0 },
-    { 0x0130, -0xFC, 0, 0x0500, 1 },
-    { 0x0300, -0xFC, 0, 0x0300, 2 },
-    { 0x0318, 0xA0, 0, 0x0200, 3 },
-    { 0x02C0, 0xA0, 0, 0x0800, 4 },
-    { 0x02E8, 0xA0, 0, 0x0400, 4 },
+Festival_Actor_SpawnWithBehavior D_801B5524_7ABAA4[6] = {
+    { { 0x0110, 0xFF04, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0130, 0xFF04, 0x0000, 0x0500 }, 0x0001 },
+    { { 0x0300, 0xFF04, 0x0000, 0x0300 }, 0x0002 },
+    { { 0x0318, 0x00A0, 0x0000, 0x0200 }, 0x0003 },
+    { { 0x02C0, 0x00A0, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x02E8, 0x00A0, 0x0000, 0x0400 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B5560_7ABAE0[6] = {
-    { 0x0100, -0xFC, 0, 0x0500, 0 },
-    { 0x0120, -0xFC, 0, 0x0800, 1 },
-    { 0x0180, 0xA0, 0, 0x0800, 4 },
-    { 0x0198, 0xA0, 0, 0x0400, 4 },
-    { 0x0300, -0xFC, 0, 0x0300, 2 },
-    { 0x0318, -0xFC, 0, 0x0400, 3 },
+Festival_Actor_SpawnWithBehavior D_801B5560_7ABAE0[6] = {
+    { { 0x0100, 0xFF04, 0x0000, 0x0500 }, 0x0000 },
+    { { 0x0120, 0xFF04, 0x0000, 0x0800 }, 0x0001 },
+    { { 0x0180, 0x00A0, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x0198, 0x00A0, 0x0000, 0x0400 }, 0x0004 },
+    { { 0x0300, 0xFF04, 0x0000, 0x0300 }, 0x0002 },
+    { { 0x0318, 0xFF04, 0x0000, 0x0400 }, 0x0003 },
 };
 
 u16 D_801B559C_7ABB1C[28] = {
@@ -1175,9 +1160,9 @@ s32 func_801B286C_7A8DEC(u16 actor_index) {
 }
 
 void func_801B2908_7A8E88(u16 actor_index) {
-    Overlay_7A6E60_Actor_Spawn_Record* records;
+    Festival_Actor_Spawn* records;
     u16 index;
-    Overlay_7A6E60_Actor_Spawn_Record* record;
+    Festival_Actor_Spawn* record;
     s16 position_x;
     u16 new_actor_index;
     u16 saved_index;
@@ -1191,7 +1176,7 @@ void func_801B2908_7A8E88(u16 actor_index) {
         if (1) {
         }
         record = &D_801B541C_7AB99C[index];
-        position_x = record->positionX;
+        position_x = (s16)record->positionX;
         if ((position_x >= min_x) && (max_x >= position_x)) {
             if (func_801B286C_7A8DEC(index) == 0) {
                 new_actor_index = Actor_RangeFindInactive(0x70, 0x7A);
@@ -1385,7 +1370,7 @@ u16 func_801B2FE4_7A9564(u16 position_x, s16 position_z, u16 timer, u16 random_b
 }
 
 void func_801B3180_7A9700(u16 actor_index) {
-    Overlay_7A6E60_Spawn_Config* entry;
+    Festival_Actor_SpawnWithBehavior* entry;
     s16 min_x;
     s16 max_x;
     s16 position_x;
@@ -1415,9 +1400,9 @@ void func_801B3180_7A9700(u16 actor_index) {
                 break;
         }
 
-        position_x = entry->positionX;
-        position_z = entry->positionZ;
-        behavior = entry->behavior;
+        position_x = (s16)entry->spawn.positionX;
+        position_z = (s16)entry->spawn.positionY;
+        behavior = (s16)entry->behavior;
         if (position_x < min_x) {
         }
         else if (max_x < position_x) {

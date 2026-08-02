@@ -15,6 +15,11 @@ typedef union {
 } FixedCoord;
 
 typedef struct {
+    /* 0x00 */ u16 positionX;
+    /* 0x02 */ u16 positionY;
+} Position_U16; /* sizeof = 0x04 */
+
+typedef struct {
     /* 0x0000 */ Mtx matrices[6]; // {ortho, ?, ortho, lookAt, ?, ?}
     /* 0x0180 */ Gfx dlist[0xC00];
 } GfxData; /* sizeof = 0x6180 */

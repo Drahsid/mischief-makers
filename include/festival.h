@@ -39,6 +39,18 @@ typedef struct {
     /* 0x08 */ s32 velocityY;
 } Festival_UnkMotion; /* sizeof = 0x0C */
 
+typedef struct {
+    /* 0x00 */ u16 positionX;
+    /* 0x02 */ u16 positionY;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+} Festival_Actor_Spawn; /* sizeof = 0x08 */
+
+typedef struct {
+    /* 0x00 */ Festival_Actor_Spawn spawn;
+    /* 0x08 */ u16 behavior;
+} Festival_Actor_SpawnWithBehavior; /* sizeof = 0x0A */
+
 
 extern u32 gFestivalRecords[FESTGAME_TOTAL]; // festival games records.
 

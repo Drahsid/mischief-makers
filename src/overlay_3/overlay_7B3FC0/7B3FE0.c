@@ -3,13 +3,6 @@
 #include "7D8E0.h"
 
 typedef struct {
-    /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-} UnkStruct_7B3FE0__Spawn_Record; /* sizeof = 0x08 */
-
-typedef struct {
     /* 0x00 */ u16 randomValue;
     /* 0x02 */ u8 unk_02[2];
     /* 0x04 */ s16 positionZ;
@@ -97,7 +90,7 @@ s16 D_801B4458_7B7B38[6] = { 0x0001, -0x002C, 0x0048, 0x0000, 0x0000, 0x0000 };
 s16 D_801B4464_7B7B44[4] = { 0x0001, 0x0040, 0x0048, 0x0000 };
 s16 D_801B446C_7B7B4C[2] = { 0x0000, 0x0000 };
 
-UnkStruct_7B3FE0__Spawn_Record D_801B4470_7B7B50[5] = {
+Festival_Actor_Spawn D_801B4470_7B7B50[5] = {
     { 0x01D8, 0x0180, 0xFF01, 0x1D03 },
     { 0x00B0, 0x019C, 0xFF01, 0x1D06 },
     { 0x033A, 0x019C, 0xFF01, 0x1D06 },

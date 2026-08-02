@@ -16,11 +16,6 @@ typedef struct {
 } UnkStruct_7B87B0__func_801B1438_7B92E8_Indices; /* sizeof = 0x06 */
 
 typedef struct {
-    /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
-} UnkStruct_7B87B0__func_801B1438_7B92E8_Position; /* sizeof = 0x04 */
-
-typedef struct {
     /* 0x00 */ s16 unk_00;
     /* 0x02 */ s16 unk_02;
     /* 0x04 */ s16 unk_04;
@@ -70,7 +65,7 @@ UnkStruct_7B87B0__func_801B1438_7B92E8_Indices D_801B4498_7BC348[3] = {
     { 1, 1, 0 },
 };
 
-UnkStruct_7B87B0__func_801B1438_7B92E8_Position D_801B44AC_7BC35C[3] = {
+Position_U16 D_801B44AC_7BC35C[3] = {
     { 0x270, 0x2E0 },
     { 0x290, 0x2E0 },
     { 0x2B0, 0x2E0 },
