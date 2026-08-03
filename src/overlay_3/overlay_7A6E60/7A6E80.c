@@ -12,12 +12,6 @@ typedef struct Overlay_7A6E60_Actor_Spawn_Record {
     /* 0x06 */ u16 unk_06;
 } Overlay_7A6E60_Actor_Spawn_Record; /* sizeof = 0x08 */
 
-typedef struct Overlay_7A6E60_Graphic_Spawn_Record {
-    /* 0x00 */ u16 graphicFlags;
-    /* 0x02 */ u16 positionX;
-    /* 0x04 */ u16 positionY;
-} Overlay_7A6E60_Graphic_Spawn_Record; /* sizeof = 0x06 */
-
 typedef struct Overlay_7A6E60_Spawn_Config {
     /* 0x00 */ s16 positionX;
     /* 0x02 */ s16 positionZ;
@@ -464,15 +458,15 @@ s32 func_801B09B4_7A6F34(u16 arg0, s16 arg1) {
 
 void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
     u16 new_var;
-    Overlay_7A6E60_Graphic_Spawn_Record* record;
+    Graphic_Spawn_Record* record;
     s32 left_bound;
-    Overlay_7A6E60_Graphic_Spawn_Record* records;
+    Graphic_Spawn_Record* records;
     s32 right_bound;
     u16 index;
     u16 new_actor_index;
     u16 record_size;
 
-    records = (Overlay_7A6E60_Graphic_Spawn_Record*)D_80178288;
+    records = (Graphic_Spawn_Record*)D_80178288;
 
     if (D_80178288 && D_80178288) {
     }
@@ -490,7 +484,7 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
     if (index && index) {
     }
 
-    if (records[0].graphicFlags == (gScreenPosCurrentX.raw * 0)) {
+    if (records[0].unk_00 == (gScreenPosCurrentX.raw * 0)) {
         if ((((gScreenPosCurrentX.frac * 0) + ((s32)((s8*)&gScreenPosCurrentX)[0] * 0)) + ((s32)((s8*)&gScreenPosCurrentX)[1] * 0))) {
         }
         return;
@@ -505,7 +499,7 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
                 gActors[new_actor_index].actorType = 0x102;
                 Actor_Initialize(new_actor_index);
                 gActors[new_actor_index].var_0D8 = index;
-                gActors[new_actor_index].unk_18C = (s32)D_800D1968[record->graphicFlags & 0xF];
+                gActors[new_actor_index].unk_18C = (s32)D_800D1968[record->unk_00 & 0xF];
                 gActors[new_actor_index].posX.whole = record->positionX - gScreenPosCurrentX.whole;
                 gActors[new_actor_index].posY.whole = record->positionY - gScreenPosCurrentY.whole;
                 gActors[new_actor_index].posZ.whole = position_z;
@@ -514,8 +508,8 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
 
         index++;
         index = (u16)index;
-        record = (Overlay_7A6E60_Graphic_Spawn_Record*)((index * record_size) + ((u8*)records));
-        if (record->graphicFlags == 0) {
+        record = (Graphic_Spawn_Record*)((index * record_size) + ((u8*)records));
+        if (record->unk_00 == 0) {
             break;
         }
     }
