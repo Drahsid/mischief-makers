@@ -821,7 +821,7 @@ void func_8019946C_6C413C(void) {
     gScreenPosCurrentX.whole = gScreenPosTargetX.whole;
     gPlayerActor.flags |= (ACTOR_FLAG_UNK8 | ACTOR_FLAG_ENABLED);
     func_800282F0(sMainBossActor.posX.whole, -0x18);
-    D_800BE5F4.unk_00_u32 = MARINAANIM_5;
+    gMarinaAnim.anim_u32 = MARINAANIM_5;
     gPlayerActor.iFrames = 0;
     sMainBossActor.state = 0x410;
     sMainBossActor.posZ.whole = -0xE0;

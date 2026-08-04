@@ -852,13 +852,13 @@ void func_8019A604_686124(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019AD40_686860.s")
 
 void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
-    switch (D_800BE5F4.unk_02) {
+    switch (gMarinaAnim.state) {
         case 0:
             if (gActors[actor_index].stateLower == 0x39) {
                 gActors[actor_index].state = 2;
             }
-            D_800BE5F4.unk_01 = 0;
-            D_800BE5F4.unk_02 = 0xA;
+            gMarinaAnim.timer = 0;
+            gMarinaAnim.state = 0xA;
             break;
 
         case 0xA:
@@ -876,13 +876,13 @@ void func_8019AEE4_686A04(u16 actor_index, s32 arg1) {
             }
 
             D_801370CE = gButton_A;
-            D_800BE5F4.unk_02 = 0xB;
+            gMarinaAnim.state = 0xB;
 
         case 0xB:
             D_801370CC = gButton_A;
             gActors[actor_index].var_150 = 0x14;
             if (gPlayerPosY.whole >= 0x220) {
-                D_800BE5F4.unk_02 = 0xC;
+                gMarinaAnim.state = 0xC;
             }
             break;
 

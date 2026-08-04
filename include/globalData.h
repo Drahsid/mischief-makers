@@ -142,7 +142,7 @@ extern s16 D_800BE5E4;
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
 extern s16 D_800BE5F0; // unknown. always 0.
-extern UnkStruct_D_800BE5F4 D_800BE5F4; // sometimes treated as a u32, s32, or u8[4]
+extern MarinaAnim gMarinaAnim; // manages automated animations for Marina, like teleporting or Dashing into a stage
 extern u16 D_800BE5F8; // zero'd in Marina_Reset, otherwise unused.
 extern u16 D_800BE5FC; 
 extern u32 D_800BE600; // unused

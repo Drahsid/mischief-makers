@@ -191,7 +191,7 @@ void func_8008CA90(void) {
     temp_val = 0x8030;
     gActors[actor_index].var_110 = (f32) temp_val;
     gActors[actor_index].var_0D8 = 0;
-    D_800BE5F4.unk_00_u32 = MARINAANIM_4;
+    gMarinaAnim.anim_u32 = MARINAANIM_4;
     gActors[actor_index].posX.whole = gPlayerActor.posX.whole;
     gActors[actor_index].posY.whole = gPlayerActor.posY.whole;
     gActors[actor_index].health = gPlayerActor.health;
@@ -219,7 +219,7 @@ void func_8008CA90(void) {
 void func_8008CC00(void) {
     u16 index;
     index = 0x10;
-    D_800BE5F4.unk_00_u32 = MARINAANIM_5;
+    gMarinaAnim.anim_u32 = MARINAANIM_5;
     gPlayerActor.posX.whole = gActors[index].posX.whole;
     gPlayerActor.posY.whole = gActors[index].posY.whole;
     gPlayerPosX.whole = gActors[index].posX.whole + (0, gScreenPosCurrentX.whole); // fakematch
@@ -649,7 +649,7 @@ void func_8008E1A0(u16 actor_index) {
 }
 
 void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused) {
-    D_800BE5F4.unk_00_u32 = MARINAANIM_4;
+    gMarinaAnim.anim_u32 = MARINAANIM_4;
     if (actor_index == 0) {
         actor_index = 0x10;
     }
@@ -662,10 +662,10 @@ void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused) {
 }
 
 void ActorUpdate_MarinaOhNo(u16 actor_index) {
-    D_800BE5F4.unk_00_u32 = MARINAANIM_4;
+    gMarinaAnim.anim_u32 = MARINAANIM_4;
     func_8008DF20(actor_index);
     if (gActors[actor_index].state == 0x10) {
-        D_800BE5F4.unk_00_u32 = MARINAANIM_4;
+        gMarinaAnim.anim_u32 = MARINAANIM_4;
         gActors[actor_index].state = 0x30;
         gActors[actor_index].palette_18C = D_800D46A8; // Marina rolling
         gActors[actor_index].velocityY.raw = FIXED_UNIT(2.0);

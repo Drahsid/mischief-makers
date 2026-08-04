@@ -1720,6 +1720,7 @@ void func_80026784(u16 index) {
     );
 }
 
+//load dialog data.
 void func_800267FC(u16 index) {
     uintptr_t start;
     u32 length;

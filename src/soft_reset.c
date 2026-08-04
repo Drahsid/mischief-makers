@@ -248,7 +248,7 @@ void GameState_Loading(void) {
     D_800BE6FC =
     gAudioFadeMode =
     gIsPlayerInactive =
-    D_800BE5F4.unk_00_u32 =
+    gMarinaAnim.anim_u32 =
     D_800D5820 =
     gPlayerData.flags = 0;
 

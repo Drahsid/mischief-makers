@@ -202,7 +202,7 @@ typedef struct {
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
     /* 0x0C8 */ s16 actorHitX; // global x-position of actor collided
     /* 0x0CA */ s16 actorHitY; // global y-position + hitboxBY0 of actor collided
-    /* 0x0CC */ u16 actorHitIndex; // index of actor collided. bit 15 is also set when updated, in case index is 0.
+    /* 0x0CC */ u16 actorHitIndex; // index of actor collided. bit 15 is also set when updated, in case index is 0 (player).
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
@@ -218,10 +218,10 @@ typedef struct {
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
-    /* 0x0DA */ u8 hitFlags; // hit flags?
-    /* 0x0DB */ u8 hitType; // damage type when hit?
-    /* 0x0DC */ u8 hitByFlags; // "hit by" flags?
-    /* 0x0DD */ u8 hitByType; // damage type imfliced?
+    /* 0x0DA */ u8 hitFlags; // hit flags
+    /* 0x0DB */ u8 hitType; // damage type when hit
+    /* 0x0DC */ u8 hitByFlags; // "hit by" flags
+    /* 0x0DD */ u8 hitByType; // damage type imfliced
     /* 0x0DE */ u8 grabType; // behavior when grabbed / thrown
     /* 0x0DF */ u8 unk_0DF;
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code

@@ -116,17 +116,17 @@ typedef struct {
     /* 0x7C */ u32 unk_7C;
 } PlayerData;
 
-// D_800BE5F4 is treated as both word and 4 bytes.
+// gMarinaAnim is treated as both word and 4 bytes.
 typedef union {
-    u32 unk_00_u32;
-    s32 unk_00_s32; // sometimes only matches as signed word.
+    u32 anim_u32;
+    s32 anim_s32; // sometimes only matches as signed word.
     struct {
         u8 unk_00;
-        u8 unk_01;
-        u8 unk_02;
-        u8 unk_03;
+        u8 timer;
+        u8 state;
+        u8 anim; // AND'd from word field instead
     };
-} UnkStruct_D_800BE5F4;
+} MarinaAnim;
 
 #define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
 

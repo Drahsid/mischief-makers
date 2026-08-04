@@ -2416,14 +2416,14 @@ void func_8004FDF8(u16 actor_index) {
     index = gActors[actor_index].parentIndex;
     if (!(gPlayerData.flags & PLAYERDATA_UNK16) && (func_80049040(actor_index) != 0)) {
         func_8005D370(actor_index, 0x28);
-        gActors[actor_index].state = 0x1A;
+        gActors[actor_index].state = MARINASTATE_26;
     }
     else {
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0));
         if (gActors[actor_index].stateUpper == 0) {
             gActors[actor_index].var_150 = 0;
             gActors[actor_index].var_154 = 0;
-            gActors[actor_index].unk_170 = 0x65;
+            gActors[actor_index].unk_170 = 101;
             Sound_PlaySfx(SFX_MARINA_SHAKE);
             gActors[actor_index].stateUpper += 1;
         }
@@ -2444,7 +2444,7 @@ void func_8004FDF8(u16 actor_index) {
             func_8005D3D8(actor_index);
             if ((gPlayerData.unk_10 < 5) || (gPlayerData.unk_10 >= 0xC) || (gPlayerData.unk_12 >= 0xE)) {
                 gActors[actor_index].unk_170_s8[1] = 0x7F;
-                gActors[actor_index].state = 4;
+                gActors[actor_index].state = MARINASTATE_IDLEHOLD;
             }
         }
     }
@@ -2509,7 +2509,7 @@ void func_800500B0(u16 actor_index) {
 
     if (gPlayerData.flags & PLAYERDATA_UNK16) {
         if ((gPlayerData.unk_12 == 0) && (gPlayerData.unk_11 < 0xE) && (gPlayerData.unk_10 >= 5) && (gPlayerData.unk_10 < 0xC) && (gActors[actor_index].unk_140_u16[1] == 0)) {
-            gActors[actor_index].state = 0x28;
+            gActors[actor_index].state = MARINASTATE_SHAKE;
         }
         else {
             if (gActors[actor_index].flags & (ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6)) {
@@ -2803,7 +2803,7 @@ void func_800509C0(u16 actor_index) {
         if (func_80012AB4(var_a0, gActors[actor_index].posY.whole) & 0x80) {
             gActors[actor_index].velocityX.raw = (s32) (-gActors[actor_index].velocityX.raw * 0.75);
             gActors[actor_index].stateUpper = 1;
-            gActors[actor_index].stateLower = 0x13;
+            gActors[actor_index].stateLower = MARINASTATE_19;
             return;
         }
         gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
@@ -2811,7 +2811,7 @@ void func_800509C0(u16 actor_index) {
     if (gActors[actor_index].var_150 == 0) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK6;
-        gActors[actor_index].state = 4;
+        gActors[actor_index].state = MARINASTATE_IDLEHOLD;
     }
 }
 
@@ -2926,6 +2926,7 @@ void func_80050F3C(u16 actor_index) {
     }
 }
 
+// Marina states 18 and 19
 void func_80051324(u16 actor_index) {
     s16 var_a0;
     s32 var_a3;
@@ -2942,7 +2943,7 @@ void func_80051324(u16 actor_index) {
             gActors[actor_index].unk_0F8.raw = gActors[actor_index].velocityX.raw;
             gActors[actor_index].unk_0FC.raw = gActors[actor_index].velocityY.raw;
             gActors[actor_index].var_150 = 0x10;
-            if (gActors[actor_index].stateLower == 0x13) {
+            if (gActors[actor_index].stateLower == MARINASTATE_19) {
                 gActors[actor_index].var_150 = 0x20;
             }
             gActors[actor_index].var_158 = 0;
@@ -3025,7 +3026,7 @@ void func_80051324(u16 actor_index) {
             gActors[actor_index].unk_17C_s8[1] = 2;
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-            if (gActors[actor_index].stateLower == 0x13) {
+            if (gActors[actor_index].stateLower == MARINASTATE_19) {
                 gActors[actor_index].unk_12E_u8 |= 0x40;
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
@@ -3033,7 +3034,7 @@ void func_80051324(u16 actor_index) {
             Sound_PlaySfx(SFX_DASH_0081);
         }
         else {
-            if (gActors[actor_index].stateLower == 0x12) {
+            if (gActors[actor_index].stateLower == MARINASTATE_18) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), gActors[actor_index].var_158);
                 if (func_8005C6D0(gActors[actor_index].velocityX.raw) > MARINA_MOVE(28)) {
                     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(32.0/256));
@@ -3065,7 +3066,7 @@ void func_80051324(u16 actor_index) {
                         gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw * 0.75;
                         gActors[actor_index].var_150 += 0x10;
                         gActors[actor_index].stateUpper = 3;
-                        gActors[actor_index].stateLower = 0x13;
+                        gActors[actor_index].stateLower = MARINASTATE_19;
                         return;
                     }
                     else {
@@ -3073,7 +3074,7 @@ void func_80051324(u16 actor_index) {
                     }
                 }
             }
-            if (gActors[actor_index].stateLower == 0x13) {
+            if (gActors[actor_index].stateLower == MARINASTATE_19) {
                 var_a3 = MARINA_MOVE(0);
                 if (gActors[actor_index].stateUpper == 2) {
                     var_a3 *= 4;
@@ -3097,7 +3098,7 @@ void func_80051324(u16 actor_index) {
             if (gActors[actor_index].var_150 == 0) {
                 gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
                 gActors[actor_index].stateUpper = 2;
-                gActors[actor_index].stateLower = 0x1A;
+                gActors[actor_index].stateLower = MARINASTATE_26;
             }
         }
 
@@ -3217,12 +3218,12 @@ void func_80052004(u16 actor_index) {
         gActors[actor_index].state = 6;
     }
     else {
-        if (gActors[actor_index].stateLower != 0x1D) {
+        if (gActors[actor_index].stateLower != MARINASTATE_29) {
             gActors[actor_index].unk_12C_u16[0] |= 4;
         }
         if (D_801373D8 & 0x80) {
-            if ((gActors[actor_index].stateLower != 0x1A) && (gActors[actor_index].stateLower != 0x1D)) {
-                gActors[actor_index].stateLower = 0x1A;
+            if ((gActors[actor_index].stateLower != MARINASTATE_26) && (gActors[actor_index].stateLower != MARINASTATE_29)) {
+                gActors[actor_index].stateLower = MARINASTATE_26;
             }
             if (gActors[actor_index].unk_140_u8[0] == 0) {
                 func_8005D370(actor_index, 0x1C);
@@ -3267,7 +3268,7 @@ void func_80052004(u16 actor_index) {
             /* fallthrough */
         case 1:
             gActors[actor_index].var_150--;
-            if ((gActors[actor_index].stateLower != 0x1B) && 
+            if ((gActors[actor_index].stateLower != MARINASTATE_27) && 
                 (gActors[actor_index].velocityY.raw > 0) && 
                 (gActors[actor_index].var_150 > 0) &&
                 (D_801370CC & gButton_A)) {
@@ -3276,7 +3277,7 @@ void func_80052004(u16 actor_index) {
             gActors[actor_index].stateUpper = 2;
             /* fallthrough */
         case 2:
-            if (gActors[actor_index].stateLower == 0x1A) {
+            if (gActors[actor_index].stateLower == MARINASTATE_26) {
                 if (!(D_801373D8 & 0x10)) {
                     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19));
                 }
@@ -3284,16 +3285,16 @@ void func_80052004(u16 actor_index) {
                     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19) * 1.5);
                 }
             }
-            else if (gActors[actor_index].stateLower == 0x1B) {
+            else if (gActors[actor_index].stateLower == MARINASTATE_27) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19) * 0.5);
             }
-            else if (gActors[actor_index].stateLower == 0x1C) {
+            else if (gActors[actor_index].stateLower == MARINASTATE_28) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19));
             }
-            else if (gActors[actor_index].stateLower == 0x1D) {
+            else if (gActors[actor_index].stateLower == MARINASTATE_29) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19));
                 if (gActors[actor_index].velocityY.raw < (-MARINA_MOVE(28) * 0.7)) {
-                    gActors[actor_index].stateLower = 0x1A;
+                    gActors[actor_index].stateLower = MARINASTATE_26;
                 }
             }
             break;
@@ -3335,7 +3336,7 @@ void func_80052004(u16 actor_index) {
             gActors[actor_index].unk_17C = 0;
             gActors[actor_index].unk_17C_s8[1] = 1;
         }
-        if (gActors[actor_index].stateLower != 0x1B) {
+        if (gActors[actor_index].stateLower != MARINASTATE_27) {
             step = MARINA_MOVE(20) / 10;
             if (D_801373D8 & 2) {
                 target = MARINA_MOVE(20);
@@ -3356,10 +3357,10 @@ void func_80052004(u16 actor_index) {
                 }
             }
             if (!(D_801373D8 & 3)) {
-                if (gActors[actor_index].stateLower == 0x1A) {
+                if (gActors[actor_index].stateLower == MARINASTATE_26) {
                     target = 0;
                 }
-                if (gActors[actor_index].stateLower == 0x1C) {
+                if (gActors[actor_index].stateLower == MARINASTATE_28) {
                     target = gActors[actor_index].velocityX.raw;
                 }
             }
@@ -3754,14 +3755,14 @@ void func_80053358(u16 actor_0, u16 actor_1) {
             gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
             gActors[actor_0].stateUpper = 2;
             gActors[actor_0].unk_17C = 0;
-            gActors[actor_0].stateLower = 0x16;
+            gActors[actor_0].stateLower = MARINASTATE_22;
         }
         else if (gActors[actor_0].unk_140_u8[0] == 8) {
-            gActors[actor_0].state = 0x14;
+            gActors[actor_0].state = MARINASTATE_20;
         }
         else {
             gActors[actor_0].unk_170 = 0x45;
-            gActors[actor_0].state = 0x23;
+            gActors[actor_0].state = MARINASTATE_35;
         }
     }
 }
@@ -4891,13 +4892,13 @@ void func_800569AC(u16 actor_0, u16 actor_1) {
             gActors[actor_0].velocityY.raw = Math_ApproachS32(gActors[actor_0].velocityY.raw, FIXED_UNIT(-6.0), MARINA_MOVE(19) * 0.5);
         }
         if (func_800491B8(actor_0, 0, -0xE) != 0) {
-            gActors[actor_0].state = 5;
+            gActors[actor_0].state = MARINASTATE_5;
         }
         else if (func_8005D418(actor_0) != 0) {
             gActors[actor_0].var_150--;
             if (gActors[actor_0].var_150 <= 0) {
                 gActors[actor_0].flags ^= ACTOR_FLAG_FLIPPED;
-                gActors[actor_0].state = 0x16;
+                gActors[actor_0].state = MARINASTATE_22;
             }
         }
         break;
@@ -4954,10 +4955,10 @@ void func_80056CCC(u16 actor_0, u16 actor_1) {
             }
             if (gActors[actor_0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK14;
-                gActors[actor_0].state = 3;
+                gActors[actor_0].state = MARINASTATE_IDLE;
             }
             else {
-                gActors[actor_0].state = 0x16;
+                gActors[actor_0].state = MARINASTATE_22;
             }
         }
         break;
@@ -5015,10 +5016,10 @@ void func_8005701C(u16 actor_index) {
             if (func_8005D418(actor_index) != 0) {
                 if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
                     gActors[actor_index].flags |= ACTOR_FLAG_UNK14;
-                    gActors[actor_index].state = 3;
+                    gActors[actor_index].state = MARINASTATE_IDLE;
                 }
                 else {
-                    gActors[actor_index].state = 0x16;
+                    gActors[actor_index].state = MARINASTATE_22;
                 }
             }
         }
@@ -5036,9 +5037,9 @@ void func_80057268(u16 actor_index) {
     gActors[actor_index].unk_12F_u8 = 0;
     D_801370CE &= ~gButton_B;
     if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
-        gActors[actor_index].state = 3;
+        gActors[actor_index].state = MARINASTATE_IDLE;
     }
     else {
-        gActors[actor_index].state = 0x19;
+        gActors[actor_index].state = MARINASTATE_25;
     }
 }

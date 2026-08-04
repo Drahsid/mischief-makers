@@ -6,11 +6,11 @@
 // state values stored in lower byte of Actor 0's "state" field
 typedef enum {
     MARINASTATE_0,
-    MARINASTATE_1,
-    MARINASTATE_2,
-    MARINASTATE_3,
-    MARINASTATE_4,
-    MARINASTATE_5,
+    MARINASTATE_WAIT1, // waiting state, usually during cinematics
+    MARINASTATE_WAIT2,
+    MARINASTATE_IDLE, // default idle state
+    MARINASTATE_IDLEHOLD, // default idle state while holding
+    MARINASTATE_5, 
     MARINASTATE_6,
     MARINASTATE_7,
     MARINASTATE_8,
@@ -20,7 +20,7 @@ typedef enum {
     MARINASTATE_12,
     MARINASTATE_13,
     MARINASTATE_14,
-    MARINASTATE_15,
+    MARINASTATE_ROLL, // state while rolling
     MARINASTATE_16,
     MARINASTATE_17,
     MARINASTATE_18,
@@ -39,13 +39,13 @@ typedef enum {
     MARINASTATE_31,
     MARINASTATE_32,
     MARINASTATE_33,
-    MARINASTATE_34,
+    MARINASTATE_GRAB,
     MARINASTATE_35,
     MARINASTATE_36,
     MARINASTATE_37,
-    MARINASTATE_38,
+    MARINASTATE_THROW,
     MARINASTATE_39,
-    MARINASTATE_40,
+    MARINASTATE_SHAKE, // state while shake-shaking
     MARINASTATE_41,
     MARINASTATE_42,
     MARINASTATE_43,
@@ -59,9 +59,9 @@ typedef enum {
     MARINASTATE_51,
     MARINASTATE_52,
     MARINASTATE_53,
-    MARINASTATE_54,
-    MARINASTATE_55,
-    MARINASTATE_56,
+    MARINASTATE_54, // state code at D_8019B000[3]
+    MARINASTATE_TPIN, // teleport in
+    MARINASTATE_TPOUT,
     MARINASTATE_57,
     MARINASTATE_DEBUGANIM,
     MARINASTATE_DEBUGGFX,
@@ -108,41 +108,41 @@ typedef enum {
 // abreviate Marina velocity getter
 #define MARINA_MOVE(n) Marina_GetMoveVelocity(MARINAMOVE_ ##n )
 
-// stored as word in D_800BE5F4. seems to determine animation
+// stored as word in gMarinaAnim. determines automated animation
 typedef enum {
-    MARINAANIM_0,
-    MARINAANIM_1,
-    MARINAANIM_2,
-    MARINAANIM_3,
+    MARINAANIM_0, // stubbed / no animation
+    MARINAANIM_1, // stubbed / no animation
+    MARINAANIM_2, // automate button press
+    MARINAANIM_3, // set gPlayerActor.stateLower to gMarinaAnim.timer
     MARINAANIM_4,
     MARINAANIM_5,
     MARINAANIM_6,
     MARINAANIM_7,
-    MARINAANIM_8,
-    MARINAANIM_9,
-    MARINAANIM_10,
-    MARINAANIM_11,
-    MARINAANIM_12,
-    MARINAANIM_13,
-    MARINAANIM_14,
-    MARINAANIM_15,
-    MARINAANIM_16,
-    MARINAANIM_17,
-    MARINAANIM_18,
-    MARINAANIM_19,
-    MARINAANIM_20,
-    MARINAANIM_21,
-    MARINAANIM_22,
-    MARINAANIM_23,
-    MARINAANIM_24,
-    MARINAANIM_25,
-    MARINAANIM_26,
-    MARINAANIM_27,
-    MARINAANIM_28,
-    MARINAANIM_29,
-    MARINAANIM_30,
-    MARINAANIM_31,
-    MARINAANIM_32
+    MARINAANIM_8, // enter area dashing
+    MARINAANIM_9, // enter area dashing
+    MARINAANIM_10, // teleport in
+    MARINAANIM_11, // teleport in
+    MARINAANIM_12, // teleporting out
+    MARINAANIM_13, // start idle humming
+    MARINAANIM_14, // "stage clear" animation
+    MARINAANIM_15, // use D_80192000[26] as animation
+    MARINAANIM_16, // use D_80192000[27] as animation
+    MARINAANIM_17, // use D_80192000[28] as animation
+    MARINAANIM_18, // use D_80192000[11] as animation
+    MARINAANIM_19, // use D_80192000[12] as animation
+    MARINAANIM_20, // use D_8019b000[7] as animation
+    MARINAANIM_21, // use D_801a6800[17] as animation
+    MARINAANIM_22, // use D_801a6800[18] as animation
+    MARINAANIM_23, // use D_801a6800[19] as animation
+    MARINAANIM_24, // use D_801a6800[20] as animation
+    MARINAANIM_25, // use D_801a6800[21] as animation
+    MARINAANIM_26, // use D_801a6800[22] as animation
+    MARINAANIM_27, // use D_801a6800[23] as animation
+    MARINAANIM_28, // use D_801a6800[24] as animation
+    MARINAANIM_29, // use D_80192000[8] as animation
+    MARINAANIM_30, // use D_80192000[10] as animation
+    MARINAANIM_31, // use D_8019b000[5] as animation
+    MARINAANIM_32  // use D_8019b000[7] as animation
 } MarinaAnimations;
 
 s32 func_80049040(u16 actor_index);

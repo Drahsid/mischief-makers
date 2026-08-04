@@ -212,7 +212,7 @@ void func_80192920_6D2FA0(u16 actor_state) {
 void func_80192A98_6D3118(u16 actor_index) {
     Actor_ClearRange(0x31, 0x8F);
     gIsPlayerInactive = FALSE;
-    D_800BE5F4.unk_00_s32 = MARINAANIM_4;
+    gMarinaAnim.anim_s32 = MARINAANIM_4;
 }
 
 // Main opening cinematic timeline, stateLower advances through the visible beats

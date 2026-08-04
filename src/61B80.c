@@ -1369,7 +1369,7 @@ void ActorUpdate_StageClear(u16 actor_index) {
         if (gActors[actor_index].var_154-- == 0) {
             Actor_LoadSpawnTable((u16* ) gActors[actor_index].var_158);
             Sound_PlayMusic(BGM_GET);
-            D_800BE5F4.unk_00_u32 = MARINAANIM_14;
+            gMarinaAnim.anim_u32 = MARINAANIM_14;
             gActors[actor_index].var_154 = 360;
             gActors[actor_index].state += 1;
         }
@@ -1480,7 +1480,7 @@ void func_80064F4C(u16 actor_index) {
             Sound_PlayMusic(BGM_GET);
             gActors[actor_index].var_150 |= 0x1000;
             D_800D2924 = gScreenBoundX1.whole = 0xE12;
-            D_800BE5F4.unk_00_u32 = MARINAANIM_14;
+            gMarinaAnim.anim_u32 = MARINAANIM_14;
             gActors[actor_index].unk_174 += 1;
         }
         break;
@@ -1560,7 +1560,7 @@ void ActorUpdate_MsHint(u16 actor_index) {
                 }
                 func_80065218();
                 func_8005C550(0, 1);
-                D_800BE5F4.unk_00_u32 = MARINAANIM_1;
+                gMarinaAnim.anim_u32 = MARINAANIM_1;
                 gActors[actor_index].state++;
             }
         }
@@ -1568,7 +1568,7 @@ void ActorUpdate_MsHint(u16 actor_index) {
     case 3:
         func_8005C550(0, 1);
         if (func_8005DEFC() == 0) {
-            D_800BE5F4.unk_00_u32 = MARINAANIM_0;
+            gMarinaAnim.anim_u32 = MARINAANIM_0;
             gActors[actor_index].state += 1;
         }
         break;

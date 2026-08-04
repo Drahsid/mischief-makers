@@ -974,7 +974,7 @@ void func_801B2628_7B5D08(u16 actor_index) {
                 func_801B1180_7B4860(actor_index);
                 gActors[0].posX.whole = 0x218 - gScreenPosCurrentX.whole;
                 gActors[0].posY.whole = 0x80;
-                D_800BE5F4.unk_00_u32 = MARINAANIM_2;
+                gMarinaAnim.anim_u32 = MARINAANIM_2;
                 gPlayerData.unk_20 = 0;
                 gPlayerData.unk_24 = 0;
                 gActors[actor_index].state++;
@@ -1004,7 +1004,7 @@ void func_801B2628_7B5D08(u16 actor_index) {
                 OverlayABI_Slot2_fn29_u16(actor_index);
                 gActors[actor_index].var_150 = 0;
                 gActors[actor_index].var_158 = 0x3B;
-                D_800BE5F4.unk_00_u32 = MARINAANIM_5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 D_800BE544 = 0;
                 gActors[actor_index].state++;
             }

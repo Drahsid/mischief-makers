@@ -493,7 +493,7 @@ u16 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
         gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
         gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
         gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
-        if (gPlayerActor.stateLower == 0x26) { // is Marina throwing(?)
+        if (gPlayerActor.stateLower == MARINASTATE_THROW) {
             if (func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole) & 0x80) {
                 gActors[actor_index].posX.raw = gPlayerActor.posX.raw;
             }
@@ -8459,7 +8459,8 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         break;
     case 2:
         WarpGate_UpdateAppearance(actor_index);
-        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].parentIndex == 0)) || WarpGate_IsGuestsUsing(actor_index)) {
+        if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].parentIndex == PLAYER_INDEX)) ||
+              WarpGate_IsGuestsUsing(actor_index)) {
             gActors[actor_index].state++;
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
             Sound_PlaySfxAtActor2(SFX_STAR_TP, actor_index);
@@ -8475,7 +8476,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
                 break;
             }
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
-                D_800BE5F4.unk_00_s32 = MARINAANIM_12;
+                gMarinaAnim.anim_s32 = MARINAANIM_12;
                 gActors[actor_index].unk_174 = 0;
                 break;
             }
@@ -8555,11 +8556,11 @@ void ActorUpdate_WarpGate(u16 actor_index) {
             }
             else
         default:
-            if ((D_800BE5F4.unk_00_s32 == MARINAANIM_0) &&
+            if ((gMarinaAnim.anim_s32 == MARINAANIM_0) &&
                 (gPlayerActor.posX.whole < 0x71) && (gPlayerActor.posX.whole > -0x71) &&
                 (gPlayerActor.posY.whole < 0x71) && (gPlayerActor.posY.whole > -0x71)) {
                 gActors[actor_index].state--;
-                D_800BE5F4.unk_00_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_10;
                 D_800D2960 = 2;
             }
             break;

@@ -241,7 +241,7 @@ u8 func_8005D1B0(u16 actor_index) {
 }
 
 // see if Gem actor was hit by Marina.
-// @ returns 1 if collided with hitbox B, 2 if collided with hitbox A, 0 if not hit
+// @returns 1 if collided with hitbox B, 2 if collided with hitbox A, 0 if not hit
 s32 func_8005D1E8(u16 actor_index) {
     if (((gActors[actor_index].hitboxAX1 + gActors[actor_index].posX.whole) >= (gPlayerActor.hitboxBX0 + gPlayerActor.posX.whole)) &&
         ((gPlayerActor.posX.whole + gPlayerActor.hitboxBX1) >= (gActors[actor_index].posX.whole + gActors[actor_index].hitboxAX0)) &&

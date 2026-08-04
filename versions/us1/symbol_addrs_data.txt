@@ -246,7 +246,7 @@ gContinueChoice = 0x80178138; // type:u16 size:0x2
 gContinueBGM = 0x8017813C; // type:s32 size:0x4
 
 gRngSeed = 0x800BE5A4; // size:0x2
-D_800BE5F4 = 0x800BE5F4; // size:0x4
+gMarinaAnim = 0x800BE5F4; // size:0x4
 
 gScreenXLock = 0x800be62C; // type:u16 size:0x2
 gScreenYLock = 0x800be630; // type:u16 size:0x2

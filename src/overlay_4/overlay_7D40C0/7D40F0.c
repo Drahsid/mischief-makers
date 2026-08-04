@@ -1408,7 +1408,7 @@ s32 func_801B9B90_7D4380(void) {
         func_8005739C(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
-            D_800BE5F4.unk_00_u32 = MARINAANIM_4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             return TRUE;
         }
 
@@ -1427,7 +1427,7 @@ void func_801B9C0C_7D43FC(s16 arg0, s16 arg1) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
     gPlayerActor.posX.whole = arg0;
     gPlayerActor.posY.whole = arg1;
-    D_800BE5F4.unk_00_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_10;
 }
 
 void func_801B9C6C_7D445C(u16 arg0) {
@@ -1578,7 +1578,7 @@ void func_801BA1A4_7D4994(u16 arg0, u16 arg1, u16 arg2, s16 arg3, void* arg4) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
     func_801BA040_7D4830();
-    D_800BE5F4.unk_00_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_10;
     gStageState++;
 }
 
@@ -1755,7 +1755,7 @@ void func_801BA690_7D4E80(void) {
             Actor_LoadSpawnTable(sActorSpawn_3_9B);
             gStageState++;
             D_800BE544 = 0x8000;
-            D_800BE5F4.unk_00_u32 = MARINAANIM_7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gCannotPause = TRUE;
             break;
 
@@ -1813,7 +1813,7 @@ void func_801BAA0C_7D51FC(void) {
                 func_80045FA4(D_801BDE8C_7D867C, NULL);
                 gFestivalCurrentEvent = FESTGAME_DODGEBALL;
                 Actor_LoadSpawnTable(sActorSpawn_3_11A);
-                D_800BE5F4.unk_00_u32 = MARINAANIM_7;
+                gMarinaAnim.anim_u32 = MARINAANIM_7;
             }
             break;
 
@@ -1836,7 +1836,7 @@ void func_801BAA0C_7D51FC(void) {
 
         case 0x11:
             if (SpawnText_FIGHT(0x12, 0)) {
-                D_800BE5F4.unk_00_u32 = MARINAANIM_5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 // required to produce fixed address within gActors
                 (gActors + 0x30)->var_0D8 = 0;
             }
@@ -1860,7 +1860,7 @@ void func_801BAA0C_7D51FC(void) {
             gFestivalCurrentEvent = FESTGAME_DODGEBALL;
             Actor_LoadSpawnTable(sActorSpawn_3_11A);
             (gActors + 0x30)->var_0D8 = 1; // required to produce fixed address within gActors
-            D_800BE5F4.unk_00_u32 = MARINAANIM_7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             (gActors + 0x5B)->flags = 0; // required to produce fixed address within gActors
             (gActors + 0x5C)->flags = 0; // required to produce fixed address within gActors
             (gActors + 0x5D)->flags = 0; // required to produce fixed address within gActors
@@ -2134,7 +2134,7 @@ void func_801BB444_7D5C34(u16* arg0, u16* arg1, void* arg2) {
     func_80045FA4(arg0, arg1);
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg2);
-    D_800BE5F4.unk_00_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_10;
     Sound_PlaySfx(SFX_WIND_00BA);
     D_801C02B6_7DAAA6 = gStageState;
     gStageState = 1;
@@ -2232,7 +2232,7 @@ void func_801BB768_7D5F58(void) {
             gCannotPause = TRUE;
             func_80045FA4(D_801BF24C_7D9A3C, NULL);
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
-            D_800BE5F4.unk_00_u32 = MARINAANIM_7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             if (!gSkipStageIntro) {
                 Sound_PlaySfx(SFX_WIND_00BA);
                 gStageState = 1;
@@ -2280,7 +2280,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 10:
-            D_800BE5F4.unk_00_u32 = MARINAANIM_5;
+            gMarinaAnim.anim_u32 = MARINAANIM_5;
             gStageState = 0x14;
             D_800D28FC |= 8;
 
@@ -2290,7 +2290,7 @@ void func_801BB768_7D5F58(void) {
 
         case 21:
             if (gAudioFadeMode != 0x81) {
-                D_800BE5F4.unk_00_u32 = MARINAANIM_20;
+                gMarinaAnim.anim_u32 = MARINAANIM_20;
                 Sound_PlayMusic(BGM_GET);
                 gStageState = 0x16;
             }
@@ -2322,7 +2322,7 @@ void func_801BB768_7D5F58(void) {
                 Sound_PlayMusic(BGM_YUJYA);
             }
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
-            D_800BE5F4.unk_00_u32 = MARINAANIM_7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gStageState = 0x1001;
             break;
 
@@ -2385,7 +2385,7 @@ void func_801BBB30_7D6320(u16 arg0, u16 arg1, u16 arg2, u16 arg3, void* arg4) {
     gPlayerActor.posY.whole = arg3;
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
-    D_800BE5F4.unk_00_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_10;
     gStageState++;
 }
 
@@ -2492,7 +2492,7 @@ void func_801BBE90_7D6680(void) {
             Actor_ClearRange_30To90();
             func_80045FA4(D_801BFB3C_7DA32C, (u16*)0xFFFFFFF9);
             func_801BBDF8_7D65E8(sActor_Spawn_3_1B);
-            D_800BE5F4.unk_00_u32 = MARINAANIM_10;
+            gMarinaAnim.anim_u32 = MARINAANIM_10;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageState++;
             break;
