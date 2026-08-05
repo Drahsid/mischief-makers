@@ -1364,7 +1364,7 @@ void func_801B0D6C_798BAC(u16 actor_index) {
         gActors[child_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTZ;
         gActors[child_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
         gActors[child_index].health = 1;
-        gActors[child_index].grabType = 0x10;
+        gActors[child_index].grabType = GRABTYPE_16;
         gActors[child_index].hitboxBY0 = 0;
         gActors[child_index].hitboxBY1 = 0;
         gActors[child_index].hitboxBX0 = 0;
@@ -1993,7 +1993,7 @@ void func_801B2830_79A670(u16 actor_index) {
         case 0:
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_UNK8;
             gActors[actor_index].graphicIndex = 0;
-            gActors[actor_index].grabType = 4;
+            gActors[actor_index].grabType = GRABTYPE_4;
             gActors[actor_index].unk_0DF = 0x40;
             gActors[actor_index].dlist_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
             gActors[actor_index].hitboxBX0 = -0x30;
@@ -2211,7 +2211,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
         case 0:
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK8;
             gActors[actor_index].graphicIndex = 0;
-            gActors[actor_index].grabType = 4;
+            gActors[actor_index].grabType = GRABTYPE_4;
             gActors[actor_index].unk_0DF = 0x40;
             gActors[actor_index].unk_17C = D_801B5FE4_79DE24[gActors[actor_index].var_0D8];
 

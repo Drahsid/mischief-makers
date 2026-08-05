@@ -3,7 +3,7 @@
 #include "marina.h"
 #include "4FEB0.h"
 
-extern Actor2Func D_800D3F70[];
+extern Actor2Func gMarinaHitTable[];
 
 extern void func_8004F514(u16 actor0, u16 actor1);
 extern s32 func_800574B4(u16 actor_index);
@@ -762,7 +762,7 @@ s32 func_80058F9C(u16 actor_index) {
     if ((gActors[actor_index].stateLower == 0x31) || (gActors[actor_index].stateLower == 0x32)) {
         func_800575C0(actor_index);
     }
-    D_800D3F70[gActors[actor_index].hitByType](actor_index, sp26);
+    gMarinaHitTable[gActors[actor_index].hitByType](actor_index, sp26);
     if (gActors[actor_index].hitByType == HITTYPE_17) {
         return 0;
     }

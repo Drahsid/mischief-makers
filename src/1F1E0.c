@@ -1953,7 +1953,9 @@ void func_8001E9DC(u16 arg0, u16 arg1) {
 }
 
 void func_8001EADC(u16 arg0, u16 arg1) {
-    if ((gActors[arg1].grabType == 0xB) || (gActors[arg1].grabType == 0xE) || (gActors[arg1].grabType == 0xF)) {
+    if ((gActors[arg1].grabType == GRABTYPE_11) ||
+        (gActors[arg1].grabType == GRABTYPE_14) ||
+        (gActors[arg1].grabType == GRABTYPE_15)) {
         gActors[arg1].flags_098 &= ~ACTOR_FLAG3_UNK1;
         gActors[arg0].flags_098 ^= (ACTOR_FLAG3_UNK1 | ACTOR_FLAG3_UNK0);
         gActors[arg0].hitByFlags = gActors[arg0].hitFlags;

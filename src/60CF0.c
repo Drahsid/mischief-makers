@@ -17,7 +17,7 @@ u16 SpawnBeamThrow(u16 marina_index) {
     gActors[actor_1].posY.raw = gActors[marina_index].posY.raw;
     gActors[actor_1].posZ.raw = gActors[marina_index].posZ.raw;
     gActors[actor_1].unk_0CE = 7;
-    gActors[actor_1].grabType = 3;
+    gActors[actor_1].grabType = GRABTYPE_3;
     gActors[actor_1].unk_0DF = 0;
     gActors[actor_1].var_150 = gActors[marina_index].stateLower;
     gActors[actor_1].var_110 = 0.5f;
@@ -133,7 +133,7 @@ void func_8006098C(u16 actor_index) {
     if (gActors[actor_index].stateLower == 0) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = 0x15C;
-        gActors[actor_index].grabType = 1;
+        gActors[actor_index].grabType = GRABTYPE_1;
         gActors[actor_index].unk_0DF = 0;
         gActors[actor_index].hitFlags = 0;
         gActors[actor_index].hitType = 2;

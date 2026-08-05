@@ -173,7 +173,7 @@ void func_8005E260(u16 actor_index) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = GINDEX_SPEECHBUBBLE;
         gActors[actor_index].unk_0DF = 0;
-        gActors[actor_index].grabType = 0xD;
+        gActors[actor_index].grabType = GRABTYPE_13;
         gActors[actor_index].var_110 = 0.0f;
         if (gActors[actor_index].unk_104 < 0) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;

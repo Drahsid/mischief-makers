@@ -145,6 +145,34 @@ typedef enum {
     MARINAANIM_32  // use D_8019b000[7] as animation
 } MarinaAnimations;
 
+// properties of an actor when grabbed / thrown.
+typedef enum {
+    GRABTYPE_0, // stubbed grab/throw state
+    GRABTYPE_1,
+    GRABTYPE_2,
+    GRABTYPE_3, // used for counters of big lasers/Raiden's lightning
+    GRABTYPE_4,
+    GRABTYPE_5,
+    GRABTYPE_6,
+    GRABTYPE_7,
+    GRABTYPE_8,
+    GRABTYPE_9, // stubbed grab/throw state
+    GRABTYPE_10,
+    GRABTYPE_11,
+    GRABTYPE_12,
+    GRABTYPE_13,
+    GRABTYPE_14,
+    GRABTYPE_15,
+    GRABTYPE_16,
+    GRABTYPE_17,
+    GRABTYPE_18,
+    GRABTYPE_19,
+    GRABTYPE_20,
+    GRABTYPE_21,
+    GRABTYPE_22,
+    GRABTYPE_23  // stubbed grab/throw state
+} GrabTypes;
+
 s32 func_80049040(u16 actor_index);
 s32 func_80048F70(u16 actor_index);
 s32 func_800491B8(u16 actor_index, s16, s32);

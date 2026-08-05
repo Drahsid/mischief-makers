@@ -1983,7 +1983,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     gActors[actor_index].damage = 40; \
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(1.0625); \
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(7.75);
-    gActors[actor_index].grabType = 0;
+    gActors[actor_index].grabType = GRABTYPE_0;
     gActors[actor_index].unk_0DF = 0;
     gActors[actor_index].hitType = HITTYPE_11; \
     gActors[actor_index].hitFlags = HITFLAG_7 | HITFLAG_2;
@@ -3653,7 +3653,7 @@ void func_80032900(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
-u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos_z, f32 scale_x, f32 scale_y) {
+u16 func_80032E60(u16 actor_index0, u16 graphic_index, u16 angle_off, f32 mag, s16 pos_z, f32 scale_x, f32 scale_y) {
     u16 index;
     u16 var_a2;
     s32 angle;
@@ -3668,7 +3668,7 @@ u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos_z, f32
     Actor_Initialize(index);
     gActors[index].graphicFlags = (gActors[actor_index0].graphicFlags & (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4)) + (ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
     gActors[index].flags = (gActors[actor_index0].flags & ACTOR_FLAG_FLIPPED) + 3;
-    gActors[index].graphicIndex = arg1;
+    gActors[index].graphicIndex = graphic_index;
     gActors[index].scaleX = scale_x;
     gActors[index].scaleY = scale_y;
     gActors[index].colorA = gActors[actor_index0].colorA;
@@ -3679,21 +3679,21 @@ u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos_z, f32
     gActors[index].unk_148 = 1.0f;
     angle = DEG_TO_INDEX(gActors[actor_index0].rotateZ);
     if (gActors[index].flags & ACTOR_FLAG_FLIPPED) {
-        var_a2 = (angle - arg2) + 0x200;
+        var_a2 = (angle - angle_off) + COS_DEG_180;
     }
     else {
-        var_a2 = arg2 + angle;
+        var_a2 = angle_off + angle;
     }
-    dist = TO_FIXED(COS(var_a2) * arg3);
+    dist = TO_FIXED(COS(var_a2) * mag);
     gActors[index].posX.raw = gActors[actor_index0].posX.raw + (s32) (dist);
-    dist = TO_FIXED(SIN(var_a2) * arg3);
+    dist = TO_FIXED(SIN(var_a2) * mag);
     gActors[index].posY.raw = gActors[actor_index0].posY.raw + (s32) (dist);
     gActors[index].posZ.raw = gActors[actor_index0].posZ.raw + pos_z;
     gActors[index].unk_188 = gActors[actor_index0].unk_188;
     return index;
 }
 
-void func_800330A4(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3) {
+void func_800330A4(u16 actor_index0, u16 actor_index1, u16 arg2, f32 mag) {
     s32 angle;
     u16 var_a0;
     f32 dist;
@@ -3701,14 +3701,14 @@ void func_800330A4(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3) {
     gActors[actor_index0].rotateZ = gActors[actor_index1].rotateZ;
     angle = DEG_TO_INDEX(gActors[actor_index1].rotateZ);
     if (gActors[actor_index0].flags & ACTOR_FLAG_FLIPPED) {
-        var_a0 = ((angle - arg2) + 0x200);
+        var_a0 = ((angle - arg2) + COS_DEG_180);
     }
     else {
         var_a0 = (arg2 + angle);
     }
-    dist = TO_FIXED(COS(var_a0) * arg3);
+    dist = TO_FIXED(COS(var_a0) * mag);
     gActors[actor_index0].posX.raw = gActors[actor_index1].posX.raw + (s32) (dist);
-    dist = TO_FIXED(SIN(var_a0) * arg3);
+    dist = TO_FIXED(SIN(var_a0) * mag);
     gActors[actor_index0].posY.raw = gActors[actor_index1].posY.raw + (s32) (dist);
 }
 
@@ -3722,7 +3722,7 @@ void func_80033204(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3, u16 a
     angle = DEG_TO_INDEX(gActors[actor_index1].rotateZ);
     
     if (gActors[actor_index0].flags & ACTOR_FLAG_FLIPPED) {
-        var_a0 = (angle - arg2) + 0x200;
+        var_a0 = (angle - arg2) + COS_DEG_180;
     }
     else {
         var_a0 = arg2 + angle;
@@ -5717,7 +5717,7 @@ void Spikeball_State0(u16 actor_index) {
     else {
         gActors[actor_index].damage = 60;
     }
-    gActors[actor_index].grabType = 0xC;
+    gActors[actor_index].grabType = GRABTYPE_12;
     gActors[actor_index].unk_0DF = 0x40;
     gActors[actor_index].hitFlags = HITFLAG_7|HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_4;
@@ -6030,7 +6030,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
         gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
         gActors[actor_index].unk_17C = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
         gActors[actor_index].unk_178 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
-        gActors[actor_index].grabType = 8; \
+        gActors[actor_index].grabType = GRABTYPE_8; \
         gActors[actor_index].unk_0DF = 0x40;
         break;
     case 1: // animate Clanball Squish
@@ -6528,7 +6528,7 @@ void func_8003B8CC(u16 actor_index) {
         Clanball_State0(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8;
-        gActors[actor_index].grabType = 6; \
+        gActors[actor_index].grabType = GRABTYPE_6; \
         gActors[actor_index].unk_0DF = 0x40;
         gActors[actor_index].unk_14C = 0.0f;
         /* fallthrough */
@@ -6608,7 +6608,7 @@ void func_8003BE3C(u16 actor_index) {
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
         gActors[actor_index].unk_0CE = 9;
         gActors[actor_index].unk_0DF = 0x40;
-        gActors[actor_index].grabType = 1;
+        gActors[actor_index].grabType = GRABTYPE_1;
         gActors[actor_index].hitType = 7;
         Actor_SetHitboxA(actor_index, 0xC);
         Actor_SetHitboxB(actor_index, 8);
@@ -6740,7 +6740,7 @@ void ActorUpdate_ClanballSpring(u16 actor_index) {
         gActors[actor_index].unk_170 = TO_FIXED(gActors[actor_index].var_150 & 0x380);
         gActors[actor_index].var_160 = FIXED_UNIT(16.0);
         gActors[actor_index].unk_164 = FIXED_UNIT(2.0);
-        gActors[prev].grabType = 6;
+        gActors[prev].grabType = GRABTYPE_6;
         Sound_PlaySfxAtActor2(SFX_BOING_0082, actor_index);
         /* fallthrough */
     case 1:

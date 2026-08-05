@@ -378,6 +378,10 @@ Marina_GetMoveVelocity = 0x80048C94; // type:func
 Marina_State0 = 0x8004A960; // type:func
 
 ActorUpdate_Marina = 0x8004ed10; // type:func
+Marina_DebugMove = 0x8004EC60; // type:func
+
+Marina_ShakeShake = 0x8004FDF8; // type:func
+Marina_StateThrow = 0x80056F54; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func

@@ -642,7 +642,7 @@ DEFAULT_INT Actor_Initialize(u16 actor_index) {
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].scaleY = gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].graphicTimer = 1;
-    gActors[actor_index].grabType = 1;
+    gActors[actor_index].grabType = GRABTYPE_1;
 
     gActors[actor_index].graphicIndex =
     gActors[actor_index].posX.frac =

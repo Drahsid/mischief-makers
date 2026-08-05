@@ -13,7 +13,7 @@ void func_80047E30(u16 arg0) {
 }
 
 // animation type 2 - move through automated button press
-void func_80047E38(s32 arg0) {
+void func_80047E38(u16 arg0) {
     s32 temp_v0;
 
     D_801370CC = (u16)gPlayerData.unk_20;

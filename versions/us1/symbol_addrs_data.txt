@@ -137,6 +137,8 @@ gMarinaActionVelocities = 0x800D5794;
 
 gMarinaStateTable = 0x800d3db0; // size:0xF4
 gMarinaGrabTable = 0x800d3eb0; // size:0x60
+gMarinaThrowTable = 0x800D3F10; // size:0x60
+gMarinaHitTable = 0x800d3f70;
 
 gExitPortraitGraphics = 0x800d3ae8; // size:0x8c rom:0xd46e8
 gExitPortraitPositions = 0x800d38b8; // size:0x230 rom:0xd44b8

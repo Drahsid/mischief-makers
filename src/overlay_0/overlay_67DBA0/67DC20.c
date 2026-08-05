@@ -295,10 +295,10 @@ void func_80193790_67F2B0(u16 actor_index) {
     func_80193600_67F120(0x37);
     func_80193600_67F120(0x3E);
 
-    gActors[0x4E].grabType = 9;
-    gActors[0x37].grabType = 10;
+    gActors[0x4E].grabType = GRABTYPE_9;
+    gActors[0x37].grabType = GRABTYPE_10;
     gActors[0x37].unk_0CE = 2;
-    gActors[0x3E].grabType = 10;
+    gActors[0x3E].grabType = GRABTYPE_10;
     gActors[0x3E].unk_0CE = 2;
     gActors[actor_index].health = 1000;
     gActors[0x42].posY.raw = gActors[0x43].unk_180;

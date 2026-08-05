@@ -1735,7 +1735,7 @@ void func_8007B73C(u16 actor_index) {
         }
         else {
             if ((actor->flags_098 & ACTOR_FLAG3_GRAB) && !(actor->var_150 & 0x100000)) {
-                if (actor->grabType == 1) {
+                if (actor->grabType == GRABTYPE_1) {
                     actor->graphicFlags &= ~ACTOR_GFLAG_ROTZ;
                     Sound_PlaySfx(SFX_CLANCER_OW_0067);
                     func_80079AB4(actor_index);
@@ -1770,7 +1770,7 @@ void func_8007B73C(u16 actor_index) {
         actor->flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
         ACTOR_GFX_INIT(actor_index, D_800D8190);
         actor->unk_0CE = 1;
-        actor->grabType = 1;
+        actor->grabType = GRABTYPE_1;
         actor->unk_0DF = 1;
         actor->var_150 = (u16)actor->var_110;
         if (actor->var_150 & 0x40) {
@@ -1790,7 +1790,7 @@ void func_8007B73C(u16 actor_index) {
                 actor->scaleX = 0.75f;
                 break;
             case 0x2000:
-                actor->grabType = 6;
+                actor->grabType = GRABTYPE_6;
                 actor->unk_0DF = 0x40;
                 actor->scaleX = 1.25f;
                 break;

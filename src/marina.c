@@ -939,7 +939,7 @@ void Marina_State0(u16 actor_index) {
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK10 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags &= ACTOR_FLAG_FLIPPED;
     gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-    gActors[actor_index].grabType = 1;
+    gActors[actor_index].grabType = GRABTYPE_1;
     gActors[actor_index].unk_0DF = 1;
     gActors[actor_index].unk_17C = 0;
     gPlayerActor.unk_120 = gActors[actor_index].unk_124 = gActors[actor_index].unk_128 = 1.0f;
@@ -2355,7 +2355,7 @@ void func_8004EAE4(u16 actor_index) {
 }
 
 // state 60 - debug "flymode"
-void func_8004EC60(u16 actor_index) {
+void Marina_DebugMove(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 |= 0xC1;
     gActors[actor_index].velocityX.raw = 0;
     gActors[actor_index].velocityY.raw = 0;
@@ -2385,7 +2385,7 @@ void ActorUpdate_Marina(u16 actor_index) {
         return;
     }
 
-    if (gActors[actor_index].state == 0) {
+    if (gActors[actor_index].state == MARINASTATE_0) {
         Marina_State0(actor_index);
     }
 

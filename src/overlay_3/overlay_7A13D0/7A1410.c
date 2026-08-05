@@ -293,7 +293,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].posZ.whole = -1;
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16;
-            gActors[actor_index].grabType = 1;
+            gActors[actor_index].grabType = GRABTYPE_1;
             gActors[actor_index].unk_0DF = 0x41;
             gActors[actor_index].hitboxBY0 = 0xE;\
             gActors[actor_index].hitboxBY1 = -0xE;\

@@ -2211,7 +2211,7 @@ void func_800902B0(u16 actor_index) {
     f32 scale;
 
     scale = gActors[actor_index].unk_168 / 10000.0f;
-    func_80032E60(actor_index + 3, 0x254, 0x118, 10.0f * scale, 1, scale, scale);
+    func_80032E60(actor_index + 3, GINDEX_HAT_USHANKA, 0x118, 10.0f * scale, 1, scale, scale);
     gActors[actor_index + 0x4].scaleX *= 0.8;
     gActors[actor_index + 0x4].scaleY = gActors[actor_index + 0x4].scaleX;
     gActors[actor_index + 0x8].scaleX *= 0.8;

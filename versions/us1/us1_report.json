@@ -8581,7 +8581,7 @@
           }
         },
         {
-          "name": "func_8004EC60",
+          "name": "Marina_DebugMove",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8708,7 +8708,7 @@
           }
         },
         {
-          "name": "func_8004FDF8",
+          "name": "Marina_ShakeShake",
           "size": "696",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9060,7 +9060,7 @@
           }
         },
         {
-          "name": "func_80056F54",
+          "name": "Marina_StateThrow",
           "size": "200",
           "fuzzy_match_percent": 100.0,
           "metadata": {
