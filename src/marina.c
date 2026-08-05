@@ -550,7 +550,7 @@ void func_80049AC0(u16 actor_index) {
         if (temp_v0 == 0) {
             if (!(gActors[actor_index].unk_12E_u8 & 0x80) && (temp_v0 = func_8004F2B0(actor_index)) != 0) {
                 if (temp_v0 == 1) {
-                    if (gActors[gActors[actor_index].parentIndex].grabType == 3) {
+                    if (gActors[gActors[actor_index].parentIndex].grabType == GRABTYPE_3) {
                         gActors[actor_index].state = MARINASTATE_THROW;
                     }
                     else {
@@ -558,7 +558,7 @@ void func_80049AC0(u16 actor_index) {
                     }
                 }
                 else if (temp_v0 == 2) {
-                    if (gActors[gActors[actor_index].parentIndex].grabType != 3) {
+                    if (gActors[gActors[actor_index].parentIndex].grabType != GRABTYPE_3) {
                         gActors[actor_index].unk_140_u16[1] = 0;
                         if (D_801373D8 & 2) {
                             gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
@@ -813,7 +813,7 @@ void func_80049AC0(u16 actor_index) {
                         }
                         else {
                             func_8005D370(actor_index, 0x28);
-                            gActors[actor_index].state = MARINASTATE_SHAKE;
+                            gActors[actor_index].state = MARINASTATE_26;
                         }
                         return;
                     }
@@ -2476,7 +2476,7 @@ void ActorUpdate_Marina(u16 actor_index) {
         gPlayerData.marina_Unk_0FC = gActors[actor_index].unk_0FC.raw;
     }
     gPlayerData.marina_Flags_098 = gActors[actor_index].flags_098;
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
     gPlayerData.unk_7C++;
     gActors[actor_index].scaleX = gActors[actor_index].unk_124 * gPlayerActor.unk_120;
     gActors[actor_index].scaleY = gActors[actor_index].unk_128 * gPlayerActor.unk_120;

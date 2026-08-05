@@ -44,7 +44,7 @@ void func_80193C14_67F734(u16 actor_index);
 void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxB(u16 actor_index, s16 val);
-s32 MARINA_MOVE(s32 arg0);
+s32 Marina_GetMoveVelocity(s32 arg0);
 
 void func_80192100_67DC20(s32 arg0) {
 }
@@ -840,7 +840,7 @@ void func_8019A604_686124(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019A6AC_6861CC.s")

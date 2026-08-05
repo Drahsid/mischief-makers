@@ -326,7 +326,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_GRAB | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK21);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_GRAB | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_WARPING);
 }
 
 void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {

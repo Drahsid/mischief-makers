@@ -158,7 +158,7 @@ u16 gStageTimesToBeat[] = {
     MIN_SEC_TO_TICK(1,4.55),// Bee's the One
     MIN_SEC_TO_TICK(0,17),  // Merco
     MIN_SEC_TO_TICK(1,20),  // Trapped
-    MIN_SEC_TO_TICK(0,33),  // Phoenix Gamma
+    MIN_SEC_TO_TICK(0,55),  // Phoenix Gamma
     0,                      // Demo Final
     MIN_SEC_TO_TICK(1,15),  // Inner Struggle
     MIN_SEC_TO_TICK(1,26),  // Final Battle

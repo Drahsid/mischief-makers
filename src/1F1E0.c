@@ -2352,7 +2352,7 @@ void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].flags_098 &= ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB;
+        gActors[index].flags_098 &= ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB;
     }
 }
 

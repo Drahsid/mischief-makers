@@ -111,5 +111,5 @@ void func_801A6C80_775130(u16 actor_index) {
     }
 
     gActors[actor_index].flags_098 = (s32)gActors[actor_index].flags_098 & 
-         ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+         ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }

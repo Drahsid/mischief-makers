@@ -1835,7 +1835,7 @@ void func_801B1B88_7999C8(u16 actor_index) {
 
             break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
     func_801B1A18_799858(actor_index);
 }
 
@@ -2043,7 +2043,7 @@ void func_801B2830_79A670(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void func_801B2A54_79A894(u16 actor_index) {
@@ -2632,7 +2632,7 @@ void func_801B3AF8_79B938(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void func_801B3EB4_79BCF4(u16 actor_index) {
@@ -3428,5 +3428,5 @@ void func_801B5B90_79D9D0(u16 actor_index) {
             break;
     }
 
-    actor->flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    actor->flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }

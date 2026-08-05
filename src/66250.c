@@ -598,7 +598,7 @@ void func_8006C5A4(u16 actor_index) {
     }
 
     func_80066BCC(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_8006C6F0.s")

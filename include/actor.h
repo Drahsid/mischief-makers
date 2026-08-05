@@ -102,7 +102,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
-    ACTOR_FLAG3_UNK21 = (1U << 21U), // using warp gate
+    ACTOR_FLAG3_WARPING = (1U << 21U), // using warp gate
     ACTOR_FLAG3_UNK22 = (1U << 22U),
     ACTOR_FLAG3_UNK23 = (1U << 23U),
     ACTOR_FLAG3_UNK24 = (1U << 24U),
@@ -156,7 +156,7 @@ typedef enum {
     HITFLAG_4 = (1 << 4), // unused?
     HITFLAG_5 = (1 << 5),
     HITFLAG_6 = (1 << 6),
-    HITFLAG_7 = (1U << 7U),
+    HITFLAG_7 = (1U << 7U)
 } HitFlags;
 
 

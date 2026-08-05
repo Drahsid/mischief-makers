@@ -97,7 +97,7 @@ u16 D_801B44E8_7BC398[] ={
 //  がんばれ... / Keep it up...
 u16 D_801B44F4_7BC3A4[] = {
     ALPHA_JP_HIRA_GA, ALPHA_JP_HIRA_N, ALPHA_JP_HIRA_BA, ALPHA_JP_HIRA_RE, ALPHA_ELLIPSIS, ALPHA_NULL
-}
+};
 
 
 s16* D_801B4500_7BC3B0[5] = {
@@ -440,8 +440,8 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
 
         gActors[actor_index].health = 0;
         gActors[actor_index].damage = 0x32;
-        gActors[actor_index].unk_0DA = 0x80;\
-        gActors[actor_index].unk_0DB = 4;
+        gActors[actor_index].hitFlags = 0x80;\
+        gActors[actor_index].hitType = 4;
         gActors[actor_index].unk_0DF = 0x20;
         gActors[actor_index].state++;
         // fallthrough
@@ -506,7 +506,7 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 void func_801B13C8_7B9278(u16 actor_index_unused) {
@@ -924,7 +924,7 @@ void func_801B26B8_7BA568(u16 actor_index) {
             gActors[actor_index].hitboxAY1 = -0x20;
             gActors[actor_index].hitboxAX0 = -0xC0;
             gActors[actor_index].hitboxAX1 = 0xC0;
-            gActors[actor_index].unk_0DB = 0x13;
+            gActors[actor_index].hitType = 0x13;
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].state++;
@@ -973,7 +973,7 @@ void func_801B2758_7BA608(u16 actor_index) {
 }
 
 s32 func_801B2860_7BA710(u16 actor_index) {
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gActors[0].unk_0CC)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gActors[0].actorHitIndex)) {
         return TRUE;
     }
 
@@ -1282,7 +1282,7 @@ void func_801B349C_7BB34C(u16 actor_index) {
             break;
 
         case 2:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].state = 0;
                 gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED | ACTOR_FLAG_DRAW;
             }
@@ -1400,7 +1400,7 @@ void func_801B39B4_7BB864(u16 actor_index) {
             break;
 
         case 2:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].state = 0;
                 gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED | ACTOR_FLAG_DRAW;
             }
@@ -1445,7 +1445,7 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].flags = ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE;
-            gActors[actor_index].unk_0DB = 0xB;
+            gActors[actor_index].hitType = 0xB;
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(6.5);
             gActors[actor_index].unk_180 = 0;
@@ -1506,7 +1506,7 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 // behavior for Aster in world 4
@@ -1608,5 +1608,5 @@ void func_801B42EC_7BC19C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }

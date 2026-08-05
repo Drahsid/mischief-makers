@@ -1045,7 +1045,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
         D_801B4B61_7C0AB1 = 1;
     }
     func_80081E38(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
 }
 
 s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
