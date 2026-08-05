@@ -8476,7 +8476,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
                 break;
             }
             if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
-                gMarinaAnim.anim_s32 = MARINAANIM_12;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPOUT;
                 gActors[actor_index].unk_174 = 0;
                 break;
             }
@@ -8560,7 +8560,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
                 (gPlayerActor.posX.whole < 0x71) && (gPlayerActor.posX.whole > -0x71) &&
                 (gPlayerActor.posY.whole < 0x71) && (gPlayerActor.posY.whole > -0x71)) {
                 gActors[actor_index].state--;
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
                 D_800D2960 = 2;
             }
             break;

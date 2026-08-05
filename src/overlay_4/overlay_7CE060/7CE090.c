@@ -1268,7 +1268,7 @@ void func_801B99AC_7CE13C(s16 pos_x, s16 pos_y) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + pos_y;
     gPlayerActor.posX.whole = pos_x;
     gPlayerActor.posY.whole = pos_y;
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
 }
 
 void func_801B9A0C_7CE19C(u16 arg0) {
@@ -1306,7 +1306,7 @@ void func_801B9B08_7CE298(void) {
         gCannotPause = FALSE;
         D_800BE544 = 0;
         D_800BE548.raw = FIXED_UNIT(16.0);
-        gMarinaAnim.anim_u32 = MARINAANIM_10;
+        gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     }
 }
 
@@ -1958,7 +1958,7 @@ void func_801BB0F0_7CF880(void) {
         case 1:
             if (Transition_FadeOut()) {
                 gStageState++;
-                gMarinaAnim.anim_u32 = MARINAANIM_10;
+                gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
                 D_800D28FC |= 8;
             }
             break;

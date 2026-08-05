@@ -1427,7 +1427,7 @@ void func_801B9C0C_7D43FC(s16 arg0, s16 arg1) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
     gPlayerActor.posX.whole = arg0;
     gPlayerActor.posY.whole = arg1;
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
 }
 
 void func_801B9C6C_7D445C(u16 arg0) {
@@ -1578,7 +1578,7 @@ void func_801BA1A4_7D4994(u16 arg0, u16 arg1, u16 arg2, s16 arg3, void* arg4) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
     func_801BA040_7D4830();
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     gStageState++;
 }
 
@@ -2134,7 +2134,7 @@ void func_801BB444_7D5C34(u16* arg0, u16* arg1, void* arg2) {
     func_80045FA4(arg0, arg1);
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg2);
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     Sound_PlaySfx(SFX_WIND_00BA);
     D_801C02B6_7DAAA6 = gStageState;
     gStageState = 1;
@@ -2385,7 +2385,7 @@ void func_801BBB30_7D6320(u16 arg0, u16 arg1, u16 arg2, u16 arg3, void* arg4) {
     gPlayerActor.posY.whole = arg3;
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     gStageState++;
 }
 
@@ -2492,7 +2492,7 @@ void func_801BBE90_7D6680(void) {
             Actor_ClearRange_30To90();
             func_80045FA4(D_801BFB3C_7DA32C, (u16*)0xFFFFFFF9);
             func_801BBDF8_7D65E8(sActor_Spawn_3_1B);
-            gMarinaAnim.anim_u32 = MARINAANIM_10;
+            gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageState++;
             break;

@@ -2457,7 +2457,7 @@ void func_800500B0(u16 actor_index) {
     func_8004F7D8(actor_index);
     gActors[actor_index].unk_17C = 0;
     index = gActors[actor_index].parentIndex;
-    if (((D_801373D8 & 0x20) || func_8004FC68(actor_index, index)) && gActors[index].grabType != 0x16) {
+    if (((D_801373D8 & 0x20) || func_8004FC68(actor_index, index)) && gActors[index].grabType != GRABTYPE_22) {
         gActors[actor_index].unk_140_u8[0] = 0;
         gActors[actor_index].unk_140_u16[1] = 1;
         if (func_8005D1B0(index) != 2) {
@@ -3120,7 +3120,7 @@ void func_80051C48(u16 actor_index) {
     func_8004F7D8(actor_index);
     switch (gActors[actor_index].stateUpper) {
     case 0:
-        if (((D_801373D8 & 0x20) || (func_8004FC68(actor_index, index))) && (gActors[index].grabType != 0x16)) {
+        if (((D_801373D8 & 0x20) || (func_8004FC68(actor_index, index))) && (gActors[index].grabType != GRABTYPE_22)) {
             gActors[actor_index].unk_140_u8[0] = 0;
             gActors[actor_index].unk_140_u16[1] = 1;
             func_8005D370(actor_index, 0x23);
@@ -3205,7 +3205,7 @@ void func_80052004(u16 actor_index) {
     s32 step;
 
     index = gActors[actor_index].parentIndex;
-    if (((D_801373D8 & 0x20) || (func_8004FC68(actor_index, index))) && (gActors[index].grabType != 0x16)) {
+    if (((D_801373D8 & 0x20) || (func_8004FC68(actor_index, index))) && (gActors[index].grabType != GRABTYPE_22)) {
         gActors[actor_index].unk_140_u8[0] = 0;
         gActors[actor_index].unk_140_u16[1] = 1;
     }

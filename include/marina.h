@@ -118,13 +118,13 @@ typedef enum {
     MARINAANIM_5,
     MARINAANIM_6,
     MARINAANIM_7,
-    MARINAANIM_8, // enter area dashing
-    MARINAANIM_9, // enter area dashing
-    MARINAANIM_10, // teleport in
-    MARINAANIM_11, // teleport in
-    MARINAANIM_12, // teleporting out
-    MARINAANIM_13, // start idle humming
-    MARINAANIM_14, // "stage clear" animation
+    MARINAANIM_DASH_8, // enter area dashing
+    MARINAANIM_DASH_9, // enter area dashing
+    MARINAANIM_TPIN_10, // teleport in
+    MARINAANIM_TPIN_11, // teleport in
+    MARINAANIM_TPOUT, // teleporting out
+    MARINAANIM_HUM, // start idle humming
+    MARINAANIM_DANCE, // "stage clear" animation
     MARINAANIM_15, // use D_80192000[26] as animation
     MARINAANIM_16, // use D_80192000[27] as animation
     MARINAANIM_17, // use D_80192000[28] as animation

@@ -1527,7 +1527,7 @@ void func_801BA8CC_7DD79C(u16* arg0) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(sActorSpawn_BGCaveA);
     Actor_LoadSpawnTable(D_801BDFFC_7E0ECC);
-    gMarinaAnim.anim_u32 = MARINAANIM_10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     gStageState++;
 }
 
@@ -1915,7 +1915,7 @@ void func_801BACDC_7DDBAC(void) {
             Actor_ClearRange_30To90();
             Actor_LoadSpawnTable(sActorSpawn_BGCaveA);
             Actor_LoadSpawnTable(D_801BE0C4_7E0F94);
-            gMarinaAnim.anim_s32 = MARINAANIM_11;
+            gMarinaAnim.anim_s32 = MARINAANIM_TPIN_11;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageState++;
             Sound_PlayMusic(BGM_GET);

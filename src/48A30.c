@@ -111,10 +111,10 @@ void func_800480B8(u16 actor_index) {
         case 0xC:
             if (gActors[actor_index].stateLower == MARINASTATE_IDLE) {
                 if (func_8005D338(actor_index) == 1) {
-                    if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_8) {
+                    if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_DASH_8) {
                         gMarinaAnim.anim_u32 = MARINAANIM_0;
                     }
-                    else if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_9) {
+                    else if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_DASH_9) {
                         gMarinaAnim.anim_u32 = MARINAANIM_3;
                         gMarinaAnim.timer = MARINASTATE_WAIT1;
                     }
@@ -139,10 +139,10 @@ void func_80048238(u16 actor_index) {
 
         case 1:
             if (gActors[actor_index].stateLower == MARINASTATE_IDLE) {
-                if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_10) {
+                if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_TPIN_10) {
                     gMarinaAnim.anim_u32 = MARINAANIM_0;
                 }
-                else if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_11) {
+                else if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_TPIN_11) {
                     gMarinaAnim.anim_u32 = MARINAANIM_3;
                     gMarinaAnim.timer = MARINASTATE_WAIT2;
                 }

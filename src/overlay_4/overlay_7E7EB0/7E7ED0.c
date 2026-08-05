@@ -571,7 +571,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(sActorSpawn_5_5D);
             func_801B9A3C_7E800C(0x97);
             func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
-            gMarinaAnim.anim_s32 = MARINAANIM_8;
+            gMarinaAnim.anim_s32 = MARINAANIM_DASH_8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
             gLookatEyeZ = 448.0f;
@@ -608,7 +608,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(sActorSpawn_5_5H);
             func_801B9A3C_7E800C(0x8C);
             func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
-            gMarinaAnim.anim_s32 = MARINAANIM_8;
+            gMarinaAnim.anim_s32 = MARINAANIM_DASH_8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
             gLookatEyeZ = 448.0f;
@@ -648,7 +648,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(sActorSpawn_5_5E);
             func_801B9A3C_7E800C(0x81);
             func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
-            gMarinaAnim.anim_s32 = MARINAANIM_8;
+            gMarinaAnim.anim_s32 = MARINAANIM_DASH_8;
             gLookatEyeY = 44.0f;
             gLookatAtY = 44.0f;
             gLookatEyeZ = 448.0f;
@@ -675,7 +675,7 @@ void func_801B9D00_7E82D0(void) {
             func_801B9A3C_7E800C(0x50);
             func_801B9A3C_7E800C(0x58);
             func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
-            gMarinaAnim.anim_s32 = MARINAANIM_8;
+            gMarinaAnim.anim_s32 = MARINAANIM_DASH_8;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
             gLookatEyeZ = 448.0f;
@@ -702,7 +702,7 @@ void func_801B9D00_7E82D0(void) {
             Actor_LoadSpawnTable(sActorSpawn_5_5G);
             gDrawBackground = FALSE;
             func_800282F0(gPlayerActor.posX.whole, gPlayerActor.posY.whole);
-            gMarinaAnim.anim_s32 = MARINAANIM_10;
+            gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
             gLookatEyeY = 0.0f;
             gLookatAtY = 0.0f;
             gLookatEyeZ = 448.0f;

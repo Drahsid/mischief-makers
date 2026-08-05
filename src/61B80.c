@@ -1369,7 +1369,7 @@ void ActorUpdate_StageClear(u16 actor_index) {
         if (gActors[actor_index].var_154-- == 0) {
             Actor_LoadSpawnTable((u16* ) gActors[actor_index].var_158);
             Sound_PlayMusic(BGM_GET);
-            gMarinaAnim.anim_u32 = MARINAANIM_14;
+            gMarinaAnim.anim_u32 = MARINAANIM_DANCE;
             gActors[actor_index].var_154 = 360;
             gActors[actor_index].state += 1;
         }
@@ -1480,7 +1480,7 @@ void func_80064F4C(u16 actor_index) {
             Sound_PlayMusic(BGM_GET);
             gActors[actor_index].var_150 |= 0x1000;
             D_800D2924 = gScreenBoundX1.whole = 0xE12;
-            gMarinaAnim.anim_u32 = MARINAANIM_14;
+            gMarinaAnim.anim_u32 = MARINAANIM_DANCE;
             gActors[actor_index].unk_174 += 1;
         }
         break;

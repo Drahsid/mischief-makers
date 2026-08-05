@@ -775,7 +775,7 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x30].posX.whole = gPlayerActor.posX.whole - 0xF0;
 
             if (gTransitionPortraitIndex) {
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
             }
 
         case 5:
@@ -1005,7 +1005,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
 
     D_800D2918 = arg1 + 0x70;
     D_800D291C = arg1 - 0x70;
-    gMarinaAnim.anim_s32 = MARINAANIM_10;
+    gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
     gStageState = 8;
     D_801BD8C0_7E6A20 = arg2;
 }

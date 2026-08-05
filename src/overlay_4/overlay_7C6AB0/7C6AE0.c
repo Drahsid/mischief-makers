@@ -1538,7 +1538,7 @@ void func_801B9AC0_7C6CA0(void) {
             if (gScreenPosTargetY.whole < 0x15B) {
                 gStageState++;
                 D_800D28F8 = 0x3C;
-                gMarinaAnim.anim_s32 = MARINAANIM_9;
+                gMarinaAnim.anim_s32 = MARINAANIM_DASH_9;
                 gPlayerPosX.whole = gScreenPosCurrentX.whole - 0x80;
                 gPlayerActor.posX.whole = -0x80;
                 gPlayerPosY.whole = gScreenPosCurrentY.whole - 0x2E;
@@ -1629,7 +1629,7 @@ void func_801B9AC0_7C6CA0(void) {
                 gStageState = 0x100;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
-                gMarinaAnim.anim_s32 = MARINAANIM_8;
+                gMarinaAnim.anim_s32 = MARINAANIM_DASH_8;
             }
             break;
     }
@@ -1773,7 +1773,7 @@ void func_801BA38C_7C756C(void) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
                 gCannotPause = FALSE;
                 break;
             }
@@ -1796,7 +1796,7 @@ void func_801BA38C_7C756C(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
                 gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             }
             break;
@@ -1842,7 +1842,7 @@ void func_801BA6C4_7C78A4(void) {
             func_801B99B4_7C6B94(D_801BC7A8_7C9988);
             gStageState++;
             func_80045FA4(D_801BE3EC_7CB5CC, D_801BE3FC_7CB5DC);
-            gMarinaAnim.anim_u32 = MARINAANIM_8;
+            gMarinaAnim.anim_u32 = MARINAANIM_DASH_8;
             Actor_LoadSpawnTable(sActorSpawn_BGDesert);
             Actor_LoadSpawnTable(sActorSpawn_1_9A);
             func_801BA694_7C7874();
@@ -1945,7 +1945,7 @@ void func_801BA89C_7C7A7C(void) {
                 gStageState++;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
                 gCannotPause = FALSE;
             }
             break;
@@ -1967,7 +1967,7 @@ void func_801BA89C_7C7A7C(void) {
                 gStageState = 6;
                 D_800D28FC |= 8;
                 D_800BE544 = 0;
-                gMarinaAnim.anim_s32 = MARINAANIM_10;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
             }
             break;
     }
@@ -2133,7 +2133,7 @@ void func_801BAB34_7C7D14(void) {
         case 0xD:
             if (func_8005DEFC() == 0) {
                 gStageState++;
-                gMarinaAnim.anim_s32 = MARINAANIM_11;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_11;
                 D_800D28F8 = 0x78;
             }
 
@@ -2494,7 +2494,7 @@ void func_801BB6D0_7C88B0(void) {
 
                     case 0xE:
                         D_800D28F8 = 0x46;
-                        gMarinaAnim.anim_s32 = MARINAANIM_11;
+                        gMarinaAnim.anim_s32 = MARINAANIM_TPIN_11;
                         func_801BB6AC_7C888C(0x12);
                         gActors[0x53].unk_174 = 0x20;
                         break;
