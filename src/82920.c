@@ -41,7 +41,7 @@ void func_80081FC8(u16 actor_index) {
 
 void func_80082024(u16 actor_index) {
     func_80081E38(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_80082088(u16 actor_index) {

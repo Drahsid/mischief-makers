@@ -2476,7 +2476,7 @@ void ActorUpdate_Marina(u16 actor_index) {
         gPlayerData.marina_Unk_0FC = gActors[actor_index].unk_0FC.raw;
     }
     gPlayerData.marina_Flags_098 = gActors[actor_index].flags_098;
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     gPlayerData.unk_7C++;
     gActors[actor_index].scaleX = gActors[actor_index].unk_124 * gPlayerActor.unk_120;
     gActors[actor_index].scaleY = gActors[actor_index].unk_128 * gPlayerActor.unk_120;

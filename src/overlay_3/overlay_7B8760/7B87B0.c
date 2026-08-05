@@ -506,7 +506,7 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_801B13C8_7B9278(u16 actor_index_unused) {
@@ -1506,7 +1506,7 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 // behavior for Aster in world 4
@@ -1608,5 +1608,5 @@ void func_801B42EC_7BC19C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }

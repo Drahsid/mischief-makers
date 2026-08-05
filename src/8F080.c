@@ -2277,7 +2277,7 @@ void func_80090558(u16 actor_index) {
     gActors[actor_index].hitboxBY1 = gActors[actor_index + 1].unk_12C * -16.0f;
     gActors[actor_index].hitboxBX0 = gActors[actor_index + 1].unk_12C * -8.0f;
     gActors[actor_index].hitboxBX1 = gActors[actor_index + 1].unk_12C * 8.0f;
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 

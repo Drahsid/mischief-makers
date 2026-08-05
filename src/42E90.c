@@ -230,7 +230,7 @@ void Actor11_State4(u16 actor_index) {
 
 void ActorUpdate_Type11(u16 actor_index) {
     gActor11States[gActors[actor_index].state](actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void ActorUpdate_Type12(u16 actor_index) {
@@ -248,6 +248,6 @@ void ActorUpdate_Type12(u16 actor_index) {
         }
     }
     else {
-        gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+        gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     }
 }

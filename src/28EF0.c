@@ -1857,7 +1857,7 @@ void func_8002C6E4(u16 actor_index) {
     if (gActors[actor_index].unk_140_f32 >= 0.0f) {
         gActors[actor_index].unk_140_f32 -= 1.0f;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3) {
@@ -2159,7 +2159,7 @@ void ActorUpdate_Landmine(u16 actor_index) {
         }
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8002D904(u16 actor_index, s32 angle) {
@@ -2998,7 +2998,7 @@ void ActorUpdate_Gem(u16 actor_index) {
             }
         }
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 // behavior of special gem actor. spawned in SpawnGemActor61
@@ -3571,7 +3571,7 @@ void ActorUpdate_Type54(u16 actor_index) {
     if (((&gActors[parent_actor].var_150)[index] & 1) || (gActors[actor_index].damage < 0)) {
         gActors[actor_index].flags = 0;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 u16 func_800327B4(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6, s16 arg7, s16 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12) {
@@ -3650,7 +3650,7 @@ void func_80032900(u16 actor_index) {
     if ((&gActors[actor_t9].var_150)[index] & 1) {
         gActors[actor_index].flags = 0;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 u16 func_80032E60(u16 actor_index0, u16 graphic_index, u16 angle_off, f32 mag, s16 pos_z, f32 scale_x, f32 scale_y) {
@@ -5494,7 +5494,7 @@ void ActorUpdate_Clanpot(u16 actor_index) {
         }
         gActors[actor_index].unk_188 = Math_ApproachS32(gActors[actor_index].unk_188, 0, 1);
         gActors[actor_index].colorG = gActors[actor_index].colorR;
-        gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+        gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     }
 }
 
@@ -5691,7 +5691,7 @@ void Spikeball_UpdateHitbox(u16 actor_index) {
     gActors[actor_index].scaleY = gActors[actor_index].scaleX;
     Actor_SetHitboxA(actor_index, (s16) (gActors[actor_index].scaleX * 8.0f));
     Actor_SetHitboxB(actor_index, gActors[actor_index].hitboxAY0);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 // initalization for every spikeball actor
@@ -6198,7 +6198,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
         gActors[actor_index].posX.whole = (gActors[actor_index].unk_170 + FROM_FIXED(gActors[actor_index].var_154)) - gScreenPosCurrentX.whole;
         gActors[actor_index].posY.whole = FROM_FIXED(gActors[actor_index].var_158) + ((gActors[actor_index].unk_174 + D_800D26F4[(gActiveFrames / 2) & 0xF]) - gScreenPosCurrentY.whole);
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8003A958(u16 actor_index) {
@@ -6591,7 +6591,7 @@ void func_8003B8CC(u16 actor_index) {
         gActors[actor_index].unk_170 = FIXED_UNIT(16.0);
     }
     func_80032E60(actor_index, GINDEX_HAT_TERAN, 0x100, gActors[actor_index].scaleY * 12.0f, 1, gActors[actor_index].scaleX, gActors[actor_index].scaleY);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8003BE3C(u16 actor_index) {
@@ -6699,7 +6699,7 @@ void func_8003BE3C(u16 actor_index) {
     gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 0.6f, 0.1f);
     Actor_ClampVelocityX(actor_index, 0x7FFF0);
     Actor_ClampVelocityY(actor_index, 0x7FFF0);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void ActorUpdate_ClanballSpring(u16 actor_index) {
@@ -8599,7 +8599,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         }
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     if ((u16)gActors[actor_index].var_110 & 0x40) {
         sp24 = gActors[actor_index].posX.whole;
         sp22 = gActors[actor_index].posY.whole;

@@ -53,7 +53,7 @@ void ClancerCommanderMech_UpdateParts(u16 actor_index) {
 }
 
 void ClancerCommanderMech_ClearFlags(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void ClancerCommanderMech_UpdateAttachedActorPosition(u16 actor_index, u16 other_actor_index) {

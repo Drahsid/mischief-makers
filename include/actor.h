@@ -112,7 +112,10 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK28 = (1U << 28U),
     ACTOR_FLAG3_UNK29 = (1U << 29U),
     ACTOR_FLAG3_UNK30 = (1U << 30U),
-    ACTOR_FLAG3_UNK31 = (1U << 31U)
+    ACTOR_FLAG3_UNK31 = (1U << 31U),
+
+    // a commonly AND'd mask
+    ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB)
 };
 
 typedef enum {

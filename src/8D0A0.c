@@ -610,7 +610,7 @@ void func_8008DF20(u16 actor_index) {
         }
     }
     func_8008CC90(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8008E1A0(u16 actor_index) {

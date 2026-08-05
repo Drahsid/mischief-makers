@@ -319,7 +319,7 @@ void ActorUpdate_Flower(u16 actor_index) {
         Flower_TryGrab(actor_index);
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     func_800840A4(actor_index);
 }
 
@@ -529,7 +529,7 @@ void ActorUpdate_Hat(u16 actor_index) {
         Hat_TryGrab(actor_index);
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     func_800840A4(actor_index);
 }
 
@@ -1176,7 +1176,7 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
         }
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void ClanbombTimer_PrintDigit(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z) {
@@ -2172,7 +2172,7 @@ void ActorUpdate_DiggingSpot(u16 actor_index) {
         func_80089EF8(actor_index);
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     if (!(gActors[actor_index].var_150 & 0x10)) {
         func_8008A50C(actor_index);
     }
@@ -2264,7 +2264,7 @@ void func_8008AD3C(u16 actor_index) {
         }
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     func_8008AB68(actor_index);
 }
 
@@ -2457,7 +2457,7 @@ void func_8008B654(u16 actor_index) {
         }
         break;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8008B7CC(u16 actor_index) {

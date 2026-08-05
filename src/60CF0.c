@@ -115,7 +115,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
     if ((gActors[actor_index].var_110 < 0.3) && (gActors[actor_index].stateLower != 0xC9)) {
         gActors[actor_index].state = 0xC9;
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     if (!(gActiveFrames & 3)) {
         sp4C[0] = gActors[actor_index].posX.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
         sp4C[1] = gActors[actor_index].posY.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
