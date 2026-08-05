@@ -1372,7 +1372,7 @@ s32 func_8007A4B0(u16 actor_index) {
 
     if ((temp_v0->graphicIndex == GINDEX_303E) && (temp_v0->graphicTimer == 1)) {
         temp_v0->state += 1;
-        temp_v1->flags_098 |= ACTOR_FLAG3_UNK10;
+        temp_v1->flags_098 |= ACTOR_FLAG3_THROWN;
         temp_v1->unk_0F8.raw = temp_v0->var_154;
         temp_v1->unk_0FC.raw = temp_v0->var_158;
         Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
@@ -2004,7 +2004,7 @@ void func_8007B73C(u16 actor_index) {
                     Sound_PlaySfx(SFX_CLANCER_OW_009D);
                     ACTOR_GFX_INIT(actor_index, D_800D821C);
                 }
-                else if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
+                else if (actor->flags_098 & ACTOR_FLAG3_SHAKE) {
                     ACTOR_GFX_INIT(actor_index, D_800D821C);
                     actor->velocityY.raw = FIXED_UNIT(1);
                     func_80078CC8(actor_index, 0);

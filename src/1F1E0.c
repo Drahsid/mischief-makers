@@ -2267,7 +2267,7 @@ u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y) {
     u16 index;
 
     var_a3 = actor_index;
-    if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_GRAB | ACTOR_FLAG3_UNK10))) {
+    if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_GRAB | ACTOR_FLAG3_THROWN))) {
         var_a3 = gActors[actor_index].parentIndex;
     }
     
@@ -2326,6 +2326,7 @@ u8 func_8001FCA0(u16 actor_index, s16 x, s16 y) {
     return 0;
 }
 
+// reset Red clanblocks?
 void func_8001FEB0(void) {
     u32 index;
 
@@ -2345,14 +2346,14 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gPlayerActor.flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB;
+    gPlayerActor.flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB;
 }
 
 void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].flags_098 &= ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB;
+        gActors[index].flags_098 &= ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB;
     }
 }
 

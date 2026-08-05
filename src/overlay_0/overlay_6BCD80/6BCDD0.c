@@ -722,7 +722,7 @@ s32 func_80198AE4_6C37B4(u16 actor_index, u16 other_actor_index) {
     D_801A5204_6CFED4 = 0;
     func_80197968_6C2638(actor_index);
 
-    if (gActors[other_actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+    if (gActors[other_actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
         gActors[actor_index].velocityX.raw = gActors[other_actor_index].unk_0F8.raw;
         gActors[actor_index].velocityY.raw = gActors[other_actor_index].unk_0FC.raw;
     }

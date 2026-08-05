@@ -842,7 +842,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
                 default:
                     gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
                     gActors[actor_index].flags |= gPlayerActor.flags & ACTOR_FLAG_FLIPPED;
-                    if ((D_801B4B64_7C0AB4 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17) && (gPlayerData.unk_12 == 0)) {
+                    if ((D_801B4B64_7C0AB4 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE) && (gPlayerData.unk_12 == 0)) {
                         D_801B4B64_7C0AB4++;
                         func_80081790(actor_index, D_800E34A4);
                     }
@@ -1066,7 +1066,7 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
         }
 
         gActors[target_index].flags_098 &= ~ACTOR_FLAG3_GRAB;
-        gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK10;
+        gActors[target_index].flags_098 |= ACTOR_FLAG3_THROWN;
         gActors[target_index].unk_0F8.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(3.0);
         gActors[target_index].unk_0FC.raw = FIXED_UNIT(4.0);
         if (target_index == 0) {

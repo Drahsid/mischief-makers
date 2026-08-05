@@ -62,7 +62,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
             gActors[actor_index].var_110 -= 0.0075;
         }
-        else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+        else if (gActors[actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
             gActors[actor_index].rotateZ = INDEX_TO_DEG(Math_PlaneOctant(gActors[actor_index].unk_0F8.raw, gActors[actor_index].unk_0FC.raw));
             gActors[actor_index].var_158 = gActors[actor_index].unk_0F8.raw;
             gActors[actor_index].var_15C = gActors[actor_index].unk_0FC.raw;
@@ -160,7 +160,7 @@ void func_8006098C(u16 actor_index) {
             gActors[actor_index].posZ.raw = gActors[actor_index].unk_10C;
         }
         else {
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
@@ -249,5 +249,5 @@ void ActorUpdate_Lava(u16 actor_index) {
             gActors[actor_1].palette_18C = PALETTE_8022D4E8;
         }
     }
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB);
 }

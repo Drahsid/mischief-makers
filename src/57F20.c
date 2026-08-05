@@ -117,7 +117,7 @@ void func_800576A0(u16 actor_index) {
         }
     }
     else {
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
             if (gActors[actor_index].hitByType == HITTYPE_28) {
                 gActors[actor_index].state = 0x32;
             }

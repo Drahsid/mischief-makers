@@ -2631,7 +2631,7 @@ void func_800919C8(u16 actor_index) {
                 if (gActors[actor_index].unk_16C & 2) {
                     gActors[actor_index].state++;
                     gActors[parent].flags_098 &= ~ACTOR_FLAG3_GRAB;
-                    gActors[parent].flags_098 |= ACTOR_FLAG3_UNK10;
+                    gActors[parent].flags_098 |= ACTOR_FLAG3_THROWN;
                     if (parent == 0) {
                         gActors[parent].unk_0F8.raw = gActors[actor_index + 2].unk_180 * gActors[actor_index + 1].unk_130;
                         gActors[parent].unk_0FC.raw = gActors[actor_index + 3].unk_180;

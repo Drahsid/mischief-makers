@@ -99,7 +99,7 @@ void func_801A6C80_775130(u16 actor_index) {
                     gActors[actor_index].flags |= 0x21200;
                 }
 
-                if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+                if (gActors[actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
                     gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
                     gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
                 }

@@ -1522,7 +1522,7 @@ DEFAULT_INT func_801B1530_799370(u16 actor_index) {
     Actor* actor;
 
     actor = &gActors[actor_index];
-    if (actor->flags_098 & ACTOR_FLAG3_UNK17) {
+    if (actor->flags_098 & ACTOR_FLAG3_SHAKE) {
         if (gActors[actor->var_154].unk_114 == 0.0f) {
             if (func_800486F4() == 0) {
                 if (actor->var_15C == 1) {
@@ -2166,7 +2166,7 @@ void func_801B2BA0_79A9E0(u16 actor_index) {
 void func_801B2D40_79AB80(u16 actor_index, u32 flags) {
     s8 state;
 
-    if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_UNK17)) {
+    if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_SHAKE)) {
         state = gPlayerData.unk_10;
         if ((state >= 2) && (state < 7)) {
             gActors[actor_index].velocityX.raw = (-gPlayerData.unk_0C[1]) * FIXED_UNIT(1.0/512) + FIXED_UNIT(125.0/64);
@@ -2395,7 +2395,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB);
 }
 
 void func_801B3634_79B474(u16 actor_index) {
@@ -2913,6 +2913,7 @@ void func_801B480C_79C64C(u16 actor_index) {
     }
 }
 
+// Clanball resets red blocks in "Vertigo"
 void func_801B4AB0_79C8F0(u16 actor_index) {
     u32 flags;
 
@@ -2922,7 +2923,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
 
     if (gActors[actor_index].unk_188 == 2) {
         flags = gActors[actor_index].flags_098;
-        if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_UNK17)) {
+        if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_SHAKE)) {
             Sound_PlaySfxAtActor2(SFX_0115, actor_index);
         }
     }
@@ -2931,7 +2932,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             flags = gActors[actor_index].flags_098;
-            if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_UNK17)) {
+            if ((flags & ACTOR_FLAG3_GRAB) && (flags & ACTOR_FLAG3_SHAKE)) {
                 if (gPlayerData.unk_10 == 8) {
                     Sound_PlaySfx(SFX_CHARGE_00A6);
                     gStartButtonOnly = TRUE;
@@ -3120,7 +3121,7 @@ void func_801B53A8_79D1E8(u16 actor_index) {
     gActors[actor_index - 1].posY.raw = gActors[actor_index].posY.raw + gActors[actor_index].var_160 + gActors[actor_index - 1].var_158;
 
     if (gActors[actor_index].unk_188 == 2) {
-        if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
+        if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE)) {
             Sound_PlaySfxAtActor2(SFX_0115, actor_index);
         }
     }
@@ -3206,7 +3207,7 @@ void func_801B53A8_79D1E8(u16 actor_index) {
             break;
 
         case 0x10:
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE)) {
                 if (func_800486F4() == 0) {
                     if (gActors[actor_index].var_160 == 0) {
                         gActors[actor_index].unk_164 = gActors[actor_index].var_15C;
@@ -3249,7 +3250,7 @@ void func_801B53A8_79D1E8(u16 actor_index) {
             break;
 
         case 0x40:
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17)) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE)) {
                 Sound_PlaySfxAtActor2(SFX_0115, actor_index);
                 if (func_800486F4() == 4) {
                     if (gActors[actor_index].unk_16C == 0) {

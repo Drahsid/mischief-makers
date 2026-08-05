@@ -2253,7 +2253,7 @@ u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3) {
         return 0xFFFF;
     }
     func_8004F514(actor_index, temp_s0);
-    gActors[temp_s0].flags_098 |= ACTOR_FLAG3_UNK10;
+    gActors[temp_s0].flags_098 |= ACTOR_FLAG3_THROWN;
     gActors[temp_s0].hitByFlags = HITFLAG_7 | HITFLAG_6;
     gActors[temp_s0].hitByType = HITTYPE_25;
     gActors[temp_s0].pendingDamage = arg3;
@@ -2431,7 +2431,7 @@ void Marina_ShakeShake(u16 actor_index) {
             Sound_PlaySfx(SFX_SHAKE_00C2);
         }
         if ((gPlayerData.unk_12 == 0) && (gPlayerData.unk_10 >= 5) && (gPlayerData.unk_10 < 0xC) && (gActors[actor_index].var_154 < 8)) {
-            gActors[index].flags_098 |= ACTOR_FLAG3_UNK17;
+            gActors[index].flags_098 |= ACTOR_FLAG3_SHAKE;
             gActors[actor_index].var_154 += 1;
         }
         gActors[actor_index].var_150 += gActors[actor_index].var_154;
@@ -3427,7 +3427,7 @@ s32 func_800528F4(u16 actor_0, u16 actor_1) {
             return 0;
         }
         gActors[actor_1].pendingDamage = 0;
-        gActors[actor_1].flags_098 |= ACTOR_FLAG3_UNK10;
+        gActors[actor_1].flags_098 |= ACTOR_FLAG3_THROWN;
         func_8004F514(actor_0, actor_1);
         gActors[actor_0].velocityX.raw = gActors[actor_0].unk_0F8.raw;
         if (gActors[actor_0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
@@ -3498,7 +3498,7 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
         return 2;
     }
     else {
-        gActors[actor_1].flags_098 |= ACTOR_FLAG3_UNK17;
+        gActors[actor_1].flags_098 |= ACTOR_FLAG3_SHAKE;
         return 1;
     }
 }

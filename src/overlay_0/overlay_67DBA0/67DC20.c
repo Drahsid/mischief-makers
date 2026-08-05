@@ -712,7 +712,7 @@ void func_80198F70_684A90(u16 actor_index) {
     gActors[actor_index].graphicList = D_8019DB80_6896A0;
     gActors[actor_index].graphicTimer = 1;
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = (ACTOR_FLAG_UNK12 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG_ENABLED);
+    gActors[actor_index].flags = (ACTOR_FLAG_UNK12 | ACTOR_FLAG3_THROWN | ACTOR_FLAG_ENABLED);
     Actor_SetHitboxB(actor_index, 0xC);
     gActors[actor_index].posX.whole = 0;
     gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;

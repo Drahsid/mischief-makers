@@ -91,14 +91,14 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK7 = (1U << 7U),
     ACTOR_FLAG3_UNK8 = (1U << 8U),
     ACTOR_FLAG3_GRAB = (1U << 9U),  // grabbed by Marina
-    ACTOR_FLAG3_UNK10 = (1U << 10U),
+    ACTOR_FLAG3_THROWN = (1U << 10U), // thrown by Marina
     ACTOR_FLAG3_UNK11 = (1U << 11U),
     ACTOR_FLAG3_UNK12 = (1U << 12U),
     ACTOR_FLAG3_UNK13 = (1U << 13U),
     ACTOR_FLAG3_UNK14 = (1U << 14U),
     ACTOR_FLAG3_UNK15 = (1U << 15U),
     ACTOR_FLAG3_UNK16 = (1U << 16U),
-    ACTOR_FLAG3_UNK17 = (1U << 17U), // being shake-shaken?
+    ACTOR_FLAG3_SHAKE = (1U << 17U), // being shake-shaken?
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
@@ -115,7 +115,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK31 = (1U << 31U),
 
     // a commonly AND'd mask
-    ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_GRAB)
+    ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB)
 };
 
 typedef enum {

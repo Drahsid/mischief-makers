@@ -1014,7 +1014,7 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
         );
         switch (temp_v0) {
         case 0:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE) {
                 Clanbomb_TickFuse(actor_index, (gActors[actor_index].unk_168 % 60) - 1);
             }
             if (gActors[actor_index].unk_164 > 0) {
