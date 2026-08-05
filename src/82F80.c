@@ -1,6 +1,9 @@
 #include "common.h"
 #include "boot.h"
 
+// this script deals with printing monospaced text directly into a texture,
+// rather than have each character be used as an actor.
+
 extern s32 D_800BE6D0; // texture x offset
 extern s32 D_800BE6D4; // texture y offset
 extern s32 D_800BE6DC; // texture x offset
@@ -226,11 +229,12 @@ void func_80082F10(void) {
     }
 }
 
+// clear a text texture
 void func_8008310C(void) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)0x8027EEE8;
+    var_v0 = (s32*)TEXT_TEXTURE_1_ADDR;
     for (index = 0; index < 0x300; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -238,11 +242,12 @@ void func_8008310C(void) {
     }
 }
 
-void func_80083140(s16 arg0, s16 arg1) {
+// clear a select charcter-size space of text texture
+void func_80083140(s16 colmmn, s16 row) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)(((arg0 % 8) * 8) + ((arg0 / 8) << 0xA) + (arg1 << 0xB) + 0x8027EEE8);
+    var_v0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
     for (index = 0; index < 0x10; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -250,16 +255,16 @@ void func_80083140(s16 arg0, s16 arg1) {
     }
 }
 
-void func_800831D0(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
+void func_800831D0(s16 colmmn, s16 row, s16 ch, s16 arg3) {
     u16 index;
     s32* var_a0;
     s32* var_v1;
     s32 temp;
 
     temp = arg3 * 0x44444444;
-    if (arg2 < 0x51) {
-        var_v1 = (s32*)((arg2 << 6) + 0x802524A8);
-        var_a0 = (s32*)(((arg0 % 16) * 4) + ((arg0 / 16) << 0xA) + (arg1 << 0xB) + 0x8027EEE8);
+    if (ch < ALPHA_OFFSET(THIN_0)) { // check not in japanese version
+        var_v1 = (s32*)((ch << 6) + 0x802524A8);
+        var_a0 = (s32*)(((colmmn % 16) * 4) + ((colmmn / 16) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
         for (index = 0; index < 0x10; index++) {
             *var_a0 = *var_v1 + temp;
             var_v1 += 1;
@@ -267,8 +272,8 @@ void func_800831D0(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
         }
     }
     else {
-        var_v1 = (s32*)((arg2 << 7) + 0x80252468);
-        var_a0 = (s32*)(((arg0 % 8) * 8) + ((arg0 / 8) << 0xA) + (arg1 << 0xB) + 0x8027EEE8);
+        var_v1 = (s32*)((ch << 7) + 0x80252468);
+        var_a0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
         for (index = 0; index < 0x10; index++) {
             var_a0[0] = var_v1[0] + temp;
             var_a0[1] = var_v1[1] + temp;
@@ -279,10 +284,10 @@ void func_800831D0(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
 }
 
 void func_80083358(s16 arg0, s16 arg1, u16* arg2, s16 arg3) {
-    if (*arg2 < 0xA1) {
+    if (*arg2 < ALPHA_THIN_0) {
         arg0 *= 2;
     }
-    while (*arg2 != 0x8FFF) {
+    while (*arg2 != ALPHA_NULL) {
         if (*arg2 == 0) {
             arg2++;
             arg0++;
@@ -293,11 +298,12 @@ void func_80083358(s16 arg0, s16 arg1, u16* arg2, s16 arg3) {
     }
 }
 
+// clear text texture
 void func_80083454(void) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)0x8027CEE8;
+    var_v0 = (s32*)TEXT_TEXTURE_0_ADDR;
     for (index = 0; index < 0x400; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -305,11 +311,12 @@ void func_80083454(void) {
     }
 }
 
-void func_80083488(s16 arg0, s16 arg1) {
+// clear a select charcter-size space of text texture
+void func_80083488(s16 column, s16 row) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)(((arg0 % 8) * 8) + ((arg0 / 8) << 0xA) + (arg1 << 0xB) + 0x8027CEE8);
+    var_v0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
     for (index = 0; index < 0x10; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -317,16 +324,17 @@ void func_80083488(s16 arg0, s16 arg1) {
     }
 }
 
-void func_80083518(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
+// prin
+void func_80083518(s16 column, s16 row, s16 ch, s16 arg3) {
     u16 index;
     s32* var_a0;
     s32* var_v1;
     s32 temp;
 
     temp = arg3 * 0x44444444;
-    if (arg2 < 0x51) {
-        var_v1 = (s32*)((arg2 << 6) + 0x802524A8);
-        var_a0 = (s32*)(((arg0 % 16) * 4) + ((arg0 / 16) << 0xA) + (arg1 << 0xB) + 0x8027CEE8);
+    if (ch < ALPHA_OFFSET(THIN_0)) { // check not in japanese version
+        var_v1 = (s32*)((ch << 6) + 0x802524A8);
+        var_a0 = (s32*)(((column % 16) * 4) + ((column / 16) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
         for (index = 0; index < 0x10; index++) {
             *var_a0 = *var_v1 + temp;
             var_v1 += 1;
@@ -334,8 +342,8 @@ void func_80083518(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
         }
     }
     else {
-        var_v1 = (s32*)((arg2 << 7) + 0x80252468);
-        var_a0 = (s32*)(((arg0 % 8) * 8) + ((arg0 / 8) << 0xA) + (arg1 << 0xB) + 0x8027CEE8);
+        var_v1 = (s32*)((ch << 7) + 0x80252468);
+        var_a0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
         for (index = 0; index < 0x10; index++) {
             var_a0[0] = var_v1[0] + temp;
             var_a0[1] = var_v1[1] + temp;
@@ -345,44 +353,55 @@ void func_80083518(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     }
 }
 
-void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3) {
-    if (*arg2 < 0xA1) {
-        arg0 = arg0 * 2;
+void func_800836A0(s16 column, s16 row, u16* str, s16 arg3) {
+    if (*str < ALPHA_THIN_0) {
+        column = column * 2;
     }
-    while (*arg2 != ALPHA_NULL) {
-        if (*arg2 == 0) {
-            arg2++;
-            arg0++;
+    while (*str != ALPHA_NULL) {
+        if (*str == 0) {
+            str++;
+            column++;
         }
         else {
-            func_80083518(arg0++, arg1, *arg2++ - 0x50, arg3);
+            func_80083518(column++, row, *str++ - 0x50, arg3);
         }
     }
 }
 
-void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
-    if (arg1 < 3) {
-        func_800831D0(arg0, arg1, arg2, arg3);
+// print monospaced text directly into a texture.
+// used exclusively by stage.c.
+// @param column x-position to start string
+// @param row y-position of string
+// @param ch character of value ALPHA_* - 0x50
+void func_8008379C(s16 column, s16 row, s16 ch, s16 arg3) {
+    if (row < 3) {
+        func_800831D0(column, row, ch, arg3);
     }
     else {
-        func_80083518(arg0, arg1 - 3, arg2, arg3);
+        func_80083518(column, row - 3, ch, arg3);
     }
 }
 
-void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3) {
-    if (arg1 < 3) {
-        func_80083358(arg0, arg1, arg2, arg3);
+// print monospaced text directly into a texture.
+// used exclusively by stage.c.
+// @param column x-position to start string
+// @param row y-position of string
+// @param str string of text
+void func_80083810(s16 column, s16 row, u16* str, s16 arg3) {
+    if (row < 3) {
+        func_80083358(column, row, str, arg3);
     }
     else {
-        func_800836A0(arg0, arg1 - 3, arg2, arg3);
+        func_800836A0(column, row - 3, str, arg3);
     }
 }
 
-void func_80083878(s16 arg0, s16 arg1) {
-    if (arg1 < 3) {
-        func_80083140(arg0, arg1);
+// clear a select character-sized space of text texture. unused.
+void func_80083878(s16 column, s16 row) {
+    if (row < 3) {
+        func_80083140(column, row);
     }
     else {
-        func_80083488(arg0, arg1 - 3);
+        func_80083488(column, row - 3);
     }
 }

@@ -60,6 +60,7 @@ gActors[3].velocityX.raw
 #define TICKS_PER_MIN (TICKS_PER_SEC * SEC_PER_MIN)
 #define TICKS_PER_DAY (TICKS_PER_SEC * SEC_PER_DAY)
 #define SEC_TO_TICK(val) ((val) * TICKS_PER_SEC)
+#define MIN_SEC_TO_TICK(m,s) (((m) * TICKS_PER_MIN)+((s) * TICKS_PER_SEC))
 
 // max time for stages
 #define STAGE_MAX_TIME (10 * TICKS_PER_MIN)

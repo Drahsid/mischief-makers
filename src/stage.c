@@ -37,8 +37,6 @@ u8 gDebugMenuCursorFlash[DEBUG_STAGE_SELECT_ROW_COUNT];
 
 s16 WorldMap_GetStageRank(u16 time, u16 stage);
 
-void func_8008379C(s16 arg0, s16 arg1, s16 arg2, s16 arg3);
-void func_80083810(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 void OSD_SetData(char* text, s32 x, s32 y, s32 red, s32 green, s32 blue, s32 alpha, f32 scale_x, f32 scale_y);
 void WorldMap_PrintStageLabels(void);
 
@@ -106,64 +104,64 @@ u16 gStageIds[] = {
 
 // times to beat per stage to get S-rank.
 u16 gStageTimesToBeat[] = {
-    0,     // Intro
-    0,     // Demo World 1
-    1080,  // Meet Marina
-    1020,  // Meet Calina
-    1500,  // Clanball Land
-    480,   // Spike Land
-    1980,  // 3 Clancer Kids
-    2160,  // Blockman Rises
-    1320,  // Wormin' Up
-    2580,  // Crisis Nepton
-    1740,  // Western World
-    720,   // Volcano
-    2160,  // Sea of Lava
-    1560,  // Vertigo
-    660,   // Sink or Float
-    2280,  // Hot Rush
-    720,   // Searin' Swing
-    1620,  // Flambee
-    1680,  // Tightrope Ride
-    1320,  // Freefall
-    1500,  // Magma Rafts
-    1500,  // Seasick Climb
-    6660,  // Migen Brawl
-    0,     // Demo World 3
-    1920,  // Clanpot Shake
-    1800,  // Clance War
-    3000,  // Missle Surf
-    1320,  // Clanball Lift
-    4320,  // Go Marzen 64
-    1320,  // Chilly Dog
-    3600,  // Snowstorm Maze
-    1080,  // Lunar
-    2220,  // The Day Before
-    9360,  // The Day Of
-    660,   // Cat-astrophe
-    3720,  // Cerberus Alpha
-    0,     // Demo World 4
-    1620,  // Rolling Rock
-    1680,  // Toadly Raw
-    19200, // 7 Clancer Kids
-    2580,  // Rescue Act 1
-    1800,  // Rescue Act 2
-    960,   // Tarus
-    4920,  // Ghost Catcher
-    2340,  // Aster's Tryke
-    2220,  // Moley Cow
-    2040,  // Aster's Maze
-    3480,  // Sasquatch Beta
-    0,     // Demo World 5
-    5280,  // Clance War II
-    1680,  // Counterattack
-    3873,  // Bee's the One
-    1020,  // Merco
-    4800,  // Trapped
-    3300,  // Phoenix Gamma
-    0,     // Demo Final
-    4500,  // Inner Struggle
-    5160,  // Final Battle
+    0,                      // Intro
+    0,                      // Demo World 1
+    MIN_SEC_TO_TICK(0,18),  // Meet Marina
+    MIN_SEC_TO_TICK(0,17),  // Meet Calina
+    MIN_SEC_TO_TICK(0,25),  // Clanball Land
+    MIN_SEC_TO_TICK(0, 8),  // Spike Land
+    MIN_SEC_TO_TICK(0,33),  // 3 Clancer Kids
+    MIN_SEC_TO_TICK(0,36),  // Blockman Rises
+    MIN_SEC_TO_TICK(0,22),  // Wormin' Up
+    MIN_SEC_TO_TICK(0,43),  // Crisis Nepton
+    MIN_SEC_TO_TICK(0,29),  // Western World
+    MIN_SEC_TO_TICK(0,12),  // Volcano
+    MIN_SEC_TO_TICK(0,36),  // Sea of Lava
+    MIN_SEC_TO_TICK(0,26),  // Vertigo
+    MIN_SEC_TO_TICK(0,11),  // Sink or Float
+    MIN_SEC_TO_TICK(0,38),  // Hot Rush
+    MIN_SEC_TO_TICK(0,12),  // Searin' Swing
+    MIN_SEC_TO_TICK(0,27),  // Flambee
+    MIN_SEC_TO_TICK(0,28),  // Tightrope Ride
+    MIN_SEC_TO_TICK(0,22),  // Freefall
+    MIN_SEC_TO_TICK(0,25),  // Magma Rafts
+    MIN_SEC_TO_TICK(0,25),  // Seasick Climb
+    MIN_SEC_TO_TICK(1,51),  // Migen Brawl
+    0,                      // Demo World 3
+    MIN_SEC_TO_TICK(0,32),  // Clanpot Shake
+    MIN_SEC_TO_TICK(0,30),  // Clance War
+    MIN_SEC_TO_TICK(0,50),  // Missle Surf
+    MIN_SEC_TO_TICK(0,22),  // Clanball Lift
+    MIN_SEC_TO_TICK(1,12),  // Go Marzen 64
+    MIN_SEC_TO_TICK(0,22),  // Chilly Dog
+    MIN_SEC_TO_TICK(1, 0),  // Snowstorm Maze
+    MIN_SEC_TO_TICK(0,18),  // Lunar
+    MIN_SEC_TO_TICK(0,37),  // The Day Before
+    MIN_SEC_TO_TICK(2,36),  // The Day Of (uses special calculation for stage time.)
+    MIN_SEC_TO_TICK(0,11),  // Cat-astrophe
+    MIN_SEC_TO_TICK(1, 2),  // Cerberus Alpha
+    0,                      // Demo World 4
+    MIN_SEC_TO_TICK(0,27),  // Rolling Rock
+    MIN_SEC_TO_TICK(0,28),  // Toadly Raw
+    MIN_SEC_TO_TICK(5,20),  // 7 Clancer Kids
+    MIN_SEC_TO_TICK(0,43),  // Rescue Act 1
+    MIN_SEC_TO_TICK(0,30),  // Rescue Act 2
+    MIN_SEC_TO_TICK(0,16),  // Tarus
+    MIN_SEC_TO_TICK(1,22),  // Ghost Catcher
+    MIN_SEC_TO_TICK(0,39),  // Aster's Tryke
+    MIN_SEC_TO_TICK(0,37),  // Moley Cow
+    MIN_SEC_TO_TICK(0,34),  // Aster's Maze
+    MIN_SEC_TO_TICK(0,58),  // Sasquatch Beta
+    0,                      // Demo World 5
+    MIN_SEC_TO_TICK(1,28),  // Clance War II
+    MIN_SEC_TO_TICK(0,28),  // Counterattack
+    MIN_SEC_TO_TICK(1,4.55),// Bee's the One
+    MIN_SEC_TO_TICK(0,17),  // Merco
+    MIN_SEC_TO_TICK(1,20),  // Trapped
+    MIN_SEC_TO_TICK(0,33),  // Phoenix Gamma
+    0,                      // Demo Final
+    MIN_SEC_TO_TICK(1,15),  // Inner Struggle
+    MIN_SEC_TO_TICK(1,26),  // Final Battle
 };
 
 char gStrStage1_1[] = "1-1";
@@ -303,7 +301,8 @@ u16 gNameStage1_5[] = {
 // "Blockman Rises"
 u16 gNameStage1_6[] = {
     ALPHA_EN3_UPPER_B, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_K, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N,
-    ALPHA_SPACE, ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_NULL
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_NULL
 };
 
 // "Wormin' Up!!"
@@ -401,11 +400,12 @@ u16 gNameStage3_1[] = {
 
 // "Clance War"
 u16 gNameStage3_2[] = {
-    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E, ALPHA_SPACE, ALPHA_EN3_UPPER_W,
-    ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_NULL
+    ALPHA_EN3_UPPER_C, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_N, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_E,
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_NULL
 };
 
-// "Missle Surf"
+// "Missle Surf!!"
 u16 gNameStage3_3[] = {
     ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_E, ALPHA_SPACE,
     ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_F, ALPHA_2EXCLAMATION, ALPHA_NULL,
@@ -419,8 +419,11 @@ u16 gNameStage3_4[] = {
 
 // "Go Marzen 64"
 u16 gNameStage3_5[] = {
-    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_O, ALPHA_SPACE, ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Z, ALPHA_EN3_LOWER_E,
-    ALPHA_EN3_LOWER_N, ALPHA_SPACE, ALPHA_THIN_6, ALPHA_THIN_4, ALPHA_NULL
+    ALPHA_EN3_UPPER_G, ALPHA_EN3_LOWER_O, 
+    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_M, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_Z, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_N,
+    ALPHA_SPACE,
+    ALPHA_THIN_6, ALPHA_THIN_4, ALPHA_NULL
 };
 
 // "Chilly Dog!!"
@@ -1753,9 +1756,9 @@ s32 GetRaceTimeRecord(s32 time) {
     else {
         var_v1 = (temp_t0 / 5) + 1;
     }
-    seconds_ones = (((time & 0xF00) / 0x100) * 60);
-    seconds_tens = (((time & 0xF000) / 0x1000) * 600);
-    minutes = ((time & 0xF0000) / 0x10000 * 3600);
+    seconds_ones = (((time & 0xF00) / 0x100) * SEC_TO_TICK(1));
+    seconds_tens = (((time & 0xF000) / 0x1000) * SEC_TO_TICK(10));
+    minutes = ((time & 0xF0000) / 0x10000 * SEC_TO_TICK(60));
 
     return var_v1 + minutes + seconds_tens + seconds_ones;
 }
@@ -1772,13 +1775,13 @@ void WorldMap_SetTransitionState(void) {
         time_0 = GetRaceTimeRecord(gFestivalRecords[FESTGAME_100M]);
         gStageTime = GetRaceTimeRecord(gFestivalRecords[FESTGAME_HURDLE]) + time_0 + time_1 + time_2;
         if (gFestivalRecords[FESTGAME_JUMP] < 1800) {
-            gStageTime = (gStageTime - gFestivalRecords[FESTGAME_JUMP]) + 1800;
+            gStageTime = (gStageTime - gFestivalRecords[FESTGAME_JUMP]) + SEC_TO_TICK(30);
         }
         if (gFestivalRecords[FESTGAME_BALL] < 1800) {
-            gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_BALL] * 10)) + 1800;
+            gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_BALL] * 10)) + SEC_TO_TICK(30);
         }
         if (gFestivalRecords[FESTGAME_MATH] < 1800) {
-            gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_MATH] * 10)) + 1800;
+            gStageTime = (gStageTime - (gFestivalRecords[FESTGAME_MATH] * 10)) + SEC_TO_TICK(30);
         }
     }
     gGamePaused = FALSE;
@@ -2095,15 +2098,15 @@ s16 WorldMap_GetStageRank(u16 time_ticks, u16 stage) {
         return RANK_S;
     }
 
-    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(30)) {
+    if (time_ticks < gStageTimesToBeat[stage] + MIN_SEC_TO_TICK(0,30)) {
         return RANK_A;
     }
 
-    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(120)) {
+    if (time_ticks < gStageTimesToBeat[stage] + MIN_SEC_TO_TICK(2, 0)) {
         return RANK_B;
     }
 
-    if (time_ticks < gStageTimesToBeat[stage] + SEC_TO_TICK(300) && time_ticks < STAGE_MAX_TIME) {
+    if (time_ticks < gStageTimesToBeat[stage] + MIN_SEC_TO_TICK(5, 0) && time_ticks < STAGE_MAX_TIME) {
         return RANK_C;
     }
 
@@ -2164,14 +2167,14 @@ void WorldMap_PrintCurrStageTime(void) {
     else {
         func_80083810(0xA, 5, gStrResultMS, var_s0);
 
-        func_8008379C(0xE, 5, (value / 10) + 0x51, var_s0);
-        func_8008379C(0xF, 5, (value % 10) + 0x51, var_s0);
+        func_8008379C(0xE, 5, (value / 10) + ALPHA_OFFSET(THIN_0), var_s0);
+        func_8008379C(0xF, 5, (value % 10) + ALPHA_OFFSET(THIN_0), var_s0);
         stage_time /= 60;
         value = stage_time % 60;
-        func_8008379C(0xB, 5, (value / 10) + 0x51, var_s0);
-        func_8008379C(0xC, 5, (value % 10) + 0x51, var_s0);
+        func_8008379C(0xB, 5, (value / 10) + ALPHA_OFFSET(THIN_0), var_s0);
+        func_8008379C(0xC, 5, (value % 10) + ALPHA_OFFSET(THIN_0), var_s0);
         value = stage_time / 60;
-        func_8008379C(9, 5, value + 0x51, var_s0);
+        func_8008379C(9, 5, value + ALPHA_OFFSET(THIN_0), var_s0);
     }
 }
 
@@ -2197,14 +2200,14 @@ void WorldMap_PrintStageTime(u16 x, u16 y, u16 stage) {
     }
     else {
         func_80083810(x + 1, y, gStrResultMS, 0);
-        func_8008379C(x + 5, y, (value / 10) + 0x51, 0);
-        func_8008379C(x + 6, y, (value % 10) + 0x51, 0);
+        func_8008379C(x + 5, y, (value / 10) + ALPHA_OFFSET(THIN_0), 0);
+        func_8008379C(x + 6, y, (value % 10) + ALPHA_OFFSET(THIN_0), 0);
         stage_time /= 60;
         value = stage_time % 60;
-        func_8008379C(x + 2, y, (value / 10) + 0x51, 0);
-        func_8008379C(x + 3, y, (value % 10) + 0x51, 0);
+        func_8008379C(x + 2, y, (value / 10) + ALPHA_OFFSET(THIN_0), 0);
+        func_8008379C(x + 3, y, (value % 10) + ALPHA_OFFSET(THIN_0), 0);
         stage_time /= 60;
-        func_8008379C(x, y, stage_time + 0x51, 0);
+        func_8008379C(x, y, stage_time + ALPHA_OFFSET(THIN_0), 0);
     }
 }
 
@@ -2759,7 +2762,7 @@ void func_8001C8B0(u16 arg0, u16 stage) {
 
     func_8001B078(stage, &sp2E, &sp2C, &sp2A);
     func_8008379C(1, arg0, D_800C96D8[sp2E + 1], 2);
-    func_8008379C(2, arg0, 0x70, 2);
+    func_8008379C(2, arg0, ALPHA_OFFSET(DASH), 2);
     func_8008379C(3, arg0, D_800C96D8[sp2C + 1], 2);
     WorldMap_PrintStageTime(5, arg0, stage);
     WorldMap_PrintRankLetter(0xD, arg0, gTimeRecords[stage], stage, 1);
