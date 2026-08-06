@@ -987,6 +987,8 @@ void func_800756FC(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/ActorUpdate_Clanblob.s")
 
+// function relating to Hovercraft (gunship-piloting) clancer
+
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80077D24.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80077F58.s")
@@ -1076,9 +1078,10 @@ void func_800791D4(u16 actor_index) {
     }
 }
 
-s16 func_80079270(s16 actor_index) {
-    actor_index *= 2;
-    return ((actor_index + 1) / 2) - ((Rand() * 4) & actor_index);
+// unknown purpose. unused.
+s16 func_80079270(s16 val) {
+    val *= 2;
+    return ((val + 1) / 2) - ((Rand() * 4) & val);
 }
 
 s32 func_800792C0(u16 actor_index) {
@@ -1088,14 +1091,14 @@ s32 func_800792C0(u16 actor_index) {
     temp_v0 = gActors[actor_index].unk_180 - gActors[actor_index].unk_178;
     temp_a1 = gActors[actor_index].unk_184 - gActors[actor_index].unk_17C;
     if (temp_v0 > 7 && temp_v0 < -7 && temp_a1 > 7 && temp_a1 < -7) {
-        return 1;
+        return TRUE;
     }
 
     if ((gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK3 | ACTOR_FLAG3_UNK2)) || (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK4) || (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void func_80079378(u16 actor_index) {
@@ -1307,7 +1310,7 @@ void func_8007A090(u16 actor_index, u16 other_actor_index) {
 }
 
 void func_8007A118(u16 actor_index, u16 other_actor_index) {
-    gActors[other_actor_index].actorType = 0x2601;
+    gActors[other_actor_index].actorType = ACTORTYPE_OVL0_GEN_BOMB1;
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[other_actor_index].velocityX.raw = -FIXED_UNIT(1.75);
     }

@@ -700,6 +700,7 @@ AnimateSpeechBubble = 0x8005E1CC; // type:func
 UpdateDialog = 0x8005F6D4; // type:func
 Marina_SpawnAfterImageOld = 0x8005C0CC; // type:func
 Marina_SpawnAfterImage = 0x8005c250; // type:func
+ActorUpdate_MarinaAfterImage = 0x8005C3C8; // type:func
 UpdateCameraShake = 0x8005C8A4; // type:func
 CameraShake = 0x8005CA34; // type:func
 GetCameraShakeTime = 0x8005CA98; // type:func

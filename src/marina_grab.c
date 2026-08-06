@@ -2,8 +2,8 @@
 #include "overlays.h"
 #include "marina.h"
 #include "1F1E0.h"
-#include "4FEB0.h"
-#include "57F20.h"
+#include "marina_grab.h"
+#include "marina_hit.h"
 #include "59EA0.h"
 
 // states when Marina is grabbing/holding/throwing/shake-shaking something
@@ -2120,38 +2120,38 @@ u16* D_800D54EC[] = {
 };
 
 s32 gMarinaActionVelocities[] = {
-    FIXED_UNIT(1.0/4),
-    FIXED_UNIT(2.0),
-    FIXED_UNIT(2.0),
-    FIXED_UNIT(1.0),
-    FIXED_UNIT(0.5),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(0.15),
-    FIXED_UNIT(5.0),
-    FIXED_UNIT(5.0),
-    FIXED_UNIT(5.0),
-    FIXED_UNIT(5.0),
-    FIXED_UNIT(5.0),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(0.375),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(2.0),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(3.5),
-    FIXED_UNIT(2.5),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(3.0),
-    FIXED_UNIT(2.0)
+    FIXED_UNIT(1.0/4), // MARINAMOVE_0
+    FIXED_UNIT(2.0),   // MARINAMOVE_WALKTARGET
+    FIXED_UNIT(2.0),   // MARINAMOVE_2
+    FIXED_UNIT(1.0),   // MARINAMOVE_3
+    FIXED_UNIT(0.5),   // MARINAMOVE_4
+    FIXED_UNIT(3.5),   // MARINAMOVE_5
+    FIXED_UNIT(3.5),   // MARINAMOVE_6
+    FIXED_UNIT(3.5),   // MARINAMOVE_7
+    FIXED_UNIT(2.5),   // MARINAMOVE_8
+    FIXED_UNIT(0.15),  // MARINAMOVE_9
+    FIXED_UNIT(5.0),   // MARINAMOVE_10
+    FIXED_UNIT(5.0),   // MARINAMOVE_11
+    FIXED_UNIT(5.0),   // MARINAMOVE_12
+    FIXED_UNIT(5.0),   // MARINAMOVE_13
+    FIXED_UNIT(5.0),   // MARINAMOVE_14
+    FIXED_UNIT(3.0),   // MARINAMOVE_15
+    FIXED_UNIT(3.0),   // MARINAMOVE_16
+    FIXED_UNIT(3.0),   // MARINAMOVE_17
+    FIXED_UNIT(2.5),   // MARINAMOVE_18
+    FIXED_UNIT(0.375), // MARINAMOVE_19
+    FIXED_UNIT(2.5),   // MARINAMOVE_20
+    FIXED_UNIT(2.5),   // MARINAMOVE_21
+    FIXED_UNIT(2.5),   // MARINAMOVE_22
+    FIXED_UNIT(2.0),   // MARINAMOVE_23
+    FIXED_UNIT(3.5),   // MARINAMOVE_24
+    FIXED_UNIT(3.5),   // MARINAMOVE_25
+    FIXED_UNIT(3.5),   // MARINAMOVE_26
+    FIXED_UNIT(2.5),   // MARINAMOVE_27
+    FIXED_UNIT(3.0),   // MARINAMOVE_28
+    FIXED_UNIT(3.0),   // MARINAMOVE_29
+    FIXED_UNIT(3.0),   // MARINAMOVE_30
+    FIXED_UNIT(2.0)    // MARINAMOVE_31
 };
 
 s32 func_8004F2B0(u16 actor_index) {

@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "boot.h"
 #include "SFX.h"
-#include "4FEB0.h"
+#include "marina_grab.h"
 
 // script for automated animations set in gMarinaAnim
 

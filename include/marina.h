@@ -70,8 +70,8 @@ typedef enum {
 
 // indicies of gMarinaActionVelocities which are then scaled by unk_120
 typedef enum {
-    MARINAMOVE_0,
-    MARINAMOVE_WALKTARGET,
+    MARINAMOVE_0,  // used for valocity steps
+    MARINAMOVE_WALKTARGET, // max walk speed.
     MARINAMOVE_2,
     MARINAMOVE_3,
     MARINAMOVE_4,
@@ -101,8 +101,7 @@ typedef enum {
     MARINAMOVE_28,
     MARINAMOVE_29,
     MARINAMOVE_30,
-    MARINAMOVE_31,
-    MARINAMOVE_32
+    MARINAMOVE_31
 } MarinaMoves;
 
 // abreviate Marina velocity getter

@@ -2,7 +2,7 @@
 #include "actor.h"
 #include "common_structs.h"
 #include "music.h"
-#include "4FEB0.h"
+#include "marina_grab.h"
 
 
 extern u16 D_800D28E4;

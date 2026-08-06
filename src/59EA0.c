@@ -10,7 +10,7 @@ typedef struct {
     u8 pad6[2];
     s32 unk8[3];
     u8 pad14[4];
-    s32 unk18;
+    s32 graphicIndex;
     s32 unk1C;
     f32 unk20;
 } Unk_func_8005A930_Arg0;
@@ -501,13 +501,13 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
             gActors[actor_index].unk_140_f32 = -8.0f;
         }
         gActors[actor_index].unk_144 = 0.0f;
-        if (arg0->unk18 == 0) {
+        if (arg0->graphicIndex == 0) {
             gActors[actor_index].graphicIndex = 0x162;
         }
         else {
-            gActors[actor_index].graphicIndex = arg0->unk18;
+            gActors[actor_index].graphicIndex = arg0->graphicIndex;
         }
-        gActors[actor_index].unk_18C = (s32)D_800D84C8; // palette_18C doesn't match instruction ordering
+        gActors[actor_index].unk_18C = (intptr_t)D_800D84C8; // palette_18C doesn't match instruction ordering
         temp_f20 = arg0->unk20 / (((Rand() % arg0->unk0) * 16) + 32);
         gActors[actor_index].scaleX = temp_f20;
         temp_v1_2 = TO_FIXED(Rand()) + arg0->unk1C - FIXED_UNIT(128.0);
@@ -647,7 +647,7 @@ void func_8005B1E8(u16 actor_index) {
             gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
             gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
             gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
-            gActors[actor_1].graphicIndex = 0x1D8;
+            gActors[actor_1].graphicIndex = GINDEX_IMPACTEFFECTA;
             gActors[actor_1].var_154 = -10;
             gActors[actor_1].unk_140_f32 = 0.0f;
             gActors[actor_1].unk_144 = 4.0f;
@@ -696,7 +696,7 @@ void func_8005B3F4(u16 actor_index) {
             return;
         }
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_SCALE;
-        gActors[actor_1].graphicIndex = 0x1C6;
+        gActors[actor_1].graphicIndex = GINDEX_POOF;
         gActors[actor_1].var_154 = -0xA;
         gActors[actor_1].unk_148 = 20.0f;
         gActors[actor_1].var_110 = 0.06f;
@@ -739,7 +739,7 @@ void func_8005B5FC(u16 actor_index) {
             return;
         }
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_SCALE;
-        gActors[actor_1].graphicIndex = 0xCA;
+        gActors[actor_1].graphicIndex = GINDEX_CIRCLEEFFECT;
         gActors[actor_1].unk_148 = 99.0f;
         gActors[actor_index].unk_180_u8[0] = gActors[actor_1].unk_148;
         if (gActors[actor_index].unk_180_u8[2] == 0) {
@@ -846,7 +846,7 @@ void func_8005BBC0(u16 actor_index) {
     sp1C.unk8[0] = gActors[actor_index].posX.whole;
     sp1C.unk8[1] = gActors[actor_index].posY.whole;
     sp1C.unk8[2] = gActors[actor_index].posZ.whole + 1;
-    sp1C.unk18 = 0x1EE;
+    sp1C.graphicIndex = 0x1EE;
     sp1C.unk20 = gActors[actor_index].hitboxBY0 + func_8005C708(9);
     sp1C.unk1C = func_8005C708(0) * FIXED_UNIT(4.0);
     sp1C.blue = Rand();
@@ -973,7 +973,7 @@ u16 Marina_SpawnAfterImage(u16 actor_index) {
 }
 
 // "tick" of actor for Marina's after-image
-void func_8005C3C8(u16 actor_index) {
+void ActorUpdate_MarinaAfterImage(u16 actor_index) {
     s32 temp_v0;
     s32 temp_t1;
 

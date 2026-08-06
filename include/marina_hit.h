@@ -1,5 +1,5 @@
-#ifndef FILE_57F20_H
-#define FILE_57F20_H
+#ifndef MARINA_HIT_H
+#define MARINA_HIT_H
 
 #include <PR/ultratypes.h>
 

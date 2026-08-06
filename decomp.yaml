@@ -100,8 +100,8 @@ tools:
             - "438E0"
             - "48A30"
             - marina
-            - "4FEB0"
-            - "57F20"
+            - marina_grab
+            - marina_hit
             - "59EA0"
             - "5D120"
             - "5E230"

@@ -1,7 +1,7 @@
 #include "common.h"
 #include "boot.h"
 #include "marina.h"
-#include "4FEB0.h"
+#include "marina_grab.h"
 
 extern Actor2Func gMarinaHitTable[];
 
