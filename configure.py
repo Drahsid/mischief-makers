@@ -130,11 +130,6 @@ O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 ASM_PROCESSOR_PRELUDE = "include/asm_processor_prelude.inc"
 GAME_WARNING_SUPPRESSIONS = "-woff 649,838"
 
-GAME_CC_CMD = f"{PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
-
-LIBULTRA_CC_CMD = f"$ido {LIBULTRA_CFLAGS} $mips $defs $opt_flags $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out"
-
-LIBULTRA_AS_CMD = f"{IDO_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
 def remove_file(fpath: str | os.PathLike, verbose: bool = False):
     if os.path.exists(fpath):
@@ -352,10 +347,7 @@ def get_libultra_c_flags(c_path: Path) -> Dict[str, str]:
             opt_level = LIBULTRA_DEFAULT_OPT_FLAGS
             mips = LIBULTRA_MIPS3_FLAGS
         # Matching exceptions observed in the ROM
-        elif c_path.stem in ["ldiv", "sprintf", "xldtob", "xlitob", "xprintf"]:
-            opt_level = "-O2 -g2"
-            mips = "-mips2 -32"
-        elif c_path.stem == "syncprintf":
+        elif c_path.stem in ["ldiv", "sprintf", "syncprintf", "xldtob", "xlitob", "xprintf"]:
             opt_level = "-O2 -g2"
             mips = "-mips2 -32"
         elif c_path.stem == "string":
@@ -386,12 +378,11 @@ def get_libultra_c_flags(c_path: Path) -> Dict[str, str]:
         ]:
             opt_level = "-O2 -g2"
             mips = "-mips2 -32"
-        elif source_dir == "audio" and c_path.stem in ["synthesizer", "cseq"]:
-            opt_level = "-O1 -g2"
         elif source_dir == "audio" and c_path.stem in [
             "auxbus",
             "cents2ratio",
             "copy",
+            "cseq",
             "drvrnew",
             "event",
             "env",
@@ -414,6 +405,7 @@ def get_libultra_c_flags(c_path: Path) -> Dict[str, str]:
             "synsetpriority",
             "synsetvol",
             "synstopvoice",
+            "synthesizer",
         ]:
             opt_level = "-O1 -g2"
         elif source_dir == "sp" and c_path.stem in ["sprite", "clearattribute", "setattribute", "color", "spscale"]:
@@ -521,19 +513,23 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as_libultra",
         description="as $in",
-        command=f"{LIBULTRA_AS_CMD}",
+        command=f"{IDO_CC} {LIBULTRA_ASFLAGS} {LIBULTRA_DEFAULT_MIPS_FLAGS} {LIBULTRA_DEFAULT_DEFS} {LIBULTRA_DEFAULT_ASOPT_FLAGS} $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
     )
 
     ninja.rule(
         "cc",
         description="cc $in",
-        command=f"{GAME_CC_CMD}",
+        command=(
+            f"{CPP} {CPP_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -MM -MF $out.d -MT $out $in"
+            f" && {PYTHON} tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP --asm-prelude {ASM_PROCESSOR_PRELUDE} {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn {GAME_WARNING_SUPPRESSIONS} -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {MIPS_FLAGS} {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+        ),
+        depfile="$out.d"
     )
 
     ninja.rule(
         "cc_libultra",
         description="cc $in",
-        command=f"{LIBULTRA_CC_CMD}",
+        command=f"$ido {LIBULTRA_CFLAGS} $mips $defs $opt_flags $in {LIBULTRA_INCLUDES} -o $out && {O32_TOOL} $out"
     )
 
     ninja.rule(
