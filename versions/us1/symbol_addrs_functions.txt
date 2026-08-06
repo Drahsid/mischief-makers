@@ -375,12 +375,19 @@ SpawnText_READY_2 = 0x8004732C; // type:func
 SpawnText_FIGHT = 0x8004735C; // type:func
 Marina_GetMoveVelocity = 0x80048C94; // type:func
 
+Marina_State57 = 0x8004a8e0; // type:func
+Marina_State1 = 0x8004A918; // type:func
 Marina_State0 = 0x8004A960; // type:func
+Marina_State2 = 0x8004AA64; // type:func
+Marina_IdleState = 0x8004AB3C; // type:func
 Marina_LandState = 0x8004b0a0; // type:func
 Marina_WalkState = 0x8004B18C; // type:func
+Marina_State9 = 0x8004b290; // type:func
 Marina_GroundDashState = 0x8004B344; // type:func
 Marina_SlideDashState = 0x8004BB08; // type:func
 Marina_RollState = 0x8004BEF8; // type:func
+Marina_AirDashState = 0x8004C5FC; // type:func
+Marina_State20 = 0x8004ce1c; // type:func
 
 Marina_State44 = 0x8004E1D4; // type:func
 Marina_State45 = 0x8004E1DC; // type:func
@@ -398,10 +405,19 @@ Marina_SlideDashHoldingState = 0x80050F3C; // type:func
 
 MarinaGrab_Noop = 0x80052780; // type:func
 MarinaGrab_Type4 = 0x80053358; // type:func
+MarinaGrab_Type6 = 0x80053DC8; // type:func
+MarinaGrab_Type7 = 0x800541B8; // type:func
+MarinaGrab_Hurt = 0x80054320; // type:func
+MarinaGrab_Type13 = 0x80054474; // type:func
+MarinaGrab_Type20 = 0x80054E18; // type:func
+MarinaGrab_Type21 = 0x80054FD0; // type:func
 
 MarinaThrow_Noop = 0x8005552C; // type:func
 MarinaThrow_Type3 = 0x800558F8; // type:func
 MarinaThrow_Type4 = 0x80055C2C; // type:func
+MarinaThrow_Type5 = 0x80055F8C; // type:func
+MarinaThrow_Type6 = 0x800562EC; // type:func
+MarinaThrow_Type7 = 0x8005664C; // type:func
 
 Marina_ThrowState = 0x80056F54; // type:func
 Marina_DropState = 0x80057268; // type:func
@@ -416,6 +432,10 @@ MarinaHit_Type1 = 0x80058978; // type:func
 MarinaHit_Boom = 0x80058B68; // type:func
 MarinaHit_Shock = 0x80058C24; // type:func
 MarinaHit_Type15 = 0x80058CAC; // type:func
+MarinaHit_Type17 = 0x80058D3C; // type:func
+MarinaHit_Type18 = 0x80058E44; // type:func
+MarinaHit_Type19 = 0x80058EB0; // type:func
+MarinaHit_Type22 = 0x80058F54; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
@@ -427,7 +447,16 @@ ActorUpdate_CatTank = 0x80075dc4; // type:func
 Clanblob_Update = 0x80076d40; // type:func
 ActorUpdate_Clanblob = 0x80077c18; // type:func
 
+Hovercraft_Update = 0x80078418; // type:func
+
+Rocketeer_FireParticle = 0x80078cc8; // type:func
+Rocketeer_PackFlame = 0x80078f14; // type:func
+Rocketeer_Control = 0x8007AB44; // type:func
+ActorUpdate_ClancerIcon = 0x8007B60C; // type:func
+Rocketeer_Update = 0x8007B73C; // type:func
+
 ActorUpdate_Type3 = 0x8007CCD0; // type:func
+
 
 ToBCD = 0x8007CCE0; // type:func
 

@@ -226,6 +226,15 @@
 
 #define GINDEX_HATPIRATE         0X3014
 
+// graphics of Rocketeer clancer? 
+
+#define GINDEX_3030                 0x3030
+#define GINDEX_3032                 0x3032
+#define GINDEX_3034                 0x3034
+#define GINDEX_3036                 0x3036
+#define GINDEX_3038                 0x3038
+#define GINDEX_303A                 0x303A
+#define GINDEX_303C                 0x303C
 #define GINDEX_303E                 0x303E
 #define GINDEX_3040                 0x3040
 #define GINDEX_3042                 0x3042

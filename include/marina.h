@@ -159,7 +159,7 @@ typedef enum {
     GRABTYPE_9, // stubbed grab/throw state
     GRABTYPE_10,
     GRABTYPE_11,
-    GRABTYPE_12,
+    GRABTYPE_HURT, // damage Marina if she tries to grab actor
     GRABTYPE_13,
     GRABTYPE_14,
     GRABTYPE_15,

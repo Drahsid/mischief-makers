@@ -7,7 +7,7 @@
 void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3);
 void Actor_SetHitboxA(u16 actor_index, s16 val);
 void Actor_UpdateVelocityX(u16 actor_index, s32 dvx);
-void func_8007B73C(u16 actor_index);
+void Rocketeer_Update(u16 actor_index);
 
 extern s16 D_801A5200_73BF60[];
 extern s16 D_801A5280_73BFE0[];
@@ -130,7 +130,7 @@ void func_8019DCC0_734A20(u16 actor_index) {
 }
 
 void func_8019DD08_734A68(u16 actor_index) {
-    func_8007B73C(actor_index);
+    Rocketeer_Update(actor_index);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019DD30_734A90.s")

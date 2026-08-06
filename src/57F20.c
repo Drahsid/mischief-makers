@@ -642,7 +642,7 @@ void MarinaHit_Type15(u16 actor_0, u16 unused_arg1) {
     gActors[actor_0].var_158 = FIXED_UNIT(32.0/256);
 }
 
-void func_80058D3C(u16 actor_0, u16 actor_1) {
+void MarinaHit_Type17(u16 actor_0, u16 actor_1) {
     gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK6);
     if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
         gActors[actor_0].velocityX.raw += gActors[actor_0].unk_0F8.raw;
@@ -665,14 +665,14 @@ void func_80058D3C(u16 actor_0, u16 actor_1) {
     gActors[actor_0].velocityY.raw = Math_ClampLimit(gActors[actor_0].velocityY.raw, FIXED_UNIT(8.0));
 }
 
-void func_80058E44(u16 arg0, u16 arg1) {
+void MarinaHit_Type18(u16 arg0, u16 arg1) {
     func_80058924(arg0);
     gActors[arg0].unk_0F8.raw = -gActors[arg0].unk_0F8.raw;
     gActors[arg0].unk_0FC.raw = gActors[arg0].unk_0FC.raw;
     gActors[arg0].state = MARINASTATE_43;
 }
 
-void func_80058EB0(u16 actor_0, u16 unused_arg1) {
+void MarinaHit_Type19(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
         Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
@@ -683,7 +683,7 @@ void func_80058EB0(u16 actor_0, u16 unused_arg1) {
     gActors[actor_0].stateLower = MARINASTATE_WAIT1;
 }
 
-void func_80058F54(u16 actor_0, u16 unused_arg1) {
+void MarinaHit_Type22(u16 actor_0, u16 unused_arg1) {
     gActors[actor_0].unk_0F8.raw = gActors[actor_0].velocityX.raw;
     gActors[actor_0].state = MARINASTATE_42;
 }
@@ -713,7 +713,7 @@ s32 func_80058F9C(u16 actor_index) {
             Sound_PlaySfx(SFX_GRAB_002F);
             gActors[actor_index].state = MARINASTATE_47;
         }
-        return 1;
+        return TRUE;
     }
     if (gActors[actor_index].iFrames != 0) {
         gActors[actor_index].unk_180_u8[3] = 6;
@@ -723,17 +723,17 @@ s32 func_80058F9C(u16 actor_index) {
         gPlayerData.unk_08 -= 1;
     }
     if (!(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1)) {
-        return 0;
+        return FALSE;
     }
     if (gActors[actor_index].hitByType == HITTYPE_19) {
-        func_80058EB0(actor_index, sp26);
-        return 1;
+        MarinaHit_Type19(actor_index, sp26);
+        return TRUE;
     }
     if (gActors[actor_index].health < 0) {
-        return 1;
+        return TRUE;
     }
     if (gActors[actor_index].flags & ACTOR_FLAG_UNK15) {
-        return 0;
+        return FALSE;
     }
     gActors[actor_index].unk_12C_u16[0] = 0;
     gActors[actor_index].unk_12E_u8 = 0xFF;
@@ -765,9 +765,9 @@ s32 func_80058F9C(u16 actor_index) {
     }
     gMarinaHitTable[gActors[actor_index].hitByType](actor_index, sp26);
     if (gActors[actor_index].hitByType == HITTYPE_17) {
-        return 0;
+        return FALSE;
     }
     else {
-        return 1;
+        return TRUE;
     }
 }

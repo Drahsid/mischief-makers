@@ -5717,7 +5717,7 @@ void Spikeball_State0(u16 actor_index) {
     else {
         gActors[actor_index].damage = 60;
     }
-    gActors[actor_index].grabType = GRABTYPE_12;
+    gActors[actor_index].grabType = GRABTYPE_HURT;
     gActors[actor_index].unk_0DF = 0x40;
     gActors[actor_index].hitFlags = HITFLAG_7|HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_4;

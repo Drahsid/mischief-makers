@@ -1225,7 +1225,7 @@ extern s32 Math_PlaneHalf(s32 x, s32 y);
 // BUG: incorrect prototype!
 extern void func_80033E7C(u16 actor_index, s16 x, s16 y, s16 z, s32 velocity, s32 pos_scale, s32 arg6);
 extern void func_80067E50(u16 actor_index, void* arg1);
-extern void func_80078418(u16 actor_index);
+extern void Hovercraft_Update(u16 actor_index);
 
 void func_801B0900_798740(u16 actor_index, f32 delta);
 void func_801B0D6C_798BAC(u16 actor_index);
@@ -3382,7 +3382,7 @@ void func_801B5B90_79D9D0(u16 actor_index) {
         active_flags[index + 0x10] = gActors[index].flags;
     }
 
-    func_80078418(actor_index);
+    Hovercraft_Update(actor_index);
 
     actor = &gActors[actor_index];
     actor->posZ.whole = 32;

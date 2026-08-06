@@ -140,7 +140,7 @@ extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
 extern void func_80067E50(u16 actor_index, void* data);
 extern s32 func_800734C4(u16 actor_index, s32 arg1);
-extern void func_8007B73C(u16 actor_index);
+extern void Rocketeer_Update(u16 actor_index);
 
 
 void func_801B0900_7B3FE0(u16 actor_index) {
@@ -1434,7 +1434,7 @@ void func_801B373C_7B6E1C(u16 actor_index) {
 
 void func_801B37FC_7B6EDC(u16 actor_index) {
     gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK1;
-    func_8007B73C(actor_index);
+    Rocketeer_Update(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
