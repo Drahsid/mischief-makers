@@ -10,19 +10,19 @@ typedef enum {
     MARINASTATE_WAIT2,
     MARINASTATE_IDLE, // default idle state
     MARINASTATE_IDLEHOLD, // default idle state while holding
-    MARINASTATE_5, 
-    MARINASTATE_6,
-    MARINASTATE_7,
-    MARINASTATE_8,
+    MARINASTATE_LAND,  // landing from jump/fall
+    MARINASTATE_LANDHOLD, // landing from jump/fall while holding.
+    MARINASTATE_WALK, // walking
+    MARINASTATE_WALKHOLDING, // walking while holding.
     MARINASTATE_9,
     MARINASTATE_10,
     MARINASTATE_11,
     MARINASTATE_12,
-    MARINASTATE_13,
-    MARINASTATE_14,
+    MARINASTATE_SLIDEDASH,
+    MARINASTATE_SLIDEDASHHOLD,
     MARINASTATE_ROLL, // state while rolling
-    MARINASTATE_16,
-    MARINASTATE_17,
+    MARINASTATE_AIRDASH,
+    MARINASTATE_AIRDASHHOLD,
     MARINASTATE_18,
     MARINASTATE_19,
     MARINASTATE_20,
@@ -46,11 +46,11 @@ typedef enum {
     MARINASTATE_THROW,
     MARINASTATE_39,
     MARINASTATE_SHAKE, // state while shake-shaking
-    MARINASTATE_41,
+    MARINASTATE_DROP, // drop held actor
     MARINASTATE_42,
     MARINASTATE_43,
-    MARINASTATE_44,
-    MARINASTATE_45,
+    MARINASTATE_44, // stubbed
+    MARINASTATE_45, // stubbed
     MARINASTATE_46,
     MARINASTATE_47,
     MARINASTATE_48,
@@ -58,7 +58,7 @@ typedef enum {
     MARINASTATE_50,
     MARINASTATE_51,
     MARINASTATE_52,
-    MARINASTATE_53,
+    MARINASTATE_HITSHOCK,
     MARINASTATE_54, // state code at D_8019B000[3]
     MARINASTATE_TPIN, // teleport in
     MARINASTATE_TPOUT,

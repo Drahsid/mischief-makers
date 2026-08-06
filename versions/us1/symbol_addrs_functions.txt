@@ -376,13 +376,37 @@ SpawnText_FIGHT = 0x8004735C; // type:func
 Marina_GetMoveVelocity = 0x80048C94; // type:func
 
 Marina_State0 = 0x8004A960; // type:func
+Marina_LandState = 0x8004b0a0; // type:func
+Marina_WalkState = 0x8004B18C; // type:func
+Marina_SlideDashState = 0x8004BB08; // type:func
+Marina_RollState = 0x8004BEF8; // type:func
 
+Marina_State44 = 0x8004E1D4; // type:func
+Marina_State45 = 0x8004E1DC; // type:func
+Marina_TPInState = 0x8004E1E4; // type:func
+Marina_TPOutState = 0x8004E4E0; // type:func
 ActorUpdate_Marina = 0x8004ed10; // type:func
 Marina_DebugMove = 0x8004EC60; // type:func
 
 Marina_ShakeShake = 0x8004FDF8; // type:func
-Marina_StateThrow = 0x80056F54; // type:func
+Marina_WalkHoldingState = 0x8005074C; // type:func
 
+Marina_SlideDashHoldingState = 0x80050F3C; // type:func
+
+MarinaGrab_Noop = 0x80052780; // type:func
+
+MarinaThrow_Noop = 0x8005552C; // type:func
+MarinaThrow_Type3 = 0x800558F8; // type:func
+
+Marina_ThrowState = 0x80056F54; // type:func
+
+Marina_AddHealth = 0x80057320; // type:func
+Marina_DecHealth = 0x8005739C; // type:func
+Marina_ShockState = 0x800584d4; // type:func
+
+MarinaHit_Noop = 0x8005896C; // type:func
+MarinaHit_Type1 = 0x80058978; // type:func
+MarinaHit_Shock = 0x80058C24; // type:func
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func
 
@@ -635,7 +659,8 @@ Text_SetHCColor = 0x80028260; // type:func
 AnimateSpeechBubble = 0x8005E1CC; // type:func
 
 UpdateDialog = 0x8005F6D4; // type:func
-
+Marina_SpawnAfterImageOld = 0x8005C0CC; // type:func
+Marina_SpawnAfterImage = 0x8005c250; // type:func
 UpdateCameraShake = 0x8005C8A4; // type:func
 CameraShake = 0x8005CA34; // type:func
 GetCameraShakeTime = 0x8005CA98; // type:func

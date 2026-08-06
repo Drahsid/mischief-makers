@@ -130,15 +130,15 @@ typedef enum {
     HITTYPE_8,
     HITTYPE_9,
     HITTYPE_10,
-    HITTYPE_11, // flame
-    HITTYPE_12,
-    HITTYPE_13,
-    HITTYPE_14,
+    HITTYPE_11,
+    HITTYPE_SHOCK_12,
+    HITTYPE_SHOCK_13,
+    HITTYPE_SHOCK_14,
     HITTYPE_15, // unused?
     HITTYPE_16, // unused?
     HITTYPE_17,
     HITTYPE_18,
-    HITTYPE_19, // fire attack
+    HITTYPE_19,
     HITTYPE_20,
     HITTYPE_21,
     HITTYPE_22,

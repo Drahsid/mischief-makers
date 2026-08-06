@@ -113,7 +113,7 @@
 #define SFX_BEASTECTOR_GRUNT2 0x0143
 #define SFX_JUMP_0024 0x0024
 #define SFX_LAND_0025 0x0025
-#define SFX_00AE 0x00AE
+#define SFX_DASH_00AE 0x00AE // used by down-A dash
 #define SFX_DASH_0116 0x0116
 #define SFX_0034 0x0034
 #define SFX_008A 0x008A

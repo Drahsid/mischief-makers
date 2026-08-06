@@ -921,7 +921,7 @@ void func_8005C098(u16 actor_index, s32 arg1) {
 }
 
 // unused variant of after-image. uses arrays to store history.
-u16 func_8005C0CC(u16 actor_index) {
+u16 Marina_SpawnAfterImageOld(u16 actor_index) {
     gActors[0x2D].actorType = gActors[0x2E].actorType = gActors[0x2F].actorType = ACTORTYPE_MARINAAFTERIMAGE;
     Actor_Initialize(0x2D);
     Actor_Initialize(0x2E);
@@ -947,7 +947,7 @@ u16 func_8005C0CC(u16 actor_index) {
 }
 
 // spawns after-image of Marina while dashing
-u16 func_8005C250(u16 actor_index) {
+u16 Marina_SpawnAfterImage(u16 actor_index) {
     u16 actor_1;
 
     actor_1 = Actor_RangeFindInactive(0x10, 0x2D);

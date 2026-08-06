@@ -2395,7 +2395,7 @@ void func_801BC828_7DF6F8(void) {
 
         case 3:
             if ((gScreenPosCurrentY.whole + gActors->posY.whole) < 0xA0) {
-                func_8005739C(PLAYER_INDEX, 100);
+                Marina_DecHealth(PLAYER_INDEX, 100);
                 func_801BC7C4_7DF694();
             }
             break;

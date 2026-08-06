@@ -2201,7 +2201,7 @@ void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s3
     gActors[actor_index].scaleY = 1.2f;
     gActors[actor_index].unk_0DF = 0x20;
     gActors[actor_index].hitFlags = HITFLAG_2;
-    gActors[actor_index].hitType = HITTYPE_13; \
+    gActors[actor_index].hitType = HITTYPE_SHOCK_13; \
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.5); \
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.25);
     gActors[actor_index].damage = 50;
@@ -2777,7 +2777,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 30;
         }
         else {
-            func_80057320(PLAYER_INDEX, 30);
+            Marina_AddHealth(PLAYER_INDEX, 30);
         }
         SpawnParticle_SineUp(pos_x, pos_y, 4, GINDEX_HEARTBUBBLE);
         if (is_static) {
@@ -2794,7 +2794,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 500;
         }
         else {
-            func_80057320(PLAYER_INDEX, 500);
+            Marina_AddHealth(PLAYER_INDEX, 500);
         }
         func_8003F9CC(2.5f, pos_x, pos_y, 0);
         if (is_static) {
@@ -2811,7 +2811,7 @@ void GemCollect(u16 actor_index, u16 is_static, void* palette, s16 pos_x, s16 po
             gGuestPlayerActor.health += 300;
         }
         else {
-            func_80057320(PLAYER_INDEX, 300);
+            Marina_AddHealth(PLAYER_INDEX, 300);
         }
         if (is_static != 0) {
             Sound_PlaySfxAtObject(SFX_GEM_GREEN, actor_index);

@@ -76,7 +76,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK7;
             gActors[actor_index].hitFlags = HITFLAG_7;
-            gActors[actor_index].hitType = HITTYPE_12;
+            gActors[actor_index].hitType = HITTYPE_SHOCK_12;
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
             gActors[actor_index].var_150 = 0xC8;

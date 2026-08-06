@@ -1242,7 +1242,7 @@ u16 sActorSpawn_2_11Exit[] = {
 s32 func_801B9900_7CE090(void) {
     if (func_80048CE4() == 1) {
         if (gPlayerActor.stateUpper == 4) {
-            func_8005739C(PLAYER_INDEX, 100);
+            Marina_DecHealth(PLAYER_INDEX, 100);
             if (gPlayerActor.health >= 0) {
                 return TRUE;
             }

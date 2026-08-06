@@ -1469,13 +1469,13 @@ void func_8007A8B0(u16 actor_index) {
         func_8007A84C(actor_index);
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
         break;
-    case HITTYPE_14:
+    case HITTYPE_SHOCK_14:
         func_80028B90(actor_index);
         /* fallthrough */
-    case HITTYPE_13:
+    case HITTYPE_SHOCK_13:
         gActors[actor_index].unk_0FC.raw = gActors[sp1E].unk_0FC.raw;
         /* fallthrough */
-    case HITTYPE_12:
+    case HITTYPE_SHOCK_12:
         gActors[actor_index].unk_114 = 1.0f;
         func_8007A84C(actor_index);
         Sound_PlaySfx(SFX_CLANCER_OW_009D);
