@@ -6,6 +6,8 @@
 #include "actor.h"
 #include "common.h"
 
+// Calina script?
+
 extern u16 D_800D1C04[];
 extern u16 D_800D98F4[];
 extern u16 D_800D99A4[];
@@ -3611,7 +3613,7 @@ void func_80094FE4(u16 actor_index) {
         gActors[actor_index].state++;
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_ROTX | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
-        gActors[actor_index].graphicIndex = 0x1A8;
+        gActors[actor_index].graphicIndex = GINDEX_WARPGATE;
         gActors[actor_index].var_154 = FIXED_UNIT(512.0);
         gActors[actor_index].var_158 = FIXED_UNIT(192.0);
         gActors[actor_index].unk_170 = FIXED_UNIT(-64.0);
