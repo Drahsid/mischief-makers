@@ -140,8 +140,8 @@ typedef enum {
     HITTYPE_18,
     HITTYPE_19,
     HITTYPE_20,
-    HITTYPE_21,
-    HITTYPE_22,
+    HITTYPE_21, // Marina ground/air dash hit type
+    HITTYPE_22, // Marina slide dash hit type
     HITTYPE_23,
     HITTYPE_24,
     HITTYPE_25,

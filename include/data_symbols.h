@@ -32,7 +32,7 @@ extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[]; // icon for head menus
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
-extern s32 D_800E3630[]; // could be array of structs of length 0x28
+extern s32 D_800E3630[]; // could be array of structs of length 0x28. indexed by Actor->unk_0CE
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
 extern s16 D_801370D2;
 extern u16 D_801370D4;

@@ -117,8 +117,8 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
     }
     gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     if (!(gActiveFrames & 3)) {
-        sp4C[0] = gActors[actor_index].posX.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
-        sp4C[1] = gActors[actor_index].posY.whole + (func_8005C708(0x10) * gActors[actor_index].var_110);
+        sp4C[0] = gActors[actor_index].posX.whole + (RandModulo(0x10) * gActors[actor_index].var_110);
+        sp4C[1] = gActors[actor_index].posY.whole + (RandModulo(0x10) * gActors[actor_index].var_110);
         sp4C[2] = gActors[actor_index].posZ.whole + 1;
         sp4C[3] = 0x1EE;
         sp4C[4] = (intptr_t)PALETTE_8022D568;
@@ -179,12 +179,12 @@ void func_8006098C(u16 actor_index) {
                 break;
             }
         }
-        gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, FIXED_UNIT(0.0), func_8005C6D0(gActors[actor_index].velocityX.raw / 10));
-        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-1.0), func_8005C6D0(gActors[actor_index].velocityY.raw / 10) + FIXED_UNIT(2.0/256));
+        gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, FIXED_UNIT(0.0), Math_AbsS32_2(gActors[actor_index].velocityX.raw / 10));
+        gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-1.0), Math_AbsS32_2(gActors[actor_index].velocityY.raw / 10) + FIXED_UNIT(2.0/256));
         gActors[actor_index].scaleX += 0.002;
         gActors[actor_index].scaleY += 0.004;
         gActors[actor_index].var_158 = 0x14;
-        if ((func_8005C6D0(gActors[actor_index].velocityX.raw) + func_8005C6D0(gActors[actor_index].velocityY.raw)) > FIXED_UNIT(1.5)) {
+        if ((Math_AbsS32_2(gActors[actor_index].velocityX.raw) + Math_AbsS32_2(gActors[actor_index].velocityY.raw)) > FIXED_UNIT(1.5)) {
             gActors[actor_index].scaleX += 0.05;
             gActors[actor_index].scaleY += 0.025;
             gActors[actor_index].var_158 = 4;

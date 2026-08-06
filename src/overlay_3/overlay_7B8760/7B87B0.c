@@ -439,9 +439,9 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         }
 
         gActors[actor_index].health = 0;
-        gActors[actor_index].damage = 0x32;
-        gActors[actor_index].hitFlags = 0x80;\
-        gActors[actor_index].hitType = 4;
+        gActors[actor_index].damage = 50;
+        gActors[actor_index].hitFlags = HITFLAG_7;\
+        gActors[actor_index].hitType = HITTYPE_4;
         gActors[actor_index].unk_0DF = 0x20;
         gActors[actor_index].state++;
         // fallthrough
@@ -924,7 +924,7 @@ void func_801B26B8_7BA568(u16 actor_index) {
             gActors[actor_index].hitboxAY1 = -0x20;
             gActors[actor_index].hitboxAX0 = -0xC0;
             gActors[actor_index].hitboxAX1 = 0xC0;
-            gActors[actor_index].hitType = 0x13;
+            gActors[actor_index].hitType = HITTYPE_19;
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].state++;
@@ -1445,7 +1445,7 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].flags = ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE;
-            gActors[actor_index].hitType = 0xB;
+            gActors[actor_index].hitType = HITTYPE_BOOM_11;
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(6.5);
             gActors[actor_index].unk_180 = 0;

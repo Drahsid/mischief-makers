@@ -56,8 +56,8 @@ extern void func_8005C098(u16, s32);
 extern u16 Marina_SpawnAfterImage(u16 actor_index);
 extern void func_8005C520(s8, s8);
 extern s32 func_8005C550(u16 actor_index, s16 arg1);
-extern s32 func_8005C6D0(s32);
-extern s32 func_8005C708(s32);
+extern s32 Math_AbsS32_2(s32);
+extern s32 RandModulo(s32);
 extern u16 func_8005C774(s32);
 extern void CameraShake(s32 mag, s32 time); // shake camera vertically.
 extern u8 func_8005C870(u8);

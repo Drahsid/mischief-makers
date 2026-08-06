@@ -405,7 +405,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
             // macro mismatches.
             gActors[actor_index].graphicList = gGraphicListGem;
             gActors[actor_index].graphicTimer = 1;
-            gActors[actor_index].palette_18C = gGemPalettes[func_8005C6D0(arg0) - 1];
+            gActors[actor_index].palette_18C = gGemPalettes[Math_AbsS32_2(arg0) - 1];
         }
         else {
             gActors[actor_index].graphicIndex = arg0;

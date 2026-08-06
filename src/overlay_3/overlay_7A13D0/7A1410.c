@@ -1589,10 +1589,10 @@ void func_801B3948_7A4458(u16 actor_index) {
 
         case 1:
             if ((gActors + actor_index)->unk_0F8.raw == (gActors + actor_index)->velocityX.raw) {
-                (gActors + actor_index)->unk_0F8.raw = TO_FIXED(func_8005C708(8));
+                (gActors + actor_index)->unk_0F8.raw = TO_FIXED(RandModulo(8));
             }
 
-            (gActors + actor_index)->var_150 = func_8005C6D0((gActors + actor_index)->velocityX.raw) / 0x1000;
+            (gActors + actor_index)->var_150 = Math_AbsS32_2((gActors + actor_index)->velocityX.raw) / 0x1000;
             D_800BE578 = gScreenPosCurrentX.whole + (gActors + actor_index)->posX.whole;
             D_800BE580 = gScreenPosCurrentY.whole + (gActors + actor_index)->posY.whole;
             (gActors + actor_index)->velocityX.raw = Math_ApproachS32((gActors + actor_index)->velocityX.raw, (gActors + actor_index)->unk_0F8.raw, FIXED_UNIT(2.0/256));

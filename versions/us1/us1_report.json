@@ -9621,7 +9621,7 @@
           }
         },
         {
-          "name": "func_8005C6D0",
+          "name": "Math_AbsS32_2",
           "size": "20",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9629,7 +9629,7 @@
           }
         },
         {
-          "name": "func_8005C6E4",
+          "name": "Math_AbsF32",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9637,7 +9637,7 @@
           }
         },
         {
-          "name": "func_8005C708",
+          "name": "RandModulo",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {

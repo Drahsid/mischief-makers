@@ -92,7 +92,7 @@ s32 func_800575C0(u16 actor_index) {
         return FALSE;
     }
     gActors[actor_index].hitByFlags |= HITFLAG_0;
-    if (func_8005C6D0(gActors[actor_index].unk_0F8.raw) < FIXED_UNIT(2.0)) {
+    if (Math_AbsS32_2(gActors[actor_index].unk_0F8.raw) < FIXED_UNIT(2.0)) {
         gActors[actor_index].unk_0F8.raw = 2.0 * gActors[actor_index].unk_0F8.raw;
     }
     if (gActors[actor_index].unk_0FC.raw < FIXED_UNIT(3.0)) {
@@ -199,7 +199,7 @@ void func_80057848(u16 actor_index) {
         if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
             gActors[actor_index].unk_180_u8[3] = 5;
             gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0) / 2);
-            if (func_8005C6D0(gActors[actor_index].velocityX.raw) > FIXED_UNIT(1.0)) {
+            if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(1.0)) {
                 return;
             }
         }
@@ -291,7 +291,7 @@ void func_80057C98(u16 actor_index) {
         else if (!(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK16)) {
             Sound_PlaySfx(SFX_MARINA_OW1);
         }
-        if (func_8005C6D0(gActors[actor_index].velocityX.raw) > FIXED_UNIT(12.0)) {
+        if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(12.0)) {
             if (gActors[actor_index].unk_0F8.raw > 0) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(12.0);
             }
@@ -299,7 +299,7 @@ void func_80057C98(u16 actor_index) {
                 gActors[actor_index].velocityX.raw = FIXED_UNIT(-12.0);
             }
         }
-        if (func_8005C6D0(gActors[actor_index].velocityY.raw) > FIXED_UNIT(12.0)) {
+        if (Math_AbsS32_2(gActors[actor_index].velocityY.raw) > FIXED_UNIT(12.0)) {
             if (gActors[actor_index].unk_0FC.raw > 0) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(12.0);
             } 
@@ -332,10 +332,10 @@ void func_80057C98(u16 actor_index) {
         }
         /* fallthrough */
     case 3:
-        if (func_8005C6D0(gActors[actor_index].velocityX.raw) > FIXED_UNIT(2.0)) {
-            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, func_8005C6D0((s32) gActors[actor_index].velocityX.raw / 32));
+        if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(2.0)) {
+            gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, Math_AbsS32_2((s32) gActors[actor_index].velocityX.raw / 32));
         }
-        if (func_8005C6D0(gActors[actor_index].velocityX.raw) > FIXED_UNIT(3.5)) {
+        if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(3.5)) {
             gActors[actor_index].unk_170_s8[0] = 0;
         }
         if ((gActors[actor_index].stateLower == MARINASTATE_49) || (gActors[actor_index].stateLower == MARINASTATE_52)) {
@@ -346,7 +346,7 @@ void func_80057C98(u16 actor_index) {
         }
         gActors[actor_index].unk_0F8.raw = gActors[actor_index].velocityX.raw;
         gActors[actor_index].unk_0FC.raw = gActors[actor_index].velocityY.raw;
-        if (func_8005C6D0(gActors[actor_index].velocityX.raw) > FIXED_UNIT(2.5)) {
+        if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(2.5)) {
             if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK3 | ACTOR_FLAG3_UNK2)) {
                 if (Marina_DecHealth(actor_index, (s16) gActors[actor_index].unk_13C_s16[1]) == 3) {
                     gActors[actor_index].health = 0;
@@ -361,7 +361,7 @@ void func_80057C98(u16 actor_index) {
                     gActors[actor_index].unk_170 = 0x94;
                     gActors[actor_index].var_15C = 0;
                 }
-                gActors[actor_index].var_150 = func_8005C6D0(FROM_FIXED(gActors[actor_index].unk_0F8.raw)) + 2;
+                gActors[actor_index].var_150 = Math_AbsS32_2(FROM_FIXED(gActors[actor_index].unk_0F8.raw)) + 2;
                 gActors[actor_index].stateUpper = 4;
                 gActors[actor_index].stateLower = MARINASTATE_49;
                 break;
@@ -435,7 +435,7 @@ void func_80057C98(u16 actor_index) {
                     gActors[actor_index].unk_170 = 0x99;
                 }
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw / 2;
-                gActors[actor_index].velocityY.raw = func_8005C6D0(gActors[actor_index].unk_0FC.raw / 2) + func_8005C6D0(gActors[actor_index].unk_0F8.raw / 2);
+                gActors[actor_index].velocityY.raw = Math_AbsS32_2(gActors[actor_index].unk_0FC.raw / 2) + Math_AbsS32_2(gActors[actor_index].unk_0F8.raw / 2);
                 gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
                 gActors[actor_index].stateUpper = 2;
@@ -446,7 +446,7 @@ void func_80057C98(u16 actor_index) {
     case 6:
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0));
         if (gActors[actor_index].velocityX.raw == 0) {
-            gActors[actor_index].var_150 = (FROM_FIXED(func_8005C6D0(gActors[actor_index].unk_104) + func_8005C6D0(gActors[actor_index].unk_108)) * 5) + 0x14;
+            gActors[actor_index].var_150 = (FROM_FIXED(Math_AbsS32_2(gActors[actor_index].unk_104) + Math_AbsS32_2(gActors[actor_index].unk_108)) * 5) + 0x14;
             if (gActors[actor_index].health < 0) {
                 gActors[actor_index].var_150 = 0;
             }
@@ -492,11 +492,11 @@ void Marina_ShockState(u16 actor_index) {
         /* fallthrough */
     case 1:
         if (gActors[actor_index].unk_170_s8[0] == 0) {
-            var_v0 = func_8005C708(3);
-            gActors[actor_index].unk_170_s8[1] = func_8005C6D0(var_v0);
+            var_v0 = RandModulo(3);
+            gActors[actor_index].unk_170_s8[1] = Math_AbsS32_2(var_v0);
         }
-        D_800BE5E0 = func_8005C708(2);
-        D_800BE5E4 = func_8005C708(2);
+        D_800BE5E0 = RandModulo(2);
+        D_800BE5E4 = RandModulo(2);
         Marina_DecHealth(actor_index, gActors[actor_index].var_15C);
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0));
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, MARINA_MOVE(0));
@@ -583,7 +583,7 @@ void MarinaHit_Type1(u16 actor_0, u16 actor_1) {
         gActors[actor_0].unk_0F8.raw = FIXED_UNIT(1.5);
     }
     gActors[actor_0].unk_0FC.raw = FIXED_UNIT(3.0);
-    gActors[actor_0].iFrames = 0x78;
+    gActors[actor_0].iFrames = 120;
     gActors[actor_0].state = MARINASTATE_49;
 }
 

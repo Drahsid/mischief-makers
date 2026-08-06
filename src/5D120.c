@@ -50,8 +50,8 @@ s32 func_8005C5E0(u16 actor_index) {
     return 1;
 }
 
-// abs_s32
-s32 func_8005C6D0(s32 x) {
+// another int abs function
+s32 Math_AbsS32_2(s32 x) {
     if (x < 0) {
         x = -x;
     }
@@ -59,15 +59,17 @@ s32 func_8005C6D0(s32 x) {
 }
 
 // abs_f32
-f32 func_8005C6E4(f32 x) {
+f32 Math_AbsF32(f32 x) {
     if (x < 0.0f) {
         x = -x;
     }
     return x;
 }
 
-// rand8_mod
-s32 func_8005C708(s32 modulus) {
+// @param modulus modulus of random number
+// @returns modulo'd random number,
+// number itself (range -128 - 127) if modulus is 0.
+s32 RandModulo(s32 modulus) {
     s8 val;
     s32 ret;
 
@@ -119,7 +121,7 @@ void UpdateCameraShake(void) {
             break;
         case 2:
             if (!(gCamShakeTime & 2)) {
-                gCamShakeV = func_8005C708(FROM_FIXED(gCamShakeMag));
+                gCamShakeV = RandModulo(FROM_FIXED(gCamShakeMag));
             }
             break;
         default:

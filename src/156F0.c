@@ -101,7 +101,7 @@ void func_80014F14(u16 actor_index, s32 arg1) {
 
     // fakematch: regalloc with `(0, `
     temp_a3 = ((((gActors[actor_index].posX.whole) + (0, gScreenPosCurrentX.whole) + arg1) & ~0xF) - gScreenPosCurrentX.whole) - arg1;
-    if (func_8005C6D0(temp_a3 - gActors[actor_index].posX.whole) < 0xF) {
+    if (Math_AbsS32_2(temp_a3 - gActors[actor_index].posX.whole) < 0xF) {
         gActors[actor_index].posX.whole = temp_a3;
     }
     else {
@@ -119,7 +119,7 @@ void func_80014FD0(u16 actor_index, s32 arg1) {
     s32 temp_t0;
 
     temp_t0 = ((((gScreenPosCurrentY.whole + gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1) & ~0xF) - gScreenPosCurrentY.whole) - gActors[actor_index].hitboxBY1) + arg1;
-    if (func_8005C6D0(temp_t0 - gActors[actor_index].posY.whole) < 0xF) {
+    if (Math_AbsS32_2(temp_t0 - gActors[actor_index].posY.whole) < 0xF) {
         gActors[actor_index].posY.whole = temp_t0;
     }
     else {
@@ -336,7 +336,7 @@ void ActorUpdate_Physics(u16 arg0) {
     if (gActors[arg0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
         if ((gActors[arg0].unk_0A0 = func_8005C870(func_80012AB4(gActors[arg0].posX.whole, gActors[arg0].posY.whole + gActors[arg0].hitboxBY0))) & 0x80) {
             var_a2 = (((gActors[arg0].posY.whole + gScreenPosCurrentY.whole + gActors[arg0].hitboxBY0) & ~0xF) - gScreenPosCurrentY.whole) - gActors[arg0].hitboxBY0;
-            if (func_8005C6D0(var_a2 - gActors[arg0].posY.whole) < 0xF) {
+            if (Math_AbsS32_2(var_a2 - gActors[arg0].posY.whole) < 0xF) {
                 gActors[arg0].posY.whole = var_a2;
             }
             else {
