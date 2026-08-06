@@ -875,10 +875,10 @@ void func_80049AC0(u16 actor_index) {
                         else if (temp_v0 == 4) {
                             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6);
                             if (!(gActors[actor_index].flags & ACTOR_FLAG_ATTACHED)) {
-                                gActors[actor_index].state = MARINASTATE_11;
+                                gActors[actor_index].state = MARINASTATE_GROUNDDASH;
                             }
                             else {
-                                gActors[actor_index].state = MARINASTATE_12;
+                                gActors[actor_index].state = MARINASTATE_GROUNDDASHHOLD;
                             }
                             return;
                         }
@@ -904,7 +904,7 @@ void func_80049AC0(u16 actor_index) {
                     gActors[actor_index].state = MARINASTATE_WALK;
                 }
                 else {
-                    gActors[actor_index].state = MARINASTATE_WALKHOLDING;
+                    gActors[actor_index].state = MARINASTATE_WALKHOLD;
                 }
             }
         }
@@ -1003,7 +1003,7 @@ void func_8004AB3C(u16 actor_index) {
             }
         }
         if (gActors[actor_index].velocityX.raw != 0) {
-            if ((D_801373D8 & 0x80) && (func_8005C6D0(gActors[actor_index].velocityX.raw) > MARINA_MOVE(1))) {
+            if ((D_801373D8 & 0x80) && (func_8005C6D0(gActors[actor_index].velocityX.raw) > MARINA_MOVE(WALKTARGET))) {
                 gActors[actor_index].state = MARINASTATE_9;
                 return;
             }
@@ -1108,7 +1108,7 @@ void Marina_WalkState(u16 actor_index) {
     s32 vel_x_target;
 
     gActors[actor_index].unk_12C_u16[0] = 7;
-    vel_x_target = MARINA_MOVE(1);
+    vel_x_target = MARINA_MOVE(WALKTARGET);
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         vel_x_target = -vel_x_target;
     }
@@ -1138,7 +1138,7 @@ void func_8004B290(u16 actor_index) {
     }
 }
 
-void func_8004B344(u16 actor_index) {
+void Marina_GroundDashState(u16 actor_index) {
     u16 actor;
     s32 sp38[5];
     s16 pos_x;
@@ -2187,7 +2187,7 @@ void Marina_TPOutState(u16 actor_index) {
     switch (gActors[actor_index].stateUpper) {
     case 0:
         if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
-            func_8004F514(actor_index, gActors[actor_index].parentIndex);
+            Marina_DropActor(actor_index, gActors[actor_index].parentIndex);
         }
         gActors[actor_index].graphicFlags &= ~ACTOR_GFLAG_UNK4;
         gActors[actor_index].colorB = 0;

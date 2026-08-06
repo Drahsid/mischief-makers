@@ -1985,7 +1985,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(7.75);
     gActors[actor_index].grabType = GRABTYPE_0;
     gActors[actor_index].unk_0DF = 0;
-    gActors[actor_index].hitType = HITTYPE_11; \
+    gActors[actor_index].hitType = HITTYPE_BOOM_11; \
     gActors[actor_index].hitFlags = HITFLAG_7 | HITFLAG_2;
     gActors[actor_index].var_110 = 8.0f;
     gActors[actor_index].velocityX.raw = 0;

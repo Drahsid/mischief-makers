@@ -975,7 +975,7 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
         gActors[actor_index].flags = ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         gActors[actor_index].health = 1;
         gActors[actor_index].hitFlags |= HITFLAG_7|HITFLAG_0;
-        gActors[actor_index].hitType = HITTYPE_11;
+        gActors[actor_index].hitType = HITTYPE_BOOM_11;
         gActors[actor_index].var_160 = 30;
         func_80085EB0(actor_index);
         Clanbomb_SetHitboxB(actor_index);
@@ -1725,7 +1725,7 @@ void func_80089418(u16 actor_index) {
         Actor_SetHitboxA(actor_index, 8);
         Actor_SetHitboxB(actor_index, 8);
         gActors[actor_index].hitFlags = HITFLAG_0 | HITFLAG_2;
-        gActors[actor_index].hitType = HITTYPE_11;
+        gActors[actor_index].hitType = HITTYPE_BOOM_11;
         gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
         gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0); 
         gActors[actor_index].health = 0;

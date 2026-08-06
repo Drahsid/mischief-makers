@@ -1070,7 +1070,7 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
         gActors[target_index].unk_0F8.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(3.0);
         gActors[target_index].unk_0FC.raw = FIXED_UNIT(4.0);
         if (target_index == 0) {
-            func_8004F614(actor_index, FIXED_UNIT(3.0), FIXED_UNIT(5.0), 0x32);
+            func_8004F614(actor_index, FIXED_UNIT(3.0), FIXED_UNIT(5.0), 50);
         }
         return FALSE;
     }

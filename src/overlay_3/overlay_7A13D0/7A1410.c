@@ -1940,7 +1940,7 @@ void func_801B455C_7A506C(u16 actor_index) {
                     gActors[new_actor_index].unk_0DF = 0x20;
                     gActors[new_actor_index].damage = 30;
                     gActors[new_actor_index].hitFlags = HITFLAG_2;
-                    gActors[new_actor_index].hitType = HITTYPE_9;
+                    gActors[new_actor_index].hitType = HITTYPE_BOOM_9;
                     Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
                     gActors[actor_index].state++;
                 }

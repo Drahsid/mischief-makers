@@ -323,7 +323,7 @@ void func_80043918(void) {
     D_800D28F4 = 1;
     gStageState = 0;
     gTransitionState = 0;
-    D_800BE668 = 0x32;
+    D_800BE668 = 50;
     func_8002653C();
     func_80043234();
     func_8004320C();

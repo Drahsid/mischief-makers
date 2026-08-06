@@ -16,7 +16,7 @@ extern s8 D_801373F3;
 // forward declarations
 void MarinaGrab_Noop(u16 actor_0, u16 actor_1);
 void func_8005278C(u16 actor_0, u16 actor_1);
-void func_80053358(u16 actor_0, u16 actor_1);
+void MarinaGrab_Type4(u16 actor_0, u16 actor_1);
 void func_8005396C(u16 actor_0, u16 actor_1);
 void func_80053DC8(u16 actor_0, u16 actor_1);
 void func_800541B8(u16 actor_0, u16 actor_1);
@@ -28,7 +28,7 @@ void func_80054FD0(u16 actor_0, u16 actor_1);
 void MarinaThrow_Noop(u16 actor_0, u16 actor_1);
 void func_80055538(u16 actor_0, u16 actor_1);
 void MarinaThrow_Type3(u16 actor_0, u16 actor_1);
-void func_80055C2C(u16 actor_0, u16 actor_1);
+void MarinaThrow_Type4(u16 actor_0, u16 actor_1);
 void func_80055F8C(u16 actor_0, u16 actor_1);
 void func_800562EC(u16 actor_0, u16 actor_1);
 void func_8005664C(u16 actor_0, u16 actor_1);
@@ -37,9 +37,9 @@ void func_80056CCC(u16 actor_0, u16 actor_1);
 void MarinaHit_Type1(u16 actor_0, u16 actor_1);
 void func_80058A38(u16 actor_0, u16 actor_1);
 void func_80058AE0(u16 actor_0, u16 actor_1);
-void func_80058B68(u16 actor_0, u16 actor_1);
+void MarinaHit_Boom(u16 actor_0, u16 actor_1);
 void MarinaHit_Shock(u16 actor_0, u16 actor_1);
-void func_80058CAC(u16 actor_0, u16 actor_1);
+void MarinaHit_Type15(u16 actor_0, u16 actor_1);
 void func_80058D3C(u16 actor_0, u16 actor_1);
 void func_80058E44(u16 actor_0, u16 actor_1);
 void func_80058EB0(u16 actor_0, u16 actor_1);
@@ -50,7 +50,7 @@ Actor2Func gMarinaGrabTable[] = {
     func_8005278C,
     func_8005278C,
     func_8005278C,
-    func_80053358,
+    MarinaGrab_Type4,
     func_8005396C,
     func_80053DC8,
     func_800541B8,
@@ -77,7 +77,7 @@ Actor2Func gMarinaThrowTable[] = {
     func_80055538,
     func_80055538,
     MarinaThrow_Type3,
-    func_80055C2C,
+    MarinaThrow_Type4,
     func_80055F8C,
     func_800562EC,
     func_8005664C,
@@ -109,13 +109,13 @@ Actor2Func gMarinaHitTable[] = {
     func_80058AE0,
     func_80058AE0,
     func_80058AE0,
-    func_80058B68,
-    func_80058B68,
-    func_80058B68,
+    MarinaHit_Boom,
+    MarinaHit_Boom,
+    MarinaHit_Boom,
     MarinaHit_Shock,
     MarinaHit_Shock,
     MarinaHit_Shock,
-    func_80058CAC,
+    MarinaHit_Type15,
     OverlayABI_Slot1_fn6_u16_u16_0,
     func_80058D3C,
     func_80058E44,
@@ -2206,7 +2206,7 @@ s32 func_8004F35C(u16 actor_index, u32* arg1) {
 // detatch actor from marina
 // @param actor0 Marina's index
 // @param actor1 index of actor to release
-void func_8004F514(u16 actor0, u16 actor1) {
+void Marina_DropActor(u16 actor0, u16 actor1) {
     gActors[actor0].flags &= ~ACTOR_FLAG_ATTACHED;
     if (actor1 != 0xFFFF) {
         if (gActors[actor1].flags & ACTOR_FLAG_ACTIVE) {
@@ -2257,7 +2257,7 @@ u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3) {
     if (!(gActors[temp_s0].flags & ACTOR_FLAG_ACTIVE)) {
         return 0xFFFF;
     }
-    func_8004F514(actor_index, temp_s0);
+    Marina_DropActor(actor_index, temp_s0);
     gActors[temp_s0].flags_098 |= ACTOR_FLAG3_THROWN;
     gActors[temp_s0].hitByFlags = HITFLAG_7 | HITFLAG_6;
     gActors[temp_s0].hitByType = HITTYPE_25;
@@ -2560,7 +2560,7 @@ void func_800500B0(u16 actor_index) {
         }
     }
     if (gActors[actor_index].velocityX.raw != 0) {
-        if ((D_801373D8 & 0x80) && (func_8005C6D0(gActors[actor_index].velocityX.raw) > MARINA_MOVE(1))) {
+        if ((D_801373D8 & 0x80) && (func_8005C6D0(gActors[actor_index].velocityX.raw) > MARINA_MOVE(WALKTARGET))) {
             gActors[actor_index].state = MARINASTATE_10;
             return;
         }
@@ -2640,7 +2640,7 @@ void Marina_WalkHoldingState(u16 actor_index) {
 
     gActors[actor_index].unk_12C_u16[0] = 7;
     func_8004F7D8(actor_index);
-    var_a1 = MARINA_MOVE(1);
+    var_a1 = MARINA_MOVE(WALKTARGET);
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         var_a1 = -var_a1;
     }
@@ -3416,7 +3416,7 @@ s32 func_800528F4(u16 actor_0, u16 actor_1) {
         return 0;
     }
     if (!(gActors[actor_1].flags & ACTOR_FLAG_ACTIVE) || (gActors[actor_1].flags_098 & ACTOR_FLAG3_GRAB) || (gActors[actor_1].health <= 0)) {
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         if (gActors[actor_0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
             gActors[actor_0].state = MARINASTATE_IDLE;
         }
@@ -3433,7 +3433,7 @@ s32 func_800528F4(u16 actor_0, u16 actor_1) {
         }
         gActors[actor_1].pendingDamage = 0;
         gActors[actor_1].flags_098 |= ACTOR_FLAG3_THROWN;
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         gActors[actor_0].velocityX.raw = gActors[actor_0].unk_0F8.raw;
         if (gActors[actor_0].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
             gActors[actor_0].state = MARINASTATE_IDLE;
@@ -3650,7 +3650,7 @@ s32 func_80053210(u16 actor_0, u16 actor_1) {
 
     var_v0 = func_8004F2B0(actor_0);
     if (var_v0 == 1) {
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         gActors[actor_0].unk_12F_u8 = 0;
         gActors[actor_0].state = MARINASTATE_22;
         return 3;
@@ -3667,7 +3667,7 @@ s32 func_80053210(u16 actor_0, u16 actor_1) {
         return 2;
     }
     else if (func_80048F70(actor_0)) {
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         gActors[actor_0].state = MARINASTATE_20;
         gActors[actor_0].stateUpper = 0xA;
         return 4;
@@ -3677,7 +3677,7 @@ s32 func_80053210(u16 actor_0, u16 actor_1) {
     }
 }
 
-void func_80053358(u16 actor_0, u16 actor_1) {
+void MarinaGrab_Type4(u16 actor_0, u16 actor_1) {
     s32 temp_v0;
     s32 var_a2;
 
@@ -4025,7 +4025,7 @@ void func_80054320(u16 actor_0, u16 actor_1) {
 
     if (gActors[actor_0].stateUpper == 0) {
         gActors[actor_0].stateUpper = 1;
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         gActors[actor_1].flags_098 |= ACTOR_FLAG3_UNK16;
         func_80058924(actor_0);
         if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
@@ -4232,7 +4232,7 @@ void func_8005498C(u16 actor_0, u16 actor_1) {
         if (D_801373D8 & 1) {
             gActors[actor_0].flags |= ACTOR_FLAG_FLIPPED;
         }
-        func_8004F514(actor_0, actor_1);
+        Marina_DropActor(actor_0, actor_1);
         gActors[actor_0].unk_170_s8[1] = 0x7F;
         gActors[actor_0].state = MARINASTATE_23;
     }
@@ -4374,12 +4374,12 @@ void func_800551F8(u16 actor_index) {
 
 void func_800553EC(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 |= 0x81;
-    func_80053358(actor_index, 0xFFFF);
+    MarinaGrab_Type4(actor_index, 0xFFFF);
 }
 
 void func_8005544C(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 |= 0x81;
-    func_80055C2C(actor_index, 0xFFFF);
+    MarinaThrow_Type4(actor_index, 0xFFFF);
 }
 
 void func_800554AC(u16 actor_0, u16 actor_1) {
@@ -4520,7 +4520,7 @@ void MarinaThrow_Type3(u16 actor_0, u16 actor_1) {
             if (gActors[actor_0].var_15C >= 9) {
                 gActors[actor_1].unk_0F8.raw = -gActors[actor_1].unk_0F8.raw;
             }
-            func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 0x1E);
+            func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 30);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
             Sound_StopSfx(SFX_MARINA_YELL1);
             Sound_StopSfx(SFX_MARINA_YELL3);
@@ -4554,7 +4554,7 @@ void MarinaThrow_Type3(u16 actor_0, u16 actor_1) {
     }
 }
 
-void func_80055C2C(u16 actor_0, u16 actor_1) {
+void MarinaThrow_Type4(u16 actor_0, u16 actor_1) {
     switch (gActors[actor_0].stateUpper) {
     case 0:
         gActors[actor_0].unk_170 = 0x6A;
@@ -5038,7 +5038,7 @@ void Marina_DropState(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 |= 0x81;
     gActors[actor_index].velocityX.raw = 0;
     gActors[actor_index].velocityY.raw = 0;
-    func_8004F514(actor_index, gActors[actor_index].parentIndex);
+    Marina_DropActor(actor_index, gActors[actor_index].parentIndex);
     gActors[actor_index].unk_12F_u8 = 0;
     D_801370CE &= ~gButton_B;
     if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {

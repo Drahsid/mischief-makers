@@ -1907,9 +1907,9 @@ s32 func_8008EDB0(u16 actor_index) {
             func_8008ECDC(actor_index);
             Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
             break;
-        case HITTYPE_9:
-        case HITTYPE_10:
-        case HITTYPE_11:
+        case HITTYPE_BOOM_9:
+        case HITTYPE_BOOM_10:
+        case HITTYPE_BOOM_11:
             func_8008ECDC(actor_index);
             Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
             break;

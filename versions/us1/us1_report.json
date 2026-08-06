@@ -8445,7 +8445,7 @@
           }
         },
         {
-          "name": "func_8004B344",
+          "name": "Marina_GroundDashState",
           "size": "1332",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8660,7 +8660,7 @@
           }
         },
         {
-          "name": "func_8004F514",
+          "name": "Marina_DropActor",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8844,7 +8844,7 @@
           }
         },
         {
-          "name": "func_80053358",
+          "name": "MarinaGrab_Type4",
           "size": "884",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9012,7 +9012,7 @@
           }
         },
         {
-          "name": "func_80055C2C",
+          "name": "MarinaThrow_Type4",
           "size": "864",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9236,7 +9236,7 @@
           }
         },
         {
-          "name": "func_80058B68",
+          "name": "MarinaHit_Boom",
           "size": "188",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9252,7 +9252,7 @@
           }
         },
         {
-          "name": "func_80058CAC",
+          "name": "MarinaHit_Type15",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {

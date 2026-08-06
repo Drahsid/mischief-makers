@@ -5,7 +5,7 @@
 
 extern Actor2Func gMarinaHitTable[];
 
-extern void func_8004F514(u16 actor0, u16 actor1);
+extern void Marina_DropActor(u16 actor0, u16 actor1);
 extern s32 func_800574B4(u16 actor_index);
 
 // change Marina's health
@@ -573,7 +573,7 @@ void MarinaHit_Noop(u16 actor_0, u16 actor_1) {
 
 void MarinaHit_Type1(u16 actor_0, u16 actor_1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
@@ -589,7 +589,7 @@ void MarinaHit_Type1(u16 actor_0, u16 actor_1) {
 
 void func_80058A38(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     if (!(gActors[actor_0].hitByFlags & HITFLAG_0)) {
@@ -602,15 +602,15 @@ void func_80058A38(u16 actor_0, u16 unused_arg1) {
 
 void func_80058AE0(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     gActors[actor_0].state = MARINASTATE_49;
 }
 
-void func_80058B68(u16 actor_0, u16 unused_arg1) {
+void MarinaHit_Boom(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     if (!(gActors[actor_0].hitByFlags & HITFLAG_0)) {
@@ -627,15 +627,15 @@ void func_80058B68(u16 actor_0, u16 unused_arg1) {
 void MarinaHit_Shock(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
         actor_0 = actor_0;
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     gActors[actor_0].state = MARINASTATE_HITSHOCK;
 }
 
-void func_80058CAC(u16 actor_0, u16 unused_arg1) {
+void MarinaHit_Type15(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     gActors[actor_0].state = MARINASTATE_50;
@@ -674,7 +674,7 @@ void func_80058E44(u16 arg0, u16 arg1) {
 
 void func_80058EB0(u16 actor_0, u16 unused_arg1) {
     if (gActors[actor_0].flags & ACTOR_FLAG_ATTACHED) {
-        func_8004F514(actor_0, gActors[actor_0].parentIndex);
+        Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
     gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_DRAW);
@@ -699,7 +699,7 @@ s32 func_80058F9C(u16 actor_index) {
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
         if (gActors[actor_index].stateLower != MARINASTATE_47) {
             if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
-                func_8004F514(actor_index, gActors[actor_index].parentIndex);
+                Marina_DropActor(actor_index, gActors[actor_index].parentIndex);
             }
             func_80058924(actor_index);
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);

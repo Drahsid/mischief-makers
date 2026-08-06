@@ -177,7 +177,7 @@ void func_80048408(u16 actor_index) {
     switch (gMarinaAnim.state) {
         case 0:
             if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
-                func_8004F514(actor_index, gActors[actor_index].parentIndex);
+                Marina_DropActor(actor_index, gActors[actor_index].parentIndex);
                 if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
                     gActors[actor_index].state = MARINASTATE_IDLE;
                 }

@@ -13,11 +13,11 @@ typedef enum {
     MARINASTATE_LAND,  // landing from jump/fall
     MARINASTATE_LANDHOLD, // landing from jump/fall while holding.
     MARINASTATE_WALK, // walking
-    MARINASTATE_WALKHOLDING, // walking while holding.
+    MARINASTATE_WALKHOLD, // walking while holding.
     MARINASTATE_9,
     MARINASTATE_10,
-    MARINASTATE_11,
-    MARINASTATE_12,
+    MARINASTATE_GROUNDDASH,
+    MARINASTATE_GROUNDDASHHOLD,
     MARINASTATE_SLIDEDASH,
     MARINASTATE_SLIDEDASHHOLD,
     MARINASTATE_ROLL, // state while rolling
@@ -71,7 +71,7 @@ typedef enum {
 // indicies of gMarinaActionVelocities which are then scaled by unk_120
 typedef enum {
     MARINAMOVE_0,
-    MARINAMOVE_1,
+    MARINAMOVE_WALKTARGET,
     MARINAMOVE_2,
     MARINAMOVE_3,
     MARINAMOVE_4,

@@ -146,9 +146,9 @@
 #define SFX_WIND_00BA 0x00BA
 #define SFX_THUNDER_00BE 0x00BE
 #define SFX_013C 0x013C
-#define SFX_013D 0x013D
+#define SFX_013D 0x013D // Part of Calina's transform
 #define SFX_BOOM_0026 0x0026
-#define SFX_DASH_0027 0x0027
+#define SFX_DASH_0027 0x0027 // Marina's ground dash
 #define SFX_0028 0x0028
 #define SFX_0029 0x0029
 #define SFX_THROW_002A 0x002A
