@@ -987,7 +987,7 @@ void func_800756FC(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/ActorUpdate_Clanblob.s")
 
-// function relating to Hovercraft (gunship-piloting) clancer
+// functions relating to Hovercraft (gunship-piloting) clancer
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80077D24.s")
 
@@ -1001,7 +1001,7 @@ void func_800756FC(u16 actor_index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/Hovercraft_Update.s")
 
-// function relating to Rocketeer (Jetpack-wearing) clancer
+// functions relating to Rocketeer (Jetpack-wearing) clancer
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800789C4.s")
 
