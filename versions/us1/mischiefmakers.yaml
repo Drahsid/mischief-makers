@@ -306,7 +306,8 @@ segments:
       - [0x0C4500, .data, font]
       - [0x0C5AE0, .data, rle_type1]
       - [0x0C5B20, .data, save_file]
-      - [0x0C5FC0, data] # A540?
+      - [0x0C5FC0, .data, A540]
+      - [0x0C6C20, data] # 11820?
       - [0x0C7DA0, data] # 241E0?
       - [0x0C84A0, .data, 11820]
       - [0x0C88D0, .data, 134E0]
@@ -372,7 +373,7 @@ segments:
       - [0x0EB7F0, .rodata, game_state]
       - [0x0EB830, .rodata, music]
       - [0x0EBB10, .rodata, save_file]
-      - [0x0EBBC0, rodata] # A540?
+      - [0x0EBBC0, .rodata, A540]
       - [0x0EBBE0, .rodata, 11820]
       - [0x0EBC00, .rodata, gameover]
       - [0x0EBC50, .rodata, 17A70]
@@ -448,6 +449,7 @@ segments:
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: save_file, type: .bss, vram: 0x80171AA0}
       - { name: bss_80171B30, type: bss, vram: 0x80171B30 }
+      - { name: A540, type: .bss, vram: 0x801720F0}
       - { name: gameover, type: .bss, vram: 0x80178130 }
       - { name: stage, type: .bss, vram: 0x80178150 }
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
