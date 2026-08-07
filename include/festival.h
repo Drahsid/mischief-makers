@@ -41,7 +41,7 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
+    /* 0x02 */ s16 positionY;
     /* 0x04 */ u16 unk_04;
     /* 0x06 */ u16 unk_06;
 } Festival_Actor_Spawn; /* sizeof = 0x08 */
@@ -51,9 +51,6 @@ typedef struct {
     /* 0x08 */ u16 behavior;
 } Festival_Actor_SpawnWithBehavior; /* sizeof = 0x0A */
 
-
-extern u32 gFestivalRecords[FESTGAME_TOTAL]; // festival games records.
-
 // code related to Festival Games
 
 // data related to competitor in festival.
@@ -62,13 +59,13 @@ typedef struct {
     /* 0x02 */ u16 playerNumber; // 0xFFFF for the lead/parent record
     /* 0x04 */ u16 rank; // rank in in event. 0 for still running.
     /* 0x06 */ u16 unk_06;
-    /* 0x08 */ s32 actor_unk_174;
+    /* 0x08 */ s32 unk_08;
     /* 0x0C */ s32 rand;
     /* 0x10 */ u16 unk_10;
     /* 0x12 */ u16 unk_12;
-} FestivalPlayer;
+} FestivalPlayer; /* sizeof = 0x14 */
 
-
+extern u32 gFestivalRecords[FESTGAME_TOTAL]; // festival games records.
 extern u16 gFestivalEventState;
 extern u16 gFestivalCurrentEvent;
 extern u16 gFestivalCompetitorCount;
