@@ -974,7 +974,7 @@ void ActorUpdate_Clanbomb(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
         gActors[actor_index].health = 1;
-        gActors[actor_index].hitFlags |= HITFLAG_7|HITFLAG_0;
+        gActors[actor_index].hitFlags |= HITFLAG_7 | HITFLAG_0;
         gActors[actor_index].hitType = HITTYPE_BOOM_11;
         gActors[actor_index].var_160 = 30;
         func_80085EB0(actor_index);

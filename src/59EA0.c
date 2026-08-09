@@ -6,7 +6,7 @@ typedef struct {
     u8 red;
     u8 green;
     u8 blue;
-    u16 unk4;
+    u16 actorIndex;
     u8 pad6[2];
     s32 pos[3];
     u8 pad14[4];
@@ -182,6 +182,7 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* palette) {
     return actor_2;
 }
 
+// create "grab" particle effect
 u16 func_80059ABC(u16 actor_index, f32 scale) {
     s32 sp34[5];
     s32 pad;
@@ -210,7 +211,7 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = 0x19A;
+    gActors[actor_1].graphicIndex = GINDEX_GRABEFFECTA;
     gActors[actor_1].colorA = 0xE0;
     gActors[actor_1].var_154 = -5;
     gActors[actor_1].unk_148 = 60.0f;
@@ -485,7 +486,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
     var_s3 = arg0->unk20;
     Palette_AdjustRgb5551Array(&D_800D82EA, &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
     for (index = 0; index < 8; index++) {
-        actor_index = func_800592A0(arg0->unk4, arg0->pos);
+        actor_index = func_800592A0(arg0->actorIndex, arg0->pos);
         if (actor_index == 0) {
             return 0;
         }
@@ -502,7 +503,7 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
         }
         gActors[actor_index].unk_144 = 0.0f;
         if (arg0->graphicIndex == 0) {
-            gActors[actor_index].graphicIndex = 0x162;
+            gActors[actor_index].graphicIndex = GINDEX_LINE;
         }
         else {
             gActors[actor_index].graphicIndex = arg0->graphicIndex;
@@ -843,7 +844,7 @@ void func_8005BBC0(u16 actor_index) {
 
     gActors[actor_index].colorB = 0x7F;
     gActors[actor_index].colorB = (Rand() & 0x3F) + 0x40;
-    sp1C.unk4 = actor_index;
+    sp1C.actorIndex = actor_index;
     sp1C.pos[0] = gActors[actor_index].posX.whole;
     sp1C.pos[1] = gActors[actor_index].posY.whole;
     sp1C.pos[2] = gActors[actor_index].posZ.whole + 1;

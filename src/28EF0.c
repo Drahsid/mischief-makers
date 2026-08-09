@@ -107,8 +107,8 @@ void WarpGate_Sparkle(u16 actor_index, u16 arg1);
 // @param y local y-position of player
 void func_800282F0(s16 x, s16 y) {
     Marina_Init();
-    gPlayerData.unk_20 = 0;
-    gPlayerData.unk_24 = 0;
+    gPlayerData.buttonHold = 0;
+    gPlayerData.buttonPress = 0;
     gActors->posX.whole = x;
     gActors->posY.whole = y;
     gPlayerPosX.whole = gScreenPosCurrentX.whole + x;
@@ -5719,7 +5719,7 @@ void Spikeball_State0(u16 actor_index) {
     }
     gActors[actor_index].grabType = GRABTYPE_HURT;
     gActors[actor_index].unk_0DF = 0x40;
-    gActors[actor_index].hitFlags = HITFLAG_7|HITFLAG_2;
+    gActors[actor_index].hitFlags = HITFLAG_7 | HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_4;
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);

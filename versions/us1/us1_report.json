@@ -8085,7 +8085,7 @@
       }
     },
     {
-      "name": "48A30",
+      "name": "marina_anim",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "2000",
@@ -8109,7 +8109,7 @@
       ],
       "functions": [
         {
-          "name": "func_80047E30",
+          "name": "MarinaAnim_State0",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8117,7 +8117,7 @@
           }
         },
         {
-          "name": "func_80047E38",
+          "name": "MarinaAnim_State2",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8125,7 +8125,7 @@
           }
         },
         {
-          "name": "func_80047ED4",
+          "name": "MarinaAnim_State3_4",
           "size": "172",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8133,7 +8133,7 @@
           }
         },
         {
-          "name": "func_80047F80",
+          "name": "MarinaAnim_State5_6",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8141,7 +8141,7 @@
           }
         },
         {
-          "name": "func_80047FF8",
+          "name": "MarinaAnim_State7",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8149,7 +8149,7 @@
           }
         },
         {
-          "name": "func_800480B8",
+          "name": "MarinaAnim_Dash",
           "size": "384",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8157,7 +8157,7 @@
           }
         },
         {
-          "name": "func_80048238",
+          "name": "MarinaAnim_TeleportIn",
           "size": "232",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8165,7 +8165,7 @@
           }
         },
         {
-          "name": "func_80048320",
+          "name": "MarinaAnim_TeleportOut",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8173,7 +8173,7 @@
           }
         },
         {
-          "name": "func_800483B4",
+          "name": "MarinaAnim_Humming",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8181,7 +8181,7 @@
           }
         },
         {
-          "name": "func_80048408",
+          "name": "MarinaAnim_Dance",
           "size": "420",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8189,7 +8189,7 @@
           }
         },
         {
-          "name": "func_800485AC",
+          "name": "MarinaAnim_Update",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8277,7 +8277,7 @@
           }
         },
         {
-          "name": "Marina_GetMoveVelocity",
+          "name": "Marina_GetMoveSpeed",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8565,7 +8565,7 @@
           }
         },
         {
-          "name": "func_8004E6FC",
+          "name": "Marina_DebugAnim",
           "size": "1000",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8573,7 +8573,7 @@
           }
         },
         {
-          "name": "func_8004EAE4",
+          "name": "Marina_DebugGraphic",
           "size": "380",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9132,7 +9132,7 @@
           }
         },
         {
-          "name": "Marina_DecHealth",
+          "name": "Marina_SubHealth",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {

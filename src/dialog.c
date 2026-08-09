@@ -119,28 +119,28 @@ void func_8005E09C(s32 arg0, s32 arg1) {
     D_801783F8[arg0] = arg1;
 }
 
-void func_8005E0B0(s16 arg0, s16 arg1, s32 arg2) {
+void func_8005E0B0(s16 ch, s16 pos, s32 arg2) {
     if (arg2 == 2) {
-        func_8005EC20(arg0, arg1, arg2);
+        func_8005EC20(ch, pos, arg2);
     }
-    else if (arg0 > 0) {
-        if (arg0 < 0x81) {
+    else if (ch > 0) {
+        if (ch < 0x81) {
             switch (D_801782E0) {
             case 1:
                 break;
             case 2:
-                arg0 += 0x7C;
+                ch += 0x7C;
                 break;
             case 3:
-                arg0 += 0xCD;
+                ch += 0xCD;
                 break;
             }
         }
         if (arg2 != 0) {
-            func_8005EC20(arg0, arg1, arg2);
+            func_8005EC20(ch, pos, arg2);
         }
         else {
-            func_800831D0(arg1 % 32, arg1 / 32, arg0, D_801782E2);
+            func_800831D0(pos % 32, pos / 32, ch, D_801782E2);
         }
     }
 }
@@ -387,7 +387,7 @@ void func_8005E8F8(u16 actor_index) {
     }
 }
 
-u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
+u16 func_8005EC20(s16 arg0, s16 pos, s32 arg2) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x30, 0xD0);
@@ -420,15 +420,15 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
     gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].posX.whole = -0x7B;
     gActors[actor_index].posY.whole = D_801783F6 + 0x13;
-    gActors[actor_index].posX.whole += (arg1 % 32) * 8;
-    gActors[actor_index].posY.whole -= (arg1 / 32) * 20;
+    gActors[actor_index].posX.whole += (pos % 32) * 8;
+    gActors[actor_index].posY.whole -= (pos / 32) * 20;
     gActors[actor_index].posZ.whole = 0x400;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].var_110 = 0.5f;
     gActors[actor_index].unk_114 = -0.025f;
     gActors[actor_index].var_154 = D_801782E2;
     gActors[actor_index].var_158 = arg0;
-    gActors[actor_index].var_15C = arg1;
+    gActors[actor_index].var_15C = pos;
     gActors[actor_index].unk_14C = D_80178418[0];
 }
 
@@ -808,7 +808,7 @@ void UpdateDialog(void) {
                                 case GINDEX_PORTRAIT_MARINAB:
                                 case GINDEX_PORTRAIT_MARINAC:
                                 case GINDEX_PORTRAIT_MARINAD:
-                                case 0x232:
+                                case GINDEX_PORTRAIT_CALINAZ:
                                     Sound_PlaySfx2(SFX_TXTGRUNT_MARINA);
                                     break;
                                 case GINDEX_PORTRAIT_THEOA:

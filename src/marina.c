@@ -15,7 +15,112 @@
 extern u16 D_801373D8;
 extern u16 D_801373DE;
 
-extern ActorFunc gMarinaStateTable[];
+// forward declarations
+
+extern void Marina_State1(u16);
+extern void Marina_State2(u16);
+extern void Marina_IdleState(u16);
+extern void Marina_IdleHoldingState(u16);
+extern void Marina_LandState(u16);
+extern void Marina_LandHoldingState(u16);
+extern void Marina_WalkState(u16);
+extern void Marina_WalkHoldingState(u16);
+extern void Marina_State9(u16);
+extern void func_800508F4(u16);
+extern void Marina_GroundDashState(u16);
+extern void Marina_GroundDashHoldingState(u16);
+extern void Marina_SlideDashState(u16);
+extern void Marina_SlideDashHoldingState(u16);
+extern void func_80051324(u16);
+extern void Marina_State20(u16);
+extern void func_80051C48(u16);
+extern void func_8004D140(u16);
+extern void func_80052004(u16);
+extern void func_80055188(u16);
+extern void func_800551F8(u16);
+extern void func_800553EC(u16);
+extern void func_800553EC(u16);
+extern void func_8005544C(u16);
+extern void Marina_ThrowState(u16);
+extern void func_8005701c(u16);
+extern void Marina_ShakeShake(u16);
+extern void Marina_DropState(u16);
+extern void func_800576A0(u16);
+extern void func_80057848(u16);
+extern void func_80057C98(u16);
+extern void func_8005878C(u16);
+extern void Marina_ShockState(u16);
+extern void Marina_TPInState(u16);
+extern void Marina_TPOutState(u16);
+extern void Marina_State57(u16);
+extern void Marina_DebugAnim(u16);
+extern void Marina_DebugGraphic(u16);
+extern void Marina_DebugMove(u16);
+
+
+ActorFunc gMarinaStateTable[] = {
+    Marina_State0,
+    Marina_State1,
+    Marina_State2,
+    Marina_IdleState,
+    Marina_IdleHoldingState,
+    Marina_LandState,
+    Marina_LandHoldingState,
+    Marina_WalkState,
+    Marina_WalkHoldingState,
+    Marina_State9,
+    func_800508F4,
+    Marina_GroundDashState,
+    Marina_GroundDashHoldingState,
+    Marina_SlideDashState,
+    Marina_SlideDashHoldingState,
+    Marina_RollState,
+    Marina_AirDashState,
+    Marina_AirDashState,
+    func_80051324,
+    func_80051324,
+    Marina_State20,
+    func_80051C48,
+    func_8004D140,
+    func_8004D140,
+    func_8004D140,
+    func_8004D140,
+    func_80052004,
+    func_80052004,
+    func_80052004,
+    func_80052004,
+    func_8004D6CC,
+    func_8004D7BC,
+    func_8004DA6C,
+    func_8004DC44,
+    func_80055188,
+    func_800551F8,
+    func_800553EC,
+    func_8005544C,
+    Marina_ThrowState,
+    func_8005701c,
+    Marina_ShakeShake,
+    Marina_DropState,
+    func_8004B878,
+    func_8004B878,
+    Marina_State44,
+    Marina_State45,
+    func_8005878C,
+    func_800576A0,
+    func_80057848,
+    func_80057C98,
+    func_80057C98,
+    func_80057848,
+    func_80057C98,
+    Marina_ShockState,
+    OverlayABI_Slot1_fn3_u16,
+    Marina_TPInState,
+    Marina_TPOutState,
+    Marina_State57,
+    Marina_DebugAnim,
+    Marina_DebugGraphic,
+    Marina_DebugMove
+};
 
 u8 func_80048600(u16 actor_index) {
     u8 ret;
@@ -226,9 +331,9 @@ u8 func_80048C28(s32 arg0) {
     return var_v1;
 }
 
-// get velocity for Marina's actions and multiply it by field 0x120
-s32 Marina_GetMoveVelocity(s32 arg0) {
-    return gMarinaActionVelocities[arg0] * gPlayerActor.unk_120;
+// get speed for Marina's actions and multiply it by field 0x120
+s32 Marina_GetMoveSpeed(s32 arg0) {
+    return gMarinaActionSpeeds[arg0] * gPlayerActor.unk_120;
 }
 
 s32 func_80048CE4(void) {
@@ -929,7 +1034,7 @@ void Marina_State0(u16 actor_index) {
         gPlayerData.unk_00[i].raw = 0;
     }
     gPlayerData.unk_13 = 0;
-    gPlayerData.unk_12 = 0x64;
+    gPlayerData.unk_12 = 100;
     gActors[actor_index].unk_140_u16[1] = 0;
     gActors[actor_index].unk_140_u8[1] = 0;
     gActors[actor_index].unk_180 = 0;
@@ -2236,7 +2341,7 @@ void Marina_TPOutState(u16 actor_index) {
 }
 
 // state 58 - debug graphic select
-void func_8004E6FC(u16 actor_index) {
+void Marina_DebugAnim(u16 actor_index) {
     s16* graphic_list;
     s16 button_hold_count;
 
@@ -2320,7 +2425,7 @@ void func_8004E6FC(u16 actor_index) {
 }
 
 // state 59 - debug graphic select
-void func_8004EAE4(u16 actor_index) {
+void Marina_DebugGraphic(u16 actor_index) {
     s16 button_hold_count;
 
     button_hold_count = 0;
@@ -2397,15 +2502,15 @@ void ActorUpdate_Marina(u16 actor_index) {
     D_800BE5E0 = D_800BE5E4 = 0;
     gPlayerData.unk_70 = 0;
     gActors[actor_index].posZ.raw = 0;
-    gMarinaActionVelocities[MARINAMOVE_19] = Math_ApproachS32(gMarinaActionVelocities[MARINAMOVE_19], FIXED_UNIT(0.375), FIXED_UNIT(0.015625));
+    gMarinaActionSpeeds[MARINAMOVE_19] = Math_ApproachS32(gMarinaActionSpeeds[MARINAMOVE_19], FIXED_UNIT(0.375), FIXED_UNIT(0.015625));
     if (gActors[actor_index].unk_12F_u8 < 4) {
         gActors[actor_index].unk_12F_u8++;
     }
     D_801370CC = gButtonHold;
     D_801370CE = gButtonPress;
     if (gMarinaAnim.anim_u32 != MARINAANIM_0) {
-        if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_2) {
-            func_800485AC(actor_index);
+        if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_BUTTON) {
+            MarinaAnim_Update(actor_index);
         }
         else {
             for (index = 0; index < ARRAYLENGTH(gButtonPressHistory); index++) {
@@ -2413,9 +2518,9 @@ void ActorUpdate_Marina(u16 actor_index) {
             }
             D_801370CC = D_801370CE = 0;
             gActors[actor_index].unk_12F_u8 = 0;
-            gPlayerData.unk_12 = 0x64;
+            gPlayerData.unk_12 = 100;
             gPlayerData.unk_13 = 0;
-            func_800485AC(actor_index);
+            MarinaAnim_Update(actor_index);
         }
     }
     D_801373D8 = func_80048600(actor_index);

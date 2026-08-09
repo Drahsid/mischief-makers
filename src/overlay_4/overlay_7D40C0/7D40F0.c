@@ -1405,7 +1405,7 @@ void func_801B9900_7D40F0(void) {
 // if so, apply 100 damage and retrun true if survived.
 s32 func_801B9B90_7D4380(void) {
     if (gPlayerPosY.whole < 0x100) {
-        Marina_DecHealth(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
             gMarinaAnim.anim_u32 = MARINAANIM_4;
@@ -1553,7 +1553,7 @@ void func_801BA084_7D4874(void) {
 
 void func_801BA0FC_7D48EC(s16 arg0) {
     if ((gPlayerActor.posY.whole + gScreenPosCurrentY.whole) < arg0) {
-        Marina_DecHealth(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
         func_80028380();
 
         if (gPlayerActor.health >= 0) {
@@ -2363,7 +2363,7 @@ void func_801BB768_7D5F58(void) {
 // Check if Marina fell offscreen
 void func_801BBAA8_7D6298(void) {
     if (gPlayerActor.posY.whole < -0xA0) {
-        Marina_DecHealth(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
             D_800D28F0 = D_800D28E4;

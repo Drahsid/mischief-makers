@@ -52,43 +52,43 @@ extern u16 D_800D2950; // = 0;
 extern ActorFunc D_800D7F00[];
 extern u16 D_800D80C0[]; // = { 0x0000, 0x0010, 0x0030, 0x0000, };
 extern s16 D_800D8190[]; /* = {
-    GINDEX_WM_STAGEICONMERCO, 2,
+    GINDEX_3032, 2,
     0, 0
 }; */
 extern s16 D_800D8198[]; /* = {
-    GINDEX_WM_STAGEICONMERCO, 2,
+    GINDEX_3032, 2,
     0, 0
 }; */
 extern s16 D_800D81A0[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ1, 2,
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
+    GINDEX_3030, 2,
+    GINDEX_3032, 2,
     0, 0
 }; */
 extern s16 D_800D81AC[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    GINDEX_WM_STAGEICONIMPHQ1, 2,
+    GINDEX_3032, 2,
+    GINDEX_3030, 2,
     0, 0
 }; */
 extern s16 D_800D81B8[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    GINDEX_WM_STAGEICONMERCO, 4,
-    GINDEX_WM_STAGEICONFINAL, 2,
+    GINDEX_3032, 2,
+    GINDEX_3032, 4,
+    GINDEX_3036, 2,
     0, 0
 }; */
 extern s16 D_800D81C8[]; /* = {
-    GINDEX_WM_STAGEICONFINAL, 2,
-    GINDEX_WM_STAGEICONMERCO, 4,
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
+    GINDEX_3036, 2,
+    GINDEX_3032, 4,
+    GINDEX_3032, 2,
     0, 0
 }; */
 extern s16 D_800D81D8[]; /* = {
-    GINDEX_WM_STAGEICONPLAINS, 4,
-    GINDEX_WM_STAGEICONENDING, 4,
-    GINDEX_WM_STAGEICONVERTICAL, 4,
+    GINDEX_3038, 4,
+    GINDEX_303A, 4,
+    GINDEX_303C, 4,
     GINDEX_303E, 4,
     GINDEX_3040, 8,
-    GINDEX_3042, 4 | 2,
-    GINDEX_WM_STAGEICONMERCO, 3,
+    GINDEX_3042, 6,
+    GINDEX_3034, 3,
     0, 0
 }; */
 extern s16 D_800D81F8[]; /* = {
@@ -96,7 +96,7 @@ extern s16 D_800D81F8[]; /* = {
     GINDEX_3046, 4,
     GINDEX_3048, 4,
     GINDEX_304A, 3,
-    GINDEX_WM_STAGEICONMERCO, 2,
+    GINDEX_3034, 2,
     0, 0
 }; */
 extern s16 D_800D8210[]; /* = {
@@ -125,7 +125,7 @@ extern s16 D_800D8240[]; /* = {
     GINDEX_3048, 5,
     GINDEX_3046, 8,
     GINDEX_3048, 8,
-    GINDEX_WM_STAGEICONFINAL, 2,
+    GINDEX_3036, 2,
     0, 0
 }; */
 extern u16 D_800D8258[]; // = { 0x0005, 0x0014, 0x0032, 0x0064, 0x0166, 0x01B2, 0x01B4, 0x01B2 };
@@ -1917,7 +1917,7 @@ void Rocketeer_Update(u16 actor_index) {
             if (actor->var_154 == 0x18) {
                 if (actor->unk_114 > 2.5) {
                     actor->flags |= D_800E3570;
-                    actor->hitFlags = HITFLAG_7|HITFLAG_2;
+                    actor->hitFlags = HITFLAG_7 | HITFLAG_2;
                     actor->hitType = HITTYPE_7;
                     actor->damage = actor->unk_114 * 20.0f;
                     actor->unk_0F8.raw = actor->scaleX * 327680.0f;

@@ -373,7 +373,20 @@ Transition_StageExit = 0x80046EBC; // type:func
 SpawnText_READY = 0x800472D4; // type:func
 SpawnText_READY_2 = 0x8004732C; // type:func
 SpawnText_FIGHT = 0x8004735C; // type:func
-Marina_GetMoveVelocity = 0x80048C94; // type:func
+
+MarinaAnim_State0 = 0x800485AC; // type:func
+MarinaAnim_State2 = 0x80047E38; // type:func
+MarinaAnim_State3_4 = 0x80047ED4; // type:func
+MarinaAnim_State5_6 = 0x80047F80; // type:func
+MarinaAnim_State7 = 0x80047FF8; // type:func
+MarinaAnim_Dash = 0x800480B8; // type:func
+MarinaAnim_TeleportIn = 0x80048238; // type:func
+MarinaAnim_TeleportOut = 0x80048320; // type:func
+MarinaAnim_Humming = 0x800483B4; // type:func
+MarinaAnim_Dance = 0x80048408; // type:func
+MarinaAnim_Update = 0x800485AC; // type:func
+
+Marina_GetMoveSpeed = 0x80048C94; // type:func
 
 Marina_State57 = 0x8004a8e0; // type:func
 Marina_State1 = 0x8004A918; // type:func
@@ -394,11 +407,15 @@ Marina_State45 = 0x8004E1DC; // type:func
 Marina_TPInState = 0x8004E1E4; // type:func
 Marina_TPOutState = 0x8004E4E0; // type:func
 ActorUpdate_Marina = 0x8004ed10; // type:func
+Marina_DebugAnim = 0x8004E6FC; // type:func
+Marina_DebugGraphic = 0x8004EAE4; // type:func
 Marina_DebugMove = 0x8004EC60; // type:func
 
 Marina_DropActor = 0x8004F514; // type:func
 
 Marina_ShakeShake = 0x8004FDF8; // type:func
+Marina_IdleHoldingState = 0x800500b0; // type:func
+Marina_LandHoldingState = 0x8005060c; // type:func
 Marina_WalkHoldingState = 0x8005074C; // type:func
 
 Marina_SlideDashHoldingState = 0x80050F3C; // type:func
@@ -424,7 +441,7 @@ Marina_DropState = 0x80057268; // type:func
 
 
 Marina_AddHealth = 0x80057320; // type:func
-Marina_DecHealth = 0x8005739C; // type:func
+Marina_SubHealth = 0x8005739C; // type:func
 Marina_ShockState = 0x800584d4; // type:func
 
 MarinaHit_Noop = 0x8005896C; // type:func

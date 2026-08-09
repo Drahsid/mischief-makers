@@ -133,7 +133,7 @@ gTransitionState = 0x800D2938; // type:s32
 gTransitionTimer = 0x800D2940; // type:s32
 gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
-gMarinaActionVelocities = 0x800D5794;
+gMarinaActionSpeeds = 0x800D5794;
 
 gMarinaStateTable = 0x800d3db0; // size:0xF4
 gMarinaGrabTable = 0x800d3eb0; // size:0x60

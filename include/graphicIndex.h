@@ -50,7 +50,7 @@
 #define GINDEX_GEM             0x00B8 // 6 animation frames
 
 #define GINDEX_MINEROUND       0x00C6
-#define GINDEX_00C8            0x00C8
+#define GINDEX_LASERA          0x00C8
 
 #define GINDEX_CIRCLEEFFECT    0x00CA
 #define GINDEX_CLANBLOB        0x00CC
@@ -107,6 +107,8 @@
 #define GINDEX_POW             0x014C // 5 animation frames
 #define GINDEX_DISSOLVE        0x0156 // 5 animation frames
 #define GINDEX_CONE            0x0160
+#define GINDEX_LINE            0x0162
+#define GINDEX_GRADIENTA       0x0164
 
 #define GINDEX_BLASTA          0x0166
 #define GINDEX_BLASTB          0x0168 // 2 animation frames
@@ -114,12 +116,15 @@
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
+#define GINDEX_GRABEFFECTA     0x019A // emmits from hand when you grab something
+
 #define GINDEX_WARPGATE        0x01A8
+
 
 #define GINDEX_SPARKLESMALL    0x01AE // 2 animation frames
 #define GINDEX_DASHEFFECT      0x01B2 // 2 animation frames
 
-#define GINDEX_GRABEFFECT      0x01BE // emmits from hand when you brab something
+#define GINDEX_GRABEFFECTB     0x01BE 
 #define GINDEX_SHOCKEFFECT     0x01C0 // 3 animation frames
 #define GINDEX_POOF            0x01C6 // 8 animation frames
 #define GINDEX_STAREFFECT      0x01D6
@@ -141,10 +146,10 @@
 #define GINDEX_PORTRAIT_MERCOA  0x020A
 #define GINDEX_PORTRAIT_MERCOB  0x020C
 #define GINDEX_PORTRAIT_MERCOC  0x020E
-#define GINDEX_PORTRAIT_TARUSA 0x0210
-#define GINDEX_PORTRAIT_TARUSB 0x0212
-#define GINDEX_PORTRAIT_TARUSC 0x0214
-#define GINDEX_PORTRAIT_TARUSD 0x0216
+#define GINDEX_PORTRAIT_TARUSA  0x0210
+#define GINDEX_PORTRAIT_TARUSB  0x0212
+#define GINDEX_PORTRAIT_TARUSC  0x0214
+#define GINDEX_PORTRAIT_TARUSD  0x0216
 #define GINDEX_PORTRAIT_LEOA    0x0218
 #define GINDEX_PORTRAIT_LEOB    0x021A
 #define GINDEX_PORTRAIT_CLANCER 0x021C
@@ -204,6 +209,21 @@
 // where [ABREV] is an abbreviation of the confirmed use case
 // example: "world map" graphics have [ABREV] as "WM"
 
+
+#define GINDEX_FEST_GIFTSHOP_EN  0x0800
+#define GINDEX_FEST_GIFTSHOP_JP  0x0802
+#define GINDEX_FEST_WARITAMA     0x0804 // confettii ball. 3 animation frames.
+#define GINDEX_FEST_FLAGGER      0x080A // 3 animation frames
+#define GINDEX_FEST_CROWD_A      0x0810 // animation indexes alternate w/ GINDEX_FEST_CROWD_B? 
+#define GINDEX_FEST_CROWD_B      0x0812 // animation indexes alternate w/ GINDEX_FEST_CROWD_A? 
+#define GINDEX_FEST_WINNERSTAND  0x081C
+#define GINDEX_FEST_PENNANT_A    0x081E // animation indexes alternate w/ GINDEX_FEST_PENNANT_B? 
+#define GINDEX_FEST_PENNANT_B    0x0820 // animation indexes alternate w/ GINDEX_FEST_PENNANT_A? 
+#define GINDEX_FEST_CROWD_C      0x082A // animation indexes alternate w/ GINDEX_FEST_CROWD_D? 
+#define GINDEX_FEST_CROWD_D      0x082C // animation indexes alternate w/ GINDEX_FEST_CROWD_C? 
+#define GINDEX_FEST_BALL_WHITE   0x0836
+#define GINDEX_FEST_BALL_RED     0x0838
+
 #define GINDEX_SUNGLASSES       0X1004
 
 #define GINDEX_STAFFSAGE        0X1040
@@ -216,6 +236,9 @@
 
 // graphics with an index starting in 0x2000 are pieces of the back/foreground.
 
+// graphics with indexes starting in 0x3000 are laregy consistent throughout stages
+// but change when in the World Map
+
 #define GINDEX_ICONEXCLAMATION   0X3000
 #define GINDEX_MUSTACHE          0X3002
 #define GINDEX_COILSPRING        0X3004
@@ -224,7 +247,19 @@
 #define GINDEX_HANDHOOK          0X300A
 #define GINDEX_HATBANDANA        0X300C
 
+#define GINDEX_WALKER_FOOTA      0X300E
+#define GINDEX_WALKER_FOOTB      0X3010
+
+#define GINDEX_GUNA              0X3012
+
 #define GINDEX_HATPIRATE         0X3014
+
+// graphics for pilots of hovercraft and walker
+
+#define GINDEX_CLANCER_PILOT_A   0X3016 // 3 animation frames
+#define GINDEX_CLANCER_PILOT_B   0X301C // 3 animation frames
+#define GINDEX_CLANCER_PILOT_C   0X3024 // 3 animation frames
+#define GINDEX_CLANCER_PILOT_D   0X302A // 3 animation frames
 
 // graphics of Rocketeer clancer? 
 
@@ -262,7 +297,7 @@
 #define GINDEX_WM_STAGEICONSNOW     0X3028
 #define GINDEX_WM_STAGEICONCAVE1    0X302A
 #define GINDEX_WM_STAGEICONCAVE2    0X302C
-#define GINDEX_WM_STAGEICONTARUS   0X302E
+#define GINDEX_WM_STAGEICONTARUS    0X302E
 #define GINDEX_WM_STAGEICONIMPHQ1   0X3030
 #define GINDEX_WM_STAGEICONIMPHQ2   0X3032
 #define GINDEX_WM_STAGEICONMERCO    0X3034

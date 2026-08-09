@@ -974,9 +974,9 @@ void func_801B2628_7B5D08(u16 actor_index) {
                 func_801B1180_7B4860(actor_index);
                 gActors[0].posX.whole = 0x218 - gScreenPosCurrentX.whole;
                 gActors[0].posY.whole = 0x80;
-                gMarinaAnim.anim_u32 = MARINAANIM_2;
-                gPlayerData.unk_20 = 0;
-                gPlayerData.unk_24 = 0;
+                gMarinaAnim.anim_u32 = MARINAANIM_BUTTON;
+                gPlayerData.buttonHold = 0;
+                gPlayerData.buttonPress = 0;
                 gActors[actor_index].state++;
             }
             break;

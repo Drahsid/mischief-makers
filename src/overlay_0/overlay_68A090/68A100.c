@@ -104,7 +104,7 @@ void func_801932FC_68B2FC(void) {
     gActors[0x48].graphicFlags = (ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 |
         ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE);
     gActors[0x48].flags = ACTOR_FLAG_ACTIVE;
-    gActors[0x48].graphicIndex = 0x164;
+    gActors[0x48].graphicIndex = GINDEX_GRADIENTA;
     gActors[0x48].palette_18C = D_800D8588;
     gActors[0x48].colorA = 0xC0;
     gActors[0x48].unk_114 = 576.0f;

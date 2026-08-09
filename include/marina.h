@@ -68,7 +68,7 @@ typedef enum {
     MARINASTATE_DEBUGFLY
 } MarinaStates;
 
-// indicies of gMarinaActionVelocities which are then scaled by unk_120
+// indicies of gMarinaActionSpeeds which are then scaled by unk_120
 typedef enum {
     MARINAMOVE_0,  // used for valocity steps
     MARINAMOVE_WALKTARGET, // max walk speed.
@@ -105,13 +105,13 @@ typedef enum {
 } MarinaMoves;
 
 // abreviate Marina velocity getter
-#define MARINA_MOVE(n) Marina_GetMoveVelocity(MARINAMOVE_ ##n )
+#define MARINA_MOVE(n) Marina_GetMoveSpeed(MARINAMOVE_ ##n )
 
 // stored as word in gMarinaAnim. determines automated animation
 typedef enum {
     MARINAANIM_0, // stubbed / no animation
     MARINAANIM_1, // stubbed / no animation
-    MARINAANIM_2, // automate button press
+    MARINAANIM_BUTTON, // automate button press
     MARINAANIM_3, // set gPlayerActor.stateLower to gMarinaAnim.timer
     MARINAANIM_4,
     MARINAANIM_5,
@@ -171,6 +171,14 @@ typedef enum {
     GRABTYPE_22,
     GRABTYPE_23  // stubbed grab/throw state
 } GrabTypes;
+
+typedef enum {
+    MARINADMG_NONE,
+    MARINADMG_HIT,
+    MARINADMG_1HP,
+    MARINADMG_KO,
+    MARINADMG_OVERKILL
+} MarinaDamage;
 
 s32 func_80049040(u16 actor_index);
 s32 func_80048F70(u16 actor_index);

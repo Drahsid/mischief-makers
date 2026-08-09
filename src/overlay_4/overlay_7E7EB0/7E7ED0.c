@@ -442,8 +442,8 @@ void func_801B99A4_7E7F74(u16* actor_indices, u16 arg1) {
 
 void func_801B9A3C_7E800C(u16 actor_index) {
     gActors[actor_index + 0].state = 1;
-    gActors[actor_index + 0].graphicFlags = 0x914;
-    gActors[actor_index + 0].flags = 3;
+    gActors[actor_index + 0].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTY);
+    gActors[actor_index + 0].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index + 0].posZ.whole = -0x45;
     gActors[actor_index + 0].unk_188 = -0x30;
     gActors[actor_index + 0].graphicIndex = 0x830;
@@ -451,8 +451,8 @@ void func_801B9A3C_7E800C(u16 actor_index) {
     Actor_SetColorRgb(actor_index + 0, 0x3F);
 
     gActors[actor_index + 1].state = 1;
-    gActors[actor_index + 1].graphicFlags = 0x912;
-    gActors[actor_index + 1].flags = 3;
+    gActors[actor_index + 1].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTX );
+    gActors[actor_index + 1].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index + 1].posZ.whole = -0x71;
     gActors[actor_index + 1].unk_188 = -1;
     gActors[actor_index + 1].graphicIndex = 0x838;
@@ -460,8 +460,8 @@ void func_801B9A3C_7E800C(u16 actor_index) {
     Actor_SetColorRgb(actor_index + 1, 0x18);
 
     gActors[actor_index + 2].state = 1;
-    gActors[actor_index + 2].graphicFlags = 0x912;
-    gActors[actor_index + 2].flags = 3;
+    gActors[actor_index + 2].graphicFlags = (ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTX );
+    gActors[actor_index + 2].flags = ACTOR_FLAG_ENABLED;
     gActors[actor_index + 2].posZ.whole = -0x71;
     gActors[actor_index + 2].unk_188 = 0;
     gActors[actor_index + 2].graphicIndex = 0x838;

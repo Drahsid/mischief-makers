@@ -691,7 +691,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
             Sound_PlaySfxAtActor2(SFX_LAVA_00AA, 0);
-            Marina_DecHealth(PLAYER_INDEX, 100);
+            Marina_SubHealth(PLAYER_INDEX, 100);
 
             if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;
@@ -817,9 +817,9 @@ void func_801B9E74_7E2FD4(void) {
                     gActors[0x41].flags = 0;
                 }
 
-                gMarinaAnim.anim_s32 = MARINAANIM_2;
-                gPlayerData.unk_20 = gButton_DRight;
-                gPlayerData.unk_24 = gButton_DRight;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
+                gPlayerData.buttonHold = gButton_DRight;
+                gPlayerData.buttonPress = gButton_DRight;
                 D_800D2920 = 0x1FF0;
                 gScreenBoundX0.whole = D_800D2920;
                 D_800D28F8 = 4;
@@ -842,12 +842,12 @@ void func_801B9E74_7E2FD4(void) {
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
-                gPlayerData.unk_20 = gButton_DRight;
-                gPlayerData.unk_24 = 0;
+                gPlayerData.buttonHold = gButton_DRight;
+                gPlayerData.buttonPress = 0;
             }
             func_80047714(2, 1, 1, 8);
             if (gStageState == 8) {
-                gMarinaAnim.anim_s32 = MARINAANIM_2;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             }
             break;
 
@@ -863,7 +863,7 @@ void func_801B9E74_7E2FD4(void) {
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageState == 0xB) {
-                gMarinaAnim.anim_s32 = MARINAANIM_2;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             }
             break;
 
@@ -877,7 +877,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xC:
-            gMarinaAnim.anim_s32 = MARINAANIM_2;
+            gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             break;
 
         case 0x1000:

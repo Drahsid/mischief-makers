@@ -1508,7 +1508,7 @@ void func_80065178(u16 actor_index) {
 void func_80065218(void) {
     D_800D5820 = 0;
     D_800D5834 = 0x100;
-    if (gPortraits[0x40].posY.whole > 0) {
+    if (gLifebar.posY.whole > 0) {
         func_8005DF40(-3, 0x3C);
         return;
     }

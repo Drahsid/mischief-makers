@@ -2119,7 +2119,7 @@ u16* D_800D54EC[] = {
     D_800D431C
 };
 
-s32 gMarinaActionVelocities[] = {
+s32 gMarinaActionSpeeds[] = {
     FIXED_UNIT(1.0/4), // MARINAMOVE_0
     FIXED_UNIT(2.0),   // MARINAMOVE_WALKTARGET
     FIXED_UNIT(2.0),   // MARINAMOVE_2
@@ -2597,7 +2597,7 @@ void func_800500B0(u16 actor_index) {
     }
 }
 
-void func_8005060C(u16 actor_index) {
+void Marina_LandHoldingState(u16 actor_index) {
     u16 index;
 
     gActors[actor_index].unk_12C_u16[0] = 7;
@@ -4020,6 +4020,7 @@ void MarinaGrab_Type7(u16 actor_0, u16 actor_1) {
     }
 }
 
+// If Marina grabs and actor of GRABTYPE_HURT, it will instead inflict damage on her.
 void MarinaGrab_Hurt(u16 actor_0, u16 actor_1) {
     s32 sp24;
 
@@ -4036,10 +4037,10 @@ void MarinaGrab_Hurt(u16 actor_0, u16 actor_1) {
         }
         gActors[actor_0].unk_0FC.raw = FIXED_UNIT(3.0);
         func_8005C550(actor_0, 0x3C);
-        sp24 = Marina_DecHealth(actor_0, gActors[actor_1].damage);
-        if (sp24 >= 3) {
+        sp24 = Marina_SubHealth(actor_0, gActors[actor_1].damage);
+        if (sp24 >= MARINADMG_KO) {
             func_800575C0(actor_0);
-            if (sp24 == 3) {
+            if (sp24 == MARINADMG_KO) {
                 Sound_PlaySfx(SFX_CLANCERDEATH);
             }
         }
@@ -4436,7 +4437,7 @@ void func_80055538(u16 actor_0, u16 actor_1) {
             func_800554AC(actor_0, actor_1);
             func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 30);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
-            gMarinaActionVelocities[MARINAMOVE_19] = 0;
+            gMarinaActionSpeeds[MARINAMOVE_19] = 0;
             if ((s32) gActors[actor_0].unk_140_u8[0] >= 5) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -4525,7 +4526,7 @@ void MarinaThrow_Type3(u16 actor_0, u16 actor_1) {
             Sound_StopSfx(SFX_MARINA_YELL1);
             Sound_StopSfx(SFX_MARINA_YELL3);
             Sound_PlaySfx(SFX_MARINA_YELL4);
-            gMarinaActionVelocities[MARINAMOVE_19] = 0;
+            gMarinaActionSpeeds[MARINAMOVE_19] = 0;
             if (gActors[actor_0].unk_140_u8[0] >= 5) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;
@@ -4941,7 +4942,7 @@ void func_80056CCC(u16 actor_0, u16 actor_1) {
             func_800554AC(actor_0, actor_1);
             func_8004F614(actor_0, gActors[actor_1].unk_0F8.raw, gActors[actor_1].unk_0FC.raw, 0x1E);
             gActors[actor_0].unk_170 = func_8005D338(actor_0) + 8;
-            gMarinaActionVelocities[MARINAMOVE_19] = 0;
+            gMarinaActionSpeeds[MARINAMOVE_19] = 0;
             if (gActors[actor_0].unk_140_u8[0] > 4) {
                 gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
                 gActors[actor_0].flags |= ACTOR_FLAG_UNK17;

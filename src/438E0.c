@@ -156,7 +156,6 @@ extern u16 D_801782C0;
 extern u16 D_801782C2;
 
 #define D_80202E90 ((u16*)0x80202E90)
-#define D_80202C90 ((u16*)0x80202C90)
 #define D_802119B8 ((u16*)0x802119B8)
 #define D_8024506A ((u16*)0x8024506A)
 #define D_80245E48 ((u16*)0x80245E48)
@@ -959,7 +958,7 @@ void func_800457C8(void) {
     D_800DB47C[0x1F] = color_0;
     D_800DB27C[0x1F] = color_0;
     D_800DB07C[0x1F] = color_0;
-    D_80202C90[0x1F] = color_0;
+    PALETTE_80202C90[0x1F] = color_0;
     if (D_800CBF50 != 0) {
         D_800DC07C[0x31] = color_0;
         D_800DCC7C[0x31] = color_0;

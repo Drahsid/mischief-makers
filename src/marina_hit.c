@@ -32,7 +32,7 @@ s32 Marina_AddHealth(u16 actor_index, s16 health_increment) {
 // @param health_decrement change in health
 // @returns 0 if health_decrement is 0, 1 if damage is taken,
 // 2 if damage taken is near-fatal, 3 if damage taken is fatal, 4 if damage is overkill.
-s32 Marina_DecHealth(u16 actor_index, s16 health_decrement) {
+s32 Marina_SubHealth(u16 actor_index, s16 health_decrement) {
     s32 ret;
 
     if (actor_index == PLAYER_INDEX) {
@@ -44,22 +44,22 @@ s32 Marina_DecHealth(u16 actor_index, s16 health_decrement) {
         }
     }
     if (health_decrement == 0) {
-        return 0;
+        return MARINADMG_NONE;
     }
 
     if (gActors[actor_index].health > 0) {
         gActors[actor_index].health -= health_decrement;
-        ret = 1;
+        ret = MARINADMG_HIT;
         if (gActors[actor_index].health < 0) {
             gActors[actor_index].health = 0;
-            ret = (actor_index != PLAYER_INDEX) ? 3 : 2;
+            ret = (actor_index != PLAYER_INDEX) ? MARINADMG_KO : MARINADMG_1HP;
         }
     }
     else {
         if (actor_index != PLAYER_INDEX) {
-            return 3;
+            return MARINADMG_KO;
         }
-        ret = (gActors[actor_index].health == 0) ? 3 : 4;
+        ret = (gActors[actor_index].health == 0) ? MARINADMG_KO : MARINADMG_OVERKILL;
         gActors[actor_index].health -= health_decrement;
     }
     return ret;
@@ -237,7 +237,7 @@ void func_80057848(u16 actor_index) {
                 else {
                     gActors[actor_index].unk_170 = 0x8F;
                 }
-                gMarinaActionVelocities[MARINAMOVE_19] = 0;
+                gMarinaActionSpeeds[MARINAMOVE_19] = 0;
                 gActors[actor_index].state = MARINASTATE_25;
             }
         }
@@ -348,7 +348,7 @@ void func_80057C98(u16 actor_index) {
         gActors[actor_index].unk_0FC.raw = gActors[actor_index].velocityY.raw;
         if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(2.5)) {
             if (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK3 | ACTOR_FLAG3_UNK2)) {
-                if (Marina_DecHealth(actor_index, (s16) gActors[actor_index].unk_13C_s16[1]) == 3) {
+                if (Marina_SubHealth(actor_index, (s16) gActors[actor_index].unk_13C_s16[1]) == MARINADMG_KO) {
                     gActors[actor_index].health = 0;
                 }
                 gActors[actor_index].velocityX.raw = 0;
@@ -388,7 +388,7 @@ void func_80057C98(u16 actor_index) {
                 }
             }
             if (func_800490BC(actor_index, -1, -1) != 0) {
-                if (Marina_DecHealth(actor_index, gActors[actor_index].unk_13C_s16[1]) == 3) {
+                if (Marina_SubHealth(actor_index, gActors[actor_index].unk_13C_s16[1]) == MARINADMG_KO) {
                     gActors[actor_index].health = 0;
                 }
                 gActors[actor_index].unk_13C_s16[1] = 0;
@@ -484,7 +484,7 @@ void Marina_ShockState(u16 actor_index) {
             gActors[actor_index].var_15C = 1;
         }
         gActors[actor_index].var_150 = func_8005C774(0x28) + 0x50;
-        Marina_DecHealth(actor_index, gActors[actor_index].pendingDamage / 5);
+        Marina_SubHealth(actor_index, gActors[actor_index].pendingDamage / 5);
         gActors[actor_index].var_15C = ((gActors[actor_index].pendingDamage - gActors[actor_index].pendingDamage / 5) / 180) + 1;
         gActors[actor_index].pendingDamage = 0;
         Sound_PlaySfxAtActorTimed(SFX_SHOCK_0065, actor_index, gActors[actor_index].var_150);
@@ -497,7 +497,7 @@ void Marina_ShockState(u16 actor_index) {
         }
         D_800BE5E0 = RandModulo(2);
         D_800BE5E4 = RandModulo(2);
-        Marina_DecHealth(actor_index, gActors[actor_index].var_15C);
+        Marina_SubHealth(actor_index, gActors[actor_index].var_15C);
         gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0));
         gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, 0, MARINA_MOVE(0));
         gActors[actor_index].unk_180_u8[3] = 7;
@@ -750,12 +750,12 @@ s32 func_80058F9C(u16 actor_index) {
         }
     }
     if ((gActors[actor_index].hitByType < HITTYPE_SHOCK_12) || (gActors[actor_index].hitByType > HITTYPE_SHOCK_14)) {
-        sp20 = Marina_DecHealth(actor_index, gActors[actor_index].pendingDamage);
+        sp20 = Marina_SubHealth(actor_index, gActors[actor_index].pendingDamage);
         gActors[actor_index].pendingDamage = 0;
         gActors[actor_index].hitByFlags &= ~HITFLAG_7;
-        if (sp20 >= 3) {
+        if (sp20 >= MARINADMG_KO) {
             func_800575C0(actor_index);
-            if (sp20 == 3) {
+            if (sp20 == MARINADMG_KO) {
                 Sound_PlaySfx(SFX_CLANCERDEATH);
             }
         }

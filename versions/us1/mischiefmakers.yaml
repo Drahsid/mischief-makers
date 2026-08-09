@@ -105,7 +105,7 @@ segments:
       - [0x028EF0, c] 
       - [0x042E90, c]
       - [0x0438E0, c]
-      - [0x048A30, c]
+      - [0x048A30, c, marina_anim]
       - [0x049200, c, marina]
       - [0x04FEB0, c, marina_grab]
       - [0x057F20, c, marina_hit]
@@ -325,6 +325,8 @@ segments:
       - [0x0D24D0, data]
       - [0x0D34B0, .data, 42E90] 
       - [0x0D34D0, data] 
+      - [0x0D4920, .data, marina_anim] 
+      - [0x0D49B0, .data, marina] 
       - [0x0D4AB0, .data, marina_grab]
       - [0x0D6420, data] # 5EA30+
       - [0x0D8ED0, data] # palette DB script?

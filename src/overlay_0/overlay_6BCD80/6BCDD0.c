@@ -656,7 +656,7 @@ void func_80198638_6C3308(u16 actor_index) {
     gActors[index].hitboxBY1 = -0x10;
     gActors[index].hitboxBX1 = 8;
     gActors[index].hitboxBX0 = -8;
-    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7|HITFLAG_0, HITTYPE_8), FIXED_UNIT(0.5)), FIXED_UNIT(1.0));
+    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7 | HITFLAG_0, HITTYPE_8), FIXED_UNIT(0.5)), FIXED_UNIT(1.0));
 }
 
 void func_801986DC_6C33AC(u16 actor_index) {
@@ -672,7 +672,7 @@ void func_801986DC_6C33AC(u16 actor_index) {
     gActors[index].hitboxBY1 = -0xC;
     gActors[index].hitboxBX0 = -0x14;\
     gActors[index].hitboxBX1 = 0x14;
-    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7|HITFLAG_2|HITFLAG_0, HITTYPE_7), FIXED_UNIT(-15.0)), FIXED_UNIT(5.3125));
+    gActors[index].unk_0FC.raw = (gActors[index].unk_0F8.raw = (gActors[index].hitType = (gActors[index].hitFlags = HITFLAG_7 | HITFLAG_2|HITFLAG_0, HITTYPE_7), FIXED_UNIT(-15.0)), FIXED_UNIT(5.3125));
 }
 
 void func_8019878C_6C345C(u16 actor_index, u16 other_actor_index) {

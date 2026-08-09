@@ -86,8 +86,8 @@ typedef struct {
     /* 0x12 */ s8 unk_12;
     /* 0x13 */ s8 unk_13;
     /* 0x14 */ u8 unk_14[0xC]; // unused?
-    /* 0x20 */ s32 unk_20; // stores a button input?
-    /* 0x24 */ s32 unk_24; // stores a button input?
+    /* 0x20 */ s32 buttonHold; // stores a button input?
+    /* 0x24 */ s32 buttonPress; // stores a button input?
     /* 0x28 */ u8 unk_28[0x18]; // unused?
     union {
         /* 0x40 */ s32 unk_40;

@@ -183,7 +183,7 @@ typedef struct {
     /* 0x09D */ u8 colorG; // green actor tint
     /* 0x09E */ u8 colorB; // blue actor tint
     /* 0x09F */ u8 colorA; // actor opacity
-    /* 0x0A0 */ u8 unk_0A0; // flags/ index related to colision? file management uses for vars
+    /* 0x0A0 */ u8 unk_0A0; // flags/ index related to collision? file management uses for vars
     /* 0x0A1 */ u8 unk_0A1; // align byte?
 
     // the next 8 fields are used in determining the offset for 2 different "hitbox" coordinates.

@@ -44,7 +44,7 @@ void func_80193C14_67F734(u16 actor_index);
 void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
 void Actor_SetHitboxB(u16 actor_index, s16 val);
-s32 Marina_GetMoveVelocity(s32 arg0);
+s32 Marina_GetMoveSpeed(s32 arg0);
 
 void func_80192100_67DC20(s32 arg0) {
 }

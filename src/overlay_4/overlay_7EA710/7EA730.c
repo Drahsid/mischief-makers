@@ -7,7 +7,7 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern u16 D_800D2914;
 
-// "overlay 4" code for demo and intro scenes
+// "overlay 4" code for demo, intro, ending and credits scenes.
 
 void func_801B9A78_7EA8A8(s16* arg0);
 void func_801B9B2C_7EA95C(void);
@@ -103,6 +103,7 @@ void func_801B9900_7EA730(void) {
     Camera_UpdateViewBounds();
 }
 
+// stage state machine for Demo Scenes
 void func_801B99D0_7EA800(void) {
     switch (gStageState) {
         case 0:

@@ -1,6 +1,8 @@
 #define func_80012AB4_ARGS s32 arg0, s32 arg1
 #include "common.h"
 
+#define NEGSQRT2 -1.4141845703125
+
 typedef struct {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
@@ -180,13 +182,12 @@ u16 D_801B4568_7BC418[256] = {
     0x0042, 0x0042, 0x0042, 0x0042, 0x0042, 0x0042, 0x0042, 0x0000,
 };
 
-s32 D_801B4768_7BC618[3] = {                    // -sqrt(2)
-    FIXED_UNIT(0), FIXED_UNIT(-1.0), FIXED_UNIT(-1.4141845703125),
+s32 D_801B4768_7BC618[3] = {
+    FIXED_UNIT(0), FIXED_UNIT(-1.0), FIXED_UNIT(NEGSQRT2),
 };
 
 s32 D_801B4774_7BC624[3] = {
-              // -sqrt(2)
-    FIXED_UNIT(-1.4141845703125), FIXED_UNIT(-1.0), FIXED_UNIT(0),
+    FIXED_UNIT(NEGSQRT2), FIXED_UNIT(-1.0), FIXED_UNIT(0),
 };
 
 // "こら!! やめんか" / "Hey!! Cut it Out"

@@ -3,30 +3,29 @@
 #include "boot.h"
 #include "SFX.h"
 #include "marina_grab.h"
+#include "overlays.h"
 
 // script for automated animations set in gMarinaAnim
 
-extern ActorFunc D_800D3D20[]; // marina animation states
-
 // animation types 0 and 1 - no animation.
-void func_80047E30(u16 arg0) {
+void MarinaAnim_State0(u16 arg0) {
 }
 
 // animation type 2 - move through automated button press
-void func_80047E38(u16 arg0) {
+void MarinaAnim_State2(u16 arg0) {
     s32 temp_v0;
 
-    D_801370CC = (u16)gPlayerData.unk_20;
-    D_801370CE = (u16)gPlayerData.unk_24;
+    D_801370CC = (u16)gPlayerData.buttonHold;
+    D_801370CE = (u16)gPlayerData.buttonPress;
     temp_v0 = gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A;
     gButtonHoldHistory[0] = D_801370CC & temp_v0;
     gButtonPressHistory[0] = D_801370CE & temp_v0;
-    gPlayerData.unk_20 = 0;
-    gPlayerData.unk_24 = 0;
+    gPlayerData.buttonHold = 0;
+    gPlayerData.buttonPress = 0;
 }
 
 // animation types 3 and 4
-void func_80047ED4(u16 _actor_index) {
+void MarinaAnim_State3_4(u16 _actor_index) {
     u16 actor_index;
     Actor* actor;
 
@@ -50,7 +49,7 @@ void func_80047ED4(u16 _actor_index) {
     gMarinaAnim.anim_u32 = MARINAANIM_0;
 }
 
-void func_80047F80(u16 actor_index) {
+void MarinaAnim_State5_6(u16 actor_index) {
     if (gMarinaAnim.state == 0) {
         gActors[actor_index].unk_12E_u8 |= 0x41;
         gActors[actor_index].state = MARINASTATE_WAIT2;
@@ -63,7 +62,7 @@ void func_80047F80(u16 actor_index) {
     }
 }
 
-void func_80047FF8(u16 actor_index) {
+void MarinaAnim_State7(u16 actor_index) {
     gActors[actor_index].unk_12E_u8 |= 0x41;
 
     switch (gMarinaAnim.state) {
@@ -89,7 +88,7 @@ void func_80047FF8(u16 actor_index) {
 }
 
 // animation types 8 and 9 - dash in.
-void func_800480B8(u16 actor_index) {
+void MarinaAnim_Dash(u16 actor_index) {
     switch (gMarinaAnim.state) {
         case 0:
             gActors[actor_index].state = MARINASTATE_WAIT2;
@@ -125,7 +124,7 @@ void func_800480B8(u16 actor_index) {
 }
 
 // animation types 10 and 11 - teleport in.
-void func_80048238(u16 actor_index) {
+void MarinaAnim_TeleportIn(u16 actor_index) {
     switch (gMarinaAnim.state) {
         case 0:
             if (gMarinaAnim.timer != 0) {
@@ -152,7 +151,7 @@ void func_80048238(u16 actor_index) {
 }
 
 // animation type 12 - teleport out.
-void func_80048320(u16 actor_index) {
+void MarinaAnim_TeleportOut(u16 actor_index) {
     if (gMarinaAnim.state == 0) {
         func_8005C550(actor_index, 30);
         gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
@@ -165,7 +164,7 @@ void func_80048320(u16 actor_index) {
 }
 
 // animation type 13 - start idle humming.
-void func_800483B4(u16 actor_index) {
+void MarinaAnim_Humming(u16 actor_index) {
     if (gActors[actor_index].stateLower == MARINASTATE_IDLE) {
         gActors[actor_index].var_150 = 600;
     }
@@ -173,7 +172,7 @@ void func_800483B4(u16 actor_index) {
     gMarinaAnim.anim_u32 = MARINAANIM_1;
 }
 
-void func_80048408(u16 actor_index) {
+void MarinaAnim_Dance(u16 actor_index) {
     switch (gMarinaAnim.state) {
         case 0:
             if (gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) {
@@ -215,7 +214,44 @@ void func_80048408(u16 actor_index) {
     }
 }
 
-void func_800485AC(u16 actor_index) {
+ // marina animation states
+ActorFunc D_800D3D20[]= {
+    MarinaAnim_State0,
+    MarinaAnim_State0,
+    MarinaAnim_State2,
+    MarinaAnim_State3_4,
+    MarinaAnim_State3_4,
+    MarinaAnim_State5_6,
+    MarinaAnim_State5_6,
+    MarinaAnim_State7,
+    MarinaAnim_Dash,
+    MarinaAnim_Dash,
+    MarinaAnim_TeleportIn,
+    MarinaAnim_TeleportIn,
+    MarinaAnim_TeleportOut,
+    MarinaAnim_Humming,
+    MarinaAnim_Dance,
+    OverlayABI_Slot0_fn26_u16,
+    OverlayABI_Slot0_fn27_u16,
+    OverlayABI_Slot0_fn28_u16,
+    OverlayABI_Slot0_fn11_u16,
+    OverlayABI_Slot0_fn12_u16,
+    OverlayABI_Slot1_fn7_u16_0,
+    OverlayABI_Slot2_fn17_u16,
+    OverlayABI_Slot2_fn18_u16,
+    OverlayABI_Slot2_fn19_u16,
+    OverlayABI_Slot2_fn20_u16,
+    OverlayABI_Slot2_fn21_u16,
+    OverlayABI_Slot2_fn22_u16,
+    OverlayABI_Slot2_fn23_u16,
+    OverlayABI_Slot2_fn24_u16,
+    OverlayABI_Slot0_fn8_u16,
+    OverlayABI_Slot0_fn10_u16,
+    OverlayABI_Slot1_fn5_u16,
+    OverlayABI_Slot1_fn7_u16_1
+};
+
+void MarinaAnim_Update(u16 actor_index) {
     D_800D3D20[gMarinaAnim.anim_u32 & 0xFF](actor_index);
     gMarinaAnim.unk_00 = 0;
 }
