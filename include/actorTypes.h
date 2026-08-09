@@ -125,7 +125,7 @@ typedef enum {
     ACTORTYPE_57,
     ACTORTYPE_58,
     ACTORTYPE_59,
-    ACTORTYPE_BEAMTHROW, // Maring grabs a big beam or thunder attack.
+    ACTORTYPE_BEAMTHROW, // Marina grabs a big beam or thunder attack.
     ACTORTYPE_GEM61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
     ACTORTYPE_CLANBALLWHEEL,
     ACTORTYPE_63,
