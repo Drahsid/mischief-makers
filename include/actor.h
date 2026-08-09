@@ -19,6 +19,7 @@ typedef s32 (*ActorVarFunc)(u16 actor_index, u16 arg1);
 
 // bits used by the "flags" actor field.
 enum ActorFlags {
+    ACTOR_FLAG_NONE = 0,
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
@@ -61,6 +62,7 @@ enum ActorFlags {
 
 // bits used by the "graphicFlags" field
 enum ActorGFlags {
+    ACTOR_GFLAG_NONE = 0,
     ACTOR_GFLAG_SCALE = (1U << 0U), // scale effected by scaleX and scaleY fields.
     ACTOR_GFLAG_ROTX = (1U << 1U), // effected by rotateX
     ACTOR_GFLAG_ROTY = (1U << 2U), // effected by rotateY
@@ -81,6 +83,7 @@ enum ActorGFlags {
 
 // bits used by the "flags_098" field
 enum ActorFlags3 {
+    ACTOR_FLAG3_NONE = 0,
     ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
     ACTOR_FLAG3_UNK2 = (1U << 2U),
@@ -294,7 +297,10 @@ typedef struct {
                 /* 0x174 */ u16 unk_174_u16[2];
                 /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
             };
-            /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+            union {
+                /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+                /* 0x178 */ u16 unk_178_u16[2];
+            };
             union {
                 /* 0x17C */ s32 unk_17C;
                 /* 0x17C */ s16 unk_17C_s16[2];
