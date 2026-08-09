@@ -104,16 +104,16 @@ typedef struct {
 
     /* 0x50 */ s32 debugPosX; // set during Marina's "flymode" state with her global X position.
     /* 0x54 */ s32 debugPosY; // set during Marina's "flymode" state with her global Y position.
-    /* 0x58 */ s32 debugVal2; // another dislayed Debug value? unused.
-    /* 0x5C */ s32 debugVal3; // another dislayed Debug value? unused.
-    /* 0x60 */ u32 unk_60; 
+    /* 0x58 */ s32 debugVal2; // another dislayed Debug value. unused.
+    /* 0x5C */ s32 debugVal3; // another dislayed Debug value. unused.
+    /* 0x60 */ u32 unk_60; // related to throwing ACTORTYPE_BEAMTHROW. effects x-position.
     /* 0x64 */ u32 marina_Flags_098; // stores Marina's "flags_098" value
     /* 0x68 */ s32 marina_Unk_0F8; // stores Marina's "unk_0F8" value when ACTOR_FLAG3_UNK1 is set.
     /* 0x6C */ u32 marina_Unk_0FC; // stores Marina's "unk_0FC" value when ACTOR_FLAG3_UNK1 is set.
-    /* 0x70 */ u16 unk_70; // index of "held" actor?
+    /* 0x70 */ u16 heldIndex; // index of "held" actor
     /* 0x72 */ u8 unk_72[6]; // unused?
     /* 0x78 */ u32 flags; // bitfield. uses PlayerDataFlags
-    /* 0x7C */ u32 unk_7C;
+    /* 0x7C */ u32 frames; // AND'd/modulo'd for Marina's effects
 } PlayerData;
 
 // gMarinaAnim is treated as both word and 4 bytes.

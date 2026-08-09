@@ -405,7 +405,7 @@ s32 func_80028DAC(u16 arg0, s16 arg1) {
 s32 func_80028E1C(u16 actor_index) {
     s16 actor0_pos;
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
-        if (gPlayerData.unk_70 == actor_index) {
+        if (gPlayerData.heldIndex == actor_index) {
             if ((gPlayerActor.unk_140_u8[0] == 0) && (gPlayerActor.posY.whole < gActors[actor_index].posY.whole)) {
                 actor0_pos = gPlayerActor.posY.whole;
                 while (actor0_pos < gActors[actor_index].posY.whole) {
@@ -455,7 +455,7 @@ s32 func_80028E1C(u16 actor_index) {
 s32 func_80029044(u16 actor_index) {
     s32 x;
     s32 y;
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gPlayerData.unk_70 == actor_index)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && (gPlayerData.heldIndex == actor_index)) {
         x = ((gActors[actor_index].posX.whole - gPlayerActor.posX.whole) / 2) + gPlayerActor.posX.whole;
         y = ((gActors[actor_index].posY.whole - gPlayerActor.posY.whole) / 2) + gPlayerActor.posY.whole;
         if (func_8001FCA0(actor_index, x, y) & 0x80) {
@@ -508,7 +508,7 @@ u16 func_800291AC(u16 actor_index, u16 state1, s32 flags1, u16 state2, s32 flags
                 gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
                 gActors[actor_index].flags |= (gActors[gActors[actor_index].parentIndex].flags & ACTOR_FLAG_FLIPPED);
             }
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) && (gPlayerData.unk_70 == actor_index)) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) && (gPlayerData.heldIndex == actor_index)) {
                 if (gActors[actor_index].hitByType != HITTYPE_21) {
                     gPlayerActor.hitByFlags = 0;
                     gPlayerActor.flags_098 |= ACTOR_FLAG3_UNK1;
@@ -7248,7 +7248,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
             func_8007EA14(gStrAreaClear0, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AF4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 84, 2);
-            func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
+            func_8003D68C(ACTOR_GFLAG_UNK11, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
         }
         break;
     case 2:
@@ -7271,7 +7271,7 @@ void ActorUpdate_AreaClear(u16 actor_index) {
             func_8007EA14(gStrAreaClear2, 0xA00, 0, gActors[actor_index].var_154, FIXED_UNIT(128.0), D_800D9AE4, 0, 0, 0, 0, 0, 1.0f);
             gActors[actor_index].unk_16C = Math_ApproachS32(gActors[actor_index].unk_16C, 0, 4);
             gActors[actor_index].unk_170 = Math_ApproachS32(gActors[actor_index].unk_170, 0x5C, 2);
-            func_8003D68C(0x800, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
+            func_8003D68C(ACTOR_GFLAG_UNK11, gActors[actor_index].unk_16C + 1, -gActors[actor_index].unk_16C, -gActors[actor_index].unk_170, gActors[actor_index].unk_170, 0, gActors[actor_index].var_154 + FIXED_UNIT(-9.0), FIXED_UNIT(128.0), 0x7F, 0, 0);
         }
         break;
     case 4:

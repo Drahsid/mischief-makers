@@ -180,6 +180,15 @@ typedef enum {
     MARINADMG_OVERKILL
 } MarinaDamage;
 
+typedef enum {
+    MARINAEFF_NONE,
+    MARINAEFF_4 = 4,
+    MARINAEFF_5,
+    MARINAEFF_6,
+    MARINAEFF_7,
+    MARINAEFF_8
+} MarinaEffects;
+
 s32 func_80049040(u16 actor_index);
 s32 func_80048F70(u16 actor_index);
 s32 func_800491B8(u16 actor_index, s32, s16);

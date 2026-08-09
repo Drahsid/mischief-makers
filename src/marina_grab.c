@@ -2682,7 +2682,7 @@ void func_800508F4(u16 actor_index) {
     }
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0) * 2);
     if (gActors[actor_index].velocityX.raw != 0) {
-        gActors[actor_index].unk_180_u8[3] = 4;
+        gActors[actor_index].unk_180_u8[3] = MARINAEFF_4;
     }
     else {
         gActors[actor_index].flags |= ACTOR_FLAG_UNK14;
@@ -2897,7 +2897,7 @@ void Marina_SlideDashHoldingState(u16 actor_index) {
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(3.0);
     if ((gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) && (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > FIXED_UNIT(1.0))) {
-        gActors[actor_index].unk_180_u8[3] = 4;
+        gActors[actor_index].unk_180_u8[3] = MARINAEFF_4;
     }
     if (gActors[actor_index].stateUpper == 1) {
         if ((gActors[actor_index].unk_170_s8[0] == 0) && ((gActors[actor_index].unk_170_s8[1] == 0) || (gActors[actor_index].unk_170_s8[1] == 2) || (gActors[actor_index].unk_170_s8[1] == 4))) {

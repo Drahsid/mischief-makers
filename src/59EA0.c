@@ -61,7 +61,7 @@ void func_800593DC(u16 actor_index) {
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
     gActors[actor_1].graphicIndex = GINDEX_DPADRIGHT;
     gActors[actor_1].unk_148 = 0.0f;
-    if (!(gPlayerData.unk_7C & 0x2)) {
+    if (!(gPlayerData.frames & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
         gActors[actor_1].var_160 = FIXED_UNIT(256.0);
     }
@@ -635,7 +635,7 @@ void func_8005B1E8(u16 actor_index) {
     u16 actor_1;
     u8 temp_v0;
 
-    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
+    if ((((s32)gPlayerData.frames + actor_index) % 5) == 0) {
         if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
             sp2C[0] = gActors[actor_index].posX.whole;
             sp2C[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
@@ -685,7 +685,7 @@ void func_8005B3F4(u16 actor_index) {
     u16 actor_1;
     u8 temp_v0_2;
 
-    if (((s32)gPlayerData.unk_7C + actor_index) % 4) {
+    if (((s32)gPlayerData.frames + actor_index) % 4) {
         return;
     }
     if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
@@ -817,10 +817,10 @@ void func_8005BA38(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
 
-    gActors[actor_index].colorR = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorG = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorB = ((gPlayerData.unk_7C & 0xC) * 7) + 0x1C;
-    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
+    gActors[actor_index].colorR = ((gPlayerData.frames & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorG = ((gPlayerData.frames & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorB = ((gPlayerData.frames & 0xC) * 7) + 0x1C;
+    if ((((s32)gPlayerData.frames + actor_index) % 5) == 0) {
         sp2C[0] = gActors[actor_index].posX.whole + RandModulo(10);
         sp2C[1] = gActors[actor_index].posY.whole + RandModulo(18);
         sp2C[2] = gActors[actor_index].posZ.whole + 1;
@@ -896,23 +896,23 @@ void func_8005BCF8(u16 actor_index) {
 
 void func_8005BFA4(u16 actor_index) {
     switch (gActors[actor_index].unk_180_u8[3]) {
-    case 4:
+    case MARINAEFF_4:
         func_8005B1E8(actor_index);
         break;
-    case 5:
+    case MARINAEFF_5:
         func_8005B3F4(actor_index);
         break;
-    case 6:
+    case MARINAEFF_6:
         func_8005BA38(actor_index);
         break;
-    case 7:
+    case MARINAEFF_7:
         func_8005BBC0(actor_index);
         break;
-    case 8:
+    case MARINAEFF_8:
         func_8005BCF8(actor_index);
         break;
     }
-    gActors[actor_index].unk_180_u8[3] = 0;
+    gActors[actor_index].unk_180_u8[3] = MARINAEFF_NONE;
     if (gActors[actor_index].unk_180_u8[1] != 0) {
         D_800D3FD0[gActors[actor_index].unk_180_u8[1]](actor_index);
     }
