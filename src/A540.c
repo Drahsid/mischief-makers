@@ -2,6 +2,7 @@
 #include "actor.h"
 #include "boot.h"
 #include "debug.h"
+#include "linker.h"
 #include "rle.h"
 #include "E44A0.h"
 
@@ -283,8 +284,6 @@ u8** D_8017811C;
 u8** D_80178120;
 u8** D_80178124;
 u8** D_80178128;
-
-extern u8* D_802C9F70; // TODO: where 0x802C.... data from?
 
 #define D_80200FA8 ((Vtx*)0x80200FA8)
 #define D_802447E8 ((u8*)0x802447E8)
@@ -596,7 +595,7 @@ void func_80009BE8(s16* arg0) {
                 }
 
                 gSPDisplayList(gDisplayListHead++, D_800E3978);
-                gDPSetFillColor(gDisplayListHead++, (var_t0_2 << 0x10) | var_t0_2);
+                gDPSetFillColor(gDisplayListHead++, (var_t0_2 * 0x10000) | var_t0_2);
                 gDPFillRectangle(gDisplayListHead++, xl_2, yl, xh_2, yh);
                 gSPDisplayList(gDisplayListHead++, D_800E3A30);
                 continue;
@@ -780,7 +779,7 @@ void func_80009BE8(s16* arg0) {
                 yl = (-pos_y - ((s32) (gActors[actor_index].hitboxBY0 * gActors[actor_index].hitboxBY1) / 2)) + 120;
                 yh = (gActors[actor_index].hitboxBY0 + yl) - 1;
                 if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_PALETTE) {
-                    gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].unk_180);
+                    gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].palette_180);
                 }
                 else {
                     gDPLoadTLUT_pal256(gDisplayListHead++, D_802688F8[gActors[actor_index].graphicIndex / 2]);
@@ -788,7 +787,7 @@ void func_80009BE8(s16* arg0) {
 
                 for (index_x = 0; index_x < gActors[actor_index].hitboxBY1; index_x++) {
                     for (index_y = 0, var_t2 = xl_2, var_t3 = xh_2; index_y < gActors[actor_index].hitboxBX1; index_y++) {
-                        gDPLoadTextureBlock(gDisplayListHead++, gActors[actor_index].unk_17C + gActors[actor_index].hitboxBX0 * gActors[actor_index].hitboxBY0 * ((index_x * gActors[actor_index].hitboxBX1) + index_y), G_IM_FMT_CI, G_IM_SIZ_8b, gActors[actor_index].hitboxBX0, gActors[actor_index].hitboxBY0, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                        gDPLoadTextureBlock(gDisplayListHead++, gActors[actor_index].texture_17C + gActors[actor_index].hitboxBX0 * gActors[actor_index].hitboxBY0 * ((index_x * gActors[actor_index].hitboxBX1) + index_y), G_IM_FMT_CI, G_IM_SIZ_8b, gActors[actor_index].hitboxBX0, gActors[actor_index].hitboxBY0, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
                         gSPCustomScisTextureRectangle(gDisplayListHead++, var_t2, yl, var_t3, yh, 0, 0, 0, 0x1000, 0x400);
                         var_t2 += gActors[actor_index].hitboxBX0;
                         var_t3 += gActors[actor_index].hitboxBX0;
@@ -804,7 +803,7 @@ void func_80009BE8(s16* arg0) {
                 yh = (-pos_y - gActors[actor_index].hitboxBY1) + 119;
 
                 gDPLoadTLUT_pal256(gDisplayListHead++, D_802688F8[gActors[actor_index].graphicIndex / 2]);
-                gDPLoadTextureBlock(gDisplayListHead++, gActors[actor_index].unk_17C, G_IM_FMT_CI, G_IM_SIZ_8b, gActors[actor_index].hitboxBX1 - gActors[actor_index].hitboxBX0, gActors[actor_index].hitboxBY0 - gActors[actor_index].hitboxBY1, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                gDPLoadTextureBlock(gDisplayListHead++, gActors[actor_index].texture_17C, G_IM_FMT_CI, G_IM_SIZ_8b, gActors[actor_index].hitboxBX1 - gActors[actor_index].hitboxBX0, gActors[actor_index].hitboxBY0 - gActors[actor_index].hitboxBY1, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
                 gSPCustomScisTextureRectangle(gDisplayListHead++, xl_2, yl, xh_2, yh, 0, 0, 0, 0x1000, 0x400);
             }
             gSPDisplayList(gDisplayListHead++, D_800E3A88);
@@ -813,7 +812,7 @@ void func_80009BE8(s16* arg0) {
         if ((gActors[actor_index].graphicIndex >= 0x2D2) && (gActors[actor_index].graphicIndex < 0x374)) {
             gSPDisplayList(gDisplayListHead++, D_800E3998);
             if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_PALETTE) {
-                gDPLoadTLUT_pal16(gDisplayListHead++, 0, gActors[actor_index].unk_18C);
+                gDPLoadTLUT_pal16(gDisplayListHead++, 0, gActors[actor_index].palette_18C);
             }
             else {
                 gDPLoadTLUT_pal16(gDisplayListHead++, 0, D_802651E8);
@@ -893,7 +892,7 @@ void func_80009BE8(s16* arg0) {
                 break;
             }
 
-            gSPDisplayList(gDisplayListHead++, gActors[actor_index].unk_17C);
+            gSPDisplayList(gDisplayListHead++, gActors[actor_index].dlist_17C);
             gSPDisplayList(gDisplayListHead++, D_800E3A50);
             continue;
         }
@@ -924,7 +923,7 @@ void func_80009BE8(s16* arg0) {
         if (gActors[actor_index].flags & ACTOR_FLAG_UNK27) {
             if (((gActors[actor_index].graphicIndex & 0xF800) == 0x5800) || ((gActors[actor_index].graphicIndex >= 2) && (gActors[actor_index].graphicIndex < 5))) {
                 if (gPlayerActor.graphicFlags & ACTOR_GFLAG_PALETTE) {
-                    gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].unk_18C);
+                    gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].palette_18C);
                 }
                 else {
                     if (gPlayerActor.graphicIndex < 0x5927) {
@@ -944,7 +943,7 @@ void func_80009BE8(s16* arg0) {
         else {
             sp41E &= 0x7FF;
             if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_PALETTE) {
-                gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].unk_18C);
+                gDPLoadTLUT_pal256(gDisplayListHead++, gActors[actor_index].palette_18C);
             }
             else {
                 if (sp41E >= 0x374) {
@@ -999,7 +998,8 @@ void func_8000DD6C(void) {
                 gSPDisplayList(gDisplayListHead++, var_s5[0x44 + gStaticObjects[var_fp].graphicIndex * 2]);
             }
         }
-    } else {
+    }
+    else {
         gSPDisplayList(gDisplayListHead++, D_800E3998);
         for (var_fp = 0; var_fp < 0x40; var_fp++) {
             if (gStaticObjects[var_fp].graphicIndex != 0) {
@@ -1017,7 +1017,8 @@ void func_8000DD6C(void) {
 
                     gDPLoadTextureBlock(gDisplayListHead++, D_800C5F20[temp_t8] + 0x480, G_IM_FMT_CI, G_IM_SIZ_8b, 48, 32, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
                     gSPCustomScisTextureRectangle(gDisplayListHead++, xl, yl_2, xh, yh_2, 0, 0, 0, 0x1000, 0x400);
-                } else {
+                }
+                else {
                     xl = gStaticObjects[var_fp].posX.whole + D_800C5D20[temp_t8] + 0xA0;
                     yh = (D_800C5E20[temp_t8] + xl) - 1;
                     yl = ((-gStaticObjects[var_fp].posY.whole - gCamShakeV) - D_800C5DA0[temp_t8]) + 0x78;
@@ -1395,7 +1396,7 @@ u16 func_8000FBF4(s16* arg0, s16* arg1) {
         if (arg0 == ((s16*)gActorsFront)) {
             for (y = 0; y < arg1_count; y++) {
                 actor_index_1 = arg1[y];
-                OSD_PrintIntHex(actor_pos[actor_index_1] + (actor_index_1 << 24), ((y / 16) * 72) - 144, 99 - ((y % 16) * 12));
+                OSD_PrintIntHex(actor_pos[actor_index_1] + (actor_index_1 * 0x1000000), ((y / 16) * 72) - 144, 99 - ((y % 16) * 12));
             }
         }
     }
@@ -1430,7 +1431,7 @@ void func_80010A10(void) {
     guOrtho(&D_801780F4[2], -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     LookAt_Reset();
     LookAt_Update();
-    D_80178104 = &D_802C9F70;
+    D_80178104 = (u8**)(sprite_table_248AB0_07033F70 + ((uintptr_t)SEGMENT_07_DEST - (uintptr_t)Segment_07_VRAM));
     D_80178108 = D_8032F940;
     D_8017810C = D_80350AD8;
     D_80178110 = D_80317F48;

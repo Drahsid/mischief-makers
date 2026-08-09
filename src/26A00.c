@@ -1843,7 +1843,7 @@ void func_80026C9C(u16 index) {
     uintptr_t new_var;
 
     D_800CBF50 = 0;
-    D_80137714 = (Gfx**)(D_80137718 = 0x80360000);
+    D_80137714 = (Gfx**)(D_80137718 = (uintptr_t)ASSET_DEST5);
     if (D_800CFE04_ENTRY(10) == 0) {
         return;
     }
@@ -1859,11 +1859,11 @@ void func_80026C9C(u16 index) {
     start = (D_800CFE04_ENTRY(10) - (intptr_t)Segment_01_DATA_START) + (intptr_t)Segment_01_ROM_START;
     DMA_ReadSync(
         (u8*)start,
-        (u8*)0x80259000U,
+        RLE_SCRATCH_HIGH,
         D_800CFE04_ENTRY(11) - new_var
     );
 
-    D_80137718 = 0x80360000U + Trouble_RLE_Type1((u8*)0x80259000U, (u8*)0x80360000U);
+    D_80137718 = (uintptr_t)ASSET_DEST5 + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, ASSET_DEST5);
     D_801376D4 = (u16**)(&D_800D0E84[0].unk_14)[index * 6];
 }
 

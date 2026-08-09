@@ -307,12 +307,14 @@ typedef struct {
                 /* 0x17C */ s8 unk_17C_s8[4];
                 /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
                 /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
+                /* 0x17C */ u8* texture_17C;
             };
             union {
                 /* 0x180 */ s32 unk_180;
                 /* 0x180 */ s16 unk_180_s16[2];
                 /* 0x180 */ u8 unk_180_u8[4];
                 /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
+                /* 0x180 */ u16* palette_180;
             };
             union {
                 /* 0x184 */ s32 unk_184;
