@@ -38,7 +38,7 @@ typedef enum {
     MARINASTATE_30,
     MARINASTATE_31,
     MARINASTATE_32,
-    MARINASTATE_33,
+    MARINASTATE_BEAMGRAB,
     MARINASTATE_GRAB,
     MARINASTATE_35,
     MARINASTATE_36,
@@ -53,10 +53,10 @@ typedef enum {
     MARINASTATE_45, // stubbed
     MARINASTATE_46,
     MARINASTATE_47,
-    MARINASTATE_48,
+    MARINASTATE_HIT48,
     MARINASTATE_49,
-    MARINASTATE_50,
-    MARINASTATE_51,
+    MARINASTATE_HIT50,
+    MARINASTATE_HIT51,
     MARINASTATE_52,
     MARINASTATE_HITSHOCK,
     MARINASTATE_54, // state code at D_8019B000[3]
@@ -104,7 +104,7 @@ typedef enum {
     MARINAMOVE_31
 } MarinaMoves;
 
-// abreviate Marina velocity getter
+// abreviate Marina speed getter
 #define MARINA_MOVE(n) Marina_GetMoveSpeed(MARINAMOVE_ ##n )
 
 // stored as word in gMarinaAnim. determines automated animation
@@ -172,6 +172,7 @@ typedef enum {
     GRABTYPE_23  // stubbed grab/throw state
 } GrabTypes;
 
+// return values when Marina takes damage
 typedef enum {
     MARINADMG_NONE,
     MARINADMG_HIT,
@@ -180,13 +181,14 @@ typedef enum {
     MARINADMG_OVERKILL
 } MarinaDamage;
 
+// particle effect index stored in gPlayerActor.unk_180_u8[3]
 typedef enum {
     MARINAEFF_NONE,
     MARINAEFF_4 = 4,
     MARINAEFF_5,
-    MARINAEFF_6,
-    MARINAEFF_7,
-    MARINAEFF_8
+    MARINAEFF_INVULN,
+    MARINAEFF_SHOCK,
+    MARINAEFF_TELEPORT
 } MarinaEffects;
 
 s32 func_80049040(u16 actor_index);

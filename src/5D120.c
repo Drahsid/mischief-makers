@@ -238,8 +238,9 @@ void func_8005CAA8(u16 actor_index, s8* arg1) {
     }
 }
 
+// @returns Actor.unk_0DF & ACTOR0DF_0_MASK
 u8 func_8005D1B0(u16 actor_index) {
-    return gActors[actor_index].unk_0DF & 3;
+    return gActors[actor_index].unk_0DF & ACTOR0DF_0_MASK;
 }
 
 // see if Gem actor was hit by Marina.

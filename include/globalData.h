@@ -137,8 +137,8 @@ extern u16 gCurrentScene; // current "scene" of game. uses SCENE_* #define
 extern u16 gStartButtonOnly; // Start button is AND'd from input
 extern FixedCoord gPlayerPosX; // player's global x-position
 extern FixedCoord gPlayerPosY; // player's global y-position
-extern s16 D_800BE5E0; 
-extern s16 D_800BE5E4; 
+extern s16 gPlayerShockX; // displayed X-offset when Marina is shocked
+extern s16 gPlayerShockY; // displayed Y-offset when Marina is shocked
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
 extern s16 D_800BE5F0; // unknown. always 0.

@@ -8117,7 +8117,7 @@
           }
         },
         {
-          "name": "MarinaAnim_State2",
+          "name": "MarinaAnim_AutoInput",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9340,7 +9340,7 @@
       ],
       "functions": [
         {
-          "name": "func_800592A0",
+          "name": "MarinaEffect_SpawnParticle",
           "size": "316",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9348,7 +9348,7 @@
           }
         },
         {
-          "name": "func_800593DC",
+          "name": "MarinaEffect_ControlDiagram",
           "size": "584",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9364,7 +9364,7 @@
           }
         },
         {
-          "name": "func_80059ABC",
+          "name": "MarinaEffect_Grab",
           "size": "716",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9468,7 +9468,7 @@
           }
         },
         {
-          "name": "func_8005B1E8",
+          "name": "MarinaEffect_Type4",
           "size": "524",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9476,7 +9476,7 @@
           }
         },
         {
-          "name": "func_8005B3F4",
+          "name": "MarinaEffect_Type5",
           "size": "520",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9500,7 +9500,7 @@
           }
         },
         {
-          "name": "func_8005BA38",
+          "name": "MarinaEffect_Invulnerability",
           "size": "392",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9508,7 +9508,7 @@
           }
         },
         {
-          "name": "func_8005BBC0",
+          "name": "MarinaEffect_Shock",
           "size": "312",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9516,7 +9516,7 @@
           }
         },
         {
-          "name": "func_8005BCF8",
+          "name": "MarinaEffect_Teleport",
           "size": "684",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9524,7 +9524,7 @@
           }
         },
         {
-          "name": "func_8005BFA4",
+          "name": "MarinaEffect_Update",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10317,7 +10317,7 @@
           }
         },
         {
-          "name": "func_8006098C",
+          "name": "ActorUpdate_Type51",
           "size": "1068",
           "fuzzy_match_percent": 100.0,
           "metadata": {

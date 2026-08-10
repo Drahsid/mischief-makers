@@ -1796,7 +1796,7 @@ void Rocketeer_Update(u16 actor_index) {
                 break;
             case 0x2000:
                 actor->grabType = GRABTYPE_6;
-                actor->unk_0DF = 0x40;
+                actor->unk_0DF = ACTOR0DF_6;
                 actor->scaleX = 1.25f;
                 break;
             }

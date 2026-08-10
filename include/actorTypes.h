@@ -54,7 +54,7 @@ typedef enum {
     ACTOR_OVL2_STAGE_2_1, // actors in Overlay 2 code of "Sea of Lava"
     ACTOR_OVL0_GEN, // actors in Overlay 0 code for the majority of stages.
     ACTOR_OVL3_WORLD4,
-    ACTOR_OVL3_40,
+    ACTOR_OVL3_CAT, // actors in "Cat-astrophe" and outro of "The day Before"
     ACTOR_OVL3_WORLD5B,
     ACTOR_OVL3_42,
     ACTOR_OVL0_INTRO, // actors in Overlay 0 code of intro cinematic.
@@ -713,6 +713,13 @@ typedef enum {
     ACTORTYPE_OVL3_W4_BLAST_16,
     ACTORTYPE_OVL3_W4_17,
     ACTORTYPE_OVL3_W4_18,
+
+    // actors in dispatch table D_801B0800_7BC840
+    // first entry is NULL
+
+    ACTORTYPE_OVL3_CAT_MAIN = (ACTOR_OVL3_CAT << 8)+1,
+    ACTORTYPE_OVL3_CAT_BALL, // dodgeballs.
+    ACTORTYPE_OVL3_CAT_CROWD,
 
     // actors in dispatch table D_801B0800_7C0AB0
 

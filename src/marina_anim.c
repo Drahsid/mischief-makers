@@ -12,7 +12,7 @@ void MarinaAnim_State0(u16 arg0) {
 }
 
 // animation type 2 - move through automated button press
-void MarinaAnim_State2(u16 arg0) {
+void MarinaAnim_AutoInput(u16 arg0) {
     s32 temp_v0;
 
     D_801370CC = (u16)gPlayerData.buttonHold;
@@ -215,10 +215,10 @@ void MarinaAnim_Dance(u16 actor_index) {
 }
 
  // marina animation states
-ActorFunc D_800D3D20[]= {
+ActorFunc gMarinaAnimTable[]= {
     MarinaAnim_State0,
     MarinaAnim_State0,
-    MarinaAnim_State2,
+    MarinaAnim_AutoInput,
     MarinaAnim_State3_4,
     MarinaAnim_State3_4,
     MarinaAnim_State5_6,
@@ -252,6 +252,6 @@ ActorFunc D_800D3D20[]= {
 };
 
 void MarinaAnim_Update(u16 actor_index) {
-    D_800D3D20[gMarinaAnim.anim_u32 & 0xFF](actor_index);
+    gMarinaAnimTable[gMarinaAnim.anim_u32 & 0xFF](actor_index);
     gMarinaAnim.unk_00 = 0;
 }

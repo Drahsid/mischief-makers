@@ -443,7 +443,7 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         gActors[actor_index].damage = 50;
         gActors[actor_index].hitFlags = HITFLAG_7;\
         gActors[actor_index].hitType = HITTYPE_4;
-        gActors[actor_index].unk_0DF = 0x20;
+        gActors[actor_index].unk_0DF = ACTOR0DF_5;
         gActors[actor_index].state++;
         // fallthrough
 

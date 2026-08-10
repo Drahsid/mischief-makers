@@ -288,6 +288,7 @@ ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
 
 SpawnBeamThrow = 0x800600F0; // type:func
 ActorUpdate_BeamThrow = 0x800601FC; // type:func
+ActorUpdate_Type51 = 0x8006098C; // type:func
 ActorUpdate_Lava = 0x80060db8; // type:func
 ActorUpdate_3DIcon = 0x80060f88; // type:func
 
@@ -375,7 +376,7 @@ SpawnText_READY_2 = 0x8004732C; // type:func
 SpawnText_FIGHT = 0x8004735C; // type:func
 
 MarinaAnim_State0 = 0x800485AC; // type:func
-MarinaAnim_State2 = 0x80047E38; // type:func
+MarinaAnim_AutoInput = 0x80047E38; // type:func
 MarinaAnim_State3_4 = 0x80047ED4; // type:func
 MarinaAnim_State5_6 = 0x80047F80; // type:func
 MarinaAnim_State7 = 0x80047FF8; // type:func
@@ -453,6 +454,19 @@ MarinaHit_Type17 = 0x80058D3C; // type:func
 MarinaHit_Type18 = 0x80058E44; // type:func
 MarinaHit_Type19 = 0x80058EB0; // type:func
 MarinaHit_Type22 = 0x80058F54; // type:func
+
+MarinaEffect_SpawnParticle = 0x800592A0; // type:func
+MarinaEffect_Grab = 0x80059ABC; // type:func
+MarinaEffect_ControlDiagram = 0x800593DC; // type:func
+
+
+MarinaEffect_Type4 = 0x8005B1E8; // type:func
+MarinaEffect_Type5 = 0x8005B3F4; // type:func
+MarinaEffect_Invulnerability = 0x8005BA38; // type:func
+MarinaEffect_Shock = 0x8005BBC0; // type:func
+MarinaEffect_Teleport = 0x8005BCF8; // type:func
+
+MarinaEffect_Update = 0x8005BFA4; // type:func
 
 ActorType2_Noop = 0x8006C1A4; // type:func
 ActorUpdate_Type2 = 0x800732F8; // type:func

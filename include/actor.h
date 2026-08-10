@@ -151,6 +151,8 @@ typedef enum {
     HITTYPE_29,
     HITTYPE_30
 } HitTypes;
+
+
 typedef enum {
     HITFLAG_0 = (1 << 0),
     HITFLAG_1 = (1 << 1),
@@ -161,6 +163,24 @@ typedef enum {
     HITFLAG_6 = (1 << 6),
     HITFLAG_7 = (1U << 7U)
 } HitFlags;
+
+// flags used by Actor.unk_0DF
+typedef enum {
+    // first two bits seem to be some index.
+
+    ACTOR0DF_0_0 = ((1 << 0) * 0),
+    ACTOR0DF_0_1 = ((1 << 0) * 1),
+    ACTOR0DF_0_2 = ((1 << 0) * 2),
+    ACTOR0DF_0_3 = ((1 << 0) * 3),
+    ACTOR0DF_0_MASK = ACTOR0DF_0_3,
+    
+    ACTOR0DF_2 = (1 << 2),
+    ACTOR0DF_3 = (1 << 3),
+    ACTOR0DF_4 = (1 << 4),
+    ACTOR0DF_5 = (1 << 5),
+    ACTOR0DF_6 = (1 << 6),
+    ACTOR0DF_7 = (1U << 7U) // used by "Big beam" and Raiden's thunder attacks?
+} Actor0DFFlags;
 
 
 typedef struct {

@@ -2123,7 +2123,7 @@ void ActorUpdate_Landmine(u16 actor_index) {
         gActors[actor_index].graphicIndex = GINDEX_BOMB_ELLIPSE;
         gActors[actor_index].scaleX = 1.5f;
         gActors[actor_index].scaleY = 0.4f;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         gActors[actor_index].hitType = HITTYPE_23;
         gActors[actor_index].damage = 0;
         Actor_SetHitboxA(actor_index, 4);
@@ -2199,7 +2199,7 @@ void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s3
     Actor_SetHitboxB(actor_index, 8);
     gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].scaleY = 1.2f;
-    gActors[actor_index].unk_0DF = 0x20;
+    gActors[actor_index].unk_0DF = ACTOR0DF_5;
     gActors[actor_index].hitFlags = HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_SHOCK_13; \
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.5); \
@@ -2283,7 +2283,7 @@ void SpawnEnergyShot(u16 actor_index, u16 flag, s32 angle, s32 pos_x, s32 pos_y,
     gActors[actor_index].graphicIndex = GINDEX_BOOM1;
     gActors[actor_index].colorA = 0xA0;
     Actor_SetColorRgb(actor_index, 0x50);
-    gActors[actor_index].unk_0DF = 0x20;
+    gActors[actor_index].unk_0DF = ACTOR0DF_5;
     gActors[actor_index].hitFlags = HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_2;
     gActors[actor_index].damage = 50;
@@ -2374,7 +2374,7 @@ void SpawnHovercraftShot(u16 actor_index, u16 flag, s32 angle, s32 pos_x, s32 po
     gActors[actor_index].var_0D8 = flag;
     ACTOR_GFX_INIT(actor_index, D_800D2284);
     gActors[actor_index].colorA = 0xC0;
-    gActors[actor_index].unk_0DF = 0x20;
+    gActors[actor_index].unk_0DF = ACTOR0DF_5;
     gActors[actor_index].hitFlags = HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_2;
     gActors[actor_index].damage = 0x50;
@@ -5349,7 +5349,7 @@ void ActorUpdate_Clanpot(u16 actor_index) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags = (ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED);
             ACTOR_GFX_INIT(actor_index, D_800E2514);
-            gActors[actor_index].unk_0DF = 0x40;
+            gActors[actor_index].unk_0DF = ACTOR0DF_6;
             gActors[actor_index].health = 10;
             gActors[actor_index].damage = 10;
             gActors[actor_index].unk_0CE = 10;
@@ -5718,7 +5718,7 @@ void Spikeball_State0(u16 actor_index) {
         gActors[actor_index].damage = 60;
     }
     gActors[actor_index].grabType = GRABTYPE_HURT;
-    gActors[actor_index].unk_0DF = 0x40;
+    gActors[actor_index].unk_0DF = ACTOR0DF_6;
     gActors[actor_index].hitFlags = HITFLAG_7 | HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_4;
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
@@ -6031,7 +6031,7 @@ void ActorUpdate_Clanball_28(u16 actor_index) {
         gActors[actor_index].unk_17C = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
         gActors[actor_index].unk_178 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
         gActors[actor_index].grabType = GRABTYPE_8; \
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         break;
     case 1: // animate Clanball Squish
         gActors[actor_index].unk_164--;
@@ -6529,7 +6529,7 @@ void func_8003B8CC(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK15 | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK8;
         gActors[actor_index].grabType = GRABTYPE_6; \
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         gActors[actor_index].unk_14C = 0.0f;
         /* fallthrough */
     case 1:
@@ -6607,7 +6607,7 @@ void func_8003BE3C(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
         gActors[actor_index].unk_0CE = 9;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         gActors[actor_index].grabType = GRABTYPE_1;
         gActors[actor_index].hitType = 7;
         Actor_SetHitboxA(actor_index, 0xC);
@@ -8097,7 +8097,7 @@ u16 func_800404AC(s32 pos_x, s32 pos_y, s32 pos_z, s32 unused_arg3) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
         gActors[actor_index].graphicIndex = 0x168;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         gActors[actor_index].posX.raw = pos_x;
         gActors[actor_index].posY.raw = pos_y;
         gActors[actor_index].posZ.raw = pos_z;
@@ -8237,7 +8237,7 @@ void WarpGate_Init(u16 actor_index) {
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTY | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
     gActors[actor_index].graphicIndex = GINDEX_WARPGATE;
-    gActors[actor_index].unk_0DF = 0x40;
+    gActors[actor_index].unk_0DF = ACTOR0DF_6;
     Actor_SetHitboxB(actor_index, 10);
     gActors[actor_index].posZ.whole = -1;
     gActors[actor_index].unk_11C = 1.0f;

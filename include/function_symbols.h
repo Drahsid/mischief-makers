@@ -47,7 +47,7 @@ extern s32 Marina_AddHealth(u16, s16);
 extern s32 Marina_SubHealth(u16 arg0, s16 arg1);
 extern s32 func_800575C0(u16 actor_index);
 extern void func_80058924(u16);
-extern u16 func_800592A0(u16 actor_index, s32* arg1);
+extern u16 MarinaEffect_SpawnParticle(u16 actor_index, s32* arg1);
 extern u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale);
 extern u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3);
 extern u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4);

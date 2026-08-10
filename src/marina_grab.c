@@ -2465,14 +2465,14 @@ void func_800500B0(u16 actor_index) {
     if (((D_801373D8 & 0x20) || func_8004FC68(actor_index, index)) && gActors[index].grabType != GRABTYPE_22) {
         gActors[actor_index].unk_140_u8[0] = 0;
         gActors[actor_index].unk_140_u16[1] = 1;
-        if (func_8005D1B0(index) != 2) {
+        if (func_8005D1B0(index) != ACTOR0DF_0_2) {
             var_a3 = 0xB;
         }
         else {
             var_a3 = 0x10;
         }
         if ((func_8005D338(actor_index) == 8) || (func_8005D338(actor_index) == 0xD)) {
-            if (func_8005D1B0(index) != 2) {
+            if (func_8005D1B0(index) != ACTOR0DF_0_2) {
                 var_a3 = 9;
             }
             else {
@@ -2485,14 +2485,14 @@ void func_800500B0(u16 actor_index) {
     else {
         gActors[actor_index].unk_140_u8[0] = 4;
         gActors[actor_index].unk_140_u16[1] = 0;
-        if (func_8005D1B0(index) != 2) {
+        if (func_8005D1B0(index) != ACTOR0DF_0_2) {
             var_a3 = 8;
         }
         else {
             var_a3 = 0xD;
         }
         if ((func_8005D338(actor_index) == 0xB) || (func_8005D338(actor_index) == 0x10)) {
-            if (func_8005D1B0(index) != 2) {
+            if (func_8005D1B0(index) != ACTOR0DF_0_2) {
                 var_a3 = 0xA;
             }
             else {
@@ -2503,7 +2503,7 @@ void func_800500B0(u16 actor_index) {
         }
         if (D_801373D8 & 0x10) {
             gActors[actor_index].unk_17C = 1;
-            if (func_8005D1B0(index) != 2) {
+            if (func_8005D1B0(index) != ACTOR0DF_0_2) {
                 var_a3 = 0xC;
             }
             else {
@@ -2606,10 +2606,10 @@ void Marina_LandHoldingState(u16 actor_index) {
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, MARINA_MOVE(0));
     if (gActors[actor_index].stateUpper == 0) {
         func_8005A4B0(actor_index, 1.0f);
-        if (func_8005D1B0(index) != 2) {
+        if (func_8005D1B0(index) != ACTOR0DF_0_2) {
             Sound_PlaySfx(SFX_LAND_00AC);
         }
-        else {
+        else { // ..so no difference?
             Sound_PlaySfx(SFX_LAND_00AC);
         }
         if (gActors[actor_index].unk_140_u8[0] == 0) {
@@ -2717,7 +2717,7 @@ void func_800509C0(u16 actor_index) {
                 gActors[actor_index].stateUpper |= 0x80;
             }
         }
-        if (gPlayerData.unk_10 == 0xC) {
+        if (gPlayerData.unk_10 == 12) {
             if (!(sp28 & 4)) {
                 temp = MARINA_MOVE(5);
                 temp2 = MARINA_MOVE(9);
@@ -3491,7 +3491,7 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
     }
     if (var_v1 != 0) {
         gActors[actor_0].flags |= ACTOR_FLAG_UNK6;
-        if (!(gActors[actor_1].unk_0DF & 8) && (var_v1 == 0x58)) {
+        if (!(gActors[actor_1].unk_0DF & ACTOR0DF_3) && (var_v1 == 0x58)) {
             temp_v0 = func_8005D338(actor_0);
             if (var_v1 != temp_v0) {
                 Sound_PlaySfx(SFX_MARINA_SHAKE);

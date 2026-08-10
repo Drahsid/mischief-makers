@@ -2042,7 +2042,7 @@ void func_8001EC1C(void) {
                     }
                     else {
                         do {
-                            if ((gActors[actor_index].unk_0DF & 0x20) & 0xFF) { // fakematch? `& 0xFF` for regalloc
+                            if ((gActors[actor_index].unk_0DF & ACTOR0DF_5) & 0xFF) { // fakematch? `& 0xFF` for regalloc
                                 if ((gActors[index_s1].hitFlags & HITFLAG_5) == 0) {
                                     break;
                                 }

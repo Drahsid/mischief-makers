@@ -2573,7 +2573,9 @@ void func_80091664(u16 actor_index) {
                 gActors[actor_7].flags |= ACTOR_FLAG_UNK11;
                 Actor_SetHitboxA(actor_7, gActors[actor_index + 1].unk_12C * 7.0f);
             }
-            if ((gActors[actor_7].flags_098 & ACTOR_FLAG3_UNK8) && (actor_index != gActors[actor_7].parentIndex) && !(gActors[gActors[actor_7].parentIndex].unk_0DF & 0x40)) {
+            if ((gActors[actor_7].flags_098 & ACTOR_FLAG3_UNK8) && 
+               (actor_index != gActors[actor_7].parentIndex) && 
+               !(gActors[gActors[actor_7].parentIndex].unk_0DF & ACTOR0DF_6)) {
                 gActors[actor_index].state = 0x190;
                 gActors[actor_7].flags &= ~ACTOR_FLAG_UNK11;
                 func_8009159C(actor_index);

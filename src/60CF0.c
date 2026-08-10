@@ -126,7 +126,7 @@ void ActorUpdate_BeamThrow(u16 actor_index) {
     }
 }
 
-void func_8006098C(u16 actor_index) {
+void ActorUpdate_Type51(u16 actor_index) {
     s32 sp34[5];
     u16 actor_1;
 
@@ -136,11 +136,11 @@ void func_8006098C(u16 actor_index) {
         gActors[actor_index].grabType = GRABTYPE_1;
         gActors[actor_index].unk_0DF = 0;
         gActors[actor_index].hitFlags = 0;
-        gActors[actor_index].hitType = 2;
+        gActors[actor_index].hitType = HITTYPE_2;
         gActors[actor_index].damage = 0;
         gActors[actor_index].var_154 = 0;
         gActors[actor_index].var_158 = 30;
-        gActors[actor_index].var_15C = 0xD2;
+        gActors[actor_index].var_15C = 210;
         gActors[actor_index].scaleY = 0.2f;
         gActors[actor_index].scaleX = 0.2f;
         Sound_PlaySfxAtActor2(SFX_00C3, actor_index);
@@ -153,7 +153,7 @@ void func_8006098C(u16 actor_index) {
         }
     }
     switch (gActors[actor_index].stateLower) {
-    case 0x64:
+    case 100:
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
             gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
             gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
@@ -167,10 +167,10 @@ void func_8006098C(u16 actor_index) {
             }
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16); \
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-            gActors[actor_index].state = 0x65;
+            gActors[actor_index].state = 101;
         }
         break;
-    case 0x65:
+    case 101:
         if ((gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK5 | ACTOR_FLAG3_UNK3 | ACTOR_FLAG3_UNK2 | ACTOR_FLAG3_UNK0)) || (gActors[actor_index].var_154 != 0)) {
             gActors[actor_index].flags &= ~ACTOR_FLAG_UNK7;
             gActors[actor_index].var_154++;
@@ -206,7 +206,7 @@ void func_8006098C(u16 actor_index) {
         sp34[0] = gActors[actor_index].posX.whole;
         sp34[1] = gActors[actor_index].posY.whole;
         sp34[2] = gActors[actor_index].posZ.whole;
-        actor_1 = func_800592A0(actor_index, sp34);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp34);
         if (actor_1 != 0) {
             gActors[actor_1].graphicFlags |= ACTOR_GFLAG_SCALE;
             gActors[actor_1].graphicIndex = 0x15C;
@@ -219,6 +219,7 @@ void func_8006098C(u16 actor_index) {
     }
 }
 
+// beahvior for actor managing splashes into lava
 void ActorUpdate_Lava(u16 actor_index) {
     u16 actor_1;
     f32 divisor;
@@ -229,7 +230,7 @@ void ActorUpdate_Lava(u16 actor_index) {
         sp24[0] = gActors[gActors[actor_index].parentIndex].posX.whole;
         sp24[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxAY0;
         sp24[2] = gActors[gActors[actor_index].parentIndex].posZ.whole + 1;
-        actor_1 = func_800592A0(actor_index, sp24);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp24);
         if (actor_1 != 0) {
             divisor = 20.0f;
             gActors[actor_1].scaleX = 1.5f;

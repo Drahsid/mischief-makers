@@ -129,8 +129,8 @@ u16 gStartButtonOnly = FALSE;
 FixedCoord gPlayerPosX = {0};
 FixedCoord gPlayerPosY = {0};
 
-s16 D_800BE5E0 = 0; 
-s16 D_800BE5E4 = 0; 
+s16 gPlayerShockX = 0; 
+s16 gPlayerShockY = 0; 
 
 FixedCoord gPlayerVelXMirror = {0};
 FixedCoord gPlayerVelYMirror = {0};

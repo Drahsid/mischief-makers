@@ -261,7 +261,7 @@ void ActorUpdate_Flower(u16 actor_index) {
             gActors[actor_index].graphicIndex = D_800E3D20[index & 0xF];
         }
         gActors[actor_index].unk_178 = gActors[actor_index].var_0D8 & 1;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         Flower_SetHitboxB(actor_index);
         /* fallthrough */
     case 1:
@@ -450,7 +450,7 @@ void ActorUpdate_Hat(u16 actor_index) {
             gActors[actor_index].graphicIndex = D_800E3D4C[index & 0xF];
         }
         gActors[actor_index].unk_178 = gActors[actor_index].var_0D8 & 1;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         Hat_SetField138(actor_index);
         Hat_SetHitboxB(actor_index);
         /* fallthrough */
@@ -1729,7 +1729,7 @@ void func_80089418(u16 actor_index) {
         gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
         gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0); 
         gActors[actor_index].health = 0;
-        gActors[actor_index].unk_0DF = 0x20;
+        gActors[actor_index].unk_0DF = ACTOR0DF_5;
         gActors[actor_index].var_150 = gActors[actor_index].var_110;
         if (gActors[actor_index].var_150 & 1) {
             gActors[actor_index].scaleX = 0.5f;
@@ -1798,7 +1798,7 @@ u16 func_800896AC(u16 actor_index) {
     gActors[free_actor].hitboxBY1 = -8;
     gActors[free_actor].hitboxBX0 = -8; \
     gActors[free_actor].hitboxBX1 = 8;
-    gActors[free_actor].unk_0DF = 0x40;
+    gActors[free_actor].unk_0DF = ACTOR0DF_6;
     gActors[free_actor].flags = ACTOR_FLAG_ACTIVE;
     gActors[free_actor].health = 1;
     gActors[free_actor].posX.whole = gActors[actor_index].posX.whole;
@@ -2116,7 +2116,7 @@ void ActorUpdate_DiggingSpot(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0:
         gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         gActors[actor_index].posZ.whole = -7;
         gActors[actor_index].var_158 = 0xFF;
         gActors[actor_index].var_150 = gActors[actor_index].var_110;

@@ -1994,7 +1994,7 @@ void func_801B2830_79A670(u16 actor_index) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_UNK8;
             gActors[actor_index].graphicIndex = 0;
             gActors[actor_index].grabType = GRABTYPE_4;
-            gActors[actor_index].unk_0DF = 0x40;
+            gActors[actor_index].unk_0DF = ACTOR0DF_6;
             gActors[actor_index].dlist_17C = D_801B5E64_79DCA4[gActors[actor_index].var_0D8];
             gActors[actor_index].hitboxBX0 = -0x30;
             gActors[actor_index].hitboxBX1 = 0x30;
@@ -2212,7 +2212,7 @@ void func_801B2F2C_79AD6C(u16 actor_index) {
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK8;
             gActors[actor_index].graphicIndex = 0;
             gActors[actor_index].grabType = GRABTYPE_4;
-            gActors[actor_index].unk_0DF = 0x40;
+            gActors[actor_index].unk_0DF = ACTOR0DF_6;
             gActors[actor_index].unk_17C = D_801B5FE4_79DE24[gActors[actor_index].var_0D8];
 
             if (gActors[actor_index].var_0D8 == 0) {

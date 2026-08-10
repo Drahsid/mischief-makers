@@ -172,7 +172,7 @@ void func_80192E68_67E988(u16 actor_index, u16 arg1) {
         gActors[new_actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
         gActors[new_actor_index].health = 0;
         gActors[new_actor_index].damage = 0x50;
-        gActors[new_actor_index].unk_0DF = 0x20;
+        gActors[new_actor_index].unk_0DF = ACTOR0DF_5;
         gActors[new_actor_index].hitFlags = HITFLAG_7;\
         gActors[new_actor_index].hitType = HITTYPE_8;
         gActors[new_actor_index].scaleX = 1.0f;

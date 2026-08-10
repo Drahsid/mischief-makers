@@ -134,7 +134,7 @@ gTransitionTimer = 0x800D2940; // type:s32
 gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
 gMarinaActionSpeeds = 0x800D5794;
-
+gMarinaAnimTable = 0x800D3D20;
 gMarinaStateTable = 0x800d3db0; // size:0xF4
 gMarinaGrabTable = 0x800d3eb0; // size:0x60
 gMarinaThrowTable = 0x800D3F10; // size:0x60
@@ -461,6 +461,8 @@ gScreenBoundY1 = 0x800be574; // size:0x4 rom:0xbf174
 
 gPlayerPosX = 0x800be5d8; // type:s32 size:0x4 rom:0xbf1d8
 gPlayerPosY = 0x800be5dc; // type:s32 size:0x4 rom:0xbf1dc
+gPlayerShockX = 0x800be5E0; // type:s16 size:0x2 rom:0xbf1e0
+gPlayerShockY = 0x800be5E4; // type:s16 size:0x2 rom:0xbf1e4
 gPlayerVelXMirror = 0x800be5e8; // type:s32 size:0x4 rom:0xbf1e8
 gPlayerVelYMirror = 0x800be5ec; // type:s32 size:0x4 rom:0xbf1ec
 

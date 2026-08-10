@@ -488,7 +488,7 @@ void ActorUpdate_Physics(u16 arg0) {
                 gActors[arg0].unk_0A0 = 0x57;
             }
             var_a2 = gActors[var_a1].hitboxBY0 + gActors[var_a1].posY.whole - gActors[arg0].hitboxBY1;
-            if ((gActors[var_a1].unk_0DF & 0x10) && (arg0)) {
+            if ((gActors[var_a1].unk_0DF & ACTOR0DF_4) && (arg0)) {
             }
             else {
                 gActors[arg0].posY.whole = var_a2;
