@@ -334,6 +334,7 @@ static __inline void func_801B1568_7BD4B8(void) {
 
 void func_801B1570_7BD4C0(u16 actor_index) {
     if (D_801B4B60_7C0AB0 & 2) {
+        // spawn Yellw gem if Marina won match fairly without a hit
         if ((D_801B4B60_7C0AB0 == 2) && (gStageState == 0x15) && (gNoHit >= 0) && (YellowGem_GetFlag(gCurrentStage) == 0)) {
             gActors[actor_index].state = 0x110;
             return;
