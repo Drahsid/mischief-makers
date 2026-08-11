@@ -2416,7 +2416,7 @@ void func_801B3634_79B474(u16 actor_index) {
 }
 
 void func_801B36FC_79B53C(u16 arg0, u16 actor_index) {
-    gActors[actor_index].actorType = ACTORTYPE_OVL3_W2_3DPLATFROM_8;
+    gActors[actor_index].actorType = ACTORTYPE_OVL3_W2_3DPLATFORM_8;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = 400 - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = (arg0 << 6) - (gScreenPosCurrentY.whole & 0x3F) - 192;

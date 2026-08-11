@@ -231,7 +231,7 @@ typedef enum {
     ACTORTYPE_OVL3_W2_5, // stubbed
     ACTORTYPE_OVL3_W2_6, // stubbed
     ACTORTYPE_OVL3_W2_7, // stubbed
-    ACTORTYPE_OVL3_W2_3DPLATFROM_8, // platforms in vertical stages
+    ACTORTYPE_OVL3_W2_3DPLATFORM_8, // platforms in vertical stages
     ACTORTYPE_OVL3_W2_3DPLATFORM_9,
     ACTORTYPE_OVL3_W2_SPIKEBALLGEN, // generates ACTORTYPE_OVL3_W2_SPIKEBALL_11 in "Seasick Climb"
     ACTORTYPE_OVL3_W2_SPIKEBALL_11, // spikeball falling with rotation of camera in "Seasick Climb!"

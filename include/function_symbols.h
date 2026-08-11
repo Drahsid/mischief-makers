@@ -230,7 +230,7 @@ extern void LookAt_Update(void);
 // func_8000147C
 extern void func_80009940(void);
 extern void func_80009BE0(void);
-extern void func_80009BE8(u16*);
+extern void func_80009BE8(s16*);
 extern void func_8000DD6C(void);
 extern void func_8000EA88(void);
 extern void func_8000F290(void);

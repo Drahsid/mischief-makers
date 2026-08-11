@@ -39,6 +39,7 @@ extern u16 D_801370D4;
 extern u16 D_801370D8[]; // Marina graphic history. used for unused after-image state
 extern s16 D_801371D8[]; // Marina X-position history. used for unused after-image state
 extern s16 D_801372D8[]; // Marina Y-position history. used for unused after-image state
+extern s16 D_801373EC;
 extern u16 D_80137480[];
 extern u16 D_801374F0[]; // source of texture images
 extern u16 D_80137580[]; // source of texture images
@@ -52,9 +53,23 @@ extern u8 D_801376B0[4];
 extern u8 D_801376B4[4];
 extern u8 D_801376B8[4];
 extern u8 D_801376BC[4];
-extern u32 D_801376D4;
-extern u32 D_80137714;
+extern u16** D_801376C0;
+extern u16** D_801376C4;
+extern u16** D_801376C8;
+extern u16** D_801376CC;
+extern u16** D_801376D0;
+extern u16** D_801376D4;
+extern u16** D_801376D8;
+extern Gfx** D_801376DC;
+extern Gfx** D_801376EC;
+extern Gfx** D_801376F4;
+extern Gfx** D_801376FC;
+extern Gfx** D_80137704;
+extern Gfx** D_8013770C;
+extern Gfx** D_80137714;
+extern Gfx** D_8013771C;
 extern u32 D_80137718;
+
 extern u64 gYellowGemBitfield;
 extern u64 gYellowGemTemp; // state for yellow gem bitfield on entering stage.
 extern u16 D_801782B8;
@@ -133,10 +148,10 @@ extern u16 gRedGems;
 
 // func_8000147C
 extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
-extern u16 gActorsBack[128]; // indices of actors to draw in the "back" 
-extern u16 gActorsMiddle[128]; // indices of actors to draw in middle (not drawn if D_800be674 is set)
-extern u16 gActorsFront[240]; // indices of actors to draw in "front"
-extern u16 gActorsTop[240]; // indices of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
+extern s16 gActorsBack[128]; // indices of actors to draw in the "back" 
+extern s16 gActorsMiddle[128]; // indices of actors to draw in middle (not drawn if D_800be674 is set)
+extern s16 gActorsFront[240]; // indices of actors to draw in "front"
+extern s16 gActorsTop[240]; // indices of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
 
 extern PlayerData gPlayerData;
 
