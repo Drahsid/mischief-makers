@@ -1,5 +1,6 @@
 #include "common.h"
 #include "28EF0.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 // struct used for skiing Clancers
@@ -53,9 +54,6 @@ typedef void (*Overlay_7A13D0_State_Func)(u16 actor_index, Overlay_7A13D0_Actor_
 extern s16 D_800E1384[];
 extern s16 D_800E2274[];
 
-extern void func_80067E50(u16 actor_index, void* arg1);
-extern s32 func_800734C4(u16 arg0, s32 arg1);
-extern s32 func_80073558(u16 actor_index, s32 arg1);
 
 void func_801A85E0_771AB0(u16 actor_index, f32 arg1); // explosion effect in 76FDD0.c
 void func_801B0900_7A1410(u16 actor_index, Overlay_7A13D0_Actor_State* state);

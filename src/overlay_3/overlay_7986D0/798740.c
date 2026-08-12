@@ -4,6 +4,7 @@
 
 #include "common.h"
 #include "28EF0.h"
+#include "66250.h"
 
 // "Overlay 3" code for World 2
 
@@ -1224,7 +1225,6 @@ extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
 extern void func_8001FEB0(void);
 extern s32 Math_PlaneHalf(s32 x, s32 y);
 // BUG: incorrect prototype!
-extern void func_80067E50(u16 actor_index, void* arg1);
 extern void func_80078418(u16 actor_index);
 
 void func_801B0900_798740(u16 actor_index, f32 delta);
@@ -1860,7 +1860,7 @@ void func_801B2334_79A174(u16 actor_index) {
     }
 }
 
-DEFAULT_INT func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
+void func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
     s32 angle;
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
@@ -2957,7 +2957,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
     gActors[actor_index].flags_098 = 0;
 }
 
-DEFAULT_INT func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
+void func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
     s32 angle;
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,

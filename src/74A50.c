@@ -2,12 +2,6 @@
 #include "common.h"
 #include "28EF0.h"
 
-// TODO: Move to .h file(s)
-extern void func_800358DC(u16 actor_index);
-extern void func_80035A20(u16 actor_index);
-extern s32 func_80029044(u16 actor_index);
-extern void func_80028B90(u16 actor_index);
-
 extern s32 D_800D1938[];
 extern s16 D_800D2918; // = 0;
 extern s16 D_800D291C; // = 0;
