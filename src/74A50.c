@@ -918,7 +918,7 @@ void Clanblob_Update(u16 actor_index) {
     if ((gActors[actor_index].state > 1) && (gActors[actor_index].state != 0x1000)) {
         if ((gActors[actor_index].health <= 0) || (gActors[actor_index].hitboxBY0 & 0x80)) {
             func_8003F138(0.6f, gActors[actor_index].posX.whole, gActors[actor_index].posY.whole, 0);
-            Sound_PlaySfxAtActor2(0x5D, actor_index);
+            Sound_PlaySfxAtActor2(SFX_005D, actor_index);
             if ((u16)gActors[actor_index].var_110 & 0x8000) {
                 func_80076A38(actor_index);
             }
@@ -1068,7 +1068,7 @@ void Clanblob_Update(u16 actor_index) {
                 gActors[actor_index].unk_138 = (gActors[actor_index].unk_130 - gActors[actor_index].scaleX) / 8;
                 gActors[actor_index].unk_134 = 1.0 + temp_f2;
                 gActors[actor_index].unk_13C_f32 = (gActors[actor_index].unk_134 - gActors[actor_index].scaleY) / 4;
-                Sound_PlaySfxAtActor2(0x119, actor_index);
+                Sound_PlaySfxAtActor2(SFX_0119, actor_index);
             }
         }
         gActors[actor_index].unk_16C = func_800298D0(0, gActors[actor_index].unk_16C, 0x300000);
