@@ -9,7 +9,7 @@
     "matched_functions": 2961,
     "matched_functions_percent": 62.906307,
     "complete_data_percent": 100.0,
-    "total_units": 390
+    "total_units": 391
   },
   "units": [
     {
@@ -10822,28 +10822,28 @@
     {
       "name": "66250",
       "measures": {
-        "fuzzy_match_percent": 21.324879,
-        "total_code": "95888",
-        "matched_code": "20448",
-        "matched_code_percent": 21.324879,
+        "fuzzy_match_percent": 6.8359375,
+        "total_code": "59392",
+        "matched_code": "4060",
+        "matched_code_percent": 6.8359375,
         "matched_data_percent": 100.0,
-        "total_functions": 311,
-        "matched_functions": 110,
-        "matched_functions_percent": 35.369774,
+        "total_functions": 230,
+        "matched_functions": 72,
+        "matched_functions_percent": 31.304348,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".text",
-          "size": "95888",
-          "fuzzy_match_percent": 21.324879,
+          "size": "59392",
+          "fuzzy_match_percent": 6.8359375,
           "metadata": {
             "virtual_address": "2147898960"
           }
         },
         {
           "name": ".rodata",
-          "size": "2784",
+          "size": "896",
           "metadata": {
             "virtual_address": "2148451552"
           }
@@ -12531,7 +12531,47 @@
           "metadata": {
             "virtual_address": "2147957992"
           }
+        }
+      ],
+      "metadata": {
+        "module_name": ".main",
+        "module_id": 2,
+        "progress_categories": [
+          "segment_main"
+        ]
+      }
+    },
+    {
+      "name": "74A50",
+      "measures": {
+        "fuzzy_match_percent": 44.903553,
+        "total_code": "36496",
+        "matched_code": "16388",
+        "matched_code_percent": 44.903553,
+        "matched_data_percent": 100.0,
+        "total_functions": 81,
+        "matched_functions": 38,
+        "matched_functions_percent": 46.913578,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "36496",
+          "fuzzy_match_percent": 44.903553,
+          "metadata": {
+            "virtual_address": "2147958352"
+          }
         },
+        {
+          "name": ".rodata",
+          "size": "1888",
+          "metadata": {
+            "virtual_address": "2148452448"
+          }
+        }
+      ],
+      "functions": [
         {
           "name": "func_80073E50",
           "size": "164",
@@ -49798,7 +49838,7 @@
         "matched_functions": 1957,
         "matched_functions_percent": 90.518036,
         "complete_data_percent": 100.0,
-        "total_units": 254
+        "total_units": 255
       }
     },
     {

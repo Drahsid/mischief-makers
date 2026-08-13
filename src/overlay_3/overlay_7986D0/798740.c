@@ -3,6 +3,7 @@
 #include <PR/gbi.h>
 
 #include "common.h"
+#include "28EF0.h"
 
 // "Overlay 3" code for World 2
 
@@ -1223,7 +1224,6 @@ extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
 extern void func_8001FEB0(void);
 extern s32 Math_PlaneHalf(s32 x, s32 y);
 // BUG: incorrect prototype!
-extern void func_80033E7C(u16 actor_index, s16 x, s16 y, s16 z, s32 velocity, s32 pos_scale, s32 arg6);
 extern void func_80067E50(u16 actor_index, void* arg1);
 extern void func_80078418(u16 actor_index);
 

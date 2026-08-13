@@ -4002,7 +4002,7 @@ void ActorUpdate_Type5(u16 actor_index) {
     gActors[actor_index].var_150 = Palette_AdjustRgb5551(gActors[actor_index].var_150, gActors[actor_index].unk_168, gActors[actor_index].unk_164, gActors[actor_index].var_160);
 }
 
-void func_80033E7C(s32 arg0, s16 x, s16 y, s16 z, s32 velocity, u32 pos_scale, u16 arg6) {
+void func_80033E7C(u16 actor_unused, s16 x, s16 y, s16 z, s32 velocity, u32 pos_scale, u16 arg6) {
     s32 pad0;
     s32 pad1;
     s32 pad2;
