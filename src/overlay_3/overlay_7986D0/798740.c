@@ -1224,7 +1224,6 @@ u16 D_801B915C_7A0F9C[] = {
 extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
 extern void func_8001FEB0(void);
 extern s32 Math_PlaneHalf(s32 x, s32 y);
-// BUG: incorrect prototype!
 extern void func_80078418(u16 actor_index);
 
 void func_801B0900_798740(u16 actor_index, f32 delta);
