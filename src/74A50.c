@@ -116,7 +116,7 @@ void func_80073E50(u16 actor_index, u16 graphic_index) {
         gActors[actor_index].health = 10;
         gActors[actor_index].velocityX.raw = vel_x;
         gActors[actor_index].velocityY.raw = vel_y;
-        gActors[actor_index].actorType = 0x44;
+        gActors[actor_index].actorType = ACTORTYPE_HAT;
         gActors[actor_index].var_110 = -1.0f;
         gActors[actor_index].graphicIndex = graphic_index;
     }
@@ -265,7 +265,8 @@ u16 func_80074654(u16 actor_dst, u16 actor_src) {
     rotation_index = DEG_TO_INDEX(gActors[actor_src].rotateZ);
     if (gActors[actor_src].flags & ACTOR_FLAG_FLIPPED) {
         angle = rotation_index + 0x218;
-    } else {
+    }
+    else {
         angle = rotation_index - 0x18;
     }
     gActors[actor_dst].posX.raw = gActors[actor_src].posX.raw + TO_FIXED(COS(angle) * 20.0f);
@@ -319,7 +320,8 @@ u16 func_80074938(u16 actor_index, u16 arg1) {
             gActors[free_actor].damage /= 2;
             gActors[free_actor].graphicFlags &= ~ACTOR_GFLAG_SCALE;
             Sound_PlaySfxAtActor2(SFX_00D6, actor_index);
-        } else {
+        }
+        else {
             Sound_PlaySfxAtActor2(SFX_LASER_0052, actor_index);
         }
         gActors[free_actor].flags += gActors[actor_index].flags & ACTOR_FLAG_FLIPPED;
@@ -1355,7 +1357,7 @@ void func_80078338(u16 actor_index) {
             y = FIXED_UNIT(6);
             z = 1;
         }
-        if (gActors[actor_index].flags & 0x20) {
+        if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
             angle = FIXED_UNIT(COS_DEG_180);
             x = -x;
         }
@@ -1877,7 +1879,7 @@ void func_8007A090(u16 actor_index, u16 other_actor_index) {
 }
 
 void func_8007A118(u16 actor_index, u16 other_actor_index) {
-    gActors[other_actor_index].actorType = 0x2601;
+    gActors[other_actor_index].actorType = ACTORTYPE_OVL0_GEN_BOMB1;
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
         gActors[other_actor_index].velocityX.raw = -FIXED_UNIT(1.75);
     }
@@ -1888,47 +1890,47 @@ void func_8007A118(u16 actor_index, u16 other_actor_index) {
 }
 
 u16 func_8007A190(u16 actor_index) {
-    u16 temp_v0;
+    u16 free_actor;
 
     gActors[actor_index].unk_128 -= 1.0f;
-    temp_v0 = Actor_RangeFindInactive(0x70, 0x7A);
-    if (temp_v0 != 0) {
-        ACTOR_INIT(temp_v0, 0);
-        gActors[temp_v0].posX.whole = gActors[actor_index].posX.whole;
-        gActors[temp_v0].posY.whole = gActors[actor_index].posY.whole;
-        gActors[temp_v0].posZ.whole = gActors[actor_index].posZ.whole - 1;
-        ((Actor2Func) gActors[actor_index].var_154)(actor_index, temp_v0);
-        gActors[actor_index].unk_118 = temp_v0;
-        gActors[actor_index].unk_11C = gActors[temp_v0].actorType;
-        gActors[temp_v0].parentIndex = actor_index;
-        gActors[temp_v0].flags_098 = ACTOR_FLAG3_UNK9;
-        gActors[actor_index].var_154 = gActors[temp_v0].velocityX.raw * gActors[actor_index].scaleX;
-        gActors[actor_index].var_158 = gActors[temp_v0].velocityY.raw * gActors[actor_index].scaleX;
+    free_actor = Actor_RangeFindInactive(0x70, 0x7A);
+    if (free_actor != 0) {
+        ACTOR_INIT(free_actor, 0);
+        gActors[free_actor].posX.whole = gActors[actor_index].posX.whole;
+        gActors[free_actor].posY.whole = gActors[actor_index].posY.whole;
+        gActors[free_actor].posZ.whole = gActors[actor_index].posZ.whole - 1;
+        ((Actor2Func) gActors[actor_index].var_154)(actor_index, free_actor);
+        gActors[actor_index].unk_118 = free_actor;
+        gActors[actor_index].unk_11C = gActors[free_actor].actorType;
+        gActors[free_actor].parentIndex = actor_index;
+        gActors[free_actor].flags_098 = ACTOR_FLAG3_UNK9;
+        gActors[actor_index].var_154 = gActors[free_actor].velocityX.raw * gActors[actor_index].scaleX;
+        gActors[actor_index].var_158 = gActors[free_actor].velocityY.raw * gActors[actor_index].scaleX;
         gActors[actor_index].velocityX.raw /= 2;
         gActors[actor_index].velocityY.raw /= 2;
         if ((((gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) != 0) && gActors[actor_index].var_154 > 0) || (((gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) == 0) && gActors[actor_index].var_154 < 0)) {
             gActors[actor_index].flags ^= ACTOR_FLAG_FLIPPED;
         }
         gActors[actor_index].graphicIndex = GINDEX_WM_STAGEICONFINAL;
-        func_80079F50(actor_index, temp_v0);
+        func_80079F50(actor_index, free_actor);
     }
 
-    return temp_v0;
+    return free_actor;
 }
 
 u16 func_8007A3CC(u16 actor_index) {
-    u16 sp26;
+    u16 free_actor;
 
     gActors[actor_index].unk_128 -= 1.0f;
-    sp26 = Actor_RangeFindInactive(0x70, 0x7A);
-    if (sp26 != 0) {
-        ACTOR_INIT(sp26, 0);
-        gActors[sp26].posX.whole = gActors[actor_index].posX.whole;
-        gActors[sp26].posY.whole = gActors[actor_index].posY.whole;
-        gActors[sp26].posZ.whole = gActors[actor_index].posZ.whole - 1;
+    free_actor = Actor_RangeFindInactive(0x70, 0x7A);
+    if (free_actor != 0) {
+        ACTOR_INIT(free_actor, 0);
+        gActors[free_actor].posX.whole = gActors[actor_index].posX.whole;
+        gActors[free_actor].posY.whole = gActors[actor_index].posY.whole;
+        gActors[free_actor].posZ.whole = gActors[actor_index].posZ.whole - 1;
     }
 
-    return sp26;
+    return free_actor;
 }
 
 s32 func_8007A4B0(u16 actor_index) {
