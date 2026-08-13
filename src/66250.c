@@ -2139,7 +2139,7 @@ s32 func_8006BEF4(u16 actor_index) {
             gActors[actor_0].flags_098 |= ACTOR_FLAG3_UNK10;
             gActors[actor_0].unk_0F8.raw = gActors[actor_index].var_158;
             gActors[actor_0].unk_0FC.raw = gActors[actor_index].var_15C;
-            Sound_PlaySfxAtActor2(0x2A, actor_index);
+            Sound_PlaySfxAtActor2(SFX_THROW_002A, actor_index);
             return TRUE;
         }
         else {
@@ -3283,7 +3283,7 @@ void func_8006F90C(u16 actor_index) {
         gActors[actor_index].velocityX.raw = 0;
         gActors[actor_index].velocityY.raw = 0;
         func_8006CB88(actor_index);
-        Sound_PlaySfxAtActor2(0x3C, actor_index);
+        Sound_PlaySfxAtActor2(SFX_CLANCERDEATH, actor_index);
     }
     gActors[actor_index].colorA = Math_ApproachS32(gActors[actor_index].colorA, 0, 4);
     if ((gActors[actor_index].colorA == 0) || (gActors[actor_index].graphicTimer == 0)) {
