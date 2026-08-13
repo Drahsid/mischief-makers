@@ -262,6 +262,7 @@ typedef struct {
             union {
                 /* 0x150 */ s32 var_150;
                 /* 0x150 */ s16 var_150_s16[2];
+                /* 0x150 */ s16* var_150_s16_ptr;
             };
             /* 0x154 */ s32 var_154;
             union {
