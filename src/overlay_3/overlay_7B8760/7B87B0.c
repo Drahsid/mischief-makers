@@ -1,5 +1,6 @@
 #define func_80012AB4_ARGS s32 arg0, s32 arg1
 #include "common.h"
+#include "66250.h"
 
 typedef struct {
     /* 0x00 */ s32 unk_00;
@@ -197,10 +198,6 @@ extern void ActorUpdate_Clanpot(u16 actor_index);
 extern void func_800640A0(u16 actor_index);
 extern void func_800641CC(u16 actor_index);
 extern s32 func_80064328(u16 actor_index);
-extern void func_80067E50(u16 actor_index, void* graphic_list);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
-extern s32 func_80073558(u16 actor_index, s32 arg1);
-extern void func_800735EC(u16 actor_index, u16 radius);
 extern void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused);
 extern void func_8008F498(u16 actor_index, u16 list_index);
 extern void func_80094C5C(u16 actor_index);

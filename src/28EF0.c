@@ -7,6 +7,7 @@
 #include "stage.h"
 #include "1F1E0.h"
 #include "28EF0.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 extern u16* gParticlePalettes[]; // palettes of particles.
@@ -62,9 +63,6 @@ extern s16 D_800E155C[];
 extern s16 D_800E157C[];
 extern s16 D_800E15C4[];
 extern s16 D_800E1604[];
-extern s16 D_800E1C1C[];
-extern s16 D_800E1C2C[];
-extern s16 D_800E1D0C[];
 extern s16 D_800E1DEC[];
 extern s16 D_800E2514[];
 extern s16 D_800E2528[];
@@ -343,7 +341,7 @@ void func_80028B90(u16 actor_index) {
     }
 }
 
-void func_80028C00(s32 arg0) {
+void func_80028C00(u16 actor_index) {
 }
 
 s32 func_80028C08(u16 actor_index) {
@@ -2531,8 +2529,9 @@ void func_8002ED34(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x, s16 vel_y) 
 // @param actor_index index of projectile
 // @param pos_x x-position of projectile
 // @param pos_y y-position of projectile
-// @param vel_x unused.
-void SpawnBoomerang(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x) {
+// @param vel_x_unused unused.
+// @param vel_y_unused unused.
+void SpawnBoomerang(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x_unused, s16 vel_y_unused) {
     gActors[actor_index].actorType = ACTORTYPE_OVL0_GEN_BOOMERANG;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = pos_x;

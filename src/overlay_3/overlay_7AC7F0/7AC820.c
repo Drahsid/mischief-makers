@@ -1,4 +1,5 @@
 #include "common.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 typedef struct {
@@ -32,13 +33,9 @@ extern s16 D_800E17A4[];
 extern s16 D_800E17DC[];
 extern s16 D_800E17F8[];
 extern s16 D_800E1840[];
-extern s16 D_800E19C0[];
 extern s16 D_800E19E8[];
-extern s16 D_800E1BF4[];
-extern s16 D_800E1C00[];
 extern s16 D_800E1C9C[];
 extern s16 D_800E1CB4[];
-extern s16 D_800E1D0C[];
 extern s16 D_800E2274[];
 extern s16 D_800E22A8[];
 extern s16 D_800E22B4[];
@@ -303,8 +300,6 @@ u8 D_801B80E0_7B4000[8];
 u16 D_801B80E8_7B4008;
 
 extern void func_8003ED48(u16 actor_index, s32 arg1, s16 position_x, s16 position_y, s16 position_z);
-extern void func_80067E50(u16 actor_index, void* data);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
 
 void func_801B0900_7AC820(u16 actor_index);
 void func_801B0C38_7ACB58(u16 actor_index);

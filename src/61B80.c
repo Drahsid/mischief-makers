@@ -2,6 +2,7 @@
 #include "common.h"
 #include "stage.h"
 #include "28EF0.h"
+#include "66250.h"
 
 typedef struct {
     u8 unk0[0x20];

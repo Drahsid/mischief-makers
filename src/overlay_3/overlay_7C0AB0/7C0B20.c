@@ -1,5 +1,6 @@
 #include "common.h"
 #include "28EF0.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 #define OVERLAY1_DISPATCH_ACTOR ((ActorFunc*)OVERLAY1_DISPATCH_TABLE_VRAM)
@@ -105,11 +106,6 @@ u16 D_801B68AE_7C6ACE;
 
 extern void func_8003ED48(u16 actor_index, s32 arg1, s16 position_x, s16 position_y, s16 position_z);
 extern u16 func_8003F7A0(f32 scale, s16 position_x, s16 position_y, s16 position_z);
-extern void func_80067E50(u16 actor_index, void* graphic_list);
-extern s32 func_8006B940(u16 actor_index, u16 other_actor_index);
-extern s32 func_8006BA80(u16 actor_index, u16 other_actor_index);
-extern s32 func_8006BB8C(u16 actor_index, u16 other_actor_index);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
 extern void func_80078418(u16 actor_index);
 extern void func_8007A118(u16 actor_index, u16 other_actor_index);
 extern void func_8007B73C(u16 actor_index);

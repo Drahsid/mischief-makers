@@ -12,7 +12,7 @@ typedef void (*ActorFunc)(u16 actor_index);
 typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
 typedef void (*ClanpotTally)(u16 item_type, u16 actor_index);
 typedef s32 (*ClanpotCheck)(u16 actor_index);
-typedef s32 (*ActorVarFunc)(u16 actor_index, u16 arg1);
+typedef void (*ActorVarFunc)(u16 actor_index, u16 actor_1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
@@ -268,11 +268,16 @@ typedef struct {
                 /* 0x158 */ s32 var_158;
                 /* 0x158 */ u16 unk_158_u16[2];
                 /* 0x158 */ ActorVarFunc pfn_158;
+                /* 0x158 */ s16* graphicList_158;
             };
-            /* 0x15C */ s32 var_15C;
+            union {
+                /* 0x15C */ s32 var_15C;
+                /* 0x15C */ s16* graphicList_15C;
+            };
             union {
                 /* 0x160 */ s32 var_160;
                 /* 0x160 */ u8 var_160_u8;
+                /* 0x160 */ s16* graphicList_160;
             };
             /* 0x164 */ s32 unk_164;
             union {
@@ -333,6 +338,7 @@ typedef struct {
                 /* 0x190 */ void* unk_190_p;
                 /* 0x190 */ u16* warpgateCoords; // coordinates for a warp gate. {x,y,x-facing}
                 /* 0x190 */ ActorFunc pfn_190;
+                /* 0x190 */ s16 unk_190_s16[2];
         };
         };
     };

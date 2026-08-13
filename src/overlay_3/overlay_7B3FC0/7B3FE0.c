@@ -1,5 +1,6 @@
 #include "common.h"
 #include "28EF0.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 typedef struct {
@@ -30,13 +31,9 @@ extern s16 D_800E17A4[];
 extern s16 D_800E17DC[];
 extern s16 D_800E17F8[];
 extern s16 D_800E1840[];
-extern s16 D_800E19C0[];
 extern s16 D_800E19E8[];
-extern s16 D_800E1BF4[];
-extern s16 D_800E1C00[];
 extern s16 D_800E1C9C[];
 extern s16 D_800E1CB4[];
-extern s16 D_800E1D0C[];
 extern s16 D_800E2274[];
 extern s16 D_800E22A8[];
 extern s16 D_800E22B4[];
@@ -131,8 +128,6 @@ extern s16 Clanpot_AddItemCheck1(u16 actor_index, u16 flags, u16 var_110, u16 va
 extern void OverlayABI_Slot2_fn28_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
-extern void func_80067E50(u16 actor_index, void* data);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
 extern void func_8007B73C(u16 actor_index);
 
 
