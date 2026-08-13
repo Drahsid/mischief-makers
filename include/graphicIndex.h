@@ -192,7 +192,7 @@
 
 #define GINDEX_CLANCERGHOST    0x02A2 // 6 animation frames
 
-#define GINDEX_MOCHI           0x02c2
+#define GINDEX_MOCHI           0x02C2
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
@@ -252,6 +252,8 @@
 #define GINDEX_3046                 0x3046
 #define GINDEX_3048                 0x3048
 #define GINDEX_304A                 0x304A
+#define GINDEX_3050                 0x3050
+#define GINDEX_3064                 0x3064
 
 // indices used by the world map graphics
 

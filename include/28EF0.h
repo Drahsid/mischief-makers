@@ -33,6 +33,8 @@ void Actor_UpdateNearestTo0(u16 actor_index);
 void SpawnBoomerang(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x_unused, s16 vel_y_unused);
 void SpawnDizzyStar(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration);
 void SpawnEnergyShot(u16 actor_index, u16 flag, s32 angle, s32 pos_x, s32 pos_y, s32 pos_z);
+void SpawnHovercraftShot(u16 actor_index, u16 flag, s32 angle, s32 pos_x, s32 pos_y, s32 pos_z);
+u16 SpawnParticle_Exclamation(f32 scale, s16 pos_x, s16 pos_y, s16 pos_z);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z);
 void SpawnParticle_SineUpNotes(s16 pos_x, s16 pos_y, s16 pos_z);
 void SpawnRoundBomb(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
