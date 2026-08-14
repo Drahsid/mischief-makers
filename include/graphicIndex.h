@@ -113,6 +113,8 @@
 #define GINDEX_BLASTA          0x0166
 #define GINDEX_BLASTB          0x0168 // 2 animation frames
 
+#define GINDEX_016A            0x016A
+
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
@@ -191,9 +193,11 @@
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
 #define GINDEX_CLANBOMB        0x0276 // 3 animation frames
 
+#define GINDEX_0290            0x0290
+
 #define GINDEX_CLANCERGHOST    0x02A2 // 6 animation frames
 
-#define GINDEX_MOCHI           0x02c2
+#define GINDEX_MOCHI           0x02C2
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
 #define GINDEX_TEXTBOX         0x02CE // index of the textbox 
@@ -231,6 +235,21 @@
 #define GINDEX_HATCALINA        0X1044 // 2 ani states
 
 #define GINDEX_HATMSHINT        0X1070
+
+#define GINDEX_1014             0x1014
+#define GINDEX_1016             0x1016
+#define GINDEX_101C             0x101C
+#define GINDEX_101E             0x101E
+#define GINDEX_1020             0x1020
+#define GINDEX_1026             0x1026
+#define GINDEX_1028             0x1028
+#define GINDEX_102A             0x102A
+#define GINDEX_1030             0x1030
+#define GINDEX_1032             0x1032
+#define GINDEX_1034             0x1034
+#define GINDEX_1038             0x1038
+#define GINDEX_103A             0x103A
+#define GINDEX_1090             0x1090
 
 #define GINDEX_STAFFCALINA      0X1098
 
@@ -277,6 +296,8 @@
 #define GINDEX_3046                 0x3046
 #define GINDEX_3048                 0x3048
 #define GINDEX_304A                 0x304A
+#define GINDEX_3050                 0x3050
+#define GINDEX_3064                 0x3064
 
 // indices used by the world map graphics
 
@@ -305,6 +326,16 @@
 #define GINDEX_WM_STAGEICONPLAINS   0X3038
 #define GINDEX_WM_STAGEICONENDING   0X303A
 #define GINDEX_WM_STAGEICONVERTICAL 0X303C
+
+#define GINDEX_6800             0x6800
+#define GINDEX_6819             0x6819
+#define GINDEX_681A             0x681A
+#define GINDEX_6837             0x6837
+#define GINDEX_6838             0x6838
+#define GINDEX_6846             0x6846
+#define GINDEX_689B             0x689B
+#define GINDEX_68A3             0x68A3
+#define GINDEX_68CF             0x68CF
 
 #define GINDEX_BLACKBAR 0x8000
 

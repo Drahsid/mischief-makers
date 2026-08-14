@@ -109,6 +109,7 @@ tools:
             - "60CF0"
             - "61B80"
             - "66250"
+            - "74A50"
             - "7D8E0"
             - "805E0"
             - "80D90"
@@ -130,7 +131,7 @@ tools:
             - floatTable
             - globals
             - music_data
-            - C5FC0
+            - C6C20
             - C7DA0
             - C8B20
             - C8BE0
@@ -139,7 +140,6 @@ tools:
             - E4760
             - E4920
             - E5160
-            - EBBC0
             - bss_
             - D24D0.data
             - D34D0.data

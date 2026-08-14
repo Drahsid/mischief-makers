@@ -70,11 +70,6 @@ extern void func_8005DE30(void);
 extern s16 func_8005DEFC(void);
 extern s32 func_8005DF5C(s32 arg0);
 extern void ActorUpdate_3DIcon(u16 actor_index);
-extern void func_80066BCC(u16 actor_index);
-extern void func_80067EF0(u16);
-extern void func_8006CB88(u16);
-extern void func_8006CC70(u16);
-extern void func_8006CD5C(u16);
 
 extern void Actor_ClearRange_10To20(void);
 extern void PlaySceneBGM(void);
@@ -179,9 +174,6 @@ extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);
 extern u8 func_8005D1B0(u16 actor_index);
 extern void func_8005DF40(s16 arg0, s16 arg1);
 extern void func_8005E09C(s32 arg0, s32 arg1);
-extern void func_80067E9C(u16 actor_index);
-extern void Clancer_Update(u16 actor_index);
-extern s32 func_80073320(u16 actor_index); // return could be u16
 
 extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
 extern void func_8008C4E0(u16 actor_index);
@@ -226,7 +218,7 @@ extern void LookAt_Update(void);
 // func_8000147C
 extern void func_80009940(void);
 extern void func_80009BE0(void);
-extern void func_80009BE8(u16*);
+extern void func_80009BE8(s16*);
 extern void func_8000DD6C(void);
 extern void func_8000EA88(void);
 extern void func_8000F290(void);

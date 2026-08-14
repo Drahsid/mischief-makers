@@ -3,6 +3,7 @@
 #include "Alphabet.h"
 #include "letterbox.h"
 #include "save_file.h"
+#include "66250.h"
 
 // command chars exclusive to this script
 #undef ALPHA_SPACE
@@ -20,8 +21,6 @@
 #define ALPHA_COLOR_BLACK 0xFF7F
 
 // "overlay 2" code for Festival Games.
-
-extern void func_80069E18(u16);
 
 // may be a u32[] 
 u32 D_801AF5D0_7958C0[][2] = {

@@ -1,10 +1,11 @@
 #include "common.h"
 #include "actor.h"
-#include "80D90.h"
 #include "SFX.h"
 #include "1F1E0.h"
 #include "26A00.h"
 #include "28EF0.h"
+#include "66250.h"
+#include "80D90.h"
 #include "84BB0.h"
 
 // "overlay 0" code for intro scene

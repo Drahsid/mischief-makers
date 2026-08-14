@@ -3,6 +3,8 @@
 #include <PR/gbi.h>
 
 #include "common.h"
+#include "28EF0.h"
+#include "66250.h"
 
 // "Overlay 3" code for World 2
 
@@ -1222,9 +1224,6 @@ u16 D_801B915C_7A0F9C[] = {
 extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
 extern void func_8001FEB0(void);
 extern s32 Math_PlaneHalf(s32 x, s32 y);
-// BUG: incorrect prototype!
-extern void func_80033E7C(u16 actor_index, s16 x, s16 y, s16 z, s32 velocity, s32 pos_scale, s32 arg6);
-extern void func_80067E50(u16 actor_index, void* arg1);
 extern void Hovercraft_Update(u16 actor_index);
 
 void func_801B0900_798740(u16 actor_index, f32 delta);
@@ -1860,7 +1859,7 @@ void func_801B2334_79A174(u16 actor_index) {
     }
 }
 
-DEFAULT_INT func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
+void func_801B23EC_79A22C(u16 actor_index, u16 arg1) {
     s32 angle;
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,
@@ -2416,7 +2415,7 @@ void func_801B3634_79B474(u16 actor_index) {
 }
 
 void func_801B36FC_79B53C(u16 arg0, u16 actor_index) {
-    gActors[actor_index].actorType = ACTORTYPE_OVL3_W2_3DPLATFROM_8;
+    gActors[actor_index].actorType = ACTORTYPE_OVL3_W2_3DPLATFORM_8;
     Actor_Initialize(actor_index);
     gActors[actor_index].posX.whole = 400 - gScreenPosCurrentX.whole;
     gActors[actor_index].posY.whole = (arg0 << 6) - (gScreenPosCurrentY.whole & 0x3F) - 192;
@@ -2958,7 +2957,7 @@ void func_801B4AB0_79C8F0(u16 actor_index) {
     gActors[actor_index].flags_098 = 0;
 }
 
-DEFAULT_INT func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
+void func_801B4C5C_79CA9C(u16 actor_index, u16 arg1) {
     s32 angle;
 
     angle = Math_PlaneHalf(gActors[D_800E3580].posX.whole - gActors[actor_index].posX.whole,

@@ -15,6 +15,11 @@ typedef union {
 } FixedCoord;
 
 typedef struct {
+    /* 0x00 */ u16 positionX;
+    /* 0x02 */ u16 positionY;
+} Position_U16; /* sizeof = 0x04 */
+
+typedef struct {
     /* 0x0000 */ Mtx matrices[6]; // {ortho, ?, ortho, lookAt, ?, ?}
     /* 0x0180 */ Gfx dlist[0xC00];
 } GfxData; /* sizeof = 0x6180 */
@@ -128,7 +133,25 @@ typedef union {
     };
 } MarinaAnim;
 
-#define SPAWNRECORD_END 0xff00 // u16[] actor spawn tables end with 0xFF00
+// ActorSpawnRecord is not used directly in code, but represents the layout of u16[]
+typedef struct {
+    /* 0x00 */ u16 flags;
+    /* 0x02 */ u16 index;     // index of actor to set
+    /* 0x04 */ u16 posX;      // x-position of actor in stage
+    /* 0x06 */ u16 posY;      // y-position of actor in stage
+    /* 0x08 */ u16 timer_110; // value of Actor::timer_110
+    /* 0x0A */ u16 unk_0D8;   // value of Actor::unk_0D8
+    /* 0x0C */ u16 actorType; // value of Actor::actorType
+} ActorSpawnRecord; /* size = 0xE */
+
+// bits uses for ActorSpawnRecord::flags
+#define SPAWNRECORD_FLAG_0800 0x0800
+#define SPAWNRECORD_FLAG_1000 0x1000
+#define SPAWNRECORD_FLAG_2000 0x2000
+#define SPAWNRECORD_FLAG_4000 0x4000
+#define SPAWNRECORD_FLAG_8000 0x8000
+
+#define SPAWNRECORD_END       0xFF00 // u16[] actor spawn tables end with 0xFF00
 
 #define FIXED_UNIT(value) ((s32)((value) * 0x10000)) // use for literals
 #define TO_FIXED(value) ((value) * FIXED_UNIT(1.0)) // use for conversions

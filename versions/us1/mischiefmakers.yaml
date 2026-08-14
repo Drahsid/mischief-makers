@@ -116,6 +116,7 @@ segments:
       - [0x060CF0, c]
       - [0x061B80, c]
       - [0x066250, c]
+      - [0x074A50, c]
       - [0x07D8E0, c]
       - [0x0805E0, c]
       - [0x080D90, c]
@@ -306,7 +307,8 @@ segments:
       - [0x0C4500, .data, font]
       - [0x0C5AE0, .data, rle_type1]
       - [0x0C5B20, .data, save_file]
-      - [0x0C5FC0, data] # A540?
+      - [0x0C5FC0, .data, A540]
+      - [0x0C6C20, data] # 11820?
       - [0x0C7DA0, data] # 241E0?
       - [0x0C84A0, .data, 11820]
       - [0x0C88D0, .data, 134E0]
@@ -374,7 +376,7 @@ segments:
       - [0x0EB7F0, .rodata, game_state]
       - [0x0EB830, .rodata, music]
       - [0x0EBB10, .rodata, save_file]
-      - [0x0EBBC0, rodata] # A540?
+      - [0x0EBBC0, .rodata, A540]
       - [0x0EBBE0, .rodata, 11820]
       - [0x0EBC00, .rodata, gameover]
       - [0x0EBC50, .rodata, 17A70]
@@ -392,6 +394,7 @@ segments:
       - [0x0ECCF0, .rodata, 60CF0]
       - [0x0ECD80, .rodata, 61B80]
       - [0x0ED0E0, .rodata, 66250]
+      - [0x0ED460, .rodata, 74A50]
       - [0x0EDBC0, .rodata, 7D8E0]
       - [0x0EDC10, .rodata, 805E0]
       - [0x0EDC20, .rodata, 80D90]
@@ -450,6 +453,7 @@ segments:
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: save_file, type: .bss, vram: 0x80171AA0}
       - { name: bss_80171B30, type: bss, vram: 0x80171B30 }
+      - { name: A540, type: .bss, vram: 0x801720F0}
       - { name: gameover, type: .bss, vram: 0x80178130 }
       - { name: stage, type: .bss, vram: 0x80178150 }
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
@@ -1266,7 +1270,7 @@ segments:
     start: 0x7AC820
     bss_size: 0x50
     subsegments:
-      - [0x7AC820, asmtu, overlay_3/overlay_7AC7F0/7AC820] # object segment 7AC820->7B3FC0 (0x77A0)
+      - [0x7AC820, c, overlay_3/overlay_7AC7F0/7AC820] # object segment 7AC820->7B3FC0 (0x77A0)
       - [0x7B3240, .data, overlay_3/overlay_7AC7F0/7AC820]
       - [0x7B38B0, .rodata, overlay_3/overlay_7AC7F0/7AC820]
       - { name: overlay_3/overlay_7AC7F0/7AC820, type: .bss, vram: 0x801B80A0 }
@@ -1338,7 +1342,7 @@ segments:
     start: 0x7C0B20
     bss_size: 0x20
     subsegments:
-      - [0x7C0B20, asmtu, overlay_3/overlay_7C0AB0/7C0B20] # object segment 7C0B20->7C6AB0 (0x5F90)
+      - [0x7C0B20, c, overlay_3/overlay_7C0AB0/7C0B20] # object segment 7C0B20->7C6AB0 (0x5F90)
       - [0x7C67A0, .data, overlay_3/overlay_7C0AB0/7C0B20]
       - [0x7C6940, .rodata, overlay_3/overlay_7C0AB0/7C0B20]
       - { name: overlay_3/overlay_7C0AB0/7C0B20, type: .bss, vram: 0x801B6890 }

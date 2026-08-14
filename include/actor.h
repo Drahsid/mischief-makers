@@ -12,13 +12,14 @@ typedef void (*ActorFunc)(u16 actor_index);
 typedef void (*Actor2Func)(u16 actor_0, u16 actor_1);
 typedef void (*ClanpotTally)(u16 item_type, u16 actor_index);
 typedef s32 (*ClanpotCheck)(u16 actor_index);
-typedef s32 (*ActorVarFunc)(u16 actor_index, u16 arg1);
+typedef void (*ActorVarFunc)(u16 actor_index, u16 actor_1);
 
 // the Actor struct has 3 "flag" fields,
 // the first relating to behavior, the second rendering, and the third more behavior.
 
 // bits used by the "flags" actor field.
 enum ActorFlags {
+    ACTOR_FLAG_NONE = 0,
     ACTOR_FLAG_DRAW = (1U << 0U),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1U << 1U), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ENABLED = (ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW), // "active" and "draw" flags both set at once.
@@ -61,6 +62,7 @@ enum ActorFlags {
 
 // bits used by the "graphicFlags" field
 enum ActorGFlags {
+    ACTOR_GFLAG_NONE = 0,
     ACTOR_GFLAG_SCALE = (1U << 0U), // scale effected by scaleX and scaleY fields.
     ACTOR_GFLAG_ROTX = (1U << 1U), // effected by rotateX
     ACTOR_GFLAG_ROTY = (1U << 2U), // effected by rotateY
@@ -81,6 +83,7 @@ enum ActorGFlags {
 
 // bits used by the "flags_098" field
 enum ActorFlags3 {
+    ACTOR_FLAG3_NONE = 0,
     ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
     ACTOR_FLAG3_UNK2 = (1U << 2U), // left edge of screen hit?
@@ -327,17 +330,23 @@ typedef struct {
             union {
                 /* 0x150 */ s32 var_150;
                 /* 0x150 */ s16 var_150_s16[2];
+                /* 0x150 */ s16* var_150_s16_ptr;
             };
             /* 0x154 */ s32 var_154;
             union {
                 /* 0x158 */ s32 var_158;
                 /* 0x158 */ u16 unk_158_u16[2];
                 /* 0x158 */ ActorVarFunc pfn_158;
+                /* 0x158 */ s16* graphicList_158;
             };
-            /* 0x15C */ s32 var_15C;
+            union {
+                /* 0x15C */ s32 var_15C;
+                /* 0x15C */ s16* graphicList_15C;
+            };
             union {
                 /* 0x160 */ s32 var_160;
                 /* 0x160 */ u8 var_160_u8;
+                /* 0x160 */ s16* graphicList_160;
             };
             /* 0x164 */ s32 unk_164;
             union {
@@ -362,19 +371,24 @@ typedef struct {
                 /* 0x174 */ u16 unk_174_u16[2];
                 /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
             };
-            /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+            union {
+                /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+                /* 0x178 */ u16 unk_178_u16[2];
+            };
             union {
                 /* 0x17C */ s32 unk_17C;
                 /* 0x17C */ s16 unk_17C_s16[2];
                 /* 0x17C */ s8 unk_17C_s8[4];
                 /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
                 /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
+                /* 0x17C */ u8* texture_17C;
             };
             union {
                 /* 0x180 */ s32 unk_180;
                 /* 0x180 */ s16 unk_180_s16[2];
                 /* 0x180 */ u8 unk_180_u8[4];
                 /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
+                /* 0x180 */ u16* palette_180;
             };
             union {
                 /* 0x184 */ s32 unk_184;
@@ -393,6 +407,7 @@ typedef struct {
                 /* 0x190 */ void* unk_190_p;
                 /* 0x190 */ u16* warpgateCoords; // coordinates for a warp gate. {x,y,x-facing}
                 /* 0x190 */ ActorFunc pfn_190;
+                /* 0x190 */ s16 unk_190_s16[2];
         };
         };
     };

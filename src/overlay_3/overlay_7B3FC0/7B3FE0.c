@@ -1,13 +1,7 @@
 #include "common.h"
 #include "28EF0.h"
+#include "66250.h"
 #include "7D8E0.h"
-
-typedef struct {
-    /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-} UnkStruct_7B3FE0__Spawn_Record; /* sizeof = 0x08 */
 
 typedef struct {
     /* 0x00 */ u16 randomValue;
@@ -37,13 +31,9 @@ extern s16 D_800E17A4[];
 extern s16 D_800E17DC[];
 extern s16 D_800E17F8[];
 extern s16 D_800E1840[];
-extern s16 D_800E19C0[];
 extern s16 D_800E19E8[];
-extern s16 D_800E1BF4[];
-extern s16 D_800E1C00[];
 extern s16 D_800E1C9C[];
 extern s16 D_800E1CB4[];
-extern s16 D_800E1D0C[];
 extern s16 D_800E2274[];
 extern s16 D_800E22A8[];
 extern s16 D_800E22B4[];
@@ -97,7 +87,7 @@ s16 D_801B4458_7B7B38[6] = { 0x0001, -0x002C, 0x0048, 0x0000, 0x0000, 0x0000 };
 s16 D_801B4464_7B7B44[4] = { 0x0001, 0x0040, 0x0048, 0x0000 };
 s16 D_801B446C_7B7B4C[2] = { 0x0000, 0x0000 };
 
-UnkStruct_7B3FE0__Spawn_Record D_801B4470_7B7B50[5] = {
+Festival_Actor_Spawn D_801B4470_7B7B50[5] = {
     { 0x01D8, 0x0180, 0xFF01, 0x1D03 },
     { 0x00B0, 0x019C, 0xFF01, 0x1D06 },
     { 0x033A, 0x019C, 0xFF01, 0x1D06 },
@@ -138,8 +128,6 @@ extern s16 Clanpot_AddItemCheck1(u16 actor_index, u16 flags, u16 var_110, u16 va
 extern void OverlayABI_Slot2_fn28_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
-extern void func_80067E50(u16 actor_index, void* data);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
 extern void Rocketeer_Update(u16 actor_index);
 
 
@@ -154,7 +142,7 @@ void func_801B0900_7B3FE0(u16 actor_index) {
             u16 new_actor_index = index + 0x72;
             u16 position_x;
 
-            ACTOR_INIT(new_actor_index, 0x1A03);
+            ACTOR_INIT(new_actor_index, ACTORTYPE_OVL2_FEST_3);
 
             *(&gActors[new_actor_index].posY.whole + ((position_x = index * position_multiplier) * 0)) = 0x54; // FAKEMATCH
 
@@ -184,10 +172,11 @@ void func_801B0A8C_7B416C(u16 arg0) {
         u16 new_actor_index = Actor_RangeFindInactive(0x40, 0x50);
 
         if (new_actor_index != 0) {
-            gActors[new_actor_index].actorType = 0x1A03;
+            gActors[new_actor_index].actorType = ACTORTYPE_OVL2_FEST_3;
             Actor_Initialize(new_actor_index);
             gActors[new_actor_index].posX.whole = D_801B4470_7B7B50[index].positionX - gScreenPosCurrentX.whole;
-            gActors[new_actor_index].posY.whole = D_801B4470_7B7B50[index].positionY - gScreenPosCurrentY.whole;
+            gActors[new_actor_index].posY.whole =
+                (u16)D_801B4470_7B7B50[index].positionY - gScreenPosCurrentY.whole;
             gActors[new_actor_index].var_110 = (f32)D_801B4470_7B7B50[index].unk_04;
             gActors[new_actor_index].var_0D8 = D_801B4470_7B7B50[index].unk_06;
         }
@@ -197,7 +186,7 @@ void func_801B0A8C_7B416C(u16 arg0) {
 void func_801B0BA0_7B4280(u16 arg0) {
     Actor* actor = &gActors[0x32];
 
-    actor->actorType = 0x1A08;
+    actor->actorType = ACTORTYPE_OVL2_FEST_8;
     Actor_Initialize(0x32);
     actor->flags |= ACTOR_FLAG_FREEZE_POS;
     actor->posX.whole = 0;
@@ -240,7 +229,7 @@ void func_801B0DA0_7B4480(u16 actor_index) {
 }
 
 void func_801B0E24_7B4504(u16 actor_index, s16 position_x, s16 position_y, s32 velocity_x, s32 velocity_y) {
-    gActors[actor_index].actorType = 0x1A09;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_9;
     Actor_Initialize(actor_index);
     gActors[actor_index].pfn_190 = func_801B0DA0_7B4480;
     gActors[actor_index].posX.whole = position_x;
@@ -255,7 +244,7 @@ void func_801B0EB8_7B4598(u16 actor_index, u16 new_actor_index) {
 }
 
 void func_801B0F38_7B4618(u16 actor_index, u16 new_actor_index) {
-    gActors[new_actor_index].actorType = 0x1A09;
+    gActors[new_actor_index].actorType = ACTORTYPE_OVL2_FEST_9;
     Actor_Initialize(new_actor_index);
     gActors[new_actor_index].pfn_190 = func_801B0DA0_7B4480;
 
@@ -328,7 +317,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     u16 actor_index;
 
     actor_index = 0x6B;
-    gActors[actor_index].actorType = 0x1A09;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_9;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
@@ -342,7 +331,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     gActors[actor_index].colorB = 0xBA;
 
     actor_index = 0x6D;
-    gActors[actor_index].actorType = 0x1A07;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -354,7 +343,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     gActors[actor_index].unk_164 = 0x40;
 
     actor_index = 0x6C;
-    gActors[actor_index].actorType = 0x1A07;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -368,7 +357,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     actor_index = 0x6E;
     SpawnActor41(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
     gActors[actor_index].posZ.whole = 8;
-    gActors[actor_index].actorType = 0x1A08;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_8;
     gActors[actor_index].unk_16C = (s32)D_801B4458_7B7B38;
     gActors[actor_index].pfn_190 = ActorUpdate_Type41;
     gActors[actor_index].unk_18C = (s32)D_800D9AE4;
@@ -376,7 +365,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     actor_index = 0x6F;
     SpawnActor41(actor_index, 0, 0, 0x60, 0, 3, 0x3E7);
     gActors[actor_index].posZ.whole = 8;
-    gActors[actor_index].actorType = 0x1A08;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_8;
     gActors[actor_index].unk_16C = (s32)D_801B4464_7B7B44;
     gActors[actor_index].pfn_190 = ActorUpdate_Type41;
     gActors[actor_index].unk_18C = (s32)D_800D9AE4;
@@ -528,7 +517,7 @@ void func_801B1980_7B5060(u16 arg0) {
     u16 actor_index = Actor_RangeFindInactive(0x60, 0x70);
 
     if (actor_index != 0) {
-        gActors[actor_index].actorType = 0x1A07;
+        gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;

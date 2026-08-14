@@ -64,6 +64,8 @@ extern u8 Segment_06_DATA_END[];
 
 extern u8 Segment_07_ROM_START[];
 extern u8 Segment_07_ROM_END[];
+#define Segment_07_VRAM  ((u8*)0x07000000)
+extern u8 Segment_07_VRAM_END[];
 extern u8 Segment_07_DATA_START[];
 extern u8 Segment_07_DATA_END[];
 #define Segment_07_ROM_SIZE (Segment_07_ROM_END - Segment_07_ROM_START)
@@ -73,6 +75,7 @@ extern u8 Segment_07_DATA_END[];
 #include "../assets/generated/Segment_02/segment_02_assets.h"
 #include "Segment03.h"
 #include "Segment04.h"
+#include "Segment07.h"
 #include "../assets/generated/Segment_05/rle.h"
 #include "../assets/generated/Segment_06/rle.h"
 #include "../assets/generated/Segment_07/rle.h"

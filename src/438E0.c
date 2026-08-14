@@ -328,11 +328,22 @@ void func_80043918(void) {
     func_8004320C();
 }
 
-s32 func_8004398C(u16* spawn);
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004398C.s")
+u16 func_8004398C(u16* spawn) {
+    u16 actor_index;
+
+    actor_index = spawn[1];
+    gActors[actor_index].actorType = spawn[6];
+    Actor_Initialize(actor_index);
+    gActors[actor_index].posX.whole = spawn[2] - gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole = spawn[3] - gScreenPosCurrentY.whole;
+    gActors[actor_index].var_110 = spawn[4];
+    gActors[actor_index].var_0D8 = spawn[5];
+    D_800D28EC |= spawn[0] & 0x1F0;
+    return actor_index;
+}
 
 void Actor_LoadSpawnTable(u16* spawn) {
-    s32 actor_index;
+    u16 actor_index;
     u16 jndex;
     u16 index;
     u16 counter;
@@ -341,16 +352,16 @@ void Actor_LoadSpawnTable(u16* spawn) {
     jndex = 0;
     counter = 0;
     while (spawn[0] != SPAWNRECORD_END) {
-        if (!(spawn[0] & 0x2000)) {
+        if (!(spawn[0] & SPAWNRECORD_FLAG_2000)) {
             actor_index = func_8004398C(spawn);
 
-            if (spawn[0] & 0x8000) {
+            if (spawn[0] & SPAWNRECORD_FLAG_8000) {
                 D_800D357C[index + 0] = actor_index;
                 D_800D357C[index + 1] = gActors[actor_index].actorType;
                 index += 2;
             }
 
-            if (spawn[0] & 0x1000) {
+            if (spawn[0] & SPAWNRECORD_FLAG_1000) {
                 D_800D361C[jndex + 0] = actor_index;
                 D_800D361C[jndex + 1] = gActors[actor_index].actorType;
                 D_800D361C[jndex + 2] = counter;
@@ -364,11 +375,11 @@ void Actor_LoadSpawnTable(u16* spawn) {
 
     for (; index < 0x40; index = actor_index + 2) {
         actor_index = index;
-        D_800D357C[actor_index] = 0;
+        D_800D357C[(s32)actor_index] = 0;
     }
     for (; jndex < 0x60; jndex = actor_index + 3) {
         actor_index = jndex;
-        D_800D361C[actor_index] = 0;
+        D_800D361C[(s32)actor_index] = 0;
     }
 }
 
@@ -383,11 +394,11 @@ void func_80043C10(u16* spawn) {
     y_max = gScreenPosCurrentY.whole + 144;
     y_min = gScreenPosCurrentY.whole - 144;
     for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
-        if ((spawn[0] & 0x800)) {
+        if ((spawn[0] & SPAWNRECORD_FLAG_0800)) {
             continue;
         }
         if ((x_min < spawn[2]) && (spawn[2] < x_max) && (spawn[3] < y_max) && (y_min < spawn[3])) {
-            spawn[0] |= 0x800;
+            spawn[0] |= SPAWNRECORD_FLAG_0800;
             func_8004398C(spawn);
         }
     }
@@ -395,7 +406,7 @@ void func_80043C10(u16* spawn) {
 
 void func_80043D04(u16* spawn) {
     for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
-        spawn[0] &= ~0x2800;
+        spawn[0] &= ~(SPAWNRECORD_FLAG_2000 | SPAWNRECORD_FLAG_0800);
     }
 }
 
@@ -413,11 +424,11 @@ s32 func_80043D6C(u16* spawn) {
 
     var_s3 = FALSE;
     for (; spawn[0] != SPAWNRECORD_END; spawn += 7) {
-        if ((spawn[0] & 0x2000) == 0) {
+        if ((spawn[0] & SPAWNRECORD_FLAG_2000) == 0) {
             if (!(gActors[spawn[1]].flags & ACTOR_FLAG_ACTIVE)) {
                 var_s3 = TRUE;
                 func_8004398C(spawn);
-                spawn[0] |= 0x2000;
+                spawn[0] |= SPAWNRECORD_FLAG_2000;
             }
         }
         else if (gActors[spawn[1]].flags & ACTOR_FLAG_ACTIVE) {

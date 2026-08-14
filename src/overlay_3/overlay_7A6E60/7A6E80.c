@@ -1,24 +1,10 @@
 #include "common.h"
+#include "66250.h"
 #include "7D8E0.h"
 
 typedef struct Overlay_7A6E60_Graphic_Index_Table {
     /* 0x00 */ u16 indices[4];
 } Overlay_7A6E60_Graphic_Index_Table; /* sizeof = 0x08 */
-
-typedef struct Overlay_7A6E60_Actor_Spawn_Record {
-    /* 0x00 */ s16 positionX;
-    /* 0x02 */ u16 positionY;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-} Overlay_7A6E60_Actor_Spawn_Record; /* sizeof = 0x08 */
-
-typedef struct Overlay_7A6E60_Spawn_Config {
-    /* 0x00 */ s16 positionX;
-    /* 0x02 */ s16 positionZ;
-    /* 0x04 */ s16 unused_04;
-    /* 0x06 */ s16 unused_06;
-    /* 0x08 */ s16 behavior;
-} Overlay_7A6E60_Spawn_Config; /* sizeof = 0x0A */
 
 extern void* D_800D1968[];
 extern u8 D_800D9AF4[];
@@ -33,13 +19,9 @@ extern s16 D_800E17A4[];
 extern s16 D_800E17DC[];
 extern s16 D_800E17F8[];
 extern s16 D_800E1840[];
-extern s16 D_800E19C0[];
 extern s16 D_800E19E8[];
-extern s16 D_800E1BF4[];
-extern s16 D_800E1C00[];
 extern s16 D_800E1C9C[];
 extern s16 D_800E1CB4[];
-extern s16 D_800E1D0C[];
 extern s16 D_800E2274[];
 extern s16 D_800E22A8[];
 extern s16 D_800E22B4[];
@@ -166,7 +148,7 @@ Overlay_7A6E60_Graphic_Index_Table D_801B5414_7AB994 = {
     { 0x013E, 0x0146, 0x0138, 0x0143 },
 };
 
-Overlay_7A6E60_Actor_Spawn_Record D_801B541C_7AB99C[14] = {
+Festival_Actor_Spawn D_801B541C_7AB99C[14] = {
     { 0x0130, 0x0183, 0xFF01, 0x1C00 },
     { 0x01C8, 0x0180, 0xFF02, 0x1D03 },
     { 0x0428, 0x018D, 0xFF01, 0x1202 },
@@ -188,40 +170,40 @@ u16 D_801B548C_7ABA0C[16] = {
     0x0700, 0x0800, 0x0900, 0x0A00, 0x0B00, 0x0C00, 0x0F00, 0x0D00,
 };
 
-Overlay_7A6E60_Spawn_Config D_801B54AC_7ABA2C[6] = {
-    { 0x0128, -0xFC, 0, 0x0800, 0 },
-    { 0x0140, -0xFC, 0, 0x0100, 1 },
-    { 0x0300, -0xFC, 0, 0x0800, 2 },
-    { 0x0318, -0xFC, 0, 0x0B00, 3 },
-    { 0x0290, 0xA0, 0, 0x0200, 4 },
-    { 0x02C8, 0xA0, 0, 0x0300, 4 },
+Festival_Actor_SpawnWithBehavior D_801B54AC_7ABA2C[6] = {
+    { { 0x0128, -0x00FC, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0140, -0x00FC, 0x0000, 0x0100 }, 0x0001 },
+    { { 0x0300, -0x00FC, 0x0000, 0x0800 }, 0x0002 },
+    { { 0x0318, -0x00FC, 0x0000, 0x0B00 }, 0x0003 },
+    { { 0x0290, 0x00A0, 0x0000, 0x0200 }, 0x0004 },
+    { { 0x02C8, 0x00A0, 0x0000, 0x0300 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B54E8_7ABA68[6] = {
-    { 0x0118, -0xFC, 0, 0x0800, 0 },
-    { 0x0140, -0xFC, 0, 0x0300, 1 },
-    { 0x0300, -0xFC, 0, 0x0800, 2 },
-    { 0x0318, -0xFC, 0, 0x0200, 3 },
-    { 0x02D0, -0xFC, 0, 0x0800, 4 },
-    { 0x02E8, 0xA0, 0, 0x0300, 4 },
+Festival_Actor_SpawnWithBehavior D_801B54E8_7ABA68[6] = {
+    { { 0x0118, -0x00FC, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0140, -0x00FC, 0x0000, 0x0300 }, 0x0001 },
+    { { 0x0300, -0x00FC, 0x0000, 0x0800 }, 0x0002 },
+    { { 0x0318, -0x00FC, 0x0000, 0x0200 }, 0x0003 },
+    { { 0x02D0, -0x00FC, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x02E8, 0x00A0, 0x0000, 0x0300 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B5524_7ABAA4[6] = {
-    { 0x0110, -0xFC, 0, 0x0800, 0 },
-    { 0x0130, -0xFC, 0, 0x0500, 1 },
-    { 0x0300, -0xFC, 0, 0x0300, 2 },
-    { 0x0318, 0xA0, 0, 0x0200, 3 },
-    { 0x02C0, 0xA0, 0, 0x0800, 4 },
-    { 0x02E8, 0xA0, 0, 0x0400, 4 },
+Festival_Actor_SpawnWithBehavior D_801B5524_7ABAA4[6] = {
+    { { 0x0110, -0x00FC, 0x0000, 0x0800 }, 0x0000 },
+    { { 0x0130, -0x00FC, 0x0000, 0x0500 }, 0x0001 },
+    { { 0x0300, -0x00FC, 0x0000, 0x0300 }, 0x0002 },
+    { { 0x0318, 0x00A0, 0x0000, 0x0200 }, 0x0003 },
+    { { 0x02C0, 0x00A0, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x02E8, 0x00A0, 0x0000, 0x0400 }, 0x0004 },
 };
 
-Overlay_7A6E60_Spawn_Config D_801B5560_7ABAE0[6] = {
-    { 0x0100, -0xFC, 0, 0x0500, 0 },
-    { 0x0120, -0xFC, 0, 0x0800, 1 },
-    { 0x0180, 0xA0, 0, 0x0800, 4 },
-    { 0x0198, 0xA0, 0, 0x0400, 4 },
-    { 0x0300, -0xFC, 0, 0x0300, 2 },
-    { 0x0318, -0xFC, 0, 0x0400, 3 },
+Festival_Actor_SpawnWithBehavior D_801B5560_7ABAE0[6] = {
+    { { 0x0100, -0x00FC, 0x0000, 0x0500 }, 0x0000 },
+    { { 0x0120, -0x00FC, 0x0000, 0x0800 }, 0x0001 },
+    { { 0x0180, 0x00A0, 0x0000, 0x0800 }, 0x0004 },
+    { { 0x0198, 0x00A0, 0x0000, 0x0400 }, 0x0004 },
+    { { 0x0300, -0x00FC, 0x0000, 0x0300 }, 0x0002 },
+    { { 0x0318, -0x00FC, 0x0000, 0x0400 }, 0x0003 },
 };
 
 u16 D_801B559C_7ABB1C[28] = {
@@ -344,8 +326,6 @@ extern void OverlayABI_Slot2_fn28_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
 extern void OverlayABI_Slot2_fn31_u16(u16 actor_index);
-extern void func_80067E50(u16 actor_index, void* arg1);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
 extern void SpawnActor41(u16 actor_index, u16 graphic_flags, s16 position_x, s16 position_y, u16 var_150, u16 var_154, s32 var_15C);
 
 void func_801B0900_7A6E80(u16 actor_index);
@@ -606,7 +586,7 @@ void func_801B0DC8_7A7348(u16 actor_index) {
     records = gFestivalCompetitors;
     records[0].actorIndex = 0;
     records[0].playerNumber = 0xFFFF;
-    records[0].actor_unk_174 = gActors[actor_index].unk_174;
+    records[0].unk_08 = gActors[actor_index].unk_174;
 
     if (gFestivalCompetitorCount >= 2) {
         index = 1;
@@ -625,7 +605,7 @@ void func_801B0DC8_7A7348(u16 actor_index) {
                 gActors[new_actor_index].posZ.whole = D_801B4F50_7AB4D0[(current_index * 3) + 2];
                 records[current_index].actorIndex = new_actor_index;
                 records[current_index].playerNumber = current_index;
-                records[current_index].actor_unk_174 = gActors[actor_index].unk_174;
+                records[current_index].unk_08 = gActors[actor_index].unk_174;
                 records[current_index].rand = Rand() & 3;
                 records[current_index].unk_12 = gActors[new_actor_index].var_110;
                 records[current_index].unk_10 = gActors[new_actor_index].var_0D8;
@@ -1176,7 +1156,7 @@ s32 func_801B286C_7A8DEC(u16 actor_index) {
     u16 index;
 
     for (index = 0x70; index < 0x7A; index++) {
-        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == 0x1A03) && (gActors[index].var_158 == 1) && (actor_index == gActors[index].var_154)) {
+        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == ACTORTYPE_OVL2_FEST_3) && (gActors[index].var_158 == 1) && (actor_index == gActors[index].var_154)) {
             return 1;
         }
     }
@@ -1185,38 +1165,31 @@ s32 func_801B286C_7A8DEC(u16 actor_index) {
 }
 
 void func_801B2908_7A8E88(u16 actor_index) {
-    Overlay_7A6E60_Actor_Spawn_Record* records;
     u16 index;
-    Overlay_7A6E60_Actor_Spawn_Record* record;
     s16 position_x;
     u16 new_actor_index;
-    u16 saved_index;
     s16 min_x;
     s16 max_x;
 
     min_x = gScreenPosCurrentX.whole - 600;
     max_x = gScreenPosCurrentX.whole + 600;
-    records = D_801B541C_7AB99C;
     for (index = 0; index < 0xE; index++) {
-        if (1) {
+        position_x = D_801B541C_7AB99C[index].positionX;
+        if ((position_x < min_x) || (max_x < position_x)) {
+            continue;
         }
-        record = &D_801B541C_7AB99C[index];
-        position_x = record->positionX;
-        if ((position_x >= min_x) && (max_x >= position_x)) {
-            if (func_801B286C_7A8DEC(index) == 0) {
-                new_actor_index = Actor_RangeFindInactive(0x70, 0x7A);
-                if (new_actor_index != 0) {
-                    gActors[new_actor_index].actorType = ACTORTYPE_OVL2_FEST_3;
-                    Actor_Initialize(new_actor_index);
-                    gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
-                    gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
-                    gActors[new_actor_index].posX.whole = position_x - gScreenPosCurrentX.whole;
-                    gActors[new_actor_index].posY.whole = record->positionY - gScreenPosCurrentY.whole;
-                    gActors[new_actor_index].var_110 = (f32)record->unk_04;
-                    saved_index = index;
-                    gActors[new_actor_index].var_154 = saved_index;
-                    gActors[new_actor_index].var_0D8 = record->unk_06;
-                }
+        if (func_801B286C_7A8DEC(index) == 0) {
+            new_actor_index = Actor_RangeFindInactive(0x70, 0x7A);
+            if (new_actor_index != 0) {
+                gActors[new_actor_index].actorType = ACTORTYPE_OVL2_FEST_3;
+                Actor_Initialize(new_actor_index);
+                gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
+                gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
+                gActors[new_actor_index].posX.whole = position_x - gScreenPosCurrentX.whole;
+                gActors[new_actor_index].posY.whole = (u16)D_801B541C_7AB99C[index].positionY - gScreenPosCurrentY.whole;
+                gActors[new_actor_index].var_110 = (f32)D_801B541C_7AB99C[index].unk_04;
+                gActors[new_actor_index].var_154 = index;
+                gActors[new_actor_index].var_0D8 = D_801B541C_7AB99C[index].unk_06;
             }
         }
     }
@@ -1337,7 +1310,7 @@ s32 func_801B2F5C_7A94DC(u16 actor_index) {
     u16 index;
 
     for (index = 0x50; index < 0x60; index++) {
-        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == 0x105) && (actor_index == gActors[index].unk_178)) {
+        if ((gActors[index].flags & ACTOR_FLAG_ACTIVE) && (gActors[index].actorType == ACTORTYPE_OVL3_1_5) && (actor_index == gActors[index].unk_178)) {
             return 1;
         }
     }
@@ -1350,7 +1323,7 @@ u16 func_801B2FE4_7A9564(u16 position_x, s16 position_z, u16 timer, u16 random_b
 
     new_actor_index = Actor_RangeFindInactive(0x50, 0x60);
     if (new_actor_index != 0) {
-        ACTOR_INIT(new_actor_index, 0x105);
+        ACTOR_INIT(new_actor_index, ACTORTYPE_OVL3_1_5);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8;
         gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[new_actor_index].posX.whole = position_x - gScreenPosCurrentX.whole;
@@ -1395,7 +1368,7 @@ u16 func_801B2FE4_7A9564(u16 position_x, s16 position_z, u16 timer, u16 random_b
 }
 
 void func_801B3180_7A9700(u16 actor_index) {
-    Overlay_7A6E60_Spawn_Config* entry;
+    Festival_Actor_SpawnWithBehavior* entry;
     s16 min_x;
     s16 max_x;
     s16 position_x;
@@ -1425,9 +1398,9 @@ void func_801B3180_7A9700(u16 actor_index) {
                 break;
         }
 
-        position_x = entry->positionX;
-        position_z = entry->positionZ;
-        behavior = entry->behavior;
+        position_x = (s16)entry->spawn.positionX;
+        position_z = entry->spawn.positionY;
+        behavior = (s16)entry->behavior;
         if (position_x < min_x) {
         }
         else if (max_x < position_x) {
@@ -1821,7 +1794,7 @@ void func_801B3E9C_7AA41C(u16 actor_index) {
 
         case 0xA1:
             func_801B3BCC_7AA14C(actor_index);
-            if ((gFestivalCompetitors[gActors[actor_index].unk_16C_u32].actor_unk_174 + 0x30) < gActors[actor_index].unk_17C) {
+            if ((gFestivalCompetitors[gActors[actor_index].unk_16C_u32].unk_08 + 0x30) < gActors[actor_index].unk_17C) {
                 gActors[actor_index].unk_184_s16[1] = gActors[actor_index].unk_180;
                 gActors[actor_index].unk_184_s16[gActors[actor_index].unk_16C * 0] = gActors[actor_index].unk_17C;
                 gActors[actor_index].unk_174_u16[0]++;
@@ -1883,7 +1856,7 @@ void func_801B4298_7AA818(u16 actor_index) {
                 case 0x30:
                     gActors[actor_index].graphicList = D_800E176C;
                     gActors[actor_index].graphicTimer = (u16)1;
-                    gActors[actor_index].unk_184_s16[0] = gFestivalCompetitors[gActors[actor_index].unk_16C].actor_unk_174 + 0x60;
+                    gActors[actor_index].unk_184_s16[0] = gFestivalCompetitors[gActors[actor_index].unk_16C].unk_08 + 0x60;
                     break;
 
                 case 0x40:
@@ -1943,7 +1916,7 @@ void func_801B4298_7AA818(u16 actor_index) {
         case 0xA1:
             func_801B41F4_7AA774(actor_index);
             func_800734C4(actor_index, 0x10);
-            if (gActors[actor_index].unk_17C >= (gFestivalCompetitors[gActors[actor_index].unk_16C].actor_unk_174 + 0x20)) {
+            if (gActors[actor_index].unk_17C >= (gFestivalCompetitors[gActors[actor_index].unk_16C].unk_08 + 0x20)) {
                 gActors[actor_index].unk_184_s16[0] = gActors[actor_index].unk_17C;
                 gActors[actor_index].unk_184_s16[1] = gActors[actor_index].unk_180;
                 gActors[actor_index].unk_174_u16[0] = 1;

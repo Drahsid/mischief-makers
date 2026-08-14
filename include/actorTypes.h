@@ -190,7 +190,9 @@ typedef enum {
     ACTORTYPE_MSHINT, // Ms. Hint
     ACTORTYPE_GEMRING, // Ring of gems when buying hint or recieving reward.
     ACTORTYPE_GEM124, // gem under case in "Enter Marina" and "Crisis: Nepton"
-    
+
+    ACTORTYPE_OVL3_1_5 = (ACTOR_OVL3_1 << 8) + 5,
+
     // actors in dispatch table D_8019B000_73D070
 
     ACTORTYPE_OVL1_WORM_BOSS = (ACTOR_OVL1_WORM << 8), // Worm Boss.
@@ -229,7 +231,7 @@ typedef enum {
     ACTORTYPE_OVL3_W2_5, // stubbed
     ACTORTYPE_OVL3_W2_6, // stubbed
     ACTORTYPE_OVL3_W2_7, // stubbed
-    ACTORTYPE_OVL3_W2_3DPLATFROM_8, // platforms in vertical stages
+    ACTORTYPE_OVL3_W2_3DPLATFORM_8, // platforms in vertical stages
     ACTORTYPE_OVL3_W2_3DPLATFORM_9,
     ACTORTYPE_OVL3_W2_SPIKEBALLGEN, // generates ACTORTYPE_OVL3_W2_SPIKEBALL_11 in "Seasick Climb"
     ACTORTYPE_OVL3_W2_SPIKEBALL_11, // spikeball falling with rotation of camera in "Seasick Climb!"
@@ -273,6 +275,20 @@ typedef enum {
     ACTORTYPE_OVL0_MIGEN_26,
     ACTORTYPE_OVL0_MIGEN_27,
     ACTORTYPE_OVL0_MIGEN_28,
+
+    // actors in dispatch table D_801B0800_7AC7F0
+
+    ACTORTYPE_OVL3_7_0 = (ACTOR_OVL3_7 << 8),
+    ACTORTYPE_OVL3_7_1,
+    ACTORTYPE_OVL3_7_2,
+    ACTORTYPE_OVL3_7_3,
+    ACTORTYPE_OVL3_7_4,
+    ACTORTYPE_OVL3_7_5,
+    ACTORTYPE_OVL3_7_6,
+    ACTORTYPE_OVL3_7_7,
+    ACTORTYPE_OVL3_7_8,
+    ACTORTYPE_OVL3_7_9,
+    ACTORTYPE_OVL3_7_10,
 
     // actors in dispatch table D_800E5AC0
 

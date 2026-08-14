@@ -1,5 +1,6 @@
 #define func_80012AB4_ARGS s32 arg0, s32 arg1
 #include "common.h"
+#include "66250.h"
 
 #define NEGSQRT2 -1.4141845703125
 
@@ -16,11 +17,6 @@ typedef struct {
     /* 0x02 */ u16 unk_02;
     /* 0x04 */ u16 unk_04;
 } UnkStruct_7B87B0__func_801B1438_7B92E8_Indices; /* sizeof = 0x06 */
-
-typedef struct {
-    /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
-} UnkStruct_7B87B0__func_801B1438_7B92E8_Position; /* sizeof = 0x04 */
 
 typedef struct {
     /* 0x00 */ s16 unk_00;
@@ -72,7 +68,7 @@ UnkStruct_7B87B0__func_801B1438_7B92E8_Indices D_801B4498_7BC348[3] = {
     { 1, 1, 0 },
 };
 
-UnkStruct_7B87B0__func_801B1438_7B92E8_Position D_801B44AC_7BC35C[3] = {
+Position_U16 D_801B44AC_7BC35C[3] = {
     { 0x270, 0x2E0 },
     { 0x290, 0x2E0 },
     { 0x2B0, 0x2E0 },
@@ -231,10 +227,6 @@ extern void ActorUpdate_Clanpot(u16 actor_index);
 extern void func_800640A0(u16 actor_index);
 extern void func_800641CC(u16 actor_index);
 extern s32 func_80064328(u16 actor_index);
-extern void func_80067E50(u16 actor_index, void* graphic_list);
-extern s32 func_800734C4(u16 actor_index, s32 arg1);
-extern s32 func_80073558(u16 actor_index, s32 arg1);
-extern void func_800735EC(u16 actor_index, u16 radius);
 extern void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused);
 extern void func_8008F498(u16 actor_index, u16 list_index);
 extern void func_80094C5C(u16 actor_index);
