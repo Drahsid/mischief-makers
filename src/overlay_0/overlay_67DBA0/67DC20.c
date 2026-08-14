@@ -67,11 +67,10 @@ void func_80192108_67DC28(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019219C_67DCBC.s")
 
 void func_8019237C_67DE9C(s32 arg0) {
-    // wtf? FAKEMATCH?
-    *(s32*)&gActors[0x4E].unk_180 = 0x3C;
-    *(s32*)&gActors[0x4F].unk_180 = 8;
-    *(s32*)&gActors[0x50].unk_180 = 0xFE;
-    *(f32*)&gActors[0x4E].unk_140_f32 = 0.0f;
+    gActors[0x4E].positionHistory[4] = 0x3C;
+    gActors[0x4F].positionHistory[4] = 8;
+    gActors[0x50].positionHistory[4] = 0xFE;
+    gActors[0x4E].unk_140_f32 = 0.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_801923B0_67DED0.s")

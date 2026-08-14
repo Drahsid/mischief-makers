@@ -99,8 +99,7 @@ void ActorsUpdate_Position(void) {
 void func_80014F14(u16 actor_index, s32 arg1) {
     s32 temp_a3;
 
-    // fakematch: regalloc with `(0, `
-    temp_a3 = ((((gActors[actor_index].posX.whole) + (0, gScreenPosCurrentX.whole) + arg1) & ~0xF) - gScreenPosCurrentX.whole) - arg1;
+    temp_a3 = (((gScreenPosCurrentX.parts[0] + gActors[actor_index].posX.whole + arg1) & ~0xF) - gScreenPosCurrentX.parts[0]) - arg1;
     if (func_8005C6D0(temp_a3 - gActors[actor_index].posX.whole) < 0xF) {
         gActors[actor_index].posX.whole = temp_a3;
     }

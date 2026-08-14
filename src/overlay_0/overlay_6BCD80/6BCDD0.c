@@ -751,19 +751,17 @@ void func_80198E70_6C3B40(u16 arg0) {
 
 void func_8019902C_6C3CFC(u16 actor_index) {
     s16 diff;
-    s16* camera_x;
 
-    camera_x = &gScreenPosCurrentX.whole;
     if (!(gActors[actor_index].state & 0x800) && (D_801A6F3C_6D1C0C != 0xFFFF)) {
         diff = gActors[actor_index].posX.whole - gPlayerActor.posX.whole;
         if (diff >= 0x141) {
             gPlayerActor.posX.whole = gActors[actor_index].posX.whole - 0x140;
-            gPlayerPosX.whole = gPlayerActor.posX.whole + *camera_x;
+            gPlayerPosX.whole = gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0];
             return;
         }
         if (diff < -0x140) {
             gPlayerActor.posX.whole = gActors[actor_index].posX.whole + 0x140;
-            gPlayerPosX.whole = gPlayerActor.posX.whole + *camera_x;
+            gPlayerPosX.whole = gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0];
         }
     }
 }

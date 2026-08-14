@@ -1503,11 +1503,6 @@ void func_801B36C0_7A41D0(u16 actor_index, s32 offset_x, s32 offset_y, s32 veloc
     if (new_actor_index == 0) {
         return;
     }
-    new_actor_index += 0;
-
-    if (1) {
-    }
-
     gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
     gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[new_actor_index].graphicList = D_801B5F8C_7A6A9C;
@@ -1537,11 +1532,6 @@ void func_801B3804_7A4314(u16 actor_index, s32 offset_x, s32 offset_y, s32 veloc
     if (new_actor_index == 0) {
         return;
     }
-    new_actor_index += 0;
-
-    if (1) {
-    }
-
     gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_UNK4;
     gActors[new_actor_index].flags = ACTOR_FLAG_ENABLED;
     gActors[new_actor_index].graphicList = D_801B5F8C_7A6A9C;
@@ -2401,7 +2391,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
 
                         gActors[actor_index].unk_174 = 0;
                         if ((gActors[actor_index].unk_16C > 0) && (gActors[actor_index].unk_16C < 4)) {
-                            if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 2705)) {
+                            if ((gActors[actor_index].unk_16C == 3) && ((gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0]) >= 2705)) {
                                 SpawnTextBubble2(0x47, D_801B614C_7A6C5C, 0x40, 0x28, 0x19);
                                 gActors[actor_index].unk_16C = 0;
                                 gActors[actor_index].unk_170 &= 0xFFFF;
@@ -2435,7 +2425,7 @@ void func_801B57C8_7A62D8(u16 actor_index) {
     }
 
     if (gActors[actor_index].unk_16C == 3) {
-        if ((gPlayerActor.posX.whole + (0, gScreenPosCurrentX.whole)) >= 3368) {
+        if ((gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0]) >= 3368) {
             if (!(gActors[actor_index].unk_170 & 0x30000)) {
                 if (gActors[actor_index].unk_170 & 0xFFFF) {
                     if (gActors[actor_index].posX.whole < gPlayerActor.posX.whole) {

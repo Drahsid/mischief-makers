@@ -1155,7 +1155,7 @@ void func_80024E18(void) {
 void CameraUpdate_BeesTheOne(void) {
     switch (D_800BE634) {
     case 0:
-        gScreenPosTargetY.raw += 0x319A;
+        gScreenPosTargetY.raw += FIXED_UNIT(0.193756103515625);
         if (gScreenPosCurrentY.whole > 0x2E0) {
             gActors[0x91].flags = 0;
             gActors[0x90].flags = 0;
@@ -1163,7 +1163,7 @@ void CameraUpdate_BeesTheOne(void) {
         }
         break;
     case 1:
-        gScreenPosTargetY.raw += 0x319A;
+        gScreenPosTargetY.raw += FIXED_UNIT(0.193756103515625);
         if (gScreenPosCurrentY.whole > 0x3A8) {
             func_80024DD8();
             func_80024E18();
@@ -1172,7 +1172,7 @@ void CameraUpdate_BeesTheOne(void) {
         }
         break;
     case 2:
-        gScreenPosTargetY.raw += 0x319A;
+        gScreenPosTargetY.raw += FIXED_UNIT(0.193756103515625);
         D_800BE738 += FIXED_UNIT(2.0);
         if (gScreenPosCurrentY.whole > 0x4B0) {
             gDrawEnvLayer = FALSE;
@@ -1184,11 +1184,11 @@ void CameraUpdate_BeesTheOne(void) {
         break;
     }
     if (gScreenPosCurrentX.whole < 0x1900) {
-        D_800BE73C = 0x18CCD;
+        D_800BE73C = FIXED_UNIT(1.5500030517578125);
         gScreenPosTargetX.raw += D_800BE73C;
     }
     else {
-        D_800BE73C = (-gScreenPosCurrentX.whole * 0x27A) + 0x3F7640;
+        D_800BE73C = (-gScreenPosCurrentX.whole * FIXED_UNIT(0.009674072265625)) + FIXED_UNIT(63.4619140625);
         gScreenPosTargetX.raw += D_800BE73C;
     }
     func_8002488C();

@@ -8601,7 +8601,7 @@ void ActorUpdate_WarpGate(u16 actor_index) {
         temp = (u16)gActors[actor_index].var_110 & 0xF;
         switch (temp) {
         case 2:
-            // fakematch: the zero term keeps IDO from reusing v1 for coord_index
+            // fakematch
             coord_index = gActors[actor_index].var_0D8 + (sp24 * 0);
             WarpGate_MoveUser(actor_index, &D_800D2860[coord_index]);
             break;

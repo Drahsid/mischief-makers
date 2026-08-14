@@ -1313,9 +1313,7 @@ void func_801B9B08_7CE298(void) {
 // check if player fell in lava, zero postiob vars if so.
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
-        // FAKEMATCH
-        gPlayerVelYMirror.raw = (gPlayerVelYMirror.raw * 0) + (gPlayerActor.velocityX.raw = (((gPlayerActor.velocityY.raw = 0) & 0xFFFFFFFFFFFFFFFFULL)));
-        gPlayerVelXMirror.raw = 0;
+        gPlayerVelXMirror.raw = gPlayerVelYMirror.raw = gPlayerActor.velocityX.raw = gPlayerActor.velocityY.raw = 0;
         func_801B9A0C_7CE19C(gStageState + 1);
     }
 }

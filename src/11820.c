@@ -305,7 +305,7 @@ void func_80011B30(s16 arg0, s16 arg1, s8 arg2, s8 arg3, s8 arg4) {
     for (index = arg1; index < arg1 + arg3; index++) {
         for (jndex = arg0; jndex < arg0 + arg2; jndex++) {
             D_80108DE8[
-                (((((jndex << 5) + gScreenPosCurrentX.whole) - 0x80) >> 5) & D_800BE64C) + 
+                (((((jndex << 5) + gScreenPosCurrentX.whole) - 0x80) >> 5) & D_800BE64C) +
                 (((((D_800BE648 + (index << 5)) - gScreenPosCurrentY.whole) - 0x50) << D_800BE654) & D_800BE650)] = arg4;
             arg4 += 1;
         }
@@ -319,7 +319,7 @@ void func_80011C58(s16 arg0, s16 arg1, s8 arg2, s8 arg3) {
     for (index = arg1; index < arg1 + arg3; index++) {
         for (jndex = arg0; jndex < arg0 + arg2; jndex++) {
             D_80108DE8[
-                (((((jndex << 5) + gScreenPosCurrentX.whole) - 0x80) >> 5) & D_800BE64C) + 
+                (((((jndex << 5) + gScreenPosCurrentX.whole) - 0x80) >> 5) & D_800BE64C) +
                 (((((D_800BE648 + (index << 5)) - gScreenPosCurrentY.whole) - 0x50) << D_800BE654) & D_800BE650)] = 0;
         }
     }
@@ -364,7 +364,7 @@ void func_80011F44(s16 arg0, s16 arg1, s8 arg2, s8 arg3) {
 }
 
 void func_80012044(s16 arg0, s16 arg1, s16 arg2) {
-    D_8010CDF0[(((arg0 + gScreenPosCurrentX.whole) >> 4) & D_800BE658) + 
+    D_8010CDF0[(((arg0 + gScreenPosCurrentX.whole) >> 4) & D_800BE658) +
         ((((D_800BE648 - arg1) - gScreenPosCurrentY.whole) << D_800BE660) & D_800BE65C)] = arg2;
 }
 

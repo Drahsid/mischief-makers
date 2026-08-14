@@ -144,7 +144,7 @@ void func_801B0900_7B3FE0(u16 actor_index) {
 
             ACTOR_INIT(new_actor_index, ACTORTYPE_OVL2_FEST_3);
 
-            *(&gActors[new_actor_index].posY.whole + ((position_x = index * position_multiplier) * 0)) = 0x54; // FAKEMATCH
+            gActors[new_actor_index].posY.parts[(position_x = index * position_multiplier) * 0] = 0x54; // fakematch
 
             position_x_copy = position_x;
             position_x = position_x_copy - 0x6E;

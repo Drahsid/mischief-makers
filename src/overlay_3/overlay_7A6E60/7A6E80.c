@@ -465,7 +465,7 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
     }
 
     if (records[0].unk_00 == (gScreenPosCurrentX.raw * 0)) {
-        if ((((gScreenPosCurrentX.frac * 0) + ((s32)((s8*)&gScreenPosCurrentX)[0] * 0)) + ((s32)((s8*)&gScreenPosCurrentX)[1] * 0))) {
+        if ((((gScreenPosCurrentX.frac * 0) + ((s32)((s8*)&gScreenPosCurrentX)[0] * 0)) + (gScreenPosCurrentX.parts[1] * 0))) {
         }
         return;
     }
@@ -924,7 +924,7 @@ s16 func_801B1E80_7A8400(u16 actor_index) {
     count = gFestivalCompetitorCount;
     for (outer_remaining = (flags = 0); outer_remaining < count; outer_remaining = (outer_remaining + 1) & 0xFFFF) {
         first_actor = gFestivalCompetitors[outer_remaining].actorIndex;
-        if (((s16)gScreenPosCurrentX.whole + gActors[first_actor].posX.whole) >= gActors[actor_index].unk_174) {
+        if ((gScreenPosCurrentX.whole + gActors[first_actor].posX.whole) >= gActors[actor_index].unk_174) {
             if (gFestivalCompetitors[outer_remaining].rank == 0) {
                 s32 rank_value;
 
@@ -941,8 +941,6 @@ s16 func_801B1E80_7A8400(u16 actor_index) {
             }
         }
 
-        if (!(&gScreenPosCurrentX)) {
-        }
     }
 
     remaining = count - 1 + (outer_remaining * 0);
@@ -960,14 +958,15 @@ s16 func_801B1E80_7A8400(u16 actor_index) {
             entry_a += first_actor;
             loaded_a = *entry_a;
             entry_a += loaded_a * 0;
-            if (gActors[loaded_a].posX.whole && gActors[loaded_a].posX.whole) {
+            if (gActors[loaded_a].posX.whole) {
             }
 
             old_value = gActors[loaded_a].posX.whole;
-            if (old_value && old_value) {
+            if (old_value) {
             }
 
-            if ((s32)old_value < (position_b = gActors[sort_indices[first_actor + 1]].posX.whole)) {
+            position_b = gActors[sort_indices[first_actor + 1]].posX.whole;
+            if (old_value < position_b) {
                 loaded_a += 0;
                 *entry_a = sort_indices[first_actor + 1];
                 sort_indices[first_actor + 1] = (u64)loaded_a;
@@ -1784,7 +1783,7 @@ void func_801B3E9C_7AA41C(u16 actor_index) {
             func_801B3BCC_7AA14C(actor_index);
             if ((gFestivalCompetitors[gActors[actor_index].unk_16C_u32].unk_08 + 0x30) < gActors[actor_index].unk_17C) {
                 gActors[actor_index].unk_184_s16[1] = gActors[actor_index].unk_180;
-                gActors[actor_index].unk_184_s16[gActors[actor_index].unk_16C * 0] = gActors[actor_index].unk_17C;
+                gActors[actor_index].unk_184_s16[0] = gActors[actor_index].unk_17C;
                 gActors[actor_index].unk_174_u16[0]++;
                 gActors[actor_index].state = 0x60;
             }

@@ -449,7 +449,7 @@ void func_801B0C38_7ACB58(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
         gActors[actor_index].graphicIndex = (gActors[actor_index].var_0D8 * 2) + 0x2D4;
-        position_y = gActors[actor_index].posY.whole + (&gScreenPosCurrentY)[0].whole;
+        position_y = gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0];
         gActors[actor_index].var_158 = position_y;
         gActors[actor_index].var_15C = position_y;
         // fallthrough
@@ -657,7 +657,7 @@ s32 func_801B15C8_7AD4E8(u16 actor_index) {
     u16 position_x;
 
     actor_index = 0;
-    position_x = gActors[actor_index].posX.whole + (&gScreenPosCurrentX)[0].whole;
+    position_x = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
     result = 0;
     if (position_x < 0x220) {
         return 0;
@@ -1375,7 +1375,7 @@ void func_801B2CAC_7AEBCC(u16 actor_index) {
 
     case 0xA1:
         gActors[actor_index].unk_118 = 2.0f;
-        if ((gScreenPosCurrentX.whole + gActors[actor_index].posX.whole + (gActors[actor_index].unk_17C * 0)) >= 0x219) {
+        if ((gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0]) >= 0x219) {
             gActors[actor_index].unk_120 = (Rand() << 8) + (D_801B747C_7B339C + (D_80178292 & 0xFF))->unk_00 - 0x8000;
             gActors[actor_index].unk_11C = (D_801B747C_7B339C + (D_80178292 & 0xFF))->unk_04;
             gActors[actor_index].state = 0x130;
