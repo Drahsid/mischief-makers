@@ -222,8 +222,8 @@ void func_8008CC00(void) {
     D_800BE5F4.unk_00_u32 = 5;
     gPlayerActor.posX.whole = gActors[index].posX.whole;
     gPlayerActor.posY.whole = gActors[index].posY.whole;
-    gPlayerPosX.whole = gActors[index].posX.whole + (0, gScreenPosCurrentX.whole); // fakematch
-    gPlayerPosY.whole = gActors[index].posY.whole + (0, gScreenPosCurrentY.whole); // fakematch
+    gPlayerPosX.whole = gActors[index].posX.whole + gScreenPosCurrentX.parts[0];
+    gPlayerPosY.whole = gActors[index].posY.whole + gScreenPosCurrentY.parts[0];
     gPlayerActor.flags &= ~0x20;
     gPlayerActor.flags |= (gActors[index].flags & 0x20);
     D_800D294C = 0;
@@ -605,8 +605,8 @@ void func_8008DF20(u16 actor_index) {
             gPlayerActor.flags |= (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED);
             gPlayerActor.posX.raw = gActors[actor_index].posX.raw;
             gPlayerActor.posY.raw = gActors[actor_index].posY.raw;
-            gPlayerPosX.whole = gActors[actor_index].posX.whole + (0, gScreenPosCurrentX.whole); // fakematch
-            gPlayerPosY.whole = gActors[actor_index].posY.whole + (0, gScreenPosCurrentY.whole);
+            gPlayerPosX.whole = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
+            gPlayerPosY.whole = gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0];
         }
     }
     func_8008CC90(actor_index);

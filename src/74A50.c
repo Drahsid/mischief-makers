@@ -1011,11 +1011,10 @@ void Clanblob_Update(u16 actor_index) {
         gActors[actor_index].unk_164 = 0;
         gActors[actor_index].unk_168 = 0;
         gActors[actor_index].unk_16C = 0;
-        // fakematches: (0, ). likely gScreenPosCurrent* were an array
-        gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + (0, gScreenPosCurrentX.whole);
-        gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + (0, gScreenPosCurrentY.whole);
-        gActors[actor_index].unk_178 = gActors[actor_index].posX.whole + (0, gScreenPosCurrentX.whole);
-        gActors[actor_index].unk_17C = gActors[actor_index].posY.whole + (0, gScreenPosCurrentY.whole);
+        gActors[actor_index].unk_170 = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
+        gActors[actor_index].unk_174 = gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0];
+        gActors[actor_index].unk_178 = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
+        gActors[actor_index].unk_17C = gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0];
         gActors[actor_index].unk_190 = 0;
         gActors[actor_index].unk_188 = 0;
         gActors[actor_index].palette_18C = D_800D18E4[(u16)gActors[actor_index].var_110 & 0xF];
@@ -1071,7 +1070,7 @@ void Clanblob_Update(u16 actor_index) {
                 Sound_PlaySfxAtActor2(SFX_0119, actor_index);
             }
         }
-        gActors[actor_index].unk_16C = func_800298D0(0, gActors[actor_index].unk_16C, 0x300000);
+        gActors[actor_index].unk_16C = func_800298D0(0, gActors[actor_index].unk_16C, FIXED_UNIT(48));
         func_800769AC(actor_index);
         break;
     case 0x12:
@@ -1088,12 +1087,12 @@ void Clanblob_Update(u16 actor_index) {
             gActors[actor_index].unk_13C_f32 = (gActors[actor_index].unk_134 - gActors[actor_index].scaleY) / 8;
         }
         if (gActors[actor_index].var_158 > 0) {
-            var_a0 = 0x03000000;
+            var_a0 = FIXED_UNIT(768);
         }
         else {
-            var_a0 = 0x01000000;
+            var_a0 = FIXED_UNIT(256);
         }
-        gActors[actor_index].unk_16C = func_800298D0(var_a0, gActors[actor_index].unk_16C, 0x300000);
+        gActors[actor_index].unk_16C = func_800298D0(var_a0, gActors[actor_index].unk_16C, FIXED_UNIT(48));
         func_800769AC(actor_index);
         break;
     case 0x20:
@@ -1133,10 +1132,10 @@ void Clanblob_Update(u16 actor_index) {
         switch (temp_v0) {
         case 0:
             if (gActiveFrames & 0x10) {
-                gActors[actor_index].unk_16C = func_800298D0(0x500000, gActors[actor_index].unk_16C, 0xE0000);
+                gActors[actor_index].unk_16C = func_800298D0(FIXED_UNIT(80), gActors[actor_index].unk_16C, FIXED_UNIT(14));
             }
             else {
-                gActors[actor_index].unk_16C = func_800298D0(0x03B00000, gActors[actor_index].unk_16C, 0xE0000);
+                gActors[actor_index].unk_16C = func_800298D0(FIXED_UNIT(944), gActors[actor_index].unk_16C, FIXED_UNIT(14));
             }
             if (gActiveFrames & 8) {
                 gActors[actor_index].unk_130 = 0.8f;
@@ -2390,7 +2389,7 @@ void func_8007B73C(u16 actor_index) {
         /* fallthrough */
     case 0x10:
         actor->var_154++;
-        func_80078FF0(actor_index, 0x18000, 0x2C00);
+        func_80078FF0(actor_index, FIXED_UNIT(1.5), FIXED_UNIT(0.171875));
         if (D_800E3584 & 0xC0000) {
             actor->flags ^= ACTOR_FLAG_FLIPPED;
         }
@@ -2488,7 +2487,7 @@ void func_8007B73C(u16 actor_index) {
                     actor->unk_0DA = 0x84;
                     actor->unk_0DB = 7;
                     actor->damage = actor->unk_114 * 20.0f;
-                    actor->unk_0F8.raw = actor->scaleX * 327680.0f;
+                    actor->unk_0F8.raw = actor->scaleX * FIXED_UNIT(5.0);
                     actor->unk_0FC.raw = FIXED_UNIT(4);
                 }
             }
@@ -2496,7 +2495,7 @@ void func_8007B73C(u16 actor_index) {
                 actor->flags &= (-ACTOR_FLAG_DRAW - D_800E3570);
                 ACTOR_GFX_INIT(actor_index, D_800D81C8);
                 if (actor->flags & ACTOR_FLAG_FLIPPED) {
-                    actor->var_158 = 0x2000000;
+                    actor->var_158 = FIXED_UNIT(512);
                 }
                 else {
                     actor->var_158 = 0;
@@ -2607,7 +2606,7 @@ void func_8007B73C(u16 actor_index) {
             actor->unk_114 = 30.0f;
             actor->unk_118 = -1.0f;
             Sound_PlaySfx(SFX_BOOM_0045);
-            actor->unk_168 = Math_Atan2(actor->velocityX.raw, actor->velocityY.raw) << 0x10;
+            actor->unk_168 = TO_FIXED(Math_Atan2(actor->velocityX.raw, actor->velocityY.raw));
         }
         break;
     case 0x40:

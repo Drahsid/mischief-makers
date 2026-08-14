@@ -2043,16 +2043,14 @@ void func_801BAB34_7C7D14(void) {
             D_800D28F8--;
 
             if (D_800D28F8 == 0x1E) {
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1002; 
+                gActors[0x50].positionHistory[1].raw = 0x1002;
             }
 
             if (D_800D28F8 < 0) {
                 gStageState++;
                 func_8005DF5C(2);
 
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001; 
+                gActors[0x50].positionHistory[1].raw = 0x1001;
 
                 Sound_PlayMusic(BGM_OUT);
             }
@@ -2075,8 +2073,7 @@ void func_801BAB34_7C7D14(void) {
             if (D_800D28F8 < 0) {
                 gStageState++;
                 func_8005DF5C(3);
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
+                gActors[0x50].positionHistory[1].raw = 0x1001;
             }
 
             Cutscene_CheckSkipInput();
@@ -2097,10 +2094,8 @@ void func_801BAB34_7C7D14(void) {
             if (D_800D28F8 < 0) {
                 gStageState++;
                 func_8005DF5C(4);
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1001;
+                gActors[0x50].positionHistory[1].raw = 0x1001;
+                gActors[0x50].positionHistory[1].raw = 0x1001;
             }
 
             Cutscene_CheckSkipInput();
@@ -2123,8 +2118,7 @@ void func_801BAB34_7C7D14(void) {
                 Sound_PlaySfx(SFX_MARINA_STOP);
                 func_8005DF5C(5);
 
-                // FAKEMATCH
-                *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1100;
+                gActors[0x50].positionHistory[1].raw = 0x1100;
             }
 
             Cutscene_CheckSkipInput();
@@ -2224,8 +2218,7 @@ void func_801BAB34_7C7D14(void) {
             D_800BE544 = 0x8000;
             Sound_PlayMusic(BGM_OUT);
 
-            // FAKEMATCH
-            *(&gPlayerActor.unk_174 + 0x1FE0) = 0x1100;
+            gActors[0x50].positionHistory[1].raw = 0x1100;
             break;
 
         case 0x1001:
@@ -2339,13 +2332,10 @@ void func_801BB310_7C84F0(void) {
 }
 
 void func_801BB6AC_7C888C(u16 arg0) {
-    s32* unk_174 = &gActors[0x50].unk_174;
-    s32 stride = sizeof(Actor) / sizeof(*unk_174);
-
-    unk_174[stride * 0] = arg0;
-    unk_174[stride * 1] = arg0;
-    unk_174[stride * 2] = arg0;
-    unk_174[stride * 3] = arg0;
+    gActors[0x50].positionHistory[1].raw = arg0;
+    gActors[0x51].positionHistory[1].raw = arg0;
+    gActors[0x52].positionHistory[1].raw = arg0;
+    gActors[0x53].positionHistory[1].raw = arg0;
 }
 
 void func_801BB6D0_7C88B0(void) {
@@ -2427,7 +2417,7 @@ void func_801BB6D0_7C88B0(void) {
                         break;
 
                     case 0xC:
-                        *(&gPlayerActor.unk_174 + 0x1FE0) = 1; // FAKEMATCH
+                        gActors[0x50].positionHistory[1].raw = 1;
                         break;
 
                     case 0xE:

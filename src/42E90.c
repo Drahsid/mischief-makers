@@ -62,50 +62,50 @@ void Actor11_State1(u16 actor_index) {
     gActors[actor_index].state++;
 }
 
-#ifdef NON_MATCHING
-// https://decomp.me/scratch/W3o78
 void func_800423A0(u16 actor_index) {
-    s32 y;
-    s32 x;
-    s32 var_a1_2;
+    FixedCoord position_x;
+    FixedCoord position_y;
+    s32 angle_delta;
     s32 angle;
-    u16 var_v1;
+    u16 history_index;
 
     if (gActors[actor_index].var_160 & 1) {
         gActors[actor_index].var_160 &= ~1;
+
         if (gButtonHold & gButton_DRight) {
             angle = FIXED_UNIT(0.5);
         }
         else if (gButtonHold & gButton_DLeft) {
-            angle = FIXED_UNIT(511.5);
+            angle = FIXED_UNIT(COS_DEG_180 - 0.5);
         }
         else if (gButtonHold & gButton_DUp) {
             if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
-                angle = FIXED_UNIT(256.5);
+                angle = FIXED_UNIT(COS_DEG_90 + 0.5);
             }
             else {
-                angle = FIXED_UNIT(255.5);
+                angle = FIXED_UNIT(COS_DEG_90 - 0.5);
             }
         }
         else if (gButtonHold & gButton_DDown) {
             if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
-                angle = FIXED_UNIT(767.5);
+                angle = FIXED_UNIT(COS_DEG_360 - COS_DEG_90 - 0.5);
             }
             else {
-                angle = FIXED_UNIT(768.5);
+                angle = FIXED_UNIT(COS_DEG_360 - COS_DEG_90 + 0.5);
             }
         }
         else {
             angle = gActors[actor_index].var_15C;
             gActors[actor_index].var_160 |= 1;
         }
+
         gActors[actor_index].var_15C = angle;
         angle = gActors[actor_index].var_158;
     }
     else {
-        x = (gActors[actor_index].var_15C - gActors[actor_index].var_158) & 0x03FFFFFF;
-        if (x != 0) {
-            if ((x < FIXED_UNIT(128.0)) || (x > FIXED_UNIT(896.0))) {
+        angle_delta = (gActors[actor_index].var_15C - gActors[actor_index].var_158) & COS_MASK_FIXED_UNIT;
+        if (angle_delta != 0) {
+            if (angle_delta < FIXED_UNIT(COS_DEG_45) || angle_delta > FIXED_UNIT(COS_DEG_360 - COS_DEG_45)) {
                 gActors[actor_index].unk_168 = Math_ApproachS32(gActors[actor_index].unk_168, FIXED_UNIT(3.0), FIXED_UNIT(2.0));
             }
             else {
@@ -115,34 +115,43 @@ void func_800423A0(u16 actor_index) {
         else if (gButtonHold & gButton_RTrig) {
             gActors[actor_index].var_160 |= 1;
         }
+
         angle = func_800298D0(gActors[actor_index].var_15C, gActors[actor_index].var_158, gActors[actor_index].unk_168);
     }
+
     gActors[actor_index].var_158 = angle;
     angle = FROM_FIXED(angle);
+
     if (gPlayerActor.flags & ACTOR_FLAG_FLIPPED) {
         gActors[actor_index].unk_16C += 24;
     }
     else {
         gActors[actor_index].unk_16C -= 24;
     }
-    x = COS(gActors[actor_index].unk_16C) * FIXED_UNIT(4.5);
-    y = SIN(gActors[actor_index].unk_16C) * FIXED_UNIT(4.5);
-    x = FROM_FIXED((COS(angle) * FIXED_UNIT(40.0)) + x) + gPlayerActor.posX.whole + gScreenPosCurrentX.whole;
-    y = FROM_FIXED((SIN(angle) * FIXED_UNIT(40.0)) + y) + gPlayerActor.posY.whole + gScreenPosCurrentY.whole;
-    
-    var_a1_2 = (x << 0x10) + (y & 0xFFFF);
-    for (var_v1 = 0; var_v1 < 8; var_v1++) {
-        angle = (&gActors[actor_index].unk_170)[var_v1];
-        (&gActors[actor_index].unk_170)[var_v1] = var_a1_2;
-        var_a1_2 = angle;
+
+    position_x.raw = COS(gActors[actor_index].unk_16C) * FIXED_UNIT(4.5);
+    position_y.raw = SIN(gActors[actor_index].unk_16C) * FIXED_UNIT(4.5);
+    position_x.raw =
+        FROM_FIXED((COS(angle) * FIXED_UNIT(40.0)) + position_x.raw) +
+        gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0];
+    position_y.raw =
+        FROM_FIXED((SIN(angle) * FIXED_UNIT(40.0)) + position_y.raw) +
+        gPlayerActor.posY.whole + gScreenPosCurrentY.parts[0];
+
+    position_x.raw = TO_FIXED(position_x.raw) + (u16)position_y.raw;
+    for (history_index = 0; history_index < ACTOR_POSITION_HISTORY_COUNT; history_index++) {
+        position_y.raw = gActors[actor_index].positionHistory[(s32)history_index].raw;
+        gActors[actor_index].positionHistory[(s32)history_index].raw = position_x.raw;
+        position_x.raw = position_y.raw;
     }
-    gActors[actor_index].posX.whole = FROM_FIXED(gActors[actor_index].unk_18C) - gScreenPosCurrentX.whole;
-    gActors[actor_index].posY.whole = gActors[actor_index].unk_18C - gScreenPosCurrentY.whole;
+
+    gActors[actor_index].posX.whole =
+        FROM_FIXED(gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1].raw) -
+        gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole =
+        gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1].raw -
+        (u16)gScreenPosCurrentY.whole;
 }
-#else
-void func_800423A0(u16);
-#pragma GLOBAL_ASM("asm/nonmatchings/42E90/func_800423A0.s")
-#endif
 
 void func_800427E0(u16 arg0) {
     u16 index;

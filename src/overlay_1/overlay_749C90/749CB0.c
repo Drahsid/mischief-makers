@@ -79,7 +79,7 @@ void func_8019BD48_74A8F8(s32 arg0) {
 
 void func_801A047C_74F02C(u16 actor_index) {
     func_801A202C_750BDC(actor_index);
-    D_801A4838_7533E8[((s16*)&gActors[actor_index + 2].unk_180)[0]](actor_index);
+    D_801A4838_7533E8[gActors[actor_index + 2].unk_180_s16[0]](actor_index);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_749C90/749CB0/func_801A04F0_74F0A0.s")

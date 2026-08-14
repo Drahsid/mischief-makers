@@ -192,8 +192,8 @@ void func_80048408(u16 actor_index) {
             break;
 
         case 1:
-            if (((s8*)&gActors[actor_index].unk_170)[0] == 0) {
-                if (((s8*)&gActors[actor_index].unk_170)[1] == 5) {
+            if (gActors[actor_index].unk_170_s8[0] == 0) {
+                if (gActors[actor_index].unk_170_s8[1] == 5) {
                     Sound_PlaySfx(SFX_MARINA_YAY);
                 }
             }

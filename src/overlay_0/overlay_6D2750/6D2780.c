@@ -855,17 +855,16 @@ void func_80194334_6D49B4(u16 actor_index, s16 pos_y) {
     gActors[actor_index].actorType = ACTORTYPE_OVL0_INTRO_6;
     temp_actor_index = actor_index;
     Actor_Initialize(actor_index);
-    if (temp_actor_index) {} // FAKEMATCH
-    gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
-    gActors[actor_index].flags = ACTOR_FLAG_ENABLED;
-    gActors[actor_index].graphicIndex = 0x2800;
-    gActors[actor_index].posX.whole = 0;
-    gActors[actor_index].posY.whole = pos_y;
-    gActors[actor_index].posZ.whole = -0xFF;
-    gActors[actor_index].unk_188 = 0;
-    gActors[actor_index].scaleX = 2.0f;
-    gActors[actor_index].scaleY = 2.0f;
-    gActors[actor_index].stateLower = gActors[0x31].stateLower;
+    gActors[temp_actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
+    gActors[temp_actor_index].flags = ACTOR_FLAG_ENABLED;
+    gActors[temp_actor_index].graphicIndex = 0x2800;
+    gActors[temp_actor_index].posX.whole = 0;
+    gActors[temp_actor_index].posY.whole = pos_y;
+    gActors[temp_actor_index].posZ.whole = -0xFF;
+    gActors[temp_actor_index].unk_188 = 0;
+    gActors[temp_actor_index].scaleX = 2.0f;
+    gActors[temp_actor_index].scaleY = 2.0f;
+    gActors[temp_actor_index].stateLower = gActors[0x31].stateLower;
 }
 
 void func_801943E4_6D4A64(u16 arg0) {

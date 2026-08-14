@@ -2009,7 +2009,7 @@ void func_801BAF14_7D5704(void) {
             }
 
             func_801BAC6C_7D545C();
-            // required to produce fixed address within gActors
+            // fakematch
             if ((gScreenPosCurrentX.whole + (gActors + 0x31)->posX.whole) >= 0x901) {
                 gStageState = 4;
             }
@@ -2028,7 +2028,7 @@ void func_801BAF14_7D5704(void) {
             }
 
             func_801BAC6C_7D545C();
-            // required to produce fixed address within gActors
+            // fakematch
             if ((gScreenPosCurrentX.whole + (gActors + 0x31)->posX.whole) >= 0xE81) {
                 gStageState = 6;
             }

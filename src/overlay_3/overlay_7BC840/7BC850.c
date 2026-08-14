@@ -1501,7 +1501,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = 8;
             gActors[actor_index].posZ.whole = -191;
-            gActors[0x50].unk_174_array[0] = 3;
+            gActors[0x50].positionHistory[1].raw = 3;
             func_8005DF40(0, 0x3C);
             gLookatEyeZ = 352.0f;
             Sound_PlaySfx(SFX_CROUD_CHATTER);
@@ -1513,19 +1513,19 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
                 func_8005DF5C(9);
                 D_800D5830 = 48;
                 D_800D5834 = -2;
-                gActors[0x50].unk_174_array[0] = 1;
+                gActors[0x50].positionHistory[1].raw = 1;
             }
             break;
 
         case 2:
             if (D_800D5824 == 0x4000) {
-                gActors[0x50].unk_174_array[0] = 6;
+                gActors[0x50].positionHistory[1].raw = 6;
             }
 
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0x12C;
-                gActors[0x50].unk_174_array[0] = 0;
+                gActors[0x50].positionHistory[1].raw = 0;
                 Sound_PlaySfx(SFX_CROUD_CHEER);
                 Sound_StopSfx(SFX_CROUD_CHATTER);
                 func_801B3F84_7BFED4(1);
@@ -1536,7 +1536,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             D_801B4B64_7C0AB4--;
             if (D_801B4B64_7C0AB4 < 0) {
                 gActors[actor_index].state = gActors[actor_index].state + 1;
-                gActors[0x50].unk_174_array[0] = 1;
+                gActors[0x50].positionHistory[1].raw = 1;
                 func_8005DF5C(0xA);
                 D_800D5830 = 48;
                 D_800D5834 = -2;
@@ -1546,7 +1546,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
 
         case 4:
             if (D_800D5824 == 0x4000) {
-                gActors[0x50].unk_174_array[0] = 6;
+                gActors[0x50].positionHistory[1].raw = 6;
             }
 
             if (D_800D582C >= 2) {
@@ -1563,7 +1563,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             if (D_801B4B64_7C0AB4 < 0) {
                 if (func_8005DEFC() == 0) {
                     gActors[actor_index].state++;
-                    gActors[0x52].unk_174_array[0] = 5;
+                    gActors[0x52].positionHistory[1].raw = 5;
                 }
             }
             break;
@@ -1582,7 +1582,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0x1E;
-                gActors[0x52].unk_174_array[0] = 6;
+                gActors[0x52].positionHistory[1].raw = 6;
             }
             break;
 
@@ -1600,7 +1600,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0x1E;
-                gActors[0x52].unk_174_array[0] = 0;
+                gActors[0x52].positionHistory[1].raw = 0;
             }
             break;
 
@@ -1625,7 +1625,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             D_801B4B64_7C0AB4--;
             if (D_801B4B64_7C0AB4 < 0) {
                 gActors[actor_index].state = gActors[actor_index].state + 1;
-                gActors[0x52].unk_174_array[0] = 1;
+                gActors[0x52].positionHistory[1].raw = 1;
                 func_8005DF5C(0xE);
                 D_800D5830 = 96;
                 D_800D5834 = -2;
@@ -1636,7 +1636,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
                 D_801B4B64_7C0AB4 = 0x1E;
-                gActors[0x52].unk_174_array[0] = 0;
+                gActors[0x52].positionHistory[1].raw = 0;
             }
             break;
 
@@ -1664,14 +1664,14 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
                 func_8005DF5C(0x10);
                 D_800D5830 = 96;
                 D_800D5834 = -2;
-                gActors[0x52].unk_174_array[0] = 1;
+                gActors[0x52].positionHistory[1].raw = 1;
             }
             break;
 
         case 17:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                gActors[0x52].unk_174_array[0] = 6;
+                gActors[0x52].positionHistory[1].raw = 6;
             }
             break;
 

@@ -2315,14 +2315,13 @@ void func_800907E4(u16 actor_index) {
         func_8008105C(actor_index, D_800E5E48, D_800E5CA4);
         break;
     }
-    if (gActors && gActors) {} // fakematch
     gActors[actor_index].unk_178 = (uintptr_t) D_800E8820;
     func_80081478(actor_index, D_800E5E48, 1);
     func_80081790(actor_index, D_800E89D4);
     func_800819A8(actor_index, D_800E5E48);
     gActors[actor_index].colorA = 0xFE;
-    gActors[actor_index + 0xA].unk_180 = gActors[actor_index].posX.whole + (0, gScreenPosCurrentX.whole);
-    gActors[actor_index + 0xB].unk_180 = gActors[actor_index].posY.whole + (0, gScreenPosCurrentY.whole);
+    gActors[actor_index + 0xA].unk_180 = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
+    gActors[actor_index + 0xB].unk_180 = gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0];
     if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_PALETTE) {
         index = ((gActors[actor_index].var_0D8 & 0x1F0) / 16) * 5;
         gActors[actor_index + 0x1].palette_18C = D_800E905C[index + 0];
