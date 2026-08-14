@@ -67,9 +67,9 @@ void func_80192108_67DC28(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_67DBA0/67DC20/func_8019219C_67DCBC.s")
 
 void func_8019237C_67DE9C(s32 arg0) {
-    gActors[0x4E].positionHistory[4].raw = 0x3C;
-    gActors[0x4F].positionHistory[4].raw = 8;
-    gActors[0x50].positionHistory[4].raw = 0xFE;
+    gActors[0x4E].positionHistory[4] = 0x3C;
+    gActors[0x4F].positionHistory[4] = 8;
+    gActors[0x50].positionHistory[4] = 0xFE;
     gActors[0x4E].unk_140_f32 = 0.0f;
 }
 

@@ -295,7 +295,7 @@ typedef struct {
                 /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
             };
             union {
-                /* 0x170 */ Position_U16 positionHistory[ACTOR_POSITION_HISTORY_COUNT]; // see: func_800423A0; TODO: find more uses
+                /* 0x170 */ s32 positionHistory[ACTOR_POSITION_HISTORY_COUNT]; // see: func_800423A0; TODO: find more uses
                 struct {
                     union {
                         /* 0x170 */ s32 unk_170;

@@ -138,19 +138,15 @@ void func_800423A0(u16 actor_index) {
         FROM_FIXED((SIN(angle) * FIXED_UNIT(40.0)) + position_y.raw) +
         gPlayerActor.posY.whole + gScreenPosCurrentY.parts[0];
 
-    position_x.raw = TO_FIXED(position_x.raw) + (u16)position_y.raw;
+    position_x.raw = (position_x.raw << 16) + (position_y.raw & 0xFFFF); // | doesn't work; can also be `TO_FIXED(position_x.raw) + (u16)position_y.raw;`
     for (history_index = 0; history_index < ACTOR_POSITION_HISTORY_COUNT; history_index++) {
-        position_y.raw = gActors[actor_index].positionHistory[(s32)history_index].raw;
-        gActors[actor_index].positionHistory[(s32)history_index].raw = position_x.raw;
+        position_y.raw = gActors[actor_index].positionHistory[(s32)history_index];
+        gActors[actor_index].positionHistory[(s32)history_index] = position_x.raw;
         position_x.raw = position_y.raw;
     }
 
-    gActors[actor_index].posX.whole =
-        FROM_FIXED(gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1].raw) -
-        gScreenPosCurrentX.whole;
-    gActors[actor_index].posY.whole =
-        gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1].raw -
-        (u16)gScreenPosCurrentY.whole;
+    gActors[actor_index].posX.whole = FROM_FIXED(gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1]) - gScreenPosCurrentX.whole;
+    gActors[actor_index].posY.whole = gActors[actor_index].positionHistory[ACTOR_POSITION_HISTORY_COUNT - 1] - (u16)gScreenPosCurrentY.whole;
 }
 
 void func_800427E0(u16 arg0) {
