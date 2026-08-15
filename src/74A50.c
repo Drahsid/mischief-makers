@@ -1,3 +1,4 @@
+// BUG: incorrect prototype!
 #define func_80012AB4_ARGS
 #include "common.h"
 #include "28EF0.h"
@@ -7,102 +8,110 @@ extern u16* D_800D18E4[]; // array of palettes
 extern u16* D_800D1938[]; // array of palettes
 extern s16 D_800D2918; // = 0;
 extern s16 D_800D291C; // = 0;
-extern u16 D_800D80C0[]; // = { 0x0000, 0x0010, 0x0030, 0x0000, };
-extern s16 D_800D80C8[];
-extern s16 D_800D80D0[];
-extern u16 D_800D80F0[];
-extern f32 D_800D8108[]; // scaleX/Y values
-extern s16 D_800D8118[];
-extern s16 D_800D8190[]; /* = {
-    GINDEX_WM_STAGEICONMERCO, 2,
-    0, 0
-}; */
-extern s16 D_800D8198[]; /* = {
-    GINDEX_WM_STAGEICONMERCO, 2,
-    0, 0
-}; */
-extern s16 D_800D81A0[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ1, 2,
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    0, 0
-}; */
-extern s16 D_800D81AC[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    GINDEX_WM_STAGEICONIMPHQ1, 2,
-    0, 0
-}; */
-extern s16 D_800D81B8[]; /* = {
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    GINDEX_WM_STAGEICONMERCO, 4,
-    GINDEX_WM_STAGEICONFINAL, 2,
-    0, 0
-}; */
-extern s16 D_800D81C8[]; /* = {
-    GINDEX_WM_STAGEICONFINAL, 2,
-    GINDEX_WM_STAGEICONMERCO, 4,
-    GINDEX_WM_STAGEICONIMPHQ2, 2,
-    0, 0
-}; */
-extern s16 D_800D81D8[]; /* = {
-    GINDEX_WM_STAGEICONPLAINS, 4,
-    GINDEX_WM_STAGEICONENDING, 4,
-    GINDEX_WM_STAGEICONVERTICAL, 4,
-    GINDEX_303E, 4,
-    GINDEX_3040, 8,
-    GINDEX_3042, 4 | 2,
-    GINDEX_WM_STAGEICONMERCO, 3,
-    0, 0
-}; */
-extern s16 D_800D81F8[]; /* = {
-    GINDEX_3044, 4,
-    GINDEX_3046, 4,
-    GINDEX_3048, 4,
-    GINDEX_304A, 3,
-    GINDEX_WM_STAGEICONMERCO, 2,
-    0, 0
-}; */
-extern s16 D_800D8210[]; /* = {
-    GINDEX_304A, 8,
-    GINDEX_3044, 8,
-    0xFFFC, 0
-}; */
-extern s16 D_800D821C[]; /* = {
-    GINDEX_3046, 3,
-    GINDEX_3048, 3,
-    GINDEX_3046, 3,
-    GINDEX_3048, 5,
-    GINDEX_3046, 5,
-    GINDEX_3048, 5,
-    GINDEX_3046, 8,
-    GINDEX_3048, 8,
-    0, 0
-}; */
-extern s16 D_800D8240[]; /* = {
-    GINDEX_3046, 5,
-    GINDEX_3048, 5,
-    GINDEX_3046, 8,
-    GINDEX_3048, 8,
-    GINDEX_WM_STAGEICONFINAL, 2,
-    0, 0
-}; */
-extern u16 D_800D8258[]; // = { 0x0005, 0x0014, 0x0032, 0x0064, 0x0166, 0x01B2, 0x01B4, 0x01B2 };
-extern s16 D_800D8268[];
-extern s16 D_800D82BC[]; /* = {
-    0x0008, 0x000E,
-    0x0008, 0x000E,
-    0x0000, 0x0011,
-    0x0013, 0x0008,
-    0xFFFD, 0xFFEE,
-    0x0022, 0xD801,
-    0x0026, 0xD001,
-    0x0100, 0x0000
-};*/
-extern u16 D_800E3574; // = 0; // actor flag storage?
 extern s16 D_800E1BE0[];
 extern s16 D_800E20E0[];
 extern s16 D_800E2564[];
 extern s16 D_800E2578[];
-extern u16 D_800E3570; // = 0; // actor flag storage?
+u16 D_800D80C0[] = {
+    0x0000, 0x0010, 0x0030, 0x0000,
+};
+
+s16 D_800D80C8[] = {
+    0x0000, 0x005B, 0xFFA5, 0x0000,
+};
+
+s16 D_800D80D0[] = {
+    0x000C, 0xFFFC, 0xFFF8, 0x0008, 0x000E, 0xFFFE, 0xFFF8, 0x0008,
+    0x000A, 0xFFFA, 0xFFF6, 0x000A, 0x0008, 0xFFF2, 0xFFF0, 0x0010,
+};
+
+u16 D_800D80F0[] = {
+    0x0000, GINDEX_HAT_STOVETOP, GINDEX_HAT_SANTA, GINDEX_HAT_TERAN,
+    GINDEX_HAT_CHEF, GINDEX_HAT_CELES, GINDEX_HAT_HARD, GINDEX_HAT_COWBOY,
+    GINDEX_HATFEATHER, GINDEX_HATBANDANA, GINDEX_HAT_CROWN, 0x0000,
+};
+
+f32 D_800D8108[] = { // scaleX/Y values
+    0.8000000119f, 0.6999999881f, 1.299999952f, 2.0f,
+};
+
+s16 D_800D8118[] = {
+    0x3016, 0x000E, 0x3018, 0x0006, 0x301A, 0x000E, 0x3018, 0x0006,
+    0xFFF8, 0x0000, 0x3016, 0x0007, 0x3018, 0x0003, 0x301A, 0x0007,
+    0x3018, 0x0003, 0xFFF8, 0x0000, 0x3016, 0x0003, 0x301C, 0x0003,
+    0x301E, 0x0003, 0x3020, 0x0004, 0x3022, 0x0003, 0x0000, 0x0000,
+    0x3016, 0x0003, 0x3024, 0x0004, 0x3026, 0x0008, 0x3028, 0x0003,
+    0x302A, 0x0008, 0x302C, 0x0005, 0x0000, 0x0000, 0x302C, 0x0005,
+    0xFFFE, 0x0000, 0x3016, 0x0008, 0x3024, 0x0006, 0x3026, 0x0008,
+    0x3024, 0x0004, 0xFFF8, 0x0000,
+};
+
+s16 D_800D8190[] = {
+    0x3032, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D8198[] = {
+    0x3034, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D81A0[] = {
+    0x3030, 0x0002, 0x3032, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D81AC[] = {
+    0x3032, 0x0002, 0x3030, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D81B8[] = {
+    0x3032, 0x0002, 0x3034, 0x0004, 0x3036, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D81C8[] = {
+    0x3036, 0x0002, 0x3034, 0x0004, 0x3032, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D81D8[] = {
+    0x3038, 0x0004, 0x303A, 0x0004, 0x303C, 0x0004, 0x303E, 0x0004,
+    0x3040, 0x0008, 0x3042, 0x0006, 0x3034, 0x0003, 0x0000, 0x0000,
+};
+
+s16 D_800D81F8[] = {
+    0x3044, 0x0004, 0x3046, 0x0004, 0x3048, 0x0004, 0x304A, 0x0003,
+    0x3034, 0x0002, 0x0000, 0x0000,
+};
+
+s16 D_800D8210[] = {
+    0x304A, 0x0008, 0x3044, 0x0008, 0xFFFC, 0x0000,
+};
+
+s16 D_800D821C[] = {
+    0x3046, 0x0003, 0x3048, 0x0003, 0x3046, 0x0003, 0x3048, 0x0005,
+    0x3046, 0x0005, 0x3048, 0x0005, 0x3046, 0x0008, 0x3048, 0x0008,
+    0x0000, 0x0000,
+};
+
+s16 D_800D8240[] = {
+    0x3046, 0x0005, 0x3048, 0x0005, 0x3046, 0x0008, 0x3048, 0x0008,
+    0x3036, 0x0002, 0x0000, 0x0000,
+};
+
+u16 D_800D8258[] = {
+    0x0005, 0x0014, 0x0032, 0x0064, 0x0166, 0x01B2, 0x01B4, 0x01B2,
+};
+
+s16 D_800D8268[] = {
+    0x0208, 0x0019, 0x02B0, 0x01F8, 0x0018, 0x0280, 0x01E8, 0x0018,
+    0x0240, 0x01D4, 0x001D, 0x0200, 0x01B0, 0x001D, 0x0200, 0x01B8,
+    0x001D, 0x0200, 0x01C0, 0x001F, 0x0200, 0x01D0, 0x001F, 0x0200,
+    0x01C8, 0x001F, 0x0200, 0x01E0, 0x001E, 0x0200, 0x01E0, 0x0015,
+    0x0260, 0x01E8, 0x0010, 0x02E0, 0x01D8, 0x0013, 0x0280, 0x01D8,
+    0x0013, 0x0280,
+};
+
+s16 D_800D82BC[] = {
+    0x0008, 0x000E, 0x0008, 0x000E, 0x0000, 0x0011, 0x0013, 0x0008,
+    0xFFFD, 0xFFEE,
+};
 
 void func_80073E50(u16 actor_index, u16 graphic_index) {
     s32 vel_x;
@@ -1759,7 +1768,7 @@ void func_80079984(u16 actor_index) {
     ACTOR_GFX_INIT(actor_index, D_800D81B8);
     var_t3 = gActors[actor_index].var_158 / FIXED_UNIT(1);
     gActors[actor_index].var_15C = gActors[actor_index].unk_114 * 393216.0f;
-    gActors[actor_index].var_160 = gActors[actor_index].unk_114 * -65536.0f;
+            gActors[actor_index].var_160 = gActors[actor_index].unk_114 * (f32)FIXED_UNIT(-1.0);
     if (COS(var_t3) < 0.0f) {
         gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
         gActors[actor_index].unk_168 = 0x02000000;

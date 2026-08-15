@@ -1,4 +1,5 @@
 #include "common.h"
+#include "28EF0.h"
 #include "66250.h"
 #include "7D8E0.h"
 
@@ -298,8 +299,6 @@ s32 D_801B80AC_7B3FCC;
 u16 D_801B80B0_7B3FD0[24];
 u8 D_801B80E0_7B4000[8];
 u16 D_801B80E8_7B4008;
-
-extern void func_8003ED48(u16 actor_index, s32 arg1, s16 position_x, s16 position_y, s16 position_z);
 
 void func_801B0900_7AC820(u16 actor_index);
 void func_801B0C38_7ACB58(u16 actor_index);

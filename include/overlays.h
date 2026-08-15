@@ -2,6 +2,7 @@
 #define OVERLAYS_H
 
 #include <PR/ultratypes.h>
+#include "actor.h"
 
 #define OVERLAY0_DISPATCH_TABLE_VRAM (0x80192000)
 #define OVERLAY0_OBJECT_VRAM         (0x80192100)
@@ -14,30 +15,44 @@
 #define OVERLAY4_DISPATCH_TABLE_VRAM (0x801B9800)
 #define OVERLAY4_OBJECT_VRAM         (0x801B9900)
 
-void OverlayABI_Slot0_fn8_u16(u16 arg0);
-void OverlayABI_Slot0_fn10_u16(u16 arg0);
-void OverlayABI_Slot0_fn11_u16(u16 arg0);
-void OverlayABI_Slot0_fn12_u16(u16 arg0);
-void OverlayABI_Slot0_fn15_u16_u16(u16 arg0, u16 arg1);
-void OverlayABI_Slot0_fn24_u16_u16(u16 arg0, u16 arg1);
-void OverlayABI_Slot0_fn25_u16_u16_0(u16 arg0, u16 arg1);
-void OverlayABI_Slot0_fn25_u16_u16_1(u16 arg0, u16 arg1);
-void OverlayABI_Slot0_fn26_u16(u16 arg0);
-void OverlayABI_Slot0_fn27_u16(u16 arg0);
-void OverlayABI_Slot0_fn28_u16(u16 arg0);
+#define OVERLAY0_DISPATCH_UPTR ((uintptr_t*)OVERLAY0_DISPATCH_TABLE_VRAM)
+#define OVERLAY1_DISPATCH_UPTR ((uintptr_t*)OVERLAY1_DISPATCH_TABLE_VRAM)
+#define OVERLAY2_DISPATCH_UPTR ((uintptr_t*)OVERLAY2_DISPATCH_TABLE_VRAM)
+#define OVERLAY3_DISPATCH_UPTR ((uintptr_t*)OVERLAY3_DISPATCH_TABLE_VRAM)
+#define OVERLAY4_DISPATCH_UPTR ((uintptr_t*)OVERLAY4_DISPATCH_TABLE_VRAM)
 
-void OverlayABI_Slot1_fn3_u16_u16(u16 arg0, u16 arg1);
+#define OVERLAY0_DISPATCH_ACTOR ((ActorFunc*)OVERLAY0_DISPATCH_TABLE_VRAM)
+#define OVERLAY1_DISPATCH_ACTOR ((ActorFunc*)OVERLAY1_DISPATCH_TABLE_VRAM)
+#define OVERLAY2_DISPATCH_ACTOR ((ActorFunc*)OVERLAY2_DISPATCH_TABLE_VRAM)
+#define OVERLAY3_DISPATCH_ACTOR ((ActorFunc*)OVERLAY3_DISPATCH_TABLE_VRAM)
+#define OVERLAY4_DISPATCH_ACTOR ((ActorFunc*)OVERLAY4_DISPATCH_TABLE_VRAM)
+
+#define OVERLAY0_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY0_DISPATCH_TABLE_VRAM)
+#define OVERLAY1_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY1_DISPATCH_TABLE_VRAM)
+#define OVERLAY2_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY2_DISPATCH_TABLE_VRAM)
+#define OVERLAY3_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY3_DISPATCH_TABLE_VRAM)
+#define OVERLAY4_DISPATCH_ACTOR2 ((Actor2Func*)OVERLAY4_DISPATCH_TABLE_VRAM)
+
 void OverlayABI_Slot1_fn3_u16(u16 arg0);
 void OverlayABI_Slot1_fn4_u16_u16_0(u16 arg0, u16 arg1);
-void OverlayABI_Slot1_fn4_u16_u16_1(u16 arg0, u16 arg1);
 void OverlayABI_Slot1_fn5_u16_u16_0(u16 arg0, u16 arg1);
-void OverlayABI_Slot1_fn5_u16_u16_1(u16 arg0, u16 arg1);
-void OverlayABI_Slot1_fn5_u16(u16 arg0);
 void OverlayABI_Slot1_fn6_u16_u16_0(u16 arg0, u16 arg1);
+void OverlayABI_Slot0_fn11_u16(u16 arg0);
+void OverlayABI_Slot0_fn12_u16(u16 arg0);
+void OverlayABI_Slot1_fn5_u16_u16_1(u16 arg0, u16 arg1);
 void OverlayABI_Slot1_fn6_u16_u16_1(u16 arg0, u16 arg1);
 void OverlayABI_Slot1_fn7_u16_0(u16 arg0);
 void OverlayABI_Slot1_fn7_u16_1(u16 arg0);
-
+void OverlayABI_Slot1_fn5_u16(u16 arg0);
+void OverlayABI_Slot1_fn3_u16_u16(u16 arg0, u16 arg1);
+void OverlayABI_Slot1_fn4_u16_u16_1(u16 arg0, u16 arg1);
+void OverlayABI_Slot0_fn24_u16_u16(u16 arg0, u16 arg1);
+void OverlayABI_Slot0_fn25_u16_u16_0(u16 arg0, u16 arg1);
+void OverlayABI_Slot0_fn26_u16(u16 arg0);
+void OverlayABI_Slot0_fn27_u16(u16 arg0);
+void OverlayABI_Slot0_fn28_u16(u16 arg0);
+void OverlayABI_Slot0_fn15_u16_u16(u16 arg0, u16 arg1);
+void OverlayABI_Slot0_fn25_u16_u16_1(u16 arg0, u16 arg1);
 void OverlayABI_Slot2_fn17_u16(u16 arg0);
 void OverlayABI_Slot2_fn18_u16(u16 arg0);
 void OverlayABI_Slot2_fn19_u16(u16 arg0);
@@ -54,5 +69,7 @@ void OverlayABI_Slot2_fn29_u16(u16 arg0);
 void OverlayABI_Slot2_fn30_u16(u16 arg0);
 void OverlayABI_Slot2_fn31_u16(u16 arg0);
 void OverlayABI_Slot2_fn32_void(void);
+void OverlayABI_Slot0_fn8_u16(u16 arg0);
+void OverlayABI_Slot0_fn10_u16(u16 arg0);
 
 #endif // OVERLAYS_H

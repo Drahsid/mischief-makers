@@ -2,27 +2,10 @@
 #include "boot.h"
 #include "input.h"
 
-// forward declarations
-
-void Video_Clear_Framebuffer(void);
-void boot(s32 unused);
-void Thread_IdleProc(void* argument);
-void Video_Interface_Adjust_Mode_Start(void);
-void Graphics_Begin_Frame(u16 buffer_index);
-void Thread_MainProc(void* unused);
-
 extern Gfx gDefaultRenderSetupDisplayList[];
 extern Gfx gDefaultViewportSetupDisplayList[];
 
 // bss
-
-u64 gBootStack[STACK_SIZE / sizeof(u64)]; // 80123670->80124670
-u64 D_80124670[STACK_SIZE / sizeof(u64)]; // 80124670->80125670
-u64 gIdleStack[STACK_SIZE / sizeof(u64)]; // 80125670->80126670
-u64 D_80126670[STACK_SIZE / sizeof(u64)]; // 80126670->80127670
-u64 gMainStack[STACK_SIZE / sizeof(u64)]; // 80127670->80128670
-u64 gRmonStack[STACK_SIZE / sizeof(u64)]; // 80128670->80129670
-u64 D_80129670[STACK_SIZE / sizeof(u64)]; // 80129670->8012A670
 
 Gfx* gDisplayListHead;
 OSMesg gPiManagerMessageBuffer[8];
@@ -64,14 +47,8 @@ OSMesg gControllerReadMessageBuffer;
 
 GfxData gDisplayListData[2];
 
-u32 gPlayerControllerIndex;
-u16 gButtonCurrent;
-
-u16 D_801370C6;
-u32 gFramesInPlayTime;
-u16 D_801370CC;
-u16 D_801370CE;
-
+void Thread_IdleProc(void* argument);
+void Thread_MainProc(void* unused);
 
 // text
 
@@ -80,7 +57,7 @@ void Video_Clear_Framebuffer(void) {
     s32 index;
 
     osViBlack(1);
-    framebuffer = (u64*)0x803DA800;
+    framebuffer = (u64*)FRAMEBUFFER1;
 
     // possibly SCREEN_WD/HT inner loops
     for (index = 0; index < 1200; index++) {
@@ -103,13 +80,13 @@ void Video_Clear_Framebuffer(void) {
         framebuffer += 16;
     }
 
-    osViSwapBuffer((void*)0x803DA800);
+    osViSwapBuffer(FRAMEBUFFER1);
     osViBlack(0);
 }
 
 void boot(s32 unused) {
     osInitialize();
-    osCreateThread(&gIdleThread, 1, Thread_IdleProc, NULLPTR, __gIdleStackEnd, 10);
+    osCreateThread(&gIdleThread, 1, Thread_IdleProc, NULLPTR, STACK_END(gIdleStack), 10);
     osStartThread(&gIdleThread);
 }
 
@@ -130,9 +107,9 @@ void Thread_IdleProc(void* argument) {
     }
 
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPiManagerMessageQueue, gPiManagerMessageBuffer, 8);
-    osCreateThread(&gRmonThread, 0, rmonMain, NULL, __gRmonStackEnd, OS_PRIORITY_RMON);
+    osCreateThread(&gRmonThread, 0, rmonMain, NULL, STACK_END(gRmonStack), OS_PRIORITY_RMON);
     osStartThread(&gRmonThread);
-    osCreateThread(&gMainThread, 3, Thread_MainProc, argument, __gMainStackEnd, 10);
+    osCreateThread(&gMainThread, 3, Thread_MainProc, argument, STACK_END(gMainStack), 10);
     osStartThread(&gMainThread);
     osSetThreadPri(0, 0);
 

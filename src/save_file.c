@@ -1,9 +1,9 @@
 #include "Alphabet.h"
 #include "common.h"
 #include "save_file.h"
-#include "soft_reset.h"
-#include "stage.h"
-#include "438E0.h"
+#include "game_init.h"
+#include "frontend.h"
+#include "stage_runtime.h"
 #include "82F80.h"
 
 
@@ -63,16 +63,8 @@ u16 gTimeRecords[] = {
 };
 
 u16 gDefaultFileName[] = { //_EN3("Start     ")
-    ALPHA_EN3_UPPER_S,
-    ALPHA_EN3_LOWER_T,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_R,
-    ALPHA_EN3_LOWER_T,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_S, ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_T,
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE,
     ALPHA_NULL
 };
 
@@ -87,16 +79,7 @@ u32 gDefaultFestivalScores[] = {
 };
 
 u16 gNameEntrySpace[SAVE_SLOT_NAME_LENGTH + 1] = { // _EN("          ")
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
-    ALPHA_SPACE,
+    ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE, ALPHA_SPACE,
     ALPHA_NULL
 };
 
@@ -124,57 +107,45 @@ u16 gSlot1[] = { ALPHA_THIN_1, ALPHA_NULL }; // _THIN("1")
 u16 gSlot2[] = { ALPHA_THIN_2, ALPHA_NULL }; // _THIN("2")
 u16 gDayEN2[] = { // _EN2(" day")
     ALPHA_SPACE,
-    ALPHA_EN2_LOWER_D,
-    ALPHA_EN2_LOWER_A,
-    ALPHA_EN2_LOWER_Y,
+    ALPHA_EN2_LOWER_D, ALPHA_EN2_LOWER_A, ALPHA_EN2_LOWER_Y,
     ALPHA_NULL
 };
+
 u16 gHrsEN2[] = { // _EN2(" hrs")
     ALPHA_SPACE,
-    ALPHA_EN2_LOWER_H,
-    ALPHA_EN2_LOWER_R,
-    ALPHA_EN2_LOWER_S,
+    ALPHA_EN2_LOWER_H, ALPHA_EN2_LOWER_R, ALPHA_EN2_LOWER_S,
     ALPHA_NULL
 };
+
 u16 gMinEN2[] = { // _EN2(" min")
     ALPHA_SPACE,
-    ALPHA_EN2_LOWER_M,
-    ALPHA_EN2_LOWER_I,
-    ALPHA_EN2_LOWER_N,
+    ALPHA_EN2_LOWER_M, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N,
     ALPHA_NULL
 };
+
 u16 gSecEN2[] = { // _EN2(" sec")
     ALPHA_SPACE,
-    ALPHA_EN2_LOWER_S,
-    ALPHA_EN2_LOWER_E,
-    ALPHA_EN2_LOWER_C,
+    ALPHA_EN2_LOWER_S, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_C,
     ALPHA_NULL
 };
+
 u16 gErase[] = { // _EN3("Erase")
-    ALPHA_EN3_UPPER_E,
-    ALPHA_EN3_LOWER_R,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E,
     ALPHA_NULL
 };
+
 u16 gWhichQuestion[] = { // _EN3("Which?")
-    ALPHA_EN3_UPPER_W,
-    ALPHA_EN3_LOWER_H,
-    ALPHA_EN3_LOWER_I,
-    ALPHA_EN3_LOWER_C,
-    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_H,
     ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gNameQuestion[] = { // _EN3("Name?")
-    ALPHA_EN3_UPPER_N,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_M,
-    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_E,
     ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow0HIRA[] = { // _JP("あかさたなはまやらわがざだばぱぁゃ")
     ALPHA_JP_HIRA_A,
     ALPHA_JP_HIRA_KA,
@@ -195,7 +166,8 @@ u16 gNameEntryRow0HIRA[] = { // _JP("あかさたなはまやらわがざだば�
     ALPHA_JP_HIRA_SMALL_YA,
     ALPHA_NULL
 };
-u16 gNameEntryRow1HIRA[] = {// _JP("いきしちにひみ りをぎじぢびぴぃゅ")
+
+u16 gNameEntryRow1HIRA[] = { // _JP("いきしちにひみ りをぎじぢびぴぃゅ")
     ALPHA_JP_HIRA_I,
     ALPHA_JP_HIRA_KI,
     ALPHA_JP_HIRA_SHI,
@@ -215,6 +187,7 @@ u16 gNameEntryRow1HIRA[] = {// _JP("いきしちにひみ りをぎじぢびぴ�
     ALPHA_JP_HIRA_SMALL_YU,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow2HIRA[] = { // _JP("うくすつぬふむゆるんぐずづぶぷぅょ")
     ALPHA_JP_HIRA_U,
     ALPHA_JP_HIRA_KU,
@@ -235,6 +208,7 @@ u16 gNameEntryRow2HIRA[] = { // _JP("うくすつぬふむゆるんぐずづぶ�
     ALPHA_JP_HIRA_SMALL_YO,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow3HIRA[] = { // _JP("えけせてねへめ れ げぜでべぺぇ ")
     ALPHA_JP_HIRA_E,
     ALPHA_JP_HIRA_KE,
@@ -255,6 +229,7 @@ u16 gNameEntryRow3HIRA[] = { // _JP("えけせてねへめ れ げぜでべぺ�
     ALPHA_SPACE,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼぽぉっ")
     ALPHA_JP_HIRA_O,
     ALPHA_JP_HIRA_KO,
@@ -275,6 +250,7 @@ u16 gNameEntryRow4HIRA[] = { // _JP("おこそとのほもよろーごぞどぼ�
     ALPHA_JP_HIRA_SMALL_TSU,
     ALPHA_NULL
 };
+
 u16 gArrowRight[] = { ALPHA_ARROW_RIGHT, ALPHA_NULL }; // _("→")
 u16 gArrowLeft[] = { ALPHA_ARROW_LEFT, ALPHA_NULL }; // _("←")
 u16 gArrowDown[] = { ALPHA_ARROW_DOWN, ALPHA_NULL }; // _("↓")
@@ -283,6 +259,7 @@ u16 gDash10x[] = { // _("----------") used as underscore in name entry
     ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH, ALPHA_DASH,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow0KATA[] = { // _JP("アカサタナハマヤラワガザダバパァャ")
     ALPHA_JP_KATA_A,
     ALPHA_JP_KATA_KA,
@@ -303,6 +280,7 @@ u16 gNameEntryRow0KATA[] = { // _JP("アカサタナハマヤラワガザダバ�
     ALPHA_JP_KATA_SMALL_YA,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow1KATA[] = { // _JP("イキシチニヒミ リヲギジヂビピィュ")
     ALPHA_JP_KATA_I,
     ALPHA_JP_KATA_KI,
@@ -323,6 +301,7 @@ u16 gNameEntryRow1KATA[] = { // _JP("イキシチニヒミ リヲギジヂビピ
     ALPHA_JP_KATA_SMALL_YU,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow2KATA[] = { // _JP("ウクスツヌフムユルングズヅブプゥョ")
     ALPHA_JP_KATA_U,
     ALPHA_JP_KATA_KU,
@@ -343,6 +322,7 @@ u16 gNameEntryRow2KATA[] = { // _JP("ウクスツヌフムユルングズヅブ�
     ALPHA_JP_KATA_SMALL_YO,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow3KATA[] = { // _JP("エケセテネヘメ レ ゲゼデベペェッ")
     ALPHA_JP_KATA_E,
     ALPHA_JP_KATA_KE,
@@ -363,6 +343,7 @@ u16 gNameEntryRow3KATA[] = { // _JP("エケセテネヘメ レ ゲゼデベペ�
     ALPHA_JP_KATA_SMALL_TSU,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow4KATA[] = { // _JP("オコソトノホモヨローゴゾドボポォヴ")
     ALPHA_JP_KATA_O,
     ALPHA_JP_KATA_KO,
@@ -383,92 +364,59 @@ u16 gNameEntryRow4KATA[] = { // _JP("オコソトノホモヨローゴゾドボ�
     ALPHA_JP_KATA_VU,
     ALPHA_NULL
 };
+
 u16 gMorFEN3[] = { // _EN3("M or F?")
-    ALPHA_EN3_UPPER_M,
-    ALPHA_SPACE,
-    ALPHA_EN3_LOWER_O,
-    ALPHA_EN3_LOWER_R,
-    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_M, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_SPACE,
     ALPHA_EN3_UPPER_F,
     ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gAgeQuestion[] = { // _EN3(" Age??")
     ALPHA_SPACE,
-    ALPHA_EN3_UPPER_A,
-    ALPHA_EN3_LOWER_G,
-    ALPHA_EN3_LOWER_E,
-    ALPHA_QUESTION,
-    ALPHA_QUESTION,
+    ALPHA_EN3_UPPER_A, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_E,
+    ALPHA_QUESTION, ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gWhichQuestion2[] = { // _EN3("Which?")
-    ALPHA_EN3_UPPER_W,
-    ALPHA_EN3_LOWER_H,
-    ALPHA_EN3_LOWER_I,
-    ALPHA_EN3_LOWER_C,
-    ALPHA_EN3_LOWER_H,
+    ALPHA_EN3_UPPER_W, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_C, ALPHA_EN3_LOWER_H,
     ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gEraseQuestion[] = { // _EN3("Erase ?")
-    ALPHA_EN3_UPPER_E,
-    ALPHA_EN3_LOWER_R,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_EN3_LOWER_E,
-    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_E, ALPHA_EN3_LOWER_R, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_S, ALPHA_EN3_LOWER_E, ALPHA_SPACE,
     ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gReallyQuestion[] = { // _EN3("Really?")
-    ALPHA_EN3_UPPER_R,
-    ALPHA_EN3_LOWER_E,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_L,
-    ALPHA_EN3_LOWER_L,
-    ALPHA_EN3_LOWER_Y,
-    ALPHA_QUESTION,
+    ALPHA_EN3_UPPER_R, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_L, ALPHA_EN3_LOWER_Y, ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gQuitQuestion[] = { // _EN3("Quit?")
-    ALPHA_EN3_UPPER_Q,
-    ALPHA_EN3_LOWER_U,
-    ALPHA_EN3_LOWER_I,
-    ALPHA_EN3_LOWER_T,
-    ALPHA_QUESTION,
+    ALPHA_EN3_UPPER_Q, ALPHA_EN3_LOWER_U, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_T, ALPHA_QUESTION,
     ALPHA_NULL
 };
+
 u16 gIsThisOkQuestion[] = { // _EN3("Is this OK? Yes No")
-    ALPHA_EN3_UPPER_I,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_SPACE,
-    ALPHA_EN3_LOWER_T,
-    ALPHA_EN3_LOWER_H,
-    ALPHA_EN3_LOWER_I,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_SPACE,
-    ALPHA_EN3_UPPER_O,
-    ALPHA_EN3_UPPER_K,
-    ALPHA_QUESTION,
-    ALPHA_SPACE,
-    ALPHA_EN3_UPPER_Y,
-    ALPHA_EN3_LOWER_E,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_SPACE,
-    ALPHA_EN3_UPPER_N,
-    ALPHA_EN3_LOWER_O,
+    ALPHA_EN3_UPPER_I, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_T, ALPHA_EN3_LOWER_H, ALPHA_EN3_LOWER_I, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_O, ALPHA_EN3_UPPER_K, ALPHA_QUESTION, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_Y, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_O,
     ALPHA_NULL
 };
+
 u16 gYesNo[] = { // _EN3("Yes No")
-    ALPHA_EN3_UPPER_Y,
-    ALPHA_EN3_LOWER_E,
-    ALPHA_EN3_LOWER_S,
-    ALPHA_SPACE,
-    ALPHA_EN3_UPPER_N,
-    ALPHA_EN3_LOWER_O,
+    ALPHA_EN3_UPPER_Y, ALPHA_EN3_LOWER_E, ALPHA_EN3_LOWER_S, ALPHA_SPACE,
+    ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_O,
     ALPHA_NULL
 };
+
 u16 gHiragana[] = { // _JP("ひらがな")
     ALPHA_JP_HIRA_HI,
     ALPHA_JP_HIRA_RA,
@@ -476,6 +424,7 @@ u16 gHiragana[] = { // _JP("ひらがな")
     ALPHA_JP_HIRA_NA,
     ALPHA_NULL
 };
+
 u16 gKatakana[] = { // _JP("カタカナ")
     ALPHA_JP_KATA_KA,
     ALPHA_JP_KATA_TA,
@@ -483,6 +432,7 @@ u16 gKatakana[] = { // _JP("カタカナ")
     ALPHA_JP_KATA_NA,
     ALPHA_NULL
 };
+
 u16 gOther[] = { // _JP("そのほか")
     ALPHA_JP_HIRA_SO,
     ALPHA_JP_HIRA_NO,
@@ -490,38 +440,31 @@ u16 gOther[] = { // _JP("そのほか")
     ALPHA_JP_HIRA_KA,
     ALPHA_NULL
 };
+
 u16 gName[] = { // _EN3("Name")
-    ALPHA_EN3_UPPER_N,
-    ALPHA_EN3_LOWER_A,
-    ALPHA_EN3_LOWER_M,
-    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_N, ALPHA_EN3_LOWER_A, ALPHA_EN3_LOWER_M, ALPHA_EN3_LOWER_E,
     ALPHA_NULL
 };
+
 u16 gMorF2[] = { // _EN3("M or F")
-    ALPHA_EN3_UPPER_M,
-    ALPHA_SPACE,
-    ALPHA_EN3_LOWER_O,
-    ALPHA_EN3_LOWER_R,
-    ALPHA_SPACE,
+    ALPHA_EN3_UPPER_M, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_O, ALPHA_EN3_LOWER_R, ALPHA_SPACE,
     ALPHA_EN3_UPPER_F,
     ALPHA_NULL
 };
 u16 gGenderM[] = { ALPHA_EN3_UPPER_M, ALPHA_NULL }; // _EN3("M")
 u16 gGenderF[] = { ALPHA_EN3_UPPER_F, ALPHA_NULL }; // _EN3("F")
 u16 gAgeEN3[] = { // _EN3("Age")
-    ALPHA_EN3_UPPER_A,
-    ALPHA_EN3_LOWER_G,
-    ALPHA_EN3_LOWER_E,
+    ALPHA_EN3_UPPER_A, ALPHA_EN3_LOWER_G, ALPHA_EN3_LOWER_E,
     ALPHA_NULL
 };
 u16 gSpace1[] = { ALPHA_SPACE, ALPHA_NULL }; // _(" ")
 u16 gAgeEN2[] = { // _EN2(" Age")
     ALPHA_SPACE,
-    ALPHA_EN2_UPPER_A,
-    ALPHA_EN2_LOWER_G,
-    ALPHA_EN2_LOWER_E,
+    ALPHA_EN2_UPPER_A, ALPHA_EN2_LOWER_G, ALPHA_EN2_LOWER_E,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow0ENG[] = { // _EN3("abcdefghijklm αβγ")
     ALPHA_EN3_LOWER_A,
     ALPHA_EN3_LOWER_B,
@@ -542,6 +485,7 @@ u16 gNameEntryRow0ENG[] = { // _EN3("abcdefghijklm αβγ")
     ALPHA_EN_GREEK_GAMMA,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow1ENG[] = { // _EN3("nopqrstuvwxyz 'sII:")
     ALPHA_EN3_LOWER_N,
     ALPHA_EN3_LOWER_O,
@@ -562,6 +506,7 @@ u16 gNameEntryRow1ENG[] = { // _EN3("nopqrstuvwxyz 'sII:")
     ALPHA_COLON,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow2ENG[] = { // _EN3("ABCDEFGHIJKLM +-=")
     ALPHA_EN3_UPPER_A,
     ALPHA_EN3_UPPER_B,
@@ -582,6 +527,7 @@ u16 gNameEntryRow2ENG[] = { // _EN3("ABCDEFGHIJKLM +-=")
     ALPHA_EQUALS,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow3ENG[] = { // _EN3("NOPQRSTUVWXYZ <><3")
     ALPHA_EN3_UPPER_N,
     ALPHA_EN3_UPPER_O,
@@ -602,6 +548,7 @@ u16 gNameEntryRow3ENG[] = { // _EN3("NOPQRSTUVWXYZ <><3")
     ALPHA_HEART,
     ALPHA_NULL
 };
+
 u16 gNameEntryRow4ENG[] = { // _EN3("0123456789.,' !?♪")
     ALPHA_THIN_0,
     ALPHA_THIN_1,

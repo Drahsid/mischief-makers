@@ -6,7 +6,7 @@ typedef struct Overlay_7A6E60_Graphic_Index_Table {
     /* 0x00 */ u16 indices[4];
 } Overlay_7A6E60_Graphic_Index_Table; /* sizeof = 0x08 */
 
-extern void* D_800D1968[];
+extern u16* D_800D1968[];
 extern u8 D_800D9AF4[];
 extern u8 D_800D9B04[];
 extern u8 D_800D9B14[];
@@ -315,14 +315,6 @@ s16 D_801B5A24_7ABFA4[16] = {
 s16 D_801B5A44_7ABFC4[10] = {
     0x690C, 5, 0x690D, 7, 0x690E, 0xA, 0x690D, 7, 0, 0,
 };
-
-extern void OverlayABI_Slot2_fn26_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn27_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn28_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn31_u16(u16 actor_index);
-extern void SpawnActor41(u16 actor_index, u16 graphic_flags, s16 position_x, s16 position_y, u16 var_150, u16 var_154, s32 var_15C);
 
 void func_801B0900_7A6E80(u16 actor_index);
 s32 func_801B09B4_7A6F34(u16 arg0, s16 arg1);

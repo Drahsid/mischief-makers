@@ -1,5 +1,5 @@
 #include "common.h"
-#include "26A00.h"
+#include "asset_loader.h"
 #include "28EF0.h"
 
 // indexes for actors associated with "Level Clear" animation
@@ -31,11 +31,11 @@
 
 #define sBackgroundActor gActors[BACKGROUND_INDEX]
 
-u16 D_800E9740[] = {0x000C, 0x0001, 0x0001, 0x0004, 0x0001, 0x0000};
-u16 D_800E974C[] = {0x000D, 0x0002, 0x0002, 0x0005, 0x0002, 0x0000};
-u16 D_800E9758[] = {0x000E, 0x0003, 0x0003, 0x0006, 0x0003, 0x0000};
-s16 D_800E9764[4] = {0x0082, 0x008B, 0x0082, 0x007B};
-s16 D_800E976C[2] = {0x0012, 0x0024}; // x-offset for heart eyes.
+u16 D_800E9740[] = { 0x000C, 0x0001, 0x0001, 0x0004, 0x0001, 0x0000 };
+u16 D_800E974C[] = { 0x000D, 0x0002, 0x0002, 0x0005, 0x0002, 0x0000 };
+u16 D_800E9758[] = { 0x000E, 0x0003, 0x0003, 0x0006, 0x0003, 0x0000 };
+s16 D_800E9764[4] = { 0x0082, 0x008B, 0x0082, 0x007B };
+s16 D_800E976C[2] = { 0x0012, 0x0024 }; // x-offset for heart eyes.
 
 void func_80096B70(void) {
     sGraphicActor40.actorType = ACTORTYPE_GRAPHIC_29;
@@ -828,7 +828,7 @@ void ActorUpdate_LevelClear(u16 actor_index) {
         }
         else if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_ROTY) {
             gActors[actor_index].rotateY -= 21.0f;
-            gActors[actor_index].posX.raw = COS((u16)DEG_TO_INDEX((gActors[actor_index].rotateY))) * -65536.0f;
+            gActors[actor_index].posX.raw = COS((u16)DEG_TO_INDEX((gActors[actor_index].rotateY))) * (f32)FIXED_UNIT(-1.0);
         }
         else {
             gActors[actor_index].rotateX -= 21.0f;

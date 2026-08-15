@@ -1,13 +1,7 @@
 #include "common.h"
 #include "boot.h"
 #include "marina.h"
-#include "4FEB0.h"
-
-extern Actor2Func D_800D3F70[];
-extern s32 gMarinaActionVelocities[19];
-
-extern void func_8004F514(u16 actor0, u16 actor1);
-extern s32 func_800574B4(u16 actor_index);
+#include "player_actions.h"
 
 // change Marina's health
 // @param actor_index marina's index
@@ -101,6 +95,7 @@ s32 func_800575C0(u16 actor_index) {
     }
     return 1;
 }
+
 void func_800576A0(u16 actor_index) {
     func_8005C550(actor_index, -0x10);
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {

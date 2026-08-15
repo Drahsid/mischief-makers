@@ -1,9 +1,5 @@
 #include <ultra64.h>
-#include "inttypes.h"
-
-void DMA_ReadSync(void* device_addr, void* vram_addr, s32 length);
-void DMA_AwaitMessage(void);
-void DMA_Read(u8* device_addr, u8* vram_addr, u32 length);
+#include "dma.h"
 
 extern OSMesgQueue gDmaMessageQueue;
 

@@ -1,5 +1,13 @@
+// BUG: incorrect prototype!
+#define func_80031E38_ARGS \
+    u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6, \
+    s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, \
+    s16 arg14, s16 arg15, s16 arg16, s16 arg17, s16 arg18, s16 arg19, s16 arg20, \
+    s16 arg21, s16 arg22, u16 arg23, u16 arg24, u16 arg25, u16 arg26, s16 arg27, \
+    s16 arg28, s32 arg29
 #include "common.h"
 #include "actor.h"
+#include "28EF0.h"
 #include "80D90.h"
 
 // "overlay 0" code used in "Cerberus Alpha"
@@ -21,14 +29,8 @@ extern s16 D_801A3E50_69BE50[];
 
 extern u16 D_801A80C2_6A00C2;
 
-void Actor_SetHitboxB(u16 actor_index, s16 val);
 void func_80194DC4_68CDC4(u16 arg0, f32 arg1, f32 arg2);
 void func_80195F04_68DF04(u16,u16);
-
-extern u16 func_80031E38(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6,
-     s32 arg7, s32 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12, s16 arg13, s16 arg14, s16 arg15,
-      s16 arg16, s16 arg17, s16 arg18, s16 arg19, s16 arg20, s16 arg21, s16 arg22, u16 arg23,
-       u16 arg24, u16 arg25, u16 arg26, s16 arg27, s16 arg28,s32 arg29); // TODO: prototype
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_68A090/68A100/func_80192100_68A100.s")
 

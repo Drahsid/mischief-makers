@@ -1,6 +1,9 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
+#define func_8001FCA0_RET DEFAULT_INT
 
 #include "common.h"
+#include "1F1E0.h"
 
 // Overlay 3 code for World 1
 
@@ -45,9 +48,6 @@ s16 D_801B2438_798508[] = {
     -176, 176, 3,     0x64,
        0,   0, 0,        0,
 };
-
-// BUG: incorrect prototype!
-extern DEFAULT_INT func_8001FCA0(u16 actor_index, s16 x, s16 y);
 
 void func_801B1768_797838(u16 actor_index);
 s32 func_801B1A28_797AF8(u16 actor_index, s16 left_offset, s16 right_offset);

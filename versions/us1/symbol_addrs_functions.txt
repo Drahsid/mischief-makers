@@ -1,672 +1,98 @@
-boot = 0x800006BC; // type:func
-Thread_IdleProc = 0x80000718; // type:func
-Thread_MainProc = 0x80000C20; // type:func
-Input_Update = 0x80000FE0; // type:func
-Input_GetFirstController = 0x80001098; // type:func
-
-DMA_ReadSync = 0x800011F0; // type:func
-DMA_AwaitMessage = 0x80001264; // type:func 
-DMA_Read = 0x80001290; // type:func
-
-GameState_Update = 0x80001670; // type:func
 Rand = 0x8000178c; // type:func rom:0x238c
-
-Sound_DmaCallback = 0x800017D0; // type:func
-Sound_DmaNew = 0x80001988; // type:func
-Sound_CleanDmaBuffers = 0x80001A80; // type:func
-Sound_InitPlayers = 0x80001B38; // type:func
-Sound_SetEventMesg = 0x800020BC; // type:func
-Sound_Update = 0x80002114; // type:func
-Sound_NextBuffer = 0x800028D0; // type:func
-Sound_StartTask = 0x800029EC; // type:func
-Sound_LoadSequence = 0x80002A2C; // type:func
-Sound_DmaReadSync = 0x80002AE0; // type:func
 Sound_PlayMusic = 0x80002B50; // type:func
-Sound_SetSfxChannel = 0x80002F48; // type:func
-Sound_AddSfx = 0x80003302; // type:func
 Sound_StopSfx = 0x800032C4; // type:func
 Sound_PlaySfx = 0x8000334C; // type:func
 Sound_PlaySfx2 = 0x80003380; // type:func
 Sound_PlaySfxAtVol = 0x800033B4; // type:func
 Sound_PlaySfxAtPan = 0x800033F0; // type:func
 Sound_PlaySfxAtVolPan = 0x80003430; // type:func
-Sound_PlaySfxAtVolPan2 = 0x80003474; // type:func
 Sound_PlaySfxAtVolPan3 = 0x800034B8; // type:func
 Sound_PlaySfxAtVolPan4 = 0x800034FC; // type:func
-Sound_CalculatePanVol = 0x80003540; // type:func
-Sound_PlaySfxAtActor = 0x800035F8; // type:func
 Sound_PlaySfxAtActor2 = 0x800036C8; // type:func
 Sound_PlaySfxAtActor3 = 0x80003778; // type:func
-Sound_PlaySfxAtObject = 0x80003828; // type:func
 Sound_PlaySfxAtActorTimed = 0x800038C8; // type:func
 Sound_PlaySfxAtActorPanning = 0x80003980; // type:func
 Sound_PlaySfx3 = 0x800039b8; // type:func
-Sound_StopAll = 0x80003A10; // type:func
 Sound_StopMusic = 0x80003A38; // type:func
-Sound_StopAllSfx = 0x80003A64; // type:func
-Sound_ActorPanVol = 0x80003AD4; // type:func
 Sound_StartFade = 0x80003F24; // type:func
-
-Font_TextSprite = 0x80004380; // type:func
-Font_FindChar = 0x800045F8; // type:func
-Font_Init = 0x80004648; // type:func
-Font_Finish = 0x800046FC; // type:func
-Font_SetWindow = 0x80004738; // type:func
-Font_SetPos = 0x8000474C; // type:func
-Font_SetScale = 0x80004760; // type:func
-Font_SetColor = 0x8000477C; // type:func
-Font_SetTransparent = 0x800047B0; // type:func
-Font_ShowString = 0x80004804; // type:func
-
-Trouble_RLE_Type1 = 0x80004910; // type:func
-
-
-LookAt_Update = 0x80010898; // type:func
-LookAt_Reset = 0x800109B0; // type:func
-
-Marina_Reset = 0x800121D0; // type:func
 Marina_Init = 0x80012288; // type:func
-Marina_UpdateInput = 0x800122B0; // type:func
-Marina_ScreenXLock = 0x800123ac; // type:func rom:0x12fac
-Marina_ScreenYLock = 0x80012418; // type:func rom:0x13018
-Marina_ScreenXScroll = 0x80012438; // type:func rom:0x13038
-Marina_ScreenYScroll = 0x80012634; // type:func rom:0x13234
-Marina_ScreenScroll = 0x80012830; // type:func rom:0x13430
-Continue_DrawGem = 0x80012C50; // type:func
-Continue_GameOver = 0x80012CD4; // type:func
-Continue_PayGems = 0x80012DF0; // type:func
-GameState_ContinueScreen = 0x80012F98; // type:func
-
+WorldMap_UpdateSaveFile2 = 0x8001B3D0; // type:func
 YellowGem_SetFlag = 0x8001C7A4; // type:func
 YellowGem_GetFlag = 0x8001C7F0; // type:func
-
 Actor_Initialize = 0x8001E2D0; // type:func
-
-Actors_SetPlatforms = 0x8001f88c; // type:func
-Actor_CheckPlatforms = 0x8001FA78; // type:func
-
-Gameplay_ActiveUpdate = 0x80020024; // type:func
-
-Pause_PrintPlayTime = 0x8002034C; // type:func
-Pause_PrintRedGems = 0x800205DC; // type:func
-Pause_PrintYellowGemStatus = 0x800207DC; // type:func
-
-Pause_RestoreBGMVol = 0x800208D4; // type:func
-Pause_InitBars = 0x8002092C; // type:func
-
-Pause_Update = 0x80020A90; // type:func
-
-Gfx_DrawBorderRect = 0x80021690; // type:func
-Gfx_DrawLetterboxStandard = 0x8002170C; // type:func
-Gfx_DrawLetterbox = 0x800218FC; // type:func
-
+Text_GetWidth2 = 0x80027A88; // type:func
+Actor_RangeFindInactive = 0x800284B8; // type:func
+Actor_RangeFindInactive_90ToC0 = 0x80028528; // type:func
 Actor_ClearRange = 0x800285E4; // type:func
+Actor_ClearRange_10To20 = 0x80028638; // type:func
+Actor_ClearRange_30To90 = 0x8002865C; // type:func
+Actor_ClearRange_90ToC0 = 0x80028680; // type:func
+Actor_ClearRange_C0ToC7 = 0x800286A4; // type:func
 Actor_ClearSceneActors = 0x80028744; // type:func
+Actor_IsOutsideRegion = 0x800288EC; // type:func
 Math_AbsS32 = 0x800289CC; // type:func
 Math_Atan2 = 0x800294E0; // type:func
 Math_PlaneHalf = 0x800295D8; // type:func
 Math_PlaneQuadrant = 0x80029600; // type:func
 Math_PlaneOctant = 0x80029628; // type:func
 Math_Plane16Way = 0x80029650; // type:func
-Math_ClampLimit = 0x8002A090; // type:func
+Math_ApproachS32 = 0x8002981C; // type:func
+Math_ApproachF32 = 0x80029860; // type:func
 Actor_SetVelocityXAbs = 0x8002A0C4; // type:func
 Actor_ClampVelocityX = 0x8002A118; // type:func
 Actor_ClampVelocityY = 0x8002A170; // type:func
-Actor_ClampVelocity = 0x8002A1C8; // type:func
-Actor_Clamp_0F8 = 0x8002A200; // type:func
-Actor_Clamp_0FC = 0x8002A258; // type:func
-Actor_Clamp_0F8_0FC = 0x8002A2B0; // type:func
 Actor_Scale_0F8_0FC_Velocity = 0x8002A320; // type:func
 Actor_UpdateVelocityX = 0x8002A404; // type:func
-Actor_UpdateVelocityY = 0x8002A464; // type:func
-Actor_UpdateVelocity = 0x8002A4C4; // type:func
-Actor_IncrementRgb = 0x8002AEF8; // type:func
-Actor_ApproachRgb = 0x8002B1D0; // type:func
-Math_ApproachS32 = 0x8002981C; // type:func
-Math_ApproachF32 = 0x80029860; // type:func
 Actor_SetHitboxA = 0x8002ABE4; // type:func
 Actor_SetHitboxB = 0x8002AC30; // type:func
-Actor_SetHitboxAX = 0x8002AC7C; // type:func
-Actor_SetHitboxBX = 0x8002ACFC; // type:func
 Actor_SetColorRgb = 0x8002AEB4; // type:func
 Palette_AdjustRgb5551 = 0x8002B5A0; // type:func
-Palette_AdjustRgbIndexArray = 0x8002B6E8; // type:func
-Palette_SetRgbIndexArray = 0x8002B7B8; // type:func
-Palette_SetRgbTableIndexArray = 0x8002B7F4; // type:func
-Actor_ReduceHealth = 0x8002B8F0; // type:func
 Palette_AdjustRgb5551Array = 0x8002B82C; // type:func
-
-ActorUpdate_Type27 = 0x8002C1D8; // type:func
-ActorUpdate_Type30 = 0x8002C6DC; // type:func
-
 SpawnWhiteFade1 = 0x8002D2F4; // type:func
 SpawnWhiteFade2 = 0x8002D3C0; // type:func
-ActorUpdate_WhiteFade = 0x8002d488; // type:func
-ActorUpdate_Type1 = 0x8002D260; // type:func
-
-Landmine_TriggerEffect = 0x8002D5E4; // type:func
-ActorUpdate_Landmine = 0x8002D670; // type:func
-
-SpawnEnergyShot = 0x8002DFC0; // type:func
-ActorUpdate_EnergyShot = 0x8002E288; // type:func
-SpawnHovercraftShot = 0x8002E500; // type:func
-ActorUpdate_HovercraftShot = 0x8002E89C; // type:func
-
 SpawnShuriken = 0x8002ebb8; // type:func
 SpawnRoundBomb = 0x8002ECAC; // type:func
-SpawnBoomerang = 0x8002ED48; // type:func
 SpawnGemActor = 0x8002EFE4; // type:func
 SpawnGemActor61 = 0x8002F154; // type:func
 SpawnNoHitGem = 0x8002F1C8; // type:func
 SpawnGemRing = 0x8002F2A8; // type:func
-GemRing_MakeGems = 0x8002F420; // type:func
-RedGems_Clamp = 0x8002F6AC; // type:func
-ActorUpdate_GemRing = 0x8002F6D4; // type:func
-GemCollect = 0x8002F93C; // type:func
-GemCollect_Actor = 0x8002FC30; // type:func
-GemCollect_Static = 0x8002FD48; // type:func
-ActorUpdate_GemIcon = 0x8002FEF8; // type:func
-ActorUpdate_Gem124 = 0x80030008; // type:func
-ActorUpdate_Gem = 0x800303A8; // type:func
-ActorUpdate_Gem61 = 0x80030964; // type:func
-
-
 SpawnParticle_List = 0x80030F94; // type:func
 SpawnParticle_Image = 0x800310A4; // type:func
-SpawnParticle_List_102D_16 = 0x8003119C; // type:func
 SpawnParticle_Image_102D_16 = 0x800311EC; // type:func
 SpawnParticle_List_90C0_16 = 0x8003123C; // type:func
 SpawnParticle_Image_90C0_16 = 0x80031284; // type:func
-SpawnParticle_List_102D_32 = 0x800312CC; // type:func
-SpawnParticle_Image_102D_32 = 0x80031324; // type:func
-SpawnParticle_List_90C0_32 = 0x8003137C; // type:func
-SpawnParticle_Image_90C0_32 = 0x800313CC; // type:func
-ActorUpdate_Particle = 0x8003141C; // type:func
 SpawnAfterImage = 0x80033428; // type:func
-ActorUpdate_AfterImage = 0x8003358C; // type:func
-ActorUpdate_Type5 = 0x80033DE4; // type:func
-SpawnDizzyStar = 0x800335E4; // type:func
-ActorUpdate_DizzyStar = 0x800336B8; // type:func
 SpawnParticle_SineUp = 0x800337F4; // type:func
-SpawnParticle_SineUpHeart = 0x800338F4; // type:func
 SpawnParticle_SineUpNotes = 0x80033948; // type:func
-
-Clanpot_InitItems = 0x80034D80; // type:func
-Clanpot_AddItem = 0x80034E10; // type:func
-Clanpot_AddItemCheck = 0x8003510C; // type:func
-Clanpot_AddItemCheck1 = 0x800351C8; // type:func
-Clanpot_AddItemCheck2 = 0x80035218; // type:func
 Clanpot_AddItemCheck3 = 0x8003526C; // type:func
-Clanpot_MoveItems = 0x800352C0; // type:func
-Clanpot_SpawnNow = 0x80035394; // type:func
-Clanpot_TakeItem = 0x80035524; // type:func
-Clanpot_SetHitboxA = 0x80035824; // type:func
-Clanpot_SetHitboxB = 0x80035878; // type:func
 ClanpotIcon_State1 = 0x80035A20; // type:func
-ActorUpdate_ClanpotMenu = 0x80035E90; // type:func
-Clanpot_SpawnMenu = 0x800366E4; // type:func
-Clanpot_Tilt = 0x800367D0; // type:func
-Clanpot_SetMixedItem = 0x800369A0; // type:func
-Clanpot_MixClanbomb = 0x80036A60; // type:func
-Clanpot_MixBoomerang = 0x80036B44; // type:func
-Clanpot_MixShuriken = 0x80036C14; // type:func
-Clanpot_MixGreenGem = 0x80036CE4; // type:func
-Clanpot_TryMix = 0x80036DC8; // type:func
-Clanpot_EraseItem = 0x8003707C; // type:func
-Clanpot_AddMixedItem = 0x800370AC; // type:func
-Clanpot_MixSequenceIcon = 0x800374D8; // type:func
-ActorUpdate_ClanpotMixSequence = 0x8003766C; // type:func
-Clanpot_SpawnMixSequence = 0x80037B18; // type:func
-ActorUpdate_Clanpot = 0x80037B90; // type:func
-
-Spikeball_Shoot = 0x80038398; // type:func
-Spikeball_MoveX = 0x800384FC; // type:func
-Spikeball_MoveY = 0x80038600; // type:func
-Spikeball_Jitter = 0x80038704; // type:func
-Spikeball_ScaleWave = 0x80038794; // type:func
 Spikeball_State1End = 0x80038868; // type:func
 Spikeball_Update = 0x80038C94; // type:func
 Spikeball_UpdateHitbox = 0x80038D1C; // type:func
 Spikeball_State0 = 0x80038E1C; // type:func
-ActorUpdate_Spikeball_Static = 0x80039134; // type:func
-ActorUpdate_Spikeball_Hori = 0x8003929c; // type:func
-ActorUpdate_Spikeball_Vert = 0x80039468; // type:func
-
-MarinaGraphics_Copy = 0x800821B0; // type:func
-MarinaGraphics_Decompress = 0x800822B8; // type:func
-
-OSD_Reset = 0x800838e0; // type:func rom:0x844e0
-OSD_SetData = 0x8008391c; // type:func rom:0x8451c
-OSD_PrintIntHex = 0x80083a04; // type:func rom:0x84604
-OSD_PrintInt = 0x80083a74; // type:func rom:0x84674
-OSD_PrintShortHexWhite = 0x80083bd8; // type:func rom:0x847d8
-OSD_PrintShortHex = 0x80083c54; // type:func rom:0x84854
-OSD_Tick = 0x80083e74; // type:func rom:0x84a74
-OSD_PrintFloat = 0x80083ae4; // type:func rom:0x846e4
-OSD_PrintByteHex = 0x80083b5c; // type:func rom:0x8475c
-OSD_GetTime = 0x80083ccc; // type:func rom:0x848cc
-OSD_PrintDeltaTime = 0x80083cf0; // type:func rom:0x848f0
-OSD_PrintfTime = 0x80083db8; // type:func rom:0x849b8
-
-Flower_Falling = 0x800844b8; // type:func
-Flower_TryCollide = 0x80084734; // type:func
-Flower_CheckCollide = 0x8008486C; // type:func
-Flower_TryGrounded = 0x800846A8; // type:func
-Flower_SetHitboxB = 0x80084924; // type:func
-Flower_TryGrab = 0x800848a0; // type:func
-ActorUpdate_Flower = 0x80084974; // type:func
-Hat_TryGrounded = 0x80085108; // type:func
-Hat_SetField138 = 0x80084D18; // type:func
-Hat_SetHitboxB = 0x80085300; // type:func
-
-Hat_TryGrab = 0x80085350; // type:func
-ActorUpdate_Hat = 0x800853c8; // type:func
-
-
-Clanbomb_SpawnTimer = 0x80085844; // type:func
-Clanbomb_TickFuse = 0x8008594c; // type:func
-Clanbomb_Detonate = 0x800859c4; // type:func
-Clanbomb_CheckAbsVelocity = 0x80085a4c; // type:func
-Clanbomb_FallCheck = 0x80085ae4; // type:func
-Clanbomb_SetHitboxB = 0x80085d00; // type:func
-Clanbomb_SetScale = 0x80085e60; // type:func
-Clanbomb_StartFuse = 0x80086824; // type:func
-ActorUpdate_Clanbomb = 0x80086c7c; // type:func
-
-ClanbombTimer_PrintDigit = 0x80087568; // type:func
-ClanbombTimer_PrintTime = 0x80087698; // type:func
-ActorUpdate_ClanbombTimer = 0x80087820; // type:func
-
-ActorUpdate_Spikeball_77 = 0x80088164; // type:func
-ActorUpdate_Spikeball_78 = 0x8008855C; // type:func
-ActorUpdate_Spikeball_OrbitYZ = 0x80088cb0; // type:func
-ActorUpdate_Spikeball_80 = 0x80089084; // type:func
-ActorUpdate_Spikeball_81 = 0x800645f4; // type:func
-ActorUpdate_Spikeball_82 = 0x8006475c; // type:func
-
-ActorUpdate_3DIcon = 0x80060f88; // type:func
-
-ActorUpdate_SpiralClouds = 0x80062174; //type:func
-
-ActorUpdate_ClanballRail = 0x8006346C; // type:func
-SpawnStageClear = 0x80064AA0; // type:func
-ActorUpdate_StageClear = 0x80064b60; // type:func
-
-ActorUpdate_Type15 = 0x8008C4A0; // type:func
-ActorUpdate_Type16 = 0x8008C4A8; // type:func
-ActorUpdate_Type37 = 0x8008C4C0; // type:func
-ActorUpdate_Type43 = 0x8008C4C8; // type:func
-ActorUpdate_Type65 = 0x8008C4D0; // type:func
-ActorUpdate_Type83 = 0x8008C4D8; // type:func
-
-ActorUpdate_MsHint = 0x80065270; // type:func
-
-DiggingSpot_SpawnActor = 0x80089814; // type:func
-DiggingSpot_SpawnActorCheck = 0x80089984; // type:func
-ActorUpdate_DiggingSpot = 0x8008A6E4; // type:func
-
-ActorUpdate_Spikeball_OrbitXY = 0x80087D2C; // type:func
-
-SpawnMarinaOhNo = 0x8008e310; // type:func
-ActorUpdate_MarinaOhNo = 0x8008e3c0; // type:func
-
-Clanball_GrabCheck = 0x80039644; // type:func
-Clanball_State0 = 0x80039724; // type:func
-Clanball_ShakeFlash= 0x80039894; // type:func
-Clanball_RevealSound = 0x800398F8; // type:func
-Clanball_DropSound = 0x80039970; // type:func
-Clanball_InitReveal = 0x80039A1C; // type:func
-Clanball_SpawnReveal = 0x80039ADC; // type:func
-Clanball_SpawnDrop = 0x80039C1C; // type:func
-Clanball_GetRevealIndex = 0x80039DA0; // type:func
-Clanball_ShakeDown = 0x80039E7C; // type:func
-
 ActorUpdate_Clanball_28 = 0x8003A120; // type:func
-ActorUpdate_ClanballSpring = 0x8003C328; // type:func
-
-SpawnAreaClear = 0x8003d628; // type:func
-AreaClear_State0 = 0x8003D794; // type:func
-ActorUpdate_AreaClear = 0x8003DBD0; // type:func
-
 BossDeathExplode = 0x8003DF78; // type:func
-
-Crosshair_SetPos = 0x8003E640; // type:func
 SpawnCrosshair = 0x8003E6A4; // type:func
 SpawnParticle_Exclamation = 0x8003F6A4; // type:func
 SpawnParticle_HeartBubble = 0x8003F8B0; // type:func
 SpawnParticle_RingSparkle = 0x8003FB20; // type:func
-SpawnParticle_RingWave = 0x8003FD0C; // type:func
 SpawnParticle_RingWaveBlue = 0x8003FE4C; // type:func
 SpawnParticle_RingWaveGreen = 0x8003FE90; // type:func
 SpawnParticle_RingWaveYellow = 0x8003FED8; // type:func
 SpawnParticle_RingWaveRed = 0x8003FF20; // type:func
-
-WarpGate_Init = 0x80040ab4; // type:func
-WarpGate_UpdateAppearance = 0x80041018; // type:func
-WarpGate_IsGuestUsing = 0x8004151C; // type:func
-WarpGate_IsGuestsUsing = 0x8004168C; // type:func
-WarpGate_MoveUser = 0x8004172C; // type:func
-WarpGate_MoveFaceUser = 0x8004178C; // type:func
 WarpGate_StarRing = 0x80040B4C; // type:func
-WarpGate_Sparkle = 0x80040E08; // type:func
-WarpGate_IsGrabbed = 0x8004185C; // type:func
-ActorUpdate_WarpGate = 0x800418A8; // type:func
-
-
-ActorUpdate_Type11 = 0x80042B94; // type:func
-ActorUpdate_Type12 = 0x80042c10; // type:func
 Palette_AdjustScenePalettes = 0x80042E84; // type:func
-Actor_LoadSpawnTable = 0x80043A68; // type:func
-Camera_UpdateViewBounds = 0x800462F0; // type:func
-
-Transition_SmashBlack = 0x80046A9C; // type:func
-Transition_ExpandBlack = 0x80046B4C; // type:func
-Transition_FadeOut = 0x80046D5C; // type:func
-Cutscene_CheckSkipInput = 0x80046E6C; // type:func
-Transition_StageExit = 0x80046EBC; // type:func
-
-SpawnText_READY = 0x800472D4; // type:func
-SpawnText_READY_2 = 0x8004732C; // type:func
-SpawnText_FIGHT = 0x8004735C; // type:func
-
-Marina_State0 = 0x8004A960; // type:func
-
-ActorUpdate_Marina = 0x8004ed10; // type:func
-
-ActorType2_Noop = 0x8006C1A4; // type:func
-ActorUpdate_Type2 = 0x800732F8; // type:func
-
+CameraShake = 0x8005CA34; // type:func
+GetCameraShakeTime = 0x8005CA98; // type:func
 Clancer_Update = 0x8007325C; // type:func
-
-ActorUpdate_CatTank = 0x80075dc4; // type:func
-
 Clanblob_Update = 0x80076d40; // type:func
-ActorUpdate_Clanblob = 0x80077c18; // type:func
-
-ActorUpdate_Type3 = 0x8007CCD0; // type:func
-
-ToBCD = 0x8007CCE0; // type:func
-
 SpawnActor41 = 0x8007CD68; // type:func
 SpawnActor40 = 0x8007CE24; // type:func
 SpawnActor39 = 0x8007CEB8; // type:func
-
 SpawnActor38 = 0x8007CFE0; // type:func
 SpawnTextBubble = 0x8007D0DC; // type:func
-SpawnTextBubble2 = 0x8007D0F4; // type:func
-SpawnTextBubble3 = 0x8007D1E8; // type:func
-
-Actor38_CapAlpha = 0x8007D3EC; // type:func
-Actor38_ScaleAlpha = 0x8007D438; // type:func
-Actor38_End = 0x8007D520; // type:func
-Actor38_ParseString = 0x8007d554; // type:func
 ActorUpdate_Type41 = 0x8007DB84; // type:func
-ActorUpdate_Type40 = 0x8007DF44; // type:func
-ActorUpdate_Type39 = 0x8007F078; // type:func
-ActorUpdate_Type38 = 0x8007f37c; // type:func
-
-GameState_SoftReset = 0x80022F48; // type:func
-
-
-GameState_Loading = 0x800232A4; // type:func
-GameState_Gameplay = 0x80021034; // type:func
-
-GameState_State8Overlay = 0x80388000; // type:func rom:0xF00D0
-GameState_State9Overlay = 0x80388008; // type:func rom:0xF00D8
-GameState_Attract = 0x80021270; // type:func
-
-EventScoreOver999 = 0x80004F08; // type:func
-Festival_ValidateScores = 0x80004F24; // type:func
-SaveFile_DefaultSlot = 0x80004FFC; // type:func
-SaveFile_DefaultRecords = 0x800050B4; // type:func
-SaveFile_CheckValid = 0x80005188; // type:func
-SaveFile_LoadSlot = 0x8000565C; // type:func
-SaveFile_SaveSlot = 0x80005770; // type:func
-SaveFile_EraseSlot = 0x80005828; // type:func
-SaveFile_GemIcon = 0x80005860; // type:func
-SaveFile_PrintRedGems = 0x800058E0; // type:func
-SaveFile_PrintPlayTime = 0x800059A4; // type:func
-NameEntry_CursorOnBlank = 0x80005B68; // type:func
-NameEntry_AnimateChar = 0x80005C3C; // type:func
-FileSelect_Init = 0x80006360; // type:func
-FileSelect_Reset = 0x80006B1C; // type:func
-FileSelect_InitCursor = 0x80006B9C; // type:func
-FileSelect_AnimateCursor = 0x80006DF4; // type:func
-NameEntry_SexAndAge = 0x8000607C; // type:func
-FileSelect_StartGame = 0x80006E60; // type:func
-
-NameEntry_ConfirmName = 0x800072A4; // type:func
-NameEntry_PrintKeyboardHIRA = 0x800073cc; // type:func rom:0x7fcc
-NameEntry_SetToHiragana = 0x80007578; // type:func
-NameEntry_PrintKeyboardKATA = 0x800075a8; // type:func rom:0x81a8
-NameEntry_PrintKeyboardENG = 0x800076f0; // type:func rom:0x82f0
-NameEntry_Init = 0x800078A4; // type:func
-NameEntry_CheckIfFull = 0x80007A90; // type:func
-NameEntry_PrintChar = 0x80007ABC; // type:func
-NameEntry_SelectChar = 0x80007BC0; // type:func
-
-GameState_FileSelect = 0x80007C8C; // type:func
-
-GameState_Transition = 0x8001B460; // type:func
-GameState_Records = 0x8001D654; // type:func
-
-LevelClear_Starscape = 0x80096E14; // type:func
-LevelClear_SpawnTheo = 0x80097108; // type:func
-LevelClear_SpawnBackground = 0x800972DC; // type:func
-LevelClear_SphereRing = 0x80097384; // type:func
-LevelClear_SpawnSphere = 0x80097428; // type:func
-LevelClear_HeartEyes = 0x800977B8; // type:func
-LevelClear_ZToSkip = 0x80097968; // type:func
-ActorUpdate_LevelClear = 0x80097A74; // type:func
-
-Trouble_RLE_Type2 = 0x80098B50; // type:func
-ActorUpdate_GraphicOnly = 0x800284b0; // type:func
-Actor_RangeFindInactive = 0x800284B8; // type:func
-Actor_RangeFindInactive_90ToC0 = 0x80028528; // type:func
-Actor_SpawnInRange_90ToC0 = 0x8002854C; // type:func
-Actor_ClearRange_10To20 = 0x80028638; // type:func
-Actor_ClearRange_30To90 = 0x8002865C; // type:func
-Actor_ClearRange_90ToC0 = 0x80028680; // type:func
-Actor_ClearRange_C0ToC7 = 0x800286A4; // type:func
-Actor_IsOutsideRegion = 0x800288EC; // type:func
-Actor_RegionCheckAudio = 0x80028980; // type:func
-Actor_NearestFromList = 0x800289E4; // type:func
-Actor_UpdateNearest = 0x80028AE8; // type:func
-Actor_UpdateNearestTo0 = 0x80028B1C; // type:func
-ActorUpdate_Type4 = 0x80042308; // type:func
-ActorUpdate_Type10 = 0x80042338; // type:func
-ActorUpdate_Type23 = 0x80042340; // type:func
-ActorUpdate_Type25 = 0x80042348; // type:func
-ActorUpdate_Type26 = 0x80042350; // type:func
-ActorUpdate_Type71 = 0x80042358; // type:func
-
-Actor11_State1 = 0x80042360; // type:func
-Actor11_State0 = 0x800429A4; // type:func
-Actor11_State2 = 0x80042A0C; // type:func
-Actor11_State3 = 0x80042AEC; // type:func
-Actor11_State4 = 0x80042B2C; // type:func
-
-ActorsUpdate_Velocity = 0x80014af0; // type:func
-ActorsUpdate_Position = 0x80014C44; // type:func
-ActorUpdate_Physics = 0x800160ec; // type:func
-ActorsUpdate_Physics = 0x80016cb4; // type:func
-ActorsUpdate_Screenspace = 0x80016D94; // type:func
-ActorsUpdate_Overlay = 0x80016E70; // type:func
-ActorsUpdate = 0x8001751C; // type:func
-
-// stage.c
-Input_CheckButtonRepeat = 0x80017680; // type:func
-Input_CheckButtonRepeat2 = 0x800176F8; // type:func
-Title_LegalText = 0x80017F08; // type:func
-Title_WhiteScreen = 0x80017FE8; // type:func
-GameState_Intro = 0x80017800; // type:func
-Title_MoveSubtitle = 0x8001809C; // type:func
-Title_UpdateText = 0x800180FC; // type:func
-DebugMenu_UpdateCursorFlash = 0x80017770; // type:func
-DebugStageSelect_DrawMenu = 0x80018E00; // type:func
-GameState_TitleScreen = 0x8001817C; // type:func
-GameState_DebugSoundTest = 0x800188CC; // type:func
-GameState_DebugStageSelect = 0x800191B8; // type:func
-GetRaceTimeRecord = 0x80019520; // type:func
-GetFestivalTimeRecords = 0x80019688; // type:func
-WorldMap_LoadGraphics = 0x800197A0; // type:func
-WorldMap_Reset = 0x8001983C; // type:func
-WorldMap_PrintWorldName = 0x800198B4; // type:func
-WorldMap_PrintStageName = 0x800199DC; // type:func
-WorldMap_DrawSprites = 0x80019A80; // type:func
-WorldMap_PrintStageLabel = 0x80019FB4; // type:func
-WorldMap_PrintWarpedStageIcon = 0x8001A15C; // type:func
-WorldMap_PrintStageLabels = 0x8001A254; // type:func
-
-WorldMap_GetStageRank = 0x8001A758; // type:func
-WorldMap_PrintRankLetter = 0x8001A7E0; // type:func
-WorldMap_PrintRankReview = 0x8001A838; // type:func
-WorldMap_PrintRankLetterReview = 0x8001A890; // type:func
-WorldMap_PrintCurrStageTime = 0x8001A96C; // type:func
-WorldMap_PrintStageTime = 0x8001ACA8; // type:func
-WorldMap_PrintPrevStageTime = 0x8001B004; // type:func
-
-WorldMap_AdvanceProgress = 0x8001B02C; // type:func
-CountYellowGems = 0x8001B244; // type:func
-WorldMap_UpdateSaveFile = 0x8001B2F4; // type:func
-WorldMap_UpdateSaveFile2 = 0x8001B3D0; // type:func
-
-Camera_ResetRotate = 0x800235E0; // type:func
-Camera_ApplyRotate = 0x800235f4; // type:func rom:0x241f4
-CameraInit_Leo = 0x80025380; // type:func rom:0x25f80
-CameraInit_PhoenixGamma = 0x800252bc; // type:func rom:0x25ebc
-CameraUpdate_AstersTryke = 0x80025254; // type:func rom:0x25e54
-CameraUpdate_World4A = 0x80025184; // type:func rom:0x25d84
-CameraInit_Merco_Trapped = 0x80025094; // type:func rom:0x25c94
-CameraUpdate_BeesTheOne = 0x80024ea0; // type:func rom:0x25aa0
-CameraInit_World2 = 0x80023798; // type:func rom:0x24398
-CameraInit_BeesTheOne = 0x80024da8; // type:func rom:0x259a8
-CameraInit_Scene03 = 0x80023acc; // type:func rom:0x246cc
-CameraUpdate_Scene02 = 0x80023ac4; // type:func rom:0x246c4
-CameraInit_World1 = 0x80023678; // type:func rom:0x24278
-CameraInit_Scene02 = 0x80023aa4; // type:func rom:0x246a4
-CameraInit_ClanceWar2 = 0x80024d5c; // type:func rom:0x2595c
-CameraInit_Vertigo = 0x800244f8; // type:func rom:0x250f8
-CameraInit_Scene63 = 0x80023668; // type:func rom:0x24268
-CameraUpdate_Scene63 = 0x80023670; // type:func rom:0x24270
-CameraUpdate_World1 = 0x800236a0; // type:func rom:0x242a0
-CameraUpdate_Scene03 = 0x80023afc; // type:func rom:0x246fc
-CameraUpdate_Scene04 = 0x80023bf8; // type:func rom:0x247f8
-CameraInit_MigenBrawl = 0x80023c00; // type:func rom:0x24800
-CameraUpdate_MigenBrawl = 0x80023C18; // type:func
-CameraInit_Scene07 = 0x80023d48; // type:func rom:0x24948
-CameraInit_Title = 0x80023d98; // type:func rom:0x24998
-CameraUpdate_Title = 0x80023db4; // type:func rom:0x249b4
-CameraInit_Lunar = 0x80023dbc; // type:func rom:0x249bc
-CameraUpdate_Lunar = 0x80023df0; // type:func rom:0x249f0
-CameraUpdate_Intro = 0x80023e14; // type:func rom:0x24a14
-CameraInit_Intro = 0x80023df8; // type:func rom:0x249f8
-CameraInit_World3B = 0x80023e1c; // type:func rom:0x24a1c
-CameraUpdate_World3B = 0x80023e38; // type:func rom:0x24a38
-CameraInit_TheDayBefore = 0x80023e40; // type:func rom:0x24a40
-CameraUpdate_TheDayBefore = 0x80023e48; // type:func rom:0x24a48
-CameraUpdate_World4B = 0x800251e8; // type:func rom:0x25de8
-CameraInit_World4B = 0x800251cc; // type:func rom:0x25dcc
-CameraUpdate_Scene07 = 0x80023d70; // type:func rom:0x24970
-CameraInit_Scene04 = 0x80023bc0; // type:func rom:0x247c0
-CameraInit_MagmaRafts = 0x80023a08; // type:func rom:0x24608
-CameraUpdate_AthleticGames = 0x80024600; // type:func rom:0x25200
-CameraInit_Beastector = 0x80024624; // type:func rom:0x25224
-CameraUpdate_ClanceWar2 = 0x80024d6c; // type:func rom:0x2596c
-CameraUpdate_Leo = 0x800253a8; // type:func rom:0x25fa8
-CameraInit_TightropeRide = 0x80023948; // type:func rom:0x24548
-CameraUpdate_TightropeRide = 0x80023968; // type:func
-CameraUpdate_Splashscreen = 0x8002508c; // type:func rom:0x25c8c
-CameraInit_Splashscreen = 0x80025084; // type:func rom:0x25c84
-CameraInit_Scene34 = 0x80023e6c; // type:func rom:0x24a6c
-CameraUpdate_Scene34 = 0x80023e74; // type:func rom:0x24a74
-CameraUpdate_Freefall = 0x800245ac; // type:func rom:0x251ac
-CameraUpdate_World2 = 0x800237f0; // type:func rom:0x243f0
-CameraInit_World3 = 0x80023e98; // type:func rom:0x24a98
-CameraUpdate_SeasickClimb_Rocking = 0x800240e8; // type:func rom:0x24ce8
-CameraUpdate_WesternWorld = 0x80023894; // type:func rom:0x24494
-CameraUpdate_MagmaRafts = 0x80023a34; // type:func rom:0x24634
-CameraInit_SnowstormMaze = 0x80023eb4; // type:func rom:0x24ab4
-CameraUpdate_SnowstormMaze = 0x80023f5c; // type:func
-CameraUpdate_ClanballLift = 0x80024004; // type:func
-CameraUpdate_SeasickClimb = 0x80024428; // type:func rom:0x25028
-CameraUpdate_Beastector = 0x80024668; // type:func rom:0x25268
-CameraUpdate_Merco_Trapped = 0x80025114; // type:func rom:0x25d14
-CameraUpdate_PhoenixGamma = 0x800252f8; // type:func rom:0x25ef8
-CameraInit_SeasickClimb = 0x80024074; // type:func rom:0x24c74
-CameraInit_CounterAttack = 0x80024854; // type:func rom:0x25454
-CameraInit_AthleticGames = 0x800245f8; // type:func rom:0x251f8
-CameraInit_Freefall = 0x80024584; // type:func rom:0x25184
-CameraUpdate_Vertigo = 0x80024528; // type:func
-CameraInit_World4A = 0x8002515C; // type:func
-
-PlaySceneBGM = 0x80025578; // type:func
-
-//text.c
-Text_InitActor = 0x80027370; // type:func
-Text_InitActorGraphic = 0x800273FC; // type:func
-Text_InitActorGraphicRGB = 0x80027468; // type:func
-Text_InitActorGList = 0x80027510; // type:func
-Text_SetColor = 0x80027588; // type:func
-Text_InitActorPalette = 0x80027644; // type:func
-Text_PrintASCII = 0x800276DC; // type:func
-Text_Print2Digits = 0x80027800; // type:func
-Text_Print3Digits = 0x800278E8; // type:func
-Text_GetWidth = 0x80027A44; // type:func
-Text_GetWidth2 = 0x80027A88; // type:func
-Text_FreeString = 0x80027AC8; // type:func
-Text_PrintString = 0x80027B28; // type:func
-Text_PrintStringRGB = 0x80027C40; // type:func
-Text_PrintStringRGBScale = 0x80027D94; // type:func
-Text_PrintStringGray = 0x8002801C; // type:func
-Text_PrintString2 = 0x80028150; // type:func
-Text_SetHCColor = 0x80028260; // type:func
-
-AnimateSpeechBubble = 0x8005E1CC; // type:func
-
-UpdateDialog = 0x8005F6D4; // type:func
-
-UpdateCameraShake = 0x8005C8A4; // type:func
-CameraShake = 0x8005CA34; // type:func
-GetCameraShakeTime = 0x8005CA98; // type:func
-
-
-// 5E230.c
-OverlayABI_Slot1_fn3_u16        = 0x8005D630; // type:func
-OverlayABI_Slot1_fn4_u16_u16_0  = 0x8005D664; // type:func
-OverlayABI_Slot1_fn5_u16_u16_0  = 0x8005D6A0; // type:func
-OverlayABI_Slot1_fn6_u16_u16_0  = 0x8005D6DC; // type:func
-OverlayABI_Slot0_fn11_u16       = 0x8005D718; // type:func
-OverlayABI_Slot0_fn12_u16       = 0x8005D74C; // type:func
-OverlayABI_Slot1_fn5_u16_u16_1  = 0x8005D780; // type:func
-OverlayABI_Slot1_fn6_u16_u16_1  = 0x8005D7BC; // type:func
-OverlayABI_Slot1_fn7_u16_0      = 0x8005D7F8; // type:func
-OverlayABI_Slot1_fn7_u16_1      = 0x8005D82C; // type:func
-OverlayABI_Slot1_fn5_u16        = 0x8005D860; // type:func
-OverlayABI_Slot1_fn3_u16_u16    = 0x8005D894; // type:func
-OverlayABI_Slot1_fn4_u16_u16_1  = 0x8005D8D0; // type:func
-OverlayABI_Slot0_fn24_u16_u16   = 0x8005D90C; // type:func
-OverlayABI_Slot0_fn25_u16_u16_0 = 0x8005D948; // type:func
-OverlayABI_Slot0_fn26_u16       = 0x8005D984; // type:func
-OverlayABI_Slot0_fn27_u16       = 0x8005D9B8; // type:func
-OverlayABI_Slot0_fn28_u16       = 0x8005D9EC; // type:func
-OverlayABI_Slot0_fn15_u16_u16   = 0x8005DA20; // type:func
-OverlayABI_Slot0_fn25_u16_u16_1 = 0x8005DA5C; // type:func
-OverlayABI_Slot2_fn17_u16       = 0x8005DA98; // type:func
-OverlayABI_Slot2_fn18_u16       = 0x8005DACC; // type:func
-OverlayABI_Slot2_fn19_u16       = 0x8005DB00; // type:func
-OverlayABI_Slot2_fn20_u16       = 0x8005DB34; // type:func
-OverlayABI_Slot2_fn21_u16       = 0x8005DB68; // type:func
-OverlayABI_Slot2_fn22_u16       = 0x8005DB9C; // type:func
-OverlayABI_Slot2_fn23_u16       = 0x8005DBD0; // type:func
-OverlayABI_Slot2_fn24_u16       = 0x8005DC04; // type:func
-OverlayABI_Slot2_fn25_void      = 0x8005DC38; // type:func
-OverlayABI_Slot2_fn26_u16       = 0x8005DC64; // type:func
-OverlayABI_Slot2_fn27_u16       = 0x8005DC98; // type:func
-OverlayABI_Slot2_fn28_u16       = 0x8005DCCC; // type:func
-OverlayABI_Slot2_fn29_u16       = 0x8005DD00; // type:func
-OverlayABI_Slot2_fn30_u16       = 0x8005DD34; // type:func
-OverlayABI_Slot2_fn31_u16       = 0x8005DD68; // type:func
-OverlayABI_Slot2_fn32_void      = 0x8005DD9C; // type:func
-OverlayABI_Slot0_fn8_u16        = 0x8005DDC8; // type:func
-OverlayABI_Slot0_fn10_u16       = 0x8005DDFC; // type:func
+OSD_PrintIntHex = 0x80083a04; // type:func rom:0x84604
+OSD_PrintInt = 0x80083a74; // type:func rom:0x84674
+OSD_PrintFloat = 0x80083ae4; // type:func rom:0x846e4
+OSD_PrintShortHexWhite = 0x80083bd8; // type:func rom:0x847d8

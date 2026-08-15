@@ -30,20 +30,36 @@ extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette
 extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[]; // icon for head menus
-extern u16 D_800E3580;
+extern u16 D_800E3570; // actor flag storage?
+extern u16 D_800E3574; // actor flag storage?
+extern s32 D_800E3578; // nearest actor delta X
+extern s32 D_800E357C; // nearest actor delta Y
+extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 extern u32 D_800E3584; // nearest actor facing
 extern s32 D_800E3630[]; // could be array of structs of length 0x28
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
 extern s16 D_801370D2;
 extern u16 D_801370D4;
-extern u16 D_801370D8[]; // Marina graphic history. used for unused after-image state
-extern s16 D_801371D8[]; // Marina X-position history. used for unused after-image state
-extern s16 D_801372D8[]; // Marina Y-position history. used for unused after-image state
-extern s16 D_801373EC;
-extern u16 D_80137480[];
-extern u16 D_801374F0[]; // source of texture images
-extern u16 D_80137580[]; // source of texture images
-extern u16 D_80137610[]; // source of texture images
+extern u16 D_801370D8[128]; // Marina graphic history. used for unused after-image state
+extern s16 D_801371D8[128]; // Marina X-position history. used for unused after-image state
+extern s16 D_801372D8[128]; // Marina Y-position history. used for unused after-image state
+extern u16 D_801373D8;
+extern s16 D_801373DC;
+extern u16 D_801373DE;
+extern PlayerData gPlayerData;
+extern s32 D_80137460[2]; // unused
+extern s32* D_80137468;
+extern u8* D_8013746C; // related to type of D_800C71A0
+extern u8* D_80137470;
+extern u16 D_80137474;
+extern u16 D_80137476;
+extern u16 D_80137478;
+extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
+extern u16 D_80137480[46];
+extern u32 gUpdateColorTime; // delta time for updating colors for gems and other actors
+extern u16 D_801374F0[72]; // source of texture images
+extern u16 D_80137580[72]; // source of texture images
+extern u16 D_80137610[70]; // source of texture images
 extern u16* D_8013769C; // palette
 extern u16* D_801376A0; // palette
 extern u16* D_801376A4; // palette
@@ -61,14 +77,47 @@ extern u16** D_801376D0;
 extern u16** D_801376D4;
 extern u16** D_801376D8;
 extern Gfx** D_801376DC;
+extern u32 D_801376E0;
+extern s32 D_801376E4;
+extern u32 D_801376E8;
 extern Gfx** D_801376EC;
+extern u32 D_801376F0;
 extern Gfx** D_801376F4;
+extern u32 D_801376F8;
 extern Gfx** D_801376FC;
+extern u32 D_80137700;
 extern Gfx** D_80137704;
+extern u32 D_80137708;
 extern Gfx** D_8013770C;
+extern u32 D_80137710;
 extern Gfx** D_80137714;
-extern Gfx** D_8013771C;
 extern u32 D_80137718;
+extern Gfx** D_8013771C;
+extern u32 D_80137720;
+extern u8* D_80137724;
+extern u32 D_80137728;
+extern u32 D_8013772C;
+extern u32 D_80137730;
+extern u32 D_80137734;
+extern u32 D_80137738;
+extern u32 D_8013773C;
+extern u32 D_80137740;
+extern u32 D_80137744;
+extern u32 D_80137748;
+extern u32 D_8013774C;
+extern u32 D_80137750;
+extern u16* D_8013776C;
+extern u32 D_80137770;
+extern u8* D_80137774;
+extern u8* D_80137778;
+extern u8* D_8013777C;
+extern u32 D_80137780;
+extern u8* D_80137784;
+extern u32 D_80137788;
+extern u8* D_8013778C;
+extern u32 D_80137790;
+extern s32 D_80137794;
+extern u8 gAudioInitialized;
 
 extern u64 gYellowGemBitfield;
 extern u64 gYellowGemTemp; // state for yellow gem bitfield on entering stage.
@@ -115,8 +164,8 @@ extern s16 D_800D5834;
 extern u16 gPaletteGemRed[];
 extern u16 gPaletteGemGreen[];
 extern u16 gPaletteGemYellow[];
-extern u32 D_800E0648[];
-extern u8 D_800E1180[];
+extern s16 D_800E0648[];
+extern s16 D_800E1180[];
 extern s16 gGraphicListBlank[]; // default graphics list. contains {0,0}
 extern s16 gGraphicListGemIcon[];
 extern s16 D_800E1540[];
@@ -125,20 +174,20 @@ extern s16 D_800E156C[];
 extern s16 D_800E158C[];
 extern s16 gGraphicListGem[]; // gem graphics list
 extern s16 D_800E1700[];
-extern u8 D_800E19FC[];
-extern u8 D_800E1A20[];
+extern s16 D_800E19FC[];
+extern s16 D_800E1A20[];
 extern s16 D_800E25B0[];
 extern s16 D_800E2600[];
-extern u16 D_800E31EC[];
+extern u16* D_800E31EC[];
 extern u16 D_800E334C[];
 extern s16 D_800E3488[];
 extern u16 D_800E3518[];
 extern u32 D_800E352C[];
 extern s16 D_800E45D0[];
 extern s16 D_800E4698[];
-extern s16 D_800E574C[];
+extern s16* D_800E574C[];
 extern s16 D_800E57D4[];
-extern u32 D_800E58D4[];
+extern s16 D_800E58D4[];
 extern u16 D_800E58F0[];
 extern s16 D_800E5910[];
 extern s16 D_800E5938[];
@@ -147,13 +196,10 @@ extern s16 D_800E59E0[];
 extern u16 gRedGems;
 
 // func_8000147C
-extern u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
 extern s16 gActorsBack[128]; // indices of actors to draw in the "back" 
 extern s16 gActorsMiddle[128]; // indices of actors to draw in middle (not drawn if D_800be674 is set)
 extern s16 gActorsFront[240]; // indices of actors to draw in "front"
 extern s16 gActorsTop[240]; // indices of actors to draw at the "top" (either before or after "portraits", depending on D_8013747c)
-
-extern PlayerData gPlayerData;
 
 // soft_reset.c bss
 extern u16 D_801781F8; // some control lock? read in func_80048740. always 0.

@@ -2,7 +2,8 @@
 #include "actor.h"
 #include "input.h"
 #include "letterbox.h"
-#include "11820.h"
+#include "rle.h"
+#include "stage_tilemap.h"
 #include "1F1E0.h"
 #include "241E0.h"
 #include "84BB0.h"
@@ -30,6 +31,10 @@ typedef struct {
     s16 unk6;
     s16 unk8;
 } Unk800CCC6C; // size = 0xA
+
+extern u8 D_800C71A0[];
+extern Lights2 D_800E3BC8;
+extern Lights1 D_800E3C48;
 
 typedef void (*CameraFunc)(void);
 
@@ -117,6 +122,7 @@ u16 D_800CBF5C[] = {
 	0xD5A9, 0xC5D7, 0x9BA1, 0xBCD7, 0xE75D, 0xCDE1, 0xFF9B, 0xC50D,
 	0xE6E9, 0xC5A5, 0xFFA1, 0xD55F, 0xFFC1, 0xFE01, 0xFD01, 0xFCCB
 };
+
 u8 D_800CBFFC[] = {
 	0x91, 0x94, 0x96, 0x97, 0x99, 0x9C, 0x9E, 0x9F,
 	0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7,
@@ -189,6 +195,7 @@ u8 D_800CBFFC[] = {
 	0x08, 0x85, 0x01, 0x89, 0x00, 0x45, 0x00, 0x43,
     0x00, 0x01, 0x00, 0x3E
 };
+
 u16 D_800CC228[] = {
 	0x0005, 0x1211, 0x573F, 0x4679, 0x3DB3, 0x473F, 0x5679, 0x45B3,
 	0x1215, 0x11D1, 0x1297, 0x1215, 0x09D1, 0x098F, 0x1A15, 0x35B9,
@@ -314,6 +321,7 @@ CameraFunc gCameraInits[] = {
     CameraInit_Merco_Trapped,
     CameraInit_Merco_Trapped
 };
+
 CameraFunc gCameraUpdates[] = {
     CameraUpdate_World1,
     CameraUpdate_World2,
@@ -496,6 +504,7 @@ s16 D_800CC6EC[] = {
 	0x0000, 0x4100, 0x012C, 0x02EE, 0x0990, 0xFFC0, 0x019C, 0xFFE0,
 	0x0000, 0x4100, 0x012C, 0x020C, 0x0990, 0xFFC0, 0x019C, 0xFFE0
 };
+
 s16 D_800CCC6C[] = {
 	0x0003, 0x0000, 0xFE00, 0xFE00, 0x0033, 0x0003, 0x0000, 0xF800,
 	0xF800, 0x0000, 0x0003, 0x0000, 0xFE00, 0xFE00, 0x0000, 0x0003,
@@ -581,14 +590,7 @@ u8 D_800CD034[] = {
     0x08, 0x00, 0x00, 0x00
 };
 
-extern u8 D_800E3BC8[];
-extern s8 D_800E3C48[];
-extern u8 D_800C71A0[];
-
-extern s16 D_801373DC;
-extern u16 D_801373DE;
-
-#define D_80201B48 ((Unk80201B48*)0x80201B48)
+#define D_80201B48 ((Unk80201B48*)SCENE03_CAMERA_CONTROL)
 
 void Camera_ResetRotate(void) {
     gCameraRot = 0;
@@ -645,7 +647,7 @@ void CameraUpdate_World2(void) {
     else {
         var_a0 = (gActiveFrames & 0x1F) * 8;
     }
-    D_800E3BC8[24] = D_800E3BC8[28] = var_a0;
+    D_800E3BC8.l[1].l.col[0] = D_800E3BC8.l[1].l.colc[0] = var_a0;
     D_800BE578 = gScreenPosCurrentX.whole / 2;
     D_800BE580 = (gScreenPosCurrentY.whole / 2) - 212;
 }
@@ -968,8 +970,8 @@ void CameraUpdate_SeasickClimb(void) {
     CameraUpdate_SeasickClimb_Rocking();
     Camera_ApplyRotate();
     angle = FROM_FIXED(gCameraRot);
-    D_800E3C48[0x10] = SIN(angle + COS_DEG_45) * 128.0f;
-    D_800E3C48[0x11] = COS(angle + COS_DEG_45) * 128.0f;
+    D_800E3C48.l[0].l.dir[0] = SIN(angle + COS_DEG_45) * 128.0f;
+    D_800E3C48.l[0].l.dir[1] = COS(angle + COS_DEG_45) * 128.0f;
 }
 
 void CameraInit_Vertigo(void) {

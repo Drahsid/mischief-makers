@@ -3,15 +3,103 @@
 #include "boot.h"
 #include "input.h"
 #include "game_state.h"
-#include "stage.h"
+#include "frontend.h"
 #include "1F1E0.h"
-#include "debug.h" 
-#include "82DB0.h"
+#include "debug.h"
+#include "marina_graphics.h"
 
-void func_800012F0(void);
-void func_8000147C(void);
+s16 D_801370D0;
+s16 D_801370D2;
+u16 D_801370D4;
+u16 D_801370D8[128]; // Marina graphic history. used for unused after-image state
+s16 D_801371D8[128]; // Marina X-position history. used for unused after-image state
+s16 D_801372D8[128]; // Marina Y-position history. used for unused after-image state
+u16 D_801373D8;
+u16 D_801373DA;
+s16 D_801373DC;
+u16 D_801373DE;
+PlayerData gPlayerData;
+s32 D_80137460[2]; // unused
+s32* D_80137468;
+u8* D_8013746C; // related to type of D_800C71A0
+u8* D_80137470;
+u16 D_80137474;
+u16 D_80137476;
+u16 D_80137478;
+u16 D_8013747A;
+u16 D_8013747C; // determines if "top" group of actors are drawn before or after portraits (i.e during world map)
+u16 D_80137480[46];
+u32 gUpdateColorTime; // delta time for updating colors for gems and other actors
+u32 D_801374E0[4]; // unused
+u16 D_801374F0[72]; // source of texture images
+u16 D_80137580[72]; // source of texture images
+u16 D_80137610[70]; // source of texture images
+u16* D_8013769C; // palette
+u16* D_801376A0; // palette
+u16* D_801376A4; // palette
+u8 D_801376A8[4];
+u8 D_801376AC[4];
+u8 D_801376B0[4];
+u8 D_801376B4[4];
+u8 D_801376B8[4];
+u8 D_801376BC[4];
+u16** D_801376C0;
+u16** D_801376C4;
+u16** D_801376C8;
+u16** D_801376CC;
+u16** D_801376D0;
+u16** D_801376D4;
+u16** D_801376D8;
+Gfx** D_801376DC;
+u32 D_801376E0;
+s32 D_801376E4;
+u32 D_801376E8;
+Gfx** D_801376EC;
+u32 D_801376F0;
+Gfx** D_801376F4;
+u32 D_801376F8;
+Gfx** D_801376FC;
+u32 D_80137700;
+Gfx** D_80137704;
+u32 D_80137708;
+Gfx** D_8013770C;
+u32 D_80137710;
+Gfx** D_80137714;
+u32 D_80137718;
+Gfx** D_8013771C;
+u32 D_80137720;
+u8* D_80137724;
+u32 D_80137728;
+u32 D_8013772C;
+u32 D_80137730;
+u32 D_80137734;
+u32 D_80137738;
+u32 D_8013773C;
+u32 D_80137740;
+u32 D_80137744;
+u32 D_80137748;
+u32 D_8013774C;
+u32 D_80137750;
+u32 D_80137754; // unused
+u32 D_80137758; // unused
+u32 D_8013775C; // unused
+u32 D_80137760; // unused
+u32 D_80137764; // unused
+u32 D_80137768; // unused
+u16* D_8013776C;
+u32 D_80137770;
+u8* D_80137774;
+u8* D_80137778;
+u8* D_8013777C;
+u32 D_80137780;
+u8* D_80137784;
+u32 D_80137788;
+u8* D_8013778C;
+u32 D_80137790;
+s32 D_80137794;
+u8 gAudioInitialized;
+
 void GameState_Update(void);
-u16 Rand(void);
 
 void func_800012F0(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
@@ -115,9 +203,6 @@ void func_8000147C(void) {
     func_80021620();
     OSD_Tick();
 }
-
-extern void GameState_State8Overlay(void);
-extern void GameState_State9Overlay(void);
 
 void GameState_Update(void) {
     switch (gGameState) {

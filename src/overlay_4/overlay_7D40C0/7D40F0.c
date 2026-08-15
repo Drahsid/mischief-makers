@@ -1,14 +1,13 @@
+// BUG: incorrect prototype!
+#define Clanpot_InitItems_ARGS u16 actor_index, u16* vals
 #include "common.h"
 #include "actor.h"
-#include "stage.h"
+#include "frontend.h"
 #include "28EF0.h"
-#include "438E0.h"
+#include "stage_runtime.h"
 #include "84BB0.h"
 
 // "overlay 4" code of most the World 3 stages, excluding "The Day Of" and "Cerberus Alpha"
-
-// BUG: incorrect prototype!
-extern void Clanpot_InitItems(u16 actor_index, u16* vals);
 
 extern s16 D_800D2918;
 extern s16 D_800D291C;
