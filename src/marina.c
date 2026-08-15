@@ -8,7 +8,7 @@
 #include "48A30.h"
 #include "marina_grab.h"
 #include "marina_hit.h"
-#include "59EA0.h"
+#include "marina_effect.h"
 #include "5D120.h"
 #include "60CF0.h"
 
@@ -26,12 +26,19 @@ extern void Marina_LandHoldingState(u16);
 extern void Marina_WalkState(u16);
 extern void Marina_WalkHoldingState(u16);
 extern void Marina_State9(u16);
+extern void Marina_RollState(u16);
 extern void func_800508F4(u16);
 extern void Marina_GroundDashState(u16);
 extern void Marina_GroundDashHoldingState(u16);
 extern void Marina_SlideDashState(u16);
 extern void Marina_SlideDashHoldingState(u16);
+extern void Marina_AirDashState(u16);
 extern void func_80051324(u16);
+extern void func_8004D6CC(u16);
+extern void func_8004D7BC(u16);
+extern void func_8004DA6C(u16);
+extern void func_8004DC44(u16);
+extern void func_8004B878(u16);
 extern void Marina_State20(u16);
 extern void func_80051C48(u16);
 extern void func_8004D140(u16);
@@ -42,13 +49,15 @@ extern void func_800553EC(u16);
 extern void func_800553EC(u16);
 extern void func_8005544C(u16);
 extern void Marina_ThrowState(u16);
-extern void func_8005701c(u16);
+extern void func_8005701C(u16);
 extern void Marina_ShakeShake(u16);
 extern void Marina_DropState(u16);
 extern void func_800576A0(u16);
 extern void func_80057848(u16);
 extern void func_80057C98(u16);
 extern void func_8005878C(u16);
+extern void Marina_State44(u16);
+extern void Marina_State45(u16);
 extern void Marina_ShockState(u16);
 extern void Marina_TPInState(u16);
 extern void Marina_TPOutState(u16);
@@ -98,7 +107,7 @@ ActorFunc gMarinaStateTable[] = {
     func_800553EC,
     func_8005544C,
     Marina_ThrowState,
-    func_8005701c,
+    func_8005701C,
     Marina_ShakeShake,
     Marina_DropState,
     func_8004B878,
@@ -2200,10 +2209,10 @@ void func_8004DC44(u16 actor_index) {
     }
 }
 
-void Marina_State44(s32 arg0) {
+void Marina_State44(u16 arg0) {
 }
 
-void Marina_State45(s32 arg0) {
+void Marina_State45(u16 arg0) {
 }
 
 // State when Marina Teleports in

@@ -4,7 +4,7 @@
 #include "1F1E0.h"
 #include "marina_grab.h"
 #include "marina_hit.h"
-#include "59EA0.h"
+#include "marina_effect.h"
 
 // states when Marina is grabbing/holding/throwing/shake-shaking something
 
@@ -2455,7 +2455,7 @@ void Marina_ShakeShake(u16 actor_index) {
     }
 }
 
-void func_800500B0(u16 actor_index) {
+void Marina_IdleHoldingState(u16 actor_index) {
     u16 index;
     u16 var_a3;
 
@@ -2690,7 +2690,7 @@ void func_800508F4(u16 actor_index) {
     }
 }
 
-void func_800509C0(u16 actor_index) {
+void Marina_GroundDashHoldingState(u16 actor_index) {
     s16 var_a0;
     u16 sp2C;
     s32 sp28;

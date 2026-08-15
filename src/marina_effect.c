@@ -1,5 +1,5 @@
 #include "common.h"
-#include "59EA0.h"
+#include "marina_effect.h"
 
 typedef struct {
     u8 randModulo;

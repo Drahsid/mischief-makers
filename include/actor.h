@@ -101,7 +101,7 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK14 = (1U << 14U),
     ACTOR_FLAG3_UNK15 = (1U << 15U),
     ACTOR_FLAG3_UNK16 = (1U << 16U),
-    ACTOR_FLAG3_SHAKE = (1U << 17U), // being shake-shaken?
+    ACTOR_FLAG3_SHAKE = (1U << 17U), // being shake-shaken
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),

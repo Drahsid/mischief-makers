@@ -482,12 +482,12 @@ void func_80009BE8(s16* arg0) {
             if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_UNK11) {
                 if (gActors[actor_index].flags & ACTOR_FLAG_UNK27) {
                     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-                        delta_x = -(D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E0);
+                        delta_x = -(D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockX);
                     }
                     else {
-                        delta_x = D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E0;
+                        delta_x = D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockX;
                     }
-                    delta_y = D_800C592C[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E4;
+                    delta_y = D_800C592C[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockY;
                     guTranslate(&gActors[actor_index].matrices[gCurrentFramebufferIndex], pos_x + delta_x, pos_y + delta_y, pos_z);
                 }
                 else {
@@ -527,12 +527,12 @@ void func_80009BE8(s16* arg0) {
             case 0x5800:
                 sp41E = ((gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) ? 1 : 0) + (((D_800BE6A4 & 0xFFFF) + gCurrentFramebufferIndex) * 2) + 2;
                 if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-                    delta_x = -(D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E0);
+                    delta_x = -(D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockX);
                 }
                 else {
-                    delta_x = D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E0;
+                    delta_x = D_800C5608[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockX;
                 }
-                delta_y = D_800C592C[gPlayerActor.graphicIndex & 0x7FF] + D_800BE5E4;
+                delta_y = D_800C592C[gPlayerActor.graphicIndex & 0x7FF] + gPlayerShockY;
                 switch (gPlayerActor.graphicFlags & (ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE)) {
                 case 0:
                     sp3EE = delta_x;

@@ -966,7 +966,7 @@ void func_801B2758_7BA608(u16 actor_index) {
 }
 
 s32 func_801B2860_7BA710(u16 actor_index) {
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gActors[0].actorHitIndex)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gPlayerActor.actorHitIndex)) {
         return TRUE;
     }
 

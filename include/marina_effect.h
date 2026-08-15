@@ -1,5 +1,5 @@
-#ifndef FILE_59EA0_H
-#define FILE_59EA0_H
+#ifndef MARINA_EFFECT_H
+#define MARINA_EFFECT_H
 
 #include <PR/ultratypes.h>
 

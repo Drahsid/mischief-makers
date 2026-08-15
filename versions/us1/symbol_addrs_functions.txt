@@ -375,7 +375,7 @@ SpawnText_READY = 0x800472D4; // type:func
 SpawnText_READY_2 = 0x8004732C; // type:func
 SpawnText_FIGHT = 0x8004735C; // type:func
 
-MarinaAnim_State0 = 0x800485AC; // type:func
+MarinaAnim_State0 = 0x80047E30; // type:func
 MarinaAnim_AutoInput = 0x80047E38; // type:func
 MarinaAnim_State3_4 = 0x80047ED4; // type:func
 MarinaAnim_State5_6 = 0x80047F80; // type:func
@@ -418,6 +418,7 @@ Marina_ShakeShake = 0x8004FDF8; // type:func
 Marina_IdleHoldingState = 0x800500b0; // type:func
 Marina_LandHoldingState = 0x8005060c; // type:func
 Marina_WalkHoldingState = 0x8005074C; // type:func
+Marina_GroundDashHoldingState = 0x800509C0; // type:func
 
 Marina_SlideDashHoldingState = 0x80050F3C; // type:func
 

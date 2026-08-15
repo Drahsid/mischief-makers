@@ -102,7 +102,7 @@ tools:
             - marina
             - marina_grab
             - marina_hit
-            - "59EA0"
+            - marina_effect
             - "5D120"
             - "5E230"
             - "dialog"

@@ -331,7 +331,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     gActors[actor_index].colorB = 0xBA;
 
     actor_index = 0x6D;
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -343,7 +343,7 @@ void func_801B1200_7B48E0(u16 arg0) {
     gActors[actor_index].unk_164 = 0x40;
 
     actor_index = 0x6C;
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -517,7 +517,7 @@ void func_801B1980_7B5060(u16 arg0) {
     u16 actor_index = Actor_RangeFindInactive(0x60, 0x70);
 
     if (actor_index != 0) {
-        gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+        gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
         Actor_Initialize(actor_index);
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -953,7 +953,7 @@ void func_801B2628_7B5D08(u16 actor_index) {
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_BROKEN);
             gActors[actor_index].posZ.whole = 8;
-            gActors[0].posY.whole = -0x500;
+            gPlayerActor.posY.whole = -0x500;
             Sound_PlaySfx(SFX_CROUD_CHATTER);
             gActors[actor_index].var_150 = 0x3C;
             // fallthrough
@@ -961,8 +961,8 @@ void func_801B2628_7B5D08(u16 actor_index) {
         case 1:
             if (--gActors[actor_index].var_150 < 0) {
                 func_801B1180_7B4860(actor_index);
-                gActors[0].posX.whole = 0x218 - gScreenPosCurrentX.whole;
-                gActors[0].posY.whole = 0x80;
+                gPlayerActor.posX.whole = 0x218 - gScreenPosCurrentX.whole;
+                gPlayerActor.posY.whole = 0x80;
                 gMarinaAnim.anim_u32 = MARINAANIM_BUTTON;
                 gPlayerData.buttonHold = 0;
                 gPlayerData.buttonPress = 0;

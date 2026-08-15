@@ -3078,9 +3078,9 @@ void func_80093274(u16 actor_index, u16 arg1) {
 void func_8009333C(u16 actor_index) {
     s32 pad;
     func_8003D68C(ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_UNK11, 0, -gActors[actor_index + 6].unk_180, 
-        -0x98, 0x98, 0, FIXED_UNIT(104.0), FIXED_UNIT(18.0), 0, 0, 0);
+        -0x98, 0x98, 0, FIXED_UNIT(104.0), FIXED_UNIT(288.0), 0, 0, 0);
     func_8003D68C(ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_UNK11, gActors[actor_index + 6].unk_180_s16[1], 0, 
-        -0x98, 0x98, 0, FIXED_UNIT(-104.0), FIXED_UNIT(18.0), 0, 0, 0);
+        -0x98, 0x98, 0, FIXED_UNIT(-104.0), FIXED_UNIT(288.0), 0, 0, 0);
 }
 
 s32 func_80093410(u16 actor_index) {

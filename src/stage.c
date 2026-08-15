@@ -2231,7 +2231,7 @@ void func_8001B078(u16 stage, u16* world_out, u16* stage_out, u16* arg3) {
     u16 count;
     u16 index;
 
-    for (index = 0, count = 0; index < 0x16; index++) {
+    for (index = 0, count = 0; index < 22; index++) {
         count += gStageRowCounts[index];
         if (stage < count) {
             break;

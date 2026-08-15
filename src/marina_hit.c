@@ -639,7 +639,7 @@ void MarinaHit_Type15(u16 actor_0, u16 unused_arg1) {
         Marina_DropActor(actor_0, gActors[actor_0].parentIndex);
     }
     func_80058924(actor_0);
-    gActors[actor_0].state = 0;
+    gActors[actor_0].state = MARINASTATE_HIT50;
     gActors[actor_0].var_158 = FIXED_UNIT(32.0/256);
 }
 
