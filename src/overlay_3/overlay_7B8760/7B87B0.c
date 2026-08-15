@@ -777,7 +777,7 @@ void func_801B1E14_7B9CC4(u16 actor_index) {
 }
 
 void func_801B1FC0_7B9E70(u16 actor_index) {
-    gActors[actor_index].var_158 = gScreenPosCurrentX.whole - ((actor_index * 0) - gActors[actor_index].posX.whole);
+    gActors[actor_index].var_158 = gActors[actor_index].posX.whole + gScreenPosCurrentX.parts[0];
 
     switch (gActors[actor_index].state) {
         case 0:
@@ -1102,7 +1102,7 @@ void func_801B2C60_7BAB10(u16 actor_index) {
             break;
 
         case 1:
-            if ((gScreenPosCurrentY.whole < D_801B4550_7BC400[gActors[actor_index].var_0D8]) && (D_801B4558_7BC408[gActors[actor_index].var_0D8] < (gScreenPosCurrentY.whole - ((gActors[actor_index].velocityY.raw * 0) - gActors[actor_index].posY.whole)))) {
+            if ((gScreenPosCurrentY.whole < D_801B4550_7BC400[gActors[actor_index].var_0D8]) && (D_801B4558_7BC408[gActors[actor_index].var_0D8] < (gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0]))) {
                 gActors[actor_index].velocityY.raw = FIXED_UNIT(-1.0);
             }
             else if ((D_801B4550_7BC400[gActors[actor_index].var_0D8] < gScreenPosCurrentY.whole) && ((gActors[actor_index].posY.whole + gScreenPosCurrentY.whole) < D_801B4548_7BC3F8[gActors[actor_index].var_0D8])) {
@@ -1123,7 +1123,7 @@ void func_801B2C60_7BAB10(u16 actor_index) {
             break;
 
         case 2:
-            if ((D_801B4548_7BC3F8[gActors[actor_index].var_0D8] - 4) < (gScreenPosCurrentY.whole - ((gActors[actor_index].velocityY.raw * 0) - gActors[actor_index].posY.whole))) {
+            if ((D_801B4548_7BC3F8[gActors[actor_index].var_0D8] - 4) < (gActors[actor_index].posY.whole + gScreenPosCurrentY.parts[0])) {
                 gActors[actor_index].velocityY.raw = 0;
                 gActors[actor_index].state = 4;
             }
@@ -1292,14 +1292,14 @@ void func_801B349C_7BB34C(u16 actor_index) {
 
         case 0x200:
             gActors[actor_index].flags &= ~ACTOR_FLAG_DRAW;
-            gActors[actor_index].var_160 = gActors[actor_index - 1].posX.whole + (0, gScreenPosCurrentX.whole);
-            gActors[actor_index].unk_164 = gActors[actor_index - 1].posY.whole + (0, gScreenPosCurrentY.whole);
+            gActors[actor_index].var_160 = gActors[actor_index - 1].posX.whole + gScreenPosCurrentX.parts[0];
+            gActors[actor_index].unk_164 = gActors[actor_index - 1].posY.whole + gScreenPosCurrentY.parts[0];
             gActors[actor_index].state++;
             // fallthrough
 
         case 0x201:
-            position_x = gActors[actor_index - 1].posX.whole + (0, gScreenPosCurrentX.whole);
-            position_y = gActors[actor_index - 1].posY.whole + (0, gScreenPosCurrentY.whole);
+            position_x = gActors[actor_index - 1].posX.whole + gScreenPosCurrentX.parts[0];
+            position_y = gActors[actor_index - 1].posY.whole + gScreenPosCurrentY.parts[0];
             if ((position_x < (gActors[actor_index].var_160 - 0x10)) ||
                 ((gActors[actor_index].var_160 + 0x10) < position_x) ||
                 (position_y < (gActors[actor_index].unk_164 - 0x10)) ||
@@ -1318,10 +1318,10 @@ void func_801B349C_7BB34C(u16 actor_index) {
         case 0x301:
             if (gActors[actor_index - 1].state != 0x232) {
                 if (gActors[actor_index - 1].flags & ACTOR_FLAG_FLIPPED) {
-                    gActors[actor_index].unk_170 = gActors[actor_index - 1].posX.whole + (0, gScreenPosCurrentX.whole) + 0x10;
+                    gActors[actor_index].unk_170 = gActors[actor_index - 1].posX.whole + gScreenPosCurrentX.parts[0] + 0x10;
                 }
                 else {
-                    gActors[actor_index].unk_170 = gActors[actor_index - 1].posX.whole + (0, gScreenPosCurrentX.whole) - 0x10;
+                    gActors[actor_index].unk_170 = gActors[actor_index - 1].posX.whole + gScreenPosCurrentX.parts[0] - 0x10;
                 }
 
                 if ((gActors[actor_index].posX.whole + gScreenPosCurrentX.whole + 0x10) < gActors[actor_index].unk_170) {
@@ -1330,7 +1330,7 @@ void func_801B349C_7BB34C(u16 actor_index) {
                 else if (gActors[actor_index].unk_170 < (gActors[actor_index].posX.whole + gScreenPosCurrentX.whole - 0x10)) {
                     gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
                 }
-                gActors[actor_index].unk_174 = gActors[actor_index - 1].posY.whole + (0, gScreenPosCurrentY.whole) + 0x30;
+                gActors[actor_index].unk_174 = gActors[actor_index - 1].posY.whole + gScreenPosCurrentY.parts[0] + 0x30;
             }
             func_801B338C_7BB23C(actor_index);
             break;
@@ -1520,8 +1520,8 @@ void func_801B3F8C_7BBE3C(u16 actor_index) {
         case 0:
             gActors[actor_slot].state = 0x110;
             gActors[actor_slot].unk_168 = 8000;
-            gActors[actor_slot + 10].unk_180 = gActors[actor_slot].posX.whole + (0, gScreenPosCurrentX.whole);
-            gActors[actor_slot + 11].unk_180 = gActors[actor_slot].posY.whole + (0, gScreenPosCurrentY.whole);
+            gActors[actor_slot + 10].unk_180 = gActors[actor_slot].posX.whole + gScreenPosCurrentX.parts[0];
+            gActors[actor_slot + 11].unk_180 = gActors[actor_slot].posY.whole + gScreenPosCurrentY.parts[0];
             break;
 
         case 0x111:

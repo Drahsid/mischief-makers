@@ -1237,7 +1237,7 @@ void func_80068FBC(u16 actor_index, u16 actor_state_1, u16 actor_state_2) {
     case 0x81:
     case 0x83:
         gActors[actor_index].state = actor_state_2;
-        break;;
+        break;
     case 0x82:
     case 0x84:
         gActors[actor_index].state = actor_state_1;
@@ -2107,7 +2107,6 @@ u16 func_8006BD08(u16 actor_index) {
         gActors[free_actor].posY.whole = gActors[actor_index].posY.whole;
         gActors[free_actor].posZ.whole = gActors[actor_index].posZ.whole - 1;
         gActors[actor_index].pfn_158(actor_index, free_actor);
-        if (1) {} // fakematch
         gActors[actor_index].unk_11C = free_actor;
         gActors[actor_index].unk_120 = gActors[free_actor].actorType;
         gActors[actor_index].var_158 = gActors[free_actor].velocityX.raw * gActors[actor_index].scaleX;

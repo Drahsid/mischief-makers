@@ -749,7 +749,7 @@ void func_801B224C_7C246C(u16 actor_index) {
         switch (gActors[actor_index].unk_174) {
         case 0:
             gActors[actor_index].unk_174++;
-            gActors[actor_index].unk_184_s16[0] = gScreenPosCurrentX.whole + (gActors + 0)->posX.whole;
+            gActors[actor_index].unk_184_s16[0] = gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0];
             func_800734C4(actor_index, 0x28);
             gActors[actor_index].unk_170 = Rand() & 7;
             break;
@@ -2266,7 +2266,6 @@ void func_801B616C_7C638C(u16 arg0) {
         // fakematch
         if ((gActors[arg0].posZ.whole + arg0) && (gActors[arg0].posZ.whole + arg0)) {
         }
-        //
 
         gActors[arg0].posX.whole = D_801B66BC_7C68DC[gActors[arg0].var_0D8].positionX;
         gActors[arg0].posY.whole = D_801B66BC_7C68DC[gActors[arg0].var_0D8].positionY;

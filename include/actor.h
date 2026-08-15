@@ -185,6 +185,7 @@ typedef enum {
     ACTOR0DF_7 = (1U << 7U) // used by "Big beam" and Raiden's thunder attacks?
 } Actor0DFFlags;
 
+#define ACTOR_POSITION_HISTORY_COUNT 8
 
 typedef struct {
     /* 0x000 */ Mtx matrices[2]; // see A540: `actor + (gCurrentFramebufferIndex << 6)` before guTranslate/guScale/guRotate
@@ -331,6 +332,7 @@ typedef struct {
                 /* 0x150 */ s32 var_150;
                 /* 0x150 */ s16 var_150_s16[2];
                 /* 0x150 */ s16* var_150_s16_ptr;
+                /* 0x150 */ FixedCoord unk_150; // TODO: array?
             };
             /* 0x154 */ s32 var_154;
             union {
@@ -360,47 +362,51 @@ typedef struct {
                 /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
             };
             union {
-                /* 0x170 */ s32 unk_170;
-                /* 0x170 */ s16 unk_170_s16[2];
-                /* 0x170 */ u16 unk_170_u16[2];
-                /* 0x170 */ s8 unk_170_s8[4];
-            };
-            union {
-                /* 0x174 */ s32 unk_174;
-                /* 0x174 */ s16 unk_174_s16[2];
-                /* 0x174 */ u16 unk_174_u16[2];
-                /* 0x174 */ s32 unk_174_array[1]; // possibly redundant with unk_174
-            };
-            union {
-                /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
-                /* 0x178 */ u16 unk_178_u16[2];
-            };
-            union {
-                /* 0x17C */ s32 unk_17C;
-                /* 0x17C */ s16 unk_17C_s16[2];
-                /* 0x17C */ s8 unk_17C_s8[4];
-                /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
-                /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
-                /* 0x17C */ u8* texture_17C;
-            };
-            union {
-                /* 0x180 */ s32 unk_180;
-                /* 0x180 */ s16 unk_180_s16[2];
-                /* 0x180 */ u8 unk_180_u8[4];
-                /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
-                /* 0x180 */ u16* palette_180;
-            };
-            union {
-                /* 0x184 */ s32 unk_184;
-                /* 0x184 */ s16 unk_184_s16[2];
-            };
-            union {
-                /* 0x188 */ s32 unk_188;
-                /* 0x188 */ s16 unk_188_s16;
-            };
-            union {
-                /* 0x18C */ s32 unk_18C; // field sometimes treated as int
-                /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
+                /* 0x170 */ s32 positionHistory[ACTOR_POSITION_HISTORY_COUNT]; // see: func_800423A0; TODO: find more uses
+                struct {
+                    union {
+                        /* 0x170 */ s32 unk_170;
+                        /* 0x170 */ s16 unk_170_s16[2];
+                        /* 0x170 */ u16 unk_170_u16[2];
+                        /* 0x170 */ s8 unk_170_s8[4];
+                    };
+                    union {
+                        /* 0x174 */ s32 unk_174;
+                        /* 0x174 */ s16 unk_174_s16[2];
+                        /* 0x174 */ u16 unk_174_u16[2];
+                    };
+                    union {
+                        /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+                        /* 0x178 */ u16 unk_178_u16[2];
+                    };
+                    union {
+                        /* 0x17C */ s32 unk_17C;
+                        /* 0x17C */ s16 unk_17C_s16[2];
+                        /* 0x17C */ s8 unk_17C_s8[4];
+                        /* 0x17C */ ActorFunc pfn_17C; // used by "particle" actors
+                        /* 0x17C */ Gfx* dlist_17C; // when ACTOR_GFLAG_3DOBJ is set in graphicFlags, field is treated as dlist pointer
+                        /* 0x17C */ u8* texture_17C;
+                    };
+                    union {
+                        /* 0x180 */ s32 unk_180;
+                        /* 0x180 */ s16 unk_180_s16[2];
+                        /* 0x180 */ u8 unk_180_u8[4];
+                        /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
+                        /* 0x180 */ u16* palette_180;
+                    };
+                    union {
+                        /* 0x184 */ s32 unk_184;
+                        /* 0x184 */ s16 unk_184_s16[2];
+                    };
+                    union {
+                        /* 0x188 */ s32 unk_188;
+                        /* 0x188 */ s16 unk_188_s16;
+                    };
+                    union {
+                        /* 0x18C */ s32 unk_18C; // field sometimes treated as int
+                        /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
+                    };
+                };
             };
             union {
                 /* 0x190 */ s32 unk_190;

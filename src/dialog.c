@@ -154,11 +154,6 @@ void AnimateSpeechBubble(u16 actor_index, f32 arg1) {
     gActors[actor_index].scaleY = arg1 + (temp_f0 * SIN(gActiveFrames * 0x20));
 }
 
-typedef struct {
-    s16 unk0;
-    s16 unk2;
-} UnkActor_150; // TODO: could be FixedCoord if `s16 frac;`
-
 void func_8005E260(u16 actor_index) {
     s16 index;
     u16 actor_1;
@@ -208,10 +203,10 @@ void func_8005E260(u16 actor_index) {
         break;
     case 2:
         index = 0;
-        func_8005DFC8(((UnkActor_150*)(&gActors[actor_index].var_150))[index].unk2);
+        func_8005DFC8((&gActors[actor_index].unk_150)[index].frac);
         index++;
         while (index < 0x10) {
-            func_8005DF5C(((UnkActor_150*)(&gActors[actor_index].var_150))[index].unk2);
+            func_8005DF5C((&gActors[actor_index].unk_150)[index].frac);
             index++;
         }
         gActors[actor_index].state = 3;
@@ -293,10 +288,10 @@ void func_8005E56C(u16 actor_index) {
         break;
     case 2:
         index = 0;
-        func_8005DFC8(((UnkActor_150*)(&gActors[actor_index].var_150))[index].unk2);
+        func_8005DFC8((&gActors[actor_index].unk_150)[index].frac);
         index++;
         while (index < 0x10) {
-            func_8005DF5C(((UnkActor_150*)(&gActors[actor_index].var_150))[index].unk2);
+            func_8005DF5C((&gActors[actor_index].unk_150)[index].frac);
             index++;
         }
         D_800D5820 = actor_1;

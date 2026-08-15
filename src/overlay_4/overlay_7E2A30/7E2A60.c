@@ -790,15 +790,15 @@ void func_801B9E74_7E2FD4(void) {
         case 6:
             switch (gStageTimer) {
                 case 0:
-                    if (((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x940) &&
-                        ((gScreenPosCurrentX.whole + (gActors + 0x40)->posX.whole) >= 0x940)) {
+                    if (((gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0]) >= 0x940) &&
+                        ((gActors[0x40].posX.whole + gScreenPosCurrentX.parts[0]) >= 0x940)) {
                         gStageTimer++;
                     }
                     break;
 
                 case 1:
-                    if (((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x1430) &&
-                        ((gScreenPosCurrentX.whole + (gActors + 0x40)->posX.whole) >= 0x1430)) {
+                    if (((gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0]) >= 0x1430) &&
+                        ((gActors[0x40].posX.whole + gScreenPosCurrentX.parts[0]) >= 0x1430)) {
                         gStageTimer++;
                     }
                     break;
@@ -809,10 +809,10 @@ void func_801B9E74_7E2FD4(void) {
 
             func_801B9D78_7E2ED8();
 
-            if ((gScreenPosCurrentX.whole + (gActors + 0)->posX.whole) >= 0x2070) {
+            if ((gPlayerActor.posX.whole + gScreenPosCurrentX.parts[0]) >= 0x2070) {
                 gPlayerActor.flags_098 |= ACTOR_FLAG3_UNK16;
 
-                if ((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) < 0x1FD8) {
+                if ((gActors[0x41].posX.whole + gScreenPosCurrentX.parts[0]) < 0x1FD8) {
                     gActors[0x40].flags = 0;
                     gActors[0x41].flags = 0;
                 }
@@ -824,8 +824,8 @@ void func_801B9E74_7E2FD4(void) {
                 gScreenBoundX0.whole = D_800D2920;
                 D_800D28F8 = 4;
 
-                if (((gScreenPosCurrentX.whole + (gActors + 0x41)->posX.whole) >= 0x2000) &&
-                    ((gScreenPosCurrentY.whole + (gActors + 0x41)->posY.whole) >= 0x140) &&
+                if (((gActors[0x41].posX.whole + gScreenPosCurrentX.parts[0]) >= 0x2000) &&
+                    ((gActors[0x41].posY.whole + gScreenPosCurrentY.parts[0]) >= 0x140) &&
                     (gActors[0x40].flags & 2)) {
                     gStageState = 7;
                 }
@@ -891,7 +891,7 @@ void func_801B9E74_7E2FD4(void) {
     Camera_UpdateViewBounds();
 
     if (gActors[0x40].flags & 2) {
-        if ((gScreenPosCurrentY.whole + (gActors + 0x40)->posY.whole) < 0x81) {
+        if ((gActors[0x40].posY.whole + gScreenPosCurrentY.parts[0]) < 0x81) {
             gActors[0x40].flags = 0;
             gActors[0x41].flags = 0;
         }

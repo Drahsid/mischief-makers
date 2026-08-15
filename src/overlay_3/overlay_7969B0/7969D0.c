@@ -710,9 +710,9 @@ void func_801B21C8_798298(u16 actor_index) {
             gActors[actor_index].hitboxBX1 = 0x10;
             gActors[actor_index].graphicList = D_800E24EC;
             gActors[actor_index].graphicTimer = 1;
-            gActors[actor_index].posZ.whole = -8;\
+            gActors[actor_index].posZ.whole = -8;
             gActors[actor_index].var_158 = gScreenPosCurrentX.whole;
-            gActors[actor_index].var_158 += gActors[actor_index].posX.whole;\
+            gActors[actor_index].var_158 += gActors[actor_index].posX.whole;
             gActors[actor_index].var_15C = gScreenPosCurrentY.whole;
             gActors[actor_index].var_15C += gActors[actor_index].posY.whole;
             gActors[actor_index].state++;

@@ -480,12 +480,12 @@ void ActorUpdate_SpiralClouds(u16 actor_index) {
 }
 
 void func_80062300(u16 actor_index) {
-    gActors[actor_index].posX.raw = (((gActors[actor_index].posX.raw + gScreenPosCurrentX.raw) & 0xFFF00000) - gScreenPosCurrentX.raw) + FIXED_UNIT(8.0);
+    gActors[actor_index].posX.raw = (((gActors[actor_index].posX.raw + gScreenPosCurrentX.raw) & ~(FIXED_UNIT(16.0) - 1)) - gScreenPosCurrentX.raw) + FIXED_UNIT(8.0);
     gActors[actor_index].velocityX.raw = 0;
 }
 
 void func_80062360(u16 actor_index) {
-    gActors[actor_index].posY.raw = (((gActors[actor_index].posY.raw + gScreenPosCurrentY.raw) & 0xFFF00000) - gScreenPosCurrentY.raw) + FIXED_UNIT(8.0);
+    gActors[actor_index].posY.raw = (((gActors[actor_index].posY.raw + gScreenPosCurrentY.raw) & ~(FIXED_UNIT(16.0) - 1)) - gScreenPosCurrentY.raw) + FIXED_UNIT(8.0);
     gActors[actor_index].velocityY.raw = 0;
 }
 

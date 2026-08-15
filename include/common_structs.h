@@ -8,15 +8,19 @@
 // game uses Q16.16 fixed-point numbers for position and velocity values.
 typedef union {
     /* 0x00 */ s32 raw;
+    /* 0x00 */ s16 parts[2]; // 0 = whole, 1 = frac
     struct {
     /* 0x00 */ s16 whole;
     /* 0x02 */ s16 frac;
     };
 } FixedCoord;
 
-typedef struct {
-    /* 0x00 */ u16 positionX;
-    /* 0x02 */ u16 positionY;
+typedef union {
+    struct {
+        /* 0x00 */ u16 positionX;
+        /* 0x02 */ u16 positionY;
+    };
+    /* 0x00 */ s32 raw;
 } Position_U16; /* sizeof = 0x04 */
 
 typedef struct {
