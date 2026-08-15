@@ -4,6 +4,8 @@
 // Sound Effect Id's. Different from Sound test numbers, as it uses a lookup table
 
 #define SFX_MARINA_TITLE    0x0021 // "Mischief Makers!"
+#define SFX_SEQUENCE_ID_FIRST SFX_MARINA_TITLE
+#define SFX_SEQUENCE_ID_BEFORE_FIRST (SFX_SEQUENCE_ID_FIRST - 1)
 #define SFX_MARINA_YELL1    0x00B4 // "Hah!"
 #define SFX_MARINA_YELL2    0x00CB // "Yah!"
 #define SFX_MARINA_YELL3    0x00CA // "Yaah!"

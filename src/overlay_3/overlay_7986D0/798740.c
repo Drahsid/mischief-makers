@@ -1,10 +1,13 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
 
 #include <PR/gbi.h>
 
 #include "common.h"
+#include "1F1E0.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "74A50.h"
 
 // "Overlay 3" code for World 2
 

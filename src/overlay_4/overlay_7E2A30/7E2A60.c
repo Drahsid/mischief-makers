@@ -1,6 +1,9 @@
+// BUG: incorrect prototype!
+#define Clanpot_InitItems_ARGS u16 actor_index, u16* vals
 #include "common.h"
 #include "actor.h"
 #include "28EF0.h"
+#include "dialog.h"
 
 // "overlay 4" code for "Tarus", "Aster's Tryke", "Sasquatch Beta", "Moley Cow",
 //  "Aster's Maze", "Ghost Catcher", and  several unused scenes.
@@ -10,10 +13,6 @@ extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern u16 gStartButtonOnly;
 extern u32 D_800D28FC;
-extern s16 D_801BD8C2_7E6A22;
-
-extern void Clanpot_InitItems(u16 actor_index, u16* vals); // BUG: incorrect prototype!
-extern s16 func_8005DEFC(void);
 
 void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2);
 
@@ -574,6 +573,7 @@ u16 D_801BD630_7E6790[] = {
 };
 
 u16 D_801BD8C0_7E6A20;
+s16 D_801BD8C2_7E6A22;
 
 
 void func_801B9900_7E2A60(u16 arg0, u16 arg1, u16 arg2, u16 arg3) {

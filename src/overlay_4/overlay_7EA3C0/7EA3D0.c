@@ -3,8 +3,6 @@
 
 // "overlay 4" code for Title Screen and "Final Battle"
 
-extern u8 D_8010692C;
-
 u16 D_801B9BC0_7EA690[] = {
 //  GlobalX GlobalY D_800D2920 D_800D2924 D_800D2918 D_800D291C PlayerX PlayerY
     0x0580, 0x0198, 0xFFF0,    0x2090,    0x0208,    0x0128,    0x0000, 0xFFEB
@@ -40,7 +38,7 @@ void func_801B9900_7EA3D0(void) {
     switch (gStageState) {
         case 0:
             D_800D28FC |= 4;
-            D_8010692C = 0x40;
+            gLifebar.alpha = 0x40;
             D_800BE544 = 0x8000;
             if (gSkipStageIntro) {
                 gStageState = 0x2000;

@@ -26,14 +26,22 @@ void func_8006BB8C(u16 actor_0, u16 actor_1);
 void func_8006CB88(u16 actor_index);
 u16 func_8006CC70(u16 actor_index);
 void func_8006CD5C(u16 actor_index);
+void func_8006CF20(u16 actor_index);
+void func_8006D0EC(u16 actor_index);
+
+// BUG: incorrect prototype! implementation uses DEFAULT_INT return
+void Clancer_Update(u16 actor_index);
+
+void ActorUpdate_Type2(u16 actor_index);
 u16 func_80073320(u16 actor_index);
 u16 func_800734C4(u16 actor_index, u16 arg1);
 u16 func_80073558(u16 actor_index, u16 arg1);
 u16 func_800735EC(u16 actor_index, u16 arg1);
 void func_80073680(u16* arg0, u16 actor_index, u16 arg2);
 void func_80073744(u16 actor_index);
-
-// Clancer_Update protoype differs from implementation
-void Clancer_Update(u16 actor_index);
+void func_800737C4(u16 actor_index);
+void func_80073970(u16 actor_index);
+void func_80073A60(u16 actor_index);
+void func_80073CE8(u16 actor_index);
 
 #endif

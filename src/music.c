@@ -1,8 +1,11 @@
 #include "common.h"
 #include "actor.h"
+#include "assert.h"
 #include "music.h"
-#include "globalData.h"
+#include "game_globals.h"
 #include "linker.h"
+
+// Derived from playseq.c
 
 #define AUDIO_DMA_QUEUE_SIZE              0x30
 #define AUDIO_DMA_BUFFER_COUNT            64
@@ -23,6 +26,7 @@
 #define AUDIO_SEQ_CHANNEL_COUNT           0x14
 #define AUDIO_FRAME_SAMPLE_PADDING        0x60
 #define AUDIO_SAMPLE_ENV_SCALE            10000
+#define AUDIO_SEQUENCE_UNK_01_SHIFT  12
 #define MUSIC_SEQUENCE_PATCH_MUTE_RUN     0xFF
 
 #define SFX_SAMPLE_PARAM_SIZE             8
@@ -35,7 +39,7 @@
 #define SFX_SAMPLE_PARAM_DECAY_VOLUME     6
 #define SFX_SAMPLE_PARAM_RELEASE_TIME     7
 
-#define SFX_SOUND_IDS gSfxSoundIds.soundIds
+#define SFX_SOUND_IDS gSfxSoundIds
 #define AUDIO_BUFFER_SAMPLE_COUNTS gAudioBufferSampleCounts.counts
 
 // Matches the ordered sequence DMA cache from the SDK PLAYSEQ demo.
@@ -44,194 +48,188 @@ typedef struct {
     /* 0x08 */ s32 startAddr;
     /* 0x0C */ u32 lastFrame;
     /* 0x10 */ u8* ptr;
-} DMABuffer; /* size = 0x14 */
+} DMABuffer; /* sizeof = 0x14 */
 
 // Matches the ordered sequence DMA cache from the SDK PLAYSEQ demo.
 typedef struct {
     /* 0x00 */ u8 initialized;
     /* 0x04 */ DMABuffer* firstUsed;
     /* 0x08 */ DMABuffer* firstFree;
-} DMAState; /* size = 0x0C */
+} DMAState; /* sizeof = 0x0C */
 
-
-extern u8 D_800EF4D0; // folded addr required for fakematching
-extern u16 gAudioFadeMode;
-extern u8 gAudioHeapBuffer[];
-
-extern u8 gAudioInitialized;
-extern u32 gAudioFrameCounter;
-extern u16 gAudioFadeDuration;
-extern u16 gAudioFadeCounter;
-extern s16 gMusicFadeVolume;
-extern s16 gSfxFadeVolumes[];
-
-extern u8 D_800C2927[];
 extern u8 D_800C2968[];
-extern s16 gPauseMusicVolume;
-extern s32 D_80137794;
 
-extern MusicSequenceParams gMusicSequenceParams[];
-extern u8* gMusicSequenceSamplePatchLists[];
-extern SfxSoundTables gSfxSoundIds;
-extern u8 gSfxBankIds[];
-extern u8 gSfxSampleParams[];
-extern u16 D_800C2B74[];
-extern u16 D_800C2BB4[];
-extern s32 gAudioSamplesLeft;
-extern s32 gAudioNextDma;
-extern s32 gAudioListIndex;
-extern s32 gAudioBufferCounter;
-extern AudioBufferSampleCounts gAudioBufferSampleCounts;
-extern s32 gAudioCustomFxParams[];
-
-extern OSMesgQueue gAudioDmaMessageQueue;
-extern OSMesgQueue gAudioTaskMessageQueue;
-extern OSMesgQueue gAudioSeqDmaMessageQueue;
-extern OSMesg gAudioDmaMessageBuf[];
-extern OSMesg gAudioTaskMessage;
-extern OSMesg gAudioSeqDmaMessage;
-extern OSIoMesg gAudioDmaIoMesg;
-extern OSIoMesg gAudioDmaIoMesgBuf[];
-extern OSIoMesg gAudioSeqDmaIoMesg;
-extern OSTask* gAudioTask;
-extern OSTask* gAudioTaskLists[];
-extern Acmd* gAudioCommandLists[];
-extern Acmd* gAudioCmdListPtr;
-extern s32 gAudioCmdCount;
-extern ALHeap gAudioHeap;
-extern s32* gAudioBuffers[];
-extern ALGlobals gAudioGlobals;
-extern ALSynConfig gAudioSynthConfig;
-extern ALBankFile* gAudioBankFile;
-extern ALSeqpConfig gSeqPlayerConfig;
-extern ALBank* gMusicBank;
-extern ALBank* gAudioBank1;
-extern ALBank* gAudioBank2;
-extern ALBank* gAudioBank3;
-extern ALSeqFile* gSeqFile;
-extern ALCSPlayer* gMainSeqPlayer;
-extern ALCSPlayer gMainSeqPlayerStorage;
-extern ALCSPlayer gSfxSeqPlayerStorage[];
-extern ALCSPlayer* gSfxSeqPlayers[];
-extern ALCSeq gMainSequenceStorage;
-extern ALCSeq* gMainSequence;
-extern ALCSeq gSfxSequenceStorage[];
-extern ALCSeq* gSfxSequences[];
-extern void* gMainSeqBuffer;
-extern void* gSfxSeqBuffers[];
-extern ALInstrument* gSfxInstrument;
-extern ALSound* gSfxSound;
-extern ALEnvelope* gSfxEnvelope;
-extern ALKeyMap* gSfxKeyMap;
-
-extern DMAState gAudioDmaState;
-extern DMABuffer gAudioDmaBuffers[];
-extern s32 gAudioDmaLength;
-extern s32 gAudioBufferIndex;
-extern f32 gAudioFrameSizeFloat;
-extern s32 gAudioFrameSize;
-extern s32 gAudioMinFrameSize;
-extern s16* gAudioOutputBufferPhysical;
-
-extern void __assert(const char* expression, const char* file, s32 line);
+// .bss
+u8 D_801377A0[0x18];
+OSMesgQueue gAudioDmaMessageQueue;
+OSMesgQueue gAudioTaskMessageQueue;
+u8 D_801377E8[0x18];
+OSMesg gAudioDmaMessageBuf[AUDIO_DMA_QUEUE_SIZE];
+OSMesg gAudioTaskMessage;
+u8 D_801378C4[4];
+OSIoMesg gAudioDmaIoMesg;
+OSIoMesg gAudioDmaIoMesgBuf[AUDIO_DMA_QUEUE_SIZE];
+OSTask* gAudioTaskLists[2];
+Acmd* gAudioCommandLists[2];
+s32* gAudioBuffers[4];
+ALHeap gAudioHeap;
+u16 gAudioFadeMode;
+u16 gAudioFadeDuration;
+u16 gAudioFadeCounter;
+s16 gMusicFadeVolume;
+s16 gSfxFadeVolumes[4];
+u32 gAudioUpdateCounter;
+u8 D_80137DA4[4];
+u8 gAudioHeapBuffer[AUDIO_HEAP_SIZE];
+DMAState gAudioDmaState;
+u8 D_8016D9B4[4];
+DMABuffer gAudioDmaBuffers[AUDIO_DMA_BUFFER_COUNT];
+u32 gAudioFrameCounter;
+u8 D_8016DEBC[4];
+ALGlobals gAudioGlobals;
+ALSynConfig gAudioSynthConfig;
+ALBankFile* gAudioBankFile;
+ALBank* gMusicBank;
+ALBank* gAudioBank1;
+ALBank* gAudioBank2;
+ALBank* gAudioBank3;
+ALSeqpConfig gSeqPlayerConfig;
+ALCSPlayer gMainSeqPlayerStorage;
+ALCSPlayer* gMainSeqPlayer;
+ALCSPlayer gSfxSeqPlayerStorage[AUDIO_PLAYER_COUNT];
+ALCSPlayer* gSfxSeqPlayers[AUDIO_PLAYER_COUNT];
+ALCSeq gMainSequenceStorage;
+ALCSeq* gMainSequence;
+u8 D_8016E2E4[4];
+ALCSeq gSfxSequenceStorage[AUDIO_PLAYER_COUNT];
+ALCSeq* gSfxSequences[AUDIO_PLAYER_COUNT];
+void* gMainSeqBuffer;
+u8 D_8016E6DC[4];
+void* gSfxSeqBuffers[AUDIO_PLAYER_COUNT];
+OSTask* gAudioTask;
+ALSeqFile* gSeqFile;
+ALInstrument* gSfxInstrument;
+ALSound* gSfxSound;
+ALEnvelope* gSfxEnvelope;
+ALKeyMap* gSfxKeyMap;
+Acmd* gAudioCmdListPtr;
+f32 gAudioFrameSizeFloat;
+s32 gAudioCmdCount;
+s32 gAudioDmaLength;
+s32 gAudioBufferIndex;
+s32 gAudioFrameSize;
+s32 gAudioMinFrameSize;
+s16* gAudioOutputBufferPhysical;
+OSMesgQueue gAudioSeqDmaMessageQueue;
+OSMesg gAudioSeqDmaMessage;
+u8 D_8016E744[4];
+OSIoMesg gAudioSeqDmaIoMesg;
+u8 D_8016E760[0xC0];
 
 // rodata
-const char D_800EAC30[] = "SVOICE1L";
-const char D_800EAC3C[] = "SVOICE1M";
-const char D_800EAC48[] = "SVOICE1H";
-const char D_800EAC54[] = "SLAPBASS";
-const char D_800EAC60[] = "FX1";
-const char D_800EAC64[] = "STL";
-const char D_800EAC68[] = "STM";
-const char D_800EAC6C[] = "STH";
-const char D_800EAC70[] = "STHM";
-const char D_800EAC78[] = "STSH";
-const char D_800EAC80[] = "SVOICE2M";
-const char D_800EAC8C[] = "SVOICE2H";
-const char D_800EAC98[] = "SVOICE2SH";
-const char D_800EACA4[] = "SBRASSL";
-const char D_800EACAC[] = "SBRASSM";
-const char D_800EACB4[] = "SBRASSH";
-const char D_800EACBC[] = "FVOICEL";
-const char D_800EACC4[] = "FVOICEM";
-const char D_800EACCC[] = "FVOICEH";
-const char D_800EACD4[] = "BELLM";
-const char D_800EACDC[] = "BELLH";
-const char D_800EACE4[] = "HITL";
-const char D_800EACEC[] = "HITM";
-const char D_800EACF4[] = "HITH";
-const char D_800EACFC[] = "CHORUS1";
-const char D_800EAD04[] = "CHORUS2";
-const char D_800EAD0C[] = "CHORUS2H";
-const char D_800EAD18[] = "PIZZL";
-const char D_800EAD20[] = "PIZZM";
-const char D_800EAD28[] = "PIZZH";
-const char D_800EAD30[] = "TIMPL";
-const char D_800EAD38[] = "TIMPH";
-const char D_800EAD40[] = "DOORSLAM";
-const char D_800EAD4C[] = "VOX.SE1";
-const char D_800EAD54[] = "VOX1";
-const char D_800EAD5C[] = "LOOP1";
-const char D_800EAD64[] = "DGL";
-const char D_800EAD68[] = "DGTM";
-const char D_800EAD70[] = "SD1";
-const char D_800EAD74[] = "LOOP2";
-const char D_800EAD7C[] = "SINE";
-const char D_800EAD84[] = "CLAPSD";
-const char D_800EAD8C[] = "HCLAP";
-const char D_800EAD94[] = "RS";
-const char D_800EAD98[] = "GTR";
-const char D_800EAD9C[] = "EMA";
-const char D_800EADA0[] = "WIN";
-const char D_800EADA4[] = "DYNA";
-const char D_800EADAC[] = "HARPL";
-const char D_800EADB4[] = "HARPM";
-const char D_800EADBC[] = "HARPH";
-const char D_800EADC4[] = "HARPHM";
-const char D_800EADCC[] = "HARPSSH";
-const char D_800EADD4[] = "DISL";
-const char D_800EADDC[] = "DGTM";
-const char D_800EADE4[] = "DGTH";
-const char D_800EADEC[] = "HORNL";
-const char D_800EADF4[] = "HORNM";
-const char D_800EADFC[] = "HORNH";
-const char D_800EAE04[] = "BASSSE";
-const char D_800EAE0C[] = "OLG";
-const char D_800EAE10[] = "VOICE";
-const char D_800EAE18[] = "UH";
-const char D_800EAE1C[] = "HITL";
-const char D_800EAE24[] = "HITM";
-const char D_800EAE2C[] = "HITH";
-const char D_800EAE34[] = "BRS";
-const char D_800EAE38[] = "AIRL";
-const char D_800EAE40[] = "AIRH";
-const char D_800EAE48[] = "BS";
-const char D_800EAE4C[] = "SD1";
-const char D_800EAE50[] = "CLAOSD";
-const char D_800EAE58[] = "HCLAP";
-const char D_800EAE60[] = "SE2";
-const char D_800EAE64[] = "LTOM";
-const char D_800EAE6C[] = "HH1";
-const char D_800EAE70[] = "MTOM";
-const char D_800EAE78[] = "HH3";
-const char D_800EAE7C[] = "STOM1";
-const char D_800EAE84[] = "HH2";
-const char D_800EAE88[] = "STOM1";
-const char D_800EAE90[] = "HTOM";
-const char D_800EAE98[] = "CYM1";
-const char D_800EAEA0[] = "TAMBARINE";
-const char D_800EAEAC[] = "CLAP";
-const char D_800EAEB4[] = "BDD";
-const char D_800EAEB8[] = "RIDE";
-const char D_800EAEC0[] = "CYM2";
-const char D_800EAEC8[] = "LBOTTLE";
-const char D_800EAED0[] = "AIRCOMP";
-const char D_800EAED8[] = "SAW";
-const char D_800EAEDC[] = "BROCKEN";
-const char D_800EAEE4[] = "TBO";
-const char D_800EAEE8[] = "BCMB";
-const char D_800EAEF0[] = "DOORSLAM";
+const char sInstDebugName_SVOICE1L[] = "SVOICE1L";
+const char sInstDebugName_SVOICE1M[] = "SVOICE1M";
+const char sInstDebugName_SVOICE1H[] = "SVOICE1H";
+const char sInstDebugName_SLAPBASS[] = "SLAPBASS";
+const char sInstDebugName_FX1[] = "FX1";
+const char sInstDebugName_STL[] = "STL";
+const char sInstDebugName_STM[] = "STM";
+const char sInstDebugName_STH[] = "STH";
+const char sInstDebugName_STHM[] = "STHM";
+const char sInstDebugName_STSH[] = "STSH";
+const char sInstDebugName_SVOICE2M[] = "SVOICE2M";
+const char sInstDebugName_SVOICE2H[] = "SVOICE2H";
+const char sInstDebugName_SVOICE2SH[] = "SVOICE2SH";
+const char sInstDebugName_SBRASSL[] = "SBRASSL";
+const char sInstDebugName_SBRASSM[] = "SBRASSM";
+const char sInstDebugName_SBRASSH[] = "SBRASSH";
+const char sInstDebugName_FVOICEL[] = "FVOICEL";
+const char sInstDebugName_FVOICEM[] = "FVOICEM";
+const char sInstDebugName_FVOICEH[] = "FVOICEH";
+const char sInstDebugName_BELLM[] = "BELLM";
+const char sInstDebugName_BELLH[] = "BELLH";
+const char sInstDebugName_HITL[] = "HITL";
+const char sInstDebugName_HITM[] = "HITM";
+const char sInstDebugName_HITH[] = "HITH";
+const char sInstDebugName_CHORUS1[] = "CHORUS1";
+const char sInstDebugName_CHORUS2[] = "CHORUS2";
+const char sInstDebugName_CHORUS2H[] = "CHORUS2H";
+const char sInstDebugName_PIZZL[] = "PIZZL";
+const char sInstDebugName_PIZZM[] = "PIZZM";
+const char sInstDebugName_PIZZH[] = "PIZZH";
+const char sInstDebugName_TIMPL[] = "TIMPL";
+const char sInstDebugName_TIMPH[] = "TIMPH";
+const char sInstDebugName_DOORSLAM[] = "DOORSLAM";
+const char sInstDebugName_VOX_SE1[] = "VOX.SE1";
+const char sInstDebugName_VOX1[] = "VOX1";
+const char sInstDebugName_LOOP1[] = "LOOP1";
+const char sInstDebugName_DGL[] = "DGL";
+const char sInstDebugName_DGTM[] = "DGTM";
+const char sInstDebugName_SD1[] = "SD1";
+const char sInstDebugName_LOOP2[] = "LOOP2";
+const char sInstDebugName_SINE[] = "SINE";
+const char sInstDebugName_CLAPSD[] = "CLAPSD";
+const char sInstDebugName_HCLAP[] = "HCLAP";
+const char sInstDebugName_RS[] = "RS";
+const char sInstDebugName_GTR[] = "GTR";
+const char sInstDebugName_EMA[] = "EMA";
+const char sInstDebugName_WIN[] = "WIN";
+const char sInstDebugName_DYNA[] = "DYNA";
+const char sInstDebugName_HARPL[] = "HARPL";
+const char sInstDebugName_HARPM[] = "HARPM";
+const char sInstDebugName_HARPH[] = "HARPH";
+const char sInstDebugName_HARPHM[] = "HARPHM";
+const char sInstDebugName_HARPSSH[] = "HARPSSH";
+const char sInstDebugName_DISL[] = "DISL";
+const char sInstDebugName_DGTM_2[] = "DGTM";
+const char sInstDebugName_DGTH[] = "DGTH";
+const char sInstDebugName_HORNL[] = "HORNL";
+const char sInstDebugName_HORNM[] = "HORNM";
+const char sInstDebugName_HORNH[] = "HORNH";
+const char sInstDebugName_BASSSE[] = "BASSSE";
+const char sInstDebugName_OLG[] = "OLG";
+const char sInstDebugName_VOICE[] = "VOICE";
+const char sInstDebugName_UH[] = "UH";
+const char sInstDebugName_HITL_2[] = "HITL";
+const char sInstDebugName_HITM_2[] = "HITM";
+const char sInstDebugName_HITH_2[] = "HITH";
+const char sInstDebugName_BRS_2[] = "BRS";
+const char sInstDebugName_AIRL[] = "AIRL";
+const char sInstDebugName_AIRH[] = "AIRH";
+const char sInstDebugName_BS[] = "BS";
+const char sInstDebugName_SD1_2[] = "SD1";
+const char sInstDebugName_CLAOSD[] = "CLAOSD";
+const char sInstDebugName_HCLAP_2[] = "HCLAP";
+const char sInstDebugName_SE2[] = "SE2";
+const char sInstDebugName_LTOM[] = "LTOM";
+const char sInstDebugName_HH1[] = "HH1";
+const char sInstDebugName_MTOM[] = "MTOM";
+const char sInstDebugName_HH3[] = "HH3";
+const char sInstDebugName_STOM1[] = "STOM1";
+const char sInstDebugName_HH2[] = "HH2";
+const char sInstDebugName_STOM1_2[] = "STOM1";
+const char sInstDebugName_HTOM[] = "HTOM";
+const char sInstDebugName_CYM1[] = "CYM1";
+const char sInstDebugName_TAMBARINE[] = "TAMBARINE";
+const char sInstDebugName_CLAP[] = "CLAP";
+const char sInstDebugName_BDD[] = "BDD";
+const char sInstDebugName_RIDE[] = "RIDE";
+const char sInstDebugName_CYM2[] = "CYM2";
+const char sInstDebugName_LBOTTLE[] = "LBOTTLE";
+const char sInstDebugName_AIRCOMP[] = "AIRCOMP";
+const char sInstDebugName_SAW_2[] = "SAW";
+const char sInstDebugName_BROCKEN[] = "BROCKEN";
+const char sInstDebugName_TBO[] = "TBO";
+const char sInstDebugName_BCMB[] = "BCMB";
+const char sInstDebugName_DOORSLAM_2[] = "DOORSLAM";
 
+void Sound_LoadSequence(u32 sequence_id, void* sequence_buffer);
+void Sound_DmaReadSync(u32 rom_addr, void* vram_addr, u32 length);
+void Sound_ActorPanVol(u8 index);
+void func_80003D64(u8 index);
+void func_800040A0(void);
+
+// derived from playseq.c: dmaCallBack, dmaNew, and CleanDMABuffs
 s32 Sound_DmaCallback(s32 addr, s32 len, void* state) {
     s32 buffer_end;
     s32 delta;
@@ -395,7 +393,7 @@ void Sound_InitPlayers(void) {
     gAudioSynthConfig.dmaproc = Sound_DmaNew;
     gAudioSynthConfig.fxType = AL_FX_CUSTOM;
     gAudioSynthConfig.heap = &gAudioHeap;
-    gAudioSynthConfig.params = gAudioCustomFxParams;
+    gAudioSynthConfig.params = (s32*)&gAudioCustomFxParams;
     alInit(&gAudioGlobals, &gAudioSynthConfig);
 
     gSeqPlayerConfig.maxVoices = AUDIO_SEQ_VOICE_COUNT;
@@ -477,7 +475,7 @@ void Sound_Update(void) {
     gAudioTask->t.ucode = (u64*)aspMainTextStart;
     gAudioTask->t.ucode_data = (u64*)aspMainDataStart;
     gAudioTask->t.ucode_size = 0x1000;
-    gAudioTask->t.ucode_data_size = (((s32)&D_800EF4D0 - (s32)aspMainDataStart) >> 3) << 3;
+    gAudioTask->t.ucode_data_size = (((s32)aspMainDataEnd - (s32)aspMainDataStart) >> 3) << 3;
     gAudioTask->t.data_ptr = (u64*)gAudioCommandLists[gAudioListIndex];
     gAudioTask->t.data_size = (((s32)gAudioCmdListPtr - (s32)gAudioCommandLists[gAudioListIndex]) >> 3) << 3;
 
@@ -500,24 +498,24 @@ void Sound_Update(void) {
     for (index = 0; index < AUDIO_PLAYER_COUNT; index++) {
         if (alSeqpGetState((ALSeqPlayer*)gSfxSeqPlayers[index]) == AL_STOPPED) {
             if ((gSfxPlayerFlags[index] & 0x80) != 0) {
-                current_index = D_800C2BB4[gSfxSequenceIds[index] - 0x21];
+                current_index = gSfxSequenceSoundOffsets[gSfxSequenceIds[index] - SFX_SEQUENCE_ID_FIRST];
 
-                if (current_index < D_800C2BB4[gSfxSequenceIds[index] - 0x20]) {
+                if (current_index < gSfxSequenceSoundOffsets[gSfxSequenceIds[index] - SFX_SEQUENCE_ID_BEFORE_FIRST]) {
                     do {
                         switch (gSfxBankIds[SFX_SOUND_IDS[current_index]]) {
-                            case 1:
+                            case SFX_BANK_PRIMARY:
                                 alSeqpSetBank((ALSeqPlayer*)gSfxSeqPlayers[index], gAudioBank1);
-                                gSfxInstrument = gAudioBank1->instArray[SFX_SOUND_IDS[current_index]];
+                                gSfxInstrument = gAudioBank1->instArray[SFX_SOUND_IDS[current_index] - SFX_PRIMARY_BANK_INSTRUMENT_BASE];
                                 break;
 
-                            case 2:
+                            case SFX_BANK_SECONDARY:
                                 alSeqpSetBank((ALSeqPlayer*)gSfxSeqPlayers[index], gAudioBank2);
-                                gSfxInstrument = gAudioBank2->instArray[SFX_SOUND_IDS[current_index] - 0x80];
+                                gSfxInstrument = gAudioBank2->instArray[SFX_SOUND_IDS[current_index] - SFX_SECONDARY_BANK_INSTRUMENT_BASE];
                                 break;
 
-                            case 3:
+                            case SFX_BANK_TERTIARY:
                                 alSeqpSetBank((ALSeqPlayer*)gSfxSeqPlayers[index], gAudioBank3);
-                                gSfxInstrument = gAudioBank2->instArray[SFX_SOUND_IDS[current_index] - 0x100];
+                                gSfxInstrument = gAudioBank2->instArray[SFX_SOUND_IDS[current_index] - SFX_TERTIARY_BANK_INSTRUMENT_BASE];
                                 break;
                         }
 
@@ -647,7 +645,7 @@ void Sound_PlayMusic(s32 sequence_id) {
     params = &gMusicSequenceParams[gMusicSequenceId];
     gMusicVolume = params->volume << 8;
     gPauseMusicVolume = gMusicVolume;
-    D_80137794 = params->unk_01 << 12;
+    D_80137794 = params->unk_01 << AUDIO_SEQUENCE_UNK_01_SHIFT;
 
     for (index = 0; index < AUDIO_CHANNEL_COUNT; index++) {
         s32 num = index; // Thanks to inspectredc for finding this
@@ -790,7 +788,7 @@ s32 Sound_AddSfx(u32 sfx_id, s16 volume, s8 pan, u8 flags, u16 actor_index, u16 
         }
     }
 
-    if (D_800C2927[sfx_id * 2] >= priority) {
+    if (D_800C2968[(sfx_id * 2) - 0x41] >= priority) {
         alSeqpStop((ALSeqPlayer*)gSfxSeqPlayers[replace_index]);
         Sound_SetSfxChannel(replace_index, (ALSeqPlayer*)gSfxSeqPlayers[replace_index], sfx_id, volume, pan, flags, actor_index, timer);
 
@@ -1103,23 +1101,23 @@ void Sound_ActorPanVol(u8 index) {
             pan = pos_x / 2 + 0x40;
         }
 
-        current_index = D_800C2BB4[gSfxSequenceIds[index] - 0x21];
+        current_index = gSfxSequenceSoundOffsets[gSfxSequenceIds[index] - SFX_SEQUENCE_ID_FIRST];
         channel_index = 0;
 
-        if (current_index < D_800C2BB4[gSfxSequenceIds[index] - 0x20]) {
+        if (current_index < gSfxSequenceSoundOffsets[gSfxSequenceIds[index] - SFX_SEQUENCE_ID_BEFORE_FIRST]) {
             do {
                 sound_index = SFX_SOUND_IDS[current_index];
                 switch (gSfxBankIds[sound_index]) {
-                    case 1:
-                        gSfxInstrument = gAudioBank1->instArray[sound_index];
+                    case SFX_BANK_PRIMARY:
+                        gSfxInstrument = gAudioBank1->instArray[sound_index - SFX_PRIMARY_BANK_INSTRUMENT_BASE];
                         break;
 
-                    case 2:
-                        gSfxInstrument = gAudioBank2->instArray[sound_index - 0x80];
+                    case SFX_BANK_SECONDARY:
+                        gSfxInstrument = gAudioBank2->instArray[sound_index - SFX_SECONDARY_BANK_INSTRUMENT_BASE];
                         break;
 
-                    case 3:
-                        gSfxInstrument = gAudioBank3->instArray[sound_index - 0x100];
+                    case SFX_BANK_TERTIARY:
+                        gSfxInstrument = gAudioBank3->instArray[sound_index - SFX_TERTIARY_BANK_INSTRUMENT_BASE];
                         break;
                 }
 
@@ -1128,7 +1126,7 @@ void Sound_ActorPanVol(u8 index) {
                 alSeqpSetChlPan((ALSeqPlayer*)gSfxSeqPlayers[index], channel_index, pan);
 
                 current_index++;
-            } while (channel_index++, current_index < D_800C2BB4[gSfxSequenceIds[index] - 0x20]);
+            } while (channel_index++, current_index < gSfxSequenceSoundOffsets[gSfxSequenceIds[index] - SFX_SEQUENCE_ID_BEFORE_FIRST]);
         }
     }
 }
@@ -1138,23 +1136,23 @@ void func_80003D64(u8 arg0) {
     u16 channel_index;
     u16 sound_index;
 
-    current_index = D_800C2BB4[gSfxSequenceIds[arg0] - 0x21];
+    current_index = gSfxSequenceSoundOffsets[gSfxSequenceIds[arg0] - SFX_SEQUENCE_ID_FIRST];
     channel_index = 0;
 
-    if (current_index < D_800C2BB4[gSfxSequenceIds[arg0] - 0x20]) {
+    if (current_index < gSfxSequenceSoundOffsets[gSfxSequenceIds[arg0] - SFX_SEQUENCE_ID_BEFORE_FIRST]) {
         do {
             sound_index = SFX_SOUND_IDS[current_index];
             switch (gSfxBankIds[sound_index]) {
-                case 1:
-                    gSfxInstrument = gAudioBank1->instArray[sound_index];
+                case SFX_BANK_PRIMARY:
+                    gSfxInstrument = gAudioBank1->instArray[sound_index - SFX_PRIMARY_BANK_INSTRUMENT_BASE];
                     break;
 
-                case 2:
-                    gSfxInstrument = gAudioBank2->instArray[sound_index - 0x80];
+                case SFX_BANK_SECONDARY:
+                    gSfxInstrument = gAudioBank2->instArray[sound_index - SFX_SECONDARY_BANK_INSTRUMENT_BASE];
                     break;
 
-                case 3:
-                    gSfxInstrument = gAudioBank3->instArray[sound_index - 0x100];
+                case SFX_BANK_TERTIARY:
+                    gSfxInstrument = gAudioBank3->instArray[sound_index - SFX_TERTIARY_BANK_INSTRUMENT_BASE];
                     break;
             }
 
@@ -1163,7 +1161,7 @@ void func_80003D64(u8 arg0) {
             alSeqpSetChlPan((ALSeqPlayer*)gSfxSeqPlayers[arg0], channel_index, gSfxChannelPans[arg0]);
 
             current_index++;
-        } while (channel_index++, current_index < D_800C2BB4[gSfxSequenceIds[arg0] - 0x20]);
+        } while (channel_index++, current_index < gSfxSequenceSoundOffsets[gSfxSequenceIds[arg0] - SFX_SEQUENCE_ID_BEFORE_FIRST]);
     }
 }
 

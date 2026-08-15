@@ -34,4 +34,6 @@ void MarinaEffect_Type2(u16 actor_index);
 void MarinaEffect_Burn(u16 actor_index);
 void MarinaEffect_Update(u16 actor_index);
 
+void ActorUpdate_MarinaAfterImage(u16 actor_index);
+
 #endif

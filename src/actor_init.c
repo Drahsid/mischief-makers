@@ -6,7 +6,7 @@ extern s16 D_800E2550[]; // graphic list for Clanball
 
 // a table giving the following inital stats of the first 125 actors:
 // {hitboxAX, hitboxAY, hitboxBX, hitboxBY, health, damage, unknown/unused}
-s16 gActorInitStats[]={
+s16 gActorInitStats[] = {
 //  AX    AY    BX    BY      HP   dmg ?
     0,    0,    0,    0,      0,   0,  10, // ACTORTYPE_ZERO
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_1
@@ -264,7 +264,7 @@ s32 gActorInitFlags[]= {
     ACTOR_FLAG_ACTIVE, // ACTORTYPE_GEM124,
 };
 
-s16* gActorInitGraphics[]={
+s16* gActorInitGraphics[] = {
     gGraphicListBlank, // ACTORTYPE_ZERO,
     gGraphicListBlank, // ACTORTYPE_1,
     gGraphicListBlank, // ACTORTYPE_2,
@@ -391,8 +391,6 @@ s16* gActorInitGraphics[]={
     gGraphicListBlank, // ACTORTYPE_GEMRING,
     gGraphicListBlank, // ACTORTYPE_GEM124,
 };
-
-extern u16* D_8013776C;
 
 void func_8001DBA0(u16* arg0, u16 actor_index) {
     gActors[actor_index].actorType = arg0[5];

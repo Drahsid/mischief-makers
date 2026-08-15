@@ -47,8 +47,6 @@ extern GfxData gDisplayListData[2];
 
 extern u32 gPlayerControllerIndex;
 extern u16 gButtonCurrent;
-
-extern u16 D_801370C6;
 extern u32 gFramesInPlayTime;
 extern u16 D_801370CC;
 extern u16 D_801370CE;

@@ -8,11 +8,6 @@
 
 // states when Marina is grabbing/holding/throwing/shake-shaking something
 
-// .bss
-extern u16 D_801373D8;
-extern s16 D_801373EE;
-extern s8 D_801373F3;
-
 // forward declarations
 void MarinaGrab_Noop(u16 actor_0, u16 actor_1);
 void func_8005278C(u16 actor_0, u16 actor_1);
@@ -281,10 +276,12 @@ s8 D_800D4164[] = {
     0xFF, 0xFE, 0x01, 0x04,
     0x05, 0x00, 0x00, 0x00,
 };
+
 s8 D_800D416C[] = {
     0x05, 0x04, 0x03, 0x01,
     0xFF, 0x00, 0x00, 0x00,
 };
+
 s8 D_800D4174[] = {
     0xFF, 0x0C, 0x10, 0x0F,
     0x0C, 0x08, 0x02, 0xFD,

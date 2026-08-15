@@ -1,6 +1,7 @@
 #include "common.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "74A50.h"
 #include "7D8E0.h"
 
 typedef struct {
@@ -11,8 +12,6 @@ typedef struct {
     /* 0x0A */ u16 randomBase;
 } UnkStruct_7B3FE0__func_801B2530_7B5C10; /* sizeof = 0x0C */
 
-
-#define OVERLAY0_DISPATCH_ACTOR ((ActorFunc*)OVERLAY0_DISPATCH_TABLE_VRAM) // TODO: move?
 
 #define FESTIVAL_ADVANCE_MOTION(actor_index_, record_table_, current_index_) \
     do { \
