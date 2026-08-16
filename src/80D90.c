@@ -145,8 +145,8 @@ void func_800808D0(u16 actor_index, s16* vals) {
         actor_1 = vals[0] + actor_index;
         actor_2 = vals[1] + actor_index;
         scale_2 = vals[2];
-        scale_2 += gActors[actor_1].var_154 / (f32)FIXED_UNIT(1.0);
-        scale_2 += gActors[actor_index].var_154 / (f32)FIXED_UNIT(1.0);
+        scale_2 += FROM_FIXED((f32)gActors[actor_1].var_154);
+        scale_2 += FROM_FIXED((f32)gActors[actor_index].var_154);
         scale_2 += gActors[actor_1].unk_138;
         gActors[actor_1].scaleX = scale;
         gActors[actor_1].scaleY = scale;

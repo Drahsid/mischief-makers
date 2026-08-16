@@ -3988,7 +3988,7 @@ void func_800962C4(u16 actor_index) {
                    gActors[actor_index].unk_16C, FIXED_UNIT(24.0));
     angle = gActors[actor_index].unk_16C / FIXED_UNIT(1.0);
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, COS(angle) * 98304.0f, FIXED_UNIT(32.0/256));
-            gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, SIN(angle) * (f32)FIXED_UNIT(1.0), FIXED_UNIT(32.0/256));
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, SIN(angle) * (f32)FIXED_UNIT(1.0), FIXED_UNIT(32.0/256));
 }
 
 void func_80096478(u16 actor_index) {
