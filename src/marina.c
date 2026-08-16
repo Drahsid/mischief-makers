@@ -5,17 +5,104 @@
 #include "debug.h"
 #include "input.h"
 #include "28EF0.h"
-#include "48A30.h"
-#include "4FEB0.h"
+#include "player_action_dispatch.h"
+#include "player_actions.h"
 #include "57F20.h"
-#include "59EA0.h"
+#include "particles.h"
 #include "5D120.h"
 #include "60CF0.h"
 
-extern u16 D_801373D8;
-extern u16 D_801373DE;
+void func_8004A8E0(u16 actor_index);
+void func_8004A918(u16 actor_index);
+void func_8004AA64(u16 actor_index);
+void func_8004AB3C(u16 actor_index);
+void func_8004B0A0(u16 actor_index);
+void func_8004B18C(u16 actor_index);
+void func_8004B290(u16 actor_index);
+void func_8004B344(u16 actor_index);
+void func_8004B878(u16 actor_index);
+void func_8004BB08(u16 actor_index);
+void func_8004BEF8(u16 actor_index);
+void func_8004C5FC(u16 actor_index);
+void func_8004CE1C(u16 actor_index);
+void func_8004D140(u16 actor_index);
+void func_8004D6CC(u16 actor_index);
+void func_8004D7BC(u16 actor_index);
+void func_8004DA6C(u16 actor_index);
+void func_8004DC44(u16 actor_index);
+void func_8004E1D4(s32 arg0);
+void func_8004E1DC(s32 arg0);
+void func_8004E1E4(u16 actor_index);
+void func_8004E4E0(u16 actor_index);
+void func_8004E6FC(u16 actor_index);
+void func_8004EAE4(u16 actor_index);
+void func_8004EC60(u16 actor_index);
 
-extern ActorFunc gMarinaStateTable[];
+ActorFunc gMarinaStateTable[] = {
+    Marina_State0,
+    func_8004A918,
+    func_8004AA64,
+    func_8004AB3C,
+    func_800500B0,
+    func_8004B0A0,
+    func_8005060C,
+    func_8004B18C,
+    func_8005074C,
+    func_8004B290,
+    func_800508F4,
+    func_8004B344,
+    func_800509C0,
+    func_8004BB08,
+    func_80050F3C,
+    func_8004BEF8,
+    func_8004C5FC,
+    func_8004C5FC,
+    func_80051324,
+    func_80051324,
+    func_8004CE1C,
+    func_80051C48,
+    func_8004D140,
+    func_8004D140,
+    func_8004D140,
+    func_8004D140,
+    func_80052004,
+    func_80052004,
+    func_80052004,
+    func_80052004,
+    func_8004D6CC,
+    func_8004D7BC,
+    func_8004DA6C,
+    func_8004DC44,
+    func_80055188,
+    func_800551F8,
+    func_800553EC,
+    func_8005544C,
+    func_80056F54,
+    func_8005701C,
+    func_8004FDF8,
+    func_80057268,
+    func_8004B878,
+    func_8004B878,
+    (ActorFunc)func_8004E1D4,
+    (ActorFunc)func_8004E1DC,
+    func_8005878C,
+    func_800576A0,
+    func_80057848,
+    func_80057C98,
+    func_80057C98,
+    func_80057848,
+    func_80057C98,
+    func_800584D4,
+    OverlayABI_Slot1_fn3_u16,
+    func_8004E1E4,
+    func_8004E4E0,
+    func_8004A8E0,
+    func_8004E6FC,
+    func_8004EAE4,
+    func_8004EC60,
+};
+
+u32 D_800D3EA4[3] = { 0 };
 
 u8 func_80048600(u16 actor_index) {
     u8 ret;
@@ -718,8 +805,8 @@ void func_80049AC0(u16 actor_index) {
             gActors[actor_index].unk_140_u16[1] = 0;
         }
         gActors[actor_index].flags |= ACTOR_FLAG_ATTACHED;
-        gPlayerData.unk_00[0].raw = (gActors[actor_index].hitboxBX1 / 2) << 16;
-        gPlayerData.unk_00[1].raw = (gActors[actor_index].hitboxBY1) << 16;
+        gPlayerData.unk_00[0].raw = TO_FIXED(gActors[actor_index].hitboxBX1 / 2);
+        gPlayerData.unk_00[1].raw = TO_FIXED(gActors[actor_index].hitboxBY1);
         func_80059ABC(actor_index, 1.0f);
         gActors[actor_index].state = 0x22;
         return;

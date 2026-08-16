@@ -1,3 +1,4 @@
+// BUG: incorrect prototype!
 #define func_8001FCA0_ARGS u16 actor_index, s32 x, s32 y
 #include "1F1E0.h"
 #include "28EF0.h"
@@ -5,22 +6,24 @@
 #include "80D90.h"
 #include "actor.h"
 #include "common.h"
+#include "rle.h"
 
 extern u16 D_800D1C04[];
 extern u16 D_800D98F4[];
 extern u16 D_800D99A4[];
-extern u16 D_800DB67C[];
-extern u16 D_800DB87C[];
+extern u16 D_800DB07C[];
+extern u16 D_800DB27C[];
 extern u16 D_800DB47C[];
 extern u16 D_800DB67C[];
-extern u16 D_800DB27C[];
-extern u16 D_800DB07C[];
+extern u16 D_800DB87C[];
 extern u16 D_800DBA7C[];
 extern u16 D_800DBC7C[];
-
 extern s16 D_800E2364[];
+extern s16 D_800E9634[];
+extern s16 D_800E9654[];
+extern u16* D_800E9720[];
 
-// forward declarations
+
 void func_800907E4(u16 actor_index);
 void func_80090A88(u16 actor_index);
 void func_80090BFC(u16 actor_index);
@@ -45,166 +48,199 @@ void func_800929B8(u16 actor_index);
 void func_80092E30(u16 actor_index);
 void func_800930E4(u16 actor_index);
 void func_80093D38(u16 actor_index);
-void func_80094F24(u16 actor_index, s32 unused_arg1);
+void func_800955F4(u16 actor_index);
+void func_80096104(u16 actor_index);
+void func_8009672C(u16 actor_index);
+void func_8009691C(u16 actor_index);
+void func_800969F4(u16 actor_index);
+void func_800969FC(u16 actor_index);
+void func_80096A04(u16 actor_index);
+void func_80096A0C(u16 actor_index);
+void func_80096A14(u16 actor_index);
+
+ActorFunc D_800E5AC0[] = {
+    func_800955F4,
+    func_800969FC,
+    func_800969F4,
+    func_80096A04,
+    func_80096104,
+    func_8009672C,
+    func_8009691C,
+};
+
+void* D_800E5ADC[] = {
+    D_800E9634,
+    D_800E9654,
+    D_800E9720,
+    D_800E9634,
+    D_800E9654,
+    D_800E9720,
+};
+
+ActorFunc D_800E5AF4[] = {
+    func_80096A0C,
+    func_80096A14,
+    NULL,
+};
 
 s16 D_800E5B00[] = {
-    //GfxIdx   13C   flags
-    0x028C, 0x8400, 0x000A,
+    // {GfxIdx, 13C, flags}
+    GINDEX_CLANCER_BODY, 0x8400, 0x000A,
     0x0000, 0x0000, 0x0020,
-    0x028A, 0x8730, 0x000B,
-    0x028E, 0x0620, 0x000F,
-    0x0290, 0x8400, 0x000E,
+    GINDEX_CLANCER_HEAD, 0x8730, 0x000B,
+    GINDEX_CLANCER_PART_028E, 0x0620, 0x000F,
+    GINDEX_0290, 0x8400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x0292, 0x87C0, 0x0010,
-    0x028E, 0x07E0, 0x0004,
-    0x0290, 0x8400, 0x0003,
+    GINDEX_CLANCER_PART_0292, 0x87C0, 0x0010,
+    GINDEX_CLANCER_PART_028E, 0x07E0, 0x0004,
+    GINDEX_0290, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x0294, 0x8400, 0x0005,
+    GINDEX_CLANCER_PART_0294, 0x8400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x0290, 0x8400, 0x0009,
+    GINDEX_0290, 0x8400, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x0296, 0x8500, 0x000C,
+    GINDEX_CLANCER_PART_0296, 0x8500, 0x000C,
     0x0000, 0x0000, 0x0020,
-    0x0298, 0x8400, 0x000D,
+    GINDEX_CLANCER_PART_0298, 0x8400, 0x000D,
     0x0000, 0x0000, 0x0020,
-    0x0290, 0x8400, 0x0006,
+    GINDEX_0290, 0x8400, 0x0006,
     0x0000, 0x0000, 0x0020,
-    0x0296, 0x8500, 0x0007,
+    GINDEX_CLANCER_PART_0296, 0x8500, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x0298, 0x8400, 0x0008
+    GINDEX_CLANCER_PART_0298, 0x8400, 0x0008
 };
 
 s16 D_800E5B8C[] = {
-    //GfxIdx   13C   flags
-    0x181C, 0x8400, 0x000A,
+    // {GfxIdx, 13C, flags}
+    GINDEX_181C, 0x8400, 0x000A,
     0x0000, 0x0000, 0x0020,
-    0x1816, 0x8750, 0x000B,
-    0x181E, 0x0620, 0x000F,
-    0x1820, 0x8400, 0x000E,
+    GRAPHIC_FRAME(1814, 1), 0x8750, 0x000B,
+    GINDEX_181E, 0x0620, 0x000F,
+    GINDEX_1820, 0x8400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x1822, 0x87C0, 0x0010,
-    0x182C, 0x07E0, 0x0004,
-    0x1820, 0x8400, 0x0003,
+    GINDEX_1822, 0x87C0, 0x0010,
+    GINDEX_182C, 0x07E0, 0x0004,
+    GINDEX_1820, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x182E, 0x8400, 0x0005,
+    GINDEX_182E, 0x8400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x1820, 0x8400, 0x0009,
+    GINDEX_1820, 0x8400, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x1836, 0x8500, 0x000C,
+    GINDEX_1836, 0x8500, 0x000C,
     0x0000, 0x0000, 0x0020,
-    0x1838, 0x8400, 0x000D,
+    GINDEX_1838, 0x8400, 0x000D,
     0x0000, 0x0000, 0x0020,
-    0x1820, 0x8400, 0x0006,
+    GINDEX_1820, 0x8400, 0x0006,
     0x0000, 0x0000, 0x0020,
-    0x1836, 0x8500, 0x0007,
+    GINDEX_1836, 0x8500, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x1838, 0x8400, 0x0008,
+    GINDEX_1838, 0x8400, 0x0008,
 };
 
 s16 D_800E5C18[] = {
-    //GfxIdx   13C   flags
-    0x107E, 0x87F0, 0x000A,
+    // {GfxIdx, 13C, flags}
+    GINDEX_107E, 0x87F0, 0x000A,
     0x0000, 0x0000, 0x0020,
-    0x101A, 0x8730, 0x000B,
-    0x02C8, 0x4620, 0x000F,
-    0x0290, 0x8400, 0x000E,
+    GINDEX_CALINA_HEAD, 0x8730, 0x000B,
+    GRAPHIC_FRAME(MOCHI, 3), 0x4620, 0x000F,
+    GINDEX_0290, 0x8400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x1076, 0xC7C0, 0x0010,
-    0x02C8, 0x47E0, 0x0004,
-    0x0290, 0x8400, 0x0003,
+    GRAPHIC_FRAME(1072, 2), 0xC7C0, 0x0010,
+    GRAPHIC_FRAME(MOCHI, 3), 0x47E0, 0x0004,
+    GINDEX_0290, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x107C, 0xC400, 0x0005,
+    GRAPHIC_FRAME(1078, 2), 0xC400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x02CA, 0x8400, 0x0009,
+    GRAPHIC_FRAME(MOCHI, 4), 0x8400, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0008,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0008,
     0x0000, 0x0000, 0x0029,
     0x0000, 0x8400, 0x0020,
     0x0000, 0x0000, 0x0020,
-    0x02CA, 0x8400, 0x0007,
+    GRAPHIC_FRAME(MOCHI, 4), 0x8400, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0006,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0006,
     0x0000, 0x0000, 0x0020,
     0x0000, 0x8400, 0x0020,
 };
 
 s16 D_800E5CA4[] = {
-    //GfxIdx   13C   flags
+    // {GfxIdx, 13C, flags}
     0x0000, 0x0000, 0x0020,
-    0x0258, 0x8740, 0x000A,
-    0x101A, 0x8730, 0x000B,
-    0x028E, 0x0620, 0x000F,
-    0x0290, 0x8400, 0x000E,
+    GINDEX_0258, 0x8740, 0x000A,
+    GINDEX_CALINA_HEAD, 0x8730, 0x000B,
+    GINDEX_CLANCER_PART_028E, 0x0620, 0x000F,
+    GINDEX_0290, 0x8400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x0292, 0x87C0, 0x0010,
-    0x028E, 0x0620, 0x0004,
-    0x0290, 0x8400, 0x0003,
+    GINDEX_CLANCER_PART_0292, 0x87C0, 0x0010,
+    GINDEX_CLANCER_PART_028E, 0x0620, 0x0004,
+    GINDEX_0290, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x0294, 0x8400, 0x0005,
+    GINDEX_CLANCER_PART_0294, 0x8400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x1008, 0x84F0, 0x0009,
+    GINDEX_CALINA_LEG, 0x84F0, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0008,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0008,
     0x0000, 0x0000, 0x0029,
     0x0000, 0x8400, 0x0020,
     0x0000, 0x0000, 0x0020,
-    0x1008, 0x84F0, 0x0007,
+    GINDEX_CALINA_LEG, 0x84F0, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0006,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0006,
     0x0000, 0x0000, 0x0020,
     0x0000, 0x8400, 0x0020,
 };
 
 s16 D_800E5D30[] = {
-    //GfxIdx   13C   flags
-    0x1006, 0x87F0, 0x000A,
+    // {GfxIdx, 13C, flags}
+    GINDEX_CALINA_BODY, 0x87F0, 0x000A,
     0x0000, 0x0000, 0x0020,
-    0x101A, 0x8730, 0x000B,
-    0x028E, 0x0620, 0x000F,
-    0x0290, 0x8400, 0x000E,
+    GINDEX_CALINA_HEAD, 0x8730, 0x000B,
+    GINDEX_CLANCER_PART_028E, 0x0620, 0x000F,
+    GINDEX_0290, 0x8400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x0292, 0x87C0, 0x0010,
-    0x028E, 0x07E0, 0x0004,
-    0x0290, 0x8400, 0x0003,
+    GINDEX_CLANCER_PART_0292, 0x87C0, 0x0010,
+    GINDEX_CLANCER_PART_028E, 0x07E0, 0x0004,
+    GINDEX_0290, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x0294, 0x8400, 0x0005,
+    GINDEX_CLANCER_PART_0294, 0x8400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x1008, 0x84F0, 0x0009,
+    GINDEX_CALINA_LEG, 0x84F0, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0008,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0008,
     0x0000, 0x0000, 0x0029,
     0x0000, 0x8400, 0x0020,
     0x0000, 0x0000, 0x0020,
-    0x1008, 0x84F0, 0x0007,
+    GINDEX_CALINA_LEG, 0x84F0, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x100A, 0x8500, 0x0006,
+    GINDEX_CALINA_FOOT, 0x8500, 0x0006,
     0x0000, 0x0000, 0x0020,
     0x0000, 0x8400, 0x0020,
 };
 
 s16 D_800E5DBC[] = {
-    //GfxIdx   13C   flags
-    0x0270, 0x0400, 0x000A,
+    // {GfxIdx, 13C, flags}
+    GINDEX_SPIKEBALL, 0x0400, 0x000A,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x0730, 0x000B,
-    0x0270, 0x0620, 0x000F,
-    0x0270, 0x0400, 0x000E,
+    GINDEX_SPIKEBALL, 0x0730, 0x000B,
+    GINDEX_SPIKEBALL, 0x0620, 0x000F,
+    GINDEX_SPIKEBALL, 0x0400, 0x000E,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x0400, 0x0010,
-    0x0270, 0x07E0, 0x0004,
-    0x0270, 0x0400, 0x0003,
+    GINDEX_SPIKEBALL, 0x0400, 0x0010,
+    GINDEX_SPIKEBALL, 0x07E0, 0x0004,
+    GINDEX_SPIKEBALL, 0x0400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x0400, 0x0005,
+    GINDEX_SPIKEBALL, 0x0400, 0x0005,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x04F0, 0x0009,
+    GINDEX_SPIKEBALL, 0x04F0, 0x0009,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x0500, 0x0008,
+    GINDEX_SPIKEBALL, 0x0500, 0x0008,
     0x0000, 0x0000, 0x0029,
     0x0000, 0x0400, 0x0020,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x04F0, 0x0007,
+    GINDEX_SPIKEBALL, 0x04F0, 0x0007,
     0x0000, 0x0000, 0x0020,
-    0x0270, 0x0500, 0x0006,
+    GINDEX_SPIKEBALL, 0x0500, 0x0006,
     0x0000, 0x0000, 0x0020,
     0x0000, 0x0400, 0x0020,
 };
@@ -1511,31 +1547,31 @@ f32 D_800E90E8[] = {
 };
 
 u16 D_800E91E8[] = {
-    0x1072, 0x1074, 0x1076, 0x0000,
+    GINDEX_1072, GRAPHIC_FRAME(1072, 1), GRAPHIC_FRAME(1072, 2), 0x0000,
 };
 
 u16 D_800E91F0[] = {
-    0x1078, 0x107A, 0x107C, 0x0000,
+    GINDEX_1078, GRAPHIC_FRAME(1078, 1), GRAPHIC_FRAME(1078, 2), 0x0000,
 };
 
 u16 D_800E91F8[] = {
-    0x029A, 0x029C, 0x029E, 0x02A0, 0x0000, 0x0000,
+    GINDEX_029A, GRAPHIC_FRAME(029A, 1), GRAPHIC_FRAME(029A, 2), GRAPHIC_FRAME(029A, 3), 0x0000, 0x0000,
 };
 
 u16 D_800E9204[] = {
-    0x02AE, 0x02B0, 0x02B2, 0x02B4, 0x0000, 0x0000,
+    GINDEX_02AE, GRAPHIC_FRAME(02AE, 1), GRAPHIC_FRAME(02AE, 2), GRAPHIC_FRAME(02AE, 3), 0x0000, 0x0000,
 };
 
 u16 D_800E9210[] = {
-    0x1814, 0x1816, 0x1818, 0x181A, 0x0000, 0x0000,
+    GINDEX_1814, GRAPHIC_FRAME(1814, 1), GRAPHIC_FRAME(1814, 2), GRAPHIC_FRAME(1814, 3), 0x0000, 0x0000,
 };
 
 u16 D_800E921C[] = {
-    0x1822, 0x1824, 0x1826, 0x1828,
+    GINDEX_1822, GRAPHIC_FRAME(1822, 1), GRAPHIC_FRAME(1822, 2), GRAPHIC_FRAME(1822, 3),
 };
 
 u16 D_800E9224[] = {
-    0x182E, 0x1830, 0x1832, 0x1834,
+    GINDEX_182E, GRAPHIC_FRAME(182E, 1), GRAPHIC_FRAME(182E, 2), GRAPHIC_FRAME(182E, 3),
 };
 
 u16 D_800E922C[] = {
@@ -1604,20 +1640,20 @@ u16 D_800E93BC = 0;
 u16 D_800E93C0 = 0;
 
 s16 D_800E93C4[] = {
-    //GfIdx    13C   flags
-    0x028A, 0x8420, 0x0000,
+    // {GfxIdx, 13C, flags}
+    GINDEX_CLANCER_HEAD, 0x8420, 0x0000,
     0x0000, 0x0000, 0x0001,
-    0x0290, 0x8400, 0x0002,
+    GINDEX_0290, 0x8400, 0x0002,
     0x0000, 0x0000, 0x0020,
-    0x0290, 0x8400, 0x0003,
+    GINDEX_0290, 0x8400, 0x0003,
     0x0000, 0x0000, 0x0020,
-    0x0298, 0x8400, 0x0004,
+    GINDEX_CLANCER_PART_0298, 0x8400, 0x0004,
     0x0000, 0x0000, 0xFFFF,
-    0x0290, 0x8400, 0xFFFE,
+    GINDEX_0290, 0x8400, 0xFFFE,
     0x0000, 0x0000, 0x0020,
-    0x0290, 0x8400, 0xFFFD,
+    GINDEX_0290, 0x8400, 0xFFFD,
     0x0000, 0x0000, 0x0020,
-    0x0298, 0x8400, 0xFFFE,
+    GINDEX_CLANCER_PART_0298, 0x8400, 0xFFFE,
 };
 
 s16 D_800E9414[] = {
@@ -1691,12 +1727,12 @@ u16* D_800E961C[] = {
 };
 
 s16 D_800E9634[] = {
-    //GfIdx    13C   flags
+    // {GfxIdx, 13C, flags}
     0x0000, 0x8000, 0x0000,
-    0x028E, 0x0400, 0x0003,
-    0x028E, 0x0400, 0x0002,
-    0x028E, 0x0400, 0x0001,
-    0x028A, 0x8400, 0x0004,
+    GINDEX_CLANCER_PART_028E, 0x0400, 0x0003,
+    GINDEX_CLANCER_PART_028E, 0x0400, 0x0002,
+    GINDEX_CLANCER_PART_028E, 0x0400, 0x0001,
+    GINDEX_CLANCER_HEAD, 0x8400, 0x0004,
 };
 
 s16 D_800E9654[] = {
@@ -1742,6 +1778,10 @@ s16 D_801826B0;
 u16 D_801826B2; // used for colorA in func_80093704
 u16 D_801826B4;
 f32 D_801826B8;
+
+
+void func_80094F24(u16 actor_index, s32 unused_arg1);
+
 
 s32 func_8008E480(u16 actor_index) {
     f32 temp_f4;
@@ -2137,7 +2177,7 @@ void func_8008FB20(u16 actor_index) {
     func_8008FA50(actor_index, actor_index + 0x3, D_800E9210);
     func_8008FA50(actor_index, actor_index + 0x7, D_800E921C);
     func_8008FA50(actor_index, actor_index + 0xB, D_800E9224);
-    *((u16*)0x80335ED4) = func_8004571C();
+    *((u16*)(ASSET_DEST3 + 0x15ED4)) = func_8004571C();
     gActors[actor_index + 0x3].unk_138 = -gActors[actor_index + 0x3].var_154 / FIXED_UNIT(1.0);
 }
 
@@ -2396,7 +2436,7 @@ void func_80090CDC(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0x130:
         gActors[actor_index].state++;
-        gActors[actor_index + 2].unk_180 = (65536.0f * gActors[actor_index + 1].unk_12C) * gActors[actor_index + 1].unk_130;
+                gActors[actor_index + 2].unk_180 = ((f32)FIXED_UNIT(1.0) * gActors[actor_index + 1].unk_12C) * gActors[actor_index + 1].unk_130;
         gActors[actor_index].velocityX.raw = 0;
         if ((gActors[actor_index + 1].var_0D8 == 2) || (gActors[actor_index + 1].var_0D8 == 3) || (gActors[actor_index + 1].var_0D8 == 5)) {
             func_80081790(actor_index, D_800E8FA4);
@@ -3840,8 +3880,8 @@ void func_80095A8C(u16 actor_index) {
             angle = (f32) (gActors[actor_index].rotateZ / DEG_PER_INDEX) + COS_DEG_90;
             // fakematch: & 0xFFFF
             SpawnParticle_RingSparkle(actor_index & 0xFFFF, 0, gActors[actor_index].scaleX * 0.5, 
-                gActors[actor_index].posX.whole + ((COS(angle) * gActors[actor_index].scaleX * 983040.0f) / 65536.0f), 
-                gActors[actor_index].posY.whole + ((SIN(angle) * gActors[actor_index].scaleX * 983040.0f) / 65536.0f), 
+                gActors[actor_index].posX.whole + ((COS(angle) * gActors[actor_index].scaleX * (f32)FIXED_UNIT(15.0)) / (f32)FIXED_UNIT(1.0)),
+                gActors[actor_index].posY.whole + ((SIN(angle) * gActors[actor_index].scaleX * (f32)FIXED_UNIT(15.0)) / (f32)FIXED_UNIT(1.0)),
                 gActors[actor_index].posZ.whole + 0x10);
         }
         break;
@@ -3948,7 +3988,7 @@ void func_800962C4(u16 actor_index) {
                    gActors[actor_index].unk_16C, FIXED_UNIT(24.0));
     angle = gActors[actor_index].unk_16C / FIXED_UNIT(1.0);
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, COS(angle) * 98304.0f, FIXED_UNIT(32.0/256));
-    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, SIN(angle) * 65536.0f, FIXED_UNIT(32.0/256));
+    gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, SIN(angle) * (f32)FIXED_UNIT(1.0), FIXED_UNIT(32.0/256));
 }
 
 void func_80096478(u16 actor_index) {

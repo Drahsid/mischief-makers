@@ -1,31 +1,23 @@
 #include "common.h"
 #include <PR/sp.h>
 
-#undef spMove
-#undef spDraw
-#undef spInit
-#undef spFinish
+// Derived from font.c
 
 #define FONT_DEFAULT_WINDOW_WIDTH  40
 #define FONT_DEFAULT_WINDOW_HEIGHT 1
 #define FONT_BITMAP_BUFFER_COUNT   0x38
 #define FONT_DISPLAY_LIST_COUNT    0x2B8
 
-void spMove(Sprite* sp, s32 x, s32 y);
-Gfx* spDraw(Sprite* sp);
-void spInit(Gfx** glistp);
-void spFinish(Gfx** glistp);
-
 typedef union {
     u8 value;
     u32 raw;
-} PaddedByte; /* size = 0x04 */
+} PaddedByte; /* sizeof = 0x04 */
 
 typedef struct {
     /* 0x00 */ char* indexString;
     /* 0x04 */ Bitmap* bitmaps;
     /* 0x08 */ u8* image;
-} Font; /* size = 0x0C */
+} Font; /* sizeof = 0x0C */
 
 static Bitmap sFontBitmapBuffer[FONT_BITMAP_BUFFER_COUNT * 2];
 static Gfx sFontDisplayListBuffer[FONT_DISPLAY_LIST_COUNT * 2];

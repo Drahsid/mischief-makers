@@ -1,10 +1,13 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
 
 #include <PR/gbi.h>
 
 #include "common.h"
+#include "1F1E0.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "74A50.h"
 
 // "Overlay 3" code for World 2
 
@@ -1220,11 +1223,6 @@ u16 D_801B9154_7A0F94[4] = {
 u16 D_801B915C_7A0F9C[] = {
     ALPHA_JP_HIRA_SHI, ALPHA_JP_HIRA_ZU, ALPHA_JP_HIRA_ME, ALPHA_NULL
 };
-
-extern u8 func_8001FCA0(u16 actor_index, s16 x, s16 y);
-extern void func_8001FEB0(void);
-extern s32 Math_PlaneHalf(s32 x, s32 y);
-extern void func_80078418(u16 actor_index);
 
 void func_801B0900_798740(u16 actor_index, f32 delta);
 void func_801B0D6C_798BAC(u16 actor_index);

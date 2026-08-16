@@ -23,31 +23,46 @@
 #define sChestBeamActor gActors[CHEST_BEAM_INDEX]
 #define sScreenFadeActor gActors[SCREEN_FADE_INDEX]
 
-extern u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 
+extern s16 D_801A1038_6CBD08[];
 extern s16 D_801A2110_6CCDE0;
 extern s16 D_801A2190_6CCE60;
 extern s16 D_801A2924_6CD5F4;
 extern s16 D_801A29A4_6CD674;
+extern u8 D_801A51FC_6CFECC;
 extern u8 D_801A5204_6CFED4;
 extern u16 D_801A5208_6CFED8;
+extern u8 D_801A5214_6CFEE4;
 extern u8 D_801A5218_6CFEE8; // state of rocket fist
 extern u16 D_801A522C_6CFEFC[];
+extern s16 D_801A5234_6CFF04[];
+extern s16 D_801A52A0_6CFF70[];
+extern s16 D_801A5358_6D0028[];
+extern s16 D_801A5414_6D00E4[];
+extern s16 D_801A554C_6D021C[];
+extern s16 D_801A55AC_6D027C[];
+extern u32 D_801A5DE0_6D0AB0[];
+extern u32 D_801A5E24_6D0AF4[];
+extern u32 D_801A5E68_6D0B38[];
+extern u32 D_801A5EAC_6D0B7C[];
+extern u32 D_801A5EF4_6D0BC4[];
+extern u32 D_801A5F38_6D0C08[];
 extern s16 D_801A5F98_6D0C68;
 extern s16 D_801A5F9C_6D0C6C;
-extern u16 D_801A6F60;
-extern u16 D_801A6F62;
-extern u16 D_801A6F64;
+extern u16 D_801A5FD4_6D0CA4[];
+extern u16 D_801A61C4_6D0E94[];
+extern u16 D_801A63C4_6D1094[];
+extern u16 D_801A65B4_6D1284[];
+extern u16 D_801A6794_6D1464[];
 extern s16 D_801A6820_6D14F0[];
 extern s16 D_801A68C4_6D1594[];
 extern s16 D_801A68CC_6D159C[];
 extern s16 D_801A68D4_6D15A4[];
-extern u8 D_801A51FC_6CFECC;
-extern u8 D_801A5214_6CFEE4;
-extern u16 D_801A6794_6D1464[];
-extern u8 D_801A6F58_6D1C28;
-extern u8 D_801A6F59_6D1C29;
-extern s16 D_801A1038_6CBD08[];
+extern u32 D_801A68EC_6D15BC[];
+extern f32 D_801A6AD0_6D17A0;
+extern f32 D_801A6AD4_6D17A4;
+extern f64 D_801A6E78_6D1B48;
+extern f64 D_801A6E80_6D1B50;
 extern u16 D_801A6F3C_6D1C0C;
 extern f32 D_801A6F40_6D1C10;
 extern f32 D_801A6F44_6D1C14;
@@ -55,40 +70,23 @@ extern f32 D_801A6F48_6D1C18;
 extern f32 D_801A6F4C_6D1C1C;
 extern f32 D_801A6F50_6D1C20;
 extern f32 D_801A6F54_6D1C24;
-extern f32 D_801A6AD0_6D17A0;
-extern f32 D_801A6AD4_6D17A4;
-extern f64 D_801A6E78_6D1B48;
-extern f64 D_801A6E80_6D1B50;
+extern u8 D_801A6F58_6D1C28;
+extern u8 D_801A6F59_6D1C29;
 extern s16 D_801A6F5A_6D1C2A;
 extern s16 D_801A6F5C_6D1C2C;
 extern s16 D_801A6F5E_6D1C2E;
-extern u16 D_801A5FD4_6D0CA4[];
-extern u16 D_801A61C4_6D0E94[];
-extern u16 D_801A63C4_6D1094[];
-extern u16 D_801A65B4_6D1284[];
-extern s16 D_801A5234_6CFF04[];
-extern s16 D_801A52A0_6CFF70[];
-extern s16 D_801A5358_6D0028[];
-extern s16 D_801A5414_6D00E4[];
-extern u32 D_801A5DE0_6D0AB0[];
-extern u32 D_801A5E24_6D0AF4[];
-extern u32 D_801A5EAC_6D0B7C[];
-extern u32 D_801A5EF4_6D0BC4[];
-extern s16 D_801A554C_6D021C[];
-extern s16 D_801A55AC_6D027C[];
-extern u32 D_801A5E68_6D0B38[];
-extern u32 D_801A5F38_6D0C08[];
-extern u32 D_801A68EC_6D15BC[];
-extern s32 Math_Atan2(s32 arg0, s32 arg1);
+extern u16 D_801A6F60_6D1C30;
+extern u16 D_801A6F62_6D1C32;
+extern u16 D_801A6F64_6D1C34;
 
 void func_801932DC_6BDFAC(u16 actor_index);
 void func_80193EFC_6BEBCC(u16 actor_index, f32 arg1, f32 arg2, s32 arg3);
 void func_801971A0_6C1E70(u16 actor_index);
 void func_80197968_6C2638(u16 actor_index);
 void func_80197F00_6C2BD0(void);
-void func_8019DF44_6C8C14(u16 actor_index);
 void func_80198F10_6C3BE0(s32 arg0);
 void func_8019902C_6C3CFC(u16 actor_index);
+void func_8019DF44_6C8C14(u16 actor_index);
 
 
 void func_80192100_6BCDD0(u16 actor_index) {
@@ -567,44 +565,44 @@ void func_80197E08_6C2AD8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_0/overlay_6BCD80/6BCDD0/func_80197F00_6C2BD0.s")
 
 void func_80198330_6C3000(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F60);
+    Sound_StopSfx(D_801A6F60_6D1C30);
     Sound_PlaySfx(arg0);
-    D_801A6F60 = arg0;
+    D_801A6F60_6D1C30 = arg0;
 }
 
 
 void func_80198370_6C3040(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F62);
+    Sound_StopSfx(D_801A6F62_6D1C32);
     Sound_PlaySfx(arg0);
-    D_801A6F62 = arg0;
+    D_801A6F62_6D1C32 = arg0;
 }
 
 
 void func_801983B0_6C3080(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F64);
+    Sound_StopSfx(D_801A6F64_6D1C34);
     Sound_PlaySfx(arg0);
-    D_801A6F64 = arg0;
+    D_801A6F64_6D1C34 = arg0;
 }
 
 
 void func_801983F0_6C30C0(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F60);
+    Sound_StopSfx(D_801A6F60_6D1C30);
     Sound_PlaySfxAtPan(arg0, 0);
-    D_801A6F60 = arg0;
+    D_801A6F60_6D1C30 = arg0;
 }
 
 
 void func_80198430_6C3100(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F62);
+    Sound_StopSfx(D_801A6F62_6D1C32);
     Sound_PlaySfxAtPan(arg0, 0x40);
-    D_801A6F62 = arg0;
+    D_801A6F62_6D1C32 = arg0;
 }
 
 
 void func_80198470_6C3140(u16 arg0, u16 arg1) {
-    Sound_StopSfx(D_801A6F64);
+    Sound_StopSfx(D_801A6F64_6D1C34);
     Sound_PlaySfxAtPan(arg0, 0x7F);
-    D_801A6F64 = arg0;
+    D_801A6F64_6D1C34 = arg0;
 }
 
 // play 3 sounds at once,
@@ -616,12 +614,12 @@ void func_801984B0_6C3180(u16 sfx_0, u16 sfx_1, u16 sfx_2, u16 actor_index) {
 
 void func_80198508_6C31D8(u16 arg0, s32 arg1) {
     Sound_PlaySfx(arg0);
-    Sound_StopSfx(D_801A6F60);
-    D_801A6F60 = arg0;
-    Sound_StopSfx(D_801A6F62);
-    D_801A6F62 = arg0;
-    Sound_StopSfx(D_801A6F64);
-    D_801A6F64 = arg0;
+    Sound_StopSfx(D_801A6F60_6D1C30);
+    D_801A6F60_6D1C30 = arg0;
+    Sound_StopSfx(D_801A6F62_6D1C32);
+    D_801A6F62_6D1C32 = arg0;
+    Sound_StopSfx(D_801A6F64_6D1C34);
+    D_801A6F64_6D1C34 = arg0;
 }
 
 void func_80198578_6C3248(u16 actor_index, u16 count) {

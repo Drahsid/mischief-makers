@@ -4,7 +4,6 @@
 
 // unused "Overlay 2" script. Not listed in LUT.
 
-extern void Actor_SetHitboxB(u16 actor_index, s16 val);
 extern s32 D_80102928;
 extern s16 D_8010345C;
 extern f32 D_80103504;

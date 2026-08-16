@@ -80,31 +80,31 @@ tools:
             - font
             - rle_type1
             - save_file
-            - A540
-            - "11820"
-            - "12DD0"
-            - "134E0"
-            - gameover
-            - "156F0"
-            - "17A70"
-            - stage
+            - render
+            - stage_tilemap
+            - player_control
+            - collision_query
+            - continue_screen
+            - actor_physics
+            - actor_update
+            - frontend
             - actor_init
             - "1F1E0"
             - letterbox
-            - soft_reset
+            - game_init
             - "241E0"
-            - "26A00"
-            - text
+            - asset_loader
+            - game_text
             - "28EF0"
             - "42E90"
-            - "438E0"
-            - "48A30"
+            - stage_runtime
+            - player_action_dispatch
             - marina
-            - "4FEB0"
+            - player_actions
             - "57F20"
-            - "59EA0"
+            - particles
             - "5D120"
-            - "5E230"
+            - overlay_abi
             - "dialog"
             - "60CF0"
             - "61B80"
@@ -114,7 +114,7 @@ tools:
             - "805E0"
             - "80D90"
             - "82920"
-            - "82DB0"
+            - marina_graphics
             - "82F80"
             - osd_debug_text
             - "84BB0"
@@ -127,25 +127,16 @@ tools:
             - rsp/
             - header
             - assets/
-            - cosineTable
-            - floatTable
-            - globals
-            - music_data
-            - C6C20
-            - C7DA0
-            - C8B20
-            - C8BE0
-            - D2410
-            - E44A0
-            - E4760
-            - E4920
-            - E5160
-            - bss_
-            - D24D0.data
-            - D34D0.data
-            - D6420.data
-            - D8ED0.data
-            - E1CD0.data
+            - cosine_table
+            - cosine_table_unused
+            - game_globals
+            - render_setup_data
+            - actor_attachment_offsets
+            - actor_query_data
+            - audio_data
+            - graphic_lists
+            - palette_data
+            - stacks
 
         - id: overlays
           name: Overlays

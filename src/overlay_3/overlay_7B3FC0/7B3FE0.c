@@ -1,6 +1,7 @@
 #include "common.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "74A50.h"
 #include "7D8E0.h"
 
 typedef struct {
@@ -11,8 +12,6 @@ typedef struct {
     /* 0x0A */ u16 randomBase;
 } UnkStruct_7B3FE0__func_801B2530_7B5C10; /* sizeof = 0x0C */
 
-
-#define OVERLAY0_DISPATCH_ACTOR ((ActorFunc*)OVERLAY0_DISPATCH_TABLE_VRAM) // TODO: move?
 
 #define FESTIVAL_ADVANCE_MOTION(actor_index_, record_table_, current_index_) \
     do { \
@@ -123,12 +122,6 @@ u16 D_801B4568_7B7C48[16] = {
     0x0000, 0x0800, 0x0000, 0x0000, 0x0B00, 0x0C00, 0x0000, 0x0D00,
 };
 
-
-extern s16 Clanpot_AddItemCheck1(u16 actor_index, u16 flags, u16 var_110, u16 var_0D8);
-extern void OverlayABI_Slot2_fn28_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn29_u16(u16 actor_index);
-extern void OverlayABI_Slot2_fn30_u16(u16 actor_index);
-extern void func_8007B73C(u16 actor_index);
 
 
 void func_801B0900_7B3FE0(u16 actor_index) {

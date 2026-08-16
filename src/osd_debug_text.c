@@ -1,5 +1,9 @@
 #include "common.h"
 #include "boot.h"
+// BUG: incorrect prototype!
+#define OSD_SET_DATA_COLOR_TYPE u8
+#define OSD_PRINT_INT_ARG0 u32
+#include "debug.h"
 #include "font.h"
 
 extern size_t strlen(const char* str);

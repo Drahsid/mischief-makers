@@ -8,7 +8,7 @@ extern int sprintf(char* str, const char* fmt, ...);
 extern u16 Rand(void);
 extern void Marina_Init(void);
 
-// hacky workaround as we need the default proto of a func for func_80012AB4 in 66250.c
+// BUG: inconsistent prototype! hacky workaround as we need the default proto of a func for func_80012AB4 in 66250.c
 #ifndef func_80012AB4_ARGS
 #define func_80012AB4_ARGS s16 arg0, s16 arg1
 #endif
@@ -185,10 +185,13 @@ extern void func_8008C710(u16 arg0);
 extern void Pause_InitBars(void);
 extern void func_80020A54(void);
 extern void func_80022D10(void);
+
+// BUG: inconsistent prototype!
 #ifndef Actor_Initialize_RET
-  #define Actor_Initialize_RET DEFAULT_INT
+#define Actor_Initialize_RET DEFAULT_INT
 #endif
 extern Actor_Initialize_RET Actor_Initialize(u16 actor_index);
+
 extern void func_80026E60(u16 arg0);
 extern u16 Actor_RangeFindInactive(u16 actor_index, u16 end);
 extern u16 Actor_RangeFindInactive_90ToC0(void);

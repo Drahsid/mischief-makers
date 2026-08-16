@@ -351,14 +351,9 @@ typedef struct {
         };
     };
     /* 0x194 */ u8 unk_194[0x4]; // unknown/unused
-} Actor; /* size = 0x198 */
+} Actor; /* sizeof = 0x198 */
 
 extern Actor gActors[];
-
-extern ActorFunc D_80192000[]; // "overlay 0" dispatch table.
-extern ActorFunc D_8019B000[]; // "overlay 1" dispatch table.
-extern ActorFunc D_801A6800[]; // "overlay 2" dispatch table.
-extern ActorFunc D_801B0800[]; // "overlay 3" dispatch table.
 
 #define PLAYER_INDEX 0
 

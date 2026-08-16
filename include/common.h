@@ -5,11 +5,11 @@
 #include "input.h"
 #include "inttypes.h"
 #include "common_structs.h"
-#include "globalData.h"
+#include "game_globals.h"
 #include "linker.h"
 #include "cosine.h"
 #include "letterbox.h"
-#include "gameText.h"
+#include "game_text.h"
 #include "festival.h"
 #include "overlays.h"
 
@@ -24,6 +24,9 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 // hard-coded palette addresses.
 
 #define PALETTE_80202C90 ((u16*)0x80202C90)
+#define PALETTE_80203050 ((u16*)0x80203050)
+#define PALETTE_80203240 ((u16*)0x80203240)
+#define PALETTE_80203440 ((u16*)0x80203440)
 #define PALETTE_802209E0 ((u16*)0x802209E0) // used by life bar
 #define PALETTE_80222220 ((u16*)0x80222220)
 #define PALETTE_8022D4C8 ((u16*)0x8022D4C8)
@@ -40,6 +43,7 @@ typedef s32 DEFAULT_INT; // use this to explicitly show when the original progra
 #define PALETTE_8022D648 ((u16*)0x8022D648)
 #define PALETTE_8022D668 ((u16*)0x8022D668)
 #define PALETTE_8022D688 ((u16*)0x8022D688)
+#define PALETTE_8022D6A8 ((u16*)0x8022D6A8)
 #define PALETTE_80266618 ((u16*)0x80266618)
 #define PALETTE_80266818 ((u16*)0x80266818)
 #define PALETTE_802684F8 ((u16*)0x802684F8)

@@ -49,6 +49,8 @@ options:
 
   undefined_funcs_auto_path: undefined_funcs_auto.txt
   undefined_syms_auto_path: undefined_syms_auto.txt
+  #create_undefined_funcs_auto: False
+  #create_undefined_syms_auto: False
 
   # string_encoding: ASCII
   # data_string_encoding: ASCII
@@ -84,34 +86,34 @@ segments:
       - [0x001DF0, c, dma]
       - [0x001EF0, c, game_state]
       - [0x0023D0, c, music] # music.c from rodata
-      - [0x004F80, c, font] # SDK FONT.C-derived sprite text
+      - [0x004F80, c, font] # SDK font.c-derived sprite text
       - [0x005510, c, rle_type1]
       - [0x005A70, c, save_file]
-      - [0x00A540, c] # has to do with drawing and the persp/ortho view
-      - [0x011820, c] # collision builder?
-      - [0x012DD0, c] # has to do with spawning the player actor, and the camera
-      - [0x0134E0, c]
-      - [0x013850, c, gameover] # gameover game_state
-      - [0x0156F0, c]
-      - [0x017A70, c]
-      - [0x018280, c, stage]
+      - [0x00A540, c, render]
+      - [0x011820, c, stage_tilemap]
+      - [0x012DD0, c, player_control]
+      - [0x0134E0, c, collision_query]
+      - [0x013850, c, continue_screen]
+      - [0x0156F0, c, actor_physics]
+      - [0x017A70, c, actor_update]
+      - [0x018280, c, frontend]
       - [0x01E7A0, c, actor_init]
       - [0x01F1E0, c]
       - [0x022290, c, letterbox]
-      - [0x023910, c, soft_reset]
+      - [0x023910, c, game_init]
       - [0x0241E0, c] # has to do with scenes (scene init?)
-      - [0x026A00, c] # might be a fake split
-      - [0x027f70, c, text] # code for printing game's text
+      - [0x026A00, c, asset_loader]
+      - [0x027f70, c, game_text]
       - [0x028EF0, c] 
       - [0x042E90, c]
-      - [0x0438E0, c]
-      - [0x048A30, c]
+      - [0x0438E0, c, stage_runtime]
+      - [0x048A30, c, player_action_dispatch]
       - [0x049200, c, marina]
-      - [0x04FEB0, c]
+      - [0x04FEB0, c, player_actions]
       - [0x057F20, c]
-      - [0x059EA0, c]
+      - [0x059EA0, c, particles]
       - [0x05D120, c]
-      - [0x05E230, c]
+      - [0x05E230, c, overlay_abi]
       - [0x05EA30, c, dialog]
       - [0x060CF0, c]
       - [0x061B80, c]
@@ -121,7 +123,7 @@ segments:
       - [0x0805E0, c]
       - [0x080D90, c]
       - [0x082920, c]
-      - [0x082DB0, c] # has to do with loading marina's graphics
+      - [0x082DB0, c, marina_graphics]
       - [0x082F80, c]
       - [0x0844E0, c, osd_debug_text]
       - [0x084BB0, c]
@@ -300,44 +302,49 @@ segments:
       - [0x0BB6B0, textbin, rsp/gspFast3D]
       - [0x0BCAB0, textbin, rsp/aspMain]
       # data
-      - [0x0BD8D0, .data, cosineTable]
-      - [0x0BE8D0, .data, floatTable]      
-      - [0x0BF0D0, .data, globals] # game globals
-      - [0x0BF350, data, music_data] # music names start at BF354; music.s refs tables at C1654/C2280/C26DC
+      - [0x0BD8D0, .data, cosine_table]
+      - [0x0BE8D0, .data, cosine_table_unused]
+      - [0x0BF0D0, .data, game_globals]
+      - [0x0BF350, .data, audio_data] # music names start at BF354; music.s refs tables at C1654/C2280/C26DC
       - [0x0C4500, .data, font]
       - [0x0C5AE0, .data, rle_type1]
       - [0x0C5B20, .data, save_file]
-      - [0x0C5FC0, .data, A540]
-      - [0x0C6C20, data] # 11820?
-      - [0x0C7DA0, data] # 241E0?
-      - [0x0C84A0, .data, 11820]
-      - [0x0C88D0, .data, 134E0]
-      - [0x0C8910, .data, gameover] # gameover
-      - [0x0C8B20, data] # 156F0
-      - [0x0C8BE0, data] # main actor/update dispatch table
-      - [0x0C8DE0, .data, stage]
+      - [0x0C5FC0, .data, render]
+      - [0x0C6C20, .data, stage_tilemap]
+      - [0x0C88D0, .data, collision_query]
+      - [0x0C8910, .data, continue_screen]
+      - [0x0C8B20, .data, actor_physics]
+      - [0x0C8BE0, .data, actor_update]
+      - [0x0C8DE0, .data, frontend]
       - [0x0CA300, .data, actor_init]
       - [0x0CADC0, .data, 1F1E0]
       - [0x0CCA20, .data, letterbox]
-      - [0x0CCB40, .data, soft_reset]
+      - [0x0CCB40, .data, game_init]
       - [0x0CCB50, .data, 241E0]
-      - [0x0CDC80, .data, 26A00]
-      - [0x0D22D0, .data, text]
-      - [0x0D2410, data] # 62250
-      - [0x0D24D0, data]
+      - [0x0CDC80, .data, asset_loader]
+      - [0x0D22D0, .data, game_text]
+      - [0x0D2410, .data, 28EF0]
       - [0x0D34B0, .data, 42E90] 
-      - [0x0D34D0, data] 
-      - [0x0D4AB0, .data, 4FEB0]
-      - [0x0D6420, data] # 5EA30+
-      - [0x0D8ED0, data] # palette DB script?
+      - [0x0D34D0, .data, stage_runtime]
+      - [0x0D4920, .data, player_action_dispatch]
+      - [0x0D49B0, .data, marina]
+      - [0x0D4AB0, .data, player_actions]
+      - [0x0D6420, .data, dialog]
+      - [0x0D80A0, .data, 61B80]
+      - [0x0D81A0, .data, 66250]
+      - [0x0D8CC0, .data, 74A50]
+      - [0x0D8ED0, .data, palette_data]
       - [0x0E1B00, .data, 7D8E0] 
-      - [0x0E1CD0, data] 
-      - [0x0E44A0, .data, E44A0] # previously placed in boot.c
-      - [0x0E4760, data]
-      - [0x0E4920, data] # 84BB0?
-      - [0x0E5160, data] # 8D0A0?
-      - [0x0E66C0, .data, 17A70]
-      - [0x0E6700, .data, 8F080]
+      - [0x0E1CD0, .data, 805E0]
+      - [0x0E1F80, .data, graphic_lists]
+      - [0x0E31B0, .data, 82920]
+      - [0x0E4170, .data, actor_query_data]
+      - [0x0E4190, .data, 82F80]
+      - [0x0E4230, .data, actor_attachment_offsets]
+      - [0x0E44A0, .data, render_setup_data]
+      - [0x0E4920, .data, 84BB0]
+      - [0x0E5160, .data, 8D0A0]
+      - [0x0E66C0, .data, 8F080]
       - [0x0EA340, .data, stage_end_screen]
       # libultra data
       - [0x0EA370, .data, ultralib/os/initialize]
@@ -358,6 +365,7 @@ segments:
       - [0x0EB230, .data, ultralib/io/piacs]
       - [0x0EB240, .data, ultralib/os/rdbsend]
       - [0x0EB250, .data, ultralib/io/siacs]
+      - [0x0EB260, .data, ultralib/audio/drvrnew]
       - [0x0EB3F0, .data, ultralib/audio/env]
       - [0x0EB530, .data, libc/xprintf]
       - [0x0EB580, .data, ultralib/vimodes/vimodentsclan1]
@@ -374,21 +382,21 @@ segments:
       - [0x0EB7F0, .rodata, game_state]
       - [0x0EB830, .rodata, music]
       - [0x0EBB10, .rodata, save_file]
-      - [0x0EBBC0, .rodata, A540]
-      - [0x0EBBE0, .rodata, 11820]
-      - [0x0EBC00, .rodata, gameover]
-      - [0x0EBC50, .rodata, 17A70]
-      - [0x0EBD00, .rodata, stage]
+      - [0x0EBBC0, .rodata, render]
+      - [0x0EBBE0, .rodata, stage_tilemap]
+      - [0x0EBC00, .rodata, continue_screen]
+      - [0x0EBC50, .rodata, actor_update]
+      - [0x0EBD00, .rodata, frontend]
       - [0x0EC190, .rodata, 1F1E0]
       - [0x0EC220, .rodata, 241E0]
       - [0x0EC280, .rodata, 28EF0]
       - [0x0EC910, .rodata, 42E90]
-      - [0x0EC920, .rodata, 438E0]
+      - [0x0EC920, .rodata, stage_runtime]
       - [0x0EC960, .rodata, marina]
-      - [0x0EC9D0, .rodata, 4FEB0]
+      - [0x0EC9D0, .rodata, player_actions]
       - [0x0ECAA0, .rodata, 57F20]
-      - [0x0ECAC0, .rodata, 59EA0]
-      - [0x0ECB90, .rodata, 5E230]
+      - [0x0ECAC0, .rodata, particles]
+      - [0x0ECB90, .rodata, dialog]
       - [0x0ECCF0, .rodata, 60CF0]
       - [0x0ECD80, .rodata, 61B80]
       - [0x0ED0E0, .rodata, 66250]
@@ -408,6 +416,7 @@ segments:
       - [0x0EE2A0, .rodata, ultralib/io/visetevent]
       - [0x0EE2C0, .rodata, ultralib/debug/assert]
       - [0x0EE2E0, .rodata, ultralib/audio/heapalloc]
+      - [0x0EE2F0, .rodata, ultralib/audio/csplayer]
       - [0x0EE530, .rodata, ultralib/audio/synthesizer]
       - [0x0EE610, .rodata, ultralib/audio/cseq]
       - [0x0EE620, .rodata, ultralib/sp/sprite]
@@ -444,22 +453,23 @@ segments:
       - { start: 0xEF610, type: databin, name: rsp/gspFast3DData, linker_section_order: .rodata }
       - { start: 0xEFE10, type: databin, name: rsp/aspMainData, linker_section_order: .rodata }
       # bss
-      - { name: globals, type: .bss, vram: 0x800EF4D0 } # bss start
-      - { name: bss_80122670, type: bss, vram: 0x80122670 } # may be more thread stacks?
-      - { name: boot, type: .bss, vram: 0x80123670 }
-      - { name: bss_801370D0, type: bss, vram: 0x801370D0 }
+      - { name: game_globals, type: .bss, vram: 0x800EF4D0 } # bss start
+      - { name: stacks, type: .bss, vram: 0x80122670 }
+      - { name: boot, type: .bss, vram: 0x8012A670 }
+      - { name: input, type: .bss, vram: 0x801370C0 }
+      - { name: game_state, type: .bss, vram: 0x801370D0 }
+      - { name: music, type: .bss, vram: 0x801377A0 }
       - { name: font, type: .bss, vram: 0x8016E820 }
       - { name: save_file, type: .bss, vram: 0x80171AA0}
-      - { name: bss_80171B30, type: bss, vram: 0x80171B30 }
-      - { name: A540, type: .bss, vram: 0x801720F0}
-      - { name: gameover, type: .bss, vram: 0x80178130 }
-      - { name: stage, type: .bss, vram: 0x80178150 }
+      - { name: render, type: .bss, vram: 0x80171B30 }
+      - { name: continue_screen, type: .bss, vram: 0x80178130 }
+      - { name: frontend, type: .bss, vram: 0x80178150 }
       - { name: 1F1E0, type: .bss, vram: 0x801781C0 }
-      - { name: soft_reset, type: .bss, vram: 0x801781F0 }
-      - { name: bss_801782B0, type: bss, vram: 0x801782B0 }
+      - { name: game_init, type: .bss, vram: 0x801781F0 }
+      - { name: stage_runtime, type: .bss, vram: 0x801782B0 }
       - { name: dialog, type: .bss, vram: 0x801782D0 }
-      - { name: bss_80178450, type: bss, vram: 0x80178450 }
-      - { name: 82DB0, type: .bss, vram: 0x80178460 }
+      - { name: 61B80, type: .bss, vram: 0x80178450 }
+      - { name: marina_graphics, type: .bss, vram: 0x80178460 }
       - { name: 82F80, type: .bss, vram: 0x80178470 }
       - { name: osd_debug_text, type: .bss, vram: 0x80180FD0 }
       - { name: 84BB0, type: .bss, vram: 0x80182020}
@@ -672,7 +682,7 @@ segments:
     type: code
     vram: 0x80192100
     start: 0x6BCDD0
-    bss_size: 0x40
+    bss_size: 0x50
     subsegments:
       - [0x6BCDD0, c, overlay_0/overlay_6BCD80/6BCDD0] # object segment 6BCDD0->6D1BF0 (0x14E20)
       - [0x6CBC50, data, overlay_6BCD80/6BCDD0]

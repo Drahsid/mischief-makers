@@ -18,10 +18,10 @@ glabel entrypoint
 /* 101C 8000041C 1520FFFC */  bnez       $t1, .clear_bss
 /* 1020 80000420 21080008 */  addi       $t0, $t0, 0x8
 /* 1024 80000424 3C0A8000 */  lui        $t2, %hi(boot)
-/* 1028 80000428 3C1D8012 */  lui        $sp, %hi(__gBootStackEnd)
+/* 1028 80000428 3C1D8012 */  lui        $sp, %hi(gBootStack + 0x1000)
 /* 102C 8000042C 254A06BC */  addiu      $t2, $t2, %lo(boot)
 /* 1030 80000430 01400008 */  jr         $t2
-/* 1034 80000434 27BD4670 */  addiu      $sp, $sp, %lo(__gBootStackEnd)
+/* 1034 80000434 27BD4670 */  addiu      $sp, $sp, %lo(gBootStack + 0x1000)
 /* 1038 80000438 00000000 */  nop
 /* 103C 8000043C 00000000 */  nop
 /* 1040 80000440 00000000 */  nop

@@ -177,6 +177,8 @@
 #define GINDEX_HAT_CROWN        0x0250 // 2 ani states
 #define GINDEX_HAT_USHANKA      0x0254 // 2 ani states
 
+#define GINDEX_0258             0x0258
+
 #define GINDEX_MISSLE          0x025C
 
 #define GINDEX_SAGECLOUD       0x0260
@@ -188,9 +190,19 @@
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
 #define GINDEX_CLANBOMB        0x0276 // 3 animation frames
 
+#define GINDEX_CLANCER_HEAD    0x028A
+#define GINDEX_CLANCER_BODY    0x028C
+#define GINDEX_CLANCER_PART_028E 0x028E
 #define GINDEX_0290            0x0290
+#define GINDEX_CLANCER_PART_0292 0x0292
+#define GINDEX_CLANCER_PART_0294 0x0294
+#define GINDEX_CLANCER_PART_0296 0x0296
+#define GINDEX_CLANCER_PART_0298 0x0298
+#define GINDEX_029A            0x029A
 
 #define GINDEX_CLANCERGHOST    0x02A2 // 6 animation frames
+
+#define GINDEX_02AE            0x02AE
 
 #define GINDEX_MOCHI           0x02C2
 
@@ -209,15 +221,12 @@
 // example: "world map" graphics have [ABREV] as "WM"
 
 #define GINDEX_SUNGLASSES       0X1004
-
-#define GINDEX_STAFFSAGE        0X1040
-
-#define GINDEX_HATCALINA        0X1044 // 2 ani states
-
-#define GINDEX_HATMSHINT        0X1070
-
+#define GINDEX_CALINA_BODY      0X1006
+#define GINDEX_CALINA_LEG       0X1008
+#define GINDEX_CALINA_FOOT      0X100A
 #define GINDEX_1014             0x1014
 #define GINDEX_1016             0x1016
+#define GINDEX_CALINA_HEAD      0X101A
 #define GINDEX_101C             0x101C
 #define GINDEX_101E             0x101E
 #define GINDEX_1020             0x1020
@@ -229,9 +238,24 @@
 #define GINDEX_1034             0x1034
 #define GINDEX_1038             0x1038
 #define GINDEX_103A             0x103A
+#define GINDEX_STAFFSAGE        0X1040
+#define GINDEX_HATCALINA        0X1044 // 2 ani states
+#define GINDEX_HATMSHINT        0X1070
+#define GINDEX_1072             0x1072
+#define GINDEX_1078             0x1078
+#define GINDEX_107E             0x107E
 #define GINDEX_1090             0x1090
-
 #define GINDEX_STAFFCALINA      0X1098
+
+#define GINDEX_1814             0x1814
+#define GINDEX_181C             0x181C
+#define GINDEX_181E             0x181E
+#define GINDEX_1820             0x1820
+#define GINDEX_1822             0x1822
+#define GINDEX_182C             0x182C
+#define GINDEX_182E             0x182E
+#define GINDEX_1836             0x1836
+#define GINDEX_1838             0x1838
 
 // graphics with an index starting in 0x2000 are pieces of the back/foreground.
 

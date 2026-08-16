@@ -4,6 +4,7 @@
 #include "66250.h"
 #include "805E0.h"
 #include "80D90.h"
+#include "82920.h"
 
 extern s16 gNoHit;
 extern s16 D_800E1714[];
@@ -47,12 +48,6 @@ u32 D_801B4B68_7C0AB8;
 s16 D_801B4B6C_7C0ABC;
 s16 D_801B4B6E_7C0ABE;
 u8 D_801B4B70_7C0AC0;
-
-extern void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16 arg5);
-extern void func_8002C6E4(u16 actor_index);
-extern u16 func_8003F7A0(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z);
-extern void func_80081D20(u16 actor_index);
-extern void func_80081E38(u16 actor_index);
 
 void func_801B0900_7BC850(u16 actor_index);
 s32 func_801B0944_7BC894(u16 actor_index);

@@ -1,52 +1,15 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
 #define func_8001FCA0_ARGS u16 actor_index, s32 x, s32 y
 #include "common.h"
 #include "actor.h"
 #include "input.h"
 #include "music.h"
-#include "stage.h"
+#include "frontend.h"
 #include "1F1E0.h"
 #include "28EF0.h"
 #include "66250.h"
 #include "7D8E0.h"
-
-extern u16* gParticlePalettes[]; // palettes of particles.
-extern u16 gStrPotEmpty[]; // "からっぽ..."/"Empty.."
-extern u16* gGemPalettes[]; // palettes of gems
-extern u16* D_800D19F4[]; // palettes of "wave rings",
-extern u16 D_800D2294[];
-extern s32 D_800D229C[];
-extern s32 D_800D22AC[];
-extern s16 D_800D2284[];
-extern u16 D_800D23FC[];
-extern u16 gClanpotMixClanbomb[];
-extern u16 gClanpotMixBoomerang[];
-extern u16 gClanpotMixShuriken[];
-extern u16 gClanpotMixGreenGem[];
-extern u16* gSpikeballPalettes[]; // spikeball colors
- // additional params for static Spikeballs, determined by 0xD8
- // {Downtime, Can Shoot}
-extern s32 gSpikeballParams_S[];
-extern s32 gSpikeballParams_H[]; // additional params for Horizontal Spikeballs, determined by 0xD8
-extern s32 gSpikeballParams_V[]; // additional params for Vertical Spikeballs, determined by 0xD8
-// actors revealed by clanball when pulled down
-// {posX, posY, 0x110, 0xD8, type}
-extern u16 gClanballReveals[]; 
-extern u16* gClanballPalettes[];
-extern u16 D_800D2714[];
-extern s16 D_800D271C[];
-extern u16 gStrAreaClear0[]; // "escaped from trouble!" 
-extern u16 gStrAreaClear1[]; // "Marina has succeeded!!" (unused)
-extern u16 gStrAreaClear2[]; // "go to next area!!"
-extern u16 gStrAreaClear3[]; // "good luck!!" (unused)
-extern u16 gCrosshairPalette[];
-extern u16 D_800D2814[];
-extern f32 D_800D281C[];
-extern u16 D_800D282C[];
-extern u16 D_800D2854[]; // graphic indices of shock effect?
-extern u16 D_800D2860[]; // warp gate coords in main segment.
-
-//.data file break?
 
 extern s16 D_800D291C;
 extern s16 D_800D2920;
@@ -54,9 +17,88 @@ extern s16 D_800D2924;
 extern u16 D_800D2954;
 extern s16 gNoHit;
 extern u16 D_800D295C;
+extern u16 D_800D36DC[];
+extern u16 D_800D36FC[]; // list of actor indexes used in Actor_UpdateNearest
+extern u16 D_800D8568[];
+extern u16 D_800D85A8[];
+extern u16 D_800D85C8[];
+extern u16 D_800D85E8[];
+extern u16 D_800D8648[];
+extern u16 D_800D8668[];
+extern u16 D_800D8688[];
+extern u16 D_800D86A8[];
+extern u16 D_800D86C8[];
 extern u16 gPaletteGemBlue[];
+extern u16 D_800D8E64[];
+extern u16 D_800D8F84[];
+extern u16 D_800D90A4[];
+extern u16 D_800D9664[];
+extern u16 D_800D9754[];
+extern u16 D_800D9844[];
+extern u16 D_800D98F4[];
+extern u16 D_800D99A4[];
 extern u16 D_800D9AF4[];
 extern u16 D_800D9B64[];
+extern u16 D_800D9B7C[];
+extern u16 D_800D9C7C[];
+extern u16 D_800D9D7C[];
+extern u16 D_800D9E7C[];
+extern u16 D_800D9F7C[];
+extern u16 D_800DA07C[];
+extern u16 D_800DA27C[];
+extern u16 D_800DA47C[];
+extern u16 D_800DA67C[];
+extern u16 D_800DA87C[];
+extern u16 D_800DAA7C[];
+extern u16 D_800DAC7C[];
+extern u16 D_800DAE7C[];
+extern u16 D_800DB07C[];
+extern u16 D_800DB27C[];
+extern u16 D_800DB47C[];
+extern u16 D_800DB67C[];
+extern u16 D_800DB87C[];
+extern u16 D_800DBA7C[];
+extern u16 D_800DBC7C[];
+extern u16 D_800DBE7C[];
+extern u16 D_800DC07C[];
+extern u16 D_800DC27C[];
+extern u16 D_800DC47C[];
+extern u16 D_800DC67C[];
+extern u16 D_800DC87C[];
+extern u16 D_800DCA7C[];
+extern u16 D_800DCC7C[];
+extern u16 D_800DCE7C[]; // guess
+extern u16 D_800DD07C[]; // guess
+extern u16 D_800DD27C[]; // guess
+extern u16 D_800DD47C[];
+extern u16 D_800DD67C[];
+extern u16 D_800DD87C[];
+extern u16 D_800DDA88[];
+extern u16 D_800DDC48[];
+extern u16 D_800DDE08[];
+extern u16 D_800DDFC8[];
+extern u16 D_800DE188[];
+extern u16 D_800DE348[];
+extern u16 D_800DE6C8[];
+extern u16 D_800DE888[];
+extern u16 D_800DEA48[];
+extern u16 D_800DEC08[];
+extern u16 D_800DEDC8[];
+extern u16 D_800DEF88[];
+extern u16 D_800DF148[];
+extern u16 D_800DF308[];
+extern u16 D_800DF4C8[];
+extern u16 D_800DF688[];
+extern u16 D_800DF848[];
+extern u16 D_800DFA48[];
+extern u16 D_800DFC48[];
+extern u16 D_800DFE48[];
+extern u16 D_800E0048[];
+extern u16 D_800E0248[];
+extern u16 D_800E0448[];
+extern u16 D_800E0654[];
+extern u16 D_800E0854[];
+extern u16 D_800E0A54[];
 extern s16 D_800E14C8[];
 extern s16 D_800E14E8[];
 extern s16 D_800E155C[];
@@ -66,37 +108,258 @@ extern s16 D_800E1604[];
 extern s16 D_800E1DEC[];
 extern s16 D_800E2514[];
 extern s16 D_800E2528[];
-extern s32 D_800E3578; // nearest actor delta X
-extern s32 D_800E357C; // nearest actor delta Y
-extern u16 D_800E3580; // nearest actor index, updated in Actor_NearestFromList
 
-extern u16 D_800D17FC[]; // text palette
-extern s8 D_800D2204[]; // LUT in atan2
-extern s8 D_800D2228[]; // entries used in atan2
-extern s8 D_800D222C[]; // entries used in atan2
-extern u16 D_800D2230[];
-extern u16 D_800D36DC[];
-extern u16 D_800D36FC[]; // list of actor indexes used in Actor_UpdateNearest
-extern u16 D_800DCE7C[]; // guess
-extern u16 D_800DD07C[]; // guess
-extern u16 D_800DD27C[]; // guess
+u16* gParticlePalettes[] = { // palettes of particles.
+    NULL,
+    PALETTE_8022D4C8, PALETTE_8022D4E8, PALETTE_8022D508,
+    PALETTE_8022D528, PALETTE_8022D548, PALETTE_8022D568,
+    PALETTE_8022D588, PALETTE_8022D5C8, PALETTE_8022D5E8,
+    PALETTE_8022D608, PALETTE_8022D628, PALETTE_8022D648,
+    PALETTE_8022D668, PALETTE_8022D688, PALETTE_8022D6A8,
+    D_800D84E8, D_800D8508, D_800D8528, D_800D8548,
+    D_800D8568, D_800D8588, D_800D85A8, D_800D85C8,
+    D_800D85E8, D_800D8608, D_800D8628, D_800D8648,
+    D_800D8668, D_800D8688, D_800D86A8, D_800D86C8,
+    D_800D85E8, D_800D8608,
+};
+
+u16 gStrPotEmpty[] = { // "からっぽ..."/"Empty.."
+    ALPHA_JP_HIRA_KA, ALPHA_JP_HIRA_RA, ALPHA_JP_HIRA_SMALL_TSU, ALPHA_JP_HIRA_PO, ALPHA_ELLIPSIS,
+    ALPHA_NULL,
+};
+
+u16* D_800D18A4[] = {
+    D_800DB07C, D_800DB27C, D_800DB47C, D_800DB67C,
+    D_800DB87C, D_800DBA7C, D_800DBC7C, D_800DBE7C,
+};
+
+u16* D_800D18C4[] = { D_800DA07C, D_800DA27C, D_800DA87C };
+u16* D_800D18D0[] = { D_800DA67C, D_800DA47C, D_800DAA7C, D_800DAC7C, D_800DAE7C };
+u16* D_800D18E4[] = { D_800D9B7C, D_800D9E7C, D_800D9C7C, D_800D9D7C, D_800D9F7C };
+u16* D_800D18F8[] = { NULL, D_800D9844, D_800D98F4, D_800D99A4, NULL, D_800D9664, D_800D9754, D_800D9664 };
+u16* D_800D1918[] = { NULL, D_800DCE7C, D_800DD07C, D_800DD27C, NULL, D_800DD47C, D_800DD67C, D_800DD87C };
+u16* D_800D1938[] = { NULL, D_800DC67C, D_800DCA7C, D_800DC87C, D_800DC27C, D_800DC07C, D_800DC47C };
+u16* D_800D1954[] = { D_800DCC7C };
+u16* gGemPalettes[] = { gPaletteGemRed, gPaletteGemBlue, gPaletteGemYellow, gPaletteGemGreen }; // palettes of gems
+
+u16* D_800D1968[] = {
+    D_800DE348, D_800DE188, D_800DE6C8, D_800DE888,
+    D_800DEA48, D_800DEF88, D_800DEC08, D_800DEDC8,
+    D_800DF308, D_800DF148, D_800DF688, D_800DF4C8,
+    D_800DDA88, D_800DDC48, D_800DDE08, D_800DDFC8,
+};
+
+u16* D_800D19A8[] = { PALETTE_80203050, D_800E0654, D_800E0854, D_800E0A54 };
+
+u16* D_800D19B8[] = {
+    PALETTE_8022D4C8, PALETTE_8022D4E8, PALETTE_8022D508,
+    PALETTE_8022D528, PALETTE_8022D548, PALETTE_8022D568,
+    PALETTE_8022D588, D_800D84E8, D_800D8508, D_800D8528,
+    D_800D8548, D_800D8568, D_800D8588, D_800D85A8, D_800D85C8,
+};
+
+u16* D_800D19F4[] = { NULL, D_800D8E64, D_800D8F84, D_800D90A4 }; // palettes of "wave rings",
+
+u16 D_800D1A04[256] = {
+#include "textures/tlut_RGBA16__D_800D1A04.inc.c"
+};
+
+u16 D_800D1C04[768] = {
+#include "textures/tlut_RGBA16__D_800D1C04.inc.c"
+};
+
+s8 D_800D2204[] = { // LUT in atan2
+    0x00, 0x00, 0x00, 0x00, 0x20, 0x1B, 0x17, 0x15,
+    0x13, 0x11, 0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x0A,
+    0x0A, 0x09, 0x09, 0x08, 0x08, 0x07, 0x07, 0x07,
+    0x06, 0x06, 0x06, 0x06, 0x05, 0x05, 0x05, 0x05,
+    0x05, 0x05, 0x04, 0x04,
+};
+
+s8 D_800D2228[] = { 0x00, 0xA0, 0x80, 0x60 }; // entries used in atan2
+s8 D_800D222C[] = { 0xC0, 0x20, 0x40, 0xE0 }; // entries used in atan2
+
+u16 D_800D2230[] = {
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000, 0x0015, 0x0001, 0x0010, 0x0002, 0x0013, 0x03E8,
+    0x0000, 0x0000,
+};
+
+s16 D_800D2284[] = { 0x0284, 0x0003, 0x0286, 0x0003, 0x0288, 0x0003, 0xFFFA, 0x0000 };
+u16 D_800D2294[] = { GINDEX_NOTEQUARTER, GINDEX_NOTEEIGHTHS, GINDEX_NOTEEIGHTH, GINDEX_NOTEEIGHTH };
+s32 D_800D229C[] = { FIXED_UNIT(1.5), FIXED_UNIT(0.5), FIXED_UNIT(-0.5), FIXED_UNIT(-1.5) };
+s32 D_800D22AC[] = { FIXED_UNIT(2.5), FIXED_UNIT(2.75), FIXED_UNIT(2.75), FIXED_UNIT(2.5) };
+u16 gClanpotItems[160] = { 0 };
+
+u16 D_800D23FC[] = {
+    0x02D4, 0x0000, 0x02D6, 0x0000, 0x02D8, 0x0000, 0x02DA, 0x0000,
+    0x02DC, 0x0000, 0x02DE, 0x0000, 0x02E0, 0x0000, 0x02E2, 0x0000,
+    0x02E4, 0x0000, 0x02D4, 0x02D2, 0x02D4, 0x02D4, 0x02D4, 0x02D6,
+    0x02D4, 0x02D8, 0x02D4, 0x02DA, 0x02D4, 0x02DC, 0x02D4, 0x02DE,
+    0x02D4, 0x02E0, 0x02D4, 0x02E2, 0x02D4, 0x02E4, 0x02D6, 0x02D2,
+    0x02D6, 0x02D4, 0x02D6, 0x02D6, 0x02D6, 0x02D8, 0x02D6, 0x02DA,
+    0x02D6, 0x02DC, 0x02D6, 0x02DE, 0x02D6, 0x02E0, 0x02D6, 0x02E2,
+    0x02D6, 0x02E4, 0x02D8, 0x02D2, 0x02D8, 0x02D4, 0x02D8, 0x02D6,
+    0x02D8, 0x02D8, 0x02D8, 0x02DA, 0x02D8, 0x02DC, 0x02D8, 0x02DE,
+    0x02D8, 0x02E0, 0x02D8, 0x02E2, 0x02D8, 0x02E4, 0x02DA, 0x02D2,
+    0x02DA, 0x02D4, 0x02DA, 0x02D6, 0x02DA, 0x02D8,
+};
+
+u16 gClanpotMixClanbomb[] = { 0xC000, 0x000A, 0x0004, ACTORTYPE_CLANBOMB, GINDEX_CLANBOMB, 0x0000 };
+u16 gClanpotMixBoomerang[] = { 0xC000, 0x0001, 0x0000, ACTORTYPE_OVL0_GEN_BOOMERANG, GINDEX_BOOMERANG, 0x0000 };
+u16 gClanpotMixShuriken[] = { 0xC000, 0x0000, 0x0000, ACTORTYPE_OVL0_GEN_SHURIKEN, GINDEX_SHURIKEN, 0x0000 };
+u16 gClanpotMixGreenGem[] = { 0xC400, 0x0033, 0x0000, 0x0008, 0x0066, 0x0000 };
+
+u8 gClanpotItemCount[26] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF,
+};
+
+u16* gSpikeballPalettes[] = { D_800DF848, D_800DFC48, D_800DFA48, D_800DF848 }; // spikeball colors
+
+// additional params for static Spikeballs, determined by 0xD8
+// {Downtime, Can Shoot}
+s32 gSpikeballParams_S[] = { 0xF0, 0, 0xF0, 1 };
+
+s32 gSpikeballParams_H[] = { // additional params for Horizontal Spikeballs, determined by 0xD8
+    0x0000003C, SPIKEBALL_MOVEX, 0x00000070, 0x00000090, FIXED_UNIT(1.0), FIXED_UNIT(1.0/32),
+    0x0000003C, SPIKEBALL_MOVEX, 0x00000040, 0x00000060, FIXED_UNIT(1.0), FIXED_UNIT(1.0/32),
+    0x0000003C, SPIKEBALL_MOVEX, 0x00000010, 0x00000030, FIXED_UNIT(1.0), FIXED_UNIT(1.0/32),
+    0x00000078, SPIKEBALL_MOVEX, 0xFFFFFFE4, 0x0000001C, FIXED_UNIT(0.875), FIXED_UNIT(1.0/32),
+    0x00000064, SPIKEBALL_MOVEX, 0xFFFFFFB8, 0x00000048, FIXED_UNIT(1.125), FIXED_UNIT(1.0/16),
+};
+
+s32 gSpikeballParams_V[] = { // additional params for Vertical Spikeballs, determined by 0xD8
+    0x0000003C, 0x00000000, 0x00000020, 0x00000020, FIXED_UNIT(1.0), FIXED_UNIT(0.125),
+    0x0000003C, SPIKEBALL_MOVEX, 0x00000020, 0x00000020, FIXED_UNIT(1.0), FIXED_UNIT(0.125),
+};
+
+// actors revealed by clanball when pulled down
+// {posX, posY, 0x110, 0xD8, type}
+u16 gClanballReveals[] = {
+    0x0940, 0x02A0, 0x0003, 0x0100, ACTORTYPE_WARPGATE,
+    0x0A00, 0x0180, 0x0004, 0x0000, ACTORTYPE_WARPGATE,
+    0x0730, 0x02A0, 0x1100, 0x0000, (0x8000 | ACTORTYPE_CLANBALL_28),
+    0x0730, 0x0240, 0x1100, 0x0000, ACTORTYPE_CLANBALL_28,
+    0x07A0, 0x01A0, 0x000A, 0x0004, ACTORTYPE_CLANBOMB,
+    0x08B8, 0x0120, 0x836A, 0x0000, (0x8000 | ACTORTYPE_CLANBALL_28),
+    0x08B8, 0x0120, 0x0900, 0x0000, ACTORTYPE_CLANBALLSPRING,
+    0x0F20, 0x01F0, 0x0200, 0x0000, ACTORTYPE_CLANBALL_28,
+    0x01E0, 0x08A0, 0x0000, 0x0001, ACTORTYPE_OVL3_W2_3DPLATFORM_9,
+    0x03C0, 0x0190, 0x0002, 0x0009, ACTORTYPE_WARPGATE,
+    0x01D0, 0x0270, 0x6400, 0x900B, ACTORTYPE_CLANBALL_28,
+    0x0440, 0x0210, 0x6400, 0x900C, ACTORTYPE_CLANBALL_28,
+    0x0590, 0x0260, 0x0002, 0x0006, ACTORTYPE_WARPGATE,
+    0x1870, 0x02D8, 0x000C, 0x0004, ACTORTYPE_CLANBOMB,
+    0x15F0, 0x01A0, 0x6400, 0x1102, ACTORTYPE_CLANBALL_28,
+    0x1B40, 0x0200, 0x000A, 0x0004, ACTORTYPE_CLANBOMB,
+    0x1BE0, 0x0200, 0x0002, 0x001E, ACTORTYPE_WARPGATE,
+    0x1C60, 0x0200, 0x0002, 0x0021, ACTORTYPE_WARPGATE,
+    0x1BB0, 0x0200, 0x6200, 0x1505, ACTORTYPE_CLANBALL_28,
+    0x1D20, 0x0200, 0x6000, 0x1414, ACTORTYPE_CLANBALL_28,
+    0x1D50, 0x01B0, 0x6100, 0x1502, ACTORTYPE_CLANBALL_28,
+    NULL,
+};
+
+// {gemflag/110, D8, type}
+u16 gClanballDrops[] = {
+    GEMFLAG_COMMON | GEMFLAG_RED, 0x0000, ACTORTYPE_GEM,
+    GEMFLAG_COMMON | GEMFLAG_BLUE, 0x0000, ACTORTYPE_GEM,
+    GEMFLAG_COMMON | GEMFLAG_YELLOW, 0x0000, ACTORTYPE_GEM,
+    0x000A, 0x0004, ACTORTYPE_CLANBOMB,
+    0x0000, 0x0000, ACTORTYPE_CLANPOT,
+    0x0000, 0x0000, ACTORTYPE_OVL0_GEN_STATUE,
+    0x0001, 0x0000, ACTORTYPE_OVL0_GEN_STATUE,
+    0x0002, 0x0000, ACTORTYPE_OVL0_GEN_STATUE,
+    0x0000, 0x0001, ACTORTYPE_OVL0_GEN_BOMB0,
+    0x0000, 0x0001, ACTORTYPE_OVL0_GEN_BOMB1,
+    0x0000, 0x0000, ACTORTYPE_FLOWER,
+    0x0000, 0x0000, ACTORTYPE_OVL0_GEN_SHURIKEN,
+    0x0001, 0x0000, ACTORTYPE_OVL0_GEN_BOOMERANG,
+    NULL,
+};
+
+u16* gClanballPalettes[] = { D_800E0048, D_800E0448, D_800E0248, D_800DFE48, D_800E0048 };
+
+s16 D_800D26F4[] = {
+    0x0000, 0xFFFF, 0xFFFF, 0xFFFE, 0xFFFE, 0xFFFE, 0xFFFE, 0xFFFF,
+    0x0000, 0x0001, 0x0001, 0x0002, 0x0002, 0x0002, 0x0002, 0x0001,
+};
+
+u16 D_800D2714[] = { 0x0000, 0x0200, 0x0100, 0x0100 };
+
+s16 D_800D271C[] = {
+    0x00D8, 0x0008, 0x00DA, 0x0008, 0x00DC, 0x0008, 0x00DE, 0x0008,
+    0x00E0, 0x0008, 0x00E2, 0x0008, 0x00E4, 0x0008, 0x00E6, 0x0008,
+    0x00E8, 0x0008, 0x00EA, 0x0008, 0x00EC, 0x0008, 0x00EE, 0x0258,
+    0x0000, 0x0000,
+};
+
+u16 gStrAreaClear0[] = { // "escaped from trouble!"
+    ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_S, ALPHA_EN_LOWER_C, ALPHA_EN_LOWER_A, ALPHA_EN_LOWER_P, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_D, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_F, ALPHA_EN_LOWER_R, ALPHA_EN_LOWER_O, ALPHA_EN_LOWER_M, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_T, ALPHA_EN_LOWER_R, ALPHA_EN_LOWER_O, ALPHA_EN_LOWER_U, ALPHA_EN_LOWER_B, ALPHA_EN_LOWER_L, ALPHA_EN_LOWER_E,
+    ALPHA_EN_EXCLAMATION, ALPHA_EN_EXCLAMATION,
+    ALPHA_NULL, ALPHA_SPACE,
+};
+
+u16 gStrAreaClear1[] = { // "Marina has succeeded!!" (unused)
+    ALPHA_EN_UPPER_M, ALPHA_EN_LOWER_A, ALPHA_EN_LOWER_R, ALPHA_EN_LOWER_I, ALPHA_EN_LOWER_N, ALPHA_EN_LOWER_A, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_H, ALPHA_EN_LOWER_A, ALPHA_EN_LOWER_S, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_S, ALPHA_EN_LOWER_U, ALPHA_EN_LOWER_C, ALPHA_EN_LOWER_C, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_D, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_D,
+    ALPHA_EN_EXCLAMATION, ALPHA_EN_EXCLAMATION,
+    ALPHA_NULL, ALPHA_SPACE,
+};
+
+u16 gStrAreaClear2[] = { // "go to next area!!"
+    ALPHA_EN_LOWER_G, ALPHA_EN_LOWER_O, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_T, ALPHA_EN_LOWER_O, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_T, ALPHA_EN_LOWER_H, ALPHA_EN_LOWER_E, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_N, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_X, ALPHA_EN_LOWER_T, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_A, ALPHA_EN_LOWER_R, ALPHA_EN_LOWER_E, ALPHA_EN_LOWER_A,
+    ALPHA_EN_EXCLAMATION, ALPHA_EN_EXCLAMATION,
+    ALPHA_NULL,
+};
+
+u16 gStrAreaClear3[] = { // "good luck!!" (unused)
+    ALPHA_EN_LOWER_G, ALPHA_EN_LOWER_O, ALPHA_EN_LOWER_O, ALPHA_EN_LOWER_D, ALPHA_BOLD_SPACE,
+    ALPHA_EN_LOWER_L, ALPHA_EN_LOWER_U, ALPHA_EN_LOWER_C, ALPHA_EN_LOWER_K, ALPHA_BOLD_SPACE,
+    ALPHA_EN_EXCLAMATION, ALPHA_EN_EXCLAMATION,
+    ALPHA_NULL, ALPHA_SPACE,
+};
+
+u16 gCrosshairPalette[13] = { 0 };
+
+u16 D_800D2814[] = { 0x0159, 0x0000, 0x0380, 0x03C2 };
+f32 D_800D281C[] = { 1.0f, 1.0f, 1.0f, 0.5f };
+u16 D_800D282C[] = { 0x03C7, 0x0401, 0x0407, 0x03C4 };
+f32 D_800D2834[] = { 1.0f, 1.0f, 1.0f, 0.5f };
+u16* D_800D2844[] = { PALETTE_8022D4E8, PALETTE_8022D588, D_800D84E8, PALETTE_8022D548 };
+
+u16 D_800D2854[] = {
+    GRAPHIC_FRAME(SHOCKEFFECT, 1), GRAPHIC_FRAME(SHOCKEFFECT, 2),
+    GINDEX_SHOCKEFFECT, GINDEX_SHOCKEFFECT, 0, 0,
+}; // graphic indices of shock effect?
+
+u16 D_800D2860[] = { // warp gate coords in main segment.
+    0x0690, 0x0260, 0x0001, 0x0F30, 0x0130, 0x0001, 0x06DC, 0x013E,
+    0x0000, 0x0930, 0x01B0, 0x0001, 0x0BC0, 0x017E, 0x0001, 0x1680,
+    0x015E, 0x0001, 0x08B0, 0x0180, 0x0001, 0x01E0, 0x3A60, 0x0001,
+    0x1BE0, 0x0200, 0x0001, 0x1D20, 0x01B0, 0x0001, 0x1C60, 0x0200,
+    0x0001, 0x1AC0, 0x0200, 0x0001, 0x1B28, 0x01B0, 0x0001, 0x0000,
+};
+
+//.data file break?
 
 // forward declarations
-void Actor_Clamp_0F8(u16 actor_index, s32 max_val);
 void Actor_Clamp_0FC(u16 actor_index, s32 max_val);
-void func_80030B0C(u16);
-void func_80031D58(u16 arg0, u16 arg1);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 arg3);
-s16 func_8003526C(u16 actor_index, u16 arg1, u16 arg2, u16 arg3, u16 arg4);
-void func_800358DC(u16 actor_index);
-void ClanpotIcon_State1(u16 actor_index);
-void func_8003ED48(u16 unused_arg0, s32 arg1, s16 x, s16 y, s16 z);
 void func_8003F9CC(f32, s32, s32, s32);
-u16 func_8003F9E0(f32, s16, s16, s16);
 u16 SpawnParticle_RingWaveGreen(f32 arg0, s16 x, s16 y, s16 z);
 u16 SpawnParticle_RingWaveYellow(f32 arg0, s16 x, s16 y, s16 z);
-u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
-u16 func_8003FF68(u16 actor_index, f32 scale);
 void WarpGate_Sparkle(u16 actor_index, u16 arg1);
 
 

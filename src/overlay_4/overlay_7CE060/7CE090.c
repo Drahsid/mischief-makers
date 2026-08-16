@@ -4,17 +4,15 @@
 #include "music.h"
 #include "letterbox.h"
 #include "28EF0.h"
+#include "stage_runtime.h"
 #include "84BB0.h"
+#include "dialog.h"
 
 // "overlay 4" data for World 2 stages
 
 extern s16 D_800D2920;
-extern s16 func_8005DEFC(void);
 
 extern s32 D_800D2934;
-
-extern void func_80046274(u32 arg0, u32 arg1);
-extern void SpawnText_READY_2(void);
 
 s32 func_801B9900_7CE090(void);
 void func_801B99AC_7CE13C(s16 arg0, s16 arg1);

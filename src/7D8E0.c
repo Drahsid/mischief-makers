@@ -1,3 +1,4 @@
+// BUG: incorrect prototype!
 #define SpawnActor38_EXT_ARGS , u16 arg6
 #define Actor_Initialize_RET void
 #include "common.h"
@@ -10,7 +11,7 @@
 extern u16 D_800D9A54[];
 
 // an array that stores an unpacked BCD number of up to 8 digits.
-u8 gBCDArray[8] = {0};
+u8 gBCDArray[8] = { 0 };
 
  // x,y pairs used in func_8007D384
 s16 D_800E0F08[] = {
@@ -19,7 +20,7 @@ s16 D_800E0F08[] = {
 };
 
 // ""
-u16 sStrBlank[] = {ALPHA_NULL};
+u16 sStrBlank[] = { ALPHA_NULL };
 
 // "まりな"/ "Marina"
 u16 sStrMarina[] = {
@@ -462,8 +463,8 @@ void ActorUpdate_Type41(u16 actor_index) {
         free_actor = func_8007D290(actor_index);
         if (free_actor != 0) {
             temp_f0 = ((((gActors[actor_index].unk_14C / 2) - (gActors[actor_index].unk_14C - count)) * 9.0f) * gActors[actor_index].scaleX) + (gActors[actor_index].scaleX * 4.5);
-            gActors[free_actor].posX.raw = (temp_f0 * (65536.0f * COS(angle))) + gActors[actor_index].posX.raw;
-            gActors[free_actor].posY.raw = (temp_f0 * (65536.0f * SIN(angle))) + gActors[actor_index].posY.raw;
+            gActors[free_actor].posX.raw = (temp_f0 * ((f32)FIXED_UNIT(1.0) * COS(angle))) + gActors[actor_index].posX.raw;
+            gActors[free_actor].posY.raw = (temp_f0 * ((f32)FIXED_UNIT(1.0) * SIN(angle))) + gActors[actor_index].posY.raw;
             gActors[free_actor].graphicIndex = ALPHA_GLYPH_INDEX(gBCDArray[index]);
             if ((index >= 7) || (gBCDArray[index] != 0) || var_s3) {
                 var_s3 = TRUE;
@@ -560,8 +561,8 @@ void ActorUpdate_Type40(u16 actor_index) {
         free_actor = func_8007D290(actor_index);
         if (free_actor != 0) {
             temp_f0_3 = (((index * 9) - 0x24) * gActors[actor_index].scaleX) + (gActors[actor_index].scaleX * 4.5);
-            gActors[free_actor].posX.raw = (temp_f0_3 * (65536.0f * COS(angle))) + gActors[actor_index].posX.raw;
-            gActors[free_actor].posY.raw = (temp_f0_3 * (65536.0f * SIN(angle))) + gActors[actor_index].posY.raw;
+            gActors[free_actor].posX.raw = (temp_f0_3 * ((f32)FIXED_UNIT(1.0) * COS(angle))) + gActors[actor_index].posX.raw;
+            gActors[free_actor].posY.raw = (temp_f0_3 * ((f32)FIXED_UNIT(1.0) * SIN(angle))) + gActors[actor_index].posY.raw;
             gActors[free_actor].scaleY = gActors[actor_index].scaleY;
             switch (index) {
             case 0:
@@ -643,8 +644,8 @@ void func_8007EA14(u16* str, s32 graphic_flags, s32 pos_x, s32 pos_y, s32 pos_z,
                 }
                 else {
                     x_off = ((var_f22 / 2) - (var_f22 - var_s4)) * sp86 * scale;
-                    gActors[free_actor].posX.raw = (COS(angle) * 65536.0f * x_off) + pos_x;
-                    gActors[free_actor].posY.raw = (SIN(angle) * 65536.0f * x_off) + pos_y;
+                    gActors[free_actor].posX.raw = (COS(angle) * (f32)FIXED_UNIT(1.0) * x_off) + pos_x;
+                    gActors[free_actor].posY.raw = (SIN(angle) * (f32)FIXED_UNIT(1.0) * x_off) + pos_y;
                 }
                 gActors[free_actor].posZ.raw = pos_z;
                 if (sp70) {
@@ -835,8 +836,8 @@ void func_8007F560(u16 actor_index) {
         gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 1.0f, 0.05f);
     }
     if (gActors[actor_index].var_154 != 0xFFFF) {
-        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * 65536.0f);
-        y = gActors[(u16)gActors[actor_index].var_154].posY.raw + (gActors[actor_index].var_15C * gActors[actor_index].scaleY * 65536.0f);
+        x = gActors[(u16)gActors[actor_index].var_154].posX.raw + (gActors[actor_index].var_158 * gActors[actor_index].scaleY * (f32)FIXED_UNIT(1.0));
+        y = gActors[(u16)gActors[actor_index].var_154].posY.raw + (gActors[actor_index].var_15C * gActors[actor_index].scaleY * (f32)FIXED_UNIT(1.0));
         z = FIXED_UNIT(64.0);
     }
     else {
