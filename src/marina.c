@@ -342,7 +342,7 @@ u8 func_80048C28(s32 arg0) {
 
 // get speed for Marina's actions and multiply it by field 0x120
 s32 Marina_GetMoveSpeed(s32 arg0) {
-    return gMarinaActionSpeeds[arg0] * gPlayerActor.unk_120;
+    return gMarinaActionSpeeds[arg0] * gMarinaScale;
 }
 
 s32 func_80048CE4(void) {
@@ -375,10 +375,10 @@ void func_80048D30(u16 actor_index, s32 arg1) {
 
     gActors[actor_index].hitboxAY0 = var_a0[2];
     gActors[actor_index].hitboxAY1 = var_a0[3];
-    gActors[actor_index].hitboxAX0 *= gPlayerActor.unk_120;
-    gActors[actor_index].hitboxAX1 *= gPlayerActor.unk_120;
-    gActors[actor_index].hitboxAY0 *= gPlayerActor.unk_120;
-    gActors[actor_index].hitboxAY1 *= gPlayerActor.unk_120;
+    gActors[actor_index].hitboxAX0 *= gMarinaScale;
+    gActors[actor_index].hitboxAX1 *= gMarinaScale;
+    gActors[actor_index].hitboxAY0 *= gMarinaScale;
+    gActors[actor_index].hitboxAY1 *= gMarinaScale;
 }
 
 u16 func_80048EDC(u16 actor_index) {
@@ -428,7 +428,7 @@ s32 func_800490BC(u16 actor_index, s32 arg1, s16 arg2) {
     if (!(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         return 0;
     }
-    arg2 *= gPlayerActor.unk_120;
+    arg2 *= gMarinaScale;
     gActors[actor_index].velocityY.raw = 0;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK6);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
@@ -448,7 +448,7 @@ s32 func_800491B8(u16 actor_index, s32 arg1, s16 arg2) {
     if (!(gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
         return FALSE;
     }
-    arg2 *= gPlayerActor.unk_120;
+    arg2 *= gMarinaScale;
     gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK11 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK6);
     gActors[actor_index].flags |= ACTOR_FLAG_UNK16;
     gActors[actor_index].var_150 = Math_AbsS32_2(gActors[actor_index].velocityY.whole) - 4;
@@ -640,7 +640,7 @@ s32 func_80049A04(u16 actor_index) {
     }
 
     temp_v1 = temp_a0[gActors[actor_index].unk_170_s8[1]] << 0x10;
-    temp_v1 *= gPlayerActor.unk_120;
+    temp_v1 *= gMarinaScale;
     return temp_v1;
 }
 
@@ -1050,13 +1050,13 @@ void Marina_State0(u16 actor_index) {
     gActors[actor_index].unk_12F_u8 = 0;
     gActors[actor_index].graphicList = (s16* ) D_800D54EC;
     gActors[actor_index].velocityX.raw = gActors[actor_index].velocityY.raw = gActors[actor_index].velocityZ.raw = 0;
-    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK10 | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
+    gActors[actor_index].graphicFlags |= ACTOR_GFLAG_NOANIMATE | ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_SCALE;
     gActors[actor_index].flags &= ACTOR_FLAG_FLIPPED;
     gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[actor_index].grabType = GRABTYPE_1;
     gActors[actor_index].unk_0DF = 1;
     gActors[actor_index].unk_17C = 0;
-    gPlayerActor.unk_120 = gActors[actor_index].unk_124 = gActors[actor_index].unk_128 = 1.0f;
+    gMarinaScale = gActors[actor_index].unk_124 = gActors[actor_index].unk_128 = 1.0f;
     gActors[actor_index].unk_170 = 1;
     gActors[actor_index].state = MARINASTATE_IDLE;
 }
@@ -2595,8 +2595,8 @@ void ActorUpdate_Marina(u16 actor_index) {
     gPlayerData.marina_Flags_098 = gActors[actor_index].flags_098;
     gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
     gPlayerData.frames++;
-    gActors[actor_index].scaleX = gActors[actor_index].unk_124 * gPlayerActor.unk_120;
-    gActors[actor_index].scaleY = gActors[actor_index].unk_128 * gPlayerActor.unk_120;
+    gActors[actor_index].scaleX = gActors[actor_index].unk_124 * gMarinaScale;
+    gActors[actor_index].scaleY = gActors[actor_index].unk_128 * gMarinaScale;
     gPlayerPosX.raw = gActors[actor_index].posX.raw + gScreenPosCurrentX.raw;
     gPlayerPosY.raw = gActors[actor_index].posY.raw + gScreenPosCurrentY.raw;
     gPlayerVelXMirror.raw = gActors[actor_index].velocityX.raw;

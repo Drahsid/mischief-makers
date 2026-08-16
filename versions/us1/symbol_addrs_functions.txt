@@ -509,6 +509,7 @@ ActorUpdate_Type41 = 0x8007DB84; // type:func
 ActorUpdate_Type40 = 0x8007DF44; // type:func
 ActorUpdate_Type39 = 0x8007F078; // type:func
 ActorUpdate_Type38 = 0x8007f37c; // type:func
+ActorUpdate_TextBubble = 0x8007F560; // type:func
 
 GameState_SoftReset = 0x80022F48; // type:func
 
@@ -553,7 +554,14 @@ NameEntry_SelectChar = 0x80007BC0; // type:func
 GameState_FileSelect = 0x80007C8C; // type:func
 
 GameState_Transition = 0x8001B460; // type:func
+
+PrintStageGem = 0x8001C97C; // type:func
+Records_GetTotalTime = 0x8001D0A4; // type:func
+Records_PrintTimeTotal = 0x8001D240; // type:func
+Records_ScrollActors = 0x8001D5B8; // type:func
+Records_ScrollActors2 = 0x8001D60C; // type:func
 GameState_Records = 0x8001D654; // type:func
+
 
 LevelClear_Starscape = 0x80096E14; // type:func
 LevelClear_SpawnTheo = 0x80097108; // type:func

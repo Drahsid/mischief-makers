@@ -424,7 +424,7 @@ void func_80009BE8(s16* arg0) {
     u16** sp428;
     u16 var_t0_2;
     u16 sp424;
-    u16 sp422;
+    u16 perspNorm;
     u16 temp_v0;
     u16 sp41E;
     u16 actor_index;
@@ -450,15 +450,15 @@ void func_80009BE8(s16* arg0) {
     u16 index_x;
     u16 index_y;
 
-    if (gDebugBitfield & 4) {
-        guPerspective(&gCurrentGfxData->matrices[0], &sp422, 30.0f, 1.33f, 64.0f, 4096.0f, 1.0f);
+    if (gDebugBitfield & DEBUGFLAG_PERSPECTIVE) {
+        guPerspective(&gCurrentGfxData->matrices[0], &perspNorm, 30.0f, 1.33f, 64.0f, 4096.0f, 1.0f);
     }
     else {
-        sp422 = 0xFFFF;
+        perspNorm = 0xFFFF;
         guOrtho(&gCurrentGfxData->matrices[0], -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
     }
     guOrtho(&gCurrentGfxData->matrices[2], -160.0f, 160.0f, -120.0f, 120.0f, -512.0f, 512.0f, 1.0f);
-    gSPPerspNormalize(gDisplayListHead++, sp422);
+    gSPPerspNormalize(gDisplayListHead++, perspNorm);
     gSPPerspNormalize(gDisplayListHead++, 0xFFFF);
 
     temp_v0 = func_8000FBF4(arg0, sp430);
@@ -538,11 +538,11 @@ void func_80009BE8(s16* arg0) {
                     sp3EE = delta_x;
                     sp3EC = delta_y;
                     break;
-                case 1:
-                    sp3EE = (gPlayerActor.unk_120 * delta_x);
-                    sp3EC = (gPlayerActor.unk_120 * delta_y);
+                case ACTOR_GFLAG_ROTZ:
+                    sp3EE = (gMarinaScale * delta_x);
+                    sp3EC = (gMarinaScale * delta_y);
                     break;
-                case 8:
+                case ACTOR_GFLAG_SCALE:
                     angle = (gPlayerActor.rotateZ / 360.0f) * 1024.0f;
                     temp_f2 = delta_x;
                     angle_x = COS(angle);
@@ -551,14 +551,14 @@ void func_80009BE8(s16* arg0) {
                     sp3EE = ((angle_x * temp_f2) - (angle_y * temp_f12));
                     sp3EC = ((angle_x * temp_f12) + (angle_y * temp_f2));
                     break;
-                case 9:
+                case (ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE):
                     angle = (gPlayerActor.rotateZ / 360.0f) * 1024.0f;
                     temp_f2 = delta_x;
                     angle_x = COS(angle);
                     angle_y = SIN(angle);
                     temp_f12 = delta_y;
-                    sp3EE = (gPlayerActor.unk_120 * ((angle_x * temp_f2) - (angle_y * temp_f12)));
-                    sp3EC = (gPlayerActor.unk_120 * ((angle_y * temp_f2) + (angle_x * temp_f12)));
+                    sp3EE = (gMarinaScale * ((angle_x * temp_f2) - (angle_y * temp_f12)));
+                    sp3EC = (gMarinaScale * ((angle_y * temp_f2) + (angle_x * temp_f12)));
                     break;
                 }
                 if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_UNK11) {
@@ -730,7 +730,7 @@ void func_80009BE8(s16* arg0) {
             gSPMatrix(gDisplayListHead++, K0_TO_PHYS(&gCurrentGfxData->matrices[2]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
             gSPMatrix(gDisplayListHead++, K0_TO_PHYS(&gActors[actor_index].matrices[gCurrentFramebufferIndex]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         }
-        else if (sp422 != 0xFFFF) {
+        else if (perspNorm != 0xFFFF) {
             gSPMatrix(gDisplayListHead++, K0_TO_PHYS(gCurrentGfxData), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
             gSPMatrix(gDisplayListHead++, K0_TO_PHYS(&gCurrentGfxData->matrices[3]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPMatrix(gDisplayListHead++, K0_TO_PHYS(&gActors[actor_index].matrices[gCurrentFramebufferIndex]), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
@@ -809,7 +809,7 @@ void func_80009BE8(s16* arg0) {
             gSPDisplayList(gDisplayListHead++, D_800E3A88);
             continue;
         }
-        if ((gActors[actor_index].graphicIndex >= 0x2D2) && (gActors[actor_index].graphicIndex < 0x374)) {
+        if ((gActors[actor_index].graphicIndex >= ALPHA_GLYPH(0)) && (gActors[actor_index].graphicIndex < ALPHA_GLYPH(JP_HIRA_A))) {
             gSPDisplayList(gDisplayListHead++, D_800E3998);
             if (gActors[actor_index].graphicFlags & ACTOR_GFLAG_PALETTE) {
                 gDPLoadTLUT_pal16(gDisplayListHead++, 0, gActors[actor_index].palette_18C);
@@ -987,7 +987,7 @@ void func_8000DD6C(void) {
         gSPDisplayList(gDisplayListHead++, D_800E39C0);
         gDPSetRenderMode(gDisplayListHead++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
         var_s5 = D_801376DC;
-        for (var_fp = 0; var_fp < 0x40; var_fp++) {
+        for (var_fp = 0; var_fp < ARRAYLENGTH(gStaticObjects); var_fp++) {
             if (gStaticObjects[var_fp].graphicIndex != 0) {
                 guTranslate(&gStaticObjects[var_fp].translateMtxs[gCurrentFramebufferIndex], gStaticObjects[var_fp].posX.whole, gStaticObjects[var_fp].posY.whole - gCamShakeV, 0.0f);
                 gSPMatrix(gDisplayListHead++, K0_TO_PHYS(gCurrentGfxData), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
@@ -995,7 +995,7 @@ void func_8000DD6C(void) {
                 gSPMatrix(gDisplayListHead++, K0_TO_PHYS(&gStaticObjects[var_fp].translateMtxs[gCurrentFramebufferIndex]), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
                 gDPSetCombineMode(gDisplayListHead++, G_CC_DECALRGBA, G_CC_DECALRGBA);
                 gDPLoadTLUT_pal256(gDisplayListHead++, gStaticObjects[var_fp].palette);
-                gSPDisplayList(gDisplayListHead++, var_s5[0x44 + gStaticObjects[var_fp].graphicIndex * 2]);
+                gSPDisplayList(gDisplayListHead++, var_s5[(GINDEX_CLANBLOCKSQAURE - 2) + gStaticObjects[var_fp].graphicIndex * 2]);
             }
         }
     }
@@ -1062,7 +1062,7 @@ void func_8000EA88(void) {
             if (gPortraits[index].graphicIndex >= 0x374) {
                 gDPLoadTLUT_pal16(gDisplayListHead++, 0, D_802651F8);
             }
-            else if (gPortraits[index].flags & ACTOR_GFLAG_UNK14) {
+            else if (gPortraits[index].flags & ACTOR_GFLAG_PAL256) {
                 if (gPortraits[index].flags & ACTOR_GFLAG_PALETTE) {
                     gDPLoadTLUT_pal256(gDisplayListHead++, gPortraits[index].palette);
                 }
@@ -1297,7 +1297,7 @@ u16 func_8000FBF4(s16* arg0, s16* arg1) {
         actor_index = arg0[index];
         if ((u16)(u64)(gActors[actor_index].flags & ACTOR_FLAG_DRAW)) {
             var_a1_5 = (u64)gActors[actor_index].graphicFlags;
-            if (!(var_a1_5 & ACTOR_GFLAG_UNK10)) {
+            if (!(var_a1_5 & ACTOR_GFLAG_NOANIMATE)) {
                 if ((((gActors[actor_index].graphicTimer != 0) && (gGamePaused == 0)) && ((gActiveFrames % gDebugThrottle) == 0)) && ((gActorStall == 0) || (((s32)(gActors[actor_index].flags << 5)) < 0))) {
                     graphic_list = gActors[actor_index].graphicList;
                     if (graphic_list != NULL) {
@@ -1392,7 +1392,7 @@ u16 func_8000FBF4(s16* arg0, s16* arg1) {
         }
     }
 
-    if (gDebugBitfield & 0x80) {
+    if (gDebugBitfield & DEBUGFLAG_ACTORSTATS) {
         if (arg0 == ((s16*)gActorsFront)) {
             for (y = 0; y < arg1_count; y++) {
                 actor_index_1 = arg1[y];

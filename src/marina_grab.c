@@ -4596,8 +4596,8 @@ void MarinaThrow_Type4(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
-            gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
+            gActors[actor_0].velocityX.raw *= gMarinaScale;
+            gActors[actor_0].velocityY.raw *= gMarinaScale;
             Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -4669,8 +4669,8 @@ void MarinaThrow_Type5(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
-            gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
+            gActors[actor_0].velocityX.raw *= gMarinaScale;
+            gActors[actor_0].velocityY.raw *= gMarinaScale;
             Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -4742,8 +4742,8 @@ void MarinaThrow_Type6(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
-            gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
+            gActors[actor_0].velocityX.raw *= gMarinaScale;
+            gActors[actor_0].velocityY.raw *= gMarinaScale;
             Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -4815,8 +4815,8 @@ void MarinaThrow_Type7(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
-            gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
+            gActors[actor_0].velocityX.raw *= gMarinaScale;
+            gActors[actor_0].velocityY.raw *= gMarinaScale;
             Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
@@ -4879,8 +4879,8 @@ void func_800569AC(u16 actor_0, u16 actor_1) {
             if (!(gActors[actor_0].flags & ACTOR_FLAG_FLIPPED)) {
                 gActors[actor_0].velocityX.raw = -gActors[actor_0].velocityX.raw;
             }
-            gActors[actor_0].velocityX.raw *= gPlayerActor.unk_120;
-            gActors[actor_0].velocityY.raw *= gPlayerActor.unk_120;
+            gActors[actor_0].velocityX.raw *= gMarinaScale;
+            gActors[actor_0].velocityY.raw *= gMarinaScale;
             Sound_PlaySfx(SFX_JUMP_0024);
             gActors[actor_0].var_150 = 0xA;
             gActors[actor_0].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);

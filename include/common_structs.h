@@ -55,7 +55,7 @@ typedef struct {
 // data on "static" objects (clanblocks, gems)
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_*
+    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_* directly, instead using ((GINDEX_CLANBLOCKSQAURE - 2) + x * 2)
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;

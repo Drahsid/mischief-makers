@@ -1635,7 +1635,7 @@ void func_801B3B84_7AFAA4(u16 actor_index) {
         position_x = -(index * 8);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[new_actor_index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[new_actor_index].graphicIndex = 0x2D2;
+        gActors[new_actor_index].graphicIndex = ALPHA_GLYPH(0);
         gActors[new_actor_index].unk_18C = (s32)D_800D9AE4;
         gActors[new_actor_index].posX.whole = (position_x - gScreenPosCurrentX.whole) + 0x20C;
         gActors[new_actor_index].posY.whole = 0x150 - gScreenPosCurrentY.whole;
@@ -1652,7 +1652,7 @@ void func_801B3B84_7AFAA4(u16 actor_index) {
         position_x = -(index * 8);
         gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
         gActors[new_actor_index].flags = ACTOR_FLAG_ACTIVE;
-        gActors[new_actor_index].graphicIndex = 0x2D2;
+        gActors[new_actor_index].graphicIndex = ALPHA_GLYPH(0);
         gActors[new_actor_index].unk_18C = (s32)D_800D9AE4;
         gActors[new_actor_index].posX.whole = (position_x - gScreenPosCurrentX.whole) + 0x28C;
         gActors[new_actor_index].posY.whole = 0x150 - gScreenPosCurrentY.whole;
@@ -1694,7 +1694,7 @@ void func_801B3EDC_7AFDFC(u16 actor_index) {
     Actor_Initialize(fixed_actor_index);
     gActors[fixed_actor_index].graphicFlags = ACTOR_GFLAG_UNK11 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
     gActors[fixed_actor_index].flags = ACTOR_FLAG_ENABLED;
-    gActors[fixed_actor_index].graphicIndex = 0x2D0;
+    gActors[fixed_actor_index].graphicIndex = GINDEX_SOLIDSQUARE;
     gActors[fixed_actor_index].scaleX = 9.0f;
     gActors[fixed_actor_index].scaleY = 2.0f;
     gActors[fixed_actor_index].colorR = 0xFF;
@@ -1724,13 +1724,13 @@ u16 func_801B4048_7AFF68(u16 value) {
     u16 graphic_index;
 
     if (value == 0xA) {
-        graphic_index = 0x3E;
+        graphic_index = ALPHA_EN_PERIOD;
     }
     else {
         graphic_index = value;
     }
 
-    return (graphic_index * 2) + 0x2D2;
+    return ALPHA_GLYPH_INDEX(graphic_index);
 }
 
 void func_801B407C_7AFF9C(u16 actor_index, u32 value, u16 use_second_row) {

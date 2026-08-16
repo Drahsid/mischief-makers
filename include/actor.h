@@ -45,7 +45,7 @@ enum ActorFlags {
     ACTOR_FLAG_UNK16 = (1U << 16U),
     ACTOR_FLAG_UNK17 = (1U << 17U),
     ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxB is considered a "platform"
-    ACTOR_FLAG_UNK19 = (1U << 19U),
+    ACTOR_FLAG_UNK19 = (1U << 19U), // actor is deactivated during some transition effects
     ACTOR_FLAG_UNK20 = (1U << 20U),
     ACTOR_FLAG_UNK21 = (1U << 21U),
     ACTOR_FLAG_UNK22 = (1U << 22U), // something with physics?
@@ -53,10 +53,10 @@ enum ActorFlags {
     ACTOR_FLAG_UNK24 = (1U << 24U), // unused?
     ACTOR_FLAG_ATTACHED = (1U << 25U),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see Marina's update function)
     ACTOR_FLAG_ALWAYS_UPDATE = (1U << 26U), // if this bit is set, the actor will always update, despite the state of gActorStall
-    ACTOR_FLAG_UNK27 = (1U << 27U), // set but not checked?
-    ACTOR_FLAG_UNK28 = (1U << 28U), // set but not checked?
-    ACTOR_FLAG_UNK29 = (1U << 29U), // set but not checked?
-    ACTOR_FLAG_UNK30 = (1U << 30U), // set but not checked?
+    ACTOR_FLAG_UNK27 = (1U << 27U), // effects rendering. Used exclusively(?) by Marina and her associated effects.
+    ACTOR_FLAG_UNK28 = (1U << 28U), // effects rendering.
+    ACTOR_FLAG_UNK29 = (1U << 29U), // effects rendering.
+    ACTOR_FLAG_UNK30 = (1U << 30U), // effects rendering
     ACTOR_FLAG_UNK31 = (1U << 31U)
 };
 
@@ -73,11 +73,11 @@ enum ActorGFlags {
     ACTOR_GFLAG_UNK7 = (1U << 7U), // unused?
     ACTOR_GFLAG_UNK8 = (1U << 8U), // effects z positioning?
     ACTOR_GFLAG_PALETTE = (1U << 9U), // use pointer at field 0x18C as a palette
-    ACTOR_GFLAG_UNK10 = (1U << 10U), // effects animation
+    ACTOR_GFLAG_NOANIMATE = (1U << 10U), // does not update animation from graphic list
     ACTOR_GFLAG_UNK11 = (1U << 11U), // seems to effect translate mtx.
     ACTOR_GFLAG_SCALEZ = (1U << 12U), // use field 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_3DOBJ = (1U << 13U), // field at 0x17C treated as dlist for 3d model
-    ACTOR_GFLAG_UNK14 = (1U << 14U), // used by portrait struct.
+    ACTOR_GFLAG_PAL256 = (1U << 14U), // used by portrait struct. Determines palette size
     ACTOR_GFLAG_UNK15 = (1U << 15U) // a change in blending?
 };
 
@@ -106,16 +106,16 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
     ACTOR_FLAG3_WARPING = (1U << 21U), // using warp gate
-    ACTOR_FLAG3_UNK22 = (1U << 22U),
-    ACTOR_FLAG3_UNK23 = (1U << 23U),
-    ACTOR_FLAG3_UNK24 = (1U << 24U),
-    ACTOR_FLAG3_UNK25 = (1U << 25U),
-    ACTOR_FLAG3_UNK26 = (1U << 26U),
-    ACTOR_FLAG3_UNK27 = (1U << 27U),
-    ACTOR_FLAG3_UNK28 = (1U << 28U),
-    ACTOR_FLAG3_UNK29 = (1U << 29U),
-    ACTOR_FLAG3_UNK30 = (1U << 30U),
-    ACTOR_FLAG3_UNK31 = (1U << 31U),
+    ACTOR_FLAG3_UNK22 = (1U << 22U), // unused?
+    ACTOR_FLAG3_UNK23 = (1U << 23U), // unused?
+    ACTOR_FLAG3_UNK24 = (1U << 24U), // unused?
+    ACTOR_FLAG3_UNK25 = (1U << 25U), // unused?
+    ACTOR_FLAG3_UNK26 = (1U << 26U), // unused?
+    ACTOR_FLAG3_UNK27 = (1U << 27U), // unused?
+    ACTOR_FLAG3_UNK28 = (1U << 28U), // unused?
+    ACTOR_FLAG3_UNK29 = (1U << 29U), // unused?
+    ACTOR_FLAG3_UNK30 = (1U << 30U), // unused?
+    ACTOR_FLAG3_UNK31 = (1U << 31U), // unused?
 
     // a commonly AND'd mask
     ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB)
@@ -294,7 +294,7 @@ typedef struct {
             /* 0x114 */ f32 unk_114;
             /* 0x118 */ f32 unk_118;
             /* 0x11C */ f32 unk_11C;
-            /* 0x120 */ f32 unk_120; // some actors, like Marina, use this as an XY scale.
+            /* 0x120 */ f32 unk_120; // used by marina to scale appearance and velocity
             /* 0x124 */ f32 unk_124;
             /* 0x128 */ f32 unk_128;
             union {

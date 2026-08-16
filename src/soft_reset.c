@@ -72,7 +72,7 @@ void func_80022D88(void) {
     D_800BE674 = 0;
     D_8013747C = 0;
     D_800BE6FC = 0;
-    gDebugBitfield = 4;
+    gDebugBitfield = DEBUGFLAG_PERSPECTIVE;
     gDebugThrottle = 1;
     gRngSeed = 0x1234;
     gCamShakeV = 0;
@@ -209,7 +209,7 @@ void GameState_Loading(void) {
     gPortraitTint = 0xFF;
     gHealthDisplayed = gPlayerActor.health;
     gActorDepthFront = -8;
-    gDebugBitfield = 4;
+    gDebugBitfield = DEBUGFLAG_PERSPECTIVE;
 
     for (index = 0; index < 8; index++) {
         D_80137480[index] = 0;

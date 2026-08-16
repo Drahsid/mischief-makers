@@ -212,7 +212,7 @@ extern u16 D_800BE6FC;
 extern u16 gCurrentFramebufferIndex; // index of current frame buffer.
 extern u16 D_800BE704; // seems to detrmine camera x-speed.
 extern u16 D_800BE708; // seems to detrmine camera y-speed.
-extern u8 D_800BE70C; // changes some parameter of actor rendering.
+extern u8 D_800BE70C; // changes dlist used for rendering 3D actors
 extern u8 D_800BE710; // if set, widens active range of Static objects (Clanblocks, gems). Set for vertical stages and part of "Trapped"
 extern u16 D_800BE714; // boolean related to loading Marina's graphics
 extern u32 D_800BE718; // unused.

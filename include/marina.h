@@ -191,6 +191,9 @@ typedef enum {
     MARINAEFF_TELEPORT
 } MarinaEffects;
 
+// field used to scale appearance and velocity of Marina
+#define gMarinaScale gPlayerActor.unk_120
+
 s32 func_80049040(u16 actor_index);
 s32 func_80048F70(u16 actor_index);
 s32 func_800491B8(u16 actor_index, s32, s16);

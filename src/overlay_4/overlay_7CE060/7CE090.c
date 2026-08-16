@@ -1278,6 +1278,7 @@ void func_801B9A0C_7CE19C(u16 arg0) {
     D_800D28E4 = 0x61;
 }
 
+// teleport player back on playfrom if fell in lava during "Migen Brawl"
 void func_801B9A40_7CE1D0(void) {
     if (gActors[0x5E].flags & (ACTOR_FLAG_PLATFORM1 | ACTOR_FLAG_PLATFORM0)) {
         func_801B99AC_7CE13C(0, gActors[0x5E].posY.whole + 8);
@@ -1285,6 +1286,7 @@ void func_801B9A40_7CE1D0(void) {
     }
 }
 
+// set position and hitbox for lava actor
 void func_801B9A98_7CE228(u16 actor_index) {
     gActors[actor_index].flags = (ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE);
     gActors[actor_index].damage = 0;
@@ -1310,7 +1312,7 @@ void func_801B9B08_7CE298(void) {
     }
 }
 
-// check if player fell in lava, zero postiob vars if so.
+// check if player fell in lava, zero postion vars if so.
 void func_801B9B94_7CE324(void) {
     if (func_801B9900_7CE090() != 0) {
         gPlayerVelXMirror.raw = gPlayerVelYMirror.raw = gPlayerActor.velocityX.raw = gPlayerActor.velocityY.raw = 0;
@@ -1662,6 +1664,7 @@ handle_cutscene_index:
     Camera_UpdateViewBounds();
 }
 
+// reset player position if fell in lava during "Flambee"
 void func_801BA818_7CEFA8(void) {
     if (func_801B9900_7CE090() != 0) {
         func_801B99AC_7CE13C(gActors[0x60].posX.whole, gActors[0x60].posY.whole + 0x18);
@@ -1691,7 +1694,7 @@ void func_801BA868_7CEFF8(void) {
         case 2:
             if (gActors[0x32].flags == 0) {
                 SpawnAreaClear(AREACLEAR_FULL);
-                Sound_StartFade(0x81, 0x168);
+                Sound_StartFade(0x81, 360);
                 gStageState++;
             }
             func_801BA818_7CEFA8();

@@ -662,6 +662,7 @@ gStrResultHMS = 0x800C96C4;
 gStageTimeBest = 0x80178150;// type:u16 size:0x2
 gCurrentWorld = 0x8017815C; // type:u16 size:0x2
 gCurrentStage = 0x80178162;
+sRecordTRimesTotal= 0x80178168;
 gDebugStageSelectSelectedOptions = 0x80178170;
 gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;

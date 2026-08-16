@@ -11,7 +11,7 @@
 #include "7D8E0.h"
 
 extern u16* gParticlePalettes[]; // palettes of particles.
-extern u16 gStrPotEmpty[]; // "からっぽ..."/"Empty.."
+extern u16 gStrPotEmpty[]; // "からっぽ..."/"Empty..."
 extern u16* gGemPalettes[]; // palettes of gems
 extern u16* D_800D19F4[]; // palettes of "wave rings",
 extern u16 D_800D2294[];
@@ -3142,7 +3142,7 @@ u16 SpawnParticle_List(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y,
         gActors[index].unk_188 = gActors[index].posY.raw;
         gActors[index].unk_148 = 240.0f;
         if (graphic_list == gGraphicListBlank) {
-            gActors[index].graphicTimer = 0x1E0;
+            gActors[index].graphicTimer = 480;
         }
         else {
             gActors[index].graphicList = graphic_list;

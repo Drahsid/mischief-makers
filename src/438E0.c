@@ -1460,7 +1460,7 @@ s32 Transition_StageExit(void) {
         func_80046A30();
         var_a1 = ((Rand() & 3) * 0x23);
         for (var_s1 = 0; var_s1 != 0x23; var_s1++) {
-            gPortraits[var_s1].flags = ACTOR_GFLAG_UNK14 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+            gPortraits[var_s1].flags = ACTOR_GFLAG_PAL256 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
             gPortraits[var_s1].palette = NULL;
             gPortraits[var_s1].graphicIndex = gExitPortraitGraphics[(Rand() & 0x3F) + D_800D2944];
             gPortraits[var_s1].alpha = 0;

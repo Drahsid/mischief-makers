@@ -2498,7 +2498,7 @@
           }
         },
         {
-          "name": "func_8001C97C",
+          "name": "PrintStageGem",
           "size": "236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2586,7 +2586,7 @@
           }
         },
         {
-          "name": "func_8001D0A4",
+          "name": "Records_GetTotalTime",
           "size": "412",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2594,7 +2594,7 @@
           }
         },
         {
-          "name": "func_8001D240",
+          "name": "Records_PrintTimeTotal",
           "size": "888",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2602,7 +2602,7 @@
           }
         },
         {
-          "name": "func_8001D5B8",
+          "name": "Records_ScrollActors",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2610,7 +2610,7 @@
           }
         },
         {
-          "name": "func_8001D60C",
+          "name": "Records_ScrollActors2",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13613,7 +13613,7 @@
           }
         },
         {
-          "name": "func_8007F560",
+          "name": "ActorUpdate_TextBubble",
           "size": "1152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
