@@ -1768,7 +1768,7 @@ void func_80079984(u16 actor_index) {
     ACTOR_GFX_INIT(actor_index, D_800D81B8);
     var_t3 = gActors[actor_index].var_158 / FIXED_UNIT(1);
     gActors[actor_index].var_15C = gActors[actor_index].unk_114 * 393216.0f;
-            gActors[actor_index].var_160 = gActors[actor_index].unk_114 * (f32)FIXED_UNIT(-1.0);
+    gActors[actor_index].var_160 = gActors[actor_index].unk_114 * (f32)FIXED_UNIT(-1.0);
     if (COS(var_t3) < 0.0f) {
         gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
         gActors[actor_index].unk_168 = 0x02000000;
