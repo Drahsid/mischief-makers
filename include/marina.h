@@ -22,10 +22,10 @@ typedef enum {
     MARINASTATE_SLIDEDASH,
     MARINASTATE_SLIDEDASHHOLD,
     MARINASTATE_ROLL, // state while rolling
-    MARINASTATE_AIRDASH,
-    MARINASTATE_AIRDASHHOLD,
-    MARINASTATE_18,
-    MARINASTATE_19,
+    MARINASTATE_AIRDASH_16,
+    MARINASTATE_AIRDASH_17,
+    MARINASTATE_AIRDASHHOLD_18,
+    MARINASTATE_AIRDASHHOLD_19,
     MARINASTATE_20,
     MARINASTATE_21,
     MARINASTATE_22,
@@ -108,33 +108,7 @@ typedef enum {
 // abreviate Marina speed getter
 #define MARINA_MOVE(n) Marina_GetMoveSpeed(MARINAMOVE_ ##n )
 
-// properties of an actor when grabbed / thrown.
-typedef enum {
-    GRABTYPE_0, // stubbed grab/throw state
-    GRABTYPE_1,
-    GRABTYPE_2,
-    GRABTYPE_3, // used for counters of big lasers/Raiden's lightning
-    GRABTYPE_4,
-    GRABTYPE_5,
-    GRABTYPE_6,
-    GRABTYPE_7,
-    GRABTYPE_8,
-    GRABTYPE_9, // stubbed grab/throw state
-    GRABTYPE_10,
-    GRABTYPE_11,
-    GRABTYPE_HURT, // damage Marina if she tries to grab actor
-    GRABTYPE_13,
-    GRABTYPE_14,
-    GRABTYPE_15,
-    GRABTYPE_16,
-    GRABTYPE_17,
-    GRABTYPE_18,
-    GRABTYPE_19,
-    GRABTYPE_20,
-    GRABTYPE_21,
-    GRABTYPE_22,
-    GRABTYPE_23  // stubbed grab/throw state
-} GrabTypes;
+
 
 // field used to scale appearance and velocity of Marina
 #define gMarinaScale gPlayerActor.unk_120

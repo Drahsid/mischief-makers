@@ -85,7 +85,7 @@ s32 func_800574B4(u16 actor_index) {
     if (gPlayerData.unk_0A > 0) {
         return 0;
     }
-    gActors[actor_index].state = MARINASTATE_AIRDASHHOLD;
+    gActors[actor_index].state = MARINASTATE_AIRDASH_17;
     return 1;
 }
 

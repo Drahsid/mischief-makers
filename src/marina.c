@@ -83,10 +83,10 @@ ActorFunc gMarinaStateTable[] = {
     Marina_SlideDashState,        // MARINASTATE_SLIDEDASH
     Marina_SlideDashHoldingState, // MARINASTATE_SLIDEDASHHOLD
     Marina_RollState,             // MARINASTATE_ROLL
-    Marina_AirDashState,          // MARINASTATE_AIRDASH
-    Marina_AirDashState,          // MARINASTATE_AIRDASHHOLD
-    func_80051324,                // MARINASTATE_18
-    func_80051324,                // MARINASTATE_19
+    Marina_AirDashState,          // MARINASTATE_AIRDASH_16
+    Marina_AirDashState,          // MARINASTATE_AIRDASH_17
+    func_80051324,                // MARINASTATE_AIRDASHHOLD_18
+    func_80051324,                // MARINASTATE_AIRDASHHOLD_19
     Marina_State20,               // MARINASTATE_20
     func_80051C48,                // MARINASTATE_21
     func_8004D140,                // MARINASTATE_22
@@ -702,10 +702,10 @@ void func_80049AC0(u16 actor_index) {
             gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw * 0.75;
             gActors[actor_index].stateUpper = 1;
             if (!(gActors[actor_index].flags & ACTOR_FLAG_ATTACHED)) {
-                gActors[actor_index].stateLower = MARINASTATE_AIRDASHHOLD;
+                gActors[actor_index].stateLower = MARINASTATE_AIRDASH_17;
             }
             else {
-                gActors[actor_index].stateLower = MARINASTATE_19;
+                gActors[actor_index].stateLower = MARINASTATE_AIRDASHHOLD_19;
             }
             return;
         }
@@ -1001,10 +1001,10 @@ void func_80049AC0(u16 actor_index) {
             else {
                 if (var_a3 >= gPlayerData.unk_12) {
                     if (!(gActors[actor_index].flags & ACTOR_FLAG_ATTACHED)) {
-                        gActors[actor_index].state = MARINASTATE_AIRDASH;
+                        gActors[actor_index].state = MARINASTATE_AIRDASH_16;
                     }
                     else {
-                        gActors[actor_index].state = MARINASTATE_18;
+                        gActors[actor_index].state = MARINASTATE_AIRDASHHOLD_18;
                     }
                     return;
                 }
@@ -1348,7 +1348,7 @@ void Marina_GroundDashState(u16 actor_index) {
             if (func_80012AB4(pos_x, gActors[actor_index].posY.whole) & 0x80) {
                 gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw * 0.75;
                 gActors[actor_index].stateUpper = 1;
-                gActors[actor_index].stateLower = MARINASTATE_AIRDASHHOLD;
+                gActors[actor_index].stateLower = MARINASTATE_AIRDASH_17;
                 return;
             }
             else {
@@ -1512,7 +1512,7 @@ void Marina_SlideDashState(u16 actor_index) {
                     gActors[actor_index].stateLower = MARINASTATE_9;
                 }
                 else {
-                    gActors[actor_index].state = MARINASTATE_AIRDASHHOLD;
+                    gActors[actor_index].state = MARINASTATE_AIRDASH_17;
                 }
                 gActors[actor_index].unk_17C = 0;
                 gActors[actor_index].unk_17C_s8[1] = 3;
@@ -1657,7 +1657,7 @@ void Marina_AirDashState(u16 actor_index) {
             gActors[actor_index].unk_0F8.raw = gActors[actor_index].velocityX.raw;
             gActors[actor_index].unk_0FC.raw = gActors[actor_index].velocityY.raw;
             gActors[actor_index].var_150 = 0x10;
-            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASHHOLD) {
+            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASH_17) {
                 gActors[actor_index].var_150 = 0x20;
             }
             gActors[actor_index].var_158 = 0;
@@ -1730,7 +1730,7 @@ void Marina_AirDashState(u16 actor_index) {
             gActors[actor_index].unk_17C_s8[1] = 2;
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17;
-            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASHHOLD) {
+            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASH_17) {
                 gActors[actor_index].unk_12E_u8 |= 0x40;
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
                 gActors[actor_index].velocityY.raw = gActors[actor_index].unk_0FC.raw;
@@ -1738,7 +1738,7 @@ void Marina_AirDashState(u16 actor_index) {
             Sound_PlaySfx(SFX_DASH_0081);
         }
         else {
-            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASH) {
+            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASH_16) {
                 gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.0), gActors[actor_index].var_158);
                 if (Math_AbsS32_2(gActors[actor_index].velocityX.raw) > MARINA_MOVE(28)) {
                     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(0.125));
@@ -1765,7 +1765,7 @@ void Marina_AirDashState(u16 actor_index) {
                         gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw * 0.75;
                         gActors[actor_index].var_150 += 0x10;
                         gActors[actor_index].stateUpper = 3;
-                        gActors[actor_index].stateLower = MARINASTATE_AIRDASHHOLD;
+                        gActors[actor_index].stateLower = MARINASTATE_AIRDASH_17;
                         return;
                     }
                     else {
@@ -1773,7 +1773,7 @@ void Marina_AirDashState(u16 actor_index) {
                     }
                 }
             }
-            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASHHOLD) {
+            if (gActors[actor_index].stateLower == MARINASTATE_AIRDASH_17) {
                 vel_step = MARINA_MOVE(0);
                 if (gActors[actor_index].stateUpper == 2) {
                     vel_step *= 4;
