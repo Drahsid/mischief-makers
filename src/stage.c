@@ -2948,7 +2948,7 @@ void func_8001D040(void) {
     }
 }
 
-u16 Records_GetTotalTime(void) {
+u16 Records_GetTotalTimeRank(void) {
     s32 var_s3;
     s32 times;
     u16 limit;
@@ -2987,7 +2987,7 @@ void Records_PrintTimeTotal(void) {
     u32 value;
     u16 rank;
 
-    rank = Records_GetTotalTime();
+    rank = Records_GetTotalTimeRank();
     time = sRecordTRimesTotal;
     Text_InitActorGraphicRGB(0x3C, rank, 0x5A, 0xFFB8, 2, 0, 0, 0xC0);
     if (((((time % 60) * 500) / 3) % 100) < 50) {

@@ -126,18 +126,18 @@ Actor2Func gMarinaHitTable[] = {
     MarinaHit_Noop,                 // HITTYPE_23
 };
 
-ActorFunc D_800D3FD0[] = {
-    func_8005ACA8,
-    func_8005B164,
-    func_8005B5FC,
-    func_8005B82C,
-    func_8005ACA8,
-    func_8005ACA8,
-    func_8005ACA8,
-    func_8005ACA8,
-    func_8005ACA8,
-    func_8005ACA8,
-    NULL,
+ActorFunc gMarinaEffectTable[] = {
+    MarinaEffect_Noop,
+    MarinaEffect_Dash,
+    MarinaEffect_Type2,
+    MarinaEffect_Burn,
+    MarinaEffect_Noop,
+    MarinaEffect_Noop,
+    MarinaEffect_Noop,
+    MarinaEffect_Noop,
+    MarinaEffect_Noop,
+    MarinaEffect_Noop,
+    NULL, // file break?
     NULL
 };
 
@@ -2774,7 +2774,7 @@ void Marina_GroundDashHoldingState(u16 actor_index) {
                 gActors[actor_index].unk_170 = 0x52;
             }
         }
-        func_8005C098(actor_index, 1);
+        MarinaEffect_Set(actor_index, MARINAEFF_DASH);
         gActors[actor_index].unk_17C = 0;
         gActors[actor_index].unk_17C_s8[1] = 2;
         gActors[actor_index].unk_180_u8[2] = (s8) gPlayerData.unk_10;
@@ -2846,7 +2846,7 @@ void Marina_SlideDashHoldingState(u16 actor_index) {
         gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6);
         Sound_PlaySfx(SFX_DASH_00AE);
         Sound_PlaySfx(SFX_MARINA_YELL1);
-        func_8005C098(actor_index, 1);
+        MarinaEffect_Set(actor_index, MARINAEFF_DASH);
         gActors[actor_index].damage = 0;
         gActors[actor_index].hitFlags = HITFLAG_0;
         gActors[actor_index].hitType = HITTYPE_22;
@@ -3024,7 +3024,7 @@ void func_80051324(u16 actor_index) {
             if (gActors[actor_index].unk_140_u8[0] == 0) {
                 gActors[actor_index].unk_170 += 1;
             }
-            func_8005C098(actor_index, 1);
+            MarinaEffect_Set(actor_index, MARINAEFF_DASH);
             gActors[actor_index].unk_180_u8[2] = gPlayerData.unk_10;
             gActors[actor_index].var_15C = gPlayerData.unk_10;
             gActors[actor_index].unk_17C = 0;
@@ -3455,7 +3455,7 @@ s32 func_80052A6C(u16 actor_0, u16 actor_1) {
         return 0;
     }
 
-    func_8005C098(actor_0, 1);
+    MarinaEffect_Set(actor_0, MARINAEFF_DASH);
     gActors[actor_0].unk_180_u8[2] = gPlayerData.unk_10;
     switch (gPlayerData.unk_10) {
         case 0:

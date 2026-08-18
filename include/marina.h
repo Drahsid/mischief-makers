@@ -2,6 +2,7 @@
 #define FILE_MARINA_H
 
 #include "common.h"
+#include "marina_anim.h"
 
 // state values stored in lower byte of Actor 0's "state" field
 typedef enum {
@@ -68,7 +69,7 @@ typedef enum {
     MARINASTATE_DEBUGFLY
 } MarinaStates;
 
-// indicies of gMarinaActionSpeeds which are then scaled by unk_120
+// indicies of gMarinaActionSpeeds which are then scaled by gMarinaScale
 typedef enum {
     MARINAMOVE_0,  // used for valocity steps
     MARINAMOVE_WALKTARGET, // max walk speed.
@@ -107,43 +108,6 @@ typedef enum {
 // abreviate Marina speed getter
 #define MARINA_MOVE(n) Marina_GetMoveSpeed(MARINAMOVE_ ##n )
 
-// stored as word in gMarinaAnim. determines automated animation
-typedef enum {
-    MARINAANIM_0, // stubbed / no animation
-    MARINAANIM_1, // stubbed / no animation
-    MARINAANIM_BUTTON, // automate button press
-    MARINAANIM_3, // set gPlayerActor.stateLower to gMarinaAnim.timer
-    MARINAANIM_4,
-    MARINAANIM_5,
-    MARINAANIM_6,
-    MARINAANIM_7,
-    MARINAANIM_DASH_8, // enter area dashing
-    MARINAANIM_DASH_9, // enter area dashing
-    MARINAANIM_TPIN_10, // teleport in
-    MARINAANIM_TPIN_11, // teleport in
-    MARINAANIM_TPOUT, // teleporting out
-    MARINAANIM_HUM, // start idle humming
-    MARINAANIM_DANCE, // "stage clear" animation
-    MARINAANIM_15, // use D_80192000[26] as animation
-    MARINAANIM_16, // use D_80192000[27] as animation
-    MARINAANIM_17, // use D_80192000[28] as animation
-    MARINAANIM_18, // use D_80192000[11] as animation
-    MARINAANIM_19, // use D_80192000[12] as animation
-    MARINAANIM_20, // use D_8019b000[7] as animation
-    MARINAANIM_21, // use D_801a6800[17] as animation
-    MARINAANIM_22, // use D_801a6800[18] as animation
-    MARINAANIM_23, // use D_801a6800[19] as animation
-    MARINAANIM_24, // use D_801a6800[20] as animation
-    MARINAANIM_25, // use D_801a6800[21] as animation
-    MARINAANIM_26, // use D_801a6800[22] as animation
-    MARINAANIM_27, // use D_801a6800[23] as animation
-    MARINAANIM_28, // use D_801a6800[24] as animation
-    MARINAANIM_29, // use D_80192000[8] as animation
-    MARINAANIM_30, // use D_80192000[10] as animation
-    MARINAANIM_31, // use D_8019b000[5] as animation
-    MARINAANIM_32  // use D_8019b000[7] as animation
-} MarinaAnimations;
-
 // properties of an actor when grabbed / thrown.
 typedef enum {
     GRABTYPE_0, // stubbed grab/throw state
@@ -171,25 +135,6 @@ typedef enum {
     GRABTYPE_22,
     GRABTYPE_23  // stubbed grab/throw state
 } GrabTypes;
-
-// return values when Marina takes damage
-typedef enum {
-    MARINADMG_NONE,
-    MARINADMG_HIT,
-    MARINADMG_1HP,
-    MARINADMG_KO,
-    MARINADMG_OVERKILL
-} MarinaDamage;
-
-// particle effect index stored in gPlayerActor.unk_180_u8[3]
-typedef enum {
-    MARINAEFF_NONE,
-    MARINAEFF_4 = 4,
-    MARINAEFF_5,
-    MARINAEFF_INVULN,
-    MARINAEFF_SHOCK,
-    MARINAEFF_TELEPORT
-} MarinaEffects;
 
 // field used to scale appearance and velocity of Marina
 #define gMarinaScale gPlayerActor.unk_120

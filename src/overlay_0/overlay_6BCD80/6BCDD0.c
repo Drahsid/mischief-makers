@@ -638,9 +638,9 @@ void func_801985D8_6C32A8(u16 actor_index) {
 
     gActors[index1].grabType = GRABTYPE_1;
     gActors[index1].unk_0CE = 0xE;
-    gActors[index1].unk_0DF = 2;
-    gActors[index1].health = 0xA;
-    gActors[index2].health = 0xA;
+    gActors[index1].unk_0DF = ACTOR0DF_0_2;
+    gActors[index1].health = 10;
+    gActors[index2].health = 10;
 }
 
 void func_80198638_6C3308(u16 actor_index) {

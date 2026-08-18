@@ -5,7 +5,7 @@
 #include "debug.h"
 #include "input.h"
 #include "28EF0.h"
-#include "48A30.h"
+#include "marina_anim.h"
 #include "marina_grab.h"
 #include "marina_hit.h"
 #include "marina_effect.h"
@@ -46,7 +46,6 @@ extern void func_80052004(u16);
 extern void func_80055188(u16);
 extern void func_800551F8(u16);
 extern void func_800553EC(u16);
-extern void func_800553EC(u16);
 extern void func_8005544C(u16);
 extern void Marina_ThrowState(u16);
 extern void func_8005701C(u16);
@@ -68,67 +67,67 @@ extern void Marina_DebugMove(u16);
 
 
 ActorFunc gMarinaStateTable[] = {
-    Marina_State0,
-    Marina_State1,
-    Marina_State2,
-    Marina_IdleState,
-    Marina_IdleHoldingState,
-    Marina_LandState,
-    Marina_LandHoldingState,
-    Marina_WalkState,
-    Marina_WalkHoldingState,
-    Marina_State9,
-    func_800508F4,
-    Marina_GroundDashState,
-    Marina_GroundDashHoldingState,
-    Marina_SlideDashState,
-    Marina_SlideDashHoldingState,
-    Marina_RollState,
-    Marina_AirDashState,
-    Marina_AirDashState,
-    func_80051324,
-    func_80051324,
-    Marina_State20,
-    func_80051C48,
-    func_8004D140,
-    func_8004D140,
-    func_8004D140,
-    func_8004D140,
-    func_80052004,
-    func_80052004,
-    func_80052004,
-    func_80052004,
-    func_8004D6CC,
-    func_8004D7BC,
-    func_8004DA6C,
-    func_8004DC44,
-    func_80055188,
-    func_800551F8,
-    func_800553EC,
-    func_8005544C,
-    Marina_ThrowState,
-    func_8005701C,
-    Marina_ShakeShake,
-    Marina_DropState,
-    func_8004B878,
-    func_8004B878,
-    Marina_State44,
-    Marina_State45,
-    func_8005878C,
-    func_800576A0,
-    func_80057848,
-    func_80057C98,
-    func_80057C98,
-    func_80057848,
-    func_80057C98,
-    Marina_ShockState,
-    OverlayABI_Slot1_fn3_u16,
-    Marina_TPInState,
-    Marina_TPOutState,
-    Marina_State57,
-    Marina_DebugAnim,
-    Marina_DebugGraphic,
-    Marina_DebugMove
+    Marina_State0,                // MARINASTATE_0
+    Marina_State1,                // MARINASTATE_WAIT1
+    Marina_State2,                // MARINASTATE_WAIT2
+    Marina_IdleState,             // MARINASTATE_IDLE
+    Marina_IdleHoldingState,      // MARINASTATE_IDLEHOLD
+    Marina_LandState,             // MARINASTATE_LAND
+    Marina_LandHoldingState,      // MARINASTATE_LANDHOLD
+    Marina_WalkState,             // MARINASTATE_WALK
+    Marina_WalkHoldingState,      // MARINASTATE_WALKHOLD
+    Marina_State9,                // MARINASTATE_9
+    func_800508F4,                // MARINASTATE_10
+    Marina_GroundDashState,       // MARINASTATE_GROUNDDASH
+    Marina_GroundDashHoldingState,// MARINASTATE_GROUNDDASHHOLD
+    Marina_SlideDashState,        // MARINASTATE_SLIDEDASH
+    Marina_SlideDashHoldingState, // MARINASTATE_SLIDEDASHHOLD
+    Marina_RollState,             // MARINASTATE_ROLL
+    Marina_AirDashState,          // MARINASTATE_AIRDASH
+    Marina_AirDashState,          // MARINASTATE_AIRDASHHOLD
+    func_80051324,                // MARINASTATE_18
+    func_80051324,                // MARINASTATE_19
+    Marina_State20,               // MARINASTATE_20
+    func_80051C48,                // MARINASTATE_21
+    func_8004D140,                // MARINASTATE_22
+    func_8004D140,                // MARINASTATE_23
+    func_8004D140,                // MARINASTATE_24
+    func_8004D140,                // MARINASTATE_25
+    func_80052004,                // MARINASTATE_26
+    func_80052004,                // MARINASTATE_27
+    func_80052004,                // MARINASTATE_28
+    func_80052004,                // MARINASTATE_29
+    func_8004D6CC,                // MARINASTATE_30
+    func_8004D7BC,                // MARINASTATE_31
+    func_8004DA6C,                // MARINASTATE_32
+    func_8004DC44,                // MARINASTATE_BEAMGRAB
+    func_80055188,                // MARINASTATE_GRAB
+    func_800551F8,                // MARINASTATE_35
+    func_800553EC,                // MARINASTATE_36
+    func_8005544C,                // MARINASTATE_37
+    Marina_ThrowState,            // MARINASTATE_THROW
+    func_8005701C,                // MARINASTATE_39
+    Marina_ShakeShake,            // MARINASTATE_SHAKE
+    Marina_DropState,             // MARINASTATE_DROP
+    func_8004B878,                // MARINASTATE_42
+    func_8004B878,                // MARINASTATE_43
+    Marina_State44,               // MARINASTATE_44
+    Marina_State45,               // MARINASTATE_45
+    func_8005878C,                // MARINASTATE_46
+    func_800576A0,                // MARINASTATE_47
+    func_80057848,                // MARINASTATE_HIT48
+    func_80057C98,                // MARINASTATE_49
+    func_80057C98,                // MARINASTATE_HIT50
+    func_80057848,                // MARINASTATE_HIT51
+    func_80057C98,                // MARINASTATE_52
+    Marina_ShockState,            // MARINASTATE_HITSHOCK
+    OverlayABI_Slot1_fn3_u16,     // MARINASTATE_54
+    Marina_TPInState,             // MARINASTATE_TPIN
+    Marina_TPOutState,            // MARINASTATE_TPOUT
+    Marina_State57,               // MARINASTATE_57
+    Marina_DebugAnim,             // MARINASTATE_DEBUGANIM
+    Marina_DebugGraphic,          // MARINASTATE_DEBUGGFX
+    Marina_DebugMove              // MARINASTATE_DEBUGFLY
 };
 
 u8 func_80048600(u16 actor_index) {
@@ -1054,7 +1053,7 @@ void Marina_State0(u16 actor_index) {
     gActors[actor_index].flags &= ACTOR_FLAG_FLIPPED;
     gActors[actor_index].flags |= ACTOR_FLAG_UNK27 | ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_ACTIVE | ACTOR_FLAG_DRAW;
     gActors[actor_index].grabType = GRABTYPE_1;
-    gActors[actor_index].unk_0DF = 1;
+    gActors[actor_index].unk_0DF = ACTOR0DF_0_1;
     gActors[actor_index].unk_17C = 0;
     gMarinaScale = gActors[actor_index].unk_124 = gActors[actor_index].unk_128 = 1.0f;
     gActors[actor_index].unk_170 = 1;
@@ -1134,7 +1133,7 @@ void Marina_IdleState(u16 actor_index) {
             var_a3 = 3;
         }
         gActors[actor_index].var_150++;
-        if ((gMarinaAnim.anim_u32 != MARINAANIM_0) || (gPlayerData.flags & ACTOR_FLAG_DRAW) ||
+        if ((gMarinaAnim.anim_u32 != MARINAANIM_0) || (gPlayerData.flags & PLAYERDATA_UNK0) ||
             (gButtonHold & (gButton_DUp | gButton_DDown | gButton_DLeft | gButton_DRight | gButton_B | gButton_A | gButton_CLeft | gButton_CDown | gButton_CUp | gButton_CRight | gButton_ZTrig | gButton_LTrig | gButton_RTrig)) ||
             ((func_8005DEFC() != 0)) || (gActors[actor_index].stateUpper == 0)) {
             gActors[actor_index].var_150 = 0;
@@ -1307,7 +1306,7 @@ void Marina_GroundDashState(u16 actor_index) {
             }
             gActors[actor_index].unk_170 = 0x4A;
         }
-        func_8005C098(actor_index, 1);
+        MarinaEffect_Set(actor_index, MARINAEFF_DASH);
         gActors[actor_index].unk_17C = 0;
         gActors[actor_index].unk_17C_s8[1] = 2;
         gActors[actor_index].unk_180_u8[2] = gPlayerData.unk_10;
@@ -1445,7 +1444,7 @@ void Marina_SlideDashState(u16 actor_index) {
             gActors[actor_index].flags &= ~(ACTOR_FLAG_UNK14 | ACTOR_FLAG_UNK6);
             Sound_PlaySfx(SFX_DASH_00AE);
             Sound_PlaySfx(SFX_MARINA_YELL1);
-            func_8005C098(actor_index, 1);
+            MarinaEffect_Set(actor_index, MARINAEFF_DASH);
             gActors[actor_index].damage = 0;
             gActors[actor_index].hitFlags = HITFLAG_0;
             gActors[actor_index].hitType = HITTYPE_22;
@@ -1507,7 +1506,7 @@ void Marina_SlideDashState(u16 actor_index) {
                 }
                 if (func_80049040(actor_index) == 0) {
                     gActors[actor_index].unk_170 = 0x4A;
-                    func_8005C098(actor_index, 1);
+                    MarinaEffect_Set(actor_index, MARINAEFF_DASH);
                     gActors[actor_index].unk_180_u8[2] = gPlayerData.unk_10;
                     gActors[actor_index].stateUpper = 1;
                     gActors[actor_index].stateLower = MARINASTATE_9;
@@ -1724,7 +1723,7 @@ void Marina_AirDashState(u16 actor_index) {
                 }
                 break;
             }
-            func_8005C098(actor_index, 1);
+            MarinaEffect_Set(actor_index, MARINAEFF_DASH);
             gActors[actor_index].unk_180_u8[2] = gPlayerData.unk_10;
             gActors[actor_index].var_15C = gPlayerData.unk_10;
             gActors[actor_index].unk_17C = 0;

@@ -15,7 +15,7 @@ typedef struct {
     f32 scale;
 } ShockParticleStruct;
 
-extern ActorFunc D_800D3FD0[];
+extern ActorFunc gMarinaEffectTable[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
@@ -518,7 +518,7 @@ s32 func_8005A930(ShockParticleStruct* arg0) {
     for (index = 0; index < 8; index++) {
         actor_index = MarinaEffect_SpawnParticle(arg0->actorIndex, arg0->pos);
         if (actor_index == 0) {
-            return 0;
+            return FALSE;
         }
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
@@ -552,10 +552,10 @@ s32 func_8005A930(ShockParticleStruct* arg0) {
             break;
         }
     }
-    return 1;
+    return TRUE;
 }
 
-void func_8005ACA8(u16 actor_index) {
+void MarinaEffect_Noop(u16 actor_index) {
 }
 
 void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
@@ -622,17 +622,17 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     gActors[actor_1].unk_13C_f32 = gActors[actor_1].posZ.raw - gActors[actor_index].posZ.raw;
     gActors[actor_1].posZ.raw++;
     if (arg2 & 1) {
-        gActors[actor_1].graphicIndex = 0x1B2;
+        gActors[actor_1].graphicIndex = GINDEX_DASHEFFECT;
         gActors[actor_1].scaleX = 0.5f;
         gActors[actor_1].scaleY = 1.0 - (arg2 * 0.05);
     }
     else {
-        gActors[actor_1].graphicIndex = 0x1B4;
+        gActors[actor_1].graphicIndex = GRAPHIC_FRAME(DASHEFFECT,1);
         gActors[actor_1].scaleX = 1.0 - (arg2 * 0.04);
         gActors[actor_1].scaleY = 0.3f;
     }
     if (!arg2) {
-        sp54[3] = 0x182;
+        sp54[3] = GINDEX_DASHEFFECT;
         sp54[4] = (intptr_t)PALETTE_8022D568;
         actor_1 = func_8005A068(actor_index, sp54, var_s0, 0.7f, 8);
         if (actor_1 == 0) {
@@ -652,7 +652,7 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     }
 }
 
-void func_8005B164(u16 actor_index) {
+void MarinaEffect_Dash(u16 actor_index) {
     func_8005ACB0(actor_index, gActors[actor_index].unk_180_u8[2], gActors[actor_index].unk_180_u8[0]);
     gActors[actor_index].unk_180_u8[0]++;
     if (gActors[actor_index].unk_180_u8[0] >= 0x10) {
@@ -756,7 +756,7 @@ void MarinaEffect_Type5(u16 actor_index) {
     }
 }
 
-void func_8005B5FC(u16 actor_index) {
+void MarinaEffect_Type2(u16 actor_index) {
     s32 sp24[5];
     u16 actor_1;
     u16 actor_2;
@@ -809,7 +809,7 @@ void func_8005B5FC(u16 actor_index) {
     }
 }
 
-void func_8005B82C(u16 actor_index) {
+void MarinaEffect_Burn(u16 actor_index) {
     s32 sp34[5];
     f32 scale;
     u16 actor_1;
@@ -870,24 +870,24 @@ void MarinaEffect_Invulnerability(u16 actor_index) {
 }
 
 void MarinaEffect_Shock(u16 actor_index) {
-    ShockParticleStruct sp1C;
+    ShockParticleStruct params;
 
     gActors[actor_index].colorB = 0x7F;
     gActors[actor_index].colorB = (Rand() & 0x3F) + 0x40;
-    sp1C.actorIndex = actor_index;
-    sp1C.pos[0] = gActors[actor_index].posX.whole;
-    sp1C.pos[1] = gActors[actor_index].posY.whole;
-    sp1C.pos[2] = gActors[actor_index].posZ.whole + 1;
-    sp1C.graphicIndex = 0x1EE;
-    sp1C.scale = gActors[actor_index].hitboxBY0 + RandModulo(9);
-    sp1C.angle = RandModulo(0) * FIXED_UNIT(4.0);
-    sp1C.blue = Rand();
-    if (sp1C.blue < 0x80) {
-        sp1C.blue += 0x80;
+    params.actorIndex = actor_index;
+    params.pos[0] = gActors[actor_index].posX.whole;
+    params.pos[1] = gActors[actor_index].posY.whole;
+    params.pos[2] = gActors[actor_index].posZ.whole + 1;
+    params.graphicIndex = 0x1EE;
+    params.scale = gActors[actor_index].hitboxBY0 + RandModulo(9);
+    params.angle = RandModulo(0) * FIXED_UNIT(4.0);
+    params.blue = Rand();
+    if (params.blue < 0x80) {
+        params.blue += 0x80;
     }
-    sp1C.red = sp1C.green = Rand() % sp1C.blue;
-    sp1C.randModulo = 8;
-    func_8005A930(&sp1C);
+    params.red = params.green = Rand() % params.blue;
+    params.randModulo = 8;
+    func_8005A930(&params);
 }
 
 void MarinaEffect_Teleport(u16 actor_index) {
@@ -944,11 +944,11 @@ void MarinaEffect_Update(u16 actor_index) {
     }
     gActors[actor_index].unk_180_u8[3] = MARINAEFF_NONE;
     if (gActors[actor_index].unk_180_u8[1] != 0) {
-        D_800D3FD0[gActors[actor_index].unk_180_u8[1]](actor_index);
+        gMarinaEffectTable[gActors[actor_index].unk_180_u8[1]](actor_index);
     }
 }
 
-void func_8005C098(u16 actor_index, s32 arg1) {
+void MarinaEffect_Set(u16 actor_index, s32 arg1) {
     gActors[actor_index].unk_180_s16[0] = arg1;
 }
 

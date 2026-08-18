@@ -2147,7 +2147,7 @@ void func_801BB360_7CFAF0(void) {
                 D_800D28F8 = gTransitionPortraitIndex;
                 switch (gStageTimer) {
                     case 5:
-                        *(u8*)&gMarinaAnim.anim_s32 = MARINAANIM_1;
+                        gMarinaAnim.unk_00 = 1;
                         Sound_PlaySfxAtActor2(SFX_DASH_0116, PLAYER_INDEX);
                         break;
 

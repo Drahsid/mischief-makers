@@ -3,7 +3,6 @@
 
 // script related to dialog code.
 
-extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
 
 u8 D_801782D0[8]; // unused start of .bss
@@ -167,7 +166,7 @@ void func_8005E260(u16 actor_index) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = GINDEX_SPEECHBUBBLE;
-        gActors[actor_index].unk_0DF = 0;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
         gActors[actor_index].grabType = GRABTYPE_13;
         gActors[actor_index].var_110 = 0.0f;
         if (gActors[actor_index].unk_104 < 0) {
@@ -239,7 +238,7 @@ void func_8005E56C(u16 actor_index) {
         gActors[actor_index].damage = 0;
         gActors[actor_index].hitboxAY0 = 0xC; \
         gActors[actor_index].hitboxAY1 = -0xC;
-        gActors[actor_index].unk_0DF = 0;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
         gActors[actor_index].var_110 = 0.0f;
         if (gActors[actor_index].unk_104 < 0) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;

@@ -52,7 +52,7 @@ extern u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale)
 extern u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3);
 extern u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4);
 extern u16 func_8005A4B0(u16 actor_index, f32 scale);
-extern void func_8005C098(u16, s32);
+extern void MarinaEffect_Set(u16, s32);
 extern u16 Marina_SpawnAfterImage(u16 actor_index);
 extern void func_8005C520(s8, s8);
 extern s32 func_8005C550(u16 actor_index, s16 arg1);

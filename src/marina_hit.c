@@ -2,6 +2,8 @@
 #include "boot.h"
 #include "marina.h"
 #include "marina_grab.h"
+#include "marina_hit.h"
+#include "marina_effect.h"
 
 extern Actor2Func gMarinaHitTable[];
 
@@ -620,7 +622,7 @@ void MarinaHit_Boom(u16 actor_0, u16 unused_arg1) {
     else {
         gActors[actor_0].state = MARINASTATE_52;
     }
-    func_8005C098(actor_0, 3);
+    MarinaEffect_Set(actor_0, MARINAEFF_BURN);
     gActors[actor_0].unk_144 = 0.6f;
 }
 

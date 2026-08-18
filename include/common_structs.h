@@ -130,7 +130,7 @@ typedef union {
     u32 anim_u32;
     s32 anim_s32; // sometimes only matches as signed word.
     struct {
-        u8 unk_00;
+        u8 unk_00; // set, but not read.
         u8 timer;
         u8 state;
         u8 anim; // AND'd from word field instead

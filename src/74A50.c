@@ -1299,7 +1299,7 @@ void func_80078190(u16 actor_index, u16 arg1_unused) {
     gActors[actor_index].flags |= ACTOR_FLAG_UNK17 | ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10;
     gActors[actor_index].health = 100;
     gActors[actor_index].grabType = GRABTYPE_6; \
-    gActors[actor_index].unk_0DF = 2;
+    gActors[actor_index].unk_0DF = ACTOR0DF_0_2;
     gActors[actor_index].hitboxBY0 = 23; \
     gActors[actor_index].hitboxBY1 = -12; \
     gActors[actor_index].hitboxBX0 = -24; \
@@ -1349,7 +1349,7 @@ void func_80078338(u16 actor_index) {
         if (gActors[actor_index].var_150 & 0x4000) {
             x = FIXED_UNIT(8);
             y = FIXED_UNIT(3);
-            z = 0x4E20;
+            z = 20000;
         }
         else {
             x = FIXED_UNIT(31);
@@ -2061,7 +2061,7 @@ void func_8007A8B0(u16 actor_index) {
     }
 }
 
-s32 func_8007AB44(u16 actor_index) {
+s32 Rocketeer_Control(u16 actor_index) {
     f32 var_f0;
     u16 angle;
     s32 var_a3;
@@ -2358,12 +2358,12 @@ void Rocketeer_Update(u16 actor_index) {
             actor->graphicFlags |= ACTOR_GFLAG_SCALE;
             switch ((actor->var_150 & 0x3000)) {
             case 0x1000:
-                actor->unk_0DF = 0;
+                actor->unk_0DF = ACTOR0DF_0_0;
                 actor->scaleX = 0.75f;
                 break;
             case 0x2000:
                 actor->grabType = GRABTYPE_6;
-                actor->unk_0DF = 0x40;
+                actor->unk_0DF = ACTOR0DF_6;
                 actor->scaleX = 1.25f;
                 break;
             }
@@ -2508,7 +2508,7 @@ void Rocketeer_Update(u16 actor_index) {
         /* fallthrough */
     case 0x61:
         Rocketeer_FireParticle(actor_index, 0);
-        func_8007AB44(actor_index);
+        Rocketeer_Control(actor_index);
         if (actor->var_154 < 0) {
         }
         break;

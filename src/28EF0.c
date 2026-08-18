@@ -1723,12 +1723,12 @@ void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;
     }
     gActors[actor_index].var_15C = arg5;
-    gActors[actor_index].unk_118 = arg5 / 8192;
+    gActors[actor_index].unk_118 = arg5 / 0x2000;
     gActors[actor_index].unk_0CE = 10;
     gActors[actor_index].health = 10;
     gActors[actor_index].damage = 0;
-    gActors[actor_index].hitType = 2;
-    gActors[actor_index].unk_0DF = 0;
+    gActors[actor_index].hitType = HITTYPE_2;
+    gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
     gActors[actor_index].unk_178 = 0x200;
 }
 
@@ -1982,7 +1982,7 @@ void func_8002D040(u16 actor_index, s32 arg1) {
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(1.0625); \
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(7.75);
     gActors[actor_index].grabType = GRABTYPE_0;
-    gActors[actor_index].unk_0DF = 0;
+    gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
     gActors[actor_index].hitType = HITTYPE_BOOM_11; \
     gActors[actor_index].hitFlags = HITFLAG_7 | HITFLAG_2;
     gActors[actor_index].var_110 = 8.0f;
@@ -2484,7 +2484,7 @@ void SpawnShuriken(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y) 
     gActors[actor_index].flags = ACTOR_FLAG3_UNK2 | ACTOR_FLAG3_UNK1 | ACTOR_FLAG3_UNK0;
     gActors[actor_index].graphicIndex = GINDEX_SHURIKEN;
     gActors[actor_index].unk_0CE = 5;
-    gActors[actor_index].unk_0DF = 0;
+    gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
     gActors[actor_index].hitFlags = HITFLAG_2;
     gActors[actor_index].hitType = HITTYPE_4;
     gActors[actor_index].scaleX = 0.8f;
@@ -3573,7 +3573,7 @@ void ActorUpdate_Type54(u16 actor_index) {
     gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
-u16 func_800327B4(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u16 arg6, s16 arg7, s16 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12) {
+u16 func_800327B4(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 grab_type, u16 actor_0DF, s16 arg7, s16 arg8, s16 arg9, s16 arg10, s16 arg11, s16 arg12) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(arg0, arg1);
@@ -3584,8 +3584,8 @@ u16 func_800327B4(u16 arg0, u16 arg1, u16 arg2, u16 arg3, s32 arg4, u16 arg5, u1
         gActors[actor_index].unk_130 = arg2;
         gActors[actor_index].unk_134 = arg3;
         gActors[actor_index].var_150 = arg4;
-        gActors[actor_index].grabType = arg5;
-        gActors[actor_index].unk_0DF = arg6;
+        gActors[actor_index].grabType = grab_type;
+        gActors[actor_index].unk_0DF = actor_0DF;
         gActors[actor_index].health = 1;
         gActors[actor_index].unk_118 = arg9;
         gActors[actor_index].unk_11C = arg10;
@@ -4368,7 +4368,7 @@ s16 Clanpot_AddItemCheck(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u1
 // add item to Clanpot with check for valid collision.
 // @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_110 overrides item's var_110 if (flags & 0x2000) is set.
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @returns index of next clanpot item, -1 if failed
 s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 var_110, u16 var_0D8) {
@@ -4379,7 +4379,7 @@ s16 Clanpot_AddItemCheck1(u16 item_index, u16 flags, u16 var_110, u16 var_0D8) {
 // unused. Identical to used version.
 // @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_110 overrides item's var_110 if (flags & 0x2000) is set.
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 if failed
@@ -4388,10 +4388,10 @@ s16 Clanpot_AddItemCheck2(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u
 }
 
 // add item to Clanpot with check for valid collision.
-// @param item_index index of item to add.
 // Identical to unused version.
+// @param item_index index of item to add.
 // @param flags flags on properties to add. (uses ClanpotFlags)
-// @param var_110 overrides item's var_110 if (flags & 0x2000)
+// @param var_110 overrides item's var_110 if (flags & 0x2000) is set.
 // @param var_0D8 overrides item's var_0D8 if (flags & 0x1000) is set.
 // @param icon index of icon, either GINDEX_* or ACTORTYPE_*, depending if CLANPOT_ACTORICON is set
 // @returns index of next clanpot item, -1 failed

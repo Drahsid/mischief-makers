@@ -2586,7 +2586,7 @@
           }
         },
         {
-          "name": "Records_GetTotalTime",
+          "name": "Records_GetTotalTimeRank",
           "size": "412",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9477,7 +9477,7 @@
           }
         },
         {
-          "name": "func_8005ACA8",
+          "name": "MarinaEffect_Noop",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9493,7 +9493,7 @@
           }
         },
         {
-          "name": "func_8005B164",
+          "name": "MarinaEffect_Dash",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9517,7 +9517,7 @@
           }
         },
         {
-          "name": "func_8005B5FC",
+          "name": "MarinaEffect_Type2",
           "size": "560",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9525,7 +9525,7 @@
           }
         },
         {
-          "name": "func_8005B82C",
+          "name": "MarinaEffect_Burn",
           "size": "524",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9565,7 +9565,7 @@
           }
         },
         {
-          "name": "func_8005C098",
+          "name": "MarinaEffect_Set",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {

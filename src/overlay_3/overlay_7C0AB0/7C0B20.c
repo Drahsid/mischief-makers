@@ -1168,7 +1168,7 @@ void func_801B3308_7C3528(u16 actor_index) {
         actor->graphicIndex = 0x808;
         actor->health = 1;
         actor->grabType = GRABTYPE_6;
-        actor->unk_0DF = 0x40;
+        actor->unk_0DF = ACTOR0DF_6;
         Actor_SetHitboxB(actor_index, 8);
         actor->var_154 = gScreenPosCurrentX.whole + actor->posX.whole;
         actor->var_15C = gScreenPosCurrentY.whole + actor->posY.whole;
@@ -1256,7 +1256,7 @@ void func_801B3674_7C3894(u16 actor_index) {
         gActors[actor_index].graphicFlags = ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags = ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_ENABLED;
         gActors[actor_index].grabType = GRABTYPE_5;
-        gActors[actor_index].unk_0DF = 0x40;
+        gActors[actor_index].unk_0DF = ACTOR0DF_6;
         Actor_SetHitboxB(actor_index, 0x10);
     }
 }

@@ -538,11 +538,11 @@ void func_80009BE8(s16* arg0) {
                     sp3EE = delta_x;
                     sp3EC = delta_y;
                     break;
-                case ACTOR_GFLAG_ROTZ:
+                case ACTOR_GFLAG_SCALE:
                     sp3EE = (gMarinaScale * delta_x);
                     sp3EC = (gMarinaScale * delta_y);
                     break;
-                case ACTOR_GFLAG_SCALE:
+                case ACTOR_GFLAG_ROTZ:
                     angle = (gPlayerActor.rotateZ / 360.0f) * 1024.0f;
                     temp_f2 = delta_x;
                     angle_x = COS(angle);

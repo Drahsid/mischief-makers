@@ -86,8 +86,8 @@ enum ActorFlags3 {
     ACTOR_FLAG3_NONE = 0,
     ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
-    ACTOR_FLAG3_UNK2 = (1U << 2U), // left edge of screen hit?
-    ACTOR_FLAG3_UNK3 = (1U << 3U), // right edge of screen hit?
+    ACTOR_FLAG3_UNK2 = (1U << 2U), // left hit?
+    ACTOR_FLAG3_UNK3 = (1U << 3U), // right hit?
     ACTOR_FLAG3_UNK4 = (1U << 4U), // hit ceiling?
     ACTOR_FLAG3_UNK5 = (1U << 5U), // on the floor?
     ACTOR_FLAG3_UNK6 = (1U << 6U),
@@ -120,6 +120,34 @@ enum ActorFlags3 {
     // a commonly AND'd mask
     ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB)
 };
+
+// properties of an actor when grabbed / thrown.
+typedef enum {
+    GRABTYPE_0, // stubbed grab/throw state
+    GRABTYPE_1,
+    GRABTYPE_2,
+    GRABTYPE_3, // used for counters of big lasers/Raiden's lightning
+    GRABTYPE_4,
+    GRABTYPE_5,
+    GRABTYPE_6,
+    GRABTYPE_7,
+    GRABTYPE_8,
+    GRABTYPE_9, // stubbed grab/throw state
+    GRABTYPE_10,
+    GRABTYPE_11,
+    GRABTYPE_HURT, // damage Marina if she tries to grab actor
+    GRABTYPE_13,
+    GRABTYPE_14,
+    GRABTYPE_15,
+    GRABTYPE_16,
+    GRABTYPE_17,
+    GRABTYPE_18,
+    GRABTYPE_19,
+    GRABTYPE_20,
+    GRABTYPE_21,
+    GRABTYPE_22,
+    GRABTYPE_23  // stubbed grab/throw state
+} GrabTypes;
 
 typedef enum {
     HITTYPE_0,
@@ -245,12 +273,12 @@ typedef struct {
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
-    /* 0x0DA */ u8 hitFlags; // hit flags
-    /* 0x0DB */ u8 hitType; // damage type when hit
-    /* 0x0DC */ u8 hitByFlags; // "hit by" flags
-    /* 0x0DD */ u8 hitByType; // damage type imfliced
-    /* 0x0DE */ u8 grabType; // behavior when grabbed / thrown
-    /* 0x0DF */ u8 unk_0DF;
+    /* 0x0DA */ u8 hitFlags; // flags transferred when collided. uses HitFlags
+    /* 0x0DB */ u8 hitType; // damage type to inflict. uses HitTypes
+    /* 0x0DC */ u8 hitByFlags; // flags set from colided actor. uses HitFlags
+    /* 0x0DD */ u8 hitByType; // damage type infliced. uses HitTypes
+    /* 0x0DE */ u8 grabType; // behavior when grabbed / thrown. uses GrabTypes
+    /* 0x0DF */ u8 unk_0DF; // needs more study. uses Actor0DFFlags
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.
     /* 0x0E4 */ s16 damage; // damage caused by contact

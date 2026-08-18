@@ -2425,22 +2425,22 @@ void func_8006CD5C(u16 actor_index) {
     temp_v0 = gActors[actor_index].var_0D8 & 0x30;
     switch (temp_v0) {
     case 0x00:
-        gActors[actor_index].unk_0DF = 1;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_1;
         break;
     case 0x10:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = 0.85f;
-        gActors[actor_index].unk_0DF = 0;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
         break;
     case 0x20:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = 0.7f;
-        gActors[actor_index].unk_0DF = 0;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
         break;
     case 0x30:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].scaleX = 1.2f;
-        gActors[actor_index].unk_0DF = 2;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_2;
         break;
     }
     gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE;

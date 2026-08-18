@@ -460,11 +460,14 @@ MarinaEffect_SpawnParticle = 0x800592A0; // type:func
 MarinaEffect_Grab = 0x80059ABC; // type:func
 MarinaEffect_ControlDiagram = 0x800593DC; // type:func
 
-
+MarinaEffect_Dash = 0x8005B164; // type:func
 MarinaEffect_Type4 = 0x8005B1E8; // type:func
 MarinaEffect_Type5 = 0x8005B3F4; // type:func
+MarinaEffect_Type2 = 0x8005B5FC; // type:func
+MarinaEffect_Burn = 0x8005B82C; // type:func
 MarinaEffect_Invulnerability = 0x8005BA38; // type:func
 MarinaEffect_Shock = 0x8005BBC0; // type:func
+MarinaEffect_Noop = 0x8005ACA8; // type:func
 MarinaEffect_Teleport = 0x8005BCF8; // type:func
 
 MarinaEffect_Update = 0x8005BFA4; // type:func
@@ -556,7 +559,7 @@ GameState_FileSelect = 0x80007C8C; // type:func
 GameState_Transition = 0x8001B460; // type:func
 
 PrintStageGem = 0x8001C97C; // type:func
-Records_GetTotalTime = 0x8001D0A4; // type:func
+Records_GetTotalTimeRank = 0x8001D0A4; // type:func
 Records_PrintTimeTotal = 0x8001D240; // type:func
 Records_ScrollActors = 0x8001D5B8; // type:func
 Records_ScrollActors2 = 0x8001D60C; // type:func
@@ -738,6 +741,8 @@ Text_SetHCColor = 0x80028260; // type:func
 AnimateSpeechBubble = 0x8005E1CC; // type:func
 
 UpdateDialog = 0x8005F6D4; // type:func
+
+MarinaEffect_Set = 0x8005C098; // type:func
 Marina_SpawnAfterImageOld = 0x8005C0CC; // type:func
 Marina_SpawnAfterImage = 0x8005c250; // type:func
 ActorUpdate_MarinaAfterImage = 0x8005C3C8; // type:func
