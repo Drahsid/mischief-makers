@@ -1539,7 +1539,7 @@ void func_801BB85C_7E49BC(void) {
         case 20:
             gCannotPause = FALSE;
             if (gActors[0x30].health == 0) {
-                Sound_StartFade(0x81, 0x3C);
+                Sound_StartFade(0x81, 60);
                 gStageState = 21;
             }
             break;

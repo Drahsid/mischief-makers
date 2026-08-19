@@ -1503,7 +1503,7 @@ void func_801BA774_7DD644(void) {
 
         case 3:
             SpawnAreaClear(AREACLEAR_FULL);
-            Sound_StartFade(0x81, 0x168);
+            Sound_StartFade(0x81, 360);
             gStageState++;
             break;
 
@@ -1961,7 +1961,7 @@ void func_801BACDC_7DDBAC(void) {
                 if (D_801BDA38_7E0908[D_800D2934] == 0xFFFF) {
                     gStageState = 0x904;
                     D_800D28F8 = 0x3C;
-                    Sound_StartFade(0x81, 0x3C);
+                    Sound_StartFade(0x81, 60);
                 }
                 else {
                     gStageState--;
@@ -2036,7 +2036,7 @@ void func_801BACDC_7DDBAC(void) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x61;
         gStageState = 0x900;
-        Sound_StartFade(0x81, 0x32);
+        Sound_StartFade(0x81, 50);
     }
 
     Camera_UpdateViewBounds();

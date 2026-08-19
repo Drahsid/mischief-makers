@@ -1017,7 +1017,7 @@ void func_801B2628_7B5D08(u16 actor_index) {
             if (--gActors[actor_index].var_150 < 0) {
                 gActors[actor_index].state++;
                 gActors[actor_index].var_150 = 0x1E;
-                Sound_StartFade(1, 0x3C);
+                Sound_StartFade(1, 60);
                 return;
             }
             break;

@@ -871,7 +871,7 @@ void func_801BA984_7E8F54(void) {
             gCannotPause = TRUE;
             if (gActors[0x30].state < 0x900D) {
                 if (Cutscene_CheckSkipInput() != 0) {
-                    Sound_StartFade(0x81, 0x1E);
+                    Sound_StartFade(0x81, 30);
                 }
             }
             break;
@@ -898,7 +898,7 @@ void func_801BA984_7E8F54(void) {
         case 0x13:
             gCannotPause = TRUE;
             if (gActors[0x30].flags == 0) {
-                D_800D28E4 = 0x64;
+                D_800D28E4 = 100;
             }
             break;
 

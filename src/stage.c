@@ -26,9 +26,9 @@ u16 gCurrentWorld;
 u16 D_8017815E;
 u16 D_80178160;
 u16 gCurrentStage;
-u16 D_80178164;
-u16 D_80178166;
-u32 sRecordTRimesTotal;
+u16 sTitleMenuTimer;
+u16 sStartTextBlinkTimer;
+u32 sRecordTimesTotal;
 u32 D_8017816C; // unused (file break?)
 u8 gDebugStageSelectSelectedOptions[DEBUG_STAGE_SELECT_ROW_COUNT];
 u8 gDebugStageSelectOptionBaseOffsets[24];
@@ -1294,7 +1294,7 @@ void Title_UpdateText(void) {
     Title_LegalText();
 
     // blink "press start" text
-    if ((D_80178166++ & 4) == 0) {
+    if ((sStartTextBlinkTimer++ & 4) == 0) {
         for (index = 0x39; index < 0x43; index++) {
             gActors[index].flags = 0;
         }
@@ -1415,7 +1415,7 @@ void GameState_TitleScreen(void) {
         if (gButtonPress & gButton_Start) {
             Sound_PlaySfx(SFX_MENU_DING);
             Sound_StartFade(1, 0x40);
-            D_80178166 = 0;
+            sStartTextBlinkTimer = 0;
             if (CURSOR_INDEX_A) {
                 gGameStateSubState = 0x30;
             }
@@ -1450,13 +1450,13 @@ void GameState_TitleScreen(void) {
         Title_UpdateText();
         if (gAudioFadeMode == 3) {
             gAudioFadeMode = 0;
-            D_80178164 = 0x20;
+            sTitleMenuTimer = 0x20;
             gGameStateSubState++;
         }
         break;
     case 33:
         Title_UpdateText();
-        if (D_80178164-- == 0) {
+        if (sTitleMenuTimer-- == 0) {
             gGameState = GAMESTATE_FILESELECT;
             gGameStateSubState = 0;
         }
@@ -1465,13 +1465,13 @@ void GameState_TitleScreen(void) {
         Title_UpdateText();
         if (gAudioFadeMode == 3) {
             gAudioFadeMode = 0;
-            D_80178164 = 0x20;
+            sTitleMenuTimer = 0x20;
             gGameStateSubState++;
         }
         break;
     case 49:
         Title_UpdateText();
-        if (D_80178164-- == 0) {
+        if (sTitleMenuTimer-- == 0) {
             func_800230B8();
             gActors[0x10].flags = ACTOR_FLAG_ENABLED;
             gActors[0x11].flags = ACTOR_FLAG_ENABLED;
@@ -2439,7 +2439,7 @@ void GameState_Transition(void) {
         }
         gPortraitTint = 0xFF;
         if (gGameStateSubState != 9) {
-            Sound_StartFade(1, 0x28);
+            Sound_StartFade(1, 40);
         }
         gGameStateSubState++;
         break;
@@ -2490,7 +2490,7 @@ void GameState_Transition(void) {
                 gGameStateSubState = 0xE;
             }
             else if (gGameStateSubState == 0x41) {
-                Sound_StartFade(1, 0x18);
+                Sound_StartFade(1, 24);
                 gGameStateSubState = 0x42;
             }
         }
@@ -2958,25 +2958,25 @@ u16 Records_GetTotalTimeRank(void) {
     u16 index;
 
     limit = func_8001CC34();
-    sRecordTRimesTotal = 0;
+    sRecordTimesTotal = 0;
     for (index = 2, times = var_s3 = 0; index < limit; index++) {
         func_8001B078(index, &sp4C, &sp4A, &sp48);
         if (sp4C < 6) {
-            sRecordTRimesTotal += gTimeRecords[index];
+            sRecordTimesTotal += gTimeRecords[index];
             times += gStageTimesToBeat[index];
             var_s3++;
         }
     }
-    if (sRecordTRimesTotal < times) {
+    if (sRecordTimesTotal < times) {
         return GINDEX_RANK_S;
     }
-    if (sRecordTRimesTotal < (var_s3 * 1800) + times) {
+    if (sRecordTimesTotal < (var_s3 * 1800) + times) {
         return GINDEX_RANK_A;
     }
-    if (sRecordTRimesTotal < (var_s3 * 7200) + times) {
+    if (sRecordTimesTotal < (var_s3 * 7200) + times) {
         return GINDEX_RANK_B;
     }
-    if (sRecordTRimesTotal < (var_s3 * 18000) + times) {
+    if (sRecordTimesTotal < (var_s3 * 18000) + times) {
         return GINDEX_RANK_C;
     }
     return GINDEX_RANK_D;
@@ -2988,7 +2988,7 @@ void Records_PrintTimeTotal(void) {
     u16 rank;
 
     rank = Records_GetTotalTimeRank();
-    time = sRecordTRimesTotal;
+    time = sRecordTimesTotal;
     Text_InitActorGraphicRGB(0x3C, rank, 0x5A, 0xFFB8, 2, 0, 0, 0xC0);
     if (((((time % 60) * 500) / 3) % 100) < 50) {
         value = ((time % 60) * 5) / 3;

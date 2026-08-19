@@ -1485,7 +1485,7 @@ s32 Transition_StageExit(void) {
             Sound_StopAllSfx();
             if (gIsPauseExit) {
                 gTransitionTimer = 20;
-                Sound_StartFade(0x41, 0x14);
+                Sound_StartFade(0x41, 20);
                 gTransitionState += 2;
             }
             else {
@@ -1509,7 +1509,7 @@ s32 Transition_StageExit(void) {
     case 3:
         gAudioFadeMode = 4;
         if (((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) && (gAudioUpdateCounter < 248)) {
-            Sound_StartFade(1, 0x28);
+            Sound_StartFade(1, 40);
             gTransitionState++;
         }
         else if (gAudioUpdateCounter >= 0x121) {

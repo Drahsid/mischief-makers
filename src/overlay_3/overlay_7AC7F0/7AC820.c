@@ -2479,7 +2479,7 @@ void func_801B5630_7B1550(u16 actor_index) {
     case 7:
         if (--gActors[actor_index].var_150 < 0) {
             gActors[actor_index].state++;
-            Sound_StartFade(1, 0x3C);
+            Sound_StartFade(1, 60);
             gActors[actor_index].var_150 = 0x1E;
         }
         break;

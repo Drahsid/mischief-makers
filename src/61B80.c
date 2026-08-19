@@ -1337,9 +1337,9 @@ void func_800648C4(u16 actor_index) {
 
 // Spawn "Stage Clear" Actor
 // @param flags flags:
-// bit 0 for instant BGM play.
+// bit 0 alone for instant BGM play.
 // bits 1-14 for fadeout time
-// bit 15 to keep original bgm
+// bit 15 to keep original BGM
 // @param spawn_table Spawn table for Warp Gate
 void SpawnStageClear(u16 flags, u16* spawn_table) {
     u16 actor_index = 0xC0;
@@ -1455,7 +1455,7 @@ void func_80064F4C(u16 actor_index) {
             index = gActors[actor_index].var_0D8 & 0xF;
             if (index == 9) {
                 if (func_8004089C((actor_index + 0x8000), D_800D7560[index]) == 0x800) {
-                    Sound_StartFade(SFX_DASH_0081, 0x3C);
+                    Sound_StartFade(0x81, 60);
                     gActors[actor_index].unk_174 += 1;
                     return;
                 }

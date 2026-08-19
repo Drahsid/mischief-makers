@@ -358,7 +358,7 @@ void func_801B9A08_7E6B58(void) {
                 D_800D28FC |= 8;
                 gMarinaAnim.anim_u32 = MARINAANIM_5;
                 gStageTimer = 60;
-                Sound_StartFade(0x81, 0x37);
+                Sound_StartFade(0x81, 55);
             }
             break;
 

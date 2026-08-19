@@ -326,8 +326,8 @@ void func_801B9A8C_7DAC8C(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -403,8 +403,8 @@ void func_801B9D10_7DAF10(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -474,8 +474,8 @@ void func_801B9F78_7DB178(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -544,8 +544,8 @@ void func_801BA1D8_7DB3D8(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -617,8 +617,8 @@ void func_801BA45C_7DB65C(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -720,8 +720,8 @@ void func_801BA7C4_7DB9C4(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
@@ -820,8 +820,8 @@ void func_801BAB04_7DBD04(void) {
 
         case 0x1000:
             gStageState++;
-            gStageTimer = 0xA;
-            Sound_StartFade(1, 0xA);
+            gStageTimer = 10;
+            Sound_StartFade(1, 10);
 
         case 0x1001:
             gStageTimer--;
