@@ -199,9 +199,9 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D2914 = 0;
             gLifebar.posY.whole = 0x50;
             gLifebarHead.posY.whole = 0x53;
-            D_801376BC[0] = 1;
-            D_801376BC[1] = 1;
-            D_801376BC[2] = 1;
+            D_801376BC[0] = TRUE;
+            D_801376BC[1] = TRUE;
+            D_801376BC[2] = TRUE;
             func_8002653C();
             func_80042DBC(D_801BA030_7EAE60);
             Actor_LoadSpawnTable(D_801BA0EC_7EAF1C);

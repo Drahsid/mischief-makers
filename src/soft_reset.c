@@ -95,10 +95,10 @@ void func_80022D88(void) {
     Text_SetHCColor(2, 1, 0, 0, 0);
     Text_SetHCColor(2, 2, 0, 0, 0);
     for (index = 0; index < 4; index++) {
-        D_801376BC[index] = 1;
-        D_801376A8[index] = 0xFF;
-        D_801376AC[index] = 0xFF;
-        D_801376B0[index] = 0xFF;
+        D_801376BC[index] =TRUE;
+        gEnvColorsRed[index] = 0xFF;
+        gEnvColorsGreen[index] = 0xFF;
+        gEnvColorsBlue[index] = 0xFF;
     }
 }
 
@@ -198,12 +198,12 @@ void GameState_Loading(void) {
     u16 index;
 
     for (index = 0; index < 4; index++) {
-        D_801376BC[index] = 1;
-        D_801376B8[index] = 1;
-        D_801376A8[index] = 0;
-        D_801376AC[index] = 0;
-        D_801376B0[index] = 0;
-        D_801376B4[index] = 0xFF;
+        D_801376BC[index] = TRUE;
+        gBlackPrimColor[index] = TRUE;
+        gEnvColorsRed[index] = 0;
+        gEnvColorsGreen[index] = 0;
+        gEnvColorsBlue[index] = 0;
+        gEnvColorsAlpha[index] = 0xFF;
     }
 
     gPortraitTint = 0xFF;

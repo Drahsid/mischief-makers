@@ -1560,12 +1560,12 @@ void func_801B3948_7A4458(u16 actor_index) {
         case 0:
             state = (gActors + actor_index)->state;
             (gActors + actor_index)->flags = ACTOR_FLAG_ACTIVE;
-            D_801376B0[1] = 0;
-            D_801376AC[1] = 0;
-            D_801376A8[1] = 0;
-            D_801376B8[1] = 0;
+            gEnvColorsBlue[1] = 0;
+            gEnvColorsGreen[1] = 0;
+            gEnvColorsRed[1] = 0;
+            gBlackPrimColor[1] = FALSE;
             D_801376BC[1] = 0;
-            D_801376B4[1] = 0x80;
+            gEnvColorsAlpha[1] = 0x80;
             (gActors + actor_index)->posX.raw = 0;
             (gActors + actor_index)->posY.raw = 0;
             (gActors + actor_index)->velocityX.raw = FIXED_UNIT(8.0);
@@ -1585,9 +1585,9 @@ void func_801B3948_7A4458(u16 actor_index) {
             D_800BE580 = gScreenPosCurrentY.whole + (gActors + actor_index)->posY.whole;
             (gActors + actor_index)->velocityX.raw = Math_ApproachS32((gActors + actor_index)->velocityX.raw, (gActors + actor_index)->unk_0F8.raw, FIXED_UNIT(2.0/256));
             value = ((Overlay_7A13D0_Actor_State*)&((gActors + actor_index)->var_150))->unk_02_u8[1];
-            D_801376B0[1] = value;
-            D_801376AC[1] = value;
-            D_801376A8[1] = value;
+            gEnvColorsBlue[1] = value;
+            gEnvColorsGreen[1] = value;
+            gEnvColorsRed[1] = value;
             break;
     }
 }

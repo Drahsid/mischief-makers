@@ -1675,12 +1675,12 @@ void GameState_DebugStageSelect(void) {
             CURSOR_INDEX_A = 0;
             gCurrentScene = 0;
             DebugStageSelect_DrawMenu();
-            D_801376BC[1] = 0;
-            D_801376B8[1] = 1;
-            D_801376A8[1] = 0xC0;
-            D_801376AC[1] = 0xC0;
-            D_801376B0[1] = 0xC0;
-            D_801376B4[1] = 0xFF;
+            D_801376BC[1] = FALSE;
+            gBlackPrimColor[1] = TRUE;
+            gEnvColorsRed[1] = 0xC0;
+            gEnvColorsGreen[1] = 0xC0;
+            gEnvColorsBlue[1] = 0xC0;
+            gEnvColorsAlpha[1] = 0xFF;
             gGameStateSubState++;
             break;
 

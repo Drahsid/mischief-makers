@@ -1405,12 +1405,12 @@ void GameState_FileSelect(void) {
     case 0:
         SaveFile_CheckValid();
         FileSelect_Init(1);
-        D_801376BC[1] = 0;
-        D_801376B8[1] = 1;
-        D_801376A8[1] = 0x60;
-        D_801376AC[1] = 0x60;
-        D_801376B0[1] = 0x60;
-        D_801376B4[1] = 0xFF;
+        D_801376BC[1] = FALSE;
+        gBlackPrimColor[1] = TRUE;
+        gEnvColorsRed[1] = 0x60;
+        gEnvColorsGreen[1] = 0x60;
+        gEnvColorsBlue[1] = 0x60;
+        gEnvColorsAlpha[1] = 0xFF;
         gCurrentSaveSlot = 0;
         gActors[2].var_158 = 0;
         gGameStateSubState++;

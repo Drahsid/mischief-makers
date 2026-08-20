@@ -41,13 +41,13 @@ void func_80082380(Gfx* display_list, s32 x_offset, s32 y_offset, s32* texture_i
     }
     else {
         gSPDisplayList(gDisplayListHead++, D_800E35E0);
-        if (D_801376B8[arg5] != 0) {
+        if (gBlackPrimColor[arg5]) {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
         }
         else {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
         }
-        gDPSetEnvColor(gDisplayListHead++, D_801376A8[arg5], D_801376AC[arg5], D_801376B0[arg5], D_801376B4[arg5]);
+        gDPSetEnvColor(gDisplayListHead++, gEnvColorsRed[arg5], gEnvColorsGreen[arg5], gEnvColorsBlue[arg5], gEnvColorsAlpha[arg5]);
         delta_x = delta_y = 0;
         dsdx = 1;
     }
@@ -104,13 +104,13 @@ void func_80082820(Gfx* display_list, s32* texture_images, u16* tlut, u8 arg3) {
     }
     else {
         gSPDisplayList(gDisplayListHead++, D_800E35E0);
-        if (D_801376B8[arg3] != 0) {
+        if (gBlackPrimColor[arg3]) {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
         }
         else {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
         }
-        gDPSetEnvColor(gDisplayListHead++, D_801376A8[arg3], D_801376AC[arg3], D_801376B0[arg3], D_801376B4[arg3]);
+        gDPSetEnvColor(gDisplayListHead++, gEnvColorsRed[arg3], gEnvColorsGreen[arg3], gEnvColorsBlue[arg3], gEnvColorsAlpha[arg3]);
         delta_x = delta_y = 0;
         dsdx = 1;
     }

@@ -1089,9 +1089,9 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     D_800D2914 = 0;
     gLifebar.posY.whole = 0x50;
     gLifebarHead.posY.whole = 0x53;
-    D_801376BC[0] = 1;
-    D_801376BC[1] = 1;
-    D_801376BC[2] = 1;
+    D_801376BC[0] = TRUE;
+    D_801376BC[1] = TRUE;
+    D_801376BC[2] = TRUE;
     func_8002653C();
     // if upper bits are set, treat as bitmask, otherwise pointer
     if ((u32)arg1 >= 0xFFFFFFF8) {
