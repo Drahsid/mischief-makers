@@ -632,7 +632,7 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
         gActors[actor_1].scaleY = 0.3f;
     }
     if (!arg2) {
-        sp54[3] = GINDEX_DASHEFFECT;
+        sp54[3] = 0x182;
         sp54[4] = (intptr_t)PALETTE_8022D568;
         actor_1 = func_8005A068(actor_index, sp54, var_s0, 0.7f, 8);
         if (actor_1 == 0) {
