@@ -1,4 +1,5 @@
 #include "common.h"
+#include "marina_effect.h"
 
 // Marina changing a powerful beam / thunder attack into a ball to counter.
 u16 SpawnBeamThrow(u16 marina_index) {
@@ -147,9 +148,9 @@ void ActorUpdate_Type51(u16 actor_index) {
         gActors[actor_index].state = 1;
     }
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
-        if (gActors[actor_index].stateLower != 0x64) {
+        if (gActors[actor_index].stateLower != 100) {
             func_80058924(actor_index);
-            gActors[actor_index].state = 0x64;
+            gActors[actor_index].state = 100;
         }
     }
     switch (gActors[actor_index].stateLower) {
@@ -219,7 +220,7 @@ void ActorUpdate_Type51(u16 actor_index) {
     }
 }
 
-// beahvior for actor managing splashes into lava
+// behavior for actor managing splashes into lava
 void ActorUpdate_Lava(u16 actor_index) {
     u16 actor_1;
     f32 divisor;

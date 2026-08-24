@@ -199,7 +199,7 @@ void GameState_Loading(void) {
 
     for (index = 0; index < 4; index++) {
         D_801376BC[index] = TRUE;
-        gBlackPrimColor[index] = TRUE;
+        gUseBlackPrimColor[index] = TRUE;
         gEnvColorsRed[index] = 0;
         gEnvColorsGreen[index] = 0;
         gEnvColorsBlue[index] = 0;

@@ -95,8 +95,8 @@ typedef struct {
     /* 0x12 */ s8 unk_12;
     /* 0x13 */ s8 unk_13;
     /* 0x14 */ u8 unk_14[0xC]; // unused?
-    /* 0x20 */ s32 buttonHold; // stores a button input?
-    /* 0x24 */ s32 buttonPress; // stores a button input?
+    /* 0x20 */ s32 buttonHold; // stores a button input
+    /* 0x24 */ s32 buttonPress; // stores a button input
     /* 0x28 */ u8 unk_28[0x18]; // unused?
     union {
         /* 0x40 */ s32 unk_40;
@@ -130,7 +130,7 @@ typedef union {
     u32 anim_u32;
     s32 anim_s32; // sometimes only matches as signed word.
     struct {
-        u8 unk_00; // set, but not read.
+        u8 unk_00; // set, but not read by itself.
         u8 timer;
         u8 state;
         u8 anim; // AND'd from word field instead

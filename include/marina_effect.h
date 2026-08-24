@@ -6,7 +6,8 @@
 typedef enum {
     MARINAEFF_NONE,
 
-    // particle effects index stored in gPlayerActor.unk_180_s16[0] and read as  gPlayerActor.unk_180_u8[1]
+    // particle effects index stored in gPlayerActor.unk_180_s16[0]
+    // and read as gPlayerActor.unk_180_u8[1]
 
     MARINAEFF_DASH,
     MARINAEFF_2,
@@ -20,6 +21,10 @@ typedef enum {
     MARINAEFF_SHOCK,
     MARINAEFF_TELEPORT
 } MarinaEffects;
+
+
+extern u16 MarinaEffect_SpawnParticle(u16 actor_index, s32* pos);
+extern void MarinaEffect_Set(u16, s32);
 
 
 u16 MarinaEffect_Grab(u16 actor_index, f32 scale);

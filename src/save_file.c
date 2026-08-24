@@ -1406,7 +1406,7 @@ void GameState_FileSelect(void) {
         SaveFile_CheckValid();
         FileSelect_Init(1);
         D_801376BC[1] = FALSE;
-        gBlackPrimColor[1] = TRUE;
+        gUseBlackPrimColor[1] = TRUE;
         gEnvColorsRed[1] = 0x60;
         gEnvColorsGreen[1] = 0x60;
         gEnvColorsBlue[1] = 0x60;

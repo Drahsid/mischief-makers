@@ -1133,7 +1133,7 @@ void Marina_IdleState(u16 actor_index) {
             var_a3 = 3;
         }
         gActors[actor_index].var_150++;
-        if ((gMarinaAnim.anim_u32 != MARINAANIM_0) || (gPlayerData.flags & PLAYERDATA_UNK0) ||
+        if ((gMarinaAnim.anim_u32 != 0) || (gPlayerData.flags & PLAYERDATA_UNK0) ||
             (gButtonHold & (gButton_DUp | gButton_DDown | gButton_DLeft | gButton_DRight | gButton_B | gButton_A | gButton_CLeft | gButton_CDown | gButton_CUp | gButton_CRight | gButton_ZTrig | gButton_LTrig | gButton_RTrig)) ||
             ((func_8005DEFC() != 0)) || (gActors[actor_index].stateUpper == 0)) {
             gActors[actor_index].var_150 = 0;
@@ -2516,7 +2516,7 @@ void ActorUpdate_Marina(u16 actor_index) {
     }
     D_801370CC = gButtonHold;
     D_801370CE = gButtonPress;
-    if (gMarinaAnim.anim_u32 != MARINAANIM_0) {
+    if (gMarinaAnim.anim_u32 != 0) {
         if ((gMarinaAnim.anim_u32 & 0xFF) == MARINAANIM_BUTTON) {
             MarinaAnim_Update(actor_index);
         }

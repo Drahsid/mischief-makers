@@ -6,17 +6,17 @@
 // stored as word in gMarinaAnim. determines automated animation
 typedef enum {
     MARINAANIM_0, // stubbed / no animation
-    MARINAANIM_1, // stubbed / no animation
+    MARINAANIM_1, // stubbed / no animation. used for dialog/cinematics.
     MARINAANIM_BUTTON, // automate button press
     MARINAANIM_3, // set gPlayerActor.stateUpper to gMarinaAnim.timer
     MARINAANIM_4,
     MARINAANIM_5,
     MARINAANIM_6,
     MARINAANIM_7,
-    MARINAANIM_DASH_8, // enter area dashing
-    MARINAANIM_DASH_9, // enter area dashing
-    MARINAANIM_TPIN_10, // teleport in
-    MARINAANIM_TPIN_11, // teleport in
+    MARINAANIM_DASH_8, // enter area dashing, then returns player control.
+    MARINAANIM_DASH_9, // enter area dashing, then waits during dialog
+    MARINAANIM_TPIN_10, // teleports in, then returns player control.
+    MARINAANIM_TPIN_11, // teleports in, then waits during dialog
     MARINAANIM_TPOUT, // teleporting out
     MARINAANIM_HUM, // start idle humming
     MARINAANIM_DANCE, // "stage clear" animation

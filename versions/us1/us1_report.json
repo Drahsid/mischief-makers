@@ -8138,6 +8138,13 @@
           "metadata": {
             "virtual_address": "2147778096"
           }
+        },
+        {
+          "name": ".data",
+          "size": "144",
+          "metadata": {
+            "virtual_address": "2148351264"
+          }
         }
       ],
       "functions": [
@@ -8258,6 +8265,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147780096"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "256",
+          "metadata": {
+            "virtual_address": "2148351408"
           }
         },
         {
@@ -8749,7 +8763,7 @@
           }
         },
         {
-          "name": "func_800500B0",
+          "name": "Marina_IdleHoldingState",
           "size": "1372",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8757,7 +8771,7 @@
           }
         },
         {
-          "name": "func_8005060C",
+          "name": "Marina_LandHoldingState",
           "size": "320",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -25955,7 +25969,7 @@
       "sections": [
         {
           "name": ".data",
-          "size": "5600",
+          "size": "5200",
           "metadata": {
             "virtual_address": "2148346064"
           }

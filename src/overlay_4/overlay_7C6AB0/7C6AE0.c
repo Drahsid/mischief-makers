@@ -2426,7 +2426,7 @@ void func_801BB6D0_7C88B0(void) {
                         break;
 
                     case 0x10:
-                        Sound_StartFade(0x81, 0x78);
+                        Sound_StartFade(0x81, 120);
                         break;
                 }
             }

@@ -41,7 +41,7 @@ void func_80082380(Gfx* display_list, s32 x_offset, s32 y_offset, s32* texture_i
     }
     else {
         gSPDisplayList(gDisplayListHead++, D_800E35E0);
-        if (gBlackPrimColor[arg5]) {
+        if (gUseBlackPrimColor[arg5]) {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
         }
         else {
@@ -104,7 +104,7 @@ void func_80082820(Gfx* display_list, s32* texture_images, u16* tlut, u8 arg3) {
     }
     else {
         gSPDisplayList(gDisplayListHead++, D_800E35E0);
-        if (gBlackPrimColor[arg3]) {
+        if (gUseBlackPrimColor[arg3]) {
             gDPSetPrimColor(gDisplayListHead++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
         }
         else {

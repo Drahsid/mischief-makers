@@ -1339,7 +1339,7 @@ void func_800648C4(u16 actor_index) {
 // @param flags flags:
 // bit 0 alone for instant BGM play.
 // bits 1-14 for fadeout time
-// bit 15 to keep original BGM
+// bit 15 to play previous BGM after jingle.
 // @param spawn_table Spawn table for Warp Gate
 void SpawnStageClear(u16 flags, u16* spawn_table) {
     u16 actor_index = 0xC0;

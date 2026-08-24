@@ -51,7 +51,7 @@ extern u8 gEnvColorsRed[4];
 extern u8 gEnvColorsGreen[4];
 extern u8 gEnvColorsBlue[4];
 extern u8 gEnvColorsAlpha[4];
-extern u8 gBlackPrimColor[4]; // set prim color to black if true, white if false
+extern u8 gUseBlackPrimColor[4]; // set prim color to black if true, white if false
 extern u8 D_801376BC[4]; // use env/prim color vars if false, skip if true
 extern u16** D_801376C0;
 extern u16** D_801376C4;

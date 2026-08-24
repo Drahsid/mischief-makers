@@ -1563,7 +1563,7 @@ void func_801B3948_7A4458(u16 actor_index) {
             gEnvColorsBlue[1] = 0;
             gEnvColorsGreen[1] = 0;
             gEnvColorsRed[1] = 0;
-            gBlackPrimColor[1] = FALSE;
+            gUseBlackPrimColor[1] = FALSE;
             D_801376BC[1] = 0;
             gEnvColorsAlpha[1] = 0x80;
             (gActors + actor_index)->posX.raw = 0;
