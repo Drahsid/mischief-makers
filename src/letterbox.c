@@ -38,16 +38,16 @@ void Gfx_DrawBorderRect(u16 col, s32 x1, s32 y1, s32 x2, s32 y2) {
 }
 
 void Gfx_DrawLetterboxStandard(void) {
-    Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+    Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                        0, 0, SCREEN_WIDTH, 20
     );
-    Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+    Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                        0, SCREEN_HEIGHT - 28, SCREEN_WIDTH, SCREEN_HEIGHT + 8
     );
-    Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+    Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                        0, 4, 14, SCREEN_HEIGHT + 8
     );
-    Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+    Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                        SCREEN_WIDTH - 18, 4, SCREEN_WIDTH, SCREEN_HEIGHT + 8
     );
 }
@@ -71,32 +71,32 @@ void Gfx_DrawLetterbox(void) {
 
         case LETTERBOX_HORIZONTAL:
             if (gLookatEyeZ <= 448.0f) {
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0, 320, 20
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0xD4, 320, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 4, 14, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0x12E, 4, 320, 0xF8
                 );
             }
             else {
                 var_v0 = (((gLookatEyeZ - 448.0f) * 96.0f) / gLookatEyeZ) + 20.0f;
                 sp34 = (((448.0f - gLookatEyeZ) * 96.0f) / gLookatEyeZ) + 212.0f;
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0, 320, var_v0
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, sp34, 320, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 4, 0xE, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0x12E, 4, 320, 0xF8
                 );
             }
@@ -104,32 +104,32 @@ void Gfx_DrawLetterbox(void) {
 
         case LETTERBOX_VERTICAL:
             if (gLookatEyeZ <= 448.0f) {
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0, 320, 0x14
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0xD4, 320, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 4, 0xE, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0x12E, 4, 320, 0xF8
                 );
             }
             else {
                 sp32 = (((gLookatEyeZ - 448.0f) * 192.0f) / gLookatEyeZ) + 14.0f;
                 sp30 = (((448.0f - gLookatEyeZ) * 192.0f) / gLookatEyeZ) + 302.0f;
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0, 320, 0x14
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 0xD4, 320, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    0, 4, sp32, 0xF8
                 );
-                Gfx_DrawBorderRect(GPACK_RGBA5551((D_801376A8[0] * 0) / 255, (D_801376AC[0] * 0) / 255, (D_801376B0[0] * 0) / 255, 1),
+                Gfx_DrawBorderRect(GPACK_RGBA5551((gEnvColorsRed[0] * 0) / 255, (gEnvColorsGreen[0] * 0) / 255, (gEnvColorsBlue[0] * 0) / 255, 1),
                                    sp30, 4, 320, 0xF8
                 );
             }

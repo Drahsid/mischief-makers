@@ -40,11 +40,11 @@ void ActorsUpdate_Position(void) {
 
     for (index = 0; index < 0x90; index++) {
         if (gActors[index].flags != 0) {
-            actor_1 = gActors[index].unk_0CC;
+            actor_1 = gActors[index].actorHitIndex;
             if (actor_1) {
                 actor_1 &= 0x7FFF;
-                delta_x = TO_FIXED((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].unk_0C8);
-                delta_y = TO_FIXED((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].unk_0CA);
+                delta_x = TO_FIXED((gScreenPosCurrentX.whole + gActors[actor_1].posX.whole) - gActors[index].actorHitX);
+                delta_y = TO_FIXED((gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0) - gActors[index].actorHitY);
                 gActors[index].posX.raw += delta_x;
                 gActors[index].posY.raw += delta_y;
                 gActors[index].posX.raw += gActors[actor_1].velocityX.raw;
@@ -100,7 +100,7 @@ void func_80014F14(u16 actor_index, s32 arg1) {
     s32 temp_a3;
 
     temp_a3 = (((gScreenPosCurrentX.parts[0] + gActors[actor_index].posX.whole + arg1) & ~0xF) - gScreenPosCurrentX.parts[0]) - arg1;
-    if (func_8005C6D0(temp_a3 - gActors[actor_index].posX.whole) < 0xF) {
+    if (Math_AbsS32_2(temp_a3 - gActors[actor_index].posX.whole) < 0xF) {
         gActors[actor_index].posX.whole = temp_a3;
     }
     else {
@@ -118,7 +118,7 @@ void func_80014FD0(u16 actor_index, s32 arg1) {
     s32 temp_t0;
 
     temp_t0 = ((((gScreenPosCurrentY.whole + gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1) & ~0xF) - gScreenPosCurrentY.whole) - gActors[actor_index].hitboxBY1) + arg1;
-    if (func_8005C6D0(temp_t0 - gActors[actor_index].posY.whole) < 0xF) {
+    if (Math_AbsS32_2(temp_t0 - gActors[actor_index].posY.whole) < 0xF) {
         gActors[actor_index].posY.whole = temp_t0;
     }
     else {
@@ -310,7 +310,7 @@ void ActorUpdate_Physics(u16 actor_index) {
     s32 var_a2;
     u16 candidate_actor;
 
-    gActors[actor_index].unk_0CC = gActors[actor_index].unk_0A0 = 0;
+    gActors[actor_index].actorHitIndex = gActors[actor_index].unk_0A0 = 0;
     if (!(gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK22 | ACTOR_FLAG_UNK17 | ACTOR_FLAG_UNK16))) {
         return;
     }
@@ -334,7 +334,7 @@ void ActorUpdate_Physics(u16 actor_index) {
     if (gActors[actor_index].flags & (ACTOR_FLAG_UNK23 | ACTOR_FLAG_UNK16)) {
         if ((gActors[actor_index].unk_0A0 = func_8005C870(func_80012AB4(gActors[actor_index].posX.whole, gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY0))) & 0x80) {
             var_a2 = (((gActors[actor_index].posY.whole + gScreenPosCurrentY.whole + gActors[actor_index].hitboxBY0) & ~0xF) - gScreenPosCurrentY.whole) - gActors[actor_index].hitboxBY0;
-            if (func_8005C6D0(var_a2 - gActors[actor_index].posY.whole) < 0xF) {
+            if (Math_AbsS32_2(var_a2 - gActors[actor_index].posY.whole) < 0xF) {
                 gActors[actor_index].posY.whole = var_a2;
             }
             else {
@@ -486,16 +486,16 @@ void ActorUpdate_Physics(u16 actor_index) {
                 gActors[actor_index].unk_0A0 = 0x57;
             }
             var_a2 = gActors[actor_1].hitboxBY0 + gActors[actor_1].posY.whole - gActors[actor_index].hitboxBY1;
-            if ((gActors[actor_1].unk_0DF & 0x10) && (actor_index)) {
+            if ((gActors[actor_1].unk_0DF & ACTOR0DF_4) && (actor_index)) {
             }
             else {
                 gActors[actor_index].posY.whole = var_a2;
                 gActors[actor_index].posY.frac = gActors[actor_1].posY.frac;
                 gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK15 | ACTOR_FLAG3_UNK5;
                 gActors[actor_index].flags_098 &= ~ACTOR_FLAG3_UNK6;
-                gActors[actor_index].unk_0C8 = gActors[actor_1].posX.whole + gScreenPosCurrentX.whole;
-                gActors[actor_index].unk_0CA = gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0;
-                gActors[actor_index].unk_0CC = actor_1 + 0x8000;
+                gActors[actor_index].actorHitX = gActors[actor_1].posX.whole + gScreenPosCurrentX.whole;
+                gActors[actor_index].actorHitY = gScreenPosCurrentY.whole + gActors[actor_1].posY.whole + gActors[actor_1].hitboxBY0;
+                gActors[actor_index].actorHitIndex = actor_1 + 0x8000;
                 gActors[actor_1].flags_098 |= ACTOR_FLAG3_UNK14 | ACTOR_FLAG3_UNK7;
             }
         }

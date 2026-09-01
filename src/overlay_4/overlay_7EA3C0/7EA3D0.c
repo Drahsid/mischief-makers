@@ -81,7 +81,7 @@ void func_801B9900_7EA3D0(void) {
             gStageState++;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(sActorSpawn_5_8A);
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gPlayerData.flags |= PLAYERDATA_UNK0;
             gCannotPause = TRUE;
             break;
@@ -97,7 +97,7 @@ void func_801B9900_7EA3D0(void) {
             gStageState = 0x1001;
             func_80045FA4(D_801B9BC0_7EA690, 0);
             Actor_LoadSpawnTable(sActorSpawn_5_8A);
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gPlayerData.flags |= PLAYERDATA_UNK0;
             break;
 

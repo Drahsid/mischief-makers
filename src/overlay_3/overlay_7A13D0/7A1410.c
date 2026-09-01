@@ -291,8 +291,8 @@ void func_801B090C_7A141C(u16 actor_index) {
             gActors[actor_index].graphicFlags = ACTOR_GFLAG_SCALE | ACTOR_GFLAG_ROTZ;
             gActors[actor_index].posZ.whole = -1;
             gActors[actor_index].flags = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK10 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK16;
-            gActors[actor_index].unk_0DE = 1;
-            gActors[actor_index].unk_0DF = 0x41;
+            gActors[actor_index].grabType = GRABTYPE_1;
+            gActors[actor_index].unk_0DF = ACTOR0DF_6 | ACTOR0DF_0_1;
             gActors[actor_index].hitboxBY0 = 0xE;\
             gActors[actor_index].hitboxBY1 = -0xE;\
             gActors[actor_index].hitboxBX0 = -0xE;
@@ -324,7 +324,7 @@ void func_801B090C_7A141C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK21);
+    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_GRAB | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_WARPING);
 }
 
 void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
@@ -336,7 +336,7 @@ void func_801B0AB8_7A15C8(u16 actor_index, Overlay_7A13D0_Actor_State* arg1) {
 
     func_801B2D9C_7A38AC(actor_index, arg1);
     if (arg1->unk_05 == 0) {
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
             arg1->unk_08 = 6;
             arg1->unk_0A = 0;
             arg1->unk_05 = 1;
@@ -645,8 +645,8 @@ void func_801B153C_7A204C(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 actor->flags |= ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9;
                 actor->unk_0F8.raw = FIXED_UNIT(2.0);
                 actor->unk_0FC.raw = FIXED_UNIT(7.0);
-                actor->unk_0DA = 1;
-                actor->unk_0DB = 4;
+                actor->hitFlags = HITFLAG_0;
+                actor->hitType = HITTYPE_4;
                 actor->damage = 0x20;
             }
             else {
@@ -876,7 +876,7 @@ void func_801B1CE0_7A27F0(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
     switch (state->unk_0A) {
         case 0:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 if ((gActors[actor_index].graphicTimer == 0) && (state->unk_04 == 0)) {
                     gActors[actor_index].graphicList = D_801B5FE0_7A6AF0;
                     gActors[actor_index].graphicTimer = 1;
@@ -888,7 +888,7 @@ void func_801B1F98_7A2AA8(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
                 break;
             }
 
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK10) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_THROWN) {
                 state->unk_08 = 7;
                 state->unk_0A = 0;
                 gActors[actor_index].velocityX.raw = gActors[actor_index].unk_0F8.raw;
@@ -952,8 +952,8 @@ void func_801B2204_7A2D14(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
 
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(3.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(2.0);
-            gActors[actor_index].unk_0DB = 4;
-            gActors[actor_index].unk_0DA = 1;
+            gActors[actor_index].hitType = HITTYPE_4;
+            gActors[actor_index].hitFlags = HITFLAG_0;
             gActors[actor_index].damage = 0x20;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK12;
             break;
@@ -1259,12 +1259,12 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
         Sound_StopSfx(SFX_012B);
     }
 
-    switch (gActors[actor_index].unk_0DD) {
+    switch (gActors[actor_index].hitByType) {
         default:
             break;
 
-        case 21:
-        case 22:
+        case HITTYPE_21:
+        case HITTYPE_22:
             state->unk_08 = 8;
             state->unk_0A = 0;
             state->unk_38 = 0;
@@ -1286,10 +1286,10 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
-        case 6:
-        case 7:
-        case 8:
-        case 20:
+        case HITTYPE_6:
+        case HITTYPE_7:
+        case HITTYPE_8:
+        case HITTYPE_20:
             state->unk_08 = 8;
             state->unk_0A = 0;
             state->unk_38 = 0;
@@ -1307,9 +1307,9 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
             break;
 
-        case 2:
-        case 3:
-        case 4:
+        case HITTYPE_2:
+        case HITTYPE_3:
+        case HITTYPE_4:
             state->unk_08 = 8;
             state->unk_0A = 0;
             gActors[actor_index].flags |= ACTOR_FLAG_UNK17; \
@@ -1320,7 +1320,7 @@ void func_801B2D9C_7A38AC(u16 actor_index, Overlay_7A13D0_Actor_State* state) {
             state->unk_05 = 0;
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].velocityY.raw = 0;
-            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) == 0) {
+            if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) == 0) {
                 func_800340CC(actor_index, 0xE, 0);
             }
             Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
@@ -1560,12 +1560,12 @@ void func_801B3948_7A4458(u16 actor_index) {
         case 0:
             state = (gActors + actor_index)->state;
             (gActors + actor_index)->flags = ACTOR_FLAG_ACTIVE;
-            D_801376B0[1] = 0;
-            D_801376AC[1] = 0;
-            D_801376A8[1] = 0;
-            D_801376B8[1] = 0;
+            gEnvColorsBlue[1] = 0;
+            gEnvColorsGreen[1] = 0;
+            gEnvColorsRed[1] = 0;
+            gUseBlackPrimColor[1] = FALSE;
             D_801376BC[1] = 0;
-            D_801376B4[1] = 0x80;
+            gEnvColorsAlpha[1] = 0x80;
             (gActors + actor_index)->posX.raw = 0;
             (gActors + actor_index)->posY.raw = 0;
             (gActors + actor_index)->velocityX.raw = FIXED_UNIT(8.0);
@@ -1577,17 +1577,17 @@ void func_801B3948_7A4458(u16 actor_index) {
 
         case 1:
             if ((gActors + actor_index)->unk_0F8.raw == (gActors + actor_index)->velocityX.raw) {
-                (gActors + actor_index)->unk_0F8.raw = TO_FIXED(func_8005C708(8));
+                (gActors + actor_index)->unk_0F8.raw = TO_FIXED(RandModulo(8));
             }
 
-            (gActors + actor_index)->var_150 = func_8005C6D0((gActors + actor_index)->velocityX.raw) / 0x1000;
+            (gActors + actor_index)->var_150 = Math_AbsS32_2((gActors + actor_index)->velocityX.raw) / 0x1000;
             D_800BE578 = gScreenPosCurrentX.whole + (gActors + actor_index)->posX.whole;
             D_800BE580 = gScreenPosCurrentY.whole + (gActors + actor_index)->posY.whole;
             (gActors + actor_index)->velocityX.raw = Math_ApproachS32((gActors + actor_index)->velocityX.raw, (gActors + actor_index)->unk_0F8.raw, FIXED_UNIT(2.0/256));
             value = ((Overlay_7A13D0_Actor_State*)&((gActors + actor_index)->var_150))->unk_02_u8[1];
-            D_801376B0[1] = value;
-            D_801376AC[1] = value;
-            D_801376A8[1] = value;
+            gEnvColorsBlue[1] = value;
+            gEnvColorsGreen[1] = value;
+            gEnvColorsRed[1] = value;
             break;
     }
 }
@@ -1925,10 +1925,10 @@ void func_801B455C_7A506C(u16 actor_index) {
                     gActors[new_actor_index].hitboxBY0 = 4;
                     gActors[new_actor_index].velocityX.raw = FIXED_UNIT(-1.5);
                     gActors[new_actor_index].health = 0;
-                    gActors[new_actor_index].unk_0DF = 0x20;
+                    gActors[new_actor_index].unk_0DF = ACTOR0DF_5;
                     gActors[new_actor_index].damage = 30;
-                    gActors[new_actor_index].unk_0DA = 4;
-                    gActors[new_actor_index].unk_0DB = 9;
+                    gActors[new_actor_index].hitFlags = HITFLAG_2;
+                    gActors[new_actor_index].hitType = HITTYPE_BOOM_9;
                     Sound_PlaySfxAtActor2(SFX_LASER_002E, actor_index);
                     gActors[actor_index].state++;
                 }

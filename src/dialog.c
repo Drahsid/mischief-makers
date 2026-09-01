@@ -3,7 +3,6 @@
 
 // script related to dialog code.
 
-extern u16* gGemPalettes[]; // gem palettes
 extern s16 D_800E1474[]; // graphic list for "press L/R prompt"
 
 u8 D_801782D0[8]; // unused start of .bss
@@ -119,28 +118,28 @@ void func_8005E09C(s32 arg0, s32 arg1) {
     D_801783F8[arg0] = arg1;
 }
 
-void func_8005E0B0(s16 arg0, s16 arg1, s32 arg2) {
+void func_8005E0B0(s16 ch, s16 pos, s32 arg2) {
     if (arg2 == 2) {
-        func_8005EC20(arg0, arg1, arg2);
+        func_8005EC20(ch, pos, arg2);
     }
-    else if (arg0 > 0) {
-        if (arg0 < 0x81) {
+    else if (ch > 0) {
+        if (ch < 0x81) {
             switch (D_801782E0) {
             case 1:
                 break;
             case 2:
-                arg0 += 0x7C;
+                ch += 0x7C;
                 break;
             case 3:
-                arg0 += 0xCD;
+                ch += 0xCD;
                 break;
             }
         }
         if (arg2 != 0) {
-            func_8005EC20(arg0, arg1, arg2);
+            func_8005EC20(ch, pos, arg2);
         }
         else {
-            func_800831D0(arg1 % 32, arg1 / 32, arg0, D_801782E2);
+            func_800831D0(pos % 32, pos / 32, ch, D_801782E2);
         }
     }
 }
@@ -159,7 +158,7 @@ void func_8005E260(u16 actor_index) {
     u16 actor_1;
 
     actor_1 = gActors[actor_index].parentIndex;
-    if ((gActors[actor_index].stateLower < 2) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9)) {
+    if ((gActors[actor_index].stateLower < 2) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB)) {
         gActors[actor_index].flags &= ~ACTOR_FLAG_UNK12;
         gActors[actor_index].state = 2;
     }
@@ -167,8 +166,8 @@ void func_8005E260(u16 actor_index) {
     case 0:
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = GINDEX_SPEECHBUBBLE;
-        gActors[actor_index].unk_0DF = 0;
-        gActors[actor_index].unk_0DE = 0xD;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
+        gActors[actor_index].grabType = GRABTYPE_13;
         gActors[actor_index].var_110 = 0.0f;
         if (gActors[actor_index].unk_104 < 0) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
@@ -234,12 +233,12 @@ void func_8005E56C(u16 actor_index) {
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
         gActors[actor_index].graphicIndex = GINDEX_SPEECHBUBBLE;
         gActors[actor_index].colorA = 0xD8;
-        gActors[actor_index].unk_0DB = 0x17;
+        gActors[actor_index].hitType = HITTYPE_23;
         gActors[actor_index].health = 1;
         gActors[actor_index].damage = 0;
         gActors[actor_index].hitboxAY0 = 0xC; \
         gActors[actor_index].hitboxAY1 = -0xC;
-        gActors[actor_index].unk_0DF = 0;
+        gActors[actor_index].unk_0DF = ACTOR0DF_0_0;
         gActors[actor_index].var_110 = 0.0f;
         if (gActors[actor_index].unk_104 < 0) {
             gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
@@ -382,7 +381,7 @@ void func_8005E8F8(u16 actor_index) {
     }
 }
 
-u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
+u16 func_8005EC20(s16 arg0, s16 pos, s32 arg2) {
     u16 actor_index;
 
     actor_index = Actor_RangeFindInactive(0x30, 0xD0);
@@ -400,7 +399,7 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
             // macro mismatches.
             gActors[actor_index].graphicList = gGraphicListGem;
             gActors[actor_index].graphicTimer = 1;
-            gActors[actor_index].palette_18C = gGemPalettes[func_8005C6D0(arg0) - 1];
+            gActors[actor_index].palette_18C = gGemPalettes[Math_AbsS32_2(arg0) - 1];
         }
         else {
             gActors[actor_index].graphicIndex = arg0;
@@ -415,15 +414,15 @@ u16 func_8005EC20(s16 arg0, s16 arg1, s32 arg2) {
     gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].posX.whole = -0x7B;
     gActors[actor_index].posY.whole = D_801783F6 + 0x13;
-    gActors[actor_index].posX.whole += (arg1 % 32) * 8;
-    gActors[actor_index].posY.whole -= (arg1 / 32) * 20;
+    gActors[actor_index].posX.whole += (pos % 32) * 8;
+    gActors[actor_index].posY.whole -= (pos / 32) * 20;
     gActors[actor_index].posZ.whole = 0x400;
     gActors[actor_index].unk_188 = 0;
     gActors[actor_index].var_110 = 0.5f;
     gActors[actor_index].unk_114 = -0.025f;
     gActors[actor_index].var_154 = D_801782E2;
     gActors[actor_index].var_158 = arg0;
-    gActors[actor_index].var_15C = arg1;
+    gActors[actor_index].var_15C = pos;
     gActors[actor_index].unk_14C = D_80178418[0];
 }
 
@@ -803,7 +802,7 @@ void UpdateDialog(void) {
                                 case GINDEX_PORTRAIT_MARINAB:
                                 case GINDEX_PORTRAIT_MARINAC:
                                 case GINDEX_PORTRAIT_MARINAD:
-                                case 0x232:
+                                case GINDEX_PORTRAIT_CALINAZ:
                                     Sound_PlaySfx2(SFX_TXTGRUNT_MARINA);
                                     break;
                                 case GINDEX_PORTRAIT_THEOA:

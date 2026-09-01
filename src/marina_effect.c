@@ -1,25 +1,30 @@
 #include "common.h"
-#include "59EA0.h"
+#include "marina_effect.h"
 
 typedef struct {
-    u8 unk0;
+    u8 randModulo;
     u8 red;
     u8 green;
     u8 blue;
-    u16 unk4;
+    u16 actorIndex;
     u8 pad6[2];
-    s32 unk8[3];
+    s32 pos[3];
     u8 pad14[4];
-    s32 unk18;
-    s32 unk1C;
-    f32 unk20;
-} Unk_func_8005A930_Arg0;
+    s32 graphicIndex;
+    s32 angle;
+    f32 scale;
+} ShockParticleStruct;
 
-extern ActorFunc D_800D3FD0[];
+extern ActorFunc gMarinaEffectTable[];
 extern u16 D_800D82EA;
 extern u16 D_800D84C8[];
 
-u16 func_800592A0(u16 actor_index, s32* arg1) {
+// spawn a particle and give a position.
+// @param actor_index index of "parent."
+// if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
+// @param pos s32[3] of coord's for particle.
+// @returns index of particle, 0 if failed.
+u16 MarinaEffect_SpawnParticle(u16 actor_index, s32* pos) {
     u16 free_actor;
 
     if (actor_index < 0x10) {
@@ -31,81 +36,84 @@ u16 func_800592A0(u16 actor_index, s32* arg1) {
     if (free_actor == 0) {
         return free_actor;
     }
-    gActors[free_actor].actorType = 9;
+    gActors[free_actor].actorType = ACTORTYPE_PARTICLE;
     Actor_Initialize(free_actor);
     gActors[free_actor].graphicFlags |= gActors[actor_index].graphicFlags & (ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK6 | ACTOR_GFLAG_UNK5);
     gActors[free_actor].flags |= (gActors[actor_index].flags & (ACTOR_FLAG_FLIPPED | ACTOR_FLAG_FREEZE_POS)) | ACTOR_FLAG_UNK19;
     gActors[free_actor].colorA = 0xFE;
-    gActors[free_actor].posX.raw = TO_FIXED(arg1[0]);
-    gActors[free_actor].posY.raw = TO_FIXED(arg1[1]);
-    gActors[free_actor].posZ.raw = TO_FIXED(arg1[2]);
+    gActors[free_actor].posX.raw = TO_FIXED(pos[0]);
+    gActors[free_actor].posY.raw = TO_FIXED(pos[1]);
+    gActors[free_actor].posZ.raw = TO_FIXED(pos[2]);
     gActors[free_actor].unk_130 = -1.0f;
     return free_actor;
 }
 
-void func_800593DC(u16 actor_index) {
+// Spawn a diagram of stick, buttons, and arrows
+// unused.
+void MarinaEffect_ControlDiagram(u16 actor_index) {
     s16 index;
     u16 actor_1;
     s32 pad;
-    s32 sp4C[5];
+    s32 pos[5];
 
-    sp4C[0] = -0x10;
-    sp4C[1] = -0x40;
-    sp4C[2] = 10;
-    actor_1 = func_800592A0(actor_index, sp4C);
+    pos[0] = -0x10;
+    pos[1] = -0x40;
+    pos[2] = 10;
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
     if (actor_1 == 0) {
         return;
     }
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x128;
+    gActors[actor_1].graphicIndex = GINDEX_DPADRIGHT;
     gActors[actor_1].unk_148 = 0.0f;
-    if (!(gPlayerData.unk_7C & 0x2)) {
+    if (!(gPlayerData.frames & 0x2)) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ;
         gActors[actor_1].var_160 = FIXED_UNIT(256.0);
     }
-    sp4C[0] += 0x10;
-    actor_1 = func_800592A0(actor_index, sp4C);
+    pos[0] += 0x10;
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
     if (actor_1 == 0) {
         return;
     }
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x110;
+    gActors[actor_1].graphicIndex = GINDEX_BUTTONB;
     gActors[actor_1].unk_148 = 0.0f;
-    sp4C[0] += 0x10;
-    actor_1 = func_800592A0(actor_index, sp4C);
+    pos[0] += 0x10;
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
     if (actor_1 == 0) {
         return;
     }
 
     gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
     gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-    gActors[actor_1].graphicIndex = 0x10E;
+    gActors[actor_1].graphicIndex = GINDEX_BUTTONA;
     gActors[actor_1].unk_148 = 0.0f;
-    sp4C[0] = 0;
-    sp4C[1] = -0x28;
+    pos[0] = 0;
+    pos[1] = -0x28;
     for (index = gPlayerData.unk_0A; index > 0; index--) {
-        actor_1 = func_800592A0(actor_index, sp4C);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
         if (actor_1 == 0) {
             return;
         }
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
         gActors[actor_1].flags |= ACTOR_FLAG_FREEZE_POS;
-        gActors[actor_1].graphicIndex = 0x12E;
+        gActors[actor_1].graphicIndex = GINDEX_BIGARROW;
         gActors[actor_1].unk_148 = 0.0f;
         gActors[actor_1].scaleX = 0.75f;
         gActors[actor_1].scaleY = 0.75f;
         gActors[actor_1].var_160 = FIXED_UNIT(768.0);
-        sp4C[1] += 8;
-        sp4C[2] -= 1;
+        pos[1] += 8;
+        pos[2] -= 1;
     }
 }
 
-u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
+// used in "Ending" overlay code.
+u16 func_80059624(u16 actor_index, f32 scale, u16* palette) {
     s32 sp9C[5];
     s32 pad;
     s32 index;
@@ -117,10 +125,10 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
     sp9C[2] = gActors[actor_index].posZ.whole + 1;
     actor_1 = gActors[actor_index].parentIndex;
     if (actor_1 != 0xFFFF) {
-        if (func_8005C6D0(gActors[actor_1].hitboxBX1 - gActors[actor_1].hitboxBX0) < 0x30) {
+        if (Math_AbsS32_2(gActors[actor_1].hitboxBX1 - gActors[actor_1].hitboxBX0) < 0x30) {
             sp9C[0] = (gActors[actor_1].posX.whole + sp9C[0] + ((gActors[actor_1].hitboxBX0 + gActors[actor_1].hitboxBX1) / 2)) / 2;
         }
-        if (func_8005C6D0(gActors[actor_1].hitboxBY0 - gActors[actor_1].hitboxBY1) < 0x30) {
+        if (Math_AbsS32_2(gActors[actor_1].hitboxBY0 - gActors[actor_1].hitboxBY1) < 0x30) {
             sp9C[1] = (gActors[actor_1].posY.whole + sp9C[1] + ((gActors[actor_1].hitboxBY0 + gActors[actor_1].hitboxBY1) / 2)) / 2;
         }
         if (gActors[actor_index].posZ.whole > gActors[actor_1].posZ.whole) {
@@ -130,13 +138,13 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
             sp9C[2] = gActors[actor_1].posZ.whole + 1;
         }
     }
-    actor_2 = func_800592A0(actor_index, sp9C);
+    actor_2 = MarinaEffect_SpawnParticle(actor_index, sp9C);
     if (actor_2 == 0) {
         return actor_2;
     }
 
     gActors[actor_2].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
-    gActors[actor_2].graphicIndex = 0x168;
+    gActors[actor_2].graphicIndex = GINDEX_BLASTB;
     gActors[actor_2].scaleX = 0.5 * scale;
     gActors[actor_2].scaleY = 0.5 * scale;
     gActors[actor_2].var_110 = -gActors[actor_2].scaleX / 30.0;
@@ -144,10 +152,10 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
     gActors[actor_2].colorA = 0xC0;
     gActors[actor_2].var_154 = -0xA;
     gActors[actor_2].unk_148 = 20.0f;
-    gActors[actor_2].palette_18C = arg2;
+    gActors[actor_2].palette_18C = palette;
 
     for (index = 0; index < 5; index++) {
-        actor_1 = func_800592A0(actor_index, sp9C);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp9C);
         if (actor_1 == 0) {
             break;
         }
@@ -175,14 +183,15 @@ u16 func_80059624(u16 actor_index, f32 scale, u16* arg2) {
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
         gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
-        gActors[actor_1].unk_140_f32 = func_8005C708(10);
+        gActors[actor_1].unk_140_f32 = RandModulo(10);
         gActors[actor_1].unk_144 = 0.0f;
-        gActors[actor_1].palette_18C = arg2;
+        gActors[actor_1].palette_18C = palette;
     }
     return actor_2;
 }
 
-u16 func_80059ABC(u16 actor_index, f32 scale) {
+// create "grab" particle effect
+u16 MarinaEffect_Grab(u16 actor_index, f32 scale) {
     s32 sp34[5];
     s32 pad;
     u16 actor_1;
@@ -192,10 +201,10 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     sp34[1] = gActors[actor_index].posY.whole + ((gActors[actor_index].hitboxAY0 + gActors[actor_index].hitboxAY1) / 2);
     sp34[2] = gActors[actor_index].posZ.whole + 1;
     if (actor_1 != 0xFFFF) {
-        if (func_8005C6D0(gActors[actor_1].hitboxBX1 - gActors[actor_1].hitboxBX0) < 0x30) {
+        if (Math_AbsS32_2(gActors[actor_1].hitboxBX1 - gActors[actor_1].hitboxBX0) < 0x30) {
             sp34[0] = (gActors[actor_1].posX.whole + sp34[0] + ((gActors[actor_1].hitboxBX0 + gActors[actor_1].hitboxBX1) / 2)) / 2;
         }
-        if (func_8005C6D0(gActors[actor_1].hitboxBY0 - gActors[actor_1].hitboxBY1) < 0x30) {
+        if (Math_AbsS32_2(gActors[actor_1].hitboxBY0 - gActors[actor_1].hitboxBY1) < 0x30) {
             sp34[1] = (gActors[actor_1].posY.whole + sp34[1] + ((gActors[actor_1].hitboxBY0 + gActors[actor_1].hitboxBY1) / 2)) / 2;
         }
         if (gActors[actor_1].posZ.whole < gActors[actor_index].posZ.whole) {
@@ -205,12 +214,12 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
             sp34[2] = gActors[actor_1].posZ.whole + 1;
         }
     }
-    actor_1 = func_800592A0(actor_index, sp34);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, sp34);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = 0x19A;
+    gActors[actor_1].graphicIndex = GINDEX_GRABEFFECTA;
     gActors[actor_1].colorA = 0xE0;
     gActors[actor_1].var_154 = -5;
     gActors[actor_1].unk_148 = 60.0f;
@@ -228,17 +237,24 @@ u16 func_80059ABC(u16 actor_index, f32 scale) {
     return actor_1;
 }
 
-u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale) {
+// spawn a particle with some parameters
+// @param actor_index index of "parent."
+// if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
+// @param params s32[] of {posX, posY, posZ, unused, (intprt_t)palette}
+// @param unused_arg2 unused
+// @param scale initial scale of particle. halved in function.
+// @returns index of particle, 0 if failed.
+u16 func_80059D88(u16 actor_index, s32* params, s32 unused_arg2, f32 scale) {
     s32 pad;
     u16 actor_1;
 
     if (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED) {
-        arg1[0] = -arg1[0];
+        params[0] = -params[0];
     }
-    arg1[0] += gActors[actor_index].posX.whole;
-    arg1[1] += gActors[actor_index].posY.whole;
-    arg1[2] += gActors[actor_index].posZ.whole;
-    actor_1 = func_800592A0(actor_index, arg1);
+    params[0] += gActors[actor_index].posX.whole;
+    params[1] += gActors[actor_index].posY.whole;
+    params[2] += gActors[actor_index].posZ.whole;
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, params);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -257,29 +273,36 @@ u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale) {
     else {
         gActors[actor_1].var_150 = FIXED_UNIT(-34.0);
     }
-    if (arg1[4] == 0) {
+    if (params[4] == 0) {
         gActors[actor_1].graphicFlags &= ~ACTOR_GFLAG_PALETTE;
     }
     else {
-        gActors[actor_1].unk_18C = arg1[4];
+        gActors[actor_1].unk_18C = params[4];
     }
     return actor_1;
 }
 
-u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3) {
+// spawn a particle with some parameters
+// @param actor_index index of "parent."
+// if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
+// @param params s32[] of {posX, posY, posZ, graphicIndex, (intprt_t)palette}
+// @param scale initial scale of particle
+// @param arg3 mod of particle scale over time
+// @returns index of particle, 0 if failed.
+u16 func_80059F30(u16 actor_index, s32* params, f32 scale, s32 arg3) {
     u16 actor_1;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, params);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = arg1[3];
-    if (arg1[4] == 0) {
+    gActors[actor_1].graphicIndex = params[3];
+    if (params[4] == 0) {
         gActors[actor_1].graphicFlags &= ~ACTOR_GFLAG_PALETTE;
     }
     else {
-        gActors[actor_1].unk_18C = arg1[4];
+        gActors[actor_1].unk_18C = params[4];
     }
     gActors[actor_1].scaleX = scale;
     gActors[actor_1].scaleY = scale;
@@ -295,20 +318,28 @@ u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3) {
     return actor_1;
 }
 
-u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4) {
+// spawn a particle with some parameters
+// @param actor_index index of "parent."
+// if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
+// @param params s32[] of {posX, posY, posZ, graphicIndex, (intprt_t)palette}
+// @param angle initial angle of particle
+// @param scale initial scale of particle
+// @param arg4 mod of particle scale over time
+// @returns index of particle, 0 if failed.
+u16 func_8005A068(u16 actor_index, s32* params, s32 angle, f32 scale, s32 arg4) {
     u16 actor_1;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, params);
     if (actor_1 == 0) {
         return actor_1;
     }
     gActors[actor_1].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
-    gActors[actor_1].graphicIndex = arg1[3];
-    if (arg1[4] == 0) {
+    gActors[actor_1].graphicIndex = params[3];
+    if (params[4] == 0) {
         gActors[actor_1].graphicFlags &= ~ACTOR_GFLAG_PALETTE;
     }
     else {
-        gActors[actor_1].unk_18C = arg1[4];
+        gActors[actor_1].unk_18C = params[4];
     }
     gActors[actor_1].scaleX = scale;
     gActors[actor_1].scaleY = scale;
@@ -328,7 +359,7 @@ u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4) {
 u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     u16 actor_1;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -342,7 +373,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].unk_114 = -0.05f;
     gActors[actor_1].palette_18C = PALETTE_8022D568;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -415,7 +446,7 @@ u16 func_8005A4B0(u16 actor_index, f32 scale) {
 u16 func_8005A6D0(u16 actor_index, s32* arg1, s32 arg2) {
     u16 actor_1;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -444,7 +475,7 @@ u16 func_8005A6D0(u16 actor_index, s32* arg1, s32 arg2) {
 u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3) {
     u16 actor_1;
 
-    actor_1 = func_800592A0(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -473,7 +504,7 @@ u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3) {
     return actor_1;
 }
 
-s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
+s32 func_8005A930(ShockParticleStruct* arg0) {
     f32 temp_f20;
     s32 temp_f4;
     s32 temp_v1_2;
@@ -482,12 +513,12 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
     s32 var_s3;
     u16 actor_index;
 
-    var_s3 = arg0->unk20;
+    var_s3 = arg0->scale;
     Palette_AdjustRgb5551Array(&D_800D82EA, &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
     for (index = 0; index < 8; index++) {
-        actor_index = func_800592A0(arg0->unk4, arg0->unk8);
+        actor_index = MarinaEffect_SpawnParticle(arg0->actorIndex, arg0->pos);
         if (actor_index == 0) {
-            return 0;
+            return FALSE;
         }
         gActors[actor_index].graphicFlags |= ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_index].flags |= ACTOR_FLAG_UNK15;
@@ -501,30 +532,30 @@ s32 func_8005A930(Unk_func_8005A930_Arg0* arg0) {
             gActors[actor_index].unk_140_f32 = -8.0f;
         }
         gActors[actor_index].unk_144 = 0.0f;
-        if (arg0->unk18 == 0) {
-            gActors[actor_index].graphicIndex = 0x162;
+        if (arg0->graphicIndex == 0) {
+            gActors[actor_index].graphicIndex = GINDEX_LINE;
         }
         else {
-            gActors[actor_index].graphicIndex = arg0->unk18;
+            gActors[actor_index].graphicIndex = arg0->graphicIndex;
         }
-        gActors[actor_index].unk_18C = (s32)D_800D84C8; // palette_18C doesn't match instruction ordering
-        temp_f20 = arg0->unk20 / (((Rand() % arg0->unk0) * 16) + 32);
+        gActors[actor_index].unk_18C = (intptr_t)D_800D84C8; // palette_18C doesn't match instruction ordering
+        temp_f20 = arg0->scale / (((Rand() % arg0->randModulo) * 16) + 32);
         gActors[actor_index].scaleX = temp_f20;
-        temp_v1_2 = TO_FIXED(Rand()) + arg0->unk1C - FIXED_UNIT(128.0);
+        temp_v1_2 = TO_FIXED(Rand()) + arg0->angle - FIXED_UNIT(128.0);
         gActors[actor_index].var_160 = temp_v1_2;
         temp_f4 = (16 * temp_f20);
         angle = FROM_FIXED(temp_v1_2);
-        arg0->unk8[0] += (temp_f4 * COS(angle));
-        arg0->unk8[1] += (temp_f4 * SIN(angle));
+        arg0->pos[0] += (temp_f4 * COS(angle));
+        arg0->pos[1] += (temp_f4 * SIN(angle));
         var_s3 -= temp_f4;
         if (var_s3 < 0) {
             break;
         }
     }
-    return 1;
+    return TRUE;
 }
 
-void func_8005ACA8(u16 actor_index) {
+void MarinaEffect_Noop(u16 actor_index) {
 }
 
 void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
@@ -591,12 +622,12 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     gActors[actor_1].unk_13C_f32 = gActors[actor_1].posZ.raw - gActors[actor_index].posZ.raw;
     gActors[actor_1].posZ.raw++;
     if (arg2 & 1) {
-        gActors[actor_1].graphicIndex = 0x1B2;
+        gActors[actor_1].graphicIndex = GINDEX_DASHEFFECT;
         gActors[actor_1].scaleX = 0.5f;
         gActors[actor_1].scaleY = 1.0 - (arg2 * 0.05);
     }
     else {
-        gActors[actor_1].graphicIndex = 0x1B4;
+        gActors[actor_1].graphicIndex = GRAPHIC_FRAME(DASHEFFECT,1);
         gActors[actor_1].scaleX = 1.0 - (arg2 * 0.04);
         gActors[actor_1].scaleY = 0.3f;
     }
@@ -621,7 +652,7 @@ void func_8005ACB0(u16 actor_index, u8 arg1, u8 arg2) {
     }
 }
 
-void func_8005B164(u16 actor_index) {
+void MarinaEffect_Dash(u16 actor_index) {
     func_8005ACB0(actor_index, gActors[actor_index].unk_180_u8[2], gActors[actor_index].unk_180_u8[0]);
     gActors[actor_index].unk_180_u8[0]++;
     if (gActors[actor_index].unk_180_u8[0] >= 0x10) {
@@ -629,17 +660,17 @@ void func_8005B164(u16 actor_index) {
     }
 }
 
-void func_8005B1E8(u16 actor_index) {
+void MarinaEffect_Type4(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
     u8 temp_v0;
 
-    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
+    if ((((s32)gPlayerData.frames + actor_index) % 5) == 0) {
         if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
             sp2C[0] = gActors[actor_index].posX.whole;
             sp2C[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
             sp2C[2] = gActors[actor_index].posZ.whole + 1;
-            actor_1 = func_800592A0(actor_index, sp2C);
+            actor_1 = MarinaEffect_SpawnParticle(actor_index, sp2C);
             if (!actor_1) {
                 return;
             }
@@ -647,7 +678,7 @@ void func_8005B1E8(u16 actor_index) {
             gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
             gActors[actor_1].unk_184 = gActors[actor_1].posX.raw;
             gActors[actor_1].unk_188 = gActors[actor_1].posY.raw;
-            gActors[actor_1].graphicIndex = 0x1D8;
+            gActors[actor_1].graphicIndex = GINDEX_IMPACTEFFECTA;
             gActors[actor_1].var_154 = -10;
             gActors[actor_1].unk_140_f32 = 0.0f;
             gActors[actor_1].unk_144 = 4.0f;
@@ -658,19 +689,19 @@ void func_8005B1E8(u16 actor_index) {
             gActors[actor_1].unk_11C = -0.01f;
             temp_v0 = func_8005D1B0(actor_index);
             switch (temp_v0) {
-            default:
+            default: // ACTOR0DF_0_3 ?
                 gActors[actor_1].scaleX = 1.0f;
                 gActors[actor_1].scaleY = 1.0f;
                 break;
-            case 0:
+            case ACTOR0DF_0_0:
                 gActors[actor_1].scaleX = 0.7f;
                 gActors[actor_1].scaleY = 0.7f;
                 break;
-            case 1:
+            case ACTOR0DF_0_1:
                 gActors[actor_1].scaleX = 1.0f;
                 gActors[actor_1].scaleY = 1.0f;
                 break;
-            case 2:
+            case ACTOR0DF_0_2:
                 gActors[actor_1].scaleX = 1.5f;
                 gActors[actor_1].scaleY = 1.5f;
                 break;
@@ -679,24 +710,24 @@ void func_8005B1E8(u16 actor_index) {
     }
 }
 
-void func_8005B3F4(u16 actor_index) {
+void MarinaEffect_Type5(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
     u8 temp_v0_2;
 
-    if (((s32)gPlayerData.unk_7C + actor_index) % 4) {
+    if (((s32)gPlayerData.frames + actor_index) % 4) {
         return;
     }
     if ((actor_index >= 0x10) || gActors[actor_index].unk_0A0) {
-        sp2C[0] = gActors[actor_index].posX.whole + func_8005C708(gButton_RTrig / 2);
+        sp2C[0] = gActors[actor_index].posX.whole + RandModulo(gButton_RTrig / 2);
         sp2C[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
         sp2C[2] = gActors[actor_index].posZ.whole + 1;
-        actor_1 = func_800592A0(actor_index, sp2C);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp2C);
         if (!actor_1) {
             return;
         }
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_SCALE;
-        gActors[actor_1].graphicIndex = 0x1C6;
+        gActors[actor_1].graphicIndex = GINDEX_POOF;
         gActors[actor_1].var_154 = -0xA;
         gActors[actor_1].unk_148 = 20.0f;
         gActors[actor_1].var_110 = 0.06f;
@@ -705,19 +736,19 @@ void func_8005B3F4(u16 actor_index) {
         gActors[actor_1].unk_11C = -0.01f;
         temp_v0_2 = func_8005D1B0(actor_index);
         switch (temp_v0_2) {
-        default:
+        default: // ACTOR0DF_0_3?
             gActors[actor_1].scaleX = 0.1f;
             gActors[actor_1].scaleY = 0.1f;
             break;
-        case 0:
+        case ACTOR0DF_0_0:
             gActors[actor_1].scaleX = 0.05f;
             gActors[actor_1].scaleY = 0.05f;
             break;
-        case 1:
+        case ACTOR0DF_0_1:
             gActors[actor_1].scaleX = 0.1f;
             gActors[actor_1].scaleY = 0.1f;
             break;
-        case 2:
+        case ACTOR0DF_0_2:
             gActors[actor_1].scaleX = 0.2f;
             gActors[actor_1].scaleY = 0.2f;
             break;
@@ -725,7 +756,7 @@ void func_8005B3F4(u16 actor_index) {
     }
 }
 
-void func_8005B5FC(u16 actor_index) {
+void MarinaEffect_Type2(u16 actor_index) {
     s32 sp24[5];
     u16 actor_1;
     u16 actor_2;
@@ -734,12 +765,12 @@ void func_8005B5FC(u16 actor_index) {
         sp24[0] = gActors[actor_index].posX.whole;
         sp24[1] = gActors[actor_index].posY.whole;
         sp24[2] = gActors[actor_index].posZ.whole;
-        actor_1 = func_800592A0(actor_index, sp24);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp24);
         if (!actor_1) {
             return;
         }
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_SCALE;
-        gActors[actor_1].graphicIndex = 0xCA;
+        gActors[actor_1].graphicIndex = GINDEX_CIRCLEEFFECT;
         gActors[actor_1].unk_148 = 99.0f;
         gActors[actor_index].unk_180_u8[0] = gActors[actor_1].unk_148;
         if (gActors[actor_index].unk_180_u8[2] == 0) {
@@ -778,7 +809,7 @@ void func_8005B5FC(u16 actor_index) {
     }
 }
 
-void func_8005B82C(u16 actor_index) {
+void MarinaEffect_Burn(u16 actor_index) {
     s32 sp34[5];
     f32 scale;
     u16 actor_1;
@@ -804,25 +835,26 @@ void func_8005B82C(u16 actor_index) {
         if (actor_1 != 0) {
             gActors[actor_1].unk_130 = actor_index;
             gActors[actor_1].unk_14C = gActors[actor_index].actorType;
-            gActors[actor_1].unk_134 = func_8005C708(0xA) * 0.75;
-            gActors[actor_1].unk_138 = func_8005C708(0x12) * 0.75;
-            gActors[actor_1].unk_13C_f32 = func_8005C708(4);
+            gActors[actor_1].unk_134 = RandModulo(10) * 0.75;
+            gActors[actor_1].unk_138 = RandModulo(18) * 0.75;
+            gActors[actor_1].unk_13C_f32 = RandModulo(4);
         }
     }
 }
 
-void func_8005BA38(u16 actor_index) {
+// stars spawned during Marina's i-frames
+void MarinaEffect_Invulnerability(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
 
-    gActors[actor_index].colorR = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorG = ((gPlayerData.unk_7C & 0xC) * 3) + 0xC;
-    gActors[actor_index].colorB = ((gPlayerData.unk_7C & 0xC) * 7) + 0x1C;
-    if ((((s32)gPlayerData.unk_7C + actor_index) % 5) == 0) {
-        sp2C[0] = gActors[actor_index].posX.whole + func_8005C708(0xA);
-        sp2C[1] = gActors[actor_index].posY.whole + func_8005C708(0x12);
+    gActors[actor_index].colorR = ((gPlayerData.frames & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorG = ((gPlayerData.frames & 0xC) * 3) + 0xC;
+    gActors[actor_index].colorB = ((gPlayerData.frames & 0xC) * 7) + 0x1C;
+    if ((((s32)gPlayerData.frames + actor_index) % 5) == 0) {
+        sp2C[0] = gActors[actor_index].posX.whole + RandModulo(10);
+        sp2C[1] = gActors[actor_index].posY.whole + RandModulo(18);
         sp2C[2] = gActors[actor_index].posZ.whole + 1;
-        actor_1 = func_800592A0(actor_index, sp2C);
+        actor_1 = MarinaEffect_SpawnParticle(actor_index, sp2C);
         if (actor_1 != 0) {
             gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
             gActors[actor_1].graphicIndex = GINDEX_STAREFFECT;
@@ -837,35 +869,35 @@ void func_8005BA38(u16 actor_index) {
     }
 }
 
-void func_8005BBC0(u16 actor_index) {
-    Unk_func_8005A930_Arg0 sp1C;
+void MarinaEffect_Shock(u16 actor_index) {
+    ShockParticleStruct params;
 
     gActors[actor_index].colorB = 0x7F;
     gActors[actor_index].colorB = (Rand() & 0x3F) + 0x40;
-    sp1C.unk4 = actor_index;
-    sp1C.unk8[0] = gActors[actor_index].posX.whole;
-    sp1C.unk8[1] = gActors[actor_index].posY.whole;
-    sp1C.unk8[2] = gActors[actor_index].posZ.whole + 1;
-    sp1C.unk18 = 0x1EE;
-    sp1C.unk20 = gActors[actor_index].hitboxBY0 + func_8005C708(9);
-    sp1C.unk1C = func_8005C708(0) * FIXED_UNIT(4.0);
-    sp1C.blue = Rand();
-    if (sp1C.blue < 0x80) {
-        sp1C.blue += 0x80;
+    params.actorIndex = actor_index;
+    params.pos[0] = gActors[actor_index].posX.whole;
+    params.pos[1] = gActors[actor_index].posY.whole;
+    params.pos[2] = gActors[actor_index].posZ.whole + 1;
+    params.graphicIndex = 0x1EE;
+    params.scale = gActors[actor_index].hitboxBY0 + RandModulo(9);
+    params.angle = RandModulo(0) * FIXED_UNIT(4.0);
+    params.blue = Rand();
+    if (params.blue < 0x80) {
+        params.blue += 0x80;
     }
-    sp1C.red = sp1C.green = Rand() % sp1C.blue;
-    sp1C.unk0 = 8;
-    func_8005A930(&sp1C);
+    params.red = params.green = Rand() % params.blue;
+    params.randModulo = 8;
+    func_8005A930(&params);
 }
 
-void func_8005BCF8(u16 actor_index) {
+void MarinaEffect_Teleport(u16 actor_index) {
     s32 sp2C[5];
     u16 actor_1;
 
     sp2C[0] = gActors[actor_index].posX.whole;
     sp2C[1] = gActors[actor_index].posY.whole;
-    sp2C[2] = gActors[actor_index].posZ.whole + func_8005C708(3);
-    actor_1 = func_800592A0(actor_index, sp2C);
+    sp2C[2] = gActors[actor_index].posZ.whole + RandModulo(3);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, sp2C);
     if (actor_1 != 0) {
         gActors[actor_1].graphicFlags |= ACTOR_GFLAG_ROTZ | ACTOR_GFLAG_SCALE;
         gActors[actor_1].graphicIndex = 0xD0;
@@ -874,9 +906,9 @@ void func_8005BCF8(u16 actor_index) {
         gActors[actor_1].unk_164 = -4;
         gActors[actor_1].unk_148 = 8.0f;
         gActors[actor_1].var_160 = Rand() * FIXED_UNIT(4.0); // 1/128
-        gActors[actor_1].scaleX = ((f32) func_8005C708(0) * 0.0078125 * 0.3) + 0.5;
-        gActors[actor_1].scaleY = ((f32) func_8005C708(0) * 0.0078125 * 0.1) + 0.2;
-        gActors[actor_1].var_110 =  (f32) func_8005C708(0) * 0.0078125;
+        gActors[actor_1].scaleX = ((f32) RandModulo(0) * 0.0078125 * 0.3) + 0.5;
+        gActors[actor_1].scaleY = ((f32) RandModulo(0) * 0.0078125 * 0.1) + 0.2;
+        gActors[actor_1].var_110 =  (f32) RandModulo(0) * 0.0078125;
         gActors[actor_1].unk_118 = -(gActors[actor_1].var_110 / gActors[actor_1].unk_148);
         gActors[actor_1].flags |= ACTOR_FLAG_UNK15;
         gActors[actor_1].flags &= ~ACTOR_FLAG_FLIPPED;
@@ -892,36 +924,36 @@ void func_8005BCF8(u16 actor_index) {
     }
 }
 
-void func_8005BFA4(u16 actor_index) {
+void MarinaEffect_Update(u16 actor_index) {
     switch (gActors[actor_index].unk_180_u8[3]) {
-    case 4:
-        func_8005B1E8(actor_index);
+    case MARINAEFF_4:
+        MarinaEffect_Type4(actor_index);
         break;
-    case 5:
-        func_8005B3F4(actor_index);
+    case MARINAEFF_5:
+        MarinaEffect_Type5(actor_index);
         break;
-    case 6:
-        func_8005BA38(actor_index);
+    case MARINAEFF_INVULN:
+        MarinaEffect_Invulnerability(actor_index);
         break;
-    case 7:
-        func_8005BBC0(actor_index);
+    case MARINAEFF_SHOCK:
+        MarinaEffect_Shock(actor_index);
         break;
-    case 8:
-        func_8005BCF8(actor_index);
+    case MARINAEFF_TELEPORT:
+        MarinaEffect_Teleport(actor_index);
         break;
     }
-    gActors[actor_index].unk_180_u8[3] = 0;
+    gActors[actor_index].unk_180_u8[3] = MARINAEFF_NONE;
     if (gActors[actor_index].unk_180_u8[1] != 0) {
-        D_800D3FD0[gActors[actor_index].unk_180_u8[1]](actor_index);
+        gMarinaEffectTable[gActors[actor_index].unk_180_u8[1]](actor_index);
     }
 }
 
-void func_8005C098(u16 actor_index, s32 arg1) {
+void MarinaEffect_Set(u16 actor_index, s32 arg1) {
     gActors[actor_index].unk_180_s16[0] = arg1;
 }
 
 // unused variant of after-image. uses arrays to store history.
-u16 func_8005C0CC(u16 actor_index) {
+u16 Marina_SpawnAfterImageOld(u16 actor_index) {
     gActors[0x2D].actorType = gActors[0x2E].actorType = gActors[0x2F].actorType = ACTORTYPE_MARINAAFTERIMAGE;
     Actor_Initialize(0x2D);
     Actor_Initialize(0x2E);
@@ -947,7 +979,7 @@ u16 func_8005C0CC(u16 actor_index) {
 }
 
 // spawns after-image of Marina while dashing
-u16 func_8005C250(u16 actor_index) {
+u16 Marina_SpawnAfterImage(u16 actor_index) {
     u16 actor_1;
 
     actor_1 = Actor_RangeFindInactive(0x10, 0x2D);
@@ -973,7 +1005,7 @@ u16 func_8005C250(u16 actor_index) {
 }
 
 // "tick" of actor for Marina's after-image
-void func_8005C3C8(u16 actor_index) {
+void ActorUpdate_MarinaAfterImage(u16 actor_index) {
     s32 temp_v0;
     s32 temp_t1;
 

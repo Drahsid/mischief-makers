@@ -7,7 +7,7 @@ extern s16 D_800D291C;
 extern s16 D_800D2920;
 extern u16 D_800D2914;
 
-// "overlay 4" code for demo and intro scenes
+// "overlay 4" code for demo, intro, ending and credits scenes.
 
 void func_801B9A78_7EA8A8(s16* arg0);
 void func_801B9B2C_7EA95C(void);
@@ -84,7 +84,7 @@ void func_801B9900_7EA730(void) {
         case 0:
             func_80045FA4(D_801B9FB0_7EADE0, NULL);
             Actor_LoadSpawnTable(sActorSpawn_Intro);
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;
@@ -103,6 +103,7 @@ void func_801B9900_7EA730(void) {
     Camera_UpdateViewBounds();
 }
 
+// stage state machine for Demo Scenes
 void func_801B99D0_7EA800(void) {
     switch (gStageState) {
         case 0:
@@ -151,7 +152,7 @@ void func_801B9BB4_7EA9E4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, 0);
             Actor_LoadSpawnTable(D_801BA0DC_7EAF0C);
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;
@@ -198,9 +199,9 @@ void func_801B9BB4_7EA9E4(void) {
             D_800D2914 = 0;
             gLifebar.posY.whole = 0x50;
             gLifebarHead.posY.whole = 0x53;
-            D_801376BC[0] = 1;
-            D_801376BC[1] = 1;
-            D_801376BC[2] = 1;
+            D_801376BC[0] = TRUE;
+            D_801376BC[1] = TRUE;
+            D_801376BC[2] = TRUE;
             func_8002653C();
             func_80042DBC(D_801BA030_7EAE60);
             Actor_LoadSpawnTable(D_801BA0EC_7EAF1C);
@@ -239,7 +240,7 @@ void func_801B9EA4_7EACD4(void) {
         case 0:
             func_80045FA4(D_801B9FE0_7EAE10, NULL);
             Actor_LoadSpawnTable(D_801BA160_7EAF90);
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             gPlayerActor.flags = 0;
             gIsPlayerInactive = TRUE;
             gStageState++;

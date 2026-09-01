@@ -54,7 +54,7 @@ typedef enum {
     ACTOR_OVL2_STAGE_2_1, // actors in Overlay 2 code of "Sea of Lava"
     ACTOR_OVL0_GEN, // actors in Overlay 0 code for the majority of stages.
     ACTOR_OVL3_WORLD4,
-    ACTOR_OVL3_40,
+    ACTOR_OVL3_CAT, // actors in "Cat-astrophe" and outro of "The day Before"
     ACTOR_OVL3_WORLD5B,
     ACTOR_OVL3_42,
     ACTOR_OVL0_INTRO, // actors in Overlay 0 code of intro cinematic.
@@ -112,7 +112,7 @@ typedef enum {
     ACTORTYPE_44,
     ACTORTYPE_45,
     ACTORTYPE_MARINAAFTERIMAGE, // when marina dashes. Has unused alternate version.
-    ACTORTYPE_47,
+    ACTORTYPE_LAVA, // spawns splashes for actors in lava
     ACTORTYPE_48,
     ACTORTYPE_SPIRALCLOUDS,
     ACTORTYPE_WARPGATE, // aka Warp Star
@@ -125,7 +125,7 @@ typedef enum {
     ACTORTYPE_57,
     ACTORTYPE_58,
     ACTORTYPE_59,
-    ACTORTYPE_60,
+    ACTORTYPE_BEAMTHROW, // Marina grabs a big beam or thunder attack.
     ACTORTYPE_GEM61, // same behavior as ACTORTYPE_GEM, but with a different graphic flag set.
     ACTORTYPE_CLANBALLWHEEL,
     ACTORTYPE_63,
@@ -550,7 +550,7 @@ typedef enum {
     ACTORTYPE_OVL2_FEST_4,
     ACTORTYPE_OVL2_FEST_5,
     ACTORTYPE_OVL2_FEST_6,
-    ACTORTYPE_OVL2_FEST_7,
+    ACTORTYPE_OVL2_FEST_TEXT_7,
     ACTORTYPE_OVL2_FEST_8,
     ACTORTYPE_OVL2_FEST_9,
     ACTORTYPE_OVL2_FEST_10,
@@ -729,6 +729,13 @@ typedef enum {
     ACTORTYPE_OVL3_W4_BLAST_16,
     ACTORTYPE_OVL3_W4_17,
     ACTORTYPE_OVL3_W4_18,
+
+    // actors in dispatch table D_801B0800_7BC840
+    // first entry is NULL
+
+    ACTORTYPE_OVL3_CAT_MAIN = (ACTOR_OVL3_CAT << 8)+1,
+    ACTORTYPE_OVL3_CAT_BALL, // dodgeballs.
+    ACTORTYPE_OVL3_CAT_CROWD,
 
     // actors in dispatch table D_801B0800_7C0AB0
 

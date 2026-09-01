@@ -15,12 +15,12 @@ u16 func_80074D28(u16 actor_index, u16 arg1);
 s32 func_8007502C(u16 actor_index, u16 arg1);
 s32 func_80075324(u16 actor_index, u16 arg1);
 void func_80076BF4(u16 actor_index);
-void func_80078418(u16 actor_index);
+void Hovercraft_Update(u16 actor_index);
 void func_8007A090(u16 actor_index, u16 other_actor_index);
 void func_8007A118(u16 actor_index, u16 other_actor_index);
 u16 func_8007A3CC(u16 actor_index);
-void func_8007B60C(u16 actor_index);
-void func_8007B73C(u16 actor_index);
+void ActorUpdate_ClancerIcon(u16 actor_index);
+void Rocketeer_Update(u16 actor_index);
 void ActorUpdate_Type3(u16);
 
 #endif

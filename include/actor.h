@@ -45,7 +45,7 @@ enum ActorFlags {
     ACTOR_FLAG_UNK16 = (1U << 16U),
     ACTOR_FLAG_UNK17 = (1U << 17U),
     ACTOR_FLAG_PLATFORM1 = (1U << 18U), // actor's hitboxB is considered a "platform"
-    ACTOR_FLAG_UNK19 = (1U << 19U),
+    ACTOR_FLAG_UNK19 = (1U << 19U), // actor is deactivated during some transition effects
     ACTOR_FLAG_UNK20 = (1U << 20U),
     ACTOR_FLAG_UNK21 = (1U << 21U),
     ACTOR_FLAG_UNK22 = (1U << 22U), // something with physics?
@@ -53,10 +53,10 @@ enum ActorFlags {
     ACTOR_FLAG_UNK24 = (1U << 24U), // unused?
     ACTOR_FLAG_ATTACHED = (1U << 25U),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see Marina's update function)
     ACTOR_FLAG_ALWAYS_UPDATE = (1U << 26U), // if this bit is set, the actor will always update, despite the state of gActorStall
-    ACTOR_FLAG_UNK27 = (1U << 27U), // set but not checked?
-    ACTOR_FLAG_UNK28 = (1U << 28U), // set but not checked?
-    ACTOR_FLAG_UNK29 = (1U << 29U), // set but not checked?
-    ACTOR_FLAG_UNK30 = (1U << 30U), // set but not checked?
+    ACTOR_FLAG_UNK27 = (1U << 27U), // effects rendering. Used exclusively(?) by Marina and her associated effects.
+    ACTOR_FLAG_UNK28 = (1U << 28U), // effects rendering.
+    ACTOR_FLAG_UNK29 = (1U << 29U), // effects rendering.
+    ACTOR_FLAG_UNK30 = (1U << 30U), // effects rendering
     ACTOR_FLAG_UNK31 = (1U << 31U)
 };
 
@@ -73,11 +73,11 @@ enum ActorGFlags {
     ACTOR_GFLAG_UNK7 = (1U << 7U), // unused?
     ACTOR_GFLAG_UNK8 = (1U << 8U), // effects z positioning?
     ACTOR_GFLAG_PALETTE = (1U << 9U), // use pointer at field 0x18C as a palette
-    ACTOR_GFLAG_UNK10 = (1U << 10U), // effects animation
+    ACTOR_GFLAG_NOANIMATE = (1U << 10U), // does not update animation from graphic list
     ACTOR_GFLAG_UNK11 = (1U << 11U), // seems to effect translate mtx.
     ACTOR_GFLAG_SCALEZ = (1U << 12U), // use field 0x12C as z scale (if ACTOR_GFLAG_SCALE is also set)
     ACTOR_GFLAG_3DOBJ = (1U << 13U), // field at 0x17C treated as dlist for 3d model
-    ACTOR_GFLAG_UNK14 = (1U << 14U), // used by portrait struct.
+    ACTOR_GFLAG_PAL256 = (1U << 14U), // used by portrait struct. Determines palette size
     ACTOR_GFLAG_UNK15 = (1U << 15U) // a change in blending?
 };
 
@@ -86,37 +86,132 @@ enum ActorFlags3 {
     ACTOR_FLAG3_NONE = 0,
     ACTOR_FLAG3_UNK0 = (1U << 0U), //collision with an actor?
     ACTOR_FLAG3_UNK1 = (1U << 1U),
-    ACTOR_FLAG3_UNK2 = (1U << 2U),
-    ACTOR_FLAG3_UNK3 = (1U << 3U),
+    ACTOR_FLAG3_UNK2 = (1U << 2U), // left hit?
+    ACTOR_FLAG3_UNK3 = (1U << 3U), // right hit?
     ACTOR_FLAG3_UNK4 = (1U << 4U), // hit ceiling?
     ACTOR_FLAG3_UNK5 = (1U << 5U), // on the floor?
     ACTOR_FLAG3_UNK6 = (1U << 6U),
     ACTOR_FLAG3_UNK7 = (1U << 7U),
     ACTOR_FLAG3_UNK8 = (1U << 8U),
-    ACTOR_FLAG3_UNK9 = (1U << 9U),  // grabbed?
-    ACTOR_FLAG3_UNK10 = (1U << 10U),
+    ACTOR_FLAG3_GRAB = (1U << 9U),  // grabbed by Marina
+    ACTOR_FLAG3_THROWN = (1U << 10U), // thrown by Marina
     ACTOR_FLAG3_UNK11 = (1U << 11U),
     ACTOR_FLAG3_UNK12 = (1U << 12U),
     ACTOR_FLAG3_UNK13 = (1U << 13U),
     ACTOR_FLAG3_UNK14 = (1U << 14U),
     ACTOR_FLAG3_UNK15 = (1U << 15U),
     ACTOR_FLAG3_UNK16 = (1U << 16U),
-    ACTOR_FLAG3_UNK17 = (1U << 17U), // being shake-shaken?
+    ACTOR_FLAG3_SHAKE = (1U << 17U), // being shake-shaken
     ACTOR_FLAG3_UNK18 = (1U << 18U),
     ACTOR_FLAG3_UNK19 = (1U << 19U),
     ACTOR_FLAG3_UNK20 = (1U << 20U),
-    ACTOR_FLAG3_UNK21 = (1U << 21U), // using warp gate
-    ACTOR_FLAG3_UNK22 = (1U << 22U),
-    ACTOR_FLAG3_UNK23 = (1U << 23U),
-    ACTOR_FLAG3_UNK24 = (1U << 24U),
-    ACTOR_FLAG3_UNK25 = (1U << 25U),
-    ACTOR_FLAG3_UNK26 = (1U << 26U),
-    ACTOR_FLAG3_UNK27 = (1U << 27U),
-    ACTOR_FLAG3_UNK28 = (1U << 28U),
-    ACTOR_FLAG3_UNK29 = (1U << 29U),
-    ACTOR_FLAG3_UNK30 = (1U << 30U),
-    ACTOR_FLAG3_UNK31 = (1U << 31U)
+    ACTOR_FLAG3_WARPING = (1U << 21U), // using warp gate
+    ACTOR_FLAG3_UNK22 = (1U << 22U), // unused?
+    ACTOR_FLAG3_UNK23 = (1U << 23U), // unused?
+    ACTOR_FLAG3_UNK24 = (1U << 24U), // unused?
+    ACTOR_FLAG3_UNK25 = (1U << 25U), // unused?
+    ACTOR_FLAG3_UNK26 = (1U << 26U), // unused?
+    ACTOR_FLAG3_UNK27 = (1U << 27U), // unused?
+    ACTOR_FLAG3_UNK28 = (1U << 28U), // unused?
+    ACTOR_FLAG3_UNK29 = (1U << 29U), // unused?
+    ACTOR_FLAG3_UNK30 = (1U << 30U), // unused?
+    ACTOR_FLAG3_UNK31 = (1U << 31U), // unused?
+
+    // a commonly AND'd mask
+    ACTOR_FLAG3_MASK_A = ~(ACTOR_FLAG3_WARPING | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB)
 };
+
+// properties of an actor when grabbed / thrown.
+typedef enum {
+    GRABTYPE_0, // stubbed grab/throw state
+    GRABTYPE_1,
+    GRABTYPE_2,
+    GRABTYPE_3, // used for counters of big lasers/Raiden's lightning
+    GRABTYPE_4,
+    GRABTYPE_5,
+    GRABTYPE_6,
+    GRABTYPE_7,
+    GRABTYPE_8,
+    GRABTYPE_9, // stubbed grab/throw state
+    GRABTYPE_10,
+    GRABTYPE_11,
+    GRABTYPE_HURT, // damage Marina if she tries to grab actor
+    GRABTYPE_13,
+    GRABTYPE_14,
+    GRABTYPE_15,
+    GRABTYPE_16,
+    GRABTYPE_17,
+    GRABTYPE_18,
+    GRABTYPE_19,
+    GRABTYPE_20,
+    GRABTYPE_21,
+    GRABTYPE_22,
+    GRABTYPE_23  // stubbed grab/throw state
+} GrabTypes;
+
+typedef enum {
+    HITTYPE_0,
+    HITTYPE_1,
+    HITTYPE_2,
+    HITTYPE_3,
+    HITTYPE_4, // stab/cut
+    HITTYPE_5,
+    HITTYPE_6,
+    HITTYPE_7,
+    HITTYPE_8,
+    HITTYPE_BOOM_9,
+    HITTYPE_BOOM_10,
+    HITTYPE_BOOM_11,
+    HITTYPE_SHOCK_12,
+    HITTYPE_SHOCK_13,
+    HITTYPE_SHOCK_14,
+    HITTYPE_15, // unused?
+    HITTYPE_16, // unused?
+    HITTYPE_17,
+    HITTYPE_18,
+    HITTYPE_19,
+    HITTYPE_20,
+    HITTYPE_21, // Marina ground/air dash hit type
+    HITTYPE_22, // Marina slide dash hit type
+    HITTYPE_23,
+    HITTYPE_24,
+    HITTYPE_25,
+    HITTYPE_26,
+    HITTYPE_27,
+    HITTYPE_28,
+    HITTYPE_29,
+    HITTYPE_30
+} HitTypes;
+
+
+typedef enum {
+    HITFLAG_0 = (1 << 0),
+    HITFLAG_1 = (1 << 1),
+    HITFLAG_2 = (1 << 2), // 1 second of I-frames when hit?
+    HITFLAG_3 = (1 << 3),
+    HITFLAG_4 = (1 << 4), // unused?
+    HITFLAG_5 = (1 << 5),
+    HITFLAG_6 = (1 << 6),
+    HITFLAG_7 = (1U << 7U)
+} HitFlags;
+
+// flags used by Actor.unk_0DF
+typedef enum {
+    // first two bits seem to be some index.
+
+    ACTOR0DF_0_0 = ((1 << 0) * 0),
+    ACTOR0DF_0_1 = ((1 << 0) * 1),
+    ACTOR0DF_0_2 = ((1 << 0) * 2),
+    ACTOR0DF_0_3 = ((1 << 0) * 3),
+    ACTOR0DF_0_MASK = ACTOR0DF_0_3,
+    
+    ACTOR0DF_2 = (1 << 2),
+    ACTOR0DF_3 = (1 << 3),
+    ACTOR0DF_4 = (1 << 4),
+    ACTOR0DF_5 = (1 << 5),
+    ACTOR0DF_6 = (1 << 6),
+    ACTOR0DF_7 = (1U << 7U) // used by "Big beam" and Raiden's thunder attacks?
+} Actor0DFFlags;
 
 #define ACTOR_POSITION_HISTORY_COUNT 8
 
@@ -131,7 +226,7 @@ typedef struct {
             /* 0x08C */ FixedCoord posY; // Q16.16-style fixed y-coordinate relative to center of screen
             /* 0x090 */ FixedCoord posZ; // Q16.16-style fixed z-coordinate used for depth
         };
-        /* 0x088 */ FixedCoord pos[3];
+        /* 0x088 */ FixedCoord pos[3]; // position fields sometimes are treated as array entries
     };
     /* 0x094 */ u16 graphicFlags; // uses ActorGFlags enum. determines graphical properties.
     /* 0x096 */ u8 unk_096[0x2]; // align bytes
@@ -140,7 +235,7 @@ typedef struct {
     /* 0x09D */ u8 colorG; // green actor tint
     /* 0x09E */ u8 colorB; // blue actor tint
     /* 0x09F */ u8 colorA; // actor opacity
-    /* 0x0A0 */ u8 unk_0A0;
+    /* 0x0A0 */ u8 unk_0A0; // flags/ index related to collision? file management uses for vars
     /* 0x0A1 */ u8 unk_0A1; // align byte?
 
     // the next 8 fields are used in determining the offset for 2 different "hitbox" coordinates.
@@ -160,9 +255,9 @@ typedef struct {
     /* 0x0BC */ f32 rotateX; // used in guRotate if ACTOR_GFLAG_ROTX in graphicFlags is set
     /* 0x0C0 */ f32 rotateY; // used in guRotate if ACTOR_GFLAG_ROTY in graphicFlags is set
     /* 0x0C4 */ f32 rotateZ; // used in guRotate if ACTOR_GFLAG_ROTZ in graphicFlags is set
-    /* 0x0C8 */ s16 unk_0C8; // global x-position of actor collided?
-    /* 0x0CA */ s16 unk_0CA; // global y-position + hitboxBY0 of actor collided?
-    /* 0x0CC */ u16 unk_0CC; // index of actor collided?. bit 15 is also set when updated
+    /* 0x0C8 */ s16 actorHitX; // global x-position of actor collided
+    /* 0x0CA */ s16 actorHitY; // global y-position + hitboxBY0 of actor collided
+    /* 0x0CC */ u16 actorHitIndex; // index of actor collided. bit 15 is also set when updated, in case index is 0 (player).
     /* 0x0CE */ u16 unk_0CE;
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
@@ -178,12 +273,12 @@ typedef struct {
     /* 0x0D4 */ u16 iFrames; // invulnerabily frames. 
     /* 0x0D6 */ u16 parentIndex; // index to "parent"/grab-ee actor
     /* 0x0D8 */ u16 var_0D8; // often used as second set of initial actor paramaters.
-    /* 0x0DA */ u8 unk_0DA; // hit flags?
-    /* 0x0DB */ u8 unk_0DB; // hit type?
-    /* 0x0DC */ u8 unk_0DC; // "hit by" flags?
-    /* 0x0DD */ u8 unk_0DD; // "hit by" type?
-    /* 0x0DE */ u8 unk_0DE; // behavior when grabbed / thrown
-    /* 0x0DF */ u8 unk_0DF;
+    /* 0x0DA */ u8 hitFlags; // flags transferred when collided. uses HitFlags
+    /* 0x0DB */ u8 hitType; // damage type to inflict. uses HitTypes
+    /* 0x0DC */ u8 hitByFlags; // flags set from colided actor. uses HitFlags
+    /* 0x0DD */ u8 hitByType; // damage type infliced. uses HitTypes
+    /* 0x0DE */ u8 grabType; // behavior when grabbed / thrown. uses GrabTypes
+    /* 0x0DF */ u8 unk_0DF; // needs more study. uses Actor0DFFlags
     /* 0x0E0 */ s16 health; // initialized from the actor type table and decremented/clamped by damage code
     /* 0x0E2 */ s16 pendingDamage; // damage taken in tick. used in knockback calculation.
     /* 0x0E4 */ s16 damage; // damage caused by contact
@@ -227,7 +322,7 @@ typedef struct {
             /* 0x114 */ f32 unk_114;
             /* 0x118 */ f32 unk_118;
             /* 0x11C */ f32 unk_11C;
-            /* 0x120 */ f32 unk_120; // some actors, like Marina, use this as an XY scale.
+            /* 0x120 */ f32 unk_120; // used by marina to scale appearance and velocity
             /* 0x124 */ f32 unk_124;
             /* 0x128 */ f32 unk_128;
             union {

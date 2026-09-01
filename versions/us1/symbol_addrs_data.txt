@@ -133,10 +133,13 @@ gTransitionState = 0x800D2938; // type:s32
 gTransitionTimer = 0x800D2940; // type:s32
 gGuestActorIndex = 0x800d2950; // type:u16 size:0x2
 gNoHit = 0x800D2958; // size:0x2
-gMarinaActionVelocities = 0x800D5794;
-
+gMarinaActionSpeeds = 0x800D5794;
+gMarinaAnimTable = 0x800D3D20;
 gMarinaStateTable = 0x800d3db0; // size:0xF4
 gMarinaGrabTable = 0x800d3eb0; // size:0x60
+gMarinaThrowTable = 0x800D3F10; // size:0x60
+gMarinaHitTable = 0x800d3f70;
+gMarinaEffectTable = 0x800D3FD0;
 
 gExitPortraitGraphics = 0x800d3ae8; // size:0x8c rom:0xd46e8
 gExitPortraitPositions = 0x800d38b8; // size:0x230 rom:0xd44b8
@@ -246,7 +249,7 @@ gContinueChoice = 0x80178138; // type:u16 size:0x2
 gContinueBGM = 0x8017813C; // type:s32 size:0x4
 
 gRngSeed = 0x800BE5A4; // size:0x2
-D_800BE5F4 = 0x800BE5F4; // size:0x4
+gMarinaAnim = 0x800BE5F4; // size:0x4
 
 gScreenXLock = 0x800be62C; // type:u16 size:0x2
 gScreenYLock = 0x800be630; // type:u16 size:0x2
@@ -347,11 +350,11 @@ gSfxChannelPans = 0x8011CF18; // size:0x4
 gFramesInPlayTime = 0x801370C8; // size:0x2
 gPlayerData = 0x801373E0; // size:0x80
 gUpdateColorTime = 0x801374DC;
-D_801376A8 = 0x801376A8; // type:u8 size:0x4
-D_801376AC = 0x801376AC; // type:u8 size:0x4
-D_801376B0 = 0x801376B0; // type:u8 size:0x4
-D_801376B4 = 0x801376B4; // type:u8 size:0x4
-D_801376B8 = 0x801376B8; // type:u8 size:0x4
+gEnvColorsRed = 0x801376A8; // type:u8 size:0x4
+gEnvColorsGreen = 0x801376AC; // type:u8 size:0x4
+gEnvColorsBlue = 0x801376B0; // type:u8 size:0x4
+gEnvColorsAlpha = 0x801376B4; // type:u8 size:0x4
+gUseBlackPrimColor = 0x801376B8; // type:u8 size:0x4
 D_801376BC = 0x801376BC; // type:u8 size:0x4
 gAudioDmaMessageQueue = 0x801377B8; // size:0x18
 gAudioTaskMessageQueue = 0x801377D0; // size:0x18
@@ -459,6 +462,8 @@ gScreenBoundY1 = 0x800be574; // size:0x4 rom:0xbf174
 
 gPlayerPosX = 0x800be5d8; // type:s32 size:0x4 rom:0xbf1d8
 gPlayerPosY = 0x800be5dc; // type:s32 size:0x4 rom:0xbf1dc
+gPlayerShockX = 0x800be5E0; // type:s16 size:0x2 rom:0xbf1e0
+gPlayerShockY = 0x800be5E4; // type:s16 size:0x2 rom:0xbf1e4
 gPlayerVelXMirror = 0x800be5e8; // type:s32 size:0x4 rom:0xbf1e8
 gPlayerVelYMirror = 0x800be5ec; // type:s32 size:0x4 rom:0xbf1ec
 
@@ -658,6 +663,7 @@ gStrResultHMS = 0x800C96C4;
 gStageTimeBest = 0x80178150;// type:u16 size:0x2
 gCurrentWorld = 0x8017815C; // type:u16 size:0x2
 gCurrentStage = 0x80178162;
+sRecordTimesTotal= 0x80178168;
 gDebugStageSelectSelectedOptions = 0x80178170;
 gDebugStageSelectOptionBaseOffsets = 0x80178188;
 gDebugMenuCursorFlash = 0x801781A0;

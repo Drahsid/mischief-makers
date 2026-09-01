@@ -205,7 +205,7 @@ void ActorsUpdate_Overlay(u16 actor_index) {
             D_801B0800[index](actor_index);
             break;
 
-        case ACTOR_OVL3_40:
+        case ACTOR_OVL3_CAT:
             D_801B0800[index](actor_index);
             break;
 

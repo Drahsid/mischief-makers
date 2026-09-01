@@ -213,7 +213,7 @@ void func_80192920_6D2FA0(u16 actor_state) {
 void func_80192A98_6D3118(u16 actor_index) {
     Actor_ClearRange(0x31, 0x8F);
     gIsPlayerInactive = FALSE;
-    D_800BE5F4.unk_00_s32 = 4;
+    gMarinaAnim.anim_s32 = MARINAANIM_4;
 }
 
 // Main opening cinematic timeline, stateLower advances through the visible beats
@@ -666,7 +666,7 @@ void func_80192AD0_6D3150(u16 actor_index) {
                     func_80192438_6D2AB8(0x50, 0x55, 0x180A, -0x1F, 0x36, -6);
                     Sound_PlaySfx(SFX_MARINA_YELL4);
                     Sound_PlaySfx(SFX_013C);
-                    gActors[actor_index].var_150 = 0x3C;
+                    gActors[actor_index].var_150 = 60;
                     // fallthrough
 
                 case 1:

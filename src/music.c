@@ -1167,23 +1167,23 @@ void func_80003D64(u8 arg0) {
     }
 }
 
-void Sound_StartFade(u16 arg0, u16 arg1) {
+void Sound_StartFade(u16 mode, u16 duration) {
     u16 index;
 
-    if ((arg0 & 1) == 1) {
-        gAudioFadeCounter = arg1;
+    if ((mode & 1) == 1) {
+        gAudioFadeCounter = duration;
     }
     else {
         gAudioFadeCounter = 0;
     }
 
-    gAudioFadeDuration = arg1;
+    gAudioFadeDuration = duration;
 
-    if (arg0 == 0x41) {
+    if (mode == 0x41) {
         gAudioFadeMode = 1;
         gMusicFadeVolume = ((u8*)gMusicSequenceParams)[gMusicSequenceId * sizeof(MusicSequenceParams)] << 7;
 
-        if ((arg0 & 0x80) != 0) {
+        if ((mode & 0x80) != 0) {
             return;
         }
 
@@ -1193,10 +1193,10 @@ void Sound_StartFade(u16 arg0, u16 arg1) {
         return;
     }
 
-    gAudioFadeMode = arg0;
+    gAudioFadeMode = mode;
     gMusicFadeVolume = ((u8*)gMusicSequenceParams)[gMusicSequenceId * sizeof(MusicSequenceParams)] << 8;
 
-    if ((arg0 & 0x80) != 0) {
+    if ((mode & 0x80) != 0) {
         return;
     }
 

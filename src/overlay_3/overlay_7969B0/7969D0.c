@@ -34,16 +34,16 @@ f32 D_801B2428_7984F8[] = { 0.5f, 0.75f, 1.0f, 1.5f };
 
 // targets and timers for rock spawners in "Volcano!"
 s16 D_801B2438_798508[] = {
-//   posX posY scale  timer
-    -208, 208, 3,     0x64,
-    -96,  160, 3,     0x50,
-    -224, 128, 3,     0x50,
-    -176, 128, 3,     0x64,
-    -272, 144, 3,     0x64,
-    -176, 176, 3,     0x64,
-    -176, 176, 3,     0x64,
-    -176, 176, 3,     0x64,
-       0,   0, 0,        0,
+//   posX posY scale timer
+    -208, 208, 3,    100,
+    -96,  160, 3,     80,
+    -224, 128, 3,     80,
+    -176, 128, 3,    100,
+    -272, 144, 3,    100,
+    -176, 176, 3,    100,
+    -176, 176, 3,    100,
+    -176, 176, 3,    100,
+       0,   0, 0,      0,
 };
 
 // BUG: incorrect prototype!
@@ -221,7 +221,7 @@ void func_801B0ABC_796B8C(u16 actor_index) {
             break;
 
         case 0x40:
-        case 0x50:
+        case 0x50: // volcano face when active
             break;
 
         case 0x32:
@@ -321,6 +321,7 @@ void func_801B112C_7971FC(u16 actor_index, u16 arg1) {
     }
 }
 
+// volcanic rock impact particle.
 void func_801B131C_7973EC(u16 actor_index) {
     u16 new_actor_index;
     f32 scale;
@@ -373,7 +374,7 @@ void func_801B1414_7974E4(u16 actor_index) {
                 actor->state++;
                 break;
             }
-            func_801B112C_7971FC(actor_index, 0);
+            func_801B112C_7971FC(actor_index, FALSE);
             break;
 
         case 2:
@@ -386,7 +387,7 @@ void func_801B1414_7974E4(u16 actor_index) {
             break;
 
         case 3:
-            func_801B112C_7971FC(actor_index, 1);
+            func_801B112C_7971FC(actor_index, TRUE);
             on_ground = actor->flags_098 & ACTOR_FLAG3_UNK0;
             if (on_ground == 0) {
                 first_check = func_8001FCA0(actor_index, actor->hitboxAX0 + actor->posX.whole, actor->hitboxAY1 + actor->posY.whole);
@@ -413,6 +414,7 @@ void func_801B1414_7974E4(u16 actor_index) {
     }
 }
 
+// behavior for volcanic lightning.
 void func_801B1618_7976E8(u16 actor_index) {
     Actor* actor;
     s32 state;
@@ -426,7 +428,7 @@ void func_801B1618_7976E8(u16 actor_index) {
             actor->state++;
             actor->unk_170 = 0;
             actor->unk_16C = 0;
-            actor->unk_168 = 0x14;
+            actor->unk_168 = 20;
             break;
 
         case 1:
@@ -511,7 +513,7 @@ void func_801B182C_7978FC(u16 actor_index) {
             if (gActors[actor->var_15C].flags == 0) {
                 actor->flags = 0;
                 break;
-            }
+            } // flames more opaque, less red.
             actor->var_154 = Math_ApproachS32(actor->var_154, FIXED_UNIT(0.0), FIXED_UNIT(1.0));
             actor->var_158 = Math_ApproachS32(actor->var_158, FIXED_UNIT(192.0), FIXED_UNIT(6.0));
             actor->colorR = FROM_FIXED(actor->var_154);
@@ -564,8 +566,8 @@ u16 func_801B1AD4_797BA4(u16 actor_index) {
         gActors[new_actor_index].damage = 100;
         gActors[new_actor_index].unk_188 = -0x21;
         gActors[new_actor_index].posZ.whole = -529;
-        gActors[new_actor_index].unk_0DA |= 0x81;
-        gActors[new_actor_index].unk_0DB = 0xB;
+        gActors[new_actor_index].hitFlags |= HITFLAG_7 | HITFLAG_0;
+        gActors[new_actor_index].hitType = HITTYPE_BOOM_11;
 
         parent = &gActors[actor_index];
         gActors[new_actor_index].var_158 = parent->var_160;
@@ -625,6 +627,7 @@ void func_801B1CA4_797D74(u16 actor_index) {
 
 void func_801B1DD4_797EA4(u16 actor_index) {
     gActors[actor_index].var_160++;
+     // alternate z-rotation to have cone shape give illusion of flapping wings
     if (gActors[actor_index].var_160 & 4) {
         gActors[actor_index].var_15C = 1;
         gActors[actor_index].rotateZ = 270.0f;

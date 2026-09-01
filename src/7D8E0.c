@@ -813,7 +813,7 @@ void ActorUpdate_Type38(u16 actor_index) {
     }
 }
 
-void func_8007F560(u16 actor_index) {
+void ActorUpdate_TextBubble(u16 actor_index) {
     u16* str;
     u16 scale_denominator;
     u16 scale_numerator;

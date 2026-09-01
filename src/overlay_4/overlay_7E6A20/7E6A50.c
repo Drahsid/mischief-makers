@@ -356,9 +356,9 @@ void func_801B9A08_7E6B58(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 gStageTimer = 60;
-                Sound_StartFade(0x81, 0x37);
+                Sound_StartFade(0x81, 55);
             }
             break;
 
@@ -374,7 +374,7 @@ void func_801B9A08_7E6B58(void) {
             gStageState++;
             Actor_ClearSceneActors();
             func_80045FA4(D_801BA63C_7E778C, NULL);
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             D_800BE544 = 0x8000;
             gDrawMidground = FALSE;
             gDrawEnvLayer = FALSE;
@@ -415,7 +415,7 @@ void func_801B9A08_7E6B58(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
             }
             break;
 
@@ -595,7 +595,7 @@ void func_801BA1DC_7E732C(void) {
         case 1:
             if (Transition_FadeOut()) {
                 D_800D28FC |= 8;
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 gStageState++;
             }
             break;
@@ -625,7 +625,7 @@ void func_801BA3C4_7E7514(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
             }
             break;
 
@@ -647,7 +647,7 @@ void func_801BA480_7E75D0(void) {
             if (Transition_FadeOut()) {
                 gStageState++;
                 D_800D28FC |= 8;
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
             }
             break;
 
