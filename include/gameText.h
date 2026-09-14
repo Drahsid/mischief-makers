@@ -2,6 +2,7 @@
 #define GAME_TEXT_H
 #include "inttypes.h"
 #include "Alphabet.h"
+#include <PR/gbi.h>
 
 extern u16 gASCIIAlphaIndecies[]; // LUT (ASCII - 0x20)->index
 extern u16 gTextPalettes[][4];

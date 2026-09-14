@@ -93,8 +93,8 @@ enum ActorFlags3 {
     ACTOR_FLAG3_UNK6 = (1U << 6U),
     ACTOR_FLAG3_UNK7 = (1U << 7U),
     ACTOR_FLAG3_UNK8 = (1U << 8U),
-    ACTOR_FLAG3_GRAB = (1U << 9U),  // grabbed by Marina
-    ACTOR_FLAG3_THROWN = (1U << 10U), // thrown by Marina
+    ACTOR_FLAG3_GRAB = (1U << 9U),  // grabbed by Actor
+    ACTOR_FLAG3_THROWN = (1U << 10U), // thrown by Actor
     ACTOR_FLAG3_UNK11 = (1U << 11U),
     ACTOR_FLAG3_UNK12 = (1U << 12U),
     ACTOR_FLAG3_UNK13 = (1U << 13U),

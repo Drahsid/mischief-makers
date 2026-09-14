@@ -240,7 +240,7 @@ u16 MarinaEffect_Grab(u16 actor_index, f32 scale) {
 // spawn a particle with some parameters
 // @param actor_index index of "parent."
 // if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
-// @param params s32[] of {posX, posY, posZ, unused, (intprt_t)palette}
+// @param params s32[] of {posX, posY, posZ, unused, (intptr_t)palette}
 // @param unused_arg2 unused
 // @param scale initial scale of particle. halved in function.
 // @returns index of particle, 0 if failed.
@@ -285,11 +285,11 @@ u16 func_80059D88(u16 actor_index, s32* params, s32 unused_arg2, f32 scale) {
 // spawn a particle with some parameters
 // @param actor_index index of "parent."
 // if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
-// @param params s32[] of {posX, posY, posZ, graphicIndex, (intprt_t)palette}
+// @param params s32[] of {posX, posY, posZ, graphicIndex, (intptr_t)palette}
 // @param scale initial scale of particle
-// @param arg3 mod of particle scale over time
+// @param lifespan lifespan of particle, also effects scale and alpha over time
 // @returns index of particle, 0 if failed.
-u16 func_80059F30(u16 actor_index, s32* params, f32 scale, s32 arg3) {
+u16 func_80059F30(u16 actor_index, s32* params, f32 scale, s32 lifespan) {
     u16 actor_1;
 
     actor_1 = MarinaEffect_SpawnParticle(actor_index, params);
@@ -306,27 +306,27 @@ u16 func_80059F30(u16 actor_index, s32* params, f32 scale, s32 arg3) {
     }
     gActors[actor_1].scaleX = scale;
     gActors[actor_1].scaleY = scale;
-    gActors[actor_1].unk_148 = arg3;
-    if (arg3 == 0) {
+    gActors[actor_1].unk_148 = lifespan;
+    if (lifespan == 0) {
         return actor_1;
     }
-    gActors[actor_1].var_154 = -(200 / arg3);
-    gActors[actor_1].var_110 = scale / arg3;
-    gActors[actor_1].unk_114 = scale / arg3;
-    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / arg3;
-    gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / arg3;
+    gActors[actor_1].var_154 = -(200 / lifespan);
+    gActors[actor_1].var_110 = scale / lifespan;
+    gActors[actor_1].unk_114 = scale / lifespan;
+    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / lifespan;
+    gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / lifespan;
     return actor_1;
 }
 
 // spawn a particle with some parameters
 // @param actor_index index of "parent."
 // if <16, spawn from range 0x10-0x2D. otherwise 0x90-0xC0
-// @param params s32[] of {posX, posY, posZ, graphicIndex, (intprt_t)palette}
+// @param params s32[] of {posX, posY, posZ, graphicIndex, (intptr_t)palette}
 // @param angle initial angle of particle
 // @param scale initial scale of particle
-// @param arg4 mod of particle scale over time
+// @param lifespan lifespan of particle, also effects scale and alpha over time
 // @returns index of particle, 0 if failed.
-u16 func_8005A068(u16 actor_index, s32* params, s32 angle, f32 scale, s32 arg4) {
+u16 func_8005A068(u16 actor_index, s32* params, s32 angle, f32 scale, s32 lifespan) {
     u16 actor_1;
 
     actor_1 = MarinaEffect_SpawnParticle(actor_index, params);
@@ -344,22 +344,22 @@ u16 func_8005A068(u16 actor_index, s32* params, s32 angle, f32 scale, s32 arg4) 
     gActors[actor_1].scaleX = scale;
     gActors[actor_1].scaleY = scale;
     gActors[actor_1].var_160 = angle;
-    gActors[actor_1].unk_148 = arg4;
-    if (arg4 == 0) {
+    gActors[actor_1].unk_148 = lifespan;
+    if (lifespan == 0) {
         return actor_1;
     }
-    gActors[actor_1].var_154 = -(200 / arg4);
-    gActors[actor_1].var_110 = scale / arg4;
-    gActors[actor_1].unk_114 = scale / arg4;
-    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / arg4;
-    gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / arg4;
+    gActors[actor_1].var_154 = -(200 / lifespan);
+    gActors[actor_1].var_110 = scale / lifespan;
+    gActors[actor_1].unk_114 = scale / lifespan;
+    gActors[actor_1].unk_118 = -gActors[actor_1].var_110 / lifespan;
+    gActors[actor_1].unk_11C = -gActors[actor_1].unk_114 / lifespan;
     return actor_1;
 }
 
-u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
+u16 func_8005A1A4(u16 actor_index, s32* pos, f32 scale) {
     u16 actor_1;
 
-    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
     if (actor_1 == 0) {
         return actor_1;
     }
@@ -373,7 +373,7 @@ u16 func_8005A1A4(u16 actor_index, s32* arg1, f32 scale) {
     gActors[actor_1].unk_114 = -0.05f;
     gActors[actor_1].palette_18C = PALETTE_8022D568;
 
-    actor_1 = MarinaEffect_SpawnParticle(actor_index, arg1);
+    actor_1 = MarinaEffect_SpawnParticle(actor_index, pos);
     if (actor_1 == 0) {
         return actor_1;
     }
