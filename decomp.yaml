@@ -98,11 +98,11 @@ tools:
             - "28EF0"
             - "42E90"
             - "438E0"
-            - "48A30"
+            - marina_anim
             - marina
-            - "4FEB0"
-            - "57F20"
-            - "59EA0"
+            - marina_grab
+            - marina_hit
+            - marina_effect
             - "5D120"
             - "5E230"
             - "dialog"

@@ -129,14 +129,14 @@ u16 gStartButtonOnly = FALSE;
 FixedCoord gPlayerPosX = {0};
 FixedCoord gPlayerPosY = {0};
 
-s16 D_800BE5E0 = 0; 
-s16 D_800BE5E4 = 0; 
+s16 gPlayerShockX = 0; 
+s16 gPlayerShockY = 0; 
 
 FixedCoord gPlayerVelXMirror = {0};
 FixedCoord gPlayerVelYMirror = {0};
 
 s16 D_800BE5F0 = 0; 
-UnkStruct_D_800BE5F4 D_800BE5F4 = {0};
+MarinaAnim gMarinaAnim = {0};
 u16 D_800BE5F8 = 0;
 u16 D_800BE5FC = 0; 
 

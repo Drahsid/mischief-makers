@@ -15,16 +15,16 @@ u16 gCopiedSegment5;
 
 void MarinaGraphics_Copy(void) {
     s32 pad[4];
-    u32 graphicsMask;
-    u32 graphicsFlags;
+    u32 graphicMask;
+    u32 graphicOffset;
     u32 offsets[2];
     u16 temp_t1;
     u8* device_addr;
 
-    graphicsMask = ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_UNK14 | ACTOR_GFLAG_3DOBJ | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11;
-    graphicsFlags = ACTOR_GFLAG_UNK14 | ACTOR_GFLAG_SCALEZ | ACTOR_GFLAG_UNK11;
+    graphicMask = 0xf800;
+    graphicOffset = 0x5800;
     if (((gPlayerActor.flags & ACTOR_FLAG_DRAW) || (D_800BE714 != 0)) &&
-        ((gPlayerActor.graphicIndex & graphicsMask) == graphicsFlags)) {
+        ((gPlayerActor.graphicIndex & graphicMask) == graphicOffset)) {
         D_800BE714 = 0;
         temp_t1 = ((gPlayerActor.graphicIndex & 0x7FF) % 802);
         // compute the base ROM device address: ROM_BASE + (SEG_5_ADDR - SEG_5_BASE)

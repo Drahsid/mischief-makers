@@ -7,7 +7,7 @@
 void func_8002CCD0(u16 actor_index, s16 pos_x, s16 pos_y, u16 arg3);
 void Actor_SetHitboxA(u16 actor_index, s16 val);
 void Actor_UpdateVelocityX(u16 actor_index, s32 dvx);
-void func_8007B73C(u16 actor_index);
+void Rocketeer_Update(u16 actor_index);
 
 extern s16 D_801A5200_73BF60[];
 extern s16 D_801A5280_73BFE0[];
@@ -30,8 +30,8 @@ void func_8019B21C_731F7C(u16 actor_index) {
 
 void func_8019B270_731FD0(u16 actor_index) {
     gActors[actor_index].flags |= 0x2400;
-    gActors[actor_index].unk_0DA = 4;
-    gActors[actor_index].unk_0DB = 6;
+    gActors[actor_index].hitFlags = HITFLAG_2;
+    gActors[actor_index].hitType = HITTYPE_6;
     gActors[actor_index].hitboxBY0 = 0x10;
     gActors[actor_index].hitboxBY1 = -0x10;
     gActors[actor_index].hitboxBX0 = -0x14;
@@ -77,12 +77,12 @@ void func_8019C0A0_732E00(u16 actor_index) {
 
 void func_8019C1C4_732F24(u16 actor_index) {
     // FAKEMATCH ???
-    gActors[actor_index].unk_0DB = 8;\
+    gActors[actor_index].hitType = HITTYPE_8;\
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);\
     if (1) { }\
     gActors[actor_index].unk_0FC.raw = FIXED_UNIT(4.0);
     gActors[actor_index].unk_0F8.raw = FIXED_UNIT(4.5);
-    gActors[actor_index].damage = 0x14;
+    gActors[actor_index].damage = 20;
     Actor_SetHitboxA(actor_index, 0xC);
 }
 
@@ -102,35 +102,35 @@ void func_8019C1C4_732F24(u16 actor_index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019D77C_7344DC.s")
 
 void func_8019DB10_734870(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DB58_7348B8(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DBA0_734900(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DBE8_734948(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DC30_734990(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DC78_7349D8(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DCC0_734A20(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_8019DD08_734A68(u16 actor_index) {
-    func_8007B73C(actor_index);
+    Rocketeer_Update(actor_index);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_8019DD30_734A90.s")

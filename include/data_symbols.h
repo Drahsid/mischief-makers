@@ -32,7 +32,7 @@ extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[]; // icon for head menus
 extern u16 D_800E3580;
 extern u32 D_800E3584; // nearest actor facing
-extern s32 D_800E3630[]; // could be array of structs of length 0x28
+extern s32 D_800E3630[]; // could be array of structs of length 0x28. indexed by Actor->unk_0CE
 extern s16 D_801370D0; //index for position/graphic arrays in unused after-image state
 extern s16 D_801370D2;
 extern u16 D_801370D4;
@@ -47,12 +47,12 @@ extern u16 D_80137610[]; // source of texture images
 extern u16* D_8013769C; // palette
 extern u16* D_801376A0; // palette
 extern u16* D_801376A4; // palette
-extern u8 D_801376A8[4];
-extern u8 D_801376AC[4];
-extern u8 D_801376B0[4];
-extern u8 D_801376B4[4];
-extern u8 D_801376B8[4];
-extern u8 D_801376BC[4];
+extern u8 gEnvColorsRed[4];
+extern u8 gEnvColorsGreen[4];
+extern u8 gEnvColorsBlue[4];
+extern u8 gEnvColorsAlpha[4];
+extern u8 gUseBlackPrimColor[4]; // set prim color to black if true, white if false
+extern u8 D_801376BC[4]; // use env/prim color vars if false, skip if true
 extern u16** D_801376C0;
 extern u16** D_801376C4;
 extern u16** D_801376C8;

@@ -691,7 +691,7 @@ void func_801B9D78_7E2ED8(void) {
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].palette_18C = PALETTE_8022D568;
             Sound_PlaySfxAtActor2(SFX_LAVA_00AA, 0);
-            func_8005739C(PLAYER_INDEX, 100);
+            Marina_SubHealth(PLAYER_INDEX, 100);
 
             if (gPlayerActor.health >= 0) {
                 D_800D28F0 = D_800D28E4;
@@ -718,7 +718,7 @@ void func_801B9E74_7E2FD4(void) {
             gStageState++;
             Palette_AdjustScenePalettes(8, 8, -2, 2, 2, -0x1F, 8, 0, -0x1F);
             func_801B9D38_7E2E98(D_801BBEC0_7E5020, (u16*)D_801BBF10_7E5070, sActorSpawn_4_8A);
-            D_800BE5F4.unk_00_s32 = 4;
+            gMarinaAnim.anim_s32 = MARINAANIM_4;
             D_800BE544 = 0x8000;
             gStageTimer = 0; // used to track progress instead
             gTransitionPortraitIndex = 0;
@@ -744,7 +744,7 @@ void func_801B9E74_7E2FD4(void) {
                 gStageState = 3;
                 D_800D28F0 = D_800D28E4;
                 D_800D28E4 = 0x61;
-                D_800BE5F4.unk_00_s32 = 4;
+                gMarinaAnim.anim_s32 = MARINAANIM_4;
             }
             Cutscene_CheckSkipInput();
             break;
@@ -775,7 +775,7 @@ void func_801B9E74_7E2FD4(void) {
             gActors[0x30].posX.whole = gPlayerActor.posX.whole - 0xF0;
 
             if (gTransitionPortraitIndex) {
-                D_800BE5F4.unk_00_s32 = 0xA;
+                gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
             }
 
         case 5:
@@ -817,9 +817,9 @@ void func_801B9E74_7E2FD4(void) {
                     gActors[0x41].flags = 0;
                 }
 
-                D_800BE5F4.unk_00_s32 = 2;
-                gPlayerData.unk_20 = gButton_DRight;
-                gPlayerData.unk_24 = gButton_DRight;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
+                gPlayerData.buttonHold = gButton_DRight;
+                gPlayerData.buttonPress = gButton_DRight;
                 D_800D2920 = 0x1FF0;
                 gScreenBoundX0.whole = D_800D2920;
                 D_800D28F8 = 4;
@@ -842,12 +842,12 @@ void func_801B9E74_7E2FD4(void) {
             gPlayerActor.velocityX.raw = 0;
             D_800D2930++;
             if (D_800D2930 < 3) {
-                gPlayerData.unk_20 = gButton_DRight;
-                gPlayerData.unk_24 = 0;
+                gPlayerData.buttonHold = gButton_DRight;
+                gPlayerData.buttonPress = 0;
             }
             func_80047714(2, 1, 1, 8);
             if (gStageState == 8) {
-                D_800BE5F4.unk_00_s32 = 2;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             }
             break;
 
@@ -863,7 +863,7 @@ void func_801B9E74_7E2FD4(void) {
             gPlayerActor.velocityX.raw = 0;
             func_80047714(3, 1, 1, 0xB);
             if (gStageState == 0xB) {
-                D_800BE5F4.unk_00_s32 = 2;
+                gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             }
             break;
 
@@ -877,7 +877,7 @@ void func_801B9E74_7E2FD4(void) {
             break;
 
         case 0xC:
-            D_800BE5F4.unk_00_s32 = 2;
+            gMarinaAnim.anim_s32 = MARINAANIM_BUTTON;
             break;
 
         case 0x1000:
@@ -1005,7 +1005,7 @@ void func_801BA674_7E37D4(u16 arg0, u16 arg1, u16 arg2) {
 
     D_800D2918 = arg1 + 0x70;
     D_800D291C = arg1 - 0x70;
-    D_800BE5F4.unk_00_s32 = 0xA;
+    gMarinaAnim.anim_s32 = MARINAANIM_TPIN_10;
     gStageState = 8;
     D_801BD8C0_7E6A20 = arg2;
 }
@@ -1023,7 +1023,7 @@ void func_801BA950_7E3AB0(void) {
             func_80045FA4(D_801BC8EC_7E5A4C, D_801BC93C_7E5A9C);
             func_801BA674_7E37D4(0x182, 0xE7C, 0x10);
             gStageState = 1;
-            D_800BE5F4.unk_00_s32 = 7;
+            gMarinaAnim.anim_s32 = MARINAANIM_7;
             break;
 
         case 1:
@@ -1037,7 +1037,7 @@ void func_801BA950_7E3AB0(void) {
         case 2:
             func_80047714(1, 1, 1, 3);
             if (gStageState == 3) {
-                D_800BE5F4.unk_00_s32 = 5;
+                gMarinaAnim.anim_s32 = MARINAANIM_5;
                 D_800D28FC |= 8;
             }
             Cutscene_CheckSkipInput();
@@ -1261,7 +1261,7 @@ void func_801BA950_7E3AB0(void) {
         case 0x1000:
             func_80045FA4(D_801BC8EC_7E5A4C, D_801BC93C_7E5A9C);
             func_801BA674_7E37D4(0x182, 0xE7C, 0x10);
-            D_800BE5F4.unk_00_s32 = 5;
+            gMarinaAnim.anim_s32 = MARINAANIM_5;
             gStageState = 0x1001;
             break;
 
@@ -1320,7 +1320,7 @@ void func_801BB28C_7E43EC(void) {
 
             Palette_AdjustScenePalettes(4, 4, 8, -10, -10, -4, -4, -4, 8);
             func_801BB1F4_7E4354();
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             break;
 
         case 1:
@@ -1334,7 +1334,7 @@ void func_801BB28C_7E43EC(void) {
         case 2:
             func_80047714(1, 1, 1, 3);
             if (gStageState == 3) {
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 D_800D28FC |= 8;
             }
             Cutscene_CheckSkipInput();
@@ -1424,7 +1424,7 @@ void func_801BB28C_7E43EC(void) {
             Actor_LoadSpawnTable(sActorSpawn_4_7B);
             Clanpot_InitItems(0x48, sClanpotAllGhosts);
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
-            D_800BE5F4.unk_00_s32 = 5;
+            gMarinaAnim.anim_s32 = MARINAANIM_5;
             gAudioFadeMode = 0;
             Sound_PlayMusic(BGM_GLOOMY);
             Camera_UpdateViewBounds();
@@ -1450,7 +1450,7 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x805:
             if ((u32)gStageTimer-- < 1U) {
-                D_800BE5F4.unk_00_u32 = 5;
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 SpawnStageClear(STAGE_CLEAR_TIMED(60), sActorSpawn_4_7Exit);
             }
             break;
@@ -1461,7 +1461,7 @@ void func_801BB28C_7E43EC(void) {
 
         case 0x1000:
             func_801BB1F4_7E4354();
-            D_800BE5F4.unk_00_u32 = 5;
+            gMarinaAnim.anim_u32 = MARINAANIM_5;
             break;
 
         case 0x1001:
@@ -1485,7 +1485,7 @@ void func_801BB85C_7E49BC(void) {
             func_80045FA4(D_801BD568_7E66C8, NULL);
             Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
             Actor_LoadSpawnTable(sActorSpawn_4_6);
-            D_800BE5F4.unk_00_s32 = 7;
+            gMarinaAnim.anim_s32 = MARINAANIM_7;
             if (!gSkipStageIntro) {
                 gStageState = 1;
             }
@@ -1532,21 +1532,21 @@ void func_801BB85C_7E49BC(void) {
             break;
 
         case 10:
-            D_800BE5F4.unk_00_s32 = 5;
+            gMarinaAnim.anim_s32 = MARINAANIM_5;
             gStageState = 20;
             D_800D28FC |= 8;
 
         case 20:
             gCannotPause = FALSE;
             if (gActors[0x30].health == 0) {
-                Sound_StartFade(0x81, 0x3C);
+                Sound_StartFade(0x81, 60);
                 gStageState = 21;
             }
             break;
 
         case 21:
             if (gAudioFadeMode != 0x81) {
-                D_800BE5F4.unk_00_u32 = 0x1F;
+                gMarinaAnim.anim_u32 = MARINAANIM_31;
                 Sound_PlayMusic(BGM_GET);
                 gStageState = 22;
             }
@@ -1577,7 +1577,7 @@ void func_801BB85C_7E49BC(void) {
             func_80045FA4(D_801BD568_7E66C8, NULL);
             Actor_LoadSpawnTable(sActorSpawn_BGCaveB);
             Actor_LoadSpawnTable(sActorSpawn_4_6);
-            D_800BE5F4.unk_00_s32 = 7;
+            gMarinaAnim.anim_s32 = MARINAANIM_7;
             gStageState = 0x1001;
             break;
 
@@ -1669,7 +1669,7 @@ void func_801BBC00_7E4D60(void) {
             Actor_LoadSpawnTable(D_801BD5A8_7E6708);
             Actor_LoadSpawnTable(D_801BD5E4_7E6744);
             gActors[0x8F].state = 0x10;
-            D_800BE5F4.unk_00_s32 = 5;
+            gMarinaAnim.anim_s32 = MARINAANIM_5;
             gPlayerData.flags |= PLAYERDATA_UNK0;
 
         case 0x1001:

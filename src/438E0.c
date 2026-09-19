@@ -156,7 +156,6 @@ extern u16 D_801782C0;
 extern u16 D_801782C2;
 
 #define D_80202E90 ((u16*)0x80202E90)
-#define D_80202C90 ((u16*)0x80202C90)
 #define D_802119B8 ((u16*)0x802119B8)
 #define D_8024506A ((u16*)0x8024506A)
 #define D_80245E48 ((u16*)0x80245E48)
@@ -323,7 +322,7 @@ void func_80043918(void) {
     D_800D28F4 = 1;
     gStageState = 0;
     gTransitionState = 0;
-    D_800BE668 = 0x32;
+    D_800BE668 = 50;
     func_8002653C();
     func_80043234();
     func_8004320C();
@@ -471,7 +470,7 @@ void func_80043E64(u16* arg0, s16 pos_x, s16 pos_y) {
             gActors[actor_index].var_0D8 = arg0[3];
             gActors[actor_index].parentIndex = index;
             gActors[index].parentIndex = actor_index;
-            gActors[index].flags_098 |= ACTOR_FLAG3_UNK9;
+            gActors[index].flags_098 |= ACTOR_FLAG3_GRAB;
             D_800D28EC |= 0x20;
             arg0 += 5;
         }
@@ -970,7 +969,7 @@ void func_800457C8(void) {
     D_800DB47C[0x1F] = color_0;
     D_800DB27C[0x1F] = color_0;
     D_800DB07C[0x1F] = color_0;
-    D_80202C90[0x1F] = color_0;
+    PALETTE_80202C90[0x1F] = color_0;
     if (D_800CBF50 != 0) {
         D_800DC07C[0x31] = color_0;
         D_800DCC7C[0x31] = color_0;
@@ -1072,7 +1071,7 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     pos_vals = func_80045F14(arg0);
     D_800D294C = 0;
     gGuestActorIndex = 0;
-    D_800BE5F4.unk_00_u32 = 5;
+    gMarinaAnim.anim_u32 = MARINAANIM_5;
     gPlayerActor.posX.whole = pos_vals[0];
     gPlayerActor.posY.whole = pos_vals[1];
     gPlayerPosX.whole = gScreenPosCurrentX.whole + gActors->posX.whole;
@@ -1090,9 +1089,9 @@ void func_80045FA4(u16* arg0, u16* arg1) {
     D_800D2914 = 0;
     gLifebar.posY.whole = 0x50;
     gLifebarHead.posY.whole = 0x53;
-    D_801376BC[0] = 1;
-    D_801376BC[1] = 1;
-    D_801376BC[2] = 1;
+    D_801376BC[0] = TRUE;
+    D_801376BC[1] = TRUE;
+    D_801376BC[2] = TRUE;
     func_8002653C();
     // if upper bits are set, treat as bitmask, otherwise pointer
     if ((u32)arg1 >= 0xFFFFFFF8) {
@@ -1113,7 +1112,7 @@ void func_80045FA4(u16* arg0, u16* arg1) {
 void func_80046148(u16* arg0, u16* arg1){
     func_80045FA4(arg0, arg1);
     gPlayerActor.flags &= ~ACTOR_FLAG_DRAW;
-    D_800BE5F4.unk_00_s32 = 4;
+    gMarinaAnim.anim_s32 = MARINAANIM_4;
 }
 
 void func_80046188(u16* arg0, void* arg1) {
@@ -1461,7 +1460,7 @@ s32 Transition_StageExit(void) {
         func_80046A30();
         var_a1 = ((Rand() & 3) * 0x23);
         for (var_s1 = 0; var_s1 != 0x23; var_s1++) {
-            gPortraits[var_s1].flags = ACTOR_GFLAG_UNK14 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
+            gPortraits[var_s1].flags = ACTOR_GFLAG_PAL256 | PORTRAIT_GFLAG_UNK1 | ACTOR_GFLAG_SCALE;
             gPortraits[var_s1].palette = NULL;
             gPortraits[var_s1].graphicIndex = gExitPortraitGraphics[(Rand() & 0x3F) + D_800D2944];
             gPortraits[var_s1].alpha = 0;
@@ -1486,7 +1485,7 @@ s32 Transition_StageExit(void) {
             Sound_StopAllSfx();
             if (gIsPauseExit) {
                 gTransitionTimer = 20;
-                Sound_StartFade(0x41, 0x14);
+                Sound_StartFade(0x41, 20);
                 gTransitionState += 2;
             }
             else {
@@ -1510,7 +1509,7 @@ s32 Transition_StageExit(void) {
     case 3:
         gAudioFadeMode = 4;
         if (((gButtonPress & gButton_Start) || (gButtonPress & gButton_A)) && (gAudioUpdateCounter < 248)) {
-            Sound_StartFade(1, 0x28);
+            Sound_StartFade(1, 40);
             gTransitionState++;
         }
         else if (gAudioUpdateCounter >= 0x121) {
@@ -1556,7 +1555,7 @@ s32 SpawnText_FIGHT(u16 state, u32 actor_flags) {
         D_800D28FC &= ~6;
         SpawnActor38(0xC7, ACTOR38_FIGHT, -40, 0, 0, 120);
         gPlayerActor.flags |= actor_flags;
-        D_800BE5F4.unk_00_u32 = 5;
+        gMarinaAnim.anim_u32 = MARINAANIM_5;
         gStageState = state;
         return TRUE;
     }
@@ -1625,7 +1624,7 @@ void func_8004767C(u16 pos_x, u16 pos_y, u16 arg2, u16 mask, u16 stage_state) {
         (pos_y < gPlayerPosY.whole) && (gPlayerPosY.whole < (pos_y + 0x20)) &&
         (D_800D3B74 & mask) == 0) {
         D_800D28F8 = (arg2 * 2) + 2;
-        D_800BE5F4.unk_00_u32 = 7;
+        gMarinaAnim.anim_u32 = MARINAANIM_7;
         gStageState = stage_state;
     }
 }
@@ -1636,7 +1635,7 @@ void func_80047714(u16 arg0, u16 arg1, u16 arg2, u16 stage_state) {
     if (D_800D28F8 < 0) {
         D_800D3B74 |= arg2;
         gStageState = stage_state;
-        D_800BE5F4.unk_00_u32 = 5;
+        gMarinaAnim.anim_u32 = MARINAANIM_5;
     }
     else {
         if (func_8005DEFC() == 0) {
@@ -1721,7 +1720,7 @@ void func_80047AC4(void) {
     if (Transition_StageExit()) {
         if (D_800D2900 == 0) {
             D_800D2900++;
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
         }
         else {
             Actor_ClearSceneActors();
@@ -1740,7 +1739,7 @@ void func_80047B68(void) {
     switch (gStageState) {
     case 0:
         gStageState++;
-        D_800BE5F4.unk_00_u32 = 4;
+        gMarinaAnim.anim_u32 = MARINAANIM_4;
         /* fallthrough */
     case 1:
         if (Transition_FadeOut()) {

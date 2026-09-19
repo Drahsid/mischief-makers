@@ -769,7 +769,7 @@ void SaveFile_CheckValid(void) {
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_0]); index++) {
             if (((gFileNames[SAVE_SLOT_0][index] != 0) && 
                 (gFileNames[SAVE_SLOT_0][index] <= ALPHA_EN_BRACKETRIGHT)) || 
-                ((gFileNames[SAVE_SLOT_0][index] >= 338) // last legal Kanji char?
+                ((gFileNames[SAVE_SLOT_0][index] > ALPHA_EN3_UPPER_Z) // last legal char
                 && (gFileNames[SAVE_SLOT_0][index] != ALPHA_NULL))) {
                 count = 1;
             }
@@ -806,7 +806,7 @@ void SaveFile_CheckValid(void) {
         for (index = 0; index < ARRAYLENGTH(gFileNames[SAVE_SLOT_1]); index++) {
             if (((gFileNames[SAVE_SLOT_1][index] != 0) && 
                 (gFileNames[SAVE_SLOT_1][index] <= ALPHA_EN_BRACKETRIGHT)) || 
-                ((gFileNames[SAVE_SLOT_1][index] >= 338) // last legal Kanji char?
+                ((gFileNames[SAVE_SLOT_1][index] > ALPHA_EN3_UPPER_Z) // last legal char
                 && (gFileNames[SAVE_SLOT_1][index] != ALPHA_NULL))) {
                 count = 1;
             }
@@ -1405,12 +1405,12 @@ void GameState_FileSelect(void) {
     case 0:
         SaveFile_CheckValid();
         FileSelect_Init(1);
-        D_801376BC[1] = 0;
-        D_801376B8[1] = 1;
-        D_801376A8[1] = 0x60;
-        D_801376AC[1] = 0x60;
-        D_801376B0[1] = 0x60;
-        D_801376B4[1] = 0xFF;
+        D_801376BC[1] = FALSE;
+        gUseBlackPrimColor[1] = TRUE;
+        gEnvColorsRed[1] = 0x60;
+        gEnvColorsGreen[1] = 0x60;
+        gEnvColorsBlue[1] = 0x60;
+        gEnvColorsAlpha[1] = 0xFF;
         gCurrentSaveSlot = 0;
         gActors[2].var_158 = 0;
         gGameStateSubState++;

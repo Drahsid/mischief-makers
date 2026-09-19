@@ -5,7 +5,7 @@
 #include "80D90.h"
 
 void func_80080190(u16 actor_index) {
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_800801D8(u16 base_actor_index, s16* vals, u16* arg2) {
@@ -407,14 +407,14 @@ void func_800816AC(u16 base_actor_index, s16* vals, u32 flags) {
 void func_80081720(u16 base_actor_index, s16* vals, u32 flags_mask) {
     u16 actor_index;
 
-    for (; vals[0] != 0x7FFF; vals += 0x5) {
+    for (; vals[0] != 0x7FFF; vals += 5) {
         actor_index = vals[0] + base_actor_index;
         gActors[actor_index].flags &= ~0 - flags_mask;
     }
 }
 
 void func_80081790(u16 actor_index, void* arg1) {
-    gActors[actor_index].unk_174 = (s32)arg1;
+    gActors[actor_index].unk_174 = (intptr_t)arg1;
     gActors[actor_index].unk_16C = 0;
     gActors[actor_index].unk_124 = 0.0f;
     gActors[actor_index].unk_11C = 0.0f;

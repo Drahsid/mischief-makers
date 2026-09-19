@@ -59,8 +59,8 @@ void func_801A6980_76F420(u16 actor_index) {
             gActors[temp_v0].graphicFlags = ACTOR_GFLAG_SCALE;
             gActors[temp_v0].flags = (Rand() & ACTOR_FLAG_FLIPPED) + (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE);
             gActors[temp_v0].damage = 100;
-            gActors[temp_v0].unk_0DA = 0x84;
-            gActors[temp_v0].unk_0DB = 0xB;
+            gActors[temp_v0].hitFlags = HITFLAG_7 | HITFLAG_2;
+            gActors[temp_v0].hitType = 0xB;
             gActors[temp_v0].unk_0F8.raw = FIXED_UNIT(4.0);
             gActors[temp_v0].unk_0FC.raw = FIXED_UNIT(4.0);
             gActors[temp_v0].scaleX = gActors[actor_index].unk_114;

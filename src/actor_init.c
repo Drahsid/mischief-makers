@@ -55,7 +55,7 @@ s16 gActorInitStats[]={
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_44,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_45,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_MARINAAFTERIMAGE,
-    0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_47,
+    0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_LAVA,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_48,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_SPIRALCLOUDS,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_WARPGATE,
@@ -68,7 +68,7 @@ s16 gActorInitStats[]={
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_57,
     0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_58,
     0x08, 0x08, 0x08, 0x08,    0,   0,  0, // ACTORTYPE_59,
-    0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_60,
+    0x08, 0x08, 0x08, 0x08,   10,  10, 10, // ACTORTYPE_BEAMTHROW,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_GEM61,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_CLANBALLWHEEL,
     0x10, 0x10, 0x10, 0x10,   10,  10, 10, // ACTORTYPE_63,
@@ -184,7 +184,7 @@ s32 gActorInitFlags[]= {
     ACTOR_FLAG_ENABLED, // ACTORTYPE_44,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_45,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_MARINAAFTERIMAGE,
-    ACTOR_FLAG_ACTIVE, // ACTORTYPE_47,
+    ACTOR_FLAG_ACTIVE, // ACTORTYPE_LAVA,
     ACTOR_FLAG_PLATFORM0 | ACTOR_FLAG_ENABLED, // ACTORTYPE_48,
     ACTOR_FLAG_ACTIVE, // ACTORTYPE_SPIRALCLOUDS,
     ACTOR_FLAG_ACTIVE, // ACTORTYPE_WARPGATE,
@@ -197,7 +197,7 @@ s32 gActorInitFlags[]= {
     ACTOR_FLAG_ENABLED, // ACTORTYPE_57,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_58,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_59,
-    ACTOR_FLAG_ENABLED, // ACTORTYPE_60,
+    ACTOR_FLAG_ENABLED, // ACTORTYPE_BEAMTHROW,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_GEM61,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_CLANBALLWHEEL,
     ACTOR_FLAG_ENABLED, // ACTORTYPE_63,
@@ -312,7 +312,7 @@ s16* gActorInitGraphics[]={
     gGraphicListBlank, // ACTORTYPE_44,
     gGraphicListBlank, // ACTORTYPE_45,
     gGraphicListBlank, // ACTORTYPE_MARINAAFTERIMAGE,
-    gGraphicListBlank, // ACTORTYPE_47,
+    gGraphicListBlank, // ACTORTYPE_LAVA,
     gGraphicListBlank, // ACTORTYPE_48,
     gGraphicListBlank, // ACTORTYPE_SPIRALCLOUDS,
     gGraphicListBlank, // ACTORTYPE_WARPGATE,
@@ -325,7 +325,7 @@ s16* gActorInitGraphics[]={
     gGraphicListBlank, // ACTORTYPE_57,
     gGraphicListBlank, // ACTORTYPE_58,
     gGraphicListBlank, // ACTORTYPE_59,
-    gGraphicListBlank, // ACTORTYPE_60,
+    gGraphicListBlank, // ACTORTYPE_BEAMTHROW,
     gGraphicListBlank, // ACTORTYPE_GEM61,
     gGraphicListBlank, // ACTORTYPE_CLANBALLWHEEL,
     D_800E2550, // ACTORTYPE_63,
@@ -642,7 +642,7 @@ DEFAULT_INT Actor_Initialize(u16 actor_index) {
     gActors[actor_index].colorA = 0xFF;
     gActors[actor_index].scaleY = gActors[actor_index].scaleX = 1.0f;
     gActors[actor_index].graphicTimer = 1;
-    gActors[actor_index].unk_0DE = 1;
+    gActors[actor_index].grabType = GRABTYPE_1;
 
     gActors[actor_index].graphicIndex =
     gActors[actor_index].posX.frac =
@@ -657,17 +657,17 @@ DEFAULT_INT Actor_Initialize(u16 actor_index) {
     gActors[actor_index].rotateX =
     gActors[actor_index].rotateY =
     gActors[actor_index].rotateZ =
-    gActors[actor_index].unk_0C8 =
-    gActors[actor_index].unk_0CA =
-    gActors[actor_index].unk_0CC =
+    gActors[actor_index].actorHitX =
+    gActors[actor_index].actorHitY =
+    gActors[actor_index].actorHitIndex =
     gActors[actor_index].unk_0CE =
     gActors[actor_index].state =
     gActors[actor_index].iFrames =
     gActors[actor_index].parentIndex =
-    gActors[actor_index].unk_0DA =
-    gActors[actor_index].unk_0DB =
-    gActors[actor_index].unk_0DC =
-    gActors[actor_index].unk_0DD =
+    gActors[actor_index].hitFlags =
+    gActors[actor_index].hitType =
+    gActors[actor_index].hitByFlags =
+    gActors[actor_index].hitByType =
     gActors[actor_index].unk_0DF =
     gActors[actor_index].pendingDamage =
     gActors[actor_index].velocityX.raw =

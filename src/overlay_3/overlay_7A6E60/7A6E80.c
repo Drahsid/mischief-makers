@@ -57,9 +57,13 @@ Festival_UnkInit D_801B4F20_7AB4A0[4] = {
     { 0, 0, 0x0800, 0x1000, 0x2D30, 0x0104 },
 };
 
+// starting positions for runners
 s16 D_801B4F50_7AB4D0[12] = {
-    0x0220, 0x016E, 0, 0x0220, 0x016F, 0x0060,
-    0x0220, 0x016F, -0x60, 0x0220, 0x016F, -0xC0,
+//  X      Y      Z
+    0x220, 0x16E, 0,
+    0x220, 0x16F, 0x60,
+    0x220, 0x16F, -0x60,
+    0x220, 0x16F, -0xC0,
 };
 
 s32 D_801B4F68_7AB4E8[9] = {
@@ -501,6 +505,7 @@ void func_801B0BFC_7A717C(u16 arg0) {
     D_800D28E4 = 0x62;
 }
 
+// forefit race after 3 false starts
 void func_801B0C20_7A71A0(u16 actor_index) {
     FestivalPlayer* players;
 
@@ -514,12 +519,14 @@ void func_801B0C20_7A71A0(u16 actor_index) {
     players[3].rank = 3;
 }
 
+// restart race intro after a false start
 void func_801B0CBC_7A723C(u16 arg0) {
     D_800D28F0 = D_800D28E4;
     D_800D28E4 = 0x63;
     gStageState = 4;
 }
 
+// darken background after false start.
 void func_801B0CEC_7A726C(u16 unused_actor_index) {
     u16 actor_index;
 
@@ -627,7 +634,7 @@ void func_801B11E0_7A7760(u16 actor_index) {
     func_801B10A8_7A7628(actor_index);
 
     index = 0x6E;
-    gActors[index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(index);
     gActors[index].graphicFlags = ACTOR_GFLAG_PALETTE;
     gActors[index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
@@ -652,7 +659,7 @@ s32 func_801B12F0_7A7870(u16 unused_actor_index) {
     gActors[actor_index].posZ.whole = 2;
 
     actor_index = 0x6C;
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE;
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
@@ -687,7 +694,7 @@ void func_801B14A4_7A7A24(u16 unused_actor_index) {
     u16 actor_index;
 
     actor_index = 0x6B;
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_PALETTE | ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
@@ -750,8 +757,10 @@ void func_801B159C_7A7B1C(u16 actor_index) {
     gActors[0x6A].var_158 = value;
 }
 
+// spawn a text actor from overlay 2
+// used for "Foul" messages
 void func_801B16E0_7A7C60(u16 actor_index, u16 arg1) {
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].flags = ACTOR_FLAG_ACTIVE | ACTOR_FLAG_FREEZE_POS;
     gActors[actor_index].var_150 = arg1;
@@ -760,7 +769,7 @@ void func_801B16E0_7A7C60(u16 actor_index, u16 arg1) {
 void func_801B1750_7A7CD0(u16 actor_index) {
     u16 new_actor_index;
 
-    if (gFestivalFouls >= 3) {
+    if (gFestivalFouls >= 3) { // forefit race after 3 false starts.
         new_actor_index = Actor_RangeFindInactive(0x60, 0x70);
         func_801B16E0_7A7C60(new_actor_index, 0x15);
         gActors[new_actor_index].posX.whole = 0;
@@ -1013,6 +1022,7 @@ void func_801B23B8_7A8938(u16 actor_index) {
     gFestivalRecords[gFestivalCurrentEvent] = gActors[actor_index].unk_178;
 }
 
+// event complete, save results
 DEFAULT_INT func_801B2498_7A8A18(u16 actor_index) {
     u16 index = 0;
     s32 count = gFestivalCompetitorCount;
@@ -1479,7 +1489,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
         case 0x10:
             if (--gActors[actor_index].var_150 <= 0) {
                 gFestivalEventState = 0x20;
-                D_800BE5F4.unk_00_u32 = 0x15;
+                gMarinaAnim.anim_u32 = MARINAANIM_21;
                 OverlayABI_Slot2_fn27_u16(actor_index);
                 Sound_PlaySfx(SFX_TURMPETFANFARE);
                 func_801B1D60_7A82E0(actor_index, 1);
@@ -1495,7 +1505,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 func_801B12F0_7A7870(actor_index);
                 func_801B13F8_7A7978(actor_index);
                 gFestivalEventState = 0x30;
-                D_800BE5F4.unk_00_u32 = 0x15;
+                gMarinaAnim.anim_u32 = MARINAANIM_21;
                 OverlayABI_Slot2_fn28_u16(actor_index);
                 gActors[actor_index].var_150 = (Rand() / 4) + 0x78;
                 gActors[actor_index].state = 0x30;
@@ -1503,6 +1513,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             break;
 
         case 0x30:
+            // see if player moved before starting gun.
             if ((544 - gScreenPosCurrentX.whole) < gPlayerActor.posX.whole) {
                 gActors[actor_index].state = 0x60;
             }
@@ -1510,7 +1521,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 if (--gActors[actor_index].var_150 <= 0) {
                     func_801B14A4_7A7A24(actor_index);
                     gFestivalEventState = 0x40;
-                    D_800BE5F4.unk_00_u32 = 5;
+                    gMarinaAnim.anim_u32 = MARINAANIM_5;
                     OverlayABI_Slot2_fn29_u16(actor_index);
                     Sound_PlaySfx(SFX_SHOT_0046);
                     gActors[0x6D].unk_134 = 1.6f;
@@ -1523,14 +1534,14 @@ void func_801B34D4_7A9A54(u16 actor_index) {
 
         case 0x50:
             if (gFestivalCurrentEvent != FESTGAME_HURDLE) {
-                // no jumping in sprints
-                D_800BE5F4.unk_00_u32 = 2;
-                gPlayerData.unk_20 = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
-                gPlayerData.unk_24 = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
+                // no jumping in sprints - mask only walk/dash buttons.
+                gMarinaAnim.anim_u32 = MARINAANIM_BUTTON;
+                gPlayerData.buttonHold = gButtonHold & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
+                gPlayerData.buttonPress = gButtonPress & (gButton_DRight + gButton_DLeft + gButton_CLeft + gButton_CRight);
             }
             D_800BE544 = gFestivalCompetitorIndices[0];
             func_801B159C_7A7B1C(actor_index);
-            if ((gActors[0x6A].var_158 < 0x1E) && (gActors[0x32].var_154 == 0)) {
+            if ((gActors[0x6A].var_158 < 30) && (gActors[0x32].var_154 == 0)) {
                 gActors[0x32].unk_17C++;
                 gActors[0x32].var_154 = 1;
             }
@@ -1545,7 +1556,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
                 gActors[0x6A].flags = 0;
                 gActors[0x6D].unk_134 = 0.0f;
                 OverlayABI_Slot2_fn31_u16(actor_index);
-                D_800BE5F4.unk_00_u32 = 0x15;
+                gMarinaAnim.anim_u32 = MARINAANIM_21;
                 func_801B1D60_7A82E0(actor_index, 2);
                 gActors[0x32].unk_17C++;
                 gActors[actor_index].unk_17C = func_801B2040_7A85C0(0x6D);
@@ -1556,8 +1567,8 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             func_801B1E80_7A8400(actor_index);
             func_801B2738_7A8CB8(actor_index);
             if (--gActors[actor_index].var_150 <= 0) {
-                Sound_StartFade(1, 0x3C);
-                gActors[actor_index].var_150 = 0x3C;
+                Sound_StartFade(1, 60);
+                gActors[actor_index].var_150 = 60;
                 gActors[actor_index].state++;
             }
             break;
@@ -1573,6 +1584,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             }
             break;
 
+        // False start penalty
         case 0x60:
             gFestivalFouls++;
             func_801B0CEC_7A726C(actor_index);
@@ -1608,7 +1620,7 @@ void func_801B34D4_7A9A54(u16 actor_index) {
             if (--gActors[actor_index].var_150 < 0) {
                 gActors[actor_index].state++;
                 gActors[actor_index].var_150 = 0x1E;
-                Sound_StartFade(1, 0x1E);
+                Sound_StartFade(1, 30);
             }
             break;
 

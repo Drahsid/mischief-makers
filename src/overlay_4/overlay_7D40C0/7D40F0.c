@@ -589,19 +589,19 @@ u16 D_801BDCA8_7D8498[] = {
 
 u16 sActorSpawn_3_9B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x000F, 0x2803,
-    0x0000, 0x0031, 0x1400, 0x0176, 0x0000, 0x0008, 0x2803,
-    0x0000, 0x0050, 0x1400, 0x016E, 0x0000, 0x2100, 0x2803,
-    0x0000, 0x0051, 0x1480, 0x016E, 0x0002, 0x5A37, 0x2803,
-    0x0000, 0x0052, 0x1368, 0x016E, 0x0000, 0x3000, 0x2803,
-    0x0000, 0x0057, 0x13E0, 0x016E, 0x0004, 0x3B00, 0x2803,
-    0x0000, 0x0058, 0x13C0, 0x016E, 0x0006, 0x4200, 0x2803,
-    0x0000, 0x0059, 0x13A0, 0x016E, 0x0004, 0x6000, 0x2803,
-    0x0000, 0x005A, 0x1390, 0x016E, 0x0006, 0x5000, 0x2803,
-    0x0000, 0x005B, 0x1420, 0x016E, 0x0004, 0x4000, 0x2803,
-    0x0000, 0x005C, 0x1440, 0x016E, 0x0006, 0x7600, 0x2803,
-    0x0000, 0x005D, 0x1460, 0x016E, 0x0004, 0x4C00, 0x2803,
-    0x0000, 0x005E, 0x1470, 0x016E, 0x0006, 0x0000, 0x2803,
+    0x0000, 0x0030, 0x0000, 0x0000, 0x0000, 0x000F, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0031, 0x1400, 0x0176, 0x0000, 0x0008, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0050, 0x1400, 0x016E, 0x0000, 0x2100, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0051, 0x1480, 0x016E, 0x0002, 0x5A37, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0052, 0x1368, 0x016E, 0x0000, 0x3000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0057, 0x13E0, 0x016E, 0x0004, 0x3B00, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0058, 0x13C0, 0x016E, 0x0006, 0x4200, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0059, 0x13A0, 0x016E, 0x0004, 0x6000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005A, 0x1390, 0x016E, 0x0006, 0x5000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005B, 0x1420, 0x016E, 0x0004, 0x4000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005C, 0x1440, 0x016E, 0x0006, 0x7600, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005D, 0x1460, 0x016E, 0x0004, 0x4C00, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005E, 0x1470, 0x016E, 0x0006, 0x0000, ACTORTYPE_OVL3_CAT_CROWD,
     0x0000, 0x0090, 0x12D0, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FEST_16,
     0x0000, 0x0091, 0x12D0, 0x015E, 0x0200, 0x0002, ACTORTYPE_OVL2_FEST_16,
     0x0000, 0x0092, 0x12D0, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FEST_16,
@@ -632,18 +632,18 @@ u16 D_801BDE8C_7D867C[] = {
 
 u16 sActorSpawn_3_11A[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0030, 0x02C0, 0x0164, 0x0000, 0x0000, 0x2801,
-    0x0000, 0x0050, 0x0200, 0x016E, 0x0000, 0x2100, 0x2803,
-    0x0000, 0x0055, 0x0260, 0x016E, 0x0002, 0x5A20, 0x2803,
-    0x0000, 0x0056, 0x0280, 0x016E, 0x0002, 0x5A37, 0x2803,
-    0x0000, 0x0057, 0x01E0, 0x016E, 0x0004, 0x3000, 0x2803,
-    0x0000, 0x0058, 0x01C0, 0x016E, 0x0006, 0x4200, 0x2803,
-    0x0000, 0x0059, 0x01A0, 0x016E, 0x0004, 0x6000, 0x2803,
-    0x0000, 0x005A, 0x0190, 0x016E, 0x0006, 0x5000, 0x2803,
-    0x0000, 0x005B, 0x0220, 0x016E, 0x0004, 0x4000, 0x2803,
-    0x0000, 0x005C, 0x0240, 0x016E, 0x0006, 0x7600, 0x2803,
-    0x0000, 0x005D, 0x0260, 0x016E, 0x0004, 0x4C00, 0x2803,
-    0x0000, 0x005E, 0x0270, 0x016E, 0x0006, 0x0000, 0x2803,
+    0x0000, 0x0030, 0x02C0, 0x0164, 0x0000, 0x0000, ACTORTYPE_OVL3_CAT_MAIN,
+    0x0000, 0x0050, 0x0200, 0x016E, 0x0000, 0x2100, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0055, 0x0260, 0x016E, 0x0002, 0x5A20, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0056, 0x0280, 0x016E, 0x0002, 0x5A37, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0057, 0x01E0, 0x016E, 0x0004, 0x3000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0058, 0x01C0, 0x016E, 0x0006, 0x4200, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x0059, 0x01A0, 0x016E, 0x0004, 0x6000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005A, 0x0190, 0x016E, 0x0006, 0x5000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005B, 0x0220, 0x016E, 0x0004, 0x4000, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005C, 0x0240, 0x016E, 0x0006, 0x7600, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005D, 0x0260, 0x016E, 0x0004, 0x4C00, ACTORTYPE_OVL3_CAT_CROWD,
+    0x0000, 0x005E, 0x0270, 0x016E, 0x0006, 0x0000, ACTORTYPE_OVL3_CAT_CROWD,
     0x0000, 0x0090, 0x00D0, 0x015E, 0x0000, 0x0002, ACTORTYPE_OVL2_FEST_16,
     0x0000, 0x0091, 0x00D0, 0x015E, 0x0200, 0x0002, ACTORTYPE_OVL2_FEST_16,
     0x0000, 0x0092, 0x00D0, 0x015E, 0x0400, 0x0002, ACTORTYPE_OVL2_FEST_16,
@@ -671,8 +671,8 @@ u16 sActorSpawn_3_11A[] = {
 // spawn Dodgeball actors
 u16 sActorSpawn_3_11B[] = {
 //  flags   index   posX    posY    0x110   0xD8    type
-    0x0000, 0x0040, 0x01B8, 0x0220, 0x0000, 0x0000, 0x2802,
-    0x0000, 0x0042, 0x0248, 0x0220, 0x0000, 0x0001, 0x2802,
+    0x0000, 0x0040, 0x01B8, 0x0220, 0x0000, 0x0000, ACTORTYPE_OVL3_CAT_BALL,
+    0x0000, 0x0042, 0x0248, 0x0220, 0x0000, 0x0001, ACTORTYPE_OVL3_CAT_BALL,
     0x0000, 0x0041, 0x0190, 0x0220, 0x0000, 0x0000, ACTORTYPE_CLANBLOB,
     0x0000, 0x0043, 0x0270, 0x0220, 0x0000, 0x0000, ACTORTYPE_FLOWER,
     SPAWNRECORD_END
@@ -1405,10 +1405,10 @@ void func_801B9900_7D40F0(void) {
 // if so, apply 100 damage and retrun true if survived.
 s32 func_801B9B90_7D4380(void) {
     if (gPlayerPosY.whole < 0x100) {
-        func_8005739C(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
-            D_800BE5F4.unk_00_u32 = 4;
+            gMarinaAnim.anim_u32 = MARINAANIM_4;
             return TRUE;
         }
 
@@ -1427,7 +1427,7 @@ void func_801B9C0C_7D43FC(s16 arg0, s16 arg1) {
     gPlayerPosY.whole = gScreenPosCurrentY.whole + arg1;
     gPlayerActor.posX.whole = arg0;
     gPlayerActor.posY.whole = arg1;
-    D_800BE5F4.unk_00_u32 = 10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
 }
 
 void func_801B9C6C_7D445C(u16 arg0) {
@@ -1553,7 +1553,7 @@ void func_801BA084_7D4874(void) {
 
 void func_801BA0FC_7D48EC(s16 arg0) {
     if ((gPlayerActor.posY.whole + gScreenPosCurrentY.whole) < arg0) {
-        func_8005739C(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
         func_80028380();
 
         if (gPlayerActor.health >= 0) {
@@ -1578,7 +1578,7 @@ void func_801BA1A4_7D4994(u16 arg0, u16 arg1, u16 arg2, s16 arg3, void* arg4) {
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
     func_801BA040_7D4830();
-    D_800BE5F4.unk_00_u32 = 10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     gStageState++;
 }
 
@@ -1755,7 +1755,7 @@ void func_801BA690_7D4E80(void) {
             Actor_LoadSpawnTable(sActorSpawn_3_9B);
             gStageState++;
             D_800BE544 = 0x8000;
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gCannotPause = TRUE;
             break;
 
@@ -1813,7 +1813,7 @@ void func_801BAA0C_7D51FC(void) {
                 func_80045FA4(D_801BDE8C_7D867C, NULL);
                 gFestivalCurrentEvent = FESTGAME_DODGEBALL;
                 Actor_LoadSpawnTable(sActorSpawn_3_11A);
-                D_800BE5F4.unk_00_u32 = 7;
+                gMarinaAnim.anim_u32 = MARINAANIM_7;
             }
             break;
 
@@ -1835,8 +1835,8 @@ void func_801BAA0C_7D51FC(void) {
             gCannotPause = FALSE;
 
         case 0x11:
-            if (SpawnText_FIGHT(0x12, 0) != 0) {
-                D_800BE5F4.unk_00_u32 = 5;
+            if (SpawnText_FIGHT(0x12, 0)) {
+                gMarinaAnim.anim_u32 = MARINAANIM_5;
                 // required to produce fixed address within gActors
                 (gActors + 0x30)->var_0D8 = 0;
             }
@@ -1860,7 +1860,7 @@ void func_801BAA0C_7D51FC(void) {
             gFestivalCurrentEvent = FESTGAME_DODGEBALL;
             Actor_LoadSpawnTable(sActorSpawn_3_11A);
             (gActors + 0x30)->var_0D8 = 1; // required to produce fixed address within gActors
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             (gActors + 0x5B)->flags = 0; // required to produce fixed address within gActors
             (gActors + 0x5C)->flags = 0; // required to produce fixed address within gActors
             (gActors + 0x5D)->flags = 0; // required to produce fixed address within gActors
@@ -2134,7 +2134,7 @@ void func_801BB444_7D5C34(u16* arg0, u16* arg1, void* arg2) {
     func_80045FA4(arg0, arg1);
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg2);
-    D_800BE5F4.unk_00_u32 = 10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     Sound_PlaySfx(SFX_WIND_00BA);
     D_801C02B6_7DAAA6 = gStageState;
     gStageState = 1;
@@ -2232,7 +2232,7 @@ void func_801BB768_7D5F58(void) {
             gCannotPause = TRUE;
             func_80045FA4(D_801BF24C_7D9A3C, NULL);
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             if (!gSkipStageIntro) {
                 Sound_PlaySfx(SFX_WIND_00BA);
                 gStageState = 1;
@@ -2280,7 +2280,7 @@ void func_801BB768_7D5F58(void) {
             break;
 
         case 10:
-            D_800BE5F4.unk_00_u32 = 5;
+            gMarinaAnim.anim_u32 = MARINAANIM_5;
             gStageState = 0x14;
             D_800D28FC |= 8;
 
@@ -2290,7 +2290,7 @@ void func_801BB768_7D5F58(void) {
 
         case 21:
             if (gAudioFadeMode != 0x81) {
-                D_800BE5F4.unk_00_u32 = 0x14;
+                gMarinaAnim.anim_u32 = MARINAANIM_20;
                 Sound_PlayMusic(BGM_GET);
                 gStageState = 0x16;
             }
@@ -2322,7 +2322,7 @@ void func_801BB768_7D5F58(void) {
                 Sound_PlayMusic(BGM_YUJYA);
             }
             Actor_LoadSpawnTable(D_801BF25C_7D9A4C);
-            D_800BE5F4.unk_00_u32 = 7;
+            gMarinaAnim.anim_u32 = MARINAANIM_7;
             gStageState = 0x1001;
             break;
 
@@ -2363,7 +2363,7 @@ void func_801BB768_7D5F58(void) {
 // Check if Marina fell offscreen
 void func_801BBAA8_7D6298(void) {
     if (gPlayerActor.posY.whole < -0xA0) {
-        func_8005739C(PLAYER_INDEX, 100);
+        Marina_SubHealth(PLAYER_INDEX, 100);
 
         if (gPlayerActor.health >= 0) {
             D_800D28F0 = D_800D28E4;
@@ -2385,7 +2385,7 @@ void func_801BBB30_7D6320(u16 arg0, u16 arg1, u16 arg2, u16 arg3, void* arg4) {
     gPlayerActor.posY.whole = arg3;
     Actor_ClearRange_30To90();
     Actor_LoadSpawnTable(arg4);
-    D_800BE5F4.unk_00_u32 = 10;
+    gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
     gStageState++;
 }
 
@@ -2492,7 +2492,7 @@ void func_801BBE90_7D6680(void) {
             Actor_ClearRange_30To90();
             func_80045FA4(D_801BFB3C_7DA32C, (u16*)0xFFFFFFF9);
             func_801BBDF8_7D65E8(sActor_Spawn_3_1B);
-            D_800BE5F4.unk_00_u32 = 10;
+            gMarinaAnim.anim_u32 = MARINAANIM_TPIN_10;
             gPlayerActor.flags |= ACTOR_FLAG_FLIPPED;
             gStageState++;
             break;

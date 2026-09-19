@@ -492,7 +492,7 @@ u16 D_801AFCE0_795FD0[] = {
     ALPHA_EN3_LOWER_S, ALPHA_NULL, 0
 };
 
-// "[black]ああああああああ"
+// "[black]ああああああああ" / AAAAAAAA
 u16 D_801AFCEC_795FDC[] = {
     ALPHA_COLOR_BLACK, ALPHA_JP_HIRA_A, ALPHA_JP_HIRA_A, ALPHA_JP_HIRA_A,
     ALPHA_JP_HIRA_A, ALPHA_JP_HIRA_A, ALPHA_JP_HIRA_A, ALPHA_JP_HIRA_A,
@@ -1131,7 +1131,7 @@ void func_801AC360_792650(u16 actor_index) {
 }
 
 void func_801AC3C0_7926B0(u16 actor_index, u16 arg1) {
-    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_7;
+    gActors[actor_index].actorType = ACTORTYPE_OVL2_FEST_TEXT_7;
     Actor_Initialize(actor_index);
     gActors[actor_index].graphicFlags = ACTOR_GFLAG_UNK11;
     gActors[actor_index].flags = ACTOR_FLAG_FREEZE_POS | ACTOR_FLAG_ACTIVE;
@@ -1146,9 +1146,9 @@ void func_801AC448_792738(u16 actor_index) {
     actorP =&gActors[0x32];
     actorP->actorType = 0;
     Actor_Initialize(0x32);
-    actorP->graphicFlags = 0x800;
+    actorP->graphicFlags = ACTOR_GFLAG_UNK11;
     actorP->flags = 0x2003;
-    actorP->graphicIndex = 0x81C;
+    actorP->graphicIndex = GINDEX_FEST_WINNERSTAND;
     actorP->posX.whole = 0;
     actorP->posY.whole = -0x22;
     actorP->posZ.whole = -1;

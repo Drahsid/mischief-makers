@@ -2498,7 +2498,7 @@
           }
         },
         {
-          "name": "func_8001C97C",
+          "name": "PrintStageGem",
           "size": "236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2586,7 +2586,7 @@
           }
         },
         {
-          "name": "func_8001D0A4",
+          "name": "Records_GetTotalTimeRank",
           "size": "412",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2594,7 +2594,7 @@
           }
         },
         {
-          "name": "func_8001D240",
+          "name": "Records_PrintTimeTotal",
           "size": "888",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2602,7 +2602,7 @@
           }
         },
         {
-          "name": "func_8001D5B8",
+          "name": "Records_ScrollActors",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -2610,7 +2610,7 @@
           }
         },
         {
-          "name": "func_8001D60C",
+          "name": "Records_ScrollActors2",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -3326,7 +3326,7 @@
           }
         },
         {
-          "name": "CameraUpdate_WesternWorld",
+          "name": "CameraUpdate_SearinSwing",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5790,7 +5790,7 @@
           }
         },
         {
-          "name": "func_80031E38",
+          "name": "SpawnActor54",
           "size": "704",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -5798,7 +5798,7 @@
           }
         },
         {
-          "name": "func_800320F8",
+          "name": "ActorUpdate_Type54",
           "size": "1724",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8118,7 +8118,7 @@
       }
     },
     {
-      "name": "48A30",
+      "name": "marina_anim",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "2000",
@@ -8138,11 +8138,18 @@
           "metadata": {
             "virtual_address": "2147778096"
           }
+        },
+        {
+          "name": ".data",
+          "size": "144",
+          "metadata": {
+            "virtual_address": "2148351264"
+          }
         }
       ],
       "functions": [
         {
-          "name": "func_80047E30",
+          "name": "MarinaAnim_State0",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8150,7 +8157,7 @@
           }
         },
         {
-          "name": "func_80047E38",
+          "name": "MarinaAnim_AutoInput",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8158,7 +8165,7 @@
           }
         },
         {
-          "name": "func_80047ED4",
+          "name": "MarinaAnim_State3_4",
           "size": "172",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8166,7 +8173,7 @@
           }
         },
         {
-          "name": "func_80047F80",
+          "name": "MarinaAnim_State5_6",
           "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8174,7 +8181,7 @@
           }
         },
         {
-          "name": "func_80047FF8",
+          "name": "MarinaAnim_State7",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8182,7 +8189,7 @@
           }
         },
         {
-          "name": "func_800480B8",
+          "name": "MarinaAnim_Dash",
           "size": "384",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8190,7 +8197,7 @@
           }
         },
         {
-          "name": "func_80048238",
+          "name": "MarinaAnim_TeleportIn",
           "size": "232",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8198,7 +8205,7 @@
           }
         },
         {
-          "name": "func_80048320",
+          "name": "MarinaAnim_TeleportOut",
           "size": "148",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8206,7 +8213,7 @@
           }
         },
         {
-          "name": "func_800483B4",
+          "name": "MarinaAnim_Humming",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8214,7 +8221,7 @@
           }
         },
         {
-          "name": "func_80048408",
+          "name": "MarinaAnim_Dance",
           "size": "420",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8222,7 +8229,7 @@
           }
         },
         {
-          "name": "func_800485AC",
+          "name": "MarinaAnim_Update",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8258,6 +8265,13 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2147780096"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "256",
+          "metadata": {
+            "virtual_address": "2148351408"
           }
         },
         {
@@ -8310,7 +8324,7 @@
           }
         },
         {
-          "name": "func_80048C94",
+          "name": "Marina_GetMoveSpeed",
           "size": "80",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8414,7 +8428,7 @@
           }
         },
         {
-          "name": "func_8004A8E0",
+          "name": "Marina_State57",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8422,7 +8436,7 @@
           }
         },
         {
-          "name": "func_8004A918",
+          "name": "Marina_State1",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8438,7 +8452,7 @@
           }
         },
         {
-          "name": "func_8004AA64",
+          "name": "Marina_State2",
           "size": "216",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8446,7 +8460,7 @@
           }
         },
         {
-          "name": "func_8004AB3C",
+          "name": "Marina_IdleState",
           "size": "1380",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8454,7 +8468,7 @@
           }
         },
         {
-          "name": "func_8004B0A0",
+          "name": "Marina_LandState",
           "size": "236",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8462,7 +8476,7 @@
           }
         },
         {
-          "name": "func_8004B18C",
+          "name": "Marina_WalkState",
           "size": "260",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8470,7 +8484,7 @@
           }
         },
         {
-          "name": "func_8004B290",
+          "name": "Marina_State9",
           "size": "180",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8478,7 +8492,7 @@
           }
         },
         {
-          "name": "func_8004B344",
+          "name": "Marina_GroundDashState",
           "size": "1332",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8494,7 +8508,7 @@
           }
         },
         {
-          "name": "func_8004BB08",
+          "name": "Marina_SlideDashState",
           "size": "1008",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8502,7 +8516,7 @@
           }
         },
         {
-          "name": "func_8004BEF8",
+          "name": "Marina_RollState",
           "size": "1796",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8510,7 +8524,7 @@
           }
         },
         {
-          "name": "func_8004C5FC",
+          "name": "Marina_AirDashState",
           "size": "2080",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8518,7 +8532,7 @@
           }
         },
         {
-          "name": "func_8004CE1C",
+          "name": "Marina_State20",
           "size": "804",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8566,7 +8580,7 @@
           }
         },
         {
-          "name": "func_8004E1D4",
+          "name": "Marina_State44",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8574,7 +8588,7 @@
           }
         },
         {
-          "name": "func_8004E1DC",
+          "name": "Marina_State45",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8582,7 +8596,7 @@
           }
         },
         {
-          "name": "func_8004E1E4",
+          "name": "Marina_TPInState",
           "size": "764",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8590,7 +8604,7 @@
           }
         },
         {
-          "name": "func_8004E4E0",
+          "name": "Marina_TPOutState",
           "size": "540",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8598,7 +8612,7 @@
           }
         },
         {
-          "name": "func_8004E6FC",
+          "name": "Marina_DebugAnim",
           "size": "1000",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8606,7 +8620,7 @@
           }
         },
         {
-          "name": "func_8004EAE4",
+          "name": "Marina_DebugGraphic",
           "size": "380",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8614,7 +8628,7 @@
           }
         },
         {
-          "name": "func_8004EC60",
+          "name": "Marina_DebugMove",
           "size": "176",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8639,7 +8653,7 @@
       }
     },
     {
-      "name": "4FEB0",
+      "name": "marina_grab",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "32880",
@@ -8693,7 +8707,7 @@
           }
         },
         {
-          "name": "func_8004F514",
+          "name": "Marina_DropActor",
           "size": "156",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8741,7 +8755,7 @@
           }
         },
         {
-          "name": "func_8004FDF8",
+          "name": "Marina_ShakeShake",
           "size": "696",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8749,7 +8763,7 @@
           }
         },
         {
-          "name": "func_800500B0",
+          "name": "Marina_IdleHoldingState",
           "size": "1372",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8757,7 +8771,7 @@
           }
         },
         {
-          "name": "func_8005060C",
+          "name": "Marina_LandHoldingState",
           "size": "320",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8765,7 +8779,7 @@
           }
         },
         {
-          "name": "func_8005074C",
+          "name": "Marina_WalkHoldingState",
           "size": "424",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8781,7 +8795,7 @@
           }
         },
         {
-          "name": "func_800509C0",
+          "name": "Marina_GroundDashHoldingState",
           "size": "1404",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8789,7 +8803,7 @@
           }
         },
         {
-          "name": "func_80050F3C",
+          "name": "Marina_SlideDashHoldingState",
           "size": "1000",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8821,7 +8835,7 @@
           }
         },
         {
-          "name": "func_80052780",
+          "name": "MarinaGrab_Noop",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8877,7 +8891,7 @@
           }
         },
         {
-          "name": "func_80053358",
+          "name": "MarinaGrab_Type4",
           "size": "884",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8909,7 +8923,7 @@
           }
         },
         {
-          "name": "func_80053DC8",
+          "name": "MarinaGrab_Type6",
           "size": "364",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8925,7 +8939,7 @@
           }
         },
         {
-          "name": "func_800541B8",
+          "name": "MarinaGrab_Type7",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8933,7 +8947,7 @@
           }
         },
         {
-          "name": "func_80054320",
+          "name": "MarinaGrab_Hurt",
           "size": "340",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8941,7 +8955,7 @@
           }
         },
         {
-          "name": "func_80054474",
+          "name": "MarinaGrab_Type13",
           "size": "264",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8965,7 +8979,7 @@
           }
         },
         {
-          "name": "func_80054E18",
+          "name": "MarinaGrab_Type20",
           "size": "440",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -8973,7 +8987,7 @@
           }
         },
         {
-          "name": "func_80054FD0",
+          "name": "MarinaGrab_Type21",
           "size": "440",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9021,7 +9035,7 @@
           }
         },
         {
-          "name": "func_8005552C",
+          "name": "MarinaThrow_Noop",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9037,7 +9051,7 @@
           }
         },
         {
-          "name": "func_800558F8",
+          "name": "MarinaThrow_Type3",
           "size": "820",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9045,7 +9059,7 @@
           }
         },
         {
-          "name": "func_80055C2C",
+          "name": "MarinaThrow_Type4",
           "size": "864",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9053,7 +9067,7 @@
           }
         },
         {
-          "name": "func_80055F8C",
+          "name": "MarinaThrow_Type5",
           "size": "864",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9061,7 +9075,7 @@
           }
         },
         {
-          "name": "func_800562EC",
+          "name": "MarinaThrow_Type6",
           "size": "864",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9069,7 +9083,7 @@
           }
         },
         {
-          "name": "func_8005664C",
+          "name": "MarinaThrow_Type7",
           "size": "864",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9093,7 +9107,7 @@
           }
         },
         {
-          "name": "func_80056F54",
+          "name": "Marina_ThrowState",
           "size": "200",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9109,7 +9123,7 @@
           }
         },
         {
-          "name": "func_80057268",
+          "name": "Marina_DropState",
           "size": "184",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9126,7 +9140,7 @@
       }
     },
     {
-      "name": "57F20",
+      "name": "marina_hit",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "8064",
@@ -9157,7 +9171,7 @@
       ],
       "functions": [
         {
-          "name": "func_80057320",
+          "name": "Marina_AddHealth",
           "size": "124",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9165,7 +9179,7 @@
           }
         },
         {
-          "name": "func_8005739C",
+          "name": "Marina_SubHealth",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9213,7 +9227,7 @@
           }
         },
         {
-          "name": "func_800584D4",
+          "name": "Marina_ShockState",
           "size": "696",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9237,7 +9251,7 @@
           }
         },
         {
-          "name": "func_8005896C",
+          "name": "MarinaHit_Noop",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9245,7 +9259,7 @@
           }
         },
         {
-          "name": "func_80058978",
+          "name": "MarinaHit_Type1",
           "size": "192",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9269,7 +9283,7 @@
           }
         },
         {
-          "name": "func_80058B68",
+          "name": "MarinaHit_Boom",
           "size": "188",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9277,7 +9291,7 @@
           }
         },
         {
-          "name": "func_80058C24",
+          "name": "MarinaHit_Shock",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9285,7 +9299,7 @@
           }
         },
         {
-          "name": "func_80058CAC",
+          "name": "MarinaHit_Type15",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9293,7 +9307,7 @@
           }
         },
         {
-          "name": "func_80058D3C",
+          "name": "MarinaHit_Type17",
           "size": "264",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9301,7 +9315,7 @@
           }
         },
         {
-          "name": "func_80058E44",
+          "name": "MarinaHit_Type18",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9309,7 +9323,7 @@
           }
         },
         {
-          "name": "func_80058EB0",
+          "name": "MarinaHit_Type19",
           "size": "164",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9317,7 +9331,7 @@
           }
         },
         {
-          "name": "func_80058F54",
+          "name": "MarinaHit_Type22",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9342,7 +9356,7 @@
       }
     },
     {
-      "name": "59EA0",
+      "name": "marina_effect",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "total_code": "12928",
@@ -9373,7 +9387,7 @@
       ],
       "functions": [
         {
-          "name": "func_800592A0",
+          "name": "MarinaEffect_SpawnParticle",
           "size": "316",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9381,7 +9395,7 @@
           }
         },
         {
-          "name": "func_800593DC",
+          "name": "MarinaEffect_ControlDiagram",
           "size": "584",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9397,7 +9411,7 @@
           }
         },
         {
-          "name": "func_80059ABC",
+          "name": "MarinaEffect_Grab",
           "size": "716",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9477,7 +9491,7 @@
           }
         },
         {
-          "name": "func_8005ACA8",
+          "name": "MarinaEffect_Noop",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9493,7 +9507,7 @@
           }
         },
         {
-          "name": "func_8005B164",
+          "name": "MarinaEffect_Dash",
           "size": "132",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9501,7 +9515,7 @@
           }
         },
         {
-          "name": "func_8005B1E8",
+          "name": "MarinaEffect_Type4",
           "size": "524",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9509,7 +9523,7 @@
           }
         },
         {
-          "name": "func_8005B3F4",
+          "name": "MarinaEffect_Type5",
           "size": "520",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9517,7 +9531,7 @@
           }
         },
         {
-          "name": "func_8005B5FC",
+          "name": "MarinaEffect_Type2",
           "size": "560",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9525,7 +9539,7 @@
           }
         },
         {
-          "name": "func_8005B82C",
+          "name": "MarinaEffect_Burn",
           "size": "524",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9533,7 +9547,7 @@
           }
         },
         {
-          "name": "func_8005BA38",
+          "name": "MarinaEffect_Invulnerability",
           "size": "392",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9541,7 +9555,7 @@
           }
         },
         {
-          "name": "func_8005BBC0",
+          "name": "MarinaEffect_Shock",
           "size": "312",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9549,7 +9563,7 @@
           }
         },
         {
-          "name": "func_8005BCF8",
+          "name": "MarinaEffect_Teleport",
           "size": "684",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9557,7 +9571,7 @@
           }
         },
         {
-          "name": "func_8005BFA4",
+          "name": "MarinaEffect_Update",
           "size": "244",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9565,7 +9579,7 @@
           }
         },
         {
-          "name": "func_8005C098",
+          "name": "MarinaEffect_Set",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9573,7 +9587,7 @@
           }
         },
         {
-          "name": "func_8005C0CC",
+          "name": "Marina_SpawnAfterImageOld",
           "size": "388",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9581,7 +9595,7 @@
           }
         },
         {
-          "name": "func_8005C250",
+          "name": "Marina_SpawnAfterImage",
           "size": "376",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9589,7 +9603,7 @@
           }
         },
         {
-          "name": "func_8005C3C8",
+          "name": "ActorUpdate_MarinaAfterImage",
           "size": "344",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9654,7 +9668,7 @@
           }
         },
         {
-          "name": "func_8005C6D0",
+          "name": "Math_AbsS32_2",
           "size": "20",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9662,7 +9676,7 @@
           }
         },
         {
-          "name": "func_8005C6E4",
+          "name": "Math_AbsF32",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -9670,7 +9684,7 @@
           }
         },
         {
-          "name": "func_8005C708",
+          "name": "RandModulo",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10334,7 +10348,7 @@
       ],
       "functions": [
         {
-          "name": "func_800600F0",
+          "name": "SpawnBeamThrow",
           "size": "268",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10342,7 +10356,7 @@
           }
         },
         {
-          "name": "func_800601FC",
+          "name": "ActorUpdate_BeamThrow",
           "size": "1936",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10350,7 +10364,7 @@
           }
         },
         {
-          "name": "func_8006098C",
+          "name": "ActorUpdate_Type51",
           "size": "1068",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -10358,7 +10372,7 @@
           }
         },
         {
-          "name": "func_80060DB8",
+          "name": "ActorUpdate_Lava",
           "size": "456",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13102,7 +13116,7 @@
           }
         },
         {
-          "name": "func_80078418",
+          "name": "Hovercraft_Update",
           "size": "1452",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13118,7 +13132,7 @@
           }
         },
         {
-          "name": "func_80078CC8",
+          "name": "Rocketeer_FireParticle",
           "size": "588",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13126,7 +13140,7 @@
           }
         },
         {
-          "name": "func_80078F14",
+          "name": "Rocketeer_PackFlame",
           "size": "64",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13350,7 +13364,7 @@
           }
         },
         {
-          "name": "func_8007AB44",
+          "name": "Rocketeer_Control",
           "size": "2760",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13358,7 +13372,7 @@
           }
         },
         {
-          "name": "func_8007B60C",
+          "name": "ActorUpdate_ClancerIcon",
           "size": "304",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13366,7 +13380,7 @@
           }
         },
         {
-          "name": "func_8007B73C",
+          "name": "Rocketeer_Update",
           "size": "5524",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -13613,7 +13627,7 @@
           }
         },
         {
-          "name": "func_8007F560",
+          "name": "ActorUpdate_TextBubble",
           "size": "1152",
           "fuzzy_match_percent": 100.0,
           "metadata": {
@@ -25955,7 +25969,7 @@
       "sections": [
         {
           "name": ".data",
-          "size": "5600",
+          "size": "5200",
           "metadata": {
             "virtual_address": "2148346064"
           }

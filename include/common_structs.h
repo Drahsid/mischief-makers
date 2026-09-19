@@ -55,7 +55,7 @@ typedef struct {
 // data on "static" objects (clanblocks, gems)
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2];
-    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_*
+    /* 0x80 */ u16 graphicIndex; // does NOT use GINDEX_* directly, instead using ((GINDEX_CLANBLOCKSQAURE - 2) + x * 2)
     /* 0x82 */ u16 align;
     /* 0x84 */ FixedCoord posX;
     /* 0x88 */ FixedCoord posY;
@@ -95,8 +95,8 @@ typedef struct {
     /* 0x12 */ s8 unk_12;
     /* 0x13 */ s8 unk_13;
     /* 0x14 */ u8 unk_14[0xC]; // unused?
-    /* 0x20 */ s32 unk_20; // stores a button input?
-    /* 0x24 */ s32 unk_24; // stores a button input?
+    /* 0x20 */ s32 buttonHold; // stores a button input
+    /* 0x24 */ s32 buttonPress; // stores a button input
     /* 0x28 */ u8 unk_28[0x18]; // unused?
     union {
         /* 0x40 */ s32 unk_40;
@@ -113,29 +113,29 @@ typedef struct {
 
     /* 0x50 */ s32 debugPosX; // set during Marina's "flymode" state with her global X position.
     /* 0x54 */ s32 debugPosY; // set during Marina's "flymode" state with her global Y position.
-    /* 0x58 */ s32 debugVal2; // another dislayed Debug value? unused.
-    /* 0x5C */ s32 debugVal3; // another dislayed Debug value? unused.
-    /* 0x60 */ u32 unk_60; 
+    /* 0x58 */ s32 debugVal2; // another dislayed Debug value. unused.
+    /* 0x5C */ s32 debugVal3; // another dislayed Debug value. unused.
+    /* 0x60 */ u32 unk_60; // related to throwing ACTORTYPE_BEAMTHROW. effects x-position.
     /* 0x64 */ u32 marina_Flags_098; // stores Marina's "flags_098" value
     /* 0x68 */ s32 marina_Unk_0F8; // stores Marina's "unk_0F8" value when ACTOR_FLAG3_UNK1 is set.
     /* 0x6C */ u32 marina_Unk_0FC; // stores Marina's "unk_0FC" value when ACTOR_FLAG3_UNK1 is set.
-    /* 0x70 */ u16 unk_70; // index of "held" actor?
+    /* 0x70 */ u16 heldIndex; // index of "held" actor
     /* 0x72 */ u8 unk_72[6]; // unused?
     /* 0x78 */ u32 flags; // bitfield. uses PlayerDataFlags
-    /* 0x7C */ u32 unk_7C;
+    /* 0x7C */ u32 frames; // AND'd/modulo'd for Marina's effects
 } PlayerData;
 
-// D_800BE5F4 is treated as both word and 4 bytes.
+// gMarinaAnim is treated as both word and 4 bytes.
 typedef union {
-    u32 unk_00_u32;
-    s32 unk_00_s32; // sometimes only matches as signed word.
+    u32 anim_u32;
+    s32 anim_s32; // sometimes only matches as signed word.
     struct {
-        u8 unk_00;
-        u8 unk_01;
-        u8 unk_02;
-        u8 unk_03;
+        u8 unk_00; // set, but not read by itself.
+        u8 timer;
+        u8 state;
+        u8 anim; // AND'd from word field instead
     };
-} UnkStruct_D_800BE5F4;
+} MarinaAnim;
 
 // ActorSpawnRecord is not used directly in code, but represents the layout of u16[]
 typedef struct {

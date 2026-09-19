@@ -1953,11 +1953,13 @@ void func_8001E9DC(u16 arg0, u16 arg1) {
 }
 
 void func_8001EADC(u16 arg0, u16 arg1) {
-    if ((gActors[arg1].unk_0DE == 0xB) || (gActors[arg1].unk_0DE == 0xE) || (gActors[arg1].unk_0DE == 0xF)) {
+    if ((gActors[arg1].grabType == GRABTYPE_11) ||
+        (gActors[arg1].grabType == GRABTYPE_14) ||
+        (gActors[arg1].grabType == GRABTYPE_15)) {
         gActors[arg1].flags_098 &= ~ACTOR_FLAG3_UNK1;
         gActors[arg0].flags_098 ^= (ACTOR_FLAG3_UNK1 | ACTOR_FLAG3_UNK0);
-        gActors[arg0].unk_0DC = gActors[arg0].unk_0DA;
-        gActors[arg0].unk_0DD = gActors[arg0].unk_0DB;
+        gActors[arg0].hitByFlags = gActors[arg0].hitFlags;
+        gActors[arg0].hitByType = gActors[arg0].hitType;
     }
     else {
         func_8001E9DC(arg0, arg1);
@@ -1965,9 +1967,9 @@ void func_8001EADC(u16 arg0, u16 arg1) {
 }
 
 void func_8001EB8C(u16 arg0, u16 arg1) {
-    gActors[arg1].unk_0DC = gActors[arg0].unk_0DA;
-    gActors[arg1].unk_0DD = gActors[arg0].unk_0DB;
-    D_800CA1C0[gActors[arg0].unk_0DB](arg0, arg1);
+    gActors[arg1].hitByFlags = gActors[arg0].hitFlags;
+    gActors[arg1].hitByType = gActors[arg0].hitType;
+    D_800CA1C0[gActors[arg0].hitType](arg0, arg1);
 }
 
 void func_8001EC1C(void) {
@@ -2029,41 +2031,41 @@ void func_8001EC1C(void) {
         for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
             index_s1 = spBB8[index_s4];
             if (index_s1 != actor_index) {
-                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) &&
+                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].hitType == HITTYPE_19))) && (sp738[index_s4] < sp858[index_fp]) &&
                     (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp]) && (sp78[index_fp] < sp3D8[index_s4])) {
 
                     if (index_s4 == 0) {
-                        if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
+                        if (((gActors[index_s1].hitType != HITTYPE_21) || (gActors[actor_index].actorType != ACTORTYPE_23)) &&
                             (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
                             gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK11;
                         }
                     }
                     else {
                         do {
-                            if ((gActors[actor_index].unk_0DF & 0x20) & 0xFF) { // fakematch? `& 0xFF` for regalloc
-                                if ((gActors[index_s1].unk_0DA & 0x20) == 0) {
+                            if ((gActors[actor_index].unk_0DF & ACTOR0DF_5) & 0xFF) { // fakematch? `& 0xFF` for regalloc
+                                if ((gActors[index_s1].hitFlags & HITFLAG_5) == 0) {
                                     break;
                                 }
 
-                                if (gActors[index_s1].unk_0DB == 0x12) {
+                                if (gActors[index_s1].hitType == HITTYPE_18) {
                                     gActors[index_s1].unk_0F8.raw = gActors[actor_index].velocityX.raw;
                                     gActors[index_s1].unk_0FC.raw = gActors[actor_index].velocityY.raw;
                                 }
                             }
-                            else if (gActors[index_s1].unk_0DB == 0x12) {
+                            else if (gActors[index_s1].hitType == HITTYPE_18) {
                                 break;
                             }
 
-                            if (gActors[index_s1].unk_0DB < 0x15) {
+                            if (gActors[index_s1].hitType < HITTYPE_21) {
                                 // This unreachable branch preserves IDO's reload before the contact-owner store.
                                 if ((!gActors) && (!gActors)) {
                                 }
                                 gActors[index_s1].parentIndex = actor_index;
                             }
-                            if (((gActors[index_s1].unk_0DB != 0x15) || (gActors[actor_index].actorType != 0x17)) &&
+                            if (((gActors[index_s1].hitType != HITTYPE_21) || (gActors[actor_index].actorType != ACTORTYPE_23)) &&
                                 (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
                                 gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
-                                if (gActors[index_s1].unk_0DB < 0x17) {
+                                if (gActors[index_s1].hitType < HITTYPE_23) {
                                     gActors[actor_index].parentIndex = index_s1;
                                     gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
                                     gActors[actor_index].pendingDamage += gActors[index_s1].damage;
@@ -2121,7 +2123,7 @@ void func_8001EC1C(void) {
         for (index_fp = 0; index_fp < count_a2; index_fp++) {
             actor_index = spA98[index_fp];
             if ((actor_index != 0xFFFF) && (index_s1 != actor_index)) {
-                if (gActors[actor_index].unk_0DB != 0x18) {
+                if (gActors[actor_index].hitType != HITTYPE_24) {
                     if (gActors[actor_index].posZ.raw >= var_t2) {
                         spCDE = ABS(gActors[index_s1].posX.whole - gActors[actor_index].posX.whole) +
                                 ABS(gActors[index_s1].posY.whole - gActors[actor_index].posY.whole);
@@ -2142,7 +2144,7 @@ void func_8001EC1C(void) {
                             }
                             break;
                         }
-                        else if (gActors[actor_index].unk_0DB == 0x18) {
+                        else if (gActors[actor_index].hitType == HITTYPE_24) {
                             gActors[actor_index].parentIndex = index_s1;
                             gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK0;
                         }
@@ -2193,17 +2195,17 @@ void func_8001EC1C(void) {
         for (index_s4 = 0; index_s4 < count_t0; index_s4++) {
             index_s1 = spBB8[index_s4];
             if (index_s1 != actor_index) {
-                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].unk_0DB == 0x13))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
+                if (((gActors[actor_index].iFrames == 0) || ((gActors[index_s1].hitType == HITTYPE_19))) && (sp738[index_s4] < sp858[index_fp]) && (sp618[index_fp] < sp978[index_s4]) && (sp198[index_s4] < sp2B8[index_fp])) {
                     if (sp78[index_fp] < sp3D8[index_s4]) {
                         gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
-                        if ((gActors[index_s1].unk_0DB < 0x14) || (gActors[index_s1].unk_0DB == 0x18)) {
+                        if ((gActors[index_s1].hitType < HITTYPE_20) || (gActors[index_s1].hitType == HITTYPE_24)) {
                             gActors[index_s1].parentIndex = actor_index;
                         }
-                        if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].unk_0DA & 4)) {
+                        if ((actor_index == 0) && !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) && (gActors[index_s1].hitFlags & HITFLAG_2)) {
                             gActors[actor_index].iFrames = 60;
                         }
-                        if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].unk_0DB == 0x13)) {
-                            if (gActors[index_s1].unk_0DB < 0x14) {
+                        if ((actor_index != 0) || !(gActors[actor_index].flags & ACTOR_FLAG_UNK15) || (gActors[index_s1].hitType == HITTYPE_19)) {
+                            if (gActors[index_s1].hitType < HITTYPE_20) {
                                 gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
                                 gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                                 gActors[actor_index].parentIndex = index_s1;
@@ -2265,7 +2267,7 @@ u8 Actor_CheckPlatforms(u16 actor_index, s16 x, s16 y) {
     u16 index;
 
     var_a3 = actor_index;
-    if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_UNK9 | ACTOR_FLAG3_UNK10))) {
+    if ((gActors[actor_index].flags & ACTOR_FLAG_ATTACHED) || (gActors[actor_index].flags_098 & (ACTOR_FLAG3_GRAB | ACTOR_FLAG3_THROWN))) {
         var_a3 = gActors[actor_index].parentIndex;
     }
     
@@ -2324,6 +2326,7 @@ u8 func_8001FCA0(u16 actor_index, s16 x, s16 y) {
     return 0;
 }
 
+// reset Red clanblocks?
 void func_8001FEB0(void) {
     u32 index;
 
@@ -2343,14 +2346,14 @@ void func_8001FF28(void) {
 }
 
 void func_8001FF30(void) {
-    gPlayerActor.flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
+    gPlayerActor.flags_098 &= ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB;
 }
 
 void func_8001FF50(void) {
     u16 index;
 
     for (index = 1; index < 192; index++) {
-        gActors[index].flags_098 &= ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9;
+        gActors[index].flags_098 &= ACTOR_FLAG3_WARPING | ACTOR_FLAG3_UNK20 | ACTOR_FLAG3_UNK19 | ACTOR_FLAG3_THROWN | ACTOR_FLAG3_GRAB;
     }
 }
 

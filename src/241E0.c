@@ -91,7 +91,7 @@ void CameraUpdate_Leo(void);
 void CameraUpdate_TheDayBefore(void);
 void CameraUpdate_Scene34(void);
 void CameraUpdate_SnowstormMaze(void);
-void CameraUpdate_WesternWorld(void);
+void CameraUpdate_SearinSwing(void);
 void CameraUpdate_World4B(void);
 void CameraUpdate_TightropeRide(void);
 void CameraUpdate_MagmaRafts(void);
@@ -225,184 +225,184 @@ u16 D_800CC228[] = {
 };
 u8 D_800CC428 = 0;
 CameraFunc gCameraInits[] = {
-    CameraInit_World1,
-    CameraInit_World2,
-    CameraInit_Scene02,
-    CameraInit_Scene03,
-    CameraInit_Scene04,
-    CameraInit_MigenBrawl,
-    func_800245B4,
-    CameraInit_Scene07,
-    CameraInit_Title,
-    CameraInit_Lunar,
-    CameraInit_World4A,
-    CameraInit_Intro,
-    CameraInit_World3B,
-    CameraInit_SeasickClimb,
-    func_800245B4,
-    CameraInit_AthleticGames,
-    CameraInit_AthleticGames,
-    CameraInit_AthleticGames,
-    CameraInit_AthleticGames,
-    CameraInit_Beastector,
-    CameraInit_CounterAttack,
-    CameraInit_Splashscreen,
-    CameraInit_Merco_Trapped,
-    CameraInit_World4A,
-    CameraInit_World4B,
-    CameraInit_Beastector,
-    CameraInit_PhoenixGamma,
-    CameraInit_Beastector,
-    CameraInit_Leo,
-    CameraInit_AthleticGames,
-    CameraInit_AthleticGames,
-    CameraInit_World3B,
-    CameraInit_World3B,
-    CameraInit_TheDayBefore,
-    CameraInit_Scene34,
-    CameraInit_World3B,
-    CameraInit_SnowstormMaze,
-    CameraInit_World2,
-    CameraInit_World2,
-    CameraInit_World4A,
-    CameraInit_World4B,
-    CameraInit_World4B,
-    CameraInit_World4B,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4B,
-    CameraInit_World4B,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_World2,
-    CameraInit_World2,
-    CameraInit_TightropeRide,
-    CameraInit_MagmaRafts,
-    CameraInit_Scene63,
-    CameraInit_Leo,
-    CameraInit_Leo,
-    CameraInit_Leo,
-    CameraInit_World1,
-    CameraInit_World1,
-    CameraInit_Vertigo,
-    CameraInit_Freefall,
-    CameraInit_World3,
-    CameraInit_World3,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_World4A,
-    CameraInit_ClanceWar2,
-    CameraInit_BeesTheOne,
-    CameraInit_Leo,
-    CameraInit_CounterAttack,
-    CameraInit_CounterAttack,
-    CameraInit_CounterAttack,
-    CameraInit_CounterAttack,
-    CameraInit_CounterAttack,
-    CameraInit_Merco_Trapped,
-    CameraInit_Merco_Trapped,
-    CameraInit_Merco_Trapped
+    CameraInit_World1,           // SCENE_MEETMARINA
+    CameraInit_World2,           // SCENE_SEAOFLAVA
+    CameraInit_Scene02,          // SCENE_UNK02
+    CameraInit_Scene03,          // SCENE_UNK03
+    CameraInit_Scene04,          // SCENE_UNK04
+    CameraInit_MigenBrawl,       // SCENE_MIGENBRAWL
+    func_800245B4,               // SCENE_ENDING
+    CameraInit_Scene07,          // SCENE_UNK07
+    CameraInit_Title,            // SCENE_TITLE
+    CameraInit_Lunar,            // SCENE_LUNAR
+    CameraInit_World4A,          // SCENE_TARUS
+    CameraInit_Intro,            // SCENE_INTRO
+    CameraInit_World3B,          // SCENE_CLANCEWAR
+    CameraInit_SeasickClimb,     // SCENE_SEASICKCLIMB
+    func_800245B4,               // SCENE_DEMOWORLD1
+    CameraInit_AthleticGames,    // SCENE_DAYOFHURDLE
+    CameraInit_AthleticGames,    // SCENE_DAYOF0
+    CameraInit_AthleticGames,    // SCENE_DAYOF1
+    CameraInit_AthleticGames,    // SCENE_DAYOF2
+    CameraInit_Beastector,       // SCENE_CERBERUSALPHA
+    CameraInit_CounterAttack,    // SCENE_COUNTERATTACK
+    CameraInit_Splashscreen,     // SCENE_SPLASHSCREEN
+    CameraInit_Merco_Trapped,    // SCENE_TRAPPED
+    CameraInit_World4A,          // SCENE_RESCUEACT1
+    CameraInit_World4B,          // SCENE_ASTERSTRYKE
+    CameraInit_Beastector,       // SCENE_SATSQUATCHBETA
+    CameraInit_PhoenixGamma,     // SCENE_PHONENIXGAMMA
+    CameraInit_Beastector,       // SCENE_FINALBATTLE
+    CameraInit_Leo,              // SCENE_DEMOWORLD3
+    CameraInit_AthleticGames,    // SCENE_CATASTROPHE
+    CameraInit_AthleticGames,    // SCENE_UNK30
+    CameraInit_World3B,          // SCENE_CHILLYDOG
+    CameraInit_World3B,          // SCENE_GOMARZEN64
+    CameraInit_TheDayBefore,     // SCENE_DAYBEFORE
+    CameraInit_Scene34,          // SCENE_UNK34
+    CameraInit_World3B,          // SCENE_MISSLESURF
+    CameraInit_SnowstormMaze,    // SCENE_SNOWSTORMMAZE
+    CameraInit_World2,           // SCENE_SINKORFLOAT
+    CameraInit_World2,           // SCENE_SEARINSWING
+    CameraInit_World4A,          // SCENE_TOADLYRAW
+    CameraInit_World4B,          // SCENE_7CLANCERKIDS
+    CameraInit_World4B,          // SCENE_RESCUEACT2
+    CameraInit_World4B,          // SCENE_ROLLINGROCK
+    CameraInit_World4A,          // SCENE_UNK43
+    CameraInit_World4A,          // SCENE_UNK44
+    CameraInit_World4A,          // SCENE_UNK45
+    CameraInit_World4A,          // SCENE_MOLEYCOW
+    CameraInit_World4B,          // SCENE_ASTERSMAZE
+    CameraInit_World4B,          // SCENE_GHOSTCATCHER
+    CameraInit_World4A,          // SCENE_UNK49
+    CameraInit_World4A,          // SCENE_UNK50
+    CameraInit_World4A,          // SCENE_UNK51
+    CameraInit_World1,           // SCENE_3CLANCERKIDS
+    CameraInit_World1,           // SCENE_CLANBALLLAND
+    CameraInit_World1,           // SCENE_WESTERNWORLD
+    CameraInit_World1,           // SCENE_SPIKELAND
+    CameraInit_World1,           // SCENE_WORMINUP
+    CameraInit_World1,           // SCENE_VOLCANO
+    CameraInit_World1,           // SCENE_CRISISNEPTON
+    CameraInit_World2,           // SCENE_FLAMBEE
+    CameraInit_World2,           // SCENE_HOTRUSH
+    CameraInit_TightropeRide,    // SCENE_TIGHTROPERIDE
+    CameraInit_MagmaRafts,       // SCENE_MAGMARAFTS
+    CameraInit_Scene63,          // SCENE_UNK63
+    CameraInit_Leo,              // SCENE_DEMOWORLD4
+    CameraInit_Leo,              // SCENE_DEMOWORLD5
+    CameraInit_Leo,              // SCENE_DEMOFINAL
+    CameraInit_World1,           // SCENE_BLOCKMANRISES
+    CameraInit_World1,           // SCENE_MEETCALINA
+    CameraInit_Vertigo,          // SCENE_VERTIGO
+    CameraInit_Freefall,         // SCENE_FREEFALL
+    CameraInit_World3,           // SCENE_CLANBALLLIFT
+    CameraInit_World3,           // SCENE_CLANPOTSHAKE
+    CameraInit_World4A,          // SCENE_UNK73
+    CameraInit_World4A,          // SCENE_UNK74
+    CameraInit_World4A,          // SCENE_UNK75
+    CameraInit_World4A,          // SCENE_UNK76
+    CameraInit_ClanceWar2,       // SCENE_CLANCEWAR2
+    CameraInit_BeesTheOne,       // SCENE_BEESTHEONE
+    CameraInit_Leo,              // SCENE_INNERSTRUGGLE
+    CameraInit_CounterAttack,    // SCENE_UNK80
+    CameraInit_CounterAttack,    // SCENE_UNK81
+    CameraInit_CounterAttack,    // SCENE_UNK82
+    CameraInit_CounterAttack,    // SCENE_UNK83
+    CameraInit_CounterAttack,    // SCENE_UNK84
+    CameraInit_Merco_Trapped,    // SCENE_MERCO
+    CameraInit_Merco_Trapped,    // SCENE_UNK86
+    CameraInit_Merco_Trapped     // SCENE_UNK87
 };
 CameraFunc gCameraUpdates[] = {
-    CameraUpdate_World1,
-    CameraUpdate_World2,
-    CameraUpdate_Scene02,
-    CameraUpdate_Scene03,
-    CameraUpdate_Scene04,
-    CameraUpdate_MigenBrawl,
-    func_800245F0,
-    CameraUpdate_Scene07,
-    CameraUpdate_Title,
-    CameraUpdate_Lunar,
-    CameraUpdate_World4A,
-    CameraUpdate_Intro,
-    CameraUpdate_World3B,
-    CameraUpdate_SeasickClimb,
-    func_800245F0,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_Beastector,
-    func_800249B8,
-    CameraUpdate_Splashscreen,
-    CameraUpdate_Merco_Trapped,
-    CameraUpdate_World4A,
-    CameraUpdate_AstersTryke,
-    CameraUpdate_Beastector,
-    CameraUpdate_PhoenixGamma,
-    CameraUpdate_Beastector,
-    CameraUpdate_Leo,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_AthleticGames,
-    CameraUpdate_World3B,
-    CameraUpdate_World3B,
-    CameraUpdate_TheDayBefore,
-    CameraUpdate_Scene34,
-    CameraUpdate_World3B,
-    CameraUpdate_SnowstormMaze,
-    CameraUpdate_World2,
-    CameraUpdate_WesternWorld,
-    CameraUpdate_World4A,
-    CameraUpdate_World4B,
-    CameraUpdate_World4B,
-    CameraUpdate_World4B,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4B,
-    CameraUpdate_World4B,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_World2,
-    CameraUpdate_World2,
-    CameraUpdate_TightropeRide,
-    CameraUpdate_MagmaRafts,
-    CameraUpdate_Scene63,
-    CameraUpdate_Leo,
-    CameraUpdate_Leo,
-    CameraUpdate_Leo,
-    CameraUpdate_World1,
-    CameraUpdate_World1,
-    CameraUpdate_Vertigo,
-    CameraUpdate_Freefall,
-    CameraUpdate_ClanballLift,
-    CameraUpdate_SnowstormMaze,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_World4A,
-    CameraUpdate_ClanceWar2,
-    CameraUpdate_BeesTheOne,
-    CameraUpdate_Leo,
-    func_800249B8,
-    func_800249B8,
-    func_800249B8,
-    func_800249B8,
-    func_800249B8,
-    CameraUpdate_Merco_Trapped,
-    CameraUpdate_Merco_Trapped,
-    CameraUpdate_Merco_Trapped
+    CameraUpdate_World1,         // SCENE_MEETMARINA
+    CameraUpdate_World2,         // SCENE_SEAOFLAVA
+    CameraUpdate_Scene02,        // SCENE_UNK02
+    CameraUpdate_Scene03,        // SCENE_UNK03
+    CameraUpdate_Scene04,        // SCENE_UNK04
+    CameraUpdate_MigenBrawl,     // SCENE_MIGENBRAWL
+    func_800245F0,               // SCENE_ENDING
+    CameraUpdate_Scene07,        // SCENE_UNK07
+    CameraUpdate_Title,          // SCENE_TITLE
+    CameraUpdate_Lunar,          // SCENE_LUNAR
+    CameraUpdate_World4A,        // SCENE_TARUS
+    CameraUpdate_Intro,          // SCENE_INTRO
+    CameraUpdate_World3B,        // SCENE_CLANCEWAR
+    CameraUpdate_SeasickClimb,   // SCENE_SEASICKCLIMB
+    func_800245F0,               // SCENE_DEMOWORLD1
+    CameraUpdate_AthleticGames,  // SCENE_DAYOFHURDLE
+    CameraUpdate_AthleticGames,  // SCENE_DAYOF0
+    CameraUpdate_AthleticGames,  // SCENE_DAYOF1
+    CameraUpdate_AthleticGames,  // SCENE_DAYOF2
+    CameraUpdate_Beastector,     // SCENE_CERBERUSALPHA
+    func_800249B8,               // SCENE_COUNTERATTACK
+    CameraUpdate_Splashscreen,   // SCENE_SPLASHSCREEN
+    CameraUpdate_Merco_Trapped,  // SCENE_TRAPPED
+    CameraUpdate_World4A,        // SCENE_RESCUEACT1
+    CameraUpdate_AstersTryke,    // SCENE_ASTERSTRYKE
+    CameraUpdate_Beastector,     // SCENE_SATSQUATCHBETA
+    CameraUpdate_PhoenixGamma,   // SCENE_PHONENIXGAMMA
+    CameraUpdate_Beastector,     // SCENE_FINALBATTLE
+    CameraUpdate_Leo,            // SCENE_DEMOWORLD3
+    CameraUpdate_AthleticGames,  // SCENE_CATASTROPHE
+    CameraUpdate_AthleticGames,  // SCENE_UNK30
+    CameraUpdate_World3B,        // SCENE_CHILLYDOG
+    CameraUpdate_World3B,        // SCENE_GOMARZEN64
+    CameraUpdate_TheDayBefore,   // SCENE_DAYBEFORE
+    CameraUpdate_Scene34,        // SCENE_UNK34
+    CameraUpdate_World3B,        // SCENE_MISSLESURF
+    CameraUpdate_SnowstormMaze,  // SCENE_SNOWSTORMMAZE
+    CameraUpdate_World2,         // SCENE_SINKORFLOAT
+    CameraUpdate_SearinSwing,    // SCENE_SEARINSWING
+    CameraUpdate_World4A,        // SCENE_TOADLYRAW
+    CameraUpdate_World4B,        // SCENE_7CLANCERKIDS
+    CameraUpdate_World4B,        // SCENE_RESCUEACT2
+    CameraUpdate_World4B,        // SCENE_ROLLINGROCK
+    CameraUpdate_World4A,        // SCENE_UNK43
+    CameraUpdate_World4A,        // SCENE_UNK44
+    CameraUpdate_World4A,        // SCENE_UNK45
+    CameraUpdate_World4A,        // SCENE_MOLEYCOW
+    CameraUpdate_World4B,        // SCENE_ASTERSMAZE
+    CameraUpdate_World4B,        // SCENE_GHOSTCATCHER
+    CameraUpdate_World4A,        // SCENE_UNK49
+    CameraUpdate_World4A,        // SCENE_UNK50
+    CameraUpdate_World4A,        // SCENE_UNK51
+    CameraUpdate_World1,         // SCENE_3CLANCERKIDS
+    CameraUpdate_World1,         // SCENE_CLANBALLLAND
+    CameraUpdate_World1,         // SCENE_WESTERNWORLD
+    CameraUpdate_World1,         // SCENE_SPIKELAND
+    CameraUpdate_World1,         // SCENE_WORMINUP
+    CameraUpdate_World1,         // SCENE_VOLCANO
+    CameraUpdate_World1,         // SCENE_CRISISNEPTON
+    CameraUpdate_World2,         // SCENE_FLAMBEE
+    CameraUpdate_World2,         // SCENE_HOTRUSH
+    CameraUpdate_TightropeRide,  // SCENE_TIGHTROPERIDE
+    CameraUpdate_MagmaRafts,     // SCENE_MAGMARAFTS
+    CameraUpdate_Scene63,        // SCENE_UNK63
+    CameraUpdate_Leo,            // SCENE_DEMOWORLD4
+    CameraUpdate_Leo,            // SCENE_DEMOWORLD5
+    CameraUpdate_Leo,            // SCENE_DEMOFINAL
+    CameraUpdate_World1,         // SCENE_BLACKMANRISES
+    CameraUpdate_World1,         // SCENE_MEETCALINA
+    CameraUpdate_Vertigo,        // SCENE_VERTIGO
+    CameraUpdate_Freefall,       // SCENE_FREEFALL
+    CameraUpdate_ClanballLift,   // SCENE_CLANBALLLLIFT
+    CameraUpdate_SnowstormMaze,  // SCENE_CLANPOTSHAKE
+    CameraUpdate_World4A,        // SCENE_UNK73
+    CameraUpdate_World4A,        // SCENE_UNK74
+    CameraUpdate_World4A,        // SCENE_UNK75
+    CameraUpdate_World4A,        // SCENE_UNK76
+    CameraUpdate_ClanceWar2,     // SCENE_CLANCEWAR2
+    CameraUpdate_BeesTheOne,     // SCENE_BEESTHEONE
+    CameraUpdate_Leo,            // SCENE_INNERSTRUGGLE
+    func_800249B8,               // SCENE_UNK80
+    func_800249B8,               // SCENE_UNK81
+    func_800249B8,               // SCENE_UNK82
+    func_800249B8,               // SCENE_UNK83
+    func_800249B8,               // SCENE_UNK84
+    CameraUpdate_Merco_Trapped,  // SCENE_MERCO
+    CameraUpdate_Merco_Trapped,  // SCENE_UNK86
+    CameraUpdate_Merco_Trapped   // SCENE_UNK87
 };
 // position and bounds for player per scene
 // {BoundX0, BoundX1, BoundY0, BoundY1, ScreenX, PlayerX, ScreenY, PlayerY}
@@ -651,7 +651,7 @@ void CameraUpdate_World2(void) {
 }
 
 
-void CameraUpdate_WesternWorld(void) {
+void CameraUpdate_SearinSwing(void) {
     CameraUpdate_World2();
     D_800BE544 = 0x8000;
     D_800BE548.raw = FIXED_UNIT(8.0);

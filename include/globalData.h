@@ -137,12 +137,12 @@ extern u16 gCurrentScene; // current "scene" of game. uses SCENE_* #define
 extern u16 gStartButtonOnly; // Start button is AND'd from input
 extern FixedCoord gPlayerPosX; // player's global x-position
 extern FixedCoord gPlayerPosY; // player's global y-position
-extern s16 D_800BE5E0; 
-extern s16 D_800BE5E4; 
+extern s16 gPlayerShockX; // displayed X-offset when Marina is shocked
+extern s16 gPlayerShockY; // displayed Y-offset when Marina is shocked
 extern FixedCoord gPlayerVelXMirror; // copy of player's x-velocity
 extern FixedCoord gPlayerVelYMirror; // copy of player's y-velocity
 extern s16 D_800BE5F0; // unknown. always 0.
-extern UnkStruct_D_800BE5F4 D_800BE5F4; // sometimes treated as a u32, s32, or u8[4]
+extern MarinaAnim gMarinaAnim; // manages automated animations for Marina, like teleporting or Dashing into a stage
 extern u16 D_800BE5F8; // zero'd in Marina_Reset, otherwise unused.
 extern u16 D_800BE5FC; 
 extern u32 D_800BE600; // unused
@@ -212,8 +212,8 @@ extern u16 D_800BE6FC;
 extern u16 gCurrentFramebufferIndex; // index of current frame buffer.
 extern u16 D_800BE704; // seems to detrmine camera x-speed.
 extern u16 D_800BE708; // seems to detrmine camera y-speed.
-extern u8 D_800BE70C; // changes some parameter of actor rendering.
-extern u8 D_800BE710; // changes some parameter of rendering.
+extern u8 D_800BE70C; // changes dlist used for rendering 3D actors
+extern u8 D_800BE710; // if set, widens active range of Static objects (Clanblocks, gems). Set for vertical stages and part of "Trapped"
 extern u16 D_800BE714; // boolean related to loading Marina's graphics
 extern u32 D_800BE718; // unused.
 extern s32 D_800BE71C; // used for "Seasick Climb"'s camera movement calculation.

@@ -43,21 +43,19 @@ extern u8 func_80048C28(s32);
 extern u16 func_8004571C(void);
 extern void func_80045D84(u32 arg0, u32 arg1);
 extern void func_80052C4C(u16 actor_0, u16 actor_1);
-extern s32 func_80057320(u16, s16);
-extern s32 func_8005739C(u16 arg0, s16 arg1);
+extern s32 Marina_AddHealth(u16, s16);
+extern s32 Marina_SubHealth(u16 arg0, s16 arg1);
 extern s32 func_800575C0(u16 actor_index);
 extern void func_80058924(u16);
-extern u16 func_800592A0(u16 actor_index, s32* arg1);
 extern u16 func_80059D88(u16 actor_index, s32* arg1, s32 unused_arg2, f32 scale);
 extern u16 func_80059F30(u16 actor_index, s32* arg1, f32 scale, s32 arg3);
 extern u16 func_8005A068(u16 actor_index, s32* arg1, s32 angle, f32 scale, s32 arg4);
 extern u16 func_8005A4B0(u16 actor_index, f32 scale);
-extern void func_8005C098(u16, s32);
-extern u16 func_8005C250(u16 actor_index);
+extern u16 Marina_SpawnAfterImage(u16 actor_index);
 extern void func_8005C520(s8, s8);
 extern s32 func_8005C550(u16 actor_index, s16 arg1);
-extern s32 func_8005C6D0(s32);
-extern s32 func_8005C708(s32);
+extern s32 Math_AbsS32_2(s32);
+extern s32 RandModulo(s32);
 extern u16 func_8005C774(s32);
 extern void CameraShake(s32 mag, s32 time); // shake camera vertically.
 extern u8 func_8005C870(u8);
@@ -122,7 +120,7 @@ extern void func_80030A24(u16 actor_index);
 extern void func_80030B0C(u16);
 extern void func_80030B84(u16);
 extern void func_80031D58(u16 actor_0, u16 actor_1);
-extern u16 func_80032E60(u16 actor_index0, u16 arg1, u16 arg2, f32 arg3, s16 pos_z, f32 scale_x, f32 scale_y);
+extern u16 func_80032E60(u16 actor_index0, u16 graphic_index, u16 angle_off, f32 mag, s16 pos_z, f32 scale_x, f32 scale_y);
 extern void func_800330A4(u16 actor_index0, u16 actor_index1, u16 arg2, f32 arg3);
 extern void func_80033204(u16 arg0, u16 arg1, u16 arg2, f32 arg3, u16 arg4);
 extern void func_800340CC(u16 actor_index, s16 arg1, u16 arg2);
@@ -167,7 +165,7 @@ extern void func_80047C98(void);
 extern void func_80047CCC(void);
 extern s32 func_800486F4(void);
 extern s32 func_80048CE4(void);
-extern s32 func_80048C94(s32);
+extern s32 Marina_GetMoveSpeed(s32);
 extern s32 func_800490BC(u16, s32, s16);
 extern void Marina_State0(u16 actor_index);
 extern u16 func_8004F614(u16 actor_index, s32 arg1, s32 arg2, s16 arg3);
@@ -176,10 +174,6 @@ extern void func_8005DF40(s16 arg0, s16 arg1);
 extern void func_8005E09C(s32 arg0, s32 arg1);
 
 extern u16 SpawnTextBubble(u16 index, u16* text, s16 off_x, s16 off_y, s32 time);
-extern void func_8008310C(void);
-extern void func_800831D0(s16, s16, s16, s16);
-extern void func_80083454(void);
-extern void func_800836A0(s16 arg0, s16 arg1, u16* arg2, s16 arg3);
 extern void func_8008C4E0(u16 actor_index);
 extern void func_8008C710(u16 arg0);
 extern void Pause_InitBars(void);
@@ -245,8 +239,6 @@ extern void WorldMap_UpdateSaveFile2(void); // used in "Ending" code
 extern void GameState_Gameplay(void);
 
 void OverlayABI_Slot2_fn32_void(void);
-
-extern void BossDeathExplode(s32 arg0, u16 actor_index, f32 scale_x, f32 scale_y);
 
 extern void SpawnStageClear(u16 flags, u16* spawn_table);
 

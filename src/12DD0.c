@@ -11,7 +11,7 @@ void Marina_Reset(void) {
     gPlayerActor.posZ.whole = 1;
     gPlayerVelXMirror.raw = 0;
     gPlayerVelYMirror.raw = 0;
-    gPlayerActor.unk_0CC = 0;
+    gPlayerActor.actorHitIndex = 0;
     gStartButtonOnly = FALSE;
     D_800BE5F0 = 0;
     D_800BE5F8 = 0;
@@ -85,7 +85,7 @@ void Marina_ScreenXScroll(void) {
     D_800BE61C = 0;
     temp_x = (gScreenPosTargetX.raw + D_800BE61C - gScreenPosCurrentX.raw) / D_800BE704;
     step_x.raw = temp_x;
-    temp_x = func_8005C6D0(temp_x);
+    temp_x = Math_AbsS32_2(temp_x);
     if (temp_x < FIXED_UNIT(1.0)) {
         temp_x = FIXED_UNIT(1.0);
     }
@@ -122,7 +122,7 @@ void Marina_ScreenYScroll(void) {
     D_800BE620 = 0;
     temp_y = (gScreenPosTargetY.raw + D_800BE620 - gScreenPosCurrentY.raw) / D_800BE708;
     step_y.raw = temp_y;
-    temp_y = func_8005C6D0(temp_y);
+    temp_y = Math_AbsS32_2(temp_y);
     if (temp_y < FIXED_UNIT(1.0)) {
         temp_y = FIXED_UNIT(1.0);
     }

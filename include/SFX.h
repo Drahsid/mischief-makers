@@ -113,7 +113,7 @@
 #define SFX_BEASTECTOR_GRUNT2 0x0143
 #define SFX_JUMP_0024 0x0024
 #define SFX_LAND_0025 0x0025
-#define SFX_00AE 0x00AE
+#define SFX_DASH_00AE 0x00AE // used by down-A dash
 #define SFX_DASH_0116 0x0116
 #define SFX_0034 0x0034
 #define SFX_008A 0x008A
@@ -146,9 +146,9 @@
 #define SFX_WIND_00BA 0x00BA
 #define SFX_THUNDER_00BE 0x00BE
 #define SFX_013C 0x013C
-#define SFX_013D 0x013D
+#define SFX_013D 0x013D // Part of Calina's transform
 #define SFX_BOOM_0026 0x0026
-#define SFX_DASH_0027 0x0027
+#define SFX_DASH_0027 0x0027 // Marina's ground dash
 #define SFX_0028 0x0028
 #define SFX_0029 0x0029
 #define SFX_THROW_002A 0x002A

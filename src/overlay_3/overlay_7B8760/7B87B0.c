@@ -2,6 +2,8 @@
 #include "common.h"
 #include "66250.h"
 
+#define NEGSQRT2 -1.4141845703125
+
 typedef struct {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
@@ -78,11 +80,23 @@ UnkStruct_7B87B0__func_801B16A0_7B9550 D_801B44B8_7BC368[3] = {
     { 0x210, 0xE5E, 0x150, 0xDFE, 0, 0 },
 };
 
-u16 D_801B44DC_7BC38C[18] = {
-    0x0052, 0x005F, 0x0082, 0x00B0, 0x8FFF, 0x0000,
-    0x006A, 0x0074, 0x0058, 0x00B0, 0x8FFF, 0x0000,
-    0x007F, 0x007E, 0x008E, 0x007A, 0x00B0, 0x8FFF,
+// strings used in speech bubbles in Japanese version
+// during "Ghost Catcher"
+
+// いそげ... / Hurry...
+u16 D_801B44DC_7BC38C[] ={
+    ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_SO, ALPHA_JP_HIRA_GE, ALPHA_ELLIPSIS, ALPHA_NULL
 };
+// はやく.../Quickly...
+u16 D_801B44E8_7BC398[] ={
+    ALPHA_JP_HIRA_HA, ALPHA_JP_HIRA_YA, ALPHA_JP_HIRA_KU, ALPHA_ELLIPSIS, ALPHA_NULL
+};
+
+//  がんばれ... / Keep it up...
+u16 D_801B44F4_7BC3A4[] = {
+    ALPHA_JP_HIRA_GA, ALPHA_JP_HIRA_N, ALPHA_JP_HIRA_BA, ALPHA_JP_HIRA_RE, ALPHA_ELLIPSIS, ALPHA_NULL
+};
+
 
 s16* D_801B4500_7BC3B0[5] = {
     D_800E1700,
@@ -101,8 +115,14 @@ u16* D_801B4514_7BC3C4[3] = {
 u16* D_801B4520_7BC3D0 = D_800D8528;
 
 s16 D_801B4524_7BC3D4[18] = {
-    0x01C6, 1, 0x01C8, 1, 0x01CA, 1, 0x01CC, 1,
-    0x01CE, 1, 0x01D0, 1, 0x01D2, 1, 0x01D4, 1,
+    GINDEX_POOF, 1,
+    GRAPHIC_FRAME(POOF,1), 1,
+    GRAPHIC_FRAME(POOF,2), 1,
+    GRAPHIC_FRAME(POOF,3), 1,
+    GRAPHIC_FRAME(POOF,4), 1,
+    GRAPHIC_FRAME(POOF,5), 1,
+    GRAPHIC_FRAME(POOF,6), 1,
+    GRAPHIC_FRAME(POOF,7), 1,
     0, 0,
 };
 
@@ -118,8 +138,9 @@ u16 D_801B4558_7BC408[4] = {
     0x170, 0x170, 0x270, 0,
 };
 
+// きゃー / Kya-!
 u16 D_801B4560_7BC410[4] = {
-    0x0057, 0x009E, 0x00C0, 0x8FFF,
+    ALPHA_JP_HIRA_KI, ALPHA_JP_HIRA_SMALL_YA, ALPHA_DASH, ALPHA_NULL,
 };
 
 u16 D_801B4568_7BC418[256] = {
@@ -158,38 +179,46 @@ u16 D_801B4568_7BC418[256] = {
 };
 
 s32 D_801B4768_7BC618[3] = {
-    FIXED_UNIT(0), FIXED_UNIT(-1.0), FIXED_UNIT(-1.4141845703125),
+    FIXED_UNIT(0), FIXED_UNIT(-1.0), FIXED_UNIT(NEGSQRT2),
 };
 
 s32 D_801B4774_7BC624[3] = {
-    FIXED_UNIT(-1.4141845703125), FIXED_UNIT(-1.0), FIXED_UNIT(0),
+    FIXED_UNIT(NEGSQRT2), FIXED_UNIT(-1.0), FIXED_UNIT(0),
 };
 
-u16 D_801B4780_7BC630[8] = {
-    0x005A, 0x0077, 0x00B2, 0x0074, 0x0072, 0x007E, 0x0056, 0x8FFF,
+// "こら!! やめんか" / "Hey!! Cut it Out"
+u16 D_801B4780_7BC630[] = {
+    ALPHA_JP_HIRA_KO, ALPHA_JP_HIRA_RA, ALPHA_2EXCLAMATION, ALPHA_JP_HIRA_YA, 
+    ALPHA_JP_HIRA_ME, ALPHA_JP_HIRA_N, ALPHA_JP_HIRA_KA, ALPHA_NULL
 };
 
-u16 D_801B4790_7BC640[10] = {
-    0x0065, 0x0066, 0x007D, 0x005D, 0x0079,
-    0x0069, 0x0085, 0x009E, 0x8FFF, 0x0000,
+// "なにをするのじゃ" / "What are you doing?"
+u16 D_801B4790_7BC640[] = {
+    ALPHA_JP_HIRA_NA, ALPHA_JP_HIRA_NI, ALPHA_JP_HIRA_WO, ALPHA_JP_HIRA_SU, ALPHA_JP_HIRA_RU,
+    ALPHA_JP_HIRA_NO, ALPHA_JP_HIRA_JI, ALPHA_JP_HIRA_SMALL_YA, ALPHA_NULL
 };
 
-u16 D_801B47A4_7BC654[8] = {
-    0x0074, 0x0072, 0x007B, 0x009D, 0x0063, 0x008E, 0x8FFF, 0x0000,
+// "やめろってば" / "I said stop it"
+u16 D_801B47A4_7BC654[] = {
+    ALPHA_JP_HIRA_YA, ALPHA_JP_HIRA_ME, ALPHA_JP_HIRA_RO, ALPHA_JP_HIRA_SMALL_TSU,
+    ALPHA_JP_HIRA_TE, ALPHA_JP_HIRA_BA, ALPHA_NULL
 };
 
-u16 D_801B47B4_7BC664[10] = {
-    0x0060, 0x0089, 0x008C, 0x006A, 0x005D,
-    0x006F, 0x007E, 0x0088, 0x8FFF, 0x0000,
+// "ただではすまんぞ" // "you won't get away with this unpunised"
+u16 D_801B47B4_7BC664[] = {
+    ALPHA_JP_HIRA_TA, ALPHA_JP_HIRA_DA, ALPHA_JP_HIRA_DE, ALPHA_JP_HIRA_HA, ALPHA_JP_HIRA_SU,
+    ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_N, ALPHA_JP_HIRA_ZO, ALPHA_NULL
 };
 
-u16 D_801B47C8_7BC678[8] = {
-    0x0073, 0x0053, 0x0074, 0x0072, 0x0064, 0x0059, 0x0076, 0x8FFF,
+// "もうやめとけよ" / "just stop already"
+u16 D_801B47C8_7BC678[] = {
+    ALPHA_JP_HIRA_MO, ALPHA_JP_HIRA_U, ALPHA_JP_HIRA_YA, ALPHA_JP_HIRA_ME,
+    ALPHA_JP_HIRA_TO, ALPHA_JP_HIRA_KE, ALPHA_JP_HIRA_YO, ALPHA_NULL
 };
-
-u16 D_801B47D8_7BC688[12] = {
-    0x00FE, 0x00C0, 0x00ED, 0x00D1, 0x00C0, 0x010A,
-    0x00C0, 0x0085, 0x009E, 0x8FFF, 0x0000, 0x0000,
+// "ゲームオーバーじゃ" / "It's Game Over"
+u16 D_801B47D8_7BC688[] = {
+    ALPHA_JP_KATA_GE, ALPHA_DASH, ALPHA_JP_KATA_MU, ALPHA_JP_KATA_O, ALPHA_DASH,
+    ALPHA_JP_KATA_BA, ALPHA_DASH, ALPHA_JP_HIRA_JI, ALPHA_JP_HIRA_SMALL_YA, ALPHA_NULL
 };
 
 extern void func_80012044(s16 position_x, s16 position_y, s16 graphic_index);
@@ -403,10 +432,10 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         }
 
         gActors[actor_index].health = 0;
-        gActors[actor_index].damage = 0x32;
-        gActors[actor_index].unk_0DA = 0x80;\
-        gActors[actor_index].unk_0DB = 4;
-        gActors[actor_index].unk_0DF = 0x20;
+        gActors[actor_index].damage = 50;
+        gActors[actor_index].hitFlags = HITFLAG_7;\
+        gActors[actor_index].hitType = HITTYPE_4;
+        gActors[actor_index].unk_0DF = ACTOR0DF_5;
         gActors[actor_index].state++;
         // fallthrough
 
@@ -470,7 +499,7 @@ void func_801B0E48_7B8CF8(u16 actor_index) {
         break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 void func_801B13C8_7B9278(u16 actor_index_unused) {
@@ -888,7 +917,7 @@ void func_801B26B8_7BA568(u16 actor_index) {
             gActors[actor_index].hitboxAY1 = -0x20;
             gActors[actor_index].hitboxAX0 = -0xC0;
             gActors[actor_index].hitboxAX1 = 0xC0;
-            gActors[actor_index].unk_0DB = 0x13;
+            gActors[actor_index].hitType = HITTYPE_19;
             gActors[actor_index].posX.whole = 0;
             gActors[actor_index].posY.whole = -0x50;
             gActors[actor_index].state++;
@@ -900,6 +929,7 @@ void func_801B26B8_7BA568(u16 actor_index) {
     }
 }
 
+// behavior for world 4's shadowy screen border
 void func_801B2758_7BA608(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
@@ -907,6 +937,7 @@ void func_801B2758_7BA608(u16 actor_index) {
             gActors[actor_index].flags |= ACTOR_FLAG_FREEZE_POS;
             gActors[actor_index].unk_188 = 0;
 
+            // "Aster's Tryke" has different border properties
             if (gActors[actor_index].var_0D8 != 0) {
                 gActors[actor_index].graphicIndex = 0x2004;
                 gActors[actor_index].posX.whole = -2;
@@ -935,13 +966,14 @@ void func_801B2758_7BA608(u16 actor_index) {
 }
 
 s32 func_801B2860_7BA710(u16 actor_index) {
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gActors[0].unk_0CC)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK7) && ((actor_index + 0x8000) == gPlayerActor.actorHitIndex)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
+// cloud "squish" animation
 void func_801B28C4_7BA774(u16 actor_index) {
     Actor* actor = &gActors[actor_index];
     switch (actor->var_158) {
@@ -1053,12 +1085,13 @@ void func_801B28C4_7BA774(u16 actor_index) {
     }
 }
 
+// behavior for cloud platforms
 void func_801B2C60_7BAB10(u16 actor_index) {
     func_801B28C4_7BA774(actor_index);
 
     switch (gActors[actor_index].state) {
         case 0:
-            gActors[actor_index].graphicIndex = 0x260;
+            gActors[actor_index].graphicIndex = GINDEX_SAGECLOUD;
             gActors[actor_index].graphicFlags |= ACTOR_GFLAG_SCALE;
             gActors[actor_index].flags |= ACTOR_FLAG_PLATFORM0;
             gActors[actor_index].hitboxBY0 = 4;
@@ -1174,18 +1207,20 @@ void func_801B3068_7BAF18(u16 actor_index) {
             if ((gActors[actor_index].unk_16C-- == 0) &&
                 (gActors[actor_index + 1].state != 2)) {
                 SpawnTextBubble(
-                    actor_index, D_801B4560_7BC410, 0, 0x20, 0x1E);
+                    actor_index, D_801B4560_7BC410, 0, 0x20, 30);
             }
             break;
     }
 }
 
+// behavior of Clanpot in "Ghost Catcher"
 void func_801B31AC_7BB05C(u16 actor_index) {
     gActors[0x48].graphicFlags |= ACTOR_GFLAG_PALETTE;
     gActors[0x48].palette_18C = D_801B4568_7BC418;
     ActorUpdate_Clanpot(actor_index);
 }
 
+// clanpot proximity check
 s16 func_801B31F4_7BB0A4(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon, u16 pot_index) {
     if ((gActors[item_index].state != 2) && (gActors[item_index].flags & ACTOR_FLAG_DRAW)) {
         if (((gActors[pot_index].posX.whole - 0x10) < gActors[item_index].posX.whole) &&
@@ -1197,17 +1232,19 @@ s16 func_801B31F4_7BB0A4(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u1
     }
 }
 
+// ghost checks for clanpot
 void func_801B32D8_7BB188(u16 actor_index) {
     gActors[actor_index].unk_180 = gActors[actor_index].posX.whole + gScreenPosCurrentX.whole;
     gActors[actor_index].unk_184 = gActors[actor_index].posY.whole + gScreenPosCurrentY.whole;
     if (gActors[actor_index].state != 0) {
-        if (func_801B31F4_7BB0A4(actor_index, 0x8400, 0, 0, 0x67, 0x48) >= 0) {
+        if (func_801B31F4_7BB0A4(actor_index, CLANPOT_NEWITEM|CLANPOT_ACTORICON, 0, 0, ACTORTYPE_GHOSTICON, 0x48) >= 0) {
             gActors[actor_index].state = 2;
             gActors[actor_index].flags = ACTOR_FLAG_ACTIVE;
         }
     }
 }
 
+// ghosts' floating about
 void func_801B338C_7BB23C(u16 actor_index) {
     Spikeball_MoveX(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(8.0 / 256), -(Rand() & 3), Rand() & 3);
     Spikeball_MoveY(actor_index, FIXED_UNIT(0.5), FIXED_UNIT(4.0 / 256), -(Rand() & 1), Rand() & 1);
@@ -1224,6 +1261,7 @@ void func_801B338C_7BB23C(u16 actor_index) {
     }
 }
 
+// behavior of ACTORTYPE_OVL3_W4_GHOST_5
 void func_801B349C_7BB34C(u16 actor_index) {
     u16 position_x;
     u16 position_y;
@@ -1237,7 +1275,7 @@ void func_801B349C_7BB34C(u16 actor_index) {
             break;
 
         case 2:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].state = 0;
                 gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED | ACTOR_FLAG_DRAW;
             }
@@ -1355,7 +1393,7 @@ void func_801B39B4_7BB864(u16 actor_index) {
             break;
 
         case 2:
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) {
+            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
                 gActors[actor_index].state = 0;
                 gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED | ACTOR_FLAG_DRAW;
             }
@@ -1400,12 +1438,12 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
     switch (gActors[actor_index].state) {
         case 0:
             gActors[actor_index].flags = ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE;
-            gActors[actor_index].unk_0DB = 0xB;
+            gActors[actor_index].hitType = HITTYPE_BOOM_11;
             gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
             gActors[actor_index].unk_0FC.raw = FIXED_UNIT(6.5);
             gActors[actor_index].unk_180 = 0;
             gActors[actor_index].unk_184 = 0x80;
-            gActors[actor_index].damage = 0x1E;
+            gActors[actor_index].damage = 30;
             gActors[actor_index].unk_148 = 1.0f;
             Actor_SetHitboxA(actor_index, 2);
             gActors[actor_index].state++;
@@ -1461,26 +1499,27 @@ void func_801B3BD0_7BBA80(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
+// behavior for Aster in world 4
 void func_801B3F8C_7BBE3C(u16 actor_index) {
     u16 actor_slot = actor_index;
     f32 scale;
 
-    gActors[actor_slot].health = 0x2710;
+    gActors[actor_slot].health = 10000;
     gActors[actor_slot + 1].var_0D8 = 0;
     func_80094C5C(actor_slot);
     func_8008F498(actor_slot, 0x30);
 
     scale = gActors[actor_slot].unk_168 / 10000.0f;
     func_80032E60(actor_slot + 3, 0x1002, 0x380, 6.0f * scale, 0, scale, scale);
-    func_80032E60(actor_slot + 3, 0x250, 0x120, 14.0f * scale, 0, scale, scale);
+    func_80032E60(actor_slot + 3, GINDEX_HAT_CROWN, 0x120, 14.0f * scale, 0, scale, scale);
 
     switch (gActors[actor_slot].state) {
         case 0:
             gActors[actor_slot].state = 0x110;
-            gActors[actor_slot].unk_168 = 0x1F40;
+            gActors[actor_slot].unk_168 = 8000;
             gActors[actor_slot + 10].unk_180 = gActors[actor_slot].posX.whole + gScreenPosCurrentX.parts[0];
             gActors[actor_slot + 11].unk_180 = gActors[actor_slot].posY.whole + gScreenPosCurrentY.parts[0];
             break;
@@ -1500,36 +1539,36 @@ void func_801B3F8C_7BBE3C(u16 actor_index) {
 
         case 0x1B0:
             Sound_PlaySfxAtPan(SFX_GRAB_002F, actor_slot);
-            SpawnTextBubble(actor_slot, D_801B4780_7BC630, 0, 0x20, 0x1E);
+            SpawnTextBubble(actor_slot, D_801B4780_7BC630, 0, 0x20, 30);
             break;
 
         case 0x200:
             Sound_PlaySfxAtPan(SFX_0036, actor_slot);
             break;
 
-        case 0x220:
+        case 0x220: // In the Japanese version he yells at Marina for harassing him.
             if (gActors[actor_slot + 6].unk_180 != 0) {
                 gActors[actor_slot + 6].unk_180 = 0;
 
                 switch (gActors[actor_slot + 7].unk_180++) {
                     case 0:
-                        SpawnTextBubble(actor_slot, D_801B4790_7BC640, 0, 0x20, 0x1E);
+                        SpawnTextBubble(actor_slot, D_801B4790_7BC640, 0, 0x20, 30);
                         break;
 
                     case 1:
-                        SpawnTextBubble(actor_slot, D_801B47A4_7BC654, 0, 0x20, 0x1E);
+                        SpawnTextBubble(actor_slot, D_801B47A4_7BC654, 0, 0x20, 30);
                         break;
 
                     case 2:
-                        SpawnTextBubble(actor_slot, D_801B47B4_7BC664, 0, 0x20, 0x1E);
+                        SpawnTextBubble(actor_slot, D_801B47B4_7BC664, 0, 0x20, 30);
                         break;
 
                     case 3:
-                        SpawnTextBubble(actor_slot, D_801B47C8_7BC678, 0, 0x20, 0x1E);
+                        SpawnTextBubble(actor_slot, D_801B47C8_7BC678, 0, 0x20, 30);
                         break;
 
                     case 4:
-                        SpawnTextBubble(actor_slot, D_801B47D8_7BC688, 0, 0x20, 0x1E);
+                        SpawnTextBubble(actor_slot, D_801B47D8_7BC688, 0, 0x20, 30);
                         break;
                 }
             }
@@ -1562,5 +1601,5 @@ void func_801B42EC_7BC19C(u16 actor_index) {
             break;
     }
 
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }

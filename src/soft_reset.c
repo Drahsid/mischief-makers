@@ -72,7 +72,7 @@ void func_80022D88(void) {
     D_800BE674 = 0;
     D_8013747C = 0;
     D_800BE6FC = 0;
-    gDebugBitfield = 4;
+    gDebugBitfield = DEBUGFLAG_PERSPECTIVE;
     gDebugThrottle = 1;
     gRngSeed = 0x1234;
     gCamShakeV = 0;
@@ -95,10 +95,10 @@ void func_80022D88(void) {
     Text_SetHCColor(2, 1, 0, 0, 0);
     Text_SetHCColor(2, 2, 0, 0, 0);
     for (index = 0; index < 4; index++) {
-        D_801376BC[index] = 1;
-        D_801376A8[index] = 0xFF;
-        D_801376AC[index] = 0xFF;
-        D_801376B0[index] = 0xFF;
+        D_801376BC[index] =TRUE;
+        gEnvColorsRed[index] = 0xFF;
+        gEnvColorsGreen[index] = 0xFF;
+        gEnvColorsBlue[index] = 0xFF;
     }
 }
 
@@ -198,18 +198,18 @@ void GameState_Loading(void) {
     u16 index;
 
     for (index = 0; index < 4; index++) {
-        D_801376BC[index] = 1;
-        D_801376B8[index] = 1;
-        D_801376A8[index] = 0;
-        D_801376AC[index] = 0;
-        D_801376B0[index] = 0;
-        D_801376B4[index] = 0xFF;
+        D_801376BC[index] = TRUE;
+        gUseBlackPrimColor[index] = TRUE;
+        gEnvColorsRed[index] = 0;
+        gEnvColorsGreen[index] = 0;
+        gEnvColorsBlue[index] = 0;
+        gEnvColorsAlpha[index] = 0xFF;
     }
 
     gPortraitTint = 0xFF;
     gHealthDisplayed = gPlayerActor.health;
     gActorDepthFront = -8;
-    gDebugBitfield = 4;
+    gDebugBitfield = DEBUGFLAG_PERSPECTIVE;
 
     for (index = 0; index < 8; index++) {
         D_80137480[index] = 0;
@@ -248,7 +248,7 @@ void GameState_Loading(void) {
     D_800BE6FC =
     gAudioFadeMode =
     gIsPlayerInactive =
-    D_800BE5F4.unk_00_u32 =
+    gMarinaAnim.anim_u32 =
     D_800D5820 =
     gPlayerData.flags = 0;
 

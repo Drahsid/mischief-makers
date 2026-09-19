@@ -5,6 +5,8 @@
 #include "805E0.h"
 #include "80D90.h"
 
+// Overlay 3 script for "Cat-astrophe" and outro to "The Day Before"
+
 extern s16 gNoHit;
 extern s16 D_800E1714[];
 extern s16 D_800E1750[];
@@ -31,22 +33,23 @@ extern u16 gCurrentStage;
 
 u16 D_801B46F0_7C0640[2] = { 7, 0x8001 };
 u16 D_801B46F4_7C0644[2] = { 8, 0x8001 };
+// indexes of Dodgeballs, flower and clanblob.
 u16 D_801B46F8_7C0648[6] = { 0x40, 0x41, 0x42, 0x43, 0, 0 };
 s16 D_801B4704_7C0654[14] = {
     1, 0, 0x20, -192, 0x30, -64, 0x30,
     64, 0, 0, 0, 0, 0, 0,
 };
 f32 D_801B4720_7C0670 = 0.8000000119f;
-f64 D_801B4728_7C0678 = 0.3515625;
+f64 D_801B4728_7C0678 = DEG_PER_INDEX;
 
 // .bss
-u8 D_801B4B60_7C0AB0;
-s8 D_801B4B61_7C0AB1;
+u8 D_801B4B60_7C0AB0; // flags for Dodgeball match
+s8 D_801B4B61_7C0AB1; // sign for Cat's x-movement
 s32 D_801B4B64_7C0AB4;
 u32 D_801B4B68_7C0AB8;
 s16 D_801B4B6C_7C0ABC;
 s16 D_801B4B6E_7C0ABE;
-u8 D_801B4B70_7C0AC0;
+u8 D_801B4B70_7C0AC0; // Marina crossed the line
 
 extern void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16 arg5);
 extern void func_8002C6E4(u16 actor_index);
@@ -85,7 +88,7 @@ void func_801B0900_7BC850(u16 actor_index) {
 }
 
 s32 func_801B0944_7BC894(u16 actor_index) {
-    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK9) && !(gActors[actor_index].state & 0x1000)) {
+    if ((gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) && !(gActors[actor_index].state & 0x1000)) {
         func_80040858(actor_index);
         gActors[actor_index].state = 0x1000;
         func_80029134(actor_index);
@@ -115,7 +118,7 @@ s32 func_801B0A7C_7BC9CC(u16 actor_index) {
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
             func_80040858(actor_index);
             func_801B0900_7BC850(actor_index);
-            if (gActors[actor_index].unk_0DD < 0x15) {
+            if (gActors[actor_index].hitByType < 0x15) {
                 gActors[actor_index].colorR = 0x7F;
                 Sound_PlaySfxAtActor2(SFX_CLANCER_OW_009D, actor_index);
                 func_801B0A10_7BC960(actor_index);
@@ -171,10 +174,10 @@ u16 func_801B0D80_7BCCD0(u16 actor_index) {
     gActors[actor_index].velocityX.raw = Math_ApproachS32(gActors[actor_index].velocityX.raw, 0, FIXED_UNIT(6.0/256));
     gActors[actor_index].velocityY.raw = Math_ApproachS32(gActors[actor_index].velocityY.raw, FIXED_UNIT(-6.5), FIXED_UNIT(0.21875));
 
-    result = FALSE;
+    result = 0;
     if (((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK2) && (gActors[actor_index].velocityX.raw < 0)) ||
         ((gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK3) && (gActors[actor_index].velocityX.raw > 0))) {
-        result = TRUE;
+        result = 1;
     }
 
     if ((gActors[actor_index].velocityY.raw < 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK5)) {
@@ -240,6 +243,7 @@ void func_801B11A0_7BD0F0(u16 actor_index) {
     gActors[actor_index].hitboxBY1 = -4;
 }
 
+// get index of throwable object closest to cat
 u16 func_801B11F0_7BD140(u16 actor_index) {
     u16 index;
     u16 current_actor_index;
@@ -248,7 +252,7 @@ u16 func_801B11F0_7BD140(u16 actor_index) {
     u16 distance;
 
     if (D_801B4B60_7C0AB0 & 2) {
-        if (gActors[0x43].flags_098 & ACTOR_FLAG3_UNK9) {
+        if (gActors[0x43].flags_098 & ACTOR_FLAG3_GRAB) {
             return 0x43;
         }
         return 0;
@@ -260,7 +264,7 @@ u16 func_801B11F0_7BD140(u16 actor_index) {
     while (current_actor_index != 0) {
         current_actor_index = D_801B46F8_7C0648[index];
         distance = Math_AbsS32(gActors[actor_index].posX.whole - gActors[current_actor_index].posX.whole);
-        if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) && !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_UNK9) &&
+        if ((gActors[current_actor_index].flags & ACTOR_FLAG_ACTIVE) && !(gActors[current_actor_index].flags_098 & ACTOR_FLAG3_GRAB) &&
             !(gActors[current_actor_index].flags & ACTOR_FLAG_UNK9) && (gActors[current_actor_index].posX.whole > 0) && (distance < best_distance) && (gActors[current_actor_index].posY.whole < 0)) {
             best_actor_index = current_actor_index;
             best_distance = distance;
@@ -301,6 +305,7 @@ s32 func_801B141C_7BD36C(u16 actor_index) {
     return 0;
 }
 
+// check if Marina crossed the line.
 void func_801B14AC_7BD3FC(u16 arg0) {
     if ((D_801B4B60_7C0AB0 & 3) == 0) {
         if (gPlayerPosX.whole >= 521 && gPlayerPosY.whole < 368) {
@@ -323,6 +328,7 @@ static __inline void func_801B1568_7BD4B8(void) {
 
 void func_801B1570_7BD4C0(u16 actor_index) {
     if (D_801B4B60_7C0AB0 & 2) {
+        // spawn Yellw gem if Marina won match fairly without a hit
         if ((D_801B4B60_7C0AB0 == 2) && (gStageState == 0x15) && (gNoHit >= 0) && (YellowGem_GetFlag(gCurrentStage) == 0)) {
             gActors[actor_index].state = 0x110;
             return;
@@ -464,6 +470,7 @@ void func_801B1B6C_7BDABC(u16 arg0, u16 arg1) {
     gActors[0x5E].unk_174 = arg1;
 }
 
+// state for actor in "Cat-astrophe"
 void func_801B1BA4_7BDAF4(u16 actor_index) {
     u16 hit_flags;
     u16 index;
@@ -503,7 +510,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             func_80081D20(actor_index);
             gActors[actor_index].flags |= ACTOR_FLAG_UNK16 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK10;
             func_801B11A0_7BD0F0(actor_index);
-            gActors[actor_index].unk_0DF = 0x40;
+            gActors[actor_index].unk_0DF = ACTOR0DF_6;
             D_801B4B60_7C0AB0 = 0;
             D_801B4B70_7C0AC0 = 0;
             gActors[actor_index].health = 0xC8;
@@ -836,7 +843,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
                 default:
                     gActors[actor_index].flags &= ~ACTOR_FLAG_FLIPPED;
                     gActors[actor_index].flags |= gPlayerActor.flags & ACTOR_FLAG_FLIPPED;
-                    if ((D_801B4B64_7C0AB4 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK17) && (gPlayerData.unk_12 == 0)) {
+                    if ((D_801B4B64_7C0AB4 == 0) && (gActors[actor_index].flags_098 & ACTOR_FLAG3_SHAKE) && (gPlayerData.unk_12 == 0)) {
                         D_801B4B64_7C0AB4++;
                         func_80081790(actor_index, D_800E34A4);
                     }
@@ -857,7 +864,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
             gActors[actor_index].unk_170 -= FIXED_UNIT(96.0);
             if (hit_flags & 1) {
                 gActors[actor_index].colorR = 0x7F;
-                gActors[actor_index].health -= 0x32;
+                gActors[actor_index].health -= 50;
                 func_801B0A10_7BC960(actor_index);
                 Sound_PlaySfxAtActor2(SFX_HIT_002D, actor_index);
                 gActors[actor_index].velocityX.raw = -gActors[actor_index].velocityX.raw / 2;
@@ -1039,7 +1046,7 @@ void func_801B1BA4_7BDAF4(u16 actor_index) {
         D_801B4B61_7C0AB1 = 1;
     }
     func_80081E38(actor_index);
-    gActors[actor_index].flags_098 &= ~(ACTOR_FLAG3_UNK21 | ACTOR_FLAG3_UNK10 | ACTOR_FLAG3_UNK9);
+    gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
 s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
@@ -1054,17 +1061,17 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
             gActors[target_index].unk_104 = gActors[source_index].posX.raw;
             gActors[target_index].unk_108 = gActors[source_index].posY.raw + FIXED_UNIT(8.0);
             gActors[target_index].unk_10C = gActors[source_index].posZ.raw - 4;
-            gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK9;
+            gActors[target_index].flags_098 |= ACTOR_FLAG3_GRAB;
             gActors[target_index].parentIndex = source_index;
             return FALSE;
         }
 
-        gActors[target_index].flags_098 &= ~ACTOR_FLAG3_UNK9;
-        gActors[target_index].flags_098 |= ACTOR_FLAG3_UNK10;
+        gActors[target_index].flags_098 &= ~ACTOR_FLAG3_GRAB;
+        gActors[target_index].flags_098 |= ACTOR_FLAG3_THROWN;
         gActors[target_index].unk_0F8.raw = D_801B4B61_7C0AB1 * FIXED_UNIT(3.0);
         gActors[target_index].unk_0FC.raw = FIXED_UNIT(4.0);
         if (target_index == 0) {
-            func_8004F614(actor_index, FIXED_UNIT(3.0), FIXED_UNIT(5.0), 0x32);
+            func_8004F614(actor_index, FIXED_UNIT(3.0), FIXED_UNIT(5.0), 50);
         }
         return FALSE;
     }
@@ -1073,19 +1080,20 @@ s32 func_801B3068_7BEFB8(u16 actor_index, s32 arg1) {
     return TRUE;
 }
 
+// behavior of dodgeballs.
 void func_801B31B8_7BF108(u16 actor_index) {
     f32 scale;
     u16 saved_actor_index;
 
     saved_actor_index = actor_index;
-    if (D_801B4B60_7C0AB0 & 1) {
+    if (D_801B4B60_7C0AB0 & 1) { // match is over, explode balls.
         gActors[saved_actor_index].flags = 0;
         func_8003F138(0.5f, gActors[saved_actor_index].posX.whole, gActors[saved_actor_index].posY.whole, gActors[saved_actor_index].posZ.whole);
         Sound_PlaySfxAtActor2(SFX_BOOM_0043, saved_actor_index);
         return;
     }
 
-    gActors[saved_actor_index].health = 0x2710;
+    gActors[saved_actor_index].health = 10000;
     if ((gActors[saved_actor_index].state != 0) && (gActors[saved_actor_index].state != 0x100)) {
         gActors[saved_actor_index].posZ.raw = FIXED_UNIT(-2.0);
         func_8002C6E4(saved_actor_index);
@@ -1129,9 +1137,9 @@ void func_801B31B8_7BF108(u16 actor_index) {
             gActors[saved_actor_index].graphicFlags |= ACTOR_GFLAG_UNK15 | ACTOR_GFLAG_SCALE;
             gActors[saved_actor_index].flags |= ACTOR_FLAG_UNK15;
             gActors[saved_actor_index].health = 5;
-            gActors[saved_actor_index].damage = 0x32;
+            gActors[saved_actor_index].damage = 50;
             gActors[saved_actor_index].unk_164 |= 1;
-            gActors[saved_actor_index].unk_0DB = 2;
+            gActors[saved_actor_index].hitType = HITTYPE_2;
             break;
 
         case 0x30:
@@ -1302,7 +1310,7 @@ void func_801B3648_7BF598(u16 actor_index) {
             gActors[actor_index].posY.whole = Math_ApproachS32(gActors[actor_index].posY.whole, -48, 1);
             if (D_801B4B70_7C0AC0 & 1) {
                 gActors[actor_index].state++;
-                gActors[actor_index].var_150 = 0xB4;
+                gActors[actor_index].var_150 = 180;
                 Sound_PlaySfx(SFX_BUZZ_BOO);
                 func_801B1B34_7BDA84(0x30, 4);
             }
@@ -1312,7 +1320,7 @@ void func_801B3648_7BF598(u16 actor_index) {
             gActors[actor_index].var_150--;
             if (gActors[actor_index].var_150 < 0) {
                 gActors[actor_index].state--;
-                D_801B4B70_7C0AC0 &= 0xFFFE;
+                D_801B4B70_7C0AC0 &= ~1;
             }
             break;
 
@@ -1524,7 +1532,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
 
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x12C;
+                D_801B4B64_7C0AB4 = 300;
                 gActors[0x50].positionHistory[1] = 0;
                 Sound_PlaySfx(SFX_CROUD_CHEER);
                 Sound_StopSfx(SFX_CROUD_CHATTER);
@@ -1599,7 +1607,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
         case 9:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x1E;
+                D_801B4B64_7C0AB4 = 30;
                 gActors[0x52].positionHistory[1] = 0;
             }
             break;
@@ -1617,7 +1625,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
         case 11:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x1E;
+                D_801B4B64_7C0AB4 = 30;
             }
             break;
 
@@ -1689,7 +1697,7 @@ void func_801B3FC8_7BFF18(u16 actor_index) {
         case 19:
             if (func_8005DEFC() == 0) {
                 gActors[actor_index].state++;
-                D_801B4B64_7C0AB4 = 0x78;
+                D_801B4B64_7C0AB4 = 120;
                 Sound_StartFade(0x81, 0x78);
             }
             break;
