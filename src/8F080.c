@@ -2438,7 +2438,7 @@ void func_80090CDC(u16 actor_index) {
     switch (gActors[actor_index].state) {
     case 0x130:
         gActors[actor_index].state++;
-                gActors[actor_index + 2].unk_180 = ((f32)FIXED_UNIT(1.0) * gActors[actor_index + 1].unk_12C) * gActors[actor_index + 1].unk_130;
+        gActors[actor_index + 2].unk_180 = ((f32)FIXED_UNIT(1.0) * gActors[actor_index + 1].unk_12C) * gActors[actor_index + 1].unk_130;
         gActors[actor_index].velocityX.raw = 0;
         if ((gActors[actor_index + 1].var_0D8 == 2) || (gActors[actor_index + 1].var_0D8 == 3) || (gActors[actor_index + 1].var_0D8 == 5)) {
             func_80081790(actor_index, D_800E8FA4);
