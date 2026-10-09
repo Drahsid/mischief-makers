@@ -1,8 +1,13 @@
+// BUG: incorrect prototypes!
+#define func_8004400C_ARGS void* arg0, s32 arg1, s32 arg2
+#define func_80045544_ARGS s32 arg0, s32 arg1
+#define func_80045610_ARGS s32 arg0, s32 arg1
+#define func_800475EC_RET s32
 #include "common.h"
 #include "actor.h"
-#include "stage.h"
+#include "frontend.h"
 #include "28EF0.h"
-#include "438E0.h"
+#include "stage_runtime.h"
 
 // "overlay 4" code for the World 1 scenes.
 
@@ -15,14 +20,7 @@ extern s16 D_800D36FC[];
 extern s16 D_800E1C84[];
 
 
-extern s32 func_800475EC(void);
-extern void func_80047648(s16 arg0);
-extern void func_8004400C(void* arg0, s32 arg1, s32 arg2);
-extern void func_80045544(s32 arg0, s32 arg1);
-extern void func_80045610(s32 arg0, s32 arg1);
-extern void SpawnText_READY(void);
-extern void func_80025EC4(u16 index);
-extern void func_801BB6AC_7C888C(u16 arg0);
+void func_801BB6AC_7C888C(u16 arg0);
 
 // background actors of desert stages
 u16 sActorSpawn_BGDesert[] = {

@@ -1,3 +1,4 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
 #include "common.h"
 #include "actor.h"

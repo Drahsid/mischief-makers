@@ -2,8 +2,11 @@
 #include "boot.h"
 #include "input.h"
 
-void Input_Update(void);
-u32 Input_GetFirstController(void);
+u32 gPlayerControllerIndex;
+u16 gButtonCurrent;
+u32 gFramesInPlayTime;
+u16 D_801370CC;
+u16 D_801370CE;
 
 void Input_Update(void) {
     osContGetReadData(gContpadArrayB);

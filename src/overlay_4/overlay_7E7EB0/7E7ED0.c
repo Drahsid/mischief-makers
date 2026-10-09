@@ -1,4 +1,7 @@
+// BUG: incorrect prototype!
+#define func_80011F44_ARGS s16 arg0, s16 arg1, s32 arg2, s32 arg3
 #include "common.h"
+#include "stage_tilemap.h"
 #include "actor.h"
 #include "28EF0.h"
 
@@ -7,7 +10,6 @@
 extern s16 D_800D2920;
 extern s32 gStageTimer;
 
-extern void func_80011F44(s16 arg0, s16 arg1, s32 arg2, s32 arg3);
 void func_801B9A3C_7E800C(u16 actor_index);
 
 // blank spawn table

@@ -1,5 +1,7 @@
 #include "common.h"
 #include "boot.h"
+#include "graphics_memory.h"
+#include "rle.h"
 
 // this script deals with printing monospaced text directly into a texture,
 // rather than have each character be used as an actor.
@@ -9,8 +11,32 @@ extern s32 D_800BE6D4; // texture y offset
 extern s32 D_800BE6DC; // texture x offset
 extern s32 D_800BE6E0; // texture y offset
 
-extern Gfx D_800E3590[];
-extern Gfx D_800E35E0[];
+Gfx D_800E3590[] = {
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH),
+    gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetTextureLUT(G_TT_RGBA16),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
+    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
+    gsDPPipeSync(),
+    gsDPSetCycleType(G_CYC_COPY),
+    gsSPEndDisplayList(),
+};
+
+Gfx D_800E35E0[] = {
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH),
+    gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetTextureLUT(G_TT_RGBA16),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetCombineLERP(PRIMITIVE, TEXEL0, ENVIRONMENT, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0,
+                       PRIMITIVE, TEXEL0, ENVIRONMENT, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsDPPipeSync(),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsSPEndDisplayList(),
+};
 
 Gfx D_80178470[708];
 Gfx D_80179A90[708];
@@ -200,7 +226,7 @@ void func_80082F10(void) {
     Gfx* display_list;
     s32 index;
 
-    D_80180FC0 = 0x80380600;
+    D_80180FC0 = (s32)(MAP_BANK_DEST + 0x600);
     if (gDrawBackground) {
         if (D_800BE6FC != 0) {
             for (index = 0; index < 70; index++) {
@@ -234,7 +260,7 @@ void func_8008310C(void) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)TEXT_TEXTURE_1_ADDR;
+    var_v0 = (s32*)TEXT_CANVAS_256X48_CI4_VRAM;
     for (index = 0; index < 0x300; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -247,7 +273,7 @@ void func_80083140(s16 colmmn, s16 row) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
+    var_v0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X48_CI4_VRAM);
     for (index = 0; index < 0x10; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -263,8 +289,8 @@ void func_800831D0(s16 colmmn, s16 row, s16 ch, s16 arg3) {
 
     temp = arg3 * 0x44444444;
     if (ch < ALPHA_OFFSET(THIN_0)) { // check not in japanese version
-        var_v1 = (s32*)((ch << 6) + 0x802524A8);
-        var_a0 = (s32*)(((colmmn % 16) * 4) + ((colmmn / 16) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
+        var_v1 = (s32*)((ch << 6) + FONT_GLYPH_8X16_CI4_DATA_VRAM);
+        var_a0 = (s32*)(((colmmn % 16) * 4) + ((colmmn / 16) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X48_CI4_VRAM);
         for (index = 0; index < 0x10; index++) {
             *var_a0 = *var_v1 + temp;
             var_v1 += 1;
@@ -272,8 +298,8 @@ void func_800831D0(s16 colmmn, s16 row, s16 ch, s16 arg3) {
         }
     }
     else {
-        var_v1 = (s32*)((ch << 7) + 0x80252468);
-        var_a0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_1_ADDR);
+        var_v1 = (s32*)((ch << 7) + FONT_GLYPH_16X16_CI4_DATA_VRAM);
+        var_a0 = (s32*)(((colmmn % 8) * 8) + ((colmmn / 8) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X48_CI4_VRAM);
         for (index = 0; index < 0x10; index++) {
             var_a0[0] = var_v1[0] + temp;
             var_a0[1] = var_v1[1] + temp;
@@ -303,7 +329,7 @@ void func_80083454(void) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)TEXT_TEXTURE_0_ADDR;
+    var_v0 = (s32*)TEXT_CANVAS_256X64_CI4_VRAM;
     for (index = 0; index < 0x400; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -316,7 +342,7 @@ void func_80083488(s16 column, s16 row) {
     u16 index;
     s32* var_v0;
 
-    var_v0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
+    var_v0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X64_CI4_VRAM);
     for (index = 0; index < 0x10; index++) {
         var_v0[0] = 0;
         var_v0[1] = 0;
@@ -333,8 +359,8 @@ void func_80083518(s16 column, s16 row, s16 ch, s16 arg3) {
 
     temp = arg3 * 0x44444444;
     if (ch < ALPHA_OFFSET(THIN_0)) { // check not in japanese version
-        var_v1 = (s32*)((ch << 6) + 0x802524A8);
-        var_a0 = (s32*)(((column % 16) * 4) + ((column / 16) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
+        var_v1 = (s32*)((ch << 6) + FONT_GLYPH_8X16_CI4_DATA_VRAM);
+        var_a0 = (s32*)(((column % 16) * 4) + ((column / 16) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X64_CI4_VRAM);
         for (index = 0; index < 0x10; index++) {
             *var_a0 = *var_v1 + temp;
             var_v1 += 1;
@@ -342,8 +368,8 @@ void func_80083518(s16 column, s16 row, s16 ch, s16 arg3) {
         }
     }
     else {
-        var_v1 = (s32*)((ch << 7) + 0x80252468);
-        var_a0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_TEXTURE_0_ADDR);
+        var_v1 = (s32*)((ch << 7) + FONT_GLYPH_16X16_CI4_DATA_VRAM);
+        var_a0 = (s32*)(((column % 8) * 8) + ((column / 8) << 0xA) + (row << 0xB) + TEXT_CANVAS_256X64_CI4_VRAM);
         for (index = 0; index < 0x10; index++) {
             var_a0[0] = var_v1[0] + temp;
             var_a0[1] = var_v1[1] + temp;

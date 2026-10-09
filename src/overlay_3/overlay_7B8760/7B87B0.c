@@ -1,6 +1,13 @@
+// BUG: incorrect prototypes!
 #define func_80012AB4_ARGS s32 arg0, s32 arg1
+#define func_80094CF8_RET DEFAULT_INT
 #include "common.h"
+#include "stage_tilemap.h"
+#include "28EF0.h"
+#include "61B80.h"
 #include "66250.h"
+#include "8D0A0.h"
+#include "8F080.h"
 
 #define NEGSQRT2 -1.4141845703125
 
@@ -220,17 +227,6 @@ u16 D_801B47D8_7BC688[] = {
     ALPHA_JP_KATA_GE, ALPHA_DASH, ALPHA_JP_KATA_MU, ALPHA_JP_KATA_O, ALPHA_DASH,
     ALPHA_JP_KATA_BA, ALPHA_DASH, ALPHA_JP_HIRA_JI, ALPHA_JP_HIRA_SMALL_YA, ALPHA_NULL
 };
-
-extern void func_80012044(s16 position_x, s16 position_y, s16 graphic_index);
-extern s16 Clanpot_AddItem(u16 item_index, u16 flags, u16 var_110, u16 var_0D8, u16 icon, u16 pot_index);
-extern void ActorUpdate_Clanpot(u16 actor_index);
-extern void func_800640A0(u16 actor_index);
-extern void func_800641CC(u16 actor_index);
-extern s32 func_80064328(u16 actor_index);
-extern void SpawnMarinaOhNo(u16 actor_index, u16 arg1_unused);
-extern void func_8008F498(u16 actor_index, u16 list_index);
-extern void func_80094C5C(u16 actor_index);
-extern DEFAULT_INT func_80094CF8(u16 actor_index, u16 arg1);
 
 u16 func_801B0900_7B87B0(u16 actor_index) {
     u16 result;

@@ -5,21 +5,21 @@
 #include "cosine.h"
 #include "debug.h"
 #include "game_state.h"
-#include "gameover.h"
-#include "globalData.h"
+#include "continue_screen.h"
+#include "game_globals.h"
 #include "input.h"
 #include "lifebar.h"
 #include "marina.h"
 #include "music.h"
-#include "soft_reset.h"
-#include "stage.h"
-#include "11820.h"
-#include "12DD0.h"
-#include "156F0.h"
-#include "17A70.h"
+#include "game_init.h"
+#include "frontend.h"
+#include "stage_tilemap.h"
+#include "player_control.h"
+#include "actor_physics.h"
+#include "actor_update.h"
 #include "1F1E0.h"
 #include "241E0.h"
-#include "438E0.h"
+#include "stage_runtime.h"
 #include "5D120.h"
 #include "5EA30.h"
 #include "82F80.h"
@@ -31,10 +31,6 @@ extern s16 D_800D2918;
 extern s16 D_800D291C;
 extern u16 D_800D2920;
 extern u16 D_800D2978[];
-extern s16 D_800E13FC[];
-
-// .bss bss_801370D0
-extern u32 gUpdateColorTime; // delta time for updating colors for gems and other actors
 
 // .bss
 
@@ -52,11 +48,11 @@ u16 D_801781DE; // unused
 u16 gStageTime; // in units of ticks
 
 // forward declarations
-void func_8001E9DC(u16 arg0, u16 arg1);
 void func_8001E808(u16 arg0, u16 arg1);
 void func_8001E814(u16 arg0, u16 arg1);
 void func_8001E8E4(u16 arg0, u16 arg1);
 void func_8001E964(u16 arg0, u16 arg1);
+void func_8001E9DC(u16 arg0, u16 arg1);
 void func_8001EADC(u16 arg0, u16 arg1);
 
 Actor2Func D_800CA1C0[] = {
@@ -101,24 +97,41 @@ u16 gAttractModePressTime = 0;
 
 // "d  h  m  s" 
 u16 gPauseDHMS[] = {
-    ALPHA_EN3_LOWER_D, 0x0000, 0x0000,
-    ALPHA_EN3_LOWER_H, 0x0000, 0x0000,
-    ALPHA_EN3_LOWER_M, 0x0000, 0x0000,
-    ALPHA_EN3_LOWER_S, ALPHA_NULL, 0x0000
+    ALPHA_EN3_LOWER_D, ALPHA_SPACE, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_H, ALPHA_SPACE, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_M, ALPHA_SPACE, ALPHA_SPACE,
+    ALPHA_EN3_LOWER_S, ALPHA_NULL, ALPHA_SPACE
 };
 
 // " Continue"
-u16 gPauseContinue[] = { 0x0000, ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_E, ALPHA_NULL };
+u16 gPauseContinue[] = {
+    ALPHA_SPACE,
+    ALPHA_EN2_UPPER_C, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_T, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_N, ALPHA_EN2_LOWER_U, ALPHA_EN2_LOWER_E,
+    ALPHA_NULL
+};
 
 // " Exit"
-u16 gPauseExit[] = { 0x0000, ALPHA_EN2_UPPER_E, ALPHA_EN2_LOWER_X, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_T, ALPHA_NULL };
+u16 gPauseExit[] = {
+    ALPHA_SPACE,
+    ALPHA_EN2_UPPER_E, ALPHA_EN2_LOWER_X, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_T,
+    ALPHA_NULL
+};
 
 // " Not yet"
-u16 gStrYellowGemNo[] = { 0x0000, ALPHA_EN2_UPPER_N, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_T, 0x0000, ALPHA_EN2_LOWER_Y, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_T, ALPHA_NULL, 0x0000 };
+u16 gStrYellowGemNo[] = {
+    ALPHA_SPACE,
+    ALPHA_EN2_UPPER_N, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_T, ALPHA_SPACE,
+    ALPHA_EN2_LOWER_Y, ALPHA_EN2_LOWER_E, ALPHA_EN2_LOWER_T,
+    ALPHA_NULL, ALPHA_SPACE
+};
 
 // " Got it"
 u16 gStrYellowGemYes[] = {
-    0x0000, ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_T, 0x0000, ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_T, ALPHA_NULL };
+    ALPHA_SPACE,
+    ALPHA_EN2_UPPER_G, ALPHA_EN2_LOWER_O, ALPHA_EN2_LOWER_T, ALPHA_SPACE,
+    ALPHA_EN2_LOWER_I, ALPHA_EN2_LOWER_T,
+    ALPHA_NULL
+};
 
 u16 gAttractModeStages[] = { 
     STAGE_CLANBALLLAND, STAGE_WESTERNWORLD, STAGE_SEASICKCLIMB, STAGE_MIGENBRAWL
@@ -322,6 +335,7 @@ u16 gAttractModeHolds0[] = {
     0x0007, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModePresses0[] = {
     0x004C, CONT_RIGHT,
     0x0001, 0,
@@ -515,6 +529,7 @@ u16 gAttractModePresses0[] = {
     0x0001, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModeHolds1[] = {
     0x0045, CONT_RIGHT,
     0x0025, CONT_A | CONT_RIGHT,
@@ -707,6 +722,7 @@ u16 gAttractModeHolds1[] = {
     0x0007, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModePresses1[] = {
     0x0045, CONT_RIGHT,
     0x0001, 0,
@@ -898,6 +914,7 @@ u16 gAttractModePresses1[] = {
     0x0001, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModeHolds2[] = {
     0x0033, CONT_DOWN,
     0x0003, CONT_A | CONT_DOWN,
@@ -1157,6 +1174,7 @@ u16 gAttractModeHolds2[] = {
     0x0008, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModePresses2[] = {
     0x0033, CONT_DOWN,
     0x0001, 0,
@@ -1422,6 +1440,7 @@ u16 gAttractModePresses2[] = {
     0x0001, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModeHolds3[] = {
     0x0102, CONT_LEFT,
     0x0021, CONT_UP | CONT_LEFT,
@@ -1654,6 +1673,7 @@ u16 gAttractModeHolds3[] = {
     0x0004, 0,
     0xFFFF, 0
 };
+
 u16 gAttractModePresses3[] = {
     0x0102, CONT_LEFT,
     0x0001, 0,

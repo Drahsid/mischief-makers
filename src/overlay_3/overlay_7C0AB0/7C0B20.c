@@ -1,9 +1,8 @@
 #include "common.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "74A50.h"
 #include "7D8E0.h"
-
-#define OVERLAY1_DISPATCH_ACTOR ((ActorFunc*)OVERLAY1_DISPATCH_TABLE_VRAM)
 
 #define D_80342230_80342630_COUNT 0x20
 #define D_80342230 ((u8 (*)[D_80342230_80342630_COUNT])0x80342230)

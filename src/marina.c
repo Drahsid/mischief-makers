@@ -12,9 +12,6 @@
 #include "5D120.h"
 #include "60CF0.h"
 
-extern u16 D_801373D8;
-extern u16 D_801373DE;
-
 // forward declarations
 
 extern void Marina_State1(u16);
@@ -129,6 +126,8 @@ ActorFunc gMarinaStateTable[] = {
     Marina_DebugGraphic,          // MARINASTATE_DEBUGGFX
     Marina_DebugMove              // MARINASTATE_DEBUGFLY
 };
+
+u32 D_800D3EA4[3] = { 0 };
 
 u8 func_80048600(u16 actor_index) {
     u8 ret;
@@ -831,8 +830,8 @@ void func_80049AC0(u16 actor_index) {
             gActors[actor_index].unk_140_u16[1] = 0;
         }
         gActors[actor_index].flags |= ACTOR_FLAG_ATTACHED;
-        gPlayerData.unk_00[0].raw = (gActors[actor_index].hitboxBX1 / 2) << 16;
-        gPlayerData.unk_00[1].raw = (gActors[actor_index].hitboxBY1) << 16;
+        gPlayerData.unk_00[0].raw = TO_FIXED(gActors[actor_index].hitboxBX1 / 2);
+        gPlayerData.unk_00[1].raw = TO_FIXED(gActors[actor_index].hitboxBY1);
         MarinaEffect_Grab(actor_index, 1.0f);
         gActors[actor_index].state = MARINASTATE_GRAB;
         return;

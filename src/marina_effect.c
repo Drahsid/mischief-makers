@@ -16,7 +16,7 @@ typedef struct {
 } ShockParticleStruct;
 
 extern ActorFunc gMarinaEffectTable[];
-extern u16 D_800D82EA;
+extern u16 D_800D82E8[];
 extern u16 D_800D84C8[];
 
 // spawn a particle and give a position.
@@ -514,7 +514,7 @@ s32 func_8005A930(ShockParticleStruct* arg0) {
     u16 actor_index;
 
     var_s3 = arg0->scale;
-    Palette_AdjustRgb5551Array(&D_800D82EA, &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
+    Palette_AdjustRgb5551Array(&D_800D82E8[1], &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
     for (index = 0; index < 8; index++) {
         actor_index = MarinaEffect_SpawnParticle(arg0->actorIndex, arg0->pos);
         if (actor_index == 0) {

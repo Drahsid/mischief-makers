@@ -1,28 +1,118 @@
+// BUG: incorrect prototype!
 #define Actor_Initialize_RET void
 #include "common.h"
-#include "stage.h"
+#include "frontend.h"
 #include "28EF0.h"
 #include "66250.h"
+#include "rle.h"
 
 typedef struct {
     u8 unk0[0x20];
 } Unk_Struct_u8_20;
 
-#define D_803402D0 ((Unk_Struct_u8_20*)0x803402D0)
-#define D_803406D0 ((Unk_Struct_u8_20*)0x803406D0)
-#define D_80340DE0 ((Unk_Struct_u8_20*)0x80340DE0)
-#define D_803409E0 ((Unk_Struct_u8_20*)0x803409E0)
+#define D_803402D0 ((Unk_Struct_u8_20*)(ASSET_DEST4 + 0x2D0))
+#define D_803406D0 ((Unk_Struct_u8_20*)(ASSET_DEST4 + 0x6D0))
+#define D_80340DE0 ((Unk_Struct_u8_20*)(ASSET_DEST4 + 0xDE0))
+#define D_803409E0 ((Unk_Struct_u8_20*)(ASSET_DEST4 + 0x9E0))
 
 extern s32 gSpikeballParams_S[];
+extern Gfx D_800D64F8[];
+extern Gfx D_800D6DD0[];
+extern Gfx D_800D70C8[];
 
-extern s32 D_800D74A0[];
-extern u16 D_800D7508[];
-extern u16* D_800D7560[];
 extern s16 D_800E1450;
 
-extern u16 D_80178450;
-extern u16 D_80178452;
-extern u16 D_80178454;
+uintptr_t D_800D74A0[] = {
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, ASSET_DEST5_VRAM + 0x1D700, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, (uintptr_t)D_800D64F8,
+    (uintptr_t)D_800D6DD0, (uintptr_t)D_800D70C8, 0x00000000, 0x00000000,
+    ASSET_DEST4_VRAM + 0xBEA0, ASSET_DEST4_VRAM + 0xC7B8,
+    ASSET_DEST4_VRAM + 0xD180, ASSET_DEST4_VRAM + 0xD998,
+    ASSET_DEST4_VRAM + 0xE198, ASSET_DEST4_VRAM + 0xE6A0,
+    ASSET_DEST4_VRAM + 0xEE38, ASSET_DEST4_VRAM + 0xF298,
+    ASSET_DEST4_VRAM + 0xFCE0, 0x00000000,
+};
+
+u16 D_800D7508[] = {
+    0x1800, 0x1802, 0x1804, 0x080A, 0x180A, 0x1008, 0x203E, 0x0808,
+    0x1808, 0x1008, 0x203C, 0x0000,
+};
+
+u16 D_800D7520[] = {
+    0x0000, 0x8000,
+};
+
+u16 D_800D7524[] = {
+    0x0001, 0x8000,
+};
+
+u16 D_800D7528[] = {
+    0x0002, 0x8000,
+};
+
+u16 D_800D752C[] = {
+    0x0003, 0x8000,
+};
+
+u16 D_800D7530[] = {
+    0x0004, 0x8000,
+};
+
+u16 D_800D7534[] = {
+    0x0005, 0x8000,
+};
+
+u16 D_800D7538[] = {
+    0x0006, 0x8000,
+};
+
+u16 D_800D753C[] = {
+    0x0007, 0x8000,
+};
+
+u16 D_800D7540[] = {
+    0x0008, 0x8000,
+};
+
+u16 D_800D7544[] = {
+    0x0009, 0x8000,
+};
+
+u16 D_800D7548[] = {
+    0x000A, 0x8000,
+};
+
+u16 D_800D754C[] = {
+    0x000B, 0x8000,
+};
+
+u16 D_800D7550[] = {
+    0x000C, 0x8000,
+};
+
+u16 D_800D7554[] = {
+    0x000D, 0x8000,
+};
+
+u16 D_800D7558[] = {
+    0x000E, 0x8000,
+};
+
+u16 D_800D755C[] = {
+    0x000F, 0x8000,
+};
+
+u16* D_800D7560[] = {
+    D_800D7520, D_800D7524, D_800D7528, D_800D752C,
+    D_800D7530, D_800D7534, D_800D7538, D_800D753C,
+    D_800D7540, D_800D7544, D_800D7548, D_800D754C,
+    D_800D7550, D_800D7554, D_800D7558, D_800D755C,
+};
+
+u16 D_80178450;
+u16 D_80178452;
+u16 D_80178454;
 
 void func_80060F80(u16 arg0) {
 }

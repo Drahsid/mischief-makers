@@ -1,7 +1,6 @@
 #include "common.h"
 #include "actor.h"
-
-extern u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 x, s16 y, s16 z);
+#include "28EF0.h"
 
 // "overlay 2" code for "Trapped", "Merco!!" and 2 unused scenes.
 
