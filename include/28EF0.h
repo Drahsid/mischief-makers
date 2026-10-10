@@ -128,7 +128,7 @@ u16 func_8003F7A0(f32 scale, s16 position_x, s16 position_y, s16 position_z);
 u16 func_8003F9E0(f32 arg0, s16 arg1, s16 arg2, s16 arg3);
 u16 SpawnParticle_RingWaveBlue(f32 arg0, s16 pos_x, s16 pos_y, s16 pos_z);
 void func_80040564(u16 actor_index);
-s32 func_800407D4(u16 actor_index);
+u16 func_800407D4(u16 actor_index);
 s32 WarpGate_IsGrabbed(u16 actor_index);
 void ActorUpdate_WarpGate(u16 actor_index);
 

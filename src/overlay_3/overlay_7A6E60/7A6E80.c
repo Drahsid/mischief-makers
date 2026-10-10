@@ -444,7 +444,7 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
 
     records = (Graphic_Spawn_Record*)D_80178288;
 
-    if (D_80178288 && D_80178288) {
+    if (D_80178288) {
     }
 
     if (records == 0) {
@@ -457,7 +457,7 @@ void func_801B0A58_7A6FD8(u16 actor_index, s16 position_z) {
     left_bound = new_var;
     index = 0;
 
-    if (index && index) {
+    if (index) {
     }
 
     if (records[0].unk_00 == (gScreenPosCurrentX.raw * 0)) {
@@ -1749,7 +1749,7 @@ void func_801B3E9C_7AA41C(u16 actor_index) {
                         case 0:
                             if ((!gActors[actor_index].unk_17C) && (!gActors[actor_index].unk_17C)) {
                             }
-                            if (gActors[actor_index].unk_174_u16[0] && gActors[actor_index].unk_174_u16[0]) {
+                            if (gActors[actor_index].unk_174_u16[0]) {
                             }
                             gActors[actor_index].state = 0xA0;
                             break;
@@ -1763,7 +1763,7 @@ void func_801B3E9C_7AA41C(u16 actor_index) {
                             }
                             else {
                                 gActors[actor_index].state = 0x290;
-                                if (actor_index && actor_index) {
+                                if (actor_index) {
                                 }
                                 gActors[actor_index].unk_174_u16[0] = gActors[actor_index].unk_174_u16[0] + ((u32)gActors[actor_index].unk_174_u16[0] * 0U) + 1;
                             }

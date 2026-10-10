@@ -320,7 +320,7 @@ void func_80061624(u16 actor_index) {
                 gActors[actor_index].var_158 += D_80178450;
                 for (index = 0; index < 0x20; index++) {
                     temp_v0 = (SIN(gActors[actor_index].var_158 + (index * D_80178452)) * D_80178454) + index;
-                    if (index && index) {
+                    if (index) {
                     }
                     temp_v0 &= 0x1F;
                     for (jndex = 0; jndex < 0x20; jndex++) {
@@ -419,7 +419,7 @@ void func_80061624(u16 actor_index) {
                 gActors[actor_index].var_158 += D_80178450;
                 for (index = 0; index < 0x20; index++) {
                     temp_v0 = (SIN(gActors[actor_index].var_158 + (index * D_80178452)) * D_80178454) + index;
-                    if (index && index) { // fakematch
+                    if (index) { // fakematch
                     }
                     temp_v0 &= 0x1F;
                     for (jndex = 0; jndex < 0x20; jndex++) {

@@ -4516,7 +4516,7 @@ void func_80071CE8(u16 actor_index) {
                 break;
             }
         default:
-            if (D_800E3580 && D_800E3580) { } // fakematch
+            if (D_800E3580) { } // fakematch
     }
 }
 
