@@ -109,7 +109,10 @@ extern u32 func_80029B00(s16 arg0, s16 arg1, s16 arg2);
 extern u32 func_80029B74(s16 arg0);
 extern s32 func_800298D0(s32 arg0, s32 arg1, s32 arg2);
 extern u16 func_80029FB8(u16 actor_index, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
-extern void Actor_SetHitboxA(u16 actor_index, s16 val);
+#ifndef Actor_SetHitboxA_RET
+#define Actor_SetHitboxA_RET void
+#endif
+extern Actor_SetHitboxA_RET Actor_SetHitboxA(u16 actor_index, s16 val);
 extern void func_8002DB0C(u16 actor_index, u16 arg1, s32 arg2, s32 pos_x, s32 pos_y, s32 pos_z);
 extern void SpawnShuriken(u16 actor_index, s16 pos_x, s16 pos_y, s32 vel_x, s32 vel_y);
 extern void func_8002ED34(u16 actor_index, s16 pos_x, s16 pos_y, s16 vel_x, s16 vel_y);
