@@ -121,7 +121,7 @@ s32 Trouble_RLE_Type1(u8* src, u8* dst) {
             count++;
 
             if (count == 0x10) {
-                if (current_command && current_command) {
+                if (current_command) {
                 }
                 dst[dst_pos + 0] = dst[dst_pos + 1] = dst[dst_pos + 2] = dst[dst_pos + 3]
                     = dst[dst_pos + 4] = dst[dst_pos + 5] = dst[dst_pos + 6] = dst[dst_pos + 7]
