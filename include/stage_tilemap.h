@@ -4,6 +4,7 @@
 #include <PR/ultratypes.h>
 
 void func_8001107C(void);
+void func_80011A18(s16, s16, s16);
 
 // BUG: inconsistent prototype!
 #ifndef func_80011F44_ARGS

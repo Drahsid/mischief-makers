@@ -9,6 +9,7 @@ void ActorUpdate_Clanblob(u16 actor_index);
 void Clanblob_Update(u16 actor_index);
 
 void func_80073E50(u16 actor_index, u16 graphic_index);
+void func_80073EF4(u16 actor_index);
 void func_800740C8(u16 actor_index);
 u16 func_80074938(u16 actor_index, u16 arg1);
 u16 func_80074D28(u16 actor_index, u16 arg1);
