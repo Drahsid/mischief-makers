@@ -1,5 +1,6 @@
 #include "common.h"
 #include "actor.h"
+#include "Alphabet.h"
 #include "28EF0.h"
 #include "74A50.h"
 #include "66250.h"
@@ -42,10 +43,10 @@ s16 D_801AF428_76EC38[] = {
     0x012E, 0x017E, 0x01CE, 0x021E,
 };
 
+// "ここまでおいで" / "Come over here"
 u16 D_801AF430_76EC40[] = {
-    0x005A, 0x005A, 0x006F, 0x008C,
-    0x0055, 0x0052, 0x008C,
-    0x8FFF,
+    ALPHA_JP_HIRA_KO, ALPHA_JP_HIRA_KO, ALPHA_JP_HIRA_MA, ALPHA_JP_HIRA_DE,
+    ALPHA_JP_HIRA_O, ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_DE, ALPHA_NULL,
 };
 
 s16 D_801AF440_76EC50[] = {
@@ -56,15 +57,15 @@ s16 D_801AF444_76EC54[] = {
     0x024E, 0x024E,
 };
 
+// "帰らないよ" / "I'm not going home"
 u16 D_801AF448_76EC58[] = {
-    0x028A, 0x0077, 0x0065, 0x0052,
-    0x0076,
-    0x8FFF,
+    ALPHA_JP_KANJI_U5E30, ALPHA_JP_HIRA_RA, ALPHA_JP_HIRA_NA, ALPHA_JP_HIRA_I,
+    ALPHA_JP_HIRA_YO, ALPHA_NULL,
 };
 
+// "帰るよ" / "I'm going home"
 u16 D_801AF454_76EC64[] = {
-    0x028A, 0x0079, 0x0076,
-    0x8FFF,
+    ALPHA_JP_KANJI_U5E30, ALPHA_JP_HIRA_RU, ALPHA_JP_HIRA_YO, ALPHA_NULL,
 };
 
 u16 D_801AF45C_76EC6C[] = {
@@ -72,9 +73,9 @@ u16 D_801AF45C_76EC6C[] = {
     0x0765, 0x0000,
 };
 
+// "ば~か" / "Idiot"
 u16 D_801AF468_76EC78[] = {
-    0x008E, 0x00BA, 0x0056,
-    0x8FFF,
+    ALPHA_JP_HIRA_BA, ALPHA_TILDE, ALPHA_JP_HIRA_KA, ALPHA_NULL,
 };
 
 u16 D_801AF470_76EC80[] = {
@@ -83,51 +84,72 @@ u16 D_801AF470_76EC80[] = {
     0x201C, 0x2008, 0x200A, 0x200C,
     0x200E, 0x201E, 0x2012, 0x2014,
     0x2008, 0x200A, 0x200C, 0x200E,
-    0x2020, 0x2010, 0x01F6, 0x006A,
-    0xC004, 0x0074, 0x0079, 0x0087,
-    0x00B2,
-    0x8FFF,
+    0x2020, 0x2010,
 };
 
+// "俺は やるぜ!!" / "I'll do it!!"
+u16 D_801AF49C_76ECAC[] = {
+    ALPHA_JP_KANJI_U4FFA, ALPHA_JP_HIRA_HA, ALPHA_BOLD_SPACE | 4, ALPHA_JP_HIRA_YA,
+    ALPHA_JP_HIRA_RU, ALPHA_JP_HIRA_ZE, ALPHA_2EXCLAMATION, ALPHA_NULL,
+};
+
+// "ただいまぁ" / "I'm home"
 u16 D_801AF4AC_76ECBC[] = {
-    0x0060, 0x0089, 0x0052, 0x006F,
-    0x0098,
-    0x8FFF,
-    0x0061, 0x009E, 0x0094, 0x005A,
-    0xC004, 0x010E, 0x00BA, 0x00F5,
-    0x00B2,
-    0x8FFF,
+    ALPHA_JP_HIRA_TA, ALPHA_JP_HIRA_DA, ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_MA,
+    ALPHA_JP_HIRA_SMALL_A, ALPHA_NULL,
 };
 
+// "ちゃぴこ ボ~ル!!" / "Chapiko Ball!!"
+u16 D_801AF4B8_76ECC8[] = {
+    ALPHA_JP_HIRA_CHI, ALPHA_JP_HIRA_SMALL_YA, ALPHA_JP_HIRA_PI, ALPHA_JP_HIRA_KO,
+    ALPHA_BOLD_SPACE | 4, ALPHA_JP_KATA_BO, ALPHA_TILDE, ALPHA_JP_KATA_RU,
+    ALPHA_2EXCLAMATION, ALPHA_NULL,
+};
+
+// "コッチだよ" / "Over here"
 u16 D_801AF4CC_76ECDC[] = {
-    0x00D6, 0x0119, 0x00DD, 0x0089,
-    0x0076,
-    0x8FFF,
+    ALPHA_JP_KATA_KO, ALPHA_JP_KATA_SMALL_TSU, ALPHA_JP_KATA_CHI,
+    ALPHA_JP_HIRA_DA, ALPHA_JP_HIRA_YO, ALPHA_NULL,
 };
 
+// "アッチだよ" / "Over there"
 u16 D_801AF4D8_76ECE8[] = {
-    0x00CD, 0x0119,
+    ALPHA_JP_KATA_A, ALPHA_JP_KATA_SMALL_TSU, ALPHA_JP_KATA_CHI,
+    ALPHA_JP_HIRA_DA, ALPHA_JP_HIRA_YO, ALPHA_NULL,
 };
 
-u16 D_801AF4DC_76ECEC[] = {
-    0x00DD, 0x0089, 0x0076,
-    0x8FFF,
-    0x005A, 0x0065, 0x0052, 0x008C,
-    0x0054, 0x009B, 0x00B2,
-    0x8FFF,
-    0x006B, 0x0052, 0x0052, 0x0099,
-    0x0099, 0x00C0,
-    0x8FFF,
-    0x0000, 0x0074, 0x00BA, 0x007E,
-    0x8FFF,
-    0x0083, 0x0072, 0x007E, 0x0068,
-    0x00B0,
-    0x8FFF,
-    0x00EB, 0x00F4, 0x00E1, 0x00E5,
-    0x00B0,
-    0x8FFF,
-    0x0074, 0x00BA, 0x0068,
-    0x8FFF,
+// "こないでえぇ!!" / "Don't come any closer!!"
+u16 D_801AF4E4_76ECF4[] = {
+    ALPHA_JP_HIRA_KO, ALPHA_JP_HIRA_NA, ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_DE,
+    ALPHA_JP_HIRA_E, ALPHA_JP_HIRA_SMALL_E, ALPHA_2EXCLAMATION, ALPHA_NULL,
+};
+
+// "ひいいぃぃー" / "Eeeeek"
+u16 D_801AF4F4_76ED04[] = {
+    ALPHA_JP_HIRA_HI, ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_I, ALPHA_JP_HIRA_SMALL_I,
+    ALPHA_JP_HIRA_SMALL_I, ALPHA_DASH, ALPHA_NULL, 0,
+};
+
+// "や~ん" / "Nooo"
+u16 D_801AF504_76ED14[] = {
+    ALPHA_JP_HIRA_YA, ALPHA_TILDE, ALPHA_JP_HIRA_N, ALPHA_NULL,
+};
+
+// "ごめんね..." / "Sorry..."
+u16 D_801AF50C_76ED1C[] = {
+    ALPHA_JP_HIRA_GO, ALPHA_JP_HIRA_ME, ALPHA_JP_HIRA_N, ALPHA_JP_HIRA_NE,
+    ALPHA_ELLIPSIS, ALPHA_NULL,
+};
+
+// "マリナノ..." / "Marina's..."
+u16 D_801AF518_76ED28[] = {
+    ALPHA_JP_KATA_MA, ALPHA_JP_KATA_RI, ALPHA_JP_KATA_NA, ALPHA_JP_KATA_NO,
+    ALPHA_ELLIPSIS, ALPHA_NULL,
+};
+
+// "や~ね" / "Oh, stop it"
+u16 D_801AF524_76ED34[] = {
+    ALPHA_JP_HIRA_YA, ALPHA_TILDE, ALPHA_JP_HIRA_NE, ALPHA_NULL,
 };
 
 u16 D_801AF52C_76ED3C[] = {
@@ -185,6 +207,9 @@ u16 D_801AF554_76ED64[] = {
     0x8000,
     0x0008,
     0x8002,
+};
+
+u16 D_801AF55C_76ED6C[] = {
     0x0494, 0x04A0, 0x04AC, 0x0498,
 };
 
@@ -1676,7 +1701,7 @@ void func_801A90F4_768904(u16 temp_s1) {
 
 
 u16 func_801A94C0_768CD0(u16 actor_index) {
-    s32 position_x = D_801AF4DC_76ECEC[actor_index];
+    s32 position_x = D_801AF55C_76ED6C[actor_index - 0x40];
     return func_8006930C(actor_index, 0x90, 0x70, 0x210, 0x210, (s16)(position_x - 3), (s16)(position_x + 3), 0x156, 0x126);
 }
 
