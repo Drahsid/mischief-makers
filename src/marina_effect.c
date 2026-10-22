@@ -1,20 +1,6 @@
 #include "common.h"
 #include "marina_effect.h"
 
-typedef struct {
-    u8 randModulo;
-    u8 red;
-    u8 green;
-    u8 blue;
-    u16 actorIndex;
-    u8 pad6[2];
-    s32 pos[3];
-    u8 pad14[4];
-    s32 graphicIndex;
-    s32 angle;
-    f32 scale;
-} ShockParticleStruct;
-
 extern ActorFunc gMarinaEffectTable[];
 extern u16 D_800D82E8[];
 extern u16 D_800D84C8[];

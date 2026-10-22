@@ -15,7 +15,6 @@ extern u16 D_800D5348[];
 extern u16 D_800D5448[];
 extern u16 D_800D9ADC[];
 extern s16 D_800E149C[];
-extern u16 D_801AC70A_78506A[];
 
 u8 D_801ABDB0_784710 = 0;
 
@@ -1273,6 +1272,7 @@ s32 func_801A9098_7819F8(u16 actor_index) {
     for (index = 0; index < gActors[actor_index].var_150; index += 4) {
         entry = &D_801AC70C_78506C[index + 0];
         new_actor_index = SpawnParticle_Image_90C0_16(0x1EE, (s16)entry[0], (s16)entry[1], gActors[actor_index].posZ.whole);
+
         if (new_actor_index != 0) {
             angle = entry[2];
             gActors[new_actor_index].graphicFlags = ACTOR_GFLAG_UNK8 | ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_ROTZ;
@@ -1304,23 +1304,25 @@ s32 func_801A9098_7819F8(u16 actor_index) {
     gLookatEyeX = Math_ApproachF32(gLookatEyeX, 0.0f, 0.05f);
     gLookatAtX = gLookatEyeX * 0.24;
     gLookatAtY = gLookatEyeY - 8.0f;
+
     if ((s16)D_801AC70C_78506C[gActors[actor_index].var_150] == 0x7FFF) {
         return 1;
     }
 
     gActors[actor_index].var_154--;
+
     if (gActors[actor_index].var_154 < 0) {
         gActors[actor_index].var_150 += 4;
-        gActors[actor_index].var_154 = (s16)D_801AC70A_78506A[index];
+        gActors[actor_index].var_154 = (s16)D_801AC70C_78506C[index - 1];
         Sound_PlaySfx2(0xE1);
         CameraShake(4, 2);
         gLookatEyeX = gActors[new_actor_index].posX.whole * 6;
         gLookatEyeY = gActors[new_actor_index].posY.whole + 0x18;
         gLookatEyeZ = 256.0f;
     }
+
     return 0;
 }
-
 
 void func_801A93B8_781D18(u16 actor_index) {
     if ((gActors[0x90].flags & ACTOR_FLAG_DRAW) && ((s32)gActors[actor_index].state < 0xC000)) {\
