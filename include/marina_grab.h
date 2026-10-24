@@ -14,9 +14,14 @@ extern u16* D_800D54EC[];
 extern s32 gMarinaActionSpeeds[]; // velocities for Marina's various actions. multiplied by gPlayerActor.unk_120
 
 s32 func_8004F2B0(u16 actor_index);
+s32 func_8004F35C(u16 actor_index, u32* arg1);
+void func_8004F5B0(u16 actor_index);
 void Marina_DropActor(u16 actor0, u16 actor1);
 s32 func_8004F7D8(u16 actor_index);
 s32 func_800528F4(u16 actor_0, u16 actor_1);
+s32 func_80052A6C(u16 actor_0, u16 actor_1);
+void func_80052CD0(u16 actor_0, u16 actor_1);
+s32 func_80053210(u16 actor_0, u16 actor_1);
 
 extern Actor2Func gMarinaHitTable[];
 void Marina_ShakeShake(u16 actor_index);

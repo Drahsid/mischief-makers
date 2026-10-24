@@ -7,6 +7,8 @@ extern u16 gIsPlayerInactive;
 extern u16 gAttractModeIndex;
 extern u16 gPauseContinue[];
 
+void func_8001EB8C(u16 actor_index, u16 parent_index);
+
 // BUG: inconsistent prototype! we sometimes need x and y as s32
 #ifndef func_8001FCA0_ARGS
 #define func_8001FCA0_ARGS u16 actor_index, s16 x, s16 y

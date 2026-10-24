@@ -1,23 +1,8 @@
 #include "common.h"
 #include "marina_effect.h"
 
-typedef struct {
-    u8 randModulo;
-    u8 red;
-    u8 green;
-    u8 blue;
-    u16 actorIndex;
-    u8 pad6[2];
-    s32 pos[3];
-    u8 pad14[4];
-    s32 graphicIndex;
-    s32 angle;
-    f32 scale;
-} ShockParticleStruct;
-
 extern ActorFunc gMarinaEffectTable[];
 extern u16 D_800D82E8[];
-extern u16 D_800D84C8[];
 
 // spawn a particle and give a position.
 // @param actor_index index of "parent."
@@ -514,7 +499,7 @@ s32 func_8005A930(ShockParticleStruct* arg0) {
     u16 actor_index;
 
     var_s3 = arg0->scale;
-    Palette_AdjustRgb5551Array(&D_800D82E8[1], &D_800D84C8[1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
+    Palette_AdjustRgb5551Array(&D_800D82E8[1], &D_800D82E8[0xF1], 0xF, arg0->blue / 8, arg0->green / 8, arg0->red / 8);
     for (index = 0; index < 8; index++) {
         actor_index = MarinaEffect_SpawnParticle(arg0->actorIndex, arg0->pos);
         if (actor_index == 0) {
@@ -538,7 +523,7 @@ s32 func_8005A930(ShockParticleStruct* arg0) {
         else {
             gActors[actor_index].graphicIndex = arg0->graphicIndex;
         }
-        gActors[actor_index].unk_18C = (intptr_t)D_800D84C8; // palette_18C doesn't match instruction ordering
+        gActors[actor_index].unk_18C = (intptr_t)(D_800D82E8 + 0xF0); // palette_18C doesn't match instruction ordering
         temp_f20 = arg0->scale / (((Rand() % arg0->randModulo) * 16) + 32);
         gActors[actor_index].scaleX = temp_f20;
         temp_v1_2 = TO_FIXED(Rand()) + arg0->angle - FIXED_UNIT(128.0);

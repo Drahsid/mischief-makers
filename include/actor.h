@@ -343,9 +343,11 @@ typedef struct {
                     union {
                         /* 0x13C */ f32 unk_13C_f32;
                         /* 0x13C */ s16 unk_13C_s16[2];
+                        /* 0x13C */ s8 unk_13C_s8;
                     };
                     union {
                         /* 0x140 */ f32 unk_140_f32;
+                        /* 0x140 */ s16 unk_140_s16[2];
                         /* 0x140 */ u16 unk_140_u16[2];
                         /* 0x140 */ u8 unk_140_u8[4];
                     };
@@ -358,6 +360,7 @@ typedef struct {
 
             union {
                 /* 0x150 */ s32 var_150;
+                /* 0x150 */ u32 var_150_u32;
                 /* 0x150 */ s16 var_150_s16[2];
                 /* 0x150 */ s16* var_150_s16_ptr;
                 /* 0x150 */ FixedCoord unk_150; // TODO: array?
@@ -376,6 +379,8 @@ typedef struct {
             union {
                 /* 0x160 */ s32 var_160;
                 /* 0x160 */ u8 var_160_u8;
+                /* 0x160 */ s8 var_160_s8[4];
+                /* 0x160 */ s16 var_160_s16[2];
                 /* 0x160 */ s16* graphicList_160;
             };
             /* 0x164 */ s32 unk_164;
@@ -406,6 +411,7 @@ typedef struct {
                     union {
                         /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
                         /* 0x178 */ u16 unk_178_u16[2];
+                        /* 0x178 */ s8 unk_178_s8[4];
                     };
                     union {
                         /* 0x17C */ s32 unk_17C;
@@ -419,6 +425,7 @@ typedef struct {
                         /* 0x180 */ s32 unk_180;
                         /* 0x180 */ s16 unk_180_s16[2];
                         /* 0x180 */ u8 unk_180_u8[4];
+                        /* 0x180 */ s8 unk_180_s8[4];
                         /* 0x180 */ uintptr_t ptr_180; // can hold Vtx*, s16*, or u16* depending on actor type
                         /* 0x180 */ u16* palette_180;
                     };
