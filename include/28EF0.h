@@ -94,6 +94,7 @@ void func_800333A0(s16 x, s16 y, s16 z, f32 arg3);
 void ActorUpdate_AfterImage(u16 actor_index);
 void SpawnDizzyStar(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duration);
 void ActorUpdate_DizzyStar(u16 actor_index);
+void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic);
 void SpawnParticle_SineUpNotes(s16 pos_x, s16 pos_y, s16 pos_z);
 void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3);
 void func_80033B54(u16 actor_index);
