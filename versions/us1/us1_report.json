@@ -1,13 +1,13 @@
 {
   "measures": {
-    "fuzzy_match_percent": 77.398964,
-    "total_code": "1985360",
-    "matched_code": "1536648",
-    "matched_code_percent": 77.398964,
+    "fuzzy_match_percent": 77.50032,
+    "total_code": "1994304",
+    "matched_code": "1545592",
+    "matched_code_percent": 77.50032,
     "matched_data_percent": 100.0,
-    "total_functions": 4707,
-    "matched_functions": 3996,
-    "matched_functions_percent": 84.89484,
+    "total_functions": 4710,
+    "matched_functions": 3999,
+    "matched_functions_percent": 84.90446,
     "complete_data_percent": 100.0,
     "total_units": 371
   },
@@ -25670,10 +25670,12 @@
       "name": "rsp/rspboot",
       "measures": {
         "fuzzy_match_percent": 100.0,
+        "total_code": "208",
+        "matched_code": "208",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "matched_functions": 1,
+        "total_functions": 2,
+        "matched_functions": 2,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25681,12 +25683,21 @@
         {
           "name": ".text",
           "size": "208",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148248032"
           }
         }
       ],
       "functions": [
+        {
+          "name": "rspbootTextStart",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148248032"
+          }
+        },
         {
           "name": "rspbootTextEnd",
           "fuzzy_match_percent": 100.0,
@@ -25707,10 +25718,12 @@
       "name": "rsp/gspFast3D",
       "measures": {
         "fuzzy_match_percent": 100.0,
+        "total_code": "5120",
+        "matched_code": "5120",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "matched_functions": 1,
+        "total_functions": 2,
+        "matched_functions": 2,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25718,12 +25731,21 @@
         {
           "name": ".text",
           "size": "5120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148248240"
           }
         }
       ],
       "functions": [
+        {
+          "name": "gspFast3DTextStart",
+          "size": "5120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148248240"
+          }
+        },
         {
           "name": "gspFast3DTextEnd",
           "fuzzy_match_percent": 100.0,
@@ -25744,10 +25766,12 @@
       "name": "rsp/aspMain",
       "measures": {
         "fuzzy_match_percent": 100.0,
+        "total_code": "3616",
+        "matched_code": "3616",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "matched_functions": 1,
+        "total_functions": 2,
+        "matched_functions": 2,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25755,12 +25779,21 @@
         {
           "name": ".text",
           "size": "3616",
+          "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148253360"
           }
         }
       ],
       "functions": [
+        {
+          "name": "aspMainTextStart",
+          "size": "3616",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148253360"
+          }
+        },
         {
           "name": "aspMainTextEnd",
           "fuzzy_match_percent": 100.0,
@@ -50602,12 +50635,12 @@
       "name": "Main segment",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "763264",
-        "matched_code": "763264",
+        "total_code": "772208",
+        "matched_code": "772208",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2159,
-        "matched_functions": 2159,
+        "total_functions": 2162,
+        "matched_functions": 2162,
         "matched_functions_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 242
