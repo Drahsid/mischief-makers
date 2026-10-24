@@ -14,7 +14,6 @@
 // "overlay 1" code for stage "Merco!!"
 
 extern u16 D_800D82E8[];
-extern u16 D_800D8468[];
 extern s8 D_801A3820_721E40[];
 extern s16 D_801A382C_721E4C[];
 extern s32 D_801A38C0_721EE0[];
@@ -2099,7 +2098,7 @@ void func_8019F7F4_71DE14(u16 actor_index) {
         gActors[actor_index].flags |= ACTOR_FLAG_FLIPPED;
 
         if (gStageState < 0x1000) {
-            Palette_AdjustRgb5551Array(D_800D82E8 + 1, D_800D8468 + 1, 15, 0, -16, -16);
+            Palette_AdjustRgb5551Array(D_800D82E8 + 1, D_800D82E8 + 0xC1, 15, 0, -16, -16);
             gActors[actor_index].unk_170 = 0x24;
             gActors[actor_index].colorA = 0;
             gActors[actor_index].var_150 = FIXED_UNIT(160);
@@ -2161,7 +2160,7 @@ void func_8019F7F4_71DE14(u16 actor_index) {
                 }
 
                 sp64[1] = gActors[actor_index].posY.whole + gActors[actor_index].hitboxBY1;
-                sp64[4] = (s32)D_800D8468;
+                sp64[4] = (s32)(D_800D82E8 + 0xC0);
 
                 if (func_8005A7D0(actor_index, sp64, gActors[actor_index].var_110, gActors[actor_index].unk_114) == 0) {
                     break;

@@ -49,6 +49,8 @@ void MarinaEffect_Noop(u16 actor_index);
 void MarinaEffect_Dash(u16 actor_index);
 void MarinaEffect_Type2(u16 actor_index);
 void MarinaEffect_Burn(u16 actor_index);
+void MarinaEffect_Type4(u16 actor_index);
+void MarinaEffect_Teleport(u16 actor_index);
 void MarinaEffect_Update(u16 actor_index);
 
 void ActorUpdate_MarinaAfterImage(u16 actor_index);
