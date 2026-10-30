@@ -22,6 +22,7 @@ s32 func_800528F4(u16 actor_0, u16 actor_1);
 s32 func_80052A6C(u16 actor_0, u16 actor_1);
 void func_80052CD0(u16 actor_0, u16 actor_1);
 s32 func_80053210(u16 actor_0, u16 actor_1);
+void func_800536CC(u16 actor_0, u16 actor_1);
 
 extern Actor2Func gMarinaHitTable[];
 void Marina_ShakeShake(u16 actor_index);

@@ -585,8 +585,6 @@ void func_801BA1DC_7E732C(void) {
             Palette_AdjustScenePalettes(1, 2, 0, 0, 1, 2, 2, 1, 0);
             Palette_AdjustRgb5551Array(PALETTE_802F8068, (void*)0x802F7E68, 0xFF, -2, -3, -4);
             func_80045FA4(D_801BA794_7E78E4, D_801BA9A4_7E7AF4);
-            if (!D_801BA7A4_7E78F4) {
-            }
             D_800D2924 = 0x2000;
             Actor_LoadSpawnTable(sActorSpawn_BG5A);
             Actor_LoadSpawnTable(sActorSpawn_5_3A);

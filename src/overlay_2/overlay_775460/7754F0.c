@@ -3249,7 +3249,7 @@ void func_801AE634_77D224(u16 actor_index) {
 
 
 void func_801AEEBC_77DAAC(u16 actor_index) {
-    if (gActors[0x40].health == 0 || gScreenPosCurrentY.whole - ((actor_index * 0) - gActors[actor_index].posY.whole) < 0x100) {
+    if (gActors[0x40].health == 0 || gScreenPosCurrentY.whole - (0 - gActors[actor_index].posY.whole) < 0x100) {
         gActors[actor_index].flags = 0;
         return;
     }

@@ -2077,19 +2077,21 @@ void func_8001EC1C(void) {
                             }
 
                             if (gActors[index_s1].hitType < HITTYPE_21) {
-                                // This unreachable branch preserves IDO's reload before the contact-owner store.
-                                if ((!gActors) && (!gActors)) {
-                                }
                                 gActors[index_s1].parentIndex = actor_index;
                             }
-                            if (((gActors[index_s1].hitType != HITTYPE_21) || (gActors[actor_index].actorType != ACTORTYPE_23)) &&
-                                (!(gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) || (gActors[index_s1].parentIndex != actor_index))) {
-                                gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
-                                if (gActors[index_s1].hitType < HITTYPE_23) {
-                                    gActors[actor_index].parentIndex = index_s1;
-                                    gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
-                                    gActors[actor_index].pendingDamage += gActors[index_s1].damage;
-                                }
+
+                            if ((gActors[index_s1].hitType == HITTYPE_21) && (gActors[actor_index].actorType == ACTORTYPE_23)) {
+                                break;
+                            }
+                            if ((gActors[index_s1].flags & ACTOR_FLAG_ATTACHED) && (gActors[index_s1].parentIndex == actor_index)) {
+                                break;
+                            }
+
+                            gActors[index_s1].flags_098 |= ACTOR_FLAG3_UNK0;
+                            if (gActors[index_s1].hitType < HITTYPE_23) {
+                                gActors[actor_index].parentIndex = index_s1;
+                                gActors[actor_index].flags_098 |= ACTOR_FLAG3_UNK1;
+                                gActors[actor_index].pendingDamage += gActors[index_s1].damage;
                             }
                         } while (0);
                     }
@@ -2666,11 +2668,9 @@ void Pause_Update(void) {
         if (gActors[actor_index].flags != 0) {
             gActors[actor_index].graphicTimer--;
             graphic_list = gActors[actor_index].graphicList;
-            if (graphic_list) {} // fakematch
             if (gActors[actor_index].graphicTimer == 0) {
-                gActors[actor_index].graphicIndex = graphic_list[0];
-                gActors[actor_index].graphicTimer = graphic_list[1];
-                graphic_list += 2;
+                gActors[actor_index].graphicIndex = *graphic_list++;
+                gActors[actor_index].graphicTimer = *graphic_list++;
                 if (graphic_list[0] < 0) {
                     graphic_list += graphic_list[0];
                 }

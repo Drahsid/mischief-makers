@@ -11,9 +11,6 @@ u16 D_801370CE;
 void Input_Update(void) {
     osContGetReadData(gContpadArrayB);
 
-    if (!gContpadArrayA[gPlayerControllerIndex].errno) {
-    }
-
     osContGetReadData(gContpadArrayA);
 
     if (gContpadArrayA[gPlayerControllerIndex].errno == 0) {
