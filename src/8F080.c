@@ -3932,6 +3932,8 @@ void func_80096058(u16 actor_index) {
 }
 
 void func_80096104(u16 actor_index) {
+    u32 flags;
+
     switch (gActors[actor_index].state) {
     case 0x0:
         func_80095FC8(actor_index);
@@ -3960,8 +3962,8 @@ void func_80096104(u16 actor_index) {
     case 0x80:
         gActors[actor_index].velocityX.raw = 0;
         gActors[actor_index].velocityY.raw = 0;
-        if (gActors[actor_index].flags_098) {} // fakematch
-        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_GRAB) {
+        flags = gActors[actor_index].flags_098;
+        if (flags & ACTOR_FLAG3_GRAB) {
             gActors[actor_index].posX.raw = gActors[actor_index].unk_104;
             gActors[actor_index].posY.raw = gActors[actor_index].unk_108;
         }

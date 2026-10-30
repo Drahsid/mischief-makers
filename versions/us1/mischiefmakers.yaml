@@ -611,7 +611,7 @@ segments:
     subsegments:
       - [0x67DC20, c, overlay_0/overlay_67DBA0/67DC20] # object segment 67DC20->68A090 (0xC470)
       - [0x686BB0, data, overlay_0/overlay_67DBA0/67DC20]
-      - [0x689200, rodata, overlay_0/overlay_67DBA0/67DC20_rodata]
+      - [0x689880, rodata, overlay_0/overlay_67DBA0/67DC20_rodata]
       - { name: overlay_0/overlay_67DBA0/67DC20, type: bss, vram: 0x8019E570 }
 
   - name: overlay_68A090_dispatch_table # blackgamma7: CerberusAlpha
@@ -645,12 +645,12 @@ segments:
     type: code
     vram: 0x80192100
     start: 0x6A0100
-    bss_size: 0x10
+    bss_size: 0x20
     subsegments:
-      - [0x6A0100, asmtu, overlay_0/overlay_6A00C0/6A0100] # object segment 6A0100->6AAA80 (0xA980)
+      - [0x6A0100, c, overlay_0/overlay_6A00C0/6A0100] # object segment 6A0100->6AAA80 (0xA980)
       - [0x6A7C00, .data, overlay_0/overlay_6A00C0/6A0100]
-      - [0x6AA5E0, .rodata, overlay_0/overlay_6A00C0/6A0100]
-      - { name: overlay_0/overlay_6A00C0/6A0100, type: .bss, vram: 0x8019CA80 }
+      - [0x6AA570, .rodata, overlay_0/overlay_6A00C0/6A0100]
+      - { name: overlay_0/overlay_6A00C0/6A0100, type: bss, vram: 0x8019CA80 }
 
   - name: overlay_6AAA80_dispatch_table # blackgamma7: PhoenixGamma
     exclusive_ram_id: overlay_6AAA80_dispatch_table
@@ -737,10 +737,12 @@ segments:
     type: code
     vram: 0x80192100
     start: 0x6DA010
+    bss_size: 0x10
     subsegments:
       - [0x6DA010, c, overlay_0/overlay_6D9FB0/6DA010] # object segment 6DA010->6E2AE0 (0x8AD0)
-      - [0x6E22E0, data, overlay_6D9FB0/6DA010]
-      - [0x6E2670, rodata, overlay_6D9FB0/6DA010]
+      - [0x6E22E0, .data, overlay_0/overlay_6D9FB0/6DA010]
+      - [0x6E2670, .rodata, overlay_0/overlay_6D9FB0/6DA010]
+      - { name: overlay_0/overlay_6D9FB0/6DA010, type: .bss, vram: 0x8019ABD0 }
 
   - name: overlay_6E2AE0_dispatch_table # blackgamma7: DemoWorld3
     exclusive_ram_id: overlay_6E2AE0_dispatch_table

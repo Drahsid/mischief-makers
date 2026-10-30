@@ -1079,7 +1079,7 @@ void func_801A7304_78D5F4(u16 actor_index, u16 value) {
         gActors[actor_index].velocityX.raw = FIXED_UNIT(2);
         gMarinaAnim.state++;
     case 1:
-        if (gScreenPosCurrentX.whole - ((actor_index * 0) - gActors[actor_index].posX.whole) >= 0x1F6) {
+        if (gScreenPosCurrentX.whole - (0 - gActors[actor_index].posX.whole) >= 0x1F6) {
             gActors[actor_index].velocityX.raw = 0;
             gActors[actor_index].unk_170 = 1;
             gMarinaAnim.state++;

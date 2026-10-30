@@ -1426,73 +1426,68 @@ void func_801B39B4_7BB864(u16 actor_index) {
 
 void func_801B3BD0_7BBA80(u16 actor_index) {
     u16 particle_index;
-    u16 random;
-    u8 color;
 
     gActors[actor_index].health = 10000;
 
     switch (gActors[actor_index].state) {
-        case 0:
-            gActors[actor_index].flags = ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE;
-            gActors[actor_index].hitType = HITTYPE_BOOM_11;
-            gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
-            gActors[actor_index].unk_0FC.raw = FIXED_UNIT(6.5);
-            gActors[actor_index].unk_180 = 0;
-            gActors[actor_index].unk_184 = 0x80;
-            gActors[actor_index].damage = 30;
-            gActors[actor_index].unk_148 = 1.0f;
-            Actor_SetHitboxA(actor_index, 2);
-            gActors[actor_index].state++;
-            break;
+    case 0:
+        gActors[actor_index].flags = ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK7 | ACTOR_FLAG_ACTIVE;
+        gActors[actor_index].hitType = HITTYPE_BOOM_11;
+        gActors[actor_index].unk_0F8.raw = FIXED_UNIT(2.0);
+        gActors[actor_index].unk_0FC.raw = FIXED_UNIT(6.5);
+        gActors[actor_index].unk_180 = 0;
+        gActors[actor_index].unk_184 = 0x80;
+        gActors[actor_index].damage = 30;
+        gActors[actor_index].unk_148 = 1.0f;
+        Actor_SetHitboxA(actor_index, 2);
+        gActors[actor_index].state++;
+        break;
 
-        case 1:
-            if (gActors[actor_index].unk_180-- < 0) {
-                gActors[actor_index].unk_180 = 3;
-                *(&random - 4) = Rand(); // fakematch?
-                particle_index = SpawnParticle_List_90C0_16(
-                    D_800E1540,
-                    (gActors[actor_index].posX.whole - (*(&random - 4) & 3)) + 2,
-                    gActors[actor_index].posY.whole - (Rand() & 3),
-                    gActors[actor_index].posZ.whole
-                );
+    case 1:
+        if (gActors[actor_index].unk_180-- < 0) {
+            gActors[actor_index].unk_180 = 3;
+            particle_index = SpawnParticle_List_90C0_16(
+                D_800E1540,
+                (gActors[actor_index].posX.whole - (Rand() & 3)) + 2,
+                gActors[actor_index].posY.whole - (Rand() & 3),
+                gActors[actor_index].posZ.whole
+            );
 
-                if (particle_index != 0) {
-                    if (Rand() & 3) {
-                        gActors[particle_index].graphicFlags = ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
-                        gActors[particle_index].colorR = 8;
-                        color = (Rand() & 0x3F) + 0x10;
-                        gActors[particle_index].colorB = color;
-                        gActors[particle_index].colorG = color;
-                    }
-                    else {
-                        gActors[particle_index].graphicFlags = ACTOR_GFLAG_SCALE;
-                        gActors[particle_index].colorR = gActors[particle_index].colorG = 0x7F;
-                        gActors[particle_index].colorB = 0x3F;
-                    }
-
-                    gActors[particle_index].scaleX = gActors[actor_index].unk_148 * 0.6;
-                    gActors[particle_index].scaleY = gActors[particle_index].scaleX;
-                    gActors[particle_index].var_110 = gActors[actor_index].unk_148 * -0.05;
-                    gActors[particle_index].unk_114 = gActors[actor_index].unk_148 * 0.05;
-                    gActors[particle_index].colorA = 0xE0;
-                    gActors[particle_index].var_154 = -0x1C;
-                    gActors[particle_index].velocityY.raw = (((Rand() & 3) * FIXED_UNIT(0.0625)) + FIXED_UNIT(1.0)) * gActors[actor_index].unk_148;
-                    gActors[particle_index].var_15C = gActors[actor_index].unk_148 * FIXED_UNIT(-16.0 / 256);
+            if (particle_index != 0) {
+                if (Rand() & 3) {
+                    gActors[particle_index].graphicFlags = ACTOR_GFLAG_UNK4 | ACTOR_GFLAG_SCALE;
+                    gActors[particle_index].colorR = 8;
+                    gActors[particle_index].colorG = gActors[particle_index].colorB = (Rand() & 0x3F) + 0x10;
                 }
-            }
-
-            if ((gActors[actor_index].unk_184-- < 0) || (func_80012AB4(gActors[particle_index].posX.whole, gActors[particle_index].posY.whole) != 0)) {
-                gActors[actor_index].flags = 0;
-                return;
-            }
-
-            if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
-                if (gActors[actor_index].parentIndex == 0) {
-                    gActors[gActors[actor_index].parentIndex].iFrames = 0x3C;
-                    Sound_PlaySfxAtActor2(SFX_0076, actor_index);
+                else {
+                    gActors[particle_index].graphicFlags = ACTOR_GFLAG_SCALE;
+                    gActors[particle_index].colorR = gActors[particle_index].colorG = 0x7F;
+                    gActors[particle_index].colorB = 0x3F;
                 }
+
+                gActors[particle_index].scaleX = gActors[actor_index].unk_148 * 0.6;
+                gActors[particle_index].scaleY = gActors[particle_index].scaleX;
+                gActors[particle_index].var_110 = gActors[actor_index].unk_148 * -0.05;
+                gActors[particle_index].unk_114 = gActors[actor_index].unk_148 * 0.05;
+                gActors[particle_index].colorA = 0xE0;
+                gActors[particle_index].var_154 = -0x1C;
+                gActors[particle_index].velocityY.raw = (((Rand() & 3) * FIXED_UNIT(0.0625)) + FIXED_UNIT(1.0)) * gActors[actor_index].unk_148;
+                gActors[particle_index].var_15C = gActors[actor_index].unk_148 * FIXED_UNIT(-16.0 / 256);
             }
-            break;
+        }
+
+        if ((gActors[actor_index].unk_184-- < 0) || (func_80012AB4(gActors[particle_index].posX.whole, gActors[particle_index].posY.whole) != 0)) {
+            gActors[actor_index].flags = 0;
+            return;
+        }
+
+        if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK0) {
+            if (gActors[actor_index].parentIndex == 0) {
+                gActors[gActors[actor_index].parentIndex].iFrames = 0x3C;
+                Sound_PlaySfxAtActor2(SFX_0076, actor_index);
+            }
+        }
+        break;
     }
 
     gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
