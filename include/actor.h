@@ -262,6 +262,7 @@ typedef struct {
     union {
         /* 0x0D0 */ u16 state; // >= 0x4000: normal u16 state
         // < 0x4000: common action state, action = state / 16, other = state & 0xF; sometimes read as individual bytes
+        /* 0x0D0 */ u8 stateBytes[2];
         struct {
             /* 0x0D0 */ u8 stateUpper;
             /* 0x0D1 */ u8 stateLower;
