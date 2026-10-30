@@ -70,6 +70,7 @@ segments:
     type: bin
     start: 0x40
     vram: 0xA4000040
+    exclusive_ram_id: boot
     subsegments:
       - [0x0040, hasm, asm/boot]
   - name: main

@@ -5,9 +5,9 @@
     "matched_code": "1545592",
     "matched_code_percent": 77.50032,
     "matched_data_percent": 100.0,
-    "total_functions": 4710,
-    "matched_functions": 3999,
-    "matched_functions_percent": 84.90446,
+    "total_functions": 4707,
+    "matched_functions": 3996,
+    "matched_functions_percent": 84.89484,
     "complete_data_percent": 100.0,
     "total_units": 371
   },
@@ -25674,8 +25674,8 @@
         "matched_code": "208",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
-        "matched_functions": 2,
+        "total_functions": 1,
+        "matched_functions": 1,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25697,13 +25697,6 @@
           "metadata": {
             "virtual_address": "2148248032"
           }
-        },
-        {
-          "name": "rspbootTextEnd",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {
-            "virtual_address": "2148248240"
-          }
         }
       ],
       "metadata": {
@@ -25722,8 +25715,8 @@
         "matched_code": "5120",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
-        "matched_functions": 2,
+        "total_functions": 1,
+        "matched_functions": 1,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25745,13 +25738,6 @@
           "metadata": {
             "virtual_address": "2148248240"
           }
-        },
-        {
-          "name": "gspFast3DTextEnd",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {
-            "virtual_address": "2148253360"
-          }
         }
       ],
       "metadata": {
@@ -25770,8 +25756,8 @@
         "matched_code": "3616",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
-        "matched_functions": 2,
+        "total_functions": 1,
+        "matched_functions": 1,
         "matched_functions_percent": 100.0,
         "total_units": 1
       },
@@ -25792,13 +25778,6 @@
           "fuzzy_match_percent": 100.0,
           "metadata": {
             "virtual_address": "2148253360"
-          }
-        },
-        {
-          "name": "aspMainTextEnd",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {
-            "virtual_address": "2148256976"
           }
         }
       ],
@@ -50639,8 +50618,8 @@
         "matched_code": "772208",
         "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2162,
-        "matched_functions": 2162,
+        "total_functions": 2159,
+        "matched_functions": 2159,
         "matched_functions_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 242

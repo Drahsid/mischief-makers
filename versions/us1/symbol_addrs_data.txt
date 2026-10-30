@@ -86,8 +86,8 @@ gGraphicListBlank = 0x800E1380; // size:0x4
 gGraphicListGemIcon = 0x800E13DC; // size:0x20
 gGraphicListGem = 0x800E164C; // size:0x24
 
-Segment_01_DATA_START = 0x01000000;
-Segment_04_DATA_START = 0x04000000;
+Segment_01_DATA_START = 0x01000000; // segment:Segment_01
+Segment_04_DATA_START = 0x04000000; // segment:Segment_04
 gMarinaActionSpeeds = 0x800D5794;
 gMarinaAnimTable = 0x800D3D20;
 gMarinaThrowTable = 0x800D3F10; // size:0x60
