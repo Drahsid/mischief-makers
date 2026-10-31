@@ -2575,6 +2575,8 @@ void func_801A2920_739680(u16 actor_index) {
     gActors[actor_index].flags_098 &= ACTOR_FLAG3_MASK_A;
 }
 
+// TODO: i broke this changing prototype of SpawnGemActor61 to return u16
+#ifdef NON_MATCHING
 void func_801A3290_739FF0(u16 actor_index) {
     Actor* actor;
     s32 temp_v0_2;
@@ -2639,6 +2641,9 @@ void func_801A3290_739FF0(u16 actor_index) {
 
     actor->flags_098 &= ACTOR_FLAG3_MASK_A;
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/overlay_1/overlay_731DD0/731E60/func_801A3290_739FF0.s")
+#endif
 
 // change gun's effect (and in japan, describe it)
 void func_801A3664_73A3C4(u16 actor_index) {

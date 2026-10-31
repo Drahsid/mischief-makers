@@ -36,7 +36,6 @@ extern u16 D_800D9664[];
 extern u16 D_800D9754[];
 extern u16 D_800D9844[];
 extern u16 D_800D98F4[];
-extern u16 D_800D99A4[];
 extern u16 D_800D9AF4[];
 extern u16 D_800D9B64[];
 extern u16 D_800D9B7C[];
@@ -2883,7 +2882,7 @@ u16 SpawnGemActor(u16 actor_index, u16 flags, u16 unused_arg2) {
 // @param flags flags about spawned gem (use GemFlags)
 // @param unused_arg2 unused.
 // @returns index of gem actor or 0 if failed.
-s32 SpawnGemActor61(u16 actor_index, u16 flags, u16 unused_arg2) {
+u16 SpawnGemActor61(u16 actor_index, u16 flags, u16 unused_arg2) {
     u16 index;
 
     index = SpawnGemActor(actor_index, flags, unused_arg2);
