@@ -1116,20 +1116,24 @@ void func_80195354_716884(u16 actor_index) {
     case 2:
         if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
             func_801950D4_716604(actor_index);
+            break;
         }
-        else {
-            switch (func_800291AC(actor_index, 3,
-                ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK17, 4, ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK17
-            )) {
-            case 3:
-                gActors[actor_index].velocityX.raw = 0;
-                gActors[actor_index].velocityY.raw = FIXED_UNIT(1);
-                // fall through
-            case 2:
-                Actor_SetHitboxA(actor_index, 12);
-                Actor_SetHitboxB(actor_index, 8);
-                break;
-            }
+
+        switch (func_800291AC( // ugh
+            actor_index,
+            3,
+            ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK17, 
+            4,
+            ACTOR_FLAG_ENABLED | ACTOR_FLAG_FLIPPED | ACTOR_FLAG_UNK8 | ACTOR_FLAG_UNK12 | ACTOR_FLAG_UNK17
+        )) {
+        case 3:
+            gActors[actor_index].velocityX.raw = 0;
+            gActors[actor_index].velocityY.raw = FIXED_UNIT(1);
+            // fall through
+        case 2:
+            Actor_SetHitboxA(actor_index, 12);
+            Actor_SetHitboxB(actor_index, 8);
+            break;
         }
         break;
 

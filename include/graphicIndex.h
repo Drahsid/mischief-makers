@@ -127,6 +127,10 @@
 #define GINDEX_01AA            0x01AA
 #define GINDEX_SPARKLESMALL    0x01AE // 2 animation frames
 #define GINDEX_DASHEFFECT      0x01B2 // 2 animation frames
+#define GINDEX_01B6            0x01B6
+#define GINDEX_01B8            0x01B8
+#define GINDEX_01BA            0x01BA
+#define GINDEX_01BC            0x01BC
 
 #define GINDEX_GRABEFFECTB     0x01BE 
 #define GINDEX_SHOCKEFFECT     0x01C0 // 3 animation frames
@@ -134,6 +138,7 @@
 #define GINDEX_STAREFFECT      0x01D6
 #define GINDEX_IMPACTEFFECTA   0x01D8 // 3 animation frames
 
+#define GINDEX_01E2            0x01E2
 #define GINDEX_01EE            0x01EE
 #define GINDEX_8SQUARERING     0x01F2
 
@@ -395,9 +400,47 @@
 #define GINDEX_DEMOWORLD1_280A  0x280A
 #define GINDEX_DEMOWORLD1_281A  0x281A
 #define GINDEX_DEMOWORLD1_3000  0x3000
+#define GINDEX_3004            0x3004
 #define GINDEX_DEMOWORLD1_3014  0x3014
 #define GINDEX_DEMOWORLD1_3016  0x3016
 
+#define GINDEX_DEMOWORLD3_2804  0x2804
+#define GINDEX_DEMOWORLD3_3000  0x3000
+#define GINDEX_DEMOWORLD3_3002  0x3002
+
+#define GINDEX_4007             0x4007
+#define GINDEX_4400             0x4400
+#define GINDEX_4401             0x4401
+#define GINDEX_4402             0x4402
+#define GINDEX_4403             0x4403
+#define GINDEX_4404             0x4404
+#define GINDEX_4405             0x4405
+#define GINDEX_4406             0x4406
+#define GINDEX_4407             0x4407
+#define GINDEX_4408             0x4408
+#define GINDEX_4409             0x4409
+#define GINDEX_440A             0x440A
+#define GINDEX_440D             0x440D
+#define GINDEX_440E             0x440E
+#define GINDEX_440F             0x440F
+#define GINDEX_4410             0x4410
+#define GINDEX_4411             0x4411
+#define GINDEX_4412             0x4412
+#define GINDEX_4413             0x4413
+#define GINDEX_4414             0x4414
+#define GINDEX_4415             0x4415
+#define GINDEX_4416             0x4416
+#define GINDEX_4417             0x4417
+#define GINDEX_4418             0x4418
+#define GINDEX_4419             0x4419
+#define GINDEX_441A             0x441A
+#define GINDEX_441B             0x441B
+#define GINDEX_441C             0x441C
+#define GINDEX_441D             0x441D
+#define GINDEX_441E             0x441E
+#define GINDEX_441F             0x441F
+#define GINDEX_4420             0x4420
+#define GINDEX_4421             0x4421
 #define GINDEX_4800             0x4800
 #define GINDEX_4801             0x4801
 #define GINDEX_4802             0x4802
@@ -446,7 +489,26 @@
 
 #define GINDEX_5004             0x5004
 
+#define GINDEX_6000             0x6000
+#define GINDEX_6400             0x6400
+#define GINDEX_640D             0x640D
+#define GINDEX_640E             0x640E
+#define GINDEX_640F             0x640F
+#define GINDEX_6410             0x6410
+#define GINDEX_6411             0x6411
+#define GINDEX_6412             0x6412
+#define GINDEX_6413             0x6413
+#define GINDEX_6414             0x6414
+#define GINDEX_6415             0x6415
+#define GINDEX_6416             0x6416
+#define GINDEX_6417             0x6417
+#define GINDEX_6418             0x6418
+#define GINDEX_6419             0x6419
+#define GINDEX_641A             0x641A
+#define GINDEX_641B             0x641B
 #define GINDEX_6800             0x6800
+#define GINDEX_6801             0x6801
+#define GINDEX_6802             0x6802
 #define GINDEX_6803             0x6803
 #define GINDEX_6804             0x6804
 #define GINDEX_6805             0x6805
@@ -489,7 +551,13 @@
 #define GINDEX_682D             0x682D
 #define GINDEX_682E             0x682E
 #define GINDEX_682F             0x682F
+#define GINDEX_6830             0x6830
+#define GINDEX_6831             0x6831
+#define GINDEX_6832             0x6832
+#define GINDEX_6833             0x6833
+#define GINDEX_6834             0x6834
 #define GINDEX_6835             0x6835
+#define GINDEX_6836             0x6836
 #define GINDEX_6837             0x6837
 #define GINDEX_6838             0x6838
 #define GINDEX_6839             0x6839
@@ -504,6 +572,10 @@
 #define GINDEX_6842             0x6842
 #define GINDEX_6843             0x6843
 #define GINDEX_6846             0x6846
+#define GINDEX_684B             0x684B
+#define GINDEX_684C             0x684C
+#define GINDEX_684D             0x684D
+#define GINDEX_684E             0x684E
 #define GINDEX_6852             0x6852
 #define GINDEX_6853             0x6853
 #define GINDEX_6854             0x6854
@@ -552,6 +624,10 @@
 #define GINDEX_688E             0x688E
 #define GINDEX_688F             0x688F
 #define GINDEX_6890             0x6890
+#define GINDEX_6891             0x6891
+#define GINDEX_6892             0x6892
+#define GINDEX_6893             0x6893
+#define GINDEX_6894             0x6894
 #define GINDEX_689B             0x689B
 #define GINDEX_68A3             0x68A3
 #define GINDEX_68A4             0x68A4
@@ -563,6 +639,15 @@
 #define GINDEX_68B7             0x68B7
 #define GINDEX_68B8             0x68B8
 #define GINDEX_68B9             0x68B9
+#define GINDEX_68BE             0x68BE
+#define GINDEX_68BF             0x68BF
+#define GINDEX_68C0             0x68C0
+#define GINDEX_68C1             0x68C1
+#define GINDEX_68C2             0x68C2
+#define GINDEX_68C3             0x68C3
+#define GINDEX_68C4             0x68C4
+#define GINDEX_68C5             0x68C5
+#define GINDEX_68C6             0x68C6
 #define GINDEX_68CF             0x68CF
 #define GINDEX_68D2             0x68D2
 #define GINDEX_68D3             0x68D3

@@ -756,11 +756,11 @@ segments:
     type: code
     vram: 0x80192100
     start: 0x6E2B20
-    bss_size: 0x600
+    bss_size: 0x800
     subsegments:
-      - [0x6E2B20, asmtu, overlay_0/overlay_6E2AE0/6E2B20] # object segment 6E2B20->6EE550 (0xBA30)
+      - [0x6E2B20, c, overlay_0/overlay_6E2AE0/6E2B20] # object segment 6E2B20->6EE550 (0xBA30)
       - [0x6EDBB0, .data, overlay_0/overlay_6E2AE0/6E2B20]
-      - [0x6EE190, .rodata, overlay_0/overlay_6E2AE0/6E2B20]
+      - [0x6EE130, .rodata, overlay_0/overlay_6E2AE0/6E2B20]
       - { name: overlay_0/overlay_6E2AE0/6E2B20, type: .bss, vram: 0x8019DB30 }
 
   - name: overlay_6EE550_dispatch_table # blackgamma7: DemoWorld4
