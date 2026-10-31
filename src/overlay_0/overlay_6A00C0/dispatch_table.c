@@ -13,7 +13,7 @@ void func_80193394_6A1394(u16 actor_index);
 void func_801966E0_6A46E0(u16 actor_index);
 void func_80196794_6A4794(u16 actor_index);
 void func_80196808_6A4808(u16 actor_index);
-void func_80199A24_6A7A24(u16 actor_index);
+void func_80199A24_6A7A24(u16 actor_index, u16 other_actor_index);
 extern u8 D_80199C28_6A7C28[];
 extern u8 D_80199CE8_6A7CE8[];
 extern u8 D_8019BD6C_6A9D6C[];

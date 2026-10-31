@@ -1471,7 +1471,7 @@ void func_80026174(u16 index) {
 }
 
 void func_80026220(u16 index) {
-    s32 unused[1];
+    uintptr_t rom_start;
 
     if ((index == 2) || (D_800D28E4 == 0x66) || (gGameState == GAMESTATE_UNKNOWN0) ||
         (gGameState == GAMESTATE_UNKNOWN1)) {
@@ -1505,9 +1505,9 @@ void func_80026220(u16 index) {
         D_80137724 = MAP_BANK_DEST;
         D_80137728 = (uintptr_t)MAP_BANK_DEST + Trouble_RLE_Type1(RLE_SCRATCH_HIGH, MAP_BANK_DEST);
 
-        if (((uintptr_t)rle_0008_171720_04081620 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START) {}
+        rom_start = ((uintptr_t)rle_0008_171720_04081620 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START;
         DMA_ReadSync(
-            (void*)(((uintptr_t)rle_0008_171720_04081620 - D_800CEC0C[0]) + (uintptr_t)Segment_04_ROM_START),
+            (void*)rom_start,
             RLE_SCRATCH_HIGH,
             (uintptr_t)rle_0009_181E20_04091D20 - (uintptr_t)rle_0008_171720_04081620
         );

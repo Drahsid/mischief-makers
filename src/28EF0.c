@@ -2366,8 +2366,8 @@ void ActorUpdate_Landmine(u16 actor_index) {
         gActors[actor_index].colorR = 0x7F;
     }
     gActors[actor_index].colorR = Math_ApproachS32(gActors[actor_index].colorR, 0, 0x20);
-    // fakematch: `& 0xFF` for regalloc
-    gActors[actor_index].colorB = gActors[actor_index].colorG = gActors[actor_index].colorR & 0xFF;
+    gActors[actor_index].colorG = gActors[actor_index].colorR;
+    gActors[actor_index].colorB = gActors[actor_index].colorG;
     if (gActors[actor_index].unk_188 != 0) {
         gActors[actor_index].scaleY = Math_ApproachF32(gActors[actor_index].scaleY, 0.4f, 0.1f);
         gActors[actor_index].unk_114 -= 1.0f;
@@ -2389,7 +2389,8 @@ void ActorUpdate_Landmine(u16 actor_index) {
         gActors[actor_index].damage = 0;
         Actor_SetHitboxA(actor_index, 4);
         Actor_SetHitboxB(actor_index, 2);
-        gActors[actor_index].unk_114 = gActors[actor_index].var_110 + (0, 16.0f); // fakematch
+        gActors[actor_index].unk_114 = 16.0f;
+        gActors[actor_index].unk_114 += gActors[actor_index].var_110;
         gActors[actor_index].palette_18C = gPaletteGemGreen;
         /* fallthrough */
     case 1:

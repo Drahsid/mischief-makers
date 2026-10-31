@@ -2553,8 +2553,8 @@ void func_801AB574_76AD84(u16 actor_index) {
 
 
 u16 func_801AB990_76B1A0(u16 actor_index, s16 radius) {
-    s32 position_x = gScreenPosCurrentX.whole - (radius * 0 - gActors[D_800E3580].posX.whole);
-    s32 position_y = gScreenPosCurrentY.whole - ((position_x) * 0 - gActors[D_800E3580].posY.whole);
+    s32 position_x = gScreenPosCurrentX.whole - (0 - gActors[D_800E3580].posX.whole);
+    s32 position_y = gScreenPosCurrentY.whole - (0 - gActors[D_800E3580].posY.whole);
     return func_8006930C(actor_index, 0xA0, 0x70, 0x210, 0x210, (s16)(position_x - radius), (s16)(position_x + radius), (s16)(position_y + 16), (s16)(position_y - 16));
 }
 
@@ -3082,8 +3082,8 @@ void func_801ACC38_76C448(u16 actor_index) {
 
 
 s32 func_801ACF58_76C768(u16 actor_index) {
-    s16 position_x = gScreenPosCurrentX.whole - (actor_index * 0 - gActors[actor_index].posX.whole);
-    s16 position_y = gScreenPosCurrentY.whole - ((position_x) * 0 - gActors[actor_index].posY.whole);
+    s16 position_x = gScreenPosCurrentX.whole - (0 - gActors[actor_index].posX.whole);
+    s16 position_y = gScreenPosCurrentY.whole - (0 - gActors[actor_index].posY.whole);
 
     if (position_y >= 0x161 && position_x >= 0x901 && position_x < 0x9B0) {
         return 1;
@@ -3155,7 +3155,7 @@ void func_801AD090_76C8A0(u16 actor_index) {
                 break;
 
             default:
-                position_x = gScreenPosCurrentX.whole - (index * 0 - gActors[actor_index].posX.whole);
+                position_x = gScreenPosCurrentX.whole - (0 - gActors[actor_index].posX.whole);
                 if (func_801ACF58_76C768(actor_index)) {
                     if (((position_x < 0x978) && !(gActors[actor_index].flags & ACTOR_FLAG_FLIPPED)) || ((position_x >= 0x978) && (gActors[actor_index].flags & ACTOR_FLAG_FLIPPED))) {
                         gActors[actor_index].state = 0x120;

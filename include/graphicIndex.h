@@ -118,11 +118,13 @@
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
+#define GINDEX_0188            0x0188
 #define GINDEX_GRABEFFECTA     0x019A // emmits from hand when you grab something
 
 #define GINDEX_WARPGATE        0x01A8
 
 
+#define GINDEX_01AA            0x01AA
 #define GINDEX_SPARKLESMALL    0x01AE // 2 animation frames
 #define GINDEX_DASHEFFECT      0x01B2 // 2 animation frames
 
@@ -132,6 +134,7 @@
 #define GINDEX_STAREFFECT      0x01D6
 #define GINDEX_IMPACTEFFECTA   0x01D8 // 3 animation frames
 
+#define GINDEX_01EE            0x01EE
 #define GINDEX_8SQUARERING     0x01F2
 
 #define GINDEX_PORTRAIT_MARINAA 0x01F4
@@ -253,11 +256,15 @@
 #define GINDEX_1026             0x1026
 #define GINDEX_1028             0x1028
 #define GINDEX_102A             0x102A
+#define GINDEX_102C             0x102C
+#define GINDEX_102E             0x102E
 #define GINDEX_1030             0x1030
 #define GINDEX_1032             0x1032
 #define GINDEX_1034             0x1034
+#define GINDEX_1036             0x1036
 #define GINDEX_1038             0x1038
 #define GINDEX_103A             0x103A
+#define GINDEX_103C             0x103C
 #define GINDEX_STAFFSAGE        0X1040
 #define GINDEX_HATCALINA        0X1044 // 2 ani states
 #define GINDEX_HATMSHINT        0X1070
@@ -278,6 +285,36 @@
 #define GINDEX_1838             0x1838
 
 // graphics with an index starting in 0x2000 are pieces of the back/foreground.
+
+#define GINDEX_2000             0x2000
+#define GINDEX_2002             0x2002
+#define GINDEX_2004             0x2004
+#define GINDEX_2006             0x2006
+#define GINDEX_2008             0x2008
+#define GINDEX_200A             0x200A
+#define GINDEX_200C             0x200C
+#define GINDEX_200E             0x200E
+#define GINDEX_2010             0x2010
+#define GINDEX_2012             0x2012
+#define GINDEX_2014             0x2014
+#define GINDEX_2016             0x2016
+#define GINDEX_2018             0x2018
+#define GINDEX_201A             0x201A
+#define GINDEX_201C             0x201C
+#define GINDEX_201E             0x201E
+#define GINDEX_2020             0x2020
+#define GINDEX_2022             0x2022
+#define GINDEX_2024             0x2024
+#define GINDEX_2026             0x2026
+#define GINDEX_202E             0x202E
+#define GINDEX_2030             0x2030
+#define GINDEX_2032             0x2032
+#define GINDEX_2034             0x2034
+#define GINDEX_2036             0x2036
+#define GINDEX_2816             0x2816
+#define GINDEX_281E             0x281E
+#define GINDEX_2820             0x2820
+#define GINDEX_2822             0x2822
 
 // graphics with indexes starting in 0x3000 are laregy consistent throughout stages
 // but change when in the World Map
@@ -351,15 +388,204 @@
 #define GINDEX_WM_STAGEICONENDING   0X303A
 #define GINDEX_WM_STAGEICONVERTICAL 0X303C
 
+#define GINDEX_DEMOWORLD1_2002  0x2002
+#define GINDEX_DEMOWORLD1_2804  0x2804
+#define GINDEX_DEMOWORLD1_2806  0x2806
+#define GINDEX_DEMOWORLD1_2808  0x2808
+#define GINDEX_DEMOWORLD1_280A  0x280A
+#define GINDEX_DEMOWORLD1_281A  0x281A
+#define GINDEX_DEMOWORLD1_3000  0x3000
+#define GINDEX_DEMOWORLD1_3014  0x3014
+#define GINDEX_DEMOWORLD1_3016  0x3016
+
+#define GINDEX_4800             0x4800
+#define GINDEX_4801             0x4801
+#define GINDEX_4802             0x4802
+#define GINDEX_4803             0x4803
+#define GINDEX_4804             0x4804
+#define GINDEX_4805             0x4805
+#define GINDEX_4806             0x4806
+#define GINDEX_4807             0x4807
+#define GINDEX_4808             0x4808
+#define GINDEX_481F             0x481F
+#define GINDEX_4820             0x4820
+#define GINDEX_4825             0x4825
+#define GINDEX_4826             0x4826
+#define GINDEX_4827             0x4827
+#define GINDEX_4828             0x4828
+#define GINDEX_4829             0x4829
+#define GINDEX_482A             0x482A
+#define GINDEX_482B             0x482B
+#define GINDEX_482C             0x482C
+#define GINDEX_483F             0x483F
+#define GINDEX_484F             0x484F
+#define GINDEX_4855             0x4855
+#define GINDEX_485C             0x485C
+#define GINDEX_485D             0x485D
+#define GINDEX_485E             0x485E
+#define GINDEX_485F             0x485F
+#define GINDEX_4860             0x4860
+#define GINDEX_4861             0x4861
+#define GINDEX_4862             0x4862
+#define GINDEX_4C00             0x4C00
+#define GINDEX_4C01             0x4C01
+#define GINDEX_4C02             0x4C02
+#define GINDEX_4C03             0x4C03
+#define GINDEX_4C04             0x4C04
+#define GINDEX_4C05             0x4C05
+#define GINDEX_4C06             0x4C06
+#define GINDEX_4C07             0x4C07
+#define GINDEX_4C08             0x4C08
+#define GINDEX_4C09             0x4C09
+#define GINDEX_4C0A             0x4C0A
+#define GINDEX_4C0D             0x4C0D
+#define GINDEX_4C0E             0x4C0E
+#define GINDEX_4C0F             0x4C0F
+#define GINDEX_4C10             0x4C10
+#define GINDEX_4C11             0x4C11
+
+#define GINDEX_5004             0x5004
+
 #define GINDEX_6800             0x6800
+#define GINDEX_6803             0x6803
+#define GINDEX_6804             0x6804
+#define GINDEX_6805             0x6805
+#define GINDEX_6806             0x6806
+#define GINDEX_6807             0x6807
+#define GINDEX_6808             0x6808
+#define GINDEX_6809             0x6809
+#define GINDEX_680A             0x680A
+#define GINDEX_680B             0x680B
+#define GINDEX_680C             0x680C
+#define GINDEX_680D             0x680D
+#define GINDEX_680E             0x680E
+#define GINDEX_680F             0x680F
+#define GINDEX_6810             0x6810
+#define GINDEX_6811             0x6811
+#define GINDEX_6812             0x6812
+#define GINDEX_6813             0x6813
+#define GINDEX_6814             0x6814
+#define GINDEX_6815             0x6815
+#define GINDEX_6816             0x6816
+#define GINDEX_6817             0x6817
+#define GINDEX_6818             0x6818
 #define GINDEX_6819             0x6819
 #define GINDEX_681A             0x681A
+#define GINDEX_681B             0x681B
+#define GINDEX_681C             0x681C
+#define GINDEX_681D             0x681D
+#define GINDEX_681E             0x681E
+#define GINDEX_681F             0x681F
+#define GINDEX_6820             0x6820
+#define GINDEX_6821             0x6821
+#define GINDEX_6822             0x6822
+#define GINDEX_6823             0x6823
+#define GINDEX_6824             0x6824
+#define GINDEX_6825             0x6825
+#define GINDEX_6826             0x6826
+#define GINDEX_6827             0x6827
+#define GINDEX_6828             0x6828
+#define GINDEX_682C             0x682C
+#define GINDEX_682D             0x682D
+#define GINDEX_682E             0x682E
+#define GINDEX_682F             0x682F
+#define GINDEX_6835             0x6835
 #define GINDEX_6837             0x6837
 #define GINDEX_6838             0x6838
+#define GINDEX_6839             0x6839
+#define GINDEX_683A             0x683A
+#define GINDEX_683B             0x683B
+#define GINDEX_683C             0x683C
+#define GINDEX_683D             0x683D
+#define GINDEX_683E             0x683E
+#define GINDEX_683F             0x683F
+#define GINDEX_6840             0x6840
+#define GINDEX_6841             0x6841
+#define GINDEX_6842             0x6842
+#define GINDEX_6843             0x6843
 #define GINDEX_6846             0x6846
+#define GINDEX_6852             0x6852
+#define GINDEX_6853             0x6853
+#define GINDEX_6854             0x6854
+#define GINDEX_6855             0x6855
+#define GINDEX_6856             0x6856
+#define GINDEX_6857             0x6857
+#define GINDEX_6858             0x6858
+#define GINDEX_6859             0x6859
+#define GINDEX_685A             0x685A
+#define GINDEX_685B             0x685B
+#define GINDEX_685C             0x685C
+#define GINDEX_685D             0x685D
+#define GINDEX_685E             0x685E
+#define GINDEX_685F             0x685F
+#define GINDEX_6860             0x6860
+#define GINDEX_6861             0x6861
+#define GINDEX_6862             0x6862
+#define GINDEX_6863             0x6863
+#define GINDEX_6864             0x6864
+#define GINDEX_6865             0x6865
+#define GINDEX_6866             0x6866
+#define GINDEX_6867             0x6867
+#define GINDEX_6868             0x6868
+#define GINDEX_6869             0x6869
+#define GINDEX_686A             0x686A
+#define GINDEX_6877             0x6877
+#define GINDEX_6878             0x6878
+#define GINDEX_6879             0x6879
+#define GINDEX_687A             0x687A
+#define GINDEX_687B             0x687B
+#define GINDEX_687C             0x687C
+#define GINDEX_687D             0x687D
+#define GINDEX_6881             0x6881
+#define GINDEX_6882             0x6882
+#define GINDEX_6883             0x6883
+#define GINDEX_6884             0x6884
+#define GINDEX_6885             0x6885
+#define GINDEX_6886             0x6886
+#define GINDEX_6887             0x6887
+#define GINDEX_6888             0x6888
+#define GINDEX_6889             0x6889
+#define GINDEX_688A             0x688A
+#define GINDEX_688B             0x688B
+#define GINDEX_688C             0x688C
+#define GINDEX_688D             0x688D
+#define GINDEX_688E             0x688E
+#define GINDEX_688F             0x688F
+#define GINDEX_6890             0x6890
 #define GINDEX_689B             0x689B
 #define GINDEX_68A3             0x68A3
+#define GINDEX_68A4             0x68A4
+#define GINDEX_68A5             0x68A5
+#define GINDEX_68A6             0x68A6
+#define GINDEX_68AA             0x68AA
+#define GINDEX_68AB             0x68AB
+#define GINDEX_68AC             0x68AC
+#define GINDEX_68B7             0x68B7
+#define GINDEX_68B8             0x68B8
+#define GINDEX_68B9             0x68B9
 #define GINDEX_68CF             0x68CF
+#define GINDEX_68D2             0x68D2
+#define GINDEX_68D3             0x68D3
+#define GINDEX_68D4             0x68D4
+#define GINDEX_68D5             0x68D5
+#define GINDEX_68D6             0x68D6
+#define GINDEX_68D7             0x68D7
+#define GINDEX_68DA             0x68DA
+#define GINDEX_68DB             0x68DB
+#define GINDEX_68E1             0x68E1
+#define GINDEX_6903             0x6903
+#define GINDEX_6904             0x6904
+#define GINDEX_6905             0x6905
+#define GINDEX_6906             0x6906
+#define GINDEX_6907             0x6907
+#define GINDEX_6908             0x6908
+#define GINDEX_6909             0x6909
+#define GINDEX_690A             0x690A
+#define GINDEX_690B             0x690B
+#define GINDEX_690C             0x690C
+#define GINDEX_690D             0x690D
+#define GINDEX_690E             0x690E
+#define GINDEX_6920             0x6920
 
 #define GINDEX_BLACKBAR 0x8000
 
