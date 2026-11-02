@@ -44,6 +44,7 @@ s32 func_8002A658(u16 actor_index);
 void Actor_SetHitboxB(u16 actor_index, s16 val);
 s32 func_8002AD7C(u16 actor_index, s32 arg1, s32 arg2, s32 arg3);
 void Actor_SetHitboxAX(u16 actor_index, s16 arg1, s16 arg2);
+void Actor_SetHitboxBX(u16 actor_index, s16 arg1, s16 arg2);
 void func_8002B140(u16 actor_index, s16 arg1);
 void Actor_ApproachRgb(u16 actor_index, s16 arg1);
 void func_8002B400(u16 actor_index);
@@ -102,6 +103,7 @@ void SpawnDizzyStar(u16 parent, s32 scale_x, s32 scale_y, s32 pos_z, s32 duratio
 void ActorUpdate_DizzyStar(u16 actor_index);
 void SpawnParticle_SineUp(s16 x, s16 y, s16 z, u16 graphic);
 void SpawnParticle_SineUpNotes(s16 pos_x, s16 pos_y, s16 pos_z);
+void func_800339AC(s32 arg0, s32 arg1, s32 arg2);
 void func_800339BC(s32 pos_x, s32 pos_y, s32 pos_z, u16 arg3);
 void func_80033B54(u16 actor_index);
 void ActorUpdate_Type5(u16 actor_index);
