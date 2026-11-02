@@ -83,6 +83,8 @@ extern u16 gSfxActorIndices[4];
 extern u16 gSfxStopTimers[4];
 extern u8 gSfxChannelVolumes[8];
 extern u8 gSfxChannelPans[8];
+extern u16 gAudioFadeDuration;
+extern u16 gAudioFadeCounter;
 extern u32 gAudioUpdateCounter;
 
 void Sound_InitPlayers(void);
@@ -98,11 +100,17 @@ s32 Sound_PlaySfxAtVol(u32 sfx_id, s16 volume);
 s32 Sound_PlaySfxAtPan(u32 sfx_id, s8 pan);
 s32 Sound_PlaySfxAtVolPan(u32 sfx_id, s16 volume, s8 pan);
 s32 Sound_PlaySfxAtVolPan2(u32 sfx_id, s16 volume, s8 pan);
+s32 Sound_PlaySfxAtVolPan3(u32 sfx_id, s16 volume, s8 pan);
+s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan);
 s32 Sound_PlaySfxAtActor2(u32 sfx_id, u16 actor_index);
 s32 Sound_PlaySfxAtActor3(u32 sfx_id, u16 actor_index);
 s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index);
 s32 Sound_PlaySfxAtActorTimed(u32 sfx_id, u16 actor_index, u16 timer);
-void Sound_PlaySfxAtActorPanning(u32 sfx_id, u16 actor_index);
+// BUG: inconsistent prototype!
+#ifndef Sound_PlaySfxAtActorPanning_RET
+#define Sound_PlaySfxAtActorPanning_RET void
+#endif
+Sound_PlaySfxAtActorPanning_RET Sound_PlaySfxAtActorPanning(u32 sfx_id, u16 actor_index);
 void Sound_StopMusic(void);
 void Sound_StopAllSfx(void);
 void Sound_StartFade(u16 mode, u16 duration);

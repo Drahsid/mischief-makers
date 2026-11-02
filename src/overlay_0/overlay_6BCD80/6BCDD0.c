@@ -947,10 +947,8 @@ void func_8019DA3C_6C870C(u16 target, u16 rate) {
 }
 
 s32 func_8019DAAC_6C877C(u16 arg0) {
-    if (sScreenFadeActor.colorA == 0xFF) {
-        if (arg0 < sScreenFadeActor.var_150) {
-            return TRUE;
-        }
+    if ((sScreenFadeActor.colorA == 0xFF) && (arg0 < sScreenFadeActor.var_150)) {
+        return TRUE;
     }
 
     return FALSE;

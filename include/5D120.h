@@ -3,6 +3,7 @@
 
 #include <PR/ultratypes.h>
 
+f32 Math_AbsF32(f32 x);
 void UpdateCameraShake(void);
 s16 GetCameraShakeTime(void);
 s32 func_8005C5E0(u16 actor_index);
