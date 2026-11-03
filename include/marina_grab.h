@@ -39,6 +39,7 @@ void func_80055188(u16 actor_index);
 void func_800551F8(u16 actor_index);
 void func_800553EC(u16 actor_index);
 void func_8005544C(u16 actor_index);
+void func_800554AC(u16 actor_0, u16 actor_1);
 void Marina_ThrowState(u16 actor_index);
 void func_8005701C(u16 actor_index);
 void Marina_DropState(u16 actor_index);

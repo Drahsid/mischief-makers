@@ -610,9 +610,9 @@ segments:
     bss_size: 0x20
     subsegments:
       - [0x67DC20, c, overlay_0/overlay_67DBA0/67DC20] # object segment 67DC20->68A090 (0xC470)
-      - [0x686BB0, data, overlay_0/overlay_67DBA0/67DC20]
-      - [0x689880, rodata, overlay_0/overlay_67DBA0/67DC20_rodata]
-      - { name: overlay_0/overlay_67DBA0/67DC20, type: bss, vram: 0x8019E570 }
+      - [0x686BB0, .data, overlay_0/overlay_67DBA0/67DC20]
+      - [0x689880, .rodata, overlay_0/overlay_67DBA0/67DC20]
+      - { name: overlay_0/overlay_67DBA0/67DC20, type: .bss, vram: 0x8019E570 }
 
   - name: overlay_68A090_dispatch_table # blackgamma7: CerberusAlpha
     exclusive_ram_id: overlay_68A090_dispatch_table
