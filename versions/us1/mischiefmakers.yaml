@@ -686,8 +686,8 @@ segments:
     bss_size: 0x50
     subsegments:
       - [0x6BCDD0, c, overlay_0/overlay_6BCD80/6BCDD0] # object segment 6BCDD0->6D1BF0 (0x14E20)
-      - [0x6CBC50, data, overlay_6BCD80/6BCDD0]
-      - [0x6D1670, rodata, overlay_6BCD80/6BCDD0]
+      - [0x6CBC50, .data, overlay_0/overlay_6BCD80/6BCDD0]
+      - [0x6D15E0, .rodata, overlay_0/overlay_6BCD80/6BCDD0]
       - { name: overlay_6BCD80/6BCDD0, type: bss, vram: 0x801A6F20 }
 
   - name: overlay_6D1BF0_dispatch_table # Clancer Commander mech

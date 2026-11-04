@@ -406,11 +406,14 @@ typedef struct {
                     };
                     union {
                         /* 0x174 */ s32 unk_174;
+                        /* 0x174 */ s16* animationCommands_174;
                         /* 0x174 */ s16 unk_174_s16[2];
                         /* 0x174 */ u16 unk_174_u16[2];
                     };
                     union {
                         /* 0x178 */ s32 unk_178; // assigned animation/frame table pointers(?) by matched overlays
+                        /* 0x178 */ s16* paletteAnimation_178;
+                        /* 0x178 */ u16** poseTables_178;
                         /* 0x178 */ u16 unk_178_u16[2];
                         /* 0x178 */ s8 unk_178_s8[4];
                     };
@@ -442,6 +445,7 @@ typedef struct {
                     union {
                         /* 0x18C */ s32 unk_18C; // field sometimes treated as int
                         /* 0x18C */ u16* palette_18C; // when ACTOR_GFLAG_PALETTE is set in graphicFlags, field is treated as palette pointer
+                        /* 0x18C */ u16* animation_18C;
                     };
                 };
             };

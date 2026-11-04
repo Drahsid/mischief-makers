@@ -55,6 +55,7 @@
 #define GINDEX_CIRCLEEFFECT    0x00CA
 #define GINDEX_CLANBLOB        0x00CC
 #define GINDEX_PARTICLERING    0x00CE
+#define GINDEX_00D2            0x00D2
 
 #define GINDEX_FIREBALL        0x00D4 // 2 animation frames
 
@@ -715,5 +716,33 @@
 #define GINDEX_6920             0x6920
 
 #define GINDEX_BLACKBAR 0x8000
+
+// Final Battle
+#define GINDEX_FINAL_0808      0x0808
+#define GINDEX_FINAL_080C      0x080C
+#define GINDEX_FINAL_080E      0x080E
+#define GINDEX_FINAL_0810      0x0810
+#define GINDEX_FINAL_0812      0x0812
+#define GINDEX_FINAL_081C      0x081C
+#define GINDEX_FINAL_081E      0x081E
+#define GINDEX_FINAL_0826      0x0826
+#define GINDEX_FINAL_0828      0x0828
+#define GINDEX_FINAL_082A      0x082A
+#define GINDEX_FINAL_082C      0x082C
+#define GINDEX_FINAL_082E      0x082E
+#define GINDEX_FINAL_0830      0x0830
+#define GINDEX_FINAL_083A      0x083A
+#define GINDEX_FINAL_1000      0x1000
+#define GINDEX_FINAL_1002      0x1002
+#define GINDEX_FINAL_1004      0x1004
+#define GINDEX_FINAL_1008      0x1008
+#define GINDEX_FINAL_100A      0x100A
+#define GINDEX_FINAL_100E      0x100E
+#define GINDEX_FINAL_1010      0x1010
+#define GINDEX_FINAL_1018      0x1018
+#define GINDEX_FINAL_1022      0x1022
+#define GINDEX_FINAL_1024      0x1024
+#define GINDEX_FINAL_2038      0x2038
+#define GINDEX_FINAL_203A      0x203A
 
 #endif

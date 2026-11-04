@@ -3,6 +3,10 @@
 
 #include <PR/ultratypes.h>
 
+#ifndef func_800283BC_RET
+#define func_800283BC_RET void
+#endif
+func_800283BC_RET func_800283BC(u32 sfx_id, u16 actor_index);
 void ActorUpdate_GraphicOnly(s32 actor_index);
 void Actor_ClearRange(u16 start, u16 end);
 void Actor_ClearRange_10To20(void);
@@ -53,6 +57,7 @@ s32 func_8002BB04(u16 actor_index);
 void ActorUpdate_Type27(s32 actor_index);
 void func_8002C044(void);
 u16 func_8002C140(s32 arg0);
+void func_8002C1E0(u16* src, u16* dst, u16 count);
 void func_8002C218(u16 actor_index);
 void func_8002C5C4(u16 actor_index, u16 arg1, s16 arg2, f32 scale, s32 arg4, s16 arg5);
 void ActorUpdate_Type30(u16 actor_index);

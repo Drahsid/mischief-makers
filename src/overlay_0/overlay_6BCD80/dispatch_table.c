@@ -16,9 +16,9 @@ void func_801A06B4_6CB384(u16 actor_index);
 void func_801A0C74_6CB944(u16 actor_index);
 void func_8019D7A0_6C8470(u16 actor_index);
 void func_80193B50_6BE820(u16 actor_index);
-extern u8 D_801A0F80_6CBC50[];
-extern u8 D_801A1038_6CBD08[];
-extern u8 D_801A48F0_6CF5C0[];
+extern s16 D_801A0F80_6CBC50[];
+extern s16 D_801A1038_6CBD08[];
+extern u16* D_801A48F0_6CF5C0[];
 
 void* D_80192000_6BCD80[] = {
     (void*)func_80199CD4_6C49A4,
