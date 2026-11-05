@@ -7,7 +7,7 @@ options:
   base_path: .
   platform: n64
   compiler: IDO
-  
+
   asm_path: ../../asm
   src_path: ../../src
   asset_path: ../../assets
@@ -30,10 +30,10 @@ options:
   asm_emit_size_directive: True
   hasm_in_src_path: true
   generate_asm_macros_files: False
-  
+
   symbol_name_format: $VRAM_$ROM
   mips_abi_gpr: o32
-  
+
   # section_order: [".text", ".data", ".rodata", ".bss"]
   # auto_link_sections: [".data", ".rodata", ".bss"]
 
@@ -43,7 +43,7 @@ options:
     - symbol_addrs_data.txt
     - symbol_addrs_ovl0.txt
     - symbol_addrs_ovl1.txt
-    
+
   reloc_addrs_path:
     - reloc_addrs.txt
 
@@ -105,7 +105,7 @@ segments:
       - [0x0241E0, c] # has to do with scenes (scene init?)
       - [0x026A00, c, asset_loader]
       - [0x027f70, c, game_text]
-      - [0x028EF0, c] 
+      - [0x028EF0, c]
       - [0x042E90, c]
       - [0x0438E0, c, stage_runtime]
       - [0x048A30, c, marina_anim]
@@ -325,7 +325,7 @@ segments:
       - [0x0CDC80, .data, asset_loader]
       - [0x0D22D0, .data, game_text]
       - [0x0D2410, .data, 28EF0]
-      - [0x0D34B0, .data, 42E90] 
+      - [0x0D34B0, .data, 42E90]
       - [0x0D34D0, .data, stage_runtime]
       - [0x0D4920, .data, marina_anim]
       - [0x0D49B0, .data, marina]
@@ -335,7 +335,7 @@ segments:
       - [0x0D81A0, .data, 66250]
       - [0x0D8CC0, .data, 74A50]
       - [0x0D8ED0, .data, palette_data]
-      - [0x0E1B00, .data, 7D8E0] 
+      - [0x0E1B00, .data, 7D8E0]
       - [0x0E1CD0, .data, 805E0]
       - [0x0E1F80, .data, graphic_lists]
       - [0x0E31B0, .data, 82920]
@@ -664,12 +664,14 @@ segments:
     type: code
     vram: 0x80192100
     start: 0x6AAAF0
-    bss_size: 0x2B0
+    bss_size: 0x3C0
     subsegments:
-      - [0x6AAAF0, asmtu, overlay_0/overlay_6AAA80/6AAAF0] # object segment 6AAAF0->6BCD80 (0x12290)
-      - [0x6B9AB0, .data, overlay_0/overlay_6AAA80/6AAAF0]
-      - [0x6BC9D0, .rodata, overlay_0/overlay_6AAA80/6AAAF0]
-      - { name: overlay_0/overlay_6AAA80/6AAAF0, type: .bss, vram: 0x801A4390 }
+      - [0x6AAAF0, c, overlay_0/overlay_6AAA80/6AAAF0] # object segment 6AAAF0->6BCD80 (0x12290)
+      - [0x6ABB50, c, overlay_0/overlay_6AAA80/6ABB50]
+      - [0x6B9AB0, data, overlay_0/overlay_6AAA80/6AAAF0]
+      - [0x6BC890, .rodata, overlay_0/overlay_6AAA80/6AAAF0]
+      - [0x6BC900, .rodata, overlay_0/overlay_6AAA80/6ABB50]
+      - { name: overlay_0/overlay_6AAA80/6AAAF0, type: bss, vram: 0x801A4390 }
 
   - name: overlay_6BCD80_dispatch_table # blackgamma7: FinalBattle
     exclusive_ram_id: overlay_6BCD80_dispatch_table

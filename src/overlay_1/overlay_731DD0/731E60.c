@@ -2577,7 +2577,7 @@ void func_801A2920_739680(u16 actor_index) {
 
 void func_801A3290_739FF0(u16 actor_index) {
     Actor* actor;
-    s32 temp_v0_2;
+    u32 temp_v0_2;
     u16 sp26;
 
     actor = &gActors[actor_index];
@@ -2605,9 +2605,9 @@ void func_801A3290_739FF0(u16 actor_index) {
             actor->flags &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_FREEZE_POS);
             actor->var_150 = 20;
             sp26 = Rand();
-            actor->velocityX.raw = (f64)((-(Rand() & 15) * FIXED_UNIT(0.375)) + FIXED_UNIT(3)) + (f64)(f32)-actor->velocityX.raw * (0.3 + (f64)((f32)(sp26 & 3) / 10.0f));
+            actor->velocityX.raw = ((-(Rand() & 15) * FIXED_UNIT(0.375)) + FIXED_UNIT(3)) + (f32)-actor->velocityX.raw * (0.3 + ((sp26 & 3) / 10.0f));
             sp26 = Rand();
-            actor->velocityY.raw = (f64)((Rand() & 3) << 15) + ((f64)(f32)-actor->velocityY.raw * (0.3 + (f64)((f32)(sp26 & 3) / 10.0f)) + (f64)FIXED_UNIT(1));
+            actor->velocityY.raw = ((Rand() & 3) * FIXED_UNIT(0.5)) + ((f32)-actor->velocityY.raw * (0.3 + ((sp26 & 3) / 10.0f)) + FIXED_UNIT(1));
             actor->scaleY = 1.0f;
             if ((actor->flags_098 & ACTOR_FLAG3_UNK1) && !(actor_index & 7)) {
                 temp_v0_2 = SpawnGemActor61(actor_index, 0x31, 0);

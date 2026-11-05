@@ -102,7 +102,7 @@ s32 Sound_PlaySfxAtVolPan(u32 sfx_id, s16 volume, s8 pan);
 s32 Sound_PlaySfxAtVolPan2(u32 sfx_id, s16 volume, s8 pan);
 s32 Sound_PlaySfxAtVolPan3(u32 sfx_id, s16 volume, s8 pan);
 s32 Sound_PlaySfxAtVolPan4(u32 sfx_id, s16 volume, s8 pan);
-s32 Sound_PlaySfxAtActor2(u32 sfx_id, u16 actor_index);
+s32 Sound_PlaySfxAtActor2(s32 sfx_id, u16 actor_index);
 s32 Sound_PlaySfxAtActor3(u32 sfx_id, u16 actor_index);
 s32 Sound_PlaySfxAtObject(u32 sfx_id, u16 index);
 s32 Sound_PlaySfxAtActorTimed(u32 sfx_id, u16 actor_index, u16 timer);

@@ -3879,7 +3879,7 @@ void func_80196BE8_6C18B8(u16 actor_index) {
 // @param flags flags of gem spawned (use GemFlags)
 // @param velocity_x x-velocity of gem when spawned.
 void func_80196BF0_6C18C0(u16 index, u16 flags, s32 velocity_x) {
-    s32 actor_index;
+    u16 actor_index;
 
     actor_index = SpawnGemActor61(index, flags, 0);
     if (actor_index != 0) {

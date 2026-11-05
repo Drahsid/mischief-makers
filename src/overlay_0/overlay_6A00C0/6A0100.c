@@ -6,7 +6,6 @@
 #include "marina_grab.h"
 
 extern s16 D_800D2284[];
-extern u16 D_800D99A4[];
 extern u16 D_8019CA80_6AAA80;
 extern s16 D_8019CA82_6AAA82;
 extern u16 D_8019CA84_6AAA84;
