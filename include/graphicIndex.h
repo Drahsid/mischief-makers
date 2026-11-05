@@ -57,8 +57,6 @@
 #define GINDEX_PARTICLERING    0x00CE
 #define GINDEX_00D2            0x00D2
 
-#define GINDEX_00D2            0x00D2
-
 #define GINDEX_FIREBALL        0x00D4 // 2 animation frames
 
 
@@ -251,6 +249,7 @@
 #define GINDEX_FEST_FLAGGER      0x080A // 3 animation frames
 #define GINDEX_FEST_CROWD_A      0x0810 // animation indexes alternate w/ GINDEX_FEST_CROWD_B?
 #define GINDEX_FEST_CROWD_B      0x0812 // animation indexes alternate w/ GINDEX_FEST_CROWD_A?
+#define GINDEX_0816              0x0816
 #define GINDEX_FEST_WINNERSTAND  0x081C
 #define GINDEX_FEST_PENNANT_A    0x081E // animation indexes alternate w/ GINDEX_FEST_PENNANT_B?
 #define GINDEX_FEST_PENNANT_B    0x0820 // animation indexes alternate w/ GINDEX_FEST_PENNANT_A?
