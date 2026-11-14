@@ -5,14 +5,15 @@
 
 extern u16 D_800D98F4[];
 
+// from 6ABB50
 extern f32 D_801A1104_6B9AF4;
 extern s32 D_801A1108_6B9AF8;
 
-extern s16 D_801A3594_6BBF84;
+extern s16 D_801A3550_6BBF40[];
+extern s16 D_801A3594_6BBF84[];
 extern u16 D_801A35A4_6BBF94;
 extern s32 D_801A35A8_6BBF98;
 extern u16 D_801A35AC_6BBF9C[];
-extern s16 D_801A3550_6BBF40[];
 
 void func_80192100_6AAAF0(u16 actor_index, u16 child_actor_index, s16 arg2) {
     s32 var_a3;

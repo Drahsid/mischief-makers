@@ -123,8 +123,15 @@
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
+#define GINDEX_017C            0x017C
+
 #define GINDEX_0188            0x0188
 #define GINDEX_018A            0x018A
+
+#define GINDEX_0192            0x0192
+#define GINDEX_0194            0x0194
+#define GINDEX_0196            0x0196
+#define GINDEX_0198            0x0198
 #define GINDEX_GRABEFFECTA     0x019A // emmits from hand when you grab something
 
 #define GINDEX_WARPGATE        0x01A8
@@ -331,7 +338,16 @@
 #define GINDEX_1090             0x1090
 #define GINDEX_STAFFCALINA      0X1098
 
+#define GINDEX_1808             0x1808
+#define GINDEX_180A             0x180A
+#define GINDEX_180C             0x180C
+#define GINDEX_180E             0x180E
+#define GINDEX_1810             0x1810
+#define GINDEX_1812             0x1812
 #define GINDEX_1814             0x1814
+#define GINDEX_1816             0x1816
+#define GINDEX_1818             0x1818
+#define GINDEX_181A             0x181A
 #define GINDEX_181C             0x181C
 #define GINDEX_181E             0x181E
 #define GINDEX_1820             0x1820
@@ -542,9 +558,42 @@
 #define GINDEX_5004             0x5004
 
 #define GINDEX_6000             0x6000
+#define GINDEX_6006             0x6006
+#define GINDEX_6009             0x6009
+#define GINDEX_600A             0x600A
+#define GINDEX_6012             0x6012
+#define GINDEX_6013             0x6013
+#define GINDEX_6014             0x6014
+#define GINDEX_6015             0x6015
+#define GINDEX_6016             0x6016
+#define GINDEX_6017             0x6017
+#define GINDEX_601C             0x601C
+#define GINDEX_601D             0x601D
+#define GINDEX_601E             0x601E
+#define GINDEX_601F             0x601F
+#define GINDEX_6022             0x6022
+#define GINDEX_6023             0x6023
+#define GINDEX_6024             0x6024
+#define GINDEX_6025             0x6025
+#define GINDEX_6026             0x6026
+#define GINDEX_6027             0x6027
 #define GINDEX_6028             0x6028
 #define GINDEX_6029             0x6029
 #define GINDEX_602F             0x602F
+#define GINDEX_6030             0x6030
+#define GINDEX_6031             0x6031
+#define GINDEX_6032             0x6032
+#define GINDEX_6033             0x6033
+#define GINDEX_603D             0x603D
+#define GINDEX_603E             0x603E
+#define GINDEX_603F             0x603F
+#define GINDEX_6040             0x6040
+#define GINDEX_6045             0x6045
+#define GINDEX_6046             0x6046
+#define GINDEX_6047             0x6047
+#define GINDEX_604A             0x604A
+#define GINDEX_604B             0x604B
+#define GINDEX_604C             0x604C
 
 #define GINDEX_6400             0x6400
 #define GINDEX_640D             0x640D

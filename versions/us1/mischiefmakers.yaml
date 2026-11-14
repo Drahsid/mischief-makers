@@ -668,10 +668,10 @@ segments:
     subsegments:
       - [0x6AAAF0, c, overlay_0/overlay_6AAA80/6AAAF0] # object segment 6AAAF0->6BCD80 (0x12290)
       - [0x6ABB50, c, overlay_0/overlay_6AAA80/6ABB50]
-      - [0x6B9AB0, data, overlay_0/overlay_6AAA80/6AAAF0]
+      - [0x6B9AB0, .data, overlay_0/overlay_6AAA80/6ABB50]
       - [0x6BC890, .rodata, overlay_0/overlay_6AAA80/6AAAF0]
       - [0x6BC900, .rodata, overlay_0/overlay_6AAA80/6ABB50]
-      - { name: overlay_0/overlay_6AAA80/6AAAF0, type: bss, vram: 0x801A4390 }
+      - { name: overlay_0/overlay_6AAA80/6ABB50, type: .bss, vram: 0x801A4390 }
 
   - name: overlay_6BCD80_dispatch_table # blackgamma7: FinalBattle
     exclusive_ram_id: overlay_6BCD80_dispatch_table
