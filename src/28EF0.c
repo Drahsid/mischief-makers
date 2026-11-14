@@ -35,7 +35,6 @@ extern u16 D_800D90A4[];
 extern u16 D_800D9664[];
 extern u16 D_800D9754[];
 extern u16 D_800D9844[];
-extern u16 D_800D98F4[];
 extern u16 D_800D9AF4[];
 extern u16 D_800D9B64[];
 extern u16 D_800D9B7C[];

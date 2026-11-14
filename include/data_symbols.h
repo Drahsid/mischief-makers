@@ -28,6 +28,7 @@ extern u16 D_800D8628[]; // palette
 extern u16 D_800D86A0[]; // palette
 extern u16 D_800D9284[]; // palette
 extern u16 D_800D9474[]; // palette
+extern u16 D_800D98F4[]; // palette
 extern u16 D_800D99A4[]; // palette
 extern u16 D_800D9AE4[];
 extern s16 D_800E13FC[]; // icon for head menus

@@ -4,7 +4,6 @@
 #include "80D90.h"
 #include "asset_loader.h"
 
-extern u16 D_800D98F4[];
 extern s16 D_800E581C[];
 extern s16 D_800E5830[];
 extern s16 D_800E5888[];

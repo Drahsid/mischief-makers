@@ -9,7 +9,6 @@
 #define D_80342630 ((u8 (*)[D_80342230_80342630_COUNT])0x80342630)
 
 extern u16* gParticlePalettes[];
-extern u16 D_800D84E8[];
 extern s16 D_800E14E8[];
 extern s16 D_800E151C[];
 extern s16 D_800E1700[];
