@@ -124,6 +124,7 @@
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
 #define GINDEX_017C            0x017C
+#define GINDEX_0180            0x0180
 
 #define GINDEX_0188            0x0188
 #define GINDEX_018A            0x018A
@@ -152,6 +153,7 @@
 #define GINDEX_IMPACTEFFECTA   0x01D8 // 3 animation frames
 
 #define GINDEX_01E2            0x01E2
+#define GINDEX_01EC            0x01EC
 #define GINDEX_01EE            0x01EE
 #define GINDEX_8SQUARERING     0x01F2
 
@@ -218,6 +220,13 @@
 #define GINDEX_SPIKEBALL       0x0270 // 3 animation frames
 #define GINDEX_CLANBOMB        0x0276 // 3 animation frames
 
+#define GINDEX_027C            0x027C
+#define GINDEX_027E            0x027E
+#define GINDEX_0280            0x0280
+#define GINDEX_0282            0x0282
+#define GINDEX_0284            0x0284
+#define GINDEX_0286            0x0286
+#define GINDEX_0288            0x0288
 #define GINDEX_CLANCER_HEAD    0x028A
 #define GINDEX_CLANCER_BODY    0x028C
 #define GINDEX_CLANCER_PART_028E 0x028E
@@ -307,13 +316,25 @@
 #define GINDEX_MIGEN_7826      0x7826
 #define GINDEX_MIGEN_7827      0x7827
 
+#define GINDEX_1000             0x1000
+#define GINDEX_1002             0x1002
 #define GINDEX_SUNGLASSES       0X1004
+#define GINDEX_1004             0x1004
 #define GINDEX_CALINA_BODY      0X1006
+#define GINDEX_1006             0x1006
 #define GINDEX_CALINA_LEG       0X1008
+#define GINDEX_1008             0x1008
 #define GINDEX_CALINA_FOOT      0X100A
+#define GINDEX_100A             0x100A
+#define GINDEX_100C             0x100C
+#define GINDEX_100E             0x100E
+#define GINDEX_1010             0x1010
+#define GINDEX_1012             0x1012
 #define GINDEX_1014             0x1014
 #define GINDEX_1016             0x1016
+#define GINDEX_1018             0x1018
 #define GINDEX_CALINA_HEAD      0X101A
+#define GINDEX_101A             0x101A
 #define GINDEX_101C             0x101C
 #define GINDEX_101E             0x101E
 #define GINDEX_1020             0x1020
@@ -352,6 +373,7 @@
 #define GINDEX_181E             0x181E
 #define GINDEX_1820             0x1820
 #define GINDEX_1822             0x1822
+#define GINDEX_1826             0x1826
 #define GINDEX_182C             0x182C
 #define GINDEX_182E             0x182E
 #define GINDEX_1836             0x1836
@@ -476,7 +498,42 @@
 #define GINDEX_DEMOWORLD3_3000  0x3000
 #define GINDEX_DEMOWORLD3_3002  0x3002
 
+#define GINDEX_4001             0x4001
+#define GINDEX_4004             0x4004
+#define GINDEX_4005             0x4005
+#define GINDEX_4006             0x4006
 #define GINDEX_4007             0x4007
+#define GINDEX_4008             0x4008
+#define GINDEX_4009             0x4009
+#define GINDEX_400A             0x400A
+#define GINDEX_400B             0x400B
+#define GINDEX_400C             0x400C
+#define GINDEX_400F             0x400F
+#define GINDEX_4011             0x4011
+#define GINDEX_4012             0x4012
+#define GINDEX_4013             0x4013
+#define GINDEX_4014             0x4014
+#define GINDEX_4015             0x4015
+#define GINDEX_4016             0x4016
+#define GINDEX_4017             0x4017
+#define GINDEX_4018             0x4018
+#define GINDEX_4019             0x4019
+#define GINDEX_401F             0x401F
+#define GINDEX_4020             0x4020
+#define GINDEX_4021             0x4021
+#define GINDEX_4022             0x4022
+#define GINDEX_4023             0x4023
+#define GINDEX_4024             0x4024
+#define GINDEX_4025             0x4025
+#define GINDEX_4027             0x4027
+#define GINDEX_4028             0x4028
+#define GINDEX_4029             0x4029
+#define GINDEX_402A             0x402A
+#define GINDEX_402B             0x402B
+#define GINDEX_402C             0x402C
+#define GINDEX_402E             0x402E
+#define GINDEX_4032             0x4032
+#define GINDEX_4033             0x4033
 #define GINDEX_4400             0x4400
 #define GINDEX_4401             0x4401
 #define GINDEX_4402             0x4402
