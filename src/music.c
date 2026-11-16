@@ -944,7 +944,7 @@ s32 Sound_PlaySfxAtActor(u32 sfx_id, u16 actor_index) {
 // will not play if actor is outside x boundaries.
 // @param sfx_id ID of sound effect (should use SFX_* where applicable)
 // @param actor_index actor whose position effects volume/pan of sound.
-s32 Sound_PlaySfxAtActor2(u32 sfx_id, u16 actor_index) {
+s32 Sound_PlaySfxAtActor2(s32 sfx_id, u16 actor_index) {
     s8 temp_a;
     s16 temp_b;
 

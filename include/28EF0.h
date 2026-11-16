@@ -3,6 +3,8 @@
 
 #include <PR/ultratypes.h>
 
+extern u16 D_800D90A4[];
+
 #ifndef func_800283BC_RET
 #define func_800283BC_RET void
 #endif
@@ -11,6 +13,7 @@ void ActorUpdate_GraphicOnly(s32 actor_index);
 void Actor_ClearRange(u16 start, u16 end);
 void Actor_ClearRange_10To20(void);
 void Actor_ClearRange_30To90(void);
+void Actor_ClearRange_90ToC0(void);
 void Actor_ClearRange_C0ToC7(void);
 u16 func_8002884C(u16 actor_index);
 void Actor_UpdateNearest(u16 actor_index);

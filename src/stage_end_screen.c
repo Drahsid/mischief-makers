@@ -226,7 +226,7 @@ void LevelClear_SpawnBackground(void) {
     sBackgroundActor.graphicIndex = GINDEX_SOLIDSQUARE;
     sBackgroundActor.scaleX = 20.0f;
     sBackgroundActor.scaleY = 20.0f;
-    sBackgroundActor.base_0F8_s32[0x25] = (s32)D_800D8588;
+    sBackgroundActor.base_0F8_s32[0x25] = (s32)D_800D8588; // should be palette_18C
     sBackgroundActor.pos[0].whole = 0;
     sBackgroundActor.pos[1].whole = 0;
     sBackgroundActor.pos[2].whole = 0x90;

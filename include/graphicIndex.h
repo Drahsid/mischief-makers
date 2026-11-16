@@ -25,7 +25,7 @@
 #define GINDEX_CLANBLOCKRAMPR  0x007C
 
 #define GINDEX_CLANCERSTATUEA  0x0082 // the wooden sitting one
-#define GINDEX_BIGBLOCK        0x0084 
+#define GINDEX_BIGBLOCK        0x0084
 #define GINDEX_CLANBLOBSTATUE  0x0086 // 3 animation frames(?)
 #define GINDEX_CLANCERSTATUEB  0x008C // the stone elder
 
@@ -34,13 +34,13 @@
 
 // Clanball Rails.
 
-#define GINDEX_RAILSTRAIGHTH   0x00A2 
+#define GINDEX_RAILSTRAIGHTH   0x00A2
 #define GINDEX_RAILENDHL       0x00A4
 #define GINDEX_RAILENDHR       0x00A6
 #define GINDEX_RAILSTRAIGHTV   0x00A8
 #define GINDEX_RAILENDVT       0x00AA
 #define GINDEX_RAILENDVB       0x00AC
-#define GINDEX_RAILANGLEBL     0x00AE 
+#define GINDEX_RAILANGLEBL     0x00AE
 #define GINDEX_RAILANGLELT     0x00B0
 #define GINDEX_RAILANGLETR     0x00B2
 #define GINDEX_RAILANGLEBR     0x00B4
@@ -107,6 +107,10 @@
 
 #define GINDEX_POW             0x014C // 5 animation frames
 #define GINDEX_DISSOLVE        0x0156 // 5 animation frames
+#define GINDEX_0158            0x0158
+#define GINDEX_015A            0x015A
+#define GINDEX_015C            0x015C
+#define GINDEX_015E            0x015E
 #define GINDEX_CONE            0x0160
 #define GINDEX_LINE            0x0162
 #define GINDEX_GRADIENTA       0x0164
@@ -119,7 +123,15 @@
 #define GINDEX_GROUNDFLAME     0x016C
 #define GINDEX_MUSHROOMCLOUD   0x016E // 8 animation frames
 
+#define GINDEX_017C            0x017C
+
 #define GINDEX_0188            0x0188
+#define GINDEX_018A            0x018A
+
+#define GINDEX_0192            0x0192
+#define GINDEX_0194            0x0194
+#define GINDEX_0196            0x0196
+#define GINDEX_0198            0x0198
 #define GINDEX_GRABEFFECTA     0x019A // emmits from hand when you grab something
 
 #define GINDEX_WARPGATE        0x01A8
@@ -133,7 +145,7 @@
 #define GINDEX_01BA            0x01BA
 #define GINDEX_01BC            0x01BC
 
-#define GINDEX_GRABEFFECTB     0x01BE 
+#define GINDEX_GRABEFFECTB     0x01BE
 #define GINDEX_SHOCKEFFECT     0x01C0 // 3 animation frames
 #define GINDEX_POOF            0x01C6 // 8 animation frames
 #define GINDEX_STAREFFECT      0x01D6
@@ -195,6 +207,8 @@
 
 #define GINDEX_MISSLE          0x025C
 
+#define GINDEX_025E            0x025E
+
 #define GINDEX_SAGECLOUD       0x0260
 
 #define GINDEX_SPIRAL          0x0262
@@ -221,7 +235,7 @@
 #define GINDEX_MOCHI           0x02C2
 
 #define GINDEX_CATHEAD         0x02CC // 6 animation frames
-#define GINDEX_TEXTBOX         0x02CE // index of the textbox 
+#define GINDEX_TEXTBOX         0x02CE // index of the textbox
 #define GINDEX_SOLIDSQUARE     0x02D0 // used as a fill for transitions
 #define GINDEX_ALPHASTART      0x02D2 // Beginning of "Alphabet" charset graphics
 
@@ -238,14 +252,16 @@
 #define GINDEX_FEST_GIFTSHOP_EN  0x0800
 #define GINDEX_FEST_GIFTSHOP_JP  0x0802
 #define GINDEX_FEST_WARITAMA     0x0804 // confettii ball. 3 animation frames.
+#define GINDEX_0806              0x0806
 #define GINDEX_FEST_FLAGGER      0x080A // 3 animation frames
-#define GINDEX_FEST_CROWD_A      0x0810 // animation indexes alternate w/ GINDEX_FEST_CROWD_B? 
-#define GINDEX_FEST_CROWD_B      0x0812 // animation indexes alternate w/ GINDEX_FEST_CROWD_A? 
+#define GINDEX_FEST_CROWD_A      0x0810 // animation indexes alternate w/ GINDEX_FEST_CROWD_B?
+#define GINDEX_FEST_CROWD_B      0x0812 // animation indexes alternate w/ GINDEX_FEST_CROWD_A?
+#define GINDEX_0816              0x0816
 #define GINDEX_FEST_WINNERSTAND  0x081C
-#define GINDEX_FEST_PENNANT_A    0x081E // animation indexes alternate w/ GINDEX_FEST_PENNANT_B? 
-#define GINDEX_FEST_PENNANT_B    0x0820 // animation indexes alternate w/ GINDEX_FEST_PENNANT_A? 
-#define GINDEX_FEST_CROWD_C      0x082A // animation indexes alternate w/ GINDEX_FEST_CROWD_D? 
-#define GINDEX_FEST_CROWD_D      0x082C // animation indexes alternate w/ GINDEX_FEST_CROWD_C? 
+#define GINDEX_FEST_PENNANT_A    0x081E // animation indexes alternate w/ GINDEX_FEST_PENNANT_B?
+#define GINDEX_FEST_PENNANT_B    0x0820 // animation indexes alternate w/ GINDEX_FEST_PENNANT_A?
+#define GINDEX_FEST_CROWD_C      0x082A // animation indexes alternate w/ GINDEX_FEST_CROWD_D?
+#define GINDEX_FEST_CROWD_D      0x082C // animation indexes alternate w/ GINDEX_FEST_CROWD_C?
 #define GINDEX_FEST_BALL_WHITE   0x0836
 #define GINDEX_FEST_BALL_RED     0x0838
 
@@ -322,7 +338,16 @@
 #define GINDEX_1090             0x1090
 #define GINDEX_STAFFCALINA      0X1098
 
+#define GINDEX_1808             0x1808
+#define GINDEX_180A             0x180A
+#define GINDEX_180C             0x180C
+#define GINDEX_180E             0x180E
+#define GINDEX_1810             0x1810
+#define GINDEX_1812             0x1812
 #define GINDEX_1814             0x1814
+#define GINDEX_1816             0x1816
+#define GINDEX_1818             0x1818
+#define GINDEX_181A             0x181A
 #define GINDEX_181C             0x181C
 #define GINDEX_181E             0x181E
 #define GINDEX_1820             0x1820
@@ -389,7 +414,7 @@
 #define GINDEX_CLANCER_PILOT_C   0X3024 // 3 animation frames
 #define GINDEX_CLANCER_PILOT_D   0X302A // 3 animation frames
 
-// graphics of Rocketeer clancer? 
+// graphics of Rocketeer clancer?
 
 #define GINDEX_3030                 0x3030
 #define GINDEX_3032                 0x3032
@@ -533,6 +558,43 @@
 #define GINDEX_5004             0x5004
 
 #define GINDEX_6000             0x6000
+#define GINDEX_6006             0x6006
+#define GINDEX_6009             0x6009
+#define GINDEX_600A             0x600A
+#define GINDEX_6012             0x6012
+#define GINDEX_6013             0x6013
+#define GINDEX_6014             0x6014
+#define GINDEX_6015             0x6015
+#define GINDEX_6016             0x6016
+#define GINDEX_6017             0x6017
+#define GINDEX_601C             0x601C
+#define GINDEX_601D             0x601D
+#define GINDEX_601E             0x601E
+#define GINDEX_601F             0x601F
+#define GINDEX_6022             0x6022
+#define GINDEX_6023             0x6023
+#define GINDEX_6024             0x6024
+#define GINDEX_6025             0x6025
+#define GINDEX_6026             0x6026
+#define GINDEX_6027             0x6027
+#define GINDEX_6028             0x6028
+#define GINDEX_6029             0x6029
+#define GINDEX_602F             0x602F
+#define GINDEX_6030             0x6030
+#define GINDEX_6031             0x6031
+#define GINDEX_6032             0x6032
+#define GINDEX_6033             0x6033
+#define GINDEX_603D             0x603D
+#define GINDEX_603E             0x603E
+#define GINDEX_603F             0x603F
+#define GINDEX_6040             0x6040
+#define GINDEX_6045             0x6045
+#define GINDEX_6046             0x6046
+#define GINDEX_6047             0x6047
+#define GINDEX_604A             0x604A
+#define GINDEX_604B             0x604B
+#define GINDEX_604C             0x604C
+
 #define GINDEX_6400             0x6400
 #define GINDEX_640D             0x640D
 #define GINDEX_640E             0x640E
@@ -549,6 +611,7 @@
 #define GINDEX_6419             0x6419
 #define GINDEX_641A             0x641A
 #define GINDEX_641B             0x641B
+
 #define GINDEX_6800             0x6800
 #define GINDEX_6801             0x6801
 #define GINDEX_6802             0x6802

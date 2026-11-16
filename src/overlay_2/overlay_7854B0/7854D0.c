@@ -4,7 +4,6 @@
 #include "80D90.h"
 #include "asset_loader.h"
 
-extern u16 D_800D98F4[];
 extern s16 D_800E581C[];
 extern s16 D_800E5830[];
 extern s16 D_800E5888[];
@@ -2404,7 +2403,7 @@ u16 func_801A9340_787F10(void) {
 }
 
 void func_801A93BC_787F8C(u16 actor_index) {
-    s32 new_actor_index;
+    u16 new_actor_index;
 
     gActors[actor_index].velocityX.raw = FIXED_UNIT(2);
     if (gActors[actor_index].flags_098 & ACTOR_FLAG3_UNK1) {
@@ -3030,4 +3029,3 @@ void func_801AB184_789D54(u16 actor_index) {
 
 void func_801AB18C_789D5C(u16 actor_index) {
 }
-

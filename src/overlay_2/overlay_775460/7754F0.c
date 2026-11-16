@@ -6,6 +6,7 @@
 #include "66250.h"
 #include "8F080.h"
 #include "80D90.h"
+#include "8D0A0.h"
 #include "asset_loader.h"
 #include "input.h"
 #include "cosine.h"
@@ -249,7 +250,6 @@ void func_80065724(u16 actor_index);
 void func_8006ABEC(u16 actor_index, s16* arg1);
 u16 func_8006C908(u16 actor_index);
 void func_8006D3E4(u16 actor_index, u16 actor_state);
-void func_8008DF20(u16 actor_index);
 s32 func_8008F220(u16 actor_index);
 s32 func_800911D8(u16 actor_index);
 s32 func_8009159C(u16 actor_index);

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "actor.h"
 #include "28EF0.h"
+#include "8D0A0.h"
 
 extern u16 D_800D4350[];
 extern u16 D_800D4424[];
@@ -493,7 +494,6 @@ u16 D_801AC840_7851A0[] = {
 
 void Actor_Scale_0F8_0FC_Velocity(u16 actor_index, s32 magnitude);
 u16 func_8003EDF4(f32 scale, s16 position_x, s16 position_y, s16 position_z);
-void func_8008DF20(u16 actor_index);
 
 void func_801A93B8_781D18(u16 actor_index);
 
