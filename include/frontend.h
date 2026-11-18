@@ -164,5 +164,6 @@ extern u8 gDebugStageSelectOptionBaseOffsets[];
 void DebugStageSelect_DrawMenu();
 s32 Input_CheckButtonRepeat2(u16 button, u8* repeat_timer);
 u16 CountYellowGems(void);
+u16 Records_GetTotalTimeRank(void);
 
 #endif

@@ -834,7 +834,7 @@ segments:
     start: 0x6F9390
     bss_size: 0x40
     subsegments:
-      - [0x6F9390, asmtu, overlay_0/overlay_6F9330/6F9390] # object segment 6F9390->713600 (0x1A270)
+      - [0x6F9390, c, overlay_0/overlay_6F9330/6F9390] # object segment 6F9390->713600 (0x1A270)
       - [0x711300, .data, overlay_0/overlay_6F9330/6F9390]
       - [0x7129A0, .rodata, overlay_0/overlay_6F9330/6F9390]
       - { name: overlay_0/overlay_6F9330/6F9390, type: .bss, vram: 0x801AC370 }

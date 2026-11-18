@@ -366,7 +366,11 @@ typedef struct {
                 /* 0x150 */ s16* var_150_s16_ptr;
                 /* 0x150 */ FixedCoord unk_150; // TODO: array?
             };
-            /* 0x154 */ s32 var_154;
+            union {
+                /* 0x154 */ s32 var_154;
+                /* 0x154 */ FixedCoord coord_154;
+                /* 0x154 */ u16* unk_154;
+            };
             union {
                 /* 0x158 */ s32 var_158;
                 /* 0x158 */ u16 unk_158_u16[2];
@@ -375,6 +379,7 @@ typedef struct {
             };
             union {
                 /* 0x15C */ s32 var_15C;
+                /* 0x15C */ s16 var_15C_s16[2];
                 /* 0x15C */ s16* graphicList_15C;
             };
             union {
@@ -384,7 +389,10 @@ typedef struct {
                 /* 0x160 */ s16 var_160_s16[2];
                 /* 0x160 */ s16* graphicList_160;
             };
-            /* 0x164 */ s32 unk_164;
+            union {
+                /* 0x164 */ s32 unk_164;
+                /* 0x164 */ s16 unk_164_s16[2];
+            };
             union {
                 /* 0x168 */ s32 unk_168;
                 /* 0x168 */ ClanpotTally clanpotTally; // used by clanpots when mixing to tally items
@@ -396,6 +404,7 @@ typedef struct {
                 /* 0x16C */ ClanpotCheck clanpotCheck; // used by clanpots when mixing. returns true if requirements mat.
             };
             union {
+                /* 0x170 */ u16 palette_170[3];
                 /* 0x170 */ s32 positionHistory[ACTOR_POSITION_HISTORY_COUNT]; // see: func_800423A0; TODO: find more uses
                 struct {
                     union {

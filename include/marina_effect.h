@@ -36,6 +36,7 @@ typedef struct {
     f32 scale;
 } ShockParticleStruct;
 
+u16 func_80059624(u16 actor_index, f32 scale, u16* palette);
 u16 func_8005A1A4(u16 actor_index, s32* pos, f32 scale);
 u16 func_8005A320(u16 actor_index, s32* arg1, s32 angle, f32 scale);
 u16 func_8005A7D0(u16 actor_index, s32* arg1, f32 arg2, f32 arg3);

@@ -19,6 +19,7 @@ void func_80067E9C(u16 actor_index);
 void func_80067EF0(u16 actor_index);
 void func_80067F98(u16 actor_index);
 void func_80067FEC(u16 actor_index);
+void func_80069DA8(u16 actor_index);
 void func_80069E18(u16 actor_index);
 void func_8006B940(u16 actor_0, u16 actor_1);
 void func_8006BA80(u16 arg0_unused, u16 actor_index);
