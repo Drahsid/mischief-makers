@@ -629,9 +629,9 @@ segments:
     bss_size: 0x40
     subsegments:
       - [0x68A100, c, overlay_0/overlay_68A090/68A100] # object segment 68A100->6A00C0 (0x15FC0)
-      - [0x69BD30, data, overlay_68A090/68A100]
-      - [0x69F650, rodata, overlay_68A090/68A100]
-      - { name: overlay_68A090/68A100, type: bss, vram: 0x801A80C0 }
+      - [0x69BD30, .data, overlay_0/overlay_68A090/68A100]
+      - [0x69F550, .rodata, overlay_0/overlay_68A090/68A100]
+      - { name: overlay_0/overlay_68A090/68A100, type: .bss, vram: 0x801A80C0 }
 
   - name: overlay_6A00C0_dispatch_table # blackgamma7: SasquatchBeta
     exclusive_ram_id: overlay_6A00C0_dispatch_table

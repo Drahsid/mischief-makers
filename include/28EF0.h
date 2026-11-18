@@ -86,9 +86,11 @@ void ActorUpdate_Gem61(u16 actor_index);
 void func_800309C0(u16 actor_index);
 void func_80030D9C(u16 actor_index);
 u16 SpawnParticle_List(u16 actor_index, s16* graphic_list, s32 pos_x, s32 pos_y, s32 pos_z);
+u16 SpawnParticle_Image(u16 actor_index, u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 u16 SpawnParticle_Image_90C0_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 u16 SpawnParticle_Image_102D_16(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 void ActorUpdate_Particle(u16 actor_index);
+u16 func_80031CAC(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 void func_80031DDC(u16 actor_index);
 
 // BUG: inconsistent prototype!
