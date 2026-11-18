@@ -582,7 +582,6 @@ u16 D_801AF930_76F140[] = {
 };
 
 s16* func_8002A018(s16* arg0, s16 arg1);
-u16 func_80031CAC(u16 graphic_index, s32 pos_x, s32 pos_y, s32 pos_z);
 void func_80065724(u16 actor_index);
 u16 func_8006930C(u16 actor_index, u16 actor_state_1, u16 actor_state_2, u16 actor_state_3, u16 actor_state_4, s16 arg5, s16 arg6, s16 arg7, s16 arg8);
 void func_8006B9EC(u16 actor_index, u16 arg1);
