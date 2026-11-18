@@ -95,6 +95,7 @@ void Sound_StartTask(void);
 void Sound_PlayMusic(s32 sequence_id);
 s32 Sound_StopSfx(u32 sfx_id);
 s32 Sound_PlaySfx(u32 sound_id);
+s32 Sound_PlaySfx3(u32 sound_id, s32 volume, s32 pan);
 s32 Sound_PlaySfx2(u32 sound_id);
 s32 Sound_PlaySfxAtVol(u32 sfx_id, s16 volume);
 s32 Sound_PlaySfxAtPan(u32 sfx_id, s8 pan);

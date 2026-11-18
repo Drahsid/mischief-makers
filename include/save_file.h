@@ -5,6 +5,7 @@
 
 extern u16 gTimeRecords[]; // list of stage times
 extern u8 gCurrentSaveSlot;
+extern u8 gFileAges[];
 extern u16 gFileRedGems[];
 extern u16 gFileYellowGems[];
 extern u64 gFilePlayTimes[];
